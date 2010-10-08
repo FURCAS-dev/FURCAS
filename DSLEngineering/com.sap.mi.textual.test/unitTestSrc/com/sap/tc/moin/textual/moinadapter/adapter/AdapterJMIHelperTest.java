@@ -14,15 +14,11 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.parsing.EnumerationTypeStub;
 import com.sap.mi.textual.parsing.MofAnyStub;
 import com.sap.mi.textual.parsing.MofStructureFieldStub;
 import com.sap.mi.textual.parsing.MofStructureTypeStub;
-import com.sap.tc.moin.repository.CRI;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.mmi.reflect.RefEnum;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.textual.moinadapter.adapter.stub.ConnectionStub;
 import com.sap.tc.moin.textual.moinadapter.adapter.stub.JmiHelperStub;
 import com.sap.tc.moin.textual.moinadapter.adapter.stub.MQLProcessorStub;

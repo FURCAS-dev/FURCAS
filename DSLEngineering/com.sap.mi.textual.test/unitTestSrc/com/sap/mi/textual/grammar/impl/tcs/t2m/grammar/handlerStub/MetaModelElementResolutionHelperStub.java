@@ -5,12 +5,11 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub;
 
 import java.util.List;
 
-import tcs.QualifiedNamedElement;
-
-import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
-import com.sap.furcas.textual.common.exceptions.NameResolutionFailedException;
-import com.sap.furcas.textual.common.interfaces.ResolvedNameAndReferenceBean;
-import com.sap.furcas.textual.tcs.MetaModelElementResolutionHelper;
+import com.sap.furcas.metamodel.TCS.QualifiedNamedElement;
+import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.runtime.common.exceptions.NameResolutionFailedException;
+import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.runtime.tcs.MetaModelElementResolutionHelper;
 
 /**
  *

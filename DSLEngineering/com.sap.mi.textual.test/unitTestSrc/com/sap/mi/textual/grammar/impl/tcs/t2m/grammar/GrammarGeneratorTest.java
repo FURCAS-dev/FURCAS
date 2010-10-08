@@ -10,11 +10,11 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import tcs.Keyword;
-
-import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
-import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
-import com.sap.mi.textual.grammar.impl.tcs.t2m.TCSSyntaxContainerBean;
+import com.sap.furcas.metamodel.TCS.Keyword;
+import com.sap.furcas.parsergenerator.tcs.t2m.TCSSyntaxContainerBean;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ANTLRGrammarGenerator;
+import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.ANTLR3WriterStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.MetaLookupStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.ConcreteSyntaxStub;
@@ -27,7 +27,7 @@ public class GrammarGeneratorTest {
 
 
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.ANTLRGrammarGenerator#generateGrammar()}.
+     * Test method for {@link com.sap.furcas.parsergenerator.tcs.t2m.grammar.ANTLRGrammarGenerator#generateGrammar()}.
      * @throws SyntaxParsingException 
      * @throws MetaModelLookupException 
      */

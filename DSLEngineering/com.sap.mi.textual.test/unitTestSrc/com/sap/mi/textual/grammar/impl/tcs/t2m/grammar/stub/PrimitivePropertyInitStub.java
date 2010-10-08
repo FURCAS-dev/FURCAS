@@ -4,11 +4,10 @@
 package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub;
 
 import junit.framework.Assert;
-import tcs.InjectorActionsBlock;
-import tcs.PrimitivePropertyInit;
-import tcs.PropertyReference;
 
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
+import com.sap.furcas.metamodel.TCS.InjectorActionsBlock;
+import com.sap.furcas.metamodel.TCS.PrimitivePropertyInit;
+import com.sap.furcas.metamodel.TCS.PropertyReference;
 
 /**
  *

@@ -15,13 +15,12 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.junit.AfterClass;
 
-import com.sap.furcas.textual.common.exceptions.GrammarGenerationException;
-import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
-import com.sap.furcas.textual.common.interfaces.IMetaModelLookup;
-import com.sap.mi.textual.grammar.ParserFacade;
-import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
-import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.ObservationDirectivesHelper;
-import com.sap.mi.textual.moin.standalone.MOINTCSMetaConnectionProvider;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ObservationDirectivesHelper;
+import com.sap.furcas.runtime.common.exceptions.GrammarGenerationException;
+import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
+import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.runtime.parser.ParserFacade;
+import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 
 
 public class GeneratedParserBasedTest extends ConcreteSyntaxBasedTest {

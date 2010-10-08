@@ -49,7 +49,6 @@ import com.sap.mi.textual.textblocks.model.TextBlocksModel;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.Partitionable;
 import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
->>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 public class TestLexerParserInteraction extends UtilFixtureBase {
 

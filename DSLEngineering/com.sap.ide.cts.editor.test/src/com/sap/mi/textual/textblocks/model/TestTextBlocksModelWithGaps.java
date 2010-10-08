@@ -8,9 +8,9 @@ import org.junit.Test;
 
 import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.mi.textual.parsing.textblocks.TbChangeUtil;
-import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
-import com.sap.mi.textual.parsing.textblocks.TbUtil;
+import com.sap.furcas.parsergenerator.parsing.textblocks.TbChangeUtil;
+import com.sap.furcas.parsergenerator.parsing.textblocks.TbNavigationUtil;
+import com.sap.furcas.parsergenerator.parsing.textblocks.TbUtil;
 import com.sap.mi.textual.parsing.textblocks.UtilFixtureBaseWithGaps;
 
 public class TestTextBlocksModelWithGaps extends UtilFixtureBaseWithGaps {

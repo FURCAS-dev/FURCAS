@@ -8,15 +8,18 @@ import static org.junit.Assert.fail;
 import java.util.ArrayList;
 import java.util.List;
 
-import tcs.Alternative;
-import tcs.Block;
-import tcs.ClassTemplate;
-import tcs.ConditionalElement;
-import tcs.FunctionTemplate;
-import tcs.OperatorTemplate;
-import tcs.SeparatorParg;
-import tcs.Sequence;
-import tcs.SequenceElement;
+import org.eclipse.emf.common.util.EList;
+
+import com.sap.furcas.metamodel.TCS.Alternative;
+import com.sap.furcas.metamodel.TCS.Block;
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConditionalElement;
+import com.sap.furcas.metamodel.TCS.FunctionTemplate;
+import com.sap.furcas.metamodel.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.TCS.SeparatorPArg;
+import com.sap.furcas.metamodel.TCS.Sequence;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
+
 
 /**
  *
@@ -44,7 +47,8 @@ public class SequenceStub extends LocatedElementStub implements Sequence {
     /* (non-Javadoc)
      * @see TCS.Sequence#getElements()
      */
-    public List<SequenceElement> getElements() {
+    @Override
+    public EList<SequenceElement> getElements() {
         return elements;
     }
 
@@ -83,7 +87,7 @@ public class SequenceStub extends LocatedElementStub implements Sequence {
     /* (non-Javadoc)
      * @see TCS.Sequence#getSeparatorcontainer()
      */
-    public SeparatorParg getSeparatorcontainer() {
+    public SeparatorPArg getSeparatorcontainer() {
         fail("not implemented yet");
         return null;
     }
@@ -155,7 +159,7 @@ public class SequenceStub extends LocatedElementStub implements Sequence {
     /* (non-Javadoc)
      * @see TCS.Sequence#setSeparatorcontainer(TCS.SeparatorPArg)
      */
-    public void setSeparatorcontainer(SeparatorParg value) {
+    public void setSeparatorcontainer(SeparatorPArg value) {
         fail("not implemented yet");
         
     }

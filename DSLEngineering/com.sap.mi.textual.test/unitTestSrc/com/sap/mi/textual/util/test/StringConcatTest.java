@@ -6,7 +6,7 @@ package com.sap.mi.textual.util.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import com.sap.mi.textual.util.StringConcatUtil;
+import com.sap.furcas.parsergenerator.util.StringConcatUtil;
 
 /**
  *

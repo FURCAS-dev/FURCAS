@@ -4,12 +4,10 @@
 package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub;
 
 import static org.junit.Assert.fail;
-import tcs.ClassTemplate;
-import tcs.ContextTags;
-import tcs.OperatorList;
-import tcs.Sequence;
 
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ContextTags;
+import com.sap.furcas.metamodel.TCS.OperatorList;
 
 /**
  *

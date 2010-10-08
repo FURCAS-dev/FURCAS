@@ -1,15 +1,15 @@
 package com.sap.ide.cts.parser.incremental;
 
-import static com.sap.furcas.textual.textblocks.TbMarkingUtil.deltaInChars;
-import static com.sap.furcas.textual.textblocks.TbMarkingUtil.isBOS;
-import static com.sap.furcas.textual.textblocks.TbMarkingUtil.isEOS;
-import static com.sap.furcas.textual.textblocks.TbMarkingUtil.mark;
-import static com.sap.furcas.textual.textblocks.TbMarkingUtil.marked;
-import static com.sap.furcas.textual.textblocks.TbNavigationUtil.getSubNodeAt;
-import static com.sap.furcas.textual.textblocks.TbNavigationUtil.getSubNodes;
-import static com.sap.furcas.textual.textblocks.TbNavigationUtil.isToken;
-import static com.sap.furcas.textual.textblocks.TbVersionUtil.getOtherVersion;
-import static com.sap.furcas.textual.textblocks.TbVersionUtil.hasChildChanges;
+import static com.sap.furcas.runtime.textblocks.TbMarkingUtil.deltaInChars;
+import static com.sap.furcas.runtime.textblocks.TbMarkingUtil.isBOS;
+import static com.sap.furcas.runtime.textblocks.TbMarkingUtil.isEOS;
+import static com.sap.furcas.runtime.textblocks.TbMarkingUtil.mark;
+import static com.sap.furcas.runtime.textblocks.TbMarkingUtil.marked;
+import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getSubNodeAt;
+import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getSubNodes;
+import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.isToken;
+import static com.sap.furcas.runtime.textblocks.TbVersionUtil.getOtherVersion;
+import static com.sap.furcas.runtime.textblocks.TbVersionUtil.hasChildChanges;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -24,17 +24,17 @@ import com.sap.furcas.metamodel.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.textblocks.Eostoken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
-import com.sap.furcas.textual.common.interfaces.IModelElementInvestigator;
-import com.sap.furcas.textual.textblocks.TbChangeUtil;
-import com.sap.furcas.textual.textblocks.TbNavigationUtil;
-import com.sap.furcas.textual.textblocks.TbUtil;
-import com.sap.furcas.textual.textblocks.TbValidationUtil;
-import com.sap.furcas.textual.textblocks.TbVersionUtil;
-import com.sap.furcas.textual.textblocks.TokenLocation;
-import com.sap.furcas.textual.textblocks.model.ShortPrettyPrinter;
+import com.sap.furcas.parsing.textblocks.ParsingTextblocksActivator;
+import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
+import com.sap.furcas.runtime.textblocks.TbChangeUtil;
+import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
+import com.sap.furcas.runtime.textblocks.TbUtil;
+import com.sap.furcas.runtime.textblocks.TbValidationUtil;
+import com.sap.furcas.runtime.textblocks.TbVersionUtil;
+import com.sap.furcas.runtime.textblocks.TokenLocation;
+import com.sap.furcas.runtime.textblocks.model.ShortPrettyPrinter;
 import com.sap.furcas.textual.textblocks.validation.IllegalTextBlocksStateException;
 import com.sap.ide.cts.parser.Activator;
-import com.sap.mi.textual.parsing.textblocks.ParsingTextblocksActivator;
 import com.sun.corba.se.pept.transport.Connection;
 
 /**

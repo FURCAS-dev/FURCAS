@@ -15,9 +15,9 @@ import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.RecognizerSharedState;
 import org.antlr.runtime.Token;
 
-import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
-import com.sap.mi.textual.grammar.antlr3.DefaultANTLR3LocationTokenFactory;
-import com.sap.mi.textual.grammar.antlr3.ITokenFactory;
+import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
+import com.sap.furcas.runtime.parser.antlr3.DefaultANTLR3LocationTokenFactory;
+import com.sap.furcas.runtime.parser.antlr3.ITokenFactory;
 
 public class TCSLexer extends Lexer {
     public static final int LT=19;
@@ -151,7 +151,7 @@ public class TCSLexer extends Lexer {
     public static final int RCURLY=13;
     public static final int LE=41;
     public static final int STRING=5;
-      public com.sap.mi.textual.grammar.IModelInjector ei = null;
+      public com.sap.furcas.runtime.parser.IModelInjector ei = null;
     public ITokenFactory<? extends ANTLR3LocationToken> tokenFactory;
       /*************** Code generated in class com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.ANTLR3GrammarWriter  ********/
       private void newline() {}

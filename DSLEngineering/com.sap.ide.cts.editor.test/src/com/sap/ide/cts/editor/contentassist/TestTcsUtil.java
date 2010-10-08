@@ -29,8 +29,8 @@ import com.sap.furcas.metamodel.TCS.Sequence;
 import com.sap.furcas.metamodel.TCS.SequenceElement;
 import com.sap.furcas.metamodel.TCS.SequenceInAlternative;
 import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.parsergenerator.tcs.util.*;
 import com.sap.ide.cts.editor.test.util.TcsTestHelper;
-import com.sap.mi.textual.tcs.util.*;
 
 public class TestTcsUtil extends TcsFixtureBase {
 

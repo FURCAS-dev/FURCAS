@@ -10,15 +10,19 @@ import static org.junit.Assert.assertTrue;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import tcs.Alternative;
-import tcs.Sequence;
-import tcs.SequenceElement;
-
-import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
-import com.sap.furcas.textual.tcs.SyntaxLookup;
-import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
-import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.constraints.PropertyQuantityConstraint;
-import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.constraints.RuleBodyPropertyConstraint;
+import com.sap.furcas.metamodel.TCS.Alternative;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.AlternativeHandler;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.BlockTypeHandler;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ConditionalElementHandler;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ObservationDirectivesHelper;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.PropertyTypeHandler;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.constraints.PropertyQuantityConstraint;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.constraints.RuleBodyPropertyConstraint;
+import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
+import com.sap.furcas.runtime.tcs.SyntaxLookup;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.AlternativeHandlerStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.BlockTypeHandlerStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.ConditionalElementHandlerStub;
@@ -48,7 +52,7 @@ public class RuleBodyStringBufferTest {
     }
     
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer#append(java.lang.Object)}.
+     * Test method for {@link com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer#append(java.lang.Object)}.
      */
     @Test
     public void testAppendObject() {
@@ -78,7 +82,7 @@ public class RuleBodyStringBufferTest {
 
     
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer#addToRuleFragment(TCS.LocatedElement)}.
+     * Test method for {@link com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer#addToRuleFragment(TCS.LocatedElement)}.
      * @throws SyntaxParsingException 
      * @throws MetaModelLookupException 
      */
@@ -113,7 +117,7 @@ public class RuleBodyStringBufferTest {
     }
     
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer#addToRuleFragment(TCS.LocatedElement)}.
+     * Test method for {@link com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer#addToRuleFragment(TCS.LocatedElement)}.
      * @throws SyntaxParsingException 
      * @throws MetaModelLookupException 
      */
@@ -148,7 +152,7 @@ public class RuleBodyStringBufferTest {
     }
     
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer#addToRuleFragment(TCS.LocatedElement)}.
+     * Test method for {@link com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer#addToRuleFragment(TCS.LocatedElement)}.
      * @throws SyntaxParsingException 
      * @throws MetaModelLookupException 
      */
@@ -183,7 +187,7 @@ public class RuleBodyStringBufferTest {
     }
     
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer#addToRuleFragment(TCS.LocatedElement)}.
+     * Test method for {@link com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer#addToRuleFragment(TCS.LocatedElement)}.
      * @throws SyntaxParsingException 
      * @throws MetaModelLookupException 
      */
@@ -218,7 +222,7 @@ public class RuleBodyStringBufferTest {
     }
 
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer#addToRuleFragment(TCS.LocatedElement)}.
+     * Test method for {@link com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer#addToRuleFragment(TCS.LocatedElement)}.
      * @throws SyntaxParsingException 
      * @throws MetaModelLookupException 
      */
@@ -250,7 +254,7 @@ public class RuleBodyStringBufferTest {
     }
     
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer#addToRuleFragment(TCS.LocatedElement)}.
+     * Test method for {@link com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer#addToRuleFragment(TCS.LocatedElement)}.
      * @throws SyntaxParsingException 
      * @throws MetaModelLookupException 
      */
@@ -283,7 +287,7 @@ public class RuleBodyStringBufferTest {
     }
 
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer#addToRuleFragment(TCS.LocatedElement)}.
+     * Test method for {@link com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer#addToRuleFragment(TCS.LocatedElement)}.
      * @throws SyntaxParsingException 
      * @throws MetaModelLookupException 
      */
@@ -316,7 +320,7 @@ public class RuleBodyStringBufferTest {
     }
 
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer#addToRuleFragment(TCS.LocatedElement)}.
+     * Test method for {@link com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer#addToRuleFragment(TCS.LocatedElement)}.
      * @throws SyntaxParsingException 
      * @throws MetaModelLookupException 
      */
@@ -352,7 +356,7 @@ public class RuleBodyStringBufferTest {
 
     
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer#addToRuleFragment(TCS.LocatedElement)}.
+     * Test method for {@link com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer#addToRuleFragment(TCS.LocatedElement)}.
      * @throws SyntaxParsingException 
      * @throws MetaModelLookupException 
      */
@@ -379,7 +383,7 @@ public class RuleBodyStringBufferTest {
     }
     
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer#addToRuleFragment(TCS.LocatedElement)}.
+     * Test method for {@link com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer#addToRuleFragment(TCS.LocatedElement)}.
      * @throws SyntaxParsingException 
      * @throws MetaModelLookupException 
      */
@@ -405,7 +409,7 @@ public class RuleBodyStringBufferTest {
     }
 
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer#addToRuleFragment(TCS.LocatedElement)}.
+     * Test method for {@link com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer#addToRuleFragment(TCS.LocatedElement)}.
      * @throws SyntaxParsingException 
      * @throws MetaModelLookupException 
      */
@@ -433,7 +437,7 @@ public class RuleBodyStringBufferTest {
 
     
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer#addToRuleFragment(TCS.LocatedElement)}.
+     * Test method for {@link com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer#addToRuleFragment(TCS.LocatedElement)}.
      * @throws SyntaxParsingException 
      * @throws MetaModelLookupException 
      */
@@ -491,7 +495,7 @@ public class RuleBodyStringBufferTest {
     
     
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer#addToRuleFragment(TCS.LocatedElement)}.
+     * Test method for {@link com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer#addToRuleFragment(TCS.LocatedElement)}.
      * @throws SyntaxParsingException 
      * @throws MetaModelLookupException 
      */

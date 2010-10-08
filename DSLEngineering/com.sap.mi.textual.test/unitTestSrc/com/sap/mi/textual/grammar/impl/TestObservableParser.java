@@ -11,7 +11,11 @@ import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
 import org.junit.Test;
 
-import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationTokenImpl;
+import com.sap.furcas.runtime.parser.IParsingObserver;
+import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationTokenImpl;
+import com.sap.furcas.runtime.parser.impl.DelayedReference;
+import com.sap.furcas.runtime.parser.impl.DelegationParsingObserver;
+import com.sap.furcas.runtime.parser.impl.ObservablePatchedParser;
 import com.sap.mi.textual.test.util.StringListHelper;
 
 /**

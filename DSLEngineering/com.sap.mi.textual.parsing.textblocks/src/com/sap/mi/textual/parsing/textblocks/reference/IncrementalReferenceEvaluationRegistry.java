@@ -30,12 +30,12 @@ import com.sap.furcas.metamodel.TCS.PredicateSemantic;
 import com.sap.furcas.metamodel.TCS.Property;
 import com.sap.furcas.metamodel.TCS.QueryPArg;
 import com.sap.furcas.metamodel.TCS.Template;
-import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
-import com.sap.furcas.textual.common.interfaces.IRuleName;
-import com.sap.furcas.textual.common.util.ContextAndForeachHelper;
-import com.sap.furcas.textual.tcs.TcsUtil;
-import com.sap.mi.textual.grammar.impl.DelayedReference;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
+import com.sap.furcas.runtime.common.interfaces.IRuleName;
+import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
+import com.sap.furcas.runtime.parser.impl.DelayedReference;
+import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.tcs.TcsUtil;
 
 
 /**
@@ -126,7 +126,7 @@ public class IncrementalReferenceEvaluationRegistry {
 	Template template = block.getParentTemplate();
 	String query = foreachPredicatePropertyInit.getValue();
 	try {
-	    List<com.sap.mi.textual.grammar.impl.PredicateSemantic> list = new ArrayList<com.sap.mi.textual.grammar.impl.PredicateSemantic>();
+	    List<com.sap.furcas.runtime.parser.impl.PredicateSemantic> list = new ArrayList<com.sap.furcas.runtime.parser.impl.PredicateSemantic>();
 	    String mode = template instanceof ClassTemplate ? ((ClassTemplate) template).getMode() : null;
 	    for (PredicateSemantic next : foreachPredicatePropertyInit.getPredicateSemantic()) {
 		String localMode = mode;
@@ -134,11 +134,11 @@ public class IncrementalReferenceEvaluationRegistry {
 		    localMode = next.getMode();
 		}
 		if (next.getWhen() != null) {
-		    list.add(new com.sap.mi.textual.grammar.impl.PredicateSemantic(next.getWhen().toString(), ruleNameFinder.getRuleName(
+		    list.add(new com.sap.furcas.runtime.parser.impl.PredicateSemantic(next.getWhen().toString(), ruleNameFinder.getRuleName(
 			    next.getAs(), localMode)));
 
 		} else {
-		    list.add(new com.sap.mi.textual.grammar.impl.PredicateSemantic(null, ruleNameFinder.getRuleName(next.getAs(),
+		    list.add(new com.sap.furcas.runtime.parser.impl.PredicateSemantic(null, ruleNameFinder.getRuleName(next.getAs(),
 			    localMode)));
 		}
 	    }

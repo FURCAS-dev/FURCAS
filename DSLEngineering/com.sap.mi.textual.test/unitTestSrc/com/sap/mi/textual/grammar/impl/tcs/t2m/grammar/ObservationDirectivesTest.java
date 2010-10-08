@@ -9,7 +9,13 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.textual.tcs.SyntaxLookup;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.AlternativeHandler;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.BlockTypeHandler;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ConditionalElementHandler;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ObservationDirectivesHelper;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.PropertyTypeHandler;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer;
+import com.sap.furcas.runtime.tcs.SyntaxLookup;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.AlternativeHandlerStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.BlockTypeHandlerStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.ConditionalElementHandlerStub;
@@ -28,7 +34,7 @@ public class ObservationDirectivesTest {
     }
     
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer#append(java.lang.Object)}.
+     * Test method for {@link com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer#append(java.lang.Object)}.
      */
     @Test
     public void testAppendObject() throws Exception {

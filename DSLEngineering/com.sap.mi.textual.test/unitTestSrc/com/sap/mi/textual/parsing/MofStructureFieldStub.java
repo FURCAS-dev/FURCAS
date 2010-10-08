@@ -8,24 +8,12 @@ import static org.junit.Assert.fail;
 import java.util.Collection;
 import java.util.List;
 
+import javax.xml.stream.events.Namespace;
+
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ui.internal.keys.model.ModelElement;
+
 import com.sap.mi.textual.test.util.StringListHelper;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.MRI;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.Constraint;
-import com.sap.tc.moin.repository.mmi.model.GeneralizableElement;
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
-import com.sap.tc.moin.repository.mmi.model.MultiplicityType;
-import com.sap.tc.moin.repository.mmi.model.Namespace;
-import com.sap.tc.moin.repository.mmi.model.StructureField;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefException;
-import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 
 /**
  * Stub only intended for testing. Only methods used by AbstractListbasedMetaLookup are being stubbed. 

@@ -5,13 +5,11 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub;
 
 import java.util.List;
 
-import tcs.QualifiedNamedElement;
-import tcs.Template;
-
-import com.sap.furcas.textual.common.interfaces.ResolvedNameAndReferenceBean;
-import com.sap.furcas.textual.tcs.SyntaxLookup;
-import com.sap.mi.textual.moinlookup.util.TemplateNamingHelper;
-import com.sap.mi.textual.util.StringConcatUtil;
+import com.sap.furcas.metamodel.TCS.QualifiedNamedElement;
+import com.sap.furcas.parsergenerator.util.StringConcatUtil;
+import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.runtime.tcs.SyntaxLookup;
+import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
 
 /**
  * Reasonably simple stub for naming.

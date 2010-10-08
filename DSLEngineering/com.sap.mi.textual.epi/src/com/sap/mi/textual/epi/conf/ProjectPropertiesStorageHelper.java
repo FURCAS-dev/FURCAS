@@ -12,7 +12,8 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 
-import com.sap.mi.textual.epi.util.ExceptionHelper;
+import com.sap.furcas.utils.exceptions.EclipseExceptionHelper;
+import com.sap.mi.textual.epi.Activator;
 
 
 /**
@@ -59,7 +60,7 @@ public class ProjectPropertiesStorageHelper {
             
         } catch (IOException e) {
             // TODO: add error marker, here or up in call hierarchy?
-            throw new CoreException(ExceptionHelper.getErrorStatus(e.getMessage()));
+            throw new CoreException(EclipseExceptionHelper.getErrorStatus(e.getMessage(), Activator.PLUGIN_ID));
         }
 	}
 	
@@ -87,7 +88,7 @@ public class ProjectPropertiesStorageHelper {
             prop.load(propFile.getContents());
         } catch (IOException e) {
             // TODO: add error marker, here or up in call hierarchy?
-            throw new CoreException(ExceptionHelper.getErrorStatus(e.getMessage()));
+            throw new CoreException(EclipseExceptionHelper.getErrorStatus(e.getMessage(), Activator.PLUGIN_ID));
         }
 		return prop.getProperty(key);
 	}

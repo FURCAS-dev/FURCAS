@@ -3,7 +3,7 @@
  */
 package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub;
 
-import tcs.PrimitiveTemplate;
+import com.sap.furcas.metamodel.TCS.PrimitiveTemplate;
 
 /**
  *

@@ -11,25 +11,17 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
 
-import tcs.ConcreteSyntax;
-import tcs.Keyword;
-import tcs.OperatorList;
-import tcs.Symbol;
-import tcs.Template;
-import tcs.Token;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.TCS.Keyword;
+import com.sap.furcas.metamodel.TCS.OperatorList;
+import com.sap.furcas.metamodel.TCS.Symbol;
+import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.TCS.Token;
+import com.sap.furcas.parsergenerator.tcs.t2m.TCSSyntaxContainerBean;
 
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.MRI;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefException;
-import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 
 /**
  *
@@ -38,7 +30,7 @@ public class TestAbstractGrammarGenerator {
 
     /**
      * Test method for
-     * {@link com.sap.mi.textual.grammar.impl.tcs.t2m.AbstractTCSGrammarGenerator#generateGrammar()}
+     * {@link com.sap.furcas.parsergenerator.tcs.t2m.AbstractTCSGrammarGenerator#generateGrammar()}
      * .
      */
     @Test
@@ -49,7 +41,7 @@ public class TestAbstractGrammarGenerator {
 
     /**
      * Test method for
-     * {@link com.sap.mi.textual.grammar.impl.tcs.t2m.TCSSyntaxContainerBean}.
+     * {@link com.sap.furcas.parsergenerator.tcs.t2m.TCSSyntaxContainerBean}.
      */
     @Test
     public void testBean() {
@@ -67,69 +59,83 @@ public class TestAbstractGrammarGenerator {
 
 	ConcreteSyntax syntax = new ConcreteSyntax() {
 
+	    @Override
 	    public Integer getK() {
 
 		return 0;
 	    }
 
+	    @Override
 	    public List<Keyword> getKeywords() {
 
 		return null;
 	    }
 
+	    @Override
 	    public String getLexer() {
 
 		return null;
 	    }
 
+	    @Override
 	    public List<OperatorList> getOperatorLists() {
 
 		return null;
 	    }
 
+	    @Override
 	    public List<Symbol> getSymbols() {
 
 		return null;
 	    }
 
+	    @Override
 	    public List<Template> getTemplates() {
 
 		return null;
 	    }
 
+	    @Override
 	    public List<Token> getTokens() {
 
 		return null;
 	    }
 
+	    @Override
 	    public void setLexer(String value) {
 
 	    }
 
+	    @Override
 	    public String getName() {
 
 		return null;
 	    }
 
+	    @Override
 	    public void setName(String value) {
 
 	    }
 
-	    public List<String> getCommentsAfter() {
+	    @Override
+	    public EList<String> getCommentsAfter() {
 
 		return null;
 	    }
 
-	    public List<String> getCommentsBefore() {
+	    @Override
+	    public EList<String> getCommentsBefore() {
 
 		return null;
 	    }
 
+	    @Override
 	    public String getLocation() {
 
 		return null;
 	    }
 
+	    @Override
 	    public void setLocation(String value) {
 	    }
 

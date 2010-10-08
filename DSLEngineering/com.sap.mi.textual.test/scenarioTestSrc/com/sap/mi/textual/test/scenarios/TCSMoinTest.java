@@ -12,17 +12,9 @@ import java.util.Set;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import tcs.ConcreteSyntax;
-import tcs.TcsPackage;
-
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.runtime.parser.impl.DefaultTextAwareModelAdapter;
 import com.sap.ide.cts.editor.test.util.ParserGenerationTestHelper;
-import com.sap.mi.textual.grammar.impl.DefaultTextAwareModelAdapter;
-import com.sap.mi.textual.moin.standalone.MOINTCSMetaConnectionProvider;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
-import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
 
 /**
  * Tests generation of TCS Parsers using metamodel in MOIN.
@@ -34,9 +26,9 @@ public class TCSMoinTest extends ExtendedGeneratedParserBasedTest {
     
     private static final String LANGUAGE = "TCS";
     
-    private static com.sap.mi.textual.grammar.IModelAdapter adapter;
+    private static com.sap.furcas.runtime.parser.IModelAdapter adapter;
 
-    
+     
     @BeforeClass
 	public static void setupParser() throws Exception {
     	initMetamodelId("demo.sap.com/tcsmeta");

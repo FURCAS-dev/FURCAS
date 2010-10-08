@@ -7,11 +7,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
-import com.sap.tc.moin.repository.CRI;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
+import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 
 /**
  * helper class to help with changing method signatures

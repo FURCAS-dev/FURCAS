@@ -3,9 +3,8 @@
  */
 package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub;
 
-import tcs.AndExp;
-import tcs.EqualsExp;
-import tcs.Value;
+import com.sap.furcas.metamodel.TCS.AndExp;
+import com.sap.furcas.metamodel.TCS.EqualsExp;
 
 /**
  *

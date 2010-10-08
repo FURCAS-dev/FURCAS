@@ -1,6 +1,6 @@
 package com.sap.mi.textual.textblocks.model;
 
-import static com.sap.mi.textual.parsing.textblocks.TbVersionUtil.getOtherVersion;
+import static com.sap.furcas.parsergenerator.parsing.textblocks.TbVersionUtil.getOtherVersion;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -13,7 +13,7 @@ import com.sap.furcas.metamodel.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.textblocks.Eostoken;
 import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.mi.textual.parsing.textblocks.TbUtil;
+import com.sap.furcas.parsergenerator.parsing.textblocks.TbUtil;
 import com.sap.mi.textual.parsing.textblocks.TextBlockTest;
 
 public class TestReplacingInTBModel extends TextBlockTest {

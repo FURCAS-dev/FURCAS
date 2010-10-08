@@ -7,12 +7,6 @@ import static org.junit.Assert.fail;
 
 import java.io.Writer;
 
-import com.sap.tc.moin.repository.MRI;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mql.MQLColumnType;
-import com.sap.tc.moin.repository.mql.MQLResultException;
-import com.sap.tc.moin.repository.mql.MQLResultSet;
-
 /**
  *
  */

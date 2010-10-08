@@ -11,13 +11,13 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 import java.util.List;
 
+import com.sap.furcas.runtime.parser.IModelAdapter;
+import com.sap.furcas.runtime.parser.ModelParsingResult;
+import com.sap.furcas.runtime.parser.ParserFacade;
+import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
+import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
+import com.sap.furcas.runtime.parser.impl.ParsingError;
 import com.sap.ide.cts.editor.test.util.GeneratedParserBasedTest;
-import com.sap.mi.textual.grammar.IModelAdapter;
-import com.sap.mi.textual.grammar.ModelParsingResult;
-import com.sap.mi.textual.grammar.ParserFacade;
-import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
-import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
-import com.sap.mi.textual.grammar.impl.ParsingError;
 import com.sap.mi.textual.test.util.StubModelAdapter;
 
 /**

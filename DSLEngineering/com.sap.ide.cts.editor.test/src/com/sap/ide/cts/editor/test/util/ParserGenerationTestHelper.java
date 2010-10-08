@@ -17,25 +17,25 @@ import java.util.Set;
 
 import org.antlr.Tool;
 import org.antlr.runtime.Lexer;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
 
-import com.sap.furcas.textual.common.exceptions.GrammarGenerationException;
-import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
-import com.sap.furcas.textual.common.interfaces.IMetaModelLookup;
-import com.sap.furcas.textual.common.interfaces.IModelElementProxy;
+import com.sap.furcas.builder.publ.GrammarWritingHelper;
+import com.sap.furcas.parsergenerator.emf.RuleNameFinder;
+import com.sap.furcas.runtime.common.exceptions.GrammarGenerationException;
+import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
+import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
+import com.sap.furcas.runtime.parser.IModelAdapter;
+import com.sap.furcas.runtime.parser.ModelParsingResult;
+import com.sap.furcas.runtime.parser.ParserFacade;
+import com.sap.furcas.runtime.parser.antlr3.ITokenFactory;
+import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
+import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
+import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.ide.cts.moin.parserfactory.AbstractParserFactory;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRParserFactory;
-import com.sap.mi.textual.epi.filedefinition.GrammarWritingHelper;
-import com.sap.mi.textual.grammar.IModelAdapter;
-import com.sap.mi.textual.grammar.ModelParsingResult;
-import com.sap.mi.textual.grammar.ParserFacade;
-import com.sap.mi.textual.grammar.antlr3.ITokenFactory;
-import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
-import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.mi.textual.moinlookup.util.RuleNameFinder;
-import com.sun.tools.javac.Main;
+
 
 /**
  *
@@ -48,7 +48,7 @@ public class ParserGenerationTestHelper {
 			+ "/" + DEFAULT_PACKAGE + "/";
 	private static final String DEFAULT_TCSPATH = "./scenarioTestResource";
 
-	private String generationSourceRoot;
+	private final String generationSourceRoot;
 	private String generationDirectory;
 	private String generationPackage;
 	private String tcsPath;

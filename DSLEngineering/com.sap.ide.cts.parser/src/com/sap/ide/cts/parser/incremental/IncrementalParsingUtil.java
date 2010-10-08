@@ -1,6 +1,6 @@
 package com.sap.ide.cts.parser.incremental;
 
-import static com.sap.furcas.textual.textblocks.TbVersionUtil.getOtherVersion;
+import static com.sap.furcas.runtime.textblocks.TbVersionUtil.getOtherVersion;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,16 +22,16 @@ import textblocks.OmittedToken;
 import textblocks.TextBlock;
 import textblocks.VersionEnum;
 
-import com.sap.furcas.textual.common.interfaces.IModelElementProxy;
-import com.sap.furcas.textual.tcs.TcsUtil;
-import com.sap.furcas.textual.textblocks.TbNavigationUtil;
-import com.sap.furcas.textual.textblocks.TbUtil;
-import com.sap.furcas.textual.textblocks.TbVersionUtil;
+import com.sap.furcas.parsing.textblocks.observer.TextBlockProxy;
+import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
+import com.sap.furcas.runtime.parser.IModelInjector;
+import com.sap.furcas.runtime.parser.exceptions.ModelCreationOntheFlyRuntimeException;
+import com.sap.furcas.runtime.parser.impl.ModelElementProxy;
+import com.sap.furcas.runtime.tcs.TcsUtil;
+import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
+import com.sap.furcas.runtime.textblocks.TbUtil;
+import com.sap.furcas.runtime.textblocks.TbVersionUtil;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategy.ReuseType;
-import com.sap.mi.textual.grammar.IModelInjector;
-import com.sap.mi.textual.grammar.exceptions.ModelCreationOntheFlyRuntimeException;
-import com.sap.mi.textual.grammar.impl.ModelElementProxy;
-import com.sap.mi.textual.parsing.textblocks.observer.TextBlockProxy;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.JmiHelper;
 import com.sap.tc.moin.repository.ModelPartition;

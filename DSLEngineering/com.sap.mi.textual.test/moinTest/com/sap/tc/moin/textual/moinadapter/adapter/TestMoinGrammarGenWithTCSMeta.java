@@ -16,15 +16,8 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import tcs.TcsPackage;
-
-import com.sap.mi.fwk.ConnectionManager;
-import com.sap.mi.textual.grammar.impl.DefaultTextAwareModelAdapter;
+import com.sap.furcas.runtime.parser.impl.DefaultTextAwareModelAdapter;
 import com.sap.mi.textual.test.util.MOINContainerNameLookUpFactory;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 
 /**
  * Tests grammar generation using a Moin in Eclipse connection for runtime JMI classes.

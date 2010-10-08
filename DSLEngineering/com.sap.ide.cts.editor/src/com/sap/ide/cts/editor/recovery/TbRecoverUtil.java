@@ -1,18 +1,17 @@
 package com.sap.ide.cts.editor.recovery;
 
+
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CharStream;
 import org.antlr.runtime.Lexer;
-import org.antlr.runtime.Token;
 import org.eclipse.jface.dialogs.MessageDialog;
 
 import com.sap.furcas.metamodel.TCS.ClassTemplate;
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.textual.textblocks.TbMarkingUtil;
 import com.sap.furcas.textual.textblocks.TbNavigationUtil;
-import com.sap.furcas.textual.textblocks.TbReplacingHelper;
-import com.sap.furcas.textual.textblocks.model.ShortPrettyPrinter;
+import com.sap.furcas.textual.textblocks.modifcation.TbMarkingUtil;
+import com.sap.furcas.textual.textblocks.modifcation.TbReplacingHelper;
+import com.sap.furcas.textual.textblocks.shortprettyprint.ShortPrettyPrinter;
 import com.sap.ide.cts.editor.CtsActivator;
 import com.sap.ide.cts.parser.incremental.MappingLinkRecoveringIncrementalParser;
 import com.sap.ide.cts.parser.incremental.TextBlockMappingRecoveringFailedException;

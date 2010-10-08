@@ -3,6 +3,7 @@ package com.sap.mi.tcs.editor;
 import java.util.Collection;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;

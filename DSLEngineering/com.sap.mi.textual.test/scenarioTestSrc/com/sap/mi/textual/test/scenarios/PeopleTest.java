@@ -12,10 +12,9 @@ import java.util.Set;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
+import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.ide.cts.editor.test.util.ParserGenerationTestHelper;
-import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
-import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
 import com.sap.mi.textual.test.util.EcoreMetaLookUp;
 import com.sap.mi.textual.test.util.StubModelAdapter;
 import com.sap.mi.textual.test.util.StubModelElement;

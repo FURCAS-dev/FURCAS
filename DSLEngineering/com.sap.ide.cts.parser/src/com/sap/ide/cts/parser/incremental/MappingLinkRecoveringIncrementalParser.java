@@ -19,15 +19,15 @@ import com.sap.furcas.metamodel.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
-import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
-import com.sap.furcas.textual.tcs.TcsUtil;
-import com.sap.furcas.textual.textblocks.TbNavigationUtil;
+import com.sap.furcas.parsing.textblocks.observer.ParserTextBlocksHandler;
+import com.sap.furcas.parsing.textblocks.observer.TextBlockProxy;
+import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
+import com.sap.furcas.runtime.parser.impl.DelayedReference;
+import com.sap.furcas.runtime.parser.impl.DelayedReferencesHelper;
+import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.tcs.TcsUtil;
+import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
-import com.sap.mi.textual.grammar.impl.DelayedReference;
-import com.sap.mi.textual.grammar.impl.DelayedReferencesHelper;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.mi.textual.parsing.textblocks.observer.ParserTextBlocksHandler;
-import com.sap.mi.textual.parsing.textblocks.observer.TextBlockProxy;
 import com.sun.corba.se.pept.transport.Connection;
 
 public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {

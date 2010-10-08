@@ -10,16 +10,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import tcs.ConcreteSyntax;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.parsergenerator.emf.tcs.inject.ModelInjectionResult;
+import com.sap.furcas.parsergenerator.emf.tcs.inject.TCSSpecificEMFModelInjector;
+import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
+import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
+import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 
-import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
-import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
-import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
-import com.sap.mi.textual.moin.standalone.MOINTCSMetaConnectionProvider;
-import com.sap.mi.textual.syntaxmodel.emfadapter.ModelInjectionResult;
-import com.sap.mi.textual.syntaxmodel.emfadapter.MoinContext;
-import com.sap.mi.textual.syntaxmodel.emfadapter.TCS2MOINInjectorFacade;
-import com.sap.tc.moin.repository.Connection;
 
 /**
  * Base class for syntax injection tests
@@ -42,7 +39,7 @@ public abstract class AbstractTCSInjectionTest {
         InputStream in = new FileInputStream(sample);
 
         Connection con = MOINTCSMetaConnectionProvider.getTestConnection();
-        modelParsingResult = TCS2MOINInjectorFacade.parseSyntaxDefinition(in, con, null, null);
+        modelParsingResult = TCSSpecificEMFModelInjector.parseSyntaxDefinition(in, con, null, null);
         syntax = modelParsingResult.getSyntax();
     }
     

@@ -82,13 +82,13 @@
          point="org.eclipse.ui.newWizards">
       <category
             id="com.sap.mi.textual.epi.wizard.category"
-            name="DSL Engineering">
+            name="FURCAS DSL Engineering">
       </category>
       <wizard
             category="com.sap.mi.textual.epi.wizard.category"
             class="com.sap.mi.textual.epi.projectwizard.TCSProjectsWizard"
             id="com.sap.mi.textual.epi.projectwizard"
-            name="DSL Project"
+            name="FURCAS DSL Project"
             project="true">
       </wizard>
    </extension>

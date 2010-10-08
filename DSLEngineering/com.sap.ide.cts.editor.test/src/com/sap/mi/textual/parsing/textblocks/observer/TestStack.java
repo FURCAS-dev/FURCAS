@@ -5,6 +5,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.sap.furcas.parsing.textblocks.observer.Stack;
+
 public class TestStack  {
     
     @Test

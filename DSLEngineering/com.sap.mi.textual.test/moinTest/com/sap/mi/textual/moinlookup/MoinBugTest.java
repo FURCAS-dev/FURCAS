@@ -13,22 +13,10 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.omg.ocl.OclPackage;
-import org.omg.ocl.expressions.OclExpression;
 
-import com.sap.furcas.textual.common.interfaces.ResolvedNameAndReferenceBean;
-import com.sap.mi.fwk.ConnectionManager;
+import com.sap.furcas.parsergenerator.emf.lookup.EcoreMetaLookup;
+import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.mi.textual.test.util.MOINContainerNameLookUpFactory;
-import com.sap.tc.moin.repository.CRI;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.MRI;
-import com.sap.tc.moin.repository.Moin;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.ide.MoinFactory;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mql.MQLProcessor;
-import com.sap.tc.moin.repository.mql.MQLResultSet;
-import com.sap.tc.moin.repository.mql.QueryScopeProvider;
 
 /**
  * Tests potential Moin bug with deferred OCL Instantiation?
@@ -51,7 +39,7 @@ public class MoinBugTest  {
     
     @Test 
     public void testWorkaround() throws Exception {
-        MoinMetaLookup lookup = MOINContainerNameLookUpFactory.getMOINContainerNameLookUpFactory(OclPackage.PACKAGE_DESCRIPTOR.getModelContainerName() );
+        EcoreMetaLookup lookup = MOINContainerNameLookUpFactory.getMOINContainerNameLookUpFactory(OclPackage.PACKAGE_DESCRIPTOR.getModelContainerName() );
         List<ResolvedNameAndReferenceBean<RefObject>> result = lookup.qualifyName("OclExpression");
         assertNotNull(result);
         assertTrue(result.size() > 0);

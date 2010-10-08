@@ -18,7 +18,6 @@ import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
-import com.sap.mi.textual.grammar.impl.ParsingError;
 import com.sap.mi.textual.parsing.textblocks.TbChangeUtil;
 import com.sap.mi.textual.parsing.textblocks.TbVersionUtil;
 import com.sap.mi.textual.textblocks.model.TextBlocksModel;

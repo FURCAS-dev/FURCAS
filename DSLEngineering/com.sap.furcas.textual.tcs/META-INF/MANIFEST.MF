@@ -1,14 +1,14 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Tcs
-Bundle-SymbolicName: com.sap.furcas.textual.tcs
+Bundle-SymbolicName: com.sap.furcas.runtime.tcs
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SAP
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: com.sap.furcas.textual,
+Require-Bundle: com.sap.furcas.runtime.common,
  com.sap.furcas.metamodel,
  org.eclipse.emf.query2,
  org.eclipse.core.runtime,
- com.sap.tc.moin.textual.runtime.emf,
+ com.sap.furcas.modeladaptation.emf,
  org.eclipse.emf.query.index
-Export-Package: com.sap.furcas.textual.tcs
+Export-Package: com.sap.furcas.runtime.tcs

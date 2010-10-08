@@ -9,14 +9,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import tcs.Alternative;
-
-import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
-import com.sap.furcas.textual.common.interfaces.IMetaModelLookup;
-import com.sap.furcas.textual.common.interfaces.MultiplicityBean;
-import com.sap.furcas.textual.common.interfaces.ResolvedNameAndReferenceBean;
-import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
+import com.sap.furcas.metamodel.TCS.Alternative;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer;
+import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.runtime.common.interfaces.MultiplicityBean;
+import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 
 /**
  *

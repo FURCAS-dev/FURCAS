@@ -1,10 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
+Bundle-Name: TCS and TextBlocks Metamodel
 Bundle-SymbolicName: com.sap.furcas.metamodel;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-ClassPath: .
-Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: com.sap.furcas.metamodel.TCS,

@@ -10,7 +10,6 @@ import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.TCS.TCSPackage;
 import com.sap.ide.cts.editor.contentassist.TcsModelElementFactory;
 import com.sap.ide.cts.editor.contentassist.TcsModelElementMoinFactory;
-import com.sap.mi.textual.moin.standalone.MOINTCSMetaConnectionProvider;
 
 public abstract class ConcreteSyntaxBasedTest extends MetamodelBasedTest {
 
@@ -33,7 +32,7 @@ public abstract class ConcreteSyntaxBasedTest extends MetamodelBasedTest {
 		assertNotNull(connection);
 
 		syntax = TcsTestHelper.getSyntaxFromStream(languageTcsFile, connection,
-				MOINTCSMetaConnectionProvider
+				MOINTCSMeytaConnectionProvider
 						.getPartitionsOfMetamodel(metamodelId), null);
 
 		assertNotNull(syntax);

@@ -3,9 +3,7 @@
  */
 package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub;
 
-import tcs.ConditionalElement;
-import tcs.Expression;
-import tcs.Sequence;
+import com.sap.furcas.metamodel.TCS.ConditionalElement;
 
 /**
  *

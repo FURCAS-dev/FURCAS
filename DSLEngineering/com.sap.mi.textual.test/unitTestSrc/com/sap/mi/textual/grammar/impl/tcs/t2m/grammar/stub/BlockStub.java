@@ -5,9 +5,8 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub;
 
 import java.util.List;
 
-import tcs.Block;
-import tcs.BlockArg;
-import tcs.Sequence;
+import com.sap.furcas.metamodel.TCS.Block;
+import com.sap.furcas.metamodel.TCS.BlockArg;
 
 /**
  *

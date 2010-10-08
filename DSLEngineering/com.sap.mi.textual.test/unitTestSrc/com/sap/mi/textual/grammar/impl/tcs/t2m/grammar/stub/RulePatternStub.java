@@ -3,8 +3,7 @@
  */
 package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub;
 
-import tcs.Rule;
-import tcs.RulePattern;
+import com.sap.furcas.metamodel.TCS.RulePattern;
 
 /**
  *

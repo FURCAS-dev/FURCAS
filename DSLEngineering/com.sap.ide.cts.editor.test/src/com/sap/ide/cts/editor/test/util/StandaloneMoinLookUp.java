@@ -8,13 +8,14 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import com.sap.mi.textual.moin.standalone.MOINTCSMetaConnectionProvider;
+import com.sap.furcas.parsergenerator.emf.EcoreMetaLookup;
+
 
 
 /**
  *
  */
-public class StandaloneMoinLookUp extends MoinMetaLookup {
+public class StandaloneMoinLookUp extends EcoreMetaLookup {
 
     /**
      * @param connection
@@ -24,12 +25,5 @@ public class StandaloneMoinLookUp extends MoinMetaLookup {
         super(connection, priList);
     }
     
-    /**
-     * @return
-     */
-    protected Moin getMoin() {
-        Moin moin = MOINTCSMetaConnectionProvider.getBuildMoin();
-        return moin;
-    }
 
 }

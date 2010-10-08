@@ -5,7 +5,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
 
 import com.sap.ide.treeprovider.ImageProvider;
-import com.sap.mi.tcs.editor.Activator;
+
 
 public class TcsTreeImageProvider implements ImageProvider {
 

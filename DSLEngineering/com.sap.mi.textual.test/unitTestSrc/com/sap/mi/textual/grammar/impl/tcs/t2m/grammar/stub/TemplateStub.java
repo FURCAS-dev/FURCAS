@@ -3,14 +3,10 @@
  */
 package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub;
 
-import java.util.Collection;
 import java.util.List;
 
-import tcs.ConcreteSyntax;
-import tcs.Template;
-
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.TCS.Template;
 
 /**
  *

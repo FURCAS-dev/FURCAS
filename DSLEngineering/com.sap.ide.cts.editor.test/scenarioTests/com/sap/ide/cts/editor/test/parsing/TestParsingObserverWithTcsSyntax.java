@@ -23,14 +23,14 @@ import com.sap.furcas.metamodel.TCS.TCSPackage;
 import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.parsergenerator.moin.standalone.MOINTCSMetaConnectionProvider;
+import com.sap.furcas.parsergenerator.textblocks.model.TextBlocksModel;
+import com.sap.furcas.parsing.textblocks.TextBlocksAwareModelAdapter;
+import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.ide.cts.editor.test.util.TestSourceTextBlockCreator;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 import com.sap.mi.tcs.parser.TcsParserFactory;
-import com.sap.mi.textual.grammar.IModelAdapter;
-import com.sap.mi.textual.moin.standalone.MOINTCSMetaConnectionProvider;
 import com.sap.mi.textual.parsing.textblocks.TextBlockTest;
-import com.sap.mi.textual.parsing.textblocks.TextBlocksAwareModelAdapter;
-import com.sap.mi.textual.textblocks.model.TextBlocksModel;
 
 /**
  * 

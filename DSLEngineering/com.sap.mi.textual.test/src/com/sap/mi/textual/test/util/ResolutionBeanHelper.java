@@ -6,8 +6,9 @@ package com.sap.mi.textual.test.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sap.furcas.textual.common.interfaces.ResolvedNameAndReferenceBean;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import org.eclipse.emf.ecore.EObject;
+
+import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 
 
 /**
@@ -29,7 +30,7 @@ public class ResolutionBeanHelper {
         return stub;
     }
 
-    public static ResolvedNameAndReferenceBean<RefObject> refM(String... entries) {
+    public static ResolvedNameAndReferenceBean<EObject> refM(String... entries) {
 
 
         ArrayList<String> list = new ArrayList<String>();
@@ -39,7 +40,7 @@ public class ResolutionBeanHelper {
                 list.add(entry);    
             }
         }
-        ResolvedNameAndReferenceBean<RefObject> stub = new ResolvedNameAndReferenceBean<RefObject>(list, null);
+        ResolvedNameAndReferenceBean<EObject> stub = new ResolvedNameAndReferenceBean<EObject>(list, null);
         return stub;
     }
     

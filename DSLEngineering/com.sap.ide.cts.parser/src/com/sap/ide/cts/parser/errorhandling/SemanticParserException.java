@@ -3,7 +3,7 @@ package com.sap.ide.cts.parser.errorhandling;
 import java.util.List;
 
 import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.mi.textual.grammar.impl.ParsingError;
+import com.tst.ParsingError;
 
 public class SemanticParserException extends Exception {
 

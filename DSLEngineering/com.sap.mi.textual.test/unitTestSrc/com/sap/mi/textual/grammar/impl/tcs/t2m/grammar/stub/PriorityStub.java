@@ -6,10 +6,9 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub;
 import java.util.ArrayList;
 import java.util.List;
 
-import tcs.Associativity;
-import tcs.Operator;
-import tcs.OperatorList;
-import tcs.Priority;
+import com.sap.furcas.metamodel.TCS.Associativity;
+import com.sap.furcas.metamodel.TCS.OperatorList;
+import com.sap.furcas.metamodel.TCS.Priority;
 
 /**
  *

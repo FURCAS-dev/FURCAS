@@ -13,7 +13,7 @@ import com.sap.furcas.metamodel.textblocks.Bostoken;
 import com.sap.furcas.metamodel.textblocks.Eostoken;
 import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.mi.textual.textblocks.model.ShortPrettyPrinter;
+import com.sap.furcas.parsergenerator.textblocks.model.ShortPrettyPrinter;
 
 /**
  * 

@@ -2,18 +2,13 @@ package com.sap.mi.textual.test.scenarios;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Set;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.textual.common.exceptions.GrammarGenerationException;
-import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
-import com.sap.furcas.textual.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.ide.cts.editor.test.util.ParserGenerationTestHelper;
-import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
 import com.sap.mi.textual.test.util.EcoreMetaLookUp;
 import com.sap.mi.textual.test.util.StubModelAdapter;
 import com.sap.mi.textual.test.util.StubModelElement;

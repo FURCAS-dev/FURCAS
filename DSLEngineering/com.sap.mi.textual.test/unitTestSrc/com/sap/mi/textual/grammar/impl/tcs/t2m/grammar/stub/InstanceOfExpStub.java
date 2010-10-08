@@ -6,8 +6,9 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub;
 import java.util.List;
 
 import junit.framework.Assert;
-import tcs.AndExp;
-import tcs.InstanceOfExp;
+
+import com.sap.furcas.metamodel.TCS.AndExp;
+import com.sap.furcas.metamodel.TCS.InstanceOfExp;
 
 /**
  *

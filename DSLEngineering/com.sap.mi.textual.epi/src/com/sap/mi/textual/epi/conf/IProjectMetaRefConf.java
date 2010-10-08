@@ -3,6 +3,9 @@ package com.sap.mi.textual.epi.conf;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 
+import com.sap.furcas.utils.projects.ReferenceScopeBean;
+
+
 
 /**
  * Interface for one kind of having a DSL project configured to use a metamodel.

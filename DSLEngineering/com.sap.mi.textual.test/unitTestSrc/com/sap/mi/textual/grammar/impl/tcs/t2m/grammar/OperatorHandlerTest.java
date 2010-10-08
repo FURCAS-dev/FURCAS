@@ -14,23 +14,21 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import tcs.AssociativityEnum;
-import tcs.Operator;
-import tcs.OperatorTemplate;
-import tcs.Priority;
-
-import com.sap.furcas.textual.tcs.SyntaxLookup;
+import com.sap.furcas.metamodel.TCS.OperatorTemplate;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ObservationDirectivesHelper;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.OperatorHandler;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.AbstractAntlr3Rule;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.ClassProductionRule;
+import com.sap.furcas.runtime.tcs.SyntaxLookup;
+import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.ANTLR3WriterStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.SyntaxLookupStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.TemplateNamingHelperStub;
-import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.rules.AbstractAntlr3Rule;
-import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.rules.ClassProductionRule;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.LiteralStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.OperatorListStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.OperatorStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.OperatorTemplateStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.PriorityStub;
-import com.sap.mi.textual.moinlookup.util.TemplateNamingHelper;
 
 /**
  * Tests the operatorHandler class.

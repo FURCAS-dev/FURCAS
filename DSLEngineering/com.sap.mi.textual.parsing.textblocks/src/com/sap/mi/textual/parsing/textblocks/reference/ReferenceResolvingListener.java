@@ -2,7 +2,7 @@ package com.sap.mi.textual.parsing.textblocks.reference;
 
 import java.util.Collection;
 
-import com.sap.mi.textual.grammar.impl.DelayedReference;
+import com.sap.furcas.runtime.parser.impl.DelayedReference;
 
 /**
  * This interface is provided as a listener for the {@link GlobalDelayedReferenceResolver}. 

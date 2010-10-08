@@ -9,14 +9,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import tcs.ConcreteSyntax;
-import tcs.Keyword;
-import tcs.OperatorList;
-import tcs.Symbol;
-import tcs.Template;
-import tcs.Token;
-
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.TCS.Keyword;
+import com.sap.furcas.metamodel.TCS.OperatorList;
 
 /**
  *

@@ -1,27 +1,26 @@
 package com.sap.ide.cts.parser.incremental.antlr;
 
-import static com.sap.furcas.textual.textblocks.TbMarkingUtil.isBOS;
-import static com.sap.furcas.textual.textblocks.TbMarkingUtil.isEOS;
-
 import java.util.LinkedHashMap;
 
 import org.antlr.runtime.CharStream;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenSource;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.textual.common.interfaces.IModelElementInvestigator;
-import com.sap.furcas.textual.textblocks.TbNavigationUtil;
-import com.sap.furcas.textual.textblocks.TbUtil;
-import com.sap.furcas.textual.textblocks.model.ShortPrettyPrinter;
+import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
+import com.sap.furcas.runtime.parser.IModelInjector;
+import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
+import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationTokenImpl;
+import com.sap.furcas.runtime.parser.impl.ModelInjector;
+import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
+import com.sap.furcas.runtime.textblocks.TbUtil;
+import com.sap.furcas.textual.textblocks.shortprettyprint.ShortPrettyPrinter;
 import com.sap.ide.cts.parser.incremental.IncrementalLexer;
 import com.sap.ide.cts.parser.incremental.LexerAdapter;
-import com.sap.mi.textual.grammar.IModelInjector;
-import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
-import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationTokenImpl;
-import com.sap.mi.textual.grammar.impl.ModelInjector;
 
 
 /**
@@ -54,7 +53,7 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements
 
 	private boolean isLookingForward = false;
 
-	private LinkedHashMap<Token, AbstractToken> tokenToModelElement = new LinkedHashMap<Token, AbstractToken>();
+	private final LinkedHashMap<Token, AbstractToken> tokenToModelElement = new LinkedHashMap<Token, AbstractToken>();
 
 	/**
 	 * This map is used as for lookups on which model element was created for
@@ -73,25 +72,30 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements
 		super(lexerAdapter, mi, moinConnection, bosTokenType, eosTokenType);
 	}
 
+	@Override
 	public int LT(int i) {
 		return LA(i);
 	}
 
+	@Override
 	public int getCharPositionInLine() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	@Override
 	public int getLine() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	@Override
 	public void setCharPositionInLine(int pos) {
 		// TODO Auto-generated method stub
 
 	}
 
+	@Override
 	public void setLine(int line) {
 		// TODO Auto-generated method stub
 
@@ -105,6 +109,7 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements
 	 * 
 	 * @return the value of the new token
 	 */
+	@Override
 	public String substring(int start, int stop) {
 		StringBuffer result = new StringBuffer();
 		AbstractToken tok = getConstructionLoc().getTok();
@@ -124,6 +129,7 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements
 				.toString();
 	}
 
+	@Override
 	public int LA(int i) {
 		if (i == 0) {
 			return 0;
@@ -140,11 +146,13 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements
 			localReadToken = TbNavigationUtil.nextToken(localReadToken);
 			localReadOffset -= oldLength;
 		}
-		if (isEOS(localReadToken))
-			return eosTokenType;
+		if (isEOS(localReadToken)) {
+		    return eosTokenType;
+		}
 		return getSynchronizedValue(localReadToken).charAt(localReadOffset);
 	}
 
+	@Override
 	public void consume() {
 		while (readOffset == asString(readToken).length()
 				&& !isEOS(readToken)) {
@@ -169,11 +177,13 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements
 	/** gives the index relative to the last construction location 
 	 * 
 	 */
+	@Override
 	public int index() {
 		return TbUtil.getAbsoluteOffset(readToken) + readOffset
 				- TbUtil.getAbsoluteOffset(getConstructionLoc().getTok());
 	}
 
+	@Override
 	public int mark() {
 		isLookingForward = true;
 		readLoc.setOffset(readOffset);
@@ -181,6 +191,7 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements
 		return TbUtil.getAbsoluteOffset(readToken) + readOffset;
 	}
 
+	@Override
 	public void release(int marker) {
 		// TODO Auto-generated method stub
 		// throw new UnsupportedOperationException("release not supported.");
@@ -190,9 +201,10 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements
 	 * Rewinds so that <code>readOffset</code> and <code>readToken</code>
 	 * are rewinded to the point they were when {@link #mark()} was called.
 	 */
+	@Override
 	public void rewind(int marker) {
 		while (TbUtil.getAbsoluteOffset(readToken) > marker && !isBOS(readToken)) {
-			readToken = previousToken(readToken, VersionEnum.PREVIOUS);
+			readToken = previousToken(readToken, Version.PREVIOUS);
 			readOffset = getSynchronizedValue(readToken).length();
 		}
 		readOffset = marker - TbUtil.getAbsoluteOffset(readToken);
@@ -202,16 +214,19 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements
 		readLoc.setOffset(readLoc.getOffset() + 1);
 	}
 
+	@Override
 	public void rewind() {
 		// TODO Auto-generated method stub
 		// throw new UnsupportedOperationException("release not supported.");
 	}
 
+	@Override
 	public void seek(int index) {
 		// TODO Auto-generated method stub
 		// throw new UnsupportedOperationException("release not supported.");
 	}
 
+	@Override
 	public int size() {
 		// TODO Auto-generated method stub
 		return 0;
@@ -227,6 +242,7 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements
 	/**
 	 * Needs to be implemented to be used by ANTLRTokenStream
 	 */
+	@Override
 	public Token nextToken() {
 		AbstractToken currentTokenForParser = getCurrentTokenForParser();
 		if (currentTokenForParser == null) {
@@ -285,10 +301,12 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements
 
 	@Override
 	protected String asString(AbstractToken token) {
-		if (isEOS(token))
-			return "EOS";
-		if (isBOS(token))
-			return "BOS";
+		if (isEOS(token)) {
+		    return "EOS";
+		}
+		if (isBOS(token)) {
+		    return "BOS";
+		}
 		return getSynchronizedValue(token);
 	}
 
