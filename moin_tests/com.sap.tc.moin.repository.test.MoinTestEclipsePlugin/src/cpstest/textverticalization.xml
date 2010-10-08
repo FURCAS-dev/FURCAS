@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<TextverticalizationInf xmlns="http://sap.com/moin/MoinArchive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://sap.com/moin/MoinArchive textverticalization_inf.xsd">
-	<SerializationCallback className="com.sap.tc.repository.test.cps.MockTvCallbackX" />	
-</TextverticalizationInf>

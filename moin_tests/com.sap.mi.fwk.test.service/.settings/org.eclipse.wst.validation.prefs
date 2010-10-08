@@ -1,9 +1,0 @@
-#Thu Sep 18 14:45:22 CEST 2008
-DELEGATES_PREFERENCE=delegateValidatorList
-USER_BUILD_PREFERENCE=enabledBuildValidatorListcom.sap.ide.jee.ws.common.integration.dom.validation.DomValidationManager;com.sap.ide.migration.internal.validator.MigrationValidationManager;org.eclipse.wst.wsi.ui.internal.WSIMessageValidator;com.sap.ide.i18n.infocheck.wst.ValidationAdaptor;
-USER_MANUAL_PREFERENCE=enabledManualValidatorListcom.sap.ide.jee.ws.common.integration.dom.validation.DomValidationManager;com.sap.ide.migration.internal.validator.MigrationValidationManager;org.eclipse.wst.wsi.ui.internal.WSIMessageValidator;com.sap.ide.i18n.infocheck.wst.ValidationAdaptor;
-USER_PREFERENCE=overrideGlobalPreferencesfalse
-eclipse.preferences.version=1
-override=false
-suspend=false
-vf.version=3
