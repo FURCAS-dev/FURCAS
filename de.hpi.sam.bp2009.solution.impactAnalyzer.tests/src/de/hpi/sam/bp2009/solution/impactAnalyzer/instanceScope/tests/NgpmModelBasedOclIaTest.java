@@ -42,6 +42,41 @@ public class NgpmModelBasedOclIaTest extends TestCase {
 	ngpmModel = NotificationResourceLoader.loadModel("NgpmModel.xmi");
 	modifyElementaryTypesTrace = NotificationResourceLoader.loadTrace("modifyElementaryTypesEventTrace.trace");
     }
+
+    @Test
+    public void testRenameStringAppendToAppend2() {
+        final OCLExpression exp = (OCLExpression) OclIaTest
+                .parse("context dataaccess::expressions::MethodCallExpression inv: "
+                        + "self.object.getType().getInnermost().oclAsType(classes::ClassTypeDefinition).clazz.allSignatures()->select(s : MethodSignature | s.name='.'.concat('xxx'))",
+                        ClassesPackage.eINSTANCE).iterator().next().getSpecification().getBodyExpression();
+        final MethodSignature append = (MethodSignature) ngpmModel.getEObject("E01F04667A9220905D0911DFA13BFF380A1CE22F");
+        assertEquals("append", append.getName());
+        final ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp);
+        final boolean[] result = new boolean[1];
+        append.eAdapters().add(new AdapterImpl() {
+            @Override
+            public void notifyChanged(Notification msg) {
+                Collection<EObject> impact = ia.getContextObjects(msg);
+                if (OptimizationActivation.getOption().isOperationCallSelectionActive()) {
+                    result[0] = impact.size() > 5 && impact.size() < 10;
+                    if (!result[0]) {
+                        System.err
+                                .println("Expected between 5 and 10 impacted MethodCallExpressions only for calls on string but found "
+                                        + impact.size());
+                    }
+                } else {
+                    result[0] = impact.size() > 50 && impact.size() < 100;
+                    if (!result[0]) {
+                        System.err.println("Expected between 50 and 100 impacted MethodCallExpressions but found only "
+                                + impact.size());
+                    }
+                }
+            }
+        });
+        append.setName("append2");
+        assertTrue(result[0]);
+    }
+
     @Test
     public void testVariableExpressionWithCollectionType() {
 	OCLExpression exp = (OCLExpression) OclIaTest.parse("context NestedTypeDefinition inv: self.getNamedValuesInScope()", ClassesPackage.eINSTANCE).iterator().next().getSpecification().getBodyExpression();
