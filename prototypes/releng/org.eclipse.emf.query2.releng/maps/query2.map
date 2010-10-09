@@ -2,7 +2,6 @@
 
 !*** Special entries from eclipse
 
-plugin@org.eclipse.test=v20080313,:pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,
 fragment@org.eclipse.ant.optional.junit=v20070202,:pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,
 
 plugin@net.sourceforge.lpg.lpgjavaruntime=v1_1,:pserver:anonymous@dev.eclipse.org:/cvsroot/tools,,org.eclipse.orbit/net.sourceforge.lpg.lpgjavaruntime
