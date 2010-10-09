@@ -27,7 +27,7 @@ plugin@org.eclipse.emf.query2.syntax.test=HEAD,:pserver:anonymous@dev.eclipse.or
 plugin@org.eclipse.emf.query2.syntax.ui=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.query/prototypes/query2syntax/org.eclipse.emf.query2.ui
 
 plugin@org.eclipse.emf.query2.librarytest=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.query/tests/org.eclipse.emf.query2.librarytest
-!*** plugin@org.eclipse.emf.query2.test=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.query/tests/org.eclipse.emf.query2.test
+plugin@org.eclipse.emf.query2.test=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.query/tests/org.eclipse.emf.query2.test
 
 !*** All-in-one data integrity frameworks features
 
