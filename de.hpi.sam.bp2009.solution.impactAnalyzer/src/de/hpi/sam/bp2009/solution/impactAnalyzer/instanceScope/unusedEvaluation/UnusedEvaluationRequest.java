@@ -26,6 +26,8 @@ import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.VariableValueNotFoundInfo;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.VariableValueNotFoundInfoImpl;
 
 /**
  * A largely immutable request to perform a (partial) evaluation (see also {@link PartialEvaluator}) of an {@link OCLExpression},
@@ -198,12 +200,11 @@ public class UnusedEvaluationRequest {
      * to {@link #resultIndicatingUnused}. If successful, <code>true</code> is returned. If evaluation fails for an
      * unknown variable, the {@link ValueNotFoundException} is simply passed through.<p>
      * 
-     * Callers should call {@link #checkValuePresendForAllRequiredVariables()} before to see if it makes sense
+     * Callers should call {@link #checkValuePresentForAllRequiredVariables()} before to see if it makes sense
      * at all to attempt an evaluation or if a {@link ValueNotFoundException} would inevitably result. This
      * saves the effort for a failing partial evaluation.
      */
     public boolean evaluate(OppositeEndFinder oppositeEndFinder) throws ValueNotFoundException {
-        checkValuePresendForAllRequiredVariables();
         // use an evaluator that doesn't even try to perform an allInstances() call because it likely would
         // cost more than it saves
         PartialEvaluatorNoAllInstances evaluator = new PartialEvaluatorNoAllInstances(oppositeEndFinder);
@@ -234,13 +235,13 @@ public class UnusedEvaluationRequest {
     }
     
     /**
-     * Returns a {@link ValueNotFoundException} if any of the variables inevitably required by the {@link #expression} are not
+     * Returns a {@link VariableValueNotFoundInfo} if any of the variables inevitably required by the {@link #expression} are not
      * (yet) defined and thus saves a fruitless evaluation cycle, <code>null</code> otherwise.
      */
-    ValueNotFoundException checkValuePresendForAllRequiredVariables() {
+    VariableValueNotFoundInfo checkValuePresentForAllRequiredVariables() {
         for (VariableExp inevitableVariableUse : inevitableVariableUsages) {
             if (!inferredVariableValues.containsKey(inevitableVariableUse.getReferredVariable())) {
-                return new ValueNotFoundException(inevitableVariableUse.getReferredVariable().getName(), inevitableVariableUse);
+                return new VariableValueNotFoundInfoImpl(inevitableVariableUse.getReferredVariable().getName(), inevitableVariableUse);
             }
         }
         return null;
