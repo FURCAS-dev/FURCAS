@@ -2,7 +2,6 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Set;
 import java.util.Stack;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -90,8 +89,7 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
         case MAP:
             return step.traceback(annotateEObject(source), pendingUnusedEvalRequests, tracebackCache, changeEvent);
         case PASSTHROUGH:
-            Set<EObject> sourceValue = Collections.singleton(source.getAnnotatedObject());
-            boolean passedPredicate = !checkPredicate || evaluatePredicate(sourceValue, changeEvent);
+            boolean passedPredicate = !checkPredicate || evaluatePredicate(source.getAnnotatedObject(), changeEvent);
             if (passedPredicate) {
                 return step.traceback(annotateEObject(source), pendingUnusedEvalRequests, tracebackCache, changeEvent);
             } else {
@@ -102,14 +100,15 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
         }
     }
 
-    private boolean evaluatePredicate(Collection<EObject> sourceObjects, Notification atPre) {
+    private boolean evaluatePredicate(EObject sourceObject, Notification atPre) {
+        Collection<EObject> sourceCollection = Collections.singleton(sourceObject);
         // evaluate whether the source object would have passed the iterator's body before the change
         boolean resultPre = acceptIfPredicateTrue;
         if (atPre != null) {
             PartialEvaluator evalPre = new PartialEvaluator(atPre, oppositeEndFinder);
             try {
-                Object result = evalPre.evaluate(null, getExpression(), sourceObjects);
-                resultPre = sourceObjects.contains(result);
+                Object result = evalPre.evaluate(null, getExpression(), sourceCollection);
+                resultPre = isSourceInResult(sourceObject, result);
             } catch (ValueNotFoundException vnfe) {
                 // be conservative about undefined situations
                 resultPre = acceptIfPredicateTrue;
@@ -122,16 +121,8 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
             // evaluate whether the source object passes the iterator's body after the change
             PartialEvaluator evalPost = new PartialEvaluator(oppositeEndFinder);
             try {
-                Object result = evalPost.evaluate(null, getExpression(), sourceObjects);
-                if (result instanceof Collection<?>) {
-                    if (((Collection<?>) result).isEmpty()) {
-                        resultPost = false;
-                    } else {
-                        resultPost = sourceObjects.contains(((Collection<?>) result).iterator().next());
-                    }
-                } else {
-                    resultPost = sourceObjects.contains(result);
-                }
+                Object result = evalPost.evaluate(null, getExpression(), sourceCollection);
+                resultPost = isSourceInResult(sourceObject, result);
             } catch (ValueNotFoundException vnfe) {
                 // be conservative about undefined situations
                 resultPost = acceptIfPredicateTrue;
@@ -143,6 +134,20 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
             // it passes this navigation step
         }
         return resultPre == acceptIfPredicateTrue || resultPost == acceptIfPredicateTrue;
+    }
+
+    private boolean isSourceInResult(EObject sourceObject, Object result) {
+        boolean resultPost;
+        if (result instanceof Collection<?>) {
+            if (((Collection<?>) result).isEmpty()) {
+                resultPost = false;
+            } else {
+                resultPost = ((Collection<?>) result).contains(sourceObject);
+            }
+        } else {
+            resultPost = result == sourceObject;
+        }
+        return resultPost;
     }
 
 }

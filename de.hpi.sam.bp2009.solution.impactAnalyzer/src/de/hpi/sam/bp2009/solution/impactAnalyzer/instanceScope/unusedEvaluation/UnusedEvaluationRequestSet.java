@@ -11,6 +11,7 @@ import org.eclipse.ocl.ecore.Variable;
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.VariableValueNotFoundInfo;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache;
 
 public class UnusedEvaluationRequestSet {
@@ -207,7 +208,7 @@ public class UnusedEvaluationRequestSet {
             for (UnusedEvaluationRequest request : requestsToEvaluate) {
                 Object evaluationResult = tracebackCache.getCachedEvaluationResult(request);
                 if (evaluationResult == null) {
-                    evaluationResult = request.checkValuePresendForAllRequiredVariables();
+                    evaluationResult = request.checkValuePresentForAllRequiredVariables();
                     if (evaluationResult == null) { // all inevitably required variables defined
                         try {
                             evaluationResult = request.evaluate(oppositeEndFinder);
@@ -217,9 +218,9 @@ public class UnusedEvaluationRequestSet {
                     }
                     tracebackCache.cacheEvaluationResult(request, evaluationResult);
                 }
-                if (evaluationResult instanceof ValueNotFoundException) {
+                if (evaluationResult instanceof VariableValueNotFoundInfo) {
                     // re-add the request, but this time for the now unknown variable
-                    Variable unknownVariable = (Variable) ((ValueNotFoundException) evaluationResult).getVariableExp()
+                    Variable unknownVariable = (Variable) ((VariableValueNotFoundInfo) evaluationResult).getVariableExp()
                             .getReferredVariable();
                     Set<UnusedEvaluationRequest> newSet = newRequestSet.get(unknownVariable);
                     if (newSet == null) {

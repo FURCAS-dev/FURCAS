@@ -9,7 +9,9 @@ import java.util.Stack;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.CollectionType;
@@ -714,7 +716,7 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
                 }
                 Set<OperationCallExp> calls = operationBodyToCallMapper.getCallsOf(root);
                 result.append(!calls.isEmpty() ? "\n ===== which is the body of operation "
-                        + calls.iterator().next().getReferredOperation().getName() + " ====="
+                        + formatOperation(calls.iterator().next().getReferredOperation()) + " ====="
                         : "");
                 return result.toString();
             } else {
@@ -723,6 +725,26 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private String formatOperation(EOperation operation) {
+        StringBuilder result = new StringBuilder(((ENamedElement) operation.eContainer()).getName());
+        result.append('.');
+        result.append(operation.getName());
+        result.append('(');
+        boolean first = true;
+        for (EParameter param : operation.getEParameters()) {
+            if (!first) {
+                result.append(", ");
+            } else {
+                first = false;
+            }
+            result.append(param.getName());
+            result.append(':');
+            result.append(param.getEType().getName());
+        }
+        result.append(')');
+        return result.toString();
     }
 
     /**
@@ -770,6 +792,10 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
         } else {
             return newResults;
         }
+    }
+
+    protected OppositeEndFinder getOppositeEndFinder() {
+        return oppositeEndFinder;
     }
 
 }

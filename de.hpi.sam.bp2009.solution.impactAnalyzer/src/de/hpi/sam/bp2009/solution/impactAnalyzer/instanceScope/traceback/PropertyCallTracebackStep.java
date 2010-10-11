@@ -16,8 +16,6 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.TupleType;
 
-import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
-
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
@@ -29,7 +27,6 @@ public class PropertyCallTracebackStep extends AbstractTracebackStep<PropertyCal
     private final TracebackStepAndScopeChange nextStep;
     private final PropertyCallExp sourceExpression;
     private final EReference oppositeReference;
-    private final OppositeEndFinder oppositeEndFinder;
     private final Strategy strategy;
 
     public PropertyCallTracebackStep(PropertyCallExp sourceExpression, EClass context,
@@ -37,7 +34,6 @@ public class PropertyCallTracebackStep extends AbstractTracebackStep<PropertyCal
             TracebackStepCache tracebackStepCache, UnusedEvaluationRequestFactory unusedEvaluationRequestFactory) {
         super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder(), operationBodyToCallMapper, unusedEvaluationRequestFactory);
         this.sourceExpression = sourceExpression;
-        this.oppositeEndFinder = tracebackStepCache.getOppositeEndFinder();
         OCLExpression source = (OCLExpression) sourceExpression.getSource();
         Stack<String> tupleLiteralNames;
         if (source.getType() instanceof TupleType) {
@@ -123,7 +119,7 @@ public class PropertyCallTracebackStep extends AbstractTracebackStep<PropertyCal
             }
             break;
         case HIDDEN_OPPOSITE:
-            Collection<EObject> opposite = oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
+            Collection<EObject> opposite = getOppositeEndFinder().navigateOppositePropertyWithBackwardScope(
                     sourceExpression.getReferredProperty(), source.getAnnotatedObject());
             if (opposite != null && !opposite.isEmpty()) {
                 Set<OperationCallExpKeyedSet> resultSets = new HashSet<OperationCallExpKeyedSet>();
