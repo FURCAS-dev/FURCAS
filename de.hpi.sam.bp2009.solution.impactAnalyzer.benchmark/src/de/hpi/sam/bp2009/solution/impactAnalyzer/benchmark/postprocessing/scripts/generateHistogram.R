@@ -8,38 +8,36 @@ result = result[result$modelId %% 2 == 0, ]
 result$iaExecAndEvalTime = result$executionTime + result$evaluationTimeAfter
 result$aiExecAndEvalTime = result$allInstanceEvalTime + result$allInstanceExecTime
 
-aggr = aggregate(result[, c("aiExecAndEvalTime", "iaExecAndEvalTime")], by=list(result$modelId, result$oclId, result$executionIndex, result$optionId), FUN = "sum") 
+aggr = aggregate(result[, c("aiExecAndEvalTime", "iaExecAndEvalTime")], by=list(result$modelId, result$oclId, result$executionIndex, result$optionId), FUN = "sum")
 
 filtered = result[result$filtered == TRUE, ]
 aggrFiltered = aggregate(filtered[, c("aiExecAndEvalTime", "iaExecAndEvalTime")], by=list(filtered$modelId, filtered$oclId, filtered$executionIndex, filtered$optionId), FUN = "sum")
 
+# Selecting the options (row numbers starting with 1 from optionDescription.data) to show:
+optionsToShow=c(1,3,4,6,10)
+
 aggrAllInstanceUnfiltered = aggr
 aggrAllInstanceUnfiltered$measureTime = aggrAllInstanceUnfiltered$aiExecAndEvalTime
-aggrAllInstanceUnfiltered$measurement = 1 
+aggrAllInstanceUnfiltered$measurement = 1
 
 aggrAllInstanceFiltered = aggrFiltered
 aggrAllInstanceFiltered$measureTime = aggrAllInstanceFiltered$aiExecAndEvalTime
 aggrAllInstanceFiltered$measurement = 2
 mergeAll = merge(aggrAllInstanceUnfiltered, aggrAllInstanceFiltered, all = TRUE)
 
-for (i in 0:(dim(options)[1]-1)) {
-    aggrIaFiltered = aggrFiltered[aggrFiltered$Group.4 == i, ]
+for (i in optionsToShow) {
+    aggrIaFiltered = aggrFiltered[aggrFiltered$Group.4 == i-1, ]
     aggrIaFiltered$measureTime = aggrIaFiltered$iaExecAndEvalTime
-    aggrIaFiltered$measurement = i+3
+    aggrIaFiltered$measurement = i+2
     mergeAll = merge(mergeAll, aggrIaFiltered, all = TRUE)
 }
 mergeAll$modelSize = -mergeAll$Group.1
 
-pdf("ciHistogram1.pdf", width = 8, height = 6)
-aggregate.plot(mergeAll$measureTime, by=list(mergeAll$measurement, mergeAll$modelSize), FUN = "mean", error = "ci", alpha = 0.1, legend = FALSE, main = NULL)
-legend(x = "topleft", legend =  c("All instances with event filter", as.character(options$description)), fill=grey.colors(5))
-title("Total re-evaluation time meaned with a 90% CI", ylab="Total re-evaluation time in nanoseconds", xlab="Scaled models from small to large")
-dev.off()
+# Remove allInstances stuff
+#mergeAll = mergeAll[mergeAll$measurement != 1 & mergeAll$measurement != 2,]
 
-mergeAll = merge(mergeAll, aggrAllInstanceUnfiltered, all = TRUE)
-
-pdf("ciHistogram.pdf", width = 8, height = 6)
+pdf("ciHistogram_all.pdf", width = 8, height = 6) 
 aggregate.plot(mergeAll$measureTime, by=list(mergeAll$measurement, mergeAll$modelSize), FUN = "mean", error = "ci", alpha = 0.1, legend = FALSE, main = NULL)
-legend(x = "topleft", legend = c("All instances w/o event filter", "All instances with event filter", as.character(options$description)), fill=grey.colors(5))
+legend(x = "topleft", legend =  c("Evaluation of all expressions on their allInstances()", "Evaluation on allInstances() for expressions whose filter is matched by event", as.character(options$description)[optionsToShow]), fill=grey.colors(length(optionsToShow)+2))
 title("Total re-evaluation time meaned with a 90% CI", ylab="Total re-evaluation time in nanoseconds", xlab="Scaled models from small to large")
 dev.off()
