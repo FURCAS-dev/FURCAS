@@ -2,6 +2,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
@@ -553,9 +554,10 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
     
     protected static Set<Variable> getVariablesScopedByExpression(OCLExpression e, OperationBodyToCallMapper operationBodyToCallMapper) {
         EObject container = e.eContainer();
-        Set<Variable> result = new HashSet<Variable>();
+        Set<Variable> result = null;
         if (container instanceof LoopExp && ((LoopExp) container).getBody() == e) {
             // body of a loop expression
+            result = new HashSet<Variable>();
             for (org.eclipse.ocl.expressions.Variable<EClassifier, EParameter> v : ((LoopExp) container).getIterator()) {
                 result.add((Variable) v);
             }
@@ -566,19 +568,33 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
                 }
             }
         } else if (container instanceof LetExp && ((LetExp) container).getIn() == e) {
+            if (result == null) {
+                result = new HashSet<Variable>();
+            }
             // in-expression of a let-expression
             result.add((Variable) ((LetExp) container).getVariable());
         } else {
             Set<OperationCallExp> calls = operationBodyToCallMapper.getCallsOf(e);
             if (!calls.isEmpty()) {
                 // body of an operation
-                result.addAll(operationBodyToCallMapper.getSelfVariablesUsedInBody(e));
-                result.addAll(operationBodyToCallMapper.getParameterVariablesUsedInBody(e));
+                result = addAll(result, operationBodyToCallMapper.getSelfVariablesUsedInBody(e));
+                result = addAll(result, operationBodyToCallMapper.getParameterVariablesUsedInBody(e));
             } else if (e == OclHelper.getRootExpression(e)) {
-                result.addAll(operationBodyToCallMapper.getSelfVariablesUsedInBody(e));
+                result = addAll(result, operationBodyToCallMapper.getSelfVariablesUsedInBody(e));
             }
         }
+        if (result == null) {
+            result = Collections.emptySet();
+        }
         return result;
+    }
+    
+    private static <T> Set<T> addAll(Set<T> to, Collection<T> what) {
+        if (to == null) {
+            to = new HashSet<T>();
+        }
+        to.addAll(what);
+        return to;
     }
     
     /**
