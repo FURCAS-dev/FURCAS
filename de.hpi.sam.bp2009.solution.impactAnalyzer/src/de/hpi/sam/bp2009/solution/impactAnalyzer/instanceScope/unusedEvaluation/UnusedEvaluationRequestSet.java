@@ -1,5 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -97,34 +98,38 @@ public class UnusedEvaluationRequestSet {
         UnusedEvaluationRequestSet result = this;
         if (!requests.isEmpty() && !variablesThatLeaveOrEnterScope.isEmpty()) {
             boolean changed = false;
-            Map<Variable, Set<UnusedEvaluationRequest>> remainingRequests = new HashMap<Variable, Set<UnusedEvaluationRequest>>();
+            Map<Variable, Set<UnusedEvaluationRequest>> remainingRequestsUpdated = new HashMap<Variable, Set<UnusedEvaluationRequest>>();
             for (Map.Entry<Variable, Set<UnusedEvaluationRequest>> e : requests.entrySet()) {
                 if (!variablesThatLeaveOrEnterScope.contains(e.getKey())) {
-                    remainingRequests.put(e.getKey(), e.getValue());
-                } else {
-                    changed = true;
-                }
-            }
-            Map<Variable, Set<UnusedEvaluationRequest>> remainingRequestsUpdated = new HashMap<Variable, Set<UnusedEvaluationRequest>>();
-            for (Map.Entry<Variable, Set<UnusedEvaluationRequest>> e : remainingRequests.entrySet()) {
-                boolean setChanged = false;
-                Set<UnusedEvaluationRequest> newSet = new HashSet<UnusedEvaluationRequest>();
-                for (UnusedEvaluationRequest request : e.getValue()) {
-                    UnusedEvaluationRequest newRequest = request.getRequestWithSlotsRemoved(variablesThatLeaveOrEnterScope, unusedEvaluationRequestFactory);
-                    if (newRequest != request) {
-                        changed = true;
-                        setChanged = true;
+                    // the request did not become obsolete due to its unknown variable
+                    boolean setChanged = false;
+                    UnusedEvaluationRequest[] newSet = new UnusedEvaluationRequest[e.getValue().size()];
+                    int newSetIndex = 0;
+                    for (UnusedEvaluationRequest request : e.getValue()) {
+                        UnusedEvaluationRequest newRequest = request.getRequestWithSlotsRemoved(variablesThatLeaveOrEnterScope,
+                                unusedEvaluationRequestFactory);
+                        if (newRequest != request) {
+                            changed = true;
+                            setChanged = true;
+                        }
+                        if (!newRequest.hasOneOrMoreSlots()) {
+                            throw new RuntimeException(
+                                    "Internal error: an UnusedEvaluationRequest whose unknown variable is still in scope "
+                                            + "claims to have lost all its slots; the slot for the unknown variable should, however, still be there.");
+                        }
+                        newSet[newSetIndex++] = newRequest;
                     }
-                    if (!newRequest.hasOneOrMoreSlots()) {
-                        throw new RuntimeException("Internal error: an UnusedEvaluationRequest whose unknown variable is still in scope "+
-                        "claims to have lost all its slots; the slot for the unknown variable should, however, still be there.");
+                    if (setChanged) {
+                        Set<UnusedEvaluationRequest> newSetAsSet = new HashSet<UnusedEvaluationRequest>();
+                        for (int i=0; i<newSetIndex; i++) {
+                            newSetAsSet.add(newSet[i]);
+                        }
+                        remainingRequestsUpdated.put(e.getKey(), newSetAsSet);
+                    } else {
+                        remainingRequestsUpdated.put(e.getKey(), e.getValue());
                     }
-                    newSet.add(newRequest);
-                }
-                if (setChanged) {
-                    remainingRequestsUpdated.put(e.getKey(), newSet);
                 } else {
-                    remainingRequestsUpdated.put(e.getKey(), e.getValue());
+                    changed = true; // the request got dropped
                 }
             }
             if (changed) {
@@ -156,12 +161,13 @@ public class UnusedEvaluationRequestSet {
         Map<Variable, Set<UnusedEvaluationRequest>> newRequestSet = new HashMap<Variable, Set<UnusedEvaluationRequest>>();
         // enter variable value into those requests that have a slot for it
         for (Map.Entry<Variable, Set<UnusedEvaluationRequest>> e : requests.entrySet()) {
-            Set<UnusedEvaluationRequest> set = new HashSet<UnusedEvaluationRequest>();
+            UnusedEvaluationRequest[] newSet = new UnusedEvaluationRequest[e.getValue().size()];
+            int newSetIndex = 0;
             boolean setChanged = false;
             for (UnusedEvaluationRequest request : e.getValue()) {
                 UnusedEvaluationRequest clonedRequest = request.setInferredVariableValue(variable, value,
                         tracebackCache.getUnusedEvaluationRequestFactory());
-                set.add(clonedRequest);
+                newSet[newSetIndex++] = clonedRequest;
                 if (clonedRequest != request) {
                     changed = true;
                     setChanged = true;
@@ -170,11 +176,15 @@ public class UnusedEvaluationRequestSet {
             if (!setChanged) {
                 newRequestSet.put(e.getKey(), e.getValue());
             } else {
+                Set<UnusedEvaluationRequest> set = new HashSet<UnusedEvaluationRequest>();
+                for (int i=0; i<newSetIndex; i++) {
+                    set.add(newSet[i]);
+                }
                 newRequestSet.put(e.getKey(), set);
             }
         }
         // now re-evaluate those that previously failed because variable was unknown
-        Set<UnusedEvaluationRequest> triggered = newRequestSet.get(variable);
+        Collection<UnusedEvaluationRequest> triggered = newRequestSet.get(variable);
         if (triggered != null) {
             newRequestSet.remove(variable);
             changed = true;
@@ -199,7 +209,7 @@ public class UnusedEvaluationRequestSet {
      *            may be <code>null</code> which will immediately cause the result to be a combination of <code>false</code> and a
      *            new, empty {@link UnusedEvaluationRequestSet}.
      */
-    public static UnusedEvaluationResult evaluate(Set<UnusedEvaluationRequest> requestsToEvaluate,
+    public static UnusedEvaluationResult evaluate(Collection<UnusedEvaluationRequest> requestsToEvaluate,
             OppositeEndFinder oppositeEndFinder, TracebackCache tracebackCache) {
         UnusedEvaluationResult result = null;
         Map<Variable, Set<UnusedEvaluationRequest>> newRequestSet = null;
@@ -265,18 +275,18 @@ public class UnusedEvaluationRequestSet {
             Map<Variable, Set<UnusedEvaluationRequest>> newRequests = new HashMap<Variable, Set<UnusedEvaluationRequest>>(
                     requests);
             for (Map.Entry<Variable, Set<UnusedEvaluationRequest>> e : other.requests.entrySet()) {
-                Set<UnusedEvaluationRequest> set = newRequests.get(e.getKey());
-                if (set == null || set.isEmpty()) {
-                    set = e.getValue();
-                } else {
-                    if (!e.getValue().isEmpty()) {
-                        HashSet<UnusedEvaluationRequest> newSet = new HashSet<UnusedEvaluationRequest>(set.size()+1);
+                if (!e.getValue().isEmpty()) {
+                    Set<UnusedEvaluationRequest> set = newRequests.get(e.getKey());
+                    if (set == null || set.isEmpty()) {
+                        set = e.getValue();
+                    } else {
+                        Set<UnusedEvaluationRequest> newSet = new HashSet<UnusedEvaluationRequest>(set.size() + 1);
                         newSet.addAll(set);
                         newSet.addAll(e.getValue());
                         set = newSet;
                     }
+                    newRequests.put(e.getKey(), set);
                 }
-                newRequests.put(e.getKey(), set);
             }
             return new UnusedEvaluationRequestSet(newRequests);
         }

@@ -114,6 +114,30 @@ public class UnusedEvaluationRequest {
      */
     UnusedEvaluationRequest(OCLExpression expression, Object resultIndicatingUnused,
             Map<Variable, Object> inferredVariableValues, Set<Variable> slots) {
+        this(expression, resultIndicatingUnused, inferredVariableValues, slots,
+                expression.accept(new FindAlwaysUsedVariablesVisitor()));
+    }
+    
+    /**
+     * Must not be called from anywhere except {@link UnusedEvaluationRequestFactory#getUnusedEvaluationRequest(OCLExpression, Object, Map, Set)}
+     * because resulting instances need to be <em>managed</em> as their equality and hash code fall back to their identity. Hence,
+     * equal objects in a given scope must be guaranteed to be identical. Such a scope is defined by the use of a
+     * {@link UnusedEvaluationRequestFactory}.
+     * 
+     * @param expression
+     *            the expression to evaluate
+     * @param resultIndicatingUnused
+     *            if <code>expression</code> evaluates to this result, this request will return <code>true</code> from its
+     *            {@link #evaluate(OppositeEndFinder)} method; as a special case, <code>null</code> will be considered "equal"
+     *            to an empty collection as the result of evaluating <code>expression</code>
+     * @param inferredVariableValues
+     *            may be <code>null</code>. In this case, a new {@link Map} is created internally.
+     * @param slots
+     *            the variables currently within their dynamic scope such that, when a value is inferred for such a variable, it
+     *            is correct to assign it for use in evaluating <code>expression</code> in this request
+     */
+    UnusedEvaluationRequest(OCLExpression expression, Object resultIndicatingUnused,
+            Map<Variable, Object> inferredVariableValues, Set<Variable> slots, Set<VariableExp> inevitableVariableUsages) {
         this.expression = expression;
         this.resultIndicatingUnused = resultIndicatingUnused;
         if (inferredVariableValues == null) {
@@ -123,7 +147,7 @@ public class UnusedEvaluationRequest {
         }
         this.slots = slots;
         this.semanticIdentity = new SemanticIdentity();
-        this.inevitableVariableUsages = expression.accept(new FindAlwaysUsedVariablesVisitor());
+        this.inevitableVariableUsages = inevitableVariableUsages;
     }
     
     SemanticIdentity getSemanticIdentity() {
@@ -156,7 +180,7 @@ public class UnusedEvaluationRequest {
                     }
                 }
                 result = unusedEvaluationRequestFactory.getUnusedEvaluationRequest(expression, resultIndicatingUnused,
-                        remainingInferredVariableValues, remainingSlots);
+                        remainingInferredVariableValues, remainingSlots, inevitableVariableUsages);
             } else {
                 result = this;
             }
@@ -187,7 +211,7 @@ public class UnusedEvaluationRequest {
             Map<Variable, Object> newInferredVariableValues = new HashMap<Variable, Object>(inferredVariableValues);
             newInferredVariableValues.put(variable, value);
             result = unusedEvaluationRequestFactory.getUnusedEvaluationRequest(expression, resultIndicatingUnused,
-                    newInferredVariableValues, slots);
+                    newInferredVariableValues, slots, inevitableVariableUsages);
         } else {
             result = this;
         }

@@ -8,6 +8,7 @@ import java.util.WeakHashMap;
 
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.Variable;
+import org.eclipse.ocl.ecore.VariableExp;
 
 /**
  * Produces objects of type {@link UnusedEvaluationRequest} and caches them in a {@link WeakHashMap}. This factory
@@ -63,15 +64,31 @@ public class UnusedEvaluationRequestFactory {
     
     public UnusedEvaluationRequest getUnusedEvaluationRequest(OCLExpression expression, Object resultIndicatingUnused,
             Map<Variable, Object> inferredVariableValues, Set<Variable> slots) {
+        UnusedEvaluationRequest result = lookUp(expression, resultIndicatingUnused, inferredVariableValues, slots);
+        if (result == null) {
+            result = new UnusedEvaluationRequest(expression, resultIndicatingUnused, inferredVariableValues, slots);
+            cache.put(result.getSemanticIdentity(), new WeakReference<UnusedEvaluationRequest>(result));
+        }
+        return result;
+    }
+
+    public UnusedEvaluationRequest getUnusedEvaluationRequest(OCLExpression expression, Object resultIndicatingUnused,
+            Map<Variable, Object> inferredVariableValues, Set<Variable> slots, Set<VariableExp> inevitableVariableUsages) {
+        UnusedEvaluationRequest result = lookUp(expression, resultIndicatingUnused, inferredVariableValues, slots);
+        if (result == null) {
+            result = new UnusedEvaluationRequest(expression, resultIndicatingUnused, inferredVariableValues, slots, inevitableVariableUsages);
+            cache.put(result.getSemanticIdentity(), new WeakReference<UnusedEvaluationRequest>(result));
+        }
+        return result;
+    }
+
+    private UnusedEvaluationRequest lookUp(OCLExpression expression, Object resultIndicatingUnused,
+            Map<Variable, Object> inferredVariableValues, Set<Variable> slots) {
         UnusedEvaluationRequestValue key = new SemanticIdentityWithFields(inferredVariableValues, slots, expression, resultIndicatingUnused);
         WeakReference<UnusedEvaluationRequest> weakRef = cache.get(key);
         UnusedEvaluationRequest result = null;
         if (weakRef != null) {
             result = weakRef.get();
-        }
-        if (result == null) {
-            result = new UnusedEvaluationRequest(expression, resultIndicatingUnused, inferredVariableValues, slots);
-            cache.put(result.getSemanticIdentity(), new WeakReference<UnusedEvaluationRequest>(result));
         }
         return result;
     }
