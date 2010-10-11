@@ -164,18 +164,21 @@ public class UnusedEvaluationRequest {
         if (slotsToRemove == null || slotsToRemove.isEmpty()) {
             result = this;
         } else {
-            Set<Variable> remainingSlots = new HashSet<Variable>(slots);
+            Set<Variable> remainingSlots = slots;
             // iterate this way because we assume slotsToRemove.size() >> slots.size()
-            for (Iterator<Variable> i = remainingSlots.iterator(); i.hasNext();) {
+            for (Iterator<Variable> i = slots.iterator(); i.hasNext();) {
                 Variable v = i.next();
                 if (slotsToRemove.contains(v)) {
-                    i.remove();
+                    if (remainingSlots == slots) { // copy on write/remove
+                        remainingSlots = new HashSet<Variable>(slots);
+                    }
+                    remainingSlots.remove(v);
                 }
             }
-            if (remainingSlots.size() < slots.size()) { // it changed
+            if (remainingSlots != slots) { // it changed
                 Map<Variable, Object> remainingInferredVariableValues = new HashMap<Variable, Object>();
                 for (Map.Entry<Variable, Object> e : inferredVariableValues.entrySet()) {
-                    if (remainingSlots.contains(e.getKey())) {
+                    if (!slotsToRemove.contains(e.getKey())) {
                         remainingInferredVariableValues.put(e.getKey(), e.getValue());
                     }
                 }
