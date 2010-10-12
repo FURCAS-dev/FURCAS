@@ -1,4 +1,4 @@
-package com.sap.mi.textual.test.util;
+package com.sap.furcas.test.parsing.base;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,19 +21,18 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
-import org.eclipse.ui.internal.keys.model.ModelElement;
 
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.MultiplicityBean;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 
-public class EcoreMetaLookUp implements IMetaModelLookup<Object> {
+public class EcoreMetaModelLookUp implements IMetaModelLookup<Object> {
 
     private static final String METAMODELDIR = "scenarioTestResource/metamodels/";
     
-    private List<EPackage> rootPackageList = new ArrayList<EPackage>(3);
-    private Set<EClassifier> classifierList = new HashSet<EClassifier>();
+    private final List<EPackage> rootPackageList = new ArrayList<EPackage>(3);
+    private final Set<EClassifier> classifierList = new HashSet<EClassifier>();
 
     
     /**
@@ -42,7 +41,7 @@ public class EcoreMetaLookUp implements IMetaModelLookup<Object> {
      * @param dataTypeEcoreFile
      * @throws IOException
      */
-    public EcoreMetaLookUp(File... fileArr) throws MetaModelLookupException  {
+    public EcoreMetaModelLookUp(File... fileArr) throws MetaModelLookupException  {
 //In this case DataTypes are usually in a separate file, need to load that one as well
         for (int i = 0; i < fileArr.length; i++) {
             File file = fileArr[i];
@@ -59,7 +58,7 @@ public class EcoreMetaLookUp implements IMetaModelLookup<Object> {
      * @param dataTypeEcoreFile
      * @throws IOException
      */
-    public EcoreMetaLookUp(String... fileArr) throws MetaModelLookupException  {
+    public EcoreMetaModelLookUp(String... fileArr) throws MetaModelLookupException  {
 //In this case DataTypes are usually in a separate file, need to load that one as well
         for (int i = 0; i < fileArr.length; i++) {
             String rootEcoreFile = fileArr[i];
@@ -116,6 +115,7 @@ public class EcoreMetaLookUp implements IMetaModelLookup<Object> {
     /* (non-Javadoc)
      * @see com.sap.mi.textual.interfaces.IMetaModelLookup#getDirectSubTypes(java.lang.String)
      */
+    @Override
     public List<ResolvedNameAndReferenceBean<Object>> getDirectSubTypes(ResolvedNameAndReferenceBean<Object> reference) {
         List<String> typeName = reference.getNames();
         EClassifier typeClass = getEClassifier(typeName);
@@ -150,6 +150,7 @@ public class EcoreMetaLookUp implements IMetaModelLookup<Object> {
     /* (non-Javadoc)
      * @see com.sap.mi.textual.interfaces.IMetaModelLookup#getFeatureClassName(java.lang.String, java.lang.String)
      */
+    @Override
     public ResolvedNameAndReferenceBean<Object> getFeatureClassReference(ResolvedNameAndReferenceBean<Object> reference, String featureName)
             throws MetaModelLookupException {
 
@@ -183,6 +184,7 @@ public class EcoreMetaLookUp implements IMetaModelLookup<Object> {
     /* (non-Javadoc)
      * @see com.sap.mi.textual.interfaces.IMetaModelLookup#getMultiplicity(java.lang.String, java.lang.String)
      */
+    @Override
     public MultiplicityBean getMultiplicity(ResolvedNameAndReferenceBean<Object> reference, String featureName) {
         List<String> typeName = reference.getNames();
         MultiplicityBean multiplicity = null;
@@ -325,6 +327,7 @@ public class EcoreMetaLookUp implements IMetaModelLookup<Object> {
     /* (non-Javadoc)
      * @see com.sap.mi.textual.interfaces.IMetaModelLookup#close()
      */
+    @Override
     public void close() {
     }
 
@@ -354,6 +357,7 @@ public class EcoreMetaLookUp implements IMetaModelLookup<Object> {
     /* (non-Javadoc)
      * @see com.sap.mi.textual.interfaces.IMetaModelLookup#qualifyName(java.lang.String)
      */
+    @Override
     public List<ResolvedNameAndReferenceBean<Object>> qualifyName(String typeName) {
         // Looks into root package and if present alternative root (as in many test cases here, dirty hack for TCS compatibility)
         List<ResolvedNameAndReferenceBean<Object>> list = new ArrayList<ResolvedNameAndReferenceBean<Object>>();
@@ -386,6 +390,7 @@ public class EcoreMetaLookUp implements IMetaModelLookup<Object> {
 
 
 
+	@Override
 	public List<String> getEnumLiterals(ResolvedNameAndReferenceBean<Object> enumeration) {
 		List<String> literals = new ArrayList<String>();
         
@@ -401,6 +406,7 @@ public class EcoreMetaLookUp implements IMetaModelLookup<Object> {
     /* (non-Javadoc)
      * @see com.sap.mi.textual.interfaces.IMetaModelLookup#isSubTypeOf(java.util.List, java.util.List)
      */
+    @Override
     public boolean isSubTypeOf(ResolvedNameAndReferenceBean<Object> subType, ResolvedNameAndReferenceBean<Object> superType) {
         EClassifier supertypeClass = getEClassifier(superType.getNames());
         EClassifier subtypeClass = getEClassifier(subType.getNames());
@@ -478,9 +484,10 @@ public class EcoreMetaLookUp implements IMetaModelLookup<Object> {
         if (reference instanceof EClassifier) {
             EClassifier classi = (EClassifier) reference;
             return getReferenceBean(classi);
-        } else if (reference instanceof ModelElement) {
-            ModelElement classi = (ModelElement) reference;
-            return resolveReference(classi.getQualifiedName());
+        // FIXME what here?
+//        } else if (reference instanceof ModelElement) {
+//            ModelElement classi = (ModelElement) reference;
+//            return resolveReference(classi.getQualifiedName());
         } else {
             throw new IllegalArgumentException("Expected EClassifier, not " + reference.getClass());
         }

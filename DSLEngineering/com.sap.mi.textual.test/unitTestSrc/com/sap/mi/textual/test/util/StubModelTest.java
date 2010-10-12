@@ -11,6 +11,8 @@ import java.util.Set;
 import org.junit.Test;
 
 import com.sap.furcas.parsergenerator.testutils.StringListHelper;
+import com.sap.furcas.test.parsing.base.StubModelElement;
+import com.sap.furcas.test.util.StubModelAdapter;
 
 /**
  * tests the Stub used in Scenario tests.

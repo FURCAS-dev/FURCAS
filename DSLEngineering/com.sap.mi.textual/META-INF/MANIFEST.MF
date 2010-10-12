@@ -26,3 +26,4 @@ Bundle-ClassPath: bin/,
  .
 Bundle-Activator: com.sap.furcas.parsergenerator.Activator
 Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

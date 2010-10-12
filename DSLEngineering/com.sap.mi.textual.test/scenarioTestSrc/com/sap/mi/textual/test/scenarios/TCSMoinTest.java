@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 import com.sap.furcas.runtime.parser.impl.DefaultTextAwareModelAdapter;
+import com.sap.furcas.test.parsing.base.ExtendedGeneratedParserBasedTest;
 import com.sap.ide.cts.editor.test.util.ParserGenerationTestHelper;
 
 /**

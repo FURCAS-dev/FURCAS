@@ -8,10 +8,11 @@ import org.junit.Test;
 
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
+import com.sap.furcas.test.parsing.base.ExtendedGeneratedParserBasedTest;
+import com.sap.furcas.test.parsing.base.StubModelElement;
+import com.sap.furcas.test.util.EcoreMetaModelLookUp;
+import com.sap.furcas.test.util.StubModelAdapter;
 import com.sap.ide.cts.editor.test.util.ParserGenerationTestHelper;
-import com.sap.mi.textual.test.util.EcoreMetaLookUp;
-import com.sap.mi.textual.test.util.StubModelAdapter;
-import com.sap.mi.textual.test.util.StubModelElement;
 
 /**
  * Tests generation of TCS Parsers using metamodel in MOIN.
@@ -28,7 +29,7 @@ public class TCSMQLTest extends ExtendedGeneratedParserBasedTest {
     @BeforeClass
 	public static void setupParser() throws Exception {
 		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new EcoreMetaLookUp("TCS.ecore"));
+		setLookup(new EcoreMetaModelLookUp("TCS.ecore"));
 		generateParserForLanguage(LANGUAGE);
 	}
 

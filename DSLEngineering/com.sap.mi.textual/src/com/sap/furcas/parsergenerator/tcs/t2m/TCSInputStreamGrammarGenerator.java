@@ -66,7 +66,7 @@ public class TCSInputStreamGrammarGenerator extends AbstractTCSGrammarGenerator 
     private TCSSyntaxContainerBean initMembers(InputStream definitionInputStream, ResourceSet connection, Set<URI> metamodelPRIs)
 	    throws InvalidParserImplementationException, IOException, UnknownProductionRuleException, SyntaxParsingException {
 
-	// By choosing this injector, we establish the dependency to MOIN.
+	// By choosing this injector, we establish the dependency to EMF.
 	ModelInjectionResult result = TCSSpecificEMFModelInjector.parseSyntaxDefinition(definitionInputStream, connection,
 		metamodelPRIs, null);
 
@@ -74,19 +74,13 @@ public class TCSInputStreamGrammarGenerator extends AbstractTCSGrammarGenerator 
 	if (errors != null && errors.size() > 0) {
 	    if (result.getSyntax() != null) {
 		// also clean up unfinished syntax
-		EcoreUtil.delete(result.getSyntax(), true);
+		EcoreUtil.delete(result.getSyntax(), /*recursive*/true);
 	    }
 	    throw new SyntaxParsingException(errors);
 	}
-
 	TCSSyntaxContainerBean returnBean = new TCSSyntaxContainerBean();
-
-	ConcreteSyntax syntax = result.getSyntax();
-
-	returnBean.setSyntax(syntax);
-
+	returnBean.setSyntax(result.getSyntax());
 	returnBean.setKeywords(result.getKeywords());
-
 	returnBean.setElementToLocationMap(result.getResult().getLocationMap());
 
 	return returnBean;

@@ -1,4 +1,4 @@
-Manifest-Version: 1.0
+daManifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Parsing
 Bundle-SymbolicName: com.sap.furcas.runtime.parser;singleton:=true

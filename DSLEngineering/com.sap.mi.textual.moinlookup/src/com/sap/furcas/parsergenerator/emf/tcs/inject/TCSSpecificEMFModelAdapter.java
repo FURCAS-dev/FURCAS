@@ -27,7 +27,6 @@ import com.sap.furcas.runtime.common.interfaces.IBareModelAdapter;
 public class TCSSpecificEMFModelAdapter implements IBareModelAdapter {
 
     private final EMFModelAdapter adapter;
-    private final ResourceSet connection;
 
     /**
      * @param metamodelURIs
@@ -35,7 +34,6 @@ public class TCSSpecificEMFModelAdapter implements IBareModelAdapter {
      */
     public TCSSpecificEMFModelAdapter(ResourceSet connection, Set<URI> metamodelURIs) {
 	super();
-	this.connection = connection;
 	final EPackage rootPackage = TCSPackage.eINSTANCE;
 	if (rootPackage == null) {
 	    throw new IllegalArgumentException("ResourceSet cannot resolve TCSPackage " + TCSPackage.eINSTANCE);

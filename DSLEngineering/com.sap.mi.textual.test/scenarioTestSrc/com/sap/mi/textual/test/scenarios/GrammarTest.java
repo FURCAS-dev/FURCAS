@@ -13,7 +13,8 @@ import org.junit.Test;
 
 import com.sap.furcas.builder.publ.TCSInputStreamGrammarGenerator;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ObservationDirectivesHelper;
-import com.sap.mi.textual.test.util.EcoreMetaLookUp;
+import com.sap.furcas.test.parsing.base.ExtendedGeneratedParserBasedTest;
+import com.sap.furcas.test.util.EcoreMetaModelLookUp;
 
 
 public class GrammarTest  extends ExtendedGeneratedParserBasedTest {
@@ -32,7 +33,7 @@ public class GrammarTest  extends ExtendedGeneratedParserBasedTest {
 		InputStream in = new FileInputStream(sample);
 
 		OutputStream out = new ByteArrayOutputStream();
-		TCSInputStreamGrammarGenerator generator = new TCSInputStreamGrammarGenerator( in, out, new EcoreMetaLookUp( "BibText.ecore", "BibText1.ecore"), "generated");
+		TCSInputStreamGrammarGenerator generator = new TCSInputStreamGrammarGenerator( in, out, new EcoreMetaModelLookUp( "BibText.ecore", "BibText1.ecore"), "generated");
 		Connection connection = MOINTCSMetaConnectionProvider.getTestConnection();
         generator.generateGrammar(connection, null, null);
 		out.flush();
@@ -58,7 +59,7 @@ public class GrammarTest  extends ExtendedGeneratedParserBasedTest {
         InputStream in = new FileInputStream(sample);
 
         OutputStream out = new ByteArrayOutputStream();
-        TCSInputStreamGrammarGenerator generator = new TCSInputStreamGrammarGenerator( in, out, new EcoreMetaLookUp( "Expression.ecore"), "generated");
+        TCSInputStreamGrammarGenerator generator = new TCSInputStreamGrammarGenerator( in, out, new EcoreMetaModelLookUp( "Expression.ecore"), "generated");
         Connection connection = MOINTCSMetaConnectionProvider.getTestConnection();
         generator.generateGrammar(connection, null, null);
         out.flush();

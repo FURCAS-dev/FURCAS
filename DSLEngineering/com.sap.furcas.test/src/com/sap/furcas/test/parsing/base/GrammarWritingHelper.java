@@ -6,7 +6,7 @@
  * @version $Revision: 7950 $
  * @author: $Author: c5126871 $
  *******************************************************************************/
-package com.sap.furcas.builder;
+package com.sap.furcas.test.parsing.base;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -32,8 +32,8 @@ import com.sap.furcas.runtime.common.exceptions.GrammarGenerationException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.ParserInvokationException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
-import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
-import com.sap.mi.textual.grammar.impl.ParsingError;
+import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
+import com.sap.furcas.runtime.parser.impl.ParsingError;
 
 /**
  * provides a method allowing build tools to write a java.io.File only if a

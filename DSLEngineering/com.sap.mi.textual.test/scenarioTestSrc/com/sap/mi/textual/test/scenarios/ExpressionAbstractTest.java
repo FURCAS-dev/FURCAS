@@ -3,8 +3,9 @@ package com.sap.mi.textual.test.scenarios;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.sap.furcas.test.parsing.base.ExtendedGeneratedParserBasedTest;
+import com.sap.furcas.test.util.EcoreMetaModelLookUp;
 import com.sap.ide.cts.editor.test.util.ParserGenerationTestHelper;
-import com.sap.mi.textual.test.util.EcoreMetaLookUp;
 
 /**
  * Test using several (useless) layers of abstraction in the metamodel
@@ -19,7 +20,7 @@ public class ExpressionAbstractTest extends ExtendedGeneratedParserBasedTest {
 	@BeforeClass
 	public static void setupParser() throws Exception {
 		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new EcoreMetaLookUp("ExpressionAbstract.ecore"));
+		setLookup(new EcoreMetaModelLookUp("ExpressionAbstract.ecore"));
 		generateParserForLanguage(LANGUAGE);
 	}
 	
