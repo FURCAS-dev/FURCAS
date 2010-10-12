@@ -35,7 +35,7 @@ public class TCSSpecificEMFModelInjector {
     // metamodel.
 
     /**
-     * Parse the syntax definition using the current versino of TCSParser and
+     * Parse the syntax definition using the current version of TCSParser and
      * TCSLexer.
      */
     public static ModelInjectionResult parseSyntaxDefinition(InputStream in, ResourceSet connection, Set<URI> metamodelPRIs,

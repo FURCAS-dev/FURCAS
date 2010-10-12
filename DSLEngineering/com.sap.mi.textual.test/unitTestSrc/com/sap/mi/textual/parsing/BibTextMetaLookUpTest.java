@@ -10,17 +10,17 @@ import org.junit.Test;
 import com.sap.furcas.parsergenerator.testutils.ResolutionBeanHelper;
 import com.sap.furcas.parsergenerator.testutils.StringListHelper;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
-import com.sap.mi.textual.test.util.EcoreMetaLookUp;
+import com.sap.furcas.test.util.EcoreMetaModelLookUp;
 
 
 public class BibTextMetaLookUpTest {
 
-    static EcoreMetaLookUp lookup;
+    static EcoreMetaModelLookUp lookup;
 
     @BeforeClass
     public static void init() throws Exception {
         
-            lookup = new EcoreMetaLookUp("BibText.ecore", "BibText1.ecore");
+            lookup = new EcoreMetaModelLookUp("BibText.ecore", "BibText1.ecore");
             
         
         assert lookup != null;

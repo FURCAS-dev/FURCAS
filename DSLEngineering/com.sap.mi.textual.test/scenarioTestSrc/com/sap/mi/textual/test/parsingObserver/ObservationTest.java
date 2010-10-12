@@ -19,7 +19,7 @@ import com.sap.furcas.parsergenerator.util.FileReadHelper;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.impl.DelegationParsingObserver;
-import com.sap.mi.textual.test.util.StubModelAdapter;
+import com.sap.furcas.test.util.StubModelAdapter;
 
 /**
  * Test class to make sure a generated Parser notifies an Observer of all

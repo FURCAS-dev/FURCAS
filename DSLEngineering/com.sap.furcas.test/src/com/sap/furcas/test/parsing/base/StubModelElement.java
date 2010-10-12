@@ -1,4 +1,4 @@
-package com.sap.mi.textual.test.util;
+package com.sap.furcas.test.parsing.base;
 
 import java.util.HashMap;
 import java.util.Map;

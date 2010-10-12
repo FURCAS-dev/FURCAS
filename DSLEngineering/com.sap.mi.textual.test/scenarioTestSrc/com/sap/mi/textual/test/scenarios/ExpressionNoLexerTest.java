@@ -7,10 +7,11 @@ import java.util.Set;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.sap.furcas.test.parsing.base.ExtendedGeneratedParserBasedTest;
+import com.sap.furcas.test.parsing.base.StubModelElement;
+import com.sap.furcas.test.util.EcoreMetaModelLookUp;
+import com.sap.furcas.test.util.StubModelAdapter;
 import com.sap.ide.cts.editor.test.util.ParserGenerationTestHelper;
-import com.sap.mi.textual.test.util.EcoreMetaLookUp;
-import com.sap.mi.textual.test.util.StubModelAdapter;
-import com.sap.mi.textual.test.util.StubModelElement;
 
 /**
  * Simple Test for the custom Expression language, this time with the lexer not being specified in TCS.
@@ -25,7 +26,7 @@ public class ExpressionNoLexerTest extends ExtendedGeneratedParserBasedTest {
 	@BeforeClass
 	public static void setupParser() throws Exception {
 		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new EcoreMetaLookUp("Expression.ecore"));
+		setLookup(new EcoreMetaModelLookUp("Expression.ecore"));
 		generateParserForLanguage(LANGUAGE);
 	}
 	

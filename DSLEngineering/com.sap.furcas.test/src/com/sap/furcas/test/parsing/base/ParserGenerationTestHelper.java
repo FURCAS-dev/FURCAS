@@ -20,15 +20,12 @@ import org.antlr.runtime.Lexer;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import com.sap.furcas.parsergenerator.emf.lookup.RuleNameFinder;
 import com.sap.furcas.runtime.common.exceptions.GrammarGenerationException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
-import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
 import com.sap.furcas.runtime.parser.ParserFacade;
-import com.sap.furcas.runtime.parser.antlr3.ITokenFactory;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
@@ -202,7 +199,7 @@ public class ParserGenerationTestHelper {
 
     }
 
-    public int compileParser(String languageName) {
+    private int compileParser(String languageName) {
 	// compile generated Java
 	int success = Main.compile(new String[] {
 		generationDirectory + languageName + "Lexer.java",
@@ -215,21 +212,21 @@ public class ParserGenerationTestHelper {
 	return success;
     }
 
-    public int compileParserFactory(String languageName, String metamodelProjectName) {
-	// compile generated Java
-
-	int success = Main.compile(new String[] {
-		generationDirectory + languageName + "ParserFactory.java",
-		"-cp",
-		generationSourceRoot + File.pathSeparator + "../" + metamodelProjectName + "/bin" + File.pathSeparator
-			+ getSourceRoot(AbstractParserFactory.class) + File.pathSeparator + getSourceRoot(ResourceSet.class)
-			+ File.pathSeparator + getSourceRoot(ANTLRParserFactory.class) + File.pathSeparator
-			+ getSourceRoot(ITokenFactory.class) + File.pathSeparator + getSourceRoot(RuleNameFinder.class)
-			+ File.pathSeparator + getSourceRoot(IModelElementProxy.class) + File.pathSeparator
-			+ getSourceRoot(Lexer.class) });
-
-	return success;
-    }
+//    public int compileParserFactory(String languageName, String metamodelProjectName) {
+//	// compile generated Java
+//
+//	int success = Main.compile(new String[] {
+//		generationDirectory + languageName + "ParserFactory.java",
+//		"-cp",
+//		generationSourceRoot + File.pathSeparator + "../" + metamodelProjectName + "/bin" + File.pathSeparator
+//			+ getSourceRoot(AbstractParserFactory.class) + File.pathSeparator + getSourceRoot(ResourceSet.class)
+//			+ File.pathSeparator + getSourceRoot(ANTLRParserFactory.class) + File.pathSeparator
+//			+ getSourceRoot(ITokenFactory.class) + File.pathSeparator + getSourceRoot(RuleNameFinder.class)
+//			+ File.pathSeparator + getSourceRoot(IModelElementProxy.class) + File.pathSeparator
+//			+ getSourceRoot(Lexer.class) });
+//
+//	return success;
+//    }
 
     public String getSourceRoot(Class<?> c) {
 	try {
@@ -245,7 +242,11 @@ public class ParserGenerationTestHelper {
 
 	ParserFacade facade = getFacade(languageName);
 
-	ModelParsingResult result = facade.parseProductionRule(in, modelAdapter, null, null, null);
+	ModelParsingResult result = facade.parseProductionRule(in, modelAdapter, /*
+										  * use
+										  * main
+										  * rule
+										  */null, null, null);
 	return result;
     }
 
@@ -266,7 +267,6 @@ public class ParserGenerationTestHelper {
 
     }
 
-    @SuppressWarnings("unchecked")
     public Class<AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>> getParserFactoryClass(
 	    String languageName) {
 	// try loading compiled classes

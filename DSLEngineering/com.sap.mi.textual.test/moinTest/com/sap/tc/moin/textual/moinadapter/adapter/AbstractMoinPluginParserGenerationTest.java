@@ -33,8 +33,8 @@ import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationExcep
 import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.impl.ParsingError;
+import com.sap.furcas.test.util.StubModelAdapter;
 import com.sap.ide.cts.editor.test.util.ParserGenerationTestHelper;
-import com.sap.mi.textual.test.util.StubModelAdapter;
 
 /**
  *

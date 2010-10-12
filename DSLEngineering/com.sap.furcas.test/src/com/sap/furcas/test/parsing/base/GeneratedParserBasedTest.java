@@ -19,126 +19,107 @@ import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ObservationDirectivesHelpe
 import com.sap.furcas.runtime.common.exceptions.GrammarGenerationException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
-import com.sap.furcas.runtime.parser.ParserFacade;
-import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
-import com.sap.ide.cts.editor.test.util.ConcreteSyntaxBasedTest;
-import com.sap.ide.cts.editor.test.util.StandaloneMoinLookUp;
-
 
 public class GeneratedParserBasedTest {
 
-	protected static String language;
-	private static IMetaModelLookup<?> lookup;
+//    protected static String language;
+    protected static IMetaModelLookup<?> lookup;
+    protected static ParserGenerationTestHelper generationHelper;
 
-	protected static ParserGenerationTestHelper generationHelper;
+    public static void setParserGenerationTestHelper(ParserGenerationTestHelper helper) {
+	generationHelper = helper;
+    }
 
-	public static void setParserGenerationTestHelper(
-			ParserGenerationTestHelper helper) {
-		generationHelper = helper;
+    public static void setLookup(IMetaModelLookup<?> modelLookup) {
+	lookup = modelLookup;
+    }
+
+    public static void generateParserForLanguage(String language) throws FileNotFoundException, GrammarGenerationException,
+	    ModelAdapterException, IOException {
+	assertNotNull(language);
+	assertNotNull(generationHelper);
+//	GeneratedParserBasedTest.language = language;
+
+	ObservationDirectivesHelper.doAddObserverParts = ObservationDirectivesHelper.ALL;
+
+//	Set<URI> priList = MOINTCSMetaConnectionProvider.getPartitionsOfMetamodel(metamodelId);
+
+	assertNotNull(lookup);
+//	if (lookup == null) {
+//	    lookup = new EcoreMetaModelLookUp(priList);
+//	}
+	generateParser(language, lookup, connection, priList);
+    }
+
+    private static void generateParser(String language, IMetaModelLookup<?> lookup, ResourceSet connection, Set<URI> partitions)
+	    throws FileNotFoundException, ModelAdapterException, GrammarGenerationException, IOException {
+	
+	generationHelper.generateParserGrammar(language, lookup, connection, partitions);
+	generateAndCompileParser(language);
+    }
+
+    private static void generateAndCompileParser(String languageName) {
+	// Hold on to the original value
+	PrintStream systemErr = System.err;
+	// redirect Std.err to be able to check it for errors
+	ByteArrayOutputStream errByteStream = new ByteArrayOutputStream();
+	System.setErr(new PrintStream(errByteStream));
+
+	generationHelper.generateParserClasses(languageName);
+	// if antlr wrote to System.err, fail the test with ANTLR messages. If
+	// err is empty, continue
+	String errString = errByteStream.toString().trim();
+	if (!"".equals(errString)) {
+	    if (errString.toLowerCase().indexOf("error") > -1) { // ignore
+		// warnings
+		// written
+		// to
+		// System.err
+		fail(errString);
+	    } else {
+		System.out.println(errString);
+		errByteStream.reset(); // discarding warnings from stream, so
+		// that error only shows errors
+	    }
 	}
 
-	public static void setLookup(IMetaModelLookup<?> modelLookup) {
-		lookup = modelLookup;
+	// compile generated Java
+	int success = generationHelper.compileParser(languageName);
+	if (success != 0) {
+	    systemErr.println(errByteStream.toString());
+	    fail("Parser compilation failed with code '" + success + "'. Messages: \n" + errByteStream.toString());
 	}
 
-	public static void generateParserForLanguage(String language)
-			throws FileNotFoundException, GrammarGenerationException,
-			ModelAdapterException, IOException {
-		assertNotNull(language);
-		assertNotNull(generationHelper);
-		GeneratedParserBasedTest.language = language;
+	// restore the original value
+	System.setErr(systemErr);
+    }
 
-		ObservationDirectivesHelper.doAddObserverParts = ObservationDirectivesHelper.ALL;
+//    public static String getLanguage() {
+//	return language;
+//    }
 
-		Set<URI> priList = MOINTCSMetaConnectionProvider
-				.getPartitionsOfMetamodel(metamodelId);
+//    public static ParserFacade getFacade() throws InvalidParserImplementationException {
+//	if (generationHelper != null) {
+//	    return generationHelper.getFacade(language);
+//	}
+//	return null;
+//    }
 
-		if (lookup == null) {
-			lookup = new StandaloneMoinLookUp(connection, priList);
+    @AfterClass
+    public static void teardown() {
+	if (generationHelper != null) {
+	    // delete generated Files
+	    File genDir = generationHelper.getGenerationDir();
+	    assertTrue(genDir.getAbsolutePath() + " is not a directory", genDir.isDirectory());
+	    File[] files = genDir.listFiles();
+	    for (int i = 0; i < files.length; i++) {
+		File file = files[i];
+		if (file.getName().endsWith(".class")) { // keeping grammars for
+		    // lookup
+		    file.delete();
 		}
-		generateParser(language, lookup, connection, priList);
+	    }
 	}
-
-	private static void generateParser(String language,
-			IMetaModelLookup<?> lookup, ResourceSet connection,
-			Set<URI> partitions) throws FileNotFoundException,
-			ModelAdapterException, GrammarGenerationException, IOException {
-		generationHelper.generateParserGrammar(language, lookup, connection,
-				partitions);
-		generateAndCompileParser(language);
-	}
-
-	protected static void generateAndCompileParser(String languageName) {
-
-		// Hold on to the original value
-		PrintStream systemErr = System.err;
-
-		// redirect Std.err to be able to check it for errors
-		ByteArrayOutputStream errByteStream = new ByteArrayOutputStream();
-
-		System.setErr(new PrintStream(errByteStream));
-
-		generationHelper.generateParserClasses(languageName);
-		// if antlr wrote to System.err, fail the test with ANTLR messages. If
-		// err is empty, continue
-		String errString = errByteStream.toString().trim();
-		if (!"".equals(errString)) {
-			if (errString.toLowerCase().indexOf("error") > -1) { // ignore
-				// warnings
-				// written
-				// to
-				// System.err
-				fail(errString);
-			} else {
-				System.out.println(errString);
-				errByteStream.reset(); // discarding warnings from stream, so
-				// that error only shows errors
-			}
-		}
-
-		// compile generated Java
-		int success = generationHelper.compileParser(languageName);
-		if (success != 0) {
-			systemErr.println(errByteStream.toString());
-			fail("Parser compilation failed with code '" + success
-					+ "'. Messages: \n" + errByteStream.toString());
-		}
-
-		// restore the original value
-		System.setErr(systemErr);
-	}
-
-	public static String getLanguage() {
-		return language;
-	}
-
-	public static ParserFacade getFacade()
-			throws InvalidParserImplementationException {
-		if (generationHelper != null) {
-			return generationHelper.getFacade(language);
-		}
-
-		return null;
-	}
-
-	@AfterClass
-	public static void teardown() {
-
-		if (generationHelper != null) {
-			// delete generated Files
-			File genDir = generationHelper.getGenerationDir();
-			assertTrue(genDir.getAbsolutePath() + " is not a directory", genDir
-					.isDirectory());
-			File[] files = genDir.listFiles();
-			for (int i = 0; i < files.length; i++) {
-				File file = files[i];
-				if (file.getName().endsWith(".class")) { // keeping grammars for
-					// lookup
-					file.delete();
-
-				}
-			}
-		}
-	}
+    }
 
 }
