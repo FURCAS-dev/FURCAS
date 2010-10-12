@@ -105,6 +105,8 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
         // evaluate whether the source object would have passed the iterator's body before the change
         boolean resultPre = acceptIfPredicateTrue;
         if (atPre != null) {
+            // TODO perform the partial evaluation only if the values of all variables inevitably required by the predicate are known
+            // TODO otherwise, think about using the UnusedEvaluationRequest technique to queue predicate evaluation for later
             PartialEvaluator evalPre = new PartialEvaluator(atPre, oppositeEndFinder);
             try {
                 Object result = evalPre.evaluate(null, getExpression(), sourceCollection);
