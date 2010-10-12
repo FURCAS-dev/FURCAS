@@ -19,22 +19,14 @@ public class OperationCallExpKeyedSetFactory {
         this.isOperationCallSelectionActive = isOperationCallSelectionActive;
     }
     
-    public OperationCallExpKeyedSet createOperationCallExpKeyedSet(OperationCallExp oce, Iterable<AnnotatedEObject> c) {
+    public OperationCallExpKeyedSet createOperationCallExpKeyedSet(OperationCallExp oce, OperationCallExpKeyedSet c) {
         if (isOperationCallSelectionActive) {
             return new OperationCallExpKeyedSetImpl(oce, c);
         } else {
-            return new FlatSet(c);
+            return c;
         }
     }
 
-    public OperationCallExpKeyedSet createOperationCallExpKeyedSet(Iterable<AnnotatedEObject> c) {
-        if (isOperationCallSelectionActive) {
-            return new OperationCallExpKeyedSetImpl(c);
-        } else {
-            return new FlatSet(c);
-        }
-    }
-    
     public OperationCallExpKeyedSet createOperationCallExpKeyedSet(AnnotatedEObject aeo) {
         if (isOperationCallSelectionActive) {
             return new OperationCallExpKeyedSetImpl(aeo);
