@@ -24,6 +24,7 @@ import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.TupleLiteralExp;
 import org.eclipse.ocl.expressions.TupleLiteralPart;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
+import org.eclipse.ocl.utilities.PredefinedType;
 
 import com.sap.emf.ocl.hiddenopposites.AbstractVisitorWithHiddenOpposites;
 import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
@@ -60,7 +61,25 @@ public class FindAlwaysUsedVariablesVisitor extends AbstractVisitorWithHiddenOpp
     @Override
     protected Set<VariableExp> handleOperationCallExp(OperationCallExp<EClassifier, EOperation> callExp, Set<VariableExp> sourceResult,
             List<Set<VariableExp>> argumentResults) {
-        return sourceResult;
+        Set<VariableExp> result = sourceResult;
+        if (areArgumentsUsedInevitably(callExp)) {
+            // in this case, all arguments will be evaluated, too:
+            result = combine(sourceResult, argumentResults);
+        }
+        return result;
+    }
+
+    /**
+     * Checks if the evaluator will evaluate the arguments. Mostly they are; however, Boolean shortcut evaluation serves
+     * as a counter example, as does our own redefinition of <code>-&gt;at(...)</code> shortcut evaluation on empty collection.
+     * The current OCL evaluator implementation even evaluates the argument expressions if the source expression evaluated
+     * to an undefined / <code>null</code> result.
+     */
+    private boolean areArgumentsUsedInevitably(OperationCallExp<EClassifier, EOperation> callExp) {
+        Class<?> sourceTypeInstanceClass;
+        return callExp.getOperationCode() != PredefinedType.AT
+               && (sourceTypeInstanceClass = callExp.getSource().getType().getInstanceClass()) != null &&
+                       !Boolean.class.isAssignableFrom(sourceTypeInstanceClass);
     }
 
     @Override
@@ -162,6 +181,14 @@ public class FindAlwaysUsedVariablesVisitor extends AbstractVisitorWithHiddenOpp
     private Set<VariableExp> combine(List<Set<VariableExp>> results) {
         Set<VariableExp> result = new HashSet<VariableExp>();
         for (Set<VariableExp> partResult : results) {
+            result.addAll(partResult);
+        }
+        return result;
+    }
+
+    private Set<VariableExp> combine(Set<VariableExp> sourceResult, List<Set<VariableExp>> argumentResults) {
+        Set<VariableExp> result = new HashSet<VariableExp>(sourceResult);
+        for (Set<VariableExp> partResult : argumentResults) {
             result.addAll(partResult);
         }
         return result;

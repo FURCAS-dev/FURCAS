@@ -57,6 +57,12 @@ public class UnusedEvaluationRequest {
     private final SemanticIdentity semanticIdentity;
     private final Set<VariableExp> inevitableVariableUsages;
     
+    // fields for statistical purposes
+    public static int evaluations = 0;
+    public static int evaluationsAbortedDueToUnknownVariable = 0;
+    public static int evaluationsSucceedingAndProvingUnused = 0;
+    public static int evaluationsSucceedingWithoutProvingUnused = 0;
+    
     /**
      * Defines "logical" equals/hashCode as opposed to enclosing class which has default, identity-based equals/hashCode.
      * See also {@link UnusedEvaluationRequestFactory}.
@@ -248,17 +254,27 @@ public class UnusedEvaluationRequest {
         }
         Object result;
         try {
+            evaluations++;
             result = evaluator.evaluate(context, expression);
+        } catch (ValueNotFoundException vfne) {
+            evaluationsAbortedDueToUnknownVariable++;
+            throw vfne;
         } catch (NoAllInstancesDuringEvaluationForUnusedCheck ex) {
             result = ex;
         }
-        return !(result instanceof NoAllInstancesDuringEvaluationForUnusedCheck) &&
+        boolean unused = !(result instanceof NoAllInstancesDuringEvaluationForUnusedCheck) &&
                ((result == null && resultIndicatingUnused == null) ||
                 result == evaluator.getOcl().getEnvironment().getOCLStandardLibrary().getInvalid() ||
                 (result != null &&
                         // asking for empty collection is encoded by asking for null
                         (result instanceof Collection<?> && resultIndicatingUnused == null && ((Collection<?>) result).isEmpty()) ||
                         result.equals(resultIndicatingUnused)));
+        if (unused) {
+            evaluationsSucceedingAndProvingUnused++;
+        } else {
+            evaluationsSucceedingWithoutProvingUnused++;
+        }
+        return unused;
     }
     
     /**
