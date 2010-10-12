@@ -36,7 +36,7 @@ public class BenchmarkAsPluginTest extends TestCase {
                 /* numberOfJobs */ 1,
                 /* delayPreparation */ true, System.getProperty("java.io.tmpdir")+File.separator+"exceptions.dump",
                 /* verbose */ true,
-                "modifyElementaryTypesEventTrace.trace", "NgpmModel.xmi", /* noShrinking */false,
-                /* oclId */null /* meaning ALL */, optionList);
+                "modifyElementaryTypesEventTrace.trace", "NgpmModel.xmi", /* noShrinking */ true,
+                /* oclId */ null /* meaning ALL */, optionList);
     }
 }
