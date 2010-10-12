@@ -8,17 +8,17 @@ result = result[result$modelId %% 2 == 0, ]
 result$iaExecAndEvalTime = result$executionTime + result$evaluationTimeAfter
 result$aiExecAndEvalTime = result$allInstanceEvalTime + result$allInstanceExecTime
 
-aggr = aggregate(result[, c("aiExecAndEvalTime", "iaExecAndEvalTime")], by=list(result$modelId, result$oclId, result$executionIndex, result$optionId), FUN = "sum")
+aggr = aggregate(result[, c("aiExecAndEvalTime", "iaExecAndEvalTime")], by=list(result$modelId, result$oclId, result$executionIndex, result$optionId), FUN = "sum") 
 
 filtered = result[result$filtered == TRUE, ]
 aggrFiltered = aggregate(filtered[, c("aiExecAndEvalTime", "iaExecAndEvalTime")], by=list(filtered$modelId, filtered$oclId, filtered$executionIndex, filtered$optionId), FUN = "sum")
 
 # Selecting the options (row numbers starting with 1 from optionDescription.data) to show:
-optionsToShow=c(1,3,4,6,10)
+optionsToShow=c(1,3,4,6,9)
 
 aggrAllInstanceUnfiltered = aggr
 aggrAllInstanceUnfiltered$measureTime = aggrAllInstanceUnfiltered$aiExecAndEvalTime
-aggrAllInstanceUnfiltered$measurement = 1
+aggrAllInstanceUnfiltered$measurement = 1 
 
 aggrAllInstanceFiltered = aggrFiltered
 aggrAllInstanceFiltered$measureTime = aggrAllInstanceFiltered$aiExecAndEvalTime
