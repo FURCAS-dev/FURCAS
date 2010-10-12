@@ -26,12 +26,6 @@ public class FlatSet extends HashSet<AnnotatedEObject> implements OperationCallE
      */
     public FlatSet() {}
 
-    public FlatSet(Iterable<AnnotatedEObject> c) {
-        for (AnnotatedEObject aeo : c) {
-            add(aeo);
-        }
-    }
-
     public FlatSet(AnnotatedEObject aeo) {
         add(aeo);
     }
