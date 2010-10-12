@@ -55,6 +55,7 @@ public class VariableTracebackStep extends BranchingTracebackStep<VariableExp> {
     
     private final Variable variable;
     private final OppositeEndFinder oppositeEndFinder;
+    private final boolean variableHasCollectionType;
 
     public VariableTracebackStep(VariableExp sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor,
@@ -62,6 +63,7 @@ public class VariableTracebackStep extends BranchingTracebackStep<VariableExp> {
         super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder(), operationBodyToCallMapper, unusedEvaluationRequestFactory);
         oppositeEndFinder = tracebackStepCache.getOppositeEndFinder();
         variable = (Variable) sourceExpression.getReferredVariable();
+        variableHasCollectionType = Collection.class.isAssignableFrom(variable.getType().getInstanceClass());
         // enter step into cache already to let it be found during recursive lookups
         tracebackStepCache.put(sourceExpression, tupleLiteralNamesToLookFor, this);
         if (isSelf()) {
@@ -90,8 +92,9 @@ public class VariableTracebackStep extends BranchingTracebackStep<VariableExp> {
         // don't assign collection-type variables because having inferred one value of the collection doesn't
         // tell us the complete variable value; simple example that would fail otherwise:
         // "v->size()" would evaluate to 1 instead of whatever the size of the full collection would have been.
-        if (pendingUnusedEvalRequests != null && !(Collection.class.isAssignableFrom(
-                variable.getType().getInstanceClass()))) {
+        // Don't need to check configuration here for unused-checks being active; pendingUnusedEvalRequests will be null
+        // if unused checks are not activated.
+        if (pendingUnusedEvalRequests != null && !variableHasCollectionType) {
             UnusedEvaluationResult unusedResult = pendingUnusedEvalRequests.setVariable(variable, source.getAnnotatedObject(),
                     oppositeEndFinder, tracebackCache);
             if (unusedResult.hasProvenUnused()) {
