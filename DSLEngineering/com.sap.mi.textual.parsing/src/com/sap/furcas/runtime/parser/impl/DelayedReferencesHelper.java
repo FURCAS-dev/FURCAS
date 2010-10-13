@@ -592,7 +592,6 @@ public class DelayedReferencesHelper {
 
 		// TODO query fully qualified name!
 		ResultSet result;
-		EObject[] eObjects;
 		EClassifier clazz = modelElement;
 		ResourceSet rs = modelElement.eResource().getResourceSet();
 
@@ -615,8 +614,6 @@ public class DelayedReferencesHelper {
 				QueryProcessor queryProcessor = QueryProcessorFactory
 						.getDefault()
 						.createQueryProcessor(getIndex());
-				TypeScopeProvider metamodelContainerQueryScope = queryProcessor
-						.getInclusiveQueryScopeProvider(new URI[] {modelElement.eResource().getURI()});
 				TypeScopeProvider mappingQueryScope = queryProcessor
 						.getInclusiveQueryScopeProvider(
 								partitionScope.toArray(new URI[] {}));

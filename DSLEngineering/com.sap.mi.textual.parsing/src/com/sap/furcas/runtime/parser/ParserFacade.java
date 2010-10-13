@@ -33,8 +33,7 @@ public class ParserFacade  {
 
     private final GeneratedParserWrapper wrapper;
  
-    @SuppressWarnings("unchecked")
-    public ParserFacade(Class parserClass, Class lexerClass) throws InvalidParserImplementationException  {
+    public ParserFacade(Class<? extends ObservableInjectingParser> parserClass, Class<? extends Lexer> lexerClass) throws InvalidParserImplementationException  {
         wrapper = new GeneratedParserWrapper(parserClass, lexerClass );
     }
     
