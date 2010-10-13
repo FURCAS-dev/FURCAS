@@ -32,7 +32,7 @@ public class EventManagerTableBased implements EventManager {
     /**
      * the EventAdapter instance for the EventManager
      */
-    EventAdapter adapter = new EventAdapter(this);
+    private final EventAdapter adapter = new EventAdapter(this);
 
     /**
      * Toogle the {@link EventManager} off, on given <code>false</code> and no {@link Notification}s will be delivered
