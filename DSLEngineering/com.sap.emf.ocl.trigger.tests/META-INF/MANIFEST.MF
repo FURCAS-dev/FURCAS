@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tests
+Bundle-SymbolicName: com.sap.emf.ocl.trigger.tests
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: SAP
+Fragment-Host: com.sap.emf.ocl.trigger
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: de.hpi.sam.bp2009.company
