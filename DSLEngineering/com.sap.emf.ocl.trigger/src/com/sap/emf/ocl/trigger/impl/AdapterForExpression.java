@@ -28,6 +28,7 @@ public class AdapterForExpression extends AdapterImpl {
     private final Triggerable triggerableToNotify;
     private final OCLExpression expression;
     private final ImpactAnalyzer impactAnalyzer;
+    private final OppositeEndFinder oppositeEndFinder;
     
     /**
      * With this constructor, the expression must contain a <code>self</code> occurrence that allows us to infer the context type.
@@ -36,6 +37,7 @@ public class AdapterForExpression extends AdapterImpl {
         this.triggerableToNotify = triggerableToNotify;
         this.expression = expression;
         this.impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, oppositeEndFinder, configuration);
+        this.oppositeEndFinder = oppositeEndFinder;
     }
     
     /**
@@ -49,6 +51,7 @@ public class AdapterForExpression extends AdapterImpl {
         this.triggerableToNotify = triggerableToNotify;
         this.expression = expression;
         this.impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, context, oppositeEndFinder, configuration);
+        this.oppositeEndFinder = oppositeEndFinder;
     }
     
     private ImpactAnalyzer getImpactAnalyzer() {
@@ -63,7 +66,7 @@ public class AdapterForExpression extends AdapterImpl {
     public void notifyChanged(Notification msg) {
         ImpactAnalyzer ia = getImpactAnalyzer();
         Collection<EObject> affectedContextObjects = ia.getContextObjects(msg);
-        triggerableToNotify.notify(expression, affectedContextObjects);
+        triggerableToNotify.notify(expression, affectedContextObjects, oppositeEndFinder);
     }
     
 }

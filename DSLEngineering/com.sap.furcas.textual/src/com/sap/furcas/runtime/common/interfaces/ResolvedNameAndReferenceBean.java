@@ -55,11 +55,10 @@ public class ResolvedNameAndReferenceBean<EType> {
         return reference;
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof ResolvedNameAndReferenceBean) {
-            ResolvedNameAndReferenceBean other = (ResolvedNameAndReferenceBean) obj;
+            ResolvedNameAndReferenceBean<?> other = (ResolvedNameAndReferenceBean<?>) obj;
             if (other.getNames() != null) {
                 return other.getNames().equals(this.getNames());
             } else {
