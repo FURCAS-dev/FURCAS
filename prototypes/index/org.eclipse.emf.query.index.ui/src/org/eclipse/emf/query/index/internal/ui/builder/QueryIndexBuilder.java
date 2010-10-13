@@ -123,20 +123,32 @@ public class QueryIndexBuilder extends IncrementalProjectBuilder {
 		if (extensions.contains(fileExtension)) {
 			IndexFactory.getInstance().executeUpdateCommand(new UpdateCommandAdapter() {
 
+				private Resource emfResource;
+
+				@Override
+				public void postCommitAction() {
+					//Unload on postCommit
+					final URI uri = emfResource.getURI();
+					if(uri.isPlatformResource()) {
+						emfResource.unload();
+					}
+				}
+
+				@Override
+				public void preCommitAction(IndexUpdater updater) {
+					// Load in precommit
+					final ResourceSet rs = new ResourceSetImpl();
+					String fullPath = resource.getFullPath().toString();
+					emfResource = rs.getResource(URI.createPlatformResourceURI(fullPath,true), true);
+				}
+
 				@Override
 				public void execute(final IndexUpdater updater) {
 					final ResourceIndexer indexer = new ResourceIndexer();
-					final ResourceSet rs = new ResourceSetImpl();
-					String fullPath = resource.getFullPath().toString();
 					try {
-						Resource emfResource = rs.getResource(URI.createPlatformResourceURI(fullPath,true), true);
 						indexer.resourceChanged(updater, emfResource);
-						final URI uri = emfResource.getURI();
-						if(uri.isPlatformResource()) {
-							emfResource.unload();
-						}
 					} catch (Exception e) {
-						System.err.println("Error indexing resource: " + fullPath);
+						System.err.println("Error indexing resource: " + emfResource.getURI().toString());
 						e.printStackTrace();
 					}
 				}
