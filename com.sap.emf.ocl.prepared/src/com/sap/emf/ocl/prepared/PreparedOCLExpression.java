@@ -15,6 +15,7 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 import com.sap.emf.ocl.prepared.parameters.DuplicateParameterValueException;
 import com.sap.emf.ocl.prepared.parameters.Parameter;
 import com.sap.emf.ocl.prepared.parameters.ParameterFactory;
@@ -25,11 +26,21 @@ import com.sap.emf.ocl.util.OclHelper;
 /**
  * Similar to a JDBC prepared statement, where parameters can be set to specific values before executing it,
  * a prepared OCL expression can have a number of parameters which are substituted by values before
- * evaluating the expression. Only {@link LiteralExp} expressions can be configured using parameters.<p>
+ * evaluating the expression. Only {@link LiteralExp} expressions can be configured using parameters. The
+ * {@link LiteralExp} expressions to be made parameterizable can either be specified explicitly (see
+ * {@link #PreparedOCLExpression(OCLExpression, LiteralExp...)}) or indirectly by means of specifying the
+ * literal's value (see {@link #PreparedOCLExpression(OCLExpression, Object...)}). In the latter case, a
+ * visitor traverses the expression tree and looks for {@link LiteralExp} expressions such as string
+ * constants or enumeration literals, and compares them to the objects passed to the constructor. If a match
+ * is found, that literal expression is made parameterizable. 
+ * <p>
  * 
  * The expression that is parameterized will be modified upon evaluation. Therefore, evaluation is
  * synchronized on this prepared expression object so that no race conditions may occur when multiple
- * threads evaluate the same parameterized expression for different parameter values.
+ * threads evaluate the same parameterized expression for different parameter values.<p>
+ * 
+ * For evaluation, an {@link OCLWithHiddenOpposites} environment is used which adds support for
+ * {@link OppositePropertyCallExp} expressions.
  * 
  * @author Axel Uhl (D043530)
  *
@@ -70,6 +81,12 @@ public class PreparedOCLExpression {
         }
     }
 
+    /**
+     * The <code>params</code> subexpressions which are expected to be contained in <code>expression</code>'s
+     * expression tree are marked as the parameters of the resulting {@link PreparedOCLExpression}. When
+     * {@link PreparedOCLExpression#evaluate(Object, ParameterValue...)} is called, the parameter values
+     * will be substituted in order for the <code>params</code>' literal objects.
+     */
     public PreparedOCLExpression(OCLExpression expression, LiteralExp... params) {
         for (LiteralExp param : params) {
             if (OclHelper.getRootExpression(param) != expression) {
@@ -107,13 +124,21 @@ public class PreparedOCLExpression {
         this.params = Arrays.asList(paramsArray);
         this.expression = expression;
     }
-    
+
+    /**
+     * Like {@link #PreparedOCLExpression(OCLExpression, LiteralExp...)}, but allows clients to specify a specific OCL environment
+     * factory to be used for expression evaluation.
+     */
     public PreparedOCLExpression(EcoreEnvironmentFactoryWithHiddenOpposites environmentFactory,
             OCLExpression expression, LiteralExp... params) {
         this(expression, params);
         this.environmentFactory = environmentFactory;
     }
     
+    /**
+     * Like {@link #PreparedOCLExpression(OCLExpression, LiteralExp...)}, but allows clients to provide
+     * a specific {@link OppositeEndFinder} to be used during expression evaluation.
+     */
     public PreparedOCLExpression(OppositeEndFinder oppositeEndFinder,
             OCLExpression expression, LiteralExp... params) {
         this(expression, params);
