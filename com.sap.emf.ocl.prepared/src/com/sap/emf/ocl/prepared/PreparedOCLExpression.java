@@ -104,16 +104,27 @@ public class PreparedOCLExpression {
             paramsByIdentifyingSymbols.put(p.get(), p);
         }
     }
-    
+
     /**
-     * Finds {@link LiteralExp} expressions contained in <code>expression</code> that have
-     * any of the <code>paramValues</code> as their literal symbol and initializes the parameters
-     * accordingly, such that they refer to the respective literal expressions.
+     * Finds {@link LiteralExp} expressions contained in <code>expression</code> that have any of the <code>paramValues</code> as
+     * their literal symbol and initializes the parameters accordingly, such that they refer to the respective literal
+     * expressions.
+     * 
+     * @param paramValues
+     *            a sequence of unique values to be found in {@link LiteralExp} expressions' symbols occurring inside
+     *            <code>expression</code>
      * 
      * @throws DuplicateParameterValueException
+     *             if any of <code>paramValues</code> occurs in more than one literal expression inside <code>expression</code>
      * @throws ParameterNotFoundException
+     *             if one or more of the <code>paramValues</code> are not found in any literal expression inside
+     *             <code>expression</code>
+     * @throws IllegalArgumentException
+     *             in case <code>paramValues</code> contains duplicates considering the definition of <code>equals</code> on these
+     *             objects
      */
-    public PreparedOCLExpression(OCLExpression expression, Object... paramValues) {
+    public PreparedOCLExpression(OCLExpression expression, Object... paramValues) throws ParameterNotFoundException,
+            DuplicateParameterValueException, IllegalArgumentException {
         ParameterFinder finder = new ParameterFinder(paramValues);
         paramsByIdentifyingSymbols = finder.visit(expression);
         Parameter<?>[] paramsArray = new Parameter<?>[paramValues.length];
