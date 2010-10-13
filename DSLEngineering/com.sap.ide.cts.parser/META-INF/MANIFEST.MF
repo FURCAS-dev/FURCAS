@@ -5,14 +5,13 @@ Bundle-SymbolicName: com.sap.ide.cts.parser;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.sap.ide.cts.parser.Activator
 Require-Bundle: com.sap.furcas.metamodel,
- org.antlr,
- org.eclipse.core.runtime,
- com.sap.furcas.runtime.parser,
- com.sap.mi.textual.parsing.textblocks,
- com.sap.furcas.parsergenerator.emf,
  com.sap.furcas.runtime.common,
  com.sap.furcas.runtime.tcs,
  com.sap.furcas.runtime.textblocks,
+ org.antlr,
+ org.eclipse.core.runtime,
+ com.sap.furcas.runtime.parser,
+ com.sap.furcas.parsergenerator.emf,
  org.eclipse.emf;bundle-version="2.6.0"
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.ide.cts.parser,
@@ -21,3 +20,4 @@ Export-Package: com.sap.ide.cts.parser,
  com.sap.ide.cts.parser.incremental.antlr,
  com.sap.ide.cts.parser.incremental.util
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: com.sap.ide.cts.parser

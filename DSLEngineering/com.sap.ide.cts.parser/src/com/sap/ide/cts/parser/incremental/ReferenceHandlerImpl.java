@@ -24,16 +24,17 @@ import com.sap.furcas.metamodel.TCS.SequenceElement;
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.parsing.textblocks.ITextBlocksTokenStream;
-import com.sap.furcas.parsing.textblocks.observer.TextBlockProxy;
+import com.sap.furcas.metamodel.textblocks.Version;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.parser.impl.DelayedReference;
 import com.sap.furcas.runtime.parser.impl.ModelElementProxy;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.parser.textblocks.ITextBlocksTokenStream;
+import com.sap.furcas.runtime.parser.textblocks.observer.TextBlockProxy;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
-import com.sap.furcas.runtime.textblocks.TbVersionUtil;
+import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
 import com.sap.ide.cts.parser.Activator;
 
 public class ReferenceHandlerImpl implements ReferenceHandler {
@@ -193,7 +194,7 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 			if(ref.getType() == DelayedReference.TYPE_SEMANTIC_PREDICATE && refToken != null){
 				if(TbVersionUtil.getOtherVersion(tbtokenStream
 						.getTokenModelElementForParserToken(ref.getToken())
-						.getParent(), VersionEnum.REFERENCE) != null) {
+						.getParent(), Version.REFERENCE) != null) {
 					batchParser.removeUnresolvedReference(ref);
 				}
 			}
