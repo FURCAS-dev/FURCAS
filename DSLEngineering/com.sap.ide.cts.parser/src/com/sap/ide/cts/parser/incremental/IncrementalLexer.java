@@ -1,22 +1,16 @@
 package com.sap.ide.cts.parser.incremental;
 
-import static com.sap.furcas.runtime.textblocks.TbMarkingUtil.deltaInChars;
-import static com.sap.furcas.runtime.textblocks.TbMarkingUtil.isBOS;
-import static com.sap.furcas.runtime.textblocks.TbMarkingUtil.isEOS;
-import static com.sap.furcas.runtime.textblocks.TbMarkingUtil.mark;
-import static com.sap.furcas.runtime.textblocks.TbMarkingUtil.marked;
 import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getSubNodeAt;
 import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getSubNodes;
 import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.isToken;
-import static com.sap.furcas.runtime.textblocks.TbVersionUtil.getOtherVersion;
-import static com.sap.furcas.runtime.textblocks.TbVersionUtil.hasChildChanges;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import antlr.Version;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.Bostoken;
@@ -24,18 +18,20 @@ import com.sap.furcas.metamodel.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.textblocks.Eostoken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
-import com.sap.furcas.parsing.textblocks.ParsingTextblocksActivator;
+import com.sap.furcas.metamodel.textblocks.Version;
 import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
-import com.sap.furcas.runtime.textblocks.TbChangeUtil;
+import com.sap.furcas.runtime.parser.textblocks.ParsingTextblocksActivator;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
-import com.sap.furcas.runtime.textblocks.TbValidationUtil;
-import com.sap.furcas.runtime.textblocks.TbVersionUtil;
 import com.sap.furcas.runtime.textblocks.TokenLocation;
-import com.sap.furcas.runtime.textblocks.model.ShortPrettyPrinter;
-import com.sap.furcas.textual.textblocks.validation.IllegalTextBlocksStateException;
+import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
+import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
+import com.sap.furcas.runtime.textblocks.shortprettyprint.ShortPrettyPrinter;
+import com.sap.furcas.runtime.textblocks.validation.IllegalTextBlocksStateException;
+import com.sap.furcas.runtime.textblocks.validation.TbValidationUtil;
 import com.sap.ide.cts.parser.Activator;
-import com.sun.corba.se.pept.transport.Connection;
+
+
 
 /**
  * The Incremental Lexer Servers as an intermediate class that serves the
@@ -76,7 +72,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 	private List<TextBlock> changedBlocks = new ArrayList<TextBlock>();
 	protected ShortPrettyPrinter shortPrettyPrinter;
 	public IncrementalLexer(LexerAdapter lexerAdapter, IModelElementInvestigator mi,
-			Connection moinConnection, int bosTokenType, int eosTokenType) {
+			ResourceSet moinConnection, int bosTokenType, int eosTokenType) {
 		super(moinConnection);
 		this.shortPrettyPrinter = new ShortPrettyPrinter(mi);
 		setBatchLexer(lexerAdapter);
@@ -93,7 +89,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 	
 	public Eostoken getEOS() {
 	        if(!eosRef.is___Alive()) {
-	            eosRef = createEOSToken(textblocksPackage, VersionEnum.CURRENT, getEOSTokenType());
+	            eosRef = createEOSToken(textblocksPackage, Version.CURRENT, getEOSTokenType());
 	        }
 		return eosRef;
 	}
@@ -139,7 +135,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 		setEOSFromRoot(root);
 		setBOSFromRoot(root);
 		// Ensure correct version to work with;
-		root = getOtherVersion(root, VersionEnum.PREVIOUS);
+		root = getOtherVersion(root,Version.PREVIOUS);
 
 		if(root == null) {
 			//no previous version there, this means no changes made
@@ -156,12 +152,12 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 			// textBlock hierarchy not changed, textBlock token contents updated
 		} catch(Exception ex) {
 			Activator.logError("Unexpected Exception during incremental lexing! Check the following exception:\n"+
-				"Text before:\n" + getOtherVersion(root, VersionEnum.REFERENCE).getCachedString() + 
+				"Text before:\n" + getOtherVersion(root, Version.REFERENCE).getCachedString() + 
 				"\n\nText after change:\n" + root.getCachedString());
 			Activator.logError(ex);
 			success = false;
 			if(ex instanceof IllegalTextBlocksStateException){
-				//TbChangeUtil.revertToVersion(root, VersionEnum.REFERENCE);
+				//TbChangeUtil.revertToVersion(root, Version.REFERENCE);
 				throw (IllegalTextBlocksStateException)ex;
 			}
 		}
@@ -170,7 +166,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 			updateLookbacks(root);
 		} else {
 			//lexing didn't work so go back to previous version
-			TbChangeUtil.revertToVersion(root, VersionEnum.PREVIOUS);
+			TbChangeUtil.revertToVersion(root, Version.PREVIOUS);
 		}
 		
 		return success;
@@ -246,9 +242,9 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 			TextBlock tb = (TextBlock) node;
 			// Handle structural changes.
 			List<? extends DocumentNode> previousVersionSubNodes = getSubNodes(tb);
-			if (hasChildChanges(tb, VersionEnum.REFERENCE)) {
+			if (hasChildChanges(tb, Version.REFERENCE)) {
 				TextBlock referenceVersionTb = getOtherVersion(tb,
-						VersionEnum.REFERENCE);
+						Version.REFERENCE);
 				List<? extends DocumentNode> referenceVersionSubNodes = getSubNodes(referenceVersionTb);
 
 				for (int iPrevious = 0, iReference = 0; iPrevious < previousVersionSubNodes
@@ -266,36 +262,36 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 					}
 
 					if (previousVersionNode != null && getOtherVersion(previousVersionNode,
-							VersionEnum.REFERENCE) == null) {
+							Version.REFERENCE) == null) {
 						// new node created
 
 						// Mark first token not earlier than the leading edge of
 						// the original subtree.
 						markFrom(tokenBefore(previousVersionNode,
-								VersionEnum.PREVIOUS));
+								Version.PREVIOUS));
 						// Mark first token after the original subtree.
 						markFrom(firstTokenAfter(previousVersionNode,
-								VersionEnum.PREVIOUS));
+								Version.PREVIOUS));
 						iPrevious++;
 					}
 					if ( referenceVersionNode != null && getOtherVersion(referenceVersionNode,
-							VersionEnum.PREVIOUS) == null) {
+							Version.PREVIOUS) == null) {
 						// node deleted
 
 						// Mark first token not earlier than the leading edge of
 						// the original subtree.
 						AbstractToken tokenBefore = tokenBefore(referenceVersionNode,
-							    		VersionEnum.REFERENCE);
-						if(tokenBefore != null && existsInVersion(tokenBefore, VersionEnum.PREVIOUS)) {
+							    		Version.REFERENCE);
+						if(tokenBefore != null && existsInVersion(tokenBefore, Version.PREVIOUS)) {
 						    //always mark the PREVIOUS Version
-						    markFrom(getOtherVersion(tokenBefore, VersionEnum.PREVIOUS));
+						    markFrom(getOtherVersion(tokenBefore, Version.PREVIOUS));
 						}
 						// Mark first token after the original subtree.
 						AbstractToken firstTokenAfter = firstTokenAfter(referenceVersionNode,
-								VersionEnum.REFERENCE);
-						if(firstTokenAfter != null && existsInVersion(firstTokenAfter, VersionEnum.PREVIOUS)) {
+								Version.REFERENCE);
+						if(firstTokenAfter != null && existsInVersion(firstTokenAfter, Version.PREVIOUS)) {
 						    //always mark the PREVIOUS Version
-						    markFrom(getOtherVersion(firstTokenAfter, VersionEnum.PREVIOUS));
+						    markFrom(getOtherVersion(firstTokenAfter, Version.PREVIOUS));
 						}
 						iReference++;
 					} else {
@@ -309,7 +305,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 			 * TODO changed from original:REFERENCE check if this is still
 			 * correct
 			 */
-			if (hasNestedChanges(tb, VersionEnum.PREVIOUS)) {
+			if (hasNestedChanges(tb, Version.PREVIOUS)) {
                 for (int i = 0; i < previousVersionSubNodes.size(); i++) {
                     applyMarking(previousVersionSubNodes.get(i));
                 }
@@ -325,7 +321,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 	 * @return
 	 */
 	private static AbstractToken tokenBefore(DocumentNode referenceVersionNode,
-			VersionEnum version) {
+			Version version) {
 		if (isToken(referenceVersionNode)) {
 			return TbNavigationUtil
 					.previousToken((AbstractToken) referenceVersionNode);
@@ -337,14 +333,14 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 
 	private boolean lexemeChanged(AbstractToken r) {
 		AbstractToken previousVersion = getOtherVersion(r,
-				VersionEnum.PREVIOUS);
+				Version.PREVIOUS);
 		if (previousVersion == null) {
 			// No previous version exists, which means token was not changed
 			return false;
 		}
 		String r1Text = asString(previousVersion);
 		AbstractToken referenceVersion = getOtherVersion(r,
-		        VersionEnum.REFERENCE);
+		        Version.REFERENCE);
 		if (referenceVersion == null) {
 		    // no reference Version exists, so token was newly created for PREVIOUS (only happens on token gaps)
 		    return true;
@@ -435,7 +431,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 			length = length - asString(getConstructionLoc().getTok()).length()
 					+ getConstructionLoc().getOffset();
 			getConstructionLoc().setTok(nextToken(getConstructionLoc().getTok(),
-					VersionEnum.PREVIOUS));
+					Version.PREVIOUS));
 			getConstructionLoc().setOffset(0);
 			if (isEOS(getConstructionLoc().getTok())) {
                 return;
@@ -471,16 +467,16 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 			ParsingTextblocksActivator.getDefault().disableMoinLogging(
 					root.get___Connection());
 		}
-		TextBlock currentRoot = getOtherVersion(root, VersionEnum.CURRENT);
+		TextBlock currentRoot = getOtherVersion(root, Version.CURRENT);
 		if(currentRoot == null) {
 		    currentRoot = (TextBlock) TbUtil.createNewCopy(root,
-				VersionEnum.CURRENT, true, shortPrettyPrinter);
+				Version.CURRENT, true, shortPrettyPrinter);
 		} else {
 		   //TODO fix possibly incomplete textblocks to be able to reuse or recreate them for 
 		    //current version
-		    TbChangeUtil.revertToVersion(root, VersionEnum.PREVIOUS);
+		    TbChangeUtil.revertToVersion(root, Version.PREVIOUS);
 		    currentRoot = (TextBlock) TbUtil.createNewCopy(root,
-                            VersionEnum.CURRENT, true, shortPrettyPrinter);
+                            Version.CURRENT, true, shortPrettyPrinter);
 		}
 	    	if (moinLoggingWasEnabled) {
 	    	    ParsingTextblocksActivator.getDefault().enableMoinLogging(root.get___Connection());
@@ -488,8 +484,8 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 		for (AbstractToken tok = findNextRegion(root); !isEOS(tok); 
 				//as we are now at the right edge of the last section we need to go to the next token
 				//of the current version and then back to the previous version to find the next changed region
-				tok = isEOS(tok) ? tok : findNextRegion(getOtherVersion(nextToken(tok, VersionEnum.CURRENT), VersionEnum.PREVIOUS))) {
-			TextBlock previousParentBlock = tok.getParentBlock();
+				tok = isEOS(tok) ? tok : findNextRegion(getOtherVersion(nextToken(tok, Version.CURRENT), Version.PREVIOUS))) {
+			TextBlock previousParentBlock = tok.getParent();
 			TextBlock currentTextBlock = getCurrentVersion(previousParentBlock);
 			changedBlocks.add(currentTextBlock);
 
@@ -497,7 +493,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 			// newly lexed tokens
 
 			AbstractToken oldTokenInCurrentBlock = getOtherVersion(
-					tok, VersionEnum.CURRENT);
+					tok, Version.CURRENT);
 			int index = currentTextBlock.getTokens().indexOf(
 					oldTokenInCurrentBlock);
 			//removeFromBlockConsistent(currentTextBlock, oldTokenInCurrentBlock);
@@ -510,13 +506,13 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 				addTokenIfNecessaryAndUpdateOffetsAndLengths(tok,
 						currentTextBlock, index++);
 				
-				makeOffsetRelativeToBlock(tok, tok.getParentBlock());
+				makeOffsetRelativeToBlock(tok, tok.getParent());
 				
 				//move to next new token
 				tok = nextNewToken();
 //				boolean referenceVersionsFromOldTokenInCurrentBlockToPreviousNewToken = false;
 				if (!oldTokenInCurrentBlock.equals(getOtherVersion(
-						getConstructionLoc().getTok(), VersionEnum.CURRENT))) {
+						getConstructionLoc().getTok(), Version.CURRENT))) {
 					// if lexing proceeded to next previous-version token switch to this
 					// one in current version as well
 					//and delete all CURRENT tokens that were read over during lexing
@@ -525,15 +521,15 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 							.hasNext();) {
 						oldTokenInCurrentBlock = it.next();
 //							oldTokenInCurrentBlock = (AbstractToken) getOtherVersion(
-//									constructionLoc.getTok(), VersionEnum.CURRENT);
-							if (((Partitionable)oldTokenInCurrentBlock).is___Alive() &&
-									!oldTokenInCurrentBlock.getParentBlock().equals(
+//									constructionLoc.getTok(), Version.CURRENT);
+							if (((EObject)oldTokenInCurrentBlock).is___Alive() &&
+									!oldTokenInCurrentBlock.getParent().equals(
 									currentTextBlock)) {
 								if(TbNavigationUtil.getSubNodesSize(currentTextBlock) == 0) {
 									currentTextBlock.refDelete();
 								}
 								currentTextBlock = oldTokenInCurrentBlock
-										.getParentBlock();
+										.getParent();
 								changedBlocks.add(currentTextBlock);
 								index = currentTextBlock.getTokens().indexOf(
 										oldTokenInCurrentBlock);
@@ -564,7 +560,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 		}
 		// Adds EOS token if missing fro mnew copy: TODO When and why would we ever expect this to happen?
 		if (!(currentRoot.getTokens().get(currentRoot.getTokens().size() - 1) instanceof Eostoken)) {
-			AbstractToken eosTok = createEOSToken(textblocksPackage, VersionEnum.CURRENT,
+			AbstractToken eosTok = createEOSToken(textblocksPackage, Version.CURRENT,
 					getEOSTokenType());
 			eosTok.setOffset(currentRoot.getLength());
 			eosTok.setOffsetRelative(true);
@@ -613,18 +609,18 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 		// add new tokens at position of oldTokens
 		//if the token is re-used it has to be first
 		//extracted from its original parent
-		if(tok.getParentBlock() != null) {
+		if(tok.getParent() != null) {
 			//if the original parent was a direct or indirect child of the current node it can be left there
-			if(!(TbUtil.isAncestorOf(currentTextBlock, tok.getParentBlock()) || currentTextBlock.equals(tok.getParentBlock()))){	
-				tok.setParentBlock(null);
+			if(!(TbUtil.isAncestorOf(currentTextBlock, tok.getParent()) || currentTextBlock.equals(tok.getParent()))){	
+				tok.setParent(null);
 				currentTextBlock.getTokens().add(index, tok);
 				TbChangeUtil.updateLengthAscending(currentTextBlock, tok.getLength());
 				TbChangeUtil.updateOffsets(tok, tok.getLength());
 				// increment so that next new tokens will be added behind
 				// this new one
 			} else {
-				int lengthDiff = tok.getLength() - getOtherVersion(tok, VersionEnum.PREVIOUS).getLength();
-				TbChangeUtil.updateLengthAscending(tok.getParentBlock(), lengthDiff);
+				int lengthDiff = tok.getLength() - getOtherVersion(tok, Version.PREVIOUS).getLength();
+				TbChangeUtil.updateLengthAscending(tok.getParent(), lengthDiff);
 				TbChangeUtil.updateOffsets(tok, lengthDiff);
 			}
 		} else {
@@ -649,7 +645,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 	private Collection<AbstractToken> removeAllOutdatedTokensFromCurrentVersion(
 			AbstractToken oldTokenInCurrentBlock) {
 		AbstractToken constructionLocToken = getOtherVersion(
-				getConstructionLoc().getTok(), VersionEnum.CURRENT);
+				getConstructionLoc().getTok(), Version.CURRENT);
 		ArrayList<AbstractToken> consumedTokens = new ArrayList<AbstractToken>(2);
 		AbstractToken currentToken = oldTokenInCurrentBlock;
 		while(currentToken != null && !currentToken.equals(constructionLocToken)) {
@@ -661,7 +657,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 			//the token may have been re-used but only when the lexer didn't "read over" it.
 			//Read over is the case when the token is before the current constructionLocation
 			if(!wasReUsed(deleteToken)) {
-				TextBlock deleteTokenParent = deleteToken.getParentBlock();
+				TextBlock deleteTokenParent = deleteToken.getParent();
 //				AbstractToken nextToken = TbNavigationUtil.nextToken(deleteToken);
 //				while(nextToken != null && !nextToken.equals(oldTokenInCurrentBlock)) {
 //					//The new version of the deleteToken was already added to the block
@@ -673,8 +669,8 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 //				}
 				TbChangeUtil.updateLengthAscending(deleteTokenParent, -deleteToken.getLength());
 				if(TbNavigationUtil.isFirstInSubTree(currentToken)){
-				    currentToken.getParentBlock().setOffset(currentToken.getParentBlock().getOffset() -deleteToken.getLength());
-				    TbChangeUtil.updateOffsets(currentToken.getParentBlock(), -deleteToken.getLength());
+				    currentToken.getParent().setOffset(currentToken.getParent().getOffset() -deleteToken.getLength());
+				    TbChangeUtil.updateOffsets(currentToken.getParent(), -deleteToken.getLength());
 				} else {
 				    TbChangeUtil.updateOffsets(currentToken, -deleteToken.getLength());
 				}
@@ -697,9 +693,9 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 	private static AbstractToken navigateToNextCURRENTTokenUsingPreviousVersion(
 			AbstractToken oldTokenInCurrentBlock) {
 		oldTokenInCurrentBlock = TbNavigationUtil.nextToken(
-				getOtherVersion(oldTokenInCurrentBlock, VersionEnum.PREVIOUS));
+				getOtherVersion(oldTokenInCurrentBlock, Version.PREVIOUS));
 		//now the current version again
-		oldTokenInCurrentBlock = getOtherVersion(oldTokenInCurrentBlock, VersionEnum.CURRENT);
+		oldTokenInCurrentBlock = getOtherVersion(oldTokenInCurrentBlock, Version.CURRENT);
 		return oldTokenInCurrentBlock;
 	}
 
@@ -711,17 +707,17 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 	 */
 	private TextBlock getCurrentVersion(TextBlock tb) {
 		TextBlock currentVersion = getOtherVersion(tb,
-				VersionEnum.CURRENT);
+				Version.CURRENT);
 		if (currentVersion == null) {
 			currentVersion = (TextBlock) textblocksPackage.getTextBlock()
 					.refCreateInstanceInPartition(
-							((Partitionable) tb).get___Partition());
-			currentVersion.setVersion(VersionEnum.CURRENT);
+							((EObject) tb).eResource());
+			currentVersion.setVersion(Version.CURRENT);
 			TbUtil.referenceVersions(currentVersion, tb);
-			if (tb.getParentBlock() == null) {
+			if (tb.getParent() == null) {
 				// If its the root block then add also the BOS token
 				currentVersion.getTokens().add(
-						createBOSToken(textblocksPackage, VersionEnum.CURRENT,
+						createBOSToken(textblocksPackage, Version.CURRENT,
 								getBOSTokenType()));
 			}
 			// also copy cached string represenation
@@ -739,7 +735,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 		boolean notMarked = !marked(getConstructionLoc().getTok());
 		boolean startable = isStartable(lastToken);
 		boolean sameState = lastToken.getState() == previousToken(
-				getConstructionLoc().getTok(), VersionEnum.PREVIOUS).getState();
+				getConstructionLoc().getTok(), Version.PREVIOUS).getState();
 		// System.out.println( ""+ isEmpty +','+constructionLoc.getOffset()
 		// +','+notMarked +','+startable +','+ sameState);
 		boolean canStop = isEmpty && atEndOfConstruction && notMarked && startable
@@ -754,7 +750,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 	 */
 	private void updateLookbacks(TextBlock root) {
 		// Ensure to work on current version;
-		DocumentNode node = getOtherVersion(root, VersionEnum.CURRENT);
+		DocumentNode node = getOtherVersion(root, Version.CURRENT);
 		while (node != null && !isEOS(node)) {
 			if (isToken(node)) {
 				AbstractToken tok = (AbstractToken) node;
@@ -763,7 +759,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
                 } else {
                     node = nextSubtree(tok);
                 }
-			} else if (hasNestedChanges((TextBlock) node, VersionEnum.PREVIOUS)) {
+			} else if (hasNestedChanges((TextBlock) node, Version.PREVIOUS)) {
                 // Which
 				// version?
 				node = getSubNodeAt(((TextBlock) node), 0);
@@ -782,12 +778,12 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 			// Extract lookback count (if different in current version, use old
 			// value).
 			int lb = nextToken(TbNavigationUtil.previousToken(tok),
-					VersionEnum.REFERENCE).getLookback();
+					Version.REFERENCE).getLookback();
 			AbstractToken bootTok = tok;
 			while (lb-- > 0
 					&& tokensConverge(
-							getOtherVersion(TbNavigationUtil.previousToken(bootTok), VersionEnum.REFERENCE),
-							getOtherVersion(TbNavigationUtil.previousToken(bootTok), VersionEnum.PREVIOUS))
+							getOtherVersion(TbNavigationUtil.previousToken(bootTok), Version.REFERENCE),
+							getOtherVersion(TbNavigationUtil.previousToken(bootTok), Version.PREVIOUS))
 					&& !wasReLexed(TbNavigationUtil.previousToken(bootTok))) {
                 bootTok = TbNavigationUtil.previousToken(bootTok);
             }
@@ -868,19 +864,19 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 	 * occurs in the last-lexed tree.
 	 */
 	private void markFrom(AbstractToken tok) {
-		if (!existsInVersion(tok, VersionEnum.PREVIOUS)) {
-            //|| !existsInVersion(tok, VersionEnum.REFERENCE))
+		if (!existsInVersion(tok, Version.PREVIOUS)) {
+            //|| !existsInVersion(tok, Version.REFERENCE))
 			return;
         }
 		mark(tok);
 		ensureStartable(tok);
 		// Check everything in its lookback set.
 		for (int ov = tok.getLookback(); ov > 0; --ov) {
-			tok = previousToken(tok, VersionEnum.PREVIOUS);
+			tok = previousToken(tok, Version.PREVIOUS);
 			if (isBOS(tok)) {
                 return;
             }
-			if (!existsInVersion(tok, VersionEnum.PREVIOUS)/* see above */
+			if (!existsInVersion(tok, Version.PREVIOUS)/* see above */
 					|| marked(tok)) {
                 continue;
             }
@@ -898,7 +894,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 	protected int nextChar() {
 		while (readOffset == (asString(readToken)).length()
 				&& !isEOS(readToken)) {
-			readToken = nextToken(readToken, VersionEnum.PREVIOUS);
+			readToken = nextToken(readToken, Version.PREVIOUS);
 			readOffset = 0;
 			readLoc.setTok(readToken);
 			readLoc.setOffset(readOffset);
