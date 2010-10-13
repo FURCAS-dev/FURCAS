@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.hpi.sam.bp2009.solution.eventManager.CompositeCollection;
+import de.hpi.sam.bp2009.solution.eventManager.CompositeSet;
 
 
 public class CompositeSetTest extends TestCase {
@@ -41,7 +42,7 @@ public class CompositeSetTest extends TestCase {
     @Test
     public void testSimpleSet() {
         @SuppressWarnings("unchecked")
-        CompositeCollection<Integer> cs = new CompositeCollection<Integer>(firstSet);
+        CompositeCollection<Integer> cs = new CompositeSet<Integer>(firstSet);
         assertFalse(cs.isEmpty());
         assertEquals(firstSet.size(), cs.size());
         assertTrue(firstSet.containsAll(cs));

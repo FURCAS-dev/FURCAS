@@ -8,7 +8,6 @@ package de.hpi.sam.bp2009.solution.eventManager;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
@@ -48,14 +47,6 @@ public interface EventManager {
     boolean unsubscribe(Adapter listener);
 
     /**
-     * Returns the {@link ResourceSet} of the {@link EventManager}, which defines the root for receiving event of composite
-     * {@link EObject}s
-     * 
-     * @return the composition
-     */
-    ResourceSet getResourceSet();
-
-    /**
      * Initialize the filtering process for a given {@link Notification}, all {@link Adapter} registered with a matching filter
      * will be notified. Normally, clients don't have to call this method explicitly. It will be called by the
      * event manager automatically when an event has been received from any elements in the {@link ResourceSet}
@@ -67,6 +58,21 @@ public interface EventManager {
      *            {@link Notification} to send to clients whose event filter matches the notification
      */
     void handleEMFEvent(Notification notification);
+    
+    /**
+     * Adds <code>resourceSet</code> to the resource sets from which this event manager receives notifications
+     * that it dispatches to adapters subscribed to this event manager.
+     * 
+     * @see #removeFromObservedResourceSets(ResourceSet)
+     */
+    void addToObservedResourceSets(ResourceSet resourceSet);
+    
+    /**
+     * Stops receiving and dispatching notifications coming from <code>resourceSet</code>.
+     * 
+     * @see #addToObservedResourceSets(ResourceSet)
+     */
+    void removeFromObservedResourceSets(ResourceSet resourceSet);
     
     /**
      * Sometimes it can be convenient to temporarily stop the flow of events. For example, if a particular event manager

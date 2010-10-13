@@ -45,6 +45,14 @@ public interface EventManagerFactory {
      * {@link Adapter}s.
      */
     EventManager getEventManagerFor(ResourceSet set);
+    
+    /**
+     * Creates a new {@link EventManager} that initially does not receive change notifications from any resource set.
+     * This is useful if you want to be able to already register adapters with the event manager without knowing the
+     * resource sets from which those adapters later shall receive their notifications. Well-suited for creating
+     * long-lived event managers.
+     */
+    EventManager createEventManager();
 
     /**
      * Creates a new {@link EventManager} that receives all change notifications from all notifiers contained directly or
