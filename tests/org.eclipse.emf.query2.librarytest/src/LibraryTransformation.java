@@ -27,10 +27,11 @@ import org.junit.Test;
 
 import com.google.inject.Injector;
 
+
 public class LibraryTransformation extends QueryTestCase {
-
 	private static Model model;
-
+	
+	
 	@BeforeClass
 	public static void setup() {
 		if (!Platform.isRunning()) {
@@ -40,7 +41,7 @@ public class LibraryTransformation extends QueryTestCase {
 		Injector injector = new QueryStandaloneSetup().createInjectorAndDoEMFRegistration();
 		XtextResourceSet set = injector.getInstance(XtextResourceSet.class);
 		set.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
-		URI resourceURI = URI.createURI("platform:/resource/org.eclipse.emf.query2.librarytest/data/lib.query");
+		URI resourceURI = URI.createURI("platform:/plugin/org.eclipse.emf.query2.librarytest/data/lib.query");
 		URI normalized = set.getURIConverter().normalize(resourceURI);
 		LazyLinkingResource xtextResource = (LazyLinkingResource) set.getResource(normalized, true);
 		model = (Model) xtextResource.getContents().get(0);
@@ -96,5 +97,4 @@ public class LibraryTransformation extends QueryTestCase {
 
 		};
 	}
-
 }

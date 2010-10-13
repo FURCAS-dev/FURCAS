@@ -9,14 +9,13 @@
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 
+import java.util.Iterator;
+
 import library.LibraryPackage;
 
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IResourceVisitor;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.query.index.Index;
@@ -56,25 +55,18 @@ public class QueryTestCase extends Assert {
 				final ResourceIndexer indexer = new ResourceIndexer();
 				indexer.resourceChanged(updater, EcorePackage.eINSTANCE.eResource());
 				indexer.resourceChanged(updater, LibraryPackage.eINSTANCE.eResource());
-				IResource data = ResourcesPlugin.getWorkspace().getRoot().getProject("org.eclipse.emf.query2.librarytest").findMember(
-						"data");
 				final ResourceSet rs = new ResourceSetImpl();
-				try {
-					data.accept(new IResourceVisitor() {
-						@Override
-						public boolean visit(IResource resource) throws CoreException {
-							if ("xmi".equals(resource.getFileExtension())) {
-								System.out.print(".");
-								c.inc();
-								indexer.resourceChanged(updater, rs.getResource(URI.createPlatformResourceURI(resource.getFullPath()
-										.toString(), true), true));
-							}
-
-							return true;
-						}
-					});
-				} catch (CoreException e) {
-					e.printStackTrace();
+				Parser parser=new Parser();
+				//load the resources
+				parser.loadResources(rs);
+				EList<Resource> resources = rs.getResources();
+				indexer.resourceChanged(updater,resources.toArray(new Resource[0]));
+				
+				//unload the resources
+				for (Iterator iterator = resources.iterator(); iterator
+						.hasNext();) {
+					Resource resource = (Resource) iterator.next();
+					resource.unload();
 				}
 			}
 		});

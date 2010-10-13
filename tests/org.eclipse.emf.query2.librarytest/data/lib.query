@@ -37,3 +37,5 @@ ManuscriptsInBerlinOrHamburg2:
 	select m 
 	where lib.books = b
 		and b.instanceOf = m
+		
+Pages: from Manuscript as m select m.title where m.pages >=200

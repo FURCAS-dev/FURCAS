@@ -21,11 +21,12 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class Parser {
 
-	@Test
+	@Test @Ignore
 	public void parse() throws Exception {
 		ResourceSet rs = new ResourceSetImpl();
 		Map<String, Person> authors = new HashMap<String, Person>();
@@ -38,6 +39,33 @@ public class Parser {
 		for (Resource r : rs.getResources()) {
 			r.save(null);
 		}
+
+	}
+	
+	public void loadResources(ResourceSet rs) {
+		Map<String, Resource> resources = new HashMap<String, Resource>();
+		String pathName = "platform:/plugin/org.eclipse.emf.query2.librarytest/data/publisher/dpunkt.xmi";
+		Resource r = rs.createResource(URI.createURI(pathName, true));
+		loadPersons(rs, resources);
+		loadLibraries(rs, resources);
+	}
+
+	private void loadLibraries(ResourceSet rs, Map<String, Resource> resources) {
+		for (int i = 0; i < cities.length; i++) {
+			String city = cities[i];
+			String pathName = "platform:/plugin/org.eclipse.emf.query2.librarytest/data/library/"
+					+ city + ".xmi";
+			Resource r = getResource(rs, pathName);
+		}
+
+	}
+
+	private void loadPersons(ResourceSet rs, Map<String, Resource> resources) {
+		for (int i = 0; i < personLastNames.length; i++) {
+			String lastName = personLastNames[i];
+			Resource resourceForPerson = getResourceForPerson(rs, resources,
+					lastName.substring(0, 1));
+			}
 
 	}
 
@@ -59,7 +87,7 @@ public class Parser {
 
 		for (int i = 0; i < cities.length; i++) {
 			String city = cities[i];
-			String pathName = "org.eclipse.emf.query2.syntax.librarytest/data/library/" + city + ".xmi";
+			String pathName = "platform:/plugin/org.eclipse.emf.query2.librarytest/data/library/" + city + ".xmi";
 			Resource r = getResource(rs, pathName);
 			Library lib = LibraryFactory.eINSTANCE.createLibrary();
 			lib.setLocation(city);
@@ -98,7 +126,7 @@ public class Parser {
 		pathName=pathName.replaceAll("é", "e");
 		pathName=pathName.replaceAll("'", "");
 		pathName=pathName.replaceAll("\\(.*\\)", "");
-		Resource r = rs.createResource(URI.createPlatformResourceURI(
+		Resource r = rs.createResource(URI.createURI(
 				pathName, true));
 		return r;
 	}
@@ -168,7 +196,7 @@ public class Parser {
 		Resource r;
 		String c = firstChar.toUpperCase();
 		if ((r = resources.get(c)) == null) {
-			String pathName = "org.eclipse.emf.query2.syntax.librarytest/data/person/" + c + ".xmi";
+			String pathName = "platform:/plugin/org.eclipse.emf.query2.librarytest/data/person/" + c + ".xmi";
 			r = getResource(rs, pathName);
 			resources.put(c, r);
 		}
