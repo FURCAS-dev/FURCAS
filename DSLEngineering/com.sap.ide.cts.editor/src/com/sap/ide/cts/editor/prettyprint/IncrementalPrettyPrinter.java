@@ -1,14 +1,21 @@
 package com.sap.ide.cts.editor.prettyprint;
 
-import tcs.ClassTemplate;
-import tcs.ConcreteSyntax;
-import tcs.Template;
-import textblocks.TextBlock;
+import org.eclipse.emf.ecore.EObject;
 
+<<<<<<< HEAD
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorStream;
 import com.sap.mi.textual.parsing.textblocks.TbChangeUtil;
 import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
+=======
+import com.sap.furcas.textual.textblocks.TbChangeUtil;
+import com.sap.furcas.textual.textblocks.TbNavigationUtil;
+import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorStream;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 /**
  * This class enables incremental pretty printing by using the class PrettyPrinter.
@@ -36,7 +43,7 @@ public class IncrementalPrettyPrinter
 	 * 					template which is used for model element
 	 * @throws SyntaxAndModelMismatchException
 	 */
-	public void prettyPrint(RefObject[] rootTbs, RefObject source,
+	public void prettyPrint(EObject[] rootTbs, EObject source,
 			ConcreteSyntax syntax, TCSExtractorStream target,
 			ClassTemplate template) throws SyntaxAndModelMismatchException
 	{
@@ -57,7 +64,7 @@ public class IncrementalPrettyPrinter
 
 		// check if a textblock has already existed for the model element source
 		// if there are more textblocks existing choose first one fitting
-		for (RefObject o : rootTbs)
+		for (EObject o : rootTbs)
 		{
 			if (o instanceof TextBlock)
 			{
@@ -76,9 +83,9 @@ public class IncrementalPrettyPrinter
 				// off oldTbForSource
 				// build context
 				if (oldTbForSource != null
-						&& oldTbForSource.getParentBlock() != null)
+						&& oldTbForSource.getParent() != null)
 				{
-					parent = oldTbForSource.getParentBlock();
+					parent = oldTbForSource.getParent();
 					iOldAbsoluteOffset = oldTbForSource.getAbsoluteOffset();
 					iOldOffset = oldTbForSource.getOffset();
 					iOldTbIndex = parent.getSubNodes().indexOf(oldTbForSource);
@@ -123,7 +130,7 @@ public class IncrementalPrettyPrinter
 				{
 					rootBlock.setOffset(iOldOffset);
 					parent.getSubBlocks().add(iOldTbIndex, rootBlock);
-					rootBlock.setParentBlock(parent);
+					rootBlock.setParent(parent);
 					int lengthToAdd = rootBlock.getLength() - iOldTbLength;
 					TbChangeUtil.updateOffsetsWithinTextBlock(rootBlock,
 							lengthToAdd);
@@ -149,13 +156,13 @@ public class IncrementalPrettyPrinter
 	 * @param syntax
 	 * 					syntax the pretty printer uses
 	 */
-	private void constructContext(PrettyPrintContext context, TextBlock textblock, RefObject element, ConcreteSyntax syntax)
+	private void constructContext(PrettyPrintContext context, TextBlock textblock, EObject element, ConcreteSyntax syntax)
 	{
 		assert(context != null);
 		assert(textblock != null);
 		assert(syntax != null);
 
-		for(TextBlock parent = textblock.getParentBlock(); parent != null; parent = parent.getParentBlock())
+		for(TextBlock parent = textblock.getParent(); parent != null; parent = parent.getParent())
 		{
 			Template t = parent.getType().getParseRule();
 			ClassTemplate tp = null;
@@ -181,7 +188,7 @@ public class IncrementalPrettyPrinter
 //		}
 //		if (outermostParent != null && !outermostParent.equals(textblock))
 //		{
-//			RefObject outermostElement = null;
+//			EObject outermostElement = null;
 //			if (outermostParent.getCorrespondingModelElements().size() == 1)
 //			{
 //				outermostElement = outermostParent
@@ -198,7 +205,7 @@ public class IncrementalPrettyPrinter
 //						+ "where template.metaReference = class" + "\n"
 //						+ "where template.concreteSyntax = syntax";
 //				MQLResultSet resultSet = mql.execute(mqlTemplates);
-//				RefObject[] templates = resultSet.getRefObjects("template");
+//				EObject[] templates = resultSet.getRefObjects("template");
 //				if (templates != null)
 //				{
 //					ClassTemplate tp = null;
@@ -207,7 +214,7 @@ public class IncrementalPrettyPrinter
 //					if (templates.length > 1)
 //					{
 //						// seek for main template
-//						for (RefObject object : templates)
+//						for (EObject object : templates)
 //						{
 //							if (object instanceof ClassTemplate)
 //							{
@@ -222,7 +229,7 @@ public class IncrementalPrettyPrinter
 //						// without mode
 //						if (tp == null)
 //						{
-//							for (RefObject object : templates)
+//							for (EObject object : templates)
 //							{
 //								if (object instanceof ClassTemplate)
 //								{

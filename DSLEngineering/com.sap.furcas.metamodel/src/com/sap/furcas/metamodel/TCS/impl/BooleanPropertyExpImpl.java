@@ -21,23 +21,23 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public class BooleanPropertyExpImpl extends AtomExpImpl implements BooleanPropertyExp {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected BooleanPropertyExpImpl() {
-		super();
-	}
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        protected BooleanPropertyExpImpl() {
+                super();
+        }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return TCSPackage.Literals.BOOLEAN_PROPERTY_EXP;
-	}
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        @Override
+        protected EClass eStaticClass() {
+                return TCSPackage.Literals.BOOLEAN_PROPERTY_EXP;
+        }
 
 } //BooleanPropertyExpImpl

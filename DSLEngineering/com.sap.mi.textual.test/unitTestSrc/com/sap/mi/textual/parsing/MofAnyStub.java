@@ -10,40 +10,13 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import com.sap.mi.textual.test.util.StringListHelper;
-import com.sap.tc.moin.repository.CRI;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.MRI;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.mmi.model.AggregationKind;
-import com.sap.tc.moin.repository.mmi.model.Association;
-import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.Constraint;
-import com.sap.tc.moin.repository.mmi.model.GeneralizableElement;
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.MofPackage;
-import com.sap.tc.moin.repository.mmi.model.MultiplicityType;
-import com.sap.tc.moin.repository.mmi.model.NameNotFoundException;
-import com.sap.tc.moin.repository.mmi.model.NameNotResolvedException;
-import com.sap.tc.moin.repository.mmi.model.Namespace;
-import com.sap.tc.moin.repository.mmi.model.Reference;
-import com.sap.tc.moin.repository.mmi.model.ScopeKind;
-import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
-import com.sap.tc.moin.repository.mmi.model.VisibilityKind;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
-import com.sap.tc.moin.repository.mmi.reflect.RefAssociation;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefEnum;
-import com.sap.tc.moin.repository.mmi.reflect.RefException;
-import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
-import com.sap.tc.moin.repository.mmi.reflect.RefStruct;
+import javax.naming.NameNotFoundException;
+import javax.xml.stream.events.Namespace;
+
+import org.eclipse.ocl.ecore.Constraint;
+
+import com.sap.furcas.metamodel.TCS.ScopeKind;
+import com.sap.furcas.parsergenerator.testutils.StringListHelper;
 import com.sap.tc.moin.textual.moinadapter.adapter.stub.PRIStub;
 
 /**

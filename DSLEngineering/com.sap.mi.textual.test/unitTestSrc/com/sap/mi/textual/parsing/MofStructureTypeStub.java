@@ -9,28 +9,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import com.sap.mi.textual.test.util.StringListHelper;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.MRI;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.Constraint;
-import com.sap.tc.moin.repository.mmi.model.GeneralizableElement;
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.MultiplicityType;
-import com.sap.tc.moin.repository.mmi.model.NameNotFoundException;
-import com.sap.tc.moin.repository.mmi.model.NameNotResolvedException;
-import com.sap.tc.moin.repository.mmi.model.Namespace;
-import com.sap.tc.moin.repository.mmi.model.StructureType;
-import com.sap.tc.moin.repository.mmi.model.VisibilityKind;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefException;
-import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
+import javax.naming.NameNotFoundException;
+import javax.xml.stream.events.Namespace;
+
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ui.internal.keys.model.ModelElement;
+
+import com.sap.furcas.parsergenerator.testutils.StringListHelper;
 
 /**
  * Stub only intended for testing. Only methods used by AbstractListbasedMetaLookup are being stubbed. 

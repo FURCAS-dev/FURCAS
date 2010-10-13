@@ -7,12 +7,13 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.sap.mi.textual.common.exceptions.GrammarGenerationException;
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
-import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
-import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
-import com.sap.mi.textual.test.util.EcoreMetaLookUp;
-import com.sap.mi.textual.test.util.StubModelAdapter;
+import com.sap.furcas.runtime.common.exceptions.GrammarGenerationException;
+import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
+import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
+import com.sap.furcas.test.parsing.base.ExtendedGeneratedParserBasedTest;
+import com.sap.furcas.test.util.EcoreMetaModelLookUp;
+import com.sap.furcas.test.util.StubModelAdapter;
 
 
 /**
@@ -28,7 +29,7 @@ public class PartialTest extends ExtendedGeneratedParserBasedTest {
 	
 	@Before
 	public void testXPathGenerationOnly() throws FileNotFoundException, SyntaxParsingException, ModelAdapterException, GrammarGenerationException, IOException {
-	    lookup = new EcoreMetaLookUp( "XPath1.ecore", "XPath1.ecore");
+	    lookup = new EcoreMetaModelLookUp( "XPath1.ecore", "XPath1.ecore");
 	    super.generateAndCompileParser(LANGUAGE);
 	}
 	

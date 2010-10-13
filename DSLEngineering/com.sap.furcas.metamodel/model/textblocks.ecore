@@ -3,35 +3,31 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="textblocks"
     nsURI="http://www.furcas.org/textblocks" nsPrefix="com.sap.furcas.textblocks">
-  <eClassifiers xsi:type="ecore:EClass" name="TextBlock" abstract="true" eSuperTypes="#//DocumentNode">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+    <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="TextBlock" eSuperTypes="#//DocumentNode">
     <eOperations name="getSubBlocks" upperBound="-1" eType="#//TextBlock">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="body"/>
       </eAnnotations>
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-        <details key="body" value="self.subNodes->select(n | n.oclIsTypeOf(TextBlock)).oclAsType(OrderedSet(TextBlock))"/>
+        <details key="body" value="self.subNodes->select(n | n.oclIsKindOf(TextBlock)).oclAsType(TextBlock)"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="getTokens" upperBound="-1" eType="#//AbstractToken">
-      <eAnnotations source="de.hpi.sam.bp2009.OCL">
-        <details key="body" value="self.subNodes->select(n | n.oclIsTypeOf(AbstractToken)).oclAsType(OrderedSet(AbstractToken))"/>
-      </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="body"/>
-      </eAnnotations>
-    </eOperations>
-    <eOperations name="getAdditionalTemplates" upperBound="-1" eType="ecore:EClass TCS.ecore#//Template">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="body"/>
       </eAnnotations>
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-        <details key="body" value="self.subNodes->select(n | n.oclIsTypeOf(TextBlock)).oclAsType(OrderedSet(TextBlock))"/>
+        <details key="body" value="self.subNodes->select(n | n.oclIsKindOf(AbstractToken)).oclAsType(AbstractToken)"/>
       </eAnnotations>
     </eOperations>
+    <eOperations name="getAdditionalTemplates" upperBound="-1" eType="ecore:EClass TCS.ecore#//Template"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass textblockdefinition.ecore#//TextblockDefinition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subNodes" upperBound="-1"
-        eType="#//DocumentNode" transient="true" derived="true" containment="true"
-        eOpposite="#//DocumentNode/parent"/>
+        eType="#//DocumentNode" containment="true" eOpposite="#//DocumentNode/parent"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="parentAltChoices" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elementsInContext" upperBound="-1"
@@ -40,7 +36,7 @@
         eType="#//ForEachContext" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="cachedString" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AbstractToken" abstract="true" eSuperTypes="#//DocumentNode">
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractToken" eSuperTypes="#//DocumentNode">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lookahead" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lookback" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>

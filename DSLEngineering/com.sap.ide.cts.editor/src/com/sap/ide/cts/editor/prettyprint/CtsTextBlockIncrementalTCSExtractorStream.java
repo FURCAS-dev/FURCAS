@@ -24,16 +24,16 @@ import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.furcas.metamodel.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
+import com.sap.furcas.textual.tcs.TcsUtil;
+import com.sap.furcas.textual.textblocks.TbMarkingUtil;
+import com.sap.furcas.textual.textblocks.TbNavigationUtil;
+import com.sap.furcas.textual.textblocks.TbValidationUtil;
 import com.sap.ide.cts.editor.contentassist.TcsDebugUtil;
 import com.sap.ide.cts.editor.prettyprint.imported.PrettyPrinter;
 import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorStream;
 import com.sap.ide.cts.moin.parserfactory.AbstractParserFactory;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.mi.textual.parsing.textblocks.TbMarkingUtil;
-import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
-import com.sap.mi.textual.parsing.textblocks.TbValidationUtil;
-import com.sap.mi.textual.tcs.util.TcsUtil;
 
 /**
  * 

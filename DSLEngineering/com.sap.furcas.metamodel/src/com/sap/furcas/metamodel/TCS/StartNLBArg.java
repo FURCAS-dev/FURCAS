@@ -18,5 +18,4 @@ package com.sap.furcas.metamodel.TCS;
  * @generated
  */
 public interface StartNLBArg extends BlockArg {
-
 } // StartNLBArg

@@ -5,15 +5,15 @@ import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
-import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
-import com.sap.mi.textual.test.util.EcoreMetaLookUp;
-import com.sap.mi.textual.test.util.StringListHelper;
+import com.sap.furcas.parsergenerator.testutils.StringListHelper;
+import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.test.util.EcoreMetaModelLookUp;
 
 
 public class XPathTextMetaLookUpTest {
 
 	private IMetaModelLookup getLookup() throws Exception {
-	    EcoreMetaLookUp lookup = new EcoreMetaLookUp( "XPath.ecore", "XPath1.ecore");
+	    EcoreMetaModelLookUp lookup = new EcoreMetaModelLookUp( "XPath.ecore", "XPath1.ecore");
 		return lookup;
 	}
 	

@@ -6,16 +6,16 @@ import generated.TCSParser;
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.sap.furcas.parsing.textblocks.TextBlocksAwareModelAdapter;
+import com.sap.furcas.runtime.parser.IModelAdapter;
+import com.sap.furcas.runtime.parser.ParserFacade;
+import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
+import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
+import com.sap.furcas.runtime.parser.impl.DelegationParsingObserver;
 import com.sap.ide.cts.editor.contentassist.CtsContentAssistParsingHandler;
 import com.sap.ide.cts.editor.contentassist.TcsFixtureBase;
 import com.sap.ide.cts.editor.contentassist.modeladapter.StubModelAdapter;
 import com.sap.ide.cts.editor.test.util.ConcreteSyntaxBasedTest;
-import com.sap.mi.textual.grammar.IModelAdapter;
-import com.sap.mi.textual.grammar.ParserFacade;
-import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
-import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
-import com.sap.mi.textual.grammar.impl.DelegationParsingObserver;
-import com.sap.mi.textual.parsing.textblocks.TextBlocksAwareModelAdapter;
 
 public abstract class CtsContentAssistParsingHandlerTestBase extends
 		ConcreteSyntaxBasedTest {

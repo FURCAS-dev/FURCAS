@@ -6,7 +6,7 @@ import org.eclipse.jface.viewers.Viewer;
 import textblocks.DocumentNode;
 import textblocks.TextBlock;
 
-import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
+import com.sap.furcas.textual.textblocks.TbNavigationUtil;
 
 public class TextBlocksContentProvider implements ITreeContentProvider {
 

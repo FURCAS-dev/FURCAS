@@ -24,30 +24,30 @@ package com.sap.furcas.metamodel.TCS;
  * @generated
  */
 public interface RulePattern extends SimplePattern {
-	/**
-	 * Returns the value of the '<em><b>Rule</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Rule</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Rule</em>' containment reference.
-	 * @see #setRule(Rule)
-	 * @see com.sap.furcas.metamodel.TCS.TCSPackage#getRulePattern_Rule()
-	 * @model containment="true" required="true" ordered="false"
-	 * @generated
-	 */
-	Rule getRule();
+        /**
+         * Returns the value of the '<em><b>Rule</b></em>' containment reference.
+         * <!-- begin-user-doc -->
+         * <p>
+         * If the meaning of the '<em>Rule</em>' containment reference isn't clear,
+         * there really should be more of a description here...
+         * </p>
+         * <!-- end-user-doc -->
+         * @return the value of the '<em>Rule</em>' containment reference.
+         * @see #setRule(Rule)
+         * @see com.sap.furcas.metamodel.TCS.TCSPackage#getRulePattern_Rule()
+         * @model containment="true" required="true" ordered="false"
+         * @generated
+         */
+        Rule getRule();
 
-	/**
-	 * Sets the value of the '{@link com.sap.furcas.metamodel.TCS.RulePattern#getRule <em>Rule</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Rule</em>' containment reference.
-	 * @see #getRule()
-	 * @generated
-	 */
-	void setRule(Rule value);
+        /**
+         * Sets the value of the '{@link com.sap.furcas.metamodel.TCS.RulePattern#getRule <em>Rule</em>}' containment reference.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @param value the new value of the '<em>Rule</em>' containment reference.
+         * @see #getRule()
+         * @generated
+         */
+        void setRule(Rule value);
 
 } // RulePattern

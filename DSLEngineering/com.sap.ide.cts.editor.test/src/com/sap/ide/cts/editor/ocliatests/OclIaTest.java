@@ -7,27 +7,19 @@ import static org.junit.Assert.assertTrue;
 import java.util.HashSet;
 import java.util.Set;
 
-import ngpm.NgpmPackage;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
+import org.eclipse.emf.common.util.URI;
 import org.junit.Before;
 import org.junit.Test;
 
-import tcs.ConcreteSyntax;
+import behavioral.events.EventFilter;
 
 import com.sap.ap.metamodel.utils.MetamodelUtils;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 import com.sap.ide.cts.editor.test.util.StandaloneConnectionBasedTest;
 import com.sap.ide.cts.editor.test.util.TcsTestHelper;
-import com.sap.tc.moin.repository.MRI;
-import com.sap.tc.moin.repository.events.ChangeListener;
-import com.sap.tc.moin.repository.events.filter.EventFilter;
-import com.sap.tc.moin.repository.events.type.ChangeEvent;
-import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
-import com.sap.tc.moin.repository.ocl.OclRegistryService;
-import com.sap.tc.moin.repository.ocl.freestyle.OclExpressionRegistration;
-import com.sap.tc.moin.repository.ocl.notification.OclManagerException;
-import com.sap.tc.moin.repository.ocl.registry.OclRegistrationSeverity;
 
 import data.classes.Association;
 import data.classes.AssociationEnd;
@@ -62,7 +54,7 @@ public class OclIaTest extends StandaloneConnectionBasedTest {
 	ChangeListener listener = new ChangeListener() {
 	    @Override
 	    public void notify(ChangeEvent event) {
-		Set<MRI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
+		Set<URI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
 		ok[0] = affectedElements.size() == 1 && affectedElements.contains(ae.get___Mri());
 	    }
 	};
@@ -106,7 +98,7 @@ public class OclIaTest extends StandaloneConnectionBasedTest {
 	ChangeListener listener = new ChangeListener() {
 	    @Override
 	    public void notify(ChangeEvent event) {
-		Set<MRI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
+		Set<URI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
 		ok[0] = affectedElements.size() == 1 && affectedElements.contains(ctd.get___Mri());
 	    }
 	};
@@ -151,7 +143,7 @@ public class OclIaTest extends StandaloneConnectionBasedTest {
 	ChangeListener listener = new ChangeListener() {
 	    @Override
 	    public void notify(ChangeEvent event) {
-		Set<MRI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
+		Set<URI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
 		ok[0] = affectedElements.size() == 1 && affectedElements.contains(ctd.get___Mri());
 	    }
 	};
@@ -191,7 +183,7 @@ public class OclIaTest extends StandaloneConnectionBasedTest {
 	ChangeListener listener = new ChangeListener() {
 	    @Override
 	    public void notify(ChangeEvent event) {
-		Set<MRI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
+		Set<URI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
 		ok[0] = affectedElements.size() == 1 && affectedElements.contains(mce.get___Mri()) &&
 			!affectedElements.contains(ctd.get___Mri());
 	    }
@@ -222,7 +214,7 @@ public class OclIaTest extends StandaloneConnectionBasedTest {
 	ChangeListener listener = new ChangeListener() {
 	    @Override
 	    public void notify(ChangeEvent event) {
-		Set<MRI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
+		Set<URI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
 		ok[0] = affectedElements.size() > 0 && affectedElements.contains(ctd.get___Mri()) &&
 			!affectedElements.contains(cl1.get___Mri());
 	    }
@@ -250,7 +242,7 @@ public class OclIaTest extends StandaloneConnectionBasedTest {
 	ChangeListener listener = new ChangeListener() {
 	    @Override
 	    public void notify(ChangeEvent event) {
-		Set<MRI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
+		Set<URI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
 		ok[0] = affectedElements.size() == 1
 			&& affectedElements.iterator().next().getMofId().equals(cl1.refMofId());
 	    }
@@ -280,7 +272,7 @@ public class OclIaTest extends StandaloneConnectionBasedTest {
 	ChangeListener listener = new ChangeListener() {
 	    @Override
 	    public void notify(ChangeEvent event) {
-		Set<MRI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
+		Set<URI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
 		ok[0] = affectedElements.size() == 1 && affectedElements.iterator().next().getMofId().equals(cl1.refMofId());
 	    }
 	};
@@ -307,7 +299,7 @@ public class OclIaTest extends StandaloneConnectionBasedTest {
 	ChangeListener listener = new ChangeListener() {
 	    @Override
 	    public void notify(ChangeEvent event) {
-		Set<MRI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
+		Set<URI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
 		ok[0] = affectedElements.size() == 1
 			&& affectedElements.iterator().next().getMofId().equals(cl1.refMofId());
 	    }
@@ -334,7 +326,7 @@ public class OclIaTest extends StandaloneConnectionBasedTest {
 	ChangeListener listener = new ChangeListener() {
 	    @Override
 	    public void notify(ChangeEvent event) {
-		Set<MRI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
+		Set<URI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
 		ok[0] = affectedElements.size() == 1
 			&& affectedElements.iterator().next().getMofId().equals(cl1.refMofId());
 	    }
@@ -361,7 +353,7 @@ public class OclIaTest extends StandaloneConnectionBasedTest {
 	ChangeListener listener = new ChangeListener() {
 	    @Override
 	    public void notify(ChangeEvent event) {
-		Set<MRI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
+		Set<URI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
 		ok[0] = affectedElements.size() == 1
 			&& affectedElements.iterator().next().getMofId().equals(cl1.refMofId());
 	    }
@@ -405,9 +397,9 @@ public class OclIaTest extends StandaloneConnectionBasedTest {
 	ChangeListener listener = new ChangeListener() {
 	    @Override
 	    public void notify(ChangeEvent event) {
-		Set<MRI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
+		Set<URI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
 		Set<RefBaseObject> elements = new HashSet<RefBaseObject>();
-		for (MRI affectedElementMri : affectedElements) {
+		for (URI affectedElementMri : affectedElements) {
 		    elements.add(connection.getElement(affectedElementMri));
 		}
 	    }

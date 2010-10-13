@@ -11,17 +11,12 @@ import java.util.Set;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import tcs.AssociativityEnum;
-import tcs.ClassTemplate;
-import tcs.EnumerationTemplate;
-import tcs.Keyword;
-import tcs.OperatorList;
-import tcs.OperatorTemplate;
-import tcs.Priority;
-import tcs.Template;
-import tcs.Token;
-
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.EnumerationTemplate;
+import com.sap.furcas.metamodel.TCS.Keyword;
+import com.sap.furcas.metamodel.TCS.OperatorList;
+import com.sap.furcas.metamodel.TCS.OperatorTemplate;
+import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 
 
 public class TestLOTOSSample extends AbstractTCSInjectionTest {

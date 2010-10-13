@@ -26,6 +26,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
@@ -38,6 +41,9 @@ import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.TCS.EnumLiteralMapping;
 import com.sap.furcas.metamodel.TCS.EnumerationTemplate;
 import com.sap.furcas.metamodel.TCS.EqualsExp;
+import com.sap.furcas.metamodel.TCS.FilterPArg;
+import com.sap.furcas.metamodel.TCS.ForcedLowerPArg;
+import com.sap.furcas.metamodel.TCS.ForcedUpperPArg;
 import com.sap.furcas.metamodel.TCS.InjectorAction;
 import com.sap.furcas.metamodel.TCS.InjectorActionsBlock;
 import com.sap.furcas.metamodel.TCS.InstanceOfExp;
@@ -45,9 +51,11 @@ import com.sap.furcas.metamodel.TCS.IsDefinedExp;
 import com.sap.furcas.metamodel.TCS.Keyword;
 import com.sap.furcas.metamodel.TCS.LiteralRef;
 import com.sap.furcas.metamodel.TCS.LookupPropertyInit;
+import com.sap.furcas.metamodel.TCS.ModePArg;
 import com.sap.furcas.metamodel.TCS.OneExp;
 import com.sap.furcas.metamodel.TCS.Operator;
 import com.sap.furcas.metamodel.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.TCS.PartialPArg;
 import com.sap.furcas.metamodel.TCS.PrimitivePropertyInit;
 import com.sap.furcas.metamodel.TCS.PrimitiveTemplate;
 import com.sap.furcas.metamodel.TCS.Priority;
@@ -59,12 +67,19 @@ import com.sap.furcas.metamodel.TCS.SequenceInAlternative;
 import com.sap.furcas.metamodel.TCS.SpaceKind;
 import com.sap.furcas.metamodel.TCS.Symbol;
 import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.tcs.TcsUtil;
+import com.sap.furcas.textual.textblocks.shortprettyprint.PrettyPrinterUtil;
 import com.sap.ide.cts.editor.prettyprint.MOINImportedModelAdapter;
 import com.sap.ide.cts.editor.prettyprint.PrettyPrintContext;
 import com.sap.ide.cts.editor.prettyprint.SyntaxAndModelMismatchException;
+<<<<<<< HEAD
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
+import com.sap.mi.textual.common.util.EcoreHelper;
 import com.sap.mi.textual.parsing.textblocks.PrettyPrinterUtil;
 import com.sap.mi.textual.tcs.util.TcsUtil;
+=======
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 
 /**
@@ -83,14 +98,14 @@ public class PrettyPrinter {
 		 */
         private static final long serialVersionUID = 1L;
         Object element;
-        ForcedLowerParg lowerArg;
+        ForcedLowerPArg lowerArg;
         Property p;
         String propertyName;
 
-        ForcedUpperParg upperArg;
+        ForcedUpperPArg upperArg;
 
         public ForcedBoundsException(Object element, Property p,
-                ForcedLowerParg lowerArg, ForcedUpperParg upperArg,
+                ForcedLowerPArg lowerArg, ForcedUpperPArg upperArg,
                 PrettyPrintContext context) {
             super(context);
             this.element = element;
@@ -247,8 +262,8 @@ public class PrettyPrinter {
         public String getMessage() {
             ClassTemplate ct = context.getClassTemplates().peek();
             String error = "Mismatch in PropertyInit of ClassTemplate ";
-            error += TcsUtil.joinNameList(ct.getMetaReference()
-                    .getQualifiedName());
+            error += TcsUtil.joinNameList(EcoreHelper.getQualifiedName(ct.getMetaReference()));
+            
             if (ct.getMode() != null)
                 error += " #" + ct.getMode();
 
@@ -365,24 +380,24 @@ public class PrettyPrinter {
 
     private Map<String, Token> tokens = new HashMap<String, Token>();
 
-    private static ClassTemplate findSupertypeTemplate(GeneralizableElement g,
+    private static ClassTemplate findSupertypeTemplate(EClass g,
             String mode,
             Map<List<String>, Map<String, ClassTemplate>> classTemplateMap) {
         ClassTemplate template = null;
-        for (GeneralizableElement supertype : g.getSupertypes()) {
-            if (supertype instanceof Classifier) {
-                Classifier c = (Classifier) supertype;
-                template = TcsUtil.resolveClassTemplate(c.getQualifiedName(),
+        for (EClass supertype : g.getESuperTypes()) {
+            if (supertype instanceof EClassifier) {
+                EClassifier c = (EClassifier) supertype;
+                template = TcsUtil.resolveClassTemplate(EcoreHelper.getQualifiedName(c),
                         mode, classTemplateMap);
-                if (template != null && !template.isAbstract()) {
+                if (template != null && !template.isIsAbstract()) {
                     return template;
                 }
             }
         }
 
-        for (GeneralizableElement supertype : g.getSupertypes()) {
+        for (EClass supertype : g.getESuperTypes()) {
             template = findSupertypeTemplate(supertype, mode, classTemplateMap);
-            if (template != null && !template.isAbstract()) {
+            if (template != null && !template.isIsAbstract()) {
                 return template;
             }
         }
@@ -393,7 +408,7 @@ public class PrettyPrinter {
     private static ClassTemplate findSupertypeTemplate(EObject r,
             String mode,
             Map<List<String>, Map<String, ClassTemplate>> classTemplateMap) {
-        return findSupertypeTemplate((MofClass) r.refMetaObject(), mode,
+        return findSupertypeTemplate((EClass) r.refMetaObject(), mode,
                 classTemplateMap);
     }
 
@@ -401,7 +416,7 @@ public class PrettyPrinter {
             String mode,
             Map<List<String>, Map<String, ClassTemplate>> classTemplateMap,
             ResourceSet conn) {
-        return findSupertypeTemplate((MofClass) conn.getElement(r
+        return findSupertypeTemplate((EClass) conn.getElement(r
                 .refMetaObjectMri()), mode, classTemplateMap);
     }
 
@@ -435,17 +450,17 @@ public class PrettyPrinter {
     }
 
     private static boolean isInstanceOf(EObject element, List<String> type) {
-        MofClass m = (MofClass) element.refMetaObject();
+        EClass m = (EClass) element.refMetaObject();
 
-        List<GeneralizableElement> typesToCheck = new ArrayList<GeneralizableElement>(
-                m.allSupertypes());
+        List<EClass> typesToCheck = new ArrayList<EClass>(
+                m.getEAllSuperTypes());
         // also add element type itself
         typesToCheck.add(m);
 
-        for (GeneralizableElement g : typesToCheck)
+        for (EClass g : typesToCheck)
 
         {
-            List<String> qName = g.getQualifiedName();
+            List<String> qName = EcoreHelper.getQualifiedName(g);
             // maybe type is not fully qualified, compare each part
             if (isTypeMatch(qName, type)) {
                 return true;
@@ -638,12 +653,12 @@ public class PrettyPrinter {
             } else if (vtn.equals("TCS::EnumLiteralVal")) {
                 String lv = MOINImportedModelAdapter.getString(value, "name");
 
-                RefEnum pv = null;
+                EEnum pv = null;
                 if (context instanceof RefStruct) {
-                    pv = (RefEnum) MOINImportedModelAdapter.get(
+                    pv = (EEnum) MOINImportedModelAdapter.get(
                             (RefStruct) context, propName);
                 } else if (context instanceof EObject) {
-                    pv = (RefEnum) MOINImportedModelAdapter.get(
+                    pv = (EEnum) MOINImportedModelAdapter.get(
                             (EObject) context, propName);
                 }
                 ret = (lv.equals(pv.toString()));
@@ -951,7 +966,7 @@ public class PrettyPrinter {
             ClassTemplate ct = TcsUtil.resolveClassTemplate(
                     MOINImportedModelAdapter.getQualifiedName(ame), mode,
                     classTemplateMap);
-            if (ct != null && !ct.isAbstract()) {
+            if (ct != null && !ct.isIsAbstract()) {
                 template = ct;
             }
 
@@ -1212,7 +1227,7 @@ public class PrettyPrinter {
 
         ClassTemplate ct = TcsUtil.resolveClassTemplate(s.refTypeName(), mode,
                 classTemplateMap);
-        if (ct != null && !ct.isAbstract()) {
+        if (ct != null && !ct.isIsAbstract()) {
             template = ct;
         }
 
@@ -1536,15 +1551,15 @@ public class PrettyPrinter {
             }
         } else if (value instanceof RefStruct) {
             RefStruct s = (RefStruct) value;
-            ModeParg modeArg = (ModeParg) getPArg(property, "Mode");
+            ModePArg modeArg = (ModePArg) getPArg(property, "Mode");
             String mode = null;
             if (modeArg != null) {
                 mode = modeArg.getMode();
             }
 
             serialize(s, mode, property.get___Connection());
-        } else if (value instanceof RefEnum) {
-            RefEnum e = (RefEnum) value;
+        } else if (value instanceof EEnum) {
+            EEnum e = (EEnum) value;
             String enumName = TcsUtil.joinNameList(e.refTypeName());
             Map<String, SequenceElement> mappings = (Map<String, SequenceElement>) templates
                     .get(enumName);
@@ -1556,7 +1571,7 @@ public class PrettyPrinter {
             printWSBlockNoDup();
 
             if (asParg != null && query != null) {
-                FilterParg filter = (FilterParg) getPArg(property, "Filter");
+                FilterPArg filter = (FilterPArg) getPArg(property, "Filter");
                 String invertQuery = filter.getInvert();
                 try {
                     String refValue = (String) oclHelper
@@ -1570,7 +1585,7 @@ public class PrettyPrinter {
                                             .get___Connection()
                                             .getJmiHelper()
                                             .getRefClassForMofClass(
-                                                    (MofClass) property
+                                                    (EClass) property
                                                             .getPropertyReference()
                                                             .getStrucfeature()
                                                             .getType()), null);
@@ -1581,7 +1596,7 @@ public class PrettyPrinter {
                     this.serializePrimitive(defaultName, primitiveTemplateName);
                 }
             } else if (refersToParg == null) {
-                ModeParg modeArg = (ModeParg) getPArg(property, "Mode");
+                ModePArg modeArg = (ModePArg) getPArg(property, "Mode");
                 String mode = null;
                 if (modeArg != null) {
                     mode = modeArg.getMode();
@@ -1622,7 +1637,7 @@ public class PrettyPrinter {
 
         int handle = 0;
 
-        PartialParg partialArg = (PartialParg) getPArg(property, "Partial");
+        PartialPArg partialArg = (PartialPArg) getPArg(property, "Partial");
         if (partialArg != null) {
             handle = createSafePoint();
         }
@@ -1837,7 +1852,7 @@ public class PrettyPrinter {
                     // if this is the last possible alternative and the
                     // alternative is not multi (with *), re-throw
                     // exception
-                    if (i == sequences.size() - 1 && !alt.isMulti()) {
+                    if (i == sequences.size() - 1 && !alt.isIsMulti()) {
                         throw (e);
                     }
                 }
@@ -1894,8 +1909,8 @@ public class PrettyPrinter {
             throws ForcedBoundsException {
 
         // check for forced upper and forced lower validity of model element
-        ForcedLowerParg lowerArg = (ForcedLowerParg) getPArg(p, "ForcedLower");
-        ForcedUpperParg upperArg = (ForcedUpperParg) getPArg(p, "ForcedUpper");
+        ForcedLowerPArg lowerArg = (ForcedLowerPArg) getPArg(p, "ForcedLower");
+        ForcedUpperPArg upperArg = (ForcedUpperPArg) getPArg(p, "ForcedUpper");
 
         try {
 
@@ -2015,7 +2030,7 @@ public class PrettyPrinter {
 
             String propValue = "";
             if (prop != null) {
-                if (prop instanceof RefEnum) {
+                if (prop instanceof EEnum) {
                     propValue = prop.getClass().getName() + "."
                             + prop.toString().toUpperCase();
                 } else {

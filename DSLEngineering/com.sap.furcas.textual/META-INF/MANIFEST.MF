@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Common Interfaces
+Bundle-SymbolicName: com.sap.furcas.runtime.common
+Bundle-Version: 1.0.0
+Bundle-Vendor: SAP
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.eclipse.emf.query2;visibility:=reexport,
+ org.eclipse.emf.query.index;visibility:=reexport,
+ org.eclipse.emf.query.index.ui;visibility:=reexport,
+ com.sap.furcas.metamodel;visibility:=reexport
+Export-Package: com.sap.furcas.runtime.common.exceptions,
+ com.sap.furcas.runtime.common.implementation;uses:="com.sap.furcas.textual.common.interfaces",
+ com.sap.furcas.runtime.common.interfaces;uses:="com.sap.furcas.metamodel.TCS",
+ com.sap.furcas.runtime.common.util;
+  uses:="org.eclipse.emf.ecore.resource,
+   org.eclipse.emf.ecore,
+   com.sap.furcas.metamodel.TCS,
+   org.eclipse.emf.query2"

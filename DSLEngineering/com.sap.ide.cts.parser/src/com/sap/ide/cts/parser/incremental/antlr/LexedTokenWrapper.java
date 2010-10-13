@@ -19,7 +19,7 @@ import com.sap.furcas.metamodel.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.furcas.metamodel.textblocks.Version;
-import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
+import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
 
 
 /**

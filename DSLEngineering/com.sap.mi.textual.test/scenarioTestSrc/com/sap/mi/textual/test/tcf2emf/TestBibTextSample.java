@@ -13,21 +13,20 @@ import java.util.Set;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import tcs.Block;
-import tcs.ClassTemplate;
-import tcs.Keyword;
-import tcs.LiteralRef;
-import tcs.PrimitiveTemplate;
-import tcs.Property;
-import tcs.PropertyArg;
-import tcs.RefersToParg;
-import tcs.Sequence;
-import tcs.SequenceElement;
-import tcs.Symbol;
-import tcs.Template;
-import tcs.Token;
-
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.metamodel.TCS.Block;
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.Keyword;
+import com.sap.furcas.metamodel.TCS.LiteralRef;
+import com.sap.furcas.metamodel.TCS.PrimitiveTemplate;
+import com.sap.furcas.metamodel.TCS.Property;
+import com.sap.furcas.metamodel.TCS.PropertyArg;
+import com.sap.furcas.metamodel.TCS.RefersToPArg;
+import com.sap.furcas.metamodel.TCS.Sequence;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
+import com.sap.furcas.metamodel.TCS.Symbol;
+import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.TCS.Token;
+import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 
 
 public class TestBibTextSample extends AbstractTCSInjectionTest {
@@ -67,7 +66,7 @@ public class TestBibTextSample extends AbstractTCSInjectionTest {
 		assertEquals("NAME", idtemp.getTokenName());
 		assertEquals("identifier", idtemp.getTemplateName());
 		assertEquals("unescapeString(%token%)", idtemp.getValue());
-		assertEquals(syntax, idtemp.getConcretesyntax());
+		assertEquals(syntax, idtemp.getConcreteSyntax());
 	}
 	
 	@Test public void testTemplates() {
@@ -84,14 +83,14 @@ public class TestBibTextSample extends AbstractTCSInjectionTest {
 		Template file = templates.get(1);
 		assertEquals(list("BibTextFile"), file.getNames());
 		ClassTemplate filetemp = (ClassTemplate) file;
-		assertEquals(true, filetemp.isMain());
-		assertEquals(true, filetemp.isContext());
-		assertEquals(false, filetemp.isAbstract());
+		assertEquals(true, filetemp.isIsMain());
+		assertEquals(true, filetemp.isIsContext());
+		assertEquals(false, filetemp.isIsAbstract());
 		Sequence seq = filetemp.getTemplateSequence();
 		
-		assertNull(seq.getFunctioncontainer());
-		assertNull(seq.getElsecontainer());
-		assertNull(seq.getSeparatorcontainer());
+		assertNull(seq.getFunctionContainer());
+		assertNull(seq.getElseContainer());
+		assertNull(seq.getSeparatorContainer());
 		
 		assertEquals(1, seq.getElements().size());
 		SequenceElement blocks = seq.getElements().get(0);
@@ -114,9 +113,9 @@ public class TestBibTextSample extends AbstractTCSInjectionTest {
 		Template entry = templates.get(2);
 		assertEquals(list("BibTextEntry"), entry.getNames());
 		ClassTemplate entrytemp = (ClassTemplate) entry;
-		assertEquals(false, entrytemp.isMain());
-		assertEquals(false, entrytemp.isContext());
-		assertEquals(true, entrytemp.isAbstract());
+		assertEquals(false, entrytemp.isIsMain());
+		assertEquals(false, entrytemp.isIsContext());
+		assertEquals(true, entrytemp.isIsAbstract());
 		assertNull(entrytemp.getTemplateSequence());
 		assertNull(entrytemp.getPrefixSequence());
 		assertNull(entrytemp.getOperatorList());
@@ -132,9 +131,9 @@ public class TestBibTextSample extends AbstractTCSInjectionTest {
 		Template art = templates.get(3);
 		assertEquals(list("Article"), art.getNames());
 		ClassTemplate arttemp = (ClassTemplate) art;
-		assertEquals(false, arttemp.isMain());
-		assertEquals(false, arttemp.isContext());
-		assertEquals(false, arttemp.isAbstract());
+		assertEquals(false, arttemp.isIsMain());
+		assertEquals(false, arttemp.isIsContext());
+		assertEquals(false, arttemp.isIsAbstract());
 		assertEquals(4, arttemp.getTemplateSequence().getElements().size());
 		assertNull(arttemp.getPrefixSequence());
 		assertNull(arttemp.getOperatorList());
@@ -187,7 +186,7 @@ public class TestBibTextSample extends AbstractTCSInjectionTest {
 		List<PropertyArg> propargs = author.getPropertyArgs();
 		assertEquals(1, propargs.size());
 		PropertyArg refersTo = propargs.get(0);
-		RefersToParg refersToP = (RefersToParg) refersTo;
+		RefersToPArg refersToP = (RefersToPArg) refersTo;
 		assertEquals("name", refersToP.getPropertyName());
 	}
 	
@@ -247,7 +246,7 @@ public class TestBibTextSample extends AbstractTCSInjectionTest {
 		Set<Keyword> keywords = modelParsingResult.getKeywords();
 		Iterator<Keyword> iterator = keywords.iterator();
 		for (; iterator.hasNext();) {
-			Keyword keyword = (Keyword) iterator.next();
+			Keyword keyword = iterator.next();
 			keywords.add(keyword);
 		}
 		

@@ -1,21 +1,20 @@
 package com.sap.ide.cts.editor.integration.prettyprint;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 import java.io.InputStream;
 
 import org.junit.Before;
 
-import tcs.ConcreteSyntax;
-import textblocks.TextBlock;
-
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.parsergenerator.tcs.util.TcsUtil;
+import com.sap.furcas.parsergenerator.textblocks.model.TextBlocksModel;
 import com.sap.ide.cts.editor.contentassist.TcsModelElementFactory;
 import com.sap.ide.cts.editor.contentassist.TcsModelElementMoinFactory;
 import com.sap.ide.cts.editor.test.util.FixtureBasedTest;
 import com.sap.ide.cts.editor.test.util.TcsTestHelper;
 import com.sap.mi.textual.parsing.textblocks.TextblocksTestHelper;
-import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.mi.textual.textblocks.model.TextBlocksModel;
 
 public class CtsPrettyPrinterIntegrationTestBase extends FixtureBasedTest {
 

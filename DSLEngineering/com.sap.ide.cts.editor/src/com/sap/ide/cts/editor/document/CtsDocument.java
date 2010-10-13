@@ -7,26 +7,27 @@ import org.eclipse.jface.text.AbstractDocument;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.DefaultLineTracker;
 
+<<<<<<< HEAD
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
+=======
 import tcs.ClassTemplate;
 import tcs.ConcreteSyntax;
 import textblocks.TextBlock;
 import textblocks.TextblocksPackage;
 
+import com.sap.furcas.textual.textblocks.TbUtil;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 import com.sap.ide.cts.editor.CtsActivator;
 import com.sap.ide.cts.editor.FurcasDocumentSetupParticpant;
 import com.sap.ide.cts.editor.recovery.ModelEditorInputRecoveryStrategy;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
 import com.sap.ide.cts.parser.incremental.TextBlockMappingBrokenException;
-import com.sap.mi.fwk.ui.editor.ModelEditorInput;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.mi.textual.parsing.textblocks.TbUtil;
 import com.sap.mi.textual.parsing.textblocks.reference.GlobalDelayedReferenceResolver;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
-import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
-import com.sap.tc.moin.textual.moinadapter.adapter.MoinHelper;
+import com.sun.corba.se.pept.transport.Connection;
 
 /**
  * A document implementation that is responsible for presenting a text blocks

@@ -6,12 +6,12 @@ package com.sap.tc.moin.textual.moinadapter.adapter;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import org.eclipse.ui.internal.keys.model.ModelElement;
 import org.junit.Test;
 
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.parsing.MofStructureFieldStub;
 import com.sap.mi.textual.parsing.MofStructureTypeStub;
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
 
 /**
  * Tests the mock object that is created by the MOIN adapter to defer the creation until all fields are known.

@@ -10,10 +10,8 @@ import static org.junit.Assert.assertNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.ui.internal.keys.model.ModelElement;
 import org.junit.Test;
-
-import com.sap.tc.moin.repository.mmi.model.GeneralizableElement;
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
 
 /**
  *

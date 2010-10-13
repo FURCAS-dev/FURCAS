@@ -1,14 +1,17 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: TCSParser
-Bundle-SymbolicName: com.sap.mi.textual.grammar.parser;singleton:=true
+Bundle-SymbolicName: com.sap.furcas.parser.tcs
 Bundle-Version: 1.0.0.qualifier
-Require-Bundle: com.sap.mi.textual.common,
- com.sap.mi.textual.parsing,
- com.sap.mi.textual,
- com.sap.mi.textual.ecorelookup,
- org.antlr
+Require-Bundle: org.antlr,
+ com.sap.furcas.runtime.common;bundle-version="1.0.0",
+ com.sap.furcas.runtime.parser
 Export-Package: 
- com.sap.mi.textual.grammar.parser
+ com.sap.furcas.parser.tcs.bootstrapped;
+  uses:="org.antlr.runtime,
+   com.sap.furcas.runtime.parser,
+   com.sap.furcas.runtime.parser.impl,
+   com.sap.furcas.runtime.parser.antlr3"
 Bundle-ClassPath: .
-Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: SAP

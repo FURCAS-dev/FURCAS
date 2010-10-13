@@ -7,40 +7,7 @@ import static org.junit.Assert.fail;
 
 import java.util.Collection;
 
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.DeepCopyPolicyHandler;
-import com.sap.tc.moin.repository.DeepCopyResultSet;
-import com.sap.tc.moin.repository.InvalidResourceIdentifierException;
-import com.sap.tc.moin.repository.JmiHelper;
-import com.sap.tc.moin.repository.LRI;
-import com.sap.tc.moin.repository.MRI;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.NullPartitionNotEmptyException;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.PartitionCreatingNotPossibleException;
-import com.sap.tc.moin.repository.PartitionsNotSavedException;
-import com.sap.tc.moin.repository.ReferencedTransientElementsException;
-import com.sap.tc.moin.repository.Session;
-import com.sap.tc.moin.repository.commands.CommandStack;
-import com.sap.tc.moin.repository.consistency.ConsistencyViolationListenerRegistry;
-import com.sap.tc.moin.repository.events.EventRegistry;
-import com.sap.tc.moin.repository.mmi.descriptors.AssociationDescriptor;
-import com.sap.tc.moin.repository.mmi.descriptors.ClassDescriptor;
-import com.sap.tc.moin.repository.mmi.descriptors.MetamodelElementDescriptor;
-import com.sap.tc.moin.repository.mmi.descriptors.PackageDescriptor;
-import com.sap.tc.moin.repository.mmi.reflect.RefAssociation;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
-import com.sap.tc.moin.repository.mql.MQLProcessor;
-import com.sap.tc.moin.repository.ocl.OclRegistryService;
-import com.sap.tc.moin.repository.xm.ie.ModelExporter;
-import com.sap.tc.moin.repository.xm.ie.ModelImporter;
-import com.sap.tc.moin.repository.xm.parser.XmParserConfiguration;
-import com.sap.tc.moin.repository.xm.serializer.XmSerializerConfiguration;
-import com.sap.tc.moin.repository.xmi.XmiReader;
-import com.sap.tc.moin.repository.xmi.XmiWriter;
+import org.eclipse.emf.common.command.CommandStack;
 
 /**
  *

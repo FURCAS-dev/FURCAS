@@ -2,12 +2,13 @@ package com.sap.mi.textual.parsing.textblocks;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import textblocks.AbstractToken;
-import textblocks.Bostoken;
-import textblocks.DocumentNode;
-import textblocks.Eostoken;
-import textblocks.LexedToken;
-import textblocks.TextBlock;
+
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.Bostoken;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.Eostoken;
+import com.sap.furcas.metamodel.textblocks.LexedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 
 public class TextblocksTestHelper {
 
@@ -22,10 +23,10 @@ public class TextblocksTestHelper {
 
 		if (node instanceof AbstractToken) {
 			AbstractToken t = (AbstractToken) node;
-			parent = t.getParentBlock();
+			parent = t.getParent();
 		} else {
 			TextBlock b = (TextBlock) node;
-			parent = b.getParentBlock();
+			parent = b.getParent();
 		}
 
 		if (parent == null) {

@@ -3,7 +3,7 @@
  */
 package com.sap.mi.textual.moinlookup;
 
-import static com.sap.mi.textual.test.util.StringListHelper.list;
+import static com.sap.furcas.parsergenerator.testutils.StringListHelper.list;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -14,21 +14,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.ocl.utilities.TypedElement;
 import org.junit.Test;
 
-import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
-import com.sap.mi.textual.common.interfaces.MultiplicityBean;
-import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.parsergenerator.emf.lookup.AbstractEcoreLookup;
+import com.sap.furcas.parsergenerator.testutils.ResolutionBeanHelper;
+import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.runtime.common.interfaces.MultiplicityBean;
+import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.mi.textual.parsing.EnumerationTypeStub;
 import com.sap.mi.textual.parsing.MofAnyStub;
 import com.sap.mi.textual.parsing.MofStructureFieldStub;
 import com.sap.mi.textual.parsing.MofStructureTypeStub;
-import com.sap.mi.textual.test.util.ResolutionBeanHelper;
-import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.GeneralizableElement;
-import com.sap.tc.moin.repository.mmi.model.TypedElement;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * Tests the abstract AbstractMoinLookup class by creating a stub subclass and testing that.

@@ -1,18 +1,25 @@
 package com.sap.ide.cts.editor.prettyprint.incremental;
 
 import junit.framework.Assert;
-import ngpm.NgpmPackage;
 
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.ecore.EClass;
 import org.junit.Test;
 
+<<<<<<< HEAD
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
+import com.sap.ide.cts.editor.action.PrettyPrintAction;
+import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
+=======
 import textblocks.TextBlock;
 
+import com.sap.furcas.textual.textblocks.TbNavigationUtil;
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.editor.action.PrettyPrintAction;
 import com.sap.mi.fwk.ModelManager;
-import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 import data.classes.Association;
 import data.classes.AssociationEnd;
@@ -28,7 +35,7 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
 		NgpmPackage rootPkg = connection.getPackage(NgpmPackage.PACKAGE_DESCRIPTOR);
         SapClass clazz = (SapClass) rootPkg.getData().getClasses().getSapClass().refCreateInstanceInPartition(ModelManager.getPartitionService().getPartition(connection, getProject(), new Path("src/Package1235568260162.types")));
         clazz.setName("IppTestClass1");
-        PrettyPrintAction action = new PrettyPrintAction((MofClass) clazz.refMetaObject(), clazz, true);
+        PrettyPrintAction action = new PrettyPrintAction((EClass) clazz.refMetaObject(), clazz, true);
         action.runWithEvent(null);
         AbstractGrammarBasedEditor editor = openEditor(clazz);
 
@@ -61,7 +68,7 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
 		{
 			e.printStackTrace();
 		}
-		PrettyPrintAction action = new PrettyPrintAction((MofClass) clazz.refMetaObject(), clazz, true);
+		PrettyPrintAction action = new PrettyPrintAction((EClass) clazz.refMetaObject(), clazz, true);
 		action.runWithEvent(null);
 		AbstractGrammarBasedEditor editor = openEditor(clazz);
 		this.printTextBlock(action.getRootBlock());
@@ -81,7 +88,7 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
 
 		clazz.getOwnedSignatures().add(method);
 
-		PrettyPrintAction action = new PrettyPrintAction((MofClass) clazz.refMetaObject(), clazz, false);
+		PrettyPrintAction action = new PrettyPrintAction((EClass) clazz.refMetaObject(), clazz, false);
 		action.runWithEvent(null);
 
 		try
@@ -96,7 +103,7 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
 
 		method.setName("testMethodChanged");
 
-		PrettyPrintAction action2 = new PrettyPrintAction((MofClass) method.refMetaObject(), method, true);
+		PrettyPrintAction action2 = new PrettyPrintAction((EClass) method.refMetaObject(), method, true);
 		action2.runWithEvent(null);
 
 		try
@@ -148,7 +155,7 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
         assoc.getEnds().add(a1);
         assoc.getEnds().add(a2);
 
-        PrettyPrintAction action = new PrettyPrintAction((MofClass) clazz.refMetaObject(), clazz, false);
+        PrettyPrintAction action = new PrettyPrintAction((EClass) clazz.refMetaObject(), clazz, false);
 		action.runWithEvent(null);
 
 		String ppClazz = action.getRootBlock().getCachedString();
@@ -173,7 +180,7 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
 
 		a1.setName("new_a1");
 
-		PrettyPrintAction action2 = new PrettyPrintAction((MofClass) a2ctd.refMetaObject(), a2ctd, true);
+		PrettyPrintAction action2 = new PrettyPrintAction((EClass) a2ctd.refMetaObject(), a2ctd, true);
 		action2.runWithEvent(null);
 
 		try
@@ -204,12 +211,12 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
 
 		clazz.getOwnedSignatures().add(method);
 
-		PrettyPrintAction action = new PrettyPrintAction((MofClass) clazz.refMetaObject(), clazz, false);
+		PrettyPrintAction action = new PrettyPrintAction((EClass) clazz.refMetaObject(), clazz, false);
 		action.runWithEvent(null);
 
 		this.printTextBlock(action.getRootBlock());
 
-		action = new PrettyPrintAction((MofClass) clazz2.refMetaObject(), clazz2, false);
+		action = new PrettyPrintAction((EClass) clazz2.refMetaObject(), clazz2, false);
 		action.runWithEvent(null);
 
 		this.printTextBlock(action.getRootBlock());
@@ -217,12 +224,12 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
 
 		clazz.getOwnedSignatures().add(method);
 
-		action = new PrettyPrintAction((MofClass) clazz.refMetaObject(), clazz, false);
+		action = new PrettyPrintAction((EClass) clazz.refMetaObject(), clazz, false);
 		action.runWithEvent(null);
 
 		this.printTextBlock(action.getRootBlock());
 
-		action = new PrettyPrintAction((MofClass) clazz2.refMetaObject(), clazz2, false);
+		action = new PrettyPrintAction((EClass) clazz2.refMetaObject(), clazz2, false);
 		action.runWithEvent(null);
 
 		this.printTextBlock(action.getRootBlock());
@@ -234,7 +241,7 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
 		NgpmPackage rootPkg = connection.getPackage(NgpmPackage.PACKAGE_DESCRIPTOR);
         SapClass clazz = (SapClass) rootPkg.getData().getClasses().getSapClass().refCreateInstanceInPartition(ModelManager.getPartitionService().getPartition(connection, getProject(), new Path("src/Package1235568260162.types")));
         clazz.setName("IppTestClass8");
-        PrettyPrintAction action = new PrettyPrintAction((MofClass) clazz.refMetaObject(), clazz, false);
+        PrettyPrintAction action = new PrettyPrintAction((EClass) clazz.refMetaObject(), clazz, false);
         action.runWithEvent(null);
         AbstractGrammarBasedEditor editor = openEditor(clazz);
 		String ppClazz = action.getRootBlock().getCachedString();
@@ -244,7 +251,7 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
 			Assert.assertTrue(ppClazz.contains("class " + clazz.getName()));
 		}
 		clazz.setValueType(true);
-		action = new PrettyPrintAction((MofClass) clazz.refMetaObject(), clazz, false);
+		action = new PrettyPrintAction((EClass) clazz.refMetaObject(), clazz, false);
         action.runWithEvent(null);
         	editor = openEditor(clazz);
 

@@ -4,16 +4,16 @@ import java.util.Collections;
 import java.util.List;
 
 import org.antlr.runtime.Lexer;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import textblocks.AbstractToken;
-
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRLexerAdapter;
-import com.sap.tc.moin.repository.Connection;
+
 
 public class MockLexerAdapterWithLookaheadLLStar extends ANTLRLexerAdapter {
 	
-	public MockLexerAdapterWithLookaheadLLStar(Lexer antlrLexer, Connection conn) {
+	public MockLexerAdapterWithLookaheadLLStar(Lexer antlrLexer, ResourceSet conn) {
 		super(antlrLexer, null, conn);
 		// TODO Auto-generated constructor stub
 	}

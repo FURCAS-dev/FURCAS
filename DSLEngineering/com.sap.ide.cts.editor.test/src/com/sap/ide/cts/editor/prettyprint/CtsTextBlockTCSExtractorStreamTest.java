@@ -8,16 +8,24 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+<<<<<<< HEAD
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.Bostoken;
+import com.sap.furcas.metamodel.textblocks.Eostoken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
+=======
 import textblocks.AbstractToken;
 import textblocks.Bostoken;
 import textblocks.Eostoken;
 import textblocks.TextBlock;
 import textblocks.TextblocksPackage;
 
+import com.sap.furcas.textual.textblocks.model.TextBlocksModel;
+import com.sap.furcas.textual.textblocks.testutils.TextblocksTestHelper;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 import com.sap.ide.cts.editor.test.util.StandaloneConnectionBasedTest;
 import com.sap.mi.tcs.parser.TcsParserFactory;
-import com.sap.mi.textual.parsing.textblocks.TextblocksTestHelper;
-import com.sap.mi.textual.textblocks.model.TextBlocksModel;
 
 public class CtsTextBlockTCSExtractorStreamTest extends
 		StandaloneConnectionBasedTest {

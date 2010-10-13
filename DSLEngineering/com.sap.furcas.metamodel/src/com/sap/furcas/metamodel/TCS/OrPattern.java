@@ -25,20 +25,20 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface OrPattern extends LocatedElement {
-	/**
-	 * Returns the value of the '<em><b>Simple Patterns</b></em>' containment reference list.
-	 * The list contents are of type {@link com.sap.furcas.metamodel.TCS.SimplePattern}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Simple Patterns</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Simple Patterns</em>' containment reference list.
-	 * @see com.sap.furcas.metamodel.TCS.TCSPackage#getOrPattern_SimplePatterns()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
-	EList<SimplePattern> getSimplePatterns();
+        /**
+         * Returns the value of the '<em><b>Simple Patterns</b></em>' containment reference list.
+         * The list contents are of type {@link com.sap.furcas.metamodel.TCS.SimplePattern}.
+         * <!-- begin-user-doc -->
+         * <p>
+         * If the meaning of the '<em>Simple Patterns</em>' containment reference list isn't clear,
+         * there really should be more of a description here...
+         * </p>
+         * <!-- end-user-doc -->
+         * @return the value of the '<em>Simple Patterns</em>' containment reference list.
+         * @see com.sap.furcas.metamodel.TCS.TCSPackage#getOrPattern_SimplePatterns()
+         * @model containment="true" required="true"
+         * @generated
+         */
+        EList<SimplePattern> getSimplePatterns();
 
 } // OrPattern

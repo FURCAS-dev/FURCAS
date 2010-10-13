@@ -11,17 +11,16 @@ import java.util.Set;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import tcs.AssociativityEnum;
-import tcs.ClassTemplate;
-import tcs.EnumerationTemplate;
-import tcs.Keyword;
-import tcs.OperatorList;
-import tcs.OperatorTemplate;
-import tcs.Priority;
-import tcs.Template;
-import tcs.Token;
-
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.metamodel.TCS.Associativity;
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.EnumerationTemplate;
+import com.sap.furcas.metamodel.TCS.Keyword;
+import com.sap.furcas.metamodel.TCS.OperatorList;
+import com.sap.furcas.metamodel.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.TCS.Priority;
+import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.TCS.Token;
+import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 
 
 public class TestATLSample extends AbstractTCSInjectionTest {
@@ -89,7 +88,7 @@ public class TestATLSample extends AbstractTCSInjectionTest {
         Priority prio0 = prioList.get(0);
         assertNotNull(prio0);
         assertEquals(0, prio0.getValue());
-        assertEquals(AssociativityEnum.LEFT, prio0.getAssociativity());
+        assertEquals(Associativity.LEFT, prio0.getAssociativity());
         assertEquals(2, prio0.getOperators().size());
         assertEquals(2, prio0.getOperators().get(0).getArity());
         assertEquals(2, prio0.getOperators().get(1).getArity());
@@ -97,7 +96,7 @@ public class TestATLSample extends AbstractTCSInjectionTest {
         Priority prio1 = prioList.get(1);
         assertNotNull(prio1);
         assertEquals(1, prio1.getValue());
-        assertEquals(AssociativityEnum.LEFT, prio1.getAssociativity());
+        assertEquals(Associativity.LEFT, prio1.getAssociativity());
         assertEquals(2, prio1.getOperators().size());
         assertEquals(1, prio1.getOperators().get(0).getArity());
         assertEquals(1, prio1.getOperators().get(1).getArity());

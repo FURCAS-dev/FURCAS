@@ -7,13 +7,13 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 
-import com.sap.mi.textual.common.interfaces.IModelElementProxy;
-import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
-import com.sap.mi.textual.grammar.impl.DelayedReference;
-import com.sap.mi.textual.grammar.impl.ModelElementProxy;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.mi.textual.parsing.textblocks.ModelElementFromTextBlocksFactory;
-import com.sap.mi.textual.parsing.textblocks.observer.TextBlockProxy;
+import com.sap.furcas.parsing.textblocks.ModelElementFromTextBlocksFactory;
+import com.sap.furcas.parsing.textblocks.observer.TextBlockProxy;
+import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
+import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
+import com.sap.furcas.runtime.parser.impl.DelayedReference;
+import com.sap.furcas.runtime.parser.impl.ModelElementProxy;
+import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 
 public class ModelElementFromTextBlocksFactoryImpl implements ModelElementFromTextBlocksFactory {
 

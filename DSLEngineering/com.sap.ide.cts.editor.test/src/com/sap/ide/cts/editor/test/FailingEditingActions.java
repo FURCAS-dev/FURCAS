@@ -13,6 +13,8 @@ import modelmanagement.Package;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.ui.PartInitException;
 import org.junit.Test;
@@ -25,8 +27,6 @@ import com.sap.ide.cts.editor.document.CtsDocument;
 import com.sap.ide.cts.editor.document.CtsHistoryDocument;
 import com.sap.ide.cts.editor.junitcreate.DocumentHistory;
 import com.sap.ide.cts.editor.junitcreate.SnapshotVersion;
-import com.sap.tc.moin.repository.MRI;
-import com.sap.tc.moin.repository.ModelPartition;
 
 import data.classes.MethodSignature;
 import data.classes.SapClass;
@@ -106,7 +106,7 @@ public class FailingEditingActions extends RunletEditorTest {
 	    assertTrue(success);
 	    // history.hack();
 
-	    MRI mri = history.persistSnapshot("TestCopyPersistSeries" + i, SnapshotVersion.COMPLETED);
+	    URI mri = history.persistSnapshot("TestCopyPersistSeries" + i, SnapshotVersion.COMPLETED);
 	    assertNotNull(s + "Check for internal errros", mri);
 
 	    assertTrue(history.isActive());
@@ -115,7 +115,7 @@ public class FailingEditingActions extends RunletEditorTest {
 	    assertNotNull(s + "Element lookup with loading into memory", copy);
 	    assertNull(copy.refVerifyConstraints(true));
 
-	    ModelPartition partition = copy.get___Partition();
+	    Resource partition = copy.eResource();
 	    assertFalse(partition.isDirty());
 	    assertFalse(partition.hadUnhandledErrorsDuringLoad());
 
@@ -123,9 +123,9 @@ public class FailingEditingActions extends RunletEditorTest {
 
 	    // Assert correct composition hierarchy
 	    classes.add(copy);
-	    Package pkg = clazz.getPackage();
+	    Package pkg = clazz.getPackage_();
 	    assertNotNull(pkg);
-	    assertEquals(s + "Copy must know its package", pkg, copy.getPackage());
+	    assertEquals(s + "Copy must know its package", pkg, copy.getPackage_());
 	    assertTrue(s + "Package must know the copy", pkg.getClasses().contains(copy));
 	    assertTrue(s + "Package must know its classes", pkg.getClasses().containsAll(classes));
 	}

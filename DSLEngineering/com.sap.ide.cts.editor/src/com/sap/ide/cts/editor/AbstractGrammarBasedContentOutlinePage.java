@@ -17,8 +17,8 @@ import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 import textblocks.DocumentNode;
 import textblocks.TextBlock;
 
-import com.sap.mi.textual.grammar.IModelElementInvestigator;
-import com.sap.mi.textual.parsing.textblocks.TbUtil;
+import com.sap.furcas.textual.common.interfaces.IModelElementInvestigator;
+import com.sap.furcas.textual.textblocks.TbUtil;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;

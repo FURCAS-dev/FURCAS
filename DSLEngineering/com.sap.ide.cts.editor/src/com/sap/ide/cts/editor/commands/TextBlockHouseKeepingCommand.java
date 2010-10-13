@@ -6,13 +6,13 @@ import org.eclipse.core.resources.IProject;
 
 import textblocks.TextBlock;
 
+import com.sap.furcas.textual.textblocks.TbChangeUtil;
+import com.sap.furcas.textual.textblocks.TbNavigationUtil;
+import com.sap.furcas.textual.textblocks.TbValidationUtil;
+import com.sap.furcas.textual.textblocks.validation.IllegalTextBlocksStateException;
 import com.sap.mi.fwk.IPartitionScopeProvider;
 import com.sap.mi.fwk.PartitionService;
 import com.sap.mi.fwk.QueryService;
-import com.sap.mi.textual.parsing.textblocks.IllegalTextBlocksStateException;
-import com.sap.mi.textual.parsing.textblocks.TbChangeUtil;
-import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
-import com.sap.mi.textual.parsing.textblocks.TbValidationUtil;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.commands.Command;
 import com.sap.tc.moin.repository.commands.PartitionOperation;

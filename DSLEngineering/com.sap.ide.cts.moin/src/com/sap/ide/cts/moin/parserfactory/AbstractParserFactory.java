@@ -16,18 +16,17 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import com.sap.furcas.parsergenerator.emf.RuleNameFinder;
+import com.sap.furcas.parsing.textblocks.ITextBlocksTokenStream;
+import com.sap.furcas.parsing.textblocks.TextBlocksAwareModelAdapter;
+import com.sap.furcas.parsing.textblocks.observer.ParserTextBlocksHandler;
+import com.sap.furcas.runtime.common.interfaces.IRuleName;
+import com.sap.furcas.runtime.parser.InjectionOptionsBean;
+import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
+import com.sap.furcas.runtime.parser.antlr3.ITokenFactory;
+import com.sap.furcas.runtime.parser.impl.ModelInjector;
+import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRParserFactory;
-import com.sap.mi.textual.common.interfaces.IRuleName;
-import com.sap.mi.textual.grammar.InjectionOptionsBean;
-import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
-import com.sap.mi.textual.grammar.antlr3.ITokenFactory;
-import com.sap.mi.textual.grammar.impl.ModelInjector;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.mi.textual.moinlookup.util.RuleNameFinder;
-import com.sap.mi.textual.parsing.textblocks.ITextBlocksTokenStream;
-import com.sap.mi.textual.parsing.textblocks.TextBlocksAwareModelAdapter;
-import com.sap.mi.textual.parsing.textblocks.observer.ParserTextBlocksHandler;
-import com.sap.mi.textual.tcs.util.TcsUtil;
 import com.sap.tc.moin.textual.emfadapter.adapter.MOINModelAdapter;
 
 

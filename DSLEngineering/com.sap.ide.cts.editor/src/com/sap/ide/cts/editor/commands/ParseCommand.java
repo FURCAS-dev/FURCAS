@@ -3,15 +3,16 @@ package com.sap.ide.cts.editor.commands;
 import java.util.Collection;
 import java.util.Collections;
 
-import textblocks.TextBlock;
+import org.eclipse.core.commands.Command;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.commands.Command;
-import com.sap.tc.moin.repository.commands.PartitionOperation;
+
 
 public class ParseCommand extends Command {
 
@@ -21,7 +22,7 @@ public class ParseCommand extends Command {
 	private final AbstractGrammarBasedEditor editor;
         private final boolean errorMode;
 
-	public ParseCommand(TextBlock previousBlock, Connection connection, AbstractGrammarBasedEditor editor, boolean errorMode) {
+	public ParseCommand(TextBlock previousBlock, ResourceSet connection, AbstractGrammarBasedEditor editor, boolean errorMode) {
 	    super(connection, "Incremental Parse and Model Update");
 	    this.previousBlock = previousBlock;
 	    this.editor = editor;
@@ -35,7 +36,7 @@ public class ParseCommand extends Command {
 
 	@Override
 	public void doExecute() {
-		//PRI pri = ((Partitionable)previousBlock).get___Partition().getPri();
+		//URI pri = ((EObject)previousBlock).get___Partition().getPri();
 		try {
 //		    	getWorkingConnection().getSession().getLockManager().obtainTransientLock(
 //		    		pri, getWorkingConnection());
@@ -46,10 +47,10 @@ public class ParseCommand extends Command {
 	}
 
 	@Override
-	public Collection<PartitionOperation> getAffectedPartitions() {
-		Partitionable partitionable = previousBlock;
-	    PRI pri = partitionable.get___Partition().getPri();
-	    PartitionOperation editOperation = new PartitionOperation(PartitionOperation.Operation.EDIT, pri);
+	public Collection<EOperation> getAffectedPartitions() {
+		EObject partitionable = previousBlock;
+	    URI pri = partitionable.eResource().getURI();
+	    EOperation editOperation = new EOperation(EOperation.Operation.EDIT, pri);
 	    return Collections.singleton(editOperation);
 	}
 

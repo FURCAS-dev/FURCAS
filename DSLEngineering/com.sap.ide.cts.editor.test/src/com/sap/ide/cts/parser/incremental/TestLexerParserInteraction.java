@@ -7,8 +7,18 @@ import generated.TCSLexer;
 import java.util.Iterator;
 
 import org.antlr.runtime.Token;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.junit.Test;
 
+<<<<<<< HEAD
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.Bostoken;
+import com.sap.furcas.metamodel.textblocks.Eostoken;
+import com.sap.furcas.metamodel.textblocks.LexedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+=======
 import tcs.TcsPackage;
 import textblocks.AbstractToken;
 import textblocks.Bostoken;
@@ -17,6 +27,11 @@ import textblocks.LexedToken;
 import textblocks.TextBlock;
 import textblocks.VersionEnum;
 
+import com.sap.furcas.textual.textblocks.TbNavigationUtil;
+import com.sap.furcas.textual.textblocks.TbVersionUtil;
+import com.sap.furcas.textual.textblocks.model.TextBlocksModel;
+import com.sap.furcas.textual.textblocks.testutils.UtilFixtureBase;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 import com.sap.ide.cts.editor.test.util.TcsTestHelper;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalTokenStream;
@@ -24,13 +39,13 @@ import com.sap.ide.cts.parser.incremental.antlr.ANTLRLexerAdapter;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 import com.sap.mi.tcs.parser.TcsParserFactory;
 import com.sap.mi.textual.grammar.IModelAdapter;
-import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
-import com.sap.mi.textual.parsing.textblocks.TbVersionUtil;
 import com.sap.mi.textual.parsing.textblocks.TextBlocksAwareModelAdapter;
-import com.sap.mi.textual.parsing.textblocks.UtilFixtureBase;
 import com.sap.mi.textual.parsing.textblocks.observer.ParserTextBlocksHandler;
 import com.sap.mi.textual.parsing.textblocks.observer.TextBlockProxy;
+<<<<<<< HEAD
 import com.sap.mi.textual.textblocks.model.TextBlocksModel;
+
+=======
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.Partitionable;
 import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
@@ -42,18 +57,18 @@ public class TestLexerParserInteraction extends UtilFixtureBase {
 		//create TCS mapping on connection
 		TcsTestHelper.createTcsSyntaxMappingOnConnection(connection);
 		
-		Connection connection = ((Partitionable) main).get___Connection();
+		ResourceSet connection = ((EObject) main).get___Connection();
 
 		IModelAdapter adapter = new TextBlocksAwareModelAdapter(new MOINModelAdapter(connection.getPackage(TcsPackage.PACKAGE_DESCRIPTOR), connection, null, null));
 		IncrementalParserFacade ipf = new IncrementalParserFacade(new TcsParserFactory(),  adapter, connection, null);
 
 		TextBlock root = modelFactory.createTextBlock();
-		root.setVersion(VersionEnum.REFERENCE);
+		root.setVersion(EEnum.REFERENCE);
 		root.setCachedString("");
 		LexedToken t = modelFactory.createLexedToken();
 		t.setOffset(0);
 		t.setOffsetRelative(true);
-		t.setVersion(VersionEnum.REFERENCE);
+		t.setVersion(EEnum.REFERENCE);
 
 		Bostoken bostoken = modelFactory.createBostoken();
 		bostoken.setOffsetRelative(true);
@@ -71,9 +86,9 @@ public class TestLexerParserInteraction extends UtilFixtureBase {
 		ipf.parseIncrementally(root);
 		
 		bostoken = TbVersionUtil.getOtherVersion(bostoken,
-				VersionEnum.CURRENT);
+				EEnum.CURRENT);
 		
-		root = TbVersionUtil.getOtherVersion(root, VersionEnum.CURRENT);
+		root = TbVersionUtil.getOtherVersion(root, EEnum.CURRENT);
 		
 		
 		if(ipf.getErrors().size()>0) {
@@ -94,7 +109,7 @@ public class TestLexerParserInteraction extends UtilFixtureBase {
 
 	@Test
 	public void testTokenRelocationWithStub() {
-		Connection connection = ((Partitionable) main).get___Connection();
+		ResourceSet connection = ((EObject) main).get___Connection();
 		TCSLexer antlrLexer = new TCSLexer(null, null);
 		LexerAdapter lexerAdapter = new ANTLRLexerAdapter(antlrLexer, 
 			new TextBlockReuseStrategyImpl(antlrLexer, null),
@@ -107,11 +122,11 @@ public class TestLexerParserInteraction extends UtilFixtureBase {
 				connection, null, null, null, null);
 
 		TextBlock root = modelFactory.createTextBlock();
-		root.setVersion(VersionEnum.REFERENCE);
+		root.setVersion(EEnum.REFERENCE);
 		root.setCachedString("");
 		LexedToken t = modelFactory.createLexedToken();
 		t.setOffsetRelative(true);
-		t.setVersion(VersionEnum.REFERENCE);
+		t.setVersion(EEnum.REFERENCE);
 
 		Bostoken bostoken = modelFactory.createBostoken();
 		bostoken.setOffsetRelative(true);
@@ -129,11 +144,11 @@ public class TestLexerParserInteraction extends UtilFixtureBase {
 		lexer.setSource(bostoken);
 		lexer.lex(root);
 		bostoken = TbVersionUtil.getOtherVersion(bostoken,
-				VersionEnum.CURRENT);
+				EEnum.CURRENT);
 		lexer.setCurrentTokenForParser(bostoken);
 
 		root = TbVersionUtil.getOtherVersion(root,
-				VersionEnum.CURRENT);
+				EEnum.CURRENT);
 		tbh.setRootBlock(root);
 
 		// make sur the fillBuffer() method is caled before modeifications are

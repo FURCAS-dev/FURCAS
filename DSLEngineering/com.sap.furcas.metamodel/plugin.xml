@@ -13,8 +13,22 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://www.furcas.org/TCS"
-            class="TCS.TCSPackage"
+            class="com.sap.furcas.metamodel.TCS.TCSPackage"
             genModel="model/TCS.genmodel"/>
+   </extension>
+   
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.furcas.org/textblocks"
+            class="com.sap.furcas.metamodel.textblocks.TextblocksPackage"
+            genModel="model/textblocks.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.furcas.org/textblockdefinition"
+            class="com.sap.furcas.metamodel.textblockdefinition.TextblockdefinitionPackage"
+            genModel="model/textblocks.genmodel"/>
    </extension>
 
 </plugin>

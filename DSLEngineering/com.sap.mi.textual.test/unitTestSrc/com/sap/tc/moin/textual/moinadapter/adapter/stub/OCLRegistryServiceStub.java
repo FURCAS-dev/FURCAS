@@ -2,15 +2,6 @@ package com.sap.tc.moin.textual.moinadapter.adapter.stub;
 
 import java.util.Set;
 
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.ocl.OclRegistryService;
-import com.sap.tc.moin.repository.ocl.freestyle.OclFreestyleRegistry;
-import com.sap.tc.moin.repository.ocl.metamodel.OclMetamodelConstraintRegistry;
-import com.sap.tc.moin.repository.ocl.mof.OclMofConstraintRegistry;
-import com.sap.tc.moin.repository.ocl.notification.DeferredConstraintViolationStatus;
-import com.sap.tc.moin.repository.ocl.notification.OclManagerException;
-
 public class OCLRegistryServiceStub implements OclRegistryService {
 	
 	public OclFreestyleRegistry freeStyleRegistry;

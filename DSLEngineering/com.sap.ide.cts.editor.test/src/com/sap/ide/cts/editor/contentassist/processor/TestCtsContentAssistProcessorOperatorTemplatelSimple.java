@@ -9,11 +9,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.mi.textual.common.exceptions.GrammarGenerationException;
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
-import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
-import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
-import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
+import com.sap.furcas.runtime.common.exceptions.GrammarGenerationException;
+import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
+import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
+import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
+import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 
 public class TestCtsContentAssistProcessorOperatorTemplatelSimple extends
 		CtsContentAssistProcessorEditorTestMetamodelTestBase {

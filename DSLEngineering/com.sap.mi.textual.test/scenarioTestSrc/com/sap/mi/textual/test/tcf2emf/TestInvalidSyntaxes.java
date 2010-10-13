@@ -8,11 +8,11 @@ import java.io.InputStream;
 
 import org.junit.Test;
 
-import com.sap.mi.textual.grammar.impl.ParsingError;
-import com.sap.mi.textual.moin.standalone.MOINTCSMetaConnectionProvider;
-import com.sap.mi.textual.syntaxmodel.emfadapter.ModelInjectionResult;
-import com.sap.mi.textual.syntaxmodel.emfadapter.TCS2MOINInjectorFacade;
-import com.sap.tc.moin.repository.Connection;
+import com.sap.furcas.parsergenerator.emf.tcs.inject.ModelInjectionResult;
+import com.sap.furcas.parsergenerator.emf.tcs.inject.TCSSpecificEMFModelInjector;
+import com.sap.furcas.runtime.parser.impl.ParsingError;
+
+;
 
 
 public class TestInvalidSyntaxes  extends AbstractTCSInjectionTest {
@@ -21,7 +21,7 @@ public class TestInvalidSyntaxes  extends AbstractTCSInjectionTest {
     public void testInvalidKeywordSyntax() throws Exception {
         String invalidSample = "symtax invalid{}";
         InputStream in = new ByteArrayInputStream(invalidSample.getBytes());
-        TCS2MOINInjectorFacade injector = new TCS2MOINInjectorFacade();// By choosing this injector, we establish the dependency to EMF.
+        TCSSpecificEMFModelInjector injector = new TCSSpecificEMFModelInjector();// By choosing this injector, we establish the dependency to EMF.
         Connection con = MOINTCSMetaConnectionProvider.getTestConnection();
         ModelInjectionResult modelParsingResult = injector.parseSyntaxDefinition(in, con, null, null);
         assertNotNull(modelParsingResult);
@@ -40,7 +40,7 @@ public class TestInvalidSyntaxes  extends AbstractTCSInjectionTest {
         InputStream in = new ByteArrayInputStream(invalidSample.getBytes());
         
         Connection con = MOINTCSMetaConnectionProvider.getTestConnection();
-        ModelInjectionResult modelParsingResult = TCS2MOINInjectorFacade.parseSyntaxDefinition(in, con, null, null);
+        ModelInjectionResult modelParsingResult = TCSSpecificEMFModelInjector.parseSyntaxDefinition(in, con, null, null);
         assertNotNull(modelParsingResult);
         assertNotNull(modelParsingResult.getResult().getErrors());
         assertEquals(1, modelParsingResult.getResult().getErrors().size());
@@ -59,7 +59,7 @@ public class TestInvalidSyntaxes  extends AbstractTCSInjectionTest {
         InputStream in = new ByteArrayInputStream(invalidSample.getBytes());
 
         Connection con = MOINTCSMetaConnectionProvider.getTestConnection();
-        ModelInjectionResult modelParsingResult = TCS2MOINInjectorFacade.parseSyntaxDefinition(in, con, null, null);
+        ModelInjectionResult modelParsingResult = TCSSpecificEMFModelInjector.parseSyntaxDefinition(in, con, null, null);
         assertNotNull(modelParsingResult);
         assertNotNull(modelParsingResult.getResult().getErrors());
         assertEquals(2, modelParsingResult.getResult().getErrors().size());
@@ -73,7 +73,7 @@ public class TestInvalidSyntaxes  extends AbstractTCSInjectionTest {
         InputStream in = new ByteArrayInputStream(invalidSample.getBytes());
 
         Connection con = MOINTCSMetaConnectionProvider.getTestConnection();
-        ModelInjectionResult modelParsingResult = TCS2MOINInjectorFacade.parseSyntaxDefinition(in, con, null, null);
+        ModelInjectionResult modelParsingResult = TCSSpecificEMFModelInjector.parseSyntaxDefinition(in, con, null, null);
         assertNotNull(modelParsingResult);
         assertNotNull(modelParsingResult.getResult().getErrors());
         assertEquals(1, modelParsingResult.getResult().getErrors().size());

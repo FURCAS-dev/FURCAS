@@ -8,12 +8,38 @@ import java.util.Map;
 import java.util.Set;
 
 import org.antlr.runtime.Token;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
+import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.swt.graphics.Image;
 
+<<<<<<< HEAD
+import com.sap.furcas.metamodel.TCS.Alternative;
+import com.sap.furcas.metamodel.TCS.Block;
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.TCS.ConditionalElement;
+import com.sap.furcas.metamodel.TCS.EnumLiteralMapping;
+import com.sap.furcas.metamodel.TCS.FilterPArg;
+import com.sap.furcas.metamodel.TCS.FunctionCall;
+import com.sap.furcas.metamodel.TCS.FunctionTemplate;
+import com.sap.furcas.metamodel.TCS.LiteralRef;
+import com.sap.furcas.metamodel.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.TCS.Property;
+import com.sap.furcas.metamodel.TCS.QueryPArg;
+import com.sap.furcas.metamodel.TCS.RefersToPArg;
+import com.sap.furcas.metamodel.TCS.Sequence;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
+import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.mi.textual.parsing.textblocks.TbVersionUtil;
+import com.sap.mi.textual.tcs.util.TcsUtil;
+import com.sap.mi.textual.textblocks.model.TextBlocksModel;
+=======
 import tcs.Alternative;
 import tcs.Block;
 import tcs.ClassTemplate;
@@ -35,12 +61,13 @@ import textblocks.AbstractToken;
 import textblocks.TextBlock;
 import textblocks.VersionEnum;
 
-import com.sap.mi.textual.parsing.textblocks.TbVersionUtil;
-import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.mi.textual.textblocks.model.TextBlocksModel;
+import com.sap.furcas.textual.tcs.TcsUtil;
+import com.sap.furcas.textual.textblocks.TbVersionUtil;
+import com.sap.furcas.textual.textblocks.model.TextBlocksModel;
 import com.sap.tc.moin.repository.mmi.model.TypedElement;
 import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 public class CtsContentAssistUtil {
 
@@ -320,8 +347,8 @@ public class CtsContentAssistUtil {
 					|| parent instanceof FunctionTemplate) {
 				return (Template) parent;
 			} else {
-				if (parent instanceof RefObject) {
-					RefObject r = (RefObject) parent;
+				if (parent instanceof EObject) {
+					EObject r = (EObject) parent;
 					parent = r.refImmediateComposite();
 				} else {
 					parent = null;
@@ -340,8 +367,8 @@ public class CtsContentAssistUtil {
 			if (parent instanceof Alternative) {
 				return (Alternative) parent;
 			} else {
-				if (parent instanceof RefObject) {
-					RefObject r = (RefObject) parent;
+				if (parent instanceof EObject) {
+					EObject r = (EObject) parent;
 					parent = r.refImmediateComposite();
 				} else {
 					parent = null;
@@ -460,7 +487,7 @@ public class CtsContentAssistUtil {
 				for (EnumLiteralMapping mapping : TcsUtil
 						.getEnumTemplateForType(syntax, prop
 								.getPropertyReference().getStrucfeature()
-								.getType())) {
+								.getEType())) {
 
 					LiteralRef ref = mapping.getElement();
 					if (ref.getReferredLiteral() != null) {
@@ -474,9 +501,9 @@ public class CtsContentAssistUtil {
 				}
 			}
 
-			RefersToParg refersToArg = TcsUtil.getRefersToParg(prop);
-			FilterParg filterArg = TcsUtil.getFilterParg(prop);
-			QueryParg queryArg = TcsUtil.getQueryParg(prop);
+			RefersToPArg refersToArg = TcsUtil.getRefersToPArg(prop);
+			FilterPArg filterArg = TcsUtil.getFilterPArg(prop);
+			QueryPArg queryArg = TcsUtil.getQueryPArg(prop);
 
 			if (filterArg != null) {
 				if (queryArg != null) {
@@ -489,11 +516,11 @@ public class CtsContentAssistUtil {
 						// the proposal string as the filter could be any OCL
 						// expression using the ? placeholder
 
-						List<RefObject> oclElements = getQueryResult(viewer,
+						List<EObject> oclElements = getQueryResult(viewer,
 								line, charPositionInLine, tbModel, prop,
 								queryArg);
 
-						for (RefObject refObj : oclElements) {
+						for (EObject refObj : oclElements) {
 							String displayString = null;
 							try {
 								Object result = TcsUtil.executeOclQuery(refObj,
@@ -529,10 +556,10 @@ public class CtsContentAssistUtil {
 					// first execute query, then use refersTo property name to
 					// generate proposal strings
 
-					List<RefObject> oclElements = getQueryResult(viewer, line,
+					List<EObject> oclElements = getQueryResult(viewer, line,
 							charPositionInLine, tbModel, prop, queryArg);
 
-					for (RefObject refObj : oclElements) {
+					for (EObject refObj : oclElements) {
 						String displayString = refObj.refGetValue(
 								refersToArg.getPropertyName()).toString();
 						String replacementString = displayString;
@@ -547,7 +574,7 @@ public class CtsContentAssistUtil {
 					TypedElement propFeature = TcsUtil
 							.getStructuralFeature(prop);
 					if (propFeature != null) {
-						String featureName = TcsUtil.getRefersToParg(prop)
+						String featureName = TcsUtil.getRefersToPArg(prop)
 								.getPropertyName();
 						List<String> propValues = TcsUtil.queryPropertyValues(
 								propFeature.getType(), featureName, TcsUtil
@@ -591,11 +618,11 @@ public class CtsContentAssistUtil {
 		return results;
 	}
 
-	private static List<RefObject> getQueryResult(ITextViewer viewer, int line,
+	private static List<EObject> getQueryResult(ITextViewer viewer, int line,
 			int charPositionInLine, TextBlocksModel textBlocksModel, Property prop,
 			QueryParg queryArg) {
 	        TextBlocksModel currentTbModel = textBlocksModel;
-		List<RefObject> oclElements = new ArrayList<RefObject>();
+		List<EObject> oclElements = new ArrayList<EObject>();
 		TextBlock currentVersion = TbVersionUtil.getOtherVersion(currentTbModel.getRoot(),VersionEnum.CURRENT);
 		if(currentVersion != null) {
                     currentTbModel = new TextBlocksModel(currentVersion, null);
@@ -604,21 +631,21 @@ public class CtsContentAssistUtil {
 		if (currentTbModel.getRoot() != null) {
 			AbstractToken floorToken = currentTbModel.getFloorTokenInRoot(getOffset(
 					viewer, line, charPositionInLine));
-			TextBlock parentBlock = floorToken.getParentBlock();
+			TextBlock parentBlock = floorToken.getParent();
 			while (parentBlock != null
 					&& parentBlock.getCorrespondingModelElements().size() < 1) {
-				parentBlock = parentBlock.getParentBlock();
+				parentBlock = parentBlock.getParent();
 			}
 
 			if (parentBlock != null) {
 				// we found a parent block with attached model
 				// element(s)
 
-				RefObject element = parentBlock.getCorrespondingModelElements()
+				EObject element = parentBlock.getCorrespondingModelElements()
 						.get(0);
-				RefObject contextElement = getContextElement(element,
+				EObject contextElement = getContextElement(element,
 						parentBlock, TcsUtil.getContextTag(queryArg.getQuery()));
-				RefObject foreachObject = getForeachElement(TcsUtil.getContextTag(queryArg.getQuery()));
+				EObject foreachObject = getForeachElement(TcsUtil.getContextTag(queryArg.getQuery()));
 
 				Object oclResult = null;
 
@@ -636,13 +663,13 @@ public class CtsContentAssistUtil {
 
 				// create proposals for each returned element using
 				// the refersTo structural feature
-				if (oclResult instanceof RefObject) {
-					oclElements.add((RefObject) oclResult);
+				if (oclResult instanceof EObject) {
+					oclElements.add((EObject) oclResult);
 				}
 				if (oclResult instanceof Collection) {
 					for (Object o : (Collection<?>) oclResult) {
-						if (o instanceof RefObject) {
-							oclElements.add((RefObject) o);
+						if (o instanceof EObject) {
+							oclElements.add((EObject) o);
 						}
 					}
 				}
@@ -651,7 +678,7 @@ public class CtsContentAssistUtil {
 		return oclElements;
 	}
 
-	private static RefObject getForeachElement(String contextTag) {
+	private static EObject getForeachElement(String contextTag) {
 	    // currently the ForeachElement is only used in queries of model elements without
 		// syntactical elements and is thus currently irrelevant for content assist
 		
@@ -662,7 +689,7 @@ public class CtsContentAssistUtil {
 	    return null;
 	}
 
-	private static RefObject getContextElement(RefObject element,
+	private static EObject getContextElement(EObject element,
 			TextBlock parentBlock, String tag) {
 		TextBlock curBlock = parentBlock;
 		while (curBlock != null
@@ -682,7 +709,7 @@ public class CtsContentAssistUtil {
 				}
 			}
 
-			curBlock = curBlock.getParentBlock();
+			curBlock = curBlock.getParent();
 		}
 
 		return null;

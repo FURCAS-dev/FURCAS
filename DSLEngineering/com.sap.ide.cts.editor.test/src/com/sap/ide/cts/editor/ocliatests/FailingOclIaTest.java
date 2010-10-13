@@ -5,21 +5,19 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Set;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import org.eclipse.emf.common.util.URI;
 import org.junit.Before;
 import org.junit.Test;
 
-import tcs.ConcreteSyntax;
+import behavioral.events.EventFilter;
 
 import com.sap.ap.metamodel.utils.MetamodelUtils;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 import com.sap.ide.cts.editor.test.util.StandaloneConnectionBasedTest;
 import com.sap.ide.cts.editor.test.util.TcsTestHelper;
-import com.sap.tc.moin.repository.MRI;
-import com.sap.tc.moin.repository.events.ChangeListener;
-import com.sap.tc.moin.repository.events.filter.EventFilter;
-import com.sap.tc.moin.repository.events.type.ChangeEvent;
-import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
-import com.sap.tc.moin.repository.ocl.freestyle.OclExpressionRegistration;
-import com.sap.tc.moin.repository.ocl.notification.OclManagerException;
 
 import data.classes.Association;
 import data.classes.AssociationEnd;
@@ -60,7 +58,7 @@ public class FailingOclIaTest extends StandaloneConnectionBasedTest {
 	    @Override
 	    public void notify(ChangeEvent event) {
 		// FIXME currently it seems that when getAssociationEnds() correctly is triggered, the "look to right" doesn't find out that otherEnd()->select(delegation->notEmpty()) evaluates to an empty set; why???
-		Set<MRI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
+		Set<URI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
 		// since no association end is delegating, ideally there would be no impact on delegatesTo on either end
 		ok[0] = affectedElements.size() == 0;
 	    }

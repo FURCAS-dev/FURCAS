@@ -10,12 +10,21 @@ import java.util.List;
 
 import org.junit.Test;
 
+<<<<<<< HEAD
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.Eostoken;
+import com.sap.furcas.metamodel.textblocks.LexedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.parsing.textblocks.observer.TokenRelocationUtil;
+import com.sap.mi.textual.parsing.textblocks.TextBlockTest;
+=======
 import textblocks.AbstractToken;
 import textblocks.Eostoken;
 import textblocks.LexedToken;
 import textblocks.TextBlock;
 
-import com.sap.mi.textual.parsing.textblocks.TextBlockTest;
+import com.sap.furcas.textual.textblocks.testutils.TextBlockTest;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 /**
  * tests several methods of that util class
@@ -45,11 +54,11 @@ public class TestTokenRelocationUtil extends TextBlockTest {
         TextBlock root = modelFactory.createTextBlock();
         List<AbstractToken> tokens = new ArrayList<AbstractToken>();
         LexedToken token = modelFactory.createLexedToken();
-        token.setParentBlock(root);
+        token.setParent(root);
         tokens.add(token);
         boolean moved = TokenRelocationUtil.moveTokens(tokens, null);
         assertTrue(moved);
-        assertNull(token.getParentBlock());
+        assertNull(token.getParent());
     }
 
     @Test
@@ -65,7 +74,7 @@ public class TestTokenRelocationUtil extends TextBlockTest {
         TextBlock root = modelFactory.createTextBlock();
         List<AbstractToken> tokens = new ArrayList<AbstractToken>();
         LexedToken token = modelFactory.createLexedToken();
-        token.setParentBlock(root);
+        token.setParent(root);
         tokens.add(token);
         // should not move anything, since token is already in Block
         boolean moved = TokenRelocationUtil.moveTokens(tokens, root);
@@ -89,7 +98,7 @@ public class TestTokenRelocationUtil extends TextBlockTest {
         TextBlock target = modelFactory.createTextBlock();
         TextBlock source = modelFactory.createTextBlock();
         LexedToken token = modelFactory.createLexedToken();
-        token.setParentBlock(source);
+        token.setParent(source);
         assertEquals(0, target.getTokens().size());
         assertEquals(1, source.getTokens().size());
         
@@ -105,14 +114,14 @@ public class TestTokenRelocationUtil extends TextBlockTest {
         TextBlock target = modelFactory.createTextBlock();
         LexedToken existing1 = modelFactory.createLexedToken();
         existing1.setOffset(10);
-        existing1.setParentBlock(target);
+        existing1.setParent(target);
         LexedToken existing2 = modelFactory.createLexedToken();
         existing2.setOffset(20);
-        existing2.setParentBlock(target);
+        existing2.setParent(target);
         TextBlock source = modelFactory.createTextBlock();
         LexedToken token = modelFactory.createLexedToken();
         token.setOffset(25);
-        token.setParentBlock(source);
+        token.setParent(source);
         assertEquals(2, target.getTokens().size());
         assertEquals(1, source.getTokens().size());
         
@@ -128,14 +137,14 @@ public class TestTokenRelocationUtil extends TextBlockTest {
         TextBlock target = modelFactory.createTextBlock();
         LexedToken existing1 = modelFactory.createLexedToken();
         existing1.setOffset(10);
-        existing1.setParentBlock(target);
+        existing1.setParent(target);
         LexedToken existing2 = modelFactory.createLexedToken();
         existing2.setOffset(20);
-        existing2.setParentBlock(target);
+        existing2.setParent(target);
         TextBlock source = modelFactory.createTextBlock();
         LexedToken token = modelFactory.createLexedToken();
         token.setOffset(5);
-        token.setParentBlock(source);
+        token.setParent(source);
         assertEquals(2, target.getTokens().size());
         assertEquals(1, source.getTokens().size());
         
@@ -151,14 +160,14 @@ public class TestTokenRelocationUtil extends TextBlockTest {
         TextBlock target = modelFactory.createTextBlock();
         LexedToken existing1 = modelFactory.createLexedToken();
         existing1.setOffset(10);
-        existing1.setParentBlock(target);
+        existing1.setParent(target);
         LexedToken existing2 = modelFactory.createLexedToken();
         existing2.setOffset(20);
-        existing2.setParentBlock(target);
+        existing2.setParent(target);
         TextBlock source = modelFactory.createTextBlock();
         LexedToken token = modelFactory.createLexedToken();
         token.setOffset(15);
-        token.setParentBlock(source);
+        token.setParent(source);
         assertEquals(2, target.getTokens().size());
         assertEquals(1, source.getTokens().size());
         
@@ -177,18 +186,18 @@ public class TestTokenRelocationUtil extends TextBlockTest {
         LexedToken existing1 = modelFactory.createLexedToken();
         existing1.setOffset(4);
         existing1.setOffsetRelative(true);
-        existing1.setParentBlock(target);
+        existing1.setParent(target);
         LexedToken existing2 = modelFactory.createLexedToken();
         existing2.setOffset(14);
         existing2.setOffsetRelative(true);
-        existing2.setParentBlock(target);
+        existing2.setParent(target);
         TextBlock source = modelFactory.createTextBlock();
         LexedToken token = modelFactory.createLexedToken();
         source.setOffset(25);
         source.setOffsetRelative(false);
         token.setOffset(0);
         token.setOffsetRelative(true);
-        token.setParentBlock(source);
+        token.setParent(source);
         assertEquals(2, target.getTokens().size());
         assertEquals(1, source.getTokens().size());
         
@@ -206,17 +215,17 @@ public class TestTokenRelocationUtil extends TextBlockTest {
         LexedToken existing1 = modelFactory.createLexedToken();
         existing1.setOffset(4);
         existing1.setOffsetRelative(true);
-        existing1.setParentBlock(target);
+        existing1.setParent(target);
         LexedToken existing2 = modelFactory.createLexedToken();
         existing2.setOffset(14);
         existing2.setOffsetRelative(true);
-        existing2.setParentBlock(target);
+        existing2.setParent(target);
         TextBlock source = modelFactory.createTextBlock();
         LexedToken token = modelFactory.createLexedToken();
         source.setOffset(5);
         token.setOffset(0);
         token.setOffsetRelative(true);
-        token.setParentBlock(source);
+        token.setParent(source);
         assertEquals(2, target.getTokens().size());
         assertEquals(1, source.getTokens().size());
         
@@ -234,17 +243,17 @@ public class TestTokenRelocationUtil extends TextBlockTest {
         LexedToken existing1 = modelFactory.createLexedToken();
         existing1.setOffset(4);
         existing1.setOffsetRelative(true);
-        existing1.setParentBlock(target);
+        existing1.setParent(target);
         LexedToken existing2 = modelFactory.createLexedToken();
         existing2.setOffset(14);
         existing2.setOffsetRelative(true);
-        existing2.setParentBlock(target);
+        existing2.setParent(target);
         TextBlock source = modelFactory.createTextBlock();
         LexedToken token = modelFactory.createLexedToken();
         source.setOffset(15);
         token.setOffset(0);
         token.setOffsetRelative(true);
-        token.setParentBlock(source);
+        token.setParent(source);
         assertEquals(2, target.getTokens().size());
         assertEquals(1, source.getTokens().size());
         
@@ -261,14 +270,14 @@ public class TestTokenRelocationUtil extends TextBlockTest {
         TextBlock root = modelFactory.createTextBlock();
         TextBlock source = modelFactory.createTextBlock();
         TextBlock target = modelFactory.createTextBlock();
-        source.setParentBlock(root);
-        target.setParentBlock(root);
+        source.setParent(root);
+        target.setParent(root);
         
         
         LexedToken token = modelFactory.createLexedToken();
-        token.setParentBlock(source);
+        token.setParent(source);
         LexedToken token2 = modelFactory.createLexedToken();
-        token2.setParentBlock(source);
+        token2.setParent(source);
         
         List<AbstractToken> tokens = new ArrayList<AbstractToken>();
         tokens.add(token);
@@ -290,7 +299,7 @@ public class TestTokenRelocationUtil extends TextBlockTest {
 
         TextBlock root = modelFactory.createTextBlock();   // empty target model for testing of update of parent location    
         TextBlock target = modelFactory.createTextBlock();
-        target.setParentBlock(root);
+        target.setParent(root);
         
         LexedToken token = modelFactory.createLexedToken();
         token.setOffset(12);
@@ -352,9 +361,9 @@ public class TestTokenRelocationUtil extends TextBlockTest {
         
         
         LexedToken token = modelFactory.createLexedToken();
-        token.setParentBlock(source);
+        token.setParent(source);
         LexedToken token2 = modelFactory.createLexedToken();
-        token2.setParentBlock(source);
+        token2.setParent(source);
         token2.setOffsetRelative(false);
         token2.setOffset(10);
         token2.setLength(17);
@@ -386,7 +395,7 @@ public class TestTokenRelocationUtil extends TextBlockTest {
         TextBlock target = modelFactory.createTextBlock();
         
         LexedToken token = modelFactory.createLexedToken();
-        token.setParentBlock(source);
+        token.setParent(source);
         token.setOffsetRelative(true);
         token.setOffset(5);
         source.setOffsetRelative(false);
@@ -428,22 +437,22 @@ public class TestTokenRelocationUtil extends TextBlockTest {
         root.setOffsetRelative(false);
         
         LexedToken token = modelFactory.createLexedToken();
-        token.setParentBlock(root);
+        token.setParent(root);
         token.setOffset(10);
         token.setOffsetRelative(false);
         
         TextBlock block = modelFactory.createTextBlock();
-        block.setParentBlock(root);
+        block.setParent(root);
         block.setOffset(20);
         block.setOffsetRelative(false);
         
         LexedToken token3 = modelFactory.createLexedToken();
-        token3.setParentBlock(root);
+        token3.setParent(root);
         token3.setOffset(30);
         token3.setOffsetRelative(false);
         
         Eostoken eos = modelFactory.createEostoken();
-        eos.setParentBlock(root);
+        eos.setParent(root);
         eos.setOffset(40);
         token3.setOffsetRelative(false);
         
@@ -470,7 +479,7 @@ public class TestTokenRelocationUtil extends TextBlockTest {
         root.setOffsetRelative(false);
         
         LexedToken token = modelFactory.createLexedToken();
-        token.setParentBlock(root);
+        token.setParent(root);
         token.setOffset(5); // smaller absolute offset than root should cause exception
         token.setOffsetRelative(false);
         TokenRelocationUtil.makeSubNodesRelative(root);

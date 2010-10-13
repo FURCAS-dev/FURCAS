@@ -25,21 +25,20 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface CreateInPArg extends PropertyArg {
-
-	/**
-	 * Returns the value of the '<em><b>Property Name</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Property Name</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Property Name</em>' attribute list.
-	 * @see com.sap.furcas.metamodel.TCS.TCSPackage#getCreateInPArg_PropertyName()
-	 * @model
-	 * @generated
-	 */
-	EList<String> getPropertyName();
+        /**
+         * Returns the value of the '<em><b>Property Name</b></em>' attribute list.
+         * The list contents are of type {@link java.lang.String}.
+         * <!-- begin-user-doc -->
+         * <p>
+         * If the meaning of the '<em>Property Name</em>' attribute list isn't clear,
+         * there really should be more of a description here...
+         * </p>
+         * <!-- end-user-doc -->
+         * @return the value of the '<em>Property Name</em>' attribute list.
+         * @see com.sap.furcas.metamodel.TCS.TCSPackage#getCreateInPArg_PropertyName()
+         * @model
+         * @generated
+         */
+        EList<String> getPropertyName();
 
 } // CreateInPArg

@@ -1,2 +1,0 @@
-No value was found for the mandatory feature "annotation" : badMofPackage
-No value was found for the mandatory feature "visibility" : badMofPackage

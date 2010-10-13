@@ -5,31 +5,32 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.naming.NameNotFoundException;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.utilities.TypedElement;
 import org.junit.Before;
 import org.junit.Test;
 
-import tcs.Alternative;
-import tcs.Block;
-import tcs.ClassTemplate;
-import tcs.ConditionalElement;
-import tcs.CustomSeparator;
-import tcs.FunctionCall;
-import tcs.FunctionTemplate;
-import tcs.Keyword;
-import tcs.LiteralRef;
-import tcs.ModeParg;
-import tcs.Property;
-import tcs.PropertyReference;
-import tcs.Sequence;
-import tcs.SequenceInAlternative;
-import tcs.Symbol;
-
+import com.sap.furcas.metamodel.TCS.Alternative;
+import com.sap.furcas.metamodel.TCS.Block;
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConditionalElement;
+import com.sap.furcas.metamodel.TCS.CustomSeparator;
+import com.sap.furcas.metamodel.TCS.FunctionCall;
+import com.sap.furcas.metamodel.TCS.FunctionTemplate;
+import com.sap.furcas.metamodel.TCS.Keyword;
+import com.sap.furcas.metamodel.TCS.LiteralRef;
+import com.sap.furcas.metamodel.TCS.ModePArg;
+import com.sap.furcas.metamodel.TCS.Property;
+import com.sap.furcas.metamodel.TCS.PropertyReference;
+import com.sap.furcas.metamodel.TCS.Sequence;
+import com.sap.furcas.metamodel.TCS.SequenceInAlternative;
+import com.sap.furcas.metamodel.TCS.Symbol;
+import com.sap.furcas.parsergenerator.common.util.EcoreHelper;
 import com.sap.ide.cts.editor.test.util.StandaloneConnectionBasedTest;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.NameNotFoundException;
-import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
-import com.sap.tc.moin.repository.mmi.model.TypedElement;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 public class TcsFixtureBase extends StandaloneConnectionBasedTest {
 
@@ -179,13 +180,13 @@ public class TcsFixtureBase extends StandaloneConnectionBasedTest {
 		// - - - ref:funcTemplate
 		// - - main9Lit
 
-		main.setMain(true);
+		main.setIsMain(true);
 
 		funcTemplate.setFunctionSequence(funcTemplateSeq);
 		funcTemplateSeq.getElements().add(funcTemplateLit);
 
 		abstractSequenceTemplate.getNames().add("Template");
-		abstractSequenceTemplate.setAbstract(true);
+		abstractSequenceTemplate.setIsAbstract(true);
 
 		// look up through names
 		functionTemplateTemplateMode1.getNames().add("FunctionTemplate");
@@ -196,9 +197,9 @@ public class TcsFixtureBase extends StandaloneConnectionBasedTest {
 				functionTemplateTemplateLitMode1);
 
 		// look up through metaReference.qualifiedName
-		Classifier metaReference = modelFactory.createMofClass();
+		EClass metaReference = modelFactory.createMofClass();
 		metaReference.setName("FunctionTemplate");
-		metaReference.getQualifiedName().add("FunctionTemplate");
+		EcoreHelper.getQualifiedName(metaReference).add("FunctionTemplate");
 		functionTemplateTemplateMode2.setMetaReference(metaReference);
 		functionTemplateTemplateMode2.setMode("mode2");
 		functionTemplateTemplateMode2
@@ -245,19 +246,20 @@ public class TcsFixtureBase extends StandaloneConnectionBasedTest {
 		main9Lit.setReferredLiteral(keywordB);
 
 		// link main3Prop to TCS.Property.propertyReference.name attribute
-		Classifier propReferenceClass = (Classifier) modelFactory
+		EClassifier propReferenceClass = (EClassifier) modelFactory
 				.createPropertyRef().refMetaObject();
-		setStrucfeature(main3Prop, (StructuralFeature) propReferenceClass
+		setStrucfeature(main3Prop, (EStructuralFeature) propReferenceClass
 				.lookupElement("name"));
 
 		// link main5BlockProp to TCS.ConcreteSyntax.templates reference
-		Classifier concreteSyntaxClass = (Classifier) modelFactory
+		EClassifier concreteSyntaxClass = (EClassifier) modelFactory
 				.createConcreteSyntax().refMetaObject();
-		setStrucfeature(main5BlockProp, (StructuralFeature) concreteSyntaxClass
+		setStrucfeature(main5BlockProp, (TypedElement) concreteSyntaxClass
 				.lookupElement("templates"));
+		
 
 		// add modearg of main5BlockProp to "mode2"
-		ModeParg modeArg = modelFactory.createModeParg();
+		ModePArg modeArg = modelFactory.createModeParg();
 		modeArg.setMode("mode2");
 		main5BlockProp.getPropertyArgs().add(modeArg);
 
@@ -265,12 +267,12 @@ public class TcsFixtureBase extends StandaloneConnectionBasedTest {
 
 	/**
 	 * @param main3Prop2
-	 * @param lookupElement
+	 * @param eStructuralFeature
 	 */
-	protected void setStrucfeature(Property prop, TypedElement lookupElement) {
+	protected void setStrucfeature(Property prop, EStructuralFeature eStructuralFeature) {
 		PropertyReference propRef = modelFactory.createPropertyRef();
 		prop.setPropertyReference(propRef);
-		propRef.setStrucfeature(lookupElement);
+		propRef.setStrucfeature(eStructuralFeature);
 	}
 
 	private void initClassTemplateMap() {

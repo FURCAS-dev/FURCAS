@@ -18,9 +18,10 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.wizards.newresource.BasicNewResourceWizard;
 
+import com.sap.furcas.utils.projects.EclipseProjectHelper;
+import com.sap.mi.textual.epi.builder.SyntaxGenerationNature;
 import com.sap.mi.textual.epi.conf.IProjectMetaRefConf;
 import com.sap.mi.textual.epi.conf.ProjectMetaRefConfFactory;
-import com.sap.mi.textual.epi.util.EclipseHelper;
 
 /**
  * 
@@ -68,7 +69,7 @@ public class ProjectCreator extends WorkspaceModifyOperation {
 	ProjectInfo pi;
 	Shell shell;
 
-	private IProjectMetaRefConf conf;
+	private final IProjectMetaRefConf conf;
 
 	public ProjectCreator(ProjectInfo pi, IProjectMetaRefConf conf, Shell shell) {
 		this.pi = pi;
@@ -116,7 +117,7 @@ public class ProjectCreator extends WorkspaceModifyOperation {
 
 		List<String> extraclasspath = new ArrayList<String>(Arrays.asList(EXTRA_CLASSPATH));
 
-		IProject dslProject = EclipseHelper.createPlugInProject(
+		IProject dslProject = EclipseProjectHelper.createPlugInProject(
 				pi.getProjectName(), 
 				srcfolders, 
 				nonSrcFolders, 
@@ -125,7 +126,8 @@ public class ProjectCreator extends WorkspaceModifyOperation {
 				exportedPackages, 
 				extraclasspath, 
 				monitor, 
-				this.shell);
+				this.shell,
+				SyntaxGenerationNature.NATURE_ID);
 
 		if (dslProject == null) {
 			return null;
@@ -133,14 +135,14 @@ public class ProjectCreator extends WorkspaceModifyOperation {
 		monitor.worked(1);
 
 		// 
-		IFolder sourceTargetRootFolder = (IFolder) dslProject.getFolder(ORIGINAL_FILE_LOCATION_ROOT);
+		IFolder sourceTargetRootFolder = dslProject.getFolder(ORIGINAL_FILE_LOCATION_ROOT);
 		assert(sourceTargetRootFolder.exists());
 		
-		IFolder genRootFolder = (IFolder) dslProject.getFolder('/' + "generated");
+		IFolder genRootFolder = dslProject.getFolder('/' + "generated");
 		assert (genRootFolder.exists());
 
 		// set up the "plugin.xml" and store in root directory
-		EclipseHelper.createFile("plugin.xml", 
+		EclipseProjectHelper.createFile("plugin.xml", 
 				dslProject, 
 				SourceCodeFactory.createPluginXML(pi), 
 				monitor);
@@ -162,17 +164,17 @@ public class ProjectCreator extends WorkspaceModifyOperation {
 		
 		// contents of the generate.properties file
 		String props = SourceCodeFactory.createdPropertiesCode(pi);
-		EclipseHelper.createFile("generate.properties", sourceTargetRootFolder, props, monitor);
+		EclipseProjectHelper.createFile("generate.properties", sourceTargetRootFolder, props, monitor);
 
 		
 		// create a sample TCS file and store it in folder "generated"
 		String templateString = SourceCodeFactory.createSampleTCS(pi);
-		IFile grammar = EclipseHelper.createFile(pi.getTCSFileName(), genSrcFolder, templateString ,
+		IFile grammar = EclipseProjectHelper.createFile(pi.getTCSFileName(), genSrcFolder, templateString ,
 				monitor);
 
 		monitor.setTaskName("Opening file for editing...");
 		BasicNewResourceWizard.selectAndReveal(grammar, PlatformUI.getWorkbench().getActiveWorkbenchWindow());
-		EclipseHelper.openFileToEdit(this.shell, grammar);
+		EclipseProjectHelper.openFileToEdit(this.shell, grammar);
 		monitor.worked(1);
 
 		return dslProject;
@@ -226,7 +228,7 @@ public class ProjectCreator extends WorkspaceModifyOperation {
 			parserFolder.create(false, true, monitor);
 		}
 
-		EclipseHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "ParserFactory.java", 
+		EclipseProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "ParserFactory.java", 
 				parserFolder, 
 				SourceCodeFactory.createParserFactory(pi), 
 				monitor);
@@ -242,15 +244,15 @@ public class ProjectCreator extends WorkspaceModifyOperation {
 			editorFolder.create(false, true, monitor);
 		}
 		
-		EclipseHelper.createFile("Activator.java", 
+		EclipseProjectHelper.createFile("Activator.java", 
 				editorFolder, 
 				SourceCodeFactory.createActivator(pi), 
 				monitor);
-		EclipseHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "Editor.java", 
+		EclipseProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "Editor.java", 
 				editorFolder, 
 				SourceCodeFactory.createEditorCode(pi), 
 				monitor);
-		EclipseHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "Mapper.java", 
+		EclipseProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "Mapper.java", 
 				editorFolder, 
 				SourceCodeFactory.createMapperCode(pi), 
 				monitor);

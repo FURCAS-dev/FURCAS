@@ -9,9 +9,9 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.junit.Before;
 
-import com.sap.tc.moin.repository.Connection;
 
 /**
  * Base class for fixture based tests which require the cts.test.fixture 
@@ -21,7 +21,7 @@ import com.sap.tc.moin.repository.Connection;
  */
 public class FixtureBasedTest extends ProjectConnectionBasedTest {
 	
-	protected Connection connection;
+	protected ResourceSet connection;
 	
 	@Before
 	public void initialize() {

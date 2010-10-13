@@ -1,17 +1,12 @@
 package com.sap.mi.textual.test.scenarios;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.test.parsing.base.ExtendedGeneratedParserBasedTest;
+import com.sap.furcas.test.util.EcoreMetaModelLookUp;
 import com.sap.ide.cts.editor.test.util.ParserGenerationTestHelper;
-import com.sap.mi.textual.common.exceptions.GrammarGenerationException;
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
-import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
-import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
-import com.sap.mi.textual.test.util.EcoreMetaLookUp;
 
 /**
  * Tests currently fail for unknown reason, maybe tcs syntax is corrupt
@@ -27,7 +22,7 @@ public class XPathGenerationTest extends ExtendedGeneratedParserBasedTest {
 	@BeforeClass
 	public static void setupParser() throws Exception {
 		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new EcoreMetaLookUp("XPath1.ecore", "XPath.ecore"));
+		setLookup(new EcoreMetaModelLookUp("XPath1.ecore", "XPath.ecore"));
 		generateParserForLanguage(LANGUAGE);
 	}
 	

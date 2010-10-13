@@ -12,9 +12,11 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.progress.IProgressService;
 
+import com.sap.furcas.utils.exceptions.EclipseExceptionHelper;
+import com.sap.furcas.utils.projects.ReferenceScopeBean;
+import com.sap.mi.textual.epi.Activator;
 import com.sap.mi.textual.epi.Constants;
 import com.sap.mi.textual.epi.builder.BuildHelper;
-import com.sap.mi.textual.epi.util.ExceptionHelper;
 
 
 
@@ -51,16 +53,16 @@ public final class OpenMOF14MetaProjectConf implements IProjectMetaRefConf {
 	public static OpenMOF14MetaProjectConf getConfigurationFromProject(IProject project) throws CoreException {
 		String projectName = ProjectPropertiesStorageHelper.getProperty(project, Constants.REFERRED_PROJECT_NAME_KEY);
 		if (projectName == null || projectName.trim().equals("")) {
-            throw new CoreException(ExceptionHelper.getErrorStatus("Project "
+            throw new CoreException(EclipseExceptionHelper.getErrorStatus("Project "
                     + project.getName() + " not configured for use with "
-                    + OpenMOF14MetaProjectConf.class.getName()));
+                    + OpenMOF14MetaProjectConf.class.getName(), Activator.PLUGIN_ID));
         }
         IProject referencedProject = project.getWorkspace().getRoot()
                 .getProject(projectName);
         if (referencedProject == null) {
-            throw new CoreException(ExceptionHelper
+            throw new CoreException(EclipseExceptionHelper
                     .getErrorStatus("Referenced Project " + projectName
-                            + " does not exist in Workspace."));
+                            + " does not exist in Workspace.", Activator.PLUGIN_ID));
         }
         return new OpenMOF14MetaProjectConf(referencedProject);
 	}

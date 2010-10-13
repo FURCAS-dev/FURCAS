@@ -29,13 +29,13 @@ import com.sap.furcas.metamodel.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.textblocks.ForEachContext;
 import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.mi.textual.common.interfaces.IModelElementProxy;
-import com.sap.mi.textual.common.util.ContextAndForeachHelper;
-import com.sap.mi.textual.grammar.impl.DelayedReference;
-import com.sap.mi.textual.parsing.textblocks.LexedTokenWrapper;
-import com.sap.mi.textual.parsing.textblocks.LocalContextBuilder;
-import com.sap.mi.textual.parsing.textblocks.TbUtil;
-import com.sap.mi.textual.tcs.util.TcsUtil;
+import com.sap.furcas.parsing.textblocks.LexedTokenWrapper;
+import com.sap.furcas.parsing.textblocks.LocalContextBuilder;
+import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
+import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
+import com.sap.furcas.runtime.parser.impl.DelayedReference;
+import com.sap.furcas.runtime.tcs.TcsUtil;
+import com.sap.furcas.textual.textblocks.TbUtil;
 
 
 

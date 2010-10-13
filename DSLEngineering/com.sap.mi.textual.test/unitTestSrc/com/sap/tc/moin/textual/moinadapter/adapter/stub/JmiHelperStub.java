@@ -10,31 +10,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.xml.stream.events.Namespace;
+
+import org.eclipse.ocl.utilities.TypedElement;
+import org.eclipse.ui.internal.keys.model.ModelElement;
+
 import com.sap.mi.textual.parsing.EnumerationTypeStub;
-import com.sap.tc.moin.repository.JmiHelper;
-import com.sap.tc.moin.repository.NameViolation;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.mmi.descriptors.StructureFieldContainer;
-import com.sap.tc.moin.repository.mmi.model.AggregationKind;
-import com.sap.tc.moin.repository.mmi.model.Association;
-import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
-import com.sap.tc.moin.repository.mmi.model.Attribute;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.EnumerationType;
-import com.sap.tc.moin.repository.mmi.model.GeneralizableElement;
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.MofPackage;
-import com.sap.tc.moin.repository.mmi.model.Namespace;
-import com.sap.tc.moin.repository.mmi.model.Reference;
-import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
-import com.sap.tc.moin.repository.mmi.model.TypedElement;
-import com.sap.tc.moin.repository.mmi.reflect.RefAssociation;
-import com.sap.tc.moin.repository.mmi.reflect.RefClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefEnum;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
-import com.sap.tc.moin.repository.mmi.reflect.RefStruct;
 
 /**
  *
