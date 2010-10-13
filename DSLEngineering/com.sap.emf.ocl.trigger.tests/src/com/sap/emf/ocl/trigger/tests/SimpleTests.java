@@ -61,4 +61,27 @@ public class SimpleTests extends TestCase {
         d.setName("Humba");
         assertTrue(result[0]);
     }
+
+    @Test
+    public void testTrivialTriggerWithTwoObjects() throws ParserException {
+        final Department d1 = CompanyFactory.eINSTANCE.createDepartment();
+        resource.getContents().add(d1);
+        final Department d2 = CompanyFactory.eINSTANCE.createDepartment();
+        resource.getContents().add(d2);
+        Helper helper = OCLWithHiddenOpposites.newInstance().createOCLHelper();
+        helper.setContext(CompanyPackage.eINSTANCE.getDepartment());
+        final OCLExpression trivialExpression = helper.createQuery("self.name");
+        final boolean[] result = new boolean[1];
+        Triggerable t = new AbstractTriggerable(Collections.singleton(new ExpressionWithContext(trivialExpression,
+                /* context is implicit because self is used */ null, /* notifyNewContextElements */ false))) {
+            @Override
+            public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects) {
+                result[0] = expression == trivialExpression && affectedContextObjects.size() == 1 &&
+                            affectedContextObjects.contains(d1);
+            }
+        };
+        triggerManager.register(t);
+        d1.setName("Humba");
+        assertTrue(result[0]);
+    }
 }
