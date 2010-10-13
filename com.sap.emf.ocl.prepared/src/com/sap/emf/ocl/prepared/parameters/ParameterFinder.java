@@ -31,9 +31,17 @@ public class ParameterFinder extends AbstractVisitorWithHiddenOpposites<Map<Obje
     private Set<Object> parameterValuesToFindInLiterals;
     private ParameterFactory paramFactory = ParameterFactory.INSTANCE;
 
+    /**
+     * Throws an {@link IllegalArgumentException} if the values in <code>parameteValuesToFindInLiterals</code>
+     * is not unique considering the relation defined by their <code>equals</code> method.
+     */
     public ParameterFinder(Object... parameterValuesToFindInLiterals) {
         super(new HashMap<Object, Parameter<?>>());
         this.parameterValuesToFindInLiterals = new HashSet<Object>(Arrays.asList(parameterValuesToFindInLiterals));
+        if (this.parameterValuesToFindInLiterals.size() < parameterValuesToFindInLiterals.length) {
+            throw new IllegalArgumentException("Parameter values in "+Arrays.toString(parameterValuesToFindInLiterals)+
+                    " not unique");
+        }
     }
     
     @Override
