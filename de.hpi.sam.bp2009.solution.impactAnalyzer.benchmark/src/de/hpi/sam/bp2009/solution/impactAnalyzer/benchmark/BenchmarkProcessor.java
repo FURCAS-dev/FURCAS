@@ -70,7 +70,7 @@ public class BenchmarkProcessor {
             options.addOption("sf", "showfiles", false, "Show which trace files and model files are available");
             options.addOption("ns", "noshrinking", false, "Don't shrink models; just use the one full-size model");
             options.addOption("i", "oclId", true, "If provided, benchmark only the OCL expression with the given ID");
-            options.addOption("p", "optimization", true, "If provided, selects one of the different optimization options. Possible options:" + optionsDescription);
+            options.addOption("p", "optimization", true, "If provided, selects one or more of the different optimization options (comma-separated, as in 1,3,5). Possible options:" + optionsDescription);
 
             // Default option
             // options.addOption("pd", "printdscr", true,
@@ -93,20 +93,25 @@ public class BenchmarkProcessor {
                 int numberOfJobs = cmd.hasOption("j") ? Integer.parseInt(cmd.getOptionValue("j")) : 1;
                 boolean delayPreparation = cmd.hasOption("d") ? Boolean.parseBoolean(cmd.getOptionValue("d")) : true;
                 if (cmd.hasOption("p")) {
-                    int pos = Integer.parseInt(cmd.getOptionValue("p"));
-                    if (pos < 0 || pos > optionList.size() - 1) {
-                        System.err.println("Option " + pos + " not defined.");
-                        HelpFormatter formatter = new HelpFormatter();
-                        formatter.printHelp("Impact Analysis Benchmark Environment v0.1", options);
-                        optionList = null;
-                    } else {
-                        ActivationOption selected = optionList.get(pos);
-                        optionList.clear();
-                        optionList.add(selected);
+                    List<ActivationOption> reducedOptionList = new ArrayList<ActivationOption>();
+                    String commaSeparatedOptionIds = cmd.getOptionValue("p");
+                    String[] optionIds = commaSeparatedOptionIds.split(",");
+                    for (String optionId : optionIds) {
+                        int pos = Integer.parseInt(optionId);
+                        if (pos < 0 || pos > optionList.size() - 1) {
+                            System.err.println("Option " + pos + " not defined.");
+                            HelpFormatter formatter = new HelpFormatter();
+                            formatter.printHelp("Impact Analysis Benchmark Environment v0.1", options);
+                            reducedOptionList = null;
+                            break;
+                        } else {
+                            ActivationOption selected = optionList.get(pos);
+                            reducedOptionList.add(selected);
+                        }
                     }
+                    optionList = reducedOptionList;
                 }
                 if (optionList != null) {
-
                     String modelFile = "";
                     String eventTraceFile = "";
                     if (cmd.hasOption("sf")) {
