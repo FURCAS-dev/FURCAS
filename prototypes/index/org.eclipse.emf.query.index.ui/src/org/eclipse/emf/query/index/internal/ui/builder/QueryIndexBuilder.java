@@ -74,7 +74,7 @@ public class QueryIndexBuilder extends IncrementalProjectBuilder {
 	 * 
 	 * @see org.eclipse.core.internal.events.InternalBuilder#build(int, java.util.Map, org.eclipse.core.runtime.IProgressMonitor)
 	 */
-	protected IProject[] build(int kind, Map args, IProgressMonitor monitor) throws CoreException {
+	protected IProject[] build(int kind, @SuppressWarnings("rawtypes") Map args, IProgressMonitor monitor) throws CoreException {
 		if (kind == FULL_BUILD) {
 			fullBuild(monitor);
 		} else {
@@ -127,11 +127,16 @@ public class QueryIndexBuilder extends IncrementalProjectBuilder {
 				public void execute(final IndexUpdater updater) {
 					final ResourceIndexer indexer = new ResourceIndexer();
 					final ResourceSet rs = new ResourceSetImpl();
+					String fullPath = resource.getFullPath().toString();
 					try {
-						indexer.resourceChanged(updater, rs.getResource(URI.createPlatformResourceURI(resource.getFullPath().toString(),
-								true), true));
+						Resource emfResource = rs.getResource(URI.createPlatformResourceURI(fullPath,true), true);
+						indexer.resourceChanged(updater, emfResource);
+						final URI uri = emfResource.getURI();
+						if(uri.isPlatformResource()) {
+							emfResource.unload();
+						}
 					} catch (Exception e) {
-						System.err.println("Error indexing resource: " + resource.getFullPath().toString());
+						System.err.println("Error indexing resource: " + fullPath);
 						e.printStackTrace();
 					}
 				}
