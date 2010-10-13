@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Trigger
+Bundle-SymbolicName: com.sap.emf.ocl.trigger
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.sap.emf.ocl.trigger.Activator
+Bundle-Vendor: SAP
+Require-Bundle: org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
