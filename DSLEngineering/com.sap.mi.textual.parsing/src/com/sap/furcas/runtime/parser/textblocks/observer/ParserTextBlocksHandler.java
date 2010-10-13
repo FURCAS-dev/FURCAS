@@ -75,7 +75,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	// flag to indicate whether root rule has been entered yet or not. 
 	private int ruleDepth = -1; // -1 initial value means outside root context
 
-	private ResourceSet connection;
+	private ResourceSet resourceSet;
 
 	private final Map<String, Template> templateCache  = new HashMap<String, Template>();
 
@@ -101,7 +101,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 			ResourceSet moinConnection, URI metamodelCri,
 			Set<URI> mappingDefinitionPartitions,
 			Set<URI> additionalScope, Set<URI> additionalCRIScope) {
-		this.connection = moinConnection;
+		this.resourceSet = moinConnection;
 		this.mappingDefinitionPartitions = mappingDefinitionPartitions;
 		this.queryScope = new HashSet<URI>();
 		if (additionalCRIScope != null) {
@@ -118,7 +118,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	}
 	
 	public void setConnection(ResourceSet conn) {
-	        this.connection = conn;
+	        this.resourceSet = conn;
 	    }
 
 	
@@ -206,16 +206,16 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                 // TODO query fully qualified name!
                 ResultSet result;
 				
-				result = EcoreHelper.executeQuery(queryClass, connection,
+				result = EcoreHelper.executeQuery(queryClass, resourceSet,
 					         metamodelContainerQueryScope);
                 URI[] eObjects = result.getUris("class");
                 EClassifier clazz = null;
                 if (eObjects.length > 1) {
                     // throw new RuntimeException("Ambigous templates found for: " +
                     // createdElement + " mode=" + mode);
-                    clazz = (EClassifier) connection.getEObject(eObjects[1], true);
+                    clazz = (EClassifier) resourceSet.getEObject(eObjects[1], true);
                 } else if (eObjects.length == 1) {
-                    clazz = (EClassifier) connection.getEObject(eObjects[0], true);
+                    clazz = (EClassifier) resourceSet.getEObject(eObjects[0], true);
                 }
                 if (clazz != null) {
                     String query = "select template \n"
@@ -232,17 +232,17 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                     }
                     Set<URI> templateAndMMUris = new HashSet<URI>(this.queryScope);
                     templateAndMMUris.addAll(mappingDefinitionPartitions);
-                    QueryContext templateAndMMContext = EcoreHelper.getQueryContext(connection, templateAndMMUris);
-                    result = EcoreHelper.executeQuery(query, connection,
+                    QueryContext templateAndMMContext = EcoreHelper.getQueryContext(resourceSet, templateAndMMUris);
+                    result = EcoreHelper.executeQuery(query, resourceSet,
 						templateAndMMContext);
                     eObjects = result.getUris("template");
                     if (eObjects.length > 1) {
                         // throw new
                         // RuntimeException("Ambigous templates found for: " +
                         // createdElement + " mode=" + mode);
-                        template = (Template) connection.getEObject(eObjects[1], true);
+                        template = (Template) resourceSet.getEObject(eObjects[1], true);
                     } else if (eObjects.length == 1) {
-                        template = (Template) connection.getEObject(eObjects[0], true);
+                        template = (Template) resourceSet.getEObject(eObjects[0], true);
                     }
                     if (template == null) {
                         // maybe operatorTemplate?
@@ -253,7 +253,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                                 + "\" as class "
                                 + " where template.metaReference = class";
     
-                        result = EcoreHelper.executeQuery(query, connection,
+                        result = EcoreHelper.executeQuery(query, resourceSet,
         						templateAndMMContext);
                         eObjects = result.getUris("template");
     
@@ -261,9 +261,9 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                             // throw new
                             // RuntimeException("Ambigous templates found for: " +
                             // createdElement + " mode=" + mode);
-                            template = (Template) connection.getEObject(eObjects[1], true);
+                            template = (Template) resourceSet.getEObject(eObjects[1], true);
                         } else if (eObjects.length == 1) {
-                            template = (Template) connection.getEObject(eObjects[0], true);
+                            template = (Template) resourceSet.getEObject(eObjects[0], true);
                         }
                     }
                     if (template != null) {
@@ -424,14 +424,8 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	
 	@Override
 	public void notifyEnterSequenceElement(String mofid) {
-		SequenceElement sequenceElement = null;
-		for (URI mappingDefinitionPartition : mappingDefinitionPartitions) {
-			sequenceElement =(SequenceElement) connection
+		SequenceElement sequenceElement = (SequenceElement) resourceSet
 				.getEObject(URI.createURI(mofid), true);
-			if(sequenceElement != null) {
-				break;
-			}
-		}
 		if(sequenceElement != null) {
 		    traverser.setCurrentSequenceElement(sequenceElement);
 		}
@@ -656,7 +650,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 		Collection<EObject> nodes = org.eclipse.emf.query2.EcoreHelper.getInstance()
 			.reverseNavigate(element, 
 				(EReference) EcoreHelper.lookupElementExtended(element.eClass(), "correspondingModelElements"),
-				EcoreHelper.getQueryContext(connection), connection, false);
+				EcoreHelper.getQueryContext(resourceSet), resourceSet, false);
 
 		for (Iterator<EObject> iterator = nodes.iterator(); iterator.hasNext();) {
 		    DocumentNode node = (DocumentNode) iterator.next();
