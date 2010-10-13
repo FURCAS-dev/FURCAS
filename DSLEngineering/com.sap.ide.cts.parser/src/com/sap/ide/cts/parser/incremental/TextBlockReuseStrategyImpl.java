@@ -1,7 +1,5 @@
 package com.sap.ide.cts.parser.incremental;
 
-import static com.sap.furcas.runtime.textblocks.TbChangeUtil.addToBlockAt;
-import static com.sap.furcas.runtime.textblocks.TbVersionUtil.getOtherVersion;
 import static com.sap.ide.cts.parser.incremental.IncrementalParsingUtil.checkIsDefinedOptional;
 import static com.sap.ide.cts.parser.incremental.IncrementalParsingUtil.deleteCorrespondingModelElements;
 import static com.sap.ide.cts.parser.incremental.IncrementalParsingUtil.getOriginalVersion;
@@ -15,6 +13,7 @@ import org.antlr.runtime.Token;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.ocl.utilities.TypedElement;
 
 import com.sap.furcas.metamodel.TCS.Alternative;
@@ -30,19 +29,20 @@ import com.sap.furcas.metamodel.textblocks.Bostoken;
 import com.sap.furcas.metamodel.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.parsing.textblocks.TextBlockFactory;
-import com.sap.furcas.parsing.textblocks.observer.TextBlockProxy;
-import com.sap.furcas.parsing.textblocks.observer.TokenRelocationUtil;
+import com.sap.furcas.metamodel.textblocks.Version;
 import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.impl.ModelElementProxy;
+import com.sap.furcas.runtime.parser.textblocks.TextBlockFactory;
+import com.sap.furcas.runtime.parser.textblocks.observer.TextBlockProxy;
+import com.sap.furcas.runtime.parser.textblocks.observer.TokenRelocationUtil;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
-import com.sap.furcas.runtime.textblocks.TbValidationUtil;
-import com.sap.furcas.runtime.textblocks.TbVersionUtil;
-import com.sap.furcas.runtime.textblocks.model.ShortPrettyPrinter;
+import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
+import com.sap.furcas.runtime.textblocks.shortprettyprint.ShortPrettyPrinter;
+import com.sap.furcas.runtime.textblocks.validation.TbValidationUtil;
 import com.sap.ide.cts.parser.Activator;
 
 /**
@@ -80,7 +80,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 	@Override
 	public TbBean reuseTextBlock(TextBlock oldVersion, TextBlockProxy newVersion) {
 		return reusetextBlockInteral(TbVersionUtil.getOtherVersion(oldVersion,
-			VersionEnum.CURRENT), newVersion);
+			Version.CURRENT), newVersion);
 	}
 
 	private TbBean reusetextBlockInteral(TextBlock oldVersion, TextBlockProxy newVersion) {
@@ -197,9 +197,9 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 			}
 
 			for (DocumentNode node : TbNavigationUtil.getSubNodes(getOtherVersion(
-				oldVersion, VersionEnum.REFERENCE))) {
+				oldVersion, Version.REFERENCE))) {
 				if (node instanceof LexedToken
-					&& getOtherVersion(node, VersionEnum.PREVIOUS) == null
+					&& getOtherVersion(node, Version.PREVIOUS) == null
 					&& (checkIsDefinedOptional((AbstractToken) node) || checkIsInAlternative((AbstractToken) node))) {
 					// if the token was deleted a primitive value depending on
 					// this value needs to be updated
@@ -304,7 +304,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 	private boolean valueChanged(AbstractToken token) {
 		boolean valueChanged;
 		AbstractToken referenceVersion = TbVersionUtil.getOtherVersion(token,
-			VersionEnum.REFERENCE);
+			Version.REFERENCE);
 		valueChanged = referenceVersion == null
 			|| !getSynchronizedValue(referenceVersion).equals(
 				getSynchronizedValue(token));
@@ -318,7 +318,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 	 * @return
 	 */
 	public boolean canBeReUsed(AbstractToken candidate, Object lexerToken) {
-	        if(!VersionEnum.PREVIOUS.equals(candidate.getVersion())) {
+	        if(!Version.PREVIOUS.equals(candidate.getVersion())) {
 	            throw new IllegalArgumentException("Candidate token has to be in PREVIOUS Version but was: " + candidate.getVersion());
 	        }
 		Token nextToken = (Token) lexerToken;
@@ -329,7 +329,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 			typeEquals = checkIsDefinedAlternative(candidate, nextToken);
 		}
 		// AbstractToken reference = TbVersionUtil.getOtherVersion(candidate,
-		// VersionEnum.REFERENCE);
+		// Version.REFERENCE);
 		boolean contentEquals = compareContentForReuse(candidate, lexerToken);// nextToken.getText().equals(reference.getValue());
 		boolean stateEquals = true; // TODO antlr has no explicit states, so
 		// what to do here?
@@ -463,7 +463,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 							// IF there is a token that was not there
 							// before
 							if (TbVersionUtil.getOtherVersion(
-								lexedToken, VersionEnum.REFERENCE) == null) {
+								lexedToken, Version.REFERENCE) == null) {
 								// if the token is not an optional
 								// token
 								// the textblock changed
@@ -482,22 +482,22 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 											+ "Check for inconsistent parser & mapping model for language:"
 											+ newVersion
 												.getTemplate()
-												.getConcretesyntax()
+												.getConcreteSyntax()
 												.getName());
 								}
 							}
 						}
 					}
 					ArrayList<LexedToken> oldTokens = new ArrayList<LexedToken>();
-					if (getOtherVersion(oldVersion, VersionEnum.REFERENCE) != null) {
+					if (getOtherVersion(oldVersion, Version.REFERENCE) != null) {
 						for (Object subNode : getOtherVersion(oldVersion,
-							VersionEnum.REFERENCE).getSubNodes()) {
+							Version.REFERENCE).getSubNodes()) {
 							if (subNode instanceof LexedToken) {
 								// IF there is a token that was
 								// there before
 								if (TbVersionUtil.getOtherVersion(
 									(AbstractToken) subNode,
-									VersionEnum.CURRENT) == null) {
+									Version.CURRENT) == null) {
 									// if the token is not an
 									// optional token
 									// the textblock changed
@@ -612,7 +612,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 			LexedToken lexedToken = (LexedToken) candidate;
 			SequenceElement se = lexedToken.getSequenceElement();
 			if (se != null && se instanceof LiteralRef) {
-				return se.getElementSequence().getSeparatorcontainer() != null;
+				return se.getElementSequence().getSeparatorContainer() != null;
 			}
 		}
 		return false;
@@ -660,18 +660,15 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 				if (se instanceof Property
 					&& ((Property) se).getPropertyReference() != null
 					&& ((Property) se).getPropertyReference().getStrucfeature() != null) {
-					TypedElement te = ((Property) se).getPropertyReference()
+					ETypedElement te = ((Property) se).getPropertyReference()
 						.getStrucfeature();
 					if (te instanceof EReference) {
-						return ((EReference) te).getMultiplicity()
-							.getLower() == 0
-							|| ((EReference) te).getMultiplicity()
-								.getUpper() > 1;
+						return ((EReference) te).getLowerBound() == 0
+							|| ((EReference) te).getUpperBound() > 1;
 					} else if (te instanceof EStructuralFeature) {
-						return ((EStructuralFeature) te).getMultiplicity()
-							.getLower() == 0
+						return ((EStructuralFeature) te).getLowerBound() == 0
 							|| ((EStructuralFeature) te)
-								.getMultiplicity().getUpper() > 1;
+								.getUpperBound()> 1;
 					}
 				}
 			}
@@ -687,7 +684,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 		// However, this might not always work. Find those cases and add
 		// additional heuristics for them
 		AbstractToken reference = TbVersionUtil.getOtherVersion(candidate,
-			VersionEnum.REFERENCE);
+			Version.REFERENCE);
 
 		String candidateValue = getSynchronizedValue(candidate);
 		String referenceValue = getSynchronizedValue(reference);
@@ -784,13 +781,13 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
         private void deleteElementsForRemovedSubBlocks(TextBlock oldVersion) {
             if (oldVersion.is___Alive()) {
                 TextBlock reference = TbVersionUtil.getOtherVersion(oldVersion,
-                        VersionEnum.REFERENCE);
+                        Version.REFERENCE);
                 if (reference != null) {
                     for (TextBlock tb : reference.getSubBlocks()) {
                         // delete if there is no current version and the template
                         // was
                         // not reference only
-                        if (TbVersionUtil.getOtherVersion(tb, VersionEnum.CURRENT) == null) {
+                        if (TbVersionUtil.getOtherVersion(tb, Version.CURRENT) == null) {
                             deleteElementsForRemovedSubBlocks(tb);
                             if (tb.getReferencedElements().size() > 0
                                     && tb.getSequenceElement() instanceof Property) {
@@ -850,7 +847,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
                         // version
                         if (tb instanceof LexedToken
                                 && TbVersionUtil.getOtherVersion(tb,
-                                        VersionEnum.CURRENT) == null) {
+                                        Version.CURRENT) == null) {
                             LexedToken lt = (LexedToken) tb;
                             if (lt.getCorrespondingModelElements().size() > 0
                                     && lt.getSequenceElement() instanceof Property) {
@@ -877,7 +874,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 	 */
 	private boolean wasReUsed(AbstractToken subNode) {
 		AbstractToken refVersion = TbVersionUtil.getOtherVersion(subNode,
-			VersionEnum.REFERENCE);
+			Version.REFERENCE);
 		if (refVersion != null) {
 			return true;
 		} else {

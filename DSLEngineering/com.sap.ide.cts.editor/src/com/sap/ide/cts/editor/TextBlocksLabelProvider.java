@@ -1,18 +1,15 @@
 package com.sap.ide.cts.editor;
 
+import javax.naming.InvalidNameException;
+
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.ISharedImages;
 
-import textblocks.AbstractToken;
-import textblocks.TextBlock;
-
-import com.sap.furcas.textual.common.interfaces.IModelElementInvestigator;
-import com.sap.furcas.textual.textblocks.model.ShortPrettyPrinter;
-import com.sap.tc.moin.repository.mmi.reflect.InvalidCallException;
-import com.sap.tc.moin.repository.mmi.reflect.InvalidNameException;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 
 public class TextBlocksLabelProvider implements ILabelProvider {
 
@@ -67,7 +64,7 @@ public class TextBlocksLabelProvider implements ILabelProvider {
 			if (!tb.getCorrespondingModelElements().isEmpty()){
 			    sb.append(" Corresponding elements: ");
 			}
-			for (RefObject correspsondingME : tb.getCorrespondingModelElements()) {
+			for (EObject correspsondingME : tb.getCorrespondingModelElements()) {
 				sb.append(correspsondingME.refMetaObject().refGetValue("name"));
 				try {
 					Object value = correspsondingME.refGetValue("name");
@@ -81,7 +78,7 @@ public class TextBlocksLabelProvider implements ILabelProvider {
 			if (!tb.getReferencedElements().isEmpty()) {
 			    sb.append(" Referenced elements: ");
 			}
-			for (RefObject referencedME : tb.getReferencedElements()) {
+			for (EObject referencedME : tb.getReferencedElements()) {
 				sb.append(referencedME.refMetaObject().refGetValue("name"));
 				try {
 					Object value = referencedME.refGetValue("name");
@@ -101,7 +98,7 @@ public class TextBlocksLabelProvider implements ILabelProvider {
 			if (!tok.getCorrespondingModelElements().isEmpty()){
 			    sb.append(" Corresponding elements: ");
 			}
-			for (RefObject correspsondingME : tok.getCorrespondingModelElements()) {
+			for (EObject correspsondingME : tok.getCorrespondingModelElements()) {
 				sb.append(correspsondingME.refMetaObject().refGetValue("name"));
 				try {
 					Object value = correspsondingME.refGetValue("name");
@@ -115,7 +112,7 @@ public class TextBlocksLabelProvider implements ILabelProvider {
 			if (!tok.getReferencedElements().isEmpty()) {
 			    sb.append(" Referenced elements: ");
 			}
-			for (RefObject referencedME : tok.getReferencedElements()) {
+			for (EObject referencedME : tok.getReferencedElements()) {
 			        if(referencedME != null) {
         				sb.append(referencedME.refMetaObject().refGetValue("name"));
         				try {
@@ -132,7 +129,7 @@ public class TextBlocksLabelProvider implements ILabelProvider {
 		return sb.toString();
 	}
 
-	private void appendId(StringBuffer sb, RefObject correspsondingME) {
+	private void appendId(StringBuffer sb, EObject correspsondingME) {
 		sb.append(" ID:");
 		sb.append(correspsondingME.refMofId());
 	}

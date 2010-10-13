@@ -6,14 +6,11 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 
-import tcs.ClassTemplate;
-import tcs.ConcreteSyntax;
-
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 import com.sap.ide.cts.editor.junitcreate.DocumentHistory;
 import com.sap.ide.cts.editor.recovery.ModelEditorInputRecoveryStrategy;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
-import com.sap.mi.fwk.ui.editor.ModelEditorInput;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
 
 /**
  * CtsDocument enabled to snapshot model versions on save and to log any changes

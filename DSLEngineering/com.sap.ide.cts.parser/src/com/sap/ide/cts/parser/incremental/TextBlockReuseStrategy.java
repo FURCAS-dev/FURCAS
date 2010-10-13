@@ -4,8 +4,8 @@ import java.util.Collection;
 
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.parsing.textblocks.TextBlockFactory;
-import com.sap.furcas.parsing.textblocks.observer.TextBlockProxy;
+import com.sap.furcas.runtime.parser.textblocks.TextBlockFactory;
+import com.sap.furcas.runtime.parser.textblocks.observer.TextBlockProxy;
 
 /**
  * This interface defines method that need to be implemented for an incremental

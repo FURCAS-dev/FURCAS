@@ -11,10 +11,11 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
+import com.sap.furcas.metamodel.textblocks.Version;
 import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.impl.ModelInjector;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
-import com.sap.furcas.runtime.textblocks.TbVersionUtil;
+import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
 import com.sap.ide.cts.parser.incremental.IncrementalLexer;
 import com.sap.ide.cts.parser.incremental.LexerAdapter;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategy;
@@ -57,7 +58,7 @@ public class ANTLRLexerAdapter implements LexerAdapter {
 		Token nextToken = antlrLexer.nextToken();
 		if (nextToken == Token.EOF_TOKEN) {
 			tokens.add(TbVersionUtil.getOtherVersion(
-					incrementalLexer.getEOS(), VersionEnum.CURRENT));
+					incrementalLexer.getEOS(), Version.CURRENT));
 		} else {
 			AbstractToken tok = null;
 			AbstractToken reuseableToken = getReuseableToken(nextToken);
@@ -68,7 +69,7 @@ public class ANTLRLexerAdapter implements LexerAdapter {
 				//use the already present version of the current version
 				//this was created by the copy mechanism at the start of the incremental lexing process
 				//TODO change to real re-use if versioning is selective
-				tok = TbVersionUtil.getOtherVersion(reuseableToken, VersionEnum.CURRENT);
+				tok = TbVersionUtil.getOtherVersion(reuseableToken, Version.CURRENT);
 				ANTLR3LocationToken aToken = (ANTLR3LocationToken) nextToken;
 					
 				tok.setType(aToken.getType());
@@ -87,7 +88,7 @@ public class ANTLRLexerAdapter implements LexerAdapter {
 				tok.setLength(originalEscapedLength);
 				tok.setValue(text);
 						
-				tok.setVersion(VersionEnum.CURRENT);
+				tok.setVersion(Version.CURRENT);
 				//TODO: this could be moved to an extra property called "wasRelexed"
 				tok.setRelexingNeeded(incrementalLexer.getReadToken().isRelexingNeeded());
 				reusedTokens.add(tok);
@@ -131,7 +132,7 @@ public class ANTLRLexerAdapter implements LexerAdapter {
 				tok.setValue(text);
 				
 				
-				tok.setVersion(VersionEnum.CURRENT);
+				tok.setVersion(Version.CURRENT);
 				//TODO: this could be moved to an extra property called "wasRelexed"
 				tok.setRelexingNeeded(true);
 			}
@@ -172,8 +173,8 @@ public class ANTLRLexerAdapter implements LexerAdapter {
 	 * @return
 	 */
     private boolean wasReused(AbstractToken candidate) {
-    	return TbVersionUtil.getOtherVersion(candidate, VersionEnum.CURRENT) != null && 
-    		reusedTokens.contains(TbVersionUtil.getOtherVersion(candidate, VersionEnum.CURRENT));
+    	return TbVersionUtil.getOtherVersion(candidate, Version.CURRENT) != null && 
+    		reusedTokens.contains(TbVersionUtil.getOtherVersion(candidate, Version.CURRENT));
     }
 
 	public void setIncrementalLexer(IncrementalLexer incrementalLexer) {

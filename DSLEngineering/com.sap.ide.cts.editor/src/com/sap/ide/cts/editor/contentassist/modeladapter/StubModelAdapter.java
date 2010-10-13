@@ -8,11 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
-import com.sap.furcas.textual.common.util.QualifiedNamesHelper;
-import com.sap.mi.textual.grammar.IBareModelAdapter;
-import com.sap.mi.textual.grammar.exceptions.ReferenceSettingException;
-
 public class StubModelAdapter implements IBareModelAdapter {
 
 	protected StubModel model = new StubModel();

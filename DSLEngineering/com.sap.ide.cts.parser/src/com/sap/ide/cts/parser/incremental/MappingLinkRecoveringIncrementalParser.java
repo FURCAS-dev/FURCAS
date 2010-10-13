@@ -7,32 +7,36 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
 
 import com.sap.furcas.metamodel.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.TCS.ForeachPredicatePropertyInit;
 import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.textblockdefinition.TextblockDefinition;
 import com.sap.furcas.metamodel.textblocks.Bostoken;
 import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.ForEachContext;
 import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
-import com.sap.furcas.parsing.textblocks.observer.ParserTextBlocksHandler;
-import com.sap.furcas.parsing.textblocks.observer.TextBlockProxy;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.parser.impl.DelayedReference;
 import com.sap.furcas.runtime.parser.impl.DelayedReferencesHelper;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.parser.textblocks.observer.ParserTextBlocksHandler;
+import com.sap.furcas.runtime.parser.textblocks.observer.TextBlockProxy;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
-import com.sun.corba.se.pept.transport.Connection;
+
 
 public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
 
-    public MappingLinkRecoveringIncrementalParser(Connection connection,
+    public MappingLinkRecoveringIncrementalParser(ResourceSet connection,
             ParserFactory<?, ?> parserFactory,
             IncrementalLexer incrementalLexer,
             ObservableInjectingParser batchParser,
@@ -100,7 +104,7 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
         private final ParserTextBlocksHandler parserTextBlocksHandler;
         private Map<TextBlockProxy, List<DelayedReference>> tBProxy2Reference;
 
-        public RecoverMappingLinkComand(Connection con, TextBlock existingRoot,
+        public RecoverMappingLinkComand(ResourceSet con, TextBlock existingRoot,
                 ParserTextBlocksHandler parserTextBlocksHandler) {
             super(con);
             this.existingRoot = existingRoot;
@@ -160,7 +164,7 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
                 }
             }
             textBlock.setSequenceElement(proxy.getSequenceElement());
-            TextBlockDefinition tbDef = getTbDef(proxy.getTemplate());
+            TextblockDefinition tbDef = getTbDef(proxy.getTemplate());
             if (tbDef == null) {
                 failed = true;
                 return;
@@ -192,18 +196,18 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
         private void recoverForEachContext(TextBlock textBlock,
                 TextBlockProxy proxy) {
             DelayedReferencesHelper helper = new DelayedReferencesHelper(batchParser.getInjector());
-            for (ForeachContext fec : textBlock.getForEachContext()) {
-                for (RefObject ro : textBlock.getCorrespondingModelElements()) {
-                    if(fec.getSourceModelelement().equals(ro)) {
+            for (ForEachContext fec : textBlock.getForEachContext()) {
+                for (EObject ro : textBlock.getCorrespondingModelElements()) {
+                    if(fec.getSourceModelElement().equals(ro)) {
                         for (DelayedReference ref : tBProxy2Reference.get(proxy)) {
                             try {
                                 Collection<?> result = helper.evaluateForeachOcl(ro, ref, 
                                         batchParser.getInjector().getModelAdapter(), 
                                         ro);
                                 if(elementsEqual(result, fec.getContextElement())) {
-                                    fec.setForeachPredicatePropertyInit((ForeachPredicatePropertyInit) ref.getQueryElement());
+                                    fec.setForeachPedicatePropertyInit((ForeachPredicatePropertyInit) ref.getQueryElement());
                                     textBlock.getAdditionalTemplates().add(
-                                            fec.getForeachPredicatePropertyInit().getInjectorActionsBlockReference().getParentTemplate());
+                                            fec.getForeachPedicatePropertyInit().getInjectorActionsBlock().getParentTemplate());
                                 }
                             } catch (JmiException e) {
                                 // TODO Auto-generated catch block
@@ -228,8 +232,8 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
             return true;
         }
 
-        private TextBlockDefinition getTbDef(Template t) {
-            Collection<TextBlockDefinition> tbDefs = getConnection()
+        private TextblockDefinition getTbDef(Template t) {
+            Collection<TextblockDefinition> tbDefs = getConnection()
                     .getPackage(TextblocksPackage.PACKAGE_DESCRIPTOR)
                     .getTextblockdefinition()
                     .getTextblockDefinitionReferencesProduction()
@@ -249,7 +253,7 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
         @Override
         public Collection<EOperation> getAffectedPartitions() {
             EObject partitionable = existingRoot;
-            URI pri = partitionable.get___Partition().getPri();
+            URI pri = partitionable.eResource().getURI();
             EOperation editOperation = new EOperation(
                     EOperation.Operation.EDIT, pri);
             return Collections.singleton(editOperation);

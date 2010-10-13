@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -22,9 +23,6 @@ import com.sap.ide.cts.editor.junitcreate.DocumentHistory;
 import com.sap.ide.cts.editor.junitcreate.JavaTestCaseBuilder;
 import com.sap.ide.cts.editor.junitcreate.NoSuchSnapshotException;
 import com.sap.ide.cts.editor.junitcreate.SnapshotVersion;
-import com.sap.tc.moin.repository.LRI;
-import com.sap.tc.moin.repository.MRI;
-import com.sap.tc.moin.repository.PartitionCreatingNotPossibleException;
 
 public class CreateTestCaseAction extends Action {
 
@@ -54,15 +52,15 @@ public class CreateTestCaseAction extends Action {
 	    CtsHistoryDocument histDocument = (CtsHistoryDocument) document;
 	    DocumentHistory history = histDocument.getDocumentHistory();
 	    
-	    LRI srcLri = document.getRootObject().get___Mri().getLri();
+	    URI srcLri = document.getRootObject().get___Mri().getLri();
 
 	    Collection<DocumentEvent> events = history.getHistory(version);
 	    String testCase = null; 
 	    
 	    try {
-		MRI documentRootMRI = history.persistSnapshot(testCaseName, version);
+		URI documentRootMRI = history.persistSnapshot(testCaseName, version);
 		if (documentRootMRI != null) {
-		    LRI copyLRI = documentRootMRI.getLri();
+		    URI copyLRI = documentRootMRI.getLri();
 		    testCase = JavaTestCaseBuilder.buildTestCase(srcLri, copyLRI, events, testCaseName, description);
 		} else {
 		    MessageDialog.openWarning(CtsActivator.getDefault().getWorkbench().getActiveWorkbenchWindow().getShell(),

@@ -10,31 +10,47 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
 import com.sap.furcas.metamodel.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.TCS.Property;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.textblocks.Eostoken;
 import com.sap.furcas.metamodel.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.parsergenerator.emf.MoinMetaLookup;
-import com.sap.furcas.parsergenerator.emf.util.TemplateNamingHelper;
-import com.sap.furcas.parsing.textblocks.ITextBlocksTokenStream;
-import com.sap.furcas.parsing.textblocks.ModelElementFromTextBlocksFactory;
-import com.sap.furcas.parsing.textblocks.TextBlockFactory;
-import com.sap.furcas.parsing.textblocks.observer.ParserTextBlocksHandler;
-import com.sap.furcas.parsing.textblocks.observer.TextBlockProxy;
-import com.sap.furcas.parsing.textblocks.observer.TokenRelocationUtil;
+import com.sap.furcas.metamodel.textblocks.Version;
 import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.parser.impl.ParsingError;
+import com.sap.furcas.runtime.parser.textblocks.ITextBlocksTokenStream;
+import com.sap.furcas.runtime.parser.textblocks.ModelElementFromTextBlocksFactory;
+import com.sap.furcas.runtime.parser.textblocks.TextBlockFactory;
+import com.sap.furcas.runtime.parser.textblocks.observer.ParserTextBlocksHandler;
+import com.sap.furcas.runtime.parser.textblocks.observer.TextBlockProxy;
+import com.sap.furcas.runtime.parser.textblocks.observer.TokenRelocationUtil;
+import com.sap.furcas.runtime.tcs.MetaModelElementResolutionHelper;
+import com.sap.furcas.runtime.tcs.SyntaxLookup;
+import com.sap.furcas.runtime.tcs.TcsUtil;
+import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
+import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
+import com.sap.furcas.runtime.textblocks.TbUtil;
+import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
+import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategy.ReuseType;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategy.TbBean;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalTokenStream;
 import com.sap.ide.cts.parser.incremental.util.ITarjanTreeContentProvider;
 import com.sap.ide.cts.parser.incremental.util.TarjansLCA;
 import com.sap.ide.cts.parser.incremental.util.TarjansLCA.Node;
-import com.tst.ParsingError;
+
 
 public class IncrementalParser extends IncrementalRecognizer {
 
@@ -44,7 +60,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 	
 	protected final ParserFactory<?, ?> parserFactory;
 
-	protected final Collection<CRI> additionalCRIScope;
+	protected final Collection<URI> additionalCRIScope;
 
 	protected final ObservableInjectingParser batchParser;
 	
@@ -54,11 +70,11 @@ public class IncrementalParser extends IncrementalRecognizer {
 	
 	private final ReferenceHandler referenceHandler;
 
-	private Collection<PRI> syntaxPartitions;
+	private Collection<URI> syntaxPartitions;
 
-	private TemplateNamingHelper<RefObject> namingHelper;
+	private TemplateNamingHelper<EObject> namingHelper;
 
-	private MetaModelElementResolutionHelper<RefObject> resolutionHelper;
+	private MetaModelElementResolutionHelper<EObject> resolutionHelper;
 
 	private SyntaxLookup syntaxLookup;
 
@@ -66,12 +82,12 @@ public class IncrementalParser extends IncrementalRecognizer {
 
 	private PartitionAssignmentHandler partitionHandler;
 	
-	public IncrementalParser(Connection connection,
+	public IncrementalParser(ResourceSet connection,
 		ParserFactory<?, ?> parserFactory,
 		IncrementalLexer incrementalLexer,
 		ObservableInjectingParser batchParser,
 		TextBlockReuseStrategy reuseStrategy,
-		Collection<CRI> additionalCRIScope) {
+		Collection<URI> additionalCRIScope) {
         	super(connection);
         	this.parserFactory = parserFactory;
         	this.additionalCRIScope = additionalCRIScope;
@@ -164,7 +180,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 					// this right now
 					// just re-parse the parent element.
 					commonAncestor = ((AbstractToken) commonAncestorNode)
-							.getParentBlock();
+							.getParent();
 				} else {
 					commonAncestor = (TextBlock) commonAncestorNode;
 				}
@@ -177,10 +193,10 @@ public class IncrementalParser extends IncrementalRecognizer {
 				try {
 					callBatchParser(commonAncestor);
 					while (!errorMode && (batchParser.getInjector().getErrorList().size() > 0 || !comsumedAllTokens(commonAncestor))
-							&& commonAncestor.getParentBlock() != null) {
+							&& commonAncestor.getParent() != null) {
 						// parsing failed, so try to parse with the parent block
 						// and see if it works
-						commonAncestor = commonAncestor.getParentBlock();
+						commonAncestor = commonAncestor.getParent();
 						commonAncestor = prepareForParsing(commonAncestor,
 								parserTextBlocksHandler);
 						callBatchParser(commonAncestor);
@@ -294,9 +310,9 @@ public class IncrementalParser extends IncrementalRecognizer {
 			nextTok = TbNavigationUtil.nextToken(nextTok);
 		}
 		if (nextTok != null) {
-			if (TbVersionUtil.getOtherVersion(tok, VersionEnum.REFERENCE) == null) {
+			if (TbVersionUtil.getOtherVersion(tok, Version.REFERENCE) == null) {
 				if (TbVersionUtil.getOtherVersion(nextTok,
-						VersionEnum.REFERENCE) != null) {
+						Version.REFERENCE) != null) {
 					// this is the edge between new and existing tokens, so TODO
 					// we need to check if the parent rule
 					// still matches
@@ -321,13 +337,13 @@ public class IncrementalParser extends IncrementalRecognizer {
 	 * @param root
 	 */
 	private void setDefaultPartitionFromRoot(TextBlock root) {
-		ModelPartition defaultPartition = null;
+		Resource defaultPartition = null;
 		if (root.getCorrespondingModelElements().size() != 0) {
-			defaultPartition = ((Partitionable) root
+			defaultPartition = ((EObject) root
 					.getCorrespondingModelElements().iterator().next())
-					.get___Partition();
+					.eResource();
 		} else {
-			defaultPartition = ((Partitionable) root).get___Partition();
+			defaultPartition = ((EObject) root).eResource();
 		}
 		partitionHandler.setDefaultPartition(defaultPartition);
 	}
@@ -364,7 +380,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 	 *         criteria.
 	 */
 	private TextBlock findStartableBlock(TextBlock commonAncestor) {
-		if (commonAncestor.getParentBlock() == null) {
+		if (commonAncestor.getParent() == null) {
 			// root block should be always startable
 			return commonAncestor;
 		} else {
@@ -373,13 +389,13 @@ public class IncrementalParser extends IncrementalRecognizer {
 					// TODO check how a call to an operator template rule may be
 					// done!
 					!(commonAncestor.getType().getParseRule() instanceof OperatorTemplate)) {
-				if (commonAncestor.getParentBlock().getTokens().size() == 0) {
+				if (commonAncestor.getParent().getTokens().size() == 0) {
 					// parent has no own tokens so we need to start at this one
-					return findStartableBlock(commonAncestor.getParentBlock());
+					return findStartableBlock(commonAncestor.getParent());
 				}
 				return commonAncestor;
 			} else {
-				return findStartableBlock(commonAncestor.getParentBlock());
+				return findStartableBlock(commonAncestor.getParent());
 			}
 		}
 	}
@@ -396,8 +412,8 @@ public class IncrementalParser extends IncrementalRecognizer {
 		AbstractToken bos = (AbstractToken) getSubNodeAt(oldRoot, 0);
 		AbstractToken eos = (AbstractToken) getSubNodeAt(oldRoot,
 				getSubNodesSize(oldRoot) - 1);
-		bos.setParentBlock(null);
-		eos.setParentBlock(null);
+		bos.setParent(null);
+		eos.setParent(null);
 		eos.setOffset(newRoot.getLength());
 		TbChangeUtil.addToBlockAt(newRoot, 0, bos);
 		TbChangeUtil.addToBlockAt(newRoot, getSubNodesSize(newRoot), eos);
@@ -443,7 +459,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 				}
 
 				SetNewFeatureBean bean = new SetNewFeatureBean(oldVersion
-						.getParentBlock().getCorrespondingModelElements()
+						.getParent().getCorrespondingModelElements()
 						.iterator().next(), ((Property) oldVersion
 						.getSequenceElement()).getPropertyReference()
 						.getStrucfeature().getName(), value.getRealObject(), 0);
@@ -470,8 +486,8 @@ public class IncrementalParser extends IncrementalRecognizer {
 			// (might not apply to its subblocks,
 			// however, all those changes will have been considered already
 		}
-		if (oldVersion.getParentBlock() != null) {
-			TextBlock parentBlock = oldVersion.getParentBlock();
+		if (oldVersion.getParent() != null) {
+			TextBlock parentBlock = oldVersion.getParent();
 			int index = TbNavigationUtil.getSubNodes(parentBlock).indexOf(
 					oldVersion);
 			if (oldVersion.getOffset() < resultBean.textBlock.getOffset()) {
@@ -504,17 +520,17 @@ public class IncrementalParser extends IncrementalRecognizer {
 	 */
 	private void replaceCorrespondingModelElements(TextBlock oldVersion,
 			TextBlock newVersion) {
-		Collection<RefObject> correspondingModelElements = oldVersion
+		Collection<EObject> correspondingModelElements = oldVersion
 				.getCorrespondingModelElements();
 		if (!correspondingModelElements.isEmpty()) {
 			// TODO if there is more than one element this seems to be
 			// difficult, which composite is used then?
 			// some check which parent is in a deeper hierarchy than the other
 			// one has to be done..
-		        Set<RefObject> elementsToDelete = new HashSet<RefObject>(1);
-			for (RefObject correspondingModelElement : correspondingModelElements) {
+		        Set<EObject> elementsToDelete = new HashSet<EObject>(1);
+			for (EObject correspondingModelElement : correspondingModelElements) {
 
-				RefObject parent = (RefObject) correspondingModelElement
+				EObject parent = (EObject) correspondingModelElement
 						.refImmediateComposite();
 
 				if (parent != null) {
@@ -531,16 +547,16 @@ public class IncrementalParser extends IncrementalRecognizer {
 						// between the old
 						// and the new model element. this has to be improved to
 						// ensure correctness!
-						Collection<RefObject> correspondingNew = new ArrayList<RefObject>(
+						Collection<EObject> correspondingNew = new ArrayList<EObject>(
 								1);
-						for (RefObject correspondingNewCandidate : newVersion
+						for (EObject correspondingNewCandidate : newVersion
 								.getCorrespondingModelElements()) {
 							// TODO Change orderdness of correspondingmodel
 							// elements to true
 							// if(newVersion.getCorrespondingModelElements().indexOf(correspondingNewCandidate)
 							// ==
 							// oldVersion.getCorrespondingModelElements().indexOf(correspondingModelElement)){
-							AssociationEnd assignToEnd = null;
+							EReference assignToEnd = null;
 							if (compositeFeatureAssocBean.isParentFirstEnd) {
 								assignToEnd = connection
 										.getJmiHelper()
@@ -586,11 +602,11 @@ public class IncrementalParser extends IncrementalRecognizer {
 												parent);
 							}
 						}
-						for (RefObject correspondingNewElement : correspondingNew) {
+						for (EObject correspondingNewElement : correspondingNew) {
 							// only add if it is not contained within another
 							// corresponding model element.
 							// boolean isOutermostComposite = true;
-							// for (RefObject correspondingNewElement2 :
+							// for (EObject correspondingNewElement2 :
 							// correspondingNew) {
 							// if
 							// (correspondingNewElement.refImmediateComposite().equals(correspondingNewElement2))
@@ -618,35 +634,35 @@ public class IncrementalParser extends IncrementalRecognizer {
 						if (correspondingNew.size() > 0) {
 							newVersion
 									.assign___PartitionIncludingChildren(oldVersion
-											.get___Partition());
+											.eResource());
 						}
 
 					} else {
 						// may be a root element that is composed nowhere
 						// so just delete old corresponding elements
-						List<RefObject> oldElements = new ArrayList<RefObject>(
+						List<EObject> oldElements = new ArrayList<EObject>(
 								oldVersion.getCorrespondingModelElements());
-						for (RefObject refObject : oldElements) {
+						for (EObject refObject : oldElements) {
 							elementsToDelete.add(refObject);
 						}
 					}
 				} else {
 					// may be a root element that is composed nowhere
 					// so just delete old corresponding elements
-					List<RefObject> oldElements = new ArrayList<RefObject>(
+					List<EObject> oldElements = new ArrayList<EObject>(
 							oldVersion.getCorrespondingModelElements());
-					for (RefObject refObject : oldElements) {
+					for (EObject refObject : oldElements) {
 						elementsToDelete.add(refObject);
 					}
 					// parent is null so assign new element to partition of old
 					// one
-					for (RefObject correspondingNewCandidate : newVersion
+					for (EObject correspondingNewCandidate : newVersion
 							.getCorrespondingModelElements()) {
 						partitionHandler.assignToPartition(correspondingNewCandidate, correspondingModelElement);
 					}
 				}
 			}
-			for (RefObject elementToDelete : elementsToDelete) {
+			for (EObject elementToDelete : elementsToDelete) {
 			    if(elementToDelete.is___Alive()) {
 				elementToDelete.refDelete();
 			    }
@@ -679,7 +695,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 		if (root.getType() == null || root.getType().getParseRule() == null) {
 			// ensure that the given block was the root block, otherwise
 			// parsing won't work
-			if (root.getParentBlock() != null) {
+			if (root.getParent() != null) {
 				throw new IncrementalParsingException(
 						"Could not find a proper starting point for parsing.");
 			}
@@ -710,17 +726,17 @@ public class IncrementalParser extends IncrementalRecognizer {
 		return syntaxLookup;
 	}
 
-	private TemplateNamingHelper<RefObject> getNamingHelper() {
+	private TemplateNamingHelper<EObject> getNamingHelper() {
 		if (namingHelper == null) {
 			resolutionHelper = getResolutionHelper();
-			namingHelper = new TemplateNamingHelper<RefObject>(resolutionHelper);
+			namingHelper = new TemplateNamingHelper<EObject>(resolutionHelper);
 		}
 		return namingHelper;
 	}
 
-	private MetaModelElementResolutionHelper<RefObject> getResolutionHelper() {
+	private MetaModelElementResolutionHelper<EObject> getResolutionHelper() {
 		if (resolutionHelper == null) {
-			resolutionHelper = new MetaModelElementResolutionHelper<RefObject>(
+			resolutionHelper = new MetaModelElementResolutionHelper<EObject>(
 					new MoinMetaLookup(connection, connection.getSession()
 							.getInnerPartitions(
 									parserFactory.getMetamodelUri(connection))));
