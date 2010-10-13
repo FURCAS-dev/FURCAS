@@ -71,6 +71,11 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
         return eventManager;
     }
 
+    public EventManager createEventManager() {
+        EventManager eventManager = new de.hpi.sam.bp2009.solution.eventManager.framework.EventManagerTableBased();
+        return eventManager;
+    }
+
     public EventManager createEventManagerFor(ResourceSet set) {
         EventManager eventManager = new de.hpi.sam.bp2009.solution.eventManager.framework.EventManagerTableBased(set);
         return eventManager;

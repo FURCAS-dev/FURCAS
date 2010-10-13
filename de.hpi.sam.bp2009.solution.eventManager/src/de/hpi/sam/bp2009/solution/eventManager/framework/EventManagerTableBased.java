@@ -9,19 +9,19 @@ import java.util.logging.Logger;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EContentAdapter;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 
 /**
- * The SessionEventManager implements 2 roles: <br>
- * It acts as a <code>EventRegistry</code> to clients and as <code>EventManager</code> to the repository core which will trigger
- * the events using the {@link com.EventManagerTableBased.tc.moin.repository.spi.core.EventManager} interface. After the method
- * was called, the SessionEventManager will ask its RegistrationManager for all affected listeners and notify them using the
- * associated Notifier.
+ * A scalable implementation of the {@link EventManager} interface, using hash tables to quickly dispatch
+ * incoming {@link Notification}s to the sets of registered {@link Adapter event listeners}. Uses a single
+ * {@link EContentAdapter} to listen to all changes in those {@link ResourceSet}s for which it is responsible.
  * 
  * @author Daniel Vocke (D044825)
+ * @author Axel Uhl (D043530)
  */
 
 public class EventManagerTableBased implements EventManager {
@@ -61,15 +61,16 @@ public class EventManagerTableBased implements EventManager {
      */
     private RegistrationManagerTableBased registrationManager = null;
 
-    private WeakReference<ResourceSet> resourceSet;
+    private final WeakHashMap<ResourceSet, Object> resourceSets;
 
     public EventManagerTableBased(ResourceSet set) {
-        registrationManager = new RegistrationManagerTableBased();
-        set.eAdapters().add(adapter);
-        this.resourceSet= new WeakReference<ResourceSet>(set);
+        this();
+        addToObservedResourceSets(set);
     }
-    public ResourceSet getResourceSet() {
-        return resourceSet.get();
+    
+    public EventManagerTableBased() {
+        resourceSets = new WeakHashMap<ResourceSet, Object>();
+        registrationManager = new RegistrationManagerTableBased();
     }
     
     public void setActive(boolean active) {
@@ -327,11 +328,12 @@ public class EventManagerTableBased implements EventManager {
 
     @Override
     protected void finalize() throws Throwable {
-        if(this.getResourceSet()!=null && adapter!=null){
-            getResourceSet().eAdapters().remove(adapter);
+        for (ResourceSet rs : resourceSets.keySet()) {
+            if (rs != null && adapter != null) {
+                rs.eAdapters().remove(adapter);
+            }
         }
         super.finalize();
-        
     }
     /*
      * EventDeferment will not be implemented yet:
@@ -370,5 +372,15 @@ public class EventManagerTableBased implements EventManager {
     
     public String toString() {
         return registrationManager.toString();
+    }
+
+    public void addToObservedResourceSets(ResourceSet resourceSet) {
+        resourceSet.eAdapters().add(adapter);
+        resourceSets.put(resourceSet, null);
+    }
+
+    public void removeFromObservedResourceSets(ResourceSet resourceSet) {
+        resourceSet.eAdapters().remove(adapter);
+        resourceSets.remove(resourceSet);
     }
 }

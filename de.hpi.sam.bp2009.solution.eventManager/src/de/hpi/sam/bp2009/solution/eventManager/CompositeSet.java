@@ -11,7 +11,35 @@ import java.util.Set;
  * @author Axel Uhl (D043530)
  */
 public class CompositeSet<E> extends CompositeCollection<E> implements Set<E> {
+    private Integer hashCode = null;
+    
     public CompositeSet(Set<? extends E>... sets) {
         super(sets);
+    }
+    
+    public boolean equals(Object o) {
+        if (!(o instanceof Set<?>)) {
+            return false;
+        }
+        Set<?> otherSet = (Set<?>) o;
+        for (E e : this) {
+            if (!otherSet.contains(e)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public int hashCode() {
+        if (hashCode != null) {
+            return hashCode;
+        } else {
+            int hc = 92748;
+            for (E e : this) {
+                hc ^= e.hashCode();
+            }
+            hashCode = hc;
+            return hc;
+        }
     }
 }

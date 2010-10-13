@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 public class CompositeIterable<E> implements Iterable<E> {
-    final Iterable<? extends E>[] iterables;
+    private final Iterable<? extends E>[] iterables;
     
     public CompositeIterable(Iterable<? extends E>... iterables) {
         this.iterables = iterables;

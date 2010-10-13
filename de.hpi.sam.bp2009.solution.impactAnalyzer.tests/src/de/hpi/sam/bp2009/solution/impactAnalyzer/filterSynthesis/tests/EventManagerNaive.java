@@ -6,12 +6,12 @@
  */
 package de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.tests;
 
-import java.lang.ref.WeakReference;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.WeakHashMap;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -25,18 +25,14 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 public class EventManagerNaive implements EventManager {
     private EventAdapter adapter = new EventAdapter(this);
     protected HashMap<EventFilter, Set<Adapter>> filterToListener = new HashMap<EventFilter, Set<Adapter>>();
-    private WeakReference<ResourceSet> resourceSet;
+    private final WeakHashMap<ResourceSet, Object> resourceSets;
     private boolean active = true;
 
     public EventManagerNaive(ResourceSet set) {
         super();
         adapter.setTarget(set);
-        this.resourceSet = new WeakReference<ResourceSet>(set);
-    }
-
-    @Override
-    public ResourceSet getResourceSet() {
-        return resourceSet.get();
+        this.resourceSets = new WeakHashMap<ResourceSet, Object>();
+        resourceSets.put(set, null);
     }
 
     @Override
@@ -100,10 +96,21 @@ public class EventManagerNaive implements EventManager {
 
     @Override
     protected void finalize() throws Throwable {
-        if (this.getResourceSet() != null && adapter != null) {
-            adapter.unsetTarget(getResourceSet());
+        for (ResourceSet rs : resourceSets.keySet()) {
+            if (rs != null && adapter != null) {
+                rs.eAdapters().remove(adapter);
+            }
         }
         super.finalize();
+    }
 
+    public void addToObservedResourceSets(ResourceSet resourceSet) {
+        resourceSet.eAdapters().add(adapter);
+        resourceSets.put(resourceSet, null);
+    }
+
+    public void removeFromObservedResourceSets(ResourceSet resourceSet) {
+        resourceSet.eAdapters().remove(adapter);
+        resourceSets.remove(resourceSet);
     }
 } // EventManagerImpl
