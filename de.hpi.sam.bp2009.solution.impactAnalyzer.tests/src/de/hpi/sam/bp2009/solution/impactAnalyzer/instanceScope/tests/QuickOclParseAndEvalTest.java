@@ -64,6 +64,22 @@ public class QuickOclParseAndEvalTest extends TestCase
   }
 
   /**
+   * Check if a type name parses as a type literal
+   */
+  @Test
+  public void testParseAndEvaluateOclExpressionWithTypeLiteral() throws ParserException {
+      oclHelper.setContext(CompanyPackage.eINSTANCE.getDepartment());
+      OCLExpression expression4 = oclHelper.createQuery("company::Division");
+      Object result4 = ocl.evaluate(null, expression4);
+      assertTrue(result4 instanceof EClass);
+      assertEquals(CompanyPackage.eINSTANCE.getDivision(), result4);
+      OCLExpression expression5 = oclHelper.createQuery("Division");
+      Object result5 = ocl.evaluate(null, expression5);
+      assertTrue(result5 instanceof EClass);
+      assertEquals(CompanyPackage.eINSTANCE.getDivision(), result5);
+  }
+
+  /**
    * Check what happens when ->at(...) argument is out of bounds
    */
   @Test
