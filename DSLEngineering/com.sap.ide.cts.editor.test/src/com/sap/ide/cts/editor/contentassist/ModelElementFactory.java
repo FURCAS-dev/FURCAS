@@ -1,19 +1,19 @@
 package com.sap.ide.cts.editor.contentassist;
 
-import com.sap.tc.moin.repository.mmi.model.Attribute;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.MultiplicityType;
-import com.sap.tc.moin.repository.mmi.model.Reference;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
+
 
 public interface ModelElementFactory {
 
-	public MofClass createMofClass();
+	public EClass createMofClass();
 
-	public Reference createReference();
+	public EReference createReference();
 
-	public Attribute createAttribute();
+	public EAttribute createAttribute();
 
-	public MultiplicityType createMultiplicityType(int lower, int upper,
+	public EReference createMultiplicityType(int lower, int upper,
 			boolean isOrdered, boolean isUnique);
 
 }

@@ -17,6 +17,7 @@ import org.eclipse.ui.progress.IProgressService;
 
 import tcs.ConcreteSyntax;
 
+import com.sap.furcas.textual.tcs.TcsUtil;
 import com.sap.ide.cts.moin.parserfactory.AbstractParserFactory;
 import com.sap.mi.fwk.ConnectionManager;
 import com.sap.mi.fwk.ui.ModelAdapterUI;
@@ -24,7 +25,6 @@ import com.sap.mi.fwk.ui.ModelManagerUI;
 import com.sap.mi.fwk.ui.editor.ModelEditor;
 import com.sap.mi.fwk.ui.editor.ModelEditorInput;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.mi.textual.tcs.util.TcsUtil;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.Partitionable;
 

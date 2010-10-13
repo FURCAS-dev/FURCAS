@@ -1,8 +1,0 @@
-<test> 
-<run type="junit_ec" purpose="scenario,weekstone">
-    <name>[com.sap.mi.tools.cockpit.mql.test.QueryConsoleViewTestSuite|UI] Tests Cockpit Model Browser, including display of model elements, property view and modification of a primitive type, contexts menus and Eclipse view menu.</name>
-    <plugin-name>com.sap.mi.tools.cockpit.mql.test</plugin-name>
-    <plugin-suite>com.sap.mi.tools.cockpit.mql.test.QueryConsoleViewTestSuite</plugin-suite>
-    <code-coverage>com.sap.mi.tools.cockpit.mql, com.sap.mi.tools.cockpit.editor</code-coverage>
-  </run>
-</test>

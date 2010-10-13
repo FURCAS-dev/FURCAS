@@ -5,8 +5,8 @@ import java.util.Collection;
 
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.mi.textual.parsing.textblocks.TextBlockFactory;
-import com.sap.mi.textual.parsing.textblocks.observer.TextBlockProxy;
+import com.sap.furcas.parsing.textblocks.TextBlockFactory;
+import com.sap.furcas.parsing.textblocks.observer.TextBlockProxy;
 
 public class DefaultTextBlockReuseStrategy implements TextBlockReuseStrategy {
 

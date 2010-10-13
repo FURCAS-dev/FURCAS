@@ -14,7 +14,7 @@ import java.util.Map.Entry;
 
 import org.junit.Test;
 
-import com.sap.mi.textual.common.util.KeyToListMap;
+import com.sap.furcas.runtime.common.util.KeyToListMap;
 
 /**
  *

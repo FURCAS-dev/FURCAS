@@ -2,17 +2,16 @@ package com.sap.mi.textual.textblocks.model;
 
 import static org.junit.Assert.assertEquals;
 
+import org.eclipse.emf.ecore.EEnum;
 import org.junit.Before;
 import org.junit.Test;
 
-import textblocks.Bostoken;
-import textblocks.Eostoken;
-import textblocks.LexedToken;
-import textblocks.OmittedToken;
-import textblocks.TextBlock;
-import textblocks.TextblocksPackage;
-import textblocks.VersionEnum;
-
+import com.sap.furcas.metamodel.textblocks.Bostoken;
+import com.sap.furcas.metamodel.textblocks.Eostoken;
+import com.sap.furcas.metamodel.textblocks.LexedToken;
+import com.sap.furcas.metamodel.textblocks.OmittedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
 import com.sap.ide.cts.editor.test.util.StandaloneConnectionBasedTest;
 
 public class TestTextBlocksModelManual extends StandaloneConnectionBasedTest {
@@ -29,7 +28,7 @@ public class TestTextBlocksModelManual extends StandaloneConnectionBasedTest {
 		rootPkg = connection.getPackage(TextblocksPackage.PACKAGE_DESCRIPTOR);
 		rootBlock = (TextBlock) rootPkg.getTextBlock().refCreateInstance();
 		rootBlock.setChildrenChanged(false);
-		rootBlock.setVersion(VersionEnum.REFERENCE);
+		rootBlock.setVersion(EEnum.REFERENCE);
 		rootBlock.setRelexingNeeded(false);
 		rootBlock.setStartRow(0);
 		rootBlock.setStartColumn(0);
@@ -43,7 +42,7 @@ public class TestTextBlocksModelManual extends StandaloneConnectionBasedTest {
 		Bostoken bosToken = (Bostoken) rootPkg.getBostoken()
 				.refCreateInstance();
 		bosToken.setChildrenChanged(false);
-		bosToken.setVersion(VersionEnum.REFERENCE);
+		bosToken.setVersion(EEnum.REFERENCE);
 		bosToken.setRelexingNeeded(false);
 		bosToken.setStartRow(0);
 		bosToken.setStartColumn(0);
@@ -61,7 +60,7 @@ public class TestTextBlocksModelManual extends StandaloneConnectionBasedTest {
 		LexedToken lexedToken = (LexedToken) rootPkg.getLexedToken()
 				.refCreateInstance();
 		lexedToken.setChildrenChanged(false);
-		lexedToken.setVersion(VersionEnum.REFERENCE);
+		lexedToken.setVersion(EEnum.REFERENCE);
 		lexedToken.setRelexingNeeded(false);
 		lexedToken.setStartRow(0);
 		lexedToken.setStartColumn(0);
@@ -79,7 +78,7 @@ public class TestTextBlocksModelManual extends StandaloneConnectionBasedTest {
 		OmittedToken omittedToken = (OmittedToken) rootPkg.getLexedToken()
 				.refCreateInstance();
 		omittedToken.setChildrenChanged(false);
-		omittedToken.setVersion(VersionEnum.REFERENCE);
+		omittedToken.setVersion(EEnum.REFERENCE);
 		omittedToken.setRelexingNeeded(false);
 		omittedToken.setStartRow(0);
 		omittedToken.setStartColumn(3);
@@ -96,7 +95,7 @@ public class TestTextBlocksModelManual extends StandaloneConnectionBasedTest {
 		rootBlock.getTokens().add(omittedToken);
 		lexedToken = (LexedToken) rootPkg.getLexedToken().refCreateInstance();
 		lexedToken.setChildrenChanged(false);
-		lexedToken.setVersion(VersionEnum.REFERENCE);
+		lexedToken.setVersion(EEnum.REFERENCE);
 		lexedToken.setRelexingNeeded(false);
 		lexedToken.setStartRow(0);
 		lexedToken.setStartColumn(4);
@@ -114,7 +113,7 @@ public class TestTextBlocksModelManual extends StandaloneConnectionBasedTest {
 		omittedToken = (OmittedToken) rootPkg.getLexedToken()
 				.refCreateInstance();
 		omittedToken.setChildrenChanged(false);
-		omittedToken.setVersion(VersionEnum.REFERENCE);
+		omittedToken.setVersion(EEnum.REFERENCE);
 		omittedToken.setRelexingNeeded(false);
 		omittedToken.setStartRow(0);
 		omittedToken.setStartColumn(5);
@@ -132,7 +131,7 @@ public class TestTextBlocksModelManual extends StandaloneConnectionBasedTest {
 		Eostoken eosToken = (Eostoken) rootPkg.getEostoken()
 				.refCreateInstance();
 		eosToken.setChildrenChanged(false);
-		eosToken.setVersion(VersionEnum.REFERENCE);
+		eosToken.setVersion(EEnum.REFERENCE);
 		eosToken.setRelexingNeeded(false);
 		eosToken.setStartRow(0);
 		eosToken.setStartColumn(5);
@@ -150,7 +149,7 @@ public class TestTextBlocksModelManual extends StandaloneConnectionBasedTest {
 		TextBlock block2 = (TextBlock) rootPkg.getTextBlock()
 				.refCreateInstance();
 		block2.setChildrenChanged(false);
-		block2.setVersion(VersionEnum.REFERENCE);
+		block2.setVersion(EEnum.REFERENCE);
 		block2.setRelexingNeeded(false);
 		block2.setStartRow(0);
 		block2.setStartColumn(6);
@@ -164,7 +163,7 @@ public class TestTextBlocksModelManual extends StandaloneConnectionBasedTest {
 		rootBlock.getSubBlocks().add(block2);
 		lexedToken = (LexedToken) rootPkg.getLexedToken().refCreateInstance();
 		lexedToken.setChildrenChanged(false);
-		lexedToken.setVersion(VersionEnum.REFERENCE);
+		lexedToken.setVersion(EEnum.REFERENCE);
 		lexedToken.setRelexingNeeded(false);
 		lexedToken.setStartRow(0);
 		lexedToken.setStartColumn(6);
@@ -181,7 +180,7 @@ public class TestTextBlocksModelManual extends StandaloneConnectionBasedTest {
 		block2.getTokens().add(lexedToken);
 		lexedToken = (LexedToken) rootPkg.getLexedToken().refCreateInstance();
 		lexedToken.setChildrenChanged(false);
-		lexedToken.setVersion(VersionEnum.REFERENCE);
+		lexedToken.setVersion(EEnum.REFERENCE);
 		lexedToken.setRelexingNeeded(false);
 		lexedToken.setStartRow(0);
 		lexedToken.setStartColumn(7);
@@ -198,7 +197,7 @@ public class TestTextBlocksModelManual extends StandaloneConnectionBasedTest {
 		block2.getTokens().add(lexedToken);
 		lexedToken = (LexedToken) rootPkg.getLexedToken().refCreateInstance();
 		lexedToken.setChildrenChanged(false);
-		lexedToken.setVersion(VersionEnum.REFERENCE);
+		lexedToken.setVersion(EEnum.REFERENCE);
 		lexedToken.setRelexingNeeded(false);
 		lexedToken.setStartRow(0);
 		lexedToken.setStartColumn(8);
@@ -215,7 +214,7 @@ public class TestTextBlocksModelManual extends StandaloneConnectionBasedTest {
 		block2.getTokens().add(lexedToken);
 		lexedToken = (LexedToken) rootPkg.getLexedToken().refCreateInstance();
 		lexedToken.setChildrenChanged(false);
-		lexedToken.setVersion(VersionEnum.REFERENCE);
+		lexedToken.setVersion(EEnum.REFERENCE);
 		lexedToken.setRelexingNeeded(false);
 		lexedToken.setStartRow(0);
 		lexedToken.setStartColumn(10);
@@ -232,7 +231,7 @@ public class TestTextBlocksModelManual extends StandaloneConnectionBasedTest {
 		block2.getTokens().add(lexedToken);
 		lexedToken = (LexedToken) rootPkg.getLexedToken().refCreateInstance();
 		lexedToken.setChildrenChanged(false);
-		lexedToken.setVersion(VersionEnum.REFERENCE);
+		lexedToken.setVersion(EEnum.REFERENCE);
 		lexedToken.setRelexingNeeded(false);
 		lexedToken.setStartRow(0);
 		lexedToken.setStartColumn(11);

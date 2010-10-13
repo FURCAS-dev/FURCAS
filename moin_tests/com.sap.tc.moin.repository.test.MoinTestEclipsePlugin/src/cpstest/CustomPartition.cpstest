@@ -1,8 +1,0 @@
-#Test partition for simple custom parser
-Element|1=A17
-Element|2=A17
-Link|Composition|1|2=
-Element|34=A4
-Element|44=A8
-Attribute|34|onePrimitive=AValue
-Structure|44|oneStructureT=field1:12|field2:Value

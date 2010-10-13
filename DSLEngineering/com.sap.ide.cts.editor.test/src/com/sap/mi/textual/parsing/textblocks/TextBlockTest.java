@@ -1,10 +1,9 @@
 package com.sap.mi.textual.parsing.textblocks;
 
+import org.eclipse.emf.ecore.EEnum;
 import org.junit.Before;
 
-import textblocks.LexedToken;
-import textblocks.VersionEnum;
-
+import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.ide.cts.editor.test.util.StandaloneConnectionBasedTest;
 
 /**
@@ -33,7 +32,7 @@ public class TextBlockTest extends StandaloneConnectionBasedTest {
 		contentToken.setLength(content.length());
 		contentToken.setEndColumn(content.length());
 		contentToken.setType(0);
-		contentToken.setVersion(VersionEnum.REFERENCE);
+		contentToken.setVersion(EEnum.REFERENCE);
 		return contentToken;
 	}
 }

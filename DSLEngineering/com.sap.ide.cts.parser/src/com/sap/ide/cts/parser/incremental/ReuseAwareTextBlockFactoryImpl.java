@@ -1,6 +1,6 @@
 package com.sap.ide.cts.parser.incremental;
 
-import static com.sap.mi.textual.parsing.textblocks.TbChangeUtil.addToBlockAt;
+import static com.sap.furcas.runtime.textblocks.TbChangeUtil.addToBlockAt;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -13,12 +13,12 @@ import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
-import com.sap.mi.textual.common.interfaces.IModelElementProxy;
-import com.sap.mi.textual.parsing.textblocks.ModelElementFromTextBlocksFactory;
-import com.sap.mi.textual.parsing.textblocks.TextBlockFactory;
-import com.sap.mi.textual.parsing.textblocks.observer.TextBlockProxy;
-import com.sap.mi.textual.parsing.textblocks.observer.TokenRelocationUtil;
-import com.sap.mi.textual.tcs.util.TcsUtil;
+import com.sap.furcas.parsing.textblocks.ModelElementFromTextBlocksFactory;
+import com.sap.furcas.parsing.textblocks.TextBlockFactory;
+import com.sap.furcas.parsing.textblocks.observer.TextBlockProxy;
+import com.sap.furcas.parsing.textblocks.observer.TokenRelocationUtil;
+import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
+import com.sap.furcas.runtime.tcs.TcsUtil;
 
 public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 

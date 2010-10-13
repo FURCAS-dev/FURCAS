@@ -1,18 +1,13 @@
 package com.sap.mi.textual.test.scenarios;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.sap.furcas.parsergenerator.testutils.StringListHelper;
+import com.sap.furcas.test.parsing.base.ExtendedGeneratedParserBasedTest;
+import com.sap.furcas.test.util.EcoreMetaModelLookUp;
+import com.sap.furcas.test.util.StubModelAdapter;
 import com.sap.ide.cts.editor.test.util.ParserGenerationTestHelper;
-import com.sap.mi.textual.common.exceptions.GrammarGenerationException;
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
-import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
-import com.sap.mi.textual.test.util.EcoreMetaLookUp;
-import com.sap.mi.textual.test.util.StringListHelper;
-import com.sap.mi.textual.test.util.StubModelAdapter;
 
 /**
  * Simple Test for the custom Expression language
@@ -27,7 +22,7 @@ public class KM3Test extends ExtendedGeneratedParserBasedTest {
 	@BeforeClass
 	public static void setupParser() throws Exception {
 		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new EcoreMetaLookUp("KM3.ecore"));
+		setLookup(new EcoreMetaModelLookUp("KM3.ecore"));
 		generateParserForLanguage(LANGUAGE);
 	}
 	

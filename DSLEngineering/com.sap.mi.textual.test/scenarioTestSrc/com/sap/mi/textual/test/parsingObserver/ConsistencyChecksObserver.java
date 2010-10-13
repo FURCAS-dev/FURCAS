@@ -13,8 +13,8 @@ import java.util.Stack;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
 
-import com.sap.mi.textual.grammar.impl.DelayedReference;
-import com.sap.mi.textual.grammar.impl.IParsingObserver;
+import com.sap.furcas.runtime.parser.IParsingObserver;
+import com.sap.furcas.runtime.parser.impl.DelayedReference;
 
 /**
  * checks we leave only contexts we entered before. Test Util.

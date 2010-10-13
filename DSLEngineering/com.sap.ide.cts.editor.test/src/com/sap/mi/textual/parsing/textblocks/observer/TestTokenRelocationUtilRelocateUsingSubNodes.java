@@ -4,10 +4,17 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+<<<<<<< HEAD
+import com.sap.furcas.metamodel.textblocks.Eostoken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.parsing.textblocks.observer.TokenRelocationUtil;
+import com.sap.mi.textual.parsing.textblocks.TextBlockTest;
+=======
 import textblocks.Eostoken;
 import textblocks.TextBlock;
 
-import com.sap.mi.textual.parsing.textblocks.TextBlockTest;
+import com.sap.furcas.textual.textblocks.testutils.TextBlockTest;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 public class TestTokenRelocationUtilRelocateUsingSubNodes extends TextBlockTest {
     
@@ -39,7 +46,7 @@ public class TestTokenRelocationUtilRelocateUsingSubNodes extends TextBlockTest 
         root.setOffsetRelative(true);
         TextBlock first = modelFactory.createTextBlock();
         TextBlock last = modelFactory.createTextBlock();
-        first.setParentBlock(root);
+        first.setParent(root);
         first.setOffset(42);
         first.setLength(13);
         first.setStartRow(3);
@@ -48,7 +55,7 @@ public class TestTokenRelocationUtilRelocateUsingSubNodes extends TextBlockTest 
         first.setEndColumn(17);
         first.setOffsetRelative(false);
         
-        last.setParentBlock(root);
+        last.setParent(root);
         last.setOffset(100);
         last.setStartRow(8);
         last.setStartColumn(11);
@@ -93,7 +100,7 @@ public class TestTokenRelocationUtilRelocateUsingSubNodes extends TextBlockTest 
         root.setLength(55); // random value to be overwritten
         root.setOffsetRelative(true);
         TextBlock first = modelFactory.createTextBlock();
-        first.setParentBlock(root);
+        first.setParent(root);
         first.setOffset(42);
         first.setLength(13);
         first.setStartRow(3);
@@ -136,17 +143,17 @@ public class TestTokenRelocationUtilRelocateUsingSubNodes extends TextBlockTest 
         TextBlock middle = modelFactory.createTextBlock();
         TextBlock last = modelFactory.createTextBlock();
         
-        first.setParentBlock(root);
+        first.setParent(root);
         first.setOffset(42);
         first.setLength(13);
         first.setOffsetRelative(false);
         
-        middle.setParentBlock(root);
+        middle.setParent(root);
         middle.setOffset(42);
         middle.setLength(13);
         middle.setOffsetRelative(false);
         
-        last.setParentBlock(root);
+        last.setParent(root);
         last.setOffset(100);
         last.setOffsetRelative(false);
         last.setLength(23);
@@ -178,17 +185,17 @@ public class TestTokenRelocationUtilRelocateUsingSubNodes extends TextBlockTest 
         TextBlock last = modelFactory.createTextBlock();
         Eostoken eos = modelFactory.createEostoken();
         
-        first.setParentBlock(root);
+        first.setParent(root);
         first.setOffset(42);
         first.setLength(13);
         first.setOffsetRelative(false);
         
-        last.setParentBlock(root);
+        last.setParent(root);
         last.setOffset(100);
         last.setOffsetRelative(false);
         last.setLength(23);
         
-        eos.setParentBlock(root);
+        eos.setParent(root);
         eos.setOffset(66); // random values to be ignored
         eos.setOffsetRelative(false);
         eos.setLength(33);// random values to be ignored
@@ -216,7 +223,7 @@ public class TestTokenRelocationUtilRelocateUsingSubNodes extends TextBlockTest 
       
         Eostoken eos = modelFactory.createEostoken();
         
-        eos.setParentBlock(root);
+        eos.setParent(root);
         eos.setOffsetRelative(false);
 
         TokenRelocationUtil.updateTextBlockLocationUsingSubNodesAfterAdding(root);
@@ -233,12 +240,12 @@ public class TestTokenRelocationUtilRelocateUsingSubNodes extends TextBlockTest 
         TextBlock first = modelFactory.createTextBlock();
         TextBlock last = modelFactory.createTextBlock();
        
-        first.setParentBlock(root);
+        first.setParent(root);
         first.setOffset(42);
         first.setLength(13);
         first.setOffsetRelative(true);
         
-        last.setParentBlock(root);
+        last.setParent(root);
         last.setOffset(100);
         last.setOffsetRelative(false);
         last.setLength(23);
@@ -259,11 +266,11 @@ public class TestTokenRelocationUtilRelocateUsingSubNodes extends TextBlockTest 
         TextBlock first = modelFactory.createTextBlock();
         TextBlock last = modelFactory.createTextBlock();
        
-        first.setParentBlock(root);
+        first.setParent(root);
         first.setOffsetRelative(false);
         first.setOffset(-22);
         
-        last.setParentBlock(root);
+        last.setParent(root);
         last.setOffsetRelative(false);
         
 
@@ -279,11 +286,11 @@ public class TestTokenRelocationUtilRelocateUsingSubNodes extends TextBlockTest 
         TextBlock first = modelFactory.createTextBlock();
         TextBlock last = modelFactory.createTextBlock();
        
-        first.setParentBlock(root);
+        first.setParent(root);
         first.setOffsetRelative(false);
         
         
-        last.setParentBlock(root);
+        last.setParent(root);
         last.setOffsetRelative(false);
         last.setOffset(-22);
 

@@ -1,16 +1,17 @@
 package com.sap.ide.cts.editor.action;
 
 import org.antlr.runtime.Lexer;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 
-import tcs.ClassTemplate;
-import tcs.ConcreteSyntax;
-import textblocks.TextBlock;
-import textblocks.TextblocksPackage;
-
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
 import com.sap.ide.cts.dialogs.ChooseConcreteSyntaxDialog;
 import com.sap.ide.cts.dialogs.ChoosePrettyPrintModeDialog;
 import com.sap.ide.cts.dialogs.PrettyPrinterInfoDialog;
@@ -20,14 +21,8 @@ import com.sap.ide.cts.editor.prettyprint.CtsTextBlockIncrementalTCSExtractorStr
 import com.sap.ide.cts.editor.prettyprint.IncrementalPrettyPrinter;
 import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorStream;
 import com.sap.ide.cts.moin.parserfactory.AbstractParserFactory;
-import com.sap.mi.fwk.ui.ModelManagerUI;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mql.MQLProcessor;
-import com.sap.tc.moin.repository.mql.MQLResultSet;
+import com.sun.corba.se.pept.transport.Connection;
 
 /**
  *
@@ -37,12 +32,12 @@ import com.sap.tc.moin.repository.mql.MQLResultSet;
  */
 public class PrettyPrintAction extends Action {
 
-	private final RefObject modelElement;
-	private final MofClass clazz;
+	private final EObject modelElement;
+	private final EClass clazz;
 	private final boolean openEditorAfterPrettyPrint;
 	private IncrementalPrettyPrinter pp;
 
-	public PrettyPrintAction(MofClass clazz, RefObject modelElement,
+	public PrettyPrintAction(EClass clazz, EObject modelElement,
 			boolean openEditorAfterPrettyPrint) {
 		super("Pretty Print", PlatformUI.getWorkbench().getSharedImages()
 				.getImageDescriptor(ISharedImages.IMG_ETOOL_PRINT_EDIT));
@@ -67,20 +62,20 @@ public class PrettyPrintAction extends Action {
 			// select corresponding templates
 			String mqlTemplates = "select template \n"
 					+ "from \"demo.sap.com/tcsmeta\"#TCS::ClassTemplate as template, \n"
-					+ "\"" + ((Partitionable) clazz).get___Mri()
+					+ "\"" + ((EObject) clazz).get___Mri()
 					+ "\" as class \n" + "where template.metaReference = class";
 
 			// select corresponding text blocks to model element
 			String mqlTextBlocks = "select tb \n"
 					+ "from \"demo.sap.com/tcsmeta\"#textblocks::TextBlock as tb, \n"
-					+ "\"" + ((Partitionable) modelElement).get___Mri()
+					+ "\"" + ((EObject) modelElement).get___Mri()
 					+ "\" as me \n"
 					+ "where tb.correspondingModelElements = me";
 
 			MQLResultSet resultSet = mql.execute(mqlTemplates);
-			RefObject[] templates = resultSet.getRefObjects("template");
+			EObject[] templates = resultSet.getRefObjects("template");
 			resultSet = mql.execute(mqlTextBlocks);
-			RefObject[] rootTbs = resultSet.getRefObjects("tb");
+			EObject[] rootTbs = resultSet.getRefObjects("tb");
 
 			try {
 				// Choose concrete syntax to print textblock
@@ -93,7 +88,7 @@ public class PrettyPrintAction extends Action {
 						if (o instanceof ClassTemplate
 								&& ((ClassTemplate) o).isMain()) {
 							template = (ClassTemplate) o;
-							syntax = template.getConcretesyntax();
+							syntax = template.getConcreteSyntax();
 						}
 					}
 					if (syntax == null) {
@@ -102,13 +97,13 @@ public class PrettyPrintAction extends Action {
 						Object o = dialog.execute(null);
 						if (o instanceof ClassTemplate) {
 							template = (ClassTemplate) o;
-							syntax = template.getConcretesyntax();
+							syntax = template.getConcreteSyntax();
 						}
 					}
 				} else if (templates.length == 1) {
 					if (templates[0] instanceof ClassTemplate) {
 						template = (ClassTemplate) templates[0];
-						syntax = template.getConcretesyntax();
+						syntax = template.getConcreteSyntax();
 					}
 				} else {
 					throw new Exception(
@@ -135,7 +130,7 @@ public class PrettyPrintAction extends Action {
 				    EditorUtil.constructParserFactoryForSyntax(syntax);
 				stream = new CtsTextBlockIncrementalTCSExtractorStream(
     					connection.getPackage(TextblocksPackage.PACKAGE_DESCRIPTOR),
-    					modelElement.get___Partition(),
+    					modelElement.eResource(),
     					parserFactory, ppMode);
 
 				// pretty print textblock

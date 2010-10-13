@@ -1,9 +1,9 @@
 package com.sap.mi.textual.parsing.textblocks;
 
-import textblocks.Bostoken;
-import textblocks.Eostoken;
-import textblocks.LexedToken;
-import textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.Bostoken;
+import com.sap.furcas.metamodel.textblocks.Eostoken;
+import com.sap.furcas.metamodel.textblocks.LexedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 
 public interface TestTextBlocksModelElementFactory {
 	

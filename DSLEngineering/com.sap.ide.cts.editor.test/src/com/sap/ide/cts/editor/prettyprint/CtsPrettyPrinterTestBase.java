@@ -4,12 +4,16 @@ import static org.junit.Assert.assertNotNull;
 
 import java.io.InputStream;
 
+<<<<<<< HEAD
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+=======
 import textblocks.TextBlock;
 
+import com.sap.furcas.textual.textblocks.model.TextBlocksModel;
+import com.sap.furcas.textual.textblocks.testutils.TextblocksTestHelper;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 import com.sap.ide.cts.editor.test.util.ConcreteSyntaxBasedTest;
 import com.sap.ide.cts.editor.test.util.TcsTestHelper;
-import com.sap.mi.textual.parsing.textblocks.TextblocksTestHelper;
-import com.sap.mi.textual.textblocks.model.TextBlocksModel;
 
 public class CtsPrettyPrinterTestBase extends ConcreteSyntaxBasedTest {
 

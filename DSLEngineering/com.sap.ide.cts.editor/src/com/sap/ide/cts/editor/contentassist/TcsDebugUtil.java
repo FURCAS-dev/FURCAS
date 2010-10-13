@@ -3,6 +3,32 @@ package com.sap.ide.cts.editor.contentassist;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
+import org.eclipse.emf.ecore.EClassifier;
+
+import com.sap.furcas.metamodel.TCS.Alternative;
+import com.sap.furcas.metamodel.TCS.AndExp;
+import com.sap.furcas.metamodel.TCS.AtomExp;
+import com.sap.furcas.metamodel.TCS.Block;
+import com.sap.furcas.metamodel.TCS.BooleanPropertyExp;
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConditionalElement;
+import com.sap.furcas.metamodel.TCS.CustomSeparator;
+import com.sap.furcas.metamodel.TCS.EqualsExp;
+import com.sap.furcas.metamodel.TCS.Expression;
+import com.sap.furcas.metamodel.TCS.FunctionCall;
+import com.sap.furcas.metamodel.TCS.InjectorActionsBlock;
+import com.sap.furcas.metamodel.TCS.InstanceOfExp;
+import com.sap.furcas.metamodel.TCS.IsDefinedExp;
+import com.sap.furcas.metamodel.TCS.LiteralRef;
+import com.sap.furcas.metamodel.TCS.OneExp;
+import com.sap.furcas.metamodel.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.TCS.Property;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
+import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.mi.textual.tcs.util.TcsUtil;
+import com.sap.mi.textual.common.util.EcoreHelper;
+=======
 import tcs.Alternative;
 import tcs.AndExp;
 import tcs.AtomExp;
@@ -24,8 +50,9 @@ import tcs.Property;
 import tcs.SequenceElement;
 import tcs.Template;
 
-import com.sap.mi.textual.tcs.util.TcsUtil;
+import com.sap.furcas.textual.tcs.TcsUtil;
 import com.sap.tc.moin.repository.mmi.model.Classifier;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 public class TcsDebugUtil {
 
@@ -38,11 +65,11 @@ public class TcsDebugUtil {
 			ClassTemplate ct = (ClassTemplate) t;
 			String typeName = "null";
 			String mode = ct.getMode();
-			Classifier type = ct.getMetaReference();
+			EClassifier type = ct.getMetaReference();
 			if (type != null) {
-				typeName = TcsUtil.joinNameList(type.getQualifiedName());
+				typeName = TcsUtil.joinNameList(EcoreHelper.getQualifiedName(type));
 			}
-			if (ct.isMain()) {
+			if (ct.isIsMain()) {
 				return "ClassTemplate (main) for type " + typeName
 						+ " and mode " + mode;
 			} else {

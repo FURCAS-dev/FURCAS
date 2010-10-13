@@ -11,13 +11,15 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.sap.furcas.parsergenerator.testutils.StringListHelper;
+
 /**
  *
  */
 public class StringHelperTest {
 
     /**
-     * Test method for {@link com.sap.mi.textual.test.util.StringListHelper#list(java.lang.String[])}.
+     * Test method for {@link com.sap.furcas.parsergenerator.testutils.StringListHelper#list(java.lang.String[])}.
      */
     @Test
     public void testList() {
@@ -43,7 +45,7 @@ public class StringHelperTest {
     }
 
     /**
-     * Test method for {@link com.sap.mi.textual.test.util.StringListHelper#multiSimpleList(java.lang.String[])}.
+     * Test method for {@link com.sap.furcas.parsergenerator.testutils.StringListHelper#multiSimpleList(java.lang.String[])}.
      */
     @Test
     public void testMultiSimpleList() {

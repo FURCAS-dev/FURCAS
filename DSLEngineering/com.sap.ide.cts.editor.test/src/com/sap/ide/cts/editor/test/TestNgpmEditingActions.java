@@ -10,29 +10,34 @@ import static org.junit.Assert.fail;
 import java.util.Collection;
 
 import modelmanagement.Package;
-import ngpm.NgpmPackage;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.ui.PartInitException;
 import org.junit.Test;
 
-import textblocks.TextBlock;
 import behavioral.actions.Block;
 import behavioral.actions.ExpressionStatement;
 import behavioral.actions.NamedValueDeclaration;
 import behavioral.actions.Return;
 
 import com.sap.ap.cts.monet.parser.ClassParserFactory;
+<<<<<<< HEAD
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+=======
+import com.sap.furcas.textual.tcs.TcsUtil;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.editor.document.CtsDocument;
 import com.sap.ide.cts.editor.prettyprint.SyntaxAndModelMismatchException;
 import com.sap.ide.cts.editor.prettyprint.TcsPrettyPrinterTestHelper;
 import com.sap.ide.cts.parser.incremental.IncrementalParsingUtil;
-import com.sap.mi.fwk.ModelManager;
 import com.sap.mi.textual.parsing.textblocks.reference.GlobalDelayedReferenceResolver;
+<<<<<<< HEAD
 import com.sap.mi.textual.tcs.util.TcsUtil;
+=======
 import com.sap.tc.moin.ocl.ia.Statistics;
 import com.sap.tc.moin.repository.NullPartitionNotEmptyException;
 import com.sap.tc.moin.repository.Partitionable;
@@ -42,6 +47,7 @@ import com.sap.tc.moin.repository.core.ConnectionWrapper;
 import com.sap.tc.moin.repository.core.events.framework.simple.SessionEventManagerSimple;
 import com.sap.tc.moin.repository.mmi.reflect.JmiException;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 import data.classes.Association;
 import data.classes.AssociationEnd;
@@ -65,7 +71,7 @@ public class TestNgpmEditingActions extends RunletEditorTest {
      */
     @Test
     public void testChangeObjectMultiplicityForMethodCall() throws PartInitException, BadLocationException, CoreException {
-        final RefObject refObject = findClass("MethodCallOutputMultiplicityTest");
+        final EObject refObject = findClass("MethodCallOutputMultiplicityTest");
         assertNotNull(refObject); 
         assertTrue(refObject.is___Alive()); 
         AbstractGrammarBasedEditor editor = openEditor(refObject);
@@ -88,7 +94,7 @@ public class TestNgpmEditingActions extends RunletEditorTest {
      */
     @Test
     public void testRenameOfAssociationEnd() throws PartInitException, BadLocationException, CoreException {
-        final RefObject refObject = findClass("OrderedAssocTestCase");
+        final EObject refObject = findClass("OrderedAssocTestCase");
         assertNotNull(refObject);
         assertTrue(refObject.is___Alive());
         AbstractGrammarBasedEditor editor = openEditor(refObject);
@@ -252,7 +258,7 @@ public class TestNgpmEditingActions extends RunletEditorTest {
      */
     @Test
     public void testCommentOutVariableDeclaration() throws PartInitException, BadLocationException, CoreException {
-        final RefObject refObject = findClass("RedefineParameterTst2");
+        final EObject refObject = findClass("RedefineParameterTst2");
         assertNotNull(refObject); 
         assertTrue(refObject.is___Alive()); 
         AbstractGrammarBasedEditor editor = openEditor(refObject);
@@ -311,7 +317,7 @@ public class TestNgpmEditingActions extends RunletEditorTest {
             assertNotNull(ctd);
             assertEquals(clazz2, ctd.getAssociationEnd().otherEnd().getType()
                             .getClazz());
-            ((RefObject) editor.getWorkingConnection().getElement(
+            ((EObject) editor.getWorkingConnection().getElement(
                             ((Partitionable) clazz2).get___Mri())).refDelete();
             editor.getWorkingConnection().save();
             assertEquals(null, ctd.getAssociationEnd().otherEnd().getType()
@@ -533,7 +539,7 @@ public class TestNgpmEditingActions extends RunletEditorTest {
     
 	    @Test
 	    public void testTurnEntityIntoValue() throws PartInitException, BadLocationException, CoreException {
-	        final RefObject refObject = findClass("Class1");
+	        final EObject refObject = findClass("Class1");
 	        assertNotNull(refObject); 
 	        assertTrue(refObject.is___Alive()); 
 	        AbstractGrammarBasedEditor editor = openEditor(refObject);
@@ -1691,7 +1697,7 @@ public class TestNgpmEditingActions extends RunletEditorTest {
      */
     @Test
     public void testAddIterate() throws PartInitException, BadLocationException, CoreException {
-        final RefObject refObject = findClass("ClassWithEmptyMethod");
+        final EObject refObject = findClass("ClassWithEmptyMethod");
         assertNotNull(refObject); 
         assertTrue(refObject.is___Alive()); 
         AbstractGrammarBasedEditor editor = openEditor(refObject);

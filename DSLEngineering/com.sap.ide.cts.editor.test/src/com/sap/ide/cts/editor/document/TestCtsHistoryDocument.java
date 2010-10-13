@@ -13,6 +13,9 @@ import java.util.Collection;
 import modelmanagement.Package;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
 
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
@@ -20,9 +23,6 @@ import com.sap.ide.cts.editor.junitcreate.DocumentHistory;
 import com.sap.ide.cts.editor.junitcreate.NoSuchSnapshotException;
 import com.sap.ide.cts.editor.junitcreate.SnapshotVersion;
 import com.sap.ide.cts.editor.test.RunletEditorTest;
-import com.sap.tc.moin.repository.MRI;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 import data.classes.SapClass;
 
@@ -117,7 +117,7 @@ public class TestCtsHistoryDocument extends RunletEditorTest {
 		saveAll(editor);
 		close(editor);
 		
-		MRI mri = history.persistSnapshot("testEditorSaveTriggersSnapshotCreation", SnapshotVersion.COMPLETED);
+		URI mri = history.persistSnapshot("testEditorSaveTriggersSnapshotCreation", SnapshotVersion.COMPLETED);
 		connection.getElement(mri);
 	}
 
@@ -169,16 +169,16 @@ public class TestCtsHistoryDocument extends RunletEditorTest {
 		
 		Boolean success = history.createNewSnapshot(new NullProgressMonitor());
 		assertTrue(success);
-		MRI mri = history.persistSnapshot("TestCopyPersistSingle", SnapshotVersion.COMPLETED);
+		URI mri = history.persistSnapshot("TestCopyPersistSingle", SnapshotVersion.COMPLETED);
 		assertNotNull("Check for internal errros", mri);
 		assertTrue(history.isActive());
 		
 		assertTrue("Without loading into memory", connection.elementExists(mri));
-		RefObject copy = (RefObject) connection.getElement(mri);
+		EObject copy = (EObject) connection.getElement(mri);
 		assertNotNull("With loading into memory", copy);
 		
 		assertFalse(connection.isDirty());
-		ModelPartition partition = copy.get___Partition();
+		Resource partition = copy.get___Partition();
 		assertFalse(partition.isDirty());
 		assertFalse(partition.hadUnhandledErrorsDuringLoad());
 		
@@ -202,7 +202,7 @@ public class TestCtsHistoryDocument extends RunletEditorTest {
 		// snapshot
 		Boolean success = history.createNewSnapshot(new NullProgressMonitor());
 		assertTrue(success);
-		MRI mri = history.persistSnapshot("TestCopyPersistAndOpen", SnapshotVersion.COMPLETED);
+		URI mri = history.persistSnapshot("TestCopyPersistAndOpen", SnapshotVersion.COMPLETED);
 		assertNotNull("Check for internal errros", mri);
 		assertTrue(history.isActive());
 		
@@ -244,7 +244,7 @@ public class TestCtsHistoryDocument extends RunletEditorTest {
 			success = history.createNewSnapshot(new NullProgressMonitor());
 			assertTrue(success);
 			
-			MRI mri = history.persistSnapshot("TestCopyPersistSeries"+i, SnapshotVersion.COMPLETED);
+			URI mri = history.persistSnapshot("TestCopyPersistSeries"+i, SnapshotVersion.COMPLETED);
 			assertNotNull(s + "Check for internal errros", mri);
 			assertTrue(history.isActive());
 									
@@ -252,7 +252,7 @@ public class TestCtsHistoryDocument extends RunletEditorTest {
 			assertNotNull(s + "Element lookup with loading into memory", copy);
 			assertNull(copy.refVerifyConstraints(true));
 			
-			ModelPartition partition = copy.get___Partition();
+			Resource partition = copy.get___Partition();
 			assertFalse(partition.isDirty());
 			assertFalse(partition.hadUnhandledErrorsDuringLoad());
 			
@@ -260,9 +260,9 @@ public class TestCtsHistoryDocument extends RunletEditorTest {
 			
 			// Assert correct composition hierarchy
 			classes.add(copy);
-			Package pkg = clazz.getPackage();
+			Package pkg = clazz.getPackage_();
 			assertNotNull(pkg);	
-			assertEquals(s + "Copy must know its package", pkg, copy.getPackage());
+			assertEquals(s + "Copy must know its package", pkg, copy.getPackage_());
 			assertTrue(s + "Package must know the copy", pkg.getClasses().contains(copy));
 			assertTrue(s + "Package must know its classes", pkg.getClasses().containsAll(classes));
 		}

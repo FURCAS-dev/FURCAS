@@ -16,9 +16,9 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
 import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
-import com.sap.mi.textual.common.interfaces.IRuleName;
-import com.sap.mi.textual.grammar.impl.DelayedReference;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.common.interfaces.IRuleName;
+import com.sap.furcas.runtime.parser.impl.DelayedReference;
+import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 
 
 public class GlobalDelayedReferenceResolver implements GlobalEventListener {

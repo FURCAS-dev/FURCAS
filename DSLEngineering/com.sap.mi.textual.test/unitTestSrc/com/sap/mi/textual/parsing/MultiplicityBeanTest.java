@@ -10,7 +10,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import com.sap.mi.textual.common.interfaces.MultiplicityBean;
+import com.sap.furcas.runtime.common.interfaces.MultiplicityBean;
 
 /**
  *

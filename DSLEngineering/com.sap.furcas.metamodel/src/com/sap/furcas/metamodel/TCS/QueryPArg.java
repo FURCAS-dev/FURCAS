@@ -6,7 +6,6 @@
  */
 package com.sap.furcas.metamodel.TCS;
 
-import org.eclipse.ocl.ecore.ExpressionInOCL;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,5 +18,4 @@ import org.eclipse.ocl.ecore.ExpressionInOCL;
  * @generated
  */
 public interface QueryPArg extends OclPArg {
-
 } // QueryPArg

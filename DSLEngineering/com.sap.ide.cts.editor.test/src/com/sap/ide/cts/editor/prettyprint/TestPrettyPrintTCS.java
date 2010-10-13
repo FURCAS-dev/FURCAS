@@ -2,9 +2,27 @@ package com.sap.ide.cts.editor.prettyprint;
 
 import generated.TCSLexer;
 
+import javax.naming.NameNotFoundException;
+
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
 import org.junit.Before;
 import org.junit.Test;
 
+<<<<<<< HEAD
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.TCS.Keyword;
+import com.sap.furcas.metamodel.TCS.LiteralRef;
+import com.sap.furcas.metamodel.TCS.Sequence;
+import com.sap.furcas.metamodel.TCS.SpaceKind;
+import com.sap.furcas.metamodel.TCS.Symbol;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.mi.tcs.parser.TcsParserFactory;
+import com.sap.mi.textual.common.util.EcoreHelper;
+import com.sap.mi.textual.tcs.util.TcsUtil;
+
+=======
 import tcs.ClassTemplate;
 import tcs.ConcreteSyntax;
 import tcs.Keyword;
@@ -14,12 +32,13 @@ import tcs.SpaceKindEnum;
 import tcs.Symbol;
 import textblocks.TextBlock;
 
+import com.sap.furcas.textual.tcs.TcsUtil;
 import com.sap.mi.tcs.parser.TcsParserFactory;
-import com.sap.mi.textual.tcs.util.TcsUtil;
 import com.sap.tc.moin.repository.mmi.model.Attribute;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.model.NameNotFoundException;
 import com.sap.tc.moin.repository.mmi.reflect.JmiException;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 public class TestPrettyPrintTCS extends CtsPrettyPrinterTestBase {
 
@@ -47,12 +66,12 @@ public class TestPrettyPrintTCS extends CtsPrettyPrinterTestBase {
 		s.setName("SyntaxWithMainClassTemplateMetaReference");
 
 		ClassTemplate t = modelFactory.createClassTemplate();
-		t.setMain(true);
+		t.setIsMain(true);
 
-		MofClass sclass = (MofClass) s.refMetaObject();
+		EClass sclass = (EClass) s.refMetaObject();
 
-		Attribute attr = (Attribute) sclass.lookupElementExtended("name");
-		t.setMetaReference(attr.getType());
+		EAttribute attr = (EAttribute) EcoreHelper.lookupElementExtended(sclass,"name");
+		t.setMetaReference((EClass) attr.getEType());
 
 		s.getTemplates().add(t);
 
@@ -69,8 +88,8 @@ public class TestPrettyPrintTCS extends CtsPrettyPrinterTestBase {
 		Symbol sym = modelFactory.createSymbol();
 		sym.setName("lsquare");
 		sym.setValue("[");
-		sym.getSpaces().add(SpaceKindEnum.LEFT_SPACE);
-		sym.getSpaces().add(SpaceKindEnum.RIGHT_NONE);
+		sym.getSpaces().add(SpaceKind.LEFT_SPACE);
+		sym.getSpaces().add(SpaceKind.RIGHT_NONE);
 		s.getSymbols().add(sym);
 
 		sym = modelFactory.createSymbol();
@@ -81,14 +100,14 @@ public class TestPrettyPrintTCS extends CtsPrettyPrinterTestBase {
 		sym = modelFactory.createSymbol();
 		sym.setName("dlsquare");
 		sym.setValue("[[");
-		sym.getSpaces().add(SpaceKindEnum.LEFT_NONE);
-		sym.getSpaces().add(SpaceKindEnum.RIGHT_NONE);
+		sym.getSpaces().add(SpaceKind.LEFT_NONE);
+		sym.getSpaces().add(SpaceKind.RIGHT_NONE);
 		s.getSymbols().add(sym);
 
 		sym = modelFactory.createSymbol();
 		sym.setName("drsquare");
 		sym.setValue("]]");
-		sym.getSpaces().add(SpaceKindEnum.RIGHT_SPACE);
+		sym.getSpaces().add(SpaceKind.RIGHT_SPACE);
 		s.getSymbols().add(sym);
 
 		TextBlock output = TcsPrettyPrinterTestHelper.prettyPrintTextBlock(s,

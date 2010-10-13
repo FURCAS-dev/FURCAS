@@ -19,6 +19,7 @@ public class TcsMapper implements ITokenMapper {
 	/* (non-Javadoc)
 	 * @see de.uka.ipd.sdq.dialogs.selection.IColorMapper#mapColor(antlr.Token)
 	 */
+	@Override
 	public Object mapColor(Token t) {
 		switch (t.getType()) {
 		case TCSLexer.COMMENT:

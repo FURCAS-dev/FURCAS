@@ -13,12 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import tcs.ConcreteSyntax;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import com.sap.mi.textual.epi.util.ProjectSyntaxHelper;
-import com.sap.mi.textual.grammar.ParserFacade;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.PRI;
+import com.sap.furcas.builder.ProjectSyntaxHelper;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.runtime.parser.ParserFacade;
+
 
 public class TcsTestHelper {
 
@@ -40,7 +41,7 @@ public class TcsTestHelper {
 	}
 
 	public static ConcreteSyntax getSyntaxFromStream(InputStream in,
-			Connection connection, List<String> metaModelContainerNames,
+			ResourceSet connection, List<String> metaModelContainerNames,
 			ParserFacade tcsParserFacade) {
 		String content = getStreamContents(in);
 
@@ -55,11 +56,12 @@ public class TcsTestHelper {
 	}
 	
 	public static ConcreteSyntax getSyntaxFromStream(InputStream in,
-			Connection connection, Set<PRI> referencePRIs,
+			ResourceSet connection, Set<URI> referencePRIs,
 			ParserFacade tcsParserFacade) {
 		String content = getStreamContents(in);
 
 		try {
+			
 			return (ConcreteSyntax) ProjectSyntaxHelper.createMapping(content,
 					connection, referencePRIs, tcsParserFacade);
 		} catch (Exception e) {
@@ -106,7 +108,7 @@ public class TcsTestHelper {
 	}
 
 	public static ConcreteSyntax createTcsSyntaxMappingOnConnection(
-			Connection connection) {
+			ResourceSet connection) {
 		List<String> allMetaModelContainerNames = new ArrayList<String>();
 		allMetaModelContainerNames.add("demo.sap.com/tcsmeta");
 		return getSyntaxFromStream(TCSParser.class

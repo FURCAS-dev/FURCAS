@@ -1,10 +1,10 @@
 package com.sap.ide.cts.parser.incremental;
 
+import static com.sap.furcas.runtime.textblocks.TbChangeUtil.addToBlockAt;
+import static com.sap.furcas.runtime.textblocks.TbVersionUtil.getOtherVersion;
 import static com.sap.ide.cts.parser.incremental.IncrementalParsingUtil.checkIsDefinedOptional;
 import static com.sap.ide.cts.parser.incremental.IncrementalParsingUtil.deleteCorrespondingModelElements;
 import static com.sap.ide.cts.parser.incremental.IncrementalParsingUtil.getOriginalVersion;
-import static com.sap.mi.textual.parsing.textblocks.TbChangeUtil.addToBlockAt;
-import static com.sap.mi.textual.parsing.textblocks.TbVersionUtil.getOtherVersion;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,20 +30,20 @@ import com.sap.furcas.metamodel.textblocks.Bostoken;
 import com.sap.furcas.metamodel.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.parsing.textblocks.TextBlockFactory;
+import com.sap.furcas.parsing.textblocks.observer.TextBlockProxy;
+import com.sap.furcas.parsing.textblocks.observer.TokenRelocationUtil;
+import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
+import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
+import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
+import com.sap.furcas.runtime.parser.impl.ModelElementProxy;
+import com.sap.furcas.runtime.tcs.TcsUtil;
+import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
+import com.sap.furcas.runtime.textblocks.TbUtil;
+import com.sap.furcas.runtime.textblocks.TbValidationUtil;
+import com.sap.furcas.runtime.textblocks.TbVersionUtil;
+import com.sap.furcas.runtime.textblocks.model.ShortPrettyPrinter;
 import com.sap.ide.cts.parser.Activator;
-import com.sap.mi.textual.common.interfaces.IModelElementProxy;
-import com.sap.mi.textual.grammar.IModelElementInvestigator;
-import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
-import com.sap.mi.textual.grammar.impl.ModelElementProxy;
-import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
-import com.sap.mi.textual.parsing.textblocks.TbUtil;
-import com.sap.mi.textual.parsing.textblocks.TbValidationUtil;
-import com.sap.mi.textual.parsing.textblocks.TbVersionUtil;
-import com.sap.mi.textual.parsing.textblocks.TextBlockFactory;
-import com.sap.mi.textual.parsing.textblocks.observer.TextBlockProxy;
-import com.sap.mi.textual.parsing.textblocks.observer.TokenRelocationUtil;
-import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.mi.textual.textblocks.model.ShortPrettyPrinter;
 
 /**
  * @see TextBlockReuseStrategy

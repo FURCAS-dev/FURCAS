@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Textblocks
+Bundle-SymbolicName: com.sap.furcas.runtime.textblocks
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: SAP
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: com.sap.furcas.metamodel,
+ org.eclipse.emf.edit;bundle-version="2.6.0",
+ com.sap.furcas.runtime.tcs,
+ com.sap.furcas.runtime.common
+Export-Package: com.sap.furcas.runtime.textblocks,
+ com.sap.furcas.runtime.textblocks.model,
+ com.sap.furcas.runtime.textblocks.modifcation,
+ com.sap.furcas.runtime.textblocks.shortprettyprint,
+ com.sap.furcas.runtime.textblocks.validation

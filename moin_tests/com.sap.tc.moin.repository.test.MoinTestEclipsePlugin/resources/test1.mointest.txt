@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Partition xmlns:m='http://xml.sap.com/moin'>
-<C n='test.sap.com/tc/moin/metamodel/testcases/foundation' i='1' v='1.0.0'/>
-<M c='1' q='testcasesfoundation.case001f.A1f' i='45ED922CA5D2947E0EE543701D54E6B7BF726A50' ova='text'/>
-<testcasesfoundation.case001f.A1f m:c='1' m:i='48BBFD8821103B41783311DDA2900019990554D6'>
-<translatableText maxWidth='255' originalText='my dummy test text' resName='testResName' resType='button' translate='true' transUnitId='21103B40783311DDCF100019990554D6'/>
-</testcasesfoundation.case001f.A1f>
-</Partition>

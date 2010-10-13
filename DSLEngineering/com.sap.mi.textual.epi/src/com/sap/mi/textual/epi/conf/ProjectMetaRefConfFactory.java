@@ -3,8 +3,9 @@ package com.sap.mi.textual.epi.conf;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 
+import com.sap.furcas.utils.exceptions.EclipseExceptionHelper;
+import com.sap.mi.textual.epi.Activator;
 import com.sap.mi.textual.epi.Constants;
-import com.sap.mi.textual.epi.util.ExceptionHelper;
 
 
 /**
@@ -40,7 +41,7 @@ public class ProjectMetaRefConfFactory {
 		} else if (value == null || value.trim().equals("")) {
 			return null;
 		} else {
-			throw new CoreException(ExceptionHelper.getErrorStatus( "Project property " + Constants.PROJECT_METAREF_PROPERTY + " contained unknown value " + value));
+			throw new CoreException(EclipseExceptionHelper.getErrorStatus( "Project property " + Constants.PROJECT_METAREF_PROPERTY + " contained unknown value " + value,  Activator.PLUGIN_ID));
 		}
 	}
 
@@ -60,7 +61,7 @@ public class ProjectMetaRefConfFactory {
 //		} else if (conf instanceof EcoreMetaProjectConf) {
 //		    ProjectPropertiesStorageHelper.setProperty(project, Constants.PROJECT_METAREF_PROPERTY, ECORE_METAMODEL_CONF);
 		} else {
-		    throw new CoreException(ExceptionHelper.getErrorStatus( "Unknown IProjectMetaRefConf implementation: " + conf.getClass().getName()));
+		    throw new CoreException(EclipseExceptionHelper.getErrorStatus( "Unknown IProjectMetaRefConf implementation: " + conf.getClass().getName(), Activator.PLUGIN_ID));
 		}
 		conf.configureProject(project);
 	}

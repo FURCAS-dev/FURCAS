@@ -3,12 +3,13 @@
  */
 package com.sap.ide.cts.editor.test.util;
 
-import textblocks.AbstractToken;
-import textblocks.TextBlock;
-import textblocks.VersionEnum;
+import org.eclipse.emf.ecore.EObject;
 
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.Version;
 import com.sap.mi.textual.parsing.textblocks.TestTextBlocksModelElementFactory;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
+
 
 /**
  *
@@ -17,7 +18,7 @@ public class TestSourceTextBlockCreator {
 
 	// copied from CtsDocument
 	public static TextBlock initialiseTextBlocksFromModel(
-			RefBaseObject rootObject, String content) {
+			EObject rootObject, String content) {
 		return null;
 		// TODO
 		// TextBlock rootBlock;
@@ -72,14 +73,15 @@ public class TestSourceTextBlockCreator {
 			rootBlock.getTokens().add(contentToken);
 
 			rootBlock.setLength(contentToken.getLength());
-			rootBlock.setComplete(true);
+			//rootBlock.setIsComplete(true);
 			rootBlock.setEndColumn(contentToken.getLength());
 			rootBlock.setCachedString(contentToken.getValue());
 			eosToken.setOffset(contentToken.getLength());
 		}
 
 		rootBlock.getTokens().add(eosToken);
-		rootBlock.setVersion(VersionEnum.REFERENCE);
+		rootBlock.setVersion(Version.REFERENCE);
+		
 		// TODO: make this paramterizable: either assign to same or separate
 		// partiotion
 		// ((Partitionable)rootObject).get___Partition().assignElement(rootBlock);

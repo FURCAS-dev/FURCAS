@@ -21,15 +21,15 @@ import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.mi.textual.grammar.ModelElementCreationException;
-import com.sap.mi.textual.grammar.impl.DelayedReference;
-import com.sap.mi.textual.grammar.impl.ModelInjector;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.mi.textual.parsing.textblocks.LexedTokenWrapper;
-import com.sap.mi.textual.parsing.textblocks.LocalContextBuilder;
-import com.sap.mi.textual.parsing.textblocks.TbUtil;
-import com.sap.mi.textual.parsing.textblocks.TextBlocksAwareModelAdapter;
-import com.sap.mi.textual.parsing.textblocks.observer.ParserTextBlocksHandler;
+import com.sap.furcas.parsing.textblocks.LexedTokenWrapper;
+import com.sap.furcas.parsing.textblocks.LocalContextBuilder;
+import com.sap.furcas.parsing.textblocks.TextBlocksAwareModelAdapter;
+import com.sap.furcas.parsing.textblocks.observer.ParserTextBlocksHandler;
+import com.sap.furcas.runtime.parser.ModelElementCreationException;
+import com.sap.furcas.runtime.parser.impl.DelayedReference;
+import com.sap.furcas.runtime.parser.impl.ModelInjector;
+import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.textual.textblocks.TbUtil;
 
 
 /**

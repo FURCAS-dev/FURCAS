@@ -6,13 +6,12 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SAP
 Require-Bundle: org.eclipse.emf,
  org.antlr,
- com.sap.mi.textual.common,
  org.eclipse.emf.ecore,
- com.sap.mi.textual.parsing,
+ com.sap.furcas.runtime.parser,
  com.sap.mi.textual.parsing.textblocks,
  com.sap.ide.cts.parser,
- com.sap.mi.textual.tcs.util,
- com.sap.mi.textual.ecorelookup,
- com.sap.tc.moin.textual.runtime.emf;bundle-version="1.0.0"
+ com.sap.furcas.parsergenerator.emf,
+ com.sap.tc.moin.textual.runtime.emf;bundle-version="1.0.0",
+ com.sap.furcas.runtime.common;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: com.sap.ide.cts.moin.parserfactory

@@ -13,25 +13,19 @@ import java.io.InputStream;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.sap.mi.textual.grammar.IModelAdapter;
-import com.sap.mi.textual.grammar.ParserFacade;
-import com.sap.mi.textual.grammar.impl.DelegationParsingObserver;
-import com.sap.mi.textual.grammar.parser.TCSLexer;
-import com.sap.mi.textual.grammar.parser.TCSParser;
-import com.sap.mi.textual.moin.standalone.MOINTCSMetaConnectionProvider;
-import com.sap.mi.textual.syntaxmodel.emfadapter.MoinContext;
-import com.sap.mi.textual.test.util.StubModelAdapter;
-import com.sap.mi.textual.util.FileReadHelper;
+import com.sap.furcas.parser.tcs.bootstrapped.TCSLexer;
+import com.sap.furcas.parser.tcs.bootstrapped.TCSParser;
+import com.sap.furcas.parsergenerator.util.FileReadHelper;
+import com.sap.furcas.runtime.parser.IModelAdapter;
+import com.sap.furcas.runtime.parser.ParserFacade;
+import com.sap.furcas.runtime.parser.impl.DelegationParsingObserver;
+import com.sap.furcas.test.util.StubModelAdapter;
 
 /**
  * Test class to make sure a generated Parser notifies an Observer of all
  * required events and none more.
  */
 public class ObservationTest {
-
-	static {
-		MoinContext.setMoin(MOINTCSMetaConnectionProvider.getBuildMoin());
-	}
 
 	@Test
 	public void testTcsParserWithBibText() throws Exception {

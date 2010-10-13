@@ -2,22 +2,18 @@ package com.sap.mi.textual.test.scenarios;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.sap.furcas.parsergenerator.testutils.StringListHelper;
+import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.runtime.common.util.QualifiedNamesHelper;
+import com.sap.furcas.test.parsing.base.ExtendedGeneratedParserBasedTest;
+import com.sap.furcas.test.util.EcoreMetaModelLookUp;
+import com.sap.furcas.test.util.StubModelAdapter;
 import com.sap.ide.cts.editor.test.util.ParserGenerationTestHelper;
-import com.sap.mi.textual.common.exceptions.GrammarGenerationException;
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
-import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
-import com.sap.mi.textual.common.util.QualifiedNamesHelper;
-import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
-import com.sap.mi.textual.test.util.EcoreMetaLookUp;
-import com.sap.mi.textual.test.util.StringListHelper;
-import com.sap.mi.textual.test.util.StubModelAdapter;
 
 /**
  * Tests generation of TCS Parsers.
@@ -34,7 +30,7 @@ public class TCSObsoleteTest extends ExtendedGeneratedParserBasedTest {
     @BeforeClass
 	public static void setupParser() throws Exception {
 		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new EcoreMetaLookUp("TCS.ecore"));
+		setLookup(new EcoreMetaModelLookUp("TCS.ecore"));
 		generateParserForLanguage(LANGUAGE);
 	}
 

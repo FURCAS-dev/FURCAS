@@ -12,13 +12,13 @@ import java.util.Set;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
+import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
+import com.sap.furcas.test.parsing.base.ExtendedGeneratedParserBasedTest;
+import com.sap.furcas.test.parsing.base.StubModelElement;
+import com.sap.furcas.test.util.EcoreMetaModelLookUp;
+import com.sap.furcas.test.util.StubModelAdapter;
 import com.sap.ide.cts.editor.test.util.ParserGenerationTestHelper;
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
-import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
-import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
-import com.sap.mi.textual.test.util.EcoreMetaLookUp;
-import com.sap.mi.textual.test.util.StubModelAdapter;
-import com.sap.mi.textual.test.util.StubModelElement;
 
 /**
  * Simple Test for the custom Expression language
@@ -31,7 +31,7 @@ public class PeopleTest extends ExtendedGeneratedParserBasedTest {
 	@BeforeClass
 	public static void setupParser() throws Exception {
 		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new EcoreMetaLookUp("People.ecore"));
+		setLookup(new EcoreMetaModelLookUp("People.ecore"));
 		generateParserForLanguage(LANGUAGE);
 	}
 

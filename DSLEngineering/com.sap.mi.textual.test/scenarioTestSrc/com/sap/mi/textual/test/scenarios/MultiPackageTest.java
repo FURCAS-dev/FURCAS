@@ -8,9 +8,10 @@ import java.util.Set;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.sap.furcas.test.parsing.base.ExtendedGeneratedParserBasedTest;
+import com.sap.furcas.test.util.EcoreMetaModelLookUp;
+import com.sap.furcas.test.util.StubModelAdapter;
 import com.sap.ide.cts.editor.test.util.ParserGenerationTestHelper;
-import com.sap.mi.textual.test.util.EcoreMetaLookUp;
-import com.sap.mi.textual.test.util.StubModelAdapter;
 
 /**
  * Simple Test for the a custom language having a metamodel with several 
@@ -26,7 +27,7 @@ public class MultiPackageTest extends ExtendedGeneratedParserBasedTest {
 	@BeforeClass
 	public static void setupParser() throws Exception {
 		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new EcoreMetaLookUp("MultiPackage.ecore"));
+		setLookup(new EcoreMetaModelLookUp("MultiPackage.ecore"));
 		generateParserForLanguage(LANGUAGE);
 	}
 	

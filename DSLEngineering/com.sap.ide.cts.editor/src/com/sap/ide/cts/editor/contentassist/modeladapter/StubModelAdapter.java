@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
-import com.sap.mi.textual.common.util.QualifiedNamesHelper;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.common.util.QualifiedNamesHelper;
 import com.sap.mi.textual.grammar.IBareModelAdapter;
 import com.sap.mi.textual.grammar.exceptions.ReferenceSettingException;
 

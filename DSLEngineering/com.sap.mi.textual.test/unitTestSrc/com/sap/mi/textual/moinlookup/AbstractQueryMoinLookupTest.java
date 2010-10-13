@@ -10,17 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.ocl.utilities.TypedElement;
 import org.junit.Test;
 
-import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
-import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.parsergenerator.emf.lookup.AbstractQueryBasedEcoreLookUp;
+import com.sap.furcas.parsergenerator.testutils.StringListHelper;
+import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.mi.textual.parsing.MofAnyStub;
-import com.sap.mi.textual.test.util.StringListHelper;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.TypedElement;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * Tests the abstract AbstractMoinLookup class by creating a stub subclass and testing that.
@@ -57,13 +54,13 @@ public class AbstractQueryMoinLookupTest {
         classi6.name = "wrongclass"; // stub adds "package" in qualifiedname
         inputClassifiers.add(classi6);
         
-        List<Classifier> result = AbstractQueryBasedMoinMetaLookUp.filterClassifiers(qualifiedNameOfType, inputClassifiers);
+        List<Classifier> result = AbstractQueryBasedEcoreLookUp.filterClassifiers(qualifiedNameOfType, inputClassifiers);
         
         assertEquals(expectedResult, result);
     }
 
     
-    private class MoinLookUpSubTypeStub extends AbstractQueryBasedMoinMetaLookUp {
+    private class MoinLookUpSubTypeStub extends AbstractQueryBasedEcoreLookUp {
 
         /**
          * @param connection

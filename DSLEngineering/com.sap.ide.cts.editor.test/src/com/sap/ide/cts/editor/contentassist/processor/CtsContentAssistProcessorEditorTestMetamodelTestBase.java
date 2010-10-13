@@ -3,11 +3,11 @@ package com.sap.ide.cts.editor.contentassist.processor;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import com.sap.furcas.runtime.common.exceptions.GrammarGenerationException;
+import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
+import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
+import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.ide.cts.editor.test.util.StringReplacement;
-import com.sap.mi.textual.common.exceptions.GrammarGenerationException;
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
-import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
-import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
 
 public abstract class CtsContentAssistProcessorEditorTestMetamodelTestBase
 		extends CtsContentAssistProcessorTestBase {

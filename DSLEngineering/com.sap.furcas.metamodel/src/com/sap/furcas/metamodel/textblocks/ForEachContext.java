@@ -32,98 +32,98 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface ForEachContext extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Foreach Pedicate Property Init</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Foreach Pedicate Property Init</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Foreach Pedicate Property Init</em>' reference.
-	 * @see #setForeachPedicatePropertyInit(ForeachPredicatePropertyInit)
-	 * @see com.sap.furcas.metamodel.textblocks.TextblocksPackage#getForEachContext_ForeachPedicatePropertyInit()
-	 * @model
-	 * @generated
-	 */
-	ForeachPredicatePropertyInit getForeachPedicatePropertyInit();
+        /**
+         * Returns the value of the '<em><b>Foreach Pedicate Property Init</b></em>' reference.
+         * <!-- begin-user-doc -->
+         * <p>
+         * If the meaning of the '<em>Foreach Pedicate Property Init</em>' reference isn't clear,
+         * there really should be more of a description here...
+         * </p>
+         * <!-- end-user-doc -->
+         * @return the value of the '<em>Foreach Pedicate Property Init</em>' reference.
+         * @see #setForeachPedicatePropertyInit(ForeachPredicatePropertyInit)
+         * @see com.sap.furcas.metamodel.textblocks.TextblocksPackage#getForEachContext_ForeachPedicatePropertyInit()
+         * @model
+         * @generated
+         */
+        ForeachPredicatePropertyInit getForeachPedicatePropertyInit();
 
-	/**
-	 * Sets the value of the '{@link com.sap.furcas.metamodel.textblocks.ForEachContext#getForeachPedicatePropertyInit <em>Foreach Pedicate Property Init</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Foreach Pedicate Property Init</em>' reference.
-	 * @see #getForeachPedicatePropertyInit()
-	 * @generated
-	 */
-	void setForeachPedicatePropertyInit(ForeachPredicatePropertyInit value);
+        /**
+         * Sets the value of the '{@link com.sap.furcas.metamodel.textblocks.ForEachContext#getForeachPedicatePropertyInit <em>Foreach Pedicate Property Init</em>}' reference.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @param value the new value of the '<em>Foreach Pedicate Property Init</em>' reference.
+         * @see #getForeachPedicatePropertyInit()
+         * @generated
+         */
+        void setForeachPedicatePropertyInit(ForeachPredicatePropertyInit value);
 
-	/**
-	 * Returns the value of the '<em><b>Context Element</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Context Element</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Context Element</em>' reference list.
-	 * @see com.sap.furcas.metamodel.textblocks.TextblocksPackage#getForEachContext_ContextElement()
-	 * @model
-	 * @generated
-	 */
-	EList<EObject> getContextElement();
+        /**
+         * Returns the value of the '<em><b>Context Element</b></em>' reference list.
+         * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
+         * <!-- begin-user-doc -->
+         * <p>
+         * If the meaning of the '<em>Context Element</em>' reference list isn't clear,
+         * there really should be more of a description here...
+         * </p>
+         * <!-- end-user-doc -->
+         * @return the value of the '<em>Context Element</em>' reference list.
+         * @see com.sap.furcas.metamodel.textblocks.TextblocksPackage#getForEachContext_ContextElement()
+         * @model
+         * @generated
+         */
+        EList<EObject> getContextElement();
 
-	/**
-	 * Returns the value of the '<em><b>Result Model Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Result Model Element</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Result Model Element</em>' reference.
-	 * @see #setResultModelElement(EObject)
-	 * @see com.sap.furcas.metamodel.textblocks.TextblocksPackage#getForEachContext_ResultModelElement()
-	 * @model
-	 * @generated
-	 */
-	EObject getResultModelElement();
+        /**
+         * Returns the value of the '<em><b>Result Model Element</b></em>' reference.
+         * <!-- begin-user-doc -->
+         * <p>
+         * If the meaning of the '<em>Result Model Element</em>' reference isn't clear,
+         * there really should be more of a description here...
+         * </p>
+         * <!-- end-user-doc -->
+         * @return the value of the '<em>Result Model Element</em>' reference.
+         * @see #setResultModelElement(EObject)
+         * @see com.sap.furcas.metamodel.textblocks.TextblocksPackage#getForEachContext_ResultModelElement()
+         * @model
+         * @generated
+         */
+        EObject getResultModelElement();
 
-	/**
-	 * Sets the value of the '{@link com.sap.furcas.metamodel.textblocks.ForEachContext#getResultModelElement <em>Result Model Element</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Result Model Element</em>' reference.
-	 * @see #getResultModelElement()
-	 * @generated
-	 */
-	void setResultModelElement(EObject value);
+        /**
+         * Sets the value of the '{@link com.sap.furcas.metamodel.textblocks.ForEachContext#getResultModelElement <em>Result Model Element</em>}' reference.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @param value the new value of the '<em>Result Model Element</em>' reference.
+         * @see #getResultModelElement()
+         * @generated
+         */
+        void setResultModelElement(EObject value);
 
-	/**
-	 * Returns the value of the '<em><b>Source Model Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Source Model Element</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source Model Element</em>' reference.
-	 * @see #setSourceModelElement(EObject)
-	 * @see com.sap.furcas.metamodel.textblocks.TextblocksPackage#getForEachContext_SourceModelElement()
-	 * @model
-	 * @generated
-	 */
-	EObject getSourceModelElement();
+        /**
+         * Returns the value of the '<em><b>Source Model Element</b></em>' reference.
+         * <!-- begin-user-doc -->
+         * <p>
+         * If the meaning of the '<em>Source Model Element</em>' reference isn't clear,
+         * there really should be more of a description here...
+         * </p>
+         * <!-- end-user-doc -->
+         * @return the value of the '<em>Source Model Element</em>' reference.
+         * @see #setSourceModelElement(EObject)
+         * @see com.sap.furcas.metamodel.textblocks.TextblocksPackage#getForEachContext_SourceModelElement()
+         * @model
+         * @generated
+         */
+        EObject getSourceModelElement();
 
-	/**
-	 * Sets the value of the '{@link com.sap.furcas.metamodel.textblocks.ForEachContext#getSourceModelElement <em>Source Model Element</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source Model Element</em>' reference.
-	 * @see #getSourceModelElement()
-	 * @generated
-	 */
-	void setSourceModelElement(EObject value);
+        /**
+         * Sets the value of the '{@link com.sap.furcas.metamodel.textblocks.ForEachContext#getSourceModelElement <em>Source Model Element</em>}' reference.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @param value the new value of the '<em>Source Model Element</em>' reference.
+         * @see #getSourceModelElement()
+         * @generated
+         */
+        void setSourceModelElement(EObject value);
 
 } // ForEachContext

@@ -16,7 +16,7 @@ import org.eclipse.jface.text.source.IAnnotationModelExtension;
 import textblocks.DocumentNode;
 import textblocks.TextBlock;
 
-import com.sap.mi.textual.parsing.textblocks.TbUtil;
+import com.sap.furcas.textual.textblocks.TbUtil;
 import com.sap.tc.moin.repository.Partitionable;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;

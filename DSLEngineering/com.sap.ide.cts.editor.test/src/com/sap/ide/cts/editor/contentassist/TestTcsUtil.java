@@ -10,35 +10,34 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.junit.Test;
 
-import tcs.Alternative;
-import tcs.Block;
-import tcs.ClassTemplate;
-import tcs.ConcreteSyntax;
-import tcs.ConditionalElement;
-import tcs.CreateAsParg;
-import tcs.FunctionCall;
-import tcs.FunctionTemplate;
-import tcs.LiteralRef;
-import tcs.Property;
-import tcs.RefersToParg;
-import tcs.SeparatorParg;
-import tcs.Sequence;
-import tcs.SequenceElement;
-import tcs.SequenceInAlternative;
-import tcs.Template;
-
+import com.sap.furcas.metamodel.TCS.Alternative;
+import com.sap.furcas.metamodel.TCS.Block;
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.TCS.ConditionalElement;
+import com.sap.furcas.metamodel.TCS.CreateInPArg;
+import com.sap.furcas.metamodel.TCS.FunctionCall;
+import com.sap.furcas.metamodel.TCS.FunctionTemplate;
+import com.sap.furcas.metamodel.TCS.LiteralRef;
+import com.sap.furcas.metamodel.TCS.Property;
+import com.sap.furcas.metamodel.TCS.RefersToPArg;
+import com.sap.furcas.metamodel.TCS.SeparatorPArg;
+import com.sap.furcas.metamodel.TCS.Sequence;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
+import com.sap.furcas.metamodel.TCS.SequenceInAlternative;
+import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.parsergenerator.tcs.util.*;
 import com.sap.ide.cts.editor.test.util.TcsTestHelper;
-import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
 
 public class TestTcsUtil extends TcsFixtureBase {
 
 	@Test
 	public void testContainsRefersToArg() {
-		RefersToParg refersToArg = modelFactory.createRefersToParg();
-		CreateAsParg createAsArg = modelFactory.createCreateAsParg();
+		RefersToPArg refersToArg = modelFactory.createRefersToParg();
+		CreateInPArg createAsArg = modelFactory.createCreateAsParg();
 
 		Property withRefersToArg = modelFactory.createProperty();
 		withRefersToArg.getPropertyArgs().add(refersToArg);
@@ -380,7 +379,7 @@ public class TestTcsUtil extends TcsFixtureBase {
 	@Test
 	public void testGetParentSequenceElementPropery() {
 		Property prop = modelFactory.createProperty();
-		SeparatorParg sepArg = modelFactory.createSeparatorParg();
+		SeparatorPArg sepArg = modelFactory.createSeparatorParg();
 		Sequence sequence = modelFactory.createSequence();
 		Property property = modelFactory.createProperty();
 
@@ -516,25 +515,33 @@ public class TestTcsUtil extends TcsFixtureBase {
 	@Test
 	public void testIsMultiValued() {
 		Property multi1Prop = modelFactory.createProperty();
-		StructuralFeature multi1Struc = modelFactory.createReference();
-		multi1Struc.setMultiplicity(modelFactory.createMultiplicityType(0, -1,
-				false, false));
+		EStructuralFeature multi1Struc = modelFactory.createReference();
+		
+		multi1Struc.setLowerBound(0);
+		multi1Struc.setUpperBound(-1);
+		multi1Struc.setOrdered(false);
+		multi1Struc.setUnique(false);
 		setStrucfeature(multi1Prop, multi1Struc);
 
 		assertEquals(true, TcsUtil.isMultiValued(multi1Prop));
 
 		Property multi2Prop = modelFactory.createProperty();
-		StructuralFeature multi2Struc = modelFactory.createAttribute();
-		multi2Struc.setMultiplicity(modelFactory.createMultiplicityType(0, 2,
-				false, false));
+		EStructuralFeature multi2Struc = modelFactory.createAttribute();
+		
+		multi2Struc.setLowerBound(0);
+		multi2Struc.setUpperBound(2);
+		multi2Struc.setOrdered(false);
+		multi2Struc.setUnique(false);
 		setStrucfeature(multi2Prop, multi2Struc);
 
 		assertEquals(true, TcsUtil.isMultiValued(multi2Prop));
 
 		Property singleProp = modelFactory.createProperty();
-		StructuralFeature singleStruc = modelFactory.createReference();
-		singleStruc.setMultiplicity(modelFactory.createMultiplicityType(0, 1,
-				false, false));
+		EStructuralFeature singleStruc = modelFactory.createReference();
+		singleStruc.setLowerBound(0);
+		singleStruc.setUpperBound(1);
+		singleStruc.setOrdered(false);
+		singleStruc.setUnique(false);
 		setStrucfeature(singleProp, singleStruc);
 
 		assertEquals(false, TcsUtil.isMultiValued(singleProp));

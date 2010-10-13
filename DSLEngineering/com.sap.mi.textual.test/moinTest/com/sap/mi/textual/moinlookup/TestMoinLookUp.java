@@ -1,7 +1,7 @@
 package com.sap.mi.textual.moinlookup;
 
-import static com.sap.mi.textual.test.util.ResolutionBeanHelper.refM;
-import static com.sap.mi.textual.test.util.StringListHelper.list;
+import static com.sap.furcas.parsergenerator.testutils.ResolutionBeanHelper.refM;
+import static com.sap.furcas.parsergenerator.testutils.StringListHelper.list;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -14,15 +14,11 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import tcs.TcsPackage;
-
+import com.sap.furcas.parsergenerator.testutils.StringListHelper;
+import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.ide.cts.editor.test.util.ProjectConnectionBasedTest;
-import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
-import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.mi.textual.test.util.MOINContainerNameLookUpFactory;
-import com.sap.mi.textual.test.util.StringListHelper;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 public class TestMoinLookUp extends ProjectConnectionBasedTest{
 

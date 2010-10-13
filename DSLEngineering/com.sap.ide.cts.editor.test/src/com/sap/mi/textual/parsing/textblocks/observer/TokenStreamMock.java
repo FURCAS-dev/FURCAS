@@ -9,9 +9,8 @@ import java.util.List;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.Token;
 
-import textblocks.AbstractToken;
-
-import com.sap.mi.textual.parsing.textblocks.ITextBlocksTokenStream;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.parsing.textblocks.ITextBlocksTokenStream;
 
 /**
  *
