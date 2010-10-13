@@ -4,33 +4,26 @@ import java.util.Collection;
 import java.util.HashSet;
 
 import org.antlr.runtime.Lexer;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import tcs.ClassTemplate;
-import tcs.ConcreteSyntax;
-import textblocks.Bostoken;
-import textblocks.DocumentNode;
-import textblocks.Eostoken;
-import textblocks.LexedToken;
-import textblocks.TextBlock;
-import textblocks.TextblocksPackage;
-import textblocks.VersionEnum;
-
-import com.sap.furcas.textual.textblocks.TbNavigationUtil;
-import com.sap.furcas.textual.textblocks.TbUtil;
-import com.sap.furcas.textual.textblocks.TbValidationUtil;
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.textblocks.Bostoken;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.Eostoken;
+import com.sap.furcas.metamodel.textblocks.LexedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
+import com.sap.furcas.metamodel.textblocks.Version;
 import com.sap.ide.cts.editor.CtsActivator;
 import com.sap.ide.cts.editor.commands.PrettyPrintCommand;
 import com.sap.ide.cts.editor.prettyprint.CtsTextBlockTCSExtractorStream;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
 import com.sap.ide.cts.parser.incremental.TextBlockMappingBrokenException;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.exception.ExecutionRollbackFailedException;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+
 
 /**
  * Util classes required to get a corresponding rootBlock for an
@@ -50,7 +43,7 @@ public class TbModelInitializationUtil {
      * @return a TextBlock or null if none could be found
      * @throws TextBlockMappingBrokenException
      */
-    public static TextBlock getRootBlockForRootObject(RefObject rootObject, TextblocksPackage tbPackage, ClassTemplate rootTemplate)
+    public static TextBlock getRootBlockForRootObject(EObject rootObject, TextblocksPackage tbPackage, ClassTemplate rootTemplate)
 	    throws TextBlockMappingBrokenException {
 	Collection<DocumentNode> nodes = tbPackage.getDocumentNodeReferencesCorrespondingModelElement().getDocumentNode(
 		rootObject);
@@ -122,12 +115,12 @@ public class TbModelInitializationUtil {
      * @param parserFactory
      * @return the created root TextBlock or null if initialization failed
      */
-    public static TextBlock initilizeTextBlocksFromModel(RefObject rootObject, TextblocksPackage tbPackage,
-	    ConcreteSyntax syntax, Connection connection,
+    public static TextBlock initilizeTextBlocksFromModel(EObject rootObject, TextblocksPackage tbPackage,
+	    ConcreteSyntax syntax, ResourceSet connection,
 	    ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) {
 
 	TextBlock rootBlock = null;
-	ModelPartition partitionForTextBlocks = getPartitionForTextBlocks(rootObject);
+	Resource partitionForTextBlocks = getPartitionForTextBlocks(rootObject);
 
 	CtsTextBlockTCSExtractorStream target = new CtsTextBlockTCSExtractorStream(tbPackage, partitionForTextBlocks,
 		parserFactory);
@@ -161,8 +154,8 @@ public class TbModelInitializationUtil {
      * @param rootObject
      * @return
      */
-    public static TextBlock createNewTextBlockForModel(RefObject rootObject) {
-	ModelPartition partitionForTextBlocks = getPartitionForTextBlocks(rootObject);
+    public static TextBlock createNewTextBlockForModel(EObject rootObject) {
+	Resource partitionForTextBlocks = getPartitionForTextBlocks(rootObject);
 	TextBlock rootBlock = createNewTextBlockModel(rootObject, partitionForTextBlocks);
 	return rootBlock;
     }
@@ -171,8 +164,8 @@ public class TbModelInitializationUtil {
      * TODO this has to be adapted if there is going to be an extra partition
      * for model elements
      */
-    private static ModelPartition getPartitionForTextBlocks(RefBaseObject modelElement) {
-	return ((Partitionable) modelElement).get___Partition();
+    private static Resource getPartitionForTextBlocks(RefBaseObject modelElement) {
+	return ((EObject) modelElement).get___Partition();
     }
 
     /**
@@ -182,12 +175,12 @@ public class TbModelInitializationUtil {
      * @param partitionForTextBlocks
      * @return
      */
-    private static TextBlock createNewTextBlockModel(RefObject rootObject, ModelPartition partitionForTextBlocks) {
-	TextblocksPackage tbPackage = ((Partitionable) rootObject).get___Connection().getPackage(
+    private static TextBlock createNewTextBlockModel(EObject rootObject, Resource partitionForTextBlocks) {
+	TextblocksPackage tbPackage = ((EObject) rootObject).get___Connection().getPackage(
 		TextblocksPackage.PACKAGE_DESCRIPTOR);
 	TextBlock rootBlock = (TextBlock) tbPackage.getTextBlock().refCreateInstanceInPartition(partitionForTextBlocks);
 	rootBlock.getCorrespondingModelElements().add(rootObject);
-	Bostoken bosToken = ANTLRIncrementalLexerAdapter.createBOSToken(tbPackage, VersionEnum.REFERENCE,
+	Bostoken bosToken = ANTLRIncrementalLexerAdapter.createBOSToken(tbPackage, Version.REFERENCE,
 		ANTLRIncrementalLexerAdapter.bosTokenType);
 	rootBlock.getTokens().add(bosToken);
 
@@ -196,10 +189,10 @@ public class TbModelInitializationUtil {
 	contentToken.setLength(0);
 	contentToken.setEndColumn(0);
 	contentToken.setType(0); // TODO What is the type of nothing?
-	contentToken.setVersion(VersionEnum.REFERENCE);
+	contentToken.setVersion(Version.REFERENCE);
 	rootBlock.getTokens().add(contentToken);
 
-	Eostoken eosToken = ANTLRIncrementalLexerAdapter.createEOSToken(tbPackage, VersionEnum.REFERENCE,
+	Eostoken eosToken = ANTLRIncrementalLexerAdapter.createEOSToken(tbPackage, Version.REFERENCE,
 		ANTLRIncrementalLexerAdapter.eosTokenType);
 	rootBlock.getTokens().add(eosToken);
 
@@ -207,7 +200,7 @@ public class TbModelInitializationUtil {
 	rootBlock.setComplete(true);
 	rootBlock.setEndColumn(0);
 	rootBlock.setCachedString("");
-	rootBlock.setVersion(VersionEnum.REFERENCE);
+	rootBlock.setVersion(Version.REFERENCE);
 
 	return rootBlock;
     }

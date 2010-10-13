@@ -12,8 +12,6 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 
-import com.sap.mi.fwk.ui.ModelManagerUI;
-
 /**
  * The activator class controls the plug-in life cycle
  */

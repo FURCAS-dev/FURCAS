@@ -5,37 +5,19 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IDocumentExtension3;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.ui.texteditor.AbstractDocumentProvider;
 
-<<<<<<< HEAD
 import com.sap.furcas.metamodel.textblocks.TextBlock;
-=======
-import textblocks.TextBlock;
-import textblocks.VersionEnum;
-
-import com.sap.furcas.textual.textblocks.TbChangeUtil;
-import com.sap.furcas.textual.textblocks.TbVersionUtil;
->>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 import com.sap.ide.cts.editor.CtsActivator;
 import com.sap.ide.cts.editor.CtsAnnotationModel;
 import com.sap.ide.cts.editor.FurcasDocumentSetupParticpant;
 import com.sap.ide.cts.editor.commands.CleanUpTextBlocksCommand;
-<<<<<<< HEAD
-import com.sap.mi.textual.parsing.textblocks.TbChangeUtil;
-import com.sap.mi.textual.parsing.textblocks.TbVersionUtil;
-import com.sun.corba.se.pept.transport.Connection;
-=======
-import com.sap.mi.fwk.ui.ModelAdapterUI;
-import com.sap.mi.fwk.ui.ModelManagerUI;
-import com.sap.mi.fwk.ui.editor.ModelEditorInput;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.NullPartitionNotEmptyException;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.ReferencedTransientElementsException;
+
 >>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 public class CtsDocumentProvider extends AbstractDocumentProvider {
@@ -97,7 +79,7 @@ public class CtsDocumentProvider extends AbstractDocumentProvider {
 			try {
 				IProject project = (IProject) mei.getAdapter(IProject.class);
 				CtsDocument ctsDocument = ((CtsDocument) info.fDocument);
-				Connection co = ModelAdapterUI.getInstance().getConnection(
+				ResourceSet co = ModelAdapterUI.getInstance().getConnection(
 						ctsDocument.getRootObject());
 				if(TbVersionUtil.getOtherVersion(ctsDocument.getRootBlock(), VersionEnum.CURRENT) != null) {
 					//only clean up if a current version exists, as this is only the case if
@@ -148,7 +130,7 @@ public class CtsDocumentProvider extends AbstractDocumentProvider {
 			CtsDocument ctsDocument = ((CtsDocument) info.fDocument);
 			TextBlock newRoot = (TextBlock) TbChangeUtil.cleanUp(ctsDocument.getRootBlock());
 			ctsDocument.setRootBlock(newRoot);
-			Connection co = ModelAdapterUI.getInstance().getConnection(
+			ResourceSet co = ModelAdapterUI.getInstance().getConnection(
 					ctsDocument.getRootObject());
 			co.revert();
 		}

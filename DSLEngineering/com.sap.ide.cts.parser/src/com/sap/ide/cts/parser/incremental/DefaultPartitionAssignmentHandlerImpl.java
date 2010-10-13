@@ -52,7 +52,7 @@ public class DefaultPartitionAssignmentHandlerImpl implements PartitionAssignmen
 		// }
 		//if (partition == null) {
 			// store in partition of composite parent
-			partition = elementInPartition.get___Partition();
+			partition = elementInPartition.eResource();
 		//}
 		partition.assignElementIncludingChildren(element);
 	}

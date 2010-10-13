@@ -7,11 +7,11 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 
 import com.sap.ide.cts.editor.document.CtsDocument;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.Partitionable;
 
 
 /**
@@ -67,11 +67,11 @@ public class OnMarkerChangeJob extends Job {
 						
 				if(document != null) {
 		        		
-					if(document.isCompletelyItitialized() && ((Partitionable)document.getRootObject()).is___Alive()){							
+					if(document.isCompletelyItitialized() && ((EObject)document.getRootObject()).is___Alive()){							
 						
 						monitor.beginTask("Refreshing annotations ...", 0);
 						
-						ModelPartition rootPartition = ((Partitionable)document.getRootObject()).get___Partition();
+						Resource rootPartition = ((EObject)document.getRootObject()).eResource();
         				editor.refreshModelAnnotations(rootPartition);
         				
         				monitor.done();

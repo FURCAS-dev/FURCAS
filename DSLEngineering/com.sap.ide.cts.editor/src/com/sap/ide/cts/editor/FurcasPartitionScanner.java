@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.jface.text.rules.IPredicateRule;
-import org.eclipse.jface.text.rules.MultiLineRule;
-import org.eclipse.jface.text.rules.RuleBasedPartitionScanner;
-import org.eclipse.jface.text.rules.Token;
 
-import tcs.ConcreteSyntax;
-import tcs.RulePattern;
+
+
+
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.TCS.MultiLineRule;
+import com.sap.furcas.metamodel.TCS.RulePattern;
+import com.sap.furcas.metamodel.TCS.Token;
 
 public class FurcasPartitionScanner extends RuleBasedPartitionScanner {
 
@@ -19,12 +21,12 @@ public class FurcasPartitionScanner extends RuleBasedPartitionScanner {
 
     public FurcasPartitionScanner(ConcreteSyntax syntax) {
 	Collection<IPredicateRule> rules = new ArrayList<IPredicateRule>();
-	for (tcs.Token tok : syntax.getTokens()) {
+	for (Token tok : syntax.getTokens()) {
 	    if(tok.getPattern() != null && tok.getPattern().getSimplePatterns().size() >0 &&
  		    tok.getPattern().getSimplePatterns().iterator().next() instanceof RulePattern) {
 		RulePattern ruleP = (RulePattern) tok.getPattern().getSimplePatterns().iterator().next();
-		if(ruleP.getRule() instanceof tcs.MultiLineRule) {
-		    tcs.MultiLineRule tcsRule = (tcs.MultiLineRule) ruleP.getRule();
+		if(ruleP.getRule() instanceof MultiLineRule) {
+		    MultiLineRule tcsRule = (MultiLineRule) ruleP.getRule();
 		    char esc = 0;
 		    if(tcsRule.getEsc() != null) {
 			esc = tcsRule.getEsc().getName().charAt(0);

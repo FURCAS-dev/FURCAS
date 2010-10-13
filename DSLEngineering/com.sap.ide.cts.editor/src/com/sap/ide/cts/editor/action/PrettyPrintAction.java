@@ -3,6 +3,7 @@ package com.sap.ide.cts.editor.action;
 import org.antlr.runtime.Lexer;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.ui.ISharedImages;
@@ -21,8 +22,7 @@ import com.sap.ide.cts.editor.prettyprint.CtsTextBlockIncrementalTCSExtractorStr
 import com.sap.ide.cts.editor.prettyprint.IncrementalPrettyPrinter;
 import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorStream;
 import com.sap.ide.cts.moin.parserfactory.AbstractParserFactory;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sun.corba.se.pept.transport.Connection;
+
 
 /**
  *
@@ -56,7 +56,7 @@ public class PrettyPrintAction extends Action {
 	@Override
 	public void runWithEvent(Event event) {
 		try {
-			Connection connection = modelElement.get___Connection();
+			ResourceSet connection = modelElement.get___Connection();
 			MQLProcessor mql = connection.getMQLProcessor();
 
 			// select corresponding templates

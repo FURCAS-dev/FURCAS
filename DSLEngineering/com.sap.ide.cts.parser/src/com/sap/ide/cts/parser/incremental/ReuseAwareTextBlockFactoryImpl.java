@@ -1,7 +1,5 @@
 package com.sap.ide.cts.parser.incremental;
 
-import static com.sap.furcas.runtime.textblocks.TbChangeUtil.addToBlockAt;
-
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,20 +8,22 @@ import org.eclipse.emf.ecore.EObject;
 
 import com.sap.furcas.metamodel.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.textblockdefinition.TextblockDefinition;
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
-import com.sap.furcas.parsing.textblocks.ModelElementFromTextBlocksFactory;
-import com.sap.furcas.parsing.textblocks.TextBlockFactory;
-import com.sap.furcas.parsing.textblocks.observer.TextBlockProxy;
-import com.sap.furcas.parsing.textblocks.observer.TokenRelocationUtil;
+import com.sap.furcas.metamodel.textblocks.Version;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
+import com.sap.furcas.runtime.parser.textblocks.ModelElementFromTextBlocksFactory;
+import com.sap.furcas.runtime.parser.textblocks.TextBlockFactory;
+import com.sap.furcas.runtime.parser.textblocks.observer.TextBlockProxy;
+import com.sap.furcas.runtime.parser.textblocks.observer.TokenRelocationUtil;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 
 public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 
 	private TextblocksPackage textblocksPackage;
-	private Map<Template, TextBlockDefinition> tbDefsMap = new HashMap<Template, TextBlockDefinition>();
+	private Map<Template, TextblockDefinition> tbDefsMap = new HashMap<Template, TextBlockDefinition>();
 	private TextBlockReuseStrategy reuseStrategy;
 	private ModelElementFromTextBlocksFactory modelElementFactory;
 	
@@ -43,7 +43,7 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 			.refCreateInstance();
 		// TODO: check versioning for incremental parsing and adapt
 		// correspondingly here
-		textBlock.setVersion(VersionEnum.CURRENT);
+		textBlock.setVersion(Version.CURRENT);
 		textBlock.setOffsetRelative(true);
 		textBlock.setComplete(true); // default
 		textBlock.setOffset(0);
@@ -75,7 +75,7 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 	private TextBlock instantiateBlockAndMoveTokens(TextBlockProxy newVersion,
 			TextBlock parent) {
 		TextBlock tb = this.createBlock();
-		TextBlockDefinition tbDef = getTbDef(newVersion.getTemplate());
+		TextblockDefinition tbDef = getTbDef(newVersion.getTemplate());
 		tb.setType(tbDef);
 		tb.setSequenceElement(newVersion.getSequenceElement());
 		tb.getParentAltChoices().addAll(newVersion.getAlternativeChoices());
@@ -129,7 +129,7 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 								tb.getCorrespondingModelElements());
 						break;
 					}
-					loopParent = loopParent.getParentBlock();
+					loopParent = loopParent.getParent();
 				}
 			}
 		}
@@ -142,12 +142,12 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 	 * @param template
 	 * @return
 	 */
-	public TextBlockDefinition getTbDef(Template template) {
-		TextBlockDefinition tbDef = tbDefsMap.get(template);
+	public TextblockDefinition getTbDef(Template template) {
+		TextblockDefinition tbDef = tbDefsMap.get(template);
 		if (tbDef == null && template != null) {
 			// check if there was already a corresponding tbdef within the
 			// mapping definition
-			Collection<TextBlockDefinition> tbDefs = textblocksPackage
+			Collection<TextblockDefinition> tbDefs = textblocksPackage
 					.getTextblockdefinition()
 					.getTextblockDefinitionReferencesProduction()
 					.getTextBlockDefinition(template);
@@ -175,12 +175,12 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 	 * @param template
 	 * @return
 	 */
-	private TextBlockDefinition initializeTextBlockDefinition(Template template) {
-		TextBlockDefinition tbDef = (TextBlockDefinition) textblocksPackage
+	private TextblockDefinition initializeTextBlockDefinition(Template template) {
+		TextblockDefinition tbDef = (TextblockDefinition) textblocksPackage
 				.getTextblockdefinition().getTextBlockDefinition()
 				.refCreateInstance();
 		tbDef.setParseRule(template);
-		((EObject) template).get___Partition()
+		((EObject) template).eResource()
 				.assignElementIncludingChildren(tbDef);
 		return tbDef;
 	}
