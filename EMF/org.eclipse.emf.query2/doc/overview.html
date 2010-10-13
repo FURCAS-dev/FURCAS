@@ -1,0 +1,123 @@
+Introduction
+
+The EMF Query is a port of the MOIN based MQL (MOIN Query Language) to EMF. All essential MQL concepts of are still valid for EMF Query. So in order to grasp the concepts, general architecture and design as well as the algorithms behind the scenes of EMF query one has to get familiar with MQL.
+
+MOIN Core and Services includes the provision of a query language (i.e. the MOIN Query Language, abbreviated as MQL), which provides a dedicated mechanism for querying the MOIN repository. In contrast to JMI, it is an SQL-like declarative language, which makes it somewhat less expressive (for instance, there is no recursion), but more powerful and efficient with respect to its memory usage, especially when MOIN is connected to a database back-end. MQL queries can be expressed in a custom concrete syntax or a programmatic abstract syntax. There is a dedicated API for preparing and executing MQL queries.
+
+The preparation phase includes a syntax checker for the concrete syntax and a type checker which verifies that the query is sound with respect to provided MOIN meta-models. The result of this phase produces a prepared query or a report, listing all found errors with positional information (when the concrete syntax was used). The execution engine takes care of mixing dirty state (i.e. transiently-changed, but not persisted data) with persistent data, so MOIN clients need not be concerned with this aspect. The API returns result sets which can be further processed by clients. The query language provides the ability to obtain instances of types, and optionally all subtypes of provided types. By default, it will construct the product set of all provided types, unless the query is further constrained. Possible constraints are attribute constraints (i.e. an attribute is compared to a value of primitive type, including SQL's LIKE statement), attribute-comparison constraints (i.e. two attributes from one or more types are compared), or association constraints (two or more types have to be in an associational constraint). Only primitive-typed attributes or instances can be selected in the result set. Furthermore, MQL can limit the execution to a scope of MOIN partitions or containers (such as DCs). It can also handle structure types, enumeration labels, and the special Reflective::Element element.
+MQL Documentation
+
+There are various documents available which explain MQL in detail. Copies of the most interesting ones are available as attachments of this wiki page. However the original MQL documentation is originally located in perforce2628:3628 //TC/MOIN/doc/private/Design/Queries/.... Here is a short overview of the attached documents:
+
+   1. The MQL End User documentation ppt is a good starting point. The presentation introduces MQL from an end user point of view. [perforce link]
+   2. The MQL User Guide is a pdf snapshot of the MQL User Guide in the internal MOIN user documentation in the NWDS. [perforce link to html version]
+   3. The MQL Language doc explains the syntax of a query and how to formulate queries. [perforce link]
+   4. The Mql Design Aspects doc introduces the overall architecture and explains in details how the execution of queries [perforce link]
+   5. The Mql Design Aspects ppt summarizes the topics described in the design document [perforce link]
+   6. The Basic Query specification doc explains the design of the Basic Query SPI used internally [perforce link]
+   7. The Basic Query in In-Memory doc describes the in-memory implementation of the Basic Query SPI [perforce link]
+
+The JavaDoc of MQL packages can be found here (7.20 release):
+com.sap.tc.moin.repository.core.query.fql.engine
+com.sap.tc.moin.repository.core.query.messages
+com.sap.tc.moin.repository.core.query.moinql.controller
+com.sap.tc.moin.repository.core.query.moinql.engine
+com.sap.tc.moin.repository.core.query.moinql.internal
+com.sap.tc.moin.repository.core.query.moinql.parser
+com.sap.tc.moin.repository.core.query.moinql.parser.gen
+com.sap.tc.moin.repository.core.query.moinql.parser.gen.mqlAst
+com.sap.tc.moin.repository.core.query.moinql.parser.impl
+com.sap.tc.moin.repository.core.query.moinql.preprocessor
+com.sap.tc.moin.repository.core.query.moinql.shared
+EMF based MQL
+Conceptual Differences
+
+Architecture, design, query execution strategy and other algorithms of the MQL which was ported to EMF are still the same as in MOIN. (To avoid confusion please keep in mind that the acronym MQL - MOIN Query Language - is also used for the ported, EMF based query language/component. Just replace MOIN by Model if you feel way too irritated about this) The MQL Porting presentation, which was originally created for an EMF Migration Project review meeting, discusses the porting of MQL to EMF and how the switch from MOF to Ecore as M3 model affects query language and syntax. The differences between the MOIN and the EMF based query language are in fact basically a consequence of the differences between MOF and Ecore (The Essential EMF Refcard includes a good Ecore introduction). In Ecore there are no associations, association ends or links to such ends. There are no structured types without identity and no object valued attributes. Because those concepts are missing in Ecore the EMF based MQL has naturally a reduced feature set. For example there is of course no need for association related features if there are only references in EMF. Nevertheless, the EMF based MQL has the same expressiveness as the MOIN based MQL.
+
+A discussion of the differences between the MOIN and EMF based query is available in the porting guide.
+
+The original MOIN EBNF is described in the NWDS MQL User Guide. The concrete syntax of the EMF based MQL, which is also described in the porting guide, is very similar to the MOIN version and based on the following EBNF:
+
+<from-entry>             ::=     <type-clause-uri> as <alias-identifier> [<scope-clause>]
+
+<type-clause-uri>        ::=     "[" <fragment-uri> "]" [ withoutsubtypes ]
+
+<scope-clause>           ::=     [ not ] in ( resources { [<resource-scope-list>] } )
+                          |      in elements { [<element-scope-list>] }
+
+<resource-scope-list>    ::=     <resource-scope-uri> (, <resource-scope-uri> )*
+
+<resource-scope-uri>     ::=     "[" <resource-uri> "]"
+
+<element-scope-list>     ::=     <element-scope-uri> (, <element-scope-uri> )*
+
+<element-scope-uri>      ::=     "[" <fragment-uri> "]"
+
+<where-entry>            ::=     <local-where-entry> | <join-where-entry>
+
+<local-where-entry>      ::=     for <alias-identifier> ( <local-where-condition> )
+
+                          |      <alias-identifier> . <attr-identifier> <operation-part>
+
+<local-where-condition>  ::=     not <local-where-condition>
+                          |      <local-where-condition> or <local-where-condition> (or <local-where-condition>)*
+                          |      <local-where-condition> and <local-where-condition> (and <local-where-condition>)*
+                          |      <attr-identifier> <operation-part>
+                          |      ( <local-where-condition> )
+
+<operation-part>         ::=     <numeric-operation-part>
+                          |      <boolean-operation-part>
+                          |      <string-operation-part>
+
+<numeric-operation-part> ::=     <primitive-operation> <numeric-literal>
+
+<primitive-operation>    ::=     < | > | <= | >= | = | <>
+
+<boolean-operation-part> ::=     = true | = false
+
+<string-operation-part>  ::=     <string-operation> <string-literal>
+
+                          |      ( = | <> ) null
+
+<string-operation>       ::=     = | <> | like | not like
+<join-where-entry>       ::=     <assoc-predicate>
+                          |      <link-predicate>
+                          |      <comparison-predicate>
+
+<assoc-predicate>       ::=     <alias-identifier> . <navigation-clause> ( = <alias-identifier> | = null | <> null )
+
+<link-predicate>        ::=     <alias-identifier> . <navigation-clause> [ not ] in ( <MQLquery> )
+
+<navigation-clause>     ::=     <reference-identifier>
+                         |      <attr-identifier>
+
+<comparison-predicate>  ::=     <alias-identifier> . <attr-identifier> <primitive-operator> <alias-identifier> . <attr-identifier>
+                         |      <alias-identifier> = <alias-identifier>
+
+EMF Query at Eclipse.org
+
+The EMF based query was ported from MOIN to EMF as part of the EMF Migration project. Since it was decided to contribute the ported query as open source at Eclipse, the sources have been moved to the Eclipse CVS at a certain point in time. In order to keep the migration framework stable for clients, at SAP a snapshot of the query sources is still available (in emf.core _com.sap.tc.emf.query). This plug-in is exposed by the facade and is used by all migration project clients. The package namespace used by the sources in this snapshot is com.sap.tc.emf.query. The source which moved to the Eclipse CVS repository are using the package namespace org.eclipse.emf.query.
+
+In Addition to the ported EMF query implementation itself, the open source query project contains two important extensions: (1) a fast EMF index implementation and (2) a much more convenient xtext based syntax. Both features can be found in the prototypes folder (details below). The new xtext based syntax is a real prototype which defines an xtext syntax and is capable of mapping a query provided in such a syntax to the original MQL abstract syntax API. So the syntax does not replace the Java based API but rather provides a wrapping layer. The index implementation is a very stable and reliable. It was therefore reintegrated into SAPs perforce codebase (emf.core _com.sap.tc.emf.index) and is used by the query snapshot as a productive migration framework component.
+
+Right now, as this document is written, the internal index in emf.core com.sap.tc.emf.index is the exact same version as the one available at Eclipse. The snapshot of the core query in emf.core _com.sap.tc.emf.query is not the same as the one at Eclipse where changes have been made along with the development of the new features. 
+
+To access the sources you have to connect to the Eclipse CVS. This is potentially troublesome, since the SAP firewall blocks the anonymous Eclipse CVS access mechanism (dev and proxy host). Accessing the Eclipse CVS via SSH using eclipse committer credentials works perfectly fine (please see committer access to CVS for details). If you need anonymous access to the repository you can either use the SAP Guest WLAN or some other kind of internet connection without SAP proxy/firewall, or you have to get a static IP (and a firewall rule for this IP) for your host. Please see Eclipse Access for details on how to configure a static IP.
+
+The sources are available at CVS repository path /cvsroot/modeling. The following CVS folders in this location contain ported MQL query code:
+
+org.eclipe.emf.query/plugins
+
+    * org.eclipse.emf.query2: EMF MQL query
+    * org.eclipse.emf.query2.tools.ui: Demo perspective (using the new xtext syntax)
+
+org.eclipe.emf.query/prototypes/index
+
+    * org.eclipse.emf.query.index: index implementation (snapshot of this index was transported to SAP perforce and is in use)
+    * org.eclipse.emf.query.index.test: index tests
+    * org.eclipse.emf.query.index.ui: single default index together with a builder for automatic updates
+
+org.eclipe.emf.query/prototypes/query2syntax
+
+    * org.eclipse.emf.query2: new query syntax based on xtext
+    * org.eclipse.emf.query2.ui:UI integration for new xtext based query syntax (editor, content assist, ...) 

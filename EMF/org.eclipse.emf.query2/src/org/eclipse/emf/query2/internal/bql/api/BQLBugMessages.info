@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ROOT CONV_VERSION="1.2">
+<GENERAL>
+<UID>time:1225368286719_uuid:29d26535-002f-48a1-a5bf-90874493e13f</UID>
+<PACKAGE>moin.spi</PACKAGE>
+<DOMAIN>BC</DOMAIN>
+<ORIGLANG>EN</ORIGLANG>
+<RESPONSIBLE>D052089</RESPONSIBLE>
+</GENERAL>
+<RESOURCES>
+<TEXT AKEY="GpwydePlZFcwd_never_be_null_XMSG" BKEY="Alias_of_model_element_expression_should_never_be_null_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Alias of model element expression should never be null</TEXT>
+<TEXT AKEY="P68UxxUf/Tqtbute_expression_XMSG" BKEY="Attribute_cannot_be_compared_to_an_attribute_in_another_cluster_attribute_expression_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">An attribute cannot be compared to an attribute in another cluster where attribute expression = {0}</TEXT>
+<TEXT AKEY="5NjRq7JK0rpzsetting_pattern_XMSG" BKEY="False_escape_character_setting_pattern_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">False escape character setting in pattern {0}</TEXT>
+<TEXT AKEY="hC8qLm5vXH+Qter_expressions_XMSG" BKEY="Found_loop_in_the_hierarchy_of_the_model_element_cluster_expressions_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">Found loop in the hierarchy of the model element cluster expressions for alias {0}</TEXT>
+<TEXT AKEY="FqlDeprecated_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">"The Facility query language is a deprecated BQL processor - if necessary downcast and use its deprecated execution method</TEXT>
+<TEXT AKEY="DptcRHbIutU0lements_are_set_XMSG" BKEY="ModelElementExpression_inconsistency_Types_and_PartitionExpression_set_Not_allowed_in_case_elements_are_set_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">ModelElementExpression inconsistency: Types and PartitionExpression set. Not allowed in case elements are set!</TEXT>
+<TEXT AKEY="SP+/W70D13rbust_not_be_null_XMSG" BKEY="ModelElementExpression_must_not_be_null_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">ModelElementExpression must not be null</TEXT>
+<TEXT AKEY="bbp4NT3W78IRusterExpression_XMSG" BKEY="ModelElementExpressions_in_SelectLists_must_be_part_of_the_root_ModelElementClusterExpression_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">ModelElementExpressions in SelectLists must be part of the root ModelElementClusterExpression</TEXT>
+<TEXT AKEY="2bVAdWXrtkceor_attribute_id_XMSG" BKEY="No_attribute_definition_for_attribute_id_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">There is no attribute definition for this attribute ID</TEXT>
+<TEXT AKEY="snb7VjLFZs1Mment_expression_XMSG" BKEY="No_index_found_for_model_element_expression_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">No index found for model element expression</TEXT>
+<TEXT AKEY="6KceY5hO5nygelectExpression_XMSG" BKEY="SelectExpression_must_have_at_least_one_SelectList_selectExpression_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">A SelectExpression must have at least one SelectList, selectExpression = {0}</TEXT>
+</RESOURCES>
+</ROOT>
