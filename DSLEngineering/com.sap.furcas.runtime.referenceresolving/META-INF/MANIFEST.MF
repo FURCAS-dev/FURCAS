@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Referenceresolving
+Bundle-SymbolicName: com.sap.furcas.runtime.referenceresolving
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: SAP
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: com.sap.emf.ocl.trigger,
+ org.eclipse.ocl.ecore;bundle-version="3.0.0"
