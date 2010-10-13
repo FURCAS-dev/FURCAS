@@ -8,6 +8,7 @@ import java.util.Iterator;
 
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.Parser;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IAutoEditStrategy;
 import org.eclipse.jface.text.IDocument;
@@ -29,14 +30,12 @@ import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.SourceViewerConfiguration;
 
-import textblocks.AbstractToken;
-
-import com.sap.furcas.textual.textblocks.TbUtil;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.ide.cts.editor.autoedit.ClosingBraceAutoEditStrategy;
 import com.sap.ide.cts.editor.autoedit.CtsAutoEditStrategy;
 import com.sap.ide.cts.editor.contentassist.CtsContentAssistProcessor;
 import com.sap.ide.cts.editor.document.CtsDocument;
-import com.sap.tc.moin.repository.Connection;
+
 
 public class AbstractGrammarBasedViewerConfiguration extends SourceViewerConfiguration {
 
@@ -47,13 +46,13 @@ public class AbstractGrammarBasedViewerConfiguration extends SourceViewerConfigu
 	private ITokenMapper myMapper;
 //	private Parameter[] context = null;
 	private ContentAssistant myAssistant;
-    private Connection connection;
+    private ResourceSet connection;
 	private String languageId;
 
 	/**
 	 * 
 	 */
-	public AbstractGrammarBasedViewerConfiguration(Connection connection,
+	public AbstractGrammarBasedViewerConfiguration(ResourceSet connection,
 			IAnnotationModel annotationModel,
 			/*Parameter[] context,*/ Class<? extends Lexer> lexerClass,
 			Class<? extends Parser> parserClass, ITokenMapper myMapper, String languageId,

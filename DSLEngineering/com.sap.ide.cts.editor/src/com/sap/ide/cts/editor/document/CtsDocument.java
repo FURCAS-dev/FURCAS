@@ -2,32 +2,22 @@ package com.sap.ide.cts.editor.document;
 
 import org.antlr.runtime.Lexer;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.AbstractDocument;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.DefaultLineTracker;
 
-<<<<<<< HEAD
 import com.sap.furcas.metamodel.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
-=======
-import tcs.ClassTemplate;
-import tcs.ConcreteSyntax;
-import textblocks.TextBlock;
-import textblocks.TextblocksPackage;
-
-import com.sap.furcas.textual.textblocks.TbUtil;
->>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 import com.sap.ide.cts.editor.CtsActivator;
 import com.sap.ide.cts.editor.FurcasDocumentSetupParticpant;
 import com.sap.ide.cts.editor.recovery.ModelEditorInputRecoveryStrategy;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
 import com.sap.ide.cts.parser.incremental.TextBlockMappingBrokenException;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.mi.textual.parsing.textblocks.reference.GlobalDelayedReferenceResolver;
-import com.sun.corba.se.pept.transport.Connection;
 
 /**
  * A document implementation that is responsible for presenting a text blocks
@@ -39,7 +29,7 @@ import com.sun.corba.se.pept.transport.Connection;
 public class CtsDocument extends AbstractDocument {
 
     private static final String DOCUMENT_WAS_NOT_COMPLETELY_INITIALIZED = "Document was not completely initialized. Call completeInit() to finish the initialization";
-    private RefBaseObject rootObject;
+    private EObject rootObject;
     private TextBlock rootBlock;
     protected final ModelEditorInput modelEditorInput;
 
@@ -80,7 +70,7 @@ public class CtsDocument extends AbstractDocument {
 			syntax.get___Connection(), modelEditorInput.getRefObject()), observableInjectingParser,
 			parserFactory.getRuleNameFinder(), monitor);
 
-	RefObject inputObject = (RefObject) modelEditorInput.getRefObject();
+	EObject inputObject = (EObject) modelEditorInput.getRefObject();
 	if (inputObject instanceof TextBlock) {
 	    if (TbUtil.isTextBlockOfType(rootTemplate, (TextBlock) inputObject)) {
 		rootBlock = (TextBlock) inputObject;
@@ -100,7 +90,7 @@ public class CtsDocument extends AbstractDocument {
 	    return;
 	}
 
-	Connection con = rootBlock.get___Connection();
+	ResourceSet con = rootBlock.get___Connection();
 	RefPackage metamodelPackage = parserFactory.getMetamodelPackage(con);
 	TextBlocksModelStore textBlocksModelStore = new TextBlocksModelStore(rootBlock, new MOINModelAdapter(metamodelPackage,
 		con, null, null));
@@ -135,9 +125,9 @@ public class CtsDocument extends AbstractDocument {
      */
     private TextBlock determineRootBlockForRootObject(ConcreteSyntax concreteSyntax, ClassTemplate rootTemplate,
 	    ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory,
-	    ModelEditorInputRecoveryStrategy recoveryStrategy, RefObject inputObject) {
+	    ModelEditorInputRecoveryStrategy recoveryStrategy, EObject inputObject) {
 
-	Connection con = rootObject.get___Connection();
+	ResourceSet con = rootObject.get___Connection();
 	TextblocksPackage tbPackage = con.getPackage(TextblocksPackage.PACKAGE_DESCRIPTOR);
 	TextBlock rootBlock = null;
 	try {
@@ -179,14 +169,14 @@ public class CtsDocument extends AbstractDocument {
 	return result;
     }
 
-    public RefBaseObject getRootObject() {
+    public EObject getRootObject() {
 	if (!completelyItitialized) {
 	    throw new RuntimeException(DOCUMENT_WAS_NOT_COMPLETELY_INITIALIZED);
 	}
 	return rootObject;
     }
 
-    public void setRootObject(RefBaseObject rootObject) {
+    public void setRootObject(EObject rootObject) {
 	if (!completelyItitialized) {
 	    throw new RuntimeException(DOCUMENT_WAS_NOT_COMPLETELY_INITIALIZED);
 	}

@@ -6,7 +6,7 @@ import org.antlr.runtime.CharStream;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenSource;
-import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.Version;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
@@ -157,7 +157,7 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements
 	public void consume() {
 		while (readOffset == asString(readToken).length()
 				&& !isEOS(readToken)) {
-			readToken = nextToken(readToken, EEnum.PREVIOUS);
+			readToken = nextToken(readToken, Version.PREVIOUS);
 			/*
 			 * this is needed to track the lookahead of the lexer.
 			 */

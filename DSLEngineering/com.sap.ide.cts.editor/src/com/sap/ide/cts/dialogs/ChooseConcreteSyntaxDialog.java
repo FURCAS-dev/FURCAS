@@ -3,17 +3,16 @@ package com.sap.ide.cts.dialogs;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 public class ChooseConcreteSyntaxDialog extends AbstractHandler
 {
-	private RefObject[] templateEntries;
+	private EObject[] templateEntries;
 	
-	public ChooseConcreteSyntaxDialog(RefObject[] templates)
+	public ChooseConcreteSyntaxDialog(EObject[] templates)
 	{
 		this.templateEntries = templates;
 	}
@@ -34,7 +33,7 @@ public class ChooseConcreteSyntaxDialog extends AbstractHandler
 		Object[] preparedTemplates = new Object[this.templateEntries.length];
 		for(int i = 0; i < this.templateEntries.length; i++)
 		{
-			RefObject o = this.templateEntries[i];
+			EObject o = this.templateEntries[i];
 			ChooseConcreteSyntaxDialogElement entry = new ChooseConcreteSyntaxDialogElement(o);
 			preparedTemplates[i] = entry;
 		}

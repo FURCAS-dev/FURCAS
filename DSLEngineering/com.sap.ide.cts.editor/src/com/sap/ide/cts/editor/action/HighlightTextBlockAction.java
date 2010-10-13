@@ -7,10 +7,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
-import textblocks.AbstractToken;
-import textblocks.TextBlock;
-
-import com.sap.furcas.textual.textblocks.TbUtil;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.ide.cts.editor.document.CtsDocument;
 
 public class HighlightTextBlockAction implements Listener {
@@ -35,7 +33,7 @@ private final Annotation annotation;
 			AbstractToken token = ((CtsDocument) textViewer.getDocument())
 					.getTextBlocksModelStore().getFloorToken(
 							textViewer.getSelectedRange().x);
-			TextBlock immediateTB = token.getParentBlock();
+			TextBlock immediateTB = token.getParent();
 			Annotation highlightAnnotation = annotation;
 			textViewer.getAnnotationModel().removeAnnotation(annotation);
 			textViewer.getAnnotationModel().addAnnotation(

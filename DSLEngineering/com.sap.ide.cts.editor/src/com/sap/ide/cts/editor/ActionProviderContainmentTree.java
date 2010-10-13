@@ -2,6 +2,9 @@ package com.sap.ide.cts.editor;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
@@ -17,8 +20,6 @@ import org.eclipse.ui.navigator.ICommonMenuConstants;
 
 import com.sap.ide.cts.editor.action.PrettyPrintAction;
 import com.sap.ide.treeprovider.GenericRefObjectNode;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * ActionProvider that provides actions for context menus based on the current
@@ -127,8 +128,8 @@ public class ActionProviderContainmentTree extends CommonActionProvider
 				if(firstElement instanceof GenericRefObjectNode)
 				{
 					GenericRefObjectNode node = (GenericRefObjectNode) firstElement;
-					RefObject modelElement = node.getValue();
-					MofClass clazz = (MofClass) modelElement.refMetaObject();
+					EObject modelElement = node.getValue();
+					EClass clazz = (EClass) modelElement.refMetaObject();
 					
 					PrettyPrintAction action = new PrettyPrintAction(clazz,
 							modelElement, true);

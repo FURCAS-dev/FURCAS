@@ -1,15 +1,14 @@
 package com.sap.ide.cts.dialogs;
 
-import tcs.Template;
+import org.eclipse.emf.ecore.EObject;
 
-import com.sap.furcas.textual.tcs.TcsUtil;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import com.sap.furcas.metamodel.TCS.Template;
 
 public class ChooseConcreteSyntaxDialogElement 
 {
-	private RefObject wrappedObject;
+	private EObject wrappedObject;
 	
-	public ChooseConcreteSyntaxDialogElement(RefObject wrappedObject)
+	public ChooseConcreteSyntaxDialogElement(EObject wrappedObject)
 	{
 		this.wrappedObject = wrappedObject;
 	}
@@ -21,7 +20,7 @@ public class ChooseConcreteSyntaxDialogElement
 		if(this.wrappedObject instanceof Template)
 		{
 			Template t = (Template) wrappedObject;
-			sb.append(t.getConcretesyntax().getName());
+			sb.append(t.getConcreteSyntax().getName());
 			sb.append(":");
 			sb.append(TcsUtil.getQualifiedName(t));
 			sb.append(":mode=");
@@ -30,7 +29,7 @@ public class ChooseConcreteSyntaxDialogElement
 		return sb.toString();
 	}
 	
-	public RefObject getWrappedObject()
+	public EObject getWrappedObject()
 	{
 		return this.wrappedObject;
 	}
