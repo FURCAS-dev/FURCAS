@@ -1,0 +1,6 @@
+PID=$$
+OUTPUT=~/output$PID/
+mkdir $OUTPUT
+cd $OUTPUT
+ln ~/benchmark.jar
+nohup java -Xmx6500m -jar ~/benchmark.jar --warmups 3 --measures 1 --jobs 8 -o $OUTPUT >benchmark.out 2>benchmark.err &
