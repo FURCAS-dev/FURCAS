@@ -13,4 +13,5 @@ import org.eclipse.ocl.ecore.OCLExpression;
  */
 public interface Triggerable {
     Collection<OCLExpression> getTriggerExpressions();
+    void notify(Collection<AffectedContextObjectsForExpression> changes);
 }
