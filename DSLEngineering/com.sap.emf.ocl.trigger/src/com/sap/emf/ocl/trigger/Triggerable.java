@@ -6,6 +6,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.OCLExpression;
 
+import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+
 /**
  * A callback that wants to get triggered when one of the expressions returned from {@link #getTriggerExpressions()} may
  * have changed its value on some object observed by the {@link TriggerManager}.
@@ -15,7 +17,7 @@ import org.eclipse.ocl.ecore.OCLExpression;
  */
 public interface Triggerable {
     Collection<ExpressionWithContext> getTriggerExpressions();
-    void notify(OCLExpression expression, Collection<EObject> affectedContextObjects);
+    void notify(OCLExpression expression, Collection<EObject> affectedContextObjects, OppositeEndFinder oppositeEndFinder);
     
     /**
      * Used to provide an {@link OCLExpression} with an optional context type. This is required if the expression

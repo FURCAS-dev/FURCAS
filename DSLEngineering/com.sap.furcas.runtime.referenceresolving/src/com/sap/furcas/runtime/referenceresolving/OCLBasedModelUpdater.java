@@ -13,5 +13,5 @@ import com.sap.emf.ocl.trigger.Triggerable;
  *
  */
 public interface OCLBasedModelUpdater extends Triggerable {
-
+    
 }
