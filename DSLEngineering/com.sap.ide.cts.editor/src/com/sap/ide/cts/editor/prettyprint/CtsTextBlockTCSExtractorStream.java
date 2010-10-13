@@ -9,7 +9,7 @@ import java.util.Stack;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.Token;
-import org.eclipse.emf.ecore.EEnum;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
@@ -25,15 +25,11 @@ import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.furcas.metamodel.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
-import com.sap.furcas.textual.tcs.TcsUtil;
-import com.sap.furcas.textual.textblocks.TbMarkingUtil;
-import com.sap.furcas.textual.textblocks.TbNavigationUtil;
-import com.sap.furcas.textual.textblocks.TbValidationUtil;
+import com.sap.furcas.metamodel.textblocks.Version;
 import com.sap.ide.cts.editor.contentassist.TcsDebugUtil;
 import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorStream;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
 /**
  * 
  * @author Philipp Meier, Andreas Landerer
@@ -148,7 +144,7 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 		TextBlock b = (TextBlock) pack.getTextBlock()
 				.refCreateInstanceInPartition(part);
 		b.setChildrenChanged(false);
-		b.setVersion(EEnum.REFERENCE);
+		b.setVersion(Version.REFERENCE);
 		b.setRelexingNeeded(false);
 		b.setStartRow(0);
 		b.setStartColumn(0);
@@ -168,7 +164,7 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 		LexedToken t = (LexedToken) pack.getLexedToken()
 				.refCreateInstanceInPartition(part);
 		t.setChildrenChanged(false);
-		t.setVersion(EEnum.REFERENCE);
+		t.setVersion(Version.REFERENCE);
 		t.setRelexingNeeded(false);
 		t.setStartRow(0);
 		t.setStartColumn(0);
@@ -192,7 +188,7 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 		OmittedToken t = (OmittedToken) pack.getOmittedToken()
 				.refCreateInstanceInPartition(part);
 		t.setChildrenChanged(false);
-		t.setVersion(EEnum.REFERENCE);
+		t.setVersion(Version.REFERENCE);
 		t.setRelexingNeeded(false);
 		t.setStartRow(0);
 		t.setStartColumn(0);
@@ -480,7 +476,7 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 	void addBosToken()
 	{
 		Bostoken bos = ANTLRIncrementalLexerAdapter.createBOSToken(pack,
-				EEnum.REFERENCE,
+				Version.REFERENCE,
 				ANTLRIncrementalLexerAdapter.bosTokenType);
 		addToken(bos);
 	}
@@ -488,7 +484,7 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 	void addEosToken()
 	{
 		Eostoken eos = ANTLRIncrementalLexerAdapter.createEOSToken(pack,
-				EEnum.REFERENCE,
+				Version.REFERENCE,
 				ANTLRIncrementalLexerAdapter.eosTokenType);
 		eos.setOffset(curOffset);
 		addToken(eos);

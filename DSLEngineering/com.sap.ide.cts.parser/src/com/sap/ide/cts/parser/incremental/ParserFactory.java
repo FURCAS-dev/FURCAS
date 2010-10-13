@@ -12,11 +12,11 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import com.sap.furcas.parsing.textblocks.ITextBlocksTokenStream;
 import com.sap.furcas.runtime.common.interfaces.IRuleName;
 import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.antlr3.ITokenFactory;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.parser.textblocks.ITextBlocksTokenStream;
 
 /**
  *

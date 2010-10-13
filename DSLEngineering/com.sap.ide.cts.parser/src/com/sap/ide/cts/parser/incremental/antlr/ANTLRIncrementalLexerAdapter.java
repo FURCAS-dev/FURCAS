@@ -6,11 +6,12 @@ import org.antlr.runtime.CharStream;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenSource;
-import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.Version;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.Version;
 import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
 import com.sap.furcas.runtime.parser.IModelInjector;
 import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
@@ -18,7 +19,7 @@ import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationTokenImpl;
 import com.sap.furcas.runtime.parser.impl.ModelInjector;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
-import com.sap.furcas.textual.textblocks.shortprettyprint.ShortPrettyPrinter;
+import com.sap.furcas.runtime.textblocks.shortprettyprint.ShortPrettyPrinter;
 import com.sap.ide.cts.parser.incremental.IncrementalLexer;
 import com.sap.ide.cts.parser.incremental.LexerAdapter;
 
@@ -156,7 +157,7 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements
 	public void consume() {
 		while (readOffset == asString(readToken).length()
 				&& !isEOS(readToken)) {
-			readToken = nextToken(readToken, EEnum.PREVIOUS);
+			readToken = nextToken(readToken, Version.PREVIOUS);
 			/*
 			 * this is needed to track the lookahead of the lexer.
 			 */

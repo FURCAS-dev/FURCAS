@@ -16,17 +16,17 @@ import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
 
 import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.furcas.metamodel.textblocks.Version;
-import com.sap.furcas.parsing.textblocks.observer.ParserTextBlocksHandler;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.impl.ModelInjector;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.parser.impl.ParsingError;
+import com.sap.furcas.runtime.parser.textblocks.observer.ParserTextBlocksHandler;
 import com.sap.furcas.runtime.tcs.TcsUtil;
-import com.sap.furcas.textual.textblocks.modifcation.TbVersionUtil;
+import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
 import com.sap.ide.cts.parser.incremental.IncrementalParser;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategyImpl;
-import com.tst.ParsingError;
 
 
 /**

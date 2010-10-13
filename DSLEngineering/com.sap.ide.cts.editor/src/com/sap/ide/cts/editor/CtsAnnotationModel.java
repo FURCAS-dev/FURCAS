@@ -1,12 +1,11 @@
 package com.sap.ide.cts.editor;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.source.AnnotationModel;
 
 public class CtsAnnotationModel extends AnnotationModel {
 
-	public CtsAnnotationModel(RefBaseObject refObject) {
+	public CtsAnnotationModel(EObject refObject) {
 		// TODO Auto-generated constructor stub
 	}
 

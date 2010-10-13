@@ -1,18 +1,15 @@
 package com.sap.ide.cts.editor;
 
-import com.sap.tc.moin.repository.mmi.reflect.InvalidCallException;
-import com.sap.tc.moin.repository.mmi.reflect.InvalidNameException;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import javax.naming.InvalidNameException;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.DefaultTextHover;
 import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.Region;
 import org.eclipse.jface.text.source.ISourceViewer;
 
-import textblocks.AbstractToken;
-
-import com.sap.furcas.textual.textblocks.TbUtil;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.ide.cts.editor.document.CtsDocument;
 
 public class CtsTextHover extends DefaultTextHover {
@@ -26,30 +23,30 @@ public class CtsTextHover extends DefaultTextHover {
 		AbstractToken token = ((CtsDocument)viewer.getDocument()).getTextBlocksModelStore().getFloorToken(hoverRegion.getOffset());
 		StringBuffer sb = new StringBuffer(annotationText == null ? "" : annotationText + "\n");
 		if (token.getCorrespondingModelElements().size() > 0) {
-			for (RefObject element : token.getCorrespondingModelElements()) {
+			for (EObject element : token.getCorrespondingModelElements()) {
 				sb.append("Corresponding element of Token: ").append(toString(element)).append("\n");
 			}
 		}
 		if (token.getReferencedElements().size() > 0) {
-			for (RefObject element : token.getReferencedElements()) {
+			for (EObject element : token.getReferencedElements()) {
 				sb.append("Referenced element of Token: ").append(toString(element)).append("\n");
 			}
 		}
-		if (token.getParentBlock().getCorrespondingModelElements().size() > 0){
-			for (RefObject element : token.getParentBlock().getCorrespondingModelElements()) {
+		if (token.getParent().getCorrespondingModelElements().size() > 0){
+			for (EObject element : token.getParent().getCorrespondingModelElements()) {
 				sb.append("Corresponding element of Block: ").append(toString(element)).append("\n");
 			}
 		}
 		
-		if (token.getParentBlock().getReferencedElements().size() > 0){
-			for (RefObject element : token.getParentBlock().getReferencedElements()) {
+		if (token.getParent().getReferencedElements().size() > 0){
+			for (EObject element : token.getParent().getReferencedElements()) {
 				sb.append("Referenced element of Block: ").append(toString(element)).append("\n");
 			}
 		}
 		return sb.toString();
 	}
 
-	private Object toString(RefObject element) {
+	private Object toString(EObject element) {
 		StringBuffer sb = new StringBuffer();
 		sb.append(element.refMetaObject().refGetValue("name"));
 		try {
@@ -63,7 +60,7 @@ public class CtsTextHover extends DefaultTextHover {
 		return sb.toString();
 	}
 	
-	private void appendId(StringBuffer sb, RefObject correspsondingME) {
+	private void appendId(StringBuffer sb, EObject correspsondingME) {
 		sb.append(" ID:");
 		sb.append(correspsondingME.refMofId());
 	}

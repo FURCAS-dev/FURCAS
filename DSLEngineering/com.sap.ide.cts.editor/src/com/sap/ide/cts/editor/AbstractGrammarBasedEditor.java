@@ -8,14 +8,18 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
+
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.RecognitionException;
+import org.eclipse.core.internal.resources.MarkerManager;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
@@ -25,6 +29,9 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -34,11 +41,11 @@ import org.eclipse.jface.text.TextEvent;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.AnnotationModel;
 import org.eclipse.jface.text.source.AnnotationPainter;
+import org.eclipse.jface.text.source.AnnotationPainter.IDrawingStrategy;
 import org.eclipse.jface.text.source.DefaultCharacterPairMatcher;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.jface.text.source.ICharacterPairMatcher;
 import org.eclipse.jface.text.source.SourceViewer;
-import org.eclipse.jface.text.source.AnnotationPainter.IDrawingStrategy;
 import org.eclipse.jface.text.source.projection.ProjectionAnnotation;
 import org.eclipse.jface.text.source.projection.ProjectionAnnotationModel;
 import org.eclipse.jface.text.source.projection.ProjectionSupport;
@@ -61,19 +68,12 @@ import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.eclipse.ui.texteditor.SourceViewerDecorationSupport;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
-import tcs.ClassTemplate;
-import tcs.ConcreteSyntax;
-import textblocks.AbstractToken;
-import textblocks.DocumentNode;
-import textblocks.DocumentNodeReferencesCorrespondingModelElement;
-import textblocks.TextBlock;
-import textblocks.TextblocksPackage;
-import textblocks.VersionEnum;
-
-import com.sap.furcas.textual.tcs.TcsUtil;
-import com.sap.furcas.textual.textblocks.TbUtil;
-import com.sap.furcas.textual.textblocks.TbVersionUtil;
-import com.sap.furcas.textual.textblocks.model.ShortPrettyPrinter;
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
 import com.sap.ide.cts.dialogs.PrettyPrintPreviewDialog;
 import com.sap.ide.cts.editor.action.GotoDeclarationAction;
 import com.sap.ide.cts.editor.action.HighlightTextBlockAction;
@@ -83,6 +83,7 @@ import com.sap.ide.cts.editor.commands.ParseCommand;
 import com.sap.ide.cts.editor.document.CtsDocument;
 import com.sap.ide.cts.editor.matching.CtsStaticMatcher;
 import com.sap.ide.cts.editor.preferences.PreferenceInitializer;
+import com.sap.ide.cts.editor.prettyprint.imported.ModelAdapter;
 import com.sap.ide.cts.editor.prettyprint.imported.PrettyPrinter;
 import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorPrintStream;
 import com.sap.ide.cts.editor.recovery.ModelEditorInputRecoveryStrategy;
@@ -94,34 +95,7 @@ import com.sap.ide.cts.parser.incremental.ParserFactory;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategyImpl;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRLexerAdapter;
-import com.sap.mi.fwk.MarkerManager;
-import com.sap.mi.fwk.ModelAdapter;
-import com.sap.mi.fwk.ModelManager;
-import com.sap.mi.fwk.MarkerManager.MarkerRefreshListener;
-import com.sap.mi.fwk.ui.editor.ModelEditorInput;
-import com.sap.mi.textual.grammar.impl.ModelInjector;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.mi.textual.grammar.impl.ParsingError;
-import com.sap.mi.textual.parsing.textblocks.ITextBlocksTokenStream;
-import com.sap.mi.textual.parsing.textblocks.ParsingTextblocksActivator;
-import com.sap.mi.textual.parsing.textblocks.observer.ParserTextBlocksHandler;
-import com.sap.tc.moin.repository.CRI;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.InvalidResourceIdentifierException;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.events.ChangeListener;
-import com.sap.tc.moin.repository.events.filter.AndFilter;
-import com.sap.tc.moin.repository.events.filter.AttributeFilter;
-import com.sap.tc.moin.repository.events.filter.InstanceFilter;
-import com.sap.tc.moin.repository.events.type.AttributeValueChangeEvent;
-import com.sap.tc.moin.repository.events.type.ChangeEvent;
-import com.sap.tc.moin.repository.exception.ExecutionRollbackFailedException;
-import com.sap.tc.moin.repository.mmi.model.Attribute;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
+
 
 public abstract class AbstractGrammarBasedEditor extends
 		ModelBasedTextEditorDelegator implements MarkerRefreshListener {
@@ -244,7 +218,7 @@ public abstract class AbstractGrammarBasedEditor extends
 	private ParserTextBlocksHandler textBlocksHandler;
 	private final ITokenMapper tokenMapper;
 	private ParserFactory<?, ?> parserFactory;
-	private ModelPartition tbPartition;
+	private Resource tbPartition;
 	private final List<Annotation> tbHighlightAnnotations = new ArrayList<Annotation>();
 	private MappingLinkRecoveringIncrementalParser incrementalParser;
 	private PartitionHighlighter partitionHighlighter;
@@ -421,7 +395,7 @@ public abstract class AbstractGrammarBasedEditor extends
 //				CtsDocument document = (CtsDocument)provider.getDocument(getEditorInput());
 //				if(document != null) {
 //        				if(document.isCompletelyItitialized() && ((Partitionable)document.getRootObject()).is___Alive()){
-//        					ModelPartition rootPartition = ((Partitionable)document.getRootObject()).get___Partition();
+//        					Resource rootPartition = ((Partitionable)document.getRootObject()).get___Partition();
 //        					refreshModelAnnotations(rootPartition);
 //        				}
 //				}
@@ -429,7 +403,7 @@ public abstract class AbstractGrammarBasedEditor extends
 //		}
 //	}
 
-	private Collection<DocumentNode> checkPartitioning(DocumentNode start, ModelPartition rootPartition) {
+	private Collection<DocumentNode> checkPartitioning(DocumentNode start, Resource rootPartition) {
 		ArrayList<DocumentNode> subNodesInOtherPartitions = new ArrayList<DocumentNode>();
 		if (start instanceof TextBlock) {
 			TextBlock tb = (TextBlock) start;
@@ -437,7 +411,7 @@ public abstract class AbstractGrammarBasedEditor extends
 				subNodesInOtherPartitions.addAll(checkPartitioning(documentNode, rootPartition));
 			}
 			if(tb.getCorrespondingModelElements().size() > 0) {
-			    for (RefObject element : tb.getCorrespondingModelElements()) {
+			    for (EObject element : tb.getCorrespondingModelElements()) {
 				if(!element.get___Partition().equals(rootPartition)) {
 					subNodesInOtherPartitions.add(tb);
 				}
@@ -522,7 +496,7 @@ public abstract class AbstractGrammarBasedEditor extends
         		document.completeInit(syntax, rootTemplate, getParserFactory(), getRecoveryStrategy(),
         	                        getParser(), getModelEditor().getPendingMonitor());
 		
-        		registerNameChangeListenerForInput((RefObject) document.getRootObject());
+        		registerNameChangeListenerForInput((EObject) document.getRootObject());
 		
         		TextBlock rootBlock = document.getRootBlock();
 		setModel(rootBlock);
@@ -552,7 +526,7 @@ public abstract class AbstractGrammarBasedEditor extends
 		return new ModelEditorInputRecoveryStrategy(){
 
 			@Override
-			public TextBlock recoverBrokenTextBlockMapping(RefObject rootObject, TextBlock blockInError, ClassTemplate rootTemplate) {
+			public TextBlock recoverBrokenTextBlockMapping(EObject rootObject, TextBlock blockInError, ClassTemplate rootTemplate) {
 			    	assert blockInError.getType() == null : "Mapping which is supposed to be broken is still valid.";
 			    	TextBlock rootBlock = null;
 			    	
@@ -615,7 +589,7 @@ public abstract class AbstractGrammarBasedEditor extends
 			}};
 	}
 
-	private void registerNameChangeListenerForInput(RefObject inputObject) {
+	private void registerNameChangeListenerForInput(EObject inputObject) {
 	Entry<Attribute, String> nameAttribute = ModelManager.getInstance().getObjectNameAttribute(inputObject);
 
 	if (nameAttribute != null) {
@@ -681,7 +655,7 @@ public abstract class AbstractGrammarBasedEditor extends
 
 
 	protected void initConnection(IEditorInput input) {
-		Connection connection = getWorkingConnection();
+		ResourceSet connection = getWorkingConnection();
 
 		ModelManager.getConnectionManager().addUndoContext(connection);
 	}
@@ -787,7 +761,7 @@ public abstract class AbstractGrammarBasedEditor extends
 		}
 		CtsDocument document = (CtsDocument) getDocumentProvider().getDocument(getEditorInput());
 		if(((Partitionable)document.getRootObject()).is___Alive()){
-			ModelPartition rootPartition = ((Partitionable)document.getRootObject()).get___Partition();
+			Resource rootPartition = ((Partitionable)document.getRootObject()).get___Partition();
 			TextBlock rootBlock = document.getRootBlock();
 			//check partitioning for elements in other partitions
 			getPartitionHighlighter().addHighlights(checkPartitioning(TbUtil.getNewestVersion(rootBlock), rootPartition));
@@ -824,13 +798,13 @@ public abstract class AbstractGrammarBasedEditor extends
 	}
 
 	
-	private Set<ModelPartition> annotatedPartitionsToUpdate = Collections.synchronizedSet(new HashSet<ModelPartition>());
+	private Set<Resource> annotatedPartitionsToUpdate = Collections.synchronizedSet(new HashSet<Resource>());
 	
 	private class AnnotationUpdater implements Runnable {
     
-	    	private ModelPartition rootPartition;
+	    	private Resource rootPartition;
         
-        	public AnnotationUpdater(ModelPartition partition) {
+        	public AnnotationUpdater(Resource partition) {
         	    this.rootPartition = partition;
         	    annotatedPartitionsToUpdate.add(partition);
         	}
@@ -847,9 +821,9 @@ public abstract class AbstractGrammarBasedEditor extends
         	    }
 		IMarker[] markers = ModelManager.getMarkerManager().findMarkers(rootPartition, IMarker.PROBLEM, true, 0);
 		for (IMarker marker : markers) {
-			RefObject element;
+			EObject element;
 			try {
-        		    element = (RefObject) getWorkingConnection().getElement(
+        		    element = (EObject) getWorkingConnection().getElement(
         			    getWorkingConnection().getSession().getMoin().createMri(
 								(String) marker.getAttribute(MarkerManager.ATTRIBUTE_OBJ_MRI)));
         		    Annotation annotation = new Annotation(ERROR_TYPE, false, marker.getAttribute(IMarker.MESSAGE, ""));
@@ -894,7 +868,7 @@ public abstract class AbstractGrammarBasedEditor extends
 	}
 	}
 
-	void refreshModelAnnotations(ModelPartition rootPartition) {
+	void refreshModelAnnotations(Resource rootPartition) {
 	    	if (!annotatedPartitionsToUpdate.contains(rootPartition)) {
 	    	    AnnotationUpdater updater = new AnnotationUpdater(rootPartition);
 	    	    Display.getDefault().asyncExec(updater);
@@ -985,7 +959,7 @@ public abstract class AbstractGrammarBasedEditor extends
 					// assign newly created block to partition
 					tbPartition.assignElementIncludingChildren(newBlock);
 
-					RefObject result = null;
+					EObject result = null;
 					if(newBlock.getCorrespondingModelElements()
 							.size() >0) {
 					    result = newBlock.getCorrespondingModelElements()
@@ -1086,7 +1060,7 @@ public abstract class AbstractGrammarBasedEditor extends
 	// SemanticParserException;
 
 	private ObservableInjectingParser createDryParser(TextBlock rootBlock,
-			Connection connection) {
+			ResourceSet connection) {
 	    	Lexer lexer = getParserFactory().createLexer(new ANTLRStringStream(rootBlock.getCachedString()));
 		return getParserFactory().createParser(new CommonTokenStream(lexer), connection);
 	}
@@ -1100,7 +1074,7 @@ public abstract class AbstractGrammarBasedEditor extends
 	 *             {@link SemanticParserException}
 	 */
 	public void dryParse(TextBlock rootBlock) throws SemanticParserException {
-		Connection connection = getWorkingConnection();
+		ResourceSet connection = getWorkingConnection();
 		ObservableInjectingParser p = createDryParser(rootBlock, connection);
 		removeOutdatedParseErrorMarkers(Collections.singleton(rootBlock));
 		
@@ -1200,7 +1174,7 @@ public abstract class AbstractGrammarBasedEditor extends
 		return getParserFactory().getParserClass();
 	}
 
-	protected void initializeNewParser(Connection connection) {
+	protected void initializeNewParser(ResourceSet connection) {
 		TextBlockReuseStrategyImpl reuseStrategy = new TextBlockReuseStrategyImpl(createLexer(), null);
 		setLexer(new ANTLRIncrementalLexerAdapter(new ANTLRLexerAdapter(
 				createLexer(), reuseStrategy, connection), null, connection));
@@ -1237,7 +1211,7 @@ public abstract class AbstractGrammarBasedEditor extends
 	 * 
 	 * @return If overwritten return at least an empty collection and not null!
 	 */
-	protected Collection<CRI> getAdditionalLookupCRIS() {
+	protected Collection<URI> getAdditionalLookupCRIS() {
 	    return Collections.singleton(ModelAdapter.getInstance().getContainer(getWorkingConnection()));
 	}
 
