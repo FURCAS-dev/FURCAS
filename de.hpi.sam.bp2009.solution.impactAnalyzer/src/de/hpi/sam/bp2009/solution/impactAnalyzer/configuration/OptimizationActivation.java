@@ -13,12 +13,10 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.InstanceScopeAnal
  * first time because certain up-front calculations and caching may depend on the configuration chosen.
  */
 public class OptimizationActivation {
-    // TODO move activeOption to TracebackCache to avoid expensive ThreadLocal
     private static final ThreadLocal<ActivationOption> activeOption = new ThreadLocal<ActivationOption>() {
         @Override
         protected ActivationOption initialValue() {
-            //return new ActivationOption(true, false, true, true, "All optimizations activated except unused check");
-            return new ActivationOption(true, true, true, true, "All optimizations activated");
+            return new ActivationOption(true, false, true, true, "All optimizations activated except \"unused\" checks");
         };
     };
 
