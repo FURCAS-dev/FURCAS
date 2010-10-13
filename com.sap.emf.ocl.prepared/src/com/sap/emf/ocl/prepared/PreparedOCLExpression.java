@@ -35,6 +35,9 @@ import com.sap.emf.ocl.util.OclHelper;
  * is found, that literal expression is made parameterizable. 
  * <p>
  * 
+ * Once you hold a {@link PreparedOCLExpression} in hand, you may evaluate it, providing specific values for the
+ * various parameters. You use the {@link #evaluate(Object, ParameterValue...)} method for this purpose. 
+ * 
  * The expression that is parameterized will be modified upon evaluation. Therefore, evaluation is
  * synchronized on this prepared expression object so that no race conditions may occur when multiple
  * threads evaluate the same parameterized expression for different parameter values.<p>
@@ -156,14 +159,21 @@ public class PreparedOCLExpression {
         this.oppositeEndFinder = oppositeEndFinder;
     }
     
+    /**
+     * Produces a parameter setting for the parameter identified by its original value <code>originalValue</code>.
+     * This could, e.g., be one of the values passed to the {@link #PreparedOCLExpression(OCLExpression, Object...)}.
+     * The <code>newValue</code> is the actual value to which to set the parameter during evaluation when the resulting
+     * {@link ParameterValue} object is passed to {@link #evaluate(Object, ParameterValue...)}.
+     */
     @SuppressWarnings("unchecked")
     public <T> ParameterValue<T> createParameterValue(T originalValue, T newValue) {
         return new ParameterValue<T>((Parameter<T>) paramsByIdentifyingSymbols.get(originalValue), newValue);
     }
-    
+
     /**
-     * Positions are assigned according to the order of values or literal expressions passed to
-     * the respective constructor.
+     * Produces a {@link ParameterValue} which can be used to pass to {@link #evaluate(Object, ParameterValue...)}. The parameter
+     * is identified by its position. Positions are assigned according to the order of values or literal expressions passed to the
+     * respective constructor.
      */
     @SuppressWarnings("unchecked")
     public <T> ParameterValue<T> createPositionalParameterValue(int i, T newValue) {
@@ -171,9 +181,17 @@ public class PreparedOCLExpression {
     }
 
     /**
-     * Sets the parameter values according to <code>parameterValues</code>, evaluates the parameterized
-     * expression and then resets the parameterized literals to their original symbols.
-     * @param context evaluation context; see also {@link OCL#evaluate(Object, org.eclipse.ocl.expressions.OCLExpression)}.
+     * Sets the parameter values according to <code>parameterValues</code>, evaluates the parameterized expression and then resets
+     * the parameterized literals to their original symbols.
+     * 
+     * @param parameterValues
+     *            a collection of arbitrary size; positions in this collection don't matter. Parameter assignment doesn't happen
+     *            positionally, but the parameter to be set is identified by the {@link ParameterValue#getParameter()} result. The
+     *            set of parameter values provided here may be a (even an empty) subset of the parameters of this expression.
+     *            Those parameters for which no value is provided here remains at its original value as it is provided by the
+     *            original {@link OCLExpression} passed to the constructor.
+     * @param context
+     *            evaluation context; see also {@link OCL#evaluate(Object, org.eclipse.ocl.expressions.OCLExpression)}.
      */
     public synchronized Object evaluate(Object context, ParameterValue<?>... parameterValues) {
         Set<ParameterValue<?>> originalValues = new HashSet<ParameterValue<?>>();
