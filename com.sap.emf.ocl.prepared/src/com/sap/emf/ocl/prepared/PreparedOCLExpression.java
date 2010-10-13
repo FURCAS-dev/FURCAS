@@ -39,8 +39,9 @@ import com.sap.emf.ocl.util.OclHelper;
  * various parameters. You use the {@link #evaluate(Object, ParameterValue...)} method for this purpose. 
  * 
  * The expression that is parameterized will be modified upon evaluation. Therefore, evaluation is
- * synchronized on this prepared expression object so that no race conditions may occur when multiple
- * threads evaluate the same parameterized expression for different parameter values.<p>
+ * synchronized on the original {@link OCLExpression} object so that no race conditions may occur when multiple
+ * threads evaluate the same parameterized expression for different parameter values or different parameterized
+ * expressions based on the same original OCL expression.<p>
  * 
  * For evaluation, an {@link OCLWithHiddenOpposites} environment is used which adds support for
  * {@link OppositePropertyCallExp} expressions.
@@ -193,14 +194,16 @@ public class PreparedOCLExpression {
      * @param context
      *            evaluation context; see also {@link OCL#evaluate(Object, org.eclipse.ocl.expressions.OCLExpression)}.
      */
-    public synchronized Object evaluate(Object context, ParameterValue<?>... parameterValues) {
+    public Object evaluate(Object context, ParameterValue<?>... parameterValues) {
         Set<ParameterValue<?>> originalValues = new HashSet<ParameterValue<?>>();
         try {
-            for (ParameterValue<?> pv : parameterValues) {
-                originalValues.add(pv.getUndo());
-                pv.set();
+            synchronized (expression) {
+                for (ParameterValue<?> pv : parameterValues) {
+                    originalValues.add(pv.getUndo());
+                    pv.set();
+                }
+                return getOCL().evaluate(context, expression);
             }
-            return getOCL().evaluate(context, expression);
         } finally {
             for (ParameterValue<?> originalValue : originalValues) {
                 originalValue.set();
