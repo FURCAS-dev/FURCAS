@@ -8,6 +8,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
@@ -15,23 +17,14 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.progress.IProgressService;
 
-import tcs.ConcreteSyntax;
-
-import com.sap.furcas.textual.tcs.TcsUtil;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 import com.sap.ide.cts.moin.parserfactory.AbstractParserFactory;
-import com.sap.mi.fwk.ConnectionManager;
-import com.sap.mi.fwk.ui.ModelAdapterUI;
-import com.sap.mi.fwk.ui.ModelManagerUI;
-import com.sap.mi.fwk.ui.editor.ModelEditor;
-import com.sap.mi.fwk.ui.editor.ModelEditorInput;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.Partitionable;
+
 
 public class EditorUtil {
     public static List<ConcreteSyntax> getSyntaxesInProject(final IProject project) {
 
-	final Connection[] conn = new Connection[1];
+	final ResourceSet[] conn = new ResourceSet[1];
 	IRunnableWithProgress operation = new IRunnableWithProgress() {
 	    public void run(IProgressMonitor monitor) {
 		// non UI thread
@@ -53,7 +46,7 @@ public class EditorUtil {
     }
 
     public static List<ConcreteSyntax> getSyntaxesInProjectWithName(final IProject project, String languageId) {
-	final Connection[] conn = new Connection[1];
+	final ResourceSet[] conn = new ResourceSet[1];
 	IRunnableWithProgress operation = new IRunnableWithProgress() {
 	    public void run(IProgressMonitor monitor) {
 		// non UI thread
@@ -89,8 +82,8 @@ public class EditorUtil {
 		if (found != null) {
 		    throw new IllegalStateException("Found more than one syntax with id: " + syntax.getName() + "!\n"
 			    + "Cannot decide which one to use for current editor!\n" + "Locations are: "
-			    + ((Partitionable) found).get___Partition().getPri() + "\nand:"
-			    + ((Partitionable) syntax).get___Partition().getPri());
+			    + ((EObject) found).eResource().getURI() + "\nand:"
+			    + ((EObject) syntax).eResource().getURI());
 		}
 		found = syntax;
 	    }

@@ -30,11 +30,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import antlr.Token;
 
 import com.sap.furcas.metamodel.TCS.Alternative;
+import com.sap.furcas.metamodel.TCS.AsPArg;
 import com.sap.furcas.metamodel.TCS.BooleanPropertyExp;
 import com.sap.furcas.metamodel.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
@@ -61,23 +63,16 @@ import com.sap.furcas.metamodel.TCS.PrimitiveTemplate;
 import com.sap.furcas.metamodel.TCS.Priority;
 import com.sap.furcas.metamodel.TCS.Property;
 import com.sap.furcas.metamodel.TCS.PropertyInit;
+import com.sap.furcas.metamodel.TCS.RefersToPArg;
 import com.sap.furcas.metamodel.TCS.Sequence;
 import com.sap.furcas.metamodel.TCS.SequenceElement;
 import com.sap.furcas.metamodel.TCS.SequenceInAlternative;
 import com.sap.furcas.metamodel.TCS.SpaceKind;
 import com.sap.furcas.metamodel.TCS.Symbol;
 import com.sap.furcas.metamodel.TCS.Template;
-import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
-import com.sap.furcas.textual.tcs.TcsUtil;
-import com.sap.furcas.textual.textblocks.shortprettyprint.PrettyPrinterUtil;
 import com.sap.ide.cts.editor.prettyprint.MOINImportedModelAdapter;
 import com.sap.ide.cts.editor.prettyprint.PrettyPrintContext;
 import com.sap.ide.cts.editor.prettyprint.SyntaxAndModelMismatchException;
-<<<<<<< HEAD
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
-import com.sap.mi.textual.common.util.EcoreHelper;
-import com.sap.mi.textual.parsing.textblocks.PrettyPrinterUtil;
-import com.sap.mi.textual.tcs.util.TcsUtil;
 =======
 >>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
@@ -123,8 +118,8 @@ public class PrettyPrinter {
             if (element instanceof EObject) {
                 propValue = TcsUtil.getPropertyValue((EObject) element, p
                         .getPropertyReference());
-            } else if (element instanceof RefStruct) {
-                propValue = TcsUtil.getPropertyValue((RefStruct) element, p
+            } else if (element instanceof EStructuralFeature) {
+                propValue = TcsUtil.getPropertyValue((EStructuralFeature) element, p
                         .getPropertyReference());
             }
 
@@ -174,7 +169,7 @@ public class PrettyPrinter {
         }
 
         public NoTemplateMatchFoundException(PrettyPrintContext context,
-                RefStruct s, String typeName, String mode) {
+                EStructuralFeature s, String typeName, String mode) {
             super(context);
             this.element = s;
             this.typeName = typeName;
@@ -227,9 +222,9 @@ public class PrettyPrinter {
         private String getPrimitivePropertyInitError(PrimitivePropertyInit p) {
             String error = "PrimitivePropertyInit: ";
             error += "property " + propertyName;
-            if (element instanceof RefStruct) {
+            if (element instanceof EStructuralFeature) {
                 error += " is "
-                        + ((RefStruct) element).refGetValue(propertyName);
+                        + ((EStructuralFeature) element).refGetValue(propertyName);
             } else if (element instanceof EObject) {
                 error += " is "
                         + ((EObject) element).refGetValue(propertyName);
@@ -412,7 +407,7 @@ public class PrettyPrinter {
                 classTemplateMap);
     }
 
-    private static ClassTemplate findSupertypeTemplate(RefStruct r,
+    private static ClassTemplate findSupertypeTemplate(EStructuralFeature r,
             String mode,
             Map<List<String>, Map<String, ClassTemplate>> classTemplateMap,
             ResourceSet conn) {
@@ -539,8 +534,8 @@ public class PrettyPrinter {
             BooleanPropertyExp booleanPropertyExp = (BooleanPropertyExp) condition;
             String propName = TcsUtil.getPropertyName(booleanPropertyExp
                     .getPropertyReference());
-            if (context instanceof RefStruct) {
-                ret = MOINImportedModelAdapter.getBool((RefStruct) context,
+            if (context instanceof EStructuralFeature) {
+                ret = MOINImportedModelAdapter.getBool((EStructuralFeature) context,
                         propName);
             } else if (context instanceof EObject) {
                 ret = MOINImportedModelAdapter.getBool((EObject) context,
@@ -551,8 +546,8 @@ public class PrettyPrinter {
             String propName = TcsUtil.getPropertyName(isDefinedExp
                     .getPropertyReference());
             Object val = null;
-            if (context instanceof RefStruct) {
-                val = MOINImportedModelAdapter.get((RefStruct) context,
+            if (context instanceof EStructuralFeature) {
+                val = MOINImportedModelAdapter.get((EStructuralFeature) context,
                         propName);
             } else if (context instanceof EObject) {
                 val = MOINImportedModelAdapter.get((EObject) context,
@@ -572,8 +567,8 @@ public class PrettyPrinter {
                     .getPropertyReference());
 
             Object val = null;
-            if (context instanceof RefStruct) {
-                val = MOINImportedModelAdapter.get((RefStruct) context,
+            if (context instanceof EStructuralFeature) {
+                val = MOINImportedModelAdapter.get((EStructuralFeature) context,
                         propName);
             } else if (context instanceof EObject) {
                 val = MOINImportedModelAdapter.get((EObject) context,
@@ -590,8 +585,8 @@ public class PrettyPrinter {
             InstanceOfExp ioExp = (InstanceOfExp) condition;
 
             Object referredObject = null;
-            if (context instanceof RefStruct) {
-                referredObject = TcsUtil.getPropertyValue((RefStruct) context,
+            if (context instanceof EStructuralFeature) {
+                referredObject = TcsUtil.getPropertyValue((EStructuralFeature) context,
                         ioExp.getPropertyReference());
             } else if (context instanceof EObject) {
                 referredObject = TcsUtil.getPropertyValue((EObject) context,
@@ -620,8 +615,8 @@ public class PrettyPrinter {
             if (vtn.equals("TCS::IntegerVal")) {
                 int lv = MOINImportedModelAdapter.getInt(value, "symbol");
                 int pv = 0;
-                if (context instanceof RefStruct) {
-                    pv = MOINImportedModelAdapter.getInt((RefStruct) context,
+                if (context instanceof EStructuralFeature) {
+                    pv = MOINImportedModelAdapter.getInt((EStructuralFeature) context,
                             propName);
                 } else if (context instanceof EObject) {
                     pv = MOINImportedModelAdapter.getInt((EObject) context,
@@ -631,8 +626,8 @@ public class PrettyPrinter {
             } else if (vtn.equals("TCS::NegativeIntegerVal")) {
                 int lv = -MOINImportedModelAdapter.getInt(value, "symbol");
                 int pv = 0;
-                if (context instanceof RefStruct) {
-                    pv = MOINImportedModelAdapter.getInt((RefStruct) context,
+                if (context instanceof EStructuralFeature) {
+                    pv = MOINImportedModelAdapter.getInt((EStructuralFeature) context,
                             propName);
                 } else if (context instanceof EObject) {
                     pv = MOINImportedModelAdapter.getInt((EObject) context,
@@ -642,9 +637,9 @@ public class PrettyPrinter {
             } else if (vtn.equals("TCS::StringVal")) {
                 String lv = MOINImportedModelAdapter.getString(value, "symbol");
                 List<String> pv = null;
-                if (context instanceof RefStruct) {
+                if (context instanceof EStructuralFeature) {
                     pv = (List<String>) MOINImportedModelAdapter.get(
-                            (RefStruct) context, propName);
+                            (EStructuralFeature) context, propName);
                 } else if (context instanceof EObject) {
                     pv = (List<String>) MOINImportedModelAdapter.get(
                             (EObject) context, propName);
@@ -654,9 +649,9 @@ public class PrettyPrinter {
                 String lv = MOINImportedModelAdapter.getString(value, "name");
 
                 EEnum pv = null;
-                if (context instanceof RefStruct) {
+                if (context instanceof EStructuralFeature) {
                     pv = (EEnum) MOINImportedModelAdapter.get(
-                            (RefStruct) context, propName);
+                            (EStructuralFeature) context, propName);
                 } else if (context instanceof EObject) {
                     pv = (EEnum) MOINImportedModelAdapter.get(
                             (EObject) context, propName);
@@ -1215,7 +1210,7 @@ public class PrettyPrinter {
         context.getVisitedModelElements().remove(ame);
     }
 
-    private void serialize(RefStruct s, String mode, ResourceSet connection)
+    private void serialize(EStructuralFeature s, String mode, ResourceSet connection)
             throws SyntaxMismatchException {
         String typeName = TcsUtil.joinNameList(s.refTypeName());
 
@@ -1511,10 +1506,10 @@ public class PrettyPrinter {
             validateBounds(element, property, value);
         }
 
-        RefersToParg refersToParg = (RefersToParg) getPArg(property, "RefersTo");
+        RefersToPArg refersToParg = (RefersToPArg) getPArg(property, "RefersTo");
         EObject query = getPArg(property, "Query");
         
-        AsParg asParg = (AsParg) getPArg(property, "As");
+        AsPArg asParg = (AsPArg) getPArg(property, "As");
         PrimitiveTemplate asTemplate = PrettyPrinterUtil.getAsTemplate(asParg);
         String primitiveTemplateName = asTemplate != null ? asTemplate.getTemplateName() : null;
 
@@ -1549,8 +1544,8 @@ public class PrettyPrinter {
                     }
                 }
             }
-        } else if (value instanceof RefStruct) {
-            RefStruct s = (RefStruct) value;
+        } else if (value instanceof EStructuralFeature) {
+            EStructuralFeature s = (EStructuralFeature) value;
             ModePArg modeArg = (ModePArg) getPArg(property, "Mode");
             String mode = null;
             if (modeArg != null) {
@@ -1711,8 +1706,8 @@ public class PrettyPrinter {
         } else if (tn.equals("TCS::Property")) {
             Property prop = (Property) seqElem;
             Object v = null;
-            if (element instanceof RefStruct) {
-                v = TcsUtil.getPropertyValue((RefStruct) element, prop
+            if (element instanceof EStructuralFeature) {
+                v = TcsUtil.getPropertyValue((EStructuralFeature) element, prop
                         .getPropertyReference());
 
             } else if (element instanceof EObject) {
@@ -1967,8 +1962,8 @@ public class PrettyPrinter {
             }
 
             Object prop = null;
-            if (element instanceof RefStruct) {
-                prop = TcsUtil.getPropertyValue((RefStruct) element, p
+            if (element instanceof EStructuralFeature) {
+                prop = TcsUtil.getPropertyValue((EStructuralFeature) element, p
                         .getPropertyReference());
             } else if (element instanceof EObject) {
                 prop = TcsUtil.getPropertyValue((EObject) element, p
@@ -2020,8 +2015,8 @@ public class PrettyPrinter {
             }
 
             Object prop = null;
-            if (element instanceof RefStruct) {
-                prop = TcsUtil.getPropertyValue((RefStruct) element, p
+            if (element instanceof EStructuralFeature) {
+                prop = TcsUtil.getPropertyValue((EStructuralFeature) element, p
                         .getPropertyReference());
             } else if (element instanceof EObject) {
                 prop = TcsUtil.getPropertyValue((EObject) element, p

@@ -2,23 +2,13 @@ package com.sap.ide.cts.editor.commands;
 
 import java.util.Collection;
 
+import org.eclipse.core.commands.Command;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import textblocks.TextBlock;
-
-import com.sap.furcas.textual.textblocks.TbChangeUtil;
-import com.sap.furcas.textual.textblocks.TbNavigationUtil;
-import com.sap.furcas.textual.textblocks.TbValidationUtil;
-import com.sap.furcas.textual.textblocks.validation.IllegalTextBlocksStateException;
-import com.sap.mi.fwk.IPartitionScopeProvider;
-import com.sap.mi.fwk.PartitionService;
-import com.sap.mi.fwk.QueryService;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.commands.Command;
-import com.sap.tc.moin.repository.commands.PartitionOperation;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mql.MQLResultSet;
-import com.sap.tc.moin.repository.mql.QueryScopeProvider;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 
 /**
  * Command to clean-up all TextBlocks of a project. <b>Generally
@@ -36,7 +26,7 @@ public class TextBlockHouseKeepingCommand extends Command {
 
     private final IProject project;
 
-    public TextBlockHouseKeepingCommand(Connection co, IProject project) {
+    public TextBlockHouseKeepingCommand(ResourceSet co, IProject project) {
 	super(co);
 	this.project = project;
     }
@@ -48,9 +38,9 @@ public class TextBlockHouseKeepingCommand extends Command {
  
     @Override
     public void doExecute() {
-	RefObject[] allBlocks = getAllTextBlocks(getConnection(), project);
+	EObject[] allBlocks = getAllTextBlocks(getConnection(), project);
 
-	for (RefObject refObj : allBlocks) {
+	for (EObject refObj : allBlocks) {
 	    TextBlock block = (TextBlock) refObj;
 
 	    if (!block.is___Alive()) {
@@ -92,18 +82,18 @@ public class TextBlockHouseKeepingCommand extends Command {
     }
 
     @Override
-    public Collection<PartitionOperation> getAffectedPartitions() {
+    public Collection<EOperation> getAffectedPartitions() {
 	// Be lazy and just request save for all dirty MOIN based editors
 	// in this project
 	return null;
     }
 
-    private RefObject[] getAllTextBlocks(Connection co, IProject project) {
+    private EObject[] getAllTextBlocks(ResourceSet co, IProject project) {
 	IPartitionScopeProvider partitionScopeProvider = PartitionService.getInstance().getPartitionScopeProvider(project, co,
 		IPartitionScopeProvider.PartitionScope.INNER);
 	QueryScopeProvider queryScopeProvider = QueryService.getInstance().getQueryScopeProvider(partitionScopeProvider);
 	MQLResultSet result = co.getMQLProcessor().execute("select tb from textblocks::TextBlock as tb", queryScopeProvider); //$NON-NLS-1$
-	RefObject[] textBlocks = result.getRefObjects("tb"); //$NON-NLS-1$
+	EObject[] textBlocks = result.getRefObjects("tb"); //$NON-NLS-1$
 	return textBlocks;
     }
 

@@ -8,18 +8,15 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.WeakHashMap;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.jface.text.source.IAnnotationModelExtension;
 
-import textblocks.DocumentNode;
-import textblocks.TextBlock;
-
-import com.sap.furcas.textual.textblocks.TbUtil;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 
 public class PartitionHighlighter {
 	public static final String OTHER_PARTITION_ANNOTATION_TYPE = "com.sap.ide.cts.editor.partition_highlight";
@@ -41,13 +38,13 @@ public class PartitionHighlighter {
 				if (offset >= 0 && length >= 0) {
 					Position position= createPosition(tb);
 					if (position != null) {
-					    for (RefObject element : tb.getCorrespondingModelElements()) {
-							Partitionable partitionable  = element;
-							if (element.get___Partition().equals(tb.get___Partition())) {
+					    for (EObject element : tb.getCorrespondingModelElements()) {
+							EObject partitionable  = element;
+							if (element.eResource().equals(tb.eResource())) {
 								continue; // show errors only for the broken elements
 							}
-							String elementName = ((MofClass) element.refMetaObject()).getName();
-							String partitionName = partitionable.get___Partition().getPri().toString();
+							String elementName = ((EClass) element.refMetaObject()).getName();
+							String partitionName = partitionable.eResource().getURI().toString();
 							String text = elementName + " from partition: " + partitionName;
 							if(text.indexOf("/_comp/") >= 0) {
 								//The annotation text is quite long, so split it in two lines

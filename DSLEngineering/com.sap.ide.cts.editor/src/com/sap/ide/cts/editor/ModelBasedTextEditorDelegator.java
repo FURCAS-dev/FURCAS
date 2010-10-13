@@ -50,9 +50,6 @@ import org.eclipse.ui.texteditor.ITextEditorExtension4;
 import org.eclipse.ui.texteditor.SourceViewerDecorationSupport;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 
-import com.sap.mi.fwk.ui.editor.IModelEditor;
-import com.sap.mi.fwk.ui.editor.ModelEditorPart;
-
 public class ModelBasedTextEditorDelegator extends ModelEditorPart implements ITextEditor, IReusableEditor, ITextEditorExtension, ITextEditorExtension2, ITextEditorExtension3, ITextEditorExtension4, INavigationLocationProvider, ISaveablesSource, IPersistableEditor {
 	
 

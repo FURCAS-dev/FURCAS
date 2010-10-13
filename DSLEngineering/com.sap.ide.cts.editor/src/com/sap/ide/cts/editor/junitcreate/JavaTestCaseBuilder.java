@@ -2,10 +2,10 @@ package com.sap.ide.cts.editor.junitcreate;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.text.DocumentEvent;
 
 import com.sap.ide.cts.editor.document.CtsHistoryDocument;
-import com.sap.tc.moin.repository.LRI;
 
 /**
  * Helper class to create JUnit Test methods based on the information provided
@@ -15,7 +15,7 @@ import com.sap.tc.moin.repository.LRI;
  */
 public class JavaTestCaseBuilder {
 
-    public static String buildTestCase(LRI sourceLRI, LRI copyLri, Collection<DocumentEvent> history, String testCaseName,
+    public static String buildTestCase(URI sourceLRI, URI copyLri, Collection<DocumentEvent> history, String testCaseName,
 	    String description) {
 	StringBuilder sb = new StringBuilder(1024);
 	sb.append("    /**\n    " + description + "\n\n    */\n");
@@ -23,7 +23,7 @@ public class JavaTestCaseBuilder {
 	sb.append("    public void test" + testCaseName + "() throws PartInitException, BadLocationException, CoreException {\n");
 	sb.append("        // Source / Copy of: " + sourceLRI.toString() + "\n");
 	sb.append("        String lriString = \"" + copyLri.toString() + "\";\n");
-	sb.append("        LRI lri = connection.getSession().getMoin().createLri(lriString);\n");
+	sb.append("        URI lri = connection.getSession().getMoin().createLri(lriString);\n");
 	sb.append("        final RefObject refObject = (RefObject) connection.getElement(lri);\n");
 	sb.append("        assertNotNull(refObject); \n");
 	sb.append("        assertTrue(refObject.is___Alive()); \n");

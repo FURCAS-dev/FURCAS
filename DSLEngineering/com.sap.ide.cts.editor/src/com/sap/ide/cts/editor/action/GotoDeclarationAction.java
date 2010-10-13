@@ -2,17 +2,14 @@ package com.sap.ide.cts.editor.action;
 
 import java.util.Collection;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.source.SourceViewer;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.ui.PartInitException;
 
-import textblocks.AbstractToken;
-
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.ide.cts.editor.document.CtsDocument;
-import com.sap.mi.fwk.ui.ModelManagerUI;
 
 public class GotoDeclarationAction implements Listener {
 	
@@ -34,7 +31,7 @@ public class GotoDeclarationAction implements Listener {
         	    AbstractToken token = ((CtsDocument) textViewer.getDocument())
         		    .getTextBlocksModelStore().getFloorToken(
         			    textViewer.getSelectedRange().x);
-        	    Collection<RefObject> referencedElement = token
+        	    Collection<EObject> referencedElement = token
         		    .getReferencedElements();
         	    //TODO: Currently there are 4 different possibilities to navigate to,
         	    //which have the following priorities:
@@ -62,19 +59,19 @@ public class GotoDeclarationAction implements Listener {
         			e.printStackTrace();
         		    }
         		}
-        	    } else if (token.getParentBlock().getReferencedElements().size() > 0) {
+        	    } else if (token.getParent().getReferencedElements().size() > 0) {
         		try {
         		    ModelManagerUI.getEditorManager().openEditor(
-        			    token.getParentBlock().getReferencedElements()
+        			    token.getParent().getReferencedElements()
         				    .iterator().next());
         		} catch (PartInitException e) {
         		    // TODO Auto-generated catch block
         		    e.printStackTrace();
         		}
-        	    } else if (token.getParentBlock().getCorrespondingModelElements().size() > 0) {
+        	    } else if (token.getParent().getCorrespondingModelElements().size() > 0) {
         		try {
         		    ModelManagerUI.getEditorManager().openEditor(
-        			    token.getParentBlock().getCorrespondingModelElements()
+        			    token.getParent().getCorrespondingModelElements()
         				    .iterator().next());
         		} catch (PartInitException e) {
         		    // TODO Auto-generated catch block

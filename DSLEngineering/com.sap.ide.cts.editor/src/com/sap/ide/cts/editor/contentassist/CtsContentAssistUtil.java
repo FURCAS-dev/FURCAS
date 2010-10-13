@@ -16,7 +16,6 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.swt.graphics.Image;
 
-<<<<<<< HEAD
 import com.sap.furcas.metamodel.TCS.Alternative;
 import com.sap.furcas.metamodel.TCS.Block;
 import com.sap.furcas.metamodel.TCS.ClassTemplate;
@@ -36,37 +35,6 @@ import com.sap.furcas.metamodel.TCS.SequenceElement;
 import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.mi.textual.parsing.textblocks.TbVersionUtil;
-import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.mi.textual.textblocks.model.TextBlocksModel;
-=======
-import tcs.Alternative;
-import tcs.Block;
-import tcs.ClassTemplate;
-import tcs.ConcreteSyntax;
-import tcs.ConditionalElement;
-import tcs.EnumLiteralMapping;
-import tcs.FilterParg;
-import tcs.FunctionCall;
-import tcs.FunctionTemplate;
-import tcs.LiteralRef;
-import tcs.OperatorTemplate;
-import tcs.Property;
-import tcs.QueryParg;
-import tcs.RefersToParg;
-import tcs.Sequence;
-import tcs.SequenceElement;
-import tcs.Template;
-import textblocks.AbstractToken;
-import textblocks.TextBlock;
-import textblocks.VersionEnum;
-
-import com.sap.furcas.textual.tcs.TcsUtil;
-import com.sap.furcas.textual.textblocks.TbVersionUtil;
-import com.sap.furcas.textual.textblocks.model.TextBlocksModel;
-import com.sap.tc.moin.repository.mmi.model.TypedElement;
-import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 >>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 public class CtsContentAssistUtil {

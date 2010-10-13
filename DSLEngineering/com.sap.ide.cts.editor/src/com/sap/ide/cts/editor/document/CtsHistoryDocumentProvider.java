@@ -5,7 +5,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.text.IDocument;
 
 import com.sap.ide.cts.editor.FurcasDocumentSetupParticpant;
-import com.sap.mi.fwk.ui.editor.ModelEditorInput;
 
 /**
  * <p>DocumentProvider for {@link CtsHistoryDocument}.</p>
