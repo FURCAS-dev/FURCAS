@@ -17,6 +17,7 @@ import com.sap.furcas.metamodel.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.TCS.ContextTemplate;
 import com.sap.furcas.metamodel.TCS.SequenceElement;
 import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.textblockdefinition.TextblockDefinition;
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.Bostoken;
 import com.sap.furcas.metamodel.textblocks.Eostoken;
@@ -24,16 +25,12 @@ import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.furcas.metamodel.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
-import com.sap.furcas.textual.tcs.TcsUtil;
-import com.sap.furcas.textual.textblocks.TbMarkingUtil;
-import com.sap.furcas.textual.textblocks.TbNavigationUtil;
-import com.sap.furcas.textual.textblocks.TbValidationUtil;
+import com.sap.furcas.metamodel.textblocks.Version;
 import com.sap.ide.cts.editor.contentassist.TcsDebugUtil;
 import com.sap.ide.cts.editor.prettyprint.imported.PrettyPrinter;
 import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorStream;
 import com.sap.ide.cts.moin.parserfactory.AbstractParserFactory;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
 
 /**
  * 
@@ -180,7 +177,7 @@ public class CtsTextBlockIncrementalTCSExtractorStream implements
 		TextBlock b = (TextBlock) pack.getTextBlock()
 				.refCreateInstanceInPartition(part);
 		b.setChildrenChanged(false);
-		b.setVersion(VersionEnum.REFERENCE);
+		b.setVersion(Version.REFERENCE);
 		b.setRelexingNeeded(false);
 		b.setStartRow(0);
 		b.setStartColumn(0);
@@ -200,7 +197,7 @@ public class CtsTextBlockIncrementalTCSExtractorStream implements
 		LexedToken t = (LexedToken) pack.getLexedToken()
 				.refCreateInstanceInPartition(part);
 		t.setChildrenChanged(false);
-		t.setVersion(VersionEnum.REFERENCE);
+		t.setVersion(Version.REFERENCE);
 		t.setRelexingNeeded(false);
 		t.setStartRow(0);
 		t.setStartColumn(0);
@@ -224,7 +221,7 @@ public class CtsTextBlockIncrementalTCSExtractorStream implements
 		OmittedToken t = (OmittedToken) pack.getOmittedToken()
 				.refCreateInstanceInPartition(part);
 		t.setChildrenChanged(false);
-		t.setVersion(VersionEnum.REFERENCE);
+		t.setVersion(Version.REFERENCE);
 		t.setRelexingNeeded(false);
 		t.setStartRow(0);
 		t.setStartColumn(0);
@@ -350,7 +347,7 @@ public class CtsTextBlockIncrementalTCSExtractorStream implements
 	{
 		if (template != null)
 		{
-			TextBlockDefinition tbDef = pack.getTextblockdefinition()
+			TextblockDefinition tbDef = pack.getTextblockdefinition()
 					.getTextblockDefinitionReferencesProduction()
 					.getTextBlockDefinition(template).iterator().next();
 			block.setType(tbDef);
@@ -493,7 +490,7 @@ public class CtsTextBlockIncrementalTCSExtractorStream implements
 			if (t instanceof ContextTemplate)
 			{
 				ContextTemplate ct = (ContextTemplate) t;
-				if (ct.isContext())
+				if (ct.isIsContext())
 				{
 					parentBlock.getElementsInContext().addAll(modelElements);
 					return;
@@ -557,7 +554,7 @@ public class CtsTextBlockIncrementalTCSExtractorStream implements
 	void addBosToken()
 	{
 		Bostoken bos = ANTLRIncrementalLexerAdapter.createBOSToken(pack,
-				VersionEnum.REFERENCE,
+				Version.REFERENCE,
 				ANTLRIncrementalLexerAdapter.bosTokenType);
 		addToken(bos);
 	}
@@ -575,7 +572,7 @@ public class CtsTextBlockIncrementalTCSExtractorStream implements
 			}
 		}
 		Eostoken eos = ANTLRIncrementalLexerAdapter.createEOSToken(pack,
-				VersionEnum.REFERENCE,
+				Version.REFERENCE,
 				ANTLRIncrementalLexerAdapter.eosTokenType);
 		eos.setOffset(curOffset);
 		addToken(eos);

@@ -1,14 +1,11 @@
 package com.sap.ide.cts.parser.incremental;
 
-import static com.sap.furcas.runtime.textblocks.TbMarkingUtil.isEOS;
-import static com.sap.furcas.runtime.textblocks.TbMarkingUtil.marked;
 import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getNextInSubTree;
 import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getParentBlock;
 import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getSubNodeAt;
 import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getSubNodes;
 import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.isLastInSubTree;
 import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.isToken;
-import static com.sap.furcas.runtime.textblocks.TbVersionUtil.getOtherVersion;
 
 import java.util.List;
 
@@ -49,7 +46,7 @@ public abstract class IncrementalRecognizer {
 		if (isEOS(node) || (isToken(node) && marked((AbstractToken) node)))
 			return (AbstractToken) node;
 		if (node instanceof TextBlock
-				&& hasNestedChanges((TextBlock) node, VersionEnum.PREVIOUS))
+				&& hasNestedChanges((TextBlock) node, Version.PREVIOUS))
 			return findNextRegion(getSubNodeAt(((TextBlock) node), 0));
 		if (node instanceof TextBlock
 				&& ((TextBlock) node).getParent() == null) {

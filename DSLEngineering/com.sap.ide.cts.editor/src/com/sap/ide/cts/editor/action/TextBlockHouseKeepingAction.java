@@ -3,6 +3,7 @@ package com.sap.ide.cts.editor.action;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.ISelection;
@@ -13,8 +14,6 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.progress.IProgressService;
 
 import com.sap.ide.cts.editor.commands.TextBlockHouseKeepingCommand;
-import com.sap.mi.fwk.ConnectionManager;
-import com.sap.tc.moin.repository.Connection;
 
 public class TextBlockHouseKeepingAction implements IObjectActionDelegate {
 
@@ -22,7 +21,7 @@ public class TextBlockHouseKeepingAction implements IObjectActionDelegate {
 
     @Override
     public void run(IAction action) {
-	Connection co = getConnection(project);
+	ResourceSet co = getConnection(project);
 	TextBlockHouseKeepingCommand cmd = new TextBlockHouseKeepingCommand(co, project);
 	cmd.execute();
     }
@@ -41,8 +40,8 @@ public class TextBlockHouseKeepingAction implements IObjectActionDelegate {
 	// unused
     }
 
-    private Connection getConnection(final IProject project) {
-	final Connection[] connection = new Connection[1];
+    private ResourceSet getConnection(final IProject project) {
+	final ResourceSet[] connection = new ResourceSet[1];
 	IRunnableWithProgress operation = new IRunnableWithProgress() {
 	    public void run(IProgressMonitor monitor) throws InterruptedException {
 		// non UI thread

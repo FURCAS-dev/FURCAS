@@ -3,10 +3,8 @@ package com.sap.ide.cts.editor;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
-import textblocks.DocumentNode;
-import textblocks.TextBlock;
-
-import com.sap.furcas.textual.textblocks.TbNavigationUtil;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 
 public class TextBlocksContentProvider implements ITreeContentProvider {
 

@@ -10,6 +10,7 @@ import java.util.Collection;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.metamodel.textblocks.DocumentNode;
@@ -151,7 +152,7 @@ public class GenericModelCopyStrategy extends DefaultModelTransferTarget impleme
      * {@link #prepareLinkingToCompositeParent(String, EObject, EObject)}
      */
     @Override
-    public Collection<ModelPartition> handleTransfer(Object target, EObject[] objectsToTransfer, IModelTransferLog log)
+    public Collection<Resource> handleTransfer(Object target, EObject[] objectsToTransfer, IModelTransferLog log)
 	    throws OperationCanceledException {
 	return super.handleTransfer(target, objectsToTransfer, log);
     }

@@ -5,41 +5,29 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-<<<<<<< HEAD
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-
-import com.sap.mi.textual.tcs.util.TcsUtil;
-=======
-import com.sap.furcas.textual.tcs.TcsUtil;
-import com.sap.tc.moin.repository.JmiHelper;
-import com.sap.tc.moin.repository.mmi.model.Association;
-import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefAssociation;
-import com.sap.tc.moin.repository.mmi.reflect.RefEnum;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefStruct;
+import org.eclipse.emf.ecore.EStructuralFeature;
 >>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 public class MOINImportedModelAdapter {
     
-    public static Object get(RefStruct me, String propName) {
+    public static Object get(EStructuralFeature me, String propName) {
         if (me == null || propName == null) {
                 return null;
         }
 
-        RefStruct ref = me;
+        EStructuralFeature ref = me;
 
         return ref.refGetValue(propName);
     }
     
-    public static boolean getBool(RefStruct me, String propName) {
+    public static boolean getBool(EStructuralFeature me, String propName) {
             return (Boolean) get(me, propName);
     }
     
-    public static boolean getBoolUndefinedIsFalse(RefStruct me, String propName) {
+    public static boolean getBoolUndefinedIsFalse(EStructuralFeature me, String propName) {
             Object result = get(me, propName);
             if (result == null) {
                     return false;
@@ -48,24 +36,24 @@ public class MOINImportedModelAdapter {
             return (Boolean) result;
     }
     
-    public static Iterator<?> getCol(RefStruct me, String propName) {
+    public static Iterator<?> getCol(EStructuralFeature me, String propName) {
             Collection<?> c = (Collection<?>) get(me, propName);
             return c.iterator();
     }
     
-    public static int getInt(RefStruct me, String propName) {
+    public static int getInt(EStructuralFeature me, String propName) {
             return (Integer) get(me, propName);
     }
     
-    public static RefStruct getME(RefStruct me, String propName) {
-            return (RefStruct) get(me, propName);
+    public static EStructuralFeature getME(EStructuralFeature me, String propName) {
+            return (EStructuralFeature) get(me, propName);
     }
     
-    public static String getName(RefStruct me) {
+    public static String getName(EStructuralFeature me) {
             return getString(me, "name");
     }
     
-    public static String getString(RefStruct me, String propName) {
+    public static String getString(EStructuralFeature me, String propName) {
             try {
                     return (String) get(me, propName);
             } catch (Exception e) {

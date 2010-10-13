@@ -7,12 +7,19 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.Map.Entry;
+import java.util.UUID;
 
+import org.eclipse.core.commands.Command;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.AssertionFailedException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.text.DocumentEvent;
 import org.eclipse.jface.text.IDocumentListener;
@@ -21,32 +28,14 @@ import org.eclipse.ui.progress.IProgressService;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
-import textblocks.TextBlock;
-
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.ide.cts.editor.CtsActivator;
 import com.sap.ide.cts.editor.deepcopy.DeepCopyHelper;
 import com.sap.ide.cts.editor.deepcopy.GenericModelCopyStrategy;
 import com.sap.ide.cts.editor.document.CtsDocument;
 import com.sap.ide.cts.editor.document.CtsHistoryDocument;
-import com.sap.mi.fwk.ConnectionManager;
-import com.sap.mi.fwk.ModelManager;
-import com.sap.mi.fwk.PartitionService;
-import com.sap.mi.fwk.ui.dnd.IModelTransferTarget;
-import com.sap.tc.moin.globalmodellistener.GlobalEventListenerRegistry;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.DeepCopyPolicyHandler;
-import com.sap.tc.moin.repository.DeepCopyResultSet;
-import com.sap.tc.moin.repository.MRI;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.commands.Command;
-import com.sap.tc.moin.repository.commands.CommandStack;
-import com.sap.tc.moin.repository.commands.PartitionOperation;
-import com.sap.tc.moin.repository.commands.PartitionOperation.Operation;
-import com.sap.tc.moin.repository.consistency.ConsistencyViolation;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+
+
 
 /**
  * Document history used by {@link CtsHistoryDocument} to manage and record
@@ -71,13 +60,13 @@ public class DocumentHistory implements IDocumentListener {
 	Boolean isPersisted = false;
 	final String snapshotIdentifier = UUID.randomUUID().toString().replace("-", "");
 	/** the copy of the rootObject of CtsHistoryDocument */
-	RefObject newDocumentRootObject;
+	EObject newDocumentRootObject;
 	/** all copied elements without a composite parent: HashMap<Original, Copy> */
-	Map<RefObject, RefObject> rootElements;
+	Map<EObject, EObject> rootElements;
 	/** all DocumentEvents on the CtsHistoryDocument under observation */
 	final Collection<DocumentEvent> eventHistory = new LinkedList<DocumentEvent>();
 	/** the transient model partitions which are used as model cache: <PartitionName, Partition> */
-	Map<String, ModelPartition> transientPartitions;
+	Map<String, Resource> transientPartitions;
 	/** Pre-existing constraints errors of the model */
 	public Collection<JmiException> knownConstraintErrors;
 
@@ -94,7 +83,7 @@ public class DocumentHistory implements IDocumentListener {
     /** Currently active and still modified session */
     private Session currentSession;
 
-    private final Connection targetConnection;
+    private final ResourceSet targetConnection;
     private final CtsDocument document;
 
     public DocumentHistory(CtsDocument document, IProject project) {
@@ -151,11 +140,11 @@ public class DocumentHistory implements IDocumentListener {
 	    currentSession = new Session();
 
 	    assert targetConnection.getNullPartition().getElements().size() == 0 : "Copy PreCond: Nullpartiton not empty.";
-	    DeepCopyResultSet result = createNewModelSnapshot((RefObject) document.getRootObject(), document.getRootBlock());
+	    DeepCopyResultSet result = createNewModelSnapshot((EObject) document.getRootObject(), document.getRootBlock());
 	    monitor.worked(100);
 	    // extract result information before moving them into a transient
-	    // partition (MRI based lookup wouldn't work any longer)
-	    currentSession.newDocumentRootObject = getNewRootObject(result, (RefObject) document.getRootObject());
+	    // partition (URI based lookup wouldn't work any longer)
+	    currentSession.newDocumentRootObject = getNewRootObject(result, (EObject) document.getRootObject());
 	    currentSession.rootElements = getRootElements(result, targetConnection.getNullPartition());
 	    currentSession.knownConstraintErrors = getOriginalConstraintErrors(currentSession.rootElements);
 	    currentSession.transientPartitions = repartitionModelCopy(result, currentSession.snapshotIdentifier);
@@ -181,10 +170,10 @@ public class DocumentHistory implements IDocumentListener {
      * .metadata\.plugins\com.sap.tc.moin.facility.primary and then check again
      *
      * @param testCaseName, the prefix of the created partitions
-     * @return the MRI of the copied document root. Will be null if persisting
+     * @return the URI of the copied document root. Will be null if persisting
      *         was not successful
      */
-    public MRI persistSnapshot(String testCaseName, SnapshotVersion version) {
+    public URI persistSnapshot(String testCaseName, SnapshotVersion version) {
 	if (!isActive) {
 	    return null;
 	}
@@ -195,15 +184,15 @@ public class DocumentHistory implements IDocumentListener {
 	CommandStack cmdStk = targetConnection.getCommandStack();
 	try {
 	    cmdStk.openGroup("Document History: Persist Snapshot");
-	    RefObject root = toBePersisted.newDocumentRootObject;
+	    EObject root = toBePersisted.newDocumentRootObject;
 	    linkRootElementsToCompositeParent(toBePersisted.rootElements, toBePersisted.snapshotIdentifier);
 
 	    assert targetConnection.getElement(root.get___Mri()) != null : "Unable to resolve copied (transient) root element";
-	    Collection<ModelPartition> partitions = persistTransientPartitions(testCaseName, toBePersisted.transientPartitions);
+	    Collection<Resource> partitions = persistTransientPartitions(testCaseName, toBePersisted.transientPartitions);
 	    assertConstraintsValid(partitions, toBePersisted.knownConstraintErrors);
 	    assert targetConnection.getElement(root.get___Mri()) != null : "Unable to resolve copied (moved) root element";
 
-	    targetConnection.getConsistencyViolationListenerRegistry().performConsistencyCheck(root.get___Partition().getPri());
+	    targetConnection.getConsistencyViolationListenerRegistry().performConsistencyCheck(root.eResource().getURI());
 	    for (ConsistencyViolation ic : targetConnection.getConsistencyViolationListenerRegistry()
 		    .getAllConsistencyViolations()) {
 		System.err.println("IC " + ic.getDescription(targetConnection));
@@ -241,16 +230,16 @@ public class DocumentHistory implements IDocumentListener {
      * @param rootBlock
      * @return
      */
-    private DeepCopyResultSet createNewModelSnapshot(RefObject _rootObject, RefObject _rootBlock) {
-	MRI rootObjectMRI = _rootObject.get___Mri();
-	MRI rootBlockMRI = _rootBlock.get___Mri();
+    private DeepCopyResultSet createNewModelSnapshot(EObject _rootObject, EObject _rootBlock) {
+	URI rootObjectMRI = _rootObject.get___Mri();
+	URI rootBlockMRI = _rootBlock.get___Mri();
 
 	// Resolve via our own connection
-	RefObject rootObject = (RefObject) targetConnection.getElement(rootObjectMRI);
-	RefObject rootBlock = (RefObject) targetConnection.getElement(rootBlockMRI);
+	EObject rootObject = (EObject) targetConnection.getElement(rootObjectMRI);
+	EObject rootBlock = (EObject) targetConnection.getElement(rootBlockMRI);
 	assert rootObject != null : "Could not resolve document root object";
 
-	ArrayList<RefObject> toBeCopied = new ArrayList<RefObject>(2);
+	ArrayList<EObject> toBeCopied = new ArrayList<EObject>(2);
 	toBeCopied.add(rootObject);
 	if (rootBlock != null) { // Could be null if it was not saved yet
 	    toBeCopied.add(rootBlock);
@@ -284,15 +273,15 @@ public class DocumentHistory implements IDocumentListener {
      * @param snapshotIdentifier
      * @return the created transient partitions
      */
-    private Map<String, ModelPartition> repartitionModelCopy(DeepCopyResultSet copyResultSet, String snapshotIdentifier) {
-	HashMap<String, ModelPartition> result = new HashMap<String, ModelPartition>();
+    private Map<String, Resource> repartitionModelCopy(DeepCopyResultSet copyResultSet, String snapshotIdentifier) {
+	HashMap<String, Resource> result = new HashMap<String, Resource>();
 
-	for (RefObject target : copyResultSet.getCopiedElements()) {
-	    MRI sourceMRI = copyResultSet.getInverseMriMappingTable().get(target.get___Mri());
-	    RefObject source = (RefObject) targetConnection.getElement(sourceMRI);
+	for (EObject target : copyResultSet.getCopiedElements()) {
+	    URI sourceMRI = copyResultSet.getInverseMriMappingTable().get(target.get___Mri());
+	    EObject source = (EObject) targetConnection.getElement(sourceMRI);
 
-	    String partitionIdentifier = source.get___Partition().getPri().hashCode() + snapshotIdentifier;
-	    ModelPartition transientPartition = targetConnection.getOrCreateTransientPartition(partitionIdentifier);
+	    String partitionIdentifier = source.eResource().getURI().hashCode() + snapshotIdentifier;
+	    Resource transientPartition = targetConnection.getOrCreateTransientPartition(partitionIdentifier);
 
 	    target.assign___Partition(transientPartition);
 	    result.put(partitionIdentifier, transientPartition);
@@ -300,29 +289,29 @@ public class DocumentHistory implements IDocumentListener {
 	return result;
     }
 
-    private RefObject getNewRootObject(DeepCopyResultSet copyResultSet, RefObject oldRoot) {
-	RefObject newRoot = copyResultSet.getMappingTable().get(oldRoot).getMappingTarget();
+    private EObject getNewRootObject(DeepCopyResultSet copyResultSet, EObject oldRoot) {
+	EObject newRoot = copyResultSet.getMappingTable().get(oldRoot).getMappingTarget();
 	return newRoot;
     }
 
-    private Map<RefObject, RefObject> getRootElements(DeepCopyResultSet copyResultSet, ModelPartition partition) {
-	Map<RefObject, RefObject> elements = new HashMap<RefObject, RefObject>();
+    private Map<EObject, EObject> getRootElements(DeepCopyResultSet copyResultSet, Resource partition) {
+	Map<EObject, EObject> elements = new HashMap<EObject, EObject>();
 	PartitionService service = ModelManager.getPartitionService();
 
-	for (Partitionable rootCopy : service.getRootElements(partition)) {
-	    MRI copyMRI = rootCopy.get___Mri();
-	    MRI sourceMRI = copyResultSet.getInverseMriMappingTable().get(copyMRI);
+	for (EObject rootCopy : service.getRootElements(partition)) {
+	    URI copyMRI = rootCopy.get___Mri();
+	    URI sourceMRI = copyResultSet.getInverseMriMappingTable().get(copyMRI);
 
-	    RefObject rootSource = (RefObject) targetConnection.getElement(sourceMRI);
-	    elements.put(rootSource, (RefObject) rootCopy);
+	    EObject rootSource = (EObject) targetConnection.getElement(sourceMRI);
+	    elements.put(rootSource, (EObject) rootCopy);
 	}
 	return elements;
     }
 
-    private void linkRootElementsToCompositeParent(Map<RefObject, RefObject> rootElements, String identifier) {
-	for (Entry<RefObject, RefObject> entry : rootElements.entrySet()) {
-	    RefObject source = entry.getKey();
-	    RefObject copy = entry.getValue();
+    private void linkRootElementsToCompositeParent(Map<EObject, EObject> rootElements, String identifier) {
+	for (Entry<EObject, EObject> entry : rootElements.entrySet()) {
+	    EObject source = entry.getKey();
+	    EObject copy = entry.getValue();
 
 	    if (copy instanceof TextBlock) {
 		continue;
@@ -337,18 +326,18 @@ public class DocumentHistory implements IDocumentListener {
 		    DeepCopyHelper.linkToCompositeParent(targetConnection, source, copy);
 		}
 	    } else {
-		RefObject parent = DeepCopyHelper.getCompositeParent(targetConnection, source);
-		transfer.handleTransfer(parent, new RefObject[] { copy }, null);
+		EObject parent = DeepCopyHelper.getCompositeParent(targetConnection, source);
+		transfer.handleTransfer(parent, new EObject[] { copy }, null);
 	    }
 	}
     }
 
     private void assertSideEffectFreeness() {
 	PartitionService service = ModelManager.getPartitionService();
-	Collection<ModelPartition> dirtyPartitions = service.getDirtyPartitions(targetConnection);
-	Collection<ModelPartition> transientPartitions = targetConnection.getTransientPartitions();
+	Collection<Resource> dirtyPartitions = service.getDirtyPartitions(targetConnection);
+	Collection<Resource> transientPartitions = targetConnection.getTransientPartitions();
 
-	for (ModelPartition dirty : dirtyPartitions) {
+	for (Resource dirty : dirtyPartitions) {
 	    if (!transientPartitions.contains(dirty)) {
 		throw new AssertionFailedException("Non transient partiton dirty: " + dirty);
 	    }
@@ -358,11 +347,11 @@ public class DocumentHistory implements IDocumentListener {
 	}
     }
 
-    private void assertConstraintsValid(Collection<ModelPartition> partitions, Collection<JmiException> knownErrors) {
-	for (ModelPartition partition : partitions) {
-	    for (Partitionable element : partition.getElements()) {
-		if (element instanceof RefObject) {
-		    RefObject refObj = (RefObject) element;
+    private void assertConstraintsValid(Collection<Resource> partitions, Collection<JmiException> knownErrors) {
+	for (Resource partition : partitions) {
+	    for (EObject element : partition.getElements()) {
+		if (element instanceof EObject) {
+		    EObject refObj = (EObject) element;
 		    Collection<JmiException> errors = refObj.refVerifyConstraints(false);
 		    // This check is only fuzzy: It is very unlikely that we
 		    // have the same amount of errors but with totally different reasons
@@ -377,9 +366,9 @@ public class DocumentHistory implements IDocumentListener {
 	}
     }
 
-    private Collection<JmiException> getOriginalConstraintErrors(Map<RefObject, RefObject> rootElements) {
+    private Collection<JmiException> getOriginalConstraintErrors(Map<EObject, EObject> rootElements) {
 	HashSet<JmiException> allErrors = new HashSet<JmiException>();
-	for (RefObject original : rootElements.keySet()) {
+	for (EObject original : rootElements.keySet()) {
 	    Collection<JmiException> errors = original.refVerifyConstraints(true);
 	    if (errors != null) {
 		allErrors.addAll(errors);
@@ -403,18 +392,18 @@ public class DocumentHistory implements IDocumentListener {
      *
      * @return all newly created partitions
      */
-    private Collection<ModelPartition> persistTransientPartitions(String testCaseName,
-	    Map<String, ModelPartition> transientPartitions) {
+    private Collection<Resource> persistTransientPartitions(String testCaseName,
+	    Map<String, Resource> transientPartitions) {
 
-	Collection<ModelPartition> result = new ArrayList<ModelPartition>();
-	for (Entry<String, ModelPartition> entry : transientPartitions.entrySet()) {
-	    ModelPartition transientPartition = entry.getValue();
+	Collection<Resource> result = new ArrayList<Resource>();
+	for (Entry<String, Resource> entry : transientPartitions.entrySet()) {
+	    Resource transientPartition = entry.getValue();
 	    String partitionIdentifier = entry.getKey();
 
-	    PRI targetPRI = targetConnection.getSession().getMoin().createPri(getFacilityId(), getDataAreaName(),
+	    URI targetPRI = targetConnection.getSession().getMoin().createPri(getFacilityId(), getDataAreaName(),
 		    getContainerName(), PRI_FOLDER + testCaseName + partitionIdentifier + PRI_ENDING);
 
-	    ModelPartition targetPartition = targetConnection.createPartition(targetPRI);
+	    Resource targetPartition = targetConnection.createPartition(targetPRI);
 
 	    result.add(targetPartition);
 	    PartitionService.getInstance().moveElements(transientPartition, targetPartition);
@@ -422,11 +411,11 @@ public class DocumentHistory implements IDocumentListener {
 	return result;
     }
 
-    private void dropTransientPartitions(Map<String, ModelPartition> partitions) {
+    private void dropTransientPartitions(Map<String, Resource> partitions) {
 	if (partitions == null) {
 	    return;
 	}
-	for (ModelPartition partition : partitions.values()) {
+	for (Resource partition : partitions.values()) {
 	    assert targetConnection.getTransientPartitions().contains(partition);
 	    partition.delete();
 	}
@@ -439,8 +428,8 @@ public class DocumentHistory implements IDocumentListener {
      * @param connection
      * @return
      */
-    private Connection createTargetConnection(final IProject project, final Connection editorCo) {
-	final Connection[] con = new Connection[1];
+    private ResourceSet createTargetConnection(final IProject project, final ResourceSet editorCo) {
+	final ResourceSet[] con = new ResourceSet[1];
 	IRunnableWithProgress operation = new IRunnableWithProgress() {
 	    public void run(IProgressMonitor monitor) {
 		// non UI thread
@@ -463,7 +452,7 @@ public class DocumentHistory implements IDocumentListener {
      *
      * @param co
      */
-    private void disableEventListeners(Connection co) {
+    private void disableEventListeners(ResourceSet co) {
 	BundleContext context = CtsActivator.getDefault().getBundle().getBundleContext();
 	ServiceReference ref = context.getServiceReference(GlobalEventListenerRegistry.class.getName());
 	GlobalEventListenerRegistry registry = (GlobalEventListenerRegistry) context.getService(ref);
@@ -475,7 +464,7 @@ public class DocumentHistory implements IDocumentListener {
      *
      * @param co
      */
-    private void enableEventListeners(Connection co) {
+    private void enableEventListeners(ResourceSet co) {
 	BundleContext context = CtsActivator.getDefault().getBundle().getBundleContext();
 	ServiceReference ref = context.getServiceReference(GlobalEventListenerRegistry.class.getName());
 	GlobalEventListenerRegistry registry = (GlobalEventListenerRegistry) context.getService(ref);
@@ -484,17 +473,17 @@ public class DocumentHistory implements IDocumentListener {
 
     protected String getDataAreaName() {
 	// e.g. "IDE";
-	return document.getRootObject().get___Partition().getPri().getDataAreaDescriptor().getDataAreaName();
+	return document.getRootObject().eResource().getURI().getDataAreaDescriptor().getDataAreaName();
     }
 
     protected String getContainerName() {
 	// e.g. "ngpm.stdlib";
-	return document.getRootObject().get___Partition().getPri().getContainerName();
+	return document.getRootObject().eResource().getURI().getContainerName();
     }
 
     protected String getFacilityId() {
 	// e.g. "PF";
-	return document.getRootObject().get___Partition().getPri().getDataAreaDescriptor().getFacilityId();
+	return document.getRootObject().eResource().getURI().getDataAreaDescriptor().getFacilityId();
     }
 
     @Override
@@ -515,7 +504,7 @@ public class DocumentHistory implements IDocumentListener {
     /**
      * Propagates the new partitions to the versioning system
      */
-    private void announceNewPartitions(Collection<ModelPartition> partitions) {
+    private void announceNewPartitions(Collection<Resource> partitions) {
 	if (partitions.size() > 0) {
 	    // use a dummy command that returns the given partitions
 	    Command cmd = new AnnounceNewPartitionsCommand(targetConnection, partitions);
@@ -524,18 +513,18 @@ public class DocumentHistory implements IDocumentListener {
     }
 
     private static final class AnnounceNewPartitionsCommand extends Command {
-	private final List<PartitionOperation> mPartitions;
+	private final List<EOperation> mPartitions;
 
-	private AnnounceNewPartitionsCommand(Connection connection, Collection<ModelPartition> partitions) {
+	private AnnounceNewPartitionsCommand(ResourceSet connection, Collection<Resource> partitions) {
 	    super(connection, "Persist Testcase Partition Announcment");
-	    mPartitions = new ArrayList<PartitionOperation>(partitions.size());
-	    for (ModelPartition partition : partitions) {
-		mPartitions.add(new PartitionOperation(Operation.CREATE, partition.getPri()));
+	    mPartitions = new ArrayList<EOperation>(partitions.size());
+	    for (Resource partition : partitions) {
+		mPartitions.add(new EOperation(EOperation.CREATE, partition.getURI()));
 	    }
 	}
 
 	@Override
-	public synchronized Collection<PartitionOperation> getAffectedPartitions() {
+	public synchronized Collection<EOperation> getAffectedPartitions() {
 	    return mPartitions;
 	}
 

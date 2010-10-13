@@ -1,5 +1,7 @@
 package com.sap.ide.cts.editor;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IStatusLineManager;
@@ -14,21 +16,15 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 
-import textblocks.DocumentNode;
-import textblocks.TextBlock;
-
-import com.sap.furcas.textual.common.interfaces.IModelElementInvestigator;
-import com.sap.furcas.textual.textblocks.TbUtil;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
-import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 
 public class AbstractGrammarBasedContentOutlinePage extends ContentOutlinePage {
 
 	protected TreeViewer contentOutlineViewer;
 	private Object model;
 	private TextBlock rootTb;
-	private RefObject rootMe;
+	private EObject rootMe;
 
 	private boolean showsTbs = true;
 	private final AbstractGrammarBasedEditor abstractGrammarBasedEditor;
@@ -111,7 +107,7 @@ public class AbstractGrammarBasedContentOutlinePage extends ContentOutlinePage {
 		// createControl has been called.
 		if (contentOutlineViewer != null) {
 		    	if(contentOutlineViewer.getLabelProvider() == null || contentOutlineViewer.getLabelProvider() instanceof LabelProvider) {
-		    	RefPackage metamodelPackage = abstractGrammarBasedEditor.getParserFactory().getMetamodelPackage(
+		    	EPackage metamodelPackage = abstractGrammarBasedEditor.getParserFactory().getMetamodelPackage(
 				abstractGrammarBasedEditor.getWorkingConnection());
 			IModelElementInvestigator adapter = 
 				new MOINModelAdapter(

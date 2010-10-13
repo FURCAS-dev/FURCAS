@@ -2,19 +2,11 @@ package com.sap.ide.cts.editor.prettyprint;
 
 import org.eclipse.emf.ecore.EObject;
 
-<<<<<<< HEAD
 import com.sap.furcas.metamodel.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorStream;
-import com.sap.mi.textual.parsing.textblocks.TbChangeUtil;
-import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
-=======
-import com.sap.furcas.textual.textblocks.TbChangeUtil;
-import com.sap.furcas.textual.textblocks.TbNavigationUtil;
-import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorStream;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 >>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 /**

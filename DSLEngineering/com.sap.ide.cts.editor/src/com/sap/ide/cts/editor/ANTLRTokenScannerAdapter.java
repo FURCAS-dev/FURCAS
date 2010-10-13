@@ -15,8 +15,6 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.rules.IToken;
 import org.eclipse.jface.text.rules.ITokenScanner;
 
-import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
-
 /**
  * @author Steffen Becker
  * 

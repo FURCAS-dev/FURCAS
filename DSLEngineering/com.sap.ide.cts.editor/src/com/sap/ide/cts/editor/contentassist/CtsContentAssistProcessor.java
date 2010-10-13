@@ -22,31 +22,11 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.text.contentassist.IContextInformation;
 import org.eclipse.jface.text.contentassist.IContextInformationValidator;
 
-<<<<<<< HEAD
 import com.sap.furcas.metamodel.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
-=======
-import tcs.ClassTemplate;
-import tcs.ConcreteSyntax;
-
-import com.sap.furcas.textual.tcs.TcsUtil;
-import com.sap.furcas.textual.textblocks.model.TextBlocksModel;
->>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 import com.sap.ide.cts.editor.contentassist.modeladapter.StubModelAdapter;
 import com.sap.ide.cts.editor.document.CtsDocument;
 import com.sap.ide.cts.editor.document.TextBlocksModelStore;
-import com.sap.mi.textual.grammar.IModelAdapter;
-import com.sap.mi.textual.grammar.ParserFacade;
-import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
-import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
-import com.sap.mi.textual.grammar.impl.DelegationParsingObserver;
-import com.sap.mi.textual.parsing.textblocks.TextBlocksAwareModelAdapter;
-<<<<<<< HEAD
-import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.mi.textual.textblocks.model.TextBlocksModel;
-
-=======
-import com.sap.tc.moin.repository.Connection;
 >>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 public class CtsContentAssistProcessor implements IContentAssistProcessor {

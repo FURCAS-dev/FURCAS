@@ -1,64 +1,57 @@
 package com.sap.ide.cts.parser.incremental;
 
-import static com.sap.furcas.runtime.textblocks.TbVersionUtil.getOtherVersion;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import tcs.AndExp;
-import tcs.AtomExp;
-import tcs.ConditionalElement;
-import tcs.OperatorTemplate;
-import tcs.Property;
-import tcs.PropertyReference;
-import tcs.SequenceElement;
-import tcs.Template;
-import textblocks.AbstractToken;
-import textblocks.DocumentNode;
-import textblocks.LexedToken;
-import textblocks.OmittedToken;
-import textblocks.TextBlock;
-import textblocks.VersionEnum;
+import javax.naming.NameNotFoundException;
 
-import com.sap.furcas.parsing.textblocks.observer.TextBlockProxy;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.ocl.utilities.TypedElement;
+
+import com.sap.furcas.metamodel.TCS.AndExp;
+import com.sap.furcas.metamodel.TCS.AtomExp;
+import com.sap.furcas.metamodel.TCS.ConditionalElement;
+import com.sap.furcas.metamodel.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.TCS.Property;
+import com.sap.furcas.metamodel.TCS.PropertyReference;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
+import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.LexedToken;
+import com.sap.furcas.metamodel.textblocks.OmittedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.Version;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.parser.IModelInjector;
 import com.sap.furcas.runtime.parser.exceptions.ModelCreationOntheFlyRuntimeException;
 import com.sap.furcas.runtime.parser.impl.ModelElementProxy;
+import com.sap.furcas.runtime.parser.textblocks.observer.TextBlockProxy;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
-import com.sap.furcas.runtime.textblocks.TbVersionUtil;
+import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategy.ReuseType;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.JmiHelper;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.mmi.model.Association;
-import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.NameNotFoundException;
-import com.sap.tc.moin.repository.mmi.model.TypedElement;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
-import com.sap.tc.moin.repository.mmi.reflect.RefAssociation;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.textual.moinadapter.adapter.AdapterJMIHelper;
-import com.sap.tc.moin.textual.moinadapter.adapter.AdapterJMIHelper.AssociationBean;
+
 
 public class IncrementalParsingUtil {
 
 	public static class CompositeRefAssociationBean {
 	
-		public CompositeRefAssociationBean(RefAssociation refAssoc,
+		public CompositeRefAssociationBean(EReference refAssoc,
 				boolean isParentFirstEnd) {
 			compositeFeatureAssoc = refAssoc;
 			this.isParentFirstEnd = isParentFirstEnd;
 		}
 	
-		public RefAssociation compositeFeatureAssoc;
+		public EReference compositeFeatureAssoc;
 		public boolean isParentFirstEnd;
 	}
 
@@ -76,7 +69,7 @@ public class IncrementalParsingUtil {
 		for (Object subNode : newVersion.getSubNodes()) {
 			if (subNode instanceof LexedToken) {
 				if (TbVersionUtil.getOtherVersion((AbstractToken) subNode,
-					VersionEnum.REFERENCE) != null) {
+					Version.REFERENCE) != null) {
 					oldInbetween = true;
 				}
 			} else if (subNode instanceof TextBlockProxy) {
@@ -120,14 +113,14 @@ public class IncrementalParsingUtil {
 							// the tb changed!
 							if (TbVersionUtil.getOtherVersion(
 								(AbstractToken) subNode,
-								VersionEnum.REFERENCE) == null) {
+								Version.REFERENCE) == null) {
 								return false;
 							}
 						}
 					}
-					if (getOtherVersion(oldVersion, VersionEnum.REFERENCE) != null) {
+					if (getOtherVersion(oldVersion, Version.REFERENCE) != null) {
 						for (Object subNode : getOtherVersion(oldVersion,
-							VersionEnum.REFERENCE).getSubNodes()) {
+							Version.REFERENCE).getSubNodes()) {
 							if (subNode instanceof LexedToken) {
 								// IF there is a token that was
 								// there before and
@@ -135,7 +128,7 @@ public class IncrementalParsingUtil {
 								// the tb changed!
 								if (TbVersionUtil.getOtherVersion(
 									(AbstractToken) subNode,
-									VersionEnum.CURRENT) == null) {
+									Version.CURRENT) == null) {
 									return false;
 								}
 							}
@@ -198,7 +191,7 @@ public class IncrementalParsingUtil {
 							.getCorrespondingModelElementProxies()) {
 							if (proxy.equals(value)) {
 								// found element to be replaced
-								RefObject parentRefObject = getCorrespondingElement(
+								EObject parentRefObject = getCorrespondingElement(
 									newVersion.getParent(),
 									proxy,
 									key,
@@ -218,7 +211,7 @@ public class IncrementalParsingUtil {
 							.getReferencedElementProxies()) {
 							if (proxy.equals(value)) {
 								// found element to be replaced
-								RefObject parentRefObject = getCorrespondingElement(
+								EObject parentRefObject = getCorrespondingElement(
 									newVersion.getParent(),
 									proxy,
 									key,
@@ -243,21 +236,21 @@ public class IncrementalParsingUtil {
 		return null;
 	}
 
-    static RefObject getCorrespondingElement(TextBlockProxy textblock, IModelElementProxy proxy, String propertyName,
+    static EObject getCorrespondingElement(TextBlockProxy textblock, IModelElementProxy proxy, String propertyName,
 	    int i, TextBlock parentBlock) {
 	// TODO this is an initial implementation which might not be perfect
 	// as it just takes the type of the element
-	Collection<Classifier> metaClasses = new ArrayList<Classifier>();
+	Collection<EClassifier> metaClasses = new ArrayList<EClassifier>();
 	metaClasses.add(textblock.getTemplate().getMetaReference());
 	for (Template additionalTempl : textblock.getAdditionalTemplates()) {
 	    metaClasses.add(additionalTempl.getMetaReference());
 	}
 
-	for (RefObject element : parentBlock.getCorrespondingModelElements()) {
-	    for (Classifier classifier : metaClasses) {
+	for (EObject element : parentBlock.getCorrespondingModelElements()) {
+	    for (EClassifier classifier : metaClasses) {
 		if (element.refIsInstanceOf(classifier, true)) {
 		    try {
-			((MofClass) element.refMetaObject()).lookupElementExtended(propertyName);
+			((EClass) element.refMetaObject()).lookupElementExtended(propertyName);
 			return element;
 		    } catch (JmiException e) {
 			continue;
@@ -288,14 +281,14 @@ public class IncrementalParsingUtil {
 			throw new RuntimeException(
 				"Found textblock with nothing but omitted tokens in it. This should never happen!");
 		}
-		TextBlock candidate = tok.getParentBlock();
+		TextBlock candidate = tok.getParent();
 		TextBlock result = candidate;
 		;
 		boolean onOffsetRange = TbUtil.getAbsoluteOffset(TbNavigationUtil
 			.firstToken(candidate)) >= TbUtil.getAbsoluteOffset(firstToken(newVersion));
 		while (candidate != null && onOffsetRange && !parent.equals(candidate)) {
 			result = candidate;
-			candidate = candidate.getParentBlock();
+			candidate = candidate.getParent();
 			onOffsetRange = TbUtil.getAbsoluteOffset(TbNavigationUtil
 				.firstToken(candidate)) >= TbUtil
 				.getAbsoluteOffset(firstToken(newVersion));
@@ -308,10 +301,10 @@ public class IncrementalParsingUtil {
 		injector.set(newFeatureBean.parentRefObject, newFeatureBean.property,
 			newFeatureBean.value, newFeatureBean.valueIndex);
 		// as default assign elements to the same partition as parents
-		if (newFeatureBean.value instanceof Partitionable && assignToPartition) {
-			((Partitionable) newFeatureBean.parentRefObject).get___Partition()
+		if (newFeatureBean.value instanceof EObject && assignToPartition) {
+			((EObject) newFeatureBean.parentRefObject).eResource()
 				.assignElementIncludingChildren(
-					(Partitionable) newFeatureBean.value);
+					(EObject) newFeatureBean.value);
 		}
 	}
 
@@ -365,7 +358,7 @@ public class IncrementalParsingUtil {
 					.getSequenceElement()).getPropertyReference()
 					.getStrucfeature();
 			}
-			for (RefObject ro : oldVersion.getCorrespondingModelElements()) {
+			for (EObject ro : oldVersion.getCorrespondingModelElements()) {
 				if (newVersion.getCorrespondingModelElementProxies().size() >= i + 1) {
 					ModelElementProxy correspondingProxy = (ModelElementProxy) newVersion
 						.getCorrespondingModelElementProxies().get(i);
@@ -428,11 +421,11 @@ public class IncrementalParsingUtil {
 		return false;
 	}
 
-	public static Collection<? extends RefObject> deletePreviousEmptyBlocks(TextBlock original) {
+	public static Collection<? extends EObject> deletePreviousEmptyBlocks(TextBlock original) {
 		if (original != null) {
 			TextBlock previous = TbNavigationUtil.previousBlockInSubTree(original);
 			if (previous != null) {
-				Collection<RefObject> affectedModelElements = new ArrayList<RefObject>();
+				Collection<EObject> affectedModelElements = new ArrayList<EObject>();
 				Collection<TextBlock> deleteTB = new ArrayList<TextBlock>();
 				for (TextBlock subBlock : previous.getSubBlocks()) {
 					affectedModelElements
@@ -448,11 +441,11 @@ public class IncrementalParsingUtil {
 		return Collections.emptyList();
 	}
 
-	public static Collection<? extends RefObject> deleteNextEmptyBlocks(TextBlock original) {
+	public static Collection<? extends EObject> deleteNextEmptyBlocks(TextBlock original) {
 		if (original != null && original.is___Alive()) {
 			TextBlock next = TbNavigationUtil.nextBlockInSubTree(original);
 			if (next != null) {
-				Collection<RefObject> affectedModelElements = new ArrayList<RefObject>();
+				Collection<EObject> affectedModelElements = new ArrayList<EObject>();
 				Collection<TextBlock> deleteTB = new ArrayList<TextBlock>();
 				for (TextBlock subBlock : new ArrayList<TextBlock>(next
 					.getSubBlocks())) {
@@ -469,15 +462,15 @@ public class IncrementalParsingUtil {
 		return Collections.emptyList();
 	}
 
-	public static Collection<? extends RefObject> deleteEmptyBlocks(TextBlock original) {
+	public static Collection<? extends EObject> deleteEmptyBlocks(TextBlock original) {
 		TextBlock tbDeletionCandidate = original;
-		Collection<RefObject> affectedModelElements = new ArrayList<RefObject>();
-		if (((Partitionable) original).is___Alive()) {
+		Collection<EObject> affectedModelElements = new ArrayList<EObject>();
+		if (((EObject) original).is___Alive()) {
                     for (TextBlock subBlock : new ArrayList<TextBlock>(original.getSubBlocks())) {
                             affectedModelElements.addAll(deleteEmptyBlocks(subBlock));
                     }
                 }
-		if (((Partitionable) original).is___Alive()  && TbNavigationUtil.firstToken(tbDeletionCandidate) == null
+		if (((EObject) original).is___Alive()  && TbNavigationUtil.firstToken(tbDeletionCandidate) == null
 	                    // this may be the case if there are any empty blocks before
 	                    // remaining tokens
 	                    // inside the block
@@ -493,12 +486,12 @@ public class IncrementalParsingUtil {
 		return affectedModelElements;
 	}
 
-	public static void deleteCorrespondingModelElements(RefObject parentRefObject,
+	public static void deleteCorrespondingModelElements(EObject parentRefObject,
 		String propertyToDeleteFrom, TextBlock oldVersion,
 		ReferenceHandler referenceHandler) {
-		Collection<RefObject> correspondingModelElements = new ArrayList<RefObject>(
+		Collection<EObject> correspondingModelElements = new ArrayList<EObject>(
 			oldVersion.getCorrespondingModelElements());
-		for (RefObject oldModelElement : correspondingModelElements) {
+		for (EObject oldModelElement : correspondingModelElements) {
 			// TODO: What if the property is a non referenced association end?
 			// -->search the association and do the check there
 			Object value = referenceHandler.getFeatureValue(parentRefObject,
@@ -507,7 +500,7 @@ public class IncrementalParsingUtil {
 				if (((Collection<?>) value).contains(oldModelElement)) {
 					oldModelElement.refDelete();
 				}
-			} else if (value instanceof RefObject) {
+			} else if (value instanceof EObject) {
 				if (value.equals(oldModelElement)) {
 					oldModelElement.refDelete();
 				}
@@ -522,9 +515,9 @@ public class IncrementalParsingUtil {
 	 * 
 	 * @param original
 	 */
-	public static Collection<RefObject> deleteEmptyBlocksIncludingAdjecentBlocks(
+	public static Collection<EObject> deleteEmptyBlocksIncludingAdjecentBlocks(
 		TextBlock original) {
-		Collection<RefObject> affectedModelElements = new ArrayList<RefObject>();
+		Collection<EObject> affectedModelElements = new ArrayList<EObject>();
 		affectedModelElements.addAll(deletePreviousEmptyBlocks(original));
 		affectedModelElements.addAll(deleteNextEmptyBlocks(original));
 		affectedModelElements.addAll(deleteEmptyBlocks(original));
@@ -532,9 +525,9 @@ public class IncrementalParsingUtil {
 		return affectedModelElements;
 	}
 
-	private static Collection<? extends RefObject> deleteEmptyParentBlocks(
+	private static Collection<? extends EObject> deleteEmptyParentBlocks(
             TextBlock original) {
-	    Collection<RefObject> affectedModelElements = new ArrayList<RefObject>();
+	    Collection<EObject> affectedModelElements = new ArrayList<EObject>();
 	    TextBlock tbDeletionCandidate = original;
 	    while (tbDeletionCandidate != null && tbDeletionCandidate.is___Alive()
                     && TbNavigationUtil.firstToken(tbDeletionCandidate) == null
@@ -547,7 +540,7 @@ public class IncrementalParsingUtil {
                             affectedModelElements.addAll(deleteTB
                                     .getCorrespondingModelElements());
                     }
-                    tbDeletionCandidate = tbDeletionCandidate.getParentBlock();
+                    tbDeletionCandidate = tbDeletionCandidate.getParent();
                     deleteTB.refDelete();
             }
 	    return affectedModelElements;
@@ -558,9 +551,9 @@ public class IncrementalParsingUtil {
 		if (oldVersion.getCorrespondingModelElements().size() > 0
 			&& lt.getSequenceElement() != null
 			&& lt.getSequenceElement() instanceof Property) {
-			for (RefObject ro : oldVersion.getCorrespondingModelElements()) {
+			for (EObject ro : oldVersion.getCorrespondingModelElements()) {
 				try {
-					Collection<RefObject> elements = new ArrayList<RefObject>(
+					Collection<EObject> elements = new ArrayList<EObject>(
 						lt.getReferencedElements());
 					elements.addAll(lt.getCorrespondingModelElements());
 					injector.unset(ro,
@@ -594,22 +587,22 @@ public class IncrementalParsingUtil {
 		// version of the given parentTextBlock
 		if (oldVersion != null && oldVersion.getSequenceElement() != null
 			&& oldVersion.getSequenceElement() instanceof Property) {
-			int index = oldVersion.getParentBlock().getSubBlocks().indexOf(oldVersion);
+			int index = oldVersion.getParent().getSubBlocks().indexOf(oldVersion);
 			if (!before) {
 				index += 1;
 			}
-			if (oldVersion.getParentBlock().getCorrespondingModelElements().size() > 1) {
+			if (oldVersion.getParent().getCorrespondingModelElements().size() > 1) {
 				throw new IncrementalParsingException(
 					"Tried to set a value for multiple parent elements:"
-						+ new ArrayList<RefObject>(oldVersion
-							.getParentBlock()
+						+ new ArrayList<EObject>(oldVersion
+							.getParent()
 							.getCorrespondingModelElements())
 						+ "\nDon't know how to handle this.");
 			}
-			RefObject parentRefObject = oldVersion.getParentBlock()
+			EObject parentRefObject = oldVersion.getParent()
 				.getCorrespondingModelElements().iterator().next();
 			if (parentRefObject != null) {
-				List<RefObject> values = new ArrayList<RefObject>(newVersion
+				List<EObject> values = new ArrayList<EObject>(newVersion
 					.getCorrespondingModelElements());
 				values.addAll(newVersion.getReferencedElements());
 				Object value = null;
@@ -643,27 +636,27 @@ public class IncrementalParsingUtil {
 	}
 
 	/**
-	 * Finds the {@link RefAssociation} that is the containment relation between
+	 * Finds the {@link EReference} that is the containment relation between
 	 * <code>parent</code> and <code>child</code>;
 	 * 
 	 * @param parent
 	 * @param child
-	 * @param connection the {@link Connection} to use for navigating the model.
+	 * @param connection the {@link ResourceSet} to use for navigating the model.
 	 * @return
 	 */
-	public static IncrementalParsingUtil.CompositeRefAssociationBean findComposingFeature(RefObject parent,
-			RefObject child, Connection connection) {
+	public static IncrementalParsingUtil.CompositeRefAssociationBean findComposingFeature(EObject parent,
+			EObject child, ResourceSet connection) {
 		IncrementalParsingUtil.CompositeRefAssociationBean bean = null;
 		if (parent != null && child != null) {
-			Collection<Association> compositeAssociations = connection
+			Collection<EReference> compositeAssociations = connection
 					.getJmiHelper().getCompositeAssociations(
-							(MofClass) parent.refMetaObject(),
-							(MofClass) child.refMetaObject());
-			for (Association association : compositeAssociations) {
+							(EClass) parent.refMetaObject(),
+							(EClass) child.refMetaObject());
+			for (EReference association : compositeAssociations) {
 				// as defined in the MOF Spec the immediate composite of an
 				// association is always a
 				// package
-				RefAssociation refAssoc = connection.getJmiHelper()
+				EReference refAssoc = connection.getJmiHelper()
 						.getRefAssociationForAssociation(association);
 				if (IncrementalParsingUtil.typesMatch(association, parent.refMetaObject(), child
 						.refMetaObject(), connection)
@@ -694,15 +687,15 @@ public class IncrementalParsingUtil {
 	 * @param association
 	 * @param refMetaObject
 	 * @param refMetaObject2
-	 * @param Connection the connection to get things like the {@link JmiHelper} from.
+	 * @param ResourceSet the connection to get things like the {@link JmiHelper} from.
 	 * @return
 	 */
-	static boolean typesMatch(Association association,
-			RefObject refMetaObject, RefObject refMetaObject2, Connection connection) {
-		List<AssociationEnd> associationEnds = connection.getJmiHelper()
+	static boolean typesMatch(EReference association,
+			EObject refMetaObject, EObject refMetaObject2, ResourceSet connection) {
+		List<EReference> associationEnds = connection.getJmiHelper()
 				.getAssociationEnds(association);
-		Classifier firstEndType = associationEnds.get(0).getType();
-		Classifier secondEndType = associationEnds.get(1).getType();
+		EClassifier firstEndType = associationEnds.get(0).getEType();
+		EClassifier secondEndType = associationEnds.get(1).getEType();
 		if (firstEndType.equals(refMetaObject)
 				|| connection.getJmiHelper().getAllSubtypes(firstEndType)
 						.contains(refMetaObject)) {
@@ -716,16 +709,16 @@ public class IncrementalParsingUtil {
 		return false;
 	}
 
-	static boolean isInTransientPartition(RefObject correspondingNewElement) {
+	static boolean isInTransientPartition(EObject correspondingNewElement) {
 		boolean isInTransientPartition = false;
-		Connection connection = correspondingNewElement.get___Connection();
-		for (ModelPartition part : connection.getTransientPartitions()) {
-			if (correspondingNewElement.get___Partition().getPri().equals(
-					part.getPri())) {
+		ResourceSet connection = correspondingNewElement.get___Connection();
+		for (Resource part : connection.getTransientPartitions()) {
+			if (correspondingNewElement.eResource().getURI().equals(
+					part.getURI())) {
 				isInTransientPartition = true;
 			}
 		}
-		if (correspondingNewElement.get___Partition().getPri().equals(
+		if (correspondingNewElement.eResource().getURI().equals(
 				connection.getNullPartition().getPri())) {
 			isInTransientPartition = true;
 		}
