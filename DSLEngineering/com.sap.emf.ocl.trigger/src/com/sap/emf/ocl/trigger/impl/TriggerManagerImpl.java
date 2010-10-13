@@ -41,8 +41,14 @@ public class TriggerManagerImpl implements TriggerManager {
     @Override
     public void register(Triggerable triggerable) {
         for (ExpressionWithContext expressionInOCL : triggerable.getTriggerExpressions()) {
-            AdapterForExpression adapter = new AdapterForExpression(triggerable, expressionInOCL.getExpression(),
+            AdapterForExpression adapter;
+            if (expressionInOCL.getContext() != null) {
+                adapter = new AdapterForExpression(triggerable, expressionInOCL.getExpression(),
                     expressionInOCL.getContext(), oppositeEndFinder, impactAnalysisConfiguration);
+            } else {
+                adapter = new AdapterForExpression(triggerable, expressionInOCL.getExpression(),
+                        oppositeEndFinder, impactAnalysisConfiguration);
+            }
             EventFilter filter = adapter.getEventFilter(expressionInOCL.isNotifyNewContextElements());
             eventManager.subscribe(filter, adapter);
         }
