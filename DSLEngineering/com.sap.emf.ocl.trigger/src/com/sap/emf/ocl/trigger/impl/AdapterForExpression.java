@@ -1,33 +1,78 @@
 package com.sap.emf.ocl.trigger.impl;
 
-import org.eclipse.emf.common.notify.Adapter;
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.ecore.OCLExpression;
 
-public class AdapterForExpression implements Adapter {
+import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+import com.sap.emf.ocl.trigger.Triggerable;
 
-    @Override
-    public void notifyChanged(Notification notification) {
-        // TODO Implement AdapterForExpression.notifyChanged(...)
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.ActivationOption;
 
+
+/**
+ * Acts as change listener specific to one {@link OCLExpression}, knowing which {@link Triggerable} to inform after
+ * having computed the affected elements.
+ * 
+ * @author Axel Uhl (D043530)
+ *
+ */
+public class AdapterForExpression extends AdapterImpl {
+    private final Triggerable triggerableToNotify;
+    private final OCLExpression expression;
+    private final ImpactAnalyzer impactAnalyzer;
+    
+    AdapterForExpression(Triggerable triggerableToNotify, OCLExpression expression) {
+        this.triggerableToNotify = triggerableToNotify;
+        this.expression = expression;
+        this.impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression);
     }
-
-    @Override
-    public Notifier getTarget() {
-        // TODO Implement AdapterForExpression.getTarget(...)
-        return null;
+    
+    AdapterForExpression(Triggerable triggerableToNotify, OCLExpression expression, EClass context) {
+        this.triggerableToNotify = triggerableToNotify;
+        this.expression = expression;
+        this.impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, context);
     }
-
-    @Override
-    public void setTarget(Notifier newTarget) {
-        // TODO Implement AdapterForExpression.setTarget(...)
-
+    
+    AdapterForExpression(Triggerable triggerableToNotify, OCLExpression expression, EClass context, ActivationOption configuration) {
+        this.triggerableToNotify = triggerableToNotify;
+        this.expression = expression;
+        this.impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, context, configuration);
     }
-
-    @Override
-    public boolean isAdapterForType(Object type) {
-        // TODO Implement AdapterForExpression.isAdapterForType(...)
-        return false;
+    
+    AdapterForExpression(Triggerable triggerableToNotify, OCLExpression expression, EClass context, OppositeEndFinder oppositeEndFinder, ActivationOption configuration) {
+        this.triggerableToNotify = triggerableToNotify;
+        this.expression = expression;
+        this.impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, context, oppositeEndFinder, configuration);
     }
-
+    
+    AdapterForExpression(Triggerable triggerableToNotify, OCLExpression expression, ActivationOption configuration) {
+        this.triggerableToNotify = triggerableToNotify;
+        this.expression = expression;
+        this.impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, configuration);
+    }
+    
+    AdapterForExpression(Triggerable triggerableToNotify, OCLExpression expression, OppositeEndFinder oppositeEndFinder) {
+        this.triggerableToNotify = triggerableToNotify;
+        this.expression = expression;
+        this.impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, oppositeEndFinder);
+    }
+    
+    private ImpactAnalyzer getImpactAnalyzer() {
+        return impactAnalyzer;
+    }
+    
+    @Override
+    public void notifyChanged(Notification msg) {
+        ImpactAnalyzer ia = getImpactAnalyzer();
+        Collection<EObject> affectedContextObjects = ia.getContextObjects(msg);
+        triggerableToNotify.notify(expression, affectedContextObjects);
+    }
+    
 }

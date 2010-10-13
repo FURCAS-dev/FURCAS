@@ -2,6 +2,7 @@ package com.sap.emf.ocl.trigger;
 
 import java.util.Collection;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 /**
@@ -13,5 +14,5 @@ import org.eclipse.ocl.ecore.OCLExpression;
  */
 public interface Triggerable {
     Collection<OCLExpression> getTriggerExpressions();
-    void notify(Collection<AffectedContextObjectsForExpression> changes);
+    void notify(OCLExpression expression, Collection<EObject> affectedContextObjects);
 }
