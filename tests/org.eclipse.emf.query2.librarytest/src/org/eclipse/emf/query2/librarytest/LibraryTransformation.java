@@ -1,3 +1,4 @@
+package org.eclipse.emf.query2.librarytest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,10 +15,9 @@ import org.eclipse.emf.query2.Query;
 import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
-import org.eclipse.emf.query2.internal.moinql.controller.QueryProcessorImpl;
+import org.eclipse.emf.query2.syntax.QueryStandaloneSetup;
 import org.eclipse.emf.query2.syntax.query.Model;
 import org.eclipse.emf.query2.syntax.query.NamedQuery;
-import org.eclipse.emf.query2.syntax.QueryStandaloneSetup;
 import org.eclipse.emf.query2.syntax.transformation.QueryTransformer;
 import org.eclipse.xtext.linking.lazy.LazyLinkingResource;
 import org.eclipse.xtext.resource.XtextResource;
@@ -45,7 +45,6 @@ public class LibraryTransformation extends QueryTestCase {
 		URI normalized = set.getURIConverter().normalize(resourceURI);
 		LazyLinkingResource xtextResource = (LazyLinkingResource) set.getResource(normalized, true);
 		model = (Model) xtextResource.getContents().get(0);
-
 	}
 
 	@Test

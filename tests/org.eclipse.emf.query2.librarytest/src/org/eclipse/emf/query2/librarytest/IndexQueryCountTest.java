@@ -1,3 +1,4 @@
+package org.eclipse.emf.query2.librarytest;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.query.QueryCommandWithResult;
 import org.eclipse.emf.query.index.query.QueryExecutor;

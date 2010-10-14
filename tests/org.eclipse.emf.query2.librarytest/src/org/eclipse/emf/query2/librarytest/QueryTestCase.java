@@ -1,3 +1,4 @@
+package org.eclipse.emf.query2.librarytest;
 /*******************************************************************************
  * Copyright (c) 2006, 2009 SAP AG and others.
  * All rights reserved. This program and the accompanying materials

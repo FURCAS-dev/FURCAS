@@ -1,3 +1,4 @@
+package org.eclipse.emf.query2.librarytest;
 
 
 import java.util.ArrayList;
