@@ -29,7 +29,7 @@ public class AssociationEndNavigationInterpreter implements Interpreter<Associat
 
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter) throws SecurityException,
-	    IllegalArgumentException, JmiException, NoSuchMethodException, InstantiationException,
+	    IllegalArgumentException, NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	ClassTypedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> ro = (ClassTypedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>) interpreter.evaluate(aene.getObject());
 	AssociationEnd toEnd = aene.getToEnd();

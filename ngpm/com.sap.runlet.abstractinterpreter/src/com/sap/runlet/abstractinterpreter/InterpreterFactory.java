@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  *            the type of the model elements that interpreters managed by this
  *            factory can interpret. Example: <tt>Expression</tt> as the abstract
  *            superclass of all expressions. In particular, elements passed to
- *            {@link #getInterpreterFor(RefObject)} have to be at least of that
+ *            {@link #getInterpreterFor(EObject)} have to be at least of that
  *            type.
  * 
  * @author Axel Uhl (D043530)

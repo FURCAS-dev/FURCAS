@@ -16,18 +16,33 @@ import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.QueryProcessor;
 import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
+import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.TypeExp;
 
+import com.sap.emf.ocl.prepared.PreparedOCLExpression;
 import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.TCS.Template;
 
+/**
+ * Knows the patterns for <code>#context</code> and <code>#foreach</code>. Furthermore, can create a {@link PreparedOCLExpression
+ * parameterized query} from those that contain literals matching specific patterns (see {@link #stringLiteralQueryArgPattern} and
+ * {@link #numberLiteralQueryArgPattern}).
+ * 
+ * @author Axel Uhl (D043530)
+ * 
+ */
 public class ContextAndForeachHelper {
     public static final String contextPatternAsString = "#context(\\((\\w*)\\))?";
 
     public static final String foreachPatternAsString = "#foreach\\((\\w+(::\\w+)*)\\)";
+
+    private static final String stringLiteralQueryArgPattern = "???";
+    
+    private static final int numberLiteralQueryArgPattern = 999;
 
     /**
      * The pattern to match #context(...) or #context
@@ -216,4 +231,39 @@ public class ContextAndForeachHelper {
         return matcher.find();
     }
 
+    /**
+     * Replaces occurrences of <code>#context</code> (see {@link #contextPattern}) and <code>#foreach</code>
+     * (see {@link #foreachPattern}) by <code>self</code> (see {@link Environment#SELF_VARIABLE_NAME}).
+     */
+    public static String prepareOclQuery(String queryToExecute) {
+        String result = queryToExecute;
+        if (queryToExecute != null) {
+            if (usesContext(result)) {
+                if (result.indexOf(Environment.SELF_VARIABLE_NAME) > -1) {
+                    throw new RuntimeException("OCL Query cannot contain #context and self at the same time.");
+                } else if (ContextAndForeachHelper.usesForeach(result)) {
+                    throw new RuntimeException("OCL query cannot contain #foreach and #context at the same time");
+                } else {
+                    result = result.replaceAll(contextPattern.pattern(), Environment.SELF_VARIABLE_NAME);
+                }
+            } else if (ContextAndForeachHelper.usesForeach(result)) {
+                if (result.indexOf(Environment.SELF_VARIABLE_NAME) > -1) {
+                    throw new RuntimeException("OCL Query cannot contain #foreach and self at the same time.");
+                } else if (ContextAndForeachHelper.usesContext(result)) {
+                    throw new RuntimeException("OCL query cannot contain #foreach and #context at the same time");
+                } else {
+                    result = result.replaceAll(ContextAndForeachHelper.foreachPattern.pattern(), Environment.SELF_VARIABLE_NAME);
+                }
+            }
+        }
+        return result;
+    }
+    
+    public static PreparedOCLExpression prepareWithStringParameter(OCLExpression e) {
+        return new PreparedOCLExpression(e, stringLiteralQueryArgPattern);
+    }
+
+    public static PreparedOCLExpression prepareWithNumericParameter(OCLExpression e) {
+        return new PreparedOCLExpression(e, numberLiteralQueryArgPattern);
+    }
 }

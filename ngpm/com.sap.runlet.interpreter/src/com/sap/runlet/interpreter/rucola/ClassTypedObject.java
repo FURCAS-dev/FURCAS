@@ -14,6 +14,7 @@ import data.classes.MethodSignature;
 import data.classes.Parameter;
 import data.classes.SapClass;
 import data.classes.TypeDefinition;
+import dataaccess.expressions.ExpressionsFactory;
 import dataaccess.expressions.MethodCallExpression;
 
 public class ClassTypedObject extends RucolaObject {
@@ -23,7 +24,7 @@ public class ClassTypedObject extends RucolaObject {
     }
     
     public RucolaObject call(String methodName, Object... args) {
-	MethodCallExpression mce = getConnection().createElement(MethodCallExpression.CLASS_DESCRIPTOR);
+	MethodCallExpression mce = ExpressionsFactory.eINSTANCE.createMethodCallExpression();
 	// TODO for NestedTypeDefinitions this won't work and we'd need to resolve the innermost type definition
 	SapClass c = ((ClassTypeDefinition) getObject().getType()).getClazz();
 	MethodSignature ms = null;
@@ -53,8 +54,6 @@ public class ClassTypedObject extends RucolaObject {
 	} catch (Exception e) {
 	    throw new RucolaException("Error during evaluating method call to "+methodName+" on "+getObject()+
 		    ": "+e.getMessage(), e);
-	} finally {
-	    mce.refDelete();
 	}
     }
     

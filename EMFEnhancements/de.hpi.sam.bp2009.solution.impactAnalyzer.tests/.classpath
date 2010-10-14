@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="lib" path="libs/easymock-2.5.2.jar"/>
+	<classpathentry kind="lib" path="libs/easymockclassextension-2.5.2.jar"/>
+	<classpathentry kind="lib" path="libs/cglib-2.2.jar"/>
+	<classpathentry kind="lib" path="libs/asm-all-3.2.jar"/>
+	<classpathentry kind="lib" path="libs/objenesis-1.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

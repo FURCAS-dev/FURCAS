@@ -31,7 +31,7 @@ public class CommitInterpreter implements Interpreter<Commit, SapClass, TypeDefi
 
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter) throws SecurityException,
-	    IllegalArgumentException, JmiException {
+	    IllegalArgumentException {
 	Snapshot newSnapshot = interpreter.commit();
 	if (newSnapshot == null) {
 	    return new EmptyObject<AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>(

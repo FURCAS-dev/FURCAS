@@ -29,7 +29,7 @@ public class LinkTraversalInterpreter implements Interpreter<LinkTraversal, SapC
 
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter)
-	    throws SecurityException, IllegalArgumentException, JmiException {
+	    throws SecurityException, IllegalArgumentException {
 	// "this" is in the current stack frame; grab it:
 	Side fromSide = linkTraversal.getEnd().equals(
 		linkTraversal.getEnd().getAssociation().getEnds().get(0)) ? Side.RIGHT : Side.LEFT;

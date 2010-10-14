@@ -8,6 +8,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: com.sap.emf.ocl.trigger,
  org.eclipse.equinox.common,
  org.eclipse.ocl.ecore;bundle-version="3.0.0",
+ com.sap.furcas.runtime.tcs,
  com.sap.furcas.metamodel,
  com.sap.emf.ocl.hiddenopposites,
  org.eclipse.emf.query2,

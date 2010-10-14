@@ -15,9 +15,9 @@ import com.sap.runlet.abstractinterpreter.objects.ClassTypedObject;
 import com.sap.runlet.abstractinterpreter.objects.EntityObject;
 import com.sap.runlet.abstractinterpreter.objects.Link;
 import com.sap.runlet.abstractinterpreter.operationaltransformation.Change;
-import com.sap.runlet.abstractinterpreter.repository.ChangeSetImpl.StretchOfContiguousLinkCreations;
 import com.sap.runlet.abstractinterpreter.util.ClassFilterIterator;
 import com.sap.runlet.abstractinterpreter.util.ModelAdapter;
+import com.sap.runlet.abstractinterpreter.util.Tuple.Pair;
 
 /**
  * Describes a set of changes to data. This can include creation and deletion of

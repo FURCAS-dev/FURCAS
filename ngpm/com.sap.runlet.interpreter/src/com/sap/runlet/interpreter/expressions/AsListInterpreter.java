@@ -30,7 +30,7 @@ public class AsListInterpreter implements Interpreter<Snapshot, SapClass, TypeDe
 
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter) throws SecurityException,
-	    IllegalArgumentException, JmiException, NoSuchMethodException, InstantiationException,
+	    IllegalArgumentException, NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> ro = interpreter.evaluate(object.getObject());
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> result = null;

@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Prepared
+Bundle-SymbolicName: com.sap.emf.ocl.prepared
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: SAP
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.eclipse.ocl.ecore,
+ org.junit,
+ com.sap.emf.ocl.hiddenopposites
+Export-Package: com.sap.emf.ocl.prepared,
+ com.sap.emf.ocl.util

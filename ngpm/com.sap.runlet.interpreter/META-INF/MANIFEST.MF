@@ -8,8 +8,11 @@ Bundle-Vendor: SAP
 Require-Bundle: org.eclipse.core.runtime,
  com.sap.runlet.operationaltransformation,
  com.sap.runlet.abstractinterpreter,
- de.hpi.sam.bp2009.ngpm;bundle-version="1.0.0",
- com.sap.furcas.metamodel;bundle-version="1.0.0"
+ de.hpi.sam.bp2009.ngpm,
+ org.eclipse.emf.ecore,
+ com.sap.ngpm.utils,
+ de.hpi.sam.bp2009.solution.eventManager,
+ org.eclipse.emf.common
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.runlet.interpreter,
  com.sap.runlet.interpreter.objects,

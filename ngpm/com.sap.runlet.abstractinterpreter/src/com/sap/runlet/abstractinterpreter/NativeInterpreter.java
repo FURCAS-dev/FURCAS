@@ -35,7 +35,7 @@ implements Interpreter<NativeType, MetaClass, TypeUsage, ClassUsage, LinkMetaObj
     @Override
     public RunletObject<LinkEndMetaObject, TypeUsage, ClassUsage> evaluate(
 	    InterpreterType interpreter)
-	    throws SecurityException, IllegalArgumentException, JmiException, NoSuchMethodException, InstantiationException,
+	    throws SecurityException, IllegalArgumentException, NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	Interpreter<? extends NativeType, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType> extensionInterpreter = interpreter
 		.getNativeInterpreterFor(nativeImpl);

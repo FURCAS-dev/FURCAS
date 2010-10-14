@@ -28,7 +28,7 @@ public class ExpressionStatementInterpreter implements Interpreter<ExpressionSta
 
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter)
-	    throws SecurityException, IllegalArgumentException, JmiException,
+	    throws SecurityException, IllegalArgumentException,
 	    NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	return interpreter.evaluate(expressionStatement.getExpression());

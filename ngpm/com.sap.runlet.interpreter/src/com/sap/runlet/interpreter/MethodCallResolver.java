@@ -8,33 +8,49 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
-
+import com.sap.ap.metamodel.utils.StringFormatter;
+import com.sap.runlet.abstractinterpreter.util.Tuple.Pair;
 
 import data.classes.MethodSignature;
 import data.classes.SapClass;
 import data.classes.SignatureImplementation;
 import data.classes.SignatureOwner;
 import data.classes.TypeAdapter;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 
 public class MethodCallResolver {
     /**
-     * Caches the {@link URI}s of the signature implementation model elements; only MRIs
-     * because different connections may want to know.
+     * Caches the {@link URI}s of the signature implementation model elements; only URIs
+     * because different ResourceSets may want to know.
      */
     private Map<Pair<MethodSignature, SapClass>, URI> cache =
 	new HashMap<Pair<MethodSignature, SapClass>, URI>();
+    
+    private final MethodCallResolverCacheInvalidationListener listener;
 
-    public SignatureImplementation getImplementation(MethodSignature staticSignature, SapClass dynamicClass, Connection conn) {
+    /**
+     * Registers the method call resolver as an event listener with an event manager for the
+     * resource set. Every time an event is received that may cause a change in method resolution,
+     * the cache is invalidated.
+     */
+    public MethodCallResolver(ResourceSet resourceSet) {
+        listener = new MethodCallResolverCacheInvalidationListener(this);
+        EventManagerFactory.eINSTANCE.getEventManagerFor(resourceSet).subscribe(listener.getFilter(), listener);
+    }
+
+    public SignatureImplementation getImplementation(MethodSignature staticSignature, SapClass dynamicClass, ResourceSet resourceSet) {
 	Pair<MethodSignature, SapClass> key = new Pair<MethodSignature, SapClass>(staticSignature, dynamicClass);
 	SignatureImplementation result;
-	URI implMri = cache.get(key);
-	if (implMri == null) {
+	URI implURI = cache.get(key);
+	if (implURI == null) {
 	    result = resolveMethodCallToImplementation(staticSignature, dynamicClass);
-	    cache.put(key, result.get___Mri());
+	    cache.put(key, EcoreUtil.getURI(result));
 	} else {
-	    result = (SignatureImplementation) conn.getElement(implMri);
+	    result = (SignatureImplementation) resourceSet.getEObject(implURI, /* loadOnDemand */ true);
 	}
 	return result;
     }
@@ -59,6 +75,8 @@ public class MethodCallResolver {
      * design-time's type checks. A {@link RuntimeException} is thrown in this
      * case. Otherwise, the signature implementation found in an adapter will be
      * returned.
+     * 
+     * TODO what about delegation?
      */
     public SignatureImplementation resolveMethodCallToImplementation(MethodSignature calledSignature, SapClass thizClass) {
 	SapClass staticClass = (SapClass) calledSignature.getOwner();

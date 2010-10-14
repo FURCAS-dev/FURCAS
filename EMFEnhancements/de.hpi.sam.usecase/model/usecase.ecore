@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="usecase"
+    nsURI="http://usecase/1.0" nsPrefix="usecase">
+  <eClassifiers xsi:type="ecore:EClass" name="Actor" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoing" upperBound="-1"
+        eType="#//Association" eOpposite="#//Association/actors"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Usecase" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="incoming" eType="#//Association"
+        eOpposite="#//Association/usecase"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extend" eType="#//Usecase"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="include" eType="#//Usecase"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="EAttribute0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Association" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actors" upperBound="-1"
+        eType="#//Actor" eOpposite="#//Actor/outgoing"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usecase" upperBound="-1"
+        eType="#//Usecase" eOpposite="#//Usecase/incoming"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UsecaseDiagram">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//Element" containment="true" eOpposite="#//Element/diagram"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="diagram" eType="#//UsecaseDiagram"
+        eOpposite="#//UsecaseDiagram/elements"/>
+  </eClassifiers>
+</ecore:EPackage>

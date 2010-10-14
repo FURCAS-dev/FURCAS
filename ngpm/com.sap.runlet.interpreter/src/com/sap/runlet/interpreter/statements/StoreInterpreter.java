@@ -30,7 +30,7 @@ public class StoreInterpreter implements Interpreter<Store, SapClass, TypeDefini
     @SuppressWarnings("unchecked")
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter) throws SecurityException,
-	    IllegalArgumentException, JmiException, NoSuchMethodException, InstantiationException,
+	    IllegalArgumentException, NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> toSave = interpreter.evaluate(store.getArgument());
 	for (RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> objectToSave:toSave) {

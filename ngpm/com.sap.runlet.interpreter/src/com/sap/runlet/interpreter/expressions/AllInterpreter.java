@@ -7,6 +7,7 @@ import persistence.expressions.All;
 import persistence.expressions.SnapshotSelection;
 import behavioral.actions.Statement;
 
+import com.sap.ap.metamodel.utils.MetamodelUtils;
 import com.sap.runlet.abstractinterpreter.Interpreter;
 import com.sap.runlet.abstractinterpreter.objects.EmptyObject;
 import com.sap.runlet.abstractinterpreter.objects.EntityObject;
@@ -36,32 +37,32 @@ public class AllInterpreter implements Interpreter<All, SapClass, TypeDefinition
 
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter) throws SecurityException,
-	    IllegalArgumentException, JmiException, NoSuchMethodException, InstantiationException,
+	    IllegalArgumentException, NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	SnapshotSelection snapshotSelection = all.getSnapshot();
 	Iterable<EntityObject<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>> result;
 	
-	if (snapshotSelection.equals(SnapshotSelectionEnum.DEFAULT)) {
+	if (snapshotSelection.equals(SnapshotSelection.DEFAULT)) {
 	    // retrieve all instances of HEAD snapshot
 	    result = interpreter.all(all.getOfClass(), interpreter.getDefaultSnapshot());
-	} else if (snapshotSelection.equals(SnapshotSelectionEnum.SPECIFIED)) {
+	} else if (snapshotSelection.equals(SnapshotSelection.SPECIFIED)) {
 	    // retrieve all instances at Snapshot / before or at TimePoint
 	    NativeObject snapshotIdentifier = (NativeObject) interpreter.evaluate(all
 		    .getSnapshotIdentifier());
 	    SapClass clazz = snapshotIdentifier.getType().getClazz();
-	    if (clazz.equals(MetamodelUtils.findClass(interpreter.getConnection(), "Snapshot"))) {
+	    if (clazz.equals(MetamodelUtils.findClass(interpreter.getResourceSet(), "Snapshot"))) {
 		SnapshotIdentifier si = new FixedSnapshot((Snapshot)snapshotIdentifier.getNativeObject());
 		result = interpreter.all(all.getOfClass(), si);
-	    } else if (clazz.equals(MetamodelUtils.findClass(interpreter.getConnection(), "TimePoint"))) {
+	    } else if (clazz.equals(MetamodelUtils.findClass(interpreter.getResourceSet(), "TimePoint"))) {
 		result = interpreter.all(all.getOfClass(), (Date)snapshotIdentifier.getNativeObject() );
 	    } else {
 		// be robust - a Constraint Violation will be reported because of the wrong type of the expression 
 		result = null;
 	    }
-	} else if (snapshotSelection.equals(SnapshotSelectionEnum.CHANGED)) {
+	} else if (snapshotSelection.equals(SnapshotSelection.CHANGED)) {
 	    // retrieve all changed instances from all snapshots 
 	    result = interpreter.allChanged(all.getOfClass());
-	} else if (snapshotSelection.equals(SnapshotSelectionEnum.ALL)) {
+	} else if (snapshotSelection.equals(SnapshotSelection.ALL)) {
 	    // retrieve all instances from all snapshots
 	    result = interpreter.all(all.getOfClass());
 	} else {

@@ -31,7 +31,7 @@ public class ObjectCountInterpreter implements Interpreter<ObjectCount, SapClass
     
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter) throws SecurityException,
-	    IllegalArgumentException, JmiException, NoSuchMethodException, InstantiationException,
+	    IllegalArgumentException, NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> o = interpreter.evaluate(objectCount.getObject());
 	// TODO when changing to correct NestedTypeDefinition, remove flatten() magic:

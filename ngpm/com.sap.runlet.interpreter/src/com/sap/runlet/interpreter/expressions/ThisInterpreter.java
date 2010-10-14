@@ -25,7 +25,7 @@ public class ThisInterpreter implements Interpreter<This, SapClass, TypeDefiniti
     
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter)
-	    throws SecurityException, IllegalArgumentException, JmiException {
+	    throws SecurityException, IllegalArgumentException {
 	return interpreter.getCallstack().peek().getThis();
     }
 

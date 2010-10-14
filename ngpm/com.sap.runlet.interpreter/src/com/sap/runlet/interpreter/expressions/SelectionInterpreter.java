@@ -10,6 +10,7 @@ import java.util.Set;
 import behavioral.actions.Iterator;
 import behavioral.actions.Statement;
 
+import com.sap.ap.metamodel.utils.MetamodelUtils;
 import com.sap.runlet.abstractinterpreter.Interpreter;
 import com.sap.runlet.abstractinterpreter.objects.EmptyObject;
 import com.sap.runlet.abstractinterpreter.objects.MultiValuedObject;
@@ -52,14 +53,14 @@ public class SelectionInterpreter implements Interpreter<Selection, SapClass, Ty
 
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter)
-	    throws SecurityException, IllegalArgumentException, JmiException, NoSuchMethodException, InstantiationException,
+	    throws SecurityException, IllegalArgumentException, NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> source = interpreter.evaluate(selection.getObject());
 	// add a new stack frame to place fresh "self" iterator on it that is
 	// local to this Selection expression
 	Collection<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> result;
 	boolean isNumericIndex = ((ClassTypeDefinition) selection.getSelectionExpr().getType()).getClazz().equals(
-		MetamodelUtils.findClass(interpreter.getConnection(), "Number"));
+		MetamodelUtils.findClass(interpreter.getResourceSet(), "Number"));
 	if (isNumericIndex) {
 	    result = selectAtIndices(interpreter, source, interpreter.evaluate(selection.getSelectionExpr()));
 	} else {
@@ -81,7 +82,7 @@ public class SelectionInterpreter implements Interpreter<Selection, SapClass, Ty
     @SuppressWarnings("unchecked")
     private Collection<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> selectAtIndices(RunletInterpreter interpreter,
 	    RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> source,
-	    RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> atIndices) throws JmiException, SecurityException,
+	    RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> atIndices) throws SecurityException,
 	    IllegalArgumentException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
 	boolean uniqueResult = source.getType().isUnique() && atIndices.getType().isUnique();
 	Collection<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> result = RunletObject.createCollection(
@@ -153,7 +154,7 @@ public class SelectionInterpreter implements Interpreter<Selection, SapClass, Ty
     }
 
     private Collection<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> selectMatches(RunletInterpreter interpreter,
-	    RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> source, Expression expression) throws JmiException,
+	    RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> source, Expression expression) throws
 	    SecurityException, IllegalArgumentException, NoSuchMethodException, InstantiationException, IllegalAccessException,
 	    InvocationTargetException {
 	Collection<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> result = RunletObject.createCollection(selection

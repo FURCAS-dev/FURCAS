@@ -28,7 +28,7 @@ public class AddLinkInterpreter extends LinkManipulationInterpreter implements I
     
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter) throws SecurityException,
-	    IllegalArgumentException, JmiException, NoSuchMethodException, InstantiationException,
+	    IllegalArgumentException, NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] eValues = evaluteEndExpressions(interpreter);
 	// TODO handle multi-valued objects

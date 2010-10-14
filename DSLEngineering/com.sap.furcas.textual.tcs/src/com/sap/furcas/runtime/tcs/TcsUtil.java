@@ -333,10 +333,7 @@ public class TcsUtil {
 	private static Collection<OperatorTemplate> findOperatorTemplatesByOperatorLiteralValue(
 			String operatorValue, EClass type, ConcreteSyntax syntax) {
 		List<OperatorTemplate> result = new ArrayList<OperatorTemplate>();
-		
-		ResourceSet connection = getResourceSetFromEObject(syntax);
 		Collection<EClass> subTypes = getAllSubtypes(type);
-
 		for (Template t : syntax.getTemplates()) {
 			if (t instanceof OperatorTemplate) {
 				OperatorTemplate ot = (OperatorTemplate) t;
@@ -366,8 +363,8 @@ public class TcsUtil {
 	public static Collection<EClass> getAllSubtypes(EClass clazz) {
 		//TODO use query for this to have a greater scope
 		Collection<EClass> subTypes = new ArrayList<EClass>();
-		for (Iterator it = clazz.eResource().getAllContents(); it.hasNext();) {
-			EObject	e = (EObject) it.next();
+		for (Iterator<EObject> it = clazz.eResource().getAllContents(); it.hasNext();) {
+			EObject	e = it.next();
 			if(e instanceof EClass) {
 				if(clazz.isSuperTypeOf((EClass) e)) {
 					subTypes.add((EClass) e);

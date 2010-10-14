@@ -32,7 +32,7 @@ public class AnonymousFunctionExpressionInterpreter implements Interpreter<Anony
 
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter)
-	    throws SecurityException, IllegalArgumentException, JmiException {
+	    throws SecurityException, IllegalArgumentException {
 	return new FunctionObject(afe.getType(), afe.getImplementation());
     }
 

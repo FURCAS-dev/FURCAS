@@ -28,7 +28,7 @@ public class ObjectCreationInterpreter implements Interpreter<ObjectCreationExpr
 
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter)
-	    throws SecurityException, IllegalArgumentException, JmiException {
+	    throws SecurityException, IllegalArgumentException {
     EntityObject<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> result;
 	// can only instantiate entity types
 	assert !oce.getClassToInstantiate().isValueType() && !oce.getClassToInstantiate().isAbstract();

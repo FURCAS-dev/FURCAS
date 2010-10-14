@@ -60,10 +60,12 @@ implements SimpleLinkContainer<LinkMetaObject, LinkEndMetaObject, MetaClass, Typ
 	    return remoteAssociationEnd;
 	}
 	public boolean equals(Object o) {
-	    return (getObject() == null && ((ObjectAndRemoteAssociationEndIgnoringSnapshot) o).getObject() == null) ||
+	    @SuppressWarnings("unchecked")
+	    ObjectAndRemoteAssociationEndIgnoringSnapshot oCast = (ObjectAndRemoteAssociationEndIgnoringSnapshot) o;
+	    return (getObject() == null && oCast.getObject() == null) ||
 		    getObject() != null && getObject().logicallyEquals(
-			    ((ObjectAndRemoteAssociationEndIgnoringSnapshot) o).getObject()) &&
-			    getRemoteAssociationEnd().equals(((ObjectAndRemoteAssociationEndIgnoringSnapshot) o).getRemoteAssociationEnd());
+			    oCast.getObject()) &&
+			    getRemoteAssociationEnd().equals(oCast.getRemoteAssociationEnd());
 	}
 	public int hashCode() {
 	    return ((getObject()==null)?0:getObject().logicalHashCode()) ^ getRemoteAssociationEnd().hashCode();
@@ -219,8 +221,10 @@ implements SimpleLinkContainer<LinkMetaObject, LinkEndMetaObject, MetaClass, Typ
     
     public <T> void addLinkToMap(Link<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> link, T key, Map<T, Collection<Link<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>>> map, Integer at) {
 	if (ObjectAndRemoteAssociationEndIgnoringSnapshot.class.isAssignableFrom(key.getClass())) {
-	    if (((ObjectAndRemoteAssociationEndIgnoringSnapshot) key).getObject() instanceof EntityObject<?, ?, ?, ?, ?>) {
-		EntityObject<?, ?, ?, ?, ?> e = (EntityObject<?, ?, ?, ?, ?>) ((ObjectAndRemoteAssociationEndIgnoringSnapshot) key).getObject();
+	    @SuppressWarnings("unchecked")
+	    ObjectAndRemoteAssociationEndIgnoringSnapshot keyCast = (ObjectAndRemoteAssociationEndIgnoringSnapshot) key;
+	    if (keyCast.getObject() instanceof EntityObject<?, ?, ?, ?, ?>) {
+		EntityObject<?, ?, ?, ?, ?> e = (EntityObject<?, ?, ?, ?, ?>) keyCast.getObject();
 		if (e.getOrigin() != null) {
 		    assert link.getOrigin() == null || link.getOrigin().equals(e.getOrigin());
 		}

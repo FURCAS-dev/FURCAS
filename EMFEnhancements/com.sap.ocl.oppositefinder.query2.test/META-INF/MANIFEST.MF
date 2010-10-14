@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Test
+Bundle-SymbolicName: com.sap.ocl.oppositefinder.query2.test
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: SAP
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.junit4,
+ com.sap.ocl.oppositefinder.query2,
+ de.hpi.sam.bp2009.company,
+ org.eclipse.ocl.ecore,
+ org.eclipse.emf.query.index,
+ org.eclipse.emf.query.index.ui,
+ org.eclipse.emf.query2

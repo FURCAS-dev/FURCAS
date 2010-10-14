@@ -1,0 +1,5 @@
+#!/bin/sh
+echo "source(\"../loadAndPrepareResultData.R\")
+source(\"../generateHistogram_no_unfiltered.R\", print.eval=TRUE)
+source(\"../generateAllPlots.R\", print.eval=TRUE)
+quit()" | R --no-save

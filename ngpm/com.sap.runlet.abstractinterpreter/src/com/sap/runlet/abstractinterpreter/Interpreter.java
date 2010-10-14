@@ -28,6 +28,6 @@ public interface Interpreter<T,
 			     InterpreterType extends AbstractRunletInterpreter<MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType>> {
     public RunletObject<LinkEndMetaObject, TypeUsage, ClassUsage> evaluate(
 	    InterpreterType interpreter)
-	    throws SecurityException, IllegalArgumentException, JmiException, NoSuchMethodException, InstantiationException,
+	    throws SecurityException, IllegalArgumentException, NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException;
 }

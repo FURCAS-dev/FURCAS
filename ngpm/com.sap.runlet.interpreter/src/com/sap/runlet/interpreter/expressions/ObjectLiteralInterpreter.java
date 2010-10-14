@@ -37,7 +37,7 @@ public class ObjectLiteralInterpreter implements Interpreter<ObjectLiteral, SapC
 
     @Override
     public ValueObject evaluate(RunletInterpreter interpreter) throws SecurityException,
-	    IllegalArgumentException, JmiException, NoSuchMethodException, InstantiationException,
+	    IllegalArgumentException, NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	ClassTypeDefinition ctd = (ClassTypeDefinition) objectLiteral.getType();
 	assert ctd.getClazz().isValueType() && !ctd.getClazz().isAbstract();

@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: de.hpi.sam.bp2009.solution.scopeProvider;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: de.hpi.sam.bp2009.solution.scopeProvider,
+ de.hpi.sam.bp2009.solution.scopeProvider.impl
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.emf.common,
+ org.eclipse.emf.ecore,
+ org.eclipse.core.resources,
+ org.eclipse.core.runtime

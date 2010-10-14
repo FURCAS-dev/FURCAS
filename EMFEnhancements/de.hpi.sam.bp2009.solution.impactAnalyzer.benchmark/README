@@ -1,0 +1,46 @@
+Readme for Impact Analysis Benchmark Application:
+
+Export a JAR file by using "File --> Export --> Runnable JAR File, selecting the "ImpactAnalysisBenchmarkExtensive.launch"
+launch configuration. Call the exported JAR file "benchmark.jar". You can launch a benchmark using
+
+	java -jar benchmark.jar <options>
+	
+Without <options> it will print the list of available/required options which as of this writing are:
+
+usage: Impact Analysis Benchmark Environment v0.1
+ -d,--delayprep <arg>    Delay preparation of benchmark task
+                         (true[default]/false)
+ -e,--excdump <arg>      An exception dump file will be written to the
+                         specified path
+ -h,--help               Show this help
+ -j,--jobs <arg>         Number of parallel jobs for benchmarking. Default
+                         is 1
+ -m,--measures <arg>     Number of measurements per benchmark task
+                         (required)
+ -mp,--modelpath <arg>   Name of serialized model file
+ -o,--output <arg>       Output file destination (required)
+ -ob,--outbuffer <arg>   Buffer size of output stream
+ -sf,--showfiles         Show which trace files and model files are
+                         available
+ -tp,--tracepath <arg>   Name of tracefile which shall be replayed
+ -v,--verbose            Run in verbose mode
+ -wu,--warmups <arg>     Number of warm ups before measuring task
+                         (required)
+
+Ideally, you will want to give the benchmark lots of memory. Currently, >=6GB are useful, so you may want to launch the VM
+using something like, for example,
+
+	java -Xmx26000m -Xms26000m -jar benchmark.jar -o /tmp/20100929/ -wu 3 -m 1 -d true -j 8
+	
+which will run with 26GB of heap space (don't do this on machines with less than 32GB of physical memory!),
+using three warm-up runs, doing one measurement run, not constructing all jobs up-front (-d true) which
+saves memory, and runs with eight jobs in parallel (don't do this on machines with fewer than eight cores).
+In this example, output will be written to the /tmp/20100929 folder.
+
+The result.data file produced by the benchmark run can be used as input to the R scripts which you find in this
+project under
+
+	src/de/hpi/sam/bp2009/solution/impactAnalyzer/benchmark/postprocessing/scripts
+
+An additional HOWTO in that directory explains the steps necessary to post-process the results using
+the R statistical analysis framework.

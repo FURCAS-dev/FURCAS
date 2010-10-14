@@ -27,7 +27,7 @@ public class SimplePropertyInitUpdater implements OCLBasedModelUpdater {
         this.oppositeEndFinder = oppositeEndFinder;
         Template template = ((InjectorActionsBlock) injectorAction.eContainer()).getParentTemplate();
         OCLExpression expression = OCLWithHiddenOpposites.newInstance().createOCLHelper().createQuery(
-                injectorAction.getValue());
+                ContextAndForeachHelper.prepareOclQuery(injectorAction.getValue()));
         EClassifier contextClassifier = ContextAndForeachHelper.getParsingContext(injectorAction.getValue(), template);
         EClass contextClass = (EClass) contextClassifier;
         expressionWithContext = new ExpressionWithContext(expression, contextClass, /* notifyNewContextElements */ false);

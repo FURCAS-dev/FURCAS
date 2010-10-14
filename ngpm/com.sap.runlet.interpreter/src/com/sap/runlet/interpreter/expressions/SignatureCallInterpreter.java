@@ -122,7 +122,7 @@ public class SignatureCallInterpreter implements Interpreter<SignatureCallExpres
      */
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(final RunletInterpreter interpreter) throws SecurityException,
-	    IllegalArgumentException, JmiException, NoSuchMethodException, InstantiationException,
+	    IllegalArgumentException, NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	List<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> parameterValues = getParameterValues(interpreter);
 	return completeStackFrameAndExecute(interpreter, parameterValues); // compute "on" object before pushing stack
@@ -137,7 +137,7 @@ public class SignatureCallInterpreter implements Interpreter<SignatureCallExpres
      * @return a single of multiple/nested {@link FunctionObject}.
      */
     protected RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> getExecutableToCall(RunletInterpreter interpreter)
-	    throws SecurityException, IllegalArgumentException, JmiException,
+	    throws SecurityException, IllegalArgumentException,
 	    NoSuchMethodException, InstantiationException, IllegalAccessException,
 	    InvocationTargetException {
 	return interpreter.evaluate(((FunctionCallExpression) sce).getCalledBlock());
@@ -164,7 +164,7 @@ public class SignatureCallInterpreter implements Interpreter<SignatureCallExpres
      */
     protected RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> exec(RunletInterpreter interpreter, List<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> parameterValues,
 	    RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluators) throws SecurityException, IllegalArgumentException,
-	    JmiException, NoSuchMethodException, InstantiationException, IllegalAccessException,
+	    NoSuchMethodException, InstantiationException, IllegalAccessException,
 	    InvocationTargetException {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> result = null;
 	Collection<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> resultCollection = null;

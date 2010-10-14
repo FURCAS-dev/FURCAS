@@ -38,7 +38,7 @@ public class FunctionFromMethodExpressionInterpreter implements Interpreter<Func
 
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter)
-	    throws SecurityException, IllegalArgumentException, JmiException,
+	    throws SecurityException, IllegalArgumentException,
 	    NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	final Collection<FunctionFromMethodObject> resultCollection = RunletObject.createCollection(
@@ -46,7 +46,7 @@ public class FunctionFromMethodExpressionInterpreter implements Interpreter<Func
 	for (RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> thisFlattened : interpreter.evaluate(ffm.getObject()).flatten()) {
 	    ClassTypedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> thiz = (ClassTypedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>) thisFlattened;
 	    SignatureImplementation implementation = interpreter.resolveMethodCallToImplementation(
-		    ffm.getMethod().getImplementation().getImplements(), thiz);
+		    ffm.getMethod().getImplementation().getImplements_(), thiz);
 	    resultCollection.add(new FunctionFromMethodObject(ffm.getType(), implementation, thiz));
 	}
 	return new MultiValuedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>(

@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
 import com.sap.runlet.abstractinterpreter.util.Fraction;
 import com.sap.runlet.interpreter.RunletInterpreter;
+
 import data.classes.AssociationEnd;
 import data.classes.ClassTypeDefinition;
 import data.classes.TypeDefinition;
@@ -57,8 +58,8 @@ public class RucolaObject implements Iterable<RucolaObject> {
 	return rucola.getInterpreter();
     }
     
-    protected ResourceSet getConnection() {
-	return rucola.getInterpreter().getConnection();
+    protected ResourceSet getResourceSet() {
+	return rucola.getInterpreter().getResourceSet();
     }
     
     protected Rucola getRucola() {

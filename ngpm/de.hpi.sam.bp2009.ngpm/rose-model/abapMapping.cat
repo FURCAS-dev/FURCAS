@@ -1,0 +1,2743 @@
+
+(object Petal
+    version    	50
+    _written   	"Rose 8.3.0407.2800"
+    charSet    	0)
+
+(object Class_Category "abapMapping"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    quid       	"47EB7A8A0148"
+    stereotype 	"metamodel"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "AbapClassImplementationAnnotation"
+	    quid       	"47EB7AC40251"
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "kind"
+		    quid       	"47EB7C9500BB"
+		    type       	"AbapClassKind"
+		    quidu      	"47EB7C3E000F"
+		    exportControl 	"Public"))
+	    nestedClasses 	(list nestedClasses
+		(object Class "AbapTypeMustBeUnstructured"
+		    quid       	"47EBABA6000F"
+		    documentation 	"The abapType representing a Class that in turn represents an attribute's simple ABAP type must be an UnstructuredAbapType."
+		    stereotype 	"constraint"
+		    operations 	(list Operations
+			(object Operation "OCL"
+			    quid       	"47EBABF3037A"
+			    concurrency 	"Sequential"
+			    semantics  	(object Semantic_Info
+				PDL        	
+|context AbapClassImplementationAnnotation
+|inv:
+|  self.kind = AbapClassKind::ABAP_TYPE implies
+|    self.abapType.oclIsKindOf(abapmapping::abapdictionary::UnstructuredAbapType)
+				)
+			    opExportControl 	"Public"
+			    uid        	0)))))
+	(object Class "AbapAssociationImplementationAnnotation"
+	    quid       	"47EB7B180280")
+	(object Class "AbapAssociationEndImplementationAnnotation"
+	    quid       	"47EB7B2F02CE")
+	(object Class "AbapSignatureImplementationAnnotation"
+	    quid       	"47EB7BBB0399"
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "kind"
+		    quid       	"47EB806A0119"
+		    type       	"AbapSignatureKind"
+		    quidu      	"47EB7CB403A9"
+		    exportControl 	"Public")))
+	(object Class "AbapClassKind"
+	    quid       	"47EB7C3E000F"
+	    stereotype 	"enumeration"
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "BO_AND_ROOT_NODE"
+		    quid       	"47EB7C4E0109"
+		    exportControl 	"Public")
+		(object ClassAttribute "BO_NODE"
+		    quid       	"47EB7C5A037A"
+		    exportControl 	"Public")
+		(object ClassAttribute "DEPENDENT_OBJECT"
+		    quid       	"47EB7C6202BF"
+		    exportControl 	"Public")
+		(object ClassAttribute "DATA_TYPE"
+		    quid       	"47EB7C7101F4"
+		    exportControl 	"Public")
+		(object ClassAttribute "ABAP_TYPE"
+		    quid       	"47EB7C8602FD"
+		    exportControl 	"Public")))
+	(object Class "AbapSignatureKind"
+	    quid       	"47EB7CB403A9"
+	    stereotype 	"enumeration"
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "QUERY"
+		    quid       	"47EB7D78001F"
+		    exportControl 	"Public")
+		(object ClassAttribute "ACTION"
+		    quid       	"47EB7D7B007D"
+		    exportControl 	"Public")))
+	(object Association "$UNNAMED$0"
+	    quid       	"47EB7AE10213"
+	    roles      	(list role_list
+		(object Role "abapAnnotation"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"MOF"
+			    name       	"sap2mof.store"
+			    value      	("RoleStoreKindSet" 203)))
+		    quid       	"47EB7AE10399"
+		    label      	"abapAnnotation"
+		    supplier   	"Logical View::abapMapping::AbapClassImplementationAnnotation"
+		    quidu      	"47EB7AC40251"
+		    client_cardinality 	(value cardinality "0..1")
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$1"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"MOF"
+			    name       	"sap2mof.store"
+			    value      	("RoleStoreKindSet" 202)))
+		    quid       	"47EB7AE1039B"
+		    supplier   	"Logical View::data::classes::SapClass"
+		    quidu      	"4432171B031E"
+		    client_cardinality 	(value cardinality "1"))))
+	(object Association "$UNNAMED$2"
+	    quid       	"47EB7B3803C8"
+	    roles      	(list role_list
+		(object Role "abapAnnotation"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"MOF"
+			    name       	"sap2mof.store"
+			    value      	("RoleStoreKindSet" 203)))
+		    quid       	"47EB7B3903B9"
+		    label      	"abapAnnotation"
+		    supplier   	"Logical View::abapMapping::AbapAssociationImplementationAnnotation"
+		    quidu      	"47EB7B180280"
+		    client_cardinality 	(value cardinality "0..1")
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$3"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"MOF"
+			    name       	"sap2mof.store"
+			    value      	("RoleStoreKindSet" 202)))
+		    quid       	"47EB7B3903BB"
+		    supplier   	"Logical View::data::classes::Association"
+		    quidu      	"44321DA40150"
+		    client_cardinality 	(value cardinality "1"))))
+	(object Association "$UNNAMED$4"
+	    quid       	"47EB7B3A01D4"
+	    roles      	(list role_list
+		(object Role "abapAnnotation"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"MOF"
+			    name       	"sap2mof.store"
+			    value      	("RoleStoreKindSet" 203)))
+		    quid       	"47EB7B3A03B9"
+		    label      	"abapAnnotation"
+		    supplier   	"Logical View::abapMapping::AbapAssociationEndImplementationAnnotation"
+		    quidu      	"47EB7B2F02CE"
+		    client_cardinality 	(value cardinality "0..1")
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$5"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"MOF"
+			    name       	"sap2mof.store"
+			    value      	("RoleStoreKindSet" 202)))
+		    quid       	"47EB7B3A03BB"
+		    supplier   	"Logical View::data::classes::AssociationEnd"
+		    quidu      	"44EC55FB03B8"
+		    client_cardinality 	(value cardinality "1"))))
+	(object Association "$UNNAMED$6"
+	    quid       	"47EB7BC30271"
+	    roles      	(list role_list
+		(object Role "abapAnnotation"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"MOF"
+			    name       	"sap2mof.store"
+			    value      	("RoleStoreKindSet" 203)))
+		    quid       	"47EB7BC4006D"
+		    label      	"abapAnnotation"
+		    supplier   	"Logical View::abapMapping::AbapSignatureImplementationAnnotation"
+		    quidu      	"47EB7BBB0399"
+		    client_cardinality 	(value cardinality "0..1")
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$7"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"MOF"
+			    name       	"sap2mof.store"
+			    value      	("RoleStoreKindSet" 202)))
+		    quid       	"47EB7BC4006F"
+		    supplier   	"Logical View::data::classes::Signature"
+		    quidu      	"4432198602CB"
+		    client_cardinality 	(value cardinality "1"))))
+	(object Association "$UNNAMED$8"
+	    quid       	"47EB9B2B02AF"
+	    roles      	(list role_list
+		(object Role "abapType"
+		    quid       	"47EB9B2C007D"
+		    label      	"abapType"
+		    supplier   	"Logical View::abapMapping::AbapDictionary::AbapType"
+		    quidu      	"47E1460601A5"
+		    client_cardinality 	(value cardinality "1")
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$9"
+		    quid       	"47EB9B2C008C"
+		    supplier   	"Logical View::abapMapping::AbapClassImplementationAnnotation"
+		    quidu      	"47EB7AC40251")))
+	(object Class_Category "AbapDictionary"
+	    quid       	"47EB9AD600FA"
+	    exportControl 	"Public"
+	    logical_models 	(list unit_reference_list
+		(object Class "XsdType"
+		    quid       	"47E1463B0222"
+		    class_attributes 	(list class_attribute_list
+			(object ClassAttribute "xsdType"
+			    quid       	"47E8F751000F"
+			    type       	"String"
+			    quidu      	"39A2BDA60394"
+			    exportControl 	"Public")
+			(object ClassAttribute "length"
+			    quid       	"47E8F75801C5"
+			    type       	"Integer"
+			    quidu      	"3B538AB300B3"
+			    exportControl 	"Public")
+			(object ClassAttribute "pattern"
+			    quid       	"47E8F75E02DE"
+			    type       	"String"
+			    quidu      	"39A2BDA60394"
+			    exportControl 	"Public")
+			(object ClassAttribute "totalDigits"
+			    quid       	"47E8F8B7002E"
+			    type       	"Integer"
+			    quidu      	"3B538AB300B3"
+			    exportControl 	"Public")
+			(object ClassAttribute "fractionDigits"
+			    quid       	"47E8F8BD007D"
+			    type       	"Integer"
+			    quidu      	"3B538AB300B3"
+			    exportControl 	"Public")))
+		(object Class "UnstructuredAbapType"
+		    quid       	"47E903250271"
+		    documentation 	"Like any AbapType, mapped to a Class with the corresponding annotations."
+		    superclasses 	(list inheritance_relationship_list
+			(object Inheritance_Relationship
+			    quid       	"47E903340186"
+			    supplier   	"Logical View::abapMapping::AbapDictionary::AbapType"
+			    quidu      	"47E1460601A5")))
+		(object Class "CodeValue"
+		    quid       	"47E8FE7C009C"
+		    documentation 	"We deliberately reduced code values to unstructured, primitive values. Those examples that we are aware of where codes are of structured types only contain unmaintained attributes such as LIST_AGENCY_IDs and other supplementary components that can in our opinion safely be omitted for the time being."
+		    class_attributes 	(list class_attribute_list
+			(object ClassAttribute "value"
+			    quid       	"47E8FF8203A9"
+			    type       	"String"
+			    quidu      	"39A2BDA60394"
+			    exportControl 	"Public")
+			(object ClassAttribute "description"
+			    quid       	"47F231CF0148"
+			    type       	"TranslatableText"
+			    quidu      	"450001CE02D8"
+			    exportControl 	"Public")))
+		(object Class "Code"
+		    quid       	"47E1463A02BF"
+		    superclasses 	(list inheritance_relationship_list
+			(object Inheritance_Relationship
+			    quid       	"47E8F7DD0138"
+			    supplier   	"Logical View::abapMapping::AbapDictionary::DataElement"
+			    quidu      	"47E8F6C1003E"))
+		    class_attributes 	(list class_attribute_list
+			(object ClassAttribute "extensible"
+			    quid       	"47E904F501C5"
+			    type       	"Boolean"
+			    quidu      	"39A2BDA60392"
+			    exportControl 	"Public"))
+		    nestedClasses 	(list nestedClasses
+			(object Class "TypeOfValuesEqualsAbapType"
+			    quid       	"47E8FEDB01E4"
+			    stereotype 	"constraint"
+			    operations 	(list Operations
+				(object Operation "OCL"
+				    quid       	"47E8FEEF0157"
+				    concurrency 	"Sequential"
+				    semantics  	(object Semantic_Info
+					PDL        	
+|context Code
+|inv:
+|  self.values->forAll(cv:CodeValue |
+|      cv.type = self.abapType)
+					)
+				    opExportControl 	"Public"
+				    uid        	0)))))
+		(object Class "DataElement"
+		    quid       	"47E8F6C1003E"
+		    superclasses 	(list inheritance_relationship_list
+			(object Inheritance_Relationship
+			    quid       	"47E8F6CA01B5"
+			    supplier   	"Logical View::abapMapping::AbapDictionary::UnstructuredAbapType"
+			    quidu      	"47E903250271")))
+		(object Class "AbapType"
+		    quid       	"47E1460601A5"
+		    class_attributes 	(list class_attribute_list
+			(object ClassAttribute "name"
+			    quid       	"47E2434C030D"
+			    type       	"String"
+			    quidu      	"39A2BDA60394"
+			    exportControl 	"Public")))
+		(object Class "AbapStructureType"
+		    quid       	"47E9016F00BB"
+		    superclasses 	(list inheritance_relationship_list
+			(object Inheritance_Relationship
+			    quid       	"47E9023E0242"
+			    supplier   	"Logical View::abapMapping::AbapDictionary::AbapType"
+			    quidu      	"47E1460601A5")))
+		(object Class "AbapStructureField"
+		    quid       	"47E901E6036B"
+		    class_attributes 	(list class_attribute_list
+			(object ClassAttribute "name"
+			    quid       	"47E9021501B5"
+			    type       	"String"
+			    quidu      	"39A2BDA60394"
+			    exportControl 	"Public")))
+		(object Class "AbapPrimtiveType"
+		    quid       	"47E8F8D0037A"
+		    superclasses 	(list inheritance_relationship_list
+			(object Inheritance_Relationship
+			    quid       	"47E8F72900EA"
+			    supplier   	"Logical View::abapMapping::AbapDictionary::UnstructuredAbapType"
+			    quidu      	"47E903250271"))
+		    class_attributes 	(list class_attribute_list
+			(object ClassAttribute "length"
+			    quid       	"47E24354002E"
+			    type       	"Integer"
+			    quidu      	"3B538AB300B3"
+			    exportControl 	"Public")))
+		(object Association "AbapStructureFields"
+		    quid       	"47E901ED0119"
+		    roles      	(list role_list
+			(object Role "fields"
+			    quid       	"47E901EE009C"
+			    label      	"fields"
+			    supplier   	"Logical View::abapMapping::AbapDictionary::AbapStructureField"
+			    quidu      	"47E901E6036B"
+			    client_cardinality 	(value cardinality "0..*")
+			    is_navigable 	TRUE)
+			(object Role "$UNNAMED$10"
+			    quid       	"47E901EE00AB"
+			    supplier   	"Logical View::abapMapping::AbapDictionary::AbapStructureType"
+			    quidu      	"47E9016F00BB")))
+		(object Association "AbapStructureFieldType"
+		    quid       	"47E90223029F"
+		    roles      	(list role_list
+			(object Role "type"
+			    quid       	"47E902240177"
+			    label      	"type"
+			    supplier   	"Logical View::abapMapping::AbapDictionary::AbapType"
+			    quidu      	"47E1460601A5"
+			    client_cardinality 	(value cardinality "1")
+			    is_navigable 	TRUE)
+			(object Role "$UNNAMED$11"
+			    quid       	"47E902240179"
+			    supplier   	"Logical View::abapMapping::AbapDictionary::AbapStructureField"
+			    quidu      	"47E901E6036B")))
+		(object Association "AbapTypeXsdType"
+		    quid       	"47E8F73A036B"
+		    roles      	(list role_list
+			(object Role "xsdRepresentation"
+			    quid       	"47E8F73B0109"
+			    label      	"xsdRepresentation"
+			    supplier   	"Logical View::abapMapping::AbapDictionary::XsdType"
+			    quidu      	"47E1463B0222"
+			    client_cardinality 	(value cardinality "1")
+			    is_navigable 	TRUE)
+			(object Role "$UNNAMED$12"
+			    quid       	"47E8F73B010B"
+			    supplier   	"Logical View::abapMapping::AbapDictionary::AbapType"
+			    quidu      	"47E1460601A5")))
+		(object Association "CodeValues"
+		    quid       	"47E8FE8100AB"
+		    roles      	(list role_list
+			(object Role "values"
+			    quid       	"47E8FE8101A5"
+			    label      	"values"
+			    supplier   	"Logical View::abapMapping::AbapDictionary::CodeValue"
+			    quidu      	"47E8FE7C009C"
+			    client_cardinality 	(value cardinality "0..*")
+			    Containment 	"By Value"
+			    is_navigable 	TRUE)
+			(object Role "$UNNAMED$13"
+			    quid       	"47E8FE8101B5"
+			    supplier   	"Logical View::abapMapping::AbapDictionary::Code"
+			    quidu      	"47E1463A02BF"
+			    client_cardinality 	(value cardinality "1")
+			    is_aggregate 	TRUE)))
+		(object Association "DataElementAbapType"
+		    quid       	"47E8F9120128"
+		    roles      	(list role_list
+			(object Role "abapType"
+			    quid       	"47E8F912029F"
+			    label      	"abapType"
+			    supplier   	"Logical View::abapMapping::AbapDictionary::AbapPrimtiveType"
+			    quidu      	"47E8F8D0037A"
+			    client_cardinality 	(value cardinality "1")
+			    is_navigable 	TRUE)
+			(object Role "$UNNAMED$14"
+			    quid       	"47E8F91202A1"
+			    supplier   	"Logical View::abapMapping::AbapDictionary::DataElement"
+			    quidu      	"47E8F6C1003E")))
+		(object Association "CodeValueType"
+		    quid       	"47E8FEC10242"
+		    roles      	(list role_list
+			(object Role "type"
+			    quid       	"47E8FEC40157"
+			    label      	"type"
+			    supplier   	"Logical View::abapMapping::AbapDictionary::AbapPrimtiveType"
+			    quidu      	"47E8F8D0037A"
+			    client_cardinality 	(value cardinality "1")
+			    is_navigable 	TRUE)
+			(object Role "$UNNAMED$15"
+			    quid       	"47E8FEC40159"
+			    supplier   	"Logical View::abapMapping::AbapDictionary::CodeValue"
+			    quidu      	"47E8FE7C009C"))))
+	    logical_presentations 	(list unit_reference_list
+		(object ClassDiagram "Abap Types"
+		    quid       	"47E8F6AE003E"
+		    title      	"Abap Types"
+		    zoom       	100
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	0
+		    origin_y   	1481
+		    items      	(list diagram_item_list
+			(object ClassView "Class" "Logical View::abapMapping::AbapDictionary::UnstructuredAbapType" @1
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(1870, 1001)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@1
+				location   	(1647, 950)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	446
+				justify    	0
+				label      	"UnstructuredAbapType")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"47E903250271"
+			    width      	464
+			    height     	126
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "Class" "Logical View::abapMapping::AbapDictionary::AbapStructureType" @2
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(1044, 1511)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@2
+				location   	(853, 1460)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	382
+				justify    	0
+				label      	"AbapStructureType")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"47E9016F00BB"
+			    width      	400
+			    height     	126
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "Class" "Logical View::abapMapping::AbapDictionary::XsdType" @3
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(259, 607)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@3
+				location   	(36, 426)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	446
+				justify    	0
+				label      	"XsdType")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"47E1463B0222"
+			    width      	464
+			    height     	386
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "Class" "Logical View::abapMapping::AbapDictionary::AbapType" @4
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(1528, 602)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@4
+				location   	(1380, 521)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	296
+				justify    	0
+				label      	"AbapType")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"47E1460601A5"
+			    width      	314
+			    height     	186
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object AssociationViewNew "AbapTypeXsdType" @5
+			    location   	(931, 591)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @6
+				Parent_View 	@5
+				location   	(931, 532)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	354
+				justify    	0
+				label      	"AbapTypeXsdType"
+				pctDist    	0.500000
+				height     	60
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"47E8F73A036B"
+			    roleview_list 	(list RoleViews
+				(object RoleView "xsdRepresentation" @7
+				    Parent_View 	@5
+				    location   	(-977, -21)
+				    font       	(object Font
+					size       	10
+					face       	"Arial"
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    label      	(object SegLabel @8
+					Parent_View 	@7
+					location   	(689, 632)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	1
+					anchor_loc 	1
+					nlines     	1
+					max_width  	364
+					justify    	0
+					label      	"+xsdRepresentation"
+					pctDist    	0.549784
+					height     	41
+					orientation 	0)
+				    stereotype 	TRUE
+				    line_color 	3342489
+				    quidu      	"47E8F73B0109"
+				    client     	@5
+				    supplier   	@3
+				    vertices   	(list Points
+					(931, 591)
+					(491, 591))
+				    line_style 	3
+				    origin_attachment 	(931, 591)
+				    terminal_attachment 	(491, 591)
+				    label      	(object SegLabel @9
+					Parent_View 	@7
+					location   	(535, 538)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	2
+					anchor_loc 	1
+					nlines     	1
+					max_width  	15
+					justify    	0
+					label      	"1"
+					pctDist    	0.903409
+					height     	54
+					orientation 	1))
+				(object RoleView "$UNNAMED$12" @10
+				    Parent_View 	@5
+				    location   	(-977, -21)
+				    stereotype 	TRUE
+				    line_color 	3342489
+				    quidu      	"47E8F73B010B"
+				    client     	@5
+				    supplier   	@4
+				    vertices   	(list Points
+					(931, 591)
+					(1371, 591))
+				    line_style 	3
+				    origin_attachment 	(931, 591)
+				    terminal_attachment 	(1371, 591))))
+			(object ClassView "Class" "Logical View::abapMapping::AbapDictionary::AbapStructureField" @11
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(234, 1501)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@11
+				location   	(41, 1420)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	386
+				justify    	0
+				label      	"AbapStructureField")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"47E901E6036B"
+			    width      	404
+			    height     	186
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object AssociationViewNew "AbapStructureFields" @12
+			    location   	(640, 1519)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @13
+				Parent_View 	@12
+				location   	(639, 1504)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	375
+				justify    	0
+				label      	"AbapStructureFields"
+				pctDist    	0.483333
+				height     	15
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"47E901ED0119"
+			    roleview_list 	(list RoleViews
+				(object RoleView "fields" @14
+				    Parent_View 	@12
+				    location   	(-460, 1335)
+				    font       	(object Font
+					size       	10
+					face       	"Arial"
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    label      	(object SegLabel @15
+					Parent_View 	@14
+					location   	(496, 1575)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	1
+					anchor_loc 	1
+					nlines     	1
+					max_width  	120
+					justify    	0
+					label      	"+fields"
+					pctDist    	0.705882
+					height     	56
+					orientation 	0)
+				    stereotype 	TRUE
+				    line_color 	3342489
+				    quidu      	"47E901EE009C"
+				    client     	@12
+				    supplier   	@11
+				    vertices   	(list Points
+					(640, 1519)
+					(436, 1519))
+				    line_style 	3
+				    origin_attachment 	(640, 1519)
+				    terminal_attachment 	(436, 1519)
+				    label      	(object SegLabel @16
+					Parent_View 	@14
+					location   	(470, 1457)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	2
+					anchor_loc 	1
+					nlines     	1
+					max_width  	15
+					justify    	0
+					label      	"0..*"
+					pctDist    	0.833333
+					height     	62
+					orientation 	1))
+				(object RoleView "$UNNAMED$10" @17
+				    Parent_View 	@12
+				    location   	(-460, 1335)
+				    stereotype 	TRUE
+				    line_color 	3342489
+				    quidu      	"47E901EE00AB"
+				    client     	@12
+				    supplier   	@2
+				    vertices   	(list Points
+					(640, 1519)
+					(844, 1519))
+				    line_style 	3
+				    origin_attachment 	(640, 1519)
+				    terminal_attachment 	(844, 1519))))
+			(object AssociationViewNew "AbapStructureFieldType" @18
+			    location   	(767, 906)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @19
+				Parent_View 	@18
+				location   	(685, 925)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	439
+				justify    	0
+				label      	"AbapStructureFieldType"
+				pctDist    	-0.866667
+				height     	19
+				orientation 	1)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"47E90223029F"
+			    roleview_list 	(list RoleViews
+				(object RoleView "type" @20
+				    Parent_View 	@18
+				    location   	(-116, -788)
+				    font       	(object Font
+					size       	10
+					face       	"Arial"
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    label      	(object SegLabel @21
+					Parent_View 	@20
+					location   	(1125, 671)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	1
+					anchor_loc 	1
+					nlines     	1
+					max_width  	108
+					justify    	0
+					label      	"+type"
+					pctDist    	0.640781
+					height     	49
+					orientation 	0)
+				    stereotype 	TRUE
+				    line_color 	3342489
+				    quidu      	"47E902240177"
+				    client     	@18
+				    supplier   	@4
+				    vertices   	(list Points
+					(767, 906)
+					(862, 800)
+					(1370, 647))
+				    line_style 	0
+				    label      	(object SegLabel @22
+					Parent_View 	@20
+					location   	(1328, 703)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	2
+					anchor_loc 	1
+					nlines     	1
+					max_width  	15
+					justify    	0
+					label      	"1"
+					pctDist    	0.915834
+					height     	42
+					orientation 	1))
+				(object RoleView "$UNNAMED$11" @23
+				    Parent_View 	@18
+				    location   	(-116, -788)
+				    stereotype 	TRUE
+				    line_color 	3342489
+				    quidu      	"47E902240179"
+				    client     	@18
+				    supplier   	@11
+				    vertices   	(list Points
+					(767, 906)
+					(316, 1407))
+				    line_style 	0)))
+			(object InheritTreeView "" @24
+			    location   	(1528, 828)
+			    line_color 	3342489
+			    fill_color 	13434879
+			    supplier   	@4
+			    vertices   	(list Points
+				(1528, 828)
+				(1528, 695)))
+			(object InheritView "" @25
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"47E9023E0242"
+			    client     	@2
+			    supplier   	@4
+			    vertices   	(list Points
+				(1044, 1448)
+				(1044, 828))
+			    line_style 	3
+			    origin_attachment 	(1044, 1448)
+			    terminal_attachment 	(1044, 828)
+			    drawSupplier 	@24)
+			(object InheritView "" @26
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"47E903340186"
+			    client     	@1
+			    supplier   	@4
+			    vertices   	(list Points
+				(1870, 938)
+				(1870, 828))
+			    line_style 	3
+			    origin_attachment 	(1870, 938)
+			    terminal_attachment 	(1870, 828)
+			    drawSupplier 	@24)
+			(object ClassView "Class" "Logical View::abapMapping::AbapDictionary::DataElement" @27
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(1435, 1506)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@27
+				location   	(1300, 1454)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	270
+				justify    	0
+				label      	"DataElement")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"47E8F6C1003E"
+			    width      	288
+			    height     	128
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object InheritTreeView "" @28
+			    location   	(1870, 1276)
+			    line_color 	3342489
+			    fill_color 	13434879
+			    supplier   	@1
+			    vertices   	(list Points
+				(1870, 1276)
+				(1870, 1064)))
+			(object InheritView "" @29
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"47E8F6CA01B5"
+			    client     	@27
+			    supplier   	@1
+			    vertices   	(list Points
+				(1423, 1442)
+				(1423, 1276))
+			    line_style 	3
+			    origin_attachment 	(1423, 1442)
+			    terminal_attachment 	(1423, 1276)
+			    drawSupplier 	@28)
+			(object ClassView "Class" "Logical View::abapMapping::AbapDictionary::Code" @30
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(1479, 1829)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@30
+				location   	(1268, 1748)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	422
+				justify    	0
+				label      	"Code")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"47E1463A02BF"
+			    width      	440
+			    height     	186
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object InheritView "" @31
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"47E8F7DD0138"
+			    client     	@30
+			    supplier   	@27
+			    vertices   	(list Points
+				(1481, 1736)
+				(1481, 1569))
+			    line_style 	3
+			    origin_attachment 	(1481, 1736)
+			    terminal_attachment 	(1481, 1569))
+			(object ClassView "Class" "Logical View::abapMapping::AbapDictionary::AbapPrimtiveType" @32
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(2344, 1530)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@32
+				location   	(2166, 1449)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	356
+				justify    	0
+				label      	"AbapPrimtiveType")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"47E8F8D0037A"
+			    width      	374
+			    height     	186
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object AssociationViewNew "DataElementAbapType" @33
+			    location   	(1868, 1504)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @34
+				Parent_View 	@33
+				location   	(1856, 1485)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	418
+				justify    	0
+				label      	"DataElementAbapType"
+				pctDist    	0.300000
+				height     	19
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"47E8F9120128"
+			    roleview_list 	(list RoleViews
+				(object RoleView "abapType" @35
+				    Parent_View 	@33
+				    location   	(125, 429)
+				    font       	(object Font
+					size       	10
+					face       	"Arial"
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    label      	(object SegLabel @36
+					Parent_View 	@35
+					location   	(2049, 1548)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	1
+					anchor_loc 	1
+					nlines     	1
+					max_width  	216
+					justify    	0
+					label      	"+abapType"
+					pctDist    	0.626298
+					height     	44
+					orientation 	1)
+				    stereotype 	TRUE
+				    line_color 	3342489
+				    quidu      	"47E8F912029F"
+				    client     	@33
+				    supplier   	@32
+				    vertices   	(list Points
+					(1868, 1504)
+					(2157, 1504))
+				    line_style 	3
+				    origin_attachment 	(1868, 1504)
+				    terminal_attachment 	(2157, 1504)
+				    label      	(object SegLabel @37
+					Parent_View 	@35
+					location   	(2127, 1452)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	2
+					anchor_loc 	1
+					nlines     	1
+					max_width  	15
+					justify    	0
+					label      	"1"
+					pctDist    	0.900709
+					height     	53
+					orientation 	0))
+				(object RoleView "$UNNAMED$14" @38
+				    Parent_View 	@33
+				    location   	(125, 429)
+				    stereotype 	TRUE
+				    line_color 	3342489
+				    quidu      	"47E8F91202A1"
+				    client     	@33
+				    supplier   	@27
+				    vertices   	(list Points
+					(1868, 1504)
+					(1579, 1504))
+				    line_style 	3
+				    origin_attachment 	(1868, 1504)
+				    terminal_attachment 	(1579, 1504))))
+			(object InheritView "" @39
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"47E8F72900EA"
+			    client     	@32
+			    supplier   	@1
+			    vertices   	(list Points
+				(2326, 1437)
+				(2326, 1276))
+			    line_style 	3
+			    origin_attachment 	(2326, 1437)
+			    terminal_attachment 	(2326, 1276)
+			    drawSupplier 	@28)
+			(object ClassView "Class" "Logical View::abapMapping::AbapDictionary::CodeValue" @40
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(451, 1829)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@40
+				location   	(159, 1723)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	584
+				justify    	0
+				label      	"CodeValue")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"47E8FE7C009C"
+			    width      	602
+			    height     	236
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object AssociationViewNew "CodeValues" @41
+			    location   	(1005, 1825)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @42
+				Parent_View 	@41
+				location   	(1036, 1838)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	224
+				justify    	0
+				label      	"CodeValues"
+				pctDist    	1.016667
+				height     	13
+				orientation 	1)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"47E8FE8100AB"
+			    roleview_list 	(list RoleViews
+				(object RoleView "values" @43
+				    Parent_View 	@41
+				    location   	(-742, 429)
+				    font       	(object Font
+					size       	10
+					face       	"Arial"
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    label      	(object SegLabel @44
+					Parent_View 	@43
+					location   	(842, 1793)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	1
+					anchor_loc 	1
+					nlines     	1
+					max_width  	140
+					justify    	0
+					label      	"+values"
+					pctDist    	0.644269
+					height     	32
+					orientation 	1)
+				    stereotype 	TRUE
+				    line_color 	3342489
+				    quidu      	"47E8FE8101A5"
+				    client     	@41
+				    supplier   	@40
+				    vertices   	(list Points
+					(1005, 1825)
+					(752, 1825))
+				    line_style 	3
+				    origin_attachment 	(1005, 1825)
+				    terminal_attachment 	(752, 1825)
+				    label      	(object SegLabel @45
+					Parent_View 	@43
+					location   	(802, 1860)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	2
+					anchor_loc 	1
+					nlines     	1
+					max_width  	15
+					justify    	0
+					label      	"0..*"
+					pctDist    	0.802372
+					height     	35
+					orientation 	0))
+				(object RoleView "$UNNAMED$13" @46
+				    Parent_View 	@41
+				    location   	(-742, 429)
+				    font       	(object Font
+					size       	10
+					face       	"Arial"
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    stereotype 	TRUE
+				    line_color 	3342489
+				    quidu      	"47E8FE8101B5"
+				    client     	@41
+				    supplier   	@30
+				    vertices   	(list Points
+					(1005, 1825)
+					(1259, 1825))
+				    line_style 	3
+				    origin_attachment 	(1005, 1825)
+				    terminal_attachment 	(1259, 1825)
+				    label      	(object SegLabel @47
+					Parent_View 	@46
+					location   	(1233, 1879)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	2
+					anchor_loc 	1
+					nlines     	1
+					max_width  	15
+					justify    	0
+					label      	"1"
+					pctDist    	0.900000
+					height     	54
+					orientation 	1))))
+			(object AssociationViewNew "CodeValueType" @48
+			    location   	(1557, 2190)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @49
+				Parent_View 	@48
+				location   	(1563, 2153)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	292
+				justify    	0
+				label      	"CodeValueType"
+				pctDist    	0.600000
+				height     	37
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"47E8FEC10242"
+			    roleview_list 	(list RoleViews
+				(object RoleView "type" @50
+				    Parent_View 	@48
+				    location   	(360, 793)
+				    font       	(object Font
+					size       	10
+					face       	"Arial"
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    label      	(object SegLabel @51
+					Parent_View 	@50
+					location   	(2269, 1668)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	1
+					anchor_loc 	1
+					nlines     	1
+					max_width  	108
+					justify    	0
+					label      	"+type"
+					pctDist    	0.966700
+					height     	72
+					orientation 	0)
+				    stereotype 	TRUE
+				    line_color 	3342489
+				    quidu      	"47E8FEC40157"
+				    client     	@48
+				    supplier   	@32
+				    vertices   	(list Points
+					(1557, 2190)
+					(2340, 2190)
+					(2340, 1623))
+				    line_style 	3
+				    origin_attachment 	(1557, 2190)
+				    terminal_attachment 	(2340, 1623)
+				    label      	(object SegLabel @52
+					Parent_View 	@50
+					location   	(2392, 1677)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	2
+					anchor_loc 	1
+					nlines     	1
+					max_width  	15
+					justify    	0
+					label      	"1"
+					pctDist    	0.959637
+					height     	52
+					orientation 	1))
+				(object RoleView "$UNNAMED$15" @53
+				    Parent_View 	@48
+				    location   	(360, 793)
+				    stereotype 	TRUE
+				    line_color 	3342489
+				    quidu      	"47E8FEC40159"
+				    client     	@48
+				    supplier   	@40
+				    vertices   	(list Points
+					(1557, 2190)
+					(450, 2190)
+					(450, 1947))
+				    line_style 	3
+				    origin_attachment 	(1557, 2190)
+				    terminal_attachment 	(450, 1947)))))))))
+    logical_presentations 	(list unit_reference_list
+	(object ClassDiagram "Class Annotations"
+	    quid       	"47EB7AA1038A"
+	    title      	"Class Annotations"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object ClassView "Class" "Logical View::abapMapping::AbapClassKind" @54
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(659, 2071)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@54
+			location   	(414, 1912)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	490
+			justify    	0
+			label      	"AbapClassKind")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@54
+			location   	(414, 1862)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	490
+			justify    	0
+			label      	"<<enumeration>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"47EB7C3E000F"
+		    width      	508
+		    height     	442
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::abapMapping::AbapDictionary::UnstructuredAbapType" @55
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2073, 1763)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@55
+			location   	(1850, 1689)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	446
+			justify    	0
+			label      	"UnstructuredAbapType")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"47E903250271"
+		    width      	464
+		    height     	172
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::data::classes::SapClass" @56
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(687, 984)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@56
+			location   	(203, 355)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	968
+			justify    	0
+			label      	"SapClass")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"4432171B031E"
+		    compartment 	(object Compartment
+			Parent_View 	@56
+			location   	(203, 1076)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	22
+			max_width  	966)
+		    width      	986
+		    height     	1282
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::abapMapping::AbapDictionary::AbapType" @57
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2076, 1347)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@57
+			location   	(1915, 1243)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	322
+			justify    	0
+			label      	"AbapType")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"47E1460601A5"
+		    width      	340
+		    height     	232
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @58
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"47E903340186"
+		    client     	@55
+		    supplier   	@57
+		    vertices   	(list Points
+			(2076, 1677)
+			(2076, 1463))
+		    line_style 	3
+		    origin_attachment 	(2076, 1677)
+		    terminal_attachment 	(2076, 1463))
+		(object ClassView "Class" "Logical View::abapMapping::AbapClassImplementationAnnotation" @59
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2039, 912)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@59
+			location   	(1684, 831)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	710
+			justify    	0
+			label      	"AbapClassImplementationAnnotation")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"47EB7AC40251"
+		    width      	728
+		    height     	186
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AssociationViewNew "$UNNAMED$0" @60
+		    location   	(1427, 912)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"47EB7AE10213"
+		    roleview_list 	(list RoleViews
+			(object RoleView "abapAnnotation" @61
+			    Parent_View 	@60
+			    location   	(740, -72)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @62
+				Parent_View 	@61
+				location   	(1548, 868)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	308
+				justify    	0
+				label      	"+abapAnnotation"
+				pctDist    	0.489489
+				height     	45
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"47EB7AE10399"
+			    client     	@60
+			    supplier   	@59
+			    vertices   	(list Points
+				(1427, 912)
+				(1675, 912))
+			    line_style 	3
+			    origin_attachment 	(1427, 912)
+			    terminal_attachment 	(1675, 912)
+			    label      	(object SegLabel @63
+				Parent_View 	@61
+				location   	(1635, 959)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	2
+				anchor_loc 	1
+				nlines     	1
+				max_width  	15
+				justify    	0
+				label      	"0..1"
+				pctDist    	0.840841
+				height     	47
+				orientation 	1))
+			(object RoleView "$UNNAMED$1" @64
+			    Parent_View 	@60
+			    location   	(740, -72)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"47EB7AE1039B"
+			    client     	@60
+			    supplier   	@56
+			    vertices   	(list Points
+				(1427, 912)
+				(1180, 912))
+			    line_style 	3
+			    origin_attachment 	(1427, 912)
+			    terminal_attachment 	(1180, 912)
+			    label      	(object SegLabel @65
+				Parent_View 	@64
+				location   	(1200, 953)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	2
+				anchor_loc 	1
+				nlines     	1
+				max_width  	15
+				justify    	0
+				label      	"1"
+				pctDist    	0.918919
+				height     	41
+				orientation 	0))))
+		(object AssociationViewNew "$UNNAMED$8" @66
+		    location   	(2076, 1117)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object SegLabel @67
+			Parent_View 	@66
+			location   	(2076, 1058)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			hidden     	TRUE
+			anchor     	1
+			anchor_loc 	1
+			nlines     	1
+			max_width  	180
+			justify    	0
+			label      	""
+			pctDist    	0.500000
+			height     	60
+			orientation 	0)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"47EB9B2B02AF"
+		    roleview_list 	(list RoleViews
+			(object RoleView "abapType" @68
+			    Parent_View 	@66
+			    location   	(37, 205)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @69
+				Parent_View 	@68
+				location   	(1948, 1195)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	216
+				justify    	0
+				label      	"+abapType"
+				pctDist    	0.684211
+				height     	128
+				orientation 	1)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"47EB9B2C007D"
+			    client     	@66
+			    supplier   	@57
+			    vertices   	(list Points
+				(2076, 1117)
+				(2076, 1231))
+			    line_style 	3
+			    origin_attachment 	(2076, 1117)
+			    terminal_attachment 	(2076, 1231)
+			    label      	(object SegLabel @70
+				Parent_View 	@68
+				location   	(2127, 1201)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	2
+				anchor_loc 	1
+				nlines     	1
+				max_width  	15
+				justify    	0
+				label      	"1"
+				pctDist    	0.736842
+				height     	51
+				orientation 	0))
+			(object RoleView "$UNNAMED$9" @71
+			    Parent_View 	@66
+			    location   	(37, 205)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"47EB9B2C008C"
+			    client     	@66
+			    supplier   	@59
+			    vertices   	(list Points
+				(2076, 1117)
+				(2076, 1004))
+			    line_style 	3
+			    origin_attachment 	(2076, 1117)
+			    terminal_attachment 	(2076, 1004))))))
+	(object ClassDiagram "Signature Annotations"
+	    quid       	"47EB7AA9009C"
+	    title      	"Signature Annotations"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	644
+	    origin_y   	303
+	    items      	(list diagram_item_list
+		(object ClassView "Class" "Logical View::abapMapping::AbapSignatureImplementationAnnotation" @72
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1934, 1078)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@72
+			location   	(1552, 997)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	764
+			justify    	0
+			label      	"AbapSignatureImplementationAnnotation")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"47EB7BBB0399"
+		    width      	782
+		    height     	186
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::data::classes::Signature" @73
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(544, 1100)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	TRUE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@73
+			location   	(311, 971)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	466
+			justify    	0
+			label      	"Signature")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"4432198602CB"
+		    width      	484
+		    height     	282
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AssociationViewNew "$UNNAMED$6" @74
+		    location   	(1164, 1078)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"47EB7BC30271"
+		    roleview_list 	(list RoleViews
+			(object RoleView "abapAnnotation" @75
+			    Parent_View 	@74
+			    location   	(620, -22)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @76
+				Parent_View 	@75
+				location   	(1362, 1025)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	308
+				justify    	0
+				label      	"+abapAnnotation"
+				pctDist    	0.522427
+				height     	53
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"47EB7BC4006D"
+			    client     	@74
+			    supplier   	@72
+			    vertices   	(list Points
+				(1164, 1078)
+				(1543, 1078))
+			    line_style 	3
+			    origin_attachment 	(1164, 1078)
+			    terminal_attachment 	(1543, 1078)
+			    label      	(object SegLabel @77
+				Parent_View 	@75
+				location   	(1505, 1132)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	2
+				anchor_loc 	1
+				nlines     	1
+				max_width  	15
+				justify    	0
+				label      	"0..1"
+				pctDist    	0.900000
+				height     	54
+				orientation 	1))
+			(object RoleView "$UNNAMED$7" @78
+			    Parent_View 	@74
+			    location   	(620, -22)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"47EB7BC4006F"
+			    client     	@74
+			    supplier   	@73
+			    vertices   	(list Points
+				(1164, 1078)
+				(786, 1078))
+			    line_style 	3
+			    origin_attachment 	(1164, 1078)
+			    terminal_attachment 	(786, 1078)
+			    label      	(object SegLabel @79
+				Parent_View 	@78
+				location   	(824, 1132)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	2
+				anchor_loc 	1
+				nlines     	1
+				max_width  	15
+				justify    	0
+				label      	"1"
+				pctDist    	0.900000
+				height     	54
+				orientation 	0))))
+		(object ClassView "Class" "Logical View::abapMapping::AbapSignatureKind" @80
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1941, 1409)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@80
+			location   	(1747, 1325)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	388
+			justify    	0
+			label      	"AbapSignatureKind")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@80
+			location   	(1747, 1275)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	388
+			justify    	0
+			label      	"<<enumeration>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"47EB7CB403A9"
+		    width      	406
+		    height     	292
+		    annotation 	8
+		    autoResize 	TRUE)))
+	(object ClassDiagram "Association Annotations"
+	    quid       	"47EB7AB302DE"
+	    title      	"Association Annotations"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	756
+	    origin_y   	938
+	    items      	(list diagram_item_list
+		(object ClassView "Class" "Logical View::abapMapping::AbapAssociationImplementationAnnotation" @81
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1725, 637)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@81
+			location   	(1322, 586)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	806
+			justify    	0
+			label      	"AbapAssociationImplementationAnnotation")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"47EB7B180280"
+		    width      	824
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::data::classes::Association" @82
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(672, 631)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@82
+			location   	(546, 557)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	252
+			justify    	0
+			label      	"Association")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"44321DA40150"
+		    width      	270
+		    height     	172
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AssociationViewNew "$UNNAMED$2" @83
+		    location   	(1060, 637)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"47EB7B3803C8"
+		    roleview_list 	(list RoleViews
+			(object RoleView "abapAnnotation" @84
+			    Parent_View 	@83
+			    location   	(388, 6)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @85
+				Parent_View 	@84
+				location   	(1161, 603)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	308
+				justify    	0
+				label      	"+abapAnnotation"
+				pctDist    	0.399209
+				height     	34
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"47EB7B3903B9"
+			    client     	@83
+			    supplier   	@81
+			    vertices   	(list Points
+				(1060, 637)
+				(1313, 637))
+			    line_style 	3
+			    origin_attachment 	(1060, 637)
+			    terminal_attachment 	(1313, 637)
+			    label      	(object SegLabel @86
+				Parent_View 	@84
+				location   	(1258, 691)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	2
+				anchor_loc 	1
+				nlines     	1
+				max_width  	15
+				justify    	0
+				label      	"0..1"
+				pctDist    	0.788262
+				height     	54
+				orientation 	1))
+			(object RoleView "$UNNAMED$3" @87
+			    Parent_View 	@83
+			    location   	(388, 6)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @88
+				Parent_View 	@87
+				location   	(858, 596)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				hidden     	TRUE
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	310
+				justify    	0
+				label      	""
+				pctDist    	0.800000
+				height     	42
+				orientation 	1)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"47EB7B3903BB"
+			    client     	@83
+			    supplier   	@82
+			    vertices   	(list Points
+				(1060, 637)
+				(807, 637))
+			    line_style 	3
+			    origin_attachment 	(1060, 637)
+			    terminal_attachment 	(807, 637)
+			    label      	(object SegLabel @89
+				Parent_View 	@87
+				location   	(833, 691)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	2
+				anchor_loc 	1
+				nlines     	1
+				max_width  	15
+				justify    	0
+				label      	"1"
+				pctDist    	0.900000
+				height     	54
+				orientation 	0))))
+		(object ClassView "Class" "Logical View::abapMapping::AbapAssociationEndImplementationAnnotation" @90
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1923, 1409)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@90
+			location   	(1483, 1358)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	880
+			justify    	0
+			label      	"AbapAssociationEndImplementationAnnotation")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"47EB7B2F02CE"
+		    width      	898
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::data::classes::AssociationEnd" @91
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(675, 1400)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@91
+			location   	(463, 1221)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	424
+			justify    	0
+			label      	"AssociationEnd")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"44EC55FB03B8"
+		    width      	442
+		    height     	382
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AssociationViewNew "EndsOfAssociation" @92
+		    location   	(622, 962)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object SegLabel @93
+			Parent_View 	@92
+			location   	(605, 920)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			anchor     	1
+			anchor_loc 	1
+			nlines     	1
+			max_width  	450
+			justify    	0
+			label      	"EndsOfAssociation"
+			pctDist    	0.233333
+			height     	43
+			orientation 	0)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"44EC565F0290"
+		    roleview_list 	(list RoleViews
+			(object RoleView "association" @94
+			    Parent_View 	@92
+			    location   	(-19, -122)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @95
+				Parent_View 	@94
+				location   	(456, 764)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	234
+				justify    	0
+				label      	"+association"
+				pctDist    	0.804878
+				height     	166
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"44EC5662005B"
+			    client     	@92
+			    supplier   	@82
+			    vertices   	(list Points
+				(622, 962)
+				(622, 716))
+			    line_style 	3
+			    origin_attachment 	(622, 962)
+			    terminal_attachment 	(622, 716)
+			    label      	(object SegLabel @96
+				Parent_View 	@94
+				location   	(676, 742)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	2
+				anchor_loc 	1
+				nlines     	1
+				max_width  	15
+				justify    	0
+				label      	"1"
+				pctDist    	0.900000
+				height     	54
+				orientation 	1))
+			(object RoleView "ends" @97
+			    Parent_View 	@92
+			    location   	(-19, -122)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @98
+				Parent_View 	@97
+				location   	(521, 1169)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	128
+				justify    	0
+				label      	"+ends"
+				pctDist    	0.838057
+				height     	101
+				orientation 	1)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"44EC56620059"
+			    client     	@92
+			    supplier   	@91
+			    vertices   	(list Points
+				(622, 962)
+				(622, 1209))
+			    line_style 	3
+			    origin_attachment 	(622, 962)
+			    terminal_attachment 	(622, 1209)
+			    label      	(object SegLabel @99
+				Parent_View 	@97
+				location   	(661, 1173)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	2
+				anchor_loc 	1
+				nlines     	1
+				max_width  	15
+				justify    	0
+				label      	"2"
+				pctDist    	0.854251
+				height     	39
+				orientation 	0)
+			    label      	(object SegLabel @100
+				Parent_View 	@97
+				location   	(805, 1179)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	3
+				anchor_loc 	1
+				nlines     	1
+				max_width  	159
+				justify    	0
+				label      	"{ordered}"
+				pctDist    	0.878542
+				height     	183
+				orientation 	0))))
+		(object AssociationViewNew "$UNNAMED$4" @101
+		    location   	(1185, 1409)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"47EB7B3A01D4"
+		    roleview_list 	(list RoleViews
+			(object RoleView "abapAnnotation" @102
+			    Parent_View 	@101
+			    location   	(510, 9)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @103
+				Parent_View 	@102
+				location   	(1311, 1357)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	308
+				justify    	0
+				label      	"+abapAnnotation"
+				pctDist    	0.440171
+				height     	53
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"47EB7B3A03B9"
+			    client     	@101
+			    supplier   	@90
+			    vertices   	(list Points
+				(1185, 1409)
+				(1474, 1409))
+			    line_style 	3
+			    origin_attachment 	(1185, 1409)
+			    terminal_attachment 	(1474, 1409)
+			    label      	(object SegLabel @104
+				Parent_View 	@102
+				location   	(1434, 1463)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	2
+				anchor_loc 	1
+				nlines     	1
+				max_width  	15
+				justify    	0
+				label      	"0..1"
+				pctDist    	0.862364
+				height     	54
+				orientation 	1))
+			(object RoleView "$UNNAMED$5" @105
+			    Parent_View 	@101
+			    location   	(510, 9)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"47EB7B3A03BB"
+			    client     	@101
+			    supplier   	@91
+			    vertices   	(list Points
+				(1185, 1409)
+				(896, 1409))
+			    line_style 	3
+			    origin_attachment 	(1185, 1409)
+			    terminal_attachment 	(896, 1409)
+			    label      	(object SegLabel @106
+				Parent_View 	@105
+				location   	(926, 1463)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	2
+				anchor_loc 	1
+				nlines     	1
+				max_width  	15
+				justify    	0
+				label      	"1"
+				pctDist    	0.900000
+				height     	54
+				orientation 	0))))))))

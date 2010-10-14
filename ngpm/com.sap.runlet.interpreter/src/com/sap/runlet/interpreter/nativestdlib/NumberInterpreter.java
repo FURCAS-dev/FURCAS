@@ -2,6 +2,7 @@ package com.sap.runlet.interpreter.nativestdlib;
 
 import behavioral.actions.Statement;
 
+import com.sap.ap.metamodel.utils.StringFormatter;
 import com.sap.runlet.abstractinterpreter.Interpreter;
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
 import com.sap.runlet.abstractinterpreter.util.Fraction;
@@ -33,7 +34,7 @@ RunletStackFrame, NativeImpl, RunletInterpreter> {
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(
 	    RunletInterpreter interpreter)
-	    throws SecurityException, IllegalArgumentException, JmiException {
+	    throws SecurityException, IllegalArgumentException {
 	MethodSignature sig = nativeImpl.getImplements_();
 	Fraction thiz = (Fraction) ((NativeObject) interpreter.getCallstack().peek().getThis()).getNativeObject();
 	if (sig.getName().equals("plus")) {

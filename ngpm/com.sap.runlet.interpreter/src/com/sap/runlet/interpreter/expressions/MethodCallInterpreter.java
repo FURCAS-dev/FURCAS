@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.sap.ap.metamodel.utils.StringFormatter;
 import com.sap.runlet.abstractinterpreter.StackFrame;
 import com.sap.runlet.abstractinterpreter.objects.ClassTypedObject;
 import com.sap.runlet.abstractinterpreter.objects.EmptyObject;
@@ -61,7 +62,7 @@ public class MethodCallInterpreter extends SignatureCallInterpreter {
 	    for (RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> thizz : on.flatten()) {
 		final FunctionFromMethodObject evaluator = getEvaluator(interpreter,
 			(ClassTypedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>) thizz);
-		if (evaluator.getImplementation().getImplements().isSideEffectFree()) {
+		if (evaluator.getImplementation().getImplements_().isSideEffectFree()) {
 		    final int j = i;
 		    resultCollection.add(null); // ensure that the list holds j+1 elements
 		    // background execution
@@ -133,7 +134,7 @@ public class MethodCallInterpreter extends SignatureCallInterpreter {
      * seem to justify this.
      */
     private FunctionFromMethodObject getEvaluator(RunletInterpreter interpreter, ClassTypedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> thiz)
-	    throws SecurityException, IllegalArgumentException, JmiException {
+	    throws SecurityException, IllegalArgumentException {
 	SignatureImplementation impl = interpreter.resolveMethodCallToImplementation(
 		(MethodSignature) getSignatureCallExpression().getSignature(),
 		thiz);

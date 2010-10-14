@@ -29,7 +29,7 @@ public class NamedValueDeclarationInterpreter implements Interpreter<NamedValueD
 
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter)
-	    throws SecurityException, IllegalArgumentException, JmiException,
+	    throws SecurityException, IllegalArgumentException,
 	    NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	Expression initExpression = namedValueDeclaration.getNamedValue().getInitExpression();

@@ -35,7 +35,7 @@ public class MapInterpreter implements Interpreter<Map, SapClass, TypeDefinition
 
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter) throws SecurityException,
-	    IllegalArgumentException, JmiException, NoSuchMethodException, InstantiationException,
+	    IllegalArgumentException, NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	TypeDefinition mapExprType = mapExpr.getType();
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> o = interpreter.evaluate(mapExpr.getObject());

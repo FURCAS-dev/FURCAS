@@ -27,7 +27,7 @@ public class VariableExpressionInterpreter implements Interpreter<VariableExpres
 
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter)
-	    throws SecurityException, IllegalArgumentException, JmiException {
+	    throws SecurityException, IllegalArgumentException {
 	return interpreter.getCallstack().peek().getValue(variableExpression.getVariable());
     }
 

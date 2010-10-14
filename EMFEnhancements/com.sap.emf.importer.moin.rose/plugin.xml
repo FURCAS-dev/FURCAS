@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+  <extension id="Rose2GenModel" point="org.eclipse.core.runtime.applications">
+    <application>
+      <run class="com.sap.emf.importer.moin.rose.RoseImporterApplication" />
+    </application>
+  </extension>
+
+  <extension point="org.eclipse.emf.importer.modelImporterDescriptors">
+    <modelImporterDescriptor id="com.sap.emf.importer.moin.rose" name="%_UI_RoseModelImporter_label" icon="icons/full/obj16/RoseModelFile.gif" extensions="mdl" description="%_UI_RoseModelImporter_description" wizard="com.sap.emf.importer.moin.rose.ui.RoseImporterWizard" />
+  </extension>
+
+  <extension point="org.eclipse.team.core.fileTypes">
+    <fileTypes extension="mdl" type="text" />
+    <fileTypes extension="cat" type="text" />
+  </extension>
+</plugin>

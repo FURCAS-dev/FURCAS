@@ -30,7 +30,7 @@ public class DeleteInterpreter implements Interpreter<Delete, SapClass, TypeDefi
     @SuppressWarnings("unchecked")
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter) throws SecurityException,
-	    IllegalArgumentException, JmiException, NoSuchMethodException, InstantiationException,
+	    IllegalArgumentException,NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	for (RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> toDelete : interpreter.evaluate(delete.getArgument())) {
 	    interpreter.deleteEntity(

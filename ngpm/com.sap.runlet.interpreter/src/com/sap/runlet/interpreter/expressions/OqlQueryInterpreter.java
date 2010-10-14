@@ -16,6 +16,7 @@ import com.sap.runlet.abstractinterpreter.Interpreter;
 import com.sap.runlet.abstractinterpreter.objects.ClassTypedObject;
 import com.sap.runlet.abstractinterpreter.objects.EmptyObject;
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
+import com.sap.runlet.abstractinterpreter.util.Tuple.Pair;
 import com.sap.runlet.interpreter.RunletInterpreter;
 import com.sap.runlet.interpreter.RunletStackFrame;
 import com.sap.runlet.interpreter.objects.NativeObject;
@@ -66,7 +67,7 @@ Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, Ru
      */
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter)
-    throws JmiException, SecurityException, IllegalArgumentException, NoSuchMethodException,
+    throws SecurityException, IllegalArgumentException, NoSuchMethodException,
     InstantiationException, IllegalAccessException, InvocationTargetException {
 	/*
 	 * "multiplication" from left to right over "from" expressions Start with first from expression and compute results;
@@ -206,7 +207,7 @@ Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, Ru
     }
     
     private List<Map<Iterator, RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>> filteredByWhereClause(
-	    List<Map<Iterator, RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>> cartesianProduct, RunletInterpreter interpreter) throws JmiException,
+	    List<Map<Iterator, RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>> cartesianProduct, RunletInterpreter interpreter) throws
 	    SecurityException, IllegalArgumentException, NoSuchMethodException,
 	    InstantiationException, IllegalAccessException, InvocationTargetException {
 	List<Map<Iterator, RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>> filteredByWhere;
@@ -245,7 +246,7 @@ Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, Ru
      */
     private RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> createTuples(
 	    List<Map<Iterator, RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>> filteredCartesianProduct,
-	    RunletInterpreter interpreter) throws JmiException, SecurityException, IllegalArgumentException {
+	    RunletInterpreter interpreter) throws SecurityException, IllegalArgumentException {
 	List<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> resultObjects =
 	    new ArrayList<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>();
 	SapClass resultType = ((ClassTypeDefinition) oql.getType()).getClazz();
