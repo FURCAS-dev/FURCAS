@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="csvResultProcessor"
-    nsURI="http://de.hpi.sam.bp2009.benchframework.csvResultProcessor" nsPrefix="benchframework.csvResultProcessor">
-  <eClassifiers xsi:type="ecore:EClass" name="CsvResultProcessor" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//ResultProcessor"/>
-</ecore:EPackage>
