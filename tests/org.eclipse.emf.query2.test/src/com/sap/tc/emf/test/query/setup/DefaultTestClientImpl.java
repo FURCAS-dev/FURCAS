@@ -14,6 +14,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 
+import junit.framework.Assert;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -43,7 +45,7 @@ public class DefaultTestClientImpl implements TestClient {
 			try {
 				res.load(null);
 			} catch (Throwable t) {
-				// ignore
+				//Assert.fail(t.getLocalizedMessage());
 			}
 		}
 		if (!res.isTrackingModification()) {
