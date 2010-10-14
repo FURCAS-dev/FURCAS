@@ -5,6 +5,6 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses( { LibraryTransformation.class, IndexQueryCountTest.class })
-public class LibraryTestSuite {
+public class LibraryTestSuite extends QueryTestCase {
 
 }
