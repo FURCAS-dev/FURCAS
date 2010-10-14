@@ -1,0 +1,26 @@
+ - There may be generic model updaters waiting for OCL IA-based events to come along. They will
+   use the context element(s) inferred by the IA as the update target. And there may be "instantiated"
+   model updaters created, e.g., during a parser run (see the setRef, setOclRef, setPredicateRef methods
+   on ObservableInjectingParser). The latter are usually used once to initialize the model element
+   created by the parser. If that fails, they are queued as unresolved references. What's the difference
+   between those and the generic references?
+ - Query parameterization: ? needs to be replaced by '???' or 999, respectively (better ideas?). The
+   respective model updaters need to know the replacement value from somewhere.
+ - What about the OCL expressions created by filling in parameters of a query/prepared OCL expression?
+   When no editor is running, how do the expressions get triggered? From an IA point of view, the
+   parameterizable expressions contain the special literals '???' or 999 which get replaced by the
+   particular token value obtained from the text blocks model. But from looking at the generic expression,
+   the IA won't know that. Particularly in its delta propagation/partial evalution component it may
+   draw the wrong conclusions, e.g., because name changes of elements referenced by such a query neither
+   before nor after the change match the artificial parameter pattern '???' or 999. The IA may infer that
+   no change happened and wouldn't notify the respective model updater. We'd need to create specific
+   expressions (which would go against the entire idea of parameterized prepared OCL expressions). Or we'd
+   have to tell the impact analysis somehow how the replacement value is to be computed.
+   Would it be possible to express in OCL the relationship between a query, the model element holding the
+   property to be set by the query and the token in the text blocks model holding the parameter
+   replacement? In this case, the IA would right away return those elements for which things changed
+   given the particular change event. Also, if the token value changed, the IA would trigger the
+   re-evaluation of the query OCL automatically.
+ - Proxy resolution: non-generic model updaters hold a model element reference or a proxy.
+   When proxies get replaced by the real elements, this needs to be reflected by the model updaters
+   that used to hold the proxy instead of the element. See ObservableInjectingParser.replaceResolvedProxies
