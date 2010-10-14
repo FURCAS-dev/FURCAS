@@ -14,10 +14,11 @@ public class DefaultTestClientImpl implements TestClient {
 
 	private ResourceSet resourceSet;
 
-	private String parentDirectory = "c:/tmp/emftest";
+	private String parentDirectory = ""; //$NON-NLS-1$
 
 	public DefaultTestClientImpl() {
 		this.getResourceSet().getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
+		parentDirectory = System.getProperty("java.io.tmpdir");
 	}
 	
 	@Override
