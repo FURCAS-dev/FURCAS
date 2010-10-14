@@ -33,7 +33,7 @@ public class SnapshotInterpreter implements Interpreter<Snapshot, SapClass, Type
 
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter) throws SecurityException,
-	    IllegalArgumentException, JmiException, NoSuchMethodException, InstantiationException,
+	    IllegalArgumentException, NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> object = interpreter.evaluate(snapshotExpr.getObject());
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> result = null;

@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.sap.ap.metamodel.utils.MetamodelUtils;
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
 import com.sap.runlet.interpreter.RunletInterpreter;
 import com.sap.runlet.interpreter.expressions.SignatureCallInterpreter;
@@ -33,7 +34,7 @@ public class Function extends RucolaObject {
     }
 
     public RucolaObject call(Object... args) {
-	FunctionCallExpression fce = MetamodelUtils.createFunctionCallExpression(getConnection(), (FunctionSignature) getObject()
+	FunctionCallExpression fce = MetamodelUtils.createFunctionCallExpression(getResourceSet(), (FunctionSignature) getObject()
 		.getImplementation().getImplementedSignature());
 	List<RucolaObject> argsAsRucola = new LinkedList<RucolaObject>();
 	Iterator<Parameter> paramIter = fce.getSignature().getInput().iterator();
@@ -50,8 +51,6 @@ public class Function extends RucolaObject {
 	    return getRucola().createRucolaObjectForRiverObject(riverResult);
 	} catch (Exception e) {
 	    throw new RucolaException("Error during evaluating function call to " + getObject() + ": " + e.getMessage(), e);
-	} finally {
-	    fce.refDelete();
 	}
     }
 

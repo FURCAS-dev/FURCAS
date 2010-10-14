@@ -44,7 +44,7 @@ public class EqualsInterpreter implements Interpreter<Equals, SapClass, TypeDefi
 
     @Override
     public ValueObject evaluate(RunletInterpreter interpreter)
-	    throws SecurityException, IllegalArgumentException, JmiException,
+	    throws SecurityException, IllegalArgumentException,
 	    NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	Expression firstExp = equals.getLeft();

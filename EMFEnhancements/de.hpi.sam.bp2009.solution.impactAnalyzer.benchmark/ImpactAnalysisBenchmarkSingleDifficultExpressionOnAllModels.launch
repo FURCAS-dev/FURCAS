@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark/src/de/hpi/sam/bp2009/solution/impactAnalyzer/benchmark/BenchmarkProcessor.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.BenchmarkProcessor"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="--warmups 1 --measures 1 --output /tmp/result.data --oclId 47 --jobs 2"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xmx1596m -Xms1596m -server"/>
+<stringAttribute key="profilingTraceType-ALLOCATION_TRACE" value="KEY_HIDE_FINALIZER_ALLOC%CTX_KEY%false%CTX_ENTRY%KEY_ALLOW_MULTI_EVENTS%CTX_KEY%false%CTX_ENTRY%KEY_HIDE_CLASS_LOADING%CTX_KEY%false%CTX_ENTRY%INCREASE_COUNT%CTX_KEY%8192%CTX_ENTRY%KEY_MIN_SIZE%CTX_KEY%32%CTX_ENTRY%KEY_REQUEST_FILTER%CTX_KEY%*%CTX_ENTRY%KEY_APPLICATION_FILTER%CTX_KEY%*%CTX_ENTRY%KEY_INC_LINE_NRS%CTX_KEY%true%CTX_ENTRY%KEY_ENABLEMENT%CTX_KEY%false%CTX_ENTRY%KEY_STACK_SIZE%CTX_KEY%-1%CTX_ENTRY%KEY_SESSION_FILTER%CTX_KEY%*%CTX_ENTRY%KEY_ALLOW_PACKET_REORDERING%CTX_KEY%false%CTX_ENTRY%KEY_USER_FILTER%CTX_KEY%*%CTX_ENTRY%KEY_ADAPTIVE%CTX_KEY%false%CTX_ENTRY%KEY_HIDE_STR_RESOLVING%CTX_KEY%false%CTX_ENTRY%KEY_MAX_SIZE%CTX_KEY%65536%CTX_ENTRY%KEY_HIDE_STATIC_INIT%CTX_KEY%false%CTX_ENTRY%"/>
+<stringAttribute key="profilingTraceType-IO_TRACE" value="KEY_SESSION_FILTER%CTX_KEY%*%CTX_ENTRY%KEY_USER_FILTER%CTX_KEY%*%CTX_ENTRY%KEY_REQUEST_FILTER%CTX_KEY%*%CTX_ENTRY%KEY_APPLICATION_FILTER%CTX_KEY%*%CTX_ENTRY%KEY_ENABLEMENT%CTX_KEY%false%CTX_ENTRY%"/>
+<stringAttribute key="profilingTraceType-METHOD_PARAMETER_TRACE" value="KEY_SESSION_FILTER%CTX_KEY%*%CTX_ENTRY%KEY_USER_FILTER%CTX_KEY%*%CTX_ENTRY%KEY_REQUEST_FILTER%CTX_KEY%*%CTX_ENTRY%KEY_APPLICATION_FILTER%CTX_KEY%*%CTX_ENTRY%KEY_ENABLEMENT%CTX_KEY%false%CTX_ENTRY%"/>
+<stringAttribute key="profilingTraceType-PERFORMANCE_HOTSPOT_TRACE" value="KEY_SESSION_FILTER%CTX_KEY%*%CTX_ENTRY%KEY_USER_FILTER%CTX_KEY%*%CTX_ENTRY%KEY_REQUEST_FILTER%CTX_KEY%*%CTX_ENTRY%KEY_IGNORE_SLEEPING_THREADS%CTX_KEY%true%CTX_ENTRY%KEY_APPLICATION_FILTER%CTX_KEY%*%CTX_ENTRY%KEY_ENABLEMENT%CTX_KEY%false%CTX_ENTRY%"/>
+<stringAttribute key="profilingTraceType-SYNCHRONIZATION_TRACE" value="KEY_SESSION_FILTER%CTX_KEY%*%CTX_ENTRY%KEY_USER_FILTER%CTX_KEY%*%CTX_ENTRY%KEY_REQUEST_FILTER%CTX_KEY%*%CTX_ENTRY%KEY_APPLICATION_FILTER%CTX_KEY%*%CTX_ENTRY%KEY_ENABLEMENT%CTX_KEY%false%CTX_ENTRY%"/>
+</launchConfiguration>

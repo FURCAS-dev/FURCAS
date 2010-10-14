@@ -44,7 +44,7 @@ public class ContentEqualsInterpreter implements Interpreter<ContentEquals, SapC
 
     @Override
     public ValueObject evaluate(RunletInterpreter interpreter)
-	    throws SecurityException, IllegalArgumentException, JmiException,
+	    throws SecurityException, IllegalArgumentException,
 	    NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	Expression firstExp = contentEequals.getLeft();

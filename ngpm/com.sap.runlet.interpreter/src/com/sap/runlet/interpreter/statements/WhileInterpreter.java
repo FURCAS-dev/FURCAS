@@ -31,7 +31,7 @@ public class WhileInterpreter implements Interpreter<IfElse, SapClass, TypeDefin
 
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter)
-	    throws SecurityException, IllegalArgumentException, JmiException,
+	    throws SecurityException, IllegalArgumentException,
 	    NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> result = null;

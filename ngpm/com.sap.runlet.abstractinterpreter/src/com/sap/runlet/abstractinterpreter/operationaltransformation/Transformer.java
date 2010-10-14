@@ -10,6 +10,7 @@ import com.sap.runlet.abstractinterpreter.repository.LinkChange;
 import com.sap.runlet.abstractinterpreter.repository.LinkCreation;
 import com.sap.runlet.abstractinterpreter.repository.LinkDeletion;
 import com.sap.runlet.abstractinterpreter.repository.RepositoryChange;
+import com.sap.runlet.abstractinterpreter.util.Tuple.Pair;
 
 /**
  * Takes two {@link Change} objects, one from the client, the other from the
@@ -225,8 +226,8 @@ MetaClass extends EObject, TypeUsage extends EObject, ClassUsage extends TypeUsa
 		    result = new ChangeList<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>(
 			    (Change<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>[]) new Change<?, ?, ?, ?, ?>[] {
 				    new SingleChange<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>(
-					    new LinkDeletion(((LinkCreation) targetChange).getObject(),
-						    ((LinkChange) targetChange).getPosition())),
+					    new LinkDeletion<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>(((LinkCreation<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>) targetChange).getObject(),
+						    ((LinkChange<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>) targetChange).getPosition())),
 				    new SingleChange<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>(
 					    sourceChange) });
 		}

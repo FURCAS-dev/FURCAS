@@ -2,6 +2,7 @@ package com.sap.runlet.interpreter.objects;
 
 import java.lang.reflect.InvocationTargetException;
 
+import com.sap.ap.metamodel.utils.StringFormatter;
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
 import com.sap.runlet.interpreter.RunletInterpreter;
 import com.sap.runlet.interpreter.statements.ReturnInterpreter;

@@ -1,0 +1,65 @@
+ README - Graph Visualization Debug Tool
+=======================================
+The graph visualization tool provides the functionality to generate a graph for visualizing the NavigationStep hierarchy of the instance scope analysis within the OCL impact analysis. Therefore the tool generates a GraphML file, which can be opened by several graph tools (e.g. yED).
+
+Follow the following steps to generate a GraphML file:
+1. Make sure that you have checked out the project 
+   de.hpi.sam.bp2009.solution.impactAnalyzer.debug
+2. In order to generate a graph you may debug into the InstanceScopeAnalysis.self()
+   method or a similar method, in which you have access to an NavigationStep object. 
+   It's recommended to start the visualization tool after the navigate method of the
+   NavigationStep was called.
+3. Open the display view (Window > Show View > Display)
+4. Execute the following line to generate a GraphML file where step is the name of the
+   NavigationStep variable:
+   
+   de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.debug.NavigationStepDebugHelper.printGraphFile(step, "C:\\tmp\\graph.graphml");
+
+   Internally, the debug visualization tool uses the third party library yFiles to 
+   generate a GraphMl file. Unfortunately, this library is only offered under commercial
+   license. At the moment, only the evaluation copy of this library is used to generate a graph.
+   If the graph file was not written to the specified path and the message
+   "The evaluation time of yFiles for Java has expired" is returned, the 
+   /de.hpi.sam.bp2009.solution.impactAnalyzer.debug/lib/y.jar must be replaced by a new
+   evaluation copy in order to be able to generate a graph file.
+   A new evaluation copy can be requested at http://www.yworks.com/en/products_yfiles_eval.php
+
+View and post-process the graph visualization:
+1. Download and install the yED graph tool (http://www.yworks.com/en/products_yed_about.html)
+2. Open the generated GraphML file
+3. Auto-layout the graph with the layout functionality of yEd. Therefore open the dialog Layout > Hierarchical...
+   Therefore, you may use the following preferences for auto-layouting:
+    - General
+        - Selected Elements Incrementally: [ ]
+        - Use Drawing as Sketch: [ ]
+        - Orientation: Top to Bottom
+        - Layout Components Separately: [ ]
+        - Symmetric Placement: [ ]
+        - Maximal Duration (sec): 150
+        - Node to Node Distance: 30,0
+        - Node to Edge Distance: 15,0
+        - Edge to Edge Distance: 15,0
+        - Layer to Layer Distance: 10
+    - Edges
+        - Routing Style: Polyline
+        - Backloop Routing: [ ]
+        - Automatic Edge Grouping: [ ]
+        - Minimum First Segment Length: 10,0
+        - Minimum Last Segment Length: 15,0
+        - Minimum Length: 20,0
+        - Minimum Edge Distance: 15,0
+        - Minimum Slope: 0,19
+        - Port Constraint Optimization: [x]
+    - Layers
+        - Layer Assignment Policy: Hierarchical - Tight Tree Heuristic
+        - Alignment within Layer: Center of Nodes
+    - Labeling
+        - Consider Node Labels: [x]
+        - Edge Labeling: Hierarchic
+        - Edge Label Model: Free
+    - Grouping
+        - Layering Strategy: Ignore Groups
+        - Horizontal Group Compaction: Strong
+    - Swimlanes 
+        - Treat group as swimlanes: [ ]
+4. Rearrange nodes if needed

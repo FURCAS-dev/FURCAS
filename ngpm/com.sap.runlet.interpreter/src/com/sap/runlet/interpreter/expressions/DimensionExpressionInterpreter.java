@@ -75,7 +75,7 @@ public class DimensionExpressionInterpreter implements Interpreter<DimensionExpr
 
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter)
-	    throws SecurityException, IllegalArgumentException, JmiException, NoSuchMethodException, InstantiationException,
+	    throws SecurityException, IllegalArgumentException, NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> facts = interpreter.evaluate(dimensionExpression.getFacts());
 	FunctionObject cellSetFunction = (FunctionObject) interpreter.evaluate(dimensionExpression.getCellSet());

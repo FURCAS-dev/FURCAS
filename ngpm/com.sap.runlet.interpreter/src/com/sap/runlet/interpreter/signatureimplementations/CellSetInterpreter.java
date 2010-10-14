@@ -57,7 +57,7 @@ public class CellSetInterpreter implements Interpreter<CellSet, SapClass, TypeDe
      */
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter) throws SecurityException,
-	    IllegalArgumentException, JmiException, NoSuchMethodException, InstantiationException,
+	    IllegalArgumentException, NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	Signature cellSetFunctionSignature = cellSet.getImplementedSignature();
 	Bag<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> matchingFactsValues = new HashBag<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>();

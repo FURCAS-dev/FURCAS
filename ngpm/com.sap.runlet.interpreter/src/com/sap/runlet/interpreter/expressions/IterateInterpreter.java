@@ -32,7 +32,7 @@ public class IterateInterpreter implements Interpreter<Iterate, SapClass, TypeDe
 
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter)
-	    throws SecurityException, IllegalArgumentException, JmiException, NoSuchMethodException, InstantiationException,
+	    throws SecurityException, IllegalArgumentException, NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> source = interpreter.evaluate(iterate.getSource());
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> acc = null;
@@ -59,7 +59,7 @@ public class IterateInterpreter implements Interpreter<Iterate, SapClass, TypeDe
 	    RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> source,
 	    RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> acc,
 	    Map<behavioral.actions.Iterator, RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> iteratorValues)
-	    throws SecurityException, IllegalArgumentException, JmiException, NoSuchMethodException, InstantiationException,
+	    throws SecurityException, IllegalArgumentException, NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	behavioral.actions.Iterator iter = iterators[iteratorIndex];
 	for (RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> sourceElement : source.flatten()) {

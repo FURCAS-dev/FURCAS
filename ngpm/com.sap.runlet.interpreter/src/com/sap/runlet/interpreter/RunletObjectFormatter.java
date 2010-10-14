@@ -2,9 +2,9 @@ package com.sap.runlet.interpreter;
 
 import java.lang.reflect.Method;
 
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
+import com.sap.ap.metamodel.utils.StringFormatter;
 import com.sap.runlet.abstractinterpreter.AbstractObjectFormatter;
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
 
@@ -33,7 +33,7 @@ public class RunletObjectFormatter implements
     }
 
     @Override
-    public String formatCurrentlyEvaluatingRefObject(EObject currentlyEvaluating) {
+    public String formatCurrentlyEvaluatingEObject(EObject currentlyEvaluating) {
 	StringBuilder result = new StringBuilder();
 	if (currentlyEvaluating instanceof Signature) {
 	    result.append(StringFormatter.toString((Signature) currentlyEvaluating));
@@ -48,7 +48,7 @@ public class RunletObjectFormatter implements
 		// just don't add result of getName() then...
 	    }
 	    result.append(':');
-	    result.append(((EClass) currentlyEvaluating.refMetaObject()).getName());
+	    result.append((currentlyEvaluating.eClass()).getName());
 	}
 	return result.toString();
     }

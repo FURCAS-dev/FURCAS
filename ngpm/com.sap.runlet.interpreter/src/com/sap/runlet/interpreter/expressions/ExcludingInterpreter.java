@@ -38,7 +38,7 @@ public class ExcludingInterpreter implements Interpreter<Excluding, SapClass, Ty
 
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter)
-	    throws SecurityException, IllegalArgumentException, JmiException,
+	    throws SecurityException, IllegalArgumentException,
 	    NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	Collection<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> resultCollection = RunletObject.createCollection(

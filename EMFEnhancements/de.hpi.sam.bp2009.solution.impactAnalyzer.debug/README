@@ -1,0 +1,7 @@
+README - Graph Visualization Debug Tool
+=======================================
+
+Please refer to the detailed README which describes how to generate
+a debug graph visualization of a NavigationStep hierarchy:
+
+https://www.hpi.uni-potsdam.de/giese/gforge/svn/bp2009/sources/trunk/de.hpi.sam.bp2009.solution.impactAnalyzer/src/de/hpi/sam/bp2009/solution/impactAnalyzer/instanceScope/debug/README

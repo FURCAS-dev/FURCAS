@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+    <extension point = "org.eclipse.emf.ecore.validation_delegate">
+    <delegate uri = "http://de.hpi.sam.bp2009.OCL"
+       class = "de.hpi.sam.bp2009.solution.oclToAst.delegate.OCLValidationDelegateFactory$Global" />
+  </extension>
+
+  <extension point = "org.eclipse.emf.ecore.setting_delegate">
+    <factory uri = "http://de.hpi.sam.bp2009.OCL"
+       class = "de.hpi.sam.bp2009.solution.oclToAst.delegate.OCLSettingDelegateFactory$Global" />
+  </extension>
+
+  <extension point = "org.eclipse.emf.ecore.invocation_delegate">
+    <factory uri = "http://de.hpi.sam.bp2009.OCL"
+       class = "de.hpi.sam.bp2009.solution.oclToAst.delegate.OCLInvocationDelegateFactory$Global" />
+  </extension>
+   <extension point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IFile"
+            nameFilter="*.ecore"
+            id="de.hpi.sam.bp2009.solution.oclToAst.AnnotationParser">
+         <action label="Parse OCL Annotations"
+               class="de.hpi.sam.bp2009.solution.oclToAst.ui.OclToAstAction"
+               menubarPath="additions" 
+               id="de.hpi.sam.bp2009.solution.oclToAst.AnnotationParser"/>
+      </objectContribution>
+   </extension>
+</plugin>

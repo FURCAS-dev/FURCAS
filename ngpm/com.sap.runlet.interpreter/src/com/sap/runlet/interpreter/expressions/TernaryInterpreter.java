@@ -30,7 +30,7 @@ public class TernaryInterpreter implements Interpreter<Ternary, SapClass, TypeDe
 
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter)
-	    throws SecurityException, IllegalArgumentException, JmiException,
+	    throws SecurityException, IllegalArgumentException,
 	    NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> result;

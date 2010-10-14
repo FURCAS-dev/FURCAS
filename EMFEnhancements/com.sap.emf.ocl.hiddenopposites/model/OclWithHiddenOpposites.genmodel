@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/com.sap.emf.ocl.hiddenopposites/src"
+    modelPluginID="com.sap.emf.ocl.hiddenopposites" modelName="OclWithHiddenOpposites"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.ocl/model/OCL.genmodel#//ocl platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.genmodel#//ocl">
+  <foreignModel>OCLWithHiddenOpposites.ecore</foreignModel>
+  <genPackages prefix="Oclwithhiddenopposites" basePackage="com.sap.emf.ocl" resource="XML"
+      disposableProviderFactory="true" contentTypeIdentifier="com.sap.emf.ocl.hiddenopposites"
+      ecorePackage="OCLWithHiddenOpposites.ecore#/">
+    <genClasses ecoreClass="OCLWithHiddenOpposites.ecore#//OppositePropertyCallExp">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OCLWithHiddenOpposites.ecore#//OppositePropertyCallExp/referredOppositeProperty"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OCLWithHiddenOpposites.ecore#//VisitorWithHiddenOpposite">
+      <genTypeParameters ecoreTypeParameter="OCLWithHiddenOpposites.ecore#//VisitorWithHiddenOpposite/T"/>
+      <genOperations ecoreOperation="OCLWithHiddenOpposites.ecore#//VisitorWithHiddenOpposite/visitOppositePropertyCallExp">
+        <genParameters ecoreParameter="OCLWithHiddenOpposites.ecore#//VisitorWithHiddenOpposite/visitOppositePropertyCallExp/callExp"/>
+      </genOperations>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

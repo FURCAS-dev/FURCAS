@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Debug
+Bundle-SymbolicName: de.hpi.sam.bp2009.solution.impactAnalyzer.debug;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Fragment-Host: de.hpi.sam.bp2009.solution.impactAnalyzer
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ClassPath: lib/y.jar,
+ .
+Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.debug
+Import-Package: org.junit

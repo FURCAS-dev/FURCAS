@@ -30,7 +30,7 @@ public class LinkSettingInterpreter implements Interpreter<LinkSetting, SapClass
 
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter)
-	    throws SecurityException, IllegalArgumentException, JmiException {
+	    throws SecurityException, IllegalArgumentException {
 	MethodSignature sig = linkSetting.getImplements_();
 	// parameter and this are in the current stack frame; grab them:
 	Parameter param = sig.getInput().get(0);

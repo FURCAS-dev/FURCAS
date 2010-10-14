@@ -11,9 +11,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import com.sap.ap.metamodel.utils.MetamodelUtils;
 import com.sap.runlet.abstractinterpreter.objects.ClassTypedObject;
 import com.sap.runlet.abstractinterpreter.objects.EmptyObject;
 import com.sap.runlet.abstractinterpreter.objects.EntityObject;
@@ -27,7 +27,6 @@ import com.sap.runlet.interpreter.RunletInterpreter;
 import com.sap.runlet.interpreter.objects.NativeObject;
 import com.sap.runlet.interpreter.objects.ValueObject;
 import com.sap.runlet.interpreter.repository.simpleimpl.RunletInMemoryRepository;
-
 
 import data.classes.Association;
 import data.classes.AssociationEnd;
@@ -52,13 +51,13 @@ public class Rucola {
      * Initializes a new {@link RunletInterpreter} with a new empty
      * {@link RunletInMemoryRepository} and wraps it by a {@link Rucola} object.
      */
-    public Rucola(ResourceSet conn) {
-	this(conn, new RunletInMemoryRepository(Activator.getDefault().getModelAdapter()));
+    public Rucola(ResourceSet resourceSet) {
+	this(resourceSet, new RunletInMemoryRepository(Activator.getDefault().getModelAdapter()));
     }
     
-    public Rucola(ResourceSet conn,
+    public Rucola(ResourceSet resourceSet,
 	    Repository<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> repository) {
-	this(new RunletInterpreter(conn, repository));
+	this(new RunletInterpreter(resourceSet, repository));
     }
     
     public Rucola(RunletInterpreter interpreter) {
@@ -69,8 +68,8 @@ public class Rucola {
         return interpreter;
     }
     
-    protected ResourceSet getConnection() {
-	return getInterpreter().getConnection();
+    protected ResourceSet getResourceSet() {
+	return getInterpreter().getResourceSet();
     }
 
     protected RucolaObject createRucolaObjectForRiverObject(RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> o) {
@@ -100,9 +99,8 @@ public class Rucola {
 
     private Value wrapNativeObject(Object o, String runletNativeClassName) {
 	// TODO cache class type definitions
-	ClassTypeDefinition type = MetamodelUtils.createClassTypeDefinitionExactlyOne(getConnection(), MetamodelUtils.findClass(
-		getConnection(), runletNativeClassName));
-	type.assign___PartitionIncludingChildren(getTransientPartition());
+	ClassTypeDefinition type = MetamodelUtils.createClassTypeDefinitionExactlyOne(getResourceSet(), MetamodelUtils.findClass(
+		getResourceSet(), runletNativeClassName));
 	return new Value(this, new NativeObject(type, o, getInterpreter().getDefaultSnapshot(), getInterpreter()));
     }
 
@@ -174,14 +172,9 @@ public class Rucola {
 	}
     }
     
-    private Resource getTransientPartition() {
-	return getConnection().getOrCreateTransientPartition("RucolaTransient_Thread"+Thread.currentThread().getId());
-    }
-    
     public Entity newEntity(String classname) {
-	ClassTypeDefinition type = MetamodelUtils.createClassTypeDefinitionExactlyOne(getConnection(),
-		MetamodelUtils.findClass(getConnection(), classname));
-	type.assign___PartitionIncludingChildren(getTransientPartition());
+	ClassTypeDefinition type = MetamodelUtils.createClassTypeDefinitionExactlyOne(getResourceSet(),
+		MetamodelUtils.findClass(getResourceSet(), classname));
 	assert !type.getClazz().isValueType();
 	EntityObject<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> eo = getInterpreter().createEntityObject(type);
 	return new Entity(this, eo);
@@ -208,8 +201,8 @@ public class Rucola {
 	    UUID uuid = (UUID) ois.readObject();
 	    SnapshotIdentifier snapshotIdentifier = (SnapshotIdentifier) ois.readObject();
 	    boolean isPersistent = ois.readBoolean();
-	    ClassTypeDefinition ctd = MetamodelUtils.createClassTypeDefinitionExactlyOne(getConnection(),
-		    MetamodelUtils.findClass(getConnection(), classname));
+	    ClassTypeDefinition ctd = MetamodelUtils.createClassTypeDefinitionExactlyOne(getResourceSet(),
+		    MetamodelUtils.findClass(getResourceSet(), classname));
 	    EntityObject<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> result =
 		new EntityObject<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>(
 		    ctd, uuid, snapshotIdentifier, getInterpreter().getModelAdapter(), getInterpreter());
@@ -238,9 +231,8 @@ public class Rucola {
      * association ends.
      */
     public Value value(String classname, Map<String, Object> values) {
-	ClassTypeDefinition type = MetamodelUtils.createClassTypeDefinitionExactlyOne(getConnection(),
-		MetamodelUtils.findClass(getConnection(), classname));
-	type.assign___PartitionIncludingChildren(getTransientPartition());
+	ClassTypeDefinition type = MetamodelUtils.createClassTypeDefinitionExactlyOne(getResourceSet(),
+		MetamodelUtils.findClass(getResourceSet(), classname));
 	SapClass valueClass = type.getClazz();
 	assert valueClass.isValueType();
 	Collection<AssociationEnd> equalityRelevantEnds = valueClass.getEqualityRelevantAssociationEnds();

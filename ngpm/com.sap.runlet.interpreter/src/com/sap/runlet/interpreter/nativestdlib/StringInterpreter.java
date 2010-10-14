@@ -2,6 +2,7 @@ package com.sap.runlet.interpreter.nativestdlib;
 
 import behavioral.actions.Statement;
 
+import com.sap.ap.metamodel.utils.StringFormatter;
 import com.sap.runlet.abstractinterpreter.Interpreter;
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
 import com.sap.runlet.abstractinterpreter.util.Fraction;
@@ -31,8 +32,8 @@ RunletStackFrame, NativeImpl, RunletInterpreter> {
     }
 
     @Override
-    public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter) throws SecurityException, IllegalArgumentException, JmiException {
-	MethodSignature sig = nativeImpl.getImplements();
+    public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter) throws SecurityException, IllegalArgumentException {
+	MethodSignature sig = nativeImpl.getImplements_();
 	String thiz = (String) ((NativeObject) interpreter.getCallstack().peek().getThis()).getNativeObject();
 	if (sig.getName().equals("substring")) {
 	    Parameter startP = sig.getInput().get(0);
@@ -64,7 +65,7 @@ RunletStackFrame, NativeImpl, RunletInterpreter> {
 	    return new ReturnInterpreter.ReturnResult(new NativeObject((ClassTypeDefinition) sig.getOutput(), result.toString(),
 		    interpreter.getDefaultSnapshot(), interpreter));
 	}
-	throw new RuntimeException("Unknown native method " + StringFormatter.toString(nativeImpl.getImplements())
+	throw new RuntimeException("Unknown native method " + StringFormatter.toString(nativeImpl.getImplements_())
 		+ " and no native interpreter registered for class " + sig.getOwner().getName());
     }
 

@@ -2,15 +2,10 @@ package com.sap.runlet.interpreter.test;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.jface.operation.IRunnableWithProgress;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.progress.IProgressService;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.osgi.framework.BundleContext;
-
-
 
 /**
  * The activator class controls the plug-in life cycle
@@ -48,7 +43,7 @@ public class Activator extends Plugin {
 	}
 
 	static IProject getStdlibProject() {
-	    return getProject("ngpm.stdlib");
+	    return getProject("de.hpi.sam.bp2009.solution.testutils");
 	}
 	
 	static IProject getProject(String projectName) {
@@ -57,26 +52,15 @@ public class Activator extends Plugin {
 	    return project;
 	}
 
-	static ResourceSet createConnection(final IProject project) {
-	    final ResourceSet[] conn = new ResourceSet[1];
-	    IRunnableWithProgress operation = new IRunnableWithProgress() {
-	        public void run(IProgressMonitor monitor) {
-	    	// non UI thread
-	    	conn[0] = ConnectionManager.getInstance()
-	    		.getOrCreateDefaultConnection(project);
-	        }
-	    };
-	    IProgressService ps = PlatformUI.getWorkbench().getProgressService();
-	    try {
-	        ps.busyCursorWhile(operation);
-	    } catch (Exception e) {
-	        throw new RuntimeException(e);
-	    }
-	    return conn[0];
+	static ResourceSet createResourceSet(final IProject project) {
+	    ResourceSet result = new ResourceSetImpl();
+//	    result.getResources().add(result.createResource(
+//	            URI.createURI("platform:/plugin/de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark/src/de/hpi/sam/bp2009/solution/impactAnalyzer/benchmark/preparation/notifications/fixtures/models/NgpmModel.xmi")));
+	    return result;
 	}
 	
 	static ResourceSet createConnection(String projectName) {
-	    return createConnection(getProject(projectName));
+	    return createResourceSet(getProject(projectName));
 	}
 
 	/**

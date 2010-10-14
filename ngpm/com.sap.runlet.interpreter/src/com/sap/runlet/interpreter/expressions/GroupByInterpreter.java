@@ -46,7 +46,7 @@ public class GroupByInterpreter implements Interpreter<GroupBy, SapClass, TypeDe
     
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(
-	    final RunletInterpreter interpreter) throws SecurityException, IllegalArgumentException, JmiException,
+	    final RunletInterpreter interpreter) throws SecurityException, IllegalArgumentException,
 	    NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
 	final boolean factsOrdered = groupBy.getObject().getType().isOrdered();
 	final boolean factsUnique = groupBy.getObject().getType().isUnique();
@@ -123,7 +123,7 @@ public class GroupByInterpreter implements Interpreter<GroupBy, SapClass, TypeDe
     private Map<Map<DimensionDefinition, LogicallyEqualsWrapper<AssociationEnd, TypeDefinition, ClassTypeDefinition>>,
                 Collection<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>> computeGroups(
 	    final RunletInterpreter interpreter, final boolean factsOrdered, final boolean factsUnique)
-	    throws JmiException, SecurityException, IllegalArgumentException,
+	    throws SecurityException, IllegalArgumentException,
 	    NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> facts = interpreter.evaluate(groupBy
 		.getObject());

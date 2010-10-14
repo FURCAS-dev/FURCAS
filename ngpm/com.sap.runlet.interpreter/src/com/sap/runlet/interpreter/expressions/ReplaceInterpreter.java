@@ -35,7 +35,7 @@ public class ReplaceInterpreter implements Interpreter<Replace, SapClass, TypeDe
 
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter) throws SecurityException,
-	    IllegalArgumentException, JmiException, NoSuchMethodException, InstantiationException,
+	    IllegalArgumentException, NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> ro = interpreter.evaluate(replace.getObject());
 	if (ro instanceof ValueObject) { // not a multi-object
@@ -57,7 +57,7 @@ public class ReplaceInterpreter implements Interpreter<Replace, SapClass, TypeDe
     }
 
     private ValueObject replace(RunletInterpreter interpreter, ValueObject vo, int step)
-	    throws SecurityException, IllegalArgumentException, JmiException,
+	    throws SecurityException, IllegalArgumentException,
 	    NoSuchMethodException, InstantiationException, IllegalAccessException,
 	    InvocationTargetException {
 	Collection<AssociationEnd> equalityRelevantEnds = vo.getType().getClazz()

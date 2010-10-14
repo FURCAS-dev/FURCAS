@@ -9,7 +9,6 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.omg.CORBA.NamedValue;
 
-import com.sap.furcas.metamodel.TCS.Block;
 import com.sap.runlet.abstractinterpreter.objects.ClassTypedObject;
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
 

@@ -1,62 +1,50 @@
 package com.sap.runlet.interpreter;
 
-import java.util.EventListener;
-import java.util.HashMap;
-import java.util.Map;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 
+import data.classes.ClassesPackage;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
+import de.hpi.sam.bp2009.solution.eventManager.filters.AndFilter;
+import de.hpi.sam.bp2009.solution.eventManager.filters.AssociationFilter;
+import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 
+public class MethodCallResolverCacheInvalidationListener extends AdapterImpl {
+    private final MethodCallResolver resolver;
 
-import org.osgi.framework.BundleContext;
-
-import behavioral.events.EventFilter;
-
-
-
-public class MethodCallResolverCacheInvalidationListener implements GlobalEventListener, UpdateListener {
-
-    @Override
-    public Map<EventFilter, Map<ListenerType, EventListener>> getFilters(ResourceSet connection, BundleContext context) {
-	HashMap<EventFilter, Map<ListenerType, EventListener>> result = new HashMap<EventFilter, Map<ListenerType, EventListener>>();
-	EventFilter ownedMethodSignaturesFilter = new AssociationFilter(connection.getAssociation(
-		OwnedSignatures.ASSOCIATION_DESCRIPTOR).refMetaObject());
-	EventFilter adaptedToFilter = new AssociationFilter(connection.getAssociation(
-		AdaptedTo.ASSOCIATION_DESCRIPTOR).refMetaObject());
-	EventFilter adaptersFilter = new AssociationFilter(connection.getAssociation(
-		AAdaptedAdapters.ASSOCIATION_DESCRIPTOR).refMetaObject());
-	EventFilter allFilter = new AndFilter(ownedMethodSignaturesFilter, adaptedToFilter, adaptersFilter);
-
-	Map<ListenerType, EventListener> listenerForType = new HashMap<ListenerType, EventListener>();
-	listenerForType.put(ListenerType.UPDATE, this);
-	result.put(allFilter, listenerForType);
-
-	return result;
+    public MethodCallResolverCacheInvalidationListener(MethodCallResolver resolver) {
+        this.resolver = resolver;
     }
-    
+
+    public EventFilter getFilter() {
+        EventManagerFactory emf = EventManagerFactory.eINSTANCE;
+        AssociationFilter ownedMethodSignaturesFilter = emf.createAssociationFilter(ClassesPackage.eINSTANCE.getSignatureOwner_OwnedSignatures());
+        AssociationFilter adaptedToFilter = emf.createAssociationFilter(ClassesPackage.eINSTANCE.getTypeAdapter_To());
+        AssociationFilter adaptersFilter = emf.createAssociationFilter(ClassesPackage.eINSTANCE.getTypeAdapter_Adapted());
+        // TODO what about watching delegation changes?
+        AndFilter allFilter = emf.createAndFilterFor(ownedMethodSignaturesFilter, adaptedToFilter, adaptersFilter);
+        return allFilter;
+    }
+
     @Override
-    public void notifyUpdate(EventChain events) {
-	for (ChangeEvent event : events.getEvents()) {
-	    if (event instanceof LinkAddEvent || event instanceof LinkRemoveEvent) {
-		Activator.getDefault().getMethodCallResolver().invalidateCache();
-		/* TODO do more fine-grained invalidation
-		LinkChangeEvent lce = (LinkChangeEvent) event;
-		ResourceSet conn = lce.getEventTriggerConnection();
-		Association a = (Association) lce.getAffectedMetaObject(conn);
-		if (a.equals(conn.getAssociation(OwnedSignatures.ASSOCIATION_DESCRIPTOR).refMetaObject())) {
-		    SignatureOwner owner = (SignatureOwner) conn.getElement(lce.getFirstLinkEndMri().getLri());
-		    MethodSignature sig = (MethodSignature) conn.getElement(lce.getSecondLinkEndMri().getLri());
-		    // TODO invalidate cache for owner; if owner is adapter, invalidate all adapted transitively
-		} else if (a.equals(conn.getAssociation(AdaptedTo.ASSOCIATION_DESCRIPTOR).refMetaObject())) {
-		    SapClass c = (SapClass) conn.getElement(lce.getFirstLinkEndMri().getLri());
-		    TypeAdapter adapter = (TypeAdapter) conn.getElement(lce.getSecondLinkEndMri().getLri());
-		    // TODO invalidate cache for owner; if owner is adapter, invalidate all adapted transitively
-		} else if (a.equals(conn.getAssociation(AdaptedTo.ASSOCIATION_DESCRIPTOR).refMetaObject())) {
-		    SapClass c = (SapClass) conn.getElement(lce.getFirstLinkEndMri().getLri());
-		    TypeAdapter adapter = (TypeAdapter) conn.getElement(lce.getSecondLinkEndMri().getLri());
-		    // TODO invalidate cache for owner; if owner is adapter, invalidate all adapted transitively
-		}
-		*/
-	    }
-	}
+    public void notifyChanged(Notification event) {
+        resolver.invalidateCache();
+        /*
+         * TODO do more fine-grained invalidation LinkChangeEvent lce = (LinkChangeEvent) event; ResourceSet conn =
+         * lce.getEventTriggerResourceSet(); Association a = (Association) lce.getAffectedMetaObject(conn); if
+         * (a.equals(conn.getAssociation(OwnedSignatures.ASSOCIATION_DESCRIPTOR).refMetaObject())) { SignatureOwner owner =
+         * (SignatureOwner) conn.getElement(lce.getFirstLinkEndMri().getLri()); MethodSignature sig = (MethodSignature)
+         * conn.getElement(lce.getSecondLinkEndMri().getLri()); // TODO invalidate cache for owner; if owner is adapter,
+         * invalidate all adapted transitively } else if
+         * (a.equals(conn.getAssociation(AdaptedTo.ASSOCIATION_DESCRIPTOR).refMetaObject())) { SapClass c = (SapClass)
+         * conn.getElement(lce.getFirstLinkEndMri().getLri()); TypeAdapter adapter = (TypeAdapter)
+         * conn.getElement(lce.getSecondLinkEndMri().getLri()); // TODO invalidate cache for owner; if owner is adapter,
+         * invalidate all adapted transitively } else if
+         * (a.equals(conn.getAssociation(AdaptedTo.ASSOCIATION_DESCRIPTOR).refMetaObject())) { SapClass c = (SapClass)
+         * conn.getElement(lce.getFirstLinkEndMri().getLri()); TypeAdapter adapter = (TypeAdapter)
+         * conn.getElement(lce.getSecondLinkEndMri().getLri()); // TODO invalidate cache for owner; if owner is adapter,
+         * invalidate all adapted transitively }
+         */
     }
 
 }

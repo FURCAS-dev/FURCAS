@@ -9,24 +9,13 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import persistence.actions.Delete;
-import persistence.actions.Rollback;
-import persistence.actions.Store;
-import persistence.expressions.All;
-import persistence.expressions.Commit;
-import ui.templates.StringTemplate;
-import behavioral.actions.AddLink;
-import behavioral.actions.Assignment;
-import behavioral.actions.Block;
-import behavioral.actions.ExpressionStatement;
-import behavioral.actions.Foreach;
-import behavioral.actions.IfElse;
-import behavioral.actions.NamedValueDeclaration;
-import behavioral.actions.RemoveLink;
-import behavioral.actions.Return;
-import behavioral.actions.Statement;
-import behavioral.actions.WhileLoop;
+import ui.templates.TemplatesPackage;
 
+import behavioral.actions.ActionsPackage;
+import behavioral.actions.Statement;
+
+import com.sap.ap.metamodel.utils.MetamodelUtils;
+import com.sap.ap.metamodel.utils.StringFormatter;
 import com.sap.runlet.abstractinterpreter.AbstractRunletInterpreter;
 import com.sap.runlet.abstractinterpreter.DebugSession;
 import com.sap.runlet.abstractinterpreter.objects.AbstractValueObject;
@@ -99,49 +88,25 @@ import com.sap.runlet.interpreter.statements.RollbackInterpreter;
 import com.sap.runlet.interpreter.statements.StoreInterpreter;
 import com.sap.runlet.interpreter.statements.WhileInterpreter;
 
-
 import data.classes.ActualObjectParameter;
 import data.classes.Association;
 import data.classes.AssociationEnd;
 import data.classes.ClassTypeDefinition;
+import data.classes.ClassesPackage;
 import data.classes.ConverterBetweenParametrizations;
-import data.classes.LinkAddition;
-import data.classes.LinkRemoval;
-import data.classes.LinkSetting;
-import data.classes.LinkTraversal;
 import data.classes.MethodSignature;
 import data.classes.NativeImpl;
 import data.classes.Parameter;
 import data.classes.SapClass;
 import data.classes.SignatureImplementation;
 import data.classes.TypeDefinition;
-import dataaccess.analytics.CellSet;
-import dataaccess.analytics.DimensionExpression;
-import dataaccess.analytics.GroupBy;
-import dataaccess.expressions.AssociationEndNavigationExpression;
-import dataaccess.expressions.ContentEquals;
-import dataaccess.expressions.Equals;
+import dataaccess.analytics.AnalyticsPackage;
 import dataaccess.expressions.Expression;
-import dataaccess.expressions.FunctionCallExpression;
-import dataaccess.expressions.MethodCallExpression;
-import dataaccess.expressions.ObjectCount;
-import dataaccess.expressions.ObjectCreationExpression;
-import dataaccess.expressions.Replace;
-import dataaccess.expressions.This;
-import dataaccess.expressions.VariableExpression;
-import dataaccess.expressions.collectionexpressions.Excluding;
-import dataaccess.expressions.collectionexpressions.ExcludingAt;
-import dataaccess.expressions.collectionexpressions.Including;
-import dataaccess.expressions.collectionexpressions.IncludingAt;
-import dataaccess.expressions.collectionexpressions.Iterate;
-import dataaccess.expressions.fp.AnonymousFunctionExpr;
-import dataaccess.expressions.fp.FunctionFromMethodExpr;
-import dataaccess.expressions.literals.BinaryLiteral;
-import dataaccess.expressions.literals.BooleanLiteral;
-import dataaccess.expressions.literals.NumberLiteral;
-import dataaccess.expressions.literals.ObjectLiteral;
-import dataaccess.expressions.literals.StringLiteral;
-import dataaccess.expressions.literals.TimePointLiteral;
+import dataaccess.expressions.ExpressionsPackage;
+import dataaccess.expressions.collectionexpressions.CollectionexpressionsPackage;
+import dataaccess.expressions.fp.FpPackage;
+import dataaccess.expressions.literals.LiteralsPackage;
+import dataaccess.query.QueryPackage;
 
 /**
  * An interpreter for River models. The entry point is an {@link Expression}
@@ -191,30 +156,30 @@ public class RunletInterpreter extends
      * @param repository
      *            used to load/store objects durably / persistently
      */
-    public RunletInterpreter(ResourceSet conn,
+    public RunletInterpreter(ResourceSet resourceSet,
 	    Repository<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> repository) {
-	super(conn, repository, Activator.getDefault().getModelAdapter(),
+	super(resourceSet, repository, Activator.getDefault().getModelAdapter(),
 		new NativeInterpreterFactory(),
 		new RunletLinkContainer(repository,
 			Activator.getDefault().getModelAdapter()));
-	methodCallResolver = Activator.getDefault().getMethodCallResolver();
+	methodCallResolver = new MethodCallResolver(resourceSet);
     }
 
     /**
      * Like {@link RunletInterpreter#RiverInterpreter(ResourceSet, Repository)},
      * only that also a {@link #debugSession debug session} can be set.
      */
-    public RunletInterpreter(ResourceSet conn,
+    public RunletInterpreter(ResourceSet resourceSet,
 	    Repository<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> repository,
 	    DebugSession debugSession) {
-	this(conn, repository);
+	this(resourceSet, repository);
 	setDebugSession(debugSession);
     }
 
     /**
      * Spawns a new interpreter for parallel execution. This interpreter re-uses
      * the registries for subinterpreters for expressions, statements etc., the
-     * MOIN {@link #connection}, the {@link #debugSession} as well as the shared
+     * MOIN {@link #ResourceSet}, the {@link #debugSession} as well as the shared
      * state consisting of the {@link #linkContainer}. The spawned interpreter
      * has a new {@link #callstack call stack} that is initialized with the
      * <tt>parent</tt> interpreter's top stack frame.
@@ -236,132 +201,132 @@ public class RunletInterpreter extends
     }
 
     @Override
-    protected void initExpressionInterpreterFactory(ResourceSet conn) {
+    protected void initExpressionInterpreterFactory(ResourceSet resourceSet) {
 	// expressions
 	getExpressionInterpreterFactory().registerInterpreter(StringLiteralInterpreter.class,
-		conn.getClass(StringLiteral.CLASS_DESCRIPTOR).refMetaObject());
+		LiteralsPackage.eINSTANCE.getStringLiteral());
 	getExpressionInterpreterFactory().registerInterpreter(NumberLiteralInterpreter.class,
-		conn.getClass(NumberLiteral.CLASS_DESCRIPTOR).refMetaObject());
+		LiteralsPackage.eINSTANCE.getNumberLiteral());
 	getExpressionInterpreterFactory().registerInterpreter(TimePointLiteralInterpreter.class,
-		conn.getClass(TimePointLiteral.CLASS_DESCRIPTOR).refMetaObject());
+		LiteralsPackage.eINSTANCE.getTimePointLiteral());
 	getExpressionInterpreterFactory().registerInterpreter(BooleanLiteralInterpreter.class,
-		conn.getClass(BooleanLiteral.CLASS_DESCRIPTOR).refMetaObject());
+		LiteralsPackage.eINSTANCE.getBooleanLiteral());
 	getExpressionInterpreterFactory().registerInterpreter(BinaryLiteralInterpreter.class,
-		conn.getClass(BinaryLiteral.CLASS_DESCRIPTOR).refMetaObject());
+		LiteralsPackage.eINSTANCE.getBinaryLiteral());
 	getExpressionInterpreterFactory().registerInterpreter(ObjectLiteralInterpreter.class,
-		conn.getClass(ObjectLiteral.CLASS_DESCRIPTOR).refMetaObject());
+		LiteralsPackage.eINSTANCE.getObjectLiteral());
 	getExpressionInterpreterFactory().registerInterpreter(MethodCallInterpreter.class,
-		conn.getClass(MethodCallExpression.CLASS_DESCRIPTOR).refMetaObject());
+		ExpressionsPackage.eINSTANCE.getMethodCallExpression());
 	getExpressionInterpreterFactory().registerInterpreter(SignatureCallInterpreter.class,
-		conn.getClass(FunctionCallExpression.CLASS_DESCRIPTOR).refMetaObject());
+	        ExpressionsPackage.eINSTANCE.getFunctionCallExpression());
 	getExpressionInterpreterFactory().registerInterpreter(VariableExpressionInterpreter.class,
-		conn.getClass(VariableExpression.CLASS_DESCRIPTOR).refMetaObject());
+	        ExpressionsPackage.eINSTANCE.getVariableExpression());
 	getExpressionInterpreterFactory().registerInterpreter(ThisInterpreter.class,
-		conn.getClass(This.CLASS_DESCRIPTOR).refMetaObject());
+	        ExpressionsPackage.eINSTANCE.getThis());
 	getExpressionInterpreterFactory().registerInterpreter(EqualsInterpreter.class,
-		conn.getClass(Equals.CLASS_DESCRIPTOR).refMetaObject());
+	        ExpressionsPackage.eINSTANCE.getEquals());
 	getExpressionInterpreterFactory().registerInterpreter(ContentEqualsInterpreter.class,
-		conn.getClass(ContentEquals.CLASS_DESCRIPTOR).refMetaObject());
+	        ExpressionsPackage.eINSTANCE.getContentEquals());
 	getExpressionInterpreterFactory().registerInterpreter(ObjectCreationInterpreter.class,
-		conn.getClass(ObjectCreationExpression.CLASS_DESCRIPTOR).refMetaObject());
+	        ExpressionsPackage.eINSTANCE.getObjectCreationExpression());
 	getExpressionInterpreterFactory().registerInterpreter(FunctionFromMethodExpressionInterpreter.class,
-		conn.getClass(FunctionFromMethodExpr.CLASS_DESCRIPTOR).refMetaObject());
+		FpPackage.eINSTANCE.getFunctionFromMethodExpr());
 	getExpressionInterpreterFactory().registerInterpreter(AnonymousFunctionExpressionInterpreter.class,
-		conn.getClass(AnonymousFunctionExpr.CLASS_DESCRIPTOR).refMetaObject());
+		FpPackage.eINSTANCE.getAnonymousFunctionExpr());
 	getExpressionInterpreterFactory().registerInterpreter(AssociationEndNavigationInterpreter.class,
-		conn.getClass(AssociationEndNavigationExpression.CLASS_DESCRIPTOR).refMetaObject());
+	        ExpressionsPackage.eINSTANCE.getAssociationEndNavigationExpression());
 	getExpressionInterpreterFactory().registerInterpreter(IterateInterpreter.class,
-		conn.getClass(Iterate.CLASS_DESCRIPTOR).refMetaObject());
+	        CollectionexpressionsPackage.eINSTANCE.getIterate());
 	getExpressionInterpreterFactory().registerInterpreter(DimensionExpressionInterpreter.class,
-		conn.getClass(DimensionExpression.CLASS_DESCRIPTOR).refMetaObject());
+		AnalyticsPackage.eINSTANCE.getDimensionExpression());
 	getExpressionInterpreterFactory().registerInterpreter(IncludingInterpreter.class,
-		conn.getClass(Including.CLASS_DESCRIPTOR).refMetaObject());
+	        CollectionexpressionsPackage.eINSTANCE.getIncluding());
 	getExpressionInterpreterFactory().registerInterpreter(ExcludingInterpreter.class,
-		conn.getClass(Excluding.CLASS_DESCRIPTOR).refMetaObject());
+	        CollectionexpressionsPackage.eINSTANCE.getExcluding());
 	getExpressionInterpreterFactory().registerInterpreter(IncludingAtInterpreter.class,
-		conn.getClass(IncludingAt.CLASS_DESCRIPTOR).refMetaObject());
+	        CollectionexpressionsPackage.eINSTANCE.getIncludingAt());
 	getExpressionInterpreterFactory().registerInterpreter(ExcludingAtInterpreter.class,
-		conn.getClass(ExcludingAt.CLASS_DESCRIPTOR).refMetaObject());
+	        CollectionexpressionsPackage.eINSTANCE.getExcludingAt());
 	getExpressionInterpreterFactory().registerInterpreter(ObjectCountInterpreter.class,
-		conn.getClass(ObjectCount.CLASS_DESCRIPTOR).refMetaObject());
+	        ExpressionsPackage.eINSTANCE.getObjectCount());
 	getExpressionInterpreterFactory().registerInterpreter(AllInterpreter.class,
-		conn.getClass(All.CLASS_DESCRIPTOR).refMetaObject());
+		persistence.expressions.ExpressionsPackage.eINSTANCE.getAll());
 	getExpressionInterpreterFactory().registerInterpreter(CommitInterpreter.class,
-		conn.getClass(Commit.CLASS_DESCRIPTOR).refMetaObject());
+	        persistence.expressions.ExpressionsPackage.eINSTANCE.getCommit());
 	getExpressionInterpreterFactory().registerInterpreter(ReplaceInterpreter.class,
-		conn.getClass(Replace.CLASS_DESCRIPTOR).refMetaObject());
+	        ExpressionsPackage.eINSTANCE.getReplace());
 	getExpressionInterpreterFactory().registerInterpreter(SnapshotInterpreter.class,
-		conn.getClass(persistence.expressions.Snapshot.CLASS_DESCRIPTOR).refMetaObject());
+	        persistence.expressions.ExpressionsPackage.eINSTANCE.getSnapshot());
 	getExpressionInterpreterFactory().registerInterpreter(AsListInterpreter.class,
-		conn.getClass(dataaccess.expressions.AsList.CLASS_DESCRIPTOR).refMetaObject());
+	        ExpressionsPackage.eINSTANCE.getAsList());
 	getExpressionInterpreterFactory().registerInterpreter(HeadInterpreter.class,
-		conn.getClass(dataaccess.expressions.Head.CLASS_DESCRIPTOR).refMetaObject());
+	        ExpressionsPackage.eINSTANCE.getHead());
 	getExpressionInterpreterFactory().registerInterpreter(TailInterpreter.class,
-		conn.getClass(dataaccess.expressions.Tail.CLASS_DESCRIPTOR).refMetaObject());
+	        ExpressionsPackage.eINSTANCE.getTail());
 	getExpressionInterpreterFactory().registerInterpreter(TernaryInterpreter.class,
-		conn.getClass(dataaccess.expressions.Ternary.CLASS_DESCRIPTOR).refMetaObject());
+	        ExpressionsPackage.eINSTANCE.getTernary());
 	getExpressionInterpreterFactory().registerInterpreter(SelectionInterpreter.class,
-		conn.getClass(dataaccess.query.Selection.CLASS_DESCRIPTOR).refMetaObject());
+	        QueryPackage.eINSTANCE.getSelection());
 	getExpressionInterpreterFactory().registerInterpreter(OqlQueryInterpreter.class,
-		conn.getClass(dataaccess.query.OqlQuery.CLASS_DESCRIPTOR).refMetaObject());
+	        QueryPackage.eINSTANCE.getOqlQuery());
 	getExpressionInterpreterFactory().registerInterpreter(MapInterpreter.class,
-		conn.getClass(dataaccess.expressions.Map.CLASS_DESCRIPTOR).refMetaObject());
+	        ExpressionsPackage.eINSTANCE.getMap());
 	getExpressionInterpreterFactory().registerInterpreter(GroupByInterpreter.class,
-		conn.getClass(GroupBy.CLASS_DESCRIPTOR).refMetaObject());
+	        AnalyticsPackage.eINSTANCE.getGroupBy());
     }
 
     @Override
-    protected void initStatementInterpreterFactory(ResourceSet conn) {
+    protected void initStatementInterpreterFactory(ResourceSet resourceSet) {
 	// statements
 	getStatementInterpreterFactory().registerInterpreter(ReturnInterpreter.class,
-		conn.getClass(Return.CLASS_DESCRIPTOR).refMetaObject());
+		ActionsPackage.eINSTANCE.getReturn());
 	getStatementInterpreterFactory().registerInterpreter(NamedValueDeclarationInterpreter.class,
-		conn.getClass(NamedValueDeclaration.CLASS_DESCRIPTOR).refMetaObject());
+	        ActionsPackage.eINSTANCE.getNamedValueDeclaration());
 	getStatementInterpreterFactory().registerInterpreter(IfInterpreter.class,
-		conn.getClass(IfElse.CLASS_DESCRIPTOR).refMetaObject());
+	        ActionsPackage.eINSTANCE.getIfElse());
 	getStatementInterpreterFactory().registerInterpreter(WhileInterpreter.class,
-		conn.getClass(WhileLoop.CLASS_DESCRIPTOR).refMetaObject());
+	        ActionsPackage.eINSTANCE.getWhileLoop());
 	getStatementInterpreterFactory().registerInterpreter(ForeachInterpreter.class,
-		conn.getClass(Foreach.CLASS_DESCRIPTOR).refMetaObject());
+	        ActionsPackage.eINSTANCE.getForeach());
 	getStatementInterpreterFactory().registerInterpreter(AssignmentInterpreter.class,
-		conn.getClass(Assignment.CLASS_DESCRIPTOR).refMetaObject());
+	        ActionsPackage.eINSTANCE.getAssignment());
 	getStatementInterpreterFactory().registerInterpreter(ExpressionStatementInterpreter.class,
-		conn.getClass(ExpressionStatement.CLASS_DESCRIPTOR).refMetaObject());
+	        ActionsPackage.eINSTANCE.getExpressionStatement());
 	getStatementInterpreterFactory().registerInterpreter(AddLinkInterpreter.class,
-		conn.getClass(AddLink.CLASS_DESCRIPTOR).refMetaObject());
+	        ActionsPackage.eINSTANCE.getAddLink());
 	getStatementInterpreterFactory().registerInterpreter(RemoveLinkInterpreter.class,
-		conn.getClass(RemoveLink.CLASS_DESCRIPTOR).refMetaObject());
+	        ActionsPackage.eINSTANCE.getRemoveLink());
 	getStatementInterpreterFactory().registerInterpreter(StoreInterpreter.class,
-		conn.getClass(Store.CLASS_DESCRIPTOR).refMetaObject());
+	        persistence.actions.ActionsPackage.eINSTANCE.getStore());
 	getStatementInterpreterFactory().registerInterpreter(DeleteInterpreter.class,
-		conn.getClass(Delete.CLASS_DESCRIPTOR).refMetaObject());
+	        persistence.actions.ActionsPackage.eINSTANCE.getDelete());
 	getStatementInterpreterFactory().registerInterpreter(RollbackInterpreter.class,
-		conn.getClass(Rollback.CLASS_DESCRIPTOR).refMetaObject());
+	        persistence.actions.ActionsPackage.eINSTANCE.getRollback());
     }
 
     @Override
-    protected void initSignatureImplementationInterpreterFactory(ResourceSet conn) {
+    protected void initSignatureImplementationInterpreterFactory(ResourceSet resourceSet) {
 	// signature implementations
 	getSignatureImplementationInterpreterFactory().registerInterpreter(RunletNativeInterpreter.class,
-		conn.getClass(NativeImpl.CLASS_DESCRIPTOR).refMetaObject());
+		ClassesPackage.eINSTANCE.getNativeImpl());
 	getSignatureImplementationInterpreterFactory().registerInterpreter(BlockInterpreter.class,
-		conn.getClass(Block.CLASS_DESCRIPTOR).refMetaObject());
+	        ActionsPackage.eINSTANCE.getBlock());
 	getSignatureImplementationInterpreterFactory().registerInterpreter(LinkTraversalInterpreter.class,
-		conn.getClass(LinkTraversal.CLASS_DESCRIPTOR).refMetaObject());
+	        ClassesPackage.eINSTANCE.getLinkTraversal());
 	getSignatureImplementationInterpreterFactory().registerInterpreter(LinkAdditionInterpreter.class,
-		conn.getClass(LinkAddition.CLASS_DESCRIPTOR).refMetaObject());
+	        ClassesPackage.eINSTANCE.getLinkAddition());
 	getSignatureImplementationInterpreterFactory().registerInterpreter(LinkRemovalInterpreter.class,
-		conn.getClass(LinkRemoval.CLASS_DESCRIPTOR).refMetaObject());
+	        ClassesPackage.eINSTANCE.getLinkRemoval());
 	getSignatureImplementationInterpreterFactory().registerInterpreter(LinkSettingInterpreter.class,
-		conn.getClass(LinkSetting.CLASS_DESCRIPTOR).refMetaObject());
+	        ClassesPackage.eINSTANCE.getLinkSetting());
 	getSignatureImplementationInterpreterFactory().registerInterpreter(StringTemplateInterpreter.class,
-		conn.getClass(StringTemplate.CLASS_DESCRIPTOR).refMetaObject());
+		TemplatesPackage.eINSTANCE.getStringTemplate());
 	getSignatureImplementationInterpreterFactory().registerInterpreter(CellSetInterpreter.class,
-		conn.getClass(CellSet.CLASS_DESCRIPTOR).refMetaObject());
+		AnalyticsPackage.eINSTANCE.getCellSet());
     }
 
     @Override
-    protected void initNativeInterpreterFactory(ResourceSet conn) {
+    protected void initNativeInterpreterFactory(ResourceSet resourceSet) {
 	final String NUMBER_CLASS_NAME = "Number";
 	final String STRING_CLASS_NAME = "String";
 	final String BOOLEAN_CLASS_NAME = "Boolean";
@@ -369,13 +334,13 @@ public class RunletInterpreter extends
 	final String TIMEPOINT_CLASS_NAME = "TimePoint";
 	final String SNAPSHOT_CLASS_NAME = "Snapshot";
 	final String CALENDAR_CLASS_NAME = "Calendar";
-	registerNativeImplementationInterpreter(NumberInterpreter.class, MetamodelUtils.findClass(conn, NUMBER_CLASS_NAME));
-	registerNativeImplementationInterpreter(StringInterpreter.class, MetamodelUtils.findClass(conn, STRING_CLASS_NAME));
-	registerNativeImplementationInterpreter(BooleanInterpreter.class, MetamodelUtils.findClass(conn, BOOLEAN_CLASS_NAME));
-	registerNativeImplementationInterpreter(BinaryInterpreter.class, MetamodelUtils.findClass(conn, BINARY_CLASS_NAME));
-	registerNativeImplementationInterpreter(TimepointInterpreter.class, MetamodelUtils.findClass(conn, TIMEPOINT_CLASS_NAME));
-	registerNativeImplementationInterpreter(com.sap.runlet.interpreter.nativestdlib.SnapshotInterpreter.class, MetamodelUtils.findClass(conn, SNAPSHOT_CLASS_NAME));
-	registerNativeImplementationInterpreter(CalendarInterpreter.class, MetamodelUtils.findClass(conn, CALENDAR_CLASS_NAME));
+	registerNativeImplementationInterpreter(NumberInterpreter.class, MetamodelUtils.findClass(resourceSet, NUMBER_CLASS_NAME));
+	registerNativeImplementationInterpreter(StringInterpreter.class, MetamodelUtils.findClass(resourceSet, STRING_CLASS_NAME));
+	registerNativeImplementationInterpreter(BooleanInterpreter.class, MetamodelUtils.findClass(resourceSet, BOOLEAN_CLASS_NAME));
+	registerNativeImplementationInterpreter(BinaryInterpreter.class, MetamodelUtils.findClass(resourceSet, BINARY_CLASS_NAME));
+	registerNativeImplementationInterpreter(TimepointInterpreter.class, MetamodelUtils.findClass(resourceSet, TIMEPOINT_CLASS_NAME));
+	registerNativeImplementationInterpreter(com.sap.runlet.interpreter.nativestdlib.SnapshotInterpreter.class, MetamodelUtils.findClass(resourceSet, SNAPSHOT_CLASS_NAME));
+	registerNativeImplementationInterpreter(CalendarInterpreter.class, MetamodelUtils.findClass(resourceSet, CALENDAR_CLASS_NAME));
     }
 
     /**
@@ -443,7 +408,7 @@ public class RunletInterpreter extends
      * @see {@link SapClass#getConverterBetweenParametrizations()}
      */
     public ValueObject convert(ValueObject vo, ClassTypeDefinition targetType) throws SecurityException, IllegalArgumentException,
-	    JmiException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+	    NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
 	List<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> voParameterValues = vo.getActualObjectParameters();
 	List<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> targetParameterValues =
 	    new LinkedList<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>();
@@ -536,7 +501,7 @@ public class RunletInterpreter extends
      */
     public SignatureImplementation resolveMethodCallToImplementation(MethodSignature calledSignature,
 	    ClassTypedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> thiz) {
-	return getMethodCallResolver().getImplementation(calledSignature, thiz.getType().getClazz(), getConnection());
+	return getMethodCallResolver().getImplementation(calledSignature, thiz.getType().getClazz(), getResourceSet());
     }
     
     private MethodCallResolver getMethodCallResolver() {
@@ -546,7 +511,7 @@ public class RunletInterpreter extends
     /**
      * Spawns a new interpreter for parallel execution. This interpreter re-uses
      * the registries for subinterpreters for expressions, statements etc., the
-     * MOIN {@link #connection} as well as the shared state consisting of the
+     * {@link #resourceSet} as well as the shared state consisting of the
      * {@link #linkContainer}. The spawned interpreter has a new
      * {@link #callstack call stack} that is initialized with this interpreter's
      * top stack frame.

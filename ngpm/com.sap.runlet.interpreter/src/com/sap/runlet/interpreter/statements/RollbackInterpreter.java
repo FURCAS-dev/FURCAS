@@ -23,7 +23,7 @@ public class RollbackInterpreter implements Interpreter<Rollback, SapClass, Type
 
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter) throws SecurityException,
-	    IllegalArgumentException, JmiException {
+	    IllegalArgumentException {
 	interpreter.rollback();
 	return null;
     }

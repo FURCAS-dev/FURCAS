@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="compositionStructureDiagram"
+    nsURI="http://compositionStructureDiagram/1.0" nsPrefix="compositionStructureDiagram">
+  <eClassifiers xsi:type="ecore:EClass" name="CompositionStructureDiagram">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="ecore:EClass umlClassDiagram.ecore#//Element" containment="true" eOpposite="umlClassDiagram.ecore#//Element/compositeStructure"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Part" eSuperTypes="umlClassDiagram.ecore#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containingClass" eType="ecore:EClass umlClassDiagram.ecore#//Class"
+        eOpposite="umlClassDiagram.ecore#//Class/containedParts"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containedPort" upperBound="-1"
+        eType="#//Port" containment="true" eOpposite="#//Port/containingPart"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Port" eSuperTypes="umlClassDiagram.ecore#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containingPart" eType="#//Part"
+        eOpposite="#//Part/containedPort"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connectedBy" eType="#//Connector"
+        eOpposite="#//Connector/connectedPorts"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Connector" eSuperTypes="umlClassDiagram.ecore#//Connection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connectedPorts" lowerBound="2"
+        upperBound="2" eType="#//Port" eOpposite="#//Port/connectedBy"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RoleBinding" eSuperTypes="umlClassDiagram.ecore#//Connection #//Role">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boundRole" eType="#//Role"
+        eOpposite="#//Role/boundBy"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boundCollaborationUsage"
+        eType="#//CollaborationUsage" eOpposite="#//CollaborationUsage/boundBy"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Collaboration" eSuperTypes="umlClassDiagram.ecore#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="collaborationUsage" eType="#//CollaborationUsage"
+        containment="true" eOpposite="#//CollaborationUsage/usedCollaboration"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CollaborationUsage" eSuperTypes="umlClassDiagram.ecore#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usedCollaboration" eType="#//Collaboration"
+        eOpposite="#//Collaboration/collaborationUsage"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boundBy" eType="#//RoleBinding"
+        eOpposite="#//RoleBinding/boundCollaborationUsage"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Role" eSuperTypes="umlClassDiagram.ecore#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boundBy" upperBound="-1"
+        eType="#//RoleBinding" eOpposite="#//RoleBinding/boundRole"/>
+  </eClassifiers>
+</ecore:EPackage>

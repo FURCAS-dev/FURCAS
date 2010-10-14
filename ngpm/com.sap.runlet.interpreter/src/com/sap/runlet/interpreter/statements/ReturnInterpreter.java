@@ -58,7 +58,7 @@ public class ReturnInterpreter implements Interpreter<Statement, SapClass, TypeD
 
     @Override
     public ReturnResult evaluate(RunletInterpreter interpreter)
-	    throws SecurityException, IllegalArgumentException, JmiException,
+	    throws SecurityException, IllegalArgumentException,
 	    NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> result = interpreter.evaluate(ret.getArgument());

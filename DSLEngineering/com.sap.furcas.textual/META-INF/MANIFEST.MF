@@ -8,7 +8,9 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.emf.query2;visibility:=reexport,
  org.eclipse.emf.query.index;visibility:=reexport,
  org.eclipse.emf.query.index.ui;visibility:=reexport,
- com.sap.furcas.metamodel;visibility:=reexport
+ com.sap.furcas.metamodel;visibility:=reexport,
+ com.sap.emf.ocl.prepared,
+ com.sap.emf.ocl.hiddenopposites
 Export-Package: com.sap.furcas.runtime.common.exceptions,
  com.sap.furcas.runtime.common.implementation;uses:="com.sap.furcas.textual.common.interfaces",
  com.sap.furcas.runtime.common.interfaces;uses:="com.sap.furcas.metamodel.TCS",
