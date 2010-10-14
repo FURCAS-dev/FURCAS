@@ -18,6 +18,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
 public class DefaultTestClientImpl implements TestClient {
 
@@ -25,6 +27,10 @@ public class DefaultTestClientImpl implements TestClient {
 
 	private String parentDirectory = "c:/tmp/emftest";
 
+	public DefaultTestClientImpl() {
+		this.getResourceSet().getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
+	}
+	
 	@Override
 	public Resource getOrCreateResourceStable(String name) {
 
