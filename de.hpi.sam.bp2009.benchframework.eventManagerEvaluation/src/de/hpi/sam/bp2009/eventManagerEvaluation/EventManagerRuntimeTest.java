@@ -145,7 +145,8 @@ public class EventManagerRuntimeTest {
 
         ArrayList<OclExpressionWithPackage> adds = de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLTestExpressionContainer.getExpressionList();
         for(OclExpressionWithPackage entry : adds){
-            list.add(ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(parse(entry.getOcl(), entry.getPackage())).createFilterForExpression(true));
+            list.add(ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(parse(entry.getOcl(), entry.getPackage()),
+                    /* notifyOnNewContextElements */ true).createFilterForExpression());
 
         }
 //        ArrayList<EventFilter> list2 = new ArrayList<EventFilter>(filters.values());
@@ -341,7 +342,8 @@ public class EventManagerRuntimeTest {
         System.out.println("Number of constraints: " +allConstraints.size());
         Map<String, EventFilter> filters = new HashMap<String, EventFilter>();
         for (Entry<String, ExpressionWithContext> entry : allConstraints.entrySet()) {
-            filters.put(entry.getKey(), ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(entry.getValue().expr, entry.getValue().classifier).createFilterForExpression(true));
+            filters.put(entry.getKey(), ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(entry.getValue().expr, entry.getValue().classifier,
+                    /* notifyOnNewContextElements */ true).createFilterForExpression());
         }
         return filters;
     }

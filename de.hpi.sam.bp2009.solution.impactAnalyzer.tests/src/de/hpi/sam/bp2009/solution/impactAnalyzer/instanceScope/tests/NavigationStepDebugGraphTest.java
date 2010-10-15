@@ -64,7 +64,7 @@ public class NavigationStepDebugGraphTest extends BaseDepartmentTest  {
 	stmts.add(this.recursiveBudgetCalculationAST);
 	
 	Notification noti = NotificationHelper.createAttributeChangeNotification(this.dep3, this.departmentBudget, this.dep3.getBudget(), this.dep3.getBudget() + 20);
-	Collection<EObject> instances = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(this.recursiveBudgetCalculationAST, this.dep1.eClass()).getContextObjects(noti);
+	Collection<EObject> instances = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(this.recursiveBudgetCalculationAST, this.dep1.eClass(), /* notifyOnNewContextElements */ false).getContextObjects(noti);
 	
 	compareInstances(instances, new EObject[] { this.dep1, this.dep2, this.dep3 });
     }

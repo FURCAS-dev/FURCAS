@@ -409,7 +409,7 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
     @Test
     public void testFilterConsistencyClassBased() {
         for(ExpressionInOCL exp : this.stmts){
-            EventFilter f = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer((OCLExpression) exp.getBodyExpression(), (EClass) exp.getContextVariable().getType()).createFilterForExpression(true);
+            EventFilter f = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer((OCLExpression) exp.getBodyExpression(), (EClass) exp.getContextVariable().getType(), /* notifyOnNewContextElements */ true).createFilterForExpression();
             assertAllReferencesInPackage(f, this.comp);
             assertAllClassesOfClassFiltersInPackage(f, this.comp);
         }
@@ -427,8 +427,8 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         };
         EventManager eventManager = EventManagerFactory.eINSTANCE.getEventManagerFor(rs);
         EventFilter filter = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer((OCLExpression) getSimpleAllInstancesAST().getBodyExpression(),
-                CompanyPackage.eINSTANCE.getEmployee())
-                .createFilterForExpression(/* notifyNewContextElements */ false);
+                CompanyPackage.eINSTANCE.getEmployee(), /* notifyOnNewContextElements */ false)
+                .createFilterForExpression();
         eventManager.subscribe(filter, listener);
         
         // now construct subtree that contains an Employee subclass's instance:
@@ -493,7 +493,7 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         HashSet<ExpressionInOCL> affectedStmts = new HashSet<ExpressionInOCL>();
         for (Iterator<ExpressionInOCL> i = statements.iterator(); i.hasNext();) {
             ExpressionInOCL exp = i.next();
-            EventFilter filter = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer((OCLExpression) exp.getBodyExpression(), (EClass) exp.getContextVariable().getType()).createFilterForExpression(true);
+            EventFilter filter = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer((OCLExpression) exp.getBodyExpression(), (EClass) exp.getContextVariable().getType(), /* notifyOnNewContextElements */ true).createFilterForExpression();
             if (filter.matchesFor(noti)) {
                 affectedStmts.add(exp);
             }

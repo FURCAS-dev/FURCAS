@@ -641,10 +641,10 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
             for (final Entry<String, ExpressionWithContext> entry: allConstraints.entrySet()){
                 final OCLExpression exp = entry.getValue().expr;   
                 final EClass context = entry.getValue().classifier;
-                final ModifiedImpactAnalyzerImpl ia = new ModifiedImpactAnalyzerImpl(exp, context);
+                final ModifiedImpactAnalyzerImpl ia = new ModifiedImpactAnalyzerImpl(exp, context, /* notifyOnNewContextElements */ true);
                 ((OclResultImpl)getResult()).setExpToFilterTime(new HashMap<String, Long>());
                 ((OclResultImpl)getResult()).addQuery(entry.getValue().toString());
-                EventFilter filter = ia.createFilterForExpression(true);
+                EventFilter filter = ia.createFilterForExpression();
                 ((OclResultImpl)getResult()).getExpToFilterTime().put(exp.toString(),
                         ia.IAResult.getExpToFilterTime().get(exp.toString()));
                 expCount++;

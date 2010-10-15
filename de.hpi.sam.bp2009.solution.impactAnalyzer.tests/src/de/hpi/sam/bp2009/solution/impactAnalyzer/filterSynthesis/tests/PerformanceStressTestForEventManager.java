@@ -171,7 +171,7 @@ public class PerformanceStressTestForEventManager extends TestCase {
     private void registerFilterForExpressionWithEventManager(OCLExpressionWithContext expression) {
         OCLExpression e = expression.getExpression();
         Statistics.getInstance().begin(FILTERCREATION, e);
-        EventFilter filter = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(e, expression.getContext()).createFilterForExpression(/* notifyNewContextElements */ false);
+        EventFilter filter = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(e, expression.getContext(), /* notifyOnNewContextElements */ false).createFilterForExpression();
         Statistics.getInstance().end(FILTERCREATION, e);
         Statistics.getInstance().begin(FILTERSUBSCRIPTION, e);
         NotificationReceiverWithFilter listener = new NotificationReceiverWithFilter(filter);

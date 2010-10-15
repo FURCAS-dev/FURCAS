@@ -173,6 +173,7 @@ public class InstanceScopeAnalysis {
         }
     }
 
+    // TODO may need to be parameterized with notifyNewElements because currently for an element addition nothing is returned if no allInstances() calls are affected
     public Collection<EObject> getContextObjects(Notification event) {
         Collection<EObject> resultCollection;
         if (NotificationHelper.isElementLifeCycleEvent(event)) {
