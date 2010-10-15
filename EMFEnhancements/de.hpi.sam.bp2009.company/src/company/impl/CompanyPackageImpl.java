@@ -513,7 +513,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
         initEReference(getDivision_Department(), this.getDepartment(), null, "department", null, 0, -1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDivision_Director(), this.getEmployee(), this.getEmployee_Directed(), "director", null, 0, 1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getDivision_Budget(), thePrimitivetypesPackage.getInteger(), "budget", null, 0, 1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getDivision_EmployeesOfTheMonth(), this.getEmployee(), null, "employeesOfTheMonth", null, 0, -1, Division.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDivision_EmployeesOfTheMonth(), this.getEmployee(), null, "employeesOfTheMonth", null, 0, -1, Division.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(studentEClass, Student.class, "Student", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -642,7 +642,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
           (getDivision_EmployeesOfTheMonth(), 
            source, 
            new String[] {
-             "derive", "self.department.employeeOfTheMonth"
+             "derivation", "self.department.employeeOfTheMonth"
            });		
         addAnnotation
           (studentEClass, 
