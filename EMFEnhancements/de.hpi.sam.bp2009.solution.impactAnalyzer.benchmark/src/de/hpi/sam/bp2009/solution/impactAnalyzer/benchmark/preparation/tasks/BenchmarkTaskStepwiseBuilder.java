@@ -236,7 +236,7 @@ public class BenchmarkTaskStepwiseBuilder implements Queue<BenchmarkTaskContaine
 
 	OppositeEndFinder oppositeEndFinder = new AllInstanceCallCountingOppositeEndFinder();
 	ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression.getExpression(),
-		expression.getContext(), oppositeEndFinder, option);
+		expression.getContext(), /* notifyOnNewContextElements */ false, oppositeEndFinder, option);
 
 	Resource model = notificationList.getModel();
 	BenchmarkTaskContainer container = new ModelSizeVariationBenchmarkTaskContainer(model, option, String.valueOf(ids

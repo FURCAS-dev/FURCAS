@@ -55,9 +55,9 @@ public class AttributeGrammarImpl implements AttributeGrammar {
         for (OCLExpression e : rules.values()) {
             ImpactAnalyzer ia;
             if (oppositeEndFinder == null) {
-                ia = iaFactory.createImpactAnalyzer(e);
+                ia = iaFactory.createImpactAnalyzer(e, notifyOnNewContextElements);
             } else {
-                ia = iaFactory.createImpactAnalyzer(e, oppositeEndFinder);
+                ia = iaFactory.createImpactAnalyzer(e, notifyOnNewContextElements, oppositeEndFinder);
             }
             impactAnalyzers.put(e, ia);
         }
@@ -67,7 +67,7 @@ public class AttributeGrammarImpl implements AttributeGrammar {
     public void activate(EventManager eventManager) {
         for (Map.Entry<EStructuralFeature, OCLExpression> rule : rules.entrySet()) {
             ImpactAnalyzer ia = impactAnalyzers.get(rule.getValue());
-            eventManager.subscribe(ia.createFilterForExpression(notifyOnNewContextElements),
+            eventManager.subscribe(ia.createFilterForExpression(),
                     new UpdateListener(rule.getKey(), rule.getValue(), ia, oppositeEndFinder));
         }
     }

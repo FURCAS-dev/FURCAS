@@ -428,7 +428,7 @@ public class FilterSynthesisEMEnabledTest extends FilterSynthesisTest {
         for (Iterator<ExpressionInOCL> i = this.stmts.iterator(); i.hasNext();) {
             ExpressionInOCL exp = i.next();
             EventFilter filter = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer((OCLExpression) exp.getBodyExpression(), (EClass) exp
-                    .getContextVariable().getType()).createFilterForExpression(true);
+                    .getContextVariable().getType(), /* notifyOnNewContextElements */ true).createFilterForExpression();
             ExampleApp app = new ExampleApp(exp, affectedStmts);
             m.subscribe(filter, app);
             eS.add(app);
