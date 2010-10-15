@@ -38,7 +38,7 @@ public interface EAnnotationOCLParser {
     public static final String ANNOTATION_SOURCE ="http://de.hpi.sam.bp2009.OCL";
     //		OCLDelegateDomain.OCL_DELEGATE_URI;
 
-    public static final String EXPRESSION_NOT_FOUND= "Not compiled expression found, please use the OclToAst conversion to attach the compile expression to your model element ";
+    public static final String EXPRESSION_NOT_FOUND= "Non-compiled expression found (maybe compile error?), please use the OclToAst conversion to attach the compile expression to your model element";
     public static final String MISSING_BODY_FOR_INVOCATION_DELEGATE = "Missing or invalid body constraint for ";
 
     public static final String OCL_TYPES = "oclTypes";
