@@ -8,6 +8,7 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: de.hpi.sam.bp2009.solution.oclToAst,
+ de.hpi.sam.bp2009.solution.oclToAst.delegate,
  de.hpi.sam.bp2009.solution.oclToAst.impl
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
