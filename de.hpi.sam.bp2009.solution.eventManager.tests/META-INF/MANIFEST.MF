@@ -15,5 +15,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.junit4,
  de.hpi.sam.bp2009.company,
  de.hpi.sam.bp2009.solution.testutils,
- de.hpi.sam.bp2009.solution.oclToAst;bundle-version="1.0.0"
+ de.hpi.sam.bp2009.solution.oclToAst
 Bundle-ActivationPolicy: lazy
