@@ -55,7 +55,7 @@ public class TracebackStepTests extends BaseDepartmentTest {
         this.cp.eResource().getContents().add(c1);
         Notification noti = NotificationHelper.createAttributeChangeNotification(c1, ModelmanagementPackage.eINSTANCE
                 .getNamedElement_Name(), "Trala", "Humba");
-        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ClassesPackage.eINSTANCE.getSapClass());
+        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ClassesPackage.eINSTANCE.getSapClass(), /* notifyOnNewContextElements */ false);
         Collection<EObject> impact = ia.getContextObjects(noti);
         assertEquals(1, impact.size());
         assertTrue(impact.contains(c1));

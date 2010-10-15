@@ -28,24 +28,26 @@ public class ModifiedImpactAnalyzerImpl extends ImpactAnalyzerImpl {
 
     /**
      * Modified version of the {@link ImpactAnalyzerImpl} to benchmark time consumption
+     * @param notifyOnNewContextElements TODO
      */
-    public ModifiedImpactAnalyzerImpl(OCLExpression exp, EClass context) {
-        this(exp, context, OptimizationActivation.getOption());
+    public ModifiedImpactAnalyzerImpl(OCLExpression exp, EClass context, boolean notifyOnNewContextElements) {
+        this(exp, context, notifyOnNewContextElements, OptimizationActivation.getOption());
     }
 
     /**
      * Modified version of the {@link ImpactAnalyzerImpl} to benchmark time consumption
+     * @param notifyOnNewContextElements TODO
      */
-    public ModifiedImpactAnalyzerImpl(OCLExpression exp, EClass context, ActivationOption option) {
-        super(exp, context, option);
+    public ModifiedImpactAnalyzerImpl(OCLExpression exp, EClass context, boolean notifyOnNewContextElements, ActivationOption option) {
+        super(exp, context, notifyOnNewContextElements, option);
     }
 
     public ModifiedImpactAnalyzerResultImpl IAResult = new ModifiedImpactAnalyzerResultImpl();
     
     @Override
-    public EventFilter createFilterForExpression(boolean notifyNewContextElements) {
+    public EventFilter createFilterForExpression() {
         long before = System.nanoTime();
-        EventFilter result = super.createFilterForExpression(notifyNewContextElements);
+        EventFilter result = super.createFilterForExpression();
         long after = System.nanoTime();
         IAResult.getExpToFilterTime().put(getExpression().toString(), (after - before));
         return result;    
