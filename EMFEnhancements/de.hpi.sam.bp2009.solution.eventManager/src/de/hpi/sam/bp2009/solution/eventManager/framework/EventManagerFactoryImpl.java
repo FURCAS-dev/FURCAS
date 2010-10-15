@@ -2,7 +2,6 @@ package de.hpi.sam.bp2009.solution.eventManager.framework;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Map.Entry;
 import java.util.Set;
 import java.util.WeakHashMap;
 
@@ -230,7 +229,6 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
      */
     private void addNotification(EObject value, boolean add, Notification event, Set<Notification> result) {
         for (EStructuralFeature ref : value.eClass().getEAllStructuralFeatures()) {
-            Set<Entry<String, Object>> x = EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE.entrySet();
             //init new Notification
             Notification notification=null;
             Object valueOfRef = value.eGet(ref);
