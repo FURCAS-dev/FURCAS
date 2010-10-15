@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="com.sap.emf.ocl.impactanalysis.example.signature_and_call.presentation.Signature_and_callModelWizardID"
+            name="%_UI_Signature_and_callModelWizard_label"
+            class="com.sap.emf.ocl.impactanalysis.example.signature_and_call.presentation.Signature_and_callModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/Signature_and_callModelFile.gif">
+         <description>%_UI_Signature_and_callModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="com.sap.emf.ocl.impactanalysis.example.signature_and_call.presentation.Signature_and_callEditorID"
+            name="%_UI_Signature_and_callEditor_label"
+            icon="icons/full/obj16/Signature_and_callModelFile.gif"
+            extensions="signature_and_call"
+            class="com.sap.emf.ocl.impactanalysis.example.signature_and_call.presentation.Signature_and_callEditor"
+            contributorClass="com.sap.emf.ocl.impactanalysis.example.signature_and_call.presentation.Signature_and_callActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
