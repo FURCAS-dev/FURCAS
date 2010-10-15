@@ -36,7 +36,7 @@ public class AdapterForExpression extends AdapterImpl {
     AdapterForExpression(Triggerable triggerableToNotify, OCLExpression expression, OppositeEndFinder oppositeEndFinder, ActivationOption configuration) {
         this.triggerableToNotify = triggerableToNotify;
         this.expression = expression;
-        this.impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, oppositeEndFinder, configuration);
+        this.impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, TODO, TODO, oppositeEndFinder, configuration);
         this.oppositeEndFinder = oppositeEndFinder;
     }
     
@@ -50,7 +50,7 @@ public class AdapterForExpression extends AdapterImpl {
         }
         this.triggerableToNotify = triggerableToNotify;
         this.expression = expression;
-        this.impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, context, oppositeEndFinder, configuration);
+        this.impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, context, TODO, oppositeEndFinder, configuration);
         this.oppositeEndFinder = oppositeEndFinder;
     }
     
@@ -59,7 +59,7 @@ public class AdapterForExpression extends AdapterImpl {
     }
     
     public EventFilter getEventFilter(boolean notifyNewContextElements) {
-        return impactAnalyzer.createFilterForExpression(notifyNewContextElements);
+        return impactAnalyzer.createFilterForExpression();
     }
     
     @Override
