@@ -30,7 +30,7 @@ public class SimplePropertyInitUpdater implements OCLBasedModelUpdater {
                 ContextAndForeachHelper.prepareOclQuery(injectorAction.getValue()));
         EClassifier contextClassifier = ContextAndForeachHelper.getParsingContext(injectorAction.getValue(), template);
         EClass contextClass = (EClass) contextClassifier;
-        expressionWithContext = new ExpressionWithContext(expression, contextClass, /* notifyNewContextElements */ false);
+        expressionWithContext = new ExpressionWithContext(expression, contextClass, /* notifyNewContextElements */ true);
     }
 
     @Override

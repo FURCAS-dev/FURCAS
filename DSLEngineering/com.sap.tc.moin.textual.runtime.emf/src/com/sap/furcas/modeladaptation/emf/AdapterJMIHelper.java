@@ -38,13 +38,13 @@ import org.eclipse.emf.query2.Operation;
 import org.eclipse.emf.query2.Query;
 import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.QueryProcessor;
+import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.emf.query2.SelectAlias;
 import org.eclipse.emf.query2.SelectEntry;
 import org.eclipse.emf.query2.WhereClause;
 import org.eclipse.emf.query2.WhereEntry;
 import org.eclipse.emf.query2.WhereString;
-import org.eclipse.emf.query2.internal.moinql.controller.QueryProcessorImpl;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
@@ -103,7 +103,7 @@ public class AdapterJMIHelper {
 		    this.additionalCRIScope.addAll(additionalCRIScope);
 		}
 
-		this.QueryProcessor = new QueryProcessorImpl(IndexFactory.getInstance());
+		this.QueryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
 		// this.mqlParser = new MqlParser(MAX_NO_OF_MQL_ERRORS,
 		// ResourceSet.getSession().getMoin());
 		if (explicitReferenceScope != null) {
