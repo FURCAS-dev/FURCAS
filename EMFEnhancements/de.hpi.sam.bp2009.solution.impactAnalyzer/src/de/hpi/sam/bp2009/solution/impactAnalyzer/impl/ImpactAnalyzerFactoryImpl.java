@@ -12,36 +12,36 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActiv
 
 public class ImpactAnalyzerFactoryImpl implements ImpactAnalyzerFactory {
 
-    public ImpactAnalyzer createImpactAnalyzer(OCLExpression expression) {
-        return new ImpactAnalyzerImpl(expression, OptimizationActivation.getOption());
+    public ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, boolean notifyOnNewContextElements) {
+        return new ImpactAnalyzerImpl(expression, notifyOnNewContextElements, OptimizationActivation.getOption());
     }
 
-    public ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, EClass context) {
-        return new ImpactAnalyzerImpl(expression, context, OptimizationActivation.getOption());
+    public ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, EClass context, boolean notifyOnNewContextElements) {
+        return new ImpactAnalyzerImpl(expression, context, notifyOnNewContextElements, OptimizationActivation.getOption());
     }
 
-    public ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, EClass context, OppositeEndFinder oppositeEndFinder) {
-        return new ImpactAnalyzerImpl(expression, context, oppositeEndFinder, OptimizationActivation.getOption());
+    public ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, EClass context, boolean notifyOnNewContextElements, OppositeEndFinder oppositeEndFinder) {
+        return new ImpactAnalyzerImpl(expression, context, notifyOnNewContextElements, oppositeEndFinder, OptimizationActivation.getOption());
     }
 
-    public ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, OppositeEndFinder oppositeEndFinder) {
-        return new ImpactAnalyzerImpl(expression, oppositeEndFinder, OptimizationActivation.getOption());
+    public ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, boolean notifyOnNewContextElements, OppositeEndFinder oppositeEndFinder) {
+        return new ImpactAnalyzerImpl(expression, notifyOnNewContextElements, oppositeEndFinder, OptimizationActivation.getOption());
     }
 
-    public ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, ActivationOption configuration) {
-        return new ImpactAnalyzerImpl(expression, configuration);
+    public ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, boolean notifyOnNewContextElements, ActivationOption configuration) {
+        return new ImpactAnalyzerImpl(expression, notifyOnNewContextElements, configuration);
     }
 
-    public ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, EClass context, ActivationOption configuration) {
-        return new ImpactAnalyzerImpl(expression, context, configuration);
+    public ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, EClass context, boolean notifyOnNewContextElements, ActivationOption configuration) {
+        return new ImpactAnalyzerImpl(expression, context, notifyOnNewContextElements, configuration);
     }
 
-    public ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, EClass context, OppositeEndFinder oppositeEndFinder, ActivationOption configuration) {
-        return new ImpactAnalyzerImpl(expression, context, oppositeEndFinder, configuration);
+    public ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, EClass context, boolean notifyOnNewContextElements, OppositeEndFinder oppositeEndFinder, ActivationOption configuration) {
+        return new ImpactAnalyzerImpl(expression, context, notifyOnNewContextElements, oppositeEndFinder, configuration);
     }
 
-    public ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, OppositeEndFinder oppositeEndFinder, ActivationOption configuration) {
-        return new ImpactAnalyzerImpl(expression, oppositeEndFinder, configuration);
+    public ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, boolean notifyOnNewContextElements, OppositeEndFinder oppositeEndFinder, ActivationOption configuration) {
+        return new ImpactAnalyzerImpl(expression, notifyOnNewContextElements, oppositeEndFinder, configuration);
     }
 
 }

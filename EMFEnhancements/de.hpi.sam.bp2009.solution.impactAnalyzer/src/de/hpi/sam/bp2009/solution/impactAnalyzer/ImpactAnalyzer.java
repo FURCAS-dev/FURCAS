@@ -18,7 +18,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.ActivationOption;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
 
 /**
- * 
  * The Impact Analyzer (IA) analyzes the impact of {@link Notification}s on a single {@link OCLExpression} in the sense that it
  * determines those context objects of the expression for which the expression's evaluation result may have changed because of the
  * change indicated by the notification. Imagine this as "spreadsheet" functionality for models: model changes can be propagated
@@ -26,7 +25,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActiv
  * as well as attribute grammars based on OCL.
  * <p>
  * 
- * The interaction with the IA typically happens in two steps. First call {@link #createFilterForExpression(boolean)}. This
+ * The interaction with the IA typically happens in two steps. First call {@link #createFilterForExpression()}. This
  * returns an {@link EventFilter} which can be used to register a listener in the {@link EventManager}. The subscriber will then
  * be supplied with all relevant {@link Notification}s relevant to the supplied {@link OCLExpression}.
  * <p>
@@ -50,24 +49,9 @@ public interface ImpactAnalyzer {
 	 * that cause the expression to change its value on one or more context elements.
 	 * Note that also events may be matched that don't actually lead to a change. The
 	 * filter synthesis is "conservative" in this sense.
-	 * @param notifyNewContextElements
-	 *            The analyzer can be parameterized during construction such
-	 *            that it either registers for creation events on the context
-	 *            type or not. Registering for element creation on the context
-	 *            type is useful for invariants / constraints because when a new
-	 *            element is created, validating the constraint may be useful.
-	 *            For other use cases, registering for element creation may not
-	 *            be so useful. For example, when a type inferencer defines its
-	 *            rules using OCL, it only wants to receive <em>update</em>
-	 *            events after the element has been fully initialized from those
-	 *            OCL expressions. In those cases, some framework may be
-	 *            responsible for the initial evaluation of those OCL
-	 *            expressions on new element, and therefore, context element
-	 *            creation events are not of interest.
-	 * 
 	 * @return the filter matching all relevant events
 	 */
-	EventFilter createFilterForExpression(boolean notifyNewContextElements);
+	EventFilter createFilterForExpression();
 
 	/**
 	 * For a change notification <tt>event</tt> calculates a superset of the set of context objects

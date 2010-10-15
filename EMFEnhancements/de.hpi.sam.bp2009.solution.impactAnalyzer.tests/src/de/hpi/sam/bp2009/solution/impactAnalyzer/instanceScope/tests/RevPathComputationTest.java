@@ -1078,7 +1078,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
      * @return a Collection of {@link EObject}s representing the affected context instances.
      */
     private Collection<EObject> computeAffectedInstances(ExpressionInOCL eiocl, Notification noti) {
-        return ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer((OCLExpression) eiocl.getBodyExpression(), (EClass) eiocl.getContextVariable().getType())
+        return ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer((OCLExpression) eiocl.getBodyExpression(), (EClass) eiocl.getContextVariable().getType(), /* notifyOnNewContextElements */ false)
                 .getContextObjects(noti);
     }
 
