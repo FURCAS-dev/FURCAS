@@ -140,7 +140,7 @@ public interface Division extends EObject {
      * @return the value of the '<em>Employees Of The Month</em>' reference list.
      * @see company.CompanyPackage#getDivision_EmployeesOfTheMonth()
      * @model transient="true" changeable="false" volatile="true" derived="true"
-     *        annotation="http://de.hpi.sam.bp2009.OCL derive='self.department.employeeOfTheMonth'"
+     *        annotation="http://de.hpi.sam.bp2009.OCL derivation='self.department.employeeOfTheMonth'"
      * @generated
      */
     EList<Employee> getEmployeesOfTheMonth();

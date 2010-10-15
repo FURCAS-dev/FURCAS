@@ -108,10 +108,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="director" eType="#//Employee"
         containment="true" resolveProxies="false" eOpposite="#//Employee/directed"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="budget" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="employeesOfTheMonth" upperBound="-1"
-        eType="#//Employee" changeable="false" volatile="true" transient="true" derived="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="employeesOfTheMonth" unique="false"
+        upperBound="-1" eType="#//Employee" changeable="false" volatile="true" transient="true"
+        derived="true">
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-        <details key="derive" value="self.department.employeeOfTheMonth"/>
+        <details key="derivation" value="self.department.employeeOfTheMonth"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
