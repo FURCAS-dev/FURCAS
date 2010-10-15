@@ -228,6 +228,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             try {
                 expr = helper.createQuery(e);
             } catch (ParserException e1) {
+                // TODO use Eclipse logging!
               System.err.println("On element "+getQualifiedName(modelElement)+" "+modelElement+":\n" + e + "\n" + e1.getMessage());
               if (e1.getDiagnostic() != null) {
                 for (Diagnostic c : e1.getDiagnostic().getChildren()) {
