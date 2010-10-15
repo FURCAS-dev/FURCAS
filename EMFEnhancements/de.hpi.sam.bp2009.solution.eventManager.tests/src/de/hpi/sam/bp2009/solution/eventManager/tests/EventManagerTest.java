@@ -11,6 +11,7 @@ import junit.textui.TestRunner;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
 
@@ -28,6 +29,7 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.OrFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.BaseDepartmentTest;
+import de.hpi.sam.bp2009.solution.oclToAst.delegate.OCLSettingDelegateFactory;
 
 public class EventManagerTest extends BaseDepartmentTest {
 
@@ -66,6 +68,9 @@ public class EventManagerTest extends BaseDepartmentTest {
 
     @Override
     public void setUp() {
+        // register the correct delegate factories
+        EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE.put("http://de.hpi.sam.bp2009.OCL", new OCLSettingDelegateFactory());
+        
         super.setUp();
         this.createInstances(1, 3, 4);
         setFixture((EventManager) EventManagerFactory.eINSTANCE.getEventManagerFor(this.comp.eResource().getResourceSet()));
@@ -91,6 +96,7 @@ public class EventManagerTest extends BaseDepartmentTest {
      */
     @Override
     public void tearDown() {
+        EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE.remove("http://de.hpi.sam.bp2009.OCL");
         setFixture(null);
         filter = null;
         adapter = null;
@@ -173,7 +179,8 @@ public class EventManagerTest extends BaseDepartmentTest {
     public void testResourceCompositeAddContainmentFilter(){
         Resource r = this.comp.eResource();
         Bool b = new Bool();
-        getFixture().subscribe( new ClassFilter(department, false), new MyApp(b));
+        MyApp app = new MyApp(b);
+        getFixture().subscribe( new ClassFilter(department, false), app);
         r.getContents().add(this.aDivision);
         assertTrue(b.is);
      }
