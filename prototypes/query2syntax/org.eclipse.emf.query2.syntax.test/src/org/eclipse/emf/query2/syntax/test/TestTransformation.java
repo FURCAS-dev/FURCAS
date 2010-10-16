@@ -33,7 +33,7 @@ import com.google.inject.Injector;
 public class TestTransformation extends Assert {
 
 	private static final String RESOURCE = "/resource/";
-	private static final String PLUGIN = "/loadLocation/";
+	private static final String PLUGIN = "/plugin/";
 
 	private static Model model;
 
