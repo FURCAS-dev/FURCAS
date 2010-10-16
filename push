@@ -1,0 +1,16 @@
+#!/bin/sh
+
+check_recursively() {
+  local current=$1
+  local upto=$2
+  local parents=`git show --pretty=format:"%P" $1 | head -1`
+  if [ "$current" != "$upto" ]; then
+    for i in $parents; do
+	check_recursively $i $2
+    done
+  fi
+  echo Pushing $current ...
+  git push furcas $current:hpi
+}
+
+check_recursively $1 $2
