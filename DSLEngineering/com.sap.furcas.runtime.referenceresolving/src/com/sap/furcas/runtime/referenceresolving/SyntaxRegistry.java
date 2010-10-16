@@ -89,6 +89,7 @@ public class SyntaxRegistry implements BundleActivator {
             if (injectorAction instanceof LookupPropertyInit) {
                 triggerManager.register(new SimplePropertyInitUpdater((LookupPropertyInit) injectorAction, oppositeEndFinder));
             } else if (injectorAction instanceof ForeachPredicatePropertyInit) {
+                triggerManager.register(new ForeachPropertyInitUpdater((LookupPropertyInit) injectorAction, oppositeEndFinder));
                 registerForEachPropertyInitForIA(injectorAction, syntax, triggerManager, ruleNameBuilder);
             }
         }
