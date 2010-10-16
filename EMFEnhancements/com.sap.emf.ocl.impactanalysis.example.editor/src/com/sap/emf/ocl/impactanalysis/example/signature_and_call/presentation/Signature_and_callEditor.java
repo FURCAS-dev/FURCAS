@@ -127,7 +127,7 @@ import com.sap.emf.ocl.impactanalysis.example.signature_and_call.provider.Signat
 
 
 /**
- * This is an example of a Signature_and_call model editor.
+ * This is an example of a Signature_and_call model editor. Yeah.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
