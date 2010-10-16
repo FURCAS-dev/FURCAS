@@ -32,8 +32,13 @@ import com.google.inject.Injector;
 
 public class TestTransformation extends Assert {
 
+	private static final String RESOURCE = "/resource/";
+	private static final String PLUGIN = "/loadLocation/";
+
 	private static Model model;
 
+	private static String loadLocation = PLUGIN;
+	
 	@BeforeClass
 	public static void setup() {
 		new org.eclipse.emf.mwe.utils.StandaloneSetup().setPlatformUri("..");
@@ -41,7 +46,7 @@ public class TestTransformation extends Assert {
 
 		XtextResourceSet set = injector.getInstance(XtextResourceSet.class);
 		set.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
-		URI resourceURI = URI.createURI("platform:/plugin/org.eclipse.emf.query2.syntax.test/test/testSimpleTrafo.query");
+		URI resourceURI = URI.createURI("platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/test/testSimpleTrafo.query");
 		URI normalized = set.getURIConverter().normalize(resourceURI);
 		LazyLinkingResource xtextResource = (LazyLinkingResource) set.getResource(normalized, true);
 		model = (Model) xtextResource.getContents().get(0);
@@ -70,20 +75,20 @@ public class TestTransformation extends Assert {
 	@Test
 	public void testSelectEClass() throws Exception {
 		String string = doTransformation("SelectEClass");
-		assertEquals("select a from type: platform:/resource/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a", string);
+		assertEquals("select a from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a", string);
 	}
 
 	@Test
 	public void testSelectEClassWhereNameEqualsEAttribute() {
 		String string = doTransformation("SelectEClassWhereNameEqualsEAttribute");
-		assertEquals("select a from type: platform:/resource/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a "
+		assertEquals("select a from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a "
 				+ "where for a(name EQUAL 'EAttribute')", string);
 	}
 
 	@Test
 	public void testSelectAttrTwoWhereAnd() {
 		String string = doTransformation("SelectAttrTwoWhereAnd");
-		assertEquals("select a.name from type: platform:/resource/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a "
+		assertEquals("select a.name from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a "
 				+ "where for a(name EQUAL 'EAttribute') " + "where for a(abstract EQUAL true)", string);
 	}
 
@@ -91,7 +96,7 @@ public class TestTransformation extends Assert {
 	public void testSelectAttrWhereAttrLong() {
 		String string = doTransformation("SelectAttrWhereAttrLong");
 		assertEquals(
-				"select a.lowerBound from type: platform:/resource/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//ETypedElement as a "
+				"select a.lowerBound from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//ETypedElement as a "
 						+ "where for a(upperBound SMALLER 5)", string);
 	}
 
@@ -99,8 +104,8 @@ public class TestTransformation extends Assert {
 	public void testSelectAttrWhereAttrVar() {
 		String string = doTransformation("SelectAttrWhereAttrVar");
 		assertEquals("select a.lowerBound,        b.upperBound "
-				+ "from type: platform:/resource/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//ETypedElement as a,      "
-				+ "type: platform:/resource/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//ETypedElement as b "
+				+ "from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//ETypedElement as a,      "
+				+ "type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//ETypedElement as b "
 				+ "where b.upperBound >= a.lowerBound", string);
 	}
 
@@ -108,14 +113,14 @@ public class TestTransformation extends Assert {
 	public void testSelectAttrWhereAttrNull() {
 		String string = doTransformation("SelectAttrWhereAttrNull");
 		assertEquals(
-				"select a.lowerBound from type: platform:/resource/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//ETypedElement as a "
+				"select a.lowerBound from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//ETypedElement as a "
 						+ "where for a(eType EQUAL null)", string);
 	}
 
 	@Test
 	public void testSelectEClassWhereRefNull() {
 		String string = doTransformation("SelectEClassWhereRefNull");
-		assertEquals("select a from type: platform:/resource/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a "
+		assertEquals("select a from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a "
 				+ "where for a(eOperations EQUAL null)", string);
 	}
 
@@ -123,7 +128,7 @@ public class TestTransformation extends Assert {
 	public void testSelectAttrTwoWhereOr() {
 		String string = doTransformation("SelectAttrTwoWhereOr");
 		assertEquals(
-				"select a.name from type: platform:/resource/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', abstract EQUAL true))",
+				"select a.name from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', abstract EQUAL true))",
 				string);
 	}
 
@@ -131,7 +136,7 @@ public class TestTransformation extends Assert {
 	public void testSelectAttrThreeWhereOr() {
 		String string = doTransformation("SelectAttrThreeWhereOr");
 		assertEquals(
-				"select a.name from type: platform:/resource/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', abstract EQUAL true, abstract EQUAL true, interface EQUAL true))",
+				"select a.name from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', abstract EQUAL true, abstract EQUAL true, interface EQUAL true))",
 				string);
 	}
 
@@ -139,7 +144,7 @@ public class TestTransformation extends Assert {
 	public void testSelectAttrThreeWhereAnd() {
 		String string = doTransformation("SelectAttrThreeWhereAnd");
 		assertEquals(
-				"select a.name from type: platform:/resource/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(name EQUAL 'EAttribute') where for a(abstract EQUAL true) where for a(abstract EQUAL true) where for a(interface EQUAL true)",
+				"select a.name from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(name EQUAL 'EAttribute') where for a(abstract EQUAL true) where for a(abstract EQUAL true) where for a(interface EQUAL true)",
 				string);
 	}
 
@@ -147,7 +152,7 @@ public class TestTransformation extends Assert {
 	public void testSelectAttrThreeWhereOrAnd() {
 		String string = doTransformation("SelectAttrThreeWhereOrAnd");
 		assertEquals(
-				"select a.name from type: platform:/resource/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', and (abstract EQUAL true, interface EQUAL true)))",
+				"select a.name from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', and (abstract EQUAL true, interface EQUAL true)))",
 				string);
 	}
 
@@ -155,7 +160,7 @@ public class TestTransformation extends Assert {
 	public void testSelectPar() {
 		String string = doTransformation("SelectPar");
 		assertEquals(
-				"select a.name from type: platform:/resource/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', abstract EQUAL true)) where for a(interface EQUAL true)",
+				"select a.name from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', abstract EQUAL true)) where for a(interface EQUAL true)",
 				string);
 	}
 	
@@ -163,7 +168,7 @@ public class TestTransformation extends Assert {
 	public void testSelectPar2() {
 		String string = doTransformation("SelectPar2");
 		assertEquals(
-				"select a.name from type: platform:/resource/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', and (abstract EQUAL true, interface EQUAL true)))",
+				"select a.name from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', and (abstract EQUAL true, interface EQUAL true)))",
 				string);
 	}
 
