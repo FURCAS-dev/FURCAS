@@ -365,7 +365,7 @@ public class Signature_and_callEditor
      * <!-- end-user-doc -->
      * @generated
      */
-    protected boolean updateProblemIndication = true;
+    final protected boolean updateProblemIndication = false;
 
     /**
      * Adapter used to update the problem indication when resources are demanded loaded.
@@ -391,6 +391,9 @@ public class Signature_and_callEditor
                                 resourceToDiagnosticMap.remove(resource);
                             }
 
+                            /* TODO check if we still need to update the problems here if we have OCL IA active
+                             * TODO also remove problem markers of elements that get deleted
+                             * TODO remove all problem markers when a resource / ResourceSet gets validated
                             if (updateProblemIndication) {
                                 getSite().getShell().getDisplay().asyncExec
                                     (new Runnable() {
@@ -399,6 +402,7 @@ public class Signature_and_callEditor
                                          }
                                      });
                             }
+                            */
                             break;
                         }
                     }
@@ -544,7 +548,9 @@ public class Signature_and_callEditor
             }
             editingDomain.getCommandStack().flush();
 
+            /* TODO understand if we need this if we have OCL IA active
             updateProblemIndication = false;
+            */
             for (Resource resource : changedResources) {
                 if (resource.isLoaded()) {
                     resource.unload();
@@ -562,9 +568,10 @@ public class Signature_and_callEditor
             if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
                 setSelection(StructuredSelection.EMPTY);
             }
-
+            /* TODO understand if we need this if we have OCL IA active
             updateProblemIndication = true;
             updateProblemIndication();
+            */
         }
     }
   
@@ -1426,7 +1433,7 @@ public class Signature_and_callEditor
      * This is for implementing {@link IEditorPart} and simply saves the model file.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public void doSave(IProgressMonitor progressMonitor) {
@@ -1464,7 +1471,9 @@ public class Signature_and_callEditor
                 }
             };
 
+        /* TODO understand if we need this if we have OCL IA active
         updateProblemIndication = false;
+        */
         try {
             // This runs the options, and shows progress.
             //
@@ -1480,8 +1489,10 @@ public class Signature_and_callEditor
             //
             Signature_and_callEditorPlugin.INSTANCE.log(exception);
         }
+        /* TODO understand if we need this if we have OCL IA active
         updateProblemIndication = true;
         updateProblemIndication();
+        */
     }
 
     /**
@@ -1750,7 +1761,9 @@ public class Signature_and_callEditor
      */
     @Override
     public void dispose() {
+        /* TODO understand if we need this if we have OCL IA active
         updateProblemIndication = false;
+        */
 
         ResourcesPlugin.getWorkspace().removeResourceChangeListener(resourceChangeListener);
 
