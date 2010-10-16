@@ -363,33 +363,19 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 //	}
 	
 	@Test
-	public void checkBackWardNavigation(){
-		String query1="select em,em.name,dep.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em ," +
-			"from [" + EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep"
-		+ " where em.managed=dep";
-		
-		
+	public void employeesAsManagers(){
 		
 		String query = "select em,em.name,dep.name " + " from ["
 		+ EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em, " + " ["
 		+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep"
 		+ "  where em.managed = dep ";
 		
-//		
-//		String query = "select em,em.name" + " from ["
-//		+ EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em ";
-		
-		
-		
-		
-		
-		
 		TypeScopeProvider queryScopeProvider = this.getMQLProcessor().getInclusivePartitionScopeProvider(this.globalPartitionScope);
 		QueryContext queryContext = this.getQueryContext(queryScopeProvider);
 		ResultSet resultSet = this.executeQuery(query, queryContext);
 
 		// verify the result set
-		URI[] resultEmployees = resultSet.getUris("dep");
+		URI[] resultEmployees = resultSet.getUris("em");
 		Set<EObject> resultEmployeesSet = new HashSet<EObject>();
 		for (URI uri : resultEmployees) {
 			resultEmployeesSet.add(queryContext.getResourceSet().getEObject(uri, true));
