@@ -41,7 +41,7 @@ public class TestTransformation extends Assert {
 
 		XtextResourceSet set = injector.getInstance(XtextResourceSet.class);
 		set.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
-		URI resourceURI = URI.createURI("platform:/resource/org.eclipse.emf.query2.syntax.test/test/testSimpleTrafo.query");
+		URI resourceURI = URI.createURI("platform:/plugin/org.eclipse.emf.query2.syntax.test/test/testSimpleTrafo.query");
 		URI normalized = set.getURIConverter().normalize(resourceURI);
 		LazyLinkingResource xtextResource = (LazyLinkingResource) set.getResource(normalized, true);
 		model = (Model) xtextResource.getContents().get(0);
