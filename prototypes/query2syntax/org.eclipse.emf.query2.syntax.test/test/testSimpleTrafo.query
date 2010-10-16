@@ -1,4 +1,4 @@
-import "platform:/resource/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore"
+import "platform:/plugin/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore"
 
 SelectEClass:
 from EClass as a
