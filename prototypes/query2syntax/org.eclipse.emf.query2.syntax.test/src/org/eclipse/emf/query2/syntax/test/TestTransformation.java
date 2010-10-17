@@ -71,6 +71,13 @@ public class TestTransformation extends Assert {
 		String string = transform.toString().replaceAll("\\n", " ").trim();
 		return string;
 	}
+	
+	private String doTransformation(String queryName, Object[] parameters) {
+		MQLquery query = findQuery(queryName);
+		Query transform = QueryTransformer.transform(query, parameters);
+		String string = transform.toString().replaceAll("\\n", " ").trim();
+		return string;
+	}
 
 	@Test
 	public void testSelectEClass() throws Exception {
@@ -173,6 +180,15 @@ public class TestTransformation extends Assert {
 	}
 
 
+	@Test
+	public void testSelectPar2AsParameter() {
+		Object[] parameters = new Object[] { "EAttribute", true, true } ;
+		String string = doTransformation("SelectPar2AsParameter", parameters);
+		assertEquals(
+				"select a.name from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', and (abstract EQUAL true, interface EQUAL true)))",
+				string);
+	}
+	
 	@Test
 	public void testSimpleTransformation() throws Exception {
 		MQLquery query = QueryFactory.eINSTANCE.createMQLquery();
