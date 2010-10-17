@@ -194,7 +194,7 @@ public class QueryTransformer {
 					return createWhereEntry(lhs, new WhereString(name, getOperation(object.getOperator()), (String) replacedValue));
 				} else if(replacedValue instanceof Boolean) {
 					Boolean booleanValue = (Boolean) replacedValue;
-					createWhereEntry(lhs, new WhereBool(name, booleanValue.booleanValue()));
+					return createWhereEntry(lhs, new WhereBool(name, booleanValue.booleanValue()));
 				} else if(replacedValue instanceof Integer) {
 					int value = ((Integer) replacedValue);
 					return createWhereEntry(lhs, new WhereInt(name, getOperation(object.getOperator()), value));
@@ -210,7 +210,6 @@ public class QueryTransformer {
 			if (rhs instanceof BooleanExpression) {
 				BooleanExpression be = (BooleanExpression) rhs;
 				return createWhereEntry(lhs, new WhereBool(name, be.isTrue()));
-
 			}
 			if (rhs instanceof StringExpression) {
 				return createWhereEntry(lhs, new WhereString(name, getOperation(object.getOperator()), ((StringExpression) object.getRhs())

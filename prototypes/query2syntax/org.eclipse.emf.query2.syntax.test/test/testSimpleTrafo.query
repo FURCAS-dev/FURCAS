@@ -65,7 +65,6 @@ select a.name
 where a.name = 'EAttribute' or ( a.abstract = true and a.interface = true )
 
 SelectPar2AsParameter:
-SelectPar2:
 from EClass as a
 select a.name
 where a.name = ? or ( a.abstract = ? and a.interface = ? )
