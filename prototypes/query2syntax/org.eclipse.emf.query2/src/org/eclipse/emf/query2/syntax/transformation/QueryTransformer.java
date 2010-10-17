@@ -308,12 +308,37 @@ public class QueryTransformer {
 
 			}
 			if (rhs instanceof LongExpression) {
-				return new WhereLong(name, getOperation(object.getOperator()), ((LongExpression) rhs).getValue());
+				long longValue = ((LongExpression) object.getRhs()).getValue();
+				if(longValue > Integer.MAX_VALUE) {
+					return new WhereLong(name, getOperation(object.getOperator()), longValue);
+				} else {
+					return new WhereInt(name, getOperation(object.getOperator()), (int) longValue);
+				}
 			}
 			if (rhs instanceof DoubleExpression) {
 				return new WhereDouble(name, getOperation(object.getOperator()), ((DoubleExpression) rhs).getValue());
 			}
-			// TODO Auto-generated method stub
+			
+			if(rhs instanceof ReplacableValue) {
+				lastReplacedValueIndex += 1;
+				Object replacedValue = replacableValues[lastReplacedValueIndex];
+				if(replacedValue instanceof String) {
+					return new WhereString(name, getOperation(object.getOperator()), (String) replacedValue);
+				} else if(replacedValue instanceof Boolean) {
+					Boolean booleanValue = (Boolean) replacedValue;
+					return new WhereBool(name, booleanValue.booleanValue());
+				} else if(replacedValue instanceof Integer) {
+					int value = ((Integer) replacedValue);
+					return new WhereInt(name, getOperation(object.getOperator()), value);
+				} else if(replacedValue instanceof Long) {
+					long longValue = ( (Long) replacedValue);
+					return new WhereLong(name, getOperation(object.getOperator()), longValue);
+				} else if(replacedValue instanceof Double) {
+					double doubleValue = ( (Double) replacedValue);
+					return new WhereDouble(name, getOperation(object.getOperator()), doubleValue);
+				} 
+			}
+			
 			return super.caseExpressionWhereEntry(object);
 		}
 
