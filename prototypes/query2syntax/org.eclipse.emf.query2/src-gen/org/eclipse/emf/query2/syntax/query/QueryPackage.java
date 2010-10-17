@@ -552,6 +552,34 @@ public interface QueryPackage extends EPackage
   int ALIAS_ATTRIBUTE_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
 
   /**
+   * The meta object id for the '{@link org.eclipse.emf.query2.syntax.query.impl.ReplacableValueImpl <em>Replacable Value</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.emf.query2.syntax.query.impl.ReplacableValueImpl
+   * @see org.eclipse.emf.query2.syntax.query.impl.QueryPackageImpl#getReplacableValue()
+   * @generated
+   */
+  int REPLACABLE_VALUE = 13;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REPLACABLE_VALUE__VALUE = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Replacable Value</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REPLACABLE_VALUE_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link org.eclipse.emf.query2.syntax.query.impl.DoubleExpressionImpl <em>Double Expression</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -559,7 +587,7 @@ public interface QueryPackage extends EPackage
    * @see org.eclipse.emf.query2.syntax.query.impl.QueryPackageImpl#getDoubleExpression()
    * @generated
    */
-  int DOUBLE_EXPRESSION = 13;
+  int DOUBLE_EXPRESSION = 14;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -587,7 +615,7 @@ public interface QueryPackage extends EPackage
    * @see org.eclipse.emf.query2.syntax.query.impl.QueryPackageImpl#getLongExpression()
    * @generated
    */
-  int LONG_EXPRESSION = 14;
+  int LONG_EXPRESSION = 15;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -615,7 +643,7 @@ public interface QueryPackage extends EPackage
    * @see org.eclipse.emf.query2.syntax.query.impl.QueryPackageImpl#getStringExpression()
    * @generated
    */
-  int STRING_EXPRESSION = 15;
+  int STRING_EXPRESSION = 16;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -643,7 +671,7 @@ public interface QueryPackage extends EPackage
    * @see org.eclipse.emf.query2.syntax.query.impl.QueryPackageImpl#getNullExpression()
    * @generated
    */
-  int NULL_EXPRESSION = 16;
+  int NULL_EXPRESSION = 17;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -671,7 +699,7 @@ public interface QueryPackage extends EPackage
    * @see org.eclipse.emf.query2.syntax.query.impl.QueryPackageImpl#getBooleanExpression()
    * @generated
    */
-  int BOOLEAN_EXPRESSION = 17;
+  int BOOLEAN_EXPRESSION = 18;
 
   /**
    * The feature id for the '<em><b>True</b></em>' attribute.
@@ -699,7 +727,7 @@ public interface QueryPackage extends EPackage
    * @see org.eclipse.emf.query2.syntax.query.impl.QueryPackageImpl#getQueryExpression()
    * @generated
    */
-  int QUERY_EXPRESSION = 18;
+  int QUERY_EXPRESSION = 19;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -727,7 +755,7 @@ public interface QueryPackage extends EPackage
    * @see org.eclipse.emf.query2.syntax.query.impl.QueryPackageImpl#getOrWhereEntry()
    * @generated
    */
-  int OR_WHERE_ENTRY = 19;
+  int OR_WHERE_ENTRY = 20;
 
   /**
    * The feature id for the '<em><b>Entries</b></em>' containment reference list.
@@ -755,7 +783,7 @@ public interface QueryPackage extends EPackage
    * @see org.eclipse.emf.query2.syntax.query.impl.QueryPackageImpl#getAndWhereEntry()
    * @generated
    */
-  int AND_WHERE_ENTRY = 20;
+  int AND_WHERE_ENTRY = 21;
 
   /**
    * The feature id for the '<em><b>Entries</b></em>' containment reference list.
@@ -783,7 +811,7 @@ public interface QueryPackage extends EPackage
    * @see org.eclipse.emf.query2.syntax.query.impl.QueryPackageImpl#getOperator()
    * @generated
    */
-  int OPERATOR = 21;
+  int OPERATOR = 22;
 
 
   /**
@@ -1168,6 +1196,27 @@ public interface QueryPackage extends EPackage
    * @generated
    */
   EClass getExpression();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.emf.query2.syntax.query.ReplacableValue <em>Replacable Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Replacable Value</em>'.
+   * @see org.eclipse.emf.query2.syntax.query.ReplacableValue
+   * @generated
+   */
+  EClass getReplacableValue();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.eclipse.emf.query2.syntax.query.ReplacableValue#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.eclipse.emf.query2.syntax.query.ReplacableValue#getValue()
+   * @see #getReplacableValue()
+   * @generated
+   */
+  EAttribute getReplacableValue_Value();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.emf.query2.syntax.query.DoubleExpression <em>Double Expression</em>}'.
@@ -1683,6 +1732,24 @@ public interface QueryPackage extends EPackage
      * @generated
      */
     EClass EXPRESSION = eINSTANCE.getExpression();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.emf.query2.syntax.query.impl.ReplacableValueImpl <em>Replacable Value</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.emf.query2.syntax.query.impl.ReplacableValueImpl
+     * @see org.eclipse.emf.query2.syntax.query.impl.QueryPackageImpl#getReplacableValue()
+     * @generated
+     */
+    EClass REPLACABLE_VALUE = eINSTANCE.getReplacableValue();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute REPLACABLE_VALUE__VALUE = eINSTANCE.getReplacableValue_Value();
 
     /**
      * The meta object literal for the '{@link org.eclipse.emf.query2.syntax.query.impl.DoubleExpressionImpl <em>Double Expression</em>}' class.

@@ -695,14 +695,15 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNullExpressionParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final RuleCall cBooleanExpressionParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		private final RuleCall cQueryExpressionParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cReplacableValueParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
 		
 		//Expression:
 		//	AliasAttributeExpression | DoubleExpression | LongExpression | StringExpression | NullExpression | BooleanExpression |
-		//	QueryExpression;
+		//	QueryExpression | ReplacableValue;
 		public ParserRule getRule() { return rule; }
 
 		//AliasAttributeExpression | DoubleExpression | LongExpression | StringExpression | NullExpression | BooleanExpression |
-		//QueryExpression
+		//QueryExpression | ReplacableValue
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//AliasAttributeExpression
@@ -725,6 +726,25 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 
 		//QueryExpression
 		public RuleCall getQueryExpressionParserRuleCall_6() { return cQueryExpressionParserRuleCall_6; }
+
+		//ReplacableValue
+		public RuleCall getReplacableValueParserRuleCall_7() { return cReplacableValueParserRuleCall_7; }
+	}
+
+	public class ReplacableValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ReplacableValue");
+		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
+		private final Keyword cValueQuestionMarkKeyword_0 = (Keyword)cValueAssignment.eContents().get(0);
+		
+		//ReplacableValue:
+		//	value="?";
+		public ParserRule getRule() { return rule; }
+
+		//value="?"
+		public Assignment getValueAssignment() { return cValueAssignment; }
+
+		//"?"
+		public Keyword getValueQuestionMarkKeyword_0() { return cValueQuestionMarkKeyword_0; }
 	}
 
 	public class DoubleExpressionElements extends AbstractParserRuleElementFinder {
@@ -954,6 +974,7 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 	private ExpressionWhereEntryElements pExpressionWhereEntry;
 	private AliasAttributeExpressionElements pAliasAttributeExpression;
 	private ExpressionElements pExpression;
+	private ReplacableValueElements pReplacableValue;
 	private DoubleExpressionElements pDoubleExpression;
 	private LongExpressionElements pLongExpression;
 	private StringExpressionElements pStringExpression;
@@ -1136,13 +1157,23 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 
 	//Expression:
 	//	AliasAttributeExpression | DoubleExpression | LongExpression | StringExpression | NullExpression | BooleanExpression |
-	//	QueryExpression;
+	//	QueryExpression | ReplacableValue;
 	public ExpressionElements getExpressionAccess() {
 		return (pExpression != null) ? pExpression : (pExpression = new ExpressionElements());
 	}
 	
 	public ParserRule getExpressionRule() {
 		return getExpressionAccess().getRule();
+	}
+
+	//ReplacableValue:
+	//	value="?";
+	public ReplacableValueElements getReplacableValueAccess() {
+		return (pReplacableValue != null) ? pReplacableValue : (pReplacableValue = new ReplacableValueElements());
+	}
+	
+	public ParserRule getReplacableValueRule() {
+		return getReplacableValueAccess().getRule();
 	}
 
 	//DoubleExpression:

@@ -47,12 +47,13 @@ protected class ThisRootNode extends RootToken {
 			case 13: return new ExpressionWhereEntry_Group(this, this, 13, inst);
 			case 14: return new AliasAttributeExpression_Group(this, this, 14, inst);
 			case 15: return new Expression_Alternatives(this, this, 15, inst);
-			case 16: return new DoubleExpression_ValueAssignment(this, this, 16, inst);
-			case 17: return new LongExpression_ValueAssignment(this, this, 17, inst);
-			case 18: return new StringExpression_ValueAssignment(this, this, 18, inst);
-			case 19: return new NullExpression_ValueAssignment(this, this, 19, inst);
-			case 20: return new BooleanExpression_Alternatives(this, this, 20, inst);
-			case 21: return new QueryExpression_Group(this, this, 21, inst);
+			case 16: return new ReplacableValue_ValueAssignment(this, this, 16, inst);
+			case 17: return new DoubleExpression_ValueAssignment(this, this, 17, inst);
+			case 18: return new LongExpression_ValueAssignment(this, this, 18, inst);
+			case 19: return new StringExpression_ValueAssignment(this, this, 19, inst);
+			case 20: return new NullExpression_ValueAssignment(this, this, 20, inst);
+			case 21: return new BooleanExpression_Alternatives(this, this, 21, inst);
+			case 22: return new QueryExpression_Group(this, this, 22, inst);
 			default: return null;
 		}	
 	}	
@@ -3204,12 +3205,12 @@ protected class AliasAttributeExpression_AttributeAssignment_1_1 extends Assignm
  *
  * Expression:
  * 	AliasAttributeExpression | DoubleExpression | LongExpression | StringExpression | NullExpression | BooleanExpression |
- * 	QueryExpression;
+ * 	QueryExpression | ReplacableValue;
  *
  **/
 
 // AliasAttributeExpression | DoubleExpression | LongExpression | StringExpression | NullExpression | BooleanExpression |
-// QueryExpression
+// QueryExpression | ReplacableValue
 protected class Expression_Alternatives extends AlternativesToken {
 
 	public Expression_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3231,6 +3232,7 @@ protected class Expression_Alternatives extends AlternativesToken {
 			case 4: return new Expression_NullExpressionParserRuleCall_4(lastRuleCallOrigin, this, 4, inst);
 			case 5: return new Expression_BooleanExpressionParserRuleCall_5(lastRuleCallOrigin, this, 5, inst);
 			case 6: return new Expression_QueryExpressionParserRuleCall_6(lastRuleCallOrigin, this, 6, inst);
+			case 7: return new Expression_ReplacableValueParserRuleCall_7(lastRuleCallOrigin, this, 7, inst);
 			default: return null;
 		}	
 	}
@@ -3243,6 +3245,7 @@ protected class Expression_Alternatives extends AlternativesToken {
 		   getEObject().eClass() != grammarAccess.getLongExpressionRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullExpressionRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getQueryExpressionRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getReplacableValueRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getStringExpressionRule().getType().getClassifier())
 			return null;
 		return eObjectConsumer;
@@ -3502,8 +3505,89 @@ protected class Expression_QueryExpressionParserRuleCall_6 extends RuleCallToken
 	}	
 }
 
+// ReplacableValue
+protected class Expression_ReplacableValueParserRuleCall_7 extends RuleCallToken {
+	
+	public Expression_ReplacableValueParserRuleCall_7(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getExpressionAccess().getReplacableValueParserRuleCall_7();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new ReplacableValue_ValueAssignment(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getReplacableValueRule().getType().getClassifier())
+			return null;
+		if(checkForRecursion(ReplacableValue_ValueAssignment.class, eObjectConsumer)) return null;
+		return eObjectConsumer;
+	}
+	
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
+		}	
+	}	
+}
+
 
 /************ end Rule Expression ****************/
+
+
+/************ begin Rule ReplacableValue ****************
+ *
+ * ReplacableValue:
+ * 	value="?";
+ *
+ **/
+
+// value="?"
+protected class ReplacableValue_ValueAssignment extends AssignmentToken  {
+	
+	public ReplacableValue_ValueAssignment(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getReplacableValueAccess().getValueAssignment();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(this, index, index, inst);
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getReplacableValueRule().getType().getClassifier())
+			return null;
+		if((value = eObjectConsumer.getConsumable("value",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("value");
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReplacableValueAccess().getValueQuestionMarkKeyword_0(), value, null)) {
+			type = AssignmentType.KEYWORD;
+			element = grammarAccess.getReplacableValueAccess().getValueQuestionMarkKeyword_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+/************ end Rule ReplacableValue ****************/
 
 
 /************ begin Rule DoubleExpression ****************

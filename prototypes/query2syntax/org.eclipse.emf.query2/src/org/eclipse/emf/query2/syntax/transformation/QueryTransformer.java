@@ -46,6 +46,7 @@ import org.eclipse.emf.query2.syntax.query.NullExpression;
 import org.eclipse.emf.query2.syntax.query.Operator;
 import org.eclipse.emf.query2.syntax.query.OrWhereEntry;
 import org.eclipse.emf.query2.syntax.query.QueryExpression;
+import org.eclipse.emf.query2.syntax.query.ReplacableValue;
 import org.eclipse.emf.query2.syntax.query.ResourceScope;
 import org.eclipse.emf.query2.syntax.query.StringExpression;
 import org.eclipse.emf.query2.syntax.query.util.QuerySwitch;
@@ -53,16 +54,43 @@ import org.eclipse.emf.query2.syntax.query.util.QuerySwitch;
 public class QueryTransformer {
 
 	private static final URI[] URI_ARRAY = new URI[0];
+	private static Object[] replacableValues;
+	private static int lastReplacedValueIndex;
 
+	/**
+	 * @param query
+	 * @return {@link Query}
+	 */
 	public static Query transform(MQLquery query) {
 		List<SelectEntry> selectEntries = transformSelect(query.getSelectEntries());
 		List<FromEntry> fromEntries = transformFrom(query.getFromEntries());
 		List<WhereEntry> whereEntries = transformWhere(query.getWhereEntry());
 
 		return new Query(selectEntries, fromEntries, whereEntries);
-
 	}
 
+	/**
+	 * For queries accepting arguments. Each ? in where clause of the query is replaced with object in Object[] replacableValues
+	 * ? in query is replaced in order of element in Object[] replacableValues. 
+	 * User can pass values has following:
+	 * transform(query, new Object[] { new Integer(200), new String(""), new Double(20.0), new Long(20000000000), new Boolean(true) } );
+	 * 
+	 * @param query
+	 * @param replacableValues
+	 * @return {@link Query}
+	 */
+	public static Query transform(MQLquery query, Object[] replacableValues) {
+		QueryTransformer.replacableValues = replacableValues;
+		lastReplacedValueIndex = -1;
+		
+		List<SelectEntry> selectEntries = transformSelect(query.getSelectEntries());
+		List<FromEntry> fromEntries = transformFrom(query.getFromEntries());
+		List<WhereEntry> whereEntries = transformWhere(query.getWhereEntry());
+		
+		lastReplacedValueIndex = -1;
+		return new Query(selectEntries, fromEntries, whereEntries);
+	}
+	
 	private static List<SelectEntry> transformSelect(EList<org.eclipse.emf.query2.syntax.query.SelectEntry> selectEntries) {
 		List<SelectEntry> result = new ArrayList<SelectEntry>(selectEntries.size());
 
@@ -157,6 +185,28 @@ public class QueryTransformer {
 					return toList(new WhereRelationReference(alias, name, aae.getAlias().getAlias()));
 				}
 			}
+			
+			// For replacable value
+			if(rhs instanceof ReplacableValue) {
+				lastReplacedValueIndex += 1;
+				Object replacedValue = replacableValues[lastReplacedValueIndex];
+				if(replacedValue instanceof String) {
+					return createWhereEntry(lhs, new WhereString(name, getOperation(object.getOperator()), (String) replacedValue));
+				} else if(replacedValue instanceof Boolean) {
+					Boolean booleanValue = (Boolean) replacedValue;
+					createWhereEntry(lhs, new WhereBool(name, booleanValue.booleanValue()));
+				} else if(replacedValue instanceof Integer) {
+					int value = ((Integer) replacedValue);
+					return createWhereEntry(lhs, new WhereInt(name, getOperation(object.getOperator()), value));
+				} else if(replacedValue instanceof Long) {
+					long longValue = ( (Long) replacedValue);
+					return createWhereEntry(lhs, new WhereLong(name, getOperation(object.getOperator()), longValue));
+				} else if(replacedValue instanceof Double) {
+					double doubleValue = ( (Double) replacedValue);
+					return createWhereEntry(lhs, new WhereDouble(name, getOperation(object.getOperator()), doubleValue));
+				} 
+			}
+			
 			if (rhs instanceof BooleanExpression) {
 				BooleanExpression be = (BooleanExpression) rhs;
 				return createWhereEntry(lhs, new WhereBool(name, be.isTrue()));

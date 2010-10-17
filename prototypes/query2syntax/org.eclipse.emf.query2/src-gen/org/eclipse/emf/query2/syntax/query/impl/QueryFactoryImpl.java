@@ -82,6 +82,7 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory
       case QueryPackage.EXPRESSION_WHERE_ENTRY: return createExpressionWhereEntry();
       case QueryPackage.ALIAS_ATTRIBUTE_EXPRESSION: return createAliasAttributeExpression();
       case QueryPackage.EXPRESSION: return createExpression();
+      case QueryPackage.REPLACABLE_VALUE: return createReplacableValue();
       case QueryPackage.DOUBLE_EXPRESSION: return createDoubleExpression();
       case QueryPackage.LONG_EXPRESSION: return createLongExpression();
       case QueryPackage.STRING_EXPRESSION: return createStringExpression();
@@ -270,6 +271,17 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory
   {
     ExpressionImpl expression = new ExpressionImpl();
     return expression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ReplacableValue createReplacableValue()
+  {
+    ReplacableValueImpl replacableValue = new ReplacableValueImpl();
+    return replacableValue;
   }
 
   /**

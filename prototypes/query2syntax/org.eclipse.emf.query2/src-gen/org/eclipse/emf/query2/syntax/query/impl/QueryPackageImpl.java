@@ -33,6 +33,7 @@ import org.eclipse.emf.query2.syntax.query.OrWhereEntry;
 import org.eclipse.emf.query2.syntax.query.QueryExpression;
 import org.eclipse.emf.query2.syntax.query.QueryFactory;
 import org.eclipse.emf.query2.syntax.query.QueryPackage;
+import org.eclipse.emf.query2.syntax.query.ReplacableValue;
 import org.eclipse.emf.query2.syntax.query.ResourceScope;
 import org.eclipse.emf.query2.syntax.query.ScopeClause;
 import org.eclipse.emf.query2.syntax.query.SelectEntry;
@@ -137,6 +138,13 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * @generated
    */
   private EClass expressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass replacableValueEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -629,6 +637,26 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getReplacableValue()
+  {
+    return replacableValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getReplacableValue_Value()
+  {
+    return (EAttribute)replacableValueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getDoubleExpression()
   {
     return doubleExpressionEClass;
@@ -873,6 +901,9 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
 
     expressionEClass = createEClass(EXPRESSION);
 
+    replacableValueEClass = createEClass(REPLACABLE_VALUE);
+    createEAttribute(replacableValueEClass, REPLACABLE_VALUE__VALUE);
+
     doubleExpressionEClass = createEClass(DOUBLE_EXPRESSION);
     createEAttribute(doubleExpressionEClass, DOUBLE_EXPRESSION__VALUE);
 
@@ -934,6 +965,7 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
     elementScopeEClass.getESuperTypes().add(this.getScopeClause());
     expressionWhereEntryEClass.getESuperTypes().add(this.getWhereEntry());
     aliasAttributeExpressionEClass.getESuperTypes().add(this.getExpression());
+    replacableValueEClass.getESuperTypes().add(this.getExpression());
     doubleExpressionEClass.getESuperTypes().add(this.getExpression());
     longExpressionEClass.getESuperTypes().add(this.getExpression());
     stringExpressionEClass.getESuperTypes().add(this.getExpression());
@@ -992,6 +1024,9 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
     initEReference(getAliasAttributeExpression_Attribute(), ecorePackage.getEStructuralFeature(), null, "attribute", null, 0, 1, AliasAttributeExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(replacableValueEClass, ReplacableValue.class, "ReplacableValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getReplacableValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, ReplacableValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(doubleExpressionEClass, DoubleExpression.class, "DoubleExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDoubleExpression_Value(), ecorePackage.getEDouble(), "value", null, 0, 1, DoubleExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

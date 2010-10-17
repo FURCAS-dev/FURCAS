@@ -191,6 +191,14 @@ public class QuerySwitch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case QueryPackage.REPLACABLE_VALUE:
+      {
+        ReplacableValue replacableValue = (ReplacableValue)theEObject;
+        T result = caseReplacableValue(replacableValue);
+        if (result == null) result = caseExpression(replacableValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case QueryPackage.DOUBLE_EXPRESSION:
       {
         DoubleExpression doubleExpression = (DoubleExpression)theEObject;
@@ -463,6 +471,22 @@ public class QuerySwitch<T>
    * @generated
    */
   public T caseExpression(Expression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Replacable Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Replacable Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseReplacableValue(ReplacableValue object)
   {
     return null;
   }

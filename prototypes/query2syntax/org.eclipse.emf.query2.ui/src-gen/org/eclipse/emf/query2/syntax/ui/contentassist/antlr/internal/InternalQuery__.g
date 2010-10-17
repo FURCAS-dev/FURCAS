@@ -36,28 +36,29 @@ T36 : '(' ;
 T37 : ')' ;
 T38 : 'withoutsubtypes' ;
 T39 : 'not' ;
-T40 : 'null' ;
-T41 : 'true' ;
+T40 : '?' ;
+T41 : 'null' ;
+T42 : 'true' ;
 
-// $ANTLR src "../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/syntax/ui/contentassist/antlr/internal/InternalQuery.g" 4097
+// $ANTLR src "../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/syntax/ui/contentassist/antlr/internal/InternalQuery.g" 4154
 RULE_SINGED_LONG : '-'? ('0'..'9')+;
 
-// $ANTLR src "../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/syntax/ui/contentassist/antlr/internal/InternalQuery.g" 4099
+// $ANTLR src "../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/syntax/ui/contentassist/antlr/internal/InternalQuery.g" 4156
 RULE_SIGNED_DOUBLE : '-'? ('0'..'9')+ ('.' ('0'..'9')+)?;
 
-// $ANTLR src "../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/syntax/ui/contentassist/antlr/internal/InternalQuery.g" 4101
+// $ANTLR src "../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/syntax/ui/contentassist/antlr/internal/InternalQuery.g" 4158
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
-// $ANTLR src "../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/syntax/ui/contentassist/antlr/internal/InternalQuery.g" 4103
+// $ANTLR src "../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/syntax/ui/contentassist/antlr/internal/InternalQuery.g" 4160
 RULE_STRING : ('"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'"')))* '"'|'\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'');
 
-// $ANTLR src "../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/syntax/ui/contentassist/antlr/internal/InternalQuery.g" 4105
+// $ANTLR src "../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/syntax/ui/contentassist/antlr/internal/InternalQuery.g" 4162
 RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 
-// $ANTLR src "../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/syntax/ui/contentassist/antlr/internal/InternalQuery.g" 4107
+// $ANTLR src "../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/syntax/ui/contentassist/antlr/internal/InternalQuery.g" 4164
 RULE_SL_COMMENT : '//' ~(('\n'|'\r'))* ('\r'? '\n')?;
 
-// $ANTLR src "../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/syntax/ui/contentassist/antlr/internal/InternalQuery.g" 4109
+// $ANTLR src "../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/syntax/ui/contentassist/antlr/internal/InternalQuery.g" 4166
 RULE_WS : (' '|'\t'|'\r'|'\n')+;
 
 

@@ -505,6 +505,34 @@ finally {
 
 
 
+// Entry rule entryRuleReplacableValue
+entryRuleReplacableValue 
+:
+{ before(grammarAccess.getReplacableValueRule()); }
+	 ruleReplacableValue
+{ after(grammarAccess.getReplacableValueRule()); } 
+	 EOF 
+;
+
+// Rule ReplacableValue
+ruleReplacableValue
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getReplacableValueAccess().getValueAssignment()); }
+(rule__ReplacableValue__ValueAssignment)
+{ after(grammarAccess.getReplacableValueAccess().getValueAssignment()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
 // Entry rule entryRuleDoubleExpression
 entryRuleDoubleExpression 
 :
@@ -782,6 +810,12 @@ rule__Expression__Alternatives
 { before(grammarAccess.getExpressionAccess().getQueryExpressionParserRuleCall_6()); }
 	ruleQueryExpression
 { after(grammarAccess.getExpressionAccess().getQueryExpressionParserRuleCall_6()); }
+)
+
+    |(
+{ before(grammarAccess.getExpressionAccess().getReplacableValueParserRuleCall_7()); }
+	ruleReplacableValue
+{ after(grammarAccess.getExpressionAccess().getReplacableValueParserRuleCall_7()); }
 )
 
 ;
@@ -3980,6 +4014,29 @@ rule__AliasAttributeExpression__AttributeAssignment_1_1
 	RULE_ID{ after(grammarAccess.getAliasAttributeExpressionAccess().getAttributeEStructuralFeatureIDTerminalRuleCall_1_1_0_1()); }
 )
 { after(grammarAccess.getAliasAttributeExpressionAccess().getAttributeEStructuralFeatureCrossReference_1_1_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ReplacableValue__ValueAssignment
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getReplacableValueAccess().getValueQuestionMarkKeyword_0()); }
+(
+{ before(grammarAccess.getReplacableValueAccess().getValueQuestionMarkKeyword_0()); }
+
+	'?' 
+
+{ after(grammarAccess.getReplacableValueAccess().getValueQuestionMarkKeyword_0()); }
+)
+
+{ after(grammarAccess.getReplacableValueAccess().getValueQuestionMarkKeyword_0()); }
 )
 
 ;

@@ -71,7 +71,11 @@ AliasAttributeExpression:
 ;
 
 Expression:
-	AliasAttributeExpression | DoubleExpression | LongExpression | StringExpression | NullExpression | BooleanExpression | QueryExpression
+	AliasAttributeExpression | DoubleExpression | LongExpression | StringExpression | NullExpression | BooleanExpression | QueryExpression | ReplacableValue
+;
+
+ReplacableValue:
+	value="?"
 ;
 
 DoubleExpression: 

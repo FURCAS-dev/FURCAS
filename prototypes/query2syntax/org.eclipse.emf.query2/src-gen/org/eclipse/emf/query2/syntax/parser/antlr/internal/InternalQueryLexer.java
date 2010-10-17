@@ -13,45 +13,46 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalQueryLexer extends Lexer {
     public static final int RULE_ID=5;
-    public static final int RULE_SINGED_LONG=7;
     public static final int T29=29;
     public static final int T28=28;
     public static final int T27=27;
     public static final int T26=26;
     public static final int T25=25;
-    public static final int Tokens=42;
-    public static final int T24=24;
     public static final int EOF=-1;
-    public static final int RULE_SL_COMMENT=9;
-    public static final int T41=41;
+    public static final int T24=24;
     public static final int T23=23;
-    public static final int T40=40;
     public static final int T22=22;
     public static final int T21=21;
     public static final int T20=20;
-    public static final int RULE_ML_COMMENT=8;
-    public static final int RULE_STRING=4;
     public static final int RULE_SIGNED_DOUBLE=6;
     public static final int T38=38;
-    public static final int T11=11;
     public static final int T37=37;
-    public static final int T12=12;
-    public static final int T13=13;
     public static final int T39=39;
-    public static final int T14=14;
     public static final int T34=34;
-    public static final int RULE_WS=10;
-    public static final int T15=15;
     public static final int T33=33;
-    public static final int T16=16;
     public static final int T36=36;
-    public static final int T17=17;
     public static final int T35=35;
-    public static final int T18=18;
     public static final int T30=30;
-    public static final int T19=19;
     public static final int T32=32;
     public static final int T31=31;
+    public static final int RULE_SINGED_LONG=7;
+    public static final int RULE_SL_COMMENT=9;
+    public static final int T42=42;
+    public static final int Tokens=43;
+    public static final int T41=41;
+    public static final int T40=40;
+    public static final int RULE_ML_COMMENT=8;
+    public static final int RULE_STRING=4;
+    public static final int T11=11;
+    public static final int T12=12;
+    public static final int T13=13;
+    public static final int T14=14;
+    public static final int T15=15;
+    public static final int RULE_WS=10;
+    public static final int T16=16;
+    public static final int T17=17;
+    public static final int T18=18;
+    public static final int T19=19;
     public InternalQueryLexer() {;} 
     public InternalQueryLexer(CharStream input) {
         super(input);
@@ -416,11 +417,10 @@ public class InternalQueryLexer extends Lexer {
     public final void mT30() throws RecognitionException {
         try {
             int _type = T30;
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:29:5: ( 'null' )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:29:7: 'null'
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:29:5: ( '?' )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:29:7: '?'
             {
-            match("null"); 
-
+            match('?'); 
 
             }
 
@@ -435,10 +435,10 @@ public class InternalQueryLexer extends Lexer {
     public final void mT31() throws RecognitionException {
         try {
             int _type = T31;
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:30:5: ( 'true' )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:30:7: 'true'
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:30:5: ( 'null' )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:30:7: 'null'
             {
-            match("true"); 
+            match("null"); 
 
 
             }
@@ -454,10 +454,10 @@ public class InternalQueryLexer extends Lexer {
     public final void mT32() throws RecognitionException {
         try {
             int _type = T32;
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:31:5: ( 'false' )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:31:7: 'false'
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:31:5: ( 'true' )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:31:7: 'true'
             {
-            match("false"); 
+            match("true"); 
 
 
             }
@@ -473,10 +473,11 @@ public class InternalQueryLexer extends Lexer {
     public final void mT33() throws RecognitionException {
         try {
             int _type = T33;
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:32:5: ( '<' )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:32:7: '<'
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:32:5: ( 'false' )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:32:7: 'false'
             {
-            match('<'); 
+            match("false"); 
+
 
             }
 
@@ -491,10 +492,10 @@ public class InternalQueryLexer extends Lexer {
     public final void mT34() throws RecognitionException {
         try {
             int _type = T34;
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:33:5: ( '>' )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:33:7: '>'
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:33:5: ( '<' )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:33:7: '<'
             {
-            match('>'); 
+            match('<'); 
 
             }
 
@@ -509,11 +510,10 @@ public class InternalQueryLexer extends Lexer {
     public final void mT35() throws RecognitionException {
         try {
             int _type = T35;
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:34:5: ( '<=' )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:34:7: '<='
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:34:5: ( '>' )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:34:7: '>'
             {
-            match("<="); 
-
+            match('>'); 
 
             }
 
@@ -528,10 +528,10 @@ public class InternalQueryLexer extends Lexer {
     public final void mT36() throws RecognitionException {
         try {
             int _type = T36;
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:35:5: ( '>=' )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:35:7: '>='
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:35:5: ( '<=' )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:35:7: '<='
             {
-            match(">="); 
+            match("<="); 
 
 
             }
@@ -547,10 +547,11 @@ public class InternalQueryLexer extends Lexer {
     public final void mT37() throws RecognitionException {
         try {
             int _type = T37;
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:36:5: ( '=' )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:36:7: '='
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:36:5: ( '>=' )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:36:7: '>='
             {
-            match('='); 
+            match(">="); 
+
 
             }
 
@@ -565,11 +566,10 @@ public class InternalQueryLexer extends Lexer {
     public final void mT38() throws RecognitionException {
         try {
             int _type = T38;
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:37:5: ( '!=' )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:37:7: '!='
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:37:5: ( '=' )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:37:7: '='
             {
-            match("!="); 
-
+            match('='); 
 
             }
 
@@ -584,10 +584,10 @@ public class InternalQueryLexer extends Lexer {
     public final void mT39() throws RecognitionException {
         try {
             int _type = T39;
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:38:5: ( 'like' )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:38:7: 'like'
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:38:5: ( '!=' )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:38:7: '!='
             {
-            match("like"); 
+            match("!="); 
 
 
             }
@@ -603,10 +603,10 @@ public class InternalQueryLexer extends Lexer {
     public final void mT40() throws RecognitionException {
         try {
             int _type = T40;
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:39:5: ( 'not like' )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:39:7: 'not like'
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:39:5: ( 'like' )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:39:7: 'like'
             {
-            match("not like"); 
+            match("like"); 
 
 
             }
@@ -622,10 +622,10 @@ public class InternalQueryLexer extends Lexer {
     public final void mT41() throws RecognitionException {
         try {
             int _type = T41;
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:40:5: ( 'not in' )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:40:7: 'not in'
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:40:5: ( 'not like' )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:40:7: 'not like'
             {
-            match("not in"); 
+            match("not like"); 
 
 
             }
@@ -637,14 +637,33 @@ public class InternalQueryLexer extends Lexer {
     }
     // $ANTLR end T41
 
+    // $ANTLR start T42
+    public final void mT42() throws RecognitionException {
+        try {
+            int _type = T42;
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:41:5: ( 'not in' )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:41:7: 'not in'
+            {
+            match("not in"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T42
+
     // $ANTLR start RULE_SINGED_LONG
     public final void mRULE_SINGED_LONG() throws RecognitionException {
         try {
             int _type = RULE_SINGED_LONG;
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1766:18: ( ( '-' )? ( '0' .. '9' )+ )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1766:20: ( '-' )? ( '0' .. '9' )+
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1820:18: ( ( '-' )? ( '0' .. '9' )+ )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1820:20: ( '-' )? ( '0' .. '9' )+
             {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1766:20: ( '-' )?
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1820:20: ( '-' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -653,7 +672,7 @@ public class InternalQueryLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1766:20: '-'
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1820:20: '-'
                     {
                     match('-'); 
 
@@ -662,7 +681,7 @@ public class InternalQueryLexer extends Lexer {
 
             }
 
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1766:25: ( '0' .. '9' )+
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1820:25: ( '0' .. '9' )+
             int cnt2=0;
             loop2:
             do {
@@ -676,7 +695,7 @@ public class InternalQueryLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1766:26: '0' .. '9'
+            	    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1820:26: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -706,10 +725,10 @@ public class InternalQueryLexer extends Lexer {
     public final void mRULE_SIGNED_DOUBLE() throws RecognitionException {
         try {
             int _type = RULE_SIGNED_DOUBLE;
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1768:20: ( ( '-' )? ( '0' .. '9' )+ ( '.' ( '0' .. '9' )+ )? )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1768:22: ( '-' )? ( '0' .. '9' )+ ( '.' ( '0' .. '9' )+ )?
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1822:20: ( ( '-' )? ( '0' .. '9' )+ ( '.' ( '0' .. '9' )+ )? )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1822:22: ( '-' )? ( '0' .. '9' )+ ( '.' ( '0' .. '9' )+ )?
             {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1768:22: ( '-' )?
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1822:22: ( '-' )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -718,7 +737,7 @@ public class InternalQueryLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1768:22: '-'
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1822:22: '-'
                     {
                     match('-'); 
 
@@ -727,7 +746,7 @@ public class InternalQueryLexer extends Lexer {
 
             }
 
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1768:27: ( '0' .. '9' )+
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1822:27: ( '0' .. '9' )+
             int cnt4=0;
             loop4:
             do {
@@ -741,7 +760,7 @@ public class InternalQueryLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1768:28: '0' .. '9'
+            	    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1822:28: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -757,7 +776,7 @@ public class InternalQueryLexer extends Lexer {
                 cnt4++;
             } while (true);
 
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1768:39: ( '.' ( '0' .. '9' )+ )?
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1822:39: ( '.' ( '0' .. '9' )+ )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -766,10 +785,10 @@ public class InternalQueryLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1768:40: '.' ( '0' .. '9' )+
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1822:40: '.' ( '0' .. '9' )+
                     {
                     match('.'); 
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1768:44: ( '0' .. '9' )+
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1822:44: ( '0' .. '9' )+
                     int cnt5=0;
                     loop5:
                     do {
@@ -783,7 +802,7 @@ public class InternalQueryLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1768:45: '0' .. '9'
+                    	    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1822:45: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -819,10 +838,10 @@ public class InternalQueryLexer extends Lexer {
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1770:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1770:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1824:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1824:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1770:11: ( '^' )?
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1824:11: ( '^' )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -831,7 +850,7 @@ public class InternalQueryLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1770:11: '^'
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1824:11: '^'
                     {
                     match('^'); 
 
@@ -850,7 +869,7 @@ public class InternalQueryLexer extends Lexer {
                 recover(mse);    throw mse;
             }
 
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1770:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1824:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop8:
             do {
                 int alt8=2;
@@ -898,10 +917,10 @@ public class InternalQueryLexer extends Lexer {
     public final void mRULE_STRING() throws RecognitionException {
         try {
             int _type = RULE_STRING;
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1772:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1772:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1826:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1826:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1772:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1826:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -913,16 +932,16 @@ public class InternalQueryLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1772:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )", 11, 0, input);
+                    new NoViableAltException("1826:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )", 11, 0, input);
 
                 throw nvae;
             }
             switch (alt11) {
                 case 1 :
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1772:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1826:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1772:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1826:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop9:
                     do {
                         int alt9=3;
@@ -938,7 +957,7 @@ public class InternalQueryLexer extends Lexer {
 
                         switch (alt9) {
                     	case 1 :
-                    	    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1772:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+                    	    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1826:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -955,7 +974,7 @@ public class InternalQueryLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1772:62: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1826:62: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -981,10 +1000,10 @@ public class InternalQueryLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1772:82: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1826:82: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1772:87: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1826:87: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop10:
                     do {
                         int alt10=3;
@@ -1000,7 +1019,7 @@ public class InternalQueryLexer extends Lexer {
 
                         switch (alt10) {
                     	case 1 :
-                    	    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1772:88: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+                    	    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1826:88: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -1017,7 +1036,7 @@ public class InternalQueryLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1772:129: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1826:129: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -1059,12 +1078,12 @@ public class InternalQueryLexer extends Lexer {
     public final void mRULE_ML_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_ML_COMMENT;
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1774:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1774:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1828:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1828:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1774:24: ( options {greedy=false; } : . )*
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1828:24: ( options {greedy=false; } : . )*
             loop12:
             do {
                 int alt12=2;
@@ -1089,7 +1108,7 @@ public class InternalQueryLexer extends Lexer {
 
                 switch (alt12) {
             	case 1 :
-            	    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1774:52: .
+            	    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1828:52: .
             	    {
             	    matchAny(); 
 
@@ -1117,12 +1136,12 @@ public class InternalQueryLexer extends Lexer {
     public final void mRULE_SL_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_SL_COMMENT;
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1776:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1776:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1830:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1830:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1776:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1830:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop13:
             do {
                 int alt13=2;
@@ -1135,7 +1154,7 @@ public class InternalQueryLexer extends Lexer {
 
                 switch (alt13) {
             	case 1 :
-            	    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1776:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1830:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -1156,7 +1175,7 @@ public class InternalQueryLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1776:40: ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1830:40: ( ( '\\r' )? '\\n' )?
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -1165,9 +1184,9 @@ public class InternalQueryLexer extends Lexer {
             }
             switch (alt15) {
                 case 1 :
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1776:41: ( '\\r' )? '\\n'
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1830:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1776:41: ( '\\r' )?
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1830:41: ( '\\r' )?
                     int alt14=2;
                     int LA14_0 = input.LA(1);
 
@@ -1176,7 +1195,7 @@ public class InternalQueryLexer extends Lexer {
                     }
                     switch (alt14) {
                         case 1 :
-                            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1776:41: '\\r'
+                            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1830:41: '\\r'
                             {
                             match('\r'); 
 
@@ -1206,10 +1225,10 @@ public class InternalQueryLexer extends Lexer {
     public final void mRULE_WS() throws RecognitionException {
         try {
             int _type = RULE_WS;
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1778:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1778:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1832:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1832:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1778:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1832:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt16=0;
             loop16:
             do {
@@ -1259,8 +1278,8 @@ public class InternalQueryLexer extends Lexer {
     // $ANTLR end RULE_WS
 
     public void mTokens() throws RecognitionException {
-        // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1:8: ( T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | RULE_SINGED_LONG | RULE_SIGNED_DOUBLE | RULE_ID | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS )
-        int alt17=38;
+        // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1:8: ( T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | RULE_SINGED_LONG | RULE_SIGNED_DOUBLE | RULE_ID | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS )
+        int alt17=39;
         alt17 = dfa17.predict(input);
         switch (alt17) {
             case 1 :
@@ -1481,49 +1500,56 @@ public class InternalQueryLexer extends Lexer {
                 }
                 break;
             case 32 :
-                // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1:134: RULE_SINGED_LONG
+                // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1:134: T42
+                {
+                mT42(); 
+
+                }
+                break;
+            case 33 :
+                // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1:138: RULE_SINGED_LONG
                 {
                 mRULE_SINGED_LONG(); 
 
                 }
                 break;
-            case 33 :
-                // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1:151: RULE_SIGNED_DOUBLE
+            case 34 :
+                // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1:155: RULE_SIGNED_DOUBLE
                 {
                 mRULE_SIGNED_DOUBLE(); 
 
                 }
                 break;
-            case 34 :
-                // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1:170: RULE_ID
+            case 35 :
+                // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1:174: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 35 :
-                // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1:178: RULE_STRING
+            case 36 :
+                // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1:182: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 36 :
-                // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1:190: RULE_ML_COMMENT
+            case 37 :
+                // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1:194: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 37 :
-                // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1:206: RULE_SL_COMMENT
+            case 38 :
+                // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1:210: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 38 :
-                // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1:222: RULE_WS
+            case 39 :
+                // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1:226: RULE_WS
                 {
                 mRULE_WS(); 
 
@@ -1537,173 +1563,174 @@ public class InternalQueryLexer extends Lexer {
 
     protected DFA17 dfa17 = new DFA17(this);
     static final String DFA17_eotS =
-        "\1\uffff\1\31\1\uffff\1\31\1\uffff\2\31\3\uffff\5\31\2\uffff\1\31"+
-        "\1\55\1\57\2\uffff\1\31\1\uffff\1\62\4\uffff\1\65\6\31\1\74\5\31"+
-        "\1\102\1\31\4\uffff\1\31\5\uffff\6\31\1\uffff\1\113\1\115\3\31\1"+
-        "\uffff\4\31\1\125\3\31\3\uffff\1\133\2\31\1\136\1\137\1\31\1\141"+
-        "\1\uffff\2\31\1\144\3\uffff\2\31\2\uffff\1\147\1\uffff\1\150\1\31"+
-        "\1\uffff\2\31\2\uffff\5\31\1\161\1\31\1\163\1\uffff\1\31\1\uffff"+
-        "\4\31\1\171\1\uffff";
+        "\1\uffff\1\32\1\uffff\1\32\1\uffff\2\32\3\uffff\5\32\3\uffff\1\32"+
+        "\1\56\1\60\2\uffff\1\32\1\uffff\1\62\4\uffff\1\66\6\32\1\75\5\32"+
+        "\1\103\1\32\4\uffff\1\32\5\uffff\6\32\1\uffff\1\114\1\116\3\32\1"+
+        "\uffff\4\32\1\126\3\32\3\uffff\1\134\2\32\1\137\1\140\1\32\1\142"+
+        "\1\uffff\1\32\1\144\1\32\3\uffff\2\32\2\uffff\1\150\1\uffff\1\151"+
+        "\1\uffff\3\32\2\uffff\5\32\1\162\1\32\1\164\1\uffff\1\32\1\uffff"+
+        "\4\32\1\172\1\uffff";
     static final String DFA17_eofS =
-        "\172\uffff";
+        "\173\uffff";
     static final String DFA17_minS =
         "\1\11\1\155\1\uffff\1\141\1\uffff\1\145\1\150\3\uffff\1\156\1\157"+
-        "\1\145\1\154\1\162\2\uffff\1\162\2\75\2\uffff\1\151\1\60\1\56\2"+
-        "\uffff\1\52\1\uffff\1\60\1\160\1\154\1\157\1\154\1\164\1\145\1\60"+
+        "\1\145\1\154\1\162\3\uffff\1\162\2\75\2\uffff\1\151\1\60\1\56\2"+
+        "\uffff\1\52\1\uffff\1\60\1\160\1\154\1\157\1\154\1\145\1\164\1\60"+
         "\1\144\1\164\1\154\1\163\1\145\1\60\1\165\4\uffff\1\153\5\uffff"+
-        "\1\157\1\163\1\155\1\145\1\150\1\162\1\uffff\1\60\1\40\1\154\1\157"+
-        "\1\155\1\uffff\2\145\1\162\1\145\1\60\1\143\1\157\1\145\1\uffff"+
+        "\1\157\1\163\1\155\1\145\1\162\1\150\1\uffff\1\60\1\40\1\154\1\157"+
+        "\1\155\1\uffff\2\145\1\162\1\145\1\60\1\143\1\145\1\157\1\uffff"+
         "\1\151\1\uffff\1\60\1\165\1\145\2\60\1\164\1\60\1\uffff\1\164\1"+
-        "\165\1\60\3\uffff\1\162\1\156\2\uffff\1\60\1\uffff\1\60\1\164\1"+
-        "\uffff\1\143\1\164\2\uffff\1\163\1\145\1\163\1\165\1\163\1\60\1"+
+        "\60\1\165\3\uffff\1\162\1\156\2\uffff\1\60\1\uffff\1\60\1\uffff"+
+        "\1\164\1\143\1\164\2\uffff\1\163\1\145\1\163\1\165\1\163\1\60\1"+
         "\142\1\60\1\uffff\1\164\1\uffff\1\171\1\160\1\145\1\163\1\60\1\uffff";
     static final String DFA17_maxS =
         "\1\175\1\156\1\uffff\1\162\1\uffff\1\145\1\151\3\uffff\1\163\1\165"+
-        "\1\145\1\154\1\162\2\uffff\1\162\2\75\2\uffff\1\151\2\71\2\uffff"+
-        "\1\57\1\uffff\1\172\1\160\1\154\1\157\1\154\1\164\1\145\1\172\1"+
+        "\1\145\1\154\1\162\3\uffff\1\162\2\75\2\uffff\1\151\2\71\2\uffff"+
+        "\1\57\1\uffff\1\172\1\160\1\154\1\157\1\154\1\145\1\164\1\172\1"+
         "\144\1\164\1\154\1\163\1\145\1\172\1\165\4\uffff\1\153\5\uffff\1"+
-        "\157\1\163\1\155\1\145\1\150\1\162\1\uffff\2\172\1\154\1\157\1\155"+
-        "\1\uffff\2\145\1\162\1\145\1\172\1\143\1\157\1\145\1\uffff\1\154"+
-        "\1\uffff\1\172\1\165\1\145\2\172\1\164\1\172\1\uffff\1\164\1\165"+
-        "\1\172\3\uffff\1\162\1\156\2\uffff\1\172\1\uffff\1\172\1\164\1\uffff"+
-        "\1\143\1\164\2\uffff\1\163\1\145\1\163\1\165\1\163\1\172\1\142\1"+
-        "\172\1\uffff\1\164\1\uffff\1\171\1\160\1\145\1\163\1\172\1\uffff";
+        "\157\1\163\1\155\1\145\1\162\1\150\1\uffff\2\172\1\154\1\157\1\155"+
+        "\1\uffff\2\145\1\162\1\145\1\172\1\143\1\145\1\157\1\uffff\1\154"+
+        "\1\uffff\1\172\1\165\1\145\2\172\1\164\1\172\1\uffff\1\164\1\172"+
+        "\1\165\3\uffff\1\162\1\156\2\uffff\1\172\1\uffff\1\172\1\uffff\1"+
+        "\164\1\143\1\164\2\uffff\1\163\1\145\1\163\1\165\1\163\1\172\1\142"+
+        "\1\172\1\uffff\1\164\1\uffff\1\171\1\160\1\145\1\163\1\172\1\uffff";
     static final String DFA17_acceptS =
         "\2\uffff\1\2\1\uffff\1\4\2\uffff\1\7\1\11\1\12\5\uffff\1\22\1\23"+
-        "\3\uffff\1\33\1\34\3\uffff\1\42\1\43\1\uffff\1\46\17\uffff\1\31"+
-        "\1\27\1\32\1\30\1\uffff\1\41\1\40\1\45\1\44\1\15\6\uffff\1\13\5"+
-        "\uffff\1\20\10\uffff\1\21\1\uffff\1\14\7\uffff\1\3\3\uffff\1\36"+
-        "\1\37\1\24\2\uffff\1\25\1\35\1\uffff\1\26\2\uffff\1\6\2\uffff\1"+
-        "\1\1\5\10\uffff\1\17\1\uffff\1\16\5\uffff\1\10";
+        "\1\24\3\uffff\1\34\1\35\3\uffff\1\43\1\44\1\uffff\1\47\17\uffff"+
+        "\1\32\1\30\1\33\1\31\1\uffff\1\41\1\42\1\46\1\45\1\15\6\uffff\1"+
+        "\13\5\uffff\1\20\10\uffff\1\21\1\uffff\1\14\7\uffff\1\3\3\uffff"+
+        "\1\40\1\37\1\25\2\uffff\1\26\1\36\1\uffff\1\27\1\uffff\1\6\3\uffff"+
+        "\1\1\1\5\10\uffff\1\17\1\uffff\1\16\5\uffff\1\10";
     static final String DFA17_specialS =
-        "\172\uffff}>";
+        "\173\uffff}>";
     static final String[] DFA17_transitionS = {
-            "\2\34\2\uffff\1\34\22\uffff\1\34\1\25\1\32\4\uffff\1\32\1\17"+
-            "\1\20\2\uffff\1\4\1\27\1\7\1\33\12\30\1\2\1\uffff\1\22\1\24"+
-            "\1\23\2\uffff\32\31\3\uffff\2\31\1\uffff\1\12\3\31\1\15\1\3"+
-            "\2\31\1\1\2\31\1\26\1\31\1\13\1\16\2\31\1\14\1\5\1\21\2\31\1"+
-            "\6\3\31\1\10\1\uffff\1\11",
-            "\1\36\1\35",
+            "\2\35\2\uffff\1\35\22\uffff\1\35\1\26\1\33\4\uffff\1\33\1\17"+
+            "\1\20\2\uffff\1\4\1\30\1\7\1\34\12\31\1\2\1\uffff\1\23\1\25"+
+            "\1\24\1\21\1\uffff\32\32\3\uffff\2\32\1\uffff\1\12\3\32\1\15"+
+            "\1\3\2\32\1\1\2\32\1\27\1\32\1\13\1\16\2\32\1\14\1\5\1\22\2"+
+            "\32\1\6\3\32\1\10\1\uffff\1\11",
+            "\1\37\1\36",
             "",
-            "\1\37\20\uffff\1\40",
+            "\1\40\20\uffff\1\41",
             "",
-            "\1\41",
-            "\1\43\1\42",
+            "\1\42",
+            "\1\43\1\44",
             "",
             "",
             "",
-            "\1\45\4\uffff\1\44",
-            "\1\46\5\uffff\1\47",
-            "\1\50",
+            "\1\46\4\uffff\1\45",
+            "\1\47\5\uffff\1\50",
             "\1\51",
             "\1\52",
-            "",
-            "",
             "\1\53",
+            "",
+            "",
+            "",
             "\1\54",
-            "\1\56",
+            "\1\55",
+            "\1\57",
             "",
             "",
-            "\1\60",
-            "\12\30",
-            "\1\61\1\uffff\12\30",
+            "\1\61",
+            "\12\31",
+            "\1\63\1\uffff\12\31",
             "",
             "",
-            "\1\64\4\uffff\1\63",
+            "\1\65\4\uffff\1\64",
             "",
-            "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
-            "\1\66",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
             "\1\67",
             "\1\70",
             "\1\71",
             "\1\72",
             "\1\73",
-            "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
-            "\1\75",
+            "\1\74",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
             "\1\76",
             "\1\77",
             "\1\100",
             "\1\101",
-            "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
-            "\1\103",
-            "",
-            "",
-            "",
-            "",
+            "\1\102",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
             "\1\104",
             "",
             "",
             "",
             "",
-            "",
             "\1\105",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\106",
             "\1\107",
             "\1\110",
             "\1\111",
             "\1\112",
+            "\1\113",
             "",
-            "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
-            "\1\114\17\uffff\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32"+
-            "\31",
-            "\1\116",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "\1\115\17\uffff\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32"+
+            "\32",
             "\1\117",
             "\1\120",
-            "",
             "\1\121",
+            "",
             "\1\122",
             "\1\123",
             "\1\124",
-            "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
-            "\1\126",
+            "\1\125",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
             "\1\127",
             "\1\130",
+            "\1\131",
             "",
-            "\1\132\2\uffff\1\131",
+            "\1\132\2\uffff\1\133",
             "",
-            "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
-            "\1\134",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
             "\1\135",
-            "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
-            "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
-            "\1\140",
-            "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
+            "\1\136",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "\1\141",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
             "",
-            "\1\142",
             "\1\143",
-            "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
-            "",
-            "",
-            "",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
             "\1\145",
+            "",
+            "",
+            "",
             "\1\146",
+            "\1\147",
             "",
             "",
-            "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
             "",
-            "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
-            "\1\151",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
             "",
             "\1\152",
             "\1\153",
-            "",
-            "",
             "\1\154",
+            "",
+            "",
             "\1\155",
             "\1\156",
             "\1\157",
             "\1\160",
-            "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
-            "\1\162",
-            "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
-            "",
-            "\1\164",
+            "\1\161",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "\1\163",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
             "",
             "\1\165",
+            "",
             "\1\166",
             "\1\167",
             "\1\170",
-            "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
+            "\1\171",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
             ""
     };
 
@@ -1737,7 +1764,7 @@ public class InternalQueryLexer extends Lexer {
             this.transition = DFA17_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | RULE_SINGED_LONG | RULE_SIGNED_DOUBLE | RULE_ID | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS );";
+            return "1:1: Tokens : ( T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | RULE_SINGED_LONG | RULE_SIGNED_DOUBLE | RULE_ID | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS );";
         }
     }
  

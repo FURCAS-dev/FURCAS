@@ -1398,6 +1398,60 @@ ruleExpression returns [EObject current=null]
         $current = $this_QueryExpression_6.current; 
         currentNode = currentNode.getParent();
     }
+
+    |
+    { 
+        currentNode=createCompositeNode(grammarAccess.getExpressionAccess().getReplacableValueParserRuleCall_7(), currentNode); 
+    }
+    this_ReplacableValue_7=ruleReplacableValue
+    { 
+        $current = $this_ReplacableValue_7.current; 
+        currentNode = currentNode.getParent();
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleReplacableValue
+entryRuleReplacableValue returns [EObject current=null] 
+	:
+	{ currentNode = createCompositeNode(grammarAccess.getReplacableValueRule(), currentNode); }
+	 iv_ruleReplacableValue=ruleReplacableValue 
+	 { $current=$iv_ruleReplacableValue.current; } 
+	 EOF 
+;
+
+// Rule ReplacableValue
+ruleReplacableValue returns [EObject current=null] 
+    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    }
+    @after { resetLookahead(); 
+    	lastConsumedNode = currentNode;
+    }:
+(
+(
+		lv_value_0_0=	'?' 
+    {
+        createLeafNode(grammarAccess.getReplacableValueAccess().getValueQuestionMarkKeyword_0(), "value"); 
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getReplacableValueRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode, $current);
+	        }
+	        
+	        try {
+	       		set($current, "value", lv_value_0_0, "?", lastConsumedNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	    }
+
+)
 )
 ;
 

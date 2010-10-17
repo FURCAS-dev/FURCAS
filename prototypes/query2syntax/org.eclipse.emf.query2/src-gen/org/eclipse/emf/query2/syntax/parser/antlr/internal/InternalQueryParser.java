@@ -25,7 +25,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalQueryParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_SIGNED_DOUBLE", "RULE_SINGED_LONG", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "'import'", "':'", "'from'", "','", "'select'", "'where'", "'.'", "'withoutsubtypes'", "'{'", "'}'", "'as'", "'not'", "'in'", "'resources'", "'elements'", "'or'", "'and'", "'('", "')'", "'null'", "'true'", "'false'", "'<'", "'>'", "'<='", "'>='", "'='", "'!='", "'like'", "'not like'", "'not in'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_SIGNED_DOUBLE", "RULE_SINGED_LONG", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "'import'", "':'", "'from'", "','", "'select'", "'where'", "'.'", "'withoutsubtypes'", "'{'", "'}'", "'as'", "'not'", "'in'", "'resources'", "'elements'", "'or'", "'and'", "'('", "')'", "'?'", "'null'", "'true'", "'false'", "'<'", "'>'", "'<='", "'>='", "'='", "'!='", "'like'", "'not like'", "'not in'"
     };
     public static final int RULE_ID=5;
     public static final int RULE_STRING=4;
@@ -2945,7 +2945,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleExpression
-    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1326:1: ruleExpression returns [EObject current=null] : (this_AliasAttributeExpression_0= ruleAliasAttributeExpression | this_DoubleExpression_1= ruleDoubleExpression | this_LongExpression_2= ruleLongExpression | this_StringExpression_3= ruleStringExpression | this_NullExpression_4= ruleNullExpression | this_BooleanExpression_5= ruleBooleanExpression | this_QueryExpression_6= ruleQueryExpression ) ;
+    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1326:1: ruleExpression returns [EObject current=null] : (this_AliasAttributeExpression_0= ruleAliasAttributeExpression | this_DoubleExpression_1= ruleDoubleExpression | this_LongExpression_2= ruleLongExpression | this_StringExpression_3= ruleStringExpression | this_NullExpression_4= ruleNullExpression | this_BooleanExpression_5= ruleBooleanExpression | this_QueryExpression_6= ruleQueryExpression | this_ReplacableValue_7= ruleReplacableValue ) ;
     public final EObject ruleExpression() throws RecognitionException {
         EObject current = null;
 
@@ -2963,15 +2963,17 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
 
         EObject this_QueryExpression_6 = null;
 
+        EObject this_ReplacableValue_7 = null;
+
 
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1331:6: ( (this_AliasAttributeExpression_0= ruleAliasAttributeExpression | this_DoubleExpression_1= ruleDoubleExpression | this_LongExpression_2= ruleLongExpression | this_StringExpression_3= ruleStringExpression | this_NullExpression_4= ruleNullExpression | this_BooleanExpression_5= ruleBooleanExpression | this_QueryExpression_6= ruleQueryExpression ) )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1332:1: (this_AliasAttributeExpression_0= ruleAliasAttributeExpression | this_DoubleExpression_1= ruleDoubleExpression | this_LongExpression_2= ruleLongExpression | this_StringExpression_3= ruleStringExpression | this_NullExpression_4= ruleNullExpression | this_BooleanExpression_5= ruleBooleanExpression | this_QueryExpression_6= ruleQueryExpression )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1331:6: ( (this_AliasAttributeExpression_0= ruleAliasAttributeExpression | this_DoubleExpression_1= ruleDoubleExpression | this_LongExpression_2= ruleLongExpression | this_StringExpression_3= ruleStringExpression | this_NullExpression_4= ruleNullExpression | this_BooleanExpression_5= ruleBooleanExpression | this_QueryExpression_6= ruleQueryExpression | this_ReplacableValue_7= ruleReplacableValue ) )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1332:1: (this_AliasAttributeExpression_0= ruleAliasAttributeExpression | this_DoubleExpression_1= ruleDoubleExpression | this_LongExpression_2= ruleLongExpression | this_StringExpression_3= ruleStringExpression | this_NullExpression_4= ruleNullExpression | this_BooleanExpression_5= ruleBooleanExpression | this_QueryExpression_6= ruleQueryExpression | this_ReplacableValue_7= ruleReplacableValue )
             {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1332:1: (this_AliasAttributeExpression_0= ruleAliasAttributeExpression | this_DoubleExpression_1= ruleDoubleExpression | this_LongExpression_2= ruleLongExpression | this_StringExpression_3= ruleStringExpression | this_NullExpression_4= ruleNullExpression | this_BooleanExpression_5= ruleBooleanExpression | this_QueryExpression_6= ruleQueryExpression )
-            int alt23=7;
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1332:1: (this_AliasAttributeExpression_0= ruleAliasAttributeExpression | this_DoubleExpression_1= ruleDoubleExpression | this_LongExpression_2= ruleLongExpression | this_StringExpression_3= ruleStringExpression | this_NullExpression_4= ruleNullExpression | this_BooleanExpression_5= ruleBooleanExpression | this_QueryExpression_6= ruleQueryExpression | this_ReplacableValue_7= ruleReplacableValue )
+            int alt23=8;
             switch ( input.LA(1) ) {
             case RULE_ID:
                 {
@@ -2993,13 +2995,13 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                 alt23=4;
                 }
                 break;
-            case 30:
+            case 31:
                 {
                 alt23=5;
                 }
                 break;
-            case 31:
             case 32:
+            case 33:
                 {
                 alt23=6;
                 }
@@ -3009,9 +3011,14 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                 alt23=7;
                 }
                 break;
+            case 30:
+                {
+                alt23=8;
+                }
+                break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1332:1: (this_AliasAttributeExpression_0= ruleAliasAttributeExpression | this_DoubleExpression_1= ruleDoubleExpression | this_LongExpression_2= ruleLongExpression | this_StringExpression_3= ruleStringExpression | this_NullExpression_4= ruleNullExpression | this_BooleanExpression_5= ruleBooleanExpression | this_QueryExpression_6= ruleQueryExpression )", 23, 0, input);
+                    new NoViableAltException("1332:1: (this_AliasAttributeExpression_0= ruleAliasAttributeExpression | this_DoubleExpression_1= ruleDoubleExpression | this_LongExpression_2= ruleLongExpression | this_StringExpression_3= ruleStringExpression | this_NullExpression_4= ruleNullExpression | this_BooleanExpression_5= ruleBooleanExpression | this_QueryExpression_6= ruleQueryExpression | this_ReplacableValue_7= ruleReplacableValue )", 23, 0, input);
 
                 throw nvae;
             }
@@ -3136,6 +3143,23 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
 
                     }
                     break;
+                case 8 :
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1403:5: this_ReplacableValue_7= ruleReplacableValue
+                    {
+                     
+                            currentNode=createCompositeNode(grammarAccess.getExpressionAccess().getReplacableValueParserRuleCall_7(), currentNode); 
+                        
+                    pushFollow(FOLLOW_ruleReplacableValue_in_ruleExpression2569);
+                    this_ReplacableValue_7=ruleReplacableValue();
+                    _fsp--;
+
+                     
+                            current = this_ReplacableValue_7; 
+                            currentNode = currentNode.getParent();
+                        
+
+                    }
+                    break;
 
             }
 
@@ -3158,8 +3182,104 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
     // $ANTLR end ruleExpression
 
 
+    // $ANTLR start entryRuleReplacableValue
+    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1419:1: entryRuleReplacableValue returns [EObject current=null] : iv_ruleReplacableValue= ruleReplacableValue EOF ;
+    public final EObject entryRuleReplacableValue() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleReplacableValue = null;
+
+
+        try {
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1420:2: (iv_ruleReplacableValue= ruleReplacableValue EOF )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1421:2: iv_ruleReplacableValue= ruleReplacableValue EOF
+            {
+             currentNode = createCompositeNode(grammarAccess.getReplacableValueRule(), currentNode); 
+            pushFollow(FOLLOW_ruleReplacableValue_in_entryRuleReplacableValue2604);
+            iv_ruleReplacableValue=ruleReplacableValue();
+            _fsp--;
+
+             current =iv_ruleReplacableValue; 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleReplacableValue2614); 
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end entryRuleReplacableValue
+
+
+    // $ANTLR start ruleReplacableValue
+    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1428:1: ruleReplacableValue returns [EObject current=null] : ( (lv_value_0_0= '?' ) ) ;
+    public final EObject ruleReplacableValue() throws RecognitionException {
+        EObject current = null;
+
+        Token lv_value_0_0=null;
+
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+            
+        try {
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1433:6: ( ( (lv_value_0_0= '?' ) ) )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1434:1: ( (lv_value_0_0= '?' ) )
+            {
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1434:1: ( (lv_value_0_0= '?' ) )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1435:1: (lv_value_0_0= '?' )
+            {
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1435:1: (lv_value_0_0= '?' )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1436:3: lv_value_0_0= '?'
+            {
+            lv_value_0_0=(Token)input.LT(1);
+            match(input,30,FOLLOW_30_in_ruleReplacableValue2656); 
+
+                    createLeafNode(grammarAccess.getReplacableValueAccess().getValueQuestionMarkKeyword_0(), "value"); 
+                
+
+            	        if (current==null) {
+            	            current = factory.create(grammarAccess.getReplacableValueRule().getType().getClassifier());
+            	            associateNodeWithAstElement(currentNode, current);
+            	        }
+            	        
+            	        try {
+            	       		set(current, "value", lv_value_0_0, "?", lastConsumedNode);
+            	        } catch (ValueConverterException vce) {
+            				handleValueConverterException(vce);
+            	        }
+            	    
+
+            }
+
+
+            }
+
+
+            }
+
+             resetLookahead(); 
+                	lastConsumedNode = currentNode;
+                
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end ruleReplacableValue
+
+
     // $ANTLR start entryRuleDoubleExpression
-    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1409:1: entryRuleDoubleExpression returns [EObject current=null] : iv_ruleDoubleExpression= ruleDoubleExpression EOF ;
+    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1463:1: entryRuleDoubleExpression returns [EObject current=null] : iv_ruleDoubleExpression= ruleDoubleExpression EOF ;
     public final EObject entryRuleDoubleExpression() throws RecognitionException {
         EObject current = null;
 
@@ -3167,16 +3287,16 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1410:2: (iv_ruleDoubleExpression= ruleDoubleExpression EOF )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1411:2: iv_ruleDoubleExpression= ruleDoubleExpression EOF
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1464:2: (iv_ruleDoubleExpression= ruleDoubleExpression EOF )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1465:2: iv_ruleDoubleExpression= ruleDoubleExpression EOF
             {
              currentNode = createCompositeNode(grammarAccess.getDoubleExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleDoubleExpression_in_entryRuleDoubleExpression2577);
+            pushFollow(FOLLOW_ruleDoubleExpression_in_entryRuleDoubleExpression2704);
             iv_ruleDoubleExpression=ruleDoubleExpression();
             _fsp--;
 
              current =iv_ruleDoubleExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleDoubleExpression2587); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleDoubleExpression2714); 
 
             }
 
@@ -3194,7 +3314,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleDoubleExpression
-    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1418:1: ruleDoubleExpression returns [EObject current=null] : ( (lv_value_0_0= RULE_SIGNED_DOUBLE ) ) ;
+    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1472:1: ruleDoubleExpression returns [EObject current=null] : ( (lv_value_0_0= RULE_SIGNED_DOUBLE ) ) ;
     public final EObject ruleDoubleExpression() throws RecognitionException {
         EObject current = null;
 
@@ -3203,17 +3323,17 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1423:6: ( ( (lv_value_0_0= RULE_SIGNED_DOUBLE ) ) )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1424:1: ( (lv_value_0_0= RULE_SIGNED_DOUBLE ) )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1477:6: ( ( (lv_value_0_0= RULE_SIGNED_DOUBLE ) ) )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1478:1: ( (lv_value_0_0= RULE_SIGNED_DOUBLE ) )
             {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1424:1: ( (lv_value_0_0= RULE_SIGNED_DOUBLE ) )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1425:1: (lv_value_0_0= RULE_SIGNED_DOUBLE )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1478:1: ( (lv_value_0_0= RULE_SIGNED_DOUBLE ) )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1479:1: (lv_value_0_0= RULE_SIGNED_DOUBLE )
             {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1425:1: (lv_value_0_0= RULE_SIGNED_DOUBLE )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1426:3: lv_value_0_0= RULE_SIGNED_DOUBLE
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1479:1: (lv_value_0_0= RULE_SIGNED_DOUBLE )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1480:3: lv_value_0_0= RULE_SIGNED_DOUBLE
             {
             lv_value_0_0=(Token)input.LT(1);
-            match(input,RULE_SIGNED_DOUBLE,FOLLOW_RULE_SIGNED_DOUBLE_in_ruleDoubleExpression2628); 
+            match(input,RULE_SIGNED_DOUBLE,FOLLOW_RULE_SIGNED_DOUBLE_in_ruleDoubleExpression2755); 
 
             			createLeafNode(grammarAccess.getDoubleExpressionAccess().getValueSIGNED_DOUBLETerminalRuleCall_0(), "value"); 
             		
@@ -3259,7 +3379,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleLongExpression
-    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1456:1: entryRuleLongExpression returns [EObject current=null] : iv_ruleLongExpression= ruleLongExpression EOF ;
+    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1510:1: entryRuleLongExpression returns [EObject current=null] : iv_ruleLongExpression= ruleLongExpression EOF ;
     public final EObject entryRuleLongExpression() throws RecognitionException {
         EObject current = null;
 
@@ -3267,16 +3387,16 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1457:2: (iv_ruleLongExpression= ruleLongExpression EOF )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1458:2: iv_ruleLongExpression= ruleLongExpression EOF
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1511:2: (iv_ruleLongExpression= ruleLongExpression EOF )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1512:2: iv_ruleLongExpression= ruleLongExpression EOF
             {
              currentNode = createCompositeNode(grammarAccess.getLongExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleLongExpression_in_entryRuleLongExpression2668);
+            pushFollow(FOLLOW_ruleLongExpression_in_entryRuleLongExpression2795);
             iv_ruleLongExpression=ruleLongExpression();
             _fsp--;
 
              current =iv_ruleLongExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleLongExpression2678); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleLongExpression2805); 
 
             }
 
@@ -3294,7 +3414,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleLongExpression
-    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1465:1: ruleLongExpression returns [EObject current=null] : ( (lv_value_0_0= RULE_SINGED_LONG ) ) ;
+    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1519:1: ruleLongExpression returns [EObject current=null] : ( (lv_value_0_0= RULE_SINGED_LONG ) ) ;
     public final EObject ruleLongExpression() throws RecognitionException {
         EObject current = null;
 
@@ -3303,17 +3423,17 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1470:6: ( ( (lv_value_0_0= RULE_SINGED_LONG ) ) )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1471:1: ( (lv_value_0_0= RULE_SINGED_LONG ) )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1524:6: ( ( (lv_value_0_0= RULE_SINGED_LONG ) ) )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1525:1: ( (lv_value_0_0= RULE_SINGED_LONG ) )
             {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1471:1: ( (lv_value_0_0= RULE_SINGED_LONG ) )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1472:1: (lv_value_0_0= RULE_SINGED_LONG )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1525:1: ( (lv_value_0_0= RULE_SINGED_LONG ) )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1526:1: (lv_value_0_0= RULE_SINGED_LONG )
             {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1472:1: (lv_value_0_0= RULE_SINGED_LONG )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1473:3: lv_value_0_0= RULE_SINGED_LONG
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1526:1: (lv_value_0_0= RULE_SINGED_LONG )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1527:3: lv_value_0_0= RULE_SINGED_LONG
             {
             lv_value_0_0=(Token)input.LT(1);
-            match(input,RULE_SINGED_LONG,FOLLOW_RULE_SINGED_LONG_in_ruleLongExpression2719); 
+            match(input,RULE_SINGED_LONG,FOLLOW_RULE_SINGED_LONG_in_ruleLongExpression2846); 
 
             			createLeafNode(grammarAccess.getLongExpressionAccess().getValueSINGED_LONGTerminalRuleCall_0(), "value"); 
             		
@@ -3359,7 +3479,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleStringExpression
-    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1503:1: entryRuleStringExpression returns [EObject current=null] : iv_ruleStringExpression= ruleStringExpression EOF ;
+    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1557:1: entryRuleStringExpression returns [EObject current=null] : iv_ruleStringExpression= ruleStringExpression EOF ;
     public final EObject entryRuleStringExpression() throws RecognitionException {
         EObject current = null;
 
@@ -3367,16 +3487,16 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1504:2: (iv_ruleStringExpression= ruleStringExpression EOF )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1505:2: iv_ruleStringExpression= ruleStringExpression EOF
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1558:2: (iv_ruleStringExpression= ruleStringExpression EOF )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1559:2: iv_ruleStringExpression= ruleStringExpression EOF
             {
              currentNode = createCompositeNode(grammarAccess.getStringExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleStringExpression_in_entryRuleStringExpression2759);
+            pushFollow(FOLLOW_ruleStringExpression_in_entryRuleStringExpression2886);
             iv_ruleStringExpression=ruleStringExpression();
             _fsp--;
 
              current =iv_ruleStringExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleStringExpression2769); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleStringExpression2896); 
 
             }
 
@@ -3394,7 +3514,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleStringExpression
-    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1512:1: ruleStringExpression returns [EObject current=null] : ( (lv_value_0_0= RULE_STRING ) ) ;
+    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1566:1: ruleStringExpression returns [EObject current=null] : ( (lv_value_0_0= RULE_STRING ) ) ;
     public final EObject ruleStringExpression() throws RecognitionException {
         EObject current = null;
 
@@ -3403,17 +3523,17 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1517:6: ( ( (lv_value_0_0= RULE_STRING ) ) )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1518:1: ( (lv_value_0_0= RULE_STRING ) )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1571:6: ( ( (lv_value_0_0= RULE_STRING ) ) )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1572:1: ( (lv_value_0_0= RULE_STRING ) )
             {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1518:1: ( (lv_value_0_0= RULE_STRING ) )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1519:1: (lv_value_0_0= RULE_STRING )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1572:1: ( (lv_value_0_0= RULE_STRING ) )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1573:1: (lv_value_0_0= RULE_STRING )
             {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1519:1: (lv_value_0_0= RULE_STRING )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1520:3: lv_value_0_0= RULE_STRING
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1573:1: (lv_value_0_0= RULE_STRING )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1574:3: lv_value_0_0= RULE_STRING
             {
             lv_value_0_0=(Token)input.LT(1);
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleStringExpression2810); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleStringExpression2937); 
 
             			createLeafNode(grammarAccess.getStringExpressionAccess().getValueSTRINGTerminalRuleCall_0(), "value"); 
             		
@@ -3459,7 +3579,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleNullExpression
-    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1550:1: entryRuleNullExpression returns [EObject current=null] : iv_ruleNullExpression= ruleNullExpression EOF ;
+    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1604:1: entryRuleNullExpression returns [EObject current=null] : iv_ruleNullExpression= ruleNullExpression EOF ;
     public final EObject entryRuleNullExpression() throws RecognitionException {
         EObject current = null;
 
@@ -3467,16 +3587,16 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1551:2: (iv_ruleNullExpression= ruleNullExpression EOF )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1552:2: iv_ruleNullExpression= ruleNullExpression EOF
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1605:2: (iv_ruleNullExpression= ruleNullExpression EOF )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1606:2: iv_ruleNullExpression= ruleNullExpression EOF
             {
              currentNode = createCompositeNode(grammarAccess.getNullExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleNullExpression_in_entryRuleNullExpression2850);
+            pushFollow(FOLLOW_ruleNullExpression_in_entryRuleNullExpression2977);
             iv_ruleNullExpression=ruleNullExpression();
             _fsp--;
 
              current =iv_ruleNullExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleNullExpression2860); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleNullExpression2987); 
 
             }
 
@@ -3494,7 +3614,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleNullExpression
-    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1559:1: ruleNullExpression returns [EObject current=null] : ( (lv_value_0_0= 'null' ) ) ;
+    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1613:1: ruleNullExpression returns [EObject current=null] : ( (lv_value_0_0= 'null' ) ) ;
     public final EObject ruleNullExpression() throws RecognitionException {
         EObject current = null;
 
@@ -3503,17 +3623,17 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1564:6: ( ( (lv_value_0_0= 'null' ) ) )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1565:1: ( (lv_value_0_0= 'null' ) )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1618:6: ( ( (lv_value_0_0= 'null' ) ) )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1619:1: ( (lv_value_0_0= 'null' ) )
             {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1565:1: ( (lv_value_0_0= 'null' ) )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1566:1: (lv_value_0_0= 'null' )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1619:1: ( (lv_value_0_0= 'null' ) )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1620:1: (lv_value_0_0= 'null' )
             {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1566:1: (lv_value_0_0= 'null' )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1567:3: lv_value_0_0= 'null'
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1620:1: (lv_value_0_0= 'null' )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1621:3: lv_value_0_0= 'null'
             {
             lv_value_0_0=(Token)input.LT(1);
-            match(input,30,FOLLOW_30_in_ruleNullExpression2902); 
+            match(input,31,FOLLOW_31_in_ruleNullExpression3029); 
 
                     createLeafNode(grammarAccess.getNullExpressionAccess().getValueNullKeyword_0(), "value"); 
                 
@@ -3555,7 +3675,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleBooleanExpression
-    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1594:1: entryRuleBooleanExpression returns [EObject current=null] : iv_ruleBooleanExpression= ruleBooleanExpression EOF ;
+    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1648:1: entryRuleBooleanExpression returns [EObject current=null] : iv_ruleBooleanExpression= ruleBooleanExpression EOF ;
     public final EObject entryRuleBooleanExpression() throws RecognitionException {
         EObject current = null;
 
@@ -3563,16 +3683,16 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1595:2: (iv_ruleBooleanExpression= ruleBooleanExpression EOF )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1596:2: iv_ruleBooleanExpression= ruleBooleanExpression EOF
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1649:2: (iv_ruleBooleanExpression= ruleBooleanExpression EOF )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1650:2: iv_ruleBooleanExpression= ruleBooleanExpression EOF
             {
              currentNode = createCompositeNode(grammarAccess.getBooleanExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleBooleanExpression_in_entryRuleBooleanExpression2950);
+            pushFollow(FOLLOW_ruleBooleanExpression_in_entryRuleBooleanExpression3077);
             iv_ruleBooleanExpression=ruleBooleanExpression();
             _fsp--;
 
              current =iv_ruleBooleanExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleBooleanExpression2960); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleBooleanExpression3087); 
 
             }
 
@@ -3590,7 +3710,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleBooleanExpression
-    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1603:1: ruleBooleanExpression returns [EObject current=null] : ( ( (lv_true_0_0= 'true' ) ) | 'false' ) ;
+    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1657:1: ruleBooleanExpression returns [EObject current=null] : ( ( (lv_true_0_0= 'true' ) ) | 'false' ) ;
     public final EObject ruleBooleanExpression() throws RecognitionException {
         EObject current = null;
 
@@ -3599,37 +3719,37 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1608:6: ( ( ( (lv_true_0_0= 'true' ) ) | 'false' ) )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1609:1: ( ( (lv_true_0_0= 'true' ) ) | 'false' )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1662:6: ( ( ( (lv_true_0_0= 'true' ) ) | 'false' ) )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1663:1: ( ( (lv_true_0_0= 'true' ) ) | 'false' )
             {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1609:1: ( ( (lv_true_0_0= 'true' ) ) | 'false' )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1663:1: ( ( (lv_true_0_0= 'true' ) ) | 'false' )
             int alt24=2;
             int LA24_0 = input.LA(1);
 
-            if ( (LA24_0==31) ) {
+            if ( (LA24_0==32) ) {
                 alt24=1;
             }
-            else if ( (LA24_0==32) ) {
+            else if ( (LA24_0==33) ) {
                 alt24=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1609:1: ( ( (lv_true_0_0= 'true' ) ) | 'false' )", 24, 0, input);
+                    new NoViableAltException("1663:1: ( ( (lv_true_0_0= 'true' ) ) | 'false' )", 24, 0, input);
 
                 throw nvae;
             }
             switch (alt24) {
                 case 1 :
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1609:2: ( (lv_true_0_0= 'true' ) )
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1663:2: ( (lv_true_0_0= 'true' ) )
                     {
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1609:2: ( (lv_true_0_0= 'true' ) )
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1610:1: (lv_true_0_0= 'true' )
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1663:2: ( (lv_true_0_0= 'true' ) )
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1664:1: (lv_true_0_0= 'true' )
                     {
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1610:1: (lv_true_0_0= 'true' )
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1611:3: lv_true_0_0= 'true'
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1664:1: (lv_true_0_0= 'true' )
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1665:3: lv_true_0_0= 'true'
                     {
                     lv_true_0_0=(Token)input.LT(1);
-                    match(input,31,FOLLOW_31_in_ruleBooleanExpression3003); 
+                    match(input,32,FOLLOW_32_in_ruleBooleanExpression3130); 
 
                             createLeafNode(grammarAccess.getBooleanExpressionAccess().getTrueTrueKeyword_0_0(), "true"); 
                         
@@ -3655,9 +3775,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1631:7: 'false'
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1685:7: 'false'
                     {
-                    match(input,32,FOLLOW_32_in_ruleBooleanExpression3032); 
+                    match(input,33,FOLLOW_33_in_ruleBooleanExpression3159); 
 
                             createLeafNode(grammarAccess.getBooleanExpressionAccess().getFalseKeyword_1(), null); 
                         
@@ -3687,7 +3807,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleQueryExpression
-    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1643:1: entryRuleQueryExpression returns [EObject current=null] : iv_ruleQueryExpression= ruleQueryExpression EOF ;
+    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1697:1: entryRuleQueryExpression returns [EObject current=null] : iv_ruleQueryExpression= ruleQueryExpression EOF ;
     public final EObject entryRuleQueryExpression() throws RecognitionException {
         EObject current = null;
 
@@ -3695,16 +3815,16 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1644:2: (iv_ruleQueryExpression= ruleQueryExpression EOF )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1645:2: iv_ruleQueryExpression= ruleQueryExpression EOF
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1698:2: (iv_ruleQueryExpression= ruleQueryExpression EOF )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1699:2: iv_ruleQueryExpression= ruleQueryExpression EOF
             {
              currentNode = createCompositeNode(grammarAccess.getQueryExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleQueryExpression_in_entryRuleQueryExpression3068);
+            pushFollow(FOLLOW_ruleQueryExpression_in_entryRuleQueryExpression3195);
             iv_ruleQueryExpression=ruleQueryExpression();
             _fsp--;
 
              current =iv_ruleQueryExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleQueryExpression3078); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleQueryExpression3205); 
 
             }
 
@@ -3722,7 +3842,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleQueryExpression
-    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1652:1: ruleQueryExpression returns [EObject current=null] : ( '(' ( (lv_value_1_0= ruleMQLquery ) ) ')' ) ;
+    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1706:1: ruleQueryExpression returns [EObject current=null] : ( '(' ( (lv_value_1_0= ruleMQLquery ) ) ')' ) ;
     public final EObject ruleQueryExpression() throws RecognitionException {
         EObject current = null;
 
@@ -3732,26 +3852,26 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1657:6: ( ( '(' ( (lv_value_1_0= ruleMQLquery ) ) ')' ) )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1658:1: ( '(' ( (lv_value_1_0= ruleMQLquery ) ) ')' )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1711:6: ( ( '(' ( (lv_value_1_0= ruleMQLquery ) ) ')' ) )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1712:1: ( '(' ( (lv_value_1_0= ruleMQLquery ) ) ')' )
             {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1658:1: ( '(' ( (lv_value_1_0= ruleMQLquery ) ) ')' )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1658:3: '(' ( (lv_value_1_0= ruleMQLquery ) ) ')'
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1712:1: ( '(' ( (lv_value_1_0= ruleMQLquery ) ) ')' )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1712:3: '(' ( (lv_value_1_0= ruleMQLquery ) ) ')'
             {
-            match(input,28,FOLLOW_28_in_ruleQueryExpression3113); 
+            match(input,28,FOLLOW_28_in_ruleQueryExpression3240); 
 
                     createLeafNode(grammarAccess.getQueryExpressionAccess().getLeftParenthesisKeyword_0(), null); 
                 
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1662:1: ( (lv_value_1_0= ruleMQLquery ) )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1663:1: (lv_value_1_0= ruleMQLquery )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1716:1: ( (lv_value_1_0= ruleMQLquery ) )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1717:1: (lv_value_1_0= ruleMQLquery )
             {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1663:1: (lv_value_1_0= ruleMQLquery )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1664:3: lv_value_1_0= ruleMQLquery
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1717:1: (lv_value_1_0= ruleMQLquery )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1718:3: lv_value_1_0= ruleMQLquery
             {
              
             	        currentNode=createCompositeNode(grammarAccess.getQueryExpressionAccess().getValueMQLqueryParserRuleCall_1_0(), currentNode); 
             	    
-            pushFollow(FOLLOW_ruleMQLquery_in_ruleQueryExpression3134);
+            pushFollow(FOLLOW_ruleMQLquery_in_ruleQueryExpression3261);
             lv_value_1_0=ruleMQLquery();
             _fsp--;
 
@@ -3778,7 +3898,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,29,FOLLOW_29_in_ruleQueryExpression3144); 
+            match(input,29,FOLLOW_29_in_ruleQueryExpression3271); 
 
                     createLeafNode(grammarAccess.getQueryExpressionAccess().getRightParenthesisKeyword_2(), null); 
                 
@@ -3805,59 +3925,59 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleOperator
-    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1698:1: ruleOperator returns [Enumerator current=null] : ( ( '<' ) | ( '>' ) | ( '<=' ) | ( '>=' ) | ( '=' ) | ( '!=' ) | ( 'like' ) | ( 'not like' ) | ( 'not in' ) | ( 'in' ) ) ;
+    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1752:1: ruleOperator returns [Enumerator current=null] : ( ( '<' ) | ( '>' ) | ( '<=' ) | ( '>=' ) | ( '=' ) | ( '!=' ) | ( 'like' ) | ( 'not like' ) | ( 'not in' ) | ( 'in' ) ) ;
     public final Enumerator ruleOperator() throws RecognitionException {
         Enumerator current = null;
 
          setCurrentLookahead(); resetLookahead(); 
         try {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1702:6: ( ( ( '<' ) | ( '>' ) | ( '<=' ) | ( '>=' ) | ( '=' ) | ( '!=' ) | ( 'like' ) | ( 'not like' ) | ( 'not in' ) | ( 'in' ) ) )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1703:1: ( ( '<' ) | ( '>' ) | ( '<=' ) | ( '>=' ) | ( '=' ) | ( '!=' ) | ( 'like' ) | ( 'not like' ) | ( 'not in' ) | ( 'in' ) )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1756:6: ( ( ( '<' ) | ( '>' ) | ( '<=' ) | ( '>=' ) | ( '=' ) | ( '!=' ) | ( 'like' ) | ( 'not like' ) | ( 'not in' ) | ( 'in' ) ) )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1757:1: ( ( '<' ) | ( '>' ) | ( '<=' ) | ( '>=' ) | ( '=' ) | ( '!=' ) | ( 'like' ) | ( 'not like' ) | ( 'not in' ) | ( 'in' ) )
             {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1703:1: ( ( '<' ) | ( '>' ) | ( '<=' ) | ( '>=' ) | ( '=' ) | ( '!=' ) | ( 'like' ) | ( 'not like' ) | ( 'not in' ) | ( 'in' ) )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1757:1: ( ( '<' ) | ( '>' ) | ( '<=' ) | ( '>=' ) | ( '=' ) | ( '!=' ) | ( 'like' ) | ( 'not like' ) | ( 'not in' ) | ( 'in' ) )
             int alt25=10;
             switch ( input.LA(1) ) {
-            case 33:
+            case 34:
                 {
                 alt25=1;
                 }
                 break;
-            case 34:
+            case 35:
                 {
                 alt25=2;
                 }
                 break;
-            case 35:
+            case 36:
                 {
                 alt25=3;
                 }
                 break;
-            case 36:
+            case 37:
                 {
                 alt25=4;
                 }
                 break;
-            case 37:
+            case 38:
                 {
                 alt25=5;
                 }
                 break;
-            case 38:
+            case 39:
                 {
                 alt25=6;
                 }
                 break;
-            case 39:
+            case 40:
                 {
                 alt25=7;
                 }
                 break;
-            case 40:
+            case 41:
                 {
                 alt25=8;
                 }
                 break;
-            case 41:
+            case 42:
                 {
                 alt25=9;
                 }
@@ -3869,19 +3989,19 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1703:1: ( ( '<' ) | ( '>' ) | ( '<=' ) | ( '>=' ) | ( '=' ) | ( '!=' ) | ( 'like' ) | ( 'not like' ) | ( 'not in' ) | ( 'in' ) )", 25, 0, input);
+                    new NoViableAltException("1757:1: ( ( '<' ) | ( '>' ) | ( '<=' ) | ( '>=' ) | ( '=' ) | ( '!=' ) | ( 'like' ) | ( 'not like' ) | ( 'not in' ) | ( 'in' ) )", 25, 0, input);
 
                 throw nvae;
             }
 
             switch (alt25) {
                 case 1 :
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1703:2: ( '<' )
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1757:2: ( '<' )
                     {
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1703:2: ( '<' )
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1703:4: '<'
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1757:2: ( '<' )
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1757:4: '<'
                     {
-                    match(input,33,FOLLOW_33_in_ruleOperator3192); 
+                    match(input,34,FOLLOW_34_in_ruleOperator3319); 
 
                             current = grammarAccess.getOperatorAccess().getLessThenEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getOperatorAccess().getLessThenEnumLiteralDeclaration_0(), null); 
@@ -3893,12 +4013,12 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1709:6: ( '>' )
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1763:6: ( '>' )
                     {
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1709:6: ( '>' )
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1709:8: '>'
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1763:6: ( '>' )
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1763:8: '>'
                     {
-                    match(input,34,FOLLOW_34_in_ruleOperator3207); 
+                    match(input,35,FOLLOW_35_in_ruleOperator3334); 
 
                             current = grammarAccess.getOperatorAccess().getGreaterThenEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getOperatorAccess().getGreaterThenEnumLiteralDeclaration_1(), null); 
@@ -3910,12 +4030,12 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1715:6: ( '<=' )
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1769:6: ( '<=' )
                     {
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1715:6: ( '<=' )
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1715:8: '<='
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1769:6: ( '<=' )
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1769:8: '<='
                     {
-                    match(input,35,FOLLOW_35_in_ruleOperator3222); 
+                    match(input,36,FOLLOW_36_in_ruleOperator3349); 
 
                             current = grammarAccess.getOperatorAccess().getLessEqualEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getOperatorAccess().getLessEqualEnumLiteralDeclaration_2(), null); 
@@ -3927,12 +4047,12 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1721:6: ( '>=' )
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1775:6: ( '>=' )
                     {
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1721:6: ( '>=' )
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1721:8: '>='
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1775:6: ( '>=' )
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1775:8: '>='
                     {
-                    match(input,36,FOLLOW_36_in_ruleOperator3237); 
+                    match(input,37,FOLLOW_37_in_ruleOperator3364); 
 
                             current = grammarAccess.getOperatorAccess().getGreaterEqualEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getOperatorAccess().getGreaterEqualEnumLiteralDeclaration_3(), null); 
@@ -3944,12 +4064,12 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1727:6: ( '=' )
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1781:6: ( '=' )
                     {
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1727:6: ( '=' )
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1727:8: '='
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1781:6: ( '=' )
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1781:8: '='
                     {
-                    match(input,37,FOLLOW_37_in_ruleOperator3252); 
+                    match(input,38,FOLLOW_38_in_ruleOperator3379); 
 
                             current = grammarAccess.getOperatorAccess().getEqualEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getOperatorAccess().getEqualEnumLiteralDeclaration_4(), null); 
@@ -3961,12 +4081,12 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1733:6: ( '!=' )
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1787:6: ( '!=' )
                     {
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1733:6: ( '!=' )
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1733:8: '!='
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1787:6: ( '!=' )
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1787:8: '!='
                     {
-                    match(input,38,FOLLOW_38_in_ruleOperator3267); 
+                    match(input,39,FOLLOW_39_in_ruleOperator3394); 
 
                             current = grammarAccess.getOperatorAccess().getNotEqualEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getOperatorAccess().getNotEqualEnumLiteralDeclaration_5(), null); 
@@ -3978,12 +4098,12 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 7 :
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1739:6: ( 'like' )
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1793:6: ( 'like' )
                     {
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1739:6: ( 'like' )
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1739:8: 'like'
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1793:6: ( 'like' )
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1793:8: 'like'
                     {
-                    match(input,39,FOLLOW_39_in_ruleOperator3282); 
+                    match(input,40,FOLLOW_40_in_ruleOperator3409); 
 
                             current = grammarAccess.getOperatorAccess().getLikeEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getOperatorAccess().getLikeEnumLiteralDeclaration_6(), null); 
@@ -3995,12 +4115,12 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 8 :
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1745:6: ( 'not like' )
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1799:6: ( 'not like' )
                     {
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1745:6: ( 'not like' )
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1745:8: 'not like'
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1799:6: ( 'not like' )
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1799:8: 'not like'
                     {
-                    match(input,40,FOLLOW_40_in_ruleOperator3297); 
+                    match(input,41,FOLLOW_41_in_ruleOperator3424); 
 
                             current = grammarAccess.getOperatorAccess().getNotLikeEnumLiteralDeclaration_7().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getOperatorAccess().getNotLikeEnumLiteralDeclaration_7(), null); 
@@ -4012,12 +4132,12 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 9 :
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1751:6: ( 'not in' )
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1805:6: ( 'not in' )
                     {
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1751:6: ( 'not in' )
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1751:8: 'not in'
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1805:6: ( 'not in' )
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1805:8: 'not in'
                     {
-                    match(input,41,FOLLOW_41_in_ruleOperator3312); 
+                    match(input,42,FOLLOW_42_in_ruleOperator3439); 
 
                             current = grammarAccess.getOperatorAccess().getNotInEnumLiteralDeclaration_8().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getOperatorAccess().getNotInEnumLiteralDeclaration_8(), null); 
@@ -4029,12 +4149,12 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 10 :
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1757:6: ( 'in' )
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1811:6: ( 'in' )
                     {
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1757:6: ( 'in' )
-                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1757:8: 'in'
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1811:6: ( 'in' )
+                    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1811:8: 'in'
                     {
-                    match(input,23,FOLLOW_23_in_ruleOperator3327); 
+                    match(input,23,FOLLOW_23_in_ruleOperator3454); 
 
                             current = grammarAccess.getOperatorAccess().getInEnumLiteralDeclaration_9().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getOperatorAccess().getInEnumLiteralDeclaration_9(), null); 
@@ -4157,8 +4277,8 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_29_in_ruleParWhereEntry2033 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleExpressionWhereEntry_in_entryRuleExpressionWhereEntry2069 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleExpressionWhereEntry2079 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAliasAttributeExpression_in_ruleExpressionWhereEntry2125 = new BitSet(new long[]{0x000003FE00800000L});
-    public static final BitSet FOLLOW_ruleOperator_in_ruleExpressionWhereEntry2146 = new BitSet(new long[]{0x00000001D00000F0L});
+    public static final BitSet FOLLOW_ruleAliasAttributeExpression_in_ruleExpressionWhereEntry2125 = new BitSet(new long[]{0x000007FC00800000L});
+    public static final BitSet FOLLOW_ruleOperator_in_ruleExpressionWhereEntry2146 = new BitSet(new long[]{0x00000003D00000F0L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleExpressionWhereEntry2167 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAliasAttributeExpression_in_entryRuleAliasAttributeExpression2203 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleAliasAttributeExpression2213 = new BitSet(new long[]{0x0000000000000002L});
@@ -4174,36 +4294,40 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleNullExpression_in_ruleExpression2488 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleBooleanExpression_in_ruleExpression2515 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQueryExpression_in_ruleExpression2542 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDoubleExpression_in_entryRuleDoubleExpression2577 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleDoubleExpression2587 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_SIGNED_DOUBLE_in_ruleDoubleExpression2628 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleLongExpression_in_entryRuleLongExpression2668 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleLongExpression2678 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_SINGED_LONG_in_ruleLongExpression2719 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStringExpression_in_entryRuleStringExpression2759 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleStringExpression2769 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleStringExpression2810 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNullExpression_in_entryRuleNullExpression2850 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleNullExpression2860 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_ruleNullExpression2902 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBooleanExpression_in_entryRuleBooleanExpression2950 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleBooleanExpression2960 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_ruleBooleanExpression3003 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_32_in_ruleBooleanExpression3032 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQueryExpression_in_entryRuleQueryExpression3068 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleQueryExpression3078 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_ruleQueryExpression3113 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_ruleMQLquery_in_ruleQueryExpression3134 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_ruleQueryExpression3144 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_ruleOperator3192 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_ruleOperator3207 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_ruleOperator3222 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_ruleOperator3237 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_ruleOperator3252 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_ruleOperator3267 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_ruleOperator3282 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_ruleOperator3297 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_41_in_ruleOperator3312 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_23_in_ruleOperator3327 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleReplacableValue_in_ruleExpression2569 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleReplacableValue_in_entryRuleReplacableValue2604 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleReplacableValue2614 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_ruleReplacableValue2656 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDoubleExpression_in_entryRuleDoubleExpression2704 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleDoubleExpression2714 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_SIGNED_DOUBLE_in_ruleDoubleExpression2755 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLongExpression_in_entryRuleLongExpression2795 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleLongExpression2805 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_SINGED_LONG_in_ruleLongExpression2846 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStringExpression_in_entryRuleStringExpression2886 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleStringExpression2896 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleStringExpression2937 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNullExpression_in_entryRuleNullExpression2977 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleNullExpression2987 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_ruleNullExpression3029 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBooleanExpression_in_entryRuleBooleanExpression3077 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleBooleanExpression3087 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_32_in_ruleBooleanExpression3130 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_ruleBooleanExpression3159 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQueryExpression_in_entryRuleQueryExpression3195 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleQueryExpression3205 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_ruleQueryExpression3240 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_ruleMQLquery_in_ruleQueryExpression3261 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_29_in_ruleQueryExpression3271 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_ruleOperator3319 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_ruleOperator3334 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_ruleOperator3349 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_ruleOperator3364 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_ruleOperator3379 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_ruleOperator3394 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_ruleOperator3409 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_41_in_ruleOperator3424 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_42_in_ruleOperator3439 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_23_in_ruleOperator3454 = new BitSet(new long[]{0x0000000000000002L});
 
 }

@@ -9,19 +9,20 @@ RULE_ML_COMMENT=8
 '>='=15
 'not in'=20
 'where'=27
-'null'=40
+'null'=41
 '>'=13
 'not like'=19
 '='=16
 ')'=37
 '.'=28
 'import'=22
-'true'=41
+'true'=42
 '}'=31
 'withoutsubtypes'=38
 'and'=35
 '{'=30
 'as'=29
+'?'=40
 '<='=14
 '!='=17
 'false'=11

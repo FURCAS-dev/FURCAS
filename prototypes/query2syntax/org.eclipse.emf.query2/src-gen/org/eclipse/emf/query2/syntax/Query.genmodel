@@ -66,6 +66,9 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Query.ecore#//AliasAttributeExpression/attribute"/>
     </genClasses>
     <genClasses ecoreClass="Query.ecore#//Expression"/>
+    <genClasses ecoreClass="Query.ecore#//ReplacableValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Query.ecore#//ReplacableValue/value"/>
+    </genClasses>
     <genClasses ecoreClass="Query.ecore#//DoubleExpression">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Query.ecore#//DoubleExpression/value"/>
     </genClasses>

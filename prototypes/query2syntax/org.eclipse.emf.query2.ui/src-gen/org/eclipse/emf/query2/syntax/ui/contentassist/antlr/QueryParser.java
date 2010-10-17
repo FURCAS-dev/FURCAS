@@ -102,6 +102,7 @@ public class QueryParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExpressionWhereEntryAccess().getRhsAssignment_2(), "rule__ExpressionWhereEntry__RhsAssignment_2");
 					put(grammarAccess.getAliasAttributeExpressionAccess().getAliasAssignment_0(), "rule__AliasAttributeExpression__AliasAssignment_0");
 					put(grammarAccess.getAliasAttributeExpressionAccess().getAttributeAssignment_1_1(), "rule__AliasAttributeExpression__AttributeAssignment_1_1");
+					put(grammarAccess.getReplacableValueAccess().getValueAssignment(), "rule__ReplacableValue__ValueAssignment");
 					put(grammarAccess.getDoubleExpressionAccess().getValueAssignment(), "rule__DoubleExpression__ValueAssignment");
 					put(grammarAccess.getLongExpressionAccess().getValueAssignment(), "rule__LongExpression__ValueAssignment");
 					put(grammarAccess.getStringExpressionAccess().getValueAssignment(), "rule__StringExpression__ValueAssignment");

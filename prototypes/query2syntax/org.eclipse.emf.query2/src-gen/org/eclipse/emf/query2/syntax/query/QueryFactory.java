@@ -144,6 +144,15 @@ public interface QueryFactory extends EFactory
   Expression createExpression();
 
   /**
+   * Returns a new object of class '<em>Replacable Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Replacable Value</em>'.
+   * @generated
+   */
+  ReplacableValue createReplacableValue();
+
+  /**
    * Returns a new object of class '<em>Double Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
