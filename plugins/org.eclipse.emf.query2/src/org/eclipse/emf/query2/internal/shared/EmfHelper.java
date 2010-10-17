@@ -94,7 +94,7 @@ public class EmfHelper {
 					Resource[] array = rs.getResources().toArray(new Resource[rs.getResources().size()]);
 					for (int i = 0; i < array.length; i++) {
 						Resource r = array[i];
-						if (r.isLoaded() /* && (!r.isTrackingModification() || r.isModified()) */) {
+						if (r.isLoaded() && (!r.isTrackingModification() || r.isModified())) {
 							rd.resourceChanged(updater, r);
 						}
 					}
@@ -171,13 +171,11 @@ public class EmfHelper {
 
 	private void addToIndex(final Resource r) {
 		dirtyIndex.executeUpdateCommand(new UpdateCommandAdapter() {
-
 			@Override
 			public void execute(IndexUpdater updater) {
 				ResourceIndexer rd = ResourceIndexer.INSTANCE;
 				rd.resourceChanged(updater, r);
 			}
-
 		});
 	}
 
