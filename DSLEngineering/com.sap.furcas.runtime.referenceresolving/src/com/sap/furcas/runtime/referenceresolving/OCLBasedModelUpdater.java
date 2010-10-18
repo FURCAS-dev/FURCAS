@@ -1,5 +1,6 @@
 package com.sap.furcas.runtime.referenceresolving;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import com.sap.emf.ocl.trigger.Triggerable;
@@ -13,5 +14,5 @@ import com.sap.emf.ocl.trigger.Triggerable;
  *
  */
 public interface OCLBasedModelUpdater extends Triggerable {
-    
+    EStructuralFeature getPropertyToUpdate();
 }
