@@ -4,9 +4,12 @@ import java.util.Collection;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+
+import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.ActivationOption;
 
 /**
  * A callback that wants to get triggered when one of the expressions returned from {@link #getTriggerExpressions()} may
@@ -16,8 +19,8 @@ import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
  *
  */
 public interface Triggerable {
-    Collection<ExpressionWithContext> getTriggerExpressions();
     void notify(OCLExpression expression, Collection<EObject> affectedContextObjects, OppositeEndFinder oppositeEndFinder);
+    Collection<AdapterForExpression> getAdapters(OppositeEndFinder oppositeEndFinder, ActivationOption impactAnalysisConfiguration) throws ParserException;
     
     /**
      * Used to provide an {@link OCLExpression} with an optional context type. This is required if the expression

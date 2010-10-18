@@ -1,4 +1,4 @@
-package com.sap.emf.ocl.trigger.impl;
+package com.sap.emf.ocl.trigger;
 
 import java.util.Collection;
 
@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
-import com.sap.emf.ocl.trigger.Triggerable;
 
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
@@ -34,7 +33,7 @@ public class AdapterForExpression extends AdapterImpl {
      * With this constructor, the expression must contain a <code>self</code> occurrence that allows us to infer the context type.
      * @param notifyOnNewContextElements TODO
      */
-    AdapterForExpression(Triggerable triggerableToNotify, OCLExpression expression, boolean notifyOnNewContextElements, OppositeEndFinder oppositeEndFinder, ActivationOption configuration) {
+    public AdapterForExpression(Triggerable triggerableToNotify, OCLExpression expression, boolean notifyOnNewContextElements, OppositeEndFinder oppositeEndFinder, ActivationOption configuration) {
         this.triggerableToNotify = triggerableToNotify;
         this.expression = expression;
         this.impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, notifyOnNewContextElements, oppositeEndFinder, configuration);
@@ -46,7 +45,7 @@ public class AdapterForExpression extends AdapterImpl {
      * occurrence of <code>self</code>, its type must be the same as <code>context</code>.
      * @param notifyOnNewContextElements TODO
      */
-    AdapterForExpression(Triggerable triggerableToNotify, OCLExpression expression, EClass context, boolean notifyOnNewContextElements, OppositeEndFinder oppositeEndFinder, ActivationOption configuration) {
+    public AdapterForExpression(Triggerable triggerableToNotify, OCLExpression expression, EClass context, boolean notifyOnNewContextElements, OppositeEndFinder oppositeEndFinder, ActivationOption configuration) {
         if (context == null) {
             throw new IllegalArgumentException("This constructor expects a non-null context type for expression "+expression);
         }

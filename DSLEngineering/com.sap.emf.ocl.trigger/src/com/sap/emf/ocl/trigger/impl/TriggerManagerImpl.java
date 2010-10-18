@@ -5,6 +5,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+import com.sap.emf.ocl.trigger.AdapterForExpression;
 import com.sap.emf.ocl.trigger.TriggerManager;
 import com.sap.emf.ocl.trigger.Triggerable;
 import com.sap.emf.ocl.trigger.Triggerable.ExpressionWithContext;
