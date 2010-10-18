@@ -17,9 +17,10 @@ import com.sap.furcas.metamodel.textblocks.Bostoken;
 import com.sap.furcas.metamodel.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.textblocks.Eostoken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
+import com.sap.furcas.metamodel.textblocks.TextblocksFactory;
 import com.sap.furcas.metamodel.textblocks.Version;
 import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
+import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.parser.textblocks.ParsingTextblocksActivator;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
@@ -69,7 +70,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 	protected int constructionOffset;
 	protected AbstractToken constructionToken;
 
-	private List<TextBlock> changedBlocks = new ArrayList<TextBlock>();
+	private final List<TextBlock> changedBlocks = new ArrayList<TextBlock>();
 	protected ShortPrettyPrinter shortPrettyPrinter;
 	public IncrementalLexer(LexerAdapter lexerAdapter, IModelElementInvestigator mi,
 			ResourceSet moinConnection, int bosTokenType, int eosTokenType) {
@@ -88,8 +89,8 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 	}
 	
 	public Eostoken getEOS() {
-	        if(!eosRef.is___Alive()) {
-	            eosRef = createEOSToken(textblocksPackage, Version.CURRENT, getEOSTokenType());
+	        if(!EcoreHelper.isAlive(eosRef)) {
+	            eosRef = createEOSToken(textblocksFactory, Version.CURRENT, getEOSTokenType());
 	        }
 		return eosRef;
 	}
@@ -98,18 +99,18 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 		return bosRef;
 	}
 
-	public static Bostoken createBOSToken(TextblocksPackage tbPack,
+	public static Bostoken createBOSToken(TextblocksFactory tbFactory,
 			Version version, int BOSTokenType) {
-		Bostoken bos = (Bostoken) tbPack.getBostoken().refCreateInstance();
+		Bostoken bos = tbFactory.createBostoken();
 		TbVersionUtil.setVersion(bos, version);
 		bos.setValue(BOS);
 		bos.setType(BOSTokenType);
 		return bos;
 	}
 
-	public static Eostoken createEOSToken(TextblocksPackage tbPack,
+	public static Eostoken createEOSToken(TextblocksFactory tbFactory,
 			Version version, int eOSTokenType) {
-		Eostoken eos = (Eostoken) tbPack.getEostoken().refCreateInstance();
+		Eostoken eos = tbFactory.createEostoken();
 		TbVersionUtil.setVersion(eos, version);
 		eos.setValue(EOS);
 		eos.setType(eOSTokenType);
@@ -560,7 +561,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 		}
 		// Adds EOS token if missing fro mnew copy: TODO When and why would we ever expect this to happen?
 		if (!(currentRoot.getTokens().get(currentRoot.getTokens().size() - 1) instanceof Eostoken)) {
-			AbstractToken eosTok = createEOSToken(textblocksPackage, Version.CURRENT,
+			AbstractToken eosTok = createEOSToken(textblocksFactory, Version.CURRENT,
 					getEOSTokenType());
 			eosTok.setOffset(currentRoot.getLength());
 			eosTok.setOffsetRelative(true);
@@ -709,7 +710,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 		TextBlock currentVersion = getOtherVersion(tb,
 				Version.CURRENT);
 		if (currentVersion == null) {
-			currentVersion = (TextBlock) textblocksPackage.getTextBlock()
+			currentVersion = (TextBlock) textblocksFactory.getTextBlock()
 					.refCreateInstanceInPartition(
 							((EObject) tb).eResource());
 			currentVersion.setVersion(Version.CURRENT);
@@ -717,7 +718,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 			if (tb.getParent() == null) {
 				// If its the root block then add also the BOS token
 				currentVersion.getTokens().add(
-						createBOSToken(textblocksPackage, Version.CURRENT,
+						createBOSToken(textblocksFactory, Version.CURRENT,
 								getBOSTokenType()));
 			}
 			// also copy cached string represenation

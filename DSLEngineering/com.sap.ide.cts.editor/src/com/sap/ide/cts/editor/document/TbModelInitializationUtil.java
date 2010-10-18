@@ -15,8 +15,13 @@ import com.sap.furcas.metamodel.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.textblocks.Eostoken;
 import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.TextblocksFactory;
 import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
 import com.sap.furcas.metamodel.textblocks.Version;
+import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
+import com.sap.furcas.runtime.textblocks.TbUtil;
+import com.sap.furcas.runtime.textblocks.validation.TbValidationUtil;
 import com.sap.ide.cts.editor.CtsActivator;
 import com.sap.ide.cts.editor.commands.PrettyPrintCommand;
 import com.sap.ide.cts.editor.prettyprint.CtsTextBlockTCSExtractorStream;
@@ -164,8 +169,8 @@ public class TbModelInitializationUtil {
      * TODO this has to be adapted if there is going to be an extra partition
      * for model elements
      */
-    private static Resource getPartitionForTextBlocks(RefBaseObject modelElement) {
-	return ((EObject) modelElement).get___Partition();
+    private static Resource getPartitionForTextBlocks(EObject modelElement) {
+	return (modelElement).eResource();
     }
 
     /**
@@ -176,15 +181,15 @@ public class TbModelInitializationUtil {
      * @return
      */
     private static TextBlock createNewTextBlockModel(EObject rootObject, Resource partitionForTextBlocks) {
-	TextblocksPackage tbPackage = ((EObject) rootObject).get___Connection().getPackage(
-		TextblocksPackage.PACKAGE_DESCRIPTOR);
-	TextBlock rootBlock = (TextBlock) tbPackage.getTextBlock().refCreateInstanceInPartition(partitionForTextBlocks);
+	TextblocksFactory tbFactory = TextblocksFactory.eINSTANCE;
+	TextBlock rootBlock = tbFactory.createTextBlock();
+	partitionForTextBlocks.getContents().add(rootBlock);
 	rootBlock.getCorrespondingModelElements().add(rootObject);
-	Bostoken bosToken = ANTLRIncrementalLexerAdapter.createBOSToken(tbPackage, Version.REFERENCE,
+	Bostoken bosToken = ANTLRIncrementalLexerAdapter.createBOSToken(tbFactory, Version.REFERENCE,
 		ANTLRIncrementalLexerAdapter.bosTokenType);
 	rootBlock.getTokens().add(bosToken);
 
-	LexedToken contentToken = (LexedToken) tbPackage.getLexedToken().refCreateInstance();
+	LexedToken contentToken = tbFactory.createLexedToken();
 	contentToken.setValue("");
 	contentToken.setLength(0);
 	contentToken.setEndColumn(0);
@@ -192,12 +197,12 @@ public class TbModelInitializationUtil {
 	contentToken.setVersion(Version.REFERENCE);
 	rootBlock.getTokens().add(contentToken);
 
-	Eostoken eosToken = ANTLRIncrementalLexerAdapter.createEOSToken(tbPackage, Version.REFERENCE,
+	Eostoken eosToken = ANTLRIncrementalLexerAdapter.createEOSToken(tbFactory, Version.REFERENCE,
 		ANTLRIncrementalLexerAdapter.eosTokenType);
 	rootBlock.getTokens().add(eosToken);
 
 	rootBlock.setLength(0);
-	rootBlock.setComplete(true);
+	rootBlock.setIsComplete(true);
 	rootBlock.setEndColumn(0);
 	rootBlock.setCachedString("");
 	rootBlock.setVersion(Version.REFERENCE);
