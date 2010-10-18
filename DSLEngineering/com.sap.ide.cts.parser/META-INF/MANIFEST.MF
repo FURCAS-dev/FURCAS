@@ -20,4 +20,3 @@ Export-Package: com.sap.ide.cts.parser,
  com.sap.ide.cts.parser.incremental.antlr,
  com.sap.ide.cts.parser.incremental.util
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Import-Package: com.sap.ide.cts.parser

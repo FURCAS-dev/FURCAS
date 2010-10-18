@@ -102,7 +102,7 @@ public class IncrementalParser extends IncrementalRecognizer {
         	this.referenceHandler = new ReferenceHandlerImpl(batchParser, tbtokenStream);
         	this.modelElementFactory = new ModelElementFromTextBlocksFactoryImpl(
         			batchParser, getReferenceHandler(), partitionHandler);
-        	this.tbFactory = new ReuseAwareTextBlockFactoryImpl(textblocksPackage, reuseStrategy, modelElementFactory);
+        	this.tbFactory = new ReuseAwareTextBlockFactoryImpl(textblocksFactory, reuseStrategy, modelElementFactory);
         	this.reuseStrategy = reuseStrategy;
         	this.reuseStrategy.setReferenceHandler(getReferenceHandler());
         	this.reuseStrategy.setTextBlockFactory(tbFactory);

@@ -132,6 +132,10 @@ public class ContextAndForeachHelper {
         return commonGeneralization;
     }
 
+    /**
+     * Based on the use of <code>self</code>, <code>#context</code> and <code>#foreach</code> and the template in whose context the
+     * expression occurs, determines the context type to be used for parsing the expression.
+     */
     public static EClassifier getParsingContext(String oclExpression, Template template) throws ParserException {
         EClassifier parsingContext = null;
         if (!usesContext(oclExpression)) {
