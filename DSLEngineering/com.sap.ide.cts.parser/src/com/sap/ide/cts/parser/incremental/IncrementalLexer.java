@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.Bostoken;
@@ -554,7 +555,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 			// due to its "current" version status
 			if(oldTokenInCurrentBlock instanceof Eostoken){
 				if(!wasReUsed(oldTokenInCurrentBlock)) {
-					oldTokenInCurrentBlock.refDelete();
+					EcoreUtil.delete(oldTokenInCurrentBlock);
 				}
 			}
 
