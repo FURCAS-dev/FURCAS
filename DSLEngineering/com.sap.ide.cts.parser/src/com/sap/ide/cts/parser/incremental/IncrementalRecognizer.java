@@ -16,7 +16,7 @@ import com.sap.furcas.metamodel.textblocks.Bostoken;
 import com.sap.furcas.metamodel.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.textblocks.Eostoken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
+import com.sap.furcas.metamodel.textblocks.TextblocksFactory;
 import com.sap.furcas.metamodel.textblocks.Version;
 
 
@@ -30,12 +30,12 @@ public abstract class IncrementalRecognizer {
 	public static final String BOS = "BOS";
 	protected Bostoken bosRef;
 	protected Eostoken eosRef;
-	protected TextblocksPackage textblocksPackage;
+	protected TextblocksFactory textblocksFactory;
 	protected ResourceSet connection;
 	
-	public IncrementalRecognizer(ResourceSet connection) {
-		this.connection = connection;
-		textblocksPackage = connection.getPackage(TextblocksPackage.PACKAGE_DESCRIPTOR);
+	public IncrementalRecognizer(ResourceSet resourceSet) {
+		this.connection = resourceSet;
+		textblocksFactory = TextblocksFactory.eINSTANCE;
 	}
 
 	
