@@ -121,35 +121,36 @@ public class QueryIndexBuilder extends IncrementalProjectBuilder {
 		//Only index those files which are in the extension factory map.In this case we have
 		//put the XMI in the extension factory map.
 		if (extensions.contains(fileExtension)) {
-			IndexFactory.getInstance().executeUpdateCommand(new UpdateCommandAdapter() {
+				IndexFactory.getInstance().executeUpdateCommand(new UpdateCommandAdapter() {
 
 				private Resource emfResource;
 
 				@Override
 				public void postCommitAction() {
-					//Unload on postCommit
-					final URI uri = emfResource.getURI();
-					if(uri.isPlatformResource()) {
-						emfResource.unload();
-					}
 				}
 
 				@Override
 				public void preCommitAction(IndexUpdater updater) {
-					// Load in precommit
-					final ResourceSet rs = new ResourceSetImpl();
-					String fullPath = resource.getFullPath().toString();
-					emfResource = rs.getResource(URI.createPlatformResourceURI(fullPath,true), true);
 				}
 
 				@Override
 				public void execute(final IndexUpdater updater) {
+					final ResourceSet rs = new ResourceSetImpl();
+					String fullPath = resource.getFullPath().toString();
+					emfResource = rs.getResource(URI.createPlatformResourceURI(fullPath,true), true);
+					System.out.println("preCommitAction"+emfResource.getURI());
+					
 					final ResourceIndexer indexer = new ResourceIndexer();
 					try {
 						indexer.resourceChanged(updater, emfResource);
+						System.out.println("preCommitAction"+emfResource+" IResource"+ resource.getFullPath());
 					} catch (Exception e) {
 						System.err.println("Error indexing resource: " + emfResource.getURI().toString());
 						e.printStackTrace();
+					}
+					final URI uri = emfResource.getURI();
+					if(uri.isPlatformResource()) {
+						emfResource.unload();
 					}
 				}
 			});
