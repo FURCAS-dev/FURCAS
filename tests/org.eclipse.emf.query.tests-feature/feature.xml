@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2005, 2010 IBM Corporation, Zeligsoft Inc. and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 262540
+ *
+ * </copyright>
+ */
+-->
+<feature
+      id="org.eclipse.emf.query.tests"
+      label="%featureName"
+      version="1.4.0.qualifier"
+      provider-name="%providerName"
+      image="modeling32.png">
+
+   <description url="http://www.eclipse.org/modeling/emf/?project=query">
+      %description
+   </description>
+
+   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
+      Copyright (c) 2005, 2010 IBM Corporation, Zeligsoft Inc. and others.
+All rights reserved.   This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <url>
+      <update label="%updateSiteName" url="http://download.eclipse.org/modeling/emf/updates/"/>
+      <discovery label="%updateSiteName" url="http://download.eclipse.org/modeling/emf/updates/"/>
+   </url>
+
+   <requires>
+      <import plugin="org.eclipse.core.runtime" version="3.2.0" match="compatible"/>
+      <import plugin="org.junit" version="3.8.1" match="compatible"/>
+      <import plugin="org.eclipse.emf.ecore" version="2.3.0" match="compatible"/>
+      <import plugin="org.eclipse.emf.query" version="1.2.100" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.examples.library" version="2.3.0" match="compatible"/>
+      <import plugin="org.eclipse.ocl.ecore" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.emf.query.ocl" version="2.0.0" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.emf.query.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.query.ocl.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.test"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.ant.optional.junit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"/>
+
+</feature>

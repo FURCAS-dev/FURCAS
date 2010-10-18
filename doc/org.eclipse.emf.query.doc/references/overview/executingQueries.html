@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="Stylesheet" type="text/css" href="doc.css" />
+<title>Executing Queries</title>
+</head>
+<body>
+<h1><a name="top">Executing Queries</a></h1>
+<p>
+The EMF Model Query Framework provides two kinds of query statements:  the
+<em class="CodeName">SELECT</em> statement and the <em class="CodeName">UPDATE</em>
+statement.  The former retrieves objects matchind a <em class="CodeName">WHERE</em>
+clause condition.  The latter additionally has a <em class="CodeName">SET</em>
+clause that modifies the objects selected.
+</p>
+
+<h2>The SELECT Statement</h2>
+
+<p>
+The <a href="../javadoc/org/eclipse/emf/query/statements/SELECT.html"><em class="CodeName">SELECT</em></a>
+consists of two clauses: a
+<a href="../javadoc/org/eclipse/emf/query/statements/WHERE.html"><em class="CodeName">WHERE</em></a>
+clause that determines which objects to select (the filter) and a
+<a href="../javadoc/org/eclipse/emf/query/statements/FROM.html"><em class="CodeName">FROM</em></a>
+that provides the objects to be filtered.
+</p>
+
+<blockquote>
+	<img src="images/select.png" alt="SELECT Statement API"/><br/>
+	<font size="-2">[<a target="_blank" href="images/select.svg">as SVG</a>]</font>
+</blockquote>
+
+<p>
+The <em class="CodeName">SELECT</em> statement can additionally be configured
+with the following parameters:
+</p>
+<ul>
+  <li><em class="CodeName">maximumResultSize</em> - the maximal number of results
+      to retrieve in one execution.  In performance-sensitive applications, this
+      can be used to break queries into batches for incremental processing.  When
+      a partial query result is returned and processed, the query can be
+      <em class="CodeName">resume()</em>d to produce the next batch of results.
+      To enquire whether there are further results to obtain, use the
+      <em class="CodeName">canBeResumed()</em> method.  The default limit is
+      <em class="CodeName">SELECT.UNBOUNDED</em>.</li>
+  <li><em class="CodeName">cancellable</em> - whether the query can be cancelled
+      by a progress monitor cancellation.  Default is <em class="CodeName">true</em>.</li>
+  <li><em class="CodeName">progressMonitor</em> - a progress monitor in which
+      to report progress and check for cancellation.</li>
+</ul>
+<p>
+The <em class="CodeName">FROM</em> clause may be initialized either with a
+single <em class="CodeName">EObject</em>, a <em class="CodeName">Collection</em>
+of EObjects, or an <em class="CodeName">IEObjectSource</em>.  In any form, the
+<em class="CodeName">FROM</em> clause defines the scope of the search.  It may
+optionally be configured with an <em class="CodeName">IteratorKind</em> to choose
+whether the query is a flat iteration of the initial objects or a tree
+iteration (the default).  As <em class="CodeName">SELECT</em> statements are,
+themselves, <em class="CodeName">IEObjectSource</em>s, they can provide the search
+scope in the <em class="CodeName">FROM</em> clause of a nesting query.
+</p>
+<p>
+The <a href="../javadoc/org/eclipse/emf/query/statements/WHERE.html"><em class="CodeName">WHERE</em></a>
+clause specifies the filtering condition that selects the objects from the
+<em class="CodeName">FROM</em> clause that are returned in the query result.  It
+is very simple, initialized only with an <em class="CodeName">EObjectCondition</em>.
+</p>
+<p>
+Query results are returned by the <em class="CodeName">execute()</em> method as an
+<a href="../javadoc/org/eclipse/emf/query/statements/IQueryResult.html"><em class="CodeName">IQueryResult</em></a>
+which is a <em class="CodeName">Collection</em> that also encapsulates an
+exception.  If any exception occurred during the execution of the query, the
+result will have it in addition to a partial result set (or none).
+</p>
+<pre class="Code">
+// to find a name that contains 'Dickens'
+Condition dickens = new SubStringValue("Dickens");
+
+// to find a writer whose name is Dickens
+EObjectCondition isDickens = new EObjectAttributeValueCondition(
+        EXTLibraryPackage.Literals.WRITER__NAME, dickens);
+
+// to find a book whose author is a writer named Dickens
+EObjectCondition byDickens = new EObjectReferenceValueCondition(
+        EXTLibraryPackage.Literals.BOOK__AUTHOR, isDickens);
+
+// search from the root of the library hierarchy to find books by Dickens
+Library mainBranch = getMainBranch();
+
+<b>IQueryResult</b> result = new <b>SELECT</b>(
+        new <b>FROM(mainBranch)</b>,
+        new <b>WHERE(byDickens)</b>)
+    .<b>execute</b>();
+
+if (result.<b>getException()</b> != null) {
+    log(result.getException());
+} else {
+    for (Object next : result) {
+        System.out.println("Found " + ((Book) next).getTitle());
+    }
+}   
+</pre>
+
+<h2>The UPDATE Statement</h2>
+
+<p>
+The <a href="../javadoc/org/eclipse/emf/query/statements/UPDATE.html"><em class="CodeName">UPDATE</em></a>
+statement is in all respects just like the <em class="CodeName">SELECT</em>
+statement except that it additionally modifies the objects that it finds using a
+<a href="../javadoc/org/eclipse/emf/query/statements/SET.html"><em class="CodeName">SET</em></a>
+clause, and then returns only those for which the <em class="CodeName">SET</em>
+returns <em class="CodeName">true</em> to indicate that the object was
+successfully updated.
+</p>
+
+<blockquote>
+	<img src="images/update.png" alt="UPDATE Statement API"/><br/>
+	<font size="-2">[<a target="_blank" href="images/update.svg">as SVG</a>]</font>
+</blockquote>
+
+<p>
+The <em class="CodeName">SET</em> clause receives, in the
+<em class="CodeName">set(EObject)</em> method, each object in turned that is
+selected, for which the client provides an implementation that mutates the
+object.  Objects that are successfully updated are appended to the query result.
+</p>
+<pre class="Code">
+// update books by Dickens to set them all as mysteries
+
+<b>IQueryResult</b> result = new <b>UPDATE</b>(
+        new <b>FROM(mainBranch)</b>,
+        new <b>WHERE(byDickens)</b>,
+        new <b>SET</b>() {
+            public boolean <b>set</b>(EObject object) {
+                ((Book) object).<b>setCategory</b>(BookCategory.MYSTERY_LITERAL);
+                return true;
+            })
+    .<b>execute</b>();
+
+if (result.<b>getException()</b> != null) {
+    log(result.getException());
+} else {
+    for (Object next : result) {
+        System.out.println(((Book) next).getTitle() + " is now a mystery");
+    }
+}   
+
+</pre>
+
+<hr/>
+
+<p>
+<a href="http://www.eclipse.org/legal/epl-v10.html">Copyright (c) 2000, 2007 IBM Corporation and others. All Rights Reserved.</a>
+</p>
+</body>
+</html>
