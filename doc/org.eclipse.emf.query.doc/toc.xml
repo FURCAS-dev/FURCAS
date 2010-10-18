@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="EMF Model Query Developer Guide">
+
+	<anchor id="overviews-before" />
+	<topic label="Programmer&apos;s Guide">
+		<topic label="Model Query Overview" href="references/overview/QueryOverview.html" />
+		<topic label="Basic Conditions" href="references/overview/basicConditions.html" />
+		<topic label="Value Adapters" href="references/overview/valueAdapters.html" />
+		<topic label="Conditions on EObjects" href="references/overview/eobjectConditions.html" />
+		<topic label="Conditions on Features" href="references/overview/featureConditions.html" />
+		<topic label="Executing Queries" href="references/overview/executingQueries.html" />
+		<topic label="Pruning the Search Tree" href="references/overview/pruning.html" />
+		<topic label="Querying with OCL" href="references/overview/oclQuery.html" />
+	</topic>
+	<anchor id="overviews-after" />
+
+	<anchor id="tutorial-before" />
+	<topic label="Tutorials">	
+		<topic label="Query Tutorial" href="tutorials/queryTutorial.html" />
+		<topic label="OCL Query Tutorial" href="tutorials/oclQueryTutorial.html" />
+	</topic>
+	<anchor id="tutorial-after" />
+
+	<anchor id="example-guide-before" />
+	<topic label="Examples Guide">			
+		<topic label="Query Example" href="references/examples/queryExample.html" />
+		<topic label="OCL Query Example" href="references/examples/oclQueryExample.html" />		
+	</topic>
+	<anchor id="example-guide-after" />
+
+	<topic label="Reference">
+		<link toc="topics_Reference.xml"/>
+	</topic>
+</toc>

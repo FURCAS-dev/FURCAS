@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Plugin.name
+Bundle-SymbolicName: org.eclipse.emf.query.examples.statements; singleton:=true
+Bundle-Version: 1.2.0.qualifier
+Bundle-Activator: org.eclipse.emf.query.examples.statements.QueryPlugin
+Bundle-Vendor: %Plugin.providerName
+Bundle-Localization: plugin
+Export-Package: org.eclipse.emf.query.examples.statements,
+ org.eclipse.emf.query.examples.statements.actions,
+ org.eclipse.emf.query.examples.statements.internal.l10n;x-internal:=true
+Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.emf.query;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.emf.examples.library;bundle-version="[2.3.0,3.0.0)",
+ org.eclipse.emf.examples.library.edit;bundle-version="[2.3.0,3.0.0)",
+ org.eclipse.emf.examples.library.editor;bundle-version="[2.3.0,3.0.0)",
+ org.eclipse.emf;bundle-version="[2.3.0,3.0.0)"
+Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

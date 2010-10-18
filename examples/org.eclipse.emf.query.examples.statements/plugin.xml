@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<!--
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2005 IBM Corporation and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   IBM - Initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id$
+ */
+-->
+<plugin>
+
+     <extension point="org.eclipse.ui.editorActions"> 
+      <editorContribution 
+         id="org.eclipse.emf.query.examples.statements.editorContribution" 
+         targetID="org.eclipse.emf.examples.extlibrary.presentation.EXTLibraryEditorID"> 
+         <menu
+               label="%_UI_QueryMenu_label"
+               path="org.eclipse.emf.examples.extlibraryMenuID/additions"
+               id="org.eclipse.emf.queryMenuID">
+            <separator name="additions"/>
+         </menu>
+         <action
+               label="%_UI_SelectBooksAction_label"
+               icon="$nl$/icons/elcl16/queryedit_co.gif"
+               class="org.eclipse.emf.query.examples.statements.actions.SelectBooksDelegate"
+               menubarPath="org.eclipse.emf.examples.extlibraryMenuID/org.eclipse.emf.queryMenuID/additions"
+               id="org.eclipse.emf.query.examples.statements.SelectBooksAction">
+            <enablement>
+               <objectClass name="org.eclipse.emf.ecore.EObject"/>
+            </enablement>
+         </action>
+         <action
+               label="%_UI_SelectWritersAction_label"
+               icon="$nl$/icons/elcl16/queryedit_co.gif"
+               class="org.eclipse.emf.query.examples.statements.actions.SelectWritersDelegate"
+               menubarPath="org.eclipse.emf.examples.extlibraryMenuID/org.eclipse.emf.queryMenuID/additions"
+               id="org.eclipse.emf.query.examples.statements.SelectWritersAction">
+            <enablement>
+               <objectClass name="org.eclipse.emf.ecore.EObject"/>
+            </enablement>
+         </action>
+         <action
+               label="%_UI_SelectLargeBooksAction_label"
+               icon="$nl$/icons/elcl16/queryedit_co.gif"
+               class="org.eclipse.emf.query.examples.statements.actions.SelectLargeBooksDelegate"
+               menubarPath="org.eclipse.emf.examples.extlibraryMenuID/org.eclipse.emf.queryMenuID/additions"
+               id="org.eclipse.emf.query.examples.statements.SelectLargeBooksAction">
+            <enablement>
+               <objectClass name="org.eclipse.emf.ecore.EObject"/>
+            </enablement>
+         </action>
+      </editorContribution> 
+   </extension> 
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <viewerContribution
+            targetID="org.eclipse.emf.examples.extlibrary.presentation.EXTLibraryEditorID"
+            id="org.eclipse.emf.query.examples.statements.viewerContribution">
+         <menu
+               label="%_UI_QueryMenu_label"
+               path="additions"
+               id="org.eclipse.emf.queryMenuID">
+            <separator name="additions"/>
+         </menu>
+         <action
+               label="%_UI_SelectBooksAction_label"
+               icon="$nl$/icons/elcl16/queryedit_co.gif"
+               class="org.eclipse.emf.query.examples.statements.actions.SelectBooksDelegate"
+               menubarPath="org.eclipse.emf.queryMenuID/additions"
+               id="org.eclipse.emf.query.examples.statements.SelectBooksAction">
+            <enablement>
+               <objectClass name="org.eclipse.emf.ecore.EObject"/>
+            </enablement>
+         </action>
+         <action
+               label="%_UI_SelectWritersAction_label"
+               icon="$nl$/icons/elcl16/queryedit_co.gif"
+               class="org.eclipse.emf.query.examples.statements.actions.SelectWritersDelegate"
+               menubarPath="org.eclipse.emf.queryMenuID/additions"
+               id="org.eclipse.emf.query.examples.statements.SelectWritersAction">
+            <enablement>
+               <objectClass name="org.eclipse.emf.ecore.EObject"/>
+            </enablement>
+         </action>
+         <action
+               label="%_UI_SelectLargeBooksAction_label"
+               icon="$nl$/icons/elcl16/queryedit_co.gif"
+               class="org.eclipse.emf.query.examples.statements.actions.SelectLargeBooksDelegate"
+               menubarPath="org.eclipse.emf.queryMenuID/additions"
+               id="org.eclipse.emf.query.examples.statements.SelectLargeBooksAction">
+            <enablement>
+               <objectClass name="org.eclipse.emf.ecore.EObject"/>
+            </enablement>
+         </action>
+      </viewerContribution>
+   </extension> 
+</plugin>

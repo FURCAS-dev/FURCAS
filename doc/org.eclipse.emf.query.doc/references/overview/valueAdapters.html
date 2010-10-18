@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="Stylesheet" type="text/css" href="doc.css" />
+<title>Value Adapters</title>
+</head>
+<body>
+<h1><a name="top">Value Adapters</a></h1>
+
+<p>
+The <a href="basicConditions.html#primitives">primitive value conditions</a>
+work well with inputs that match their respective types.  But what about models
+that use, for example, string attributes to represent numeric data?  Enter the
+value adapter.
+</p>
+
+<blockquote>
+	<img src="images/valueAdapters.png" alt="Value Adapters API"/><br/>
+	<font size="-2">[<a target="_blank" href="images/valueAdapters.svg">as SVG</a>]</font>
+</blockquote>
+
+<p>
+Each adapter type has a shared default instance that simply assumes that the
+input value is of the expected type, and casts it.  The abstract
+<em class="CodeName">NumberAdapter</em> has concrete inner subclasses to
+parallel the <em class="CodeName">NumberCondition</em>s.
+</p><p>
+As an example, consider a query that would look for books published in 1990 or
+later.  It might be just as easy to create a custom date condition type,
+but it could make use of a condition like this:
+</p>
+<pre class="Code">
+// get the long representation of midnight, Jan. 1, 1990
+Calendar midnightJan1_1990 = Calendar.getInstance();
+midnightJan1_1990.set(1990, Calendar.JANUARY, 1, 0, 0, 0);
+long time = midnightJan1_1990.getTimeInMillis();
+
+NumberAdapter dateAdapter = new NumberAdapter.LongAdapter() {
+    public long longValue(Object object) {
+        return ((Date) object).getTime();
+    }};
+
+Object subject = new Date();
+
+// match dates on or after midnight, Jan. 1, 1990
+Condition cond = new NumberCondition.LongValue(time, Long.MAX_VALUE, <b>dateAdapter</b>);
+
+System.out.println("Test: ", cond.isSatisfied(subject));
+</pre>
+
+<hr/>
+
+<p>
+<a href="http://www.eclipse.org/legal/epl-v10.html">Copyright (c) 2000, 2007 IBM Corporation and others. All Rights Reserved.</a>
+</p>
+</body>
+</html>
