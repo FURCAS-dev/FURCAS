@@ -59,7 +59,7 @@ public class AdapterForExpression extends AdapterImpl {
         return impactAnalyzer;
     }
     
-    public EventFilter getEventFilter(boolean notifyNewContextElements) {
+    public EventFilter getEventFilter() {
         return impactAnalyzer.createFilterForExpression();
     }
     
@@ -69,5 +69,5 @@ public class AdapterForExpression extends AdapterImpl {
         Collection<EObject> affectedContextObjects = ia.getContextObjects(msg);
         triggerableToNotify.notify(expression, affectedContextObjects, oppositeEndFinder);
     }
-    
+
 }
