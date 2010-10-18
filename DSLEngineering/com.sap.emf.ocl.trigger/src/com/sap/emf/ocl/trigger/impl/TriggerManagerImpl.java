@@ -44,10 +44,10 @@ public class TriggerManagerImpl implements TriggerManager {
             AdapterForExpression adapter;
             if (expressionInOCL.getContext() != null) {
                 adapter = new AdapterForExpression(triggerable, expressionInOCL.getExpression(),
-                    expressionInOCL.getContext(), oppositeEndFinder, impactAnalysisConfiguration);
+                    expressionInOCL.getContext(), expressionInOCL.isNotifyNewContextElements(), oppositeEndFinder, impactAnalysisConfiguration);
             } else {
                 adapter = new AdapterForExpression(triggerable, expressionInOCL.getExpression(),
-                        oppositeEndFinder, impactAnalysisConfiguration);
+                        expressionInOCL.isNotifyNewContextElements(), oppositeEndFinder, impactAnalysisConfiguration);
             }
             EventFilter filter = adapter.getEventFilter(expressionInOCL.isNotifyNewContextElements());
             eventManager.subscribe(filter, adapter);
