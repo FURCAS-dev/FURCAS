@@ -32,25 +32,27 @@ public class AdapterForExpression extends AdapterImpl {
     
     /**
      * With this constructor, the expression must contain a <code>self</code> occurrence that allows us to infer the context type.
+     * @param notifyOnNewContextElements TODO
      */
-    AdapterForExpression(Triggerable triggerableToNotify, OCLExpression expression, OppositeEndFinder oppositeEndFinder, ActivationOption configuration) {
+    AdapterForExpression(Triggerable triggerableToNotify, OCLExpression expression, boolean notifyOnNewContextElements, OppositeEndFinder oppositeEndFinder, ActivationOption configuration) {
         this.triggerableToNotify = triggerableToNotify;
         this.expression = expression;
-        this.impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, TODO, TODO, oppositeEndFinder, configuration);
+        this.impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, notifyOnNewContextElements, oppositeEndFinder, configuration);
         this.oppositeEndFinder = oppositeEndFinder;
     }
     
     /**
      * A non-<code>null</code> context must be provided if this constructor is used. Should the <code>expression</code> contain an
      * occurrence of <code>self</code>, its type must be the same as <code>context</code>.
+     * @param notifyOnNewContextElements TODO
      */
-    AdapterForExpression(Triggerable triggerableToNotify, OCLExpression expression, EClass context, OppositeEndFinder oppositeEndFinder, ActivationOption configuration) {
+    AdapterForExpression(Triggerable triggerableToNotify, OCLExpression expression, EClass context, boolean notifyOnNewContextElements, OppositeEndFinder oppositeEndFinder, ActivationOption configuration) {
         if (context == null) {
             throw new IllegalArgumentException("This constructor expects a non-null context type for expression "+expression);
         }
         this.triggerableToNotify = triggerableToNotify;
         this.expression = expression;
-        this.impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, context, TODO, oppositeEndFinder, configuration);
+        this.impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, context, notifyOnNewContextElements, oppositeEndFinder, configuration);
         this.oppositeEndFinder = oppositeEndFinder;
     }
     
