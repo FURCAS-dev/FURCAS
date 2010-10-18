@@ -5,3 +5,4 @@ bin/
 *.user
 *.db
 *.class
+.metadata
