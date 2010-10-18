@@ -9,8 +9,7 @@ public abstract class AbstractTriggerable implements Triggerable {
         this.triggerExpressions = triggerExpressions;
     }
 
-    @Override
-    public Collection<ExpressionWithContext> getTriggerExpressions() {
+    public Collection<ExpressionWithContext> getTriggerExpressionsWithContext() {
         return triggerExpressions;
     }
 
