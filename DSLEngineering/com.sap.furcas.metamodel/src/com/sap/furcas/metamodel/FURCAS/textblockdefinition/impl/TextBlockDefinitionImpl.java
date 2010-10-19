@@ -9,7 +9,7 @@ package com.sap.furcas.metamodel.FURCAS.textblockdefinition.impl;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.FormatPolicy;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockDefinition;
+import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionPackage;
 
 import java.util.Collection;
@@ -31,24 +31,24 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Textblock Definition</b></em>'.
+ * An implementation of the model object '<em><b>Text Block Definition</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblockdefinition.impl.TextblockDefinitionImpl#getFormatPolicy <em>Format Policy</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblockdefinition.impl.TextblockDefinitionImpl#getDefaultTemplate <em>Default Template</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblockdefinition.impl.TextblockDefinitionImpl#getParseRule <em>Parse Rule</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblockdefinition.impl.TextblockDefinitionImpl#getContext <em>Context</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblockdefinition.impl.TextblockDefinitionImpl#getSubDefinitions <em>Sub Definitions</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblockdefinition.impl.TextblockDefinitionImpl#getGeneralisation <em>Generalisation</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblockdefinition.impl.TextblockDefinitionImpl#getName <em>Name</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblockdefinition.impl.TextBlockDefinitionImpl#getFormatPolicy <em>Format Policy</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblockdefinition.impl.TextBlockDefinitionImpl#getDefaultTemplate <em>Default Template</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblockdefinition.impl.TextBlockDefinitionImpl#getParseRule <em>Parse Rule</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblockdefinition.impl.TextBlockDefinitionImpl#getContext <em>Context</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblockdefinition.impl.TextBlockDefinitionImpl#getSubDefinitions <em>Sub Definitions</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblockdefinition.impl.TextBlockDefinitionImpl#getGeneralisation <em>Generalisation</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblockdefinition.impl.TextBlockDefinitionImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class TextblockDefinitionImpl extends EObjectImpl implements TextblockDefinition {
+public class TextBlockDefinitionImpl extends EObjectImpl implements TextBlockDefinition {
         /**
          * The default value of the '{@link #getFormatPolicy() <em>Format Policy</em>}' attribute.
          * <!-- begin-user-doc -->
@@ -107,7 +107,7 @@ public class TextblockDefinitionImpl extends EObjectImpl implements TextblockDef
          * @generated
          * @ordered
          */
-        protected EList<TextblockDefinition> subDefinitions;
+        protected EList<TextBlockDefinition> subDefinitions;
 
         /**
          * The cached value of the '{@link #getGeneralisation() <em>Generalisation</em>}' reference.
@@ -117,7 +117,7 @@ public class TextblockDefinitionImpl extends EObjectImpl implements TextblockDef
          * @generated
          * @ordered
          */
-        protected TextblockDefinition generalisation;
+        protected TextBlockDefinition generalisation;
 
         /**
          * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -144,7 +144,7 @@ public class TextblockDefinitionImpl extends EObjectImpl implements TextblockDef
          * <!-- end-user-doc -->
          * @generated
          */
-        protected TextblockDefinitionImpl() {
+        protected TextBlockDefinitionImpl() {
                 super();
         }
 
@@ -155,7 +155,7 @@ public class TextblockDefinitionImpl extends EObjectImpl implements TextblockDef
          */
         @Override
         protected EClass eStaticClass() {
-                return TextblockdefinitionPackage.Literals.TEXTBLOCK_DEFINITION;
+                return TextblockdefinitionPackage.Literals.TEXT_BLOCK_DEFINITION;
         }
 
         /**
@@ -176,7 +176,7 @@ public class TextblockDefinitionImpl extends EObjectImpl implements TextblockDef
                 FormatPolicy oldFormatPolicy = formatPolicy;
                 formatPolicy = newFormatPolicy == null ? FORMAT_POLICY_EDEFAULT : newFormatPolicy;
                 if (eNotificationRequired())
-                        eNotify(new ENotificationImpl(this, Notification.SET, TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__FORMAT_POLICY, oldFormatPolicy, formatPolicy));
+                        eNotify(new ENotificationImpl(this, Notification.SET, TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__FORMAT_POLICY, oldFormatPolicy, formatPolicy));
         }
 
         /**
@@ -197,7 +197,7 @@ public class TextblockDefinitionImpl extends EObjectImpl implements TextblockDef
                 String oldDefaultTemplate = defaultTemplate;
                 defaultTemplate = newDefaultTemplate;
                 if (eNotificationRequired())
-                        eNotify(new ENotificationImpl(this, Notification.SET, TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__DEFAULT_TEMPLATE, oldDefaultTemplate, defaultTemplate));
+                        eNotify(new ENotificationImpl(this, Notification.SET, TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__DEFAULT_TEMPLATE, oldDefaultTemplate, defaultTemplate));
         }
 
         /**
@@ -211,7 +211,7 @@ public class TextblockDefinitionImpl extends EObjectImpl implements TextblockDef
                         parseRule = (Template)eResolveProxy(oldParseRule);
                         if (parseRule != oldParseRule) {
                                 if (eNotificationRequired())
-                                        eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__PARSE_RULE, oldParseRule, parseRule));
+                                        eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__PARSE_RULE, oldParseRule, parseRule));
                         }
                 }
                 return parseRule;
@@ -235,7 +235,7 @@ public class TextblockDefinitionImpl extends EObjectImpl implements TextblockDef
                 Template oldParseRule = parseRule;
                 parseRule = newParseRule;
                 if (eNotificationRequired())
-                        eNotify(new ENotificationImpl(this, Notification.SET, TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__PARSE_RULE, oldParseRule, parseRule));
+                        eNotify(new ENotificationImpl(this, Notification.SET, TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__PARSE_RULE, oldParseRule, parseRule));
         }
 
         /**
@@ -243,9 +243,9 @@ public class TextblockDefinitionImpl extends EObjectImpl implements TextblockDef
          * <!-- end-user-doc -->
          * @generated
          */
-        public TextblockDefinition getContext() {
-                if (eContainerFeatureID() != TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__CONTEXT) return null;
-                return (TextblockDefinition)eContainer();
+        public TextBlockDefinition getContext() {
+                if (eContainerFeatureID() != TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__CONTEXT) return null;
+                return (TextBlockDefinition)eContainer();
         }
 
         /**
@@ -253,8 +253,8 @@ public class TextblockDefinitionImpl extends EObjectImpl implements TextblockDef
          * <!-- end-user-doc -->
          * @generated
          */
-        public NotificationChain basicSetContext(TextblockDefinition newContext, NotificationChain msgs) {
-                msgs = eBasicSetContainer((InternalEObject)newContext, TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__CONTEXT, msgs);
+        public NotificationChain basicSetContext(TextBlockDefinition newContext, NotificationChain msgs) {
+                msgs = eBasicSetContainer((InternalEObject)newContext, TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__CONTEXT, msgs);
                 return msgs;
         }
 
@@ -263,20 +263,20 @@ public class TextblockDefinitionImpl extends EObjectImpl implements TextblockDef
          * <!-- end-user-doc -->
          * @generated
          */
-        public void setContext(TextblockDefinition newContext) {
-                if (newContext != eInternalContainer() || (eContainerFeatureID() != TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__CONTEXT && newContext != null)) {
+        public void setContext(TextBlockDefinition newContext) {
+                if (newContext != eInternalContainer() || (eContainerFeatureID() != TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__CONTEXT && newContext != null)) {
                         if (EcoreUtil.isAncestor(this, newContext))
                                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
                         NotificationChain msgs = null;
                         if (eInternalContainer() != null)
                                 msgs = eBasicRemoveFromContainer(msgs);
                         if (newContext != null)
-                                msgs = ((InternalEObject)newContext).eInverseAdd(this, TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__SUB_DEFINITIONS, TextblockDefinition.class, msgs);
+                                msgs = ((InternalEObject)newContext).eInverseAdd(this, TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__SUB_DEFINITIONS, TextBlockDefinition.class, msgs);
                         msgs = basicSetContext(newContext, msgs);
                         if (msgs != null) msgs.dispatch();
                 }
                 else if (eNotificationRequired())
-                        eNotify(new ENotificationImpl(this, Notification.SET, TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__CONTEXT, newContext, newContext));
+                        eNotify(new ENotificationImpl(this, Notification.SET, TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__CONTEXT, newContext, newContext));
         }
 
         /**
@@ -284,9 +284,9 @@ public class TextblockDefinitionImpl extends EObjectImpl implements TextblockDef
          * <!-- end-user-doc -->
          * @generated
          */
-        public EList<TextblockDefinition> getSubDefinitions() {
+        public EList<TextBlockDefinition> getSubDefinitions() {
                 if (subDefinitions == null) {
-                        subDefinitions = new EObjectContainmentWithInverseEList<TextblockDefinition>(TextblockDefinition.class, this, TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__SUB_DEFINITIONS, TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__CONTEXT);
+                        subDefinitions = new EObjectContainmentWithInverseEList<TextBlockDefinition>(TextBlockDefinition.class, this, TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__SUB_DEFINITIONS, TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__CONTEXT);
                 }
                 return subDefinitions;
         }
@@ -296,13 +296,13 @@ public class TextblockDefinitionImpl extends EObjectImpl implements TextblockDef
          * <!-- end-user-doc -->
          * @generated
          */
-        public TextblockDefinition getGeneralisation() {
+        public TextBlockDefinition getGeneralisation() {
                 if (generalisation != null && generalisation.eIsProxy()) {
                         InternalEObject oldGeneralisation = (InternalEObject)generalisation;
-                        generalisation = (TextblockDefinition)eResolveProxy(oldGeneralisation);
+                        generalisation = (TextBlockDefinition)eResolveProxy(oldGeneralisation);
                         if (generalisation != oldGeneralisation) {
                                 if (eNotificationRequired())
-                                        eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__GENERALISATION, oldGeneralisation, generalisation));
+                                        eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__GENERALISATION, oldGeneralisation, generalisation));
                         }
                 }
                 return generalisation;
@@ -313,7 +313,7 @@ public class TextblockDefinitionImpl extends EObjectImpl implements TextblockDef
          * <!-- end-user-doc -->
          * @generated
          */
-        public TextblockDefinition basicGetGeneralisation() {
+        public TextBlockDefinition basicGetGeneralisation() {
                 return generalisation;
         }
 
@@ -322,11 +322,11 @@ public class TextblockDefinitionImpl extends EObjectImpl implements TextblockDef
          * <!-- end-user-doc -->
          * @generated
          */
-        public void setGeneralisation(TextblockDefinition newGeneralisation) {
-                TextblockDefinition oldGeneralisation = generalisation;
+        public void setGeneralisation(TextBlockDefinition newGeneralisation) {
+                TextBlockDefinition oldGeneralisation = generalisation;
                 generalisation = newGeneralisation;
                 if (eNotificationRequired())
-                        eNotify(new ENotificationImpl(this, Notification.SET, TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__GENERALISATION, oldGeneralisation, generalisation));
+                        eNotify(new ENotificationImpl(this, Notification.SET, TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__GENERALISATION, oldGeneralisation, generalisation));
         }
 
         /**
@@ -347,7 +347,7 @@ public class TextblockDefinitionImpl extends EObjectImpl implements TextblockDef
                 String oldName = name;
                 name = newName;
                 if (eNotificationRequired())
-                        eNotify(new ENotificationImpl(this, Notification.SET, TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__NAME, oldName, name));
+                        eNotify(new ENotificationImpl(this, Notification.SET, TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__NAME, oldName, name));
         }
 
         /**
@@ -359,11 +359,11 @@ public class TextblockDefinitionImpl extends EObjectImpl implements TextblockDef
         @Override
         public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
                 switch (featureID) {
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__CONTEXT:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__CONTEXT:
                                 if (eInternalContainer() != null)
                                         msgs = eBasicRemoveFromContainer(msgs);
-                                return basicSetContext((TextblockDefinition)otherEnd, msgs);
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__SUB_DEFINITIONS:
+                                return basicSetContext((TextBlockDefinition)otherEnd, msgs);
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__SUB_DEFINITIONS:
                                 return ((InternalEList<InternalEObject>)(InternalEList<?>)getSubDefinitions()).basicAdd(otherEnd, msgs);
                 }
                 return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -377,9 +377,9 @@ public class TextblockDefinitionImpl extends EObjectImpl implements TextblockDef
         @Override
         public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
                 switch (featureID) {
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__CONTEXT:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__CONTEXT:
                                 return basicSetContext(null, msgs);
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__SUB_DEFINITIONS:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__SUB_DEFINITIONS:
                                 return ((InternalEList<?>)getSubDefinitions()).basicRemove(otherEnd, msgs);
                 }
                 return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -393,8 +393,8 @@ public class TextblockDefinitionImpl extends EObjectImpl implements TextblockDef
         @Override
         public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
                 switch (eContainerFeatureID()) {
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__CONTEXT:
-                                return eInternalContainer().eInverseRemove(this, TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__SUB_DEFINITIONS, TextblockDefinition.class, msgs);
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__CONTEXT:
+                                return eInternalContainer().eInverseRemove(this, TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__SUB_DEFINITIONS, TextBlockDefinition.class, msgs);
                 }
                 return super.eBasicRemoveFromContainerFeature(msgs);
         }
@@ -407,21 +407,21 @@ public class TextblockDefinitionImpl extends EObjectImpl implements TextblockDef
         @Override
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
                 switch (featureID) {
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__FORMAT_POLICY:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__FORMAT_POLICY:
                                 return getFormatPolicy();
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__DEFAULT_TEMPLATE:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__DEFAULT_TEMPLATE:
                                 return getDefaultTemplate();
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__PARSE_RULE:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__PARSE_RULE:
                                 if (resolve) return getParseRule();
                                 return basicGetParseRule();
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__CONTEXT:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__CONTEXT:
                                 return getContext();
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__SUB_DEFINITIONS:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__SUB_DEFINITIONS:
                                 return getSubDefinitions();
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__GENERALISATION:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__GENERALISATION:
                                 if (resolve) return getGeneralisation();
                                 return basicGetGeneralisation();
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__NAME:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__NAME:
                                 return getName();
                 }
                 return super.eGet(featureID, resolve, coreType);
@@ -436,26 +436,26 @@ public class TextblockDefinitionImpl extends EObjectImpl implements TextblockDef
         @Override
         public void eSet(int featureID, Object newValue) {
                 switch (featureID) {
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__FORMAT_POLICY:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__FORMAT_POLICY:
                                 setFormatPolicy((FormatPolicy)newValue);
                                 return;
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__DEFAULT_TEMPLATE:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__DEFAULT_TEMPLATE:
                                 setDefaultTemplate((String)newValue);
                                 return;
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__PARSE_RULE:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__PARSE_RULE:
                                 setParseRule((Template)newValue);
                                 return;
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__CONTEXT:
-                                setContext((TextblockDefinition)newValue);
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__CONTEXT:
+                                setContext((TextBlockDefinition)newValue);
                                 return;
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__SUB_DEFINITIONS:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__SUB_DEFINITIONS:
                                 getSubDefinitions().clear();
-                                getSubDefinitions().addAll((Collection<? extends TextblockDefinition>)newValue);
+                                getSubDefinitions().addAll((Collection<? extends TextBlockDefinition>)newValue);
                                 return;
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__GENERALISATION:
-                                setGeneralisation((TextblockDefinition)newValue);
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__GENERALISATION:
+                                setGeneralisation((TextBlockDefinition)newValue);
                                 return;
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__NAME:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__NAME:
                                 setName((String)newValue);
                                 return;
                 }
@@ -470,25 +470,25 @@ public class TextblockDefinitionImpl extends EObjectImpl implements TextblockDef
         @Override
         public void eUnset(int featureID) {
                 switch (featureID) {
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__FORMAT_POLICY:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__FORMAT_POLICY:
                                 setFormatPolicy(FORMAT_POLICY_EDEFAULT);
                                 return;
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__DEFAULT_TEMPLATE:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__DEFAULT_TEMPLATE:
                                 setDefaultTemplate(DEFAULT_TEMPLATE_EDEFAULT);
                                 return;
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__PARSE_RULE:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__PARSE_RULE:
                                 setParseRule((Template)null);
                                 return;
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__CONTEXT:
-                                setContext((TextblockDefinition)null);
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__CONTEXT:
+                                setContext((TextBlockDefinition)null);
                                 return;
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__SUB_DEFINITIONS:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__SUB_DEFINITIONS:
                                 getSubDefinitions().clear();
                                 return;
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__GENERALISATION:
-                                setGeneralisation((TextblockDefinition)null);
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__GENERALISATION:
+                                setGeneralisation((TextBlockDefinition)null);
                                 return;
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__NAME:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__NAME:
                                 setName(NAME_EDEFAULT);
                                 return;
                 }
@@ -503,19 +503,19 @@ public class TextblockDefinitionImpl extends EObjectImpl implements TextblockDef
         @Override
         public boolean eIsSet(int featureID) {
                 switch (featureID) {
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__FORMAT_POLICY:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__FORMAT_POLICY:
                                 return formatPolicy != FORMAT_POLICY_EDEFAULT;
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__DEFAULT_TEMPLATE:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__DEFAULT_TEMPLATE:
                                 return DEFAULT_TEMPLATE_EDEFAULT == null ? defaultTemplate != null : !DEFAULT_TEMPLATE_EDEFAULT.equals(defaultTemplate);
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__PARSE_RULE:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__PARSE_RULE:
                                 return parseRule != null;
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__CONTEXT:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__CONTEXT:
                                 return getContext() != null;
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__SUB_DEFINITIONS:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__SUB_DEFINITIONS:
                                 return subDefinitions != null && !subDefinitions.isEmpty();
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__GENERALISATION:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__GENERALISATION:
                                 return generalisation != null;
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__NAME:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__NAME:
                                 return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
                 }
                 return super.eIsSet(featureID);
@@ -541,4 +541,4 @@ public class TextblockDefinitionImpl extends EObjectImpl implements TextblockDef
                 return result.toString();
         }
 
-} //TextblockDefinitionImpl
+} //TextBlockDefinitionImpl

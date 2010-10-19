@@ -3,17 +3,17 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="textblockdefinition"
     nsURI="http://www.furcas.org/textblockdefinition" nsPrefix="com.sap.furcas.textblockdefinition">
-  <eClassifiers xsi:type="ecore:EClass" name="TextblockDefinition">
+  <eClassifiers xsi:type="ecore:EClass" name="TextBlockDefinition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="formatPolicy" eType="#//FormatPolicy"
         defaultValueLiteral=""/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultTemplate" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
         defaultValueLiteral=""/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parseRule" eType="ecore:EClass TCS.ecore#//Template"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//TextblockDefinition"
-        eOpposite="#//TextblockDefinition/subDefinitions"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//TextBlockDefinition"
+        eOpposite="#//TextBlockDefinition/subDefinitions"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subDefinitions" upperBound="-1"
-        eType="#//TextblockDefinition" containment="true" eOpposite="#//TextblockDefinition/context"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="generalisation" eType="#//TextblockDefinition"/>
+        eType="#//TextBlockDefinition" containment="true" eOpposite="#//TextBlockDefinition/context"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="generalisation" eType="#//TextBlockDefinition"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="FormatPolicy">

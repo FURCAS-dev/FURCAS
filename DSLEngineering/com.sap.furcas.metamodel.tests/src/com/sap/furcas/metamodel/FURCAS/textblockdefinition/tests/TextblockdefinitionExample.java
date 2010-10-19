@@ -6,7 +6,7 @@
  */
 package com.sap.furcas.metamodel.FURCAS.textblockdefinition.tests;
 
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockDefinition;
+import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionFactory;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionPackage;
 
@@ -64,7 +64,7 @@ public class TextblockdefinitionExample {
                         System.out.println("Enter a list of file paths or URIs that have content like this:");
                         try {
                                 Resource resource = resourceSet.createResource(URI.createURI("http:///My.textblockdefinition"));
-                                TextblockDefinition root = TextblockdefinitionFactory.eINSTANCE.createTextblockDefinition();
+                                TextBlockDefinition root = TextblockdefinitionFactory.eINSTANCE.createTextBlockDefinition();
                                 resource.getContents().add(root);
                                 resource.save(System.out, null);
                         }

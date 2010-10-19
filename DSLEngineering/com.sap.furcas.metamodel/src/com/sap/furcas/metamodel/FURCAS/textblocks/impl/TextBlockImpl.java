@@ -8,7 +8,7 @@ package com.sap.furcas.metamodel.FURCAS.textblocks.impl;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockDefinition;
+import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
@@ -66,7 +66,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
          * @generated
          * @ordered
          */
-        protected TextblockDefinition type;
+        protected TextBlockDefinition type;
 
         /**
          * The cached value of the '{@link #getSubNodes() <em>Sub Nodes</em>}' containment reference list.
@@ -152,10 +152,10 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
          * <!-- end-user-doc -->
          * @generated
          */
-        public TextblockDefinition getType() {
+        public TextBlockDefinition getType() {
                 if (type != null && type.eIsProxy()) {
                         InternalEObject oldType = (InternalEObject)type;
-                        type = (TextblockDefinition)eResolveProxy(oldType);
+                        type = (TextBlockDefinition)eResolveProxy(oldType);
                         if (type != oldType) {
                                 if (eNotificationRequired())
                                         eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblocksPackage.TEXT_BLOCK__TYPE, oldType, type));
@@ -169,7 +169,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
          * <!-- end-user-doc -->
          * @generated
          */
-        public TextblockDefinition basicGetType() {
+        public TextBlockDefinition basicGetType() {
                 return type;
         }
 
@@ -178,8 +178,8 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
          * <!-- end-user-doc -->
          * @generated
          */
-        public void setType(TextblockDefinition newType) {
-                TextblockDefinition oldType = type;
+        public void setType(TextBlockDefinition newType) {
+                TextBlockDefinition oldType = type;
                 type = newType;
                 if (eNotificationRequired())
                         eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.TEXT_BLOCK__TYPE, oldType, type));
@@ -379,7 +379,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
         public void eSet(int featureID, Object newValue) {
                 switch (featureID) {
                         case TextblocksPackage.TEXT_BLOCK__TYPE:
-                                setType((TextblockDefinition)newValue);
+                                setType((TextBlockDefinition)newValue);
                                 return;
                         case TextblocksPackage.TEXT_BLOCK__SUB_NODES:
                                 getSubNodes().clear();
@@ -413,7 +413,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
         public void eUnset(int featureID) {
                 switch (featureID) {
                         case TextblocksPackage.TEXT_BLOCK__TYPE:
-                                setType((TextblockDefinition)null);
+                                setType((TextBlockDefinition)null);
                                 return;
                         case TextblocksPackage.TEXT_BLOCK__SUB_NODES:
                                 getSubNodes().clear();

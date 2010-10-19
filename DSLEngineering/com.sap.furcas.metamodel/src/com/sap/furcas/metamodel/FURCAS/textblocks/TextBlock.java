@@ -8,7 +8,7 @@ package com.sap.furcas.metamodel.FURCAS.textblocks;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockDefinition;
+import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -45,12 +45,12 @@ public interface TextBlock extends DocumentNode {
          * </p>
          * <!-- end-user-doc -->
          * @return the value of the '<em>Type</em>' reference.
-         * @see #setType(TextblockDefinition)
+         * @see #setType(TextBlockDefinition)
          * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getTextBlock_Type()
          * @model
          * @generated
          */
-        TextblockDefinition getType();
+        TextBlockDefinition getType();
 
         /**
          * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getType <em>Type</em>}' reference.
@@ -60,7 +60,7 @@ public interface TextBlock extends DocumentNode {
          * @see #getType()
          * @generated
          */
-        void setType(TextblockDefinition value);
+        void setType(TextBlockDefinition value);
 
         /**
          * Returns the value of the '<em><b>Sub Nodes</b></em>' containment reference list.

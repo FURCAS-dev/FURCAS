@@ -7,13 +7,22 @@
 package com.sap.furcas.metamodel.FURCAS.textblockdefinition.provider;
 
 
+import com.sap.furcas.metamodel.FURCAS.provider.FURCASEditPlugin;
+
+import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
+import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionFactory;
+import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionPackage;
+
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -25,18 +34,13 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import com.sap.furcas.metamodel.FURCAS.provider.FURCASEditPlugin;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockDefinition;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionFactory;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionPackage;
-
 /**
- * This is the item provider adapter for a {@link com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockDefinition} object.
+ * This is the item provider adapter for a {@link com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class TextblockDefinitionItemProvider
+public class TextBlockDefinitionItemProvider
         extends ItemProviderAdapter
         implements
                 IEditingDomainItemProvider,
@@ -50,7 +54,7 @@ public class TextblockDefinitionItemProvider
          * <!-- end-user-doc -->
          * @generated
          */
-        public TextblockDefinitionItemProvider(AdapterFactory adapterFactory) {
+        public TextBlockDefinitionItemProvider(AdapterFactory adapterFactory) {
                 super(adapterFactory);
         }
 
@@ -85,9 +89,9 @@ public class TextblockDefinitionItemProvider
                         (createItemPropertyDescriptor
                                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                                  getResourceLocator(),
-                                 getString("_UI_TextblockDefinition_formatPolicy_feature"),
-                                 getString("_UI_PropertyDescriptor_description", "_UI_TextblockDefinition_formatPolicy_feature", "_UI_TextblockDefinition_type"),
-                                 TextblockdefinitionPackage.Literals.TEXTBLOCK_DEFINITION__FORMAT_POLICY,
+                                 getString("_UI_TextBlockDefinition_formatPolicy_feature"),
+                                 getString("_UI_PropertyDescriptor_description", "_UI_TextBlockDefinition_formatPolicy_feature", "_UI_TextBlockDefinition_type"),
+                                 TextblockdefinitionPackage.Literals.TEXT_BLOCK_DEFINITION__FORMAT_POLICY,
                                  true,
                                  false,
                                  false,
@@ -107,9 +111,9 @@ public class TextblockDefinitionItemProvider
                         (createItemPropertyDescriptor
                                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                                  getResourceLocator(),
-                                 getString("_UI_TextblockDefinition_defaultTemplate_feature"),
-                                 getString("_UI_PropertyDescriptor_description", "_UI_TextblockDefinition_defaultTemplate_feature", "_UI_TextblockDefinition_type"),
-                                 TextblockdefinitionPackage.Literals.TEXTBLOCK_DEFINITION__DEFAULT_TEMPLATE,
+                                 getString("_UI_TextBlockDefinition_defaultTemplate_feature"),
+                                 getString("_UI_PropertyDescriptor_description", "_UI_TextBlockDefinition_defaultTemplate_feature", "_UI_TextBlockDefinition_type"),
+                                 TextblockdefinitionPackage.Literals.TEXT_BLOCK_DEFINITION__DEFAULT_TEMPLATE,
                                  true,
                                  false,
                                  false,
@@ -129,9 +133,9 @@ public class TextblockDefinitionItemProvider
                         (createItemPropertyDescriptor
                                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                                  getResourceLocator(),
-                                 getString("_UI_TextblockDefinition_parseRule_feature"),
-                                 getString("_UI_PropertyDescriptor_description", "_UI_TextblockDefinition_parseRule_feature", "_UI_TextblockDefinition_type"),
-                                 TextblockdefinitionPackage.Literals.TEXTBLOCK_DEFINITION__PARSE_RULE,
+                                 getString("_UI_TextBlockDefinition_parseRule_feature"),
+                                 getString("_UI_PropertyDescriptor_description", "_UI_TextBlockDefinition_parseRule_feature", "_UI_TextBlockDefinition_type"),
+                                 TextblockdefinitionPackage.Literals.TEXT_BLOCK_DEFINITION__PARSE_RULE,
                                  true,
                                  false,
                                  true,
@@ -151,9 +155,9 @@ public class TextblockDefinitionItemProvider
                         (createItemPropertyDescriptor
                                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                                  getResourceLocator(),
-                                 getString("_UI_TextblockDefinition_generalisation_feature"),
-                                 getString("_UI_PropertyDescriptor_description", "_UI_TextblockDefinition_generalisation_feature", "_UI_TextblockDefinition_type"),
-                                 TextblockdefinitionPackage.Literals.TEXTBLOCK_DEFINITION__GENERALISATION,
+                                 getString("_UI_TextBlockDefinition_generalisation_feature"),
+                                 getString("_UI_PropertyDescriptor_description", "_UI_TextBlockDefinition_generalisation_feature", "_UI_TextBlockDefinition_type"),
+                                 TextblockdefinitionPackage.Literals.TEXT_BLOCK_DEFINITION__GENERALISATION,
                                  true,
                                  false,
                                  true,
@@ -173,9 +177,9 @@ public class TextblockDefinitionItemProvider
                         (createItemPropertyDescriptor
                                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                                  getResourceLocator(),
-                                 getString("_UI_TextblockDefinition_name_feature"),
-                                 getString("_UI_PropertyDescriptor_description", "_UI_TextblockDefinition_name_feature", "_UI_TextblockDefinition_type"),
-                                 TextblockdefinitionPackage.Literals.TEXTBLOCK_DEFINITION__NAME,
+                                 getString("_UI_TextBlockDefinition_name_feature"),
+                                 getString("_UI_PropertyDescriptor_description", "_UI_TextBlockDefinition_name_feature", "_UI_TextBlockDefinition_type"),
+                                 TextblockdefinitionPackage.Literals.TEXT_BLOCK_DEFINITION__NAME,
                                  true,
                                  false,
                                  false,
@@ -196,7 +200,7 @@ public class TextblockDefinitionItemProvider
         public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
                 if (childrenFeatures == null) {
                         super.getChildrenFeatures(object);
-                        childrenFeatures.add(TextblockdefinitionPackage.Literals.TEXTBLOCK_DEFINITION__SUB_DEFINITIONS);
+                        childrenFeatures.add(TextblockdefinitionPackage.Literals.TEXT_BLOCK_DEFINITION__SUB_DEFINITIONS);
                 }
                 return childrenFeatures;
         }
@@ -215,14 +219,14 @@ public class TextblockDefinitionItemProvider
         }
 
         /**
-         * This returns TextblockDefinition.gif.
+         * This returns TextBlockDefinition.gif.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
         @Override
         public Object getImage(Object object) {
-                return overlayImage(object, getResourceLocator().getImage("full/obj16/TextblockDefinition"));
+                return overlayImage(object, getResourceLocator().getImage("full/obj16/TextBlockDefinition"));
         }
 
         /**
@@ -233,10 +237,10 @@ public class TextblockDefinitionItemProvider
          */
         @Override
         public String getText(Object object) {
-                String label = ((TextblockDefinition)object).getName();
+                String label = ((TextBlockDefinition)object).getName();
                 return label == null || label.length() == 0 ?
-                        getString("_UI_TextblockDefinition_type") :
-                        getString("_UI_TextblockDefinition_type") + " " + label;
+                        getString("_UI_TextBlockDefinition_type") :
+                        getString("_UI_TextBlockDefinition_type") + " " + label;
         }
 
         /**
@@ -250,13 +254,13 @@ public class TextblockDefinitionItemProvider
         public void notifyChanged(Notification notification) {
                 updateChildren(notification);
 
-                switch (notification.getFeatureID(TextblockDefinition.class)) {
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__FORMAT_POLICY:
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__DEFAULT_TEMPLATE:
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__NAME:
+                switch (notification.getFeatureID(TextBlockDefinition.class)) {
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__FORMAT_POLICY:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__DEFAULT_TEMPLATE:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__NAME:
                                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                                 return;
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION__SUB_DEFINITIONS:
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__SUB_DEFINITIONS:
                                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                                 return;
                 }
@@ -276,8 +280,8 @@ public class TextblockDefinitionItemProvider
 
                 newChildDescriptors.add
                         (createChildParameter
-                                (TextblockdefinitionPackage.Literals.TEXTBLOCK_DEFINITION__SUB_DEFINITIONS,
-                                 TextblockdefinitionFactory.eINSTANCE.createTextblockDefinition()));
+                                (TextblockdefinitionPackage.Literals.TEXT_BLOCK_DEFINITION__SUB_DEFINITIONS,
+                                 TextblockdefinitionFactory.eINSTANCE.createTextBlockDefinition()));
         }
 
         /**
