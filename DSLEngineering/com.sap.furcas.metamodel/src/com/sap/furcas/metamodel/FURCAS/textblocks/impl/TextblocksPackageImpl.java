@@ -313,6 +313,16 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
          * @generated
          */
         @Override
+	public EAttribute getAbstractToken_Type() {
+                return (EAttribute)abstractTokenEClass.getEStructuralFeatures().get(4);
+        }
+
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        @Override
 	public EClass getOmittedToken() {
                 return omittedTokenEClass;
         }
@@ -335,16 +345,6 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
         @Override
 	public EAttribute getLexedToken_Operator() {
                 return (EAttribute)lexedTokenEClass.getEStructuralFeatures().get(0);
-        }
-
-        /**
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        @Override
-	public EAttribute getLexedToken_Type() {
-                return (EAttribute)lexedTokenEClass.getEStructuralFeatures().get(1);
         }
 
         /**
@@ -651,12 +651,12 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
                 createEAttribute(abstractTokenEClass, ABSTRACT_TOKEN__LOOKAHEAD);
                 createEAttribute(abstractTokenEClass, ABSTRACT_TOKEN__LOOKBACK);
                 createEAttribute(abstractTokenEClass, ABSTRACT_TOKEN__STATE);
+                createEAttribute(abstractTokenEClass, ABSTRACT_TOKEN__TYPE);
 
                 omittedTokenEClass = createEClass(OMITTED_TOKEN);
 
                 lexedTokenEClass = createEClass(LEXED_TOKEN);
                 createEAttribute(lexedTokenEClass, LEXED_TOKEN__OPERATOR);
-                createEAttribute(lexedTokenEClass, LEXED_TOKEN__TYPE);
 
                 unlexedTokenEClass = createEClass(UNLEXED_TOKEN);
 
@@ -755,12 +755,12 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
                 initEAttribute(getAbstractToken_Lookahead(), ecorePackage.getEInt(), "lookahead", null, 0, 1, AbstractToken.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
                 initEAttribute(getAbstractToken_Lookback(), ecorePackage.getEInt(), "lookback", null, 0, 1, AbstractToken.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
                 initEAttribute(getAbstractToken_State(), ecorePackage.getEInt(), "state", null, 0, 1, AbstractToken.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+                initEAttribute(getAbstractToken_Type(), ecorePackage.getEInt(), "type", null, 0, 1, AbstractToken.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
                 initEClass(omittedTokenEClass, OmittedToken.class, "OmittedToken", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
                 initEClass(lexedTokenEClass, LexedToken.class, "LexedToken", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
                 initEAttribute(getLexedToken_Operator(), theEcorePackage_1.getEBoolean(), "operator", null, 0, 1, LexedToken.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-                initEAttribute(getLexedToken_Type(), ecorePackage.getEInt(), "type", null, 0, 1, LexedToken.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
                 initEClass(unlexedTokenEClass, UnlexedToken.class, "UnlexedToken", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

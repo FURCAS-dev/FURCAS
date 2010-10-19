@@ -19,6 +19,7 @@ package com.sap.furcas.metamodel.FURCAS.textblocks;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken#getLookahead <em>Lookahead</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken#getLookback <em>Lookback</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken#getState <em>State</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -130,5 +131,31 @@ public interface AbstractToken extends DocumentNode {
          * @generated
          */
         void setState(int value);
+
+        /**
+         * Returns the value of the '<em><b>Type</b></em>' attribute.
+         * <!-- begin-user-doc -->
+         * <p>
+         * If the meaning of the '<em>Type</em>' attribute isn't clear,
+         * there really should be more of a description here...
+         * </p>
+         * <!-- end-user-doc -->
+         * @return the value of the '<em>Type</em>' attribute.
+         * @see #setType(int)
+         * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getAbstractToken_Type()
+         * @model
+         * @generated
+         */
+        int getType();
+
+        /**
+         * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken#getType <em>Type</em>}' attribute.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @param value the new value of the '<em>Type</em>' attribute.
+         * @see #getType()
+         * @generated
+         */
+        void setType(int value);
 
 } // AbstractToken

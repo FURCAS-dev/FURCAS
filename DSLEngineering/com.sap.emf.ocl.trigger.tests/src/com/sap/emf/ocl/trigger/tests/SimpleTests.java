@@ -18,7 +18,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
+import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 import com.sap.emf.ocl.trigger.AbstractTriggerable;
+import com.sap.emf.ocl.trigger.AdapterForExpression;
 import com.sap.emf.ocl.trigger.TriggerManager;
 import com.sap.emf.ocl.trigger.TriggerManagerFactory;
 import com.sap.emf.ocl.trigger.Triggerable;
@@ -26,6 +28,8 @@ import com.sap.emf.ocl.trigger.Triggerable.ExpressionWithContext;
 import company.CompanyFactory;
 import company.CompanyPackage;
 import company.Department;
+
+import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.ActivationOption;
 
 public class SimpleTests extends TestCase {
     private ResourceSet resourceSet;
@@ -52,9 +56,16 @@ public class SimpleTests extends TestCase {
         Triggerable t = new AbstractTriggerable(Collections.singleton(new ExpressionWithContext(trivialExpression,
                 /* context is implicit because self is used */ null, /* notifyNewContextElements */ false))) {
             @Override
-            public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects) {
+            public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects, OppositeEndFinder oppositeEndFinder) {
                 result[0] = expression == trivialExpression && affectedContextObjects.size() == 1 &&
                             affectedContextObjects.contains(d);
+            }
+
+            @Override
+            public Collection<AdapterForExpression> getAdapters(OppositeEndFinder oppositeEndFinder,
+                    ActivationOption impactAnalysisConfiguration) throws ParserException {
+                return Collections.singleton(new AdapterForExpression(this, trivialExpression, CompanyPackage.eINSTANCE
+                        .getDepartment(), /* notifyNewContextElements */false, oppositeEndFinder, impactAnalysisConfiguration));
             }
         };
         triggerManager.register(t);
@@ -75,9 +86,16 @@ public class SimpleTests extends TestCase {
         Triggerable t = new AbstractTriggerable(Collections.singleton(new ExpressionWithContext(trivialExpression,
                 /* context is implicit because self is used */ null, /* notifyNewContextElements */ false))) {
             @Override
-            public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects) {
+            public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects, OppositeEndFinder oppositeEndFinder) {
                 result[0] = expression == trivialExpression && affectedContextObjects.size() == 1 &&
                             affectedContextObjects.contains(d1);
+            }
+
+            @Override
+            public Collection<AdapterForExpression> getAdapters(OppositeEndFinder oppositeEndFinder,
+                    ActivationOption impactAnalysisConfiguration) throws ParserException {
+                return Collections.singleton(new AdapterForExpression(this, trivialExpression, CompanyPackage.eINSTANCE
+                        .getDepartment(), /* notifyNewContextElements */false, oppositeEndFinder, impactAnalysisConfiguration));
             }
         };
         triggerManager.register(t);

@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.query.index.ui.IndexFactory;
 import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL.Helper;
@@ -112,8 +113,8 @@ public class MqlMapperTest extends TestCase {
         resourceset.getResources().add(r);
       
 
-        EcoreHelper.getInstance().addResourceToDefaultIndex(r);
-        TreeIterator<EObject> it = r.getAllContents();  
+        EcoreHelper.getInstance().addResourceToDefaultIndex(IndexFactory.getInstance(), r);
+        TreeIterator<EObject> it = r.getAllContents();
         Map<EClass, Set<EObject>> map = new HashMap<EClass, Set<EObject>>();
 
         while(it.hasNext()){

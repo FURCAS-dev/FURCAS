@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.AbstractTokenImpl#getLookahead <em>Lookahead</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.AbstractTokenImpl#getLookback <em>Lookback</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.AbstractTokenImpl#getState <em>State</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.AbstractTokenImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -111,6 +112,26 @@ public class AbstractTokenImpl extends DocumentNodeImpl implements AbstractToken
          * @ordered
          */
         protected int state = STATE_EDEFAULT;
+
+        /**
+         * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see #getType()
+         * @generated
+         * @ordered
+         */
+        protected static final int TYPE_EDEFAULT = 0;
+
+        /**
+         * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see #getType()
+         * @generated
+         * @ordered
+         */
+        protected int type = TYPE_EDEFAULT;
 
         /**
          * <!-- begin-user-doc -->
@@ -220,6 +241,27 @@ public class AbstractTokenImpl extends DocumentNodeImpl implements AbstractToken
          * <!-- end-user-doc -->
          * @generated
          */
+        public int getType() {
+                return type;
+        }
+
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        public void setType(int newType) {
+                int oldType = type;
+                type = newType;
+                if (eNotificationRequired())
+                        eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.ABSTRACT_TOKEN__TYPE, oldType, type));
+        }
+
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
         @Override
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
                 switch (featureID) {
@@ -231,6 +273,8 @@ public class AbstractTokenImpl extends DocumentNodeImpl implements AbstractToken
                                 return getLookback();
                         case TextblocksPackage.ABSTRACT_TOKEN__STATE:
                                 return getState();
+                        case TextblocksPackage.ABSTRACT_TOKEN__TYPE:
+                                return getType();
                 }
                 return super.eGet(featureID, resolve, coreType);
         }
@@ -254,6 +298,9 @@ public class AbstractTokenImpl extends DocumentNodeImpl implements AbstractToken
                                 return;
                         case TextblocksPackage.ABSTRACT_TOKEN__STATE:
                                 setState((Integer)newValue);
+                                return;
+                        case TextblocksPackage.ABSTRACT_TOKEN__TYPE:
+                                setType((Integer)newValue);
                                 return;
                 }
                 super.eSet(featureID, newValue);
@@ -279,6 +326,9 @@ public class AbstractTokenImpl extends DocumentNodeImpl implements AbstractToken
                         case TextblocksPackage.ABSTRACT_TOKEN__STATE:
                                 setState(STATE_EDEFAULT);
                                 return;
+                        case TextblocksPackage.ABSTRACT_TOKEN__TYPE:
+                                setType(TYPE_EDEFAULT);
+                                return;
                 }
                 super.eUnset(featureID);
         }
@@ -299,6 +349,8 @@ public class AbstractTokenImpl extends DocumentNodeImpl implements AbstractToken
                                 return lookback != LOOKBACK_EDEFAULT;
                         case TextblocksPackage.ABSTRACT_TOKEN__STATE:
                                 return state != STATE_EDEFAULT;
+                        case TextblocksPackage.ABSTRACT_TOKEN__TYPE:
+                                return type != TYPE_EDEFAULT;
                 }
                 return super.eIsSet(featureID);
         }
@@ -321,6 +373,8 @@ public class AbstractTokenImpl extends DocumentNodeImpl implements AbstractToken
                 result.append(lookback);
                 result.append(", state: ");
                 result.append(state);
+                result.append(", type: ");
+                result.append(type);
                 result.append(')');
                 return result.toString();
         }
