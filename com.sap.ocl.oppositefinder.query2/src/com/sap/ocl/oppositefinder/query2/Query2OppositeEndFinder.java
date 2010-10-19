@@ -91,7 +91,7 @@ public class Query2OppositeEndFinder implements OppositeEndFinder {
                 if (rs == null) {
                     rs = new ResourceSetImpl();
                 }
-                result = EcoreHelper.getInstance().reverseNavigate(etarget, (EReference) property, queryContext, rs);
+                result = EcoreHelper.getInstance().reverseNavigate(etarget, (EReference) property, queryContext, rs, IndexFactory.getInstance());
             }
             return result;
         }
@@ -109,7 +109,7 @@ public class Query2OppositeEndFinder implements OppositeEndFinder {
                 if (rs == null) {
                     rs = new ResourceSetImpl();
                 }
-                result = EcoreHelper.getInstance().reverseNavigate(etarget, (EReference) property, queryContext, rs);
+                result = EcoreHelper.getInstance().reverseNavigate(etarget, (EReference) property, queryContext, rs, IndexFactory.getInstance());
             }
             return result;
         }
