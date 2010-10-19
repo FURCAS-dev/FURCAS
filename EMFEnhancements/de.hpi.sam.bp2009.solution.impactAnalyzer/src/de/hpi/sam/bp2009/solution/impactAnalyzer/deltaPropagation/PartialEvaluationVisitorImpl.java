@@ -286,6 +286,9 @@ public class PartialEvaluationVisitorImpl
                 // TODO restore old value at position specified by index, if any, and if the local result is a collection
                 localResult = atPre.getOldValue();
                 break;
+            case Notification.RESOLVE:
+                // TODO consider avoiding filtering for RESOLVE notifications in the first place
+                break; // stay with new, resolved value because resolution is automatic
             default:
                 throw new RuntimeException("Don't understand @pre notification " + atPre);
             }
