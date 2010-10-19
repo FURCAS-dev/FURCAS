@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -119,8 +120,7 @@ public class EMFModelAdapter implements IBareModelAdapter {
 	    }
 	}
 	try {
-	    // In MOF, no need to create instance, they are static
-	    return delegate.getEnumLiteral(enumName, name);
+	    return ((EEnumLiteral) delegate.getEnumLiteral(enumName, name)).getInstance();
 	} catch (RuntimeException re) {
 	    throw new RuntimeException("Exception while creating Enum Literal of type " + name, re);
 	}
