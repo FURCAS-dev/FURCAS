@@ -3,7 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/com.sap.furcas.metamodel/src"
     modelPluginID="com.sap.furcas.metamodel" modelName="Textblocks" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="6.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore TCS.genmodel#//TCS">
+    complianceLevel="6.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore TCS.genmodel#//TCS platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.genmodel#//ocl/ecore platform:/plugin/org.eclipse.ocl/model/OCL.genmodel#//ocl/types platform:/plugin/org.eclipse.ocl/model/OCL.genmodel#//ocl/utilities platform:/plugin/org.eclipse.ocl/model/OCL.genmodel#//ocl/expressions">
   <foreignModel>textblocks.ecore</foreignModel>
   <genPackages prefix="Textblocks" basePackage="com.sap.furcas.metamodel" disposableProviderFactory="true"
       ecorePackage="textblocks.ecore#/">
@@ -13,29 +13,30 @@
       <genEnumLiterals ecoreEnumLiteral="textblocks.ecore#//Version/CURRENT"/>
     </genEnums>
     <genClasses image="false" ecoreClass="textblocks.ecore#//TextBlock">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//TextBlock/startRow"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//TextBlock/startColumn"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//TextBlock/endRow"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//TextBlock/endColumn"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textblocks.ecore#//TextBlock/tokens"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textblocks.ecore#//TextBlock/subNodes"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textblocks.ecore#//TextBlock/type"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textblocks.ecore#//TextBlock/subBlocks"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textblocks.ecore#//TextBlock/subNodes"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//TextBlock/parentAltChoices"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textblocks.ecore#//TextBlock/elementsInContext"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textblocks.ecore#//TextBlock/forEachContext"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//TextBlock/cachedString"/>
+      <genOperations ecoreOperation="textblocks.ecore#//TextBlock/getSubBlocks"/>
+      <genOperations ecoreOperation="textblocks.ecore#//TextBlock/getTokens"/>
+      <genOperations ecoreOperation="textblocks.ecore#//TextBlock/getAdditionalTemplates"/>
     </genClasses>
     <genClasses image="false" ecoreClass="textblocks.ecore#//AbstractToken">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//AbstractToken/value"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//AbstractToken/lookahead"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//AbstractToken/lookback"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//AbstractToken/state"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//AbstractToken/type"/>
     </genClasses>
     <genClasses ecoreClass="textblocks.ecore#//OmittedToken"/>
-    <genClasses ecoreClass="textblocks.ecore#//LexedToken"/>
+    <genClasses ecoreClass="textblocks.ecore#//LexedToken">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//LexedToken/operator"/>
+    </genClasses>
     <genClasses ecoreClass="textblocks.ecore#//UnlexedToken"/>
     <genClasses image="false" ecoreClass="textblocks.ecore#//DocumentNode">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/version"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textblocks.ecore#//DocumentNode/otherVersions"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/childrenChanged"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/relexingNeeded"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference textblocks.ecore#//DocumentNode/parent"/>
@@ -44,11 +45,22 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textblocks.ecore#//DocumentNode/sequenceElement"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/offset"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/length"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textblocks.ecore#//DocumentNode/otherVersions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/offsetRelative"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/startRow"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/startColumn"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/endRow"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/endColumn"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/absoluteOffset"/>
     </genClasses>
-    <genClasses ecoreClass="textblocks.ecore#//VersionToNode">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textblocks.ecore#//VersionToNode/value"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//VersionToNode/key"/>
+    <genClasses ecoreClass="textblocks.ecore#//ForEachContext">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textblocks.ecore#//ForEachContext/foreachPedicatePropertyInit"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textblocks.ecore#//ForEachContext/contextElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textblocks.ecore#//ForEachContext/resultModelElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textblocks.ecore#//ForEachContext/sourceModelElement"/>
     </genClasses>
+    <genClasses ecoreClass="textblocks.ecore#//Eostoken"/>
+    <genClasses ecoreClass="textblocks.ecore#//Bostoken"/>
   </genPackages>
   <genPackages prefix="Textblockdefinition" basePackage="com.sap.furcas.metamodel"
       disposableProviderFactory="true" ecorePackage="textblockdefinition.ecore#/">

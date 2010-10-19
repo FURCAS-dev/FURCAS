@@ -3,13 +3,19 @@ package com.sap.ide.cts.parser.incremental;
 import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getSubNodeAt;
 import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getSubNodes;
 import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.isToken;
+import static com.sap.furcas.runtime.textblocks.modifcation.TbMarkingUtil.deltaInChars;
+import static com.sap.furcas.runtime.textblocks.modifcation.TbMarkingUtil.isBOS;
+import static com.sap.furcas.runtime.textblocks.modifcation.TbMarkingUtil.isEOS;
+import static com.sap.furcas.runtime.textblocks.modifcation.TbMarkingUtil.mark;
+import static com.sap.furcas.runtime.textblocks.modifcation.TbMarkingUtil.marked;
+import static com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil.getOtherVersion;
+import static com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil.hasChildChanges;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -22,7 +28,6 @@ import com.sap.furcas.metamodel.textblocks.TextblocksFactory;
 import com.sap.furcas.metamodel.textblocks.Version;
 import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
-import com.sap.furcas.runtime.parser.textblocks.ParsingTextblocksActivator;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 import com.sap.furcas.runtime.textblocks.TokenLocation;
@@ -461,14 +466,14 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 		// TODO: this should be enhanced by only creating new versions of
 		// changed regions and re-using the old untouched rest.
 		boolean moinLoggingWasEnabled = false;
-		if (ParsingTextblocksActivator.getDefault() != null) {
-			moinLoggingWasEnabled = ParsingTextblocksActivator.getDefault()
-					.isMoinLoggingEnabled(root.get___Connection());
-		}
-		if (moinLoggingWasEnabled) {
-			ParsingTextblocksActivator.getDefault().disableMoinLogging(
-					root.get___Connection());
-		}
+//		if (ParsingTextblocksActivator.getDefault() != null) {
+//			moinLoggingWasEnabled = ParsingTextblocksActivator.getDefault()
+//					.isMoinLoggingEnabled(root.get___Connection());
+//		}
+//		if (moinLoggingWasEnabled) {
+//			ParsingTextblocksActivator.getDefault().disableMoinLogging(
+//					root.get___Connection());
+//		}
 		TextBlock currentRoot = getOtherVersion(root, Version.CURRENT);
 		if(currentRoot == null) {
 		    currentRoot = (TextBlock) TbUtil.createNewCopy(root,
@@ -480,9 +485,9 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 		    currentRoot = (TextBlock) TbUtil.createNewCopy(root,
                             Version.CURRENT, true, shortPrettyPrinter);
 		}
-	    	if (moinLoggingWasEnabled) {
-	    	    ParsingTextblocksActivator.getDefault().enableMoinLogging(root.get___Connection());
-	    	}
+//	    	if (moinLoggingWasEnabled) {
+//	    	    ParsingTextblocksActivator.getDefault().enableMoinLogging(root.get___Connection());
+//	    	}
 		for (AbstractToken tok = findNextRegion(root); !isEOS(tok); 
 				//as we are now at the right edge of the last section we need to go to the next token
 				//of the current version and then back to the previous version to find the next changed region
@@ -524,11 +529,11 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 						oldTokenInCurrentBlock = it.next();
 //							oldTokenInCurrentBlock = (AbstractToken) getOtherVersion(
 //									constructionLoc.getTok(), Version.CURRENT);
-							if (((EObject)oldTokenInCurrentBlock).is___Alive() &&
+							if (EcoreHelper.isAlive(oldTokenInCurrentBlock) &&
 									!oldTokenInCurrentBlock.getParent().equals(
 									currentTextBlock)) {
 								if(TbNavigationUtil.getSubNodesSize(currentTextBlock) == 0) {
-									currentTextBlock.refDelete();
+									EcoreUtil.delete(currentTextBlock);
 								}
 								currentTextBlock = oldTokenInCurrentBlock
 										.getParent();
@@ -677,10 +682,10 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 				    TbChangeUtil.updateOffsets(currentToken, -deleteToken.getLength());
 				}
 				
-				deleteToken.refDelete();
+				EcoreUtil.delete(deleteToken);
 				if(deleteTokenParent != null && TbNavigationUtil.getSubNodesSize(deleteTokenParent) == 0) {
 					changedBlocks.remove(deleteTokenParent);
-					deleteTokenParent.refDelete();
+					EcoreUtil.delete(deleteTokenParent);
 				}
 			}
 			if(currentToken != null) {
