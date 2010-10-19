@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
+import org.eclipse.emf.query.index.ui.IndexFactory;
 import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.expressions.OCLExpression;
 
@@ -153,7 +154,7 @@ public class EAnnotationOCLParserTest extends TestCase {
 				e1.printStackTrace();
 				return;
 			}
-	        EcoreHelper.getInstance().addResourceToDefaultIndex(r);
+	        EcoreHelper.getInstance().addResourceToDefaultIndex(IndexFactory.getInstance(), r);
 	        
 	        try {
 	            r.load(null);
