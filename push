@@ -10,7 +10,7 @@ check_recursively() {
     done
   fi
   echo Pushing $current ...
-  git push furcas $current:hpi
+  git push furcas $current:emf-query2
 }
 
 check_recursively $1 $2

@@ -13,5 +13,6 @@ Export-Package: com.sap.emf.ocl.impactanalysis.example.signature_and_call,
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  de.hpi.sam.bp2009.solution.eventManager,
- de.hpi.sam.bp2009.solution.impactAnalyzer
+ de.hpi.sam.bp2009.solution.impactAnalyzer,
+ org.eclipse.emf.ecore.xmi
 Bundle-ActivationPolicy: lazy

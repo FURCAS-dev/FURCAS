@@ -16,5 +16,9 @@
             class="com.sap.emf.ocl.impactanalysis.example.signature_and_call.Signature_and_callPackage"
             genModel="model/signature_and_call.genmodel"/>
    </extension>
+	<extension point = "org.eclipse.emf.ecore.extension_parser">
+	  <parser type="signature_and_call"
+	     class="org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl"/>
+	</extension>
 
 </plugin>

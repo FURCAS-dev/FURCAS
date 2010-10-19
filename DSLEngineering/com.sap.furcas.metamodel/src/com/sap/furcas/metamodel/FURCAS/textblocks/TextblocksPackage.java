@@ -632,13 +632,22 @@ public interface TextblocksPackage extends EPackage {
         int ABSTRACT_TOKEN__STATE = DOCUMENT_NODE_FEATURE_COUNT + 3;
 
         /**
+         * The feature id for the '<em><b>Type</b></em>' attribute.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         * @ordered
+         */
+        int ABSTRACT_TOKEN__TYPE = DOCUMENT_NODE_FEATURE_COUNT + 4;
+
+        /**
          * The number of structural features of the '<em>Abstract Token</em>' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          * @ordered
          */
-        int ABSTRACT_TOKEN_FEATURE_COUNT = DOCUMENT_NODE_FEATURE_COUNT + 4;
+        int ABSTRACT_TOKEN_FEATURE_COUNT = DOCUMENT_NODE_FEATURE_COUNT + 5;
 
         /**
          * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.OmittedTokenImpl <em>Omitted Token</em>}' class.
@@ -829,6 +838,15 @@ public interface TextblocksPackage extends EPackage {
          * @ordered
          */
         int OMITTED_TOKEN__STATE = ABSTRACT_TOKEN__STATE;
+
+        /**
+         * The feature id for the '<em><b>Type</b></em>' attribute.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         * @ordered
+         */
+        int OMITTED_TOKEN__TYPE = ABSTRACT_TOKEN__TYPE;
 
         /**
          * The number of structural features of the '<em>Omitted Token</em>' class.
@@ -1030,6 +1048,15 @@ public interface TextblocksPackage extends EPackage {
         int LEXED_TOKEN__STATE = ABSTRACT_TOKEN__STATE;
 
         /**
+         * The feature id for the '<em><b>Type</b></em>' attribute.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         * @ordered
+         */
+        int LEXED_TOKEN__TYPE = ABSTRACT_TOKEN__TYPE;
+
+        /**
          * The feature id for the '<em><b>Operator</b></em>' attribute.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1039,22 +1066,13 @@ public interface TextblocksPackage extends EPackage {
         int LEXED_TOKEN__OPERATOR = ABSTRACT_TOKEN_FEATURE_COUNT + 0;
 
         /**
-         * The feature id for the '<em><b>Type</b></em>' attribute.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         * @ordered
-         */
-        int LEXED_TOKEN__TYPE = ABSTRACT_TOKEN_FEATURE_COUNT + 1;
-
-        /**
          * The number of structural features of the '<em>Lexed Token</em>' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          * @ordered
          */
-        int LEXED_TOKEN_FEATURE_COUNT = ABSTRACT_TOKEN_FEATURE_COUNT + 2;
+        int LEXED_TOKEN_FEATURE_COUNT = ABSTRACT_TOKEN_FEATURE_COUNT + 1;
 
         /**
          * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.UnlexedTokenImpl <em>Unlexed Token</em>}' class.
@@ -1245,6 +1263,15 @@ public interface TextblocksPackage extends EPackage {
          * @ordered
          */
         int UNLEXED_TOKEN__STATE = ABSTRACT_TOKEN__STATE;
+
+        /**
+         * The feature id for the '<em><b>Type</b></em>' attribute.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         * @ordered
+         */
+        int UNLEXED_TOKEN__TYPE = ABSTRACT_TOKEN__TYPE;
 
         /**
          * The number of structural features of the '<em>Unlexed Token</em>' class.
@@ -1501,6 +1528,15 @@ public interface TextblocksPackage extends EPackage {
         int EOSTOKEN__STATE = ABSTRACT_TOKEN__STATE;
 
         /**
+         * The feature id for the '<em><b>Type</b></em>' attribute.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         * @ordered
+         */
+        int EOSTOKEN__TYPE = ABSTRACT_TOKEN__TYPE;
+
+        /**
          * The number of structural features of the '<em>Eostoken</em>' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1700,6 +1736,15 @@ public interface TextblocksPackage extends EPackage {
         int BOSTOKEN__STATE = ABSTRACT_TOKEN__STATE;
 
         /**
+         * The feature id for the '<em><b>Type</b></em>' attribute.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         * @ordered
+         */
+        int BOSTOKEN__TYPE = ABSTRACT_TOKEN__TYPE;
+
+        /**
          * The number of structural features of the '<em>Bostoken</em>' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1850,6 +1895,17 @@ public interface TextblocksPackage extends EPackage {
         EAttribute getAbstractToken_State();
 
         /**
+         * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken#getType <em>Type</em>}'.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @return the meta object for the attribute '<em>Type</em>'.
+         * @see com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken#getType()
+         * @see #getAbstractToken()
+         * @generated
+         */
+        EAttribute getAbstractToken_Type();
+
+        /**
          * Returns the meta object for class '{@link com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken <em>Omitted Token</em>}'.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1879,17 +1935,6 @@ public interface TextblocksPackage extends EPackage {
          * @generated
          */
         EAttribute getLexedToken_Operator();
-
-        /**
-         * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken#getType <em>Type</em>}'.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @return the meta object for the attribute '<em>Type</em>'.
-         * @see com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken#getType()
-         * @see #getLexedToken()
-         * @generated
-         */
-        EAttribute getLexedToken_Type();
 
         /**
          * Returns the meta object for class '{@link com.sap.furcas.metamodel.FURCAS.textblocks.UnlexedToken <em>Unlexed Token</em>}'.
@@ -2294,6 +2339,14 @@ public interface TextblocksPackage extends EPackage {
                 EAttribute ABSTRACT_TOKEN__STATE = eINSTANCE.getAbstractToken_State();
 
                 /**
+                 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+                 * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+                 * @generated
+                 */
+                EAttribute ABSTRACT_TOKEN__TYPE = eINSTANCE.getAbstractToken_Type();
+
+                /**
                  * The meta object literal for the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.OmittedTokenImpl <em>Omitted Token</em>}' class.
                  * <!-- begin-user-doc -->
                  * <!-- end-user-doc -->
@@ -2320,14 +2373,6 @@ public interface TextblocksPackage extends EPackage {
                  * @generated
                  */
                 EAttribute LEXED_TOKEN__OPERATOR = eINSTANCE.getLexedToken_Operator();
-
-                /**
-                 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-                 * <!-- begin-user-doc -->
-                 * <!-- end-user-doc -->
-                 * @generated
-                 */
-                EAttribute LEXED_TOKEN__TYPE = eINSTANCE.getLexedToken_Type();
 
                 /**
                  * The meta object literal for the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.UnlexedTokenImpl <em>Unlexed Token</em>}' class.

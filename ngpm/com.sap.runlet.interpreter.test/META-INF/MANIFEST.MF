@@ -16,7 +16,8 @@ Require-Bundle: org.eclipse.core.runtime,
  com.sap.ngpm.utils,
  org.eclipse.emf.query.index,
  org.eclipse.emf.query.index.ui,
- com.sap.ocl.oppositefinder.query2
+ com.sap.ocl.oppositefinder.query2,
+ de.hpi.sam.bp2009.solution.testutils
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.runlet.interpreter.test
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
