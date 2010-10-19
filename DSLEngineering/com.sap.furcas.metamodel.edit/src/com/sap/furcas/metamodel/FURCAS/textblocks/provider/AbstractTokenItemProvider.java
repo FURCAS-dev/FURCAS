@@ -66,6 +66,7 @@ public class AbstractTokenItemProvider
                         addLookaheadPropertyDescriptor(object);
                         addLookbackPropertyDescriptor(object);
                         addStatePropertyDescriptor(object);
+                        addTypePropertyDescriptor(object);
                 }
                 return itemPropertyDescriptors;
         }
@@ -159,6 +160,28 @@ public class AbstractTokenItemProvider
         }
 
         /**
+         * This adds a property descriptor for the Type feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        protected void addTypePropertyDescriptor(Object object) {
+                itemPropertyDescriptors.add
+                        (createItemPropertyDescriptor
+                                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                                 getResourceLocator(),
+                                 getString("_UI_AbstractToken_type_feature"),
+                                 getString("_UI_PropertyDescriptor_description", "_UI_AbstractToken_type_feature", "_UI_AbstractToken_type"),
+                                 TextblocksPackage.Literals.ABSTRACT_TOKEN__TYPE,
+                                 true,
+                                 false,
+                                 false,
+                                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+                                 null,
+                                 null));
+        }
+
+        /**
          * This returns AbstractToken.gif.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -200,6 +223,7 @@ public class AbstractTokenItemProvider
                         case TextblocksPackage.ABSTRACT_TOKEN__LOOKAHEAD:
                         case TextblocksPackage.ABSTRACT_TOKEN__LOOKBACK:
                         case TextblocksPackage.ABSTRACT_TOKEN__STATE:
+                        case TextblocksPackage.ABSTRACT_TOKEN__TYPE:
                                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                                 return;
                 }
