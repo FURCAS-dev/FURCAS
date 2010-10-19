@@ -15,13 +15,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import com.sap.furcas.metamodel.TCS.ClassTemplate;
-import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
-import com.sap.furcas.metamodel.TCS.FunctionTemplate;
-import com.sap.furcas.metamodel.TCS.Operator;
-import com.sap.furcas.metamodel.TCS.OperatorTemplate;
-import com.sap.furcas.metamodel.TCS.PrimitiveTemplate;
-import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.Operator;
+import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.SemanticErrorBucket;
 import com.sap.furcas.runtime.common.exceptions.NameResolutionFailedException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
@@ -38,12 +38,13 @@ public class TemplateNameValidation implements ISyntaxValidationRule {
     /* (non-Javadoc)
      * @see com.sap.mi.textual.grammar.impl.tcs.t2m.validation.ISyntaxValidationRule#validate(TCS.ConcreteSyntax)
      */
+    @Override
     public void validate(ConcreteSyntax syntax, IMetaModelLookup<?> metaLookup, SemanticErrorBucket errorBucket) {
         Set<Collection<String>> names = new HashSet<Collection<String>>();
         Collection<Template> templates = syntax.getTemplates();
         MetaModelElementResolutionHelper resolutionHelper = new MetaModelElementResolutionHelper(metaLookup);  
         for (Iterator<Template> iterator = templates.iterator(); iterator.hasNext();) {
-            Template template = (Template) iterator.next();
+            Template template = iterator.next();
             if ( template.getMetaReference() == null 
                     &&  (template.getNames() == null ||  template.getNames().size() == 0) ) {
                 errorBucket.addError("Template has null or empty name reference.", template);

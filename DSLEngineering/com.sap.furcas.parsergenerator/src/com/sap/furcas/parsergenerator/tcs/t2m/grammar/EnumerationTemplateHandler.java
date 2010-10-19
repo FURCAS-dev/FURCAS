@@ -12,8 +12,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import com.sap.furcas.metamodel.TCS.EnumLiteralMapping;
-import com.sap.furcas.metamodel.TCS.EnumerationTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralMapping;
+import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.ClassProductionRule;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.exceptions.NameResolutionFailedException;

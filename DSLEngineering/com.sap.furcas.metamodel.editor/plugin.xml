@@ -15,9 +15,35 @@
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
-            id="com.sap.furcas.metamodel.TCS.presentation.TCSModelWizardID"
+            id="com.sap.furcas.metamodel.FURCAS.presentation.FURCASModelWizardID"
+            name="%_UI_FURCASModelWizard_label"
+            class="com.sap.furcas.metamodel.FURCAS.presentation.FURCASModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/FURCASModelFile.gif">
+         <description>%_UI_FURCASModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="com.sap.furcas.metamodel.FURCAS.presentation.FURCASEditorID"
+            name="%_UI_FURCASEditor_label"
+            icon="icons/full/obj16/FURCASModelFile.gif"
+            extensions="furcas"
+            class="com.sap.furcas.metamodel.FURCAS.presentation.FURCASEditor"
+            contributorClass="com.sap.furcas.metamodel.FURCAS.presentation.FURCASActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="com.sap.furcas.metamodel.FURCAS.TCS.presentation.TCSModelWizardID"
             name="%_UI_TCSModelWizard_label"
-            class="com.sap.furcas.metamodel.TCS.presentation.TCSModelWizard"
+            class="com.sap.furcas.metamodel.FURCAS.TCS.presentation.TCSModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
             icon="icons/full/obj16/TCSModelFile.gif">
          <description>%_UI_TCSModelWizard_description</description>
@@ -27,23 +53,23 @@
 
    <extension point="org.eclipse.ui.editors">
       <editor
-            id="com.sap.furcas.metamodel.TCS.presentation.TCSEditorID"
+            id="com.sap.furcas.metamodel.FURCAS.TCS.presentation.TCSEditorID"
             name="%_UI_TCSEditor_label"
             icon="icons/full/obj16/TCSModelFile.gif"
             extensions="tcs"
-            class="com.sap.furcas.metamodel.TCS.presentation.TCSEditor"
-            contributorClass="com.sap.furcas.metamodel.TCS.presentation.TCSActionBarContributor">
+            class="com.sap.furcas.metamodel.FURCAS.TCS.presentation.TCSEditor"
+            contributorClass="com.sap.furcas.metamodel.FURCAS.TCS.presentation.TCSActionBarContributor">
       </editor>
    </extension>
-   
+
    <extension point="org.eclipse.ui.newWizards">
       <category
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
-            id="com.sap.furcas.metamodel.textblocks.presentation.TextblocksModelWizardID"
+            id="com.sap.furcas.metamodel.FURCAS.textblocks.presentation.TextblocksModelWizardID"
             name="%_UI_TextblocksModelWizard_label"
-            class="com.sap.furcas.metamodel.textblocks.presentation.TextblocksModelWizard"
+            class="com.sap.furcas.metamodel.FURCAS.textblocks.presentation.TextblocksModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
             icon="icons/full/obj16/TextblocksModelFile.gif">
          <description>%_UI_TextblocksModelWizard_description</description>
@@ -53,12 +79,12 @@
 
    <extension point="org.eclipse.ui.editors">
       <editor
-            id="com.sap.furcas.metamodel.textblocks.presentation.TextblocksEditorID"
+            id="com.sap.furcas.metamodel.FURCAS.textblocks.presentation.TextblocksEditorID"
             name="%_UI_TextblocksEditor_label"
             icon="icons/full/obj16/TextblocksModelFile.gif"
             extensions="textblocks"
-            class="com.sap.furcas.metamodel.textblocks.presentation.TextblocksEditor"
-            contributorClass="com.sap.furcas.metamodel.textblocks.presentation.TextblocksActionBarContributor">
+            class="com.sap.furcas.metamodel.FURCAS.textblocks.presentation.TextblocksEditor"
+            contributorClass="com.sap.furcas.metamodel.FURCAS.textblocks.presentation.TextblocksActionBarContributor">
       </editor>
    </extension>
 
@@ -67,9 +93,9 @@
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
-            id="com.sap.furcas.metamodel.textblockdefinition.presentation.TextblockdefinitionModelWizardID"
+            id="com.sap.furcas.metamodel.FURCAS.textblockdefinition.presentation.TextblockdefinitionModelWizardID"
             name="%_UI_TextblockdefinitionModelWizard_label"
-            class="com.sap.furcas.metamodel.textblockdefinition.presentation.TextblockdefinitionModelWizard"
+            class="com.sap.furcas.metamodel.FURCAS.textblockdefinition.presentation.TextblockdefinitionModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
             icon="icons/full/obj16/TextblockdefinitionModelFile.gif">
          <description>%_UI_TextblockdefinitionModelWizard_description</description>
@@ -79,12 +105,12 @@
 
    <extension point="org.eclipse.ui.editors">
       <editor
-            id="com.sap.furcas.metamodel.textblockdefinition.presentation.TextblockdefinitionEditorID"
+            id="com.sap.furcas.metamodel.FURCAS.textblockdefinition.presentation.TextblockdefinitionEditorID"
             name="%_UI_TextblockdefinitionEditor_label"
             icon="icons/full/obj16/TextblockdefinitionModelFile.gif"
             extensions="textblockdefinition"
-            class="com.sap.furcas.metamodel.textblockdefinition.presentation.TextblockdefinitionEditor"
-            contributorClass="com.sap.furcas.metamodel.textblockdefinition.presentation.TextblockdefinitionActionBarContributor">
+            class="com.sap.furcas.metamodel.FURCAS.textblockdefinition.presentation.TextblockdefinitionEditor"
+            contributorClass="com.sap.furcas.metamodel.FURCAS.textblockdefinition.presentation.TextblockdefinitionActionBarContributor">
       </editor>
    </extension>
 

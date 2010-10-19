@@ -18,7 +18,8 @@ Export-Package: com.sap.furcas.parsergenerator.tcs.t2m,
    com.sap.furcas.textual.tcs",
  com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules,
  com.sap.furcas.parsergenerator.tcs.t2m.validation,
- com.sap.furcas.parsergenerator.testutils
+ com.sap.furcas.parsergenerator.testutils,
+ com.sap.mi.textual.test.scenarios;uses:="com.sap.mi.textual.grammar,com.sap.ide.cts.editor.test.util,com.sap.mi.textual.test.util"
 Require-Bundle: org.junit;bundle-version="4.8.1",
  com.sap.furcas.test;bundle-version="1.0.0",
  com.sap.furcas.metamodel.tests;bundle-version="1.0.0"

@@ -3,8 +3,8 @@
  */
 package com.sap.furcas.parsergenerator.tcs.t2m.grammar;
 
-import com.sap.furcas.metamodel.TCS.Sequence;
-import com.sap.furcas.metamodel.TCS.SequenceElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 import com.sap.furcas.runtime.tcs.SyntaxLookup;
@@ -18,14 +18,14 @@ import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
  */
 public class RuleBodyBufferFactory {
 
-    private AlternativeHandler alternativeHandler;
-    private BlockTypeHandler blockHandler;
-    private ConditionalElementHandler<?> conElHandler;
-    private SyntaxLookup syntaxLookup;
-    private PropertyTypeHandler<?> propertyHandler;
-    private TemplateNamingHelper<?> namingHelper;
-    private SemanticErrorBucket errorBucket;
-    private InjectorActionsHandler<?> actionsHandler;
+    private final AlternativeHandler alternativeHandler;
+    private final BlockTypeHandler blockHandler;
+    private final ConditionalElementHandler<?> conElHandler;
+    private final SyntaxLookup syntaxLookup;
+    private final PropertyTypeHandler<?> propertyHandler;
+    private final TemplateNamingHelper<?> namingHelper;
+    private final SemanticErrorBucket errorBucket;
+    private final InjectorActionsHandler<?> actionsHandler;
 
     
     

@@ -11,8 +11,8 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.sap.furcas.metamodel.TCS.stubs.FunctionTemplateStub;
-import com.sap.furcas.metamodel.TCS.stubs.SequenceStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.FunctionTemplateStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.SequenceStub;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.ANTLR3WriterStub;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.RuleBufferFactoryStub;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.TemplateNamingHelperStub;

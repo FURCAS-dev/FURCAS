@@ -9,12 +9,11 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import com.sap.furcas.metamodel.TCS.QualifiedNamedElement;
-import com.sap.furcas.metamodel.TCS.stubs.FunctionTemplateStub;
-import com.sap.furcas.metamodel.TCS.stubs.PrimitiveTemplateStub;
-import com.sap.furcas.metamodel.TCS.stubs.TemplateStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.FunctionTemplateStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.PrimitiveTemplateStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.TemplateStub;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.MetaModelElementResolutionHelperStub;
-import com.sap.furcas.parsergenerator.testutils.ResolutionBeanHelper;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.exceptions.NameResolutionFailedException;
 import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
@@ -22,6 +21,7 @@ import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 import com.sap.furcas.runtime.tcs.MetamodelNameResolvingException;
 import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
+import com.sap.furcas.test.parsing.testutils.ResolutionBeanHelper;
 
 /**
  *

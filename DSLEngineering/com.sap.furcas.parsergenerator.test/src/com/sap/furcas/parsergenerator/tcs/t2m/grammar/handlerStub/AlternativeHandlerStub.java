@@ -6,7 +6,7 @@ package com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sap.furcas.metamodel.TCS.Alternative;
+import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.AlternativeHandler;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer;
 

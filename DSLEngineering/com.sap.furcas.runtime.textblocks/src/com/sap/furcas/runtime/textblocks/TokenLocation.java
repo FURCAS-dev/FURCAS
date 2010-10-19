@@ -1,6 +1,7 @@
 package com.sap.furcas.runtime.textblocks;
 
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+
 
 public class TokenLocation {
 

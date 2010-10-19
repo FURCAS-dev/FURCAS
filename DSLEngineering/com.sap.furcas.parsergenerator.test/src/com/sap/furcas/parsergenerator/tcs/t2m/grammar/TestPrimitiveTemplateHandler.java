@@ -13,9 +13,9 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.sap.furcas.metamodel.TCS.Keyword;
-import com.sap.furcas.metamodel.TCS.stubs.LiteralStub;
-import com.sap.furcas.metamodel.TCS.stubs.PrimitiveTemplateStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.LiteralStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.PrimitiveTemplateStub;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.ANTLR3WriterStub;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.MetaModelElementResolutionHelperStub;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.SyntaxLookupStub;

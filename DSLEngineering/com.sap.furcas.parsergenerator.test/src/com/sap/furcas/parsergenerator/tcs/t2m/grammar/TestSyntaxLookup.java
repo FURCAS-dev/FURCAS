@@ -3,7 +3,7 @@
  */
 package com.sap.furcas.parsergenerator.tcs.t2m.grammar;
 
-import static com.sap.furcas.parsergenerator.testutils.ResolutionBeanHelper.refE;
+import static com.sap.furcas.test.parsing.testutils.ResolutionBeanHelper.refE;
 import static com.sap.furcas.test.parsing.testutils.StringListHelper.list;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -17,15 +17,15 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
 
-import com.sap.furcas.metamodel.TCS.Keyword;
-import com.sap.furcas.metamodel.TCS.OperatorList;
-import com.sap.furcas.metamodel.TCS.Symbol;
-import com.sap.furcas.metamodel.TCS.Template;
-import com.sap.furcas.metamodel.TCS.stubs.ClassTemplateStub;
-import com.sap.furcas.metamodel.TCS.stubs.ConcreteSyntaxStub;
-import com.sap.furcas.metamodel.TCS.stubs.LiteralStub;
-import com.sap.furcas.metamodel.TCS.stubs.OperatorListStub;
-import com.sap.furcas.metamodel.TCS.stubs.PrimitiveTemplateStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
+import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
+import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.ClassTemplateStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.ConcreteSyntaxStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.LiteralStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.OperatorListStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.PrimitiveTemplateStub;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.MetaModelElementResolutionHelperStub;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;

@@ -9,12 +9,12 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
 
-import com.sap.furcas.metamodel.TCS.OperatorList;
-import com.sap.furcas.metamodel.TCS.Priority;
-import com.sap.furcas.metamodel.TCS.stubs.ConcreteSyntaxStub;
-import com.sap.furcas.metamodel.TCS.stubs.OperatorListStub;
-import com.sap.furcas.metamodel.TCS.stubs.OperatorStub;
-import com.sap.furcas.metamodel.TCS.stubs.PriorityStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
+import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.ConcreteSyntaxStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.OperatorListStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.OperatorStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.PriorityStub;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.SemanticErrorBucket;
 
 

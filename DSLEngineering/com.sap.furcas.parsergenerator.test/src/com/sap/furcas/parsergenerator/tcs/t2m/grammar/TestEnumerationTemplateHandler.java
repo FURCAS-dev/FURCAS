@@ -14,9 +14,9 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
 
-import com.sap.furcas.metamodel.TCS.EnumLiteralMapping;
-import com.sap.furcas.metamodel.TCS.stubs.EnumLiteralMappingStub;
-import com.sap.furcas.metamodel.TCS.stubs.EnumTemplateStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralMapping;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.EnumLiteralMappingStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.EnumTemplateStub;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.ANTLR3WriterStub;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.MetaLookupStub;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.MetaModelElementResolutionHelperStub;

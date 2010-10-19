@@ -11,8 +11,8 @@ package com.sap.furcas.parsergenerator.tcs.t2m.grammar;
 import java.util.Collection;
 import java.util.Iterator;
 
-import com.sap.furcas.metamodel.TCS.Alternative;
-import com.sap.furcas.metamodel.TCS.SequenceInAlternative;
+import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceInAlternative;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 

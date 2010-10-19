@@ -4,9 +4,9 @@ import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getSubNodesSize
 
 import java.util.List;
 
-import com.sap.furcas.metamodel.textblocks.DocumentNode;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.metamodel.textblocks.Version;
+import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 
 public class TbVersionUtil {
 
@@ -18,9 +18,9 @@ public class TbVersionUtil {
 	@SuppressWarnings("unchecked")
     public static <Type extends DocumentNode> Type getOtherVersion(Type documentNode,
 			Version version) {
-		if (documentNode.getVersion() == version)
-			return documentNode;
-		else {
+		if (documentNode.getVersion() == version) {
+		    return documentNode;
+		} else {
 			List<DocumentNode> otherVersions = documentNode.getOtherVersions();
 			for (DocumentNode otherVersion : otherVersions) {
 				if (otherVersion.getVersion() == version) {

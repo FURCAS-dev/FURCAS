@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 
 public class TextBlockTraversationContext {
 
-	private TextBlock contextBlock;
+	private final TextBlock contextBlock;
 
 	private int lastVisitedChildIndex = -1;
 
-	private List<AbstractToken> relocationTokens = new ArrayList<AbstractToken>();
+	private final List<AbstractToken> relocationTokens = new ArrayList<AbstractToken>();
 
-	private boolean isNewBlock;
+	private final boolean isNewBlock;
 
 	/**
 	 * @param contextBlock
