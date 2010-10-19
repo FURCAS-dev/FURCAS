@@ -58,6 +58,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
+import org.eclipse.emf.edit.ui.action.ValidateAction;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
 import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
@@ -65,7 +66,6 @@ import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
-import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
 import org.eclipse.emf.edit.ui.util.EditUIUtil;
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 import org.eclipse.jface.action.IMenuListener;
@@ -283,9 +283,9 @@ public class Signature_and_callEditor
      * in Eclipse's Problems View.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
-    protected MarkerHelper markerHelper = new EditUIMarkerHelper();
+    protected MarkerHelper markerHelper = new ValidateAction.EclipseResourcesUtil();
 
     /**
      * This listens for when the outline becomes active
@@ -365,13 +365,13 @@ public class Signature_and_callEditor
      * <!-- end-user-doc -->
      * @generated
      */
-    final protected boolean updateProblemIndication = false;
+    protected boolean updateProblemIndication = false;
 
     /**
      * Adapter used to update the problem indication when resources are demanded loaded.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     protected EContentAdapter problemIndicationAdapter = 
         new EContentAdapter() {
@@ -391,9 +391,9 @@ public class Signature_and_callEditor
                                 resourceToDiagnosticMap.remove(resource);
                             }
 
-                            /* TODO check if we still need to update the problems here if we have OCL IA active
-                             * TODO also remove problem markers of elements that get deleted
-                             * TODO remove all problem markers when a resource / ResourceSet gets validated
+                            // TODO check if we still need to update the problems here if we have OCL IA active
+                            // TODO also remove problem markers of elements that get deleted
+                            // TODO remove all problem markers when a resource / ResourceSet gets validated
                             if (updateProblemIndication) {
                                 getSite().getShell().getDisplay().asyncExec
                                     (new Runnable() {
@@ -402,12 +402,12 @@ public class Signature_and_callEditor
                                          }
                                      });
                             }
-                            */
                             break;
                         }
                     }
                 }
                 else {
+                    // TODO I wonder if this would also register this adapter on all elements inside all resources... and if so, why?
                     super.notifyChanged(notification);
                 }
             }
@@ -548,9 +548,7 @@ public class Signature_and_callEditor
             }
             editingDomain.getCommandStack().flush();
 
-            /* TODO understand if we need this if we have OCL IA active
             updateProblemIndication = false;
-            */
             for (Resource resource : changedResources) {
                 if (resource.isLoaded()) {
                     resource.unload();
@@ -568,10 +566,8 @@ public class Signature_and_callEditor
             if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
                 setSelection(StructuredSelection.EMPTY);
             }
-            /* TODO understand if we need this if we have OCL IA active
             updateProblemIndication = true;
             updateProblemIndication();
-            */
         }
     }
   
@@ -579,7 +575,7 @@ public class Signature_and_callEditor
      * Updates the problems indication with the information described in the specified diagnostic.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     protected void updateProblemIndication() {
         if (updateProblemIndication) {
@@ -1471,9 +1467,8 @@ public class Signature_and_callEditor
                 }
             };
 
-        /* TODO understand if we need this if we have OCL IA active
+        // TODO understand if we need this if we have OCL IA active
         updateProblemIndication = false;
-        */
         try {
             // This runs the options, and shows progress.
             //
@@ -1489,10 +1484,9 @@ public class Signature_and_callEditor
             //
             Signature_and_callEditorPlugin.INSTANCE.log(exception);
         }
-        /* TODO understand if we need this if we have OCL IA active
+        // TODO understand if we need this if we have OCL IA active
         updateProblemIndication = true;
         updateProblemIndication();
-        */
     }
 
     /**
@@ -1761,9 +1755,8 @@ public class Signature_and_callEditor
      */
     @Override
     public void dispose() {
-        /* TODO understand if we need this if we have OCL IA active
+        // TODO understand if we need this if we have OCL IA active
         updateProblemIndication = false;
-        */
 
         ResourcesPlugin.getWorkspace().removeResourceChangeListener(resourceChangeListener);
 

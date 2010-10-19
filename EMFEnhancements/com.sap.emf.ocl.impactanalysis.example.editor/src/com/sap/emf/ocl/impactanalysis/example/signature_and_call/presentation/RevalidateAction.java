@@ -10,9 +10,14 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.ui.MarkerHelper;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.emf.edit.ui.action.ValidateAction;
@@ -24,12 +29,45 @@ import org.eclipse.ui.PlatformUI;
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
+
 /**
- * Validates a specific constraint on one or more of the context elements that are instance of the constaint's context class
- * or a subclass thereof.
+ * Validates a specific constraint on one or more of the context elements that are instance of the constaint's context class or a
+ * subclass thereof.
+ * <p>
+ * 
+ * There are {@link Diagnostic} objects maintained as {@link Resource#getErrors() errors} and {@link Resource#getWarnings()
+ * warnings} of an EMF resource, and {@link IMarker} objects managed by {@link IResource}s and stored persistently in the
+ * workspace, representing validation errors. {@link MarkerHelper} and its subclasses can turn {@link Diagnostic} objects into
+ * {@link IMarker}s which form the basis for the problem view display. A {@link MarkerHelper} is used to create {@link IMarker
+ * markers} from {@link Diagnostic} objects. Specializations of {@link MarkerHelper} can annotate the markers with additional
+ * information stored, e.g., in {@link Diagnostic#getData()} and storing them in {@link IMarker#getAttribute(String) attributes}
+ * of the marker. By default, this process is triggered in the <code>updateProblemIndication</code> method of a generated EMF
+ * sample editor, where first all markers for the entire {@link ResourceSet} (this seems too broad a scope) are deleted and then
+ * created again based on the {@link Diagnostic}s returned from {@link Resource#getErrors()} and {@link Resource#getWarnings()}
+ * for the resources contained by the editing domain's resource set.
+ * <p>
+ * 
+ * EMF resources, upon loading, don't perform any constraint validation. Therefore, their errors and warnings list turns out empty
+ * by default. Filling those has to happen by explicitly performing a {@link ValidateAction} on selected resources or individual
+ * elements. Only then will a {@link Diagnostician} be used to fetch the {@link EValidator} from the validator registry with which
+ * a validation is performed on a single {@link EObject}. Such a validation run will produce {@link Diagnostic} objects which the
+ * {@link ValidateAction} then converts into {@link IMarker}s again. Note that these {@link Diagnostic} objects are <em>not</em>
+ * entered into the errors/warnings of the {@link Resource} on which the validation happened.
+ * <p>
+ * 
+ * When a change {@link Notification} triggers this revalidation action, the constraint is re-evaluated on the context objects
+ * determined by the {@link ImpactAnalyzer OCL Impact Analysis}. For any constraint which now evaluates to <code>true</code>, any
+ * existing {@link Diagnostic} needs to be removed. FOr any constraint evaluating to <code>false</code> a {@link Diagnostic}
+ * object needs to be created, and an {@link IMarker} needs to be created and displayed in the problem view.
+ * <p>
+ * 
+ * During re-validation, the resources of other objects on which to evaluate the constraint may be loaded into the surrounding
+ * editing domain's resource set. Markers are managed by a <code>MarkerManager</code> which persistently stores markers in the
+ * workspace, keyed by the resources to which they belong.
  * 
  * @author Axel Uhl (D043530)
- *
+ * 
  */
 public class RevalidateAction extends ValidateAction {
     private static final String MARKER_TYPE = "org.eclipse.core.resources.problemmarker";
