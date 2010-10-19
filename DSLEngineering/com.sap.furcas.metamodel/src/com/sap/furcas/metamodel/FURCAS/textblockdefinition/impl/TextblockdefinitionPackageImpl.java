@@ -6,24 +6,32 @@
  */
 package com.sap.furcas.metamodel.FURCAS.textblockdefinition.impl;
 
+import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
+
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
+import com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl;
+
+import com.sap.furcas.metamodel.FURCAS.impl.FURCASPackageImpl;
+
+import com.sap.furcas.metamodel.FURCAS.textblockdefinition.FormatPolicy;
+import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
+import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionFactory;
+import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionPackage;
+
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
+
+import com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextblocksPackageImpl;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
-import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
-import com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl;
-import com.sap.furcas.metamodel.FURCAS.impl.FURCASPackageImpl;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.FormatPolicy;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockDefinition;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionFactory;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionPackage;
-import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
-import com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextblocksPackageImpl;
+import org.eclipse.ocl.ecore.EcorePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,7 +45,7 @@ public class TextblockdefinitionPackageImpl extends EPackageImpl implements Text
          * <!-- end-user-doc -->
          * @generated
          */
-        private EClass textblockDefinitionEClass = null;
+        private EClass textBlockDefinitionEClass = null;
 
         /**
          * <!-- begin-user-doc -->
@@ -85,9 +93,7 @@ public class TextblockdefinitionPackageImpl extends EPackageImpl implements Text
          * @generated
          */
         public static TextblockdefinitionPackage init() {
-                if (isInited) {
-		    return (TextblockdefinitionPackage)EPackage.Registry.INSTANCE.getEPackage(TextblockdefinitionPackage.eNS_URI);
-		}
+                if (isInited) return (TextblockdefinitionPackage)EPackage.Registry.INSTANCE.getEPackage(TextblockdefinitionPackage.eNS_URI);
 
                 // Obtain or create and register package
                 TextblockdefinitionPackageImpl theTextblockdefinitionPackage = (TextblockdefinitionPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof TextblockdefinitionPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new TextblockdefinitionPackageImpl());
@@ -128,9 +134,8 @@ public class TextblockdefinitionPackageImpl extends EPackageImpl implements Text
          * <!-- end-user-doc -->
          * @generated
          */
-        @Override
-	public EClass getTextblockDefinition() {
-                return textblockDefinitionEClass;
+        public EClass getTextBlockDefinition() {
+                return textBlockDefinitionEClass;
         }
 
         /**
@@ -138,9 +143,8 @@ public class TextblockdefinitionPackageImpl extends EPackageImpl implements Text
          * <!-- end-user-doc -->
          * @generated
          */
-        @Override
-	public EAttribute getTextblockDefinition_FormatPolicy() {
-                return (EAttribute)textblockDefinitionEClass.getEStructuralFeatures().get(0);
+        public EAttribute getTextBlockDefinition_FormatPolicy() {
+                return (EAttribute)textBlockDefinitionEClass.getEStructuralFeatures().get(0);
         }
 
         /**
@@ -148,9 +152,8 @@ public class TextblockdefinitionPackageImpl extends EPackageImpl implements Text
          * <!-- end-user-doc -->
          * @generated
          */
-        @Override
-	public EAttribute getTextblockDefinition_DefaultTemplate() {
-                return (EAttribute)textblockDefinitionEClass.getEStructuralFeatures().get(1);
+        public EAttribute getTextBlockDefinition_DefaultTemplate() {
+                return (EAttribute)textBlockDefinitionEClass.getEStructuralFeatures().get(1);
         }
 
         /**
@@ -158,9 +161,8 @@ public class TextblockdefinitionPackageImpl extends EPackageImpl implements Text
          * <!-- end-user-doc -->
          * @generated
          */
-        @Override
-	public EReference getTextblockDefinition_ParseRule() {
-                return (EReference)textblockDefinitionEClass.getEStructuralFeatures().get(2);
+        public EReference getTextBlockDefinition_ParseRule() {
+                return (EReference)textBlockDefinitionEClass.getEStructuralFeatures().get(2);
         }
 
         /**
@@ -168,9 +170,8 @@ public class TextblockdefinitionPackageImpl extends EPackageImpl implements Text
          * <!-- end-user-doc -->
          * @generated
          */
-        @Override
-	public EReference getTextblockDefinition_Context() {
-                return (EReference)textblockDefinitionEClass.getEStructuralFeatures().get(3);
+        public EReference getTextBlockDefinition_Context() {
+                return (EReference)textBlockDefinitionEClass.getEStructuralFeatures().get(3);
         }
 
         /**
@@ -178,9 +179,8 @@ public class TextblockdefinitionPackageImpl extends EPackageImpl implements Text
          * <!-- end-user-doc -->
          * @generated
          */
-        @Override
-	public EReference getTextblockDefinition_SubDefinitions() {
-                return (EReference)textblockDefinitionEClass.getEStructuralFeatures().get(4);
+        public EReference getTextBlockDefinition_SubDefinitions() {
+                return (EReference)textBlockDefinitionEClass.getEStructuralFeatures().get(4);
         }
 
         /**
@@ -188,9 +188,8 @@ public class TextblockdefinitionPackageImpl extends EPackageImpl implements Text
          * <!-- end-user-doc -->
          * @generated
          */
-        @Override
-	public EReference getTextblockDefinition_Generalisation() {
-                return (EReference)textblockDefinitionEClass.getEStructuralFeatures().get(5);
+        public EReference getTextBlockDefinition_Generalisation() {
+                return (EReference)textBlockDefinitionEClass.getEStructuralFeatures().get(5);
         }
 
         /**
@@ -198,9 +197,8 @@ public class TextblockdefinitionPackageImpl extends EPackageImpl implements Text
          * <!-- end-user-doc -->
          * @generated
          */
-        @Override
-	public EAttribute getTextblockDefinition_Name() {
-                return (EAttribute)textblockDefinitionEClass.getEStructuralFeatures().get(6);
+        public EAttribute getTextBlockDefinition_Name() {
+                return (EAttribute)textBlockDefinitionEClass.getEStructuralFeatures().get(6);
         }
 
         /**
@@ -208,8 +206,7 @@ public class TextblockdefinitionPackageImpl extends EPackageImpl implements Text
          * <!-- end-user-doc -->
          * @generated
          */
-        @Override
-	public EEnum getFormatPolicy() {
+        public EEnum getFormatPolicy() {
                 return formatPolicyEEnum;
         }
 
@@ -218,8 +215,7 @@ public class TextblockdefinitionPackageImpl extends EPackageImpl implements Text
          * <!-- end-user-doc -->
          * @generated
          */
-        @Override
-	public TextblockdefinitionFactory getTextblockdefinitionFactory() {
+        public TextblockdefinitionFactory getTextblockdefinitionFactory() {
                 return (TextblockdefinitionFactory)getEFactoryInstance();
         }
 
@@ -238,20 +234,18 @@ public class TextblockdefinitionPackageImpl extends EPackageImpl implements Text
          * @generated
          */
         public void createPackageContents() {
-                if (isCreated) {
-		    return;
-		}
+                if (isCreated) return;
                 isCreated = true;
 
                 // Create classes and their features
-                textblockDefinitionEClass = createEClass(TEXTBLOCK_DEFINITION);
-                createEAttribute(textblockDefinitionEClass, TEXTBLOCK_DEFINITION__FORMAT_POLICY);
-                createEAttribute(textblockDefinitionEClass, TEXTBLOCK_DEFINITION__DEFAULT_TEMPLATE);
-                createEReference(textblockDefinitionEClass, TEXTBLOCK_DEFINITION__PARSE_RULE);
-                createEReference(textblockDefinitionEClass, TEXTBLOCK_DEFINITION__CONTEXT);
-                createEReference(textblockDefinitionEClass, TEXTBLOCK_DEFINITION__SUB_DEFINITIONS);
-                createEReference(textblockDefinitionEClass, TEXTBLOCK_DEFINITION__GENERALISATION);
-                createEAttribute(textblockDefinitionEClass, TEXTBLOCK_DEFINITION__NAME);
+                textBlockDefinitionEClass = createEClass(TEXT_BLOCK_DEFINITION);
+                createEAttribute(textBlockDefinitionEClass, TEXT_BLOCK_DEFINITION__FORMAT_POLICY);
+                createEAttribute(textBlockDefinitionEClass, TEXT_BLOCK_DEFINITION__DEFAULT_TEMPLATE);
+                createEReference(textBlockDefinitionEClass, TEXT_BLOCK_DEFINITION__PARSE_RULE);
+                createEReference(textBlockDefinitionEClass, TEXT_BLOCK_DEFINITION__CONTEXT);
+                createEReference(textBlockDefinitionEClass, TEXT_BLOCK_DEFINITION__SUB_DEFINITIONS);
+                createEReference(textBlockDefinitionEClass, TEXT_BLOCK_DEFINITION__GENERALISATION);
+                createEAttribute(textBlockDefinitionEClass, TEXT_BLOCK_DEFINITION__NAME);
 
                 // Create enums
                 formatPolicyEEnum = createEEnum(FORMAT_POLICY);
@@ -272,9 +266,7 @@ public class TextblockdefinitionPackageImpl extends EPackageImpl implements Text
          * @generated
          */
         public void initializePackageContents() {
-                if (isInitialized) {
-		    return;
-		}
+                if (isInitialized) return;
                 isInitialized = true;
 
                 // Initialize package
@@ -293,14 +285,14 @@ public class TextblockdefinitionPackageImpl extends EPackageImpl implements Text
                 // Add supertypes to classes
 
                 // Initialize classes and features; add operations and parameters
-                initEClass(textblockDefinitionEClass, TextblockDefinition.class, "TextblockDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-                initEAttribute(getTextblockDefinition_FormatPolicy(), this.getFormatPolicy(), "formatPolicy", "", 0, 1, TextblockDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-                initEAttribute(getTextblockDefinition_DefaultTemplate(), theEcorePackage_1.getEString(), "defaultTemplate", "", 0, 1, TextblockDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-                initEReference(getTextblockDefinition_ParseRule(), theTCSPackage.getTemplate(), null, "parseRule", null, 0, 1, TextblockDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-                initEReference(getTextblockDefinition_Context(), this.getTextblockDefinition(), this.getTextblockDefinition_SubDefinitions(), "context", null, 0, 1, TextblockDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-                initEReference(getTextblockDefinition_SubDefinitions(), this.getTextblockDefinition(), this.getTextblockDefinition_Context(), "subDefinitions", null, 0, -1, TextblockDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-                initEReference(getTextblockDefinition_Generalisation(), this.getTextblockDefinition(), null, "generalisation", null, 0, 1, TextblockDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-                initEAttribute(getTextblockDefinition_Name(), theEcorePackage_1.getEString(), "name", null, 0, 1, TextblockDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+                initEClass(textBlockDefinitionEClass, TextBlockDefinition.class, "TextBlockDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+                initEAttribute(getTextBlockDefinition_FormatPolicy(), this.getFormatPolicy(), "formatPolicy", "", 0, 1, TextBlockDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+                initEAttribute(getTextBlockDefinition_DefaultTemplate(), theEcorePackage_1.getEString(), "defaultTemplate", "", 0, 1, TextBlockDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+                initEReference(getTextBlockDefinition_ParseRule(), theTCSPackage.getTemplate(), null, "parseRule", null, 0, 1, TextBlockDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+                initEReference(getTextBlockDefinition_Context(), this.getTextBlockDefinition(), this.getTextBlockDefinition_SubDefinitions(), "context", null, 0, 1, TextBlockDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+                initEReference(getTextBlockDefinition_SubDefinitions(), this.getTextBlockDefinition(), this.getTextBlockDefinition_Context(), "subDefinitions", null, 0, -1, TextBlockDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+                initEReference(getTextBlockDefinition_Generalisation(), this.getTextBlockDefinition(), null, "generalisation", null, 0, 1, TextBlockDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+                initEAttribute(getTextBlockDefinition_Name(), theEcorePackage_1.getEString(), "name", null, 0, 1, TextBlockDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
                 // Initialize enums and add enum literals
                 initEEnum(formatPolicyEEnum, FormatPolicy.class, "FormatPolicy");

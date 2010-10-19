@@ -6,7 +6,7 @@
  */
 package com.sap.furcas.metamodel.FURCAS.textblockdefinition.tests;
 
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockDefinition;
+import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionFactory;
 
 import junit.framework.TestCase;
@@ -15,19 +15,19 @@ import junit.textui.TestRunner;
 
 /**
  * <!-- begin-user-doc -->
- * A test case for the model object '<em><b>Textblock Definition</b></em>'.
+ * A test case for the model object '<em><b>Text Block Definition</b></em>'.
  * <!-- end-user-doc -->
  * @generated
  */
-public class TextblockDefinitionTest extends TestCase {
+public class TextBlockDefinitionTest extends TestCase {
 
         /**
-         * The fixture for this Textblock Definition test case.
+         * The fixture for this Text Block Definition test case.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        protected TextblockDefinition fixture = null;
+        protected TextBlockDefinition fixture = null;
 
         /**
          * <!-- begin-user-doc -->
@@ -35,36 +35,36 @@ public class TextblockDefinitionTest extends TestCase {
          * @generated
          */
         public static void main(String[] args) {
-                TestRunner.run(TextblockDefinitionTest.class);
+                TestRunner.run(TextBlockDefinitionTest.class);
         }
 
         /**
-         * Constructs a new Textblock Definition test case with the given name.
+         * Constructs a new Text Block Definition test case with the given name.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        public TextblockDefinitionTest(String name) {
+        public TextBlockDefinitionTest(String name) {
                 super(name);
         }
 
         /**
-         * Sets the fixture for this Textblock Definition test case.
+         * Sets the fixture for this Text Block Definition test case.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        protected void setFixture(TextblockDefinition fixture) {
+        protected void setFixture(TextBlockDefinition fixture) {
                 this.fixture = fixture;
         }
 
         /**
-         * Returns the fixture for this Textblock Definition test case.
+         * Returns the fixture for this Text Block Definition test case.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        protected TextblockDefinition getFixture() {
+        protected TextBlockDefinition getFixture() {
                 return fixture;
         }
 
@@ -76,7 +76,7 @@ public class TextblockDefinitionTest extends TestCase {
          */
         @Override
         protected void setUp() throws Exception {
-                setFixture(TextblockdefinitionFactory.eINSTANCE.createTextblockDefinition());
+                setFixture(TextblockdefinitionFactory.eINSTANCE.createTextBlockDefinition());
         }
 
         /**
@@ -90,4 +90,4 @@ public class TextblockDefinitionTest extends TestCase {
                 setFixture(null);
         }
 
-} //TextblockDefinitionTest
+} //TextBlockDefinitionTest

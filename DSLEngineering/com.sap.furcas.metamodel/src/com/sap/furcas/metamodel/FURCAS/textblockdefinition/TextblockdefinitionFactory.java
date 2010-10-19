@@ -26,13 +26,13 @@ public interface TextblockdefinitionFactory extends EFactory {
         TextblockdefinitionFactory eINSTANCE = com.sap.furcas.metamodel.FURCAS.textblockdefinition.impl.TextblockdefinitionFactoryImpl.init();
 
         /**
-         * Returns a new object of class '<em>Textblock Definition</em>'.
+         * Returns a new object of class '<em>Text Block Definition</em>'.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @return a new object of class '<em>Textblock Definition</em>'.
+         * @return a new object of class '<em>Text Block Definition</em>'.
          * @generated
          */
-        TextblockDefinition createTextblockDefinition();
+        TextBlockDefinition createTextBlockDefinition();
 
         /**
          * Returns the package supported by this factory.

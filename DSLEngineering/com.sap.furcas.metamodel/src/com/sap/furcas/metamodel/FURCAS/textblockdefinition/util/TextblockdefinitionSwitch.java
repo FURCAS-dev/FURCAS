@@ -87,9 +87,9 @@ public class TextblockdefinitionSwitch<T> {
          */
         protected T doSwitch(int classifierID, EObject theEObject) {
                 switch (classifierID) {
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION: {
-                                TextblockDefinition textblockDefinition = (TextblockDefinition)theEObject;
-                                T result = caseTextblockDefinition(textblockDefinition);
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION: {
+                                TextBlockDefinition textBlockDefinition = (TextBlockDefinition)theEObject;
+                                T result = caseTextBlockDefinition(textBlockDefinition);
                                 if (result == null) result = defaultCase(theEObject);
                                 return result;
                         }
@@ -98,17 +98,17 @@ public class TextblockdefinitionSwitch<T> {
         }
 
         /**
-         * Returns the result of interpreting the object as an instance of '<em>Textblock Definition</em>'.
+         * Returns the result of interpreting the object as an instance of '<em>Text Block Definition</em>'.
          * <!-- begin-user-doc -->
          * This implementation returns null;
          * returning a non-null result will terminate the switch.
          * <!-- end-user-doc -->
          * @param object the target of the switch.
-         * @return the result of interpreting the object as an instance of '<em>Textblock Definition</em>'.
+         * @return the result of interpreting the object as an instance of '<em>Text Block Definition</em>'.
          * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
          * @generated
          */
-        public T caseTextblockDefinition(TextblockDefinition object) {
+        public T caseTextBlockDefinition(TextBlockDefinition object) {
                 return null;
         }
 

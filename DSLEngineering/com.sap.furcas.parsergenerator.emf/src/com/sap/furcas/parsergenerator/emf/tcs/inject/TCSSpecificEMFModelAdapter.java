@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
 import com.sap.furcas.modeladaptation.emf.EMFModelAdapter;
 import com.sap.furcas.runtime.common.exceptions.DeferredActionResolvingException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
@@ -34,9 +34,9 @@ public class TCSSpecificEMFModelAdapter implements IBareModelAdapter {
      */
     public TCSSpecificEMFModelAdapter(ResourceSet connection, Set<URI> metamodelURIs) {
 	super();
-	final EPackage rootPackage = TCSPackage.eINSTANCE;
+	final EPackage rootPackage = FURCASPackage.eINSTANCE;
 	if (rootPackage == null) {
-	    throw new IllegalArgumentException("ResourceSet cannot resolve TCSPackage " + TCSPackage.eINSTANCE);
+	    throw new IllegalArgumentException("ResourceSet cannot resolve FURCASPackage " + FURCASPackage.eINSTANCE);
 	}
 	Set<URI> adapterReferenceScopeURIs;
 	if (metamodelURIs != null) {

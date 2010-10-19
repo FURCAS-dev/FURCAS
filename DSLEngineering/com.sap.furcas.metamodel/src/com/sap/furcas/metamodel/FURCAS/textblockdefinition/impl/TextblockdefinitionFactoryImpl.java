@@ -61,7 +61,7 @@ public class TextblockdefinitionFactoryImpl extends EFactoryImpl implements Text
         @Override
         public EObject create(EClass eClass) {
                 switch (eClass.getClassifierID()) {
-                        case TextblockdefinitionPackage.TEXTBLOCK_DEFINITION: return createTextblockDefinition();
+                        case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION: return createTextBlockDefinition();
                         default:
                                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
                 }
@@ -102,9 +102,9 @@ public class TextblockdefinitionFactoryImpl extends EFactoryImpl implements Text
          * <!-- end-user-doc -->
          * @generated
          */
-        public TextblockDefinition createTextblockDefinition() {
-                TextblockDefinitionImpl textblockDefinition = new TextblockDefinitionImpl();
-                return textblockDefinition;
+        public TextBlockDefinition createTextBlockDefinition() {
+                TextBlockDefinitionImpl textBlockDefinition = new TextBlockDefinitionImpl();
+                return textBlockDefinition;
         }
 
         /**

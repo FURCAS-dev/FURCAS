@@ -76,26 +76,26 @@ public class TextblockdefinitionItemProviderAdapterFactory extends Textblockdefi
         }
 
         /**
-         * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockDefinition} instances.
+         * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition} instances.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        protected TextblockDefinitionItemProvider textblockDefinitionItemProvider;
+        protected TextBlockDefinitionItemProvider textBlockDefinitionItemProvider;
 
         /**
-         * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockDefinition}.
+         * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition}.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
         @Override
-        public Adapter createTextblockDefinitionAdapter() {
-                if (textblockDefinitionItemProvider == null) {
-                        textblockDefinitionItemProvider = new TextblockDefinitionItemProvider(this);
+        public Adapter createTextBlockDefinitionAdapter() {
+                if (textBlockDefinitionItemProvider == null) {
+                        textBlockDefinitionItemProvider = new TextBlockDefinitionItemProvider(this);
                 }
 
-                return textblockDefinitionItemProvider;
+                return textBlockDefinitionItemProvider;
         }
 
         /**
@@ -197,7 +197,7 @@ public class TextblockdefinitionItemProviderAdapterFactory extends Textblockdefi
          * @generated
          */
         public void dispose() {
-                if (textblockDefinitionItemProvider != null) textblockDefinitionItemProvider.dispose();
+                if (textBlockDefinitionItemProvider != null) textBlockDefinitionItemProvider.dispose();
         }
 
 }

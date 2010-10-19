@@ -213,18 +213,11 @@ public class EcoreHelper {
 				String name = qname.get(i);
 				EList<EObject> contents = result.eContents();
 				for (EObject eObj : contents) {
-				    if(eObj instanceof ENamedElement) {
-					System.out.println(((ENamedElement) eObj).getName());
-				    }
 					if(eObj instanceof ENamedElement &&
 							((ENamedElement) eObj).getName().equals(name)) {
 						result = (EModelElement) eObj;
 						continue;
-					} else {
-					    System.out.println(eObj);
 					}
-					    
-					    
 				}
 			}
 		}

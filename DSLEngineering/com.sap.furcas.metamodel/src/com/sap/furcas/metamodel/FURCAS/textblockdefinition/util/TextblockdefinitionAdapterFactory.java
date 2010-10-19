@@ -72,8 +72,8 @@ public class TextblockdefinitionAdapterFactory extends AdapterFactoryImpl {
         protected TextblockdefinitionSwitch<Adapter> modelSwitch =
                 new TextblockdefinitionSwitch<Adapter>() {
                         @Override
-                        public Adapter caseTextblockDefinition(TextblockDefinition object) {
-                                return createTextblockDefinitionAdapter();
+                        public Adapter caseTextBlockDefinition(TextBlockDefinition object) {
+                                return createTextBlockDefinitionAdapter();
                         }
                         @Override
                         public Adapter defaultCase(EObject object) {
@@ -96,16 +96,16 @@ public class TextblockdefinitionAdapterFactory extends AdapterFactoryImpl {
 
 
         /**
-         * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockDefinition <em>Textblock Definition</em>}'.
+         * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition <em>Text Block Definition</em>}'.
          * <!-- begin-user-doc -->
          * This default implementation returns null so that we can easily ignore cases;
          * it's useful to ignore a case when inheritance will catch all the cases anyway.
          * <!-- end-user-doc -->
          * @return the new adapter.
-         * @see com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockDefinition
+         * @see com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition
          * @generated
          */
-        public Adapter createTextblockDefinitionAdapter() {
+        public Adapter createTextBlockDefinitionAdapter() {
                 return null;
         }
 
