@@ -224,4 +224,9 @@ public class EcoreHelper {
 		return result;
 	}
 
+	public static boolean isAlive(EObject object) {
+		//TODO how to check whether an object is alive or not in EMF?
+		return true;
+	}
+
 }
