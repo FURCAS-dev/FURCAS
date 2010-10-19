@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
+import org.eclipse.emf.query.index.ui.IndexFactory;
 import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
@@ -113,7 +114,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
         Resource r =null;
         try {
             r = resourceSet.getResource(fileUri, true);
-            EcoreHelper.getInstance().addResourceToDefaultIndex(r);
+            EcoreHelper.getInstance().addResourceToDefaultIndex(IndexFactory.getInstance(), r);
             r.load(null);
         } catch (Exception e) {
             e.printStackTrace();

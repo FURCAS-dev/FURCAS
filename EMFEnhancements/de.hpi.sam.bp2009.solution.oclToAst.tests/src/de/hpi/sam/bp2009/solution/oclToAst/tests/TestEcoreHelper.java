@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.query.index.ui.IndexFactory;
 import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
@@ -34,7 +35,7 @@ public class TestEcoreHelper extends TestCase {
     public void testSubclassQuery() {
         EcoreHelper helper = EcoreHelper.getInstance();
         EClass testClass = PetriNetPackage.eINSTANCE.getElement();
-        Collection<EClass> subclasses = helper.getAllSubclasses(testClass);
+        Collection<EClass> subclasses = helper.getAllSubclasses(testClass, IndexFactory.getInstance());
         assertEquals(4, subclasses.size());
         Set<String> foundNames = new HashSet<String>();
         Set<String> expectedNames = new HashSet<String>();
@@ -54,7 +55,7 @@ public class TestEcoreHelper extends TestCase {
         Resource e = rs.createResource(URI.createURI("http://my.own.resource/something"));
         e.getContents().add(petriNet);
         Collection<EObject> result = helper.reverseNavigate(place, (EReference) petriNet.eClass().getEStructuralFeature(
-                PetriNetPackage.PETRI_NET__ELEMENTS), helper.getQueryContext(rs), rs);
+                PetriNetPackage.PETRI_NET__ELEMENTS), helper.getQueryContext(rs, IndexFactory.getInstance()), rs, IndexFactory.getInstance());
         assertEquals(petriNet, result.iterator().next());
     }
 
@@ -68,7 +69,7 @@ public class TestEcoreHelper extends TestCase {
         e.getContents().add(place);
         e.getContents().add(transition);
         Collection<EObject> result = helper.reverseNavigate(transition, (EReference) place.eClass().getEStructuralFeature(
-                PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE), helper.getQueryContext(rs), rs);
+                PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE), helper.getQueryContext(rs, IndexFactory.getInstance()), rs, IndexFactory.getInstance());
         assertEquals(place, result.iterator().next());
     }
     
