@@ -711,9 +711,8 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 		TextBlock currentVersion = getOtherVersion(tb,
 				Version.CURRENT);
 		if (currentVersion == null) {
-			currentVersion = (TextBlock) textblocksFactory.getTextBlock()
-					.refCreateInstanceInPartition(
-							((EObject) tb).eResource());
+			currentVersion = textblocksFactory.createTextBlock();
+			tb.eResource().getContents().add(currentVersion);
 			currentVersion.setVersion(Version.CURRENT);
 			TbUtil.referenceVersions(currentVersion, tb);
 			if (tb.getParent() == null) {
