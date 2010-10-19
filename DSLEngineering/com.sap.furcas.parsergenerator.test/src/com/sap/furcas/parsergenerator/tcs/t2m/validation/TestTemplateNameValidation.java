@@ -8,9 +8,9 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.sap.furcas.metamodel.TCS.stubs.ClassTemplateStub;
-import com.sap.furcas.metamodel.TCS.stubs.ConcreteSyntaxStub;
-import com.sap.furcas.metamodel.TCS.stubs.TemplateStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.ClassTemplateStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.ConcreteSyntaxStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.TemplateStub;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.SemanticErrorBucket;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.MetaLookupStub;
 

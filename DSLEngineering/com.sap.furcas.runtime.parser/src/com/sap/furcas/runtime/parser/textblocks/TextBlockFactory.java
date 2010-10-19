@@ -1,8 +1,8 @@
 package com.sap.furcas.runtime.parser.textblocks;
 
-import com.sap.furcas.metamodel.TCS.Template;
-import com.sap.furcas.metamodel.textblockdefinition.TextblockDefinition;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockDefinition;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.runtime.parser.textblocks.observer.TextBlockProxy;
 
 /**

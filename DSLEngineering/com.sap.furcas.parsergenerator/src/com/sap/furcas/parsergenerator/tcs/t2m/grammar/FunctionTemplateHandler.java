@@ -9,8 +9,8 @@
 package com.sap.furcas.parsergenerator.tcs.t2m.grammar;
 
 
-import com.sap.furcas.metamodel.TCS.FunctionTemplate;
-import com.sap.furcas.metamodel.TCS.Sequence;
+import com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.FunctionProductionRule;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;

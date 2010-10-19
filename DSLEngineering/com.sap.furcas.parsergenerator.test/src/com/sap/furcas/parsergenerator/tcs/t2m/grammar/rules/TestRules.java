@@ -7,11 +7,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.AbstractAntlr3Rule;
-import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.ClassProductionRule;
-import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.OperatorTemplateProductionRule;
-import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.SimpleProductionRule;
-import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.SymbolProductionRule;
 import com.sap.furcas.parsergenerator.util.VarStringBuffer;
 
 /**

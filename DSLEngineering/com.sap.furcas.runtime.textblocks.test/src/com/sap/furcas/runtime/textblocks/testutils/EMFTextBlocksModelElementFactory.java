@@ -1,10 +1,10 @@
 package com.sap.furcas.runtime.textblocks.testutils;
 
-import com.sap.furcas.metamodel.textblocks.Bostoken;
-import com.sap.furcas.metamodel.textblocks.Eostoken;
-import com.sap.furcas.metamodel.textblocks.LexedToken;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.metamodel.textblocks.TextblocksFactory;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksFactory;
 
 public class EMFTextBlocksModelElementFactory implements TextBlocksModelElementFactory {
 

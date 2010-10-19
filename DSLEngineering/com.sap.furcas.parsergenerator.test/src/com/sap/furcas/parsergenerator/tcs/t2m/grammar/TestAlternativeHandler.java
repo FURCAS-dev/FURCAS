@@ -10,9 +10,9 @@ import org.eclipse.emf.common.util.EList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.metamodel.TCS.SequenceInAlternative;
-import com.sap.furcas.metamodel.TCS.stubs.AlternativeStub;
-import com.sap.furcas.metamodel.TCS.stubs.SequenceInAlternativeStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceInAlternative;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.AlternativeStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.SequenceInAlternativeStub;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.RuleBodyStringBufferStub;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;

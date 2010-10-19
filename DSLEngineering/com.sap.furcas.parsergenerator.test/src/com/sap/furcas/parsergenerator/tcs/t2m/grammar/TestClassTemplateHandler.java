@@ -16,13 +16,13 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.metamodel.TCS.ClassTemplate;
-import com.sap.furcas.metamodel.TCS.Priority;
-import com.sap.furcas.metamodel.TCS.stubs.ClassTemplateStub;
-import com.sap.furcas.metamodel.TCS.stubs.OperatorListStub;
-import com.sap.furcas.metamodel.TCS.stubs.OperatorTemplateStub;
-import com.sap.furcas.metamodel.TCS.stubs.PriorityStub;
-import com.sap.furcas.metamodel.TCS.stubs.SequenceStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.ClassTemplateStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.OperatorListStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.OperatorTemplateStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.PriorityStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.SequenceStub;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.ANTLR3WriterStub;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.MetaLookupStub;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.MetaModelElementResolutionHelperStub;
@@ -32,12 +32,12 @@ import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.SyntaxLookupSt
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.TemplateNamingHelperStub;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.AbstractAntlr3Rule;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.ClassProductionRule;
-import com.sap.furcas.parsergenerator.testutils.ResolutionBeanHelper;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 import com.sap.furcas.runtime.tcs.SyntaxLookup;
 import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
+import com.sap.furcas.test.parsing.testutils.ResolutionBeanHelper;
 import com.sap.furcas.test.parsing.testutils.StringListHelper;
 
 

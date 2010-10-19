@@ -6,11 +6,11 @@ package com.sap.furcas.runtime.tcs;
 import java.util.Iterator;
 import java.util.List;
 
-import com.sap.furcas.metamodel.TCS.ClassTemplate;
-import com.sap.furcas.metamodel.TCS.FunctionTemplate;
-import com.sap.furcas.metamodel.TCS.PrimitiveTemplate;
-import com.sap.furcas.metamodel.TCS.QualifiedNamedElement;
-import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.exceptions.NameResolutionFailedException;
 import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
@@ -247,7 +247,7 @@ public class TemplateNamingHelper<Type extends Object> {
 
 
 
-    public String getRuleNameForTemplate(com.sap.furcas.metamodel.TCS.Template template) throws SyntaxElementException {
+    public String getRuleNameForTemplate(Template template) throws SyntaxElementException {
 	if(template instanceof ClassTemplate) {
 	    if(((ClassTemplate)template).getMode() != null){
 		return getRuleNameForMode(template, ((ClassTemplate)template).getMode());

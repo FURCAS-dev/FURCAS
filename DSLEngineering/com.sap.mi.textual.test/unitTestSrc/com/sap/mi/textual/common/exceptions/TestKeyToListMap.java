@@ -19,9 +19,7 @@ import com.sap.furcas.runtime.common.util.KeyToListMap;
 /**
  *
  */
-public class TestKeyToListMap {
-
-    
+public class TestKeyToListMap {    
     
     @Test
     public void testKeyToListMap() throws Exception {

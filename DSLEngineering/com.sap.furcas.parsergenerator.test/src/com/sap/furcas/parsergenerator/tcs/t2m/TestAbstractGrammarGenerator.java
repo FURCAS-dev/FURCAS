@@ -22,13 +22,12 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
 
-import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
-import com.sap.furcas.metamodel.TCS.Keyword;
-import com.sap.furcas.metamodel.TCS.OperatorList;
-import com.sap.furcas.metamodel.TCS.Symbol;
-import com.sap.furcas.metamodel.TCS.Template;
-import com.sap.furcas.metamodel.TCS.Token;
-import com.sap.furcas.parsergenerator.tcs.t2m.TCSSyntaxContainerBean;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
+import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
+import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.TCS.Token;
 
 
 /**

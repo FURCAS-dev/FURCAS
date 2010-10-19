@@ -15,15 +15,15 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import com.sap.furcas.metamodel.TCS.ClassTemplate;
-import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
-import com.sap.furcas.metamodel.TCS.EnumerationTemplate;
-import com.sap.furcas.metamodel.TCS.FunctionTemplate;
-import com.sap.furcas.metamodel.TCS.OperatorTemplate;
-import com.sap.furcas.metamodel.TCS.PrimitiveTemplate;
-import com.sap.furcas.metamodel.TCS.Symbol;
-import com.sap.furcas.metamodel.TCS.Template;
-import com.sap.furcas.metamodel.TCS.Token;
+import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.TCS.Token;
 import com.sap.furcas.parsergenerator.tcs.t2m.TCSSyntaxContainerBean;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.SymbolProductionRule;
 import com.sap.furcas.parsergenerator.tcs.t2m.validation.SyntaxDefinitionValidation;

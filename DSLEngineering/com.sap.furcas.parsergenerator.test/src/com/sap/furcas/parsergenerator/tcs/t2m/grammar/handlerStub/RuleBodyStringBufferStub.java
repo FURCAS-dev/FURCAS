@@ -6,9 +6,9 @@ package com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sap.furcas.metamodel.TCS.Sequence;
-import com.sap.furcas.metamodel.TCS.SequenceElement;
-import com.sap.furcas.metamodel.TCS.stubs.LocatedElementStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.LocatedElementStub;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.constraints.RuleBodyPropertyConstraint;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
