@@ -12,10 +12,8 @@ import java.io.PrintStream;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.junit.AfterClass;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
@@ -54,21 +52,17 @@ public class GeneratedParserBasedTest {
 //	if (lookup == null) {
 //	    lookup = new EcoreMetaModelLookUp(priList);
 //	}
-	
-        // Register the appropriate resource factory to handle all file extensions.
-        //
-        ResourceSet resourceSet =  new ResourceSetImpl();
-        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put
-            (Resource.Factory.Registry.DEFAULT_EXTENSION, 
-             new XMIResourceFactoryImpl());
 
-        // Register the package to ensure it is available during loading.
-        //
+	// FIXME: crude hack. Where should this happen?
+        ResourceSet resourceSet =  new ResourceSetImpl();
 	resourceSet.getPackageRegistry().put(TextblocksPackage.eNS_URI, TextblocksPackage.eINSTANCE);
+	resourceSet.getPackageRegistry().put(TextblocksPackage.eNAME, TextblocksPackage.eINSTANCE);
 	resourceSet.getPackageRegistry().put(TextblockdefinitionPackage.eNS_URI, TextblockdefinitionPackage.eINSTANCE);
+	resourceSet.getPackageRegistry().put(TextblockdefinitionPackage.eNAME, TextblockdefinitionPackage.eINSTANCE);
 	resourceSet.getPackageRegistry().put(TCSPackage.eNS_URI, TCSPackage.eINSTANCE);
+	resourceSet.getPackageRegistry().put(TCSPackage.eNAME, TCSPackage.eINSTANCE);
 	
-	generateParser(language, lookup, /*connection*/resourceSet, /*priList*/ null);
+	generateParser(language, lookup, resourceSet, /*priList*/ null);
     }
 
     private static void generateParser(String language, IMetaModelLookup<?> lookup, ResourceSet connection, Set<URI> partitions) throws FileNotFoundException, GrammarGenerationException, ModelAdapterException, IOException {
