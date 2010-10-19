@@ -61,6 +61,7 @@
 			<cs:products alias="output" base="${buckminster.output}/zips/" />
 		</cs:public>
 
+		<!--
 		<cs:public name="package.mdt-ocl-Examples" actor="ant">
 			<cs:actorProperties>
 				<cs:property key="buildFile" value="packaging.ant" />
@@ -75,7 +76,7 @@
 				<cs:attribute name="site.tp" alias="target.platform.repository" />
 			</cs:prerequisites>
 			<cs:products alias="output" base="${buckminster.output}/zips/" />
-		</cs:public>
+		</cs:public> -->
 
 		<cs:public name="package.mdt-ocl-Runtime" actor="ant">
 			<cs:actorProperties>
