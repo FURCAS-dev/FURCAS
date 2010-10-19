@@ -22,6 +22,7 @@ import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
 import org.eclipse.emf.query.index.update.UpdateCommand;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import behavioral.actions.ActionsFactory;
@@ -94,7 +95,7 @@ public class TestBasicExpressions extends TestCase {
     private enum Accessors { GETTER, SETTER, ADDER, REMOVER };
     private static boolean indexCreated = false;
 
-    @Before
+    @BeforeClass
     public void setUp() throws CoreException {
         if (!indexCreated) {
             updateIndex(new ResourceSetImpl());
