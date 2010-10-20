@@ -29,6 +29,7 @@ import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sun.tools.javac.Main;
 
 /**
  *
@@ -199,7 +200,7 @@ public class ParserGenerationTestHelper {
 
     }
 
-    private int compileParser(String languageName) {
+    public int compileParser(String languageName) {
 	// compile generated Java
 	int success = Main.compile(new String[] {
 		generationDirectory + languageName + "Lexer.java",
@@ -254,8 +255,10 @@ public class ParserGenerationTestHelper {
 	// try loading compiled classes
 	File genDir = new File(generationDirectory);
 	try {
-	    Class<?> lexerclass = Class.forName(generationPackage + "." + languageName + "Lexer");
-	    Class<?> parserclass = Class.forName(generationPackage + "." + languageName + "Parser");
+	    @SuppressWarnings("unchecked")
+	    Class<? extends Lexer> lexerclass = (Class<? extends Lexer>) Class.forName(generationPackage + "." + languageName + "Lexer");
+	    @SuppressWarnings("unchecked")
+	    Class<? extends ObservableInjectingParser> parserclass = (Class<? extends ObservableInjectingParser>) Class.forName(generationPackage + "." + languageName + "Parser");
 
 	    ParserFacade facade = new ParserFacade(parserclass, lexerclass);
 	    return facade;
@@ -267,20 +270,20 @@ public class ParserGenerationTestHelper {
 
     }
 
-    public Class<AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>> getParserFactoryClass(
-	    String languageName) {
-	// try loading compiled classes
-	File genDir = new File(generationDirectory);
-	try {
-	    Class<?> parserFactoryClass = Class.forName(generationPackage + "." + languageName + "ParserFactory");
-
-	    return (Class<AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>>) parserFactoryClass;
-
-	} catch (ClassNotFoundException cnfe) { // catching from Class.forName
-	    throw new RuntimeException("Can't find generated classes at runtime in " + genDir.getAbsolutePath()
-		    + ", check you meant language " + languageName + " or maybe do an Eclipse refresh on project.", cnfe);
-	}
-    }
+//    public Class<AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>> getParserFactoryClass(
+//	    String languageName) {
+//	// try loading compiled classes
+//	File genDir = new File(generationDirectory);
+//	try {
+//	    Class<?> parserFactoryClass = Class.forName(generationPackage + "." + languageName + "ParserFactory");
+//
+//	    return (Class<AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>>) parserFactoryClass;
+//
+//	} catch (ClassNotFoundException cnfe) { // catching from Class.forName
+//	    throw new RuntimeException("Can't find generated classes at runtime in " + genDir.getAbsolutePath()
+//		    + ", check you meant language " + languageName + " or maybe do an Eclipse refresh on project.", cnfe);
+//	}
+//    }
 
     public final void generateParserGrammar(String language, IMetaModelLookup<?> lookup, ResourceSet connection,
 	    Set<URI> partitions) throws FileNotFoundException, ModelAdapterException, GrammarGenerationException, IOException {

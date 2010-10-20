@@ -13,8 +13,12 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.junit.AfterClass;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionPackage;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ObservationDirectivesHelper;
 import com.sap.furcas.runtime.common.exceptions.GrammarGenerationException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
@@ -48,17 +52,26 @@ public class GeneratedParserBasedTest {
 //	if (lookup == null) {
 //	    lookup = new EcoreMetaModelLookUp(priList);
 //	}
-	generateParser(language, lookup, connection, priList);
+
+	// FIXME: crude hack. Where should this happen?
+        ResourceSet resourceSet =  new ResourceSetImpl();
+	resourceSet.getPackageRegistry().put(TextblocksPackage.eNS_URI, TextblocksPackage.eINSTANCE);
+	resourceSet.getPackageRegistry().put(TextblocksPackage.eNAME, TextblocksPackage.eINSTANCE);
+	resourceSet.getPackageRegistry().put(TextblockdefinitionPackage.eNS_URI, TextblockdefinitionPackage.eINSTANCE);
+	resourceSet.getPackageRegistry().put(TextblockdefinitionPackage.eNAME, TextblockdefinitionPackage.eINSTANCE);
+	resourceSet.getPackageRegistry().put(TCSPackage.eNS_URI, TCSPackage.eINSTANCE);
+	resourceSet.getPackageRegistry().put(TCSPackage.eNAME, TCSPackage.eINSTANCE);
+	
+	generateParser(language, lookup, resourceSet, /*priList*/ null);
     }
 
-    private static void generateParser(String language, IMetaModelLookup<?> lookup, ResourceSet connection, Set<URI> partitions)
-	    throws FileNotFoundException, ModelAdapterException, GrammarGenerationException, IOException {
+    private static void generateParser(String language, IMetaModelLookup<?> lookup, ResourceSet connection, Set<URI> partitions) throws FileNotFoundException, GrammarGenerationException, ModelAdapterException, IOException {
 	
 	generationHelper.generateParserGrammar(language, lookup, connection, partitions);
 	generateAndCompileParser(language);
     }
 
-    private static void generateAndCompileParser(String languageName) {
+    protected static void generateAndCompileParser(String languageName) {
 	// Hold on to the original value
 	PrintStream systemErr = System.err;
 	// redirect Std.err to be able to check it for errors

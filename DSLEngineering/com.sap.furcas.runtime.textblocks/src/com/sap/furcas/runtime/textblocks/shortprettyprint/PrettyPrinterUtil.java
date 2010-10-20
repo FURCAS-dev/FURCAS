@@ -1,8 +1,8 @@
 package com.sap.furcas.runtime.textblocks.shortprettyprint;
 
-import com.sap.furcas.metamodel.TCS.AsPArg;
-import com.sap.furcas.metamodel.TCS.PrimitiveTemplate;
-import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.TCS.AsPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 
 public class PrettyPrinterUtil {
 
@@ -20,8 +20,9 @@ public class PrettyPrinterUtil {
                                             .quoteReplacement(( value)
                                                     .replaceAll("\"",
                                                             "\\\\\\\"")));
-                }
-                else return primTemplate.getSerializer();
+                } else {
+		    return primTemplate.getSerializer();
+		}
             } else {
                 return value;
             }

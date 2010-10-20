@@ -3,14 +3,14 @@ package com.sap.furcas.runtime.parser.textblocks.observer;
 import java.util.Collection;
 import java.util.List;
 
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.runtime.parser.textblocks.TextBlockFactory;
 
 public class TextBlockComparer {
 
-	private Stack<TextBlockTraversationContext> stack = new Stack<TextBlockTraversationContext>();
-	private TextBlockFactory myFactory;
+	private final Stack<TextBlockTraversationContext> stack = new Stack<TextBlockTraversationContext>();
+	private final TextBlockFactory myFactory;
 	private static final boolean reUseTextblocks = true;
 
 	public TextBlockComparer(TextBlock root, TextBlockFactory factory) {

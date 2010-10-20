@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/com.sap.furcas.metamodel/src"
+    modelPluginID="com.sap.furcas.metamodel" modelName="FURCAS" editPluginClass="com.sap.furcas.metamodel.FURCAS.provider.FURCASEditPlugin"
+    editorPluginClass="com.sap.furcas.metamodel.FURCAS.presentation.FURCASEditorPlugin"
+    testSuiteClass="com.sap.furcas.metamodel.FURCAS.tests.FURCASAllTests" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.ocl/model/OCL.genmodel#//ocl platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.genmodel#//ocl">
+  <foreignModel>FURCAS.ecore</foreignModel>
+  <genPackages prefix="FURCAS" basePackage="com.sap.furcas.metamodel" disposableProviderFactory="true"
+      ecorePackage="FURCAS.ecore#/">
+    <nestedGenPackages prefix="TCS" resource="XML" disposableProviderFactory="true"
+        ecorePackage="TCS.ecore#/">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="TCS.ecore#//TemplateModifiers">
+        <genEnumLiterals ecoreEnumLiteral="TCS.ecore#//TemplateModifiers/abstract"/>
+        <genEnumLiterals ecoreEnumLiteral="TCS.ecore#//TemplateModifiers/operatored"/>
+        <genEnumLiterals ecoreEnumLiteral="TCS.ecore#//TemplateModifiers/main"/>
+        <genEnumLiterals ecoreEnumLiteral="TCS.ecore#//TemplateModifiers/context"/>
+        <genEnumLiterals ecoreEnumLiteral="TCS.ecore#//TemplateModifiers/addToContext"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="TCS.ecore#//SpaceKind">
+        <genEnumLiterals ecoreEnumLiteral="TCS.ecore#//SpaceKind/leftSpace"/>
+        <genEnumLiterals ecoreEnumLiteral="TCS.ecore#//SpaceKind/leftNone"/>
+        <genEnumLiterals ecoreEnumLiteral="TCS.ecore#//SpaceKind/rightSpace"/>
+        <genEnumLiterals ecoreEnumLiteral="TCS.ecore#//SpaceKind/rightNone"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="TCS.ecore#//Associativity">
+        <genEnumLiterals ecoreEnumLiteral="TCS.ecore#//Associativity/left"/>
+        <genEnumLiterals ecoreEnumLiteral="TCS.ecore#//Associativity/right"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="TCS.ecore#//AutoCreateKind">
+        <genEnumLiterals ecoreEnumLiteral="TCS.ecore#//AutoCreateKind/always"/>
+        <genEnumLiterals ecoreEnumLiteral="TCS.ecore#//AutoCreateKind/ifmissing"/>
+        <genEnumLiterals ecoreEnumLiteral="TCS.ecore#//AutoCreateKind/never"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="TCS.ecore#//ScopeKind">
+        <genEnumLiterals ecoreEnumLiteral="TCS.ecore#//ScopeKind/instanceComplete"/>
+        <genEnumLiterals ecoreEnumLiteral="TCS.ecore#//ScopeKind/DownwardsContainmentComplete"/>
+        <genEnumLiterals ecoreEnumLiteral="TCS.ecore#//ScopeKind/UpwardsContainmentComplete"/>
+        <genEnumLiterals ecoreEnumLiteral="TCS.ecore#//ScopeKind/ContainmentComplete"/>
+        <genEnumLiterals ecoreEnumLiteral="TCS.ecore#//ScopeKind/Partial"/>
+      </genEnums>
+      <genClasses image="false" ecoreClass="TCS.ecore#//LocatedElement">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//LocatedElement/location"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//LocatedElement/commentsBefore"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//LocatedElement/commentsAfter"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="TCS.ecore#//NamedElement">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//NamedElement/name"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//ConcreteSyntax">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//ConcreteSyntax/k"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//ConcreteSyntax/templates"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//ConcreteSyntax/keywords"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//ConcreteSyntax/symbols"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//ConcreteSyntax/operatorLists"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//ConcreteSyntax/tokens"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//ConcreteSyntax/lexer"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="TCS.ecore#//Template">
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//Template/concreteSyntax"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//Template/disambiguate"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//Template/disambiguateV3"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//FunctionTemplate">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//FunctionTemplate/functionName"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//FunctionTemplate/functionSequence"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//ClassTemplate">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//ClassTemplate/templateSequence"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//ClassTemplate/modifiers"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//ClassTemplate/isAbstract"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//ClassTemplate/isDeep"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//ClassTemplate/prefixSequence"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//ClassTemplate/isOperatored"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TCS.ecore#//ClassTemplate/operatorList"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//ClassTemplate/isMain"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//ClassTemplate/isMulti"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//ClassTemplate/isNonPrimary"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//ClassTemplate/mode"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//PrimitiveTemplate">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//PrimitiveTemplate/templateName"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//PrimitiveTemplate/isDefault"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//PrimitiveTemplate/tokenName"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//PrimitiveTemplate/value"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//PrimitiveTemplate/serializer"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//PrimitiveTemplate/orKeyword"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//OperatorTemplate">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TCS.ecore#//OperatorTemplate/operators"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//OperatorTemplate/source"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//OperatorTemplate/storeOpTo"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//OperatorTemplate/storeRightTo"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//OperatorTemplate/otSequence"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TCS.ecore#//OperatorTemplate/storeOperatorTo"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TCS.ecore#//OperatorTemplate/storeLeftSideTo"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TCS.ecore#//OperatorTemplate/storeRightSideTo"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//EnumerationTemplate">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//EnumerationTemplate/automatic"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//EnumerationTemplate/mappings"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//EnumLiteralMapping">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//EnumLiteralMapping/literal"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//EnumLiteralMapping/element"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="TCS.ecore#//Literal">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TCS.ecore#//Literal/operators"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TCS.ecore#//Literal/literalRefs"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//Literal/value"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//Symbol">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//Symbol/spaces"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//Keyword"/>
+      <genClasses ecoreClass="TCS.ecore#//OperatorList">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//OperatorList/name"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//OperatorList/priorities"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//Priority">
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//Priority/list"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//Priority/value"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//Priority/associativity"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//Priority/operators"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//Operator">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//Operator/isPostfix"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//Operator/arity"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TCS.ecore#//Operator/literal"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//Operator/priority"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TCS.ecore#//Operator/templates"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//Sequence">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//Sequence/elements"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//Sequence/templateContainer"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//Sequence/prefixContainer"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//Sequence/functionContainer"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//Sequence/blockContainer"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//Sequence/thenContainer"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//Sequence/elseContainer"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//Sequence/separatorContainer"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//Sequence/otContainer"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="TCS.ecore#//SequenceElement">
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//SequenceElement/elementSequence"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TCS.ecore#//SequenceElement/parentTemplate"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//LiteralRef">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TCS.ecore#//LiteralRef/referredLiteral"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//Property">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//Property/propertyArgs"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TCS.ecore#//Property/propertyReference"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//CustomSeparator">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//CustomSeparator/name"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//Block">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//Block/blockSequence"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//Block/blockArgs"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//ConditionalElement">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//ConditionalElement/condition"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//ConditionalElement/thenSequence"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//ConditionalElement/elseSequence"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//PrimitivePropertyInit"/>
+      <genClasses ecoreClass="TCS.ecore#//Alternative">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//Alternative/sequences"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//Alternative/isMulti"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//FunctionCall">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TCS.ecore#//FunctionCall/calledFunction"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="TCS.ecore#//PropertyArg">
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//PropertyArg/property"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//RefersToPArg">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//RefersToPArg/propertyName"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//LookInPArg">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//LookInPArg/propertyName"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//CreateInPArg">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//CreateInPArg/propertyName"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//RefersToKeyPArg"/>
+      <genClasses ecoreClass="TCS.ecore#//SeparatorPArg">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//SeparatorPArg/separatorSequence"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//AutoCreatePArg">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//AutoCreatePArg/value"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//ImportContextPArg"/>
+      <genClasses ecoreClass="TCS.ecore#//ForcedLowerPArg">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//ForcedLowerPArg/value"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//CreateAsPArg">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//CreateAsPArg/name"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//AsPArg">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TCS.ecore#//AsPArg/template"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//AsPArg/value"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//ModePArg">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//ModePArg/mode"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="TCS.ecore#//BlockArg">
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//BlockArg/block"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//NbNLBArg"/>
+      <genClasses ecoreClass="TCS.ecore#//IndentIncrBArg"/>
+      <genClasses ecoreClass="TCS.ecore#//StartNLBArg"/>
+      <genClasses ecoreClass="TCS.ecore#//StartNbNLBArg"/>
+      <genClasses ecoreClass="TCS.ecore#//EndNLBArg"/>
+      <genClasses image="false" ecoreClass="TCS.ecore#//Expression">
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//Expression/conditionalElement"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//AndExp">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//AndExp/expressions"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="TCS.ecore#//AtomExp">
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//AtomExp/andExp"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//AtomExp/propertyName"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TCS.ecore#//AtomExp/propertyReference"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//EqualsExp">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//EqualsExp/value"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//BooleanPropertyExp"/>
+      <genClasses ecoreClass="TCS.ecore#//IsDefinedExp"/>
+      <genClasses ecoreClass="TCS.ecore#//OneExp"/>
+      <genClasses image="false" ecoreClass="TCS.ecore#//Value">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//Value/name"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//PropertyVal"/>
+      <genClasses ecoreClass="TCS.ecore#//Token">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//Token/pattern"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//Token/omitted"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//OrPattern">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//OrPattern/simplePatterns"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="TCS.ecore#//SimplePattern"/>
+      <genClasses ecoreClass="TCS.ecore#//RulePattern">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//RulePattern/rule"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="TCS.ecore#//Rule"/>
+      <genClasses ecoreClass="TCS.ecore#//WordRule">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//WordRule/start"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//WordRule/part"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//WordRule/end"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//WordRule/words"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//Word">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//Word/token"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//EndOfLineRule">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//EndOfLineRule/start"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//EndOfLineRule/dropStart"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//MultiLineRule">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//MultiLineRule/start"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//MultiLineRule/end"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//MultiLineRule/esc"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//MultiLineRule/escMappings"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//MultiLineRule/dropStart"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//MultiLineRule/dropEnd"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="TCS.ecore#//Mapping"/>
+      <genClasses ecoreClass="TCS.ecore#//SimpleMapping"/>
+      <genClasses ecoreClass="TCS.ecore#//WildcardMapping"/>
+      <genClasses ecoreClass="TCS.ecore#//OctalMapping"/>
+      <genClasses ecoreClass="TCS.ecore#//HexadecimalMapping"/>
+      <genClasses ecoreClass="TCS.ecore#//StringPattern"/>
+      <genClasses ecoreClass="TCS.ecore#//ClassPattern"/>
+      <genClasses ecoreClass="TCS.ecore#//QualifiedNamedElement">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//QualifiedNamedElement/names"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TCS.ecore#//QualifiedNamedElement/metaReference"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//ForcedUpperPArg">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//ForcedUpperPArg/value"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//InjectorActionsBlock">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//InjectorActionsBlock/propertyInits"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TCS.ecore#//InjectorActionsBlock/injectorActions"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//QueryPArg"/>
+      <genClasses ecoreClass="TCS.ecore#//FilterPArg">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//FilterPArg/filter"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//FilterPArg/invert"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="TCS.ecore#//OclPArg">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TCS.ecore#//OclPArg/queryExpression"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//OclPArg/query"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//PropertyReference">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TCS.ecore#//PropertyReference/strucfeature"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//PropertyReference/name"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//ContextTemplate">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//ContextTemplate/isContext"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//ContextTemplate/isAddToContext"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//ContextTemplate/isReferenceOnly"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TCS.ecore#//ContextTemplate/contextTags"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//ContextTemplate/scope"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//ContextTags">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//ContextTags/tags"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="TCS.ecore#//InjectorAction">
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//InjectorAction/injectorActionsBlock"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="TCS.ecore#//PropertyInit">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TCS.ecore#//PropertyInit/propertyReference"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//PropertyInit/value"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//OclPropertyInit">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TCS.ecore#//OclPropertyInit/oclExpression"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//ScopeArg">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//ScopeArg/scope"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//InvertPArg"/>
+      <genClasses ecoreClass="TCS.ecore#//ForeachPredicatePropertyInit">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//ForeachPredicatePropertyInit/predicateSemantic"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//ForeachPredicatePropertyInit/mode"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//PredicateSemantic">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TCS.ecore#//PredicateSemantic/as"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TCS.ecore#//PredicateSemantic/when"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//PredicateSemantic/mode"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//SequenceInAlternative">
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//SequenceInAlternative/alternativeContainer"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//SequenceInAlternative/disambiguate"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//EClass0"/>
+      <genClasses ecoreClass="TCS.ecore#//PartialPArg"/>
+      <genClasses ecoreClass="TCS.ecore#//DisambiguatePArg">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//DisambiguatePArg/disambiguation"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//InstanceOfExp">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//InstanceOfExp/supertype"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//EnumLiteralVal"/>
+      <genClasses ecoreClass="TCS.ecore#//StringVal">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//StringVal/symbol"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//IntegerVal">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//IntegerVal/symbol"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//NegativeIntegerVal">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//NegativeIntegerVal/symbol"/>
+      </genClasses>
+      <genClasses ecoreClass="TCS.ecore#//LookupPropertyInit"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Textblocks" resource="XML" disposableProviderFactory="true"
+        ecorePackage="textblocks.ecore#/">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="textblocks.ecore#//Version">
+        <genEnumLiterals ecoreEnumLiteral="textblocks.ecore#//Version/REFERENCE"/>
+        <genEnumLiterals ecoreEnumLiteral="textblocks.ecore#//Version/PREVIOUS"/>
+        <genEnumLiterals ecoreEnumLiteral="textblocks.ecore#//Version/CURRENT"/>
+      </genEnums>
+      <genClasses ecoreClass="textblocks.ecore#//TextBlock">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference textblocks.ecore#//TextBlock/type"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textblocks.ecore#//TextBlock/subNodes"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//TextBlock/parentAltChoices"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference textblocks.ecore#//TextBlock/elementsInContext"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textblocks.ecore#//TextBlock/forEachContext"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//TextBlock/cachedString"/>
+        <genOperations ecoreOperation="textblocks.ecore#//TextBlock/getSubBlocks"/>
+        <genOperations ecoreOperation="textblocks.ecore#//TextBlock/getTokens"/>
+        <genOperations ecoreOperation="textblocks.ecore#//TextBlock/getAdditionalTemplates"/>
+      </genClasses>
+      <genClasses ecoreClass="textblocks.ecore#//AbstractToken">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//AbstractToken/value"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//AbstractToken/lookahead"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//AbstractToken/lookback"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//AbstractToken/state"/>
+      </genClasses>
+      <genClasses ecoreClass="textblocks.ecore#//OmittedToken"/>
+      <genClasses ecoreClass="textblocks.ecore#//LexedToken">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//LexedToken/operator"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//LexedToken/type"/>
+      </genClasses>
+      <genClasses ecoreClass="textblocks.ecore#//UnlexedToken"/>
+      <genClasses image="false" ecoreClass="textblocks.ecore#//DocumentNode">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/version"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/childrenChanged"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/relexingNeeded"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference textblocks.ecore#//DocumentNode/parent"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference textblocks.ecore#//DocumentNode/correspondingModelElements"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference textblocks.ecore#//DocumentNode/referencedElements"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference textblocks.ecore#//DocumentNode/sequenceElement"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/offset"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/length"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference textblocks.ecore#//DocumentNode/otherVersions"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/offsetRelative"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/startRow"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/startColumn"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/endRow"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/endColumn"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/absoluteOffset"/>
+      </genClasses>
+      <genClasses ecoreClass="textblocks.ecore#//ForEachContext">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference textblocks.ecore#//ForEachContext/foreachPedicatePropertyInit"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference textblocks.ecore#//ForEachContext/contextElement"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference textblocks.ecore#//ForEachContext/resultModelElement"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference textblocks.ecore#//ForEachContext/sourceModelElement"/>
+      </genClasses>
+      <genClasses ecoreClass="textblocks.ecore#//Eostoken"/>
+      <genClasses ecoreClass="textblocks.ecore#//Bostoken"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Textblockdefinition" resource="XML" disposableProviderFactory="true"
+        ecorePackage="textblockdefinition.ecore#/">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="textblockdefinition.ecore#//FormatPolicy">
+        <genEnumLiterals ecoreEnumLiteral="textblockdefinition.ecore#//FormatPolicy/KEEP_ALWAYS"/>
+        <genEnumLiterals ecoreEnumLiteral="textblockdefinition.ecore#//FormatPolicy/KEEP_NEVER"/>
+        <genEnumLiterals ecoreEnumLiteral="textblockdefinition.ecore#//FormatPolicy/KEEP_BEFORE"/>
+        <genEnumLiterals ecoreEnumLiteral="textblockdefinition.ecore#//FormatPolicy/KEEP_AFTER"/>
+      </genEnums>
+      <genClasses ecoreClass="textblockdefinition.ecore#//TextblockDefinition">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblockdefinition.ecore#//TextblockDefinition/formatPolicy"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblockdefinition.ecore#//TextblockDefinition/defaultTemplate"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference textblockdefinition.ecore#//TextblockDefinition/parseRule"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference textblockdefinition.ecore#//TextblockDefinition/context"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textblockdefinition.ecore#//TextblockDefinition/subDefinitions"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference textblockdefinition.ecore#//TextblockDefinition/generalisation"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblockdefinition.ecore#//TextblockDefinition/name"/>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

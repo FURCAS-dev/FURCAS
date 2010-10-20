@@ -7,10 +7,9 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.sap.furcas.metamodel.textblocks.DocumentNode;
-import com.sap.furcas.metamodel.textblocks.LexedToken;
-import com.sap.furcas.metamodel.textblocks.Version;
-import com.sap.furcas.runtime.textblocks.model.VersionedTextBlockNavigator;
+import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.textblocks.testutils.FixtureProvidingTextBlockTest;
 
 public class TestVersionedTextblocksNavigator extends FixtureProvidingTextBlockTest{

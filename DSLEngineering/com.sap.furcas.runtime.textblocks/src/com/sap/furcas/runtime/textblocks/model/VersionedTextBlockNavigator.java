@@ -2,10 +2,10 @@ package com.sap.furcas.runtime.textblocks.model;
 
 import java.util.List;
 
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.textblocks.DocumentNode;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.metamodel.textblocks.Version;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 
 public class VersionedTextBlockNavigator {
@@ -140,9 +140,12 @@ public class VersionedTextBlockNavigator {
      *         tokens were found before the offset
      */
 	public DocumentNode getLeafNode(TextBlock currentBlock, int offset) {
-	    if (currentBlock == null) return null;
+	    if (currentBlock == null)
+	     {
+		return null;
 //	    int blockOffset = getAbsoluteOffset(block);
 //	    if (blockOffset>offset || blockOffset + block.getLength() < offset) return null; // or rather illegalArgument?
+	    }
 
 	    DocumentNode floorToken = null;
 	    if (currentBlock.getParent() == null) {
