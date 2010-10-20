@@ -24,8 +24,8 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.TypeExp;
 
 import com.sap.emf.ocl.prepared.PreparedOCLExpression;
-import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
-import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 
 /**
  * Knows the patterns for <code>#context</code> and <code>#foreach</code>. Furthermore, can create a {@link PreparedOCLExpression

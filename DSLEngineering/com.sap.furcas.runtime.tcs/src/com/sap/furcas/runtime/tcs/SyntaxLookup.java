@@ -19,17 +19,17 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 
-import com.sap.furcas.metamodel.TCS.ClassTemplate;
-import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
-import com.sap.furcas.metamodel.TCS.FunctionTemplate;
-import com.sap.furcas.metamodel.TCS.Keyword;
-import com.sap.furcas.metamodel.TCS.LocatedElement;
-import com.sap.furcas.metamodel.TCS.OperatorList;
-import com.sap.furcas.metamodel.TCS.OperatorTemplate;
-import com.sap.furcas.metamodel.TCS.PrimitiveTemplate;
-import com.sap.furcas.metamodel.TCS.QualifiedNamedElement;
-import com.sap.furcas.metamodel.TCS.Symbol;
-import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
+import com.sap.furcas.metamodel.FURCAS.TCS.LocatedElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
+import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.exceptions.NameResolutionFailedException;
 import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
@@ -45,7 +45,7 @@ import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 public class SyntaxLookup {
 
 	/** The syntax. */
-	private final com.sap.furcas.metamodel.TCS.ConcreteSyntax syntax;
+	private final ConcreteSyntax syntax;
 	
 	/** The keyword set. */
 	private Set<Keyword> keywordSet;

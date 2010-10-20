@@ -5,9 +5,9 @@ import org.eclipse.ocl.ParserException;
 
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
-import com.sap.furcas.metamodel.TCS.FilterPArg;
-import com.sap.furcas.metamodel.TCS.Property;
-import com.sap.furcas.metamodel.TCS.QueryPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.Property;
+import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 

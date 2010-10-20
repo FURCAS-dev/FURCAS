@@ -5,17 +5,17 @@ package com.sap.furcas.runtime.parser.textblocks.observer;
 
 import java.util.List;
 
-import com.sap.furcas.metamodel.TCS.Alternative;
-import com.sap.furcas.metamodel.TCS.ConditionalElement;
-import com.sap.furcas.metamodel.TCS.SequenceElement;
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 
 /**
  * traverses a virtual tree based on events, traces an existing tree where there is an overlap.
  */
 public class TextBlockTraverser {
 
-    private Stack<TextBlockProxyTraversationContext> stack = new Stack<TextBlockProxyTraversationContext>();
+    private final Stack<TextBlockProxyTraversationContext> stack = new Stack<TextBlockProxyTraversationContext>();
 
     public TextBlockTraverser() {
         TextBlockProxyTraversationContext rootContext = new TextBlockProxyTraversationContext(new TextBlockProxy());

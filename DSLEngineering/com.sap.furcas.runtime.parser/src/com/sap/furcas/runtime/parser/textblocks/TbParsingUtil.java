@@ -6,11 +6,11 @@ import java.util.Stack;
 
 import org.eclipse.emf.ecore.EObject;
 
-import com.sap.furcas.metamodel.TCS.ContextTags;
-import com.sap.furcas.metamodel.TCS.ContextTemplate;
-import com.sap.furcas.metamodel.TCS.Template;
-import com.sap.furcas.metamodel.textblocks.DocumentNode;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.TCS.ContextTags;
+import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.runtime.common.implementation.ResolvedModelElementProxy;
 import com.sap.furcas.runtime.parser.impl.ContextBuilder;
 

@@ -4,9 +4,9 @@ import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getLevel;
 
 import java.util.List;
 
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.textblocks.DocumentNode;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 
 public class TbDebugUtil {
 

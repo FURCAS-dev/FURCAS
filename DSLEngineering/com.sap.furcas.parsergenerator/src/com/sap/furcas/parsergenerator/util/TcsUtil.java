@@ -3,8 +3,8 @@ package com.sap.furcas.parsergenerator.util;
 import java.util.Iterator;
 import java.util.List;
 
-import com.sap.furcas.metamodel.TCS.QualifiedNamedElement;
-import com.sap.furcas.metamodel.TCS.SequenceElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.constraints.PropertyInstanceOfConstraint;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.constraints.RuleBodyPropertyConstraint;

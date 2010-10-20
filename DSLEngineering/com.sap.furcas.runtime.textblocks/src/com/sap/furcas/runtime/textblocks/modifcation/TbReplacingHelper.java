@@ -10,12 +10,12 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.textblocks.DocumentNode;
-import com.sap.furcas.metamodel.textblocks.LexedToken;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.metamodel.textblocks.TextblocksFactory;
-import com.sap.furcas.metamodel.textblocks.Version;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksFactory;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.textblocks.CoverageBean;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;

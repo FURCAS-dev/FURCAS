@@ -3,7 +3,7 @@
  */
 package com.sap.furcas.runtime.tcs;
 
-import com.sap.furcas.metamodel.TCS.QualifiedNamedElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement;
 import com.sap.furcas.runtime.common.util.QualifiedNamesHelper;
 
 

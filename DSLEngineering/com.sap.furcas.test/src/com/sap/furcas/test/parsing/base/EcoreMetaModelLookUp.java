@@ -70,9 +70,6 @@ public class EcoreMetaModelLookUp implements IMetaModelLookup<Object> {
         
     }
     
-
-
-
     private void loadPackagesFromUri(String uri) throws MetaModelLookupException {
         Resource resource = new XMIResourceImpl(URI.createURI( uri));
         

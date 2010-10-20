@@ -8,9 +8,9 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.tests.PartialE
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.tests.FilterSynthesisEMEnabledTest;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.tests.FilterSynthesisTest;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.tests.NavigationStepDebugGraphTest;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.tests.NgpmModelBasedOclIaTest;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.tests.OclIaTest;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.tests.QuickOclParseAndEvalTest;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.tests.NgpmModelBasedOclIaTest;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.tests.RevPathComputationTest;
 
 
