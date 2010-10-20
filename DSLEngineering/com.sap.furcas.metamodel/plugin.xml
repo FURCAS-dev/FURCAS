@@ -12,23 +12,48 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://www.furcas.org/TCS"
-            class="com.sap.furcas.metamodel.TCS.TCSPackage"
-            genModel="model/TCS.genmodel"/>
+            uri="http://www.furcas.org"
+            class="com.sap.furcas.metamodel.FURCAS.FURCASPackage"
+            genModel="model/FURCAS.genmodel"/>
    </extension>
-   
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.furcas.org/TCS"
+            class="com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage"
+            genModel="model/FURCAS.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            type="tcs"
+            class="com.sap.furcas.metamodel.FURCAS.TCS.util.TCSResourceFactoryImpl"/>
+   </extension>
+
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://www.furcas.org/textblocks"
-            class="com.sap.furcas.metamodel.textblocks.TextblocksPackage"
-            genModel="model/textblocks.genmodel"/>
+            class="com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage"
+            genModel="model/FURCAS.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            type="textblocks"
+            class="com.sap.furcas.metamodel.FURCAS.textblocks.util.TextblocksResourceFactoryImpl"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://www.furcas.org/textblockdefinition"
-            class="com.sap.furcas.metamodel.textblockdefinition.TextblockdefinitionPackage"
-            genModel="model/textblocks.genmodel"/>
+            class="com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionPackage"
+            genModel="model/FURCAS.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            type="textblockdefinition"
+            class="com.sap.furcas.metamodel.FURCAS.textblockdefinition.util.TextblockdefinitionResourceFactoryImpl"/>
    </extension>
 
 </plugin>

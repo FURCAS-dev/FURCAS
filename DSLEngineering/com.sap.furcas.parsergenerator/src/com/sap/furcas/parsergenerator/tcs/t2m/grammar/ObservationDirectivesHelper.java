@@ -6,8 +6,8 @@ package com.sap.furcas.parsergenerator.tcs.t2m.grammar;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import com.sap.furcas.metamodel.TCS.ClassTemplate;
-import com.sap.furcas.metamodel.TCS.SequenceElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 
 /**
  * inserts calls into Parser that call methods on the parser which allow observation of the parsing process.

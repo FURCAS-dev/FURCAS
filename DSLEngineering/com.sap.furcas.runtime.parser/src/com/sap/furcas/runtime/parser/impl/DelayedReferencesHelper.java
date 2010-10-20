@@ -34,11 +34,11 @@ import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.emf.query2.TypeScopeProvider;
 
-import com.sap.furcas.metamodel.TCS.ForeachPredicatePropertyInit;
-import com.sap.furcas.metamodel.TCS.Template;
-import com.sap.furcas.metamodel.textblocks.ForEachContext;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.metamodel.textblocks.TextblocksFactory;
+import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksFactory;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.ReferenceSettingException;
 import com.sap.furcas.runtime.common.implementation.ResolvedModelElementProxy;
@@ -319,7 +319,7 @@ public class DelayedReferencesHelper {
 				&& ((ForeachPredicatePropertyInit) ref.getQueryElement()) != null) {
 			int i = 0;
 		
-			for (com.sap.furcas.metamodel.TCS.PredicateSemantic predSem : ((ForeachPredicatePropertyInit) ref
+			for (com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic predSem : ((ForeachPredicatePropertyInit) ref
 					.getQueryElement()).getPredicateSemantic()) {
 				if (i++ == index) {
 					return predSem.getAs();
@@ -651,7 +651,7 @@ public class DelayedReferencesHelper {
 		eObjectsURIs = result.getUris("template");
 
 		if (eObjectsURIs.length > 1) {
-			template = (com.sap.furcas.metamodel.TCS.Template) rs.getEObject(eObjectsURIs[1], false);
+			template = (com.sap.furcas.metamodel.FURCAS.TCS.Template) rs.getEObject(eObjectsURIs[1], false);
 		} else if (eObjectsURIs.length == 1) {
 			template = (Template) rs.getEObject(eObjectsURIs[0], false);
 		}

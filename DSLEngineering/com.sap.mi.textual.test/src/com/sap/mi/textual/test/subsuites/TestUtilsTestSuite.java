@@ -7,15 +7,15 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
-import com.sap.mi.textual.test.util.StringHelperTest;
-import com.sap.mi.textual.test.util.StubModelTest;
-import com.sap.mi.textual.test.util.TestEcoreLookup;
+import com.sap.furcas.test.parsing.base.TestEcoreMetaModelLookup;
+import com.sap.furcas.test.parsing.base.TestStubModelAdapter;
+import com.sap.furcas.test.parsing.testutils.StringHelperTest;
 
 @RunWith (Suite.class)
 @SuiteClasses ( { 
     StringHelperTest.class,
-    StubModelTest.class,
-    TestEcoreLookup.class} )
+    TestStubModelAdapter.class,
+    TestEcoreMetaModelLookup.class} )
 
 public class TestUtilsTestSuite {
 

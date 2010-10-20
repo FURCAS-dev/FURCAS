@@ -10,9 +10,9 @@ import org.eclipse.ocl.ecore.OCLExpression;
 
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
-import com.sap.furcas.metamodel.TCS.ForeachPredicatePropertyInit;
-import com.sap.furcas.metamodel.TCS.InjectorActionsBlock;
-import com.sap.furcas.metamodel.TCS.PredicateSemantic;
+import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
+import com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 
 /**

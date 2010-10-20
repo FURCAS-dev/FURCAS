@@ -2,7 +2,7 @@ package com.sap.furcas.parsergenerator.emf.lookup;
 
 import org.eclipse.emf.ecore.EObject;
 
-import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
 import com.sap.furcas.runtime.common.interfaces.IRuleName;
 import com.sap.furcas.runtime.tcs.MetaModelElementResolutionHelper;
