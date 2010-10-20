@@ -130,7 +130,7 @@ public class AdapterJMIHelper {
 		EObject returnRefObject = null;
 
 		// EClass mofClass = getMofClass(targetType);
-		URI qName = getMetaElementUri(targetType.toString());
+		URI qName = getMetaElementUri(targetType.toArray(new String[targetType.size()]));
 
 		SelectEntry se = new SelectAlias(MQL_ALIAS_INSTANCE);
 		FromEntry fe = new FromType(MQL_ALIAS_INSTANCE, qName, false);

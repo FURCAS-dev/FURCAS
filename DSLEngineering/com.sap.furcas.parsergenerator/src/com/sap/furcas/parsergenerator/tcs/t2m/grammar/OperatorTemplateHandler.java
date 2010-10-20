@@ -13,11 +13,11 @@ import static com.sap.furcas.parsergenerator.util.StringConcatUtil.concat;
 import java.util.Collection;
 import java.util.Iterator;
 
-import com.sap.furcas.metamodel.TCS.ContextTags;
-import com.sap.furcas.metamodel.TCS.Operator;
-import com.sap.furcas.metamodel.TCS.OperatorTemplate;
-import com.sap.furcas.metamodel.TCS.PropertyReference;
-import com.sap.furcas.metamodel.TCS.Sequence;
+import com.sap.furcas.metamodel.FURCAS.TCS.ContextTags;
+import com.sap.furcas.metamodel.FURCAS.TCS.Operator;
+import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
+import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.OperatorTemplateProductionRule;
 import com.sap.furcas.parsergenerator.util.VarStringBuffer;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;

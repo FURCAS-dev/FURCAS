@@ -13,9 +13,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
-import com.sap.furcas.metamodel.TCS.OperatorList;
-import com.sap.furcas.metamodel.TCS.Priority;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
+import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.SemanticErrorBucket;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 
@@ -29,6 +29,7 @@ public class OperatorListValidation implements ISyntaxValidationRule {
 	/* (non-Javadoc)
 	 * @see com.sap.mi.textual.grammar.impl.tcs.t2m.validation.ISyntaxValidationRule#validate(TCS.ConcreteSyntax)
 	 */
+    @Override
     public void validate(ConcreteSyntax syntax, IMetaModelLookup<?> metaLookup, SemanticErrorBucket errorBucket) {
         // check priorities includes zero, no gaps, no doubles
         List<OperatorList> opLists = syntax.getOperatorLists();

@@ -1,8 +1,0 @@
-//** B.template
-NoTranslation
-UseMacros(moin.buildplugin)
-
-ImportAllLibs(PurposeLabels(compile,api))
-OmitPropagationOfAllLibs(PurposeLabels(compile,api))
-
-BuildMoinMM(demo.sap.com,HMMOINTESTS,tcsmeta,tcsmeta)

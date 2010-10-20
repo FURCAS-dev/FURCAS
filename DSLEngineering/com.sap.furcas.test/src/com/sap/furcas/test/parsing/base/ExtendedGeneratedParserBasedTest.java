@@ -7,13 +7,11 @@ import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 import java.util.List;
 
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
-import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.impl.ParsingError;
@@ -25,17 +23,15 @@ import com.sap.furcas.runtime.parser.impl.ParsingError;
  */
 public abstract class ExtendedGeneratedParserBasedTest extends GeneratedParserBasedTest {
 
-    protected ModelParsingResult parseString(String sample, String language, IModelAdapter modelAdapter)
-	    throws InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException, IOException,
-	    NoSuchFieldException, UnknownProductionRuleException, InvalidParserImplementationException {
+    protected ModelParsingResult parseString(String sample, String language, IModelAdapter modelAdapter) throws IOException,
+	    UnknownProductionRuleException, InvalidParserImplementationException {
 
 	InputStream charStream = new ByteArrayInputStream(sample.getBytes());
 	ModelParsingResult result = generationHelper.parseStream(language, charStream, modelAdapter);
 	return result;
     }
 
-    protected StubModelAdapter parseString(String sample, String language, int expectedErrors) throws InstantiationException,
-	    IllegalAccessException, InvocationTargetException, NoSuchMethodException, IOException, NoSuchFieldException,
+    protected StubModelAdapter parseString(String sample, String language, int expectedErrors) throws IOException,
 	    UnknownProductionRuleException, InvalidParserImplementationException {
 	StubModelAdapter stubModelHandler = new StubModelAdapter();
 
@@ -62,18 +58,18 @@ public abstract class ExtendedGeneratedParserBasedTest extends GeneratedParserBa
 	doParseFromStream(LANGUAGE, expectedErrors, charStream, adapter);
     }
 
-    /**
-     * @return
-     * @throws InvalidParserImplementationException
-     * @throws IOException
-     */
-    protected ParserFacade getParserFacade(String language) throws IOException, InvalidParserImplementationException {
-	return generationHelper.getFacade(language);
-    }
+    // /**
+    // * @return
+    // * @throws InvalidParserImplementationException
+    // * @throws IOException
+    // */
+    // protected ParserFacade getParserFacade(String language) throws
+    // IOException, InvalidParserImplementationException {
+    // return generationHelper.getFacade(language);
+    // }
 
     protected void doParseFromStream(String LANGUAGE, int expectedErrors, InputStream in, IModelAdapter modelAdapter)
-	    throws IOException, InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException,
-	    NoSuchFieldException, UnknownProductionRuleException, InvalidParserImplementationException {
+	    throws IOException, UnknownProductionRuleException, InvalidParserImplementationException {
 
 	ModelParsingResult result = generationHelper.parseStream(LANGUAGE, in, modelAdapter);
 	checkModelErrors(expectedErrors, result);

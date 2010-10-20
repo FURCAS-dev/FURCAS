@@ -11,16 +11,16 @@ package com.sap.furcas.parsergenerator.tcs.t2m.grammar;
 import java.util.Collection;
 import java.util.Iterator;
 
-import com.sap.furcas.metamodel.TCS.ClassPattern;
-import com.sap.furcas.metamodel.TCS.EndOfLineRule;
-import com.sap.furcas.metamodel.TCS.MultiLineRule;
-import com.sap.furcas.metamodel.TCS.OrPattern;
-import com.sap.furcas.metamodel.TCS.Rule;
-import com.sap.furcas.metamodel.TCS.RulePattern;
-import com.sap.furcas.metamodel.TCS.SimplePattern;
-import com.sap.furcas.metamodel.TCS.StringPattern;
-import com.sap.furcas.metamodel.TCS.Token;
-import com.sap.furcas.metamodel.TCS.WordRule;
+import com.sap.furcas.metamodel.FURCAS.TCS.ClassPattern;
+import com.sap.furcas.metamodel.FURCAS.TCS.EndOfLineRule;
+import com.sap.furcas.metamodel.FURCAS.TCS.MultiLineRule;
+import com.sap.furcas.metamodel.FURCAS.TCS.OrPattern;
+import com.sap.furcas.metamodel.FURCAS.TCS.Rule;
+import com.sap.furcas.metamodel.FURCAS.TCS.RulePattern;
+import com.sap.furcas.metamodel.FURCAS.TCS.SimplePattern;
+import com.sap.furcas.metamodel.FURCAS.TCS.StringPattern;
+import com.sap.furcas.metamodel.FURCAS.TCS.Token;
+import com.sap.furcas.metamodel.FURCAS.TCS.WordRule;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.SimpleProductionRule;
 
 
@@ -30,9 +30,9 @@ import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.SimpleProductionRule
 public class TokenHandler {
 
 	/** The writer. */
-	private ANTLR3GrammarWriter writer;
+	private final ANTLR3GrammarWriter writer;
 	
-    private SemanticErrorBucket errorBucket;
+    private final SemanticErrorBucket errorBucket;
 	
     /**
      * Instantiates a new token handler.

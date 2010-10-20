@@ -1,23 +1,27 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: TCS and TextBlocks Metamodel
+Bundle-Name: %pluginName
 Bundle-SymbolicName: com.sap.furcas.metamodel;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-ClassPath: .
+Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: com.sap.furcas.metamodel.TCS,
- com.sap.furcas.metamodel.TCS.impl,
- com.sap.furcas.metamodel.TCS.util,
- com.sap.furcas.metamodel.textblockdefinition,
- com.sap.furcas.metamodel.textblockdefinition.impl,
- com.sap.furcas.metamodel.textblockdefinition.util,
- com.sap.furcas.metamodel.textblocks,
- com.sap.furcas.metamodel.textblocks.impl,
- com.sap.furcas.metamodel.textblocks.util
+Export-Package: com.sap.furcas.metamodel.FURCAS,
+ com.sap.furcas.metamodel.FURCAS.TCS,
+ com.sap.furcas.metamodel.FURCAS.TCS.impl,
+ com.sap.furcas.metamodel.FURCAS.TCS.util,
+ com.sap.furcas.metamodel.FURCAS.impl,
+ com.sap.furcas.metamodel.FURCAS.textblockdefinition,
+ com.sap.furcas.metamodel.FURCAS.textblockdefinition.impl,
+ com.sap.furcas.metamodel.FURCAS.textblockdefinition.util,
+ com.sap.furcas.metamodel.FURCAS.textblocks,
+ com.sap.furcas.metamodel.FURCAS.textblocks.impl,
+ com.sap.furcas.metamodel.FURCAS.textblocks.util,
+ com.sap.furcas.metamodel.FURCAS.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.ocl;visibility:=reexport,
- org.eclipse.ocl.ecore;visibility:=reexport,
- de.hpi.sam.bp2009.solution.oclToAst
+ org.eclipse.ocl.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy

@@ -79,10 +79,6 @@
   <children xmi:type="notation:Node" xmi:id="_iFKn6IJ_Ed-OCMPTt29mTg" type="1001">
     <children xmi:type="notation:Node" xmi:id="_iFKn64J_Ed-OCMPTt29mTg" type="4001"/>
     <children xmi:type="notation:Node" xmi:id="_iFKn7IJ_Ed-OCMPTt29mTg" type="5001">
-      <children xmi:type="notation:Node" xmi:id="_aUk1kbmXEd-UmZD_eWbaog" type="2001">
-        <element xmi:type="ecore:EAttribute" href="textblocks.ecore#//LexedToken/type"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_aUk1krmXEd-UmZD_eWbaog"/>
-      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_iFKn7YJ_Ed-OCMPTt29mTg"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_iFKn7oJ_Ed-OCMPTt29mTg"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_iFKn74J_Ed-OCMPTt29mTg"/>

@@ -17,11 +17,11 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 
-import com.sap.furcas.metamodel.TCS.SequenceElement;
-import com.sap.furcas.metamodel.textblocks.DocumentNode;
-import com.sap.furcas.metamodel.textblocks.LexedToken;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.metamodel.textblocks.Version;
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
+import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
 
 
@@ -30,7 +30,7 @@ import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
  */
 public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 
-	private LexedToken wrappedToken;
+	private final LexedToken wrappedToken;
 	private int channel = DEFAULT_CHANNEL;
 	private int positionInLine = -1;
 	private int tokenIndex = -1;

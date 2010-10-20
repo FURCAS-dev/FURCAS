@@ -11,8 +11,8 @@ package com.sap.furcas.parsergenerator.tcs.t2m.grammar;
 
 import java.util.Set;
 
-import com.sap.furcas.metamodel.TCS.Keyword;
-import com.sap.furcas.metamodel.TCS.PrimitiveTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
+import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.ClassProductionRule;
 import com.sap.furcas.runtime.common.exceptions.NameResolutionFailedException;
 import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;

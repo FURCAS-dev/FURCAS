@@ -4,13 +4,14 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: com.sap.furcas.metamodel.edit;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-ClassPath: .
-Bundle-Activator: com.sap.furcas.metamodel.TCS.provider.TCSEditPlugin$Implementation
+Bundle-Activator: com.sap.furcas.metamodel.FURCAS.provider.FURCASEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: com.sap.furcas.metamodel.TCS.provider,
- com.sap.furcas.metamodel.textblockdefinition.provider,
- com.sap.furcas.metamodel.textblocks.provider
+Export-Package: com.sap.furcas.metamodel.FURCAS.TCS.provider,
+ com.sap.furcas.metamodel.FURCAS.provider,
+ com.sap.furcas.metamodel.FURCAS.textblockdefinition.provider,
+ com.sap.furcas.metamodel.FURCAS.textblocks.provider
 Require-Bundle: org.eclipse.core.runtime,
  com.sap.furcas.metamodel;visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,

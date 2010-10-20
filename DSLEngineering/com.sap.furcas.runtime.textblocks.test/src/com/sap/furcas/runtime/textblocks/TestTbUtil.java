@@ -11,12 +11,10 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.textblocks.DocumentNode;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.metamodel.textblocks.Version;
-import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
-import com.sap.furcas.runtime.textblocks.TbUtil;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.textblocks.testutils.FixtureProvidingTextBlockTest;
 
 /**

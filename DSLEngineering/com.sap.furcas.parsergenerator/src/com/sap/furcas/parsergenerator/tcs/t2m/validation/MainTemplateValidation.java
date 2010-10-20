@@ -11,9 +11,9 @@ package com.sap.furcas.parsergenerator.tcs.t2m.validation;
 import java.util.Collection;
 import java.util.Iterator;
 
-import com.sap.furcas.metamodel.TCS.ClassTemplate;
-import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
-import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.SemanticErrorBucket;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 
@@ -27,6 +27,7 @@ public class MainTemplateValidation implements ISyntaxValidationRule {
 	/* (non-Javadoc)
 	 * @see com.sap.mi.textual.grammar.impl.tcs.t2m.validation.ISyntaxValidationRule#validate(TCS.ConcreteSyntax)
 	 */
+    @Override
     public void validate(ConcreteSyntax syntax, IMetaModelLookup<?> metaLookup, SemanticErrorBucket errorBucket) {
         Collection<Template> templates = syntax.getTemplates();
         boolean mainfound = false;
