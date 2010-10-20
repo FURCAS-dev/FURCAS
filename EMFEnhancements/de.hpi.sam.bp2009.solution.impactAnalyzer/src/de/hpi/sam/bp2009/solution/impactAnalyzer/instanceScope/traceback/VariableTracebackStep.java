@@ -7,11 +7,8 @@ import java.util.Set;
 import java.util.Stack;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.ocl.ecore.CollectionItem;
 import org.eclipse.ocl.ecore.CollectionLiteralExp;
 import org.eclipse.ocl.ecore.CollectionRange;
@@ -175,20 +172,7 @@ public class VariableTracebackStep extends BranchingTracebackStep<VariableExp> {
      * tracer's {@link #getExpression() variable expression).
      */
     private int getParameterPosition(EOperation op) {
-        String variableName = variable.getName();
-        // determine position of formal IN_DIR parameter named variableName
-        int pos = 0;
-        EList<EObject> pList = op.eContents();
-        for (EObject p : pList) {
-            if (p instanceof EParameter) {
-                if (variableName.equals(((EParameter) p).getName())) {
-                    break;
-                } else {
-                    pos++;
-                }
-            }
-        }
-        return pos;
+        return op.getEParameters().indexOf(variable.getRepresentedParameter());
     }
 
     private Set<TracebackStepAndScopeChange> tracebackLetVariable(VariableExp variableExpression, EClass context,

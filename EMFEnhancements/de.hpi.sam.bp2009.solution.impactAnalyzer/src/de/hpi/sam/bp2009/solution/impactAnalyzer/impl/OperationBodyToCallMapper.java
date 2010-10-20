@@ -11,6 +11,8 @@ public interface OperationBodyToCallMapper {
     /**
      * Returns all the calls to the operation whose body is <tt>operationBodyExpression</tt> that are reachable from some scope.
      * Which scope this is depends on the particular implementation. If no such calls exist, an empty set is returned.
+     * 
+     * TODO generalize such that instead of an OperationCallExp this method can return a TCS::Property (template "invocation") as well
      */
     public Set<OperationCallExp> getCallsOf(OCLExpression operationBodyExpression);
 
