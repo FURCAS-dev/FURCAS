@@ -26,21 +26,21 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface AndExp extends Expression {
         /**
-         * Returns the value of the '<em><b>Expressions</b></em>' containment reference list.
-         * The list contents are of type {@link com.sap.furcas.metamodel.FURCAS.TCS.AtomExp}.
-         * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.FURCAS.TCS.AtomExp#getAndExp <em>And Exp</em>}'.
-         * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Expressions</b></em>' containment reference list.
+     * The list contents are of type {@link com.sap.furcas.metamodel.FURCAS.TCS.AtomExp}.
+     * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.FURCAS.TCS.AtomExp#getAndExp <em>And Exp</em>}'.
+     * <!-- begin-user-doc -->
          * <p>
          * If the meaning of the '<em>Expressions</em>' containment reference list isn't clear,
          * there really should be more of a description here...
          * </p>
          * <!-- end-user-doc -->
-         * @return the value of the '<em>Expressions</em>' containment reference list.
-         * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getAndExp_Expressions()
-         * @see com.sap.furcas.metamodel.FURCAS.TCS.AtomExp#getAndExp
-         * @model opposite="andExp" containment="true"
-         * @generated
-         */
+     * @return the value of the '<em>Expressions</em>' containment reference list.
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getAndExp_Expressions()
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.AtomExp#getAndExp
+     * @model opposite="andExp" containment="true"
+     * @generated
+     */
         EList<AtomExp> getExpressions();
 
 } // AndExp
