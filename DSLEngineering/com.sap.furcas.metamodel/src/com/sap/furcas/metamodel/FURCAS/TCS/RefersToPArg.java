@@ -25,29 +25,29 @@ package com.sap.furcas.metamodel.FURCAS.TCS;
  */
 public interface RefersToPArg extends PropertyArg {
         /**
-         * Returns the value of the '<em><b>Property Name</b></em>' attribute.
-         * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Property Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
          * <p>
          * If the meaning of the '<em>Property Name</em>' attribute isn't clear,
          * there really should be more of a description here...
          * </p>
          * <!-- end-user-doc -->
-         * @return the value of the '<em>Property Name</em>' attribute.
-         * @see #setPropertyName(String)
-         * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getRefersToPArg_PropertyName()
-         * @model
-         * @generated
-         */
+     * @return the value of the '<em>Property Name</em>' attribute.
+     * @see #setPropertyName(String)
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getRefersToPArg_PropertyName()
+     * @model
+     * @generated
+     */
         String getPropertyName();
 
         /**
-         * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg#getPropertyName <em>Property Name</em>}' attribute.
-         * <!-- begin-user-doc -->
+     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg#getPropertyName <em>Property Name</em>}' attribute.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @param value the new value of the '<em>Property Name</em>' attribute.
-         * @see #getPropertyName()
-         * @generated
-         */
+     * @param value the new value of the '<em>Property Name</em>' attribute.
+     * @see #getPropertyName()
+     * @generated
+     */
         void setPropertyName(String value);
 
 } // RefersToPArg
