@@ -5,13 +5,13 @@ import java.util.Collection;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import com.sap.furcas.ide.dslproject.conf.IProjectMetaRefConf;
+import com.sap.furcas.ide.dslproject.conf.ProjectMetaRefConfFactory;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.editor.prettyprint.imported.ModelAdapter;
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
 import com.sap.mi.tcs.parser.TcsParserFactory;
-import com.sap.mi.textual.epi.conf.IProjectMetaRefConf;
-import com.sap.mi.textual.epi.conf.ProjectMetaRefConfFactory;
 
 
 public class TcsEditor extends AbstractGrammarBasedEditor {
