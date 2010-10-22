@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.query.index.ui.IndexFactory;
 import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.ResultSet;
 
@@ -650,7 +651,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 		Collection<EObject> nodes = org.eclipse.emf.query2.EcoreHelper.getInstance()
 			.reverseNavigate(element, 
 				(EReference) EcoreHelper.lookupElementExtended(element.eClass(), "correspondingModelElements"),
-				EcoreHelper.getQueryContext(resourceSet), resourceSet, false, index);
+				EcoreHelper.getQueryContext(resourceSet), resourceSet, false, IndexFactory.getInstance());
 
 		for (Iterator<EObject> iterator = nodes.iterator(); iterator.hasNext();) {
 		    DocumentNode node = (DocumentNode) iterator.next();
