@@ -44,3 +44,36 @@ project under
 
 An additional HOWTO in that directory explains the steps necessary to post-process the results using
 the R statistical analysis framework.
+
+
+The output has the following columns:
+
+optionId | Id corresponding to the ActivationOption which was active during a specific benchmark run
+benchmarkTaskId | A new benchmark task id is given for each combination of notificationId, oclId and modelId
+notificationId | Id of the actual model change event/notification on EMF. Remember, the model change events were initially recorded with FURCAS on MOIN. On MOIN a link is bi-directional. On EMF the aquivalent of a link are two references which are uni-directional. As a result, a MOIN link change events produces two EMF reference change events. This is why you can not directly map a notificationId to the line number in the even trace fixture file. 
+Notice: Within NgpmModelBasedOclIaTest there is a function that can return a notification for a given id.
+oclId | Id of the OCL expressions. It is not defined in which order OCL expressions are benchmarked and therefore in which order oclIds are given. However, the ocl expressions are benchmarked which are extracted out of the Class.tcs file are benchmarked at first. Afterwards the ocl expressions picked from the NGPM meta-model are processed.
+modelId | Each model for which a package is removed incrementally after a dependency analysis gets its own modelId. As a result, different model ids implicate different model sizes.
+modelSize | Number of model elements in the active model. Keep in mind, that for one modelId there may be different modelSizes. This is because the model changes (e.g., think of remove or add events) are actually performed on the model and therefore the model size might vary. 
+filtered | Flag that indicates that the OCL expressions might be affected by the model change event ClassScopeAnalysis flag)
+allInstancesExecTime | Time which is needed to collect the set of instances with the ocl context type
+noAllInstances | Number of instances that can be found for the ocl context type.
+noAllInstanceEvalAllInstanceCalls | Number of getAllInstances() calls which are executed while re-evaluating OCL expressions on all instances
+noAllInstanceFindOppositeEndCalls | Number of find opposite end calls which are executed internally while re-evaluating OCL expressions on all instances
+noAllInstanceGetAllOppositeEndCalls | Number of get all opposite end calls which are executed internally while re-evaluating OCL expressions on all instances.
+allInstaceEvalTime | Time that is needed to re-evaluate OCL expressions on all instances without the time to get all instance objects. This also includes the time for evaluations which end in an invalid result.
+allInstanceEvalTimeWoInvalid | Like allInstanceEvalTime but without including the time for evaluations which end in invalid results.
+allInstanceNoInvalidEvals | Number of OCL re-evaluations on all instances which return an invalid result.
+eventFilterMatchCheckTime | Time which is needed to do the EventFilter check (or ClassScopeAnalysis). Saved because of the possibility to need it in future benchmarks.
+evaluationTimeWoInvalid | Like evaluationTimeAfter without including the evaluations which return an OCL.invalid result.
+beforeNoInvalidEvals | Number of evaluations on context objects returned by the IA before the notification or model change event occured. Maybe needed for measuring IA accuracy.
+afterNoInvalidEvals | Number of evaluation on context objects returned by the IA component after the model change event occured. Maybe needed for measuring IA accuracy.
+noEqualResultsBeforeAndAfter | Number of evaluations that returned the same result before and after the model change event. With this value the accuracy of the IA can be evaluated.
+noIaAllInstanceCalls | Number of getAllInstances() calls which are executed while re-evaluating OCL expressions on context objects.
+noIaFindOppositeEndCalls | Number of find opposite end calls which are executed internally while re-evaluating OCL expressions on context objects returned by IA
+noIaGetAllOppositeEndCalls|Number of get all opposite end calls which are executed internally while re-evaluating OCL expressions on context objects returned by IA
+noContextObjects | Number of context objects which are returned by the IA component e.g, needed for measuring accuracy.
+noInvalidEvals | Number of invalid results when re-evaluating OCL expressions on context objects
+executionIndex | ID of the current measurement for one benchmark tuple. Represents a value from 1 to the value of the --measures parameter
+executionTime | Time which is needed to call the ia.getContextObjects() method. Represents costs of the IA component to get the context objects.
+evaluationTime | Obsolete! please refer to the evaluationTimeAfter
