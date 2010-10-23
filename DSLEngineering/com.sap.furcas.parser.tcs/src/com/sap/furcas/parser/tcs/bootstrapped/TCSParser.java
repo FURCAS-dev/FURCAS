@@ -2712,7 +2712,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","ConcreteSyntax");
+        List<String> metaType=list("FURCAS", "TCS","ConcreteSyntax");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, true, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -4035,7 +4035,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","PrimitiveTemplate");
+        List<String> metaType=list("FURCAS", "TCS","PrimitiveTemplate");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -4507,7 +4507,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","EnumerationTemplate");
+        List<String> metaType=list("FURCAS", "TCS","EnumerationTemplate");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, true, true) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -4893,7 +4893,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","EnumLiteralMapping");
+        List<String> metaType=list("FURCAS", "TCS","EnumLiteralMapping");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -4993,7 +4993,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","ClassTemplate");
+        List<String> metaType=list("FURCAS", "TCS","ClassTemplate");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, true, true) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -5934,7 +5934,7 @@ public class TCSParser extends ObservableInjectingParser {
 					return ret2;
 				    }
                                     if ( state.backtracking==0 ) {
-                                      setRef(ret, "operatorList", list("TCS","OperatorList"), "name", temp, null, "never", null, false, null);
+                                      setRef(ret, "operatorList", list("FURCAS", "TCS","OperatorList"), "name", temp, null, "never", null, false, null);
                                     }
 
                                     }
@@ -6671,7 +6671,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","OperatorTemplate");
+        List<String> metaType=list("FURCAS", "TCS","OperatorTemplate");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, true, true) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -6756,7 +6756,7 @@ public class TCSParser extends ObservableInjectingParser {
 			return ret2;
 		    }
                     if ( state.backtracking==0 ) {
-                      setRef(ret, "operators", list("TCS","Operator"), "name", temp, null, "never", null, false, null);
+                      setRef(ret, "operators", list("FURCAS", "TCS","Operator"), "name", temp, null, "never", null, false, null);
                     }
                     // parser/TCS.g:574:611: (temp= identifier )*
                     loop52:
@@ -6782,7 +6782,7 @@ public class TCSParser extends ObservableInjectingParser {
 				return ret2;
 			    }
                     	    if ( state.backtracking==0 ) {
-                    	      setRef(ret, "operators", list("TCS","Operator"), "name", temp, null, "never", null, false, null);
+                    	      setRef(ret, "operators", list("FURCAS", "TCS","Operator"), "name", temp, null, "never", null, false, null);
                     	    }
 
                     	    }
@@ -7773,7 +7773,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","FunctionTemplate");
+        List<String> metaType=list("FURCAS", "TCS","FunctionTemplate");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, true, true) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -7959,7 +7959,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","ContextTags");
+        List<String> metaType=list("FURCAS", "TCS","ContextTags");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -8112,7 +8112,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","Sequence");
+        List<String> metaType=list("FURCAS", "TCS","Sequence");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -8590,7 +8590,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","LiteralRef");
+        List<String> metaType=list("FURCAS", "TCS","LiteralRef");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -8617,7 +8617,7 @@ public class TCSParser extends ObservableInjectingParser {
 		return ret2;
 	    }
             if ( state.backtracking==0 ) {
-              setRef(ret, "referredLiteral", list("TCS","Literal"), "value", temp, "#all", "ifmissing", list("TCS","Keyword"), false, null);
+              setRef(ret, "referredLiteral", list("FURCAS", "TCS","Literal"), "value", temp, "#all", "ifmissing", list("FURCAS", "TCS","Keyword"), false, null);
             }
 
             }
@@ -8667,7 +8667,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","PropertyReference");
+        List<String> metaType=list("FURCAS", "TCS","PropertyReference");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -8724,7 +8724,7 @@ public class TCSParser extends ObservableInjectingParser {
 			return ret2;
 		    }
                     if ( state.backtracking==0 ) {
-                      setOclRef(ret, "strucfeature", "name", temp, "OCL:let c = #context.oclAsType(TCS::Template).metaReference in"+"                                                let result = c.lookupElementExtended(?) in"+"                                                if not (result.oclIsInvalid()) then"+"                                                        if(result.oclIsTypeOf(Model::Attribute) or"+"                                                                        result.oclIsTypeOf(Model::Reference)"+"                                                                        or result.oclIsTypeOf(Model::StructureField)) then"+"                                                                Bag{result}     "+"                                                        else            "+"                                                                c.allSupertypes()->prepend(c)->collect("+"                                                                        st | st.oclAsType(Model::Classifier).typedElements->select("+"                                                                                te | "+"                                                                                        if te.oclIsTypeOf(Model::AssociationEnd) then"+"                                                                                                te.oclAsType(Model::AssociationEnd).otherEnd().name = ? "+"                                                                                        else            "+"                                                                                                false "+"                                                                                        endif"+"                                                                                )->collect(ae | ae.oclAsType(Model::AssociationEnd).otherEnd())"+"                                                                )"+"                                                        endif "+"                                                else    "+"                                                        c.allSupertypes()->prepend(c)->collect("+"                                                                st | st.oclAsType(Model::Classifier).typedElements->select("+"                                                                        te | "+"                                                                                if te.oclIsTypeOf(Model::AssociationEnd) then"+"                                                                                        te.oclAsType(Model::AssociationEnd).otherEnd().name = ? "+"                                                                                else"+"                                                                                        false "+"                                                                                endif"+"                                                                        )"+"                                                                )->collect(ae | ae.oclAsType(Model::AssociationEnd).otherEnd()"+"                                                        ) "+"                                                endif"+"                                                        ");
+                      setOclRef(ret, "strucfeature", "name", temp, "OCL:let c = #context.oclAsType(FURCAS::TCS::Template).metaReference in"+"                                                let result = c.lookupElementExtended(?) in"+"                                                if not (result.oclIsInvalid()) then"+"                                                        if(result.oclIsTypeOf(Model::Attribute) or"+"                                                                        result.oclIsTypeOf(Model::Reference)"+"                                                                        or result.oclIsTypeOf(Model::StructureField)) then"+"                                                                Bag{result}     "+"                                                        else            "+"                                                                c.allSupertypes()->prepend(c)->collect("+"                                                                        st | st.oclAsType(Model::Classifier).typedElements->select("+"                                                                                te | "+"                                                                                        if te.oclIsTypeOf(Model::AssociationEnd) then"+"                                                                                                te.oclAsType(Model::AssociationEnd).otherEnd().name = ? "+"                                                                                        else            "+"                                                                                                false "+"                                                                                        endif"+"                                                                                )->collect(ae | ae.oclAsType(Model::AssociationEnd).otherEnd())"+"                                                                )"+"                                                        endif "+"                                                else    "+"                                                        c.allSupertypes()->prepend(c)->collect("+"                                                                st | st.oclAsType(Model::Classifier).typedElements->select("+"                                                                        te | "+"                                                                                if te.oclIsTypeOf(Model::AssociationEnd) then"+"                                                                                        te.oclAsType(Model::AssociationEnd).otherEnd().name = ? "+"                                                                                else"+"                                                                                        false "+"                                                                                endif"+"                                                                        )"+"                                                                )->collect(ae | ae.oclAsType(Model::AssociationEnd).otherEnd()"+"                                                        ) "+"                                                endif"+"                                                        ");
                     }
 
                     }
@@ -8837,7 +8837,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","Property");
+        List<String> metaType=list("FURCAS", "TCS","Property");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -9079,7 +9079,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","CustomSeparator");
+        List<String> metaType=list("FURCAS", "TCS","CustomSeparator");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -9174,7 +9174,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","Block");
+        List<String> metaType=list("FURCAS", "TCS","Block");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -9434,7 +9434,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","ConditionalElement");
+        List<String> metaType=list("FURCAS", "TCS","ConditionalElement");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -9668,7 +9668,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","Alternative");
+        List<String> metaType=list("FURCAS", "TCS","Alternative");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -9909,7 +9909,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","SequenceInAlternative");
+        List<String> metaType=list("FURCAS", "TCS","SequenceInAlternative");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -10158,7 +10158,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","FunctionCall");
+        List<String> metaType=list("FURCAS", "TCS","FunctionCall");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -10194,7 +10194,7 @@ public class TCSParser extends ObservableInjectingParser {
 		return ret2;
 	    }
             if ( state.backtracking==0 ) {
-              setRef(ret, "calledFunction", list("TCS","FunctionTemplate"), "functionName", temp, null, "never", null, false, null);
+              setRef(ret, "calledFunction", list("FURCAS", "TCS","FunctionTemplate"), "functionName", temp, null, "never", null, false, null);
             }
 
             }
@@ -10244,7 +10244,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","InjectorActionsBlock");
+        List<String> metaType=list("FURCAS", "TCS","InjectorActionsBlock");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -10535,7 +10535,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","PrimitivePropertyInit");
+        List<String> metaType=list("FURCAS", "TCS","PrimitivePropertyInit");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -10713,7 +10713,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","LookupPropertyInit");
+        List<String> metaType=list("FURCAS", "TCS","LookupPropertyInit");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -10918,7 +10918,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","ForeachPredicatePropertyInit");
+        List<String> metaType=list("FURCAS", "TCS","ForeachPredicatePropertyInit");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -11450,7 +11450,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","PredicateSemantic");
+        List<String> metaType=list("FURCAS", "TCS","PredicateSemantic");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -11717,7 +11717,7 @@ public class TCSParser extends ObservableInjectingParser {
 			return ret2;
 		    }
                     if ( state.backtracking==0 ) {
-                      setOclRef(ret, "as", null, temp, "OCL:self.foreachParent.injectorActionsBlockReference.parentTemplate.concreteSyntax.templates->select(t | "+"                                                                        if(t.oclIsTypeOf(TCS::ClassTemplate)) then "+"                                                                                t.oclAsType(TCS::ClassTemplate).metaReference.name = ?"+"                                                                                and(t.oclAsType(TCS::ClassTemplate).metaReference).allSupertypes()"+"                                                                                        ->prepend(t.oclAsType(TCS::ClassTemplate).metaReference)"+"                                                                                        ->includes(self.foreachParent.propertyReference.strucfeature.type)"+"                                                                                and ("+"                                                                                        if(not self.mode.oclIsUndefined()) then"+"                                                                                                t.oclAsType(TCS::ClassTemplate).mode = self.mode"+"                                                                                        else"+"                                                                                                t.oclAsType(TCS::ClassTemplate).mode = self.foreachParent.mode"+"                                                                                        endif"+"                                                                                )                                                                       "+"                                                                        else"+"                                                                                if(t.oclIsTypeOf(TCS::PrimitiveTemplate)) then"+"                                                                                        t.oclAsType(TCS::PrimitiveTemplate).templateName = ?"+"                                                                                else"+"                                                                                        false"+"                                                                                endif"+"                                                                        endif)"+"                                                                ");
+                      setOclRef(ret, "as", null, temp, "OCL:self.foreachParent.injectorActionsBlockReference.parentTemplate.concreteSyntax.templates->select(t | "+"                                                                        if(t.oclIsTypeOf(FURCAS::TCS::ClassTemplate)) then "+"                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference.name = ?"+"                                                                                and(t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference).allSupertypes()"+"                                                                                        ->prepend(t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference)"+"                                                                                        ->includes(self.foreachParent.propertyReference.strucfeature.type)"+"                                                                                and ("+"                                                                                        if(not self.mode.oclIsUndefined()) then"+"                                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).mode = self.mode"+"                                                                                        else"+"                                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).mode = self.foreachParent.mode"+"                                                                                        endif"+"                                                                                )                                                                       "+"                                                                        else"+"                                                                                if(t.oclIsTypeOf(FURCAS::TCS::PrimitiveTemplate)) then"+"                                                                                        t.oclAsType(FURCAS::TCS::PrimitiveTemplate).templateName = ?"+"                                                                                else"+"                                                                                        false"+"                                                                                endif"+"                                                                        endif)"+"                                                                ");
                     }
 
                     }
@@ -12094,7 +12094,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","RefersToPArg");
+        List<String> metaType=list("FURCAS", "TCS","RefersToPArg");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -12180,7 +12180,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","LookInPArg");
+        List<String> metaType=list("FURCAS", "TCS","LookInPArg");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -12408,7 +12408,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","CreateInPArg");
+        List<String> metaType=list("FURCAS", "TCS","CreateInPArg");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -12550,7 +12550,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","AsPArg");
+        List<String> metaType=list("FURCAS", "TCS","AsPArg");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -12595,7 +12595,7 @@ public class TCSParser extends ObservableInjectingParser {
 		return ret2;
 	    }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "template", null, temp, "OCL:self.property.parentTemplate.concreteSyntax.templates->select(t | "+"                                                                        if(t.oclIsTypeOf(TCS::ClassTemplate)) then "+"                                                                                t.oclAsType(TCS::ClassTemplate).metaReference.name = ? "+"                                                                                and(self.property.propertyReference.strucfeature.type.allSupertypes()"+"                                                                                        ->prepend(self.property.propertyReference.strucfeature.type)"+"                                                                                        ->includes(t.oclAsType(TCS::ClassTemplate).metaReference))"+"                                                                                and ("+"                                                                                        if (not self.property.propertyArgs->select("+"                                                                                                        arg | arg.oclIsTypeOf(TCS::ModePArg))->isEmpty()"+"                                                                                                ) "+"                                                                                        then"+"                                                                                                t.oclAsType(TCS::ClassTemplate).mode = "+"                                                                                                        self.property.propertyArgs->select("+"                                                                                                                arg | arg.oclIsTypeOf(TCS::ModePArg))"+"                                                                                                                        .oclAsType(TCS::ModePArg)->asSequence()->at(1)"+"                                                                                                        .mode"+"                                                                                        else"+"                                                                                                t.oclAsType(TCS::ClassTemplate).mode.oclIsUndefined()"+"                                                                                        endif"+"                                                                                )"+"                                                                        else"+"                                                                                if(t.oclIsTypeOf(TCS::PrimitiveTemplate)) then"+"                                                                                        t.oclAsType(TCS::PrimitiveTemplate).templateName = ? "+"                                                                                else"+"                                                                                        false"+"                                                                                endif"+"                                                                        endif)"+"                                                                ");
+              setOclRef(ret, "template", null, temp, "OCL:self.property.parentTemplate.concreteSyntax.templates->select(t | "+"                                                                        if(t.oclIsTypeOf(FURCAS::TCS::ClassTemplate)) then "+"                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference.name = ? "+"                                                                                and(self.property.propertyReference.strucfeature.type.allSupertypes()"+"                                                                                        ->prepend(self.property.propertyReference.strucfeature.type)"+"                                                                                        ->includes(t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference))"+"                                                                                and ("+"                                                                                        if (not self.property.propertyArgs->select("+"                                                                                                        arg | arg.oclIsTypeOf(FURCAS::TCS::ModePArg))->isEmpty()"+"                                                                                                ) "+"                                                                                        then"+"                                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).mode = "+"                                                                                                        self.property.propertyArgs->select("+"                                                                                                                arg | arg.oclIsTypeOf(FURCAS::TCS::ModePArg))"+"                                                                                                                        .oclAsType(FURCAS::TCS::ModePArg)->asSequence()->at(1)"+"                                                                                                        .mode"+"                                                                                        else"+"                                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).mode.oclIsUndefined()"+"                                                                                        endif"+"                                                                                )"+"                                                                        else"+"                                                                                if(t.oclIsTypeOf(FURCAS::TCS::PrimitiveTemplate)) then"+"                                                                                        t.oclAsType(FURCAS::TCS::PrimitiveTemplate).templateName = ? "+"                                                                                else"+"                                                                                        false"+"                                                                                endif"+"                                                                        endif)"+"                                                                ");
             }
 
             }
@@ -12636,7 +12636,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","SeparatorPArg");
+        List<String> metaType=list("FURCAS", "TCS","SeparatorPArg");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -12722,7 +12722,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","DisambiguatePArg");
+        List<String> metaType=list("FURCAS", "TCS","DisambiguatePArg");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -12808,7 +12808,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","AutoCreatePArg");
+        List<String> metaType=list("FURCAS", "TCS","AutoCreatePArg");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -12942,7 +12942,7 @@ public class TCSParser extends ObservableInjectingParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                      ret = createEnumLiteral(list("TCS","AutoCreateKind"), "always");
+                      ret = createEnumLiteral(list("FURCAS", "TCS","AutoCreateKind"), "always");
                     }
 
                     }
@@ -12966,7 +12966,7 @@ public class TCSParser extends ObservableInjectingParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                      ret = createEnumLiteral(list("TCS","AutoCreateKind"), "ifmissing");
+                      ret = createEnumLiteral(list("FURCAS", "TCS","AutoCreateKind"), "ifmissing");
                     }
 
                     }
@@ -12990,7 +12990,7 @@ public class TCSParser extends ObservableInjectingParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                      ret = createEnumLiteral(list("TCS","AutoCreateKind"), "never");
+                      ret = createEnumLiteral(list("FURCAS", "TCS","AutoCreateKind"), "never");
                     }
 
                     }
@@ -13024,7 +13024,7 @@ public class TCSParser extends ObservableInjectingParser {
 
         Object ret2 = null;
 
-        List<String> metaType=list("TCS","ImportContextPArg");
+        List<String> metaType=list("FURCAS", "TCS","ImportContextPArg");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -13075,7 +13075,7 @@ public class TCSParser extends ObservableInjectingParser {
 
         Object ret2 = null;
 
-        List<String> metaType=list("TCS","PartialPArg");
+        List<String> metaType=list("FURCAS", "TCS","PartialPArg");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -13129,7 +13129,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","ForcedLowerPArg");
+        List<String> metaType=list("FURCAS", "TCS","ForcedLowerPArg");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -13215,7 +13215,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","ForcedUpperPArg");
+        List<String> metaType=list("FURCAS", "TCS","ForcedUpperPArg");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -13301,7 +13301,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","CreateAsPArg");
+        List<String> metaType=list("FURCAS", "TCS","CreateAsPArg");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -13443,7 +13443,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","QueryPArg");
+        List<String> metaType=list("FURCAS", "TCS","QueryPArg");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -13529,7 +13529,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","FilterPArg");
+        List<String> metaType=list("FURCAS", "TCS","FilterPArg");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -13736,7 +13736,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","ModePArg");
+        List<String> metaType=list("FURCAS", "TCS","ModePArg");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -13965,7 +13965,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","NbNLBArg");
+        List<String> metaType=list("FURCAS", "TCS","NbNLBArg");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -14051,7 +14051,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","IndentIncrBArg");
+        List<String> metaType=list("FURCAS", "TCS","IndentIncrBArg");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -14134,7 +14134,7 @@ public class TCSParser extends ObservableInjectingParser {
 
         Object ret2 = null;
 
-        List<String> metaType=list("TCS","StartNLBArg");
+        List<String> metaType=list("FURCAS", "TCS","StartNLBArg");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -14284,7 +14284,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","StartNbNLBArg");
+        List<String> metaType=list("FURCAS", "TCS","StartNbNLBArg");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -14367,7 +14367,7 @@ public class TCSParser extends ObservableInjectingParser {
 
         Object ret2 = null;
 
-        List<String> metaType=list("TCS","EndNLBArg");
+        List<String> metaType=list("FURCAS", "TCS","EndNLBArg");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -14517,7 +14517,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","Symbol");
+        List<String> metaType=list("FURCAS", "TCS","Symbol");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, true) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -14846,7 +14846,7 @@ public class TCSParser extends ObservableInjectingParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                      ret = createEnumLiteral(list("TCS","SpaceKind"), "leftSpace");
+                      ret = createEnumLiteral(list("FURCAS", "TCS","SpaceKind"), "leftSpace");
                     }
 
                     }
@@ -14870,7 +14870,7 @@ public class TCSParser extends ObservableInjectingParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                      ret = createEnumLiteral(list("TCS","SpaceKind"), "leftNone");
+                      ret = createEnumLiteral(list("FURCAS", "TCS","SpaceKind"), "leftNone");
                     }
 
                     }
@@ -14894,7 +14894,7 @@ public class TCSParser extends ObservableInjectingParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                      ret = createEnumLiteral(list("TCS","SpaceKind"), "rightSpace");
+                      ret = createEnumLiteral(list("FURCAS", "TCS","SpaceKind"), "rightSpace");
                     }
 
                     }
@@ -14918,7 +14918,7 @@ public class TCSParser extends ObservableInjectingParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                      ret = createEnumLiteral(list("TCS","SpaceKind"), "rightNone");
+                      ret = createEnumLiteral(list("FURCAS", "TCS","SpaceKind"), "rightNone");
                     }
 
                     }
@@ -14955,7 +14955,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","Keyword");
+        List<String> metaType=list("FURCAS", "TCS","Keyword");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, true) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -15075,7 +15075,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","OperatorList");
+        List<String> metaType=list("FURCAS", "TCS","OperatorList");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, true) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -15314,7 +15314,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","Priority");
+        List<String> metaType=list("FURCAS", "TCS","Priority");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -15391,7 +15391,7 @@ public class TCSParser extends ObservableInjectingParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "associativity", createEnumLiteral(list("TCS","Associativity"),"left"));
+                      setProperty(ret, "associativity", createEnumLiteral(list("FURCAS", "TCS","Associativity"),"left"));
                     }
                     if ( state.backtracking==0 ) {
                       _exitAlt();
@@ -15444,7 +15444,7 @@ public class TCSParser extends ObservableInjectingParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "associativity", createEnumLiteral(list("TCS","Associativity"),"right"));
+                      setProperty(ret, "associativity", createEnumLiteral(list("FURCAS", "TCS","Associativity"),"right"));
                     }
                     if ( state.backtracking==0 ) {
                       _exitAlt();
@@ -15596,7 +15596,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","Operator");
+        List<String> metaType=list("FURCAS", "TCS","Operator");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, true) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -15798,7 +15798,7 @@ public class TCSParser extends ObservableInjectingParser {
 				return ret2;
 			    }
                             if ( state.backtracking==0 ) {
-                              setRef(ret, "literal", list("TCS","Literal"), "name", temp, null, "never", null, false, null);
+                              setRef(ret, "literal", list("FURCAS", "TCS","Literal"), "name", temp, null, "never", null, false, null);
                             }
 
                             }
@@ -15839,7 +15839,7 @@ public class TCSParser extends ObservableInjectingParser {
 				return ret2;
 			    }
                             if ( state.backtracking==0 ) {
-                              setRef(ret, "literal", list("TCS","Literal"), "value", temp, "#all", "ifmissing", list("TCS","Keyword"), false, null);
+                              setRef(ret, "literal", list("FURCAS", "TCS","Literal"), "value", temp, "#all", "ifmissing", list("FURCAS", "TCS","Keyword"), false, null);
                             }
 
                             }
@@ -16002,7 +16002,7 @@ public class TCSParser extends ObservableInjectingParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                      ret = createEnumLiteral(list("TCS","Associativity"), "left");
+                      ret = createEnumLiteral(list("FURCAS", "TCS","Associativity"), "left");
                     }
 
                     }
@@ -16026,7 +16026,7 @@ public class TCSParser extends ObservableInjectingParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                      ret = createEnumLiteral(list("TCS","Associativity"), "right");
+                      ret = createEnumLiteral(list("FURCAS", "TCS","Associativity"), "right");
                     }
 
                     }
@@ -16110,7 +16110,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","AndExp");
+        List<String> metaType=list("FURCAS", "TCS","AndExp");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -16355,7 +16355,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","EqualsExp");
+        List<String> metaType=list("FURCAS", "TCS","EqualsExp");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -16455,7 +16455,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","BooleanPropertyExp");
+        List<String> metaType=list("FURCAS", "TCS","BooleanPropertyExp");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -16523,7 +16523,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","IsDefinedExp");
+        List<String> metaType=list("FURCAS", "TCS","IsDefinedExp");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -16618,7 +16618,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","OneExp");
+        List<String> metaType=list("FURCAS", "TCS","OneExp");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -16713,7 +16713,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","InstanceOfExp");
+        List<String> metaType=list("FURCAS", "TCS","InstanceOfExp");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -16993,7 +16993,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","StringVal");
+        List<String> metaType=list("FURCAS", "TCS","StringVal");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -17061,7 +17061,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","IntegerVal");
+        List<String> metaType=list("FURCAS", "TCS","IntegerVal");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -17129,7 +17129,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","NegativeIntegerVal");
+        List<String> metaType=list("FURCAS", "TCS","NegativeIntegerVal");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -17206,7 +17206,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","EnumLiteralVal");
+        List<String> metaType=list("FURCAS", "TCS","EnumLiteralVal");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -17283,7 +17283,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","Token");
+        List<String> metaType=list("FURCAS", "TCS","Token");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -17484,7 +17484,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","OrPattern");
+        List<String> metaType=list("FURCAS", "TCS","OrPattern");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -17775,7 +17775,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","RulePattern");
+        List<String> metaType=list("FURCAS", "TCS","RulePattern");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -17948,7 +17948,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","WordRule");
+        List<String> metaType=list("FURCAS", "TCS","WordRule");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -18218,7 +18218,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","EndOfLineRule");
+        List<String> metaType=list("FURCAS", "TCS","EndOfLineRule");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -18403,7 +18403,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","MultiLineRule");
+        List<String> metaType=list("FURCAS", "TCS","MultiLineRule");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -19115,7 +19115,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","SimpleMapping");
+        List<String> metaType=list("FURCAS", "TCS","SimpleMapping");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -19212,7 +19212,7 @@ public class TCSParser extends ObservableInjectingParser {
 
         Object ret2 = null;
 
-        List<String> metaType=list("TCS","WildcardMapping");
+        List<String> metaType=list("FURCAS", "TCS","WildcardMapping");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -19281,7 +19281,7 @@ public class TCSParser extends ObservableInjectingParser {
 
         Object ret2 = null;
 
-        List<String> metaType=list("TCS","OctalMapping");
+        List<String> metaType=list("FURCAS", "TCS","OctalMapping");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -19332,7 +19332,7 @@ public class TCSParser extends ObservableInjectingParser {
 
         Object ret2 = null;
 
-        List<String> metaType=list("TCS","HexadecimalMapping");
+        List<String> metaType=list("FURCAS", "TCS","HexadecimalMapping");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -19386,7 +19386,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","StringPattern");
+        List<String> metaType=list("FURCAS", "TCS","StringPattern");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -19465,7 +19465,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("TCS","ClassPattern");
+        List<String> metaType=list("FURCAS", "TCS","ClassPattern");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);

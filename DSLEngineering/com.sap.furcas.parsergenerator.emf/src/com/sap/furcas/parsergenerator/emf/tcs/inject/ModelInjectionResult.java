@@ -37,7 +37,7 @@ public class ModelInjectionResult {
 
     public ConcreteSyntax getSyntax() {
 	ConcreteSyntax syntax = null;
-	Set<Object> set = handler.getElementsByType("TCS::ConcreteSyntax");
+	Set<Object> set = handler.getElementsByType("FURCAS::TCS::ConcreteSyntax");
 	if (set != null) {
 	    if (set.size() != 1) {
 		System.out.println("Warning: More than one syntax in ModelInjectionResult (" + set.size() + " present)");
@@ -49,7 +49,7 @@ public class ModelInjectionResult {
 
     @SuppressWarnings("unchecked")
     public Set<Keyword> getKeywords() {
-	Set<?> set = handler.getElementsByType("TCS::Keyword");
+	Set<?> set = handler.getElementsByType("FURCAS::TCS::Keyword");
 	return (Set<Keyword>) set;
     }
 

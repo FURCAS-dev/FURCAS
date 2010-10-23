@@ -600,7 +600,7 @@ public class DelayedReferencesHelper {
 		if (clazz != null) {
 			String query = "select template \n"
 					+ "from \"demo.sap.com/tcsmeta\"#"
-					+ "TCS::ClassTemplate as template, \n"
+					+ "FURCAS::TCS::ClassTemplate as template, \n"
 					+ "\""
 					+ EcoreUtil.getURI(clazz) 
 					+ "\" as class "
@@ -629,7 +629,7 @@ public class DelayedReferencesHelper {
 					// maybe operatorTemplate?
 					query = "select template \n"
 							+ "from \"demo.sap.com/tcsmeta\"#"
-							+ "TCS::OperatorTemplate as template, \n" + "\""
+							+ "FURCAS::TCS::OperatorTemplate as template, \n" + "\""
 							+ EcoreUtil.getURI(clazz) 
 							+ "\" as class "
 							+ " where template.metaReference = class";
