@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query.index.ui.IndexFactory;
@@ -293,9 +294,12 @@ public class AdapterJMIHelper {
 		String unqualifiedName = qualifiedNameList
 				.get(qualifiedNameList.size() - 1);
 
+		URI uriEClass = EcoreUtil.getURI(EcorePackage.eINSTANCE.getEClass());
+		
+		
 		String query = "select instance \n"
-				+ "from EClass as instance \n" + "where instance.name = '"
-				+ unqualifiedName + "'";
+				+ "from [" + uriEClass + "] as instance \n" + "where instance.name = '"
+				+ unqualifiedName + "'\n";
 
 		ResultSet resultSet = executeQuery(query);
 
