@@ -25,30 +25,30 @@ import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 public class TextblockdefinitionXMLProcessor extends XMLProcessor {
 
         /**
-         * Public constructor to instantiate the helper.
-         * <!-- begin-user-doc -->
+     * Public constructor to instantiate the helper.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+     * @generated
+     */
         public TextblockdefinitionXMLProcessor() {
-                super((EPackage.Registry.INSTANCE));
-                TextblockdefinitionPackage.eINSTANCE.eClass();
-        }
+        super((EPackage.Registry.INSTANCE));
+        TextblockdefinitionPackage.eINSTANCE.eClass();
+    }
         
         /**
-         * Register for "*" and "xml" file extensions the TextblockdefinitionResourceFactoryImpl factory.
-         * <!-- begin-user-doc -->
+     * Register for "*" and "xml" file extensions the TextblockdefinitionResourceFactoryImpl factory.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+     * @generated
+     */
         @Override
         protected Map<String, Resource.Factory> getRegistrations() {
-                if (registrations == null) {
-                        super.getRegistrations();
-                        registrations.put(XML_EXTENSION, new TextblockdefinitionResourceFactoryImpl());
-                        registrations.put(STAR_EXTENSION, new TextblockdefinitionResourceFactoryImpl());
-                }
-                return registrations;
+        if (registrations == null) {
+            super.getRegistrations();
+            registrations.put(XML_EXTENSION, new TextblockdefinitionResourceFactoryImpl());
+            registrations.put(STAR_EXTENSION, new TextblockdefinitionResourceFactoryImpl());
         }
+        return registrations;
+    }
 
 } //TextblockdefinitionXMLProcessor

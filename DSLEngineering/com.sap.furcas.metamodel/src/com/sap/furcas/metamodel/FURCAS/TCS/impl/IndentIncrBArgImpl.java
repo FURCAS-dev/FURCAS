@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class IndentIncrBArgImpl extends BlockArgImpl implements IndentIncrBArg {
         /**
-         * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+     * @generated
+     */
         protected IndentIncrBArgImpl() {
-                super();
-        }
+        super();
+    }
 
         /**
-         * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+     * @generated
+     */
         @Override
         protected EClass eStaticClass() {
-                return TCSPackage.Literals.INDENT_INCR_BARG;
-        }
+        return TCSPackage.Literals.INDENT_INCR_BARG;
+    }
 
 } //IndentIncrBArgImpl

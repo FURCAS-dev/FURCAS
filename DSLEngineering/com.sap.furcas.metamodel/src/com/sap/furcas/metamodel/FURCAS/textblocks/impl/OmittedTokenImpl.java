@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class OmittedTokenImpl extends AbstractTokenImpl implements OmittedToken {
         /**
-         * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+     * @generated
+     */
         protected OmittedTokenImpl() {
-                super();
-        }
+        super();
+    }
 
         /**
-         * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+     * @generated
+     */
         @Override
         protected EClass eStaticClass() {
-                return TextblocksPackage.Literals.OMITTED_TOKEN;
-        }
+        return TextblocksPackage.Literals.OMITTED_TOKEN;
+    }
 
 } //OmittedTokenImpl

@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class ImportContextPArgImpl extends PropertyArgImpl implements ImportContextPArg {
         /**
-         * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+     * @generated
+     */
         protected ImportContextPArgImpl() {
-                super();
-        }
+        super();
+    }
 
         /**
-         * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+     * @generated
+     */
         @Override
         protected EClass eStaticClass() {
-                return TCSPackage.Literals.IMPORT_CONTEXT_PARG;
-        }
+        return TCSPackage.Literals.IMPORT_CONTEXT_PARG;
+    }
 
 } //ImportContextPArgImpl

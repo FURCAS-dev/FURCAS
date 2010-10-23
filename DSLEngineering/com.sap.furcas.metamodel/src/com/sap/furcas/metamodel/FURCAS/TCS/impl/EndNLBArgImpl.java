@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class EndNLBArgImpl extends BlockArgImpl implements EndNLBArg {
         /**
-         * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+     * @generated
+     */
         protected EndNLBArgImpl() {
-                super();
-        }
+        super();
+    }
 
         /**
-         * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+     * @generated
+     */
         @Override
         protected EClass eStaticClass() {
-                return TCSPackage.Literals.END_NLB_ARG;
-        }
+        return TCSPackage.Literals.END_NLB_ARG;
+    }
 
 } //EndNLBArgImpl
