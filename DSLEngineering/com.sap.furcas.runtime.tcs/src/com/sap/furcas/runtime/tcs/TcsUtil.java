@@ -1249,7 +1249,7 @@ public class TcsUtil {
 	public static List<ConcreteSyntax> getSyntaxesInResourceSet(
 			ResourceSet connection) {
 
-		String query = "select cs from TCS::ConcreteSyntax withoutsubtypes as cs";
+		String query = "select cs from FURCAS::TCS::ConcreteSyntax withoutsubtypes as cs";
 
 		ResultSet resultSet = queryConn(connection, query);
 		URI[] resultElements = resultSet.getUris("cs");
@@ -1264,7 +1264,7 @@ public class TcsUtil {
 	}
 
 	public static List<ConcreteSyntax> getSyntaxesInResourceSetWithName(ResourceSet connection, String syntaxName) {
-	    String query = "select cs from TCS::ConcreteSyntax withoutsubtypes as cs where cs.name = '"+
+	    String query = "select cs from FURCAS::TCS::ConcreteSyntax withoutsubtypes as cs where cs.name = '"+
 	    	syntaxName+"'";
 	    ResultSet resultSet = queryConn(connection, query);
 		URI[] resultElements = resultSet.getUris("cs");

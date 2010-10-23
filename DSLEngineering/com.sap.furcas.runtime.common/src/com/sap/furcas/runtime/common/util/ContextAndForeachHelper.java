@@ -87,12 +87,12 @@ public class ContextAndForeachHelper {
         QueryContext context = EcoreHelper.getQueryContext(rs);
         ResultSet templatesClasses;
         if (contextTag == null || contextTag.length() == 0) {
-            templatesClasses = mql.execute("select me from Model::Classifier as me," + "TCS::ContextTemplate as ct," + "\""
+            templatesClasses = mql.execute("select me from Model::Classifier as me," + "FURCAS::TCS::ContextTemplate as ct," + "\""
                     + EcoreUtil.getID((cs)) + "\" as cs " + "where ct.concreteSyntax=cs " + "where ct.metaReference=me "
                     + "where ct.contextTags=null " + "where ct.isContext=true", context);
         } else {
-            templatesClasses = mql.execute("select me from Model::Classifier as me," + "TCS::ContextTemplate as ct,"
-                    + "TCS::ContextTags as tags," + "\"" + EcoreUtil.getID((cs)) + "\" as cs " + "where ct.concreteSyntax=cs "
+            templatesClasses = mql.execute("select me from Model::Classifier as me," + "FURCAS::TCS::ContextTemplate as ct,"
+                    + "FURCAS::TCS::ContextTags as tags," + "\"" + EcoreUtil.getID((cs)) + "\" as cs " + "where ct.concreteSyntax=cs "
                     + "where ct.metaReference=me " + "where ct.contextTags=tags " + "where ct.isContext=true "
                     + "where tags.tags='" + contextTag + "'", context);
         }

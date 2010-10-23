@@ -220,7 +220,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                 if (clazz != null) {
                     String query = "select template \n"
                             + "from \"demo.sap.com/tcsmeta\"#"
-                            + "TCS::ClassTemplate as template, \n"
+                            + "FURCAS::TCS::ClassTemplate as template, \n"
                             + "\""
                             + EcoreUtil.getID(clazz)
                             + "\" as class "
@@ -248,7 +248,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                         // maybe operatorTemplate?
                         query = "select template \n"
                                 + "from \"demo.sap.com/tcsmeta\"#"
-                                + "TCS::OperatorTemplate as template, \n" + "\""
+                                + "FURCAS::TCS::OperatorTemplate as template, \n" + "\""
                                 + EcoreUtil.getID(clazz)
                                 + "\" as class "
                                 + " where template.metaReference = class";

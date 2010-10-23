@@ -21,7 +21,7 @@ import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
 public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
 
     protected StubModel model = new StubModel();
-    public String stringLiteralType = "TCS::Literal";
+    public String stringLiteralType = "FURCAS::TCS::Literal";
     public Map<String, List<String>> supertypes = new HashMap<String, List<String>>();
     public String mqlQuery;
     public Object queryResult;
