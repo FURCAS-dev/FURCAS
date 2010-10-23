@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class EnumLiteralValImpl extends ValueImpl implements EnumLiteralVal {
         /**
-         * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+     * @generated
+     */
         protected EnumLiteralValImpl() {
-                super();
-        }
+        super();
+    }
 
         /**
-         * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+     * @generated
+     */
         @Override
         protected EClass eStaticClass() {
-                return TCSPackage.Literals.ENUM_LITERAL_VAL;
-        }
+        return TCSPackage.Literals.ENUM_LITERAL_VAL;
+    }
 
 } //EnumLiteralValImpl

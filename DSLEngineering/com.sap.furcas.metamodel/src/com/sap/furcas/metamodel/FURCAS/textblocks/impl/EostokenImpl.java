@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class EostokenImpl extends AbstractTokenImpl implements Eostoken {
         /**
-         * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+     * @generated
+     */
         protected EostokenImpl() {
-                super();
-        }
+        super();
+    }
 
         /**
-         * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+     * @generated
+     */
         @Override
         protected EClass eStaticClass() {
-                return TextblocksPackage.Literals.EOSTOKEN;
-        }
+        return TextblocksPackage.Literals.EOSTOKEN;
+    }
 
 } //EostokenImpl

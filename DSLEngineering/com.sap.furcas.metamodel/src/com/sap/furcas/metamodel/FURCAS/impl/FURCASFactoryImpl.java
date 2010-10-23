@@ -24,76 +24,76 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class FURCASFactoryImpl extends EFactoryImpl implements FURCASFactory {
         /**
-         * Creates the default factory implementation.
-         * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+     * @generated
+     */
         public static FURCASFactory init() {
-                try {
-                        FURCASFactory theFURCASFactory = (FURCASFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.furcas.org"); 
-                        if (theFURCASFactory != null) {
-                                return theFURCASFactory;
-                        }
-                }
-                catch (Exception exception) {
-                        EcorePlugin.INSTANCE.log(exception);
-                }
-                return new FURCASFactoryImpl();
+        try {
+            FURCASFactory theFURCASFactory = (FURCASFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.furcas.org"); 
+            if (theFURCASFactory != null) {
+                return theFURCASFactory;
+            }
         }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new FURCASFactoryImpl();
+    }
 
         /**
-         * Creates an instance of the factory.
-         * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+     * @generated
+     */
         public FURCASFactoryImpl() {
-                super();
-        }
+        super();
+    }
 
         /**
-         * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+     * @generated
+     */
         @Override
         public EObject create(EClass eClass) {
-                switch (eClass.getClassifierID()) {
-                        case FURCASPackage.EMPTY_DUMMY_CLASS_TO_WORKAROUND_GENERATOR_BUG: return createEmptyDummyClassToWorkaroundGeneratorBug();
-                        default:
-                                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-                }
+        switch (eClass.getClassifierID()) {
+            case FURCASPackage.EMPTY_DUMMY_CLASS_TO_WORKAROUND_GENERATOR_BUG: return createEmptyDummyClassToWorkaroundGeneratorBug();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
+    }
 
         /**
-         * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+     * @generated
+     */
         public EmptyDummyClassToWorkaroundGeneratorBug createEmptyDummyClassToWorkaroundGeneratorBug() {
-                EmptyDummyClassToWorkaroundGeneratorBugImpl emptyDummyClassToWorkaroundGeneratorBug = new EmptyDummyClassToWorkaroundGeneratorBugImpl();
-                return emptyDummyClassToWorkaroundGeneratorBug;
-        }
+        EmptyDummyClassToWorkaroundGeneratorBugImpl emptyDummyClassToWorkaroundGeneratorBug = new EmptyDummyClassToWorkaroundGeneratorBugImpl();
+        return emptyDummyClassToWorkaroundGeneratorBug;
+    }
 
         /**
-         * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+     * @generated
+     */
         public FURCASPackage getFURCASPackage() {
-                return (FURCASPackage)getEPackage();
-        }
+        return (FURCASPackage)getEPackage();
+    }
 
         /**
-         * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @deprecated
-         * @generated
-         */
+     * @deprecated
+     * @generated
+     */
         @Deprecated
         public static FURCASPackage getPackage() {
-                return FURCASPackage.eINSTANCE;
-        }
+        return FURCASPackage.eINSTANCE;
+    }
 
 } //FURCASFactoryImpl

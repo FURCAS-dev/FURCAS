@@ -9,8 +9,9 @@
   <foreignModel>FURCAS.ecore</foreignModel>
   <genPackages prefix="FURCAS" basePackage="com.sap.furcas.metamodel" disposableProviderFactory="true"
       ecorePackage="FURCAS.ecore#/">
-    <nestedGenPackages prefix="TCS" resource="XML" disposableProviderFactory="true"
-        ecorePackage="TCS.ecore#/">
+    <genClasses ecoreClass="FURCAS.ecore#//EmptyDummyClassToWorkaroundGeneratorBug"/>
+    <nestedGenPackages prefix="TCS" basePackage="com.sap.furcas.metamodel.FURCAS"
+        resource="XML" disposableProviderFactory="true" ecorePackage="TCS.ecore#/">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="TCS.ecore#//TemplateModifiers">
         <genEnumLiterals ecoreEnumLiteral="TCS.ecore#//TemplateModifiers/abstract"/>
         <genEnumLiterals ecoreEnumLiteral="TCS.ecore#//TemplateModifiers/operatored"/>
@@ -380,8 +381,8 @@
       </genClasses>
       <genClasses ecoreClass="TCS.ecore#//LookupPropertyInit"/>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Textblocks" resource="XML" disposableProviderFactory="true"
-        ecorePackage="textblocks.ecore#/">
+    <nestedGenPackages prefix="Textblocks" basePackage="com.sap.furcas.metamodel.FURCAS"
+        resource="XML" disposableProviderFactory="true" ecorePackage="textblocks.ecore#/">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="textblocks.ecore#//Version">
         <genEnumLiterals ecoreEnumLiteral="textblocks.ecore#//Version/REFERENCE"/>
         <genEnumLiterals ecoreEnumLiteral="textblocks.ecore#//Version/PREVIOUS"/>
@@ -405,11 +406,11 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//AbstractToken/lookahead"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//AbstractToken/lookback"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//AbstractToken/state"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//AbstractToken/type"/>
       </genClasses>
       <genClasses ecoreClass="textblocks.ecore#//OmittedToken"/>
       <genClasses ecoreClass="textblocks.ecore#//LexedToken">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//LexedToken/operator"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//LexedToken/type"/>
       </genClasses>
       <genClasses ecoreClass="textblocks.ecore#//UnlexedToken"/>
       <genClasses image="false" ecoreClass="textblocks.ecore#//DocumentNode">
@@ -447,24 +448,24 @@
       <genClasses ecoreClass="textblocks.ecore#//Eostoken"/>
       <genClasses ecoreClass="textblocks.ecore#//Bostoken"/>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Textblockdefinition" resource="XML" disposableProviderFactory="true"
-        ecorePackage="textblockdefinition.ecore#/">
+    <nestedGenPackages prefix="Textblockdefinition" basePackage="com.sap.furcas.metamodel.FURCAS"
+        resource="XML" disposableProviderFactory="true" ecorePackage="textblockdefinition.ecore#/">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="textblockdefinition.ecore#//FormatPolicy">
         <genEnumLiterals ecoreEnumLiteral="textblockdefinition.ecore#//FormatPolicy/KEEP_ALWAYS"/>
         <genEnumLiterals ecoreEnumLiteral="textblockdefinition.ecore#//FormatPolicy/KEEP_NEVER"/>
         <genEnumLiterals ecoreEnumLiteral="textblockdefinition.ecore#//FormatPolicy/KEEP_BEFORE"/>
         <genEnumLiterals ecoreEnumLiteral="textblockdefinition.ecore#//FormatPolicy/KEEP_AFTER"/>
       </genEnums>
-      <genClasses ecoreClass="textblockdefinition.ecore#//TextblockDefinition">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblockdefinition.ecore#//TextblockDefinition/formatPolicy"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblockdefinition.ecore#//TextblockDefinition/defaultTemplate"/>
+      <genClasses ecoreClass="textblockdefinition.ecore#//TextBlockDefinition">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblockdefinition.ecore#//TextBlockDefinition/formatPolicy"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblockdefinition.ecore#//TextBlockDefinition/defaultTemplate"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference textblockdefinition.ecore#//TextblockDefinition/parseRule"/>
-        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference textblockdefinition.ecore#//TextblockDefinition/context"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textblockdefinition.ecore#//TextblockDefinition/subDefinitions"/>
+            ecoreFeature="ecore:EReference textblockdefinition.ecore#//TextBlockDefinition/parseRule"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference textblockdefinition.ecore#//TextBlockDefinition/context"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textblockdefinition.ecore#//TextBlockDefinition/subDefinitions"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference textblockdefinition.ecore#//TextblockDefinition/generalisation"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblockdefinition.ecore#//TextblockDefinition/name"/>
+            ecoreFeature="ecore:EReference textblockdefinition.ecore#//TextBlockDefinition/generalisation"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblockdefinition.ecore#//TextBlockDefinition/name"/>
       </genClasses>
     </nestedGenPackages>
   </genPackages>
