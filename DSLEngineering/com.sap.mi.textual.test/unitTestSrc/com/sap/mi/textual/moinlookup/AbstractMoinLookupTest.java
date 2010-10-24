@@ -22,8 +22,8 @@ import com.sap.furcas.parsergenerator.testutils.ResolutionBeanHelper;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.interfaces.MultiplicityBean;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.test.stubs.MofAnyStub;
 import com.sap.mi.textual.parsing.EnumerationTypeStub;
-import com.sap.mi.textual.parsing.MofAnyStub;
 import com.sap.mi.textual.parsing.MofStructureFieldStub;
 import com.sap.mi.textual.parsing.MofStructureTypeStub;
 

@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import com.sap.furcas.emf.stubs.EcoreAnyStub;
 import com.sap.furcas.metamodel.FURCAS.TCS.stubs.ClassTemplateStub;
 import com.sap.furcas.metamodel.FURCAS.TCS.stubs.ConcreteSyntaxStub;
 import com.sap.furcas.metamodel.FURCAS.TCS.stubs.TemplateStub;
@@ -99,13 +100,13 @@ public class TestTemplateNameValidation {
         SemanticErrorBucket errorBucket = new SemanticErrorBucket();
         
         ClassTemplateStub tempStub = new ClassTemplateStub();
-        MofAnyStub metaClass1 = new MofAnyStub();
+        EcoreAnyStub metaClass1 = new EcoreAnyStub();
         metaClass1.name = "test1";
         tempStub.metaReference = metaClass1;
         tempStub.mode = "mode1";
         syntaxStub.templates.add(tempStub);
         
-        MofAnyStub metaClass2 = new MofAnyStub();
+        EcoreAnyStub metaClass2 = new EcoreAnyStub();
         metaClass2.name = "test2";
         tempStub = new ClassTemplateStub();
         tempStub.metaReference = metaClass2;

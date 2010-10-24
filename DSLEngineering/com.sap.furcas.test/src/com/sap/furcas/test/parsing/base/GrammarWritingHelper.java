@@ -27,13 +27,13 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import com.sap.furcas.parsergenerator.tcs.t2m.TCSInputStreamGrammarGenerator;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.GenerationReport;
-import com.sap.furcas.parsergenerator.util.FileReadHelper;
 import com.sap.furcas.runtime.common.exceptions.GrammarGenerationException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.ParserInvokationException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 import com.sap.furcas.runtime.parser.impl.ParsingError;
+import com.sap.furcas.utils.projects.FileReadHelper;
 
 /**
  * provides a method allowing build tools to write a java.io.File only if a

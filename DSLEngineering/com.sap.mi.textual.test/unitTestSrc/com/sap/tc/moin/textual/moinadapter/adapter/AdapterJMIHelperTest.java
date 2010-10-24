@@ -15,8 +15,8 @@ import java.util.List;
 import org.junit.Test;
 
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
+import com.sap.furcas.test.stubs.MofAnyStub;
 import com.sap.mi.textual.parsing.EnumerationTypeStub;
-import com.sap.mi.textual.parsing.MofAnyStub;
 import com.sap.mi.textual.parsing.MofStructureFieldStub;
 import com.sap.mi.textual.parsing.MofStructureTypeStub;
 import com.sap.tc.moin.textual.moinadapter.adapter.stub.ConnectionStub;

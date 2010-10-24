@@ -5,6 +5,8 @@ package com.sap.mi.textual.parsing;
 
 import java.util.List;
 
+import com.sap.furcas.test.stubs.MofAnyStub;
+
 /**
  * Stub only intended for testing. Only methods used by AbstractListbasedMetaLookup are being stubbed. 
  * Stubbed methods must be tested in MofStubtest.

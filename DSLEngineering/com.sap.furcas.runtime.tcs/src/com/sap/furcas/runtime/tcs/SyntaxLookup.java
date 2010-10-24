@@ -93,8 +93,7 @@ public class SyntaxLookup {
 		if (syntax != null) {
 		    Collection<Template> templates = syntax.getTemplates();
 		    if (templates != null ) {
-		        for (Iterator<Template> iterator = templates.iterator(); iterator.hasNext();) {
-		            Template template = iterator.next();
+		        for (Template template : templates) {
 		            if (template instanceof PrimitiveTemplate) {
 		                primitiveTemplates.add((PrimitiveTemplate) template);
 		            }
@@ -128,9 +127,7 @@ public class SyntaxLookup {
 	    
 	    // loop over primitive Templates
 	    PrimitiveTemplate returnTemplate = null;
-	    for (Iterator<PrimitiveTemplate> iterator = primitiveTemplates.iterator(); iterator.hasNext();) {
-	        PrimitiveTemplate candidatePrimTemp = iterator.next();
-
+	    for (PrimitiveTemplate candidatePrimTemp : primitiveTemplates) {
 	        List<String> candidateQualifiedName = getQualifiedNameOfMetaModelElement(candidatePrimTemp);
 	        // TODO compare references instead of names?
 	        if (metaModelTypeOfPropertyReference.getNames().equals(candidateQualifiedName)) {
@@ -186,10 +183,7 @@ public class SyntaxLookup {
 		Collection<Template> templates = syntax.getTemplates();
 
 		if (templates != null ) {
-		    for (Iterator<Template> iterator = templates.iterator(); iterator.hasNext();) {
-		        Template template = iterator.next();
-		        
-		        
+		    for (Template template : templates) {
 		        if (template instanceof FunctionTemplate) {
 		            continue;
 		        }
@@ -237,8 +231,7 @@ public class SyntaxLookup {
 		    List<ResolvedNameAndReferenceBean<Type>> subtypes)
 		    throws SyntaxElementException {
 		ArrayList<ClassTemplate> nonPrimaries = new ArrayList<ClassTemplate>();
-	        for (Iterator<ResolvedNameAndReferenceBean<Type>> iterator = subtypes.iterator(); iterator.hasNext();) {
-	            ResolvedNameAndReferenceBean<Type> subType = iterator.next();
+	        for (ResolvedNameAndReferenceBean<Type> subType : subtypes) {
 	            Collection<Template> subtemps = null;
 
 	            subtemps = getTCSTemplate(subType, null);
@@ -261,32 +254,30 @@ public class SyntaxLookup {
 		    throws SyntaxElementException, NameResolutionFailedException, MetaModelLookupException {
 		ArrayList<ClassTemplate> primaries = new ArrayList<ClassTemplate>();
 		if(subtypes != null) {
-        	    for (Iterator<ResolvedNameAndReferenceBean<Type>> iterator = subtypes
-        		    .iterator(); iterator.hasNext();) {
-        		ResolvedNameAndReferenceBean<Type> subType = iterator.next();
-        		Collection<Template> subtemps = null;
-                        subtemps = getTCSTemplate(subType, null);
-                        for (Template subtemp : subtemps) {
-        
-                            if (subtemp != null && subtemp instanceof ClassTemplate) {
-                                ClassTemplate classSubTemp = (ClassTemplate) subtemp;
-                                if (!classSubTemp.isIsNonPrimary()) { // Non Primaries not
-                                    // added to primary rule
-                                    primaries.add(classSubTemp);
-                                    continue;
-                                }
-                            } else {
-                                // not a class template or no template found at all
-                                // continue to look for primaries recursively in
-                                // subtypes of subType
-                                List<ResolvedNameAndReferenceBean<Type>> subsubtypes = metaLookup
-                                        .getDirectSubTypes(subType);
-                                List<ClassTemplate> subsubtypesPrimaries = getPrimaries(
-                                        subsubtypes, metaLookup);
-                                primaries.addAll(subsubtypesPrimaries);
-                            }
-                        }
-        	    }
+        	    for (ResolvedNameAndReferenceBean<Type> subType : subtypes) {
+  		Collection<Template> subtemps = null;
+                  subtemps = getTCSTemplate(subType, null);
+                  for (Template subtemp : subtemps) {
+      
+		    if (subtemp != null && subtemp instanceof ClassTemplate) {
+		        ClassTemplate classSubTemp = (ClassTemplate) subtemp;
+		        if (!classSubTemp.isIsNonPrimary()) { // Non Primaries not
+		            // added to primary rule
+		            primaries.add(classSubTemp);
+		            continue;
+		        }
+		    } else {
+		        // not a class template or no template found at all
+		        // continue to look for primaries recursively in
+		        // subtypes of subType
+		        List<ResolvedNameAndReferenceBean<Type>> subsubtypes = metaLookup
+		                .getDirectSubTypes(subType);
+		        List<ClassTemplate> subsubtypesPrimaries = getPrimaries(
+		                subsubtypes, metaLookup);
+		        primaries.addAll(subsubtypesPrimaries);
+		    }
+                  }
+   	    }
 		}
 		return primaries;
 	    }
@@ -302,8 +293,7 @@ public class SyntaxLookup {
 	    OperatorList returnOpList = null;
 	    Collection<OperatorList> opListList = syntax.getOperatorLists();
 	    if (opListList != null) {
-	        for (Iterator<OperatorList> iterator = opListList.iterator(); iterator.hasNext();) {
-	            OperatorList opList = iterator.next();
+	        for (OperatorList opList : opListList) {
 	            if (opList.getName() == null || opList.getName().equals("")) {
 	                returnOpList = opList;
 	                break;
@@ -418,8 +408,7 @@ public class SyntaxLookup {
      * @param asRule
      */
     public boolean hasPrimitiveRule(String templateName) {
-        for (Iterator<PrimitiveTemplate> iterator = primitiveTemplates.iterator(); iterator.hasNext();) {
-            PrimitiveTemplate primTemp = iterator.next();
+        for (PrimitiveTemplate primTemp : primitiveTemplates) {
             if (templateName.equals(primTemp.getTemplateName())) {
                 return true;
             }

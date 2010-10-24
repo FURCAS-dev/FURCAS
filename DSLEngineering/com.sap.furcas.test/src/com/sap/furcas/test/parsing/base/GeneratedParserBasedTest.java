@@ -58,18 +58,10 @@ public class GeneratedParserBasedTest {
 
 	// FIXME: crude hack. Where should this happen?
 	ResourceSet resourceSet =  new ResourceSetImpl();
-//	resourceSet.getPackageRegistry().put(TextblocksPackage.eNS_URI, TextblocksPackage.eINSTANCE);
-//	resourceSet.getPackageRegistry().put(TextblocksPackage.eNAME, TextblocksPackage.eINSTANCE);
-//	resourceSet.getPackageRegistry().put(TextblockdefinitionPackage.eNS_URI, TextblockdefinitionPackage.eINSTANCE);
-//	resourceSet.getPackageRegistry().put(TextblockdefinitionPackage.eNAME, TextblockdefinitionPackage.eINSTANCE);
-//	resourceSet.getPackageRegistry().put(TCSPackage.eNS_URI, TCSPackage.eINSTANCE);
-//	resourceSet.getPackageRegistry().put(TCSPackage.eNAME, TCSPackage.eINSTANCE);
 	resourceSet.getPackageRegistry().put(FURCASPackage.eNS_URI, FURCASPackage.eINSTANCE);
 	resourceSet.getPackageRegistry().put(FURCASPackage.eNAME, FURCASPackage.eINSTANCE);
 	
-	Set<URI> priList = Collections.singleton(URI.createURI(FURCASPackage.eNS_URI));
-	
-	generateParser(language, lookup, resourceSet, priList);
+	generateParser(language, lookup, resourceSet, /*priList*/ null);
     }
 
     private static void generateParser(String language, IMetaModelLookup<?> lookup, ResourceSet connection, Set<URI> partitions) throws FileNotFoundException, GrammarGenerationException, ModelAdapterException, IOException {

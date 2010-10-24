@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.jdt.junit.launchconfig">
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-<listEntry value="/com.sap.furcas.parsergenerator.test/src/com/sap/mi/textual/test/scenarios/TCSMoinTest.java"/>
+<listEntry value="/com.sap.furcas.parsergenerator.test/srcScenario/com/sap/furcas/parsergenerator/tcs/scenario/TCSMoinTest.java"/>
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="1"/>
@@ -13,7 +13,7 @@
 <booleanAttribute key="org.eclipse.jdt.junit.KEEPRUNNING_ATTR" value="false"/>
 <stringAttribute key="org.eclipse.jdt.junit.TESTNAME" value=""/>
 <stringAttribute key="org.eclipse.jdt.junit.TEST_KIND" value="org.eclipse.jdt.junit.loader.junit4"/>
-<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.sap.mi.textual.test.scenarios.TCSMoinTest"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.sap.furcas.parsergenerator.tcs.scenario.TCSMoinTest"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="com.sap.furcas.parsergenerator.test"/>
 <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xmx512m -XX:PermSize=150m &quot;-Dantlr.lib.dir=${project_loc:/org.antlr}/bin&quot;"/>
 </launchConfiguration>

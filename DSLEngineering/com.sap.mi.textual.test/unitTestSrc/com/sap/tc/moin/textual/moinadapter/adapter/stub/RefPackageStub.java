@@ -8,7 +8,7 @@ import static org.junit.Assert.fail;
 import java.util.Collection;
 import java.util.List;
 
-import com.sap.mi.textual.parsing.MofAnyStub;
+import com.sap.furcas.test.stubs.MofAnyStub;
 
 /**
  *

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
-import com.sap.mi.textual.parsing.MofAnyStub;
+import com.sap.furcas.test.stubs.MofAnyStub;
 import com.sap.mi.textual.parsing.MofStructureTypeStub;
 import com.sap.tc.moin.textual.moinadapter.adapter.stub.ConnectionStub;
 import com.sap.tc.moin.textual.moinadapter.adapter.stub.JmiHelperStub;

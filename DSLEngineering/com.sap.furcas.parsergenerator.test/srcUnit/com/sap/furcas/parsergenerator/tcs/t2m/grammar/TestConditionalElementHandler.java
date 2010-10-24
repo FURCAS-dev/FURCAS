@@ -362,6 +362,16 @@ public class TestConditionalElementHandler {
 	public void setSymbol(String value) { 
             // not needed for test
         }
+	@Override
+	public String getName() {
+	    // TODO Auto-generated method stub
+	    return null;
+	}
+	@Override
+	public void setName(String value) {
+	    // TODO Auto-generated method stub
+	    
+	}
         
     }
     
@@ -376,6 +386,18 @@ public class TestConditionalElementHandler {
 	public void setSymbol(Integer value) { 
             // not needed for test
         }
+
+	@Override
+	public String getName() {
+	    // TODO Auto-generated method stub
+	    return null;
+	}
+
+	@Override
+	public void setName(String value) {
+	    // TODO Auto-generated method stub
+	    
+	}
         
     }
     
@@ -389,6 +411,16 @@ public class TestConditionalElementHandler {
 	public void setSymbol(Integer value) { 
             // not needed for test
         }
+	@Override
+	public String getName() {
+	    // TODO Auto-generated method stub
+	    return null;
+	}
+	@Override
+	public void setName(String value) {
+	    // TODO Auto-generated method stub
+	    
+	}
         
     }
     
