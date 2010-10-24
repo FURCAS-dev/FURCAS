@@ -3,6 +3,13 @@ package com.sap.furcas.runtime.textblocks.testutils;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
@@ -136,6 +143,18 @@ public class TextblocksTestHelper {
 	}
 
 	assertEquals(complete, block.getCachedString());
+    }
+    
+    /**
+     * @return true, if RefObject was deleted, false otherwise
+     */
+    public static boolean isDeleted(EObject eObject) {
+	return EcoreUtil.getRootContainer(eObject).eResource() == null;
+    }
+    
+    public static Resource createTransientResource() {
+	ResourceSet resourceSet = new ResourceSetImpl();
+	return resourceSet.createResource(URI.createURI("http://some_uri.xmi"));
     }
 
 }

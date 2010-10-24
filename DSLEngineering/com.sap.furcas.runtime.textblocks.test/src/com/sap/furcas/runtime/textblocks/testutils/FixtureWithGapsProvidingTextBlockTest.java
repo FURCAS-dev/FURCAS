@@ -1,5 +1,6 @@
 package com.sap.furcas.runtime.textblocks.testutils;
 
+import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Before;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
@@ -18,6 +19,8 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
  */
 public class FixtureWithGapsProvidingTextBlockTest extends TextBlockTest {
 
+    protected Resource resource = TextblocksTestHelper.createTransientResource();
+    
     protected TextBlock main;
     protected TextBlock left;
     protected TextBlock leftLeft;
@@ -33,7 +36,6 @@ public class FixtureWithGapsProvidingTextBlockTest extends TextBlockTest {
     protected LexedToken lexed2;
     protected LexedToken lexed3;
     protected LexedToken lexed4;
-
     protected LexedToken subToken;
 
     /**
@@ -109,6 +111,8 @@ public class FixtureWithGapsProvidingTextBlockTest extends TextBlockTest {
 	// - - lexed4 "ddddd"
 	// - virtual gap of 3 blanks
 	// - eos
+	
+	resource.getContents().add(main);
 
 	main.getSubNodes().add(bos);
 	main.getSubNodes().add(left);
