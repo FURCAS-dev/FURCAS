@@ -7,11 +7,13 @@ import static org.junit.Assert.fail;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
 import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.TCS.Token;
 
@@ -131,6 +133,11 @@ public class ConcreteSyntaxStub extends LocatedElementStub implements ConcreteSy
     public boolean isSetK() {
 	// TODO Auto-generated method stub
 	return false;
+    }
+
+    @Override
+    public EClass eClass() {
+	return TCSPackage.eINSTANCE.getConcreteSyntax();
     }
 
 
