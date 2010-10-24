@@ -13,6 +13,8 @@ import java.util.List;
 import org.eclipse.ui.internal.keys.model.ModelElement;
 import org.junit.Test;
 
+import com.sap.furcas.test.stubs.MofAnyStub;
+
 /**
  *
  */

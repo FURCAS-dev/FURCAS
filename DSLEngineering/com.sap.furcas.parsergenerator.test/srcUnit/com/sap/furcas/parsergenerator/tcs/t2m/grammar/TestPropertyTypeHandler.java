@@ -86,7 +86,7 @@ public class TestPropertyTypeHandler {
     }
 
     @Test
-    public void testAddRepeatableWithMultiplicity() throws Exception, SyntaxParsingException {
+    public void testAddRepeatableWithMultiplicity() throws Exception {
 	RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
 	SequenceStub sequence = new SequenceStub();
 	sequence.representation = "(SEP)";
@@ -1217,6 +1217,11 @@ public class TestPropertyTypeHandler {
 
 	public void setName(EList<String> name) {
 	    this.name = name;
+	}
+
+	@Override
+	public EList<String> getName() {
+	    return name;
 	}
 
     }

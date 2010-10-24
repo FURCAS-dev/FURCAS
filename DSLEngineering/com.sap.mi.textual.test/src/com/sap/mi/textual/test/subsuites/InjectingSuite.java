@@ -11,12 +11,12 @@ import com.sap.furcas.parser.impl.context.TestContext;
 import com.sap.furcas.parser.impl.context.TestContextManager;
 import com.sap.furcas.parser.impl.context.TestObservableInjectingParser;
 import com.sap.furcas.parser.impl.context.TestObservableParser;
-import com.sap.mi.textual.test.parsingObserver.ObservationTest;
+import com.sap.furcas.runtime.parser.impl.TestObservation;
 
 
 @RunWith (Suite.class)
 @SuiteClasses ( {
-    ObservationTest.class,
+    TestObservation.class,
     TestObservableParser.class,
     TestObservableInjectingParser.class,
     TestContextManager.class,

@@ -282,19 +282,6 @@ public class TbUtil {
 	return absoluteOffset - getAbsoluteOffset(node);
     }
 
-    /**
-     * Checks, weather a RefObject has been deleted.
-     *
-     * Calls a function and checks, if InvalidObjectException is thrown.
-     *
-     * @param o
-     *                RefObject to check
-     * @return true, if RefObject was deleted, false otherwise
-     */
-    public static boolean isDeleted(EObject o) {
-    	//TODO how can one identify an object that has been deleted in EMF?
-	return false;
-    }
 
     /**
      * returns true if node has a parent in parent hierarchy which is parentBlock

@@ -35,7 +35,6 @@ public class TestGrammarGenerator {
         ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
         MetaLookupStub metaStub = new MetaLookupStub();
         
-        
         ConcreteSyntaxStub syntaxStub = new ConcreteSyntaxStub();
         Set<Keyword> keywordSet = new HashSet<Keyword>();
         TCSSyntaxContainerBean bean = new TCSSyntaxContainerBean();

@@ -17,7 +17,6 @@ Export-Package: com.sap.mi.textual.bootstrap,
  com.sap.mi.textual.test,
  com.sap.mi.textual.test.parsingObserver;uses:="org.antlr.runtime,com.sap.mi.textual.grammar.impl",
  com.sap.mi.textual.test.subsuites,
- com.sap.mi.textual.test.tcf2emf;uses:="com.sap.furcas.metamodel.TCS,com.sap.mi.textual.syntaxmodel.emfadapter",
  com.sap.mi.textual.test.util;
   uses:="org.eclipse.emf.ecore.resource,
    com.sap.mi.textual.grammar.antlr3,
