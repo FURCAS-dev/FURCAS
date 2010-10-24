@@ -1,5 +1,6 @@
 package com.sap.furcas.runtime.textblocks.testutils;
 
+import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Before;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
@@ -17,6 +18,8 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
  */
 public class FixtureProvidingTextBlockTest extends TextBlockTest {
 
+    protected Resource resource = TextblocksTestHelper.createTransientResource();
+    
     protected TextBlock main;
     protected TextBlock left;
     protected TextBlock leftLeft;
@@ -93,6 +96,8 @@ public class FixtureProvidingTextBlockTest extends TextBlockTest {
 	// - - lexed4 "ddddd"
 	// - eos
 
+	resource.getContents().add(main);
+	
 	main.getSubNodes().add(bos);
 	main.getSubNodes().add(left);
 	main.getSubNodes().add(lexed2);

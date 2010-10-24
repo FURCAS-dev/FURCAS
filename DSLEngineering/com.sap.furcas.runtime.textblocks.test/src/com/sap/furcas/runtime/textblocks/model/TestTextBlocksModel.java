@@ -13,10 +13,10 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
-import com.sap.furcas.runtime.textblocks.TbUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.shortprettyprint.ShortPrettyPrinter;
 import com.sap.furcas.runtime.textblocks.testutils.FixtureProvidingTextBlockTest;
+import com.sap.furcas.runtime.textblocks.testutils.TextblocksTestHelper;
 import com.sap.furcas.runtime.textblocks.validation.TbValidationUtil;
 
 public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
@@ -136,11 +136,13 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 	TextBlock c = modelFactory.createTextBlock();
 	TextBlock d = modelFactory.createTextBlock();
 	LexedToken e = modelFactory.createLexedToken();
+	
 
 	b2.setLength(12);
 	b2.setOffset(20);
 	e.setLength(20);
 
+	resource.getContents().add(a);
 	a.getSubNodes().add(b1);
 	a.getSubNodes().add(b2);
 	b1.getSubNodes().add(c);
@@ -149,32 +151,32 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 
 	// should only remove b2
 	assertEquals(true, a.getTokens().contains(b2));
-	assertEquals(false, TbUtil.isDeleted(b1));
-	assertEquals(false, TbUtil.isDeleted(a));
+	assertEquals(false, TextblocksTestHelper.isDeleted(b1));
+	assertEquals(false, TextblocksTestHelper.isDeleted(a));
 
 	TbChangeUtil.removeNode(b2);
 
-	assertEquals(true, TbUtil.isDeleted(b2));
-	assertEquals(false, TbUtil.isDeleted(a));
+	assertEquals(true, TextblocksTestHelper.isDeleted(b2));
+	assertEquals(false, TextblocksTestHelper.isDeleted(a));
 
 	// should now remove e, d, c, b1 and a (as b2 was already deleted)
 	assertEquals(true, d.getTokens().contains(e));
 	assertEquals(true, c.getSubBlocks().contains(d));
 	assertEquals(true, b1.getSubBlocks().contains(c));
 	assertEquals(true, a.getSubBlocks().contains(b1));
-	assertEquals(false, TbUtil.isDeleted(e));
-	assertEquals(false, TbUtil.isDeleted(d));
-	assertEquals(false, TbUtil.isDeleted(c));
-	assertEquals(false, TbUtil.isDeleted(b1));
-	assertEquals(false, TbUtil.isDeleted(a));
+	assertEquals(false, TextblocksTestHelper.isDeleted(e));
+	assertEquals(false, TextblocksTestHelper.isDeleted(d));
+	assertEquals(false, TextblocksTestHelper.isDeleted(c));
+	assertEquals(false, TextblocksTestHelper.isDeleted(b1));
+	assertEquals(false, TextblocksTestHelper.isDeleted(a));
 
 	TbChangeUtil.removeNode(e);
 
-	assertEquals(true, TbUtil.isDeleted(e));
-	assertEquals(true, TbUtil.isDeleted(d));
-	assertEquals(true, TbUtil.isDeleted(c));
-	assertEquals(true, TbUtil.isDeleted(b1));
-	assertEquals(true, TbUtil.isDeleted(a));
+	assertEquals(true, TextblocksTestHelper.isDeleted(e));
+	assertEquals(true, TextblocksTestHelper.isDeleted(d));
+	assertEquals(true, TextblocksTestHelper.isDeleted(c));
+	assertEquals(true, TextblocksTestHelper.isDeleted(b1));
+	assertEquals(true, TextblocksTestHelper.isDeleted(a));
 
 	// should not throw an exception
 	TbChangeUtil.removeNode(null);
@@ -195,9 +197,10 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 	LexedToken b2 = modelFactory.createLexedToken();
 	TextBlock c = modelFactory.createTextBlock();
 	TextBlock d = modelFactory.createTextBlock();
-
+	
 	b2.setLength(12);
 
+	resource.getContents().add(a);
 	a.getSubNodes().add(b1);
 	a.getSubNodes().add(b2);
 	b1.getSubNodes().add(c);
@@ -205,26 +208,26 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 
 	// should not remove b1
 	assertEquals(true, a.getSubBlocks().contains(b1));
-	assertEquals(false, TbUtil.isDeleted(b1));
+	assertEquals(false, TextblocksTestHelper.isDeleted(b1));
 
 	TbChangeUtil.removeTextBlockIfEmpty(b1);
 
-	assertEquals(false, TbUtil.isDeleted(b1));
+	assertEquals(false, TextblocksTestHelper.isDeleted(b1));
 	assertEquals(true, a.getSubBlocks().contains(b1));
 
 	// should remove d, c and b1
 	assertEquals(true, c.getSubBlocks().contains(d));
 	assertEquals(true, b1.getSubBlocks().contains(c));
 	assertEquals(true, a.getSubBlocks().contains(b1));
-	assertEquals(false, TbUtil.isDeleted(d));
-	assertEquals(false, TbUtil.isDeleted(c));
-	assertEquals(false, TbUtil.isDeleted(b1));
+	assertEquals(false, TextblocksTestHelper.isDeleted(d));
+	assertEquals(false, TextblocksTestHelper.isDeleted(c));
+	assertEquals(false, TextblocksTestHelper.isDeleted(b1));
 
 	TbChangeUtil.removeTextBlockIfEmpty(d);
 
-	assertEquals(true, TbUtil.isDeleted(d));
-	assertEquals(true, TbUtil.isDeleted(c));
-	assertEquals(true, TbUtil.isDeleted(b1));
+	assertEquals(true, TextblocksTestHelper.isDeleted(d));
+	assertEquals(true, TextblocksTestHelper.isDeleted(c));
+	assertEquals(true, TextblocksTestHelper.isDeleted(b1));
 
 	// should not throw an exception
 	TbChangeUtil.removeTextBlockIfEmpty(null);
@@ -260,20 +263,20 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 	TbChangeUtil.makeVersion(main, Version.PREVIOUS);
 
 	// should change
-	assertEquals(false, TbUtil.isDeleted(lexed1));
-	assertEquals(false, TbUtil.isDeleted(subToken));
-	assertEquals(false, TbUtil.isDeleted(lexed4));
-	assertEquals(false, TbUtil.isDeleted(leftLeft));
-	assertEquals(false, TbUtil.isDeleted(middle));
-	assertEquals(false, TbUtil.isDeleted(right));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed1));
+	assertEquals(false, TextblocksTestHelper.isDeleted(subToken));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed4));
+	assertEquals(false, TextblocksTestHelper.isDeleted(leftLeft));
+	assertEquals(false, TextblocksTestHelper.isDeleted(middle));
+	assertEquals(false, TextblocksTestHelper.isDeleted(right));
 	assertEquals(false, main.isChildrenChanged());
 	assertEquals(20, main.getLength());
 	assertEquals(20, eos.getOffset());
 
 	// should not change
-	assertEquals(false, TbUtil.isDeleted(main));
-	assertEquals(false, TbUtil.isDeleted(bos));
-	assertEquals(false, TbUtil.isDeleted(eos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(main));
+	assertEquals(false, TextblocksTestHelper.isDeleted(bos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(eos));
 	assertEquals(false, bos.isChildrenChanged());
 	assertEquals(false, eos.isChildrenChanged());
 
@@ -281,20 +284,20 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 	assertReplace(0, completeFixtureText.length(), "");
 
 	// should change
-	assertEquals(true, TbUtil.isDeleted(lexed1));
-	assertEquals(true, TbUtil.isDeleted(subToken));
-	assertEquals(true, TbUtil.isDeleted(lexed4));
-	assertEquals(true, TbUtil.isDeleted(leftLeft));
-	assertEquals(true, TbUtil.isDeleted(middle));
-	assertEquals(true, TbUtil.isDeleted(right));
+	assertEquals(true, TextblocksTestHelper.isDeleted(lexed1));
+	assertEquals(true, TextblocksTestHelper.isDeleted(subToken));
+	assertEquals(true, TextblocksTestHelper.isDeleted(lexed4));
+	assertEquals(true, TextblocksTestHelper.isDeleted(leftLeft));
+	assertEquals(true, TextblocksTestHelper.isDeleted(middle));
+	assertEquals(true, TextblocksTestHelper.isDeleted(right));
 	assertEquals(true, main.isChildrenChanged());
 	assertEquals(0, main.getLength());
 	assertEquals(0, eos.getOffset());
 
 	// should not change
-	assertEquals(false, TbUtil.isDeleted(main));
-	assertEquals(false, TbUtil.isDeleted(bos));
-	assertEquals(false, TbUtil.isDeleted(eos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(main));
+	assertEquals(false, TextblocksTestHelper.isDeleted(bos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(eos));
 	assertEquals(false, bos.isChildrenChanged());
 	assertEquals(false, eos.isChildrenChanged());
 
@@ -326,10 +329,10 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 
 	// should change
 	assertEquals("aaaaa", lexed1.getValue());
-	assertEquals(false, TbUtil.isDeleted(subToken));
-	assertEquals(false, TbUtil.isDeleted(lexed4));
-	assertEquals(false, TbUtil.isDeleted(middle));
-	assertEquals(false, TbUtil.isDeleted(right));
+	assertEquals(false, TextblocksTestHelper.isDeleted(subToken));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed4));
+	assertEquals(false, TextblocksTestHelper.isDeleted(middle));
+	assertEquals(false, TextblocksTestHelper.isDeleted(right));
 	assertEquals(false, main.isChildrenChanged());
 	assertEquals(false, left.isChildrenChanged());
 	assertEquals(false, leftLeft.isChildrenChanged());
@@ -337,12 +340,12 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 	assertEquals(20, eos.getOffset());
 
 	// should not change
-	assertEquals(false, TbUtil.isDeleted(main));
-	assertEquals(false, TbUtil.isDeleted(left));
-	assertEquals(false, TbUtil.isDeleted(leftLeft));
-	assertEquals(false, TbUtil.isDeleted(lexed1));
-	assertEquals(false, TbUtil.isDeleted(bos));
-	assertEquals(false, TbUtil.isDeleted(eos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(main));
+	assertEquals(false, TextblocksTestHelper.isDeleted(left));
+	assertEquals(false, TextblocksTestHelper.isDeleted(leftLeft));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed1));
+	assertEquals(false, TextblocksTestHelper.isDeleted(bos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(eos));
 	assertEquals(false, bos.isChildrenChanged());
 	assertEquals(false, eos.isChildrenChanged());
 
@@ -351,10 +354,10 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 
 	// should change
 	assertEquals("x", lexed1.getValue());
-	assertEquals(true, TbUtil.isDeleted(subToken));
-	assertEquals(true, TbUtil.isDeleted(lexed4));
-	assertEquals(true, TbUtil.isDeleted(middle));
-	assertEquals(true, TbUtil.isDeleted(right));
+	assertEquals(true, TextblocksTestHelper.isDeleted(subToken));
+	assertEquals(true, TextblocksTestHelper.isDeleted(lexed4));
+	assertEquals(true, TextblocksTestHelper.isDeleted(middle));
+	assertEquals(true, TextblocksTestHelper.isDeleted(right));
 	assertEquals(true, main.isChildrenChanged());
 	assertEquals(true, left.isChildrenChanged());
 	assertEquals(true, leftLeft.isChildrenChanged());
@@ -362,12 +365,12 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 	assertEquals(1, eos.getOffset());
 
 	// should not change
-	assertEquals(false, TbUtil.isDeleted(main));
-	assertEquals(false, TbUtil.isDeleted(left));
-	assertEquals(false, TbUtil.isDeleted(leftLeft));
-	assertEquals(false, TbUtil.isDeleted(lexed1));
-	assertEquals(false, TbUtil.isDeleted(bos));
-	assertEquals(false, TbUtil.isDeleted(eos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(main));
+	assertEquals(false, TextblocksTestHelper.isDeleted(left));
+	assertEquals(false, TextblocksTestHelper.isDeleted(leftLeft));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed1));
+	assertEquals(false, TextblocksTestHelper.isDeleted(bos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(eos));
 	assertEquals(false, bos.isChildrenChanged());
 	assertEquals(false, eos.isChildrenChanged());
 
@@ -396,10 +399,10 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 
 	// should change
 	assertEquals("aaaaa", lexed1.getValue());
-	assertEquals(false, TbUtil.isDeleted(subToken));
-	assertEquals(false, TbUtil.isDeleted(lexed4));
-	assertEquals(false, TbUtil.isDeleted(middle));
-	assertEquals(false, TbUtil.isDeleted(right));
+	assertEquals(false, TextblocksTestHelper.isDeleted(subToken));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed4));
+	assertEquals(false, TextblocksTestHelper.isDeleted(middle));
+	assertEquals(false, TextblocksTestHelper.isDeleted(right));
 	assertEquals(false, main.isChildrenChanged());
 	assertEquals(false, left.isChildrenChanged());
 	assertEquals(false, leftLeft.isChildrenChanged());
@@ -407,12 +410,12 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 	assertEquals(20, eos.getOffset());
 
 	// should not change
-	assertEquals(false, TbUtil.isDeleted(main));
-	assertEquals(false, TbUtil.isDeleted(left));
-	assertEquals(false, TbUtil.isDeleted(leftLeft));
-	assertEquals(false, TbUtil.isDeleted(lexed1));
-	assertEquals(false, TbUtil.isDeleted(bos));
-	assertEquals(false, TbUtil.isDeleted(eos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(main));
+	assertEquals(false, TextblocksTestHelper.isDeleted(left));
+	assertEquals(false, TextblocksTestHelper.isDeleted(leftLeft));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed1));
+	assertEquals(false, TextblocksTestHelper.isDeleted(bos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(eos));
 	assertEquals(false, bos.isChildrenChanged());
 	assertEquals(false, eos.isChildrenChanged());
 
@@ -421,10 +424,10 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 
 	// should change
 	assertEquals("xxxxxyyyyxxxxyyyyxxxxyyyyxxxxyyyyxxxx", lexed1.getValue());
-	assertEquals(true, TbUtil.isDeleted(subToken));
-	assertEquals(true, TbUtil.isDeleted(lexed4));
-	assertEquals(true, TbUtil.isDeleted(middle));
-	assertEquals(true, TbUtil.isDeleted(right));
+	assertEquals(true, TextblocksTestHelper.isDeleted(subToken));
+	assertEquals(true, TextblocksTestHelper.isDeleted(lexed4));
+	assertEquals(true, TextblocksTestHelper.isDeleted(middle));
+	assertEquals(true, TextblocksTestHelper.isDeleted(right));
 	assertEquals(true, main.isChildrenChanged());
 	assertEquals(true, left.isChildrenChanged());
 	assertEquals(true, leftLeft.isChildrenChanged());
@@ -432,12 +435,12 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 	assertEquals(37, eos.getOffset());
 
 	// should not change
-	assertEquals(false, TbUtil.isDeleted(main));
-	assertEquals(false, TbUtil.isDeleted(left));
-	assertEquals(false, TbUtil.isDeleted(leftLeft));
-	assertEquals(false, TbUtil.isDeleted(lexed1));
-	assertEquals(false, TbUtil.isDeleted(bos));
-	assertEquals(false, TbUtil.isDeleted(eos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(main));
+	assertEquals(false, TextblocksTestHelper.isDeleted(left));
+	assertEquals(false, TextblocksTestHelper.isDeleted(leftLeft));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed1));
+	assertEquals(false, TextblocksTestHelper.isDeleted(bos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(eos));
 	assertEquals(false, bos.isChildrenChanged());
 	assertEquals(false, eos.isChildrenChanged());
 
@@ -465,8 +468,8 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 	// should change
 	assertEquals("+", subToken.getValue());
 	assertEquals("ddddd", lexed4.getValue());
-	assertEquals(false, TbUtil.isDeleted(subBlock1));
-	assertEquals(false, TbUtil.isDeleted(subToken));
+	assertEquals(false, TextblocksTestHelper.isDeleted(subBlock1));
+	assertEquals(false, TextblocksTestHelper.isDeleted(subToken));
 	assertEquals(false, main.isChildrenChanged());
 	assertEquals(false, middle.isChildrenChanged());
 	assertEquals(false, right.isChildrenChanged());
@@ -474,17 +477,17 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 	assertEquals(20, eos.getOffset());
 
 	// should not change
-	assertEquals(false, TbUtil.isDeleted(main));
-	assertEquals(false, TbUtil.isDeleted(left));
-	assertEquals(false, TbUtil.isDeleted(leftLeft));
-	assertEquals(false, TbUtil.isDeleted(lexed1));
-	assertEquals(false, TbUtil.isDeleted(lexed2));
-	assertEquals(false, TbUtil.isDeleted(middle));
-	assertEquals(false, TbUtil.isDeleted(lexed3));
-	assertEquals(false, TbUtil.isDeleted(right));
-	assertEquals(false, TbUtil.isDeleted(lexed4));
-	assertEquals(false, TbUtil.isDeleted(bos));
-	assertEquals(false, TbUtil.isDeleted(eos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(main));
+	assertEquals(false, TextblocksTestHelper.isDeleted(left));
+	assertEquals(false, TextblocksTestHelper.isDeleted(leftLeft));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed1));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed2));
+	assertEquals(false, TextblocksTestHelper.isDeleted(middle));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed3));
+	assertEquals(false, TextblocksTestHelper.isDeleted(right));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed4));
+	assertEquals(false, TextblocksTestHelper.isDeleted(bos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(eos));
 	assertEquals(false, bos.isChildrenChanged());
 	assertEquals(false, eos.isChildrenChanged());
 
@@ -493,8 +496,8 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 
 	// should change
 	assertEquals("dd", lexed4.getValue());
-	assertEquals(true, TbUtil.isDeleted(subBlock1));
-	assertEquals(true, TbUtil.isDeleted(subToken));
+	assertEquals(true, TextblocksTestHelper.isDeleted(subBlock1));
+	assertEquals(true, TextblocksTestHelper.isDeleted(subToken));
 	assertEquals(true, main.isChildrenChanged());
 	assertEquals(true, middle.isChildrenChanged());
 	assertEquals(true, right.isChildrenChanged());
@@ -502,17 +505,17 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 	assertEquals(16, eos.getOffset());
 
 	// should not change
-	assertEquals(false, TbUtil.isDeleted(main));
-	assertEquals(false, TbUtil.isDeleted(left));
-	assertEquals(false, TbUtil.isDeleted(leftLeft));
-	assertEquals(false, TbUtil.isDeleted(lexed1));
-	assertEquals(false, TbUtil.isDeleted(lexed2));
-	assertEquals(false, TbUtil.isDeleted(middle));
-	assertEquals(false, TbUtil.isDeleted(lexed3));
-	assertEquals(false, TbUtil.isDeleted(right));
-	assertEquals(false, TbUtil.isDeleted(lexed4));
-	assertEquals(false, TbUtil.isDeleted(bos));
-	assertEquals(false, TbUtil.isDeleted(eos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(main));
+	assertEquals(false, TextblocksTestHelper.isDeleted(left));
+	assertEquals(false, TextblocksTestHelper.isDeleted(leftLeft));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed1));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed2));
+	assertEquals(false, TextblocksTestHelper.isDeleted(middle));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed3));
+	assertEquals(false, TextblocksTestHelper.isDeleted(right));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed4));
+	assertEquals(false, TextblocksTestHelper.isDeleted(bos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(eos));
 	assertEquals(false, bos.isChildrenChanged());
 	assertEquals(false, eos.isChildrenChanged());
 
@@ -541,8 +544,8 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 	assertEquals("bbbbcccc", lexed3.getValue());
 	assertEquals("+", subToken.getValue());
 	assertEquals("ddddd", lexed4.getValue());
-	assertEquals(false, TbUtil.isDeleted(subBlock1));
-	assertEquals(false, TbUtil.isDeleted(subToken));
+	assertEquals(false, TextblocksTestHelper.isDeleted(subBlock1));
+	assertEquals(false, TextblocksTestHelper.isDeleted(subToken));
 	assertEquals(false, main.isChildrenChanged());
 	assertEquals(false, middle.isChildrenChanged());
 	assertEquals(false, right.isChildrenChanged());
@@ -550,17 +553,17 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 	assertEquals(20, eos.getOffset());
 
 	// should not change
-	assertEquals(false, TbUtil.isDeleted(main));
-	assertEquals(false, TbUtil.isDeleted(left));
-	assertEquals(false, TbUtil.isDeleted(leftLeft));
-	assertEquals(false, TbUtil.isDeleted(lexed1));
-	assertEquals(false, TbUtil.isDeleted(lexed2));
-	assertEquals(false, TbUtil.isDeleted(middle));
-	assertEquals(false, TbUtil.isDeleted(lexed3));
-	assertEquals(false, TbUtil.isDeleted(right));
-	assertEquals(false, TbUtil.isDeleted(lexed4));
-	assertEquals(false, TbUtil.isDeleted(bos));
-	assertEquals(false, TbUtil.isDeleted(eos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(main));
+	assertEquals(false, TextblocksTestHelper.isDeleted(left));
+	assertEquals(false, TextblocksTestHelper.isDeleted(leftLeft));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed1));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed2));
+	assertEquals(false, TextblocksTestHelper.isDeleted(middle));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed3));
+	assertEquals(false, TextblocksTestHelper.isDeleted(right));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed4));
+	assertEquals(false, TextblocksTestHelper.isDeleted(bos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(eos));
 	assertEquals(false, bos.isChildrenChanged());
 	assertEquals(false, eos.isChildrenChanged());
 
@@ -570,8 +573,8 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 	// should change
 	assertEquals("bbbbcx", lexed3.getValue());
 	assertEquals("dd", lexed4.getValue());
-	assertEquals(true, TbUtil.isDeleted(subBlock1));
-	assertEquals(true, TbUtil.isDeleted(subToken));
+	assertEquals(true, TextblocksTestHelper.isDeleted(subBlock1));
+	assertEquals(true, TextblocksTestHelper.isDeleted(subToken));
 	assertEquals(true, main.isChildrenChanged());
 	assertEquals(true, middle.isChildrenChanged());
 	assertEquals(true, right.isChildrenChanged());
@@ -579,17 +582,17 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 	assertEquals(14, eos.getOffset());
 
 	// should not change
-	assertEquals(false, TbUtil.isDeleted(main));
-	assertEquals(false, TbUtil.isDeleted(left));
-	assertEquals(false, TbUtil.isDeleted(leftLeft));
-	assertEquals(false, TbUtil.isDeleted(lexed1));
-	assertEquals(false, TbUtil.isDeleted(lexed2));
-	assertEquals(false, TbUtil.isDeleted(middle));
-	assertEquals(false, TbUtil.isDeleted(lexed3));
-	assertEquals(false, TbUtil.isDeleted(right));
-	assertEquals(false, TbUtil.isDeleted(lexed4));
-	assertEquals(false, TbUtil.isDeleted(bos));
-	assertEquals(false, TbUtil.isDeleted(eos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(main));
+	assertEquals(false, TextblocksTestHelper.isDeleted(left));
+	assertEquals(false, TextblocksTestHelper.isDeleted(leftLeft));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed1));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed2));
+	assertEquals(false, TextblocksTestHelper.isDeleted(middle));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed3));
+	assertEquals(false, TextblocksTestHelper.isDeleted(right));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed4));
+	assertEquals(false, TextblocksTestHelper.isDeleted(bos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(eos));
 	assertEquals(false, bos.isChildrenChanged());
 	assertEquals(false, eos.isChildrenChanged());
 
@@ -617,11 +620,11 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 	// should change
 	assertEquals("aaaaa", lexed1.getValue());
 	assertEquals("ddddd", lexed4.getValue());
-	assertEquals(false, TbUtil.isDeleted(lexed2));
-	assertEquals(false, TbUtil.isDeleted(middle));
-	assertEquals(false, TbUtil.isDeleted(subBlock1));
-	assertEquals(false, TbUtil.isDeleted(lexed3));
-	assertEquals(false, TbUtil.isDeleted(subToken));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed2));
+	assertEquals(false, TextblocksTestHelper.isDeleted(middle));
+	assertEquals(false, TextblocksTestHelper.isDeleted(subBlock1));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed3));
+	assertEquals(false, TextblocksTestHelper.isDeleted(subToken));
 	assertEquals(false, main.isChildrenChanged());
 	assertEquals(false, left.isChildrenChanged());
 	assertEquals(false, leftLeft.isChildrenChanged());
@@ -630,13 +633,13 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 	assertEquals(20, eos.getOffset());
 
 	// should not change
-	assertEquals(false, TbUtil.isDeleted(left));
-	assertEquals(false, TbUtil.isDeleted(leftLeft));
-	assertEquals(false, TbUtil.isDeleted(lexed1));
-	assertEquals(false, TbUtil.isDeleted(right));
-	assertEquals(false, TbUtil.isDeleted(lexed4));
-	assertEquals(false, TbUtil.isDeleted(bos));
-	assertEquals(false, TbUtil.isDeleted(eos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(left));
+	assertEquals(false, TextblocksTestHelper.isDeleted(leftLeft));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed1));
+	assertEquals(false, TextblocksTestHelper.isDeleted(right));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed4));
+	assertEquals(false, TextblocksTestHelper.isDeleted(bos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(eos));
 	assertEquals(false, bos.isChildrenChanged());
 	assertEquals(false, eos.isChildrenChanged());
 
@@ -646,11 +649,11 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 	// should change
 	assertEquals("aaaaxxxxxyyyyxxxxyyyyxxxxyyyyxxxxyyyyxxxx", lexed1.getValue());
 	assertEquals("ddddd", lexed4.getValue());
-	assertEquals(true, TbUtil.isDeleted(lexed2));
-	assertEquals(true, TbUtil.isDeleted(middle));
-	assertEquals(true, TbUtil.isDeleted(subBlock1));
-	assertEquals(true, TbUtil.isDeleted(lexed3));
-	assertEquals(true, TbUtil.isDeleted(subToken));
+	assertEquals(true, TextblocksTestHelper.isDeleted(lexed2));
+	assertEquals(true, TextblocksTestHelper.isDeleted(middle));
+	assertEquals(true, TextblocksTestHelper.isDeleted(subBlock1));
+	assertEquals(true, TextblocksTestHelper.isDeleted(lexed3));
+	assertEquals(true, TextblocksTestHelper.isDeleted(subToken));
 	assertEquals(true, main.isChildrenChanged());
 	assertEquals(true, left.isChildrenChanged());
 	assertEquals(true, leftLeft.isChildrenChanged());
@@ -659,14 +662,14 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 	assertEquals(46, eos.getOffset());
 
 	// should not change
-	assertEquals(false, TbUtil.isDeleted(main));
-	assertEquals(false, TbUtil.isDeleted(left));
-	assertEquals(false, TbUtil.isDeleted(leftLeft));
-	assertEquals(false, TbUtil.isDeleted(lexed1));
-	assertEquals(false, TbUtil.isDeleted(right));
-	assertEquals(false, TbUtil.isDeleted(lexed4));
-	assertEquals(false, TbUtil.isDeleted(bos));
-	assertEquals(false, TbUtil.isDeleted(eos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(main));
+	assertEquals(false, TextblocksTestHelper.isDeleted(left));
+	assertEquals(false, TextblocksTestHelper.isDeleted(leftLeft));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed1));
+	assertEquals(false, TextblocksTestHelper.isDeleted(right));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed4));
+	assertEquals(false, TextblocksTestHelper.isDeleted(bos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(eos));
 	assertEquals(false, bos.isChildrenChanged());
 	assertEquals(false, eos.isChildrenChanged());
 
@@ -699,18 +702,18 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 	assertEquals(20, eos.getOffset());
 
 	// should not change
-	assertEquals(false, TbUtil.isDeleted(lexed1));
-	assertEquals(false, TbUtil.isDeleted(left));
-	assertEquals(false, TbUtil.isDeleted(leftLeft));
-	assertEquals(false, TbUtil.isDeleted(lexed2));
-	assertEquals(false, TbUtil.isDeleted(middle));
-	assertEquals(false, TbUtil.isDeleted(subBlock1));
-	assertEquals(false, TbUtil.isDeleted(subToken));
-	assertEquals(false, TbUtil.isDeleted(lexed3));
-	assertEquals(false, TbUtil.isDeleted(right));
-	assertEquals(false, TbUtil.isDeleted(lexed4));
-	assertEquals(false, TbUtil.isDeleted(bos));
-	assertEquals(false, TbUtil.isDeleted(eos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed1));
+	assertEquals(false, TextblocksTestHelper.isDeleted(left));
+	assertEquals(false, TextblocksTestHelper.isDeleted(leftLeft));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed2));
+	assertEquals(false, TextblocksTestHelper.isDeleted(middle));
+	assertEquals(false, TextblocksTestHelper.isDeleted(subBlock1));
+	assertEquals(false, TextblocksTestHelper.isDeleted(subToken));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed3));
+	assertEquals(false, TextblocksTestHelper.isDeleted(right));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed4));
+	assertEquals(false, TextblocksTestHelper.isDeleted(bos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(eos));
 	assertEquals(false, left.isChildrenChanged());
 	assertEquals(false, leftLeft.isChildrenChanged());
 	assertEquals(false, middle.isChildrenChanged());
@@ -728,19 +731,19 @@ public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {
 	assertEquals(25, eos.getOffset());
 
 	// should not change
-	assertEquals(false, TbUtil.isDeleted(main));
-	assertEquals(false, TbUtil.isDeleted(lexed1));
-	assertEquals(false, TbUtil.isDeleted(left));
-	assertEquals(false, TbUtil.isDeleted(leftLeft));
-	assertEquals(false, TbUtil.isDeleted(lexed2));
-	assertEquals(false, TbUtil.isDeleted(middle));
-	assertEquals(false, TbUtil.isDeleted(subBlock1));
-	assertEquals(false, TbUtil.isDeleted(subToken));
-	assertEquals(false, TbUtil.isDeleted(lexed3));
-	assertEquals(false, TbUtil.isDeleted(right));
-	assertEquals(false, TbUtil.isDeleted(lexed4));
-	assertEquals(false, TbUtil.isDeleted(bos));
-	assertEquals(false, TbUtil.isDeleted(eos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(main));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed1));
+	assertEquals(false, TextblocksTestHelper.isDeleted(left));
+	assertEquals(false, TextblocksTestHelper.isDeleted(leftLeft));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed2));
+	assertEquals(false, TextblocksTestHelper.isDeleted(middle));
+	assertEquals(false, TextblocksTestHelper.isDeleted(subBlock1));
+	assertEquals(false, TextblocksTestHelper.isDeleted(subToken));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed3));
+	assertEquals(false, TextblocksTestHelper.isDeleted(right));
+	assertEquals(false, TextblocksTestHelper.isDeleted(lexed4));
+	assertEquals(false, TextblocksTestHelper.isDeleted(bos));
+	assertEquals(false, TextblocksTestHelper.isDeleted(eos));
 	assertEquals(false, left.isChildrenChanged());
 	assertEquals(false, leftLeft.isChildrenChanged());
 	assertEquals(false, middle.isChildrenChanged());
