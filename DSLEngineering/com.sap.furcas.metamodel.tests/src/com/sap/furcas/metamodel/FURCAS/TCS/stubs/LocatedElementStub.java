@@ -16,13 +16,13 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.Value;
+import com.sap.furcas.metamodel.FURCAS.TCS.LocatedElement;
 
 
 /**
  *
  */
-public class LocatedElementStub  implements Value {
+public class LocatedElementStub  implements LocatedElement {
 
     public String representation;
     
@@ -35,7 +35,6 @@ public class LocatedElementStub  implements Value {
      */
     public LocatedElementStub() {
         super();
-        String id = this.toString() + Math.random();
     }
 
     /* (non-Javadoc)
@@ -184,21 +183,6 @@ public class LocatedElementStub  implements Value {
     public void eNotify(Notification notification) {
 	// TODO Auto-generated method stub
 	
-    }
-
-    @Override
-    public String getName() {
-	// TODO Auto-generated method stub
-	return null;
-    }
-
-    @Override
-    public void setName(String value) {
-	// TODO Auto-generated method stub
-	
-    }
-
-  
-    
+    }    
 
 }

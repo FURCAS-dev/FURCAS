@@ -5,7 +5,6 @@ package com.sap.furcas.metamodel.FURCAS.TCS.stubs;
 
 import org.eclipse.emf.common.util.EList;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.Literal;
 import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
 import com.sap.furcas.metamodel.FURCAS.TCS.Operator;
 import com.sap.furcas.metamodel.FURCAS.TCS.SpaceKind;
@@ -14,7 +13,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
 /**
  *
  */
-public class LiteralStub extends LiteralRefStub implements Literal, Symbol {
+public class LiteralStub extends LiteralRefStub implements Symbol {
 
     public String value, name;
     public EList<Operator> operators;

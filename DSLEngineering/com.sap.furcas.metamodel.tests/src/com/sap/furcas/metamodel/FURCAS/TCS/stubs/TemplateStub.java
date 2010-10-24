@@ -54,7 +54,7 @@ public class TemplateStub extends LocatedElementStub implements Template {
     /* (non-Javadoc)
      * @see TCS.Template#setConcreteSyntax(TCS.ConcreteSyntax)
      */
-    public void setConcretesyntax(ConcreteSyntax value) {
+    public void setConcretesyntax(@SuppressWarnings("unused") ConcreteSyntax value) {
         // TODO Auto-generated method stub
 
     }
