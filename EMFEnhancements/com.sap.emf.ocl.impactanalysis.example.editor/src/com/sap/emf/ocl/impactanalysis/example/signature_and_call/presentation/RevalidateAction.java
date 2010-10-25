@@ -120,6 +120,7 @@ public class RevalidateAction extends ValidateAction {
         progressMonitor.beginTask("", selectionSize);
         OCL ocl = OCLWithHiddenOpposites.newInstance(oppositeEndFinder);
         for (EObject eObject : contextObjects) {
+            System.out.println("Re-validating "+constraintName+" on "+EcoreUtil.getURI(eObject));
             IFile fileForContext = getFile(eObject);
             URI eObjectURI = EcoreUtil.getURI(eObject);
             removeMarker(eObjectURI, fileForContext);
