@@ -84,7 +84,7 @@
 				<cs:property key="targets" value="package.ius" />
 			</cs:actorProperties>
 			<cs:properties>
-				<cs:property key="content.ius" value="org.eclipse.ocl.all.group"/>
+				<cs:property key="content.ius" value="org.eclipse.ocl.all.faeature.group"/>
 				<cs:property key="package.name" value="mdt-ocl-Runtime" />
 			</cs:properties>
 			<cs:prerequisites>
