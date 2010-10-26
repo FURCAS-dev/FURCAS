@@ -64,6 +64,9 @@ public interface EventManagerFactory {
     EventManager createEventManagerFor(ResourceSet set);
 
     /**
+     * Filters for a {@link Notification}'s {@link Notification#getEventType() event type}, such as
+     * {@link Notification#ADD} or {@link Notification#REMOVE}.
+     * 
      * {@see EventTypeFilter#EventTypeFilter()}
      */
     EventTypeFilter createEventTypeFilter(int eventType);
