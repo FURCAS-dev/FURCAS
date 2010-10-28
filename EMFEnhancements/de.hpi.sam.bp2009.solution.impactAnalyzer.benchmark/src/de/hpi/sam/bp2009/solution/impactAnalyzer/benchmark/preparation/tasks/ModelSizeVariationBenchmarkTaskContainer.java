@@ -2,7 +2,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -25,9 +25,9 @@ public class ModelSizeVariationBenchmarkTaskContainer extends BenchmarkTaskConta
 	private final ActivationOption option;
 
 	private final HashMap<OCLExpressionWithContext, AllInstanceEvaluationMeasurement> allInstanceMeasureCache = new HashMap<OCLExpressionWithContext, AllInstanceEvaluationMeasurement>();
-	private final HashSet<Pair<OCLExpressionWithContext, Pair<Resource, RawNotification>>> filteredButNeededForAllInstanceMeasurements;
+	private final Set<Pair<OCLExpressionWithContext, Pair<Resource, RawNotification>>> filteredButNeededForAllInstanceMeasurements;
 
-	public ModelSizeVariationBenchmarkTaskContainer(Resource modelToClone, ActivationOption option, String containerId, HashSet<Pair<OCLExpressionWithContext, Pair<Resource, RawNotification>>> filteredButNeededForAllInstanceMeasurements){
+	public ModelSizeVariationBenchmarkTaskContainer(Resource modelToClone, ActivationOption option, String containerId, Set<Pair<OCLExpressionWithContext, Pair<Resource, RawNotification>>> filteredButNeededForAllInstanceMeasurements){
 		this.modelToClone = modelToClone;
 		this.option = option;
 		this.containerId = containerId;

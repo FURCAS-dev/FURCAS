@@ -251,7 +251,7 @@
       <eOperations name="getSignature" ordered="false" unique="false" lowerBound="1"
           eType="ecore:EClass data.ecore#//classes/Signature">
         <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-          <details key="body" value="if self.oclIsKindOf(FunctionCallExpression) then&#xD;&#xA;    self.oclAsType(FunctionCallExpression).calledBlock->collect(getType().getInnermost().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature)&#xD;&#xA;  else&#xD;&#xA;    self.oclAsType(MethodCallExpression).methodSignature&#xD;&#xA;  endif"/>
+          <details key="body" value="if self.oclIsKindOf(FunctionCallExpression) then&#xD;&#xA;    self.oclAsType(FunctionCallExpression).calledBlock->collect(getType().getInnermost().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature)->any(true)&#xD;&#xA;  else&#xD;&#xA;    self.oclAsType(MethodCallExpression).methodSignature&#xD;&#xA;  endif"/>
         </eAnnotations>
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="body"/>
