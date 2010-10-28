@@ -54,3 +54,14 @@ plot(allForAll$modelSize, allForAll$measureTime, type="b",
 points(allForFiltered$modelSize, allForFiltered$measureTime, type="b", col="black", lty="dotted")
 points(affectedForFiltered$modelSize, affectedForFiltered$measureTime, type="b", col="blue", lty="solid")
 dev.off()
+
+allForAllStripped=allForAll[, c("Group.1", "aiExecAndEvalTime")]
+c2=merge(c, allForAllStripped, by=c("Group.1"))
+allForInstanceFilteredStripped=aggrAllInstanceFiltered[, c("Group.1", "aiExecAndEvalTime")]
+c3=merge(c2, allForInstanceFilteredStripped, by=c("Group.1"))
+affectedForFilteredStripped=affectedForFiltered[, c("Group.1", "iaExecAndEvalTime")]
+c4=merge(c3, affectedForFilteredStripped, by=c("Group.1"))
+c4$q1=c4$aiExecAndEvalTime.x/c4$iaExecAndEvalTime
+c4$q2=c4$aiExecAndEvalTime.y/c4$iaExecAndEvalTime
+cat("Average ratio allForAll / affectedForFiltered:", mean(c4$q1), "\n")
+cat("Average ratio allForAll / affectedForFiltered:", mean(c4$q2), "\n")
