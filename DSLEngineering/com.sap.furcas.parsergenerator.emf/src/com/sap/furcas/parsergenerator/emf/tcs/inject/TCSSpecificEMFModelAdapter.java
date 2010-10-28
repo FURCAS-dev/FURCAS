@@ -32,7 +32,7 @@ public class TCSSpecificEMFModelAdapter implements IBareModelAdapter {
      * @param metamodelURIs
      * 
      */
-    public TCSSpecificEMFModelAdapter(ResourceSet connection, Set<URI> metamodelURIs) {
+    public TCSSpecificEMFModelAdapter(ResourceSet resourceSet, Set<URI> metamodelURIs) {
 	super();
 	final EPackage rootPackage = FURCASPackage.eINSTANCE;
 	if (rootPackage == null) {
@@ -49,7 +49,7 @@ public class TCSSpecificEMFModelAdapter implements IBareModelAdapter {
 	// partitions as scope.
 	adapterReferenceScopeURIs.add(URI.createURI("http://www.eclipse.org/emf/2002/Ecore"));
 
-	adapter = new EMFModelAdapter(rootPackage, connection, adapterReferenceScopeURIs, null);
+	adapter = new EMFModelAdapter(rootPackage, resourceSet, adapterReferenceScopeURIs, null);
     }
 
     public void close() {

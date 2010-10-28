@@ -11,7 +11,6 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.net.URLDecoder;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -206,9 +205,9 @@ public class ParserGenerationTestHelper {
 		generationDirectory + languageName + "Lexer.java",
 		generationDirectory + languageName + "Parser.java",
 		"-cp",
-		System.getProperty("antlr.lib.dir") + File.pathSeparator + "../com.sap.mi.textual.parsing/bin"
-			+ File.pathSeparator + "../com.sap.mi.textual.common/bin" + File.pathSeparator
-			+ "../com.sap.mi.textual.moinlookup/bin" });
+		System.getProperty("antlr.lib.dir") + File.pathSeparator + "../com.sap.furcas.runtime.parser/bin"
+			+ File.pathSeparator + "../com.sap.furcas.runtime.common/bin" + File.pathSeparator
+			+ "../com.sap.furcas.parsergenerator.emf/bin" });
 
 	return success;
     }
@@ -294,8 +293,7 @@ public class ParserGenerationTestHelper {
 
 	Collection<String> warnings = GrammarWritingHelper.writeGrammarIfChanged(lookup, syntaxDefFile, grammarFile, "::",
 		generationPackage, connection, partitions);
-	for (Iterator<String> iterator = warnings.iterator(); iterator.hasNext();) {
-	    String string = iterator.next();
+	for (String string : warnings) {
 	    System.out.println(string);
 	}
 

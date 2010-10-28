@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query.index.ui.IndexFactory;
@@ -84,8 +85,13 @@ public class AdapterJMIHelper {
 	private final EPackage root;
 	private final Collection<EPackage> packagesForLookup;
 	private final ResourceSet resourceSet;
+	
+	private final Resource transientResource; 
+	
 	private final QueryProcessor QueryProcessor;
 	private Set<URI> referenceScope;
+	
+	
 
 	private static final String MQL_ALIAS_INSTANCE = "instance";
 	//private static final String QUERY_PARAM_NAME = "\\?";
@@ -105,8 +111,9 @@ public class AdapterJMIHelper {
 		}
 
 		this.QueryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
-		// this.mqlParser = new MqlParser(MAX_NO_OF_MQL_ERRORS,
-		// ResourceSet.getSession().getMoin());
+		
+		transientResource = resourceSet.createResource(URI.createURI("http://" + root.getNsURI() + "/transientParsingResource"));
+		
 		if (explicitReferenceScope != null) {
 			this.referenceScope = new HashSet<URI>(explicitReferenceScope);
 		} else {
@@ -114,6 +121,7 @@ public class AdapterJMIHelper {
 		}
 		URI metaPri = EcoreUtil.getURI(root.eClass());
 		this.referenceScope.add(metaPri);
+		this.referenceScope.add(transientResource.getURI());
 
 		packagesForLookup = new ArrayList<EPackage>();
 		//TODO check how this works in Ecore packagesForLookup.addAll(MoinHelper.getImportedEPackages(root));
@@ -211,11 +219,14 @@ public class AdapterJMIHelper {
 		if (modelElement != null) {
 			if (modelElement instanceof EClass) {
 				EClass mofClass = (EClass) modelElement;
-				return EcoreUtil.create(mofClass);
+				EObject created =  EcoreUtil.create(mofClass);
+				transientResource.getContents().add(created);
+				return created;
 			} else if (modelElement instanceof EDataType) {
 				EDataType structype = (EDataType) modelElement;
 				StructureTypeMockObject mock = new StructureTypeMockObject(
 						structype);
+				// FIXME: resource assignment needed?
 				return mock;
 			} else {
 				throw new RuntimeException("EModelElement Class "

@@ -609,9 +609,7 @@ public class PropertyTypeHandler<Type extends Object> {
 		boolean isInMulti = false;
 		if (prop != null
 				&& prop.getElementSequence() instanceof SequenceInAlternative
-				&& syntaxLookup.getAlternative(
-						((SequenceInAlternative) prop.getElementSequence()))
-						.isIsMulti()) {
+				&& ((SequenceInAlternative) prop.getElementSequence()).getAlternativeContainer().isIsMulti()) {
 			if (multiplicity.getUpperBound() != -1) {
 				errorBucket
 						.addError(

@@ -44,9 +44,9 @@ public class EMFModelAdapterDelegate {
     private final Collection<StructureTypeMockObject> structureTypeMocks = new ArrayList<StructureTypeMockObject>();
     private final Map<Object, Object> mock2ModelElementMap = new HashMap<Object, Object>();
 
-    public EMFModelAdapterDelegate(EPackage root, final ResourceSet connection, Set<URI> referenceScope,
+    public EMFModelAdapterDelegate(EPackage root, final ResourceSet resourceSet, Set<URI> referenceScope,
 	    Set<URI> additionalCRIScope) {
-	this.jmiHelperDelegate = new AdapterJMIHelper(root, connection, referenceScope, additionalCRIScope);
+	this.jmiHelperDelegate = new AdapterJMIHelper(root, resourceSet, referenceScope, additionalCRIScope);
     }
 
     /**
