@@ -17,9 +17,9 @@ public class BenchmarkAsPluginTest extends TestCase {
     public void testStartBenchmarks() throws IOException {
         List<ActivationOption> optionList = new ArrayList<ActivationOption>();
         // TracebackStep
-        optionList.add(new ActivationOption(true, true, true, true, "All optimizations activated, TracebackSteps"));
+//        optionList.add(new ActivationOption(true, true, true, true, "All optimizations activated, TracebackSteps"));
 //        optionList.add(new ActivationOption(false, true, true, true, "Without delta propagation, TracebackSteps"));
-//        optionList.add(new ActivationOption(true, false, true, true, "Without unused checks, TracebackSteps"));
+        optionList.add(new ActivationOption(true, false, true, true, "Without unused checks, TracebackSteps"));
 //        optionList.add(new ActivationOption(true, true, true, false, "Without OperationCallExp selection, TracebackSteps"));
 //        optionList.add(new ActivationOption(false, false, true, true,
 //                "Without delta propagation, without unused checks, TracebackSteps"));
@@ -32,7 +32,8 @@ public class BenchmarkAsPluginTest extends TestCase {
 //        // NavigationStep
 //        optionList.add(new ActivationOption(true, true, false, false, "With delta propagation, NavigationSteps"));
 //        optionList.add(new ActivationOption(false, true, false, true, "Without delta propagation, NavigationSteps"));
-        BenchmarkProcessor.start(1, 1, System.getProperty("java.io.tmpdir")+File.separator+"result.data",
+        BenchmarkProcessor.start(/* warm-ups */ 1, /* measures */ 1,
+                System.getProperty("java.io.tmpdir")+File.separator+"result.data",
                 /* numberOfJobs */ 1,
                 /* delayPreparation */ true, System.getProperty("java.io.tmpdir")+File.separator+"exceptions.dump",
                 /* verbose */ true,
