@@ -813,7 +813,7 @@
 |context SignatureCallExpression::getSignature():Signature
 |body:
 |  if self.oclIsKindOf(FunctionCallExpression) then
-|    self.oclAsType(FunctionCallExpression).calledBlock->collect(getType().getInnermost().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature)
+|    self.oclAsType(FunctionCallExpression).calledBlock->collect(getType().getInnermost().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature)->any(true)
 |  else
 |    self.oclAsType(MethodCallExpression).methodSignature
 |  endif

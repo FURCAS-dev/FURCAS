@@ -2,21 +2,30 @@ require(epicalc)
 # read different optimization options from data file:
 options=read.table("c:/tmp/optionDescription.data", sep="\t", header=TRUE)
 
+# Use strippedResults because we don't care about expressions that always only result in invalid
 strippedResult$iaExecAndEvalTime = as.numeric(strippedResult$executionTime + strippedResult$evaluationTimeAfter)
 strippedResult$aiExecAndEvalTime = as.numeric(strippedResult$allInstanceEvalTime + strippedResult$allInstanceExecTime)
 
-aggr = aggregate(strippedResult[, c("aiExecAndEvalTime", "iaExecAndEvalTime", "modelSize", "optionId")], by=list(strippedResult$modelId, strippedResult$executionIndex, strippedResult$optionId), FUN = "sum") 
-aggrAvgOverRuns = aggregate(aggr, by=list(aggr$Group.1, aggr$optionId), FUN="mean")
+ms=aggregate(strippedResult[,c("modelId", "modelSize")], by=list(strippedResult$modelId), FUN="mean")
+
+avgAggr = aggregate(strippedResult[, c("aiExecAndEvalTime", "iaExecAndEvalTime")], by=list(strippedResult$modelId, strippedResult$oclId, strippedResult$notificationId), FUN = "mean")
+aggr = aggregate(avgAggr[, c("aiExecAndEvalTime", "iaExecAndEvalTime")], by=list(avgAggr$Group.1), FUN = "sum") 
+aggr$modelSize=ms[ms$modelId==aggr$Group.1, ]$modelSize
 
 filtered = strippedResult[strippedResult$filtered == TRUE, ]
-aggrFiltered = aggregate(filtered[, c("aiExecAndEvalTime", "iaExecAndEvalTime", "modelSize", "optionId")], by=list(filtered$modelId, filtered$executionIndex, filtered$optionId), FUN = "sum")
-aggrFilteredAvgOverRuns = aggregate(aggrFiltered, by=list(aggrFiltered$Group.1, aggrFiltered$optionId), FUN="mean")
+avgAggrFiltered = aggregate(filtered[, c("aiExecAndEvalTime", "iaExecAndEvalTime")], by=list(filtered$modelId, filtered$oclId, filtered$notificationId), FUN = "mean")
+aggrFilteredAvgOverRuns = aggregate(avgAggrFiltered[, c("aiExecAndEvalTime", "iaExecAndEvalTime")], by=list(avgAggrFiltered$Group.1), FUN = "sum") 
+aggrFilteredAvgOverRuns$modelSize=ms[ms$modelId==aggrFilteredAvgOverRuns$Group.1, ]$modelSize
+
+avgAggrFilteredByOptionId = aggregate(filtered[, c("aiExecAndEvalTime", "iaExecAndEvalTime")], by=list(filtered$modelId, filtered$oclId, filtered$notificationId, filtered$optionId), FUN = "mean")
+aggrFilteredAvgByOptionIdOverRuns = aggregate(avgAggrFilteredByOptionId[, c("aiExecAndEvalTime", "iaExecAndEvalTime")], by=list(avgAggrFilteredByOptionId$Group.1, avgAggrFilteredByOptionId$Group.4), FUN = "sum") 
+aggrFilteredAvgByOptionIdOverRuns$modelSize=ms[ms$modelId==aggrFilteredAvgByOptionIdOverRuns$Group.1, ]$modelSize
 
 # Selecting the options (row numbers starting with 1 from optionDescription.data) to show:
 optionToShow=1
 optionsToShow=c(optionToShow)
 
-aggrAllInstanceUnfiltered = aggrAvgOverRuns
+aggrAllInstanceUnfiltered = aggr
 aggrAllInstanceUnfiltered$measureTime = aggrAllInstanceUnfiltered$aiExecAndEvalTime
 aggrAllInstanceUnfiltered$measurement = 1 
 
@@ -26,7 +35,7 @@ aggrAllInstanceFiltered$measurement = 2
 mergeAll = merge(aggrAllInstanceUnfiltered, aggrAllInstanceFiltered, all = TRUE)
 
 for (i in optionsToShow) {
-    aggrIaFiltered = aggrFilteredAvgOverRuns[aggrFilteredAvgOverRuns$Group.3 == i-1, ]
+    aggrIaFiltered = aggrFilteredAvgByOptionIdOverRuns[aggrFilteredAvgByOptionIdOverRuns$Group.2 == i-1, ]
     aggrIaFiltered$measureTime = aggrIaFiltered$iaExecAndEvalTime
     aggrIaFiltered$measurement = i+2
     mergeAll = merge(mergeAll, aggrIaFiltered, all = TRUE)

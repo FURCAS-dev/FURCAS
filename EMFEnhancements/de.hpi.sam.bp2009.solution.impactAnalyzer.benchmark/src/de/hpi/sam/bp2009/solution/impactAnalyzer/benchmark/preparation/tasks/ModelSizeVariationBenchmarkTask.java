@@ -3,12 +3,12 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
@@ -57,7 +57,7 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     private final OppositeEndFinder oppositeEndFinder;
     private AllInstanceEvaluationMeasurement allInstanceMeasurement;
 
-    private HashSet<Pair<OCLExpressionWithContext, Pair<Resource, RawNotification>>> filteredButNeededForAllInstanceMeasurements;
+    private Set<Pair<OCLExpressionWithContext, Pair<Resource, RawNotification>>> filteredButNeededForAllInstanceMeasurements;
 
     public ModelSizeVariationBenchmarkTask(OCLExpressionWithContext expression, RawNotification notification, ImpactAnalyzer imp, String oclId, String notificationId, String benchmarkTaskId, String optionId, String modelId, OppositeEndFinder oppositeEndFinder) {
     	this.expression = expression;
@@ -220,7 +220,7 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     public boolean deactivate() {
 	Collection<EObject> result = allResults.get(0);
 
-	if (result != null) {
+	if (result != null && filtered) {
 	    List<Object> beforeEvaluationResult = evaluateOnAffectedElement(result);
 	    additionalInformation.put("beforeNoInvalidEvals", String.valueOf(getNoOfInvalidEvaluations(beforeEvaluationResult)));
 
@@ -232,6 +232,10 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 	    additionalInformation.put("afterNoInvalidEvals", String.valueOf(getNoOfInvalidEvaluations(afterEvaluationResult)));
 
 	    additionalInformation.put("noEqualResultsBeforeAndAfter",String.valueOf(getNumberOfEqualResults(beforeEvaluationResult, afterEvaluationResult)));
+	}else{
+	    additionalInformation.put("beforeNoInvalidEvals", "NA");
+	    additionalInformation.put("afterNoInvalidEvals", "NA");
+	    additionalInformation.put("noEqualResultsBeforeAndAfter", "NA");
 	}
 
 	return true;
@@ -255,9 +259,11 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 
 		}
 	    } else if (elementInResult1 instanceof EObject && elementInResult2 instanceof EObject && EcoreUtil.equals((EObject) elementInResult1, (EObject) elementInResult2)) {
-		    equalCounter++;
+		   equalCounter++;
+	    } else if (elementInResult1 == null && elementInResult2 == null){
+	           equalCounter++;
 	    } else {
-		if (elementInResult1.equals(elementInResult2)) {
+		if (elementInResult1 != null && elementInResult1.equals(elementInResult2)) {
 		    equalCounter++;
 		}
 	    }
@@ -385,11 +391,11 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 	    allInstanceMeasurement = measurement;
 	}
 
-	public void setFilteredButNeededForAllInstanceMeasurements(HashSet<Pair<OCLExpressionWithContext, Pair<Resource, RawNotification>>> filteredButNeededForAllInstanceMeasurements) {
+	public void setFilteredButNeededForAllInstanceMeasurements(Set<Pair<OCLExpressionWithContext, Pair<Resource, RawNotification>>> filteredButNeededForAllInstanceMeasurements) {
 	    this.filteredButNeededForAllInstanceMeasurements = filteredButNeededForAllInstanceMeasurements;
 	}
 
-	public HashSet<Pair<OCLExpressionWithContext, Pair<Resource, RawNotification>>> getFilteredButNeededForAllInstanceMeasurements() {
+	public Set<Pair<OCLExpressionWithContext, Pair<Resource, RawNotification>>> getFilteredButNeededForAllInstanceMeasurements() {
 	    return filteredButNeededForAllInstanceMeasurements;
 	}
 }
