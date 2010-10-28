@@ -2,7 +2,6 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -12,9 +11,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.model.ModelCloner;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.RawNotification;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.Tuple.Pair;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.ActivationOption;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
 
@@ -25,13 +22,11 @@ public class ModelSizeVariationBenchmarkTaskContainer extends BenchmarkTaskConta
 	private final ActivationOption option;
 
 	private final HashMap<OCLExpressionWithContext, AllInstanceEvaluationMeasurement> allInstanceMeasureCache = new HashMap<OCLExpressionWithContext, AllInstanceEvaluationMeasurement>();
-	private final Set<Pair<OCLExpressionWithContext, Pair<Resource, RawNotification>>> filteredButNeededForAllInstanceMeasurements;
 
-	public ModelSizeVariationBenchmarkTaskContainer(Resource modelToClone, ActivationOption option, String containerId, Set<Pair<OCLExpressionWithContext, Pair<Resource, RawNotification>>> filteredButNeededForAllInstanceMeasurements){
+	public ModelSizeVariationBenchmarkTaskContainer(Resource modelToClone, ActivationOption option, String containerId){
 		this.modelToClone = modelToClone;
 		this.option = option;
 		this.containerId = containerId;
-		this.filteredButNeededForAllInstanceMeasurements = filteredButNeededForAllInstanceMeasurements;
 	}
 
 	@Override
@@ -62,9 +57,7 @@ public class ModelSizeVariationBenchmarkTaskContainer extends BenchmarkTaskConta
 	    for(BenchmarkTask task : this){
 	    	OCLExpressionWithContext expression = ((ModelSizeVariationBenchmarkTask)task).getExpression();
 
-	    	((ModelSizeVariationBenchmarkTask)task).setFilteredButNeededForAllInstanceMeasurements(filteredButNeededForAllInstanceMeasurements);
-
-	    	if(allInstanceMeasureCache.containsKey(expression)){
+	      	if(allInstanceMeasureCache.containsKey(expression)){
 	    	    ((ModelSizeVariationBenchmarkTask)task).setAllInstanceEvaluationMeasurement(allInstanceMeasureCache.get(expression));
 	    	}else{
 	    	    AllInstanceEvaluationMeasurement measurement = new AllInstanceEvaluationMeasurement(oppositeEndFinder, model, expression);

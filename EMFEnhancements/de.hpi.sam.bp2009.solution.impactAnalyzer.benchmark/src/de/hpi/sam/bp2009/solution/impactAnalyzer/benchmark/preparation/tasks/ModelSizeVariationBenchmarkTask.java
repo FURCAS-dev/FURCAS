@@ -2,13 +2,11 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
@@ -28,7 +26,6 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.RawNotification;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.Tuple.Pair;
 
 @SuppressWarnings("restriction")
 public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
@@ -38,8 +35,6 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     private Notification notification;
     private Resource model;
     private OCL ocl;
-
-    private boolean filtered;
     /**
      * Also store original model in order to evaluate expression on model state before the value changed
      */
@@ -56,8 +51,6 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     private final OCLExpressionWithContext expression;
     private final OppositeEndFinder oppositeEndFinder;
     private AllInstanceEvaluationMeasurement allInstanceMeasurement;
-
-    private Set<Pair<OCLExpressionWithContext, Pair<Resource, RawNotification>>> filteredButNeededForAllInstanceMeasurements;
 
     public ModelSizeVariationBenchmarkTask(OCLExpressionWithContext expression, RawNotification notification, ImpactAnalyzer imp, String oclId, String notificationId, String benchmarkTaskId, String optionId, String modelId, OppositeEndFinder oppositeEndFinder) {
     	this.expression = expression;
@@ -103,27 +96,14 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 
 	additionalInformation.putAll(allInstanceMeasurement.getAdditionalInformation());
 
-	boolean eventFilterMatches = false;
 	if (notification != null && filter != null) {
 	    long beforeFilterMatchCheck = System.nanoTime();
-	    eventFilterMatches = filter.matchesFor(notification);
+	    filter.matchesFor(notification);
 	    long afterFilterMatchCheck = System.nanoTime();
 	    additionalInformation.put("eventFilterMatchCheckTime", String.valueOf(afterFilterMatchCheck - beforeFilterMatchCheck));
 	}
 
-
-	filtered = eventFilterMatches;
-
-	Pair<OCLExpressionWithContext, Pair<Resource, RawNotification>> allInstanceMeasurementKey = new Pair<OCLExpressionWithContext, Pair<Resource, RawNotification>>(expression, new Pair<Resource, RawNotification>(model, rawNotification));
-	boolean canBeMeasured;
-	if(filtered || !getFilteredButNeededForAllInstanceMeasurements().contains(allInstanceMeasurementKey)){
-	    getFilteredButNeededForAllInstanceMeasurements().add(allInstanceMeasurementKey);
-	    canBeMeasured = true;
-	}else{
-	    canBeMeasured = false;
-	}
-
-    	return notification != null && canBeMeasured;
+    	return notification != null;
     }
 
     @SuppressWarnings("unused")
@@ -157,13 +137,8 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 
     @Override
     public Collection<EObject> call() throws Exception {
-	if(filtered){
-	    result = ia.getContextObjects(notification);
-	    return result;
-	} else {
-	    result = Collections.emptySet();
-	    return result;
-	}
+        result = ia.getContextObjects(notification);
+	return result;
     }
 
     @Override
@@ -220,23 +195,18 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     public boolean deactivate() {
 	Collection<EObject> result = allResults.get(0);
 
-	if (result != null && filtered) {
-	    List<Object> beforeEvaluationResult = evaluateOnAffectedElement(result);
-	    additionalInformation.put("beforeNoInvalidEvals", String.valueOf(getNoOfInvalidEvaluations(beforeEvaluationResult)));
+        List<Object> beforeEvaluationResult = evaluateOnAffectedElement(result);
+        additionalInformation.put("beforeNoInvalidEvals", String.valueOf(getNoOfInvalidEvaluations(beforeEvaluationResult)));
 
-	    // Change model by creating a real notification through changing the
-	    // original model
-	    rawNotification.convertToNotification(getModelForIaAccuracyDetermination());
+        // Change model by creating a real notification through changing the
+        // original model
+        rawNotification.convertToNotification(getModelForIaAccuracyDetermination());
 
-	    List<Object> afterEvaluationResult = evaluateOnAffectedElement(result);
-	    additionalInformation.put("afterNoInvalidEvals", String.valueOf(getNoOfInvalidEvaluations(afterEvaluationResult)));
+        List<Object> afterEvaluationResult = evaluateOnAffectedElement(result);
+        additionalInformation.put("afterNoInvalidEvals", String.valueOf(getNoOfInvalidEvaluations(afterEvaluationResult)));
 
-	    additionalInformation.put("noEqualResultsBeforeAndAfter",String.valueOf(getNumberOfEqualResults(beforeEvaluationResult, afterEvaluationResult)));
-	}else{
-	    additionalInformation.put("beforeNoInvalidEvals", "NA");
-	    additionalInformation.put("afterNoInvalidEvals", "NA");
-	    additionalInformation.put("noEqualResultsBeforeAndAfter", "NA");
-	}
+        additionalInformation.put("noEqualResultsBeforeAndAfter",
+                String.valueOf(getNumberOfEqualResults(beforeEvaluationResult, afterEvaluationResult)));
 
 	return true;
     }
@@ -391,11 +361,4 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 	    allInstanceMeasurement = measurement;
 	}
 
-	public void setFilteredButNeededForAllInstanceMeasurements(Set<Pair<OCLExpressionWithContext, Pair<Resource, RawNotification>>> filteredButNeededForAllInstanceMeasurements) {
-	    this.filteredButNeededForAllInstanceMeasurements = filteredButNeededForAllInstanceMeasurements;
-	}
-
-	public Set<Pair<OCLExpressionWithContext, Pair<Resource, RawNotification>>> getFilteredButNeededForAllInstanceMeasurements() {
-	    return filteredButNeededForAllInstanceMeasurements;
-	}
 }

@@ -2,14 +2,11 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
-import java.util.Set;
 
 import org.eclipse.emf.ecore.resource.Resource;
 
@@ -21,7 +18,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.Result
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationForModelList;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.RawNotification;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.Tuple.Pair;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.ActivationOption;
 
 /**
@@ -46,8 +42,6 @@ public class BenchmarkTaskStepwiseBuilder implements Queue<BenchmarkTaskContaine
     private NotificationForModelList currentModel;
 
     private int iterations = 0;
-    private final Set<Pair<OCLExpressionWithContext, Pair<Resource, RawNotification>>> filteredButNeededForAllInstanceMeasurements =
-        Collections.synchronizedSet(new HashSet<Pair<OCLExpressionWithContext,Pair<Resource, RawNotification>>>());
 
     public BenchmarkTaskStepwiseBuilder(Collection<OCLExpressionWithContext> expressionList,
 	    Collection<NotificationForModelList> notificationForModelList, Collection<ActivationOption> activiationOptionList) {
@@ -246,7 +240,7 @@ public class BenchmarkTaskStepwiseBuilder implements Queue<BenchmarkTaskContaine
 
 	Resource model = notificationList.getModel();
 	BenchmarkTaskContainer container = new ModelSizeVariationBenchmarkTaskContainer(model, option, String.valueOf(ids
-		.getContainerId()), filteredButNeededForAllInstanceMeasurements);
+		.getContainerId()));
 	ids.incrementContainer();
 	ids.resetNotification();
 
