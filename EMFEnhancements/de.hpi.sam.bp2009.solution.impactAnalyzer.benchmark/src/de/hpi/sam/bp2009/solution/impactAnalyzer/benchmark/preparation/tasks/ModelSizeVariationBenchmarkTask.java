@@ -2,6 +2,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -51,6 +52,7 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     private final OCLExpressionWithContext expression;
     private final OppositeEndFinder oppositeEndFinder;
     private AllInstanceEvaluationMeasurement allInstanceMeasurement;
+    private boolean filterMatches;
 
     public ModelSizeVariationBenchmarkTask(OCLExpressionWithContext expression, RawNotification notification, ImpactAnalyzer imp, String oclId, String notificationId, String benchmarkTaskId, String optionId, String modelId, OppositeEndFinder oppositeEndFinder) {
     	this.expression = expression;
@@ -98,7 +100,7 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 
 	if (notification != null && filter != null) {
 	    long beforeFilterMatchCheck = System.nanoTime();
-	    filter.matchesFor(notification);
+	    filterMatches = filter.matchesFor(notification);
 	    long afterFilterMatchCheck = System.nanoTime();
 	    additionalInformation.put("eventFilterMatchCheckTime", String.valueOf(afterFilterMatchCheck - beforeFilterMatchCheck));
 	}
@@ -137,8 +139,12 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 
     @Override
     public Collection<EObject> call() throws Exception {
-        result = ia.getContextObjects(notification);
-	return result;
+        if (filterMatches) {
+            result = ia.getContextObjects(notification);
+        } else {
+            result = Collections.emptySet();
+        }
+        return result;
     }
 
     @Override
