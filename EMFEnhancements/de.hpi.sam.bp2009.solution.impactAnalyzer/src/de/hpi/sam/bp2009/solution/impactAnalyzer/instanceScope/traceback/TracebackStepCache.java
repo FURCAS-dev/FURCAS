@@ -74,6 +74,7 @@ public class TracebackStepCache extends AbstractPathCache<TracebackStep> {
         case EcorePackage.BOOLEAN_LITERAL_EXP:
         case EcorePackage.NULL_LITERAL_EXP:
         case EcorePackage.INVALID_LITERAL_EXP:
+        case EcorePackage.TYPE_EXP: // the target element isn't assumed to originate from the meta-model
             result = new EmptyTracebackStep(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, this, unusedEvaluationRequestFactory);
             break;
         default:
