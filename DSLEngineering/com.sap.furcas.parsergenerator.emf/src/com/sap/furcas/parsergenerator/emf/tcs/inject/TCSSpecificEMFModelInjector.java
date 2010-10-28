@@ -38,9 +38,9 @@ public class TCSSpecificEMFModelInjector {
      * Parse the syntax definition using the current version of TCSParser and
      * TCSLexer.
      */
-    public static ModelInjectionResult parseSyntaxDefinition(InputStream in, ResourceSet connection, Set<URI> metamodelPRIs,
+    public static ModelInjectionResult parseSyntaxDefinition(InputStream in, ResourceSet resourceSet, Set<URI> metamodelPRIs,
 	    IParsingObserver observer) throws InvalidParserImplementationException, IOException, UnknownProductionRuleException {
-	return parseSyntaxDefinition(in, connection, metamodelPRIs, observer, null);
+	return parseSyntaxDefinition(in, resourceSet, metamodelPRIs, observer, null);
     }
 
     /**
@@ -60,7 +60,7 @@ public class TCSSpecificEMFModelInjector {
      * @throws UnknownProductionRuleException
      * @throws IOException
      */
-    public static ModelInjectionResult parseSyntaxDefinition(InputStream in, ResourceSet connection, Set<URI> metamodelPRIs,
+    public static ModelInjectionResult parseSyntaxDefinition(InputStream in, ResourceSet resourceSet, Set<URI> metamodelPRIs,
 	    IParsingObserver observer, ParserFacade alternativeTcsParserFacade) throws InvalidParserImplementationException,
 	    IOException, UnknownProductionRuleException {
 	// use a model Handler that is implemented in EMF and only handles TCS
@@ -68,7 +68,7 @@ public class TCSSpecificEMFModelInjector {
 	TCSSpecificEMFModelAdapter handler = null;
 	ModelParsingResult result;
 	try {
-	    handler = new TCSSpecificEMFModelAdapter(connection, metamodelPRIs);
+	    handler = new TCSSpecificEMFModelAdapter(resourceSet, metamodelPRIs);
 	    DefaultTextAwareModelAdapter handlerWrapper = new DefaultTextAwareModelAdapter(handler);
 
 	    if (alternativeTcsParserFacade != null) {

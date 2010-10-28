@@ -30,7 +30,7 @@ public class TestLOTOSSample extends AbstractTCSInjectionTest {
 	@BeforeClass	
 	public static void doSetUp() throws Exception {
 
-		 setup("scenariotestResource/LOTOS.tcs");     
+		 setup("scenarioTestResource/LOTOS.tcs");     
 		
 	}
 
@@ -122,14 +122,13 @@ public class TestLOTOSSample extends AbstractTCSInjectionTest {
 		Set<Keyword> keywords = modelParsingResult.getKeywords();
 		Iterator<Keyword> iterator = keywords.iterator();
 		for (; iterator.hasNext();) {
-			Keyword keyword = (Keyword) iterator.next();
+			Keyword keyword = iterator.next();
 			keywords.add(keyword);
 		}
 		
 //			syntax.getKeywords();
 		assertEquals(29, keywords.size());
-		for (Iterator<Keyword> iterator2 = keywords.iterator(); iterator2.hasNext();) {
-			Keyword keyword = iterator2.next();
+		for (Keyword keyword : keywords) {
 		}
 	}
 	

@@ -10,7 +10,6 @@ package com.sap.furcas.modeladaptation.emf;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -28,7 +27,7 @@ import com.sap.furcas.runtime.common.interfaces.IBareModelAdapter;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 
 /**
- * allows creation of MOIN model elements. Facade for this functionality, this
+ * Allows creation of EMF model elements. Facade for this functionality, this
  * class only contains protectors, functionality is in delegate (for
  * readability). This class checks arguments are not null and of correct
  * modelElement type, and also handles all JMIExceptions by adding what
@@ -86,8 +85,7 @@ public class EMFModelAdapter implements IBareModelAdapter {
 	if (typeName == null || typeName.size() == 0) {
 	    throw new IllegalArgumentException("typeName was null or empty: " + typeName);
 	} else {
-	    for (Iterator<String> iterator = typeName.iterator(); iterator.hasNext();) {
-		String namePart = iterator.next();
+	    for (String namePart : typeName) {
 		if (namePart == null || namePart.trim().equals("")) {
 		    throw new IllegalArgumentException("typeName part was null or empty: " + typeName);
 		}
@@ -112,8 +110,7 @@ public class EMFModelAdapter implements IBareModelAdapter {
 	if (enumName == null || enumName.size() == 0) {
 	    throw new IllegalArgumentException("typeName was null or empty: " + enumName);
 	} else {
-	    for (Iterator<String> iterator = enumName.iterator(); iterator.hasNext();) {
-		String namePart = iterator.next();
+	    for (String namePart : enumName) {
 		if (namePart == null || namePart.trim().equals("")) {
 		    throw new IllegalArgumentException("typeName part was null or empty: " + enumName);
 		}
@@ -512,8 +509,7 @@ public class EMFModelAdapter implements IBareModelAdapter {
 	if (typeName == null || typeName.size() == 0) {
 	    throw new IllegalArgumentException("typeName was null or empty: " + typeName);
 	} else {
-	    for (Iterator<String> iterator = typeName.iterator(); iterator.hasNext();) {
-		String namePart = iterator.next();
+	    for (String namePart : typeName) {
 		if (namePart == null || namePart.trim().equals("")) {
 		    throw new IllegalArgumentException("typeName part was null or empty: " + typeName);
 		}
