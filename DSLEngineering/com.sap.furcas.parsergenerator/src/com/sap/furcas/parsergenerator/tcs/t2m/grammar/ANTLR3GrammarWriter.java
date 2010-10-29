@@ -11,7 +11,6 @@ package com.sap.furcas.parsergenerator.tcs.t2m.grammar;
 import static com.sap.furcas.parsergenerator.util.StringConcatUtil.concat;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.AbstractAntlr3Rule;
@@ -168,8 +167,8 @@ public class ANTLR3GrammarWriter {
 	private final String parserHeader = "@header {\n" + "package %package%;\n" + "import "
 		+ ANTLR3LocationToken.class.getCanonicalName() + ";\n" + "import "
 		+ IModelElementProxy.class.getCanonicalName() + ";\n"
-		+ "import com.sap.mi.textual.grammar.impl.PredicateSemantic;\n"
-		+ "import com.sap.mi.textual.moinlookup.util.RuleNameFinder;\n"
+		+ "import com.sap.furcas.runtime.parser.impl.PredicateSemantic;\n"
+		+ "import com.sap.furcas.parsergenerator.emf.lookup.RuleNameFinder;\n"
 		+ "import java.text.CharacterIterator;\n"
 		+ "import java.text.StringCharacterIterator;\n" + "import %superclass%;\n"
 		+ "import org.antlr.runtime.Token;\n" + "}\n";
@@ -351,8 +350,7 @@ public class ANTLR3GrammarWriter {
 				parserSuperClass.getCanonicalName()), NEWLINES, parserMembers,
 			NEWLINES);
 
-		for (Iterator<AbstractAntlr3Rule> iterator = rules.iterator(); iterator.hasNext();) {
-			AbstractAntlr3Rule rule = iterator.next();
+		for (AbstractAntlr3Rule rule : rules) {
 			rule.addToSerializationBuffer(buf);
 			buf.append(NEWLINES);
 		}
@@ -396,8 +394,7 @@ public class ANTLR3GrammarWriter {
 	 * @param memberParts
 	 */
 	public void addLexerMembers(List<String> memberParts) {
-		for (Iterator<String> iterator = memberParts.iterator(); iterator.hasNext();) {
-			String string = iterator.next();
+		for (String string : memberParts) {
 			additionalLexerMembers += "\n" + string;
 		}
 	}

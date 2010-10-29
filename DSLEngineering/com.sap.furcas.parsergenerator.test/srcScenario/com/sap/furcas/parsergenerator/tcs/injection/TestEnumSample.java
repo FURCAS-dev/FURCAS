@@ -27,7 +27,7 @@ public class TestEnumSample extends AbstractTCSInjectionTest {
 	@BeforeClass	
 	public static void doSetUp() throws Exception {
 
-		 setup("scenariotestResource/EnumTest.tcs");       
+		 setup("scenarioTestResource/EnumTest.tcs");       
 		
 	}
 
@@ -116,8 +116,7 @@ public class TestEnumSample extends AbstractTCSInjectionTest {
 //            System.out.println(keyword.getValue() + " : " + keyword.getName());
 //        }
 		assertEquals(8, keywords.size());
-		for (Iterator<Keyword> iterator2 = syntax.getKeywords().iterator(); iterator2.hasNext();) {
-			Keyword keyword = iterator2.next();
+		for (Keyword keyword : syntax.getKeywords()) {
 			keywords.add(keyword);
 		}
 		assertEquals(8, keywords.size());

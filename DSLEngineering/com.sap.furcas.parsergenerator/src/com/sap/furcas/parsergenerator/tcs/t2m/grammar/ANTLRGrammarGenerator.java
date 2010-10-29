@@ -9,11 +9,8 @@
 package com.sap.furcas.parsergenerator.tcs.t2m.grammar;
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
@@ -180,7 +177,8 @@ public class ANTLRGrammarGenerator {
         // TODO: Do not generate on validation errors?
 
         writer.setGrammarName(syntax.getName());
-        writer.setSyntaxUUID(EcoreUtil.getID(syntax));
+        // FIXME: currently no id is defined / generated // EcoreUtil.getID(syntax)
+        writer.setSyntaxUUID(syntax.getName());
 
         String lexerString = syntax.getLexer();
         if (lexerString == null) {
@@ -223,19 +221,15 @@ public class ANTLRGrammarGenerator {
         }
 
         Collection<Template> templates = syntax.getTemplates();
-        for (Iterator<Template> iterator = templates.iterator(); iterator
-                .hasNext();) {
-            Template temp = iterator.next();
-            
-
-            try {
-                this.addTemplateProductionRuleToGrammar(temp);
-            } catch (SyntaxElementException e) {
-                errorBucket.addException(e);
-            }
+        for (Template temp : templates) {
+         try {
+	this.addTemplateProductionRuleToGrammar(temp);
+         } catch (SyntaxElementException e) {
+	errorBucket.addException(e);
+         }
 
 
-        }
+      }
 
         // Operator Lists are dealt with from operatored Class templates, or
         // else they aren't usable anyways
@@ -247,13 +241,13 @@ public class ANTLRGrammarGenerator {
         // }
 
         Collection<Token> tokens = syntax.getTokens();
-        for (Iterator<Token> iterator = tokens.iterator(); iterator.hasNext();) {
-            this.addTokenProductionRuleToGrammar(iterator.next());
+        for (Token token : tokens) {
+            this.addTokenProductionRuleToGrammar(token);
         }
 
         Collection<Symbol> symbols = syntax.getSymbols();
-        for (Iterator<Symbol> iterator = symbols.iterator(); iterator.hasNext();) {
-            this.addSymbolProductionRuleToGrammar(iterator.next());
+        for (Symbol symbol : symbols) {
+            this.addSymbolProductionRuleToGrammar(symbol);
         }
         
         // To beautify grammar, also add token rules for all keywords that aren't symbols
