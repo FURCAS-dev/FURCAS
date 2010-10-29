@@ -125,6 +125,8 @@ import org.eclipse.ui.views.properties.PropertySheetPage;
 import com.sap.emf.ocl.impactanalysis.example.signature_and_call.Signature_and_callPackage;
 import com.sap.emf.ocl.impactanalysis.example.signature_and_call.provider.Signature_and_callItemProviderAdapterFactory;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.editor.Revalidator;
+
 
 /**
  * This is an example of a Signature_and_call model editor. Yeah.
