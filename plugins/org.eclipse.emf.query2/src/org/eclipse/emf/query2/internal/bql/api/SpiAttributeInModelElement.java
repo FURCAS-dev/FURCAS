@@ -13,7 +13,6 @@ package org.eclipse.emf.query2.internal.bql.api;
 /**
  * Attribute of a model element specified by a model element expression
  */
-@Deprecated
 public final class SpiAttributeInModelElement {
 
 	private SpiModelElementExpression modelElementExpression;

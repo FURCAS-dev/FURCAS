@@ -16,10 +16,9 @@ import java.util.List;
 /**
  * Abstract class for multinary expressions
  */
-@Deprecated
 public abstract class SpiMultinaryExpression implements SpiAttributeExpression {
 
-	protected List operands;
+	protected List<?> operands;
 
 	/**
 	 * Constructor takes a list of operands
@@ -27,16 +26,14 @@ public abstract class SpiMultinaryExpression implements SpiAttributeExpression {
 	 * @param operands
 	 *            list of AttributeExpression instances
 	 */
-	public SpiMultinaryExpression(List operands) {
-
+	public SpiMultinaryExpression(List<?> operands) {
 		this.operands = operands;
 	}
 
 	/**
 	 * Introspection
 	 */
-	public Iterator getOperands() {
-
+	public Iterator<?> getOperands() {
 		return this.operands.iterator();
 	}
 }

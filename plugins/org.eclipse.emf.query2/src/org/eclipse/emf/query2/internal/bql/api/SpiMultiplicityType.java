@@ -13,7 +13,6 @@ package org.eclipse.emf.query2.internal.bql.api;
 /**
  * Multiplicity types that are supported by queries.
  */
-@Deprecated
 public enum SpiMultiplicityType {
 	ATTRIBUTE_SINGLE_VALUED, ATTRIBUTE_MULTI_VALUED
 }

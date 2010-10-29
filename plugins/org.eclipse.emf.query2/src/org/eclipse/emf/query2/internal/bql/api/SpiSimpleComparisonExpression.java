@@ -16,7 +16,6 @@ import org.eclipse.emf.query2.internal.fql.SpiFqlPrimitiveType;
 /**
  * Implements attribute comparisons with simple values.
  */
-@Deprecated
 public class SpiSimpleComparisonExpression extends SpiLeafExpression {
 
 	private SpiFqlComparisonOperation operator;

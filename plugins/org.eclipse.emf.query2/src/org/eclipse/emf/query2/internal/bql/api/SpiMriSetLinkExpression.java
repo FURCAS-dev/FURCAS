@@ -19,7 +19,6 @@ import org.eclipse.emf.common.util.URI;
 /**
  * LinkExpression with an MRI set as link target.
  */
-@Deprecated
 public final class SpiMriSetLinkExpression extends SpiLinkExpression {
 
 	private Set<URI> linkTargetSet;
