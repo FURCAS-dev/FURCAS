@@ -5,6 +5,7 @@ import org.eclipse.ocl.ParserException;
 
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+import com.sap.emf.ocl.trigger.ExpressionWithContext;
 import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
@@ -35,8 +36,8 @@ public class OCLQueryPropertyUpdater extends AbstractOCLBasedModelUpdater {
                 OCLWithHiddenOpposites.newInstance(oppositeEndFinder).createOCLHelper()
                 .createQuery(ContextAndForeachHelper.prepareOclQuery(getExpressionString(propertyInit))),
         (EClass) ContextAndForeachHelper.getParsingContext(getExpressionString(propertyInit),
-                propertyInit.getParentTemplate()), /* notifyNewContextElements */
-        true));
+                propertyInit.getParentTemplate())),
+                /* notifyNewContextElements */ true);
         // TODO handle parameterization of query expression
 //      ref.setGenericReference(true);
     }

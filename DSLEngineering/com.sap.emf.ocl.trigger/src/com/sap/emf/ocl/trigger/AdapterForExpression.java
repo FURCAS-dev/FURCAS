@@ -28,10 +28,18 @@ public class AdapterForExpression extends AdapterImpl {
     private final OCLExpression expression;
     private final ImpactAnalyzer impactAnalyzer;
     private final OppositeEndFinder oppositeEndFinder;
-    
+
     /**
      * With this constructor, the expression must contain a <code>self</code> occurrence that allows us to infer the context type.
-     * @param notifyOnNewContextElements TODO
+     * 
+     * @param notifyNewContextElements
+     *            The analyzer can be parameterized during construction such that it either registers for creation events on the
+     *            context type or not. Registering for element creation on the context type is useful for invariants / constraints
+     *            because when a new element is created, validating the constraint may be useful. For other use cases, registering
+     *            for element creation may not be so useful. For example, when a type inferencer defines its rules using OCL, it
+     *            only wants to receive <em>update</em> events after the element has been fully initialized from those OCL
+     *            expressions. In those cases, some framework may be responsible for the initial evaluation of those OCL
+     *            expressions on new element, and therefore, context element creation events are not of interest.
      */
     public AdapterForExpression(Triggerable triggerableToNotify, OCLExpression expression, boolean notifyOnNewContextElements, OppositeEndFinder oppositeEndFinder, ActivationOption configuration) {
         this.triggerableToNotify = triggerableToNotify;
@@ -39,11 +47,19 @@ public class AdapterForExpression extends AdapterImpl {
         this.impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, notifyOnNewContextElements, oppositeEndFinder, configuration);
         this.oppositeEndFinder = oppositeEndFinder;
     }
-    
+
     /**
      * A non-<code>null</code> context must be provided if this constructor is used. Should the <code>expression</code> contain an
      * occurrence of <code>self</code>, its type must be the same as <code>context</code>.
-     * @param notifyOnNewContextElements TODO
+     * 
+     * @param notifyNewContextElements
+     *            The analyzer can be parameterized during construction such that it either registers for creation events on the
+     *            context type or not. Registering for element creation on the context type is useful for invariants / constraints
+     *            because when a new element is created, validating the constraint may be useful. For other use cases, registering
+     *            for element creation may not be so useful. For example, when a type inferencer defines its rules using OCL, it
+     *            only wants to receive <em>update</em> events after the element has been fully initialized from those OCL
+     *            expressions. In those cases, some framework may be responsible for the initial evaluation of those OCL
+     *            expressions on new element, and therefore, context element creation events are not of interest.
      */
     public AdapterForExpression(Triggerable triggerableToNotify, OCLExpression expression, EClass context, boolean notifyOnNewContextElements, OppositeEndFinder oppositeEndFinder, ActivationOption configuration) {
         if (context == null) {

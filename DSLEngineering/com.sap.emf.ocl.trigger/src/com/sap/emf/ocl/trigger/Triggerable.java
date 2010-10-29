@@ -2,63 +2,55 @@ package com.sap.emf.ocl.trigger;
 
 import java.util.Collection;
 
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.ActivationOption;
-
 /**
- * A callback that wants to get triggered when one of the expressions returned from {@link #getTriggerExpressions()} may
- * have changed its value on some object observed by the {@link TriggerManager}.
+ * A callback that wants to get triggered when one of the {@link OCLExpression}s returned from
+ * {@link #getTriggerExpressionsWithContext()} or {@link #getTriggerExpressionsWithoutContext()} changes its value
+ * for any context object observed by the {@link TriggerManager}(s) with which this {@link Triggerable} is registered.
+ * Implementing classes can choose whether they want to also be informed about new context elements being added to
+ * the scope observed by returning a boolean value from {@link #notifyOnNewContextElements()}.
  * 
  * @author Axel Uhl (D043530)
  *
  */
 public interface Triggerable {
     void notify(OCLExpression expression, Collection<EObject> affectedContextObjects, OppositeEndFinder oppositeEndFinder);
-    Collection<AdapterForExpression> getAdapters(OppositeEndFinder oppositeEndFinder, ActivationOption impactAnalysisConfiguration) throws ParserException;
+
+    /**
+     * The {@link #notify(OCLExpression, Collection, OppositeEndFinder)} operation will be called when any of the
+     * {@link OCLExpression expressions} returned by this method may have changed its value anywhere in the scope observed by the
+     * {@link TriggerManager} with which this {@link Triggerable} gets {@link TriggerManager#register(Triggerable) registered}.
+     * They receive notifications also for new context elements being created if {@link #notifyOnNewContextElements} returns
+     * <code>true</code>.
+     * 
+     * @return a non-<code>null</code> collection
+     */
+    Collection<OCLExpression> getTriggerExpressionsWithoutContext();
+
+    /**
+     * The {@link #notify(OCLExpression, Collection, OppositeEndFinder)} operation will be called when any of the
+     * {@link OCLExpression expressions} returned by this method may have changed its value anywhere in the scope observed by the
+     * {@link TriggerManager} with which this {@link Triggerable} gets {@link TriggerManager#register(Triggerable) registered}.
+     * They receive notifications also for new context elements being created if {@link #notifyOnNewContextElements} returns
+     * <code>true</code>.<p>
+     * 
+     * As compared to {@link #getTriggerExpressionsWithoutContext()}, the collection returned by this method specifies
+     * expressions together with their contexts. It is necessary to specify a context type if the expression does not
+     * contain a <code>self</code> reference from which the context type can automatically be inferred.
+     * 
+     * @return a non-<code>null</code> collection
+     */
+    Collection<ExpressionWithContext> getTriggerExpressionsWithContext();
     
     /**
-     * Used to provide an {@link OCLExpression} with an optional context type. This is required if the expression
-     * does not make use of the <code>self</code> variable which disallows inferring the context type automatically.
-     * 
-     * @author Axel Uhl (D043530)
-     *
+     * If <code>true</code> is returned, {@link #notify(OCLExpression, Collection, OppositeEndFinder)} will also be called
+     * if for any context type of any of the expressions returned from {@link #getTriggerExpressionsWithContext()} or
+     * {@link #getTriggerExpressionsWithoutContext()} (or any of the context type's subtypes) a new element is added to
+     * the resource set observed by the {@link TriggerManager} with which this {@link Triggerable} is registered.
      */
-    public static class ExpressionWithContext {
-        private final OCLExpression expression;
-        private final EClass context;
-        private final boolean notifyNewContextElements;
-
-        /**
-         * Providing a non-<code>context</code> class is necessary in case <code>expression</code> does not make use of the
-         * <code>self</code> variable. Otherwise, if a redundant context type is specified, it must be the same as the context
-         * type inferred from the <code>self</code> expression.
-         * 
-         * @param notifyNewContextElements
-         *            if <code>true</code>, events will be forwarded also if objects that conform to the context type (implicitly
-         *            or explicitly provided) are added to the resource set(s) observed. This is useful if an <em>initial</em>
-         *            evaluation of the <code>expression</code> is desired once an element enters a resource set.
-         */
-        public ExpressionWithContext(OCLExpression expression, EClass context, boolean notifyNewContextElements) {
-            super();
-            this.expression = expression;
-            this.context = context;
-            this.notifyNewContextElements = notifyNewContextElements;
-        }
-        
-        public OCLExpression getExpression() {
-            return expression;
-        }
-        public EClass getContext() {
-            return context;
-        }
-        public boolean isNotifyNewContextElements() {
-            return notifyNewContextElements;
-        }
-    }
+    boolean notifyOnNewContextElements();
 }

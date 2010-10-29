@@ -2,7 +2,6 @@ package com.sap.emf.ocl.trigger;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.ParserException;
 
 /**
  * Manages a number of {@link Triggerable}s and observes one or more {@link ResourceSet}s for {@link Notification}s
@@ -32,5 +31,5 @@ public interface TriggerManager {
      * Registers a {@link Triggerable} with this manager so that it will get notified upon changes affecting
      * any of the {@link Triggerable#getTriggerExpressions() expressions} specified by the {@link Triggerable}.
      */
-    void register(Triggerable triggerable) throws ParserException;
+    void register(Triggerable triggerable);
 }
