@@ -8,6 +8,8 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -34,8 +36,8 @@ public class GrammarTest  extends ExtendedGeneratedParserBasedTest {
 
 		OutputStream out = new ByteArrayOutputStream();
 		TCSInputStreamGrammarGenerator generator = new TCSInputStreamGrammarGenerator( in, out, new EcoreMetaModelLookUp( "BibText.ecore", "BibText1.ecore"), "generated");
-		Connection connection = MOINTCSMetaConnectionProvider.getTestConnection();
-        generator.generateGrammar(connection, null, null);
+	        ResourceSet resourceSet = new ResourceSetImpl();
+	        generator.generateGrammar(resourceSet, null, null);
 		out.flush();
 		String grammar = out.toString();
 		assertTrue(grammar.indexOf("grammar Bibtext")>-1);
@@ -60,8 +62,8 @@ public class GrammarTest  extends ExtendedGeneratedParserBasedTest {
 
         OutputStream out = new ByteArrayOutputStream();
         TCSInputStreamGrammarGenerator generator = new TCSInputStreamGrammarGenerator( in, out, new EcoreMetaModelLookUp( "Expression.ecore"), "generated");
-        Connection connection = MOINTCSMetaConnectionProvider.getTestConnection();
-        generator.generateGrammar(connection, null, null);
+        ResourceSet resourceSet = new ResourceSetImpl();
+        generator.generateGrammar(resourceSet, null, null);
         out.flush();
         String grammar = out.toString();
         assertTrue(grammar.indexOf("grammar Expression;")>-1);

@@ -13,14 +13,19 @@ import java.util.Set;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.*;
+import com.sap.furcas.metamodel.FURCAS.TCS.Block;
+import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
 import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
 import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.TCS.Token;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 
 
@@ -31,7 +36,7 @@ public class TestBibTextSample extends AbstractTCSInjectionTest {
 	@BeforeClass	
 	public static void doSetUp() throws Exception {
 
-	    setup("scenariotestResource/Bibtext.tcs");        
+	    setup("scenarioTestResource/Bibtext.tcs");        
 		
 	}
 
@@ -247,8 +252,7 @@ public class TestBibTextSample extends AbstractTCSInjectionTest {
 		
 //			syntax.getKeywords();
 		assertEquals(5, keywords.size());
-		   for (Iterator<Keyword> iterator2 = syntax.getKeywords().iterator(); iterator2.hasNext();) {
-	            Keyword keyword = iterator2.next();
+		   for (Keyword keyword : syntax.getKeywords()) {
 	            keywords.add(keyword);
 	        }
 	        assertEquals(5, keywords.size());

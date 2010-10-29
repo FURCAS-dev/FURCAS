@@ -29,7 +29,7 @@ public class TestATLSample extends AbstractTCSInjectionTest {
 
 	@BeforeClass	
 	public static void doSetUp() throws Exception {
-	    setup("scenariotestResource/ATL.tcs");		
+	    setup("scenarioTestResource/ATL.tcs");		
 	}
 
 	@Test 
@@ -125,8 +125,7 @@ public class TestATLSample extends AbstractTCSInjectionTest {
 		
 //			syntax.getKeywords();
 		assertEquals(57, keywords.size());
-		   for (Iterator<Keyword> iterator2 = syntax.getKeywords().iterator(); iterator2.hasNext();) {
-	            Keyword keyword = iterator2.next();
+		   for (Keyword keyword : syntax.getKeywords()) {
 	            keywords.add(keyword);
 	        }
 	        assertEquals(57, keywords.size());
