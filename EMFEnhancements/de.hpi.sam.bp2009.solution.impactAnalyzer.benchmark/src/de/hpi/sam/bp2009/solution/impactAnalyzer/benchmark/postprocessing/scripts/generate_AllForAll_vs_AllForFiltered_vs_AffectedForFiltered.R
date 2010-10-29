@@ -47,33 +47,42 @@ affectedForFiltered=mergeAll[mergeAll$measurement==2+optionToShow,]
 # as PNG:
 png("c:/tmp/allForAll.png", width=1200, height=800, res = 200)
 plot(allForAll$modelSize, allForAll$measureTime, type="b",
-     xlab="Number of Model Elements", ylab="Total Re-evaluation Time in ns",
+     #xlab="Number of Model Elements", ylab="Total Re-evaluation Time in seconds",
+     xlab="", ylab="",
      ylim=range(allForAll$measureTime, allForFiltered$measureTime, affectedForFiltered$measureTime),
      # log="y",
+     las=1, yaxt="n",
      col="red", lty="dashed",
      # main="Total re-evaluation times: all contexts for all expressions (dashed, red); all contexts for filtered expressions (dotted, black); affected contexts for filtered expressions (solid, blue)"
      )
+axis(2, las=1, axTicks(2), format(axTicks(2)/100000000, scientific = F))
 dev.off()
 
 png("c:/tmp/allForAll_vs_AllForFiltered.png", width=1200, height=800, res = 200)
 plot(allForAll$modelSize, allForAll$measureTime, type="b",
-     xlab="Number of Model Elements", ylab="Total Re-evaluation Time in ns",
+     #xlab="Number of Model Elements", ylab="Total Re-evaluation Time in seconds",
+     xlab="", ylab="",
      ylim=range(allForAll$measureTime, allForFiltered$measureTime, affectedForFiltered$measureTime),
      # log="y",
+     las=1, yaxt="n",
      col="red", lty="dashed",
      # main="Total re-evaluation times: all contexts for all expressions (dashed, red); all contexts for filtered expressions (dotted, black); affected contexts for filtered expressions (solid, blue)"
      )
+axis(2, las=1, axTicks(2), format(axTicks(2)/100000000, scientific = F))
 points(allForFiltered$modelSize, allForFiltered$measureTime, type="b", col="black", lty="dotted")
 dev.off()
 
 png("c:/tmp/allForAll_vs_AllForFiltered_vs_AffectedForFiltered.png", width=1200, height=800, res = 200)
 plot(allForAll$modelSize, allForAll$measureTime, type="b",
-     xlab="Number of Model Elements", ylab="Total Re-evaluation Time in ns",
+     #xlab="Number of Model Elements", ylab="Total Re-evaluation Time in seconds",
+     xlab="", ylab="",
      ylim=range(allForAll$measureTime, allForFiltered$measureTime, affectedForFiltered$measureTime),
      # log="y",
+     las=1, yaxt="n",
      col="red", lty="dashed",
      # main="Total re-evaluation times: all contexts for all expressions (dashed, red); all contexts for filtered expressions (dotted, black); affected contexts for filtered expressions (solid, blue)"
      )
+axis(2, las=1, axTicks(2), format(axTicks(2)/100000000, scientific = F))
 points(allForFiltered$modelSize, allForFiltered$measureTime, type="b", col="black", lty="dotted")
 points(affectedForFiltered$modelSize, affectedForFiltered$measureTime, type="b", col="blue", lty="solid")
 dev.off()
@@ -81,11 +90,13 @@ dev.off()
 # and as PDF:
 pdf("c:/tmp/allForAll_vs_AllForFiltered_vs_AffectedForFiltered.pdf", width = 8, height = 6)
 plot(allForAll$modelSize, allForAll$measureTime, type="b",
-     xlab="Number of Model Elements", ylab="Total Re-evaluation Time in ns",
+     xlab="Number of Model Elements", ylab="Total Re-evaluation Time in seconds",
      ylim=range(allForAll$measureTime, allForFiltered$measureTime, affectedForFiltered$measureTime),
      # log="y",
+     las=1, yaxt="n",
      col="red", lty="dashed",
      main="Total re-evaluation times: all contexts for all expressions (dashed, red); all contexts for filtered expressions (dotted, black); affected contexts for filtered expressions (solid, blue)")
+axis(2, las=1, axTicks(2), format(axTicks(2)/100000000, scientific = F))
 points(allForFiltered$modelSize, allForFiltered$measureTime, type="b", col="black", lty="dotted")
 points(affectedForFiltered$modelSize, affectedForFiltered$measureTime, type="b", col="blue", lty="solid")
 dev.off()

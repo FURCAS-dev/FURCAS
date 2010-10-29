@@ -17,7 +17,6 @@ import com.sap.furcas.parser.tcs.bootstrapped.TCSLexer;
 import com.sap.furcas.parser.tcs.bootstrapped.TCSParser;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ParserFacade;
-import com.sap.furcas.test.parsing.base.StubModelAdapter;
 import com.sap.furcas.utils.projects.FileReadHelper;
 
 
