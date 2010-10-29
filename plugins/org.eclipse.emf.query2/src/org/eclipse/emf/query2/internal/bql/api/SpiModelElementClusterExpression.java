@@ -24,7 +24,6 @@ import org.eclipse.emf.query2.internal.index.SpiFacilityQueryServiceException;
  * header model element expression. All model element expressions in the cluster
  * can be linked to each other.
  */
-@Deprecated
 public final class SpiModelElementClusterExpression {
 
 	private SpiModelElementExpression headerModelElementExpression;

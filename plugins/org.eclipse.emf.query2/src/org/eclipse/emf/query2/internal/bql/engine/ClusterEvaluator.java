@@ -117,7 +117,7 @@ public final class ClusterEvaluator {
 	 *            select expression or model element cluster expression
 	 * @return BasicQueryResult if clusterObject represents a root model element cluster expression, otherwise list of Objects
 	 */
-	@SuppressWarnings( { "unchecked", "null" })
+	@SuppressWarnings( { "unchecked" })
 	private Object evaluateClusterAuxiliary(Object clusterObject, int maxResultSetSize, int numberOfRequestedRows) {
 
 		boolean isRoot;
@@ -321,7 +321,7 @@ public final class ClusterEvaluator {
 
 		if (attributeExpression instanceof SpiMultinaryExpression) {
 			SpiMultinaryExpression multinaryExpression = (SpiMultinaryExpression) attributeExpression;
-			Iterator it = multinaryExpression.getOperands();
+			Iterator<?> it = multinaryExpression.getOperands();
 			if (multinaryExpression instanceof SpiAnd) {
 				while (it.hasNext()) {
 					SpiAttributeExpression childAttributeExpression = (SpiAttributeExpression) it.next();
@@ -378,112 +378,111 @@ public final class ClusterEvaluator {
 		}
 	}
 
-	@Deprecated
-	private boolean evaluateAttributes(ClusterNavigationPlan clusterNavigationPlan,
-			SpiModelElementClusterExpression modelElementClusterExpression) {
-
-		// check the attribute conditions for every model element expression in the cluster
-		int clusterSize = modelElementClusterExpression.getTotalNumberOfModelElementExpressions();
-		for (int i = 0; i < clusterSize; i++) {
-			SpiModelElementExpression currentModelElementExpression = modelElementClusterExpression.getModelElementExpression(i);
-			SpiAttributeExpression currentAttributeExpression = currentModelElementExpression.getAttributeExpression();
-			EObject currentObject = clusterNavigationPlan.getTupleElement(i);
-			if (currentAttributeExpression != null
-					&& !this.evaluateAttributeExpression(clusterNavigationPlan, modelElementClusterExpression, currentObject,
-							currentAttributeExpression)) {
-				// for at least model element expression the attribute evaluation failed
-				return false;
-			}
-		}
-		// all evaluations successful
-		return true;
-	}
-
-	@SuppressWarnings("unchecked")
-	private boolean evaluateAttributeExpression(ClusterNavigationPlan clusterNavigationPlan,
-			SpiModelElementClusterExpression modelElementClusterExpression, EObject currentObject,
-			SpiAttributeExpression attributeExpression) {
-
-		if (attributeExpression instanceof SpiMultinaryExpression) {
-			SpiMultinaryExpression multinaryExpression = (SpiMultinaryExpression) attributeExpression;
-			Iterator it = multinaryExpression.getOperands();
-			if (multinaryExpression instanceof SpiAnd) {
-				while (it.hasNext()) {
-					SpiAttributeExpression childAttributeExpression = (SpiAttributeExpression) it.next();
-					if (!this.evaluateAttributeExpression(clusterNavigationPlan, modelElementClusterExpression, currentObject,
-							childAttributeExpression)) {
-						return false;
-					}
-				}
-				return true;
-			} else if (multinaryExpression instanceof SpiOr) {
-				while (it.hasNext()) {
-					SpiAttributeExpression childAttributeExpression = (SpiAttributeExpression) it.next();
-					if (this.evaluateAttributeExpression(clusterNavigationPlan, modelElementClusterExpression, currentObject,
-							childAttributeExpression)) {
-						return true;
-					}
-				}
-				return false;
-			} else {
-				throw new BugException(BugMessages.NO_SUCH_MULTINARY_ATTRIBUTE_EXPRESSION_TYPE, multinaryExpression.getClass().getName());
-			}
-		} else if (attributeExpression instanceof SpiLeafExpression) {
-			SpiLeafExpression leafExpression = (SpiLeafExpression) attributeExpression;
-			Object currentAttributeValue = getAttrOrFieldValue(this.emfHelper, currentObject, leafExpression.getAttributeId());
-
-			List<Object> currentAttributeValueList = convertAttributeValueToReusableList(currentAttributeValue);
-			int currentAttributeValueSize = currentAttributeValueList.size();
-			if (leafExpression instanceof SpiSimpleComparisonExpression) {
-				SpiSimpleComparisonExpression simpleComparisonExpression = (SpiSimpleComparisonExpression) leafExpression;
-				for (int i = 0; i < currentAttributeValueSize; i++) {
-					if (AuxServices.compareValues(currentAttributeValueList.get(i), simpleComparisonExpression.getOperator(),
-							simpleComparisonExpression.getValue())) {
-						reuseList(currentAttributeValueList);
-						return true;
-					}
-				}
-				reuseList(currentAttributeValueList);
-				return false;
-			} else if (leafExpression instanceof SpiLike) {
-				SpiLike likeExpression = (SpiLike) leafExpression;
-				for (int i = 0; i < currentAttributeValueSize; i++) {
-					if (this.evaluateLikeOperation(currentAttributeValueList.get(i), likeExpression)) {
-						reuseList(currentAttributeValueList);
-						return true;
-					}
-				}
-				reuseList(currentAttributeValueList);
-				return false;
-			} else if (leafExpression instanceof SpiAttributeToAttributeComparisonExpression) {
-				SpiAttributeToAttributeComparisonExpression attributeToAttributeComparisonExpression = (SpiAttributeToAttributeComparisonExpression) leafExpression;
-				SpiAttributeInModelElement attributeInModelElement = attributeToAttributeComparisonExpression
-						.getComparedAttributeInModelElement();
-				SpiModelElementExpression comparedModelElementExpression = attributeInModelElement.getModelElementExpression();
-				int comparedModelElementExpressionNumber = modelElementClusterExpression
-						.getIndexOfModelElementExpressionInCluster(comparedModelElementExpression);
-				EObject comparedObject = clusterNavigationPlan.getTupleElement(comparedModelElementExpressionNumber);
-				String comparedAttributeId = attributeInModelElement.getAttributeId();
-				Object comparedAttributeValue = getAttrOrFieldValue(this.emfHelper, comparedObject, comparedAttributeId);
-				List<Object> comparedAttributeValueList = convertAttributeValueToReusableList(comparedAttributeValue);
-				for (int i = 0; i < currentAttributeValueSize; i++) {
-					if (compareSimpleObjectToSetOfSimpleObjects(currentAttributeValueList.get(i), comparedAttributeValueList,
-							attributeToAttributeComparisonExpression.getOperator())) {
-						reuseList(currentAttributeValueList);
-						reuseList(comparedAttributeValueList);
-						return true;
-					}
-				}
-				reuseList(currentAttributeValueList);
-				reuseList(comparedAttributeValueList);
-				return false;
-			} else {
-				throw new BugException(BugMessages.NO_SUCH_LEAF_EXPRESSION_TYPE, leafExpression.getClass().getName());
-			}
-		} else {
-			throw new BugException(BugMessages.NO_SUCH_ATTRIBUTE_EXPRESSION_TYPE, attributeExpression.getClass().getName());
-		}
-	}
+//	private boolean evaluateAttributes(ClusterNavigationPlan clusterNavigationPlan,
+//			SpiModelElementClusterExpression modelElementClusterExpression) {
+//
+//		// check the attribute conditions for every model element expression in the cluster
+//		int clusterSize = modelElementClusterExpression.getTotalNumberOfModelElementExpressions();
+//		for (int i = 0; i < clusterSize; i++) {
+//			SpiModelElementExpression currentModelElementExpression = modelElementClusterExpression.getModelElementExpression(i);
+//			SpiAttributeExpression currentAttributeExpression = currentModelElementExpression.getAttributeExpression();
+//			EObject currentObject = clusterNavigationPlan.getTupleElement(i);
+//			if (currentAttributeExpression != null
+//					&& !this.evaluateAttributeExpression(clusterNavigationPlan, modelElementClusterExpression, currentObject,
+//							currentAttributeExpression)) {
+//				// for at least model element expression the attribute evaluation failed
+//				return false;
+//			}
+//		}
+//		// all evaluations successful
+//		return true;
+//	}
+//
+//	@SuppressWarnings("unchecked")
+//	private boolean evaluateAttributeExpression(ClusterNavigationPlan clusterNavigationPlan,
+//			SpiModelElementClusterExpression modelElementClusterExpression, EObject currentObject,
+//			SpiAttributeExpression attributeExpression) {
+//
+//		if (attributeExpression instanceof SpiMultinaryExpression) {
+//			SpiMultinaryExpression multinaryExpression = (SpiMultinaryExpression) attributeExpression;
+//			Iterator it = multinaryExpression.getOperands();
+//			if (multinaryExpression instanceof SpiAnd) {
+//				while (it.hasNext()) {
+//					SpiAttributeExpression childAttributeExpression = (SpiAttributeExpression) it.next();
+//					if (!this.evaluateAttributeExpression(clusterNavigationPlan, modelElementClusterExpression, currentObject,
+//							childAttributeExpression)) {
+//						return false;
+//					}
+//				}
+//				return true;
+//			} else if (multinaryExpression instanceof SpiOr) {
+//				while (it.hasNext()) {
+//					SpiAttributeExpression childAttributeExpression = (SpiAttributeExpression) it.next();
+//					if (this.evaluateAttributeExpression(clusterNavigationPlan, modelElementClusterExpression, currentObject,
+//							childAttributeExpression)) {
+//						return true;
+//					}
+//				}
+//				return false;
+//			} else {
+//				throw new BugException(BugMessages.NO_SUCH_MULTINARY_ATTRIBUTE_EXPRESSION_TYPE, multinaryExpression.getClass().getName());
+//			}
+//		} else if (attributeExpression instanceof SpiLeafExpression) {
+//			SpiLeafExpression leafExpression = (SpiLeafExpression) attributeExpression;
+//			Object currentAttributeValue = getAttrOrFieldValue(this.emfHelper, currentObject, leafExpression.getAttributeId());
+//
+//			List<Object> currentAttributeValueList = convertAttributeValueToReusableList(currentAttributeValue);
+//			int currentAttributeValueSize = currentAttributeValueList.size();
+//			if (leafExpression instanceof SpiSimpleComparisonExpression) {
+//				SpiSimpleComparisonExpression simpleComparisonExpression = (SpiSimpleComparisonExpression) leafExpression;
+//				for (int i = 0; i < currentAttributeValueSize; i++) {
+//					if (AuxServices.compareValues(currentAttributeValueList.get(i), simpleComparisonExpression.getOperator(),
+//							simpleComparisonExpression.getValue())) {
+//						reuseList(currentAttributeValueList);
+//						return true;
+//					}
+//				}
+//				reuseList(currentAttributeValueList);
+//				return false;
+//			} else if (leafExpression instanceof SpiLike) {
+//				SpiLike likeExpression = (SpiLike) leafExpression;
+//				for (int i = 0; i < currentAttributeValueSize; i++) {
+//					if (this.evaluateLikeOperation(currentAttributeValueList.get(i), likeExpression)) {
+//						reuseList(currentAttributeValueList);
+//						return true;
+//					}
+//				}
+//				reuseList(currentAttributeValueList);
+//				return false;
+//			} else if (leafExpression instanceof SpiAttributeToAttributeComparisonExpression) {
+//				SpiAttributeToAttributeComparisonExpression attributeToAttributeComparisonExpression = (SpiAttributeToAttributeComparisonExpression) leafExpression;
+//				SpiAttributeInModelElement attributeInModelElement = attributeToAttributeComparisonExpression
+//						.getComparedAttributeInModelElement();
+//				SpiModelElementExpression comparedModelElementExpression = attributeInModelElement.getModelElementExpression();
+//				int comparedModelElementExpressionNumber = modelElementClusterExpression
+//						.getIndexOfModelElementExpressionInCluster(comparedModelElementExpression);
+//				EObject comparedObject = clusterNavigationPlan.getTupleElement(comparedModelElementExpressionNumber);
+//				String comparedAttributeId = attributeInModelElement.getAttributeId();
+//				Object comparedAttributeValue = getAttrOrFieldValue(this.emfHelper, comparedObject, comparedAttributeId);
+//				List<Object> comparedAttributeValueList = convertAttributeValueToReusableList(comparedAttributeValue);
+//				for (int i = 0; i < currentAttributeValueSize; i++) {
+//					if (compareSimpleObjectToSetOfSimpleObjects(currentAttributeValueList.get(i), comparedAttributeValueList,
+//							attributeToAttributeComparisonExpression.getOperator())) {
+//						reuseList(currentAttributeValueList);
+//						reuseList(comparedAttributeValueList);
+//						return true;
+//					}
+//				}
+//				reuseList(currentAttributeValueList);
+//				reuseList(comparedAttributeValueList);
+//				return false;
+//			} else {
+//				throw new BugException(BugMessages.NO_SUCH_LEAF_EXPRESSION_TYPE, leafExpression.getClass().getName());
+//			}
+//		} else {
+//			throw new BugException(BugMessages.NO_SUCH_ATTRIBUTE_EXPRESSION_TYPE, attributeExpression.getClass().getName());
+//		}
+//	}
 
 	/**
 	 * Get the attribute value of a RefObject or RefStruct. If the value

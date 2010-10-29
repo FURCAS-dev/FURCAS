@@ -16,18 +16,12 @@ package org.eclipse.emf.query2.internal.index;
  * This interface (more precisely on of its subinterfaces) <i>is</i> intended to
  * be implemented by service providers.
  * 
- * @see SpiCoreQueryService
- * @author D045917
  */
-@Deprecated
 public interface SpiMQLQueryService {
 
 	/**
 	 * Returns the facility id, e.g. "PF".
-	 * 
 	 * @return The id of the facility.
-	 * @deprecated
 	 */
-	@Deprecated
 	public String getFacilityId();
 }
