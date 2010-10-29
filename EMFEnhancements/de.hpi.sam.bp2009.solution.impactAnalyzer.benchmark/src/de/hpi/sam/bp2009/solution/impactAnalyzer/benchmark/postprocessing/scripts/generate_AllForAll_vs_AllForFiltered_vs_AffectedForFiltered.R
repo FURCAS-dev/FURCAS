@@ -44,9 +44,44 @@ allForAll=mergeAll[mergeAll$measurement==1,]
 allForFiltered=mergeAll[mergeAll$measurement==2,]
 affectedForFiltered=mergeAll[mergeAll$measurement==2+optionToShow,]
 
-pdf("allForAll_vs_AllForFiltered_vs_AffectedForFiltered.pdf", width = 8, height = 6)
+# as PNG:
+png("c:/tmp/allForAll.png", width=1200, height=800, res = 200)
 plot(allForAll$modelSize, allForAll$measureTime, type="b",
-     xlab="#model packages", ylab="total re-evaluation time in ns",
+     xlab="Number of Model Elements", ylab="Total Re-evaluation Time in ns",
+     ylim=range(allForAll$measureTime, allForFiltered$measureTime, affectedForFiltered$measureTime),
+     # log="y",
+     col="red", lty="dashed",
+     # main="Total re-evaluation times: all contexts for all expressions (dashed, red); all contexts for filtered expressions (dotted, black); affected contexts for filtered expressions (solid, blue)"
+     )
+dev.off()
+
+png("c:/tmp/allForAll_vs_AllForFiltered.png", width=1200, height=800, res = 200)
+plot(allForAll$modelSize, allForAll$measureTime, type="b",
+     xlab="Number of Model Elements", ylab="Total Re-evaluation Time in ns",
+     ylim=range(allForAll$measureTime, allForFiltered$measureTime, affectedForFiltered$measureTime),
+     # log="y",
+     col="red", lty="dashed",
+     # main="Total re-evaluation times: all contexts for all expressions (dashed, red); all contexts for filtered expressions (dotted, black); affected contexts for filtered expressions (solid, blue)"
+     )
+points(allForFiltered$modelSize, allForFiltered$measureTime, type="b", col="black", lty="dotted")
+dev.off()
+
+png("c:/tmp/allForAll_vs_AllForFiltered_vs_AffectedForFiltered.png", width=1200, height=800, res = 200)
+plot(allForAll$modelSize, allForAll$measureTime, type="b",
+     xlab="Number of Model Elements", ylab="Total Re-evaluation Time in ns",
+     ylim=range(allForAll$measureTime, allForFiltered$measureTime, affectedForFiltered$measureTime),
+     # log="y",
+     col="red", lty="dashed",
+     # main="Total re-evaluation times: all contexts for all expressions (dashed, red); all contexts for filtered expressions (dotted, black); affected contexts for filtered expressions (solid, blue)"
+     )
+points(allForFiltered$modelSize, allForFiltered$measureTime, type="b", col="black", lty="dotted")
+points(affectedForFiltered$modelSize, affectedForFiltered$measureTime, type="b", col="blue", lty="solid")
+dev.off()
+
+# and as PDF:
+pdf("c:/tmp/allForAll_vs_AllForFiltered_vs_AffectedForFiltered.pdf", width = 8, height = 6)
+plot(allForAll$modelSize, allForAll$measureTime, type="b",
+     xlab="Number of Model Elements", ylab="Total Re-evaluation Time in ns",
      ylim=range(allForAll$measureTime, allForFiltered$measureTime, affectedForFiltered$measureTime),
      # log="y",
      col="red", lty="dashed",
@@ -56,6 +91,7 @@ points(affectedForFiltered$modelSize, affectedForFiltered$measureTime, type="b",
 dev.off()
 
 allForAllStripped=allForAll[, c("Group.1", "aiExecAndEvalTime")]
+c=aggrFilteredAvgOverRuns[, c("Group.1", "modelSize")]
 c2=merge(c, allForAllStripped, by=c("Group.1"))
 allForInstanceFilteredStripped=aggrAllInstanceFiltered[, c("Group.1", "aiExecAndEvalTime")]
 c3=merge(c2, allForInstanceFilteredStripped, by=c("Group.1"))
@@ -63,5 +99,7 @@ affectedForFilteredStripped=affectedForFiltered[, c("Group.1", "iaExecAndEvalTim
 c4=merge(c3, affectedForFilteredStripped, by=c("Group.1"))
 c4$q1=c4$aiExecAndEvalTime.x/c4$iaExecAndEvalTime
 c4$q2=c4$aiExecAndEvalTime.y/c4$iaExecAndEvalTime
+c4$q3=c4$aiExecAndEvalTime.x/c4$aiExecAndEvalTime.y
 cat("Average ratio allForAll / affectedForFiltered:", mean(c4$q1), "\n")
-cat("Average ratio allForAll / affectedForFiltered:", mean(c4$q2), "\n")
+cat("Average ratio allForFiltered / affectedForFiltered:", mean(c4$q2), "\n")
+cat("Average ratio allForAll / allForFiltered:", mean(c4$q3), "\n")
