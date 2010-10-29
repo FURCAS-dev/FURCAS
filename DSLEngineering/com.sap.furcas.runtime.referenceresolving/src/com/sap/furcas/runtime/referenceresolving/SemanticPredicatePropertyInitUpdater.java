@@ -47,7 +47,7 @@ public class SemanticPredicatePropertyInitUpdater extends AbstractOCLBasedModelU
 
     protected SemanticPredicatePropertyInitUpdater(EStructuralFeature propertyToUpdate, OppositeEndFinder oppositeEndFinder,
             List<SemanticDisambRuleData> predicates, Template containingTemplate) {
-        super(propertyToUpdate, oppositeEndFinder, null);
+        super(propertyToUpdate, oppositeEndFinder, /* expression TODO */ null, /* notifyOnNewContextElements TODO */ true);
         this.predicates = predicates;
         this.containingTemplate = containingTemplate;
     }
@@ -59,12 +59,16 @@ public class SemanticPredicatePropertyInitUpdater extends AbstractOCLBasedModelU
     }
 
     @Override
-    protected Collection<OCLExpression> getTriggerExpressionsWithoutContext() throws ParserException {
+    public Collection<OCLExpression> getTriggerExpressionsWithoutContext() {
         Collection<OCLExpression> result = new LinkedList<OCLExpression>();
         Helper oclHelper = OCLWithHiddenOpposites.newInstance(getOppositeEndFinder()).createOCLHelper();
         for (SemanticDisambRuleData predicate : predicates) {
-            oclHelper.setContext(ContextAndForeachHelper.getParsingContext(predicate.getOCL(), containingTemplate));
-            result.add(oclHelper.createQuery(ContextAndForeachHelper.prepareOclQuery(predicate.getOCL())));
+            try {
+                oclHelper.setContext(ContextAndForeachHelper.getParsingContext(predicate.getOCL(), containingTemplate));
+                result.add(oclHelper.createQuery(ContextAndForeachHelper.prepareOclQuery(predicate.getOCL())));
+            } catch (ParserException e) {
+                throw new RuntimeException(e);
+            }
         }
         return result;
     }

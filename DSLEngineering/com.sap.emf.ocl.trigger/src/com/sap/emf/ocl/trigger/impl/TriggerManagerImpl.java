@@ -1,12 +1,16 @@
 package com.sap.emf.ocl.trigger.impl;
 
+import java.util.Collection;
+import java.util.LinkedList;
+
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.OCLExpression;
 
 import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 import com.sap.emf.ocl.trigger.AdapterForExpression;
+import com.sap.emf.ocl.trigger.ExpressionWithContext;
 import com.sap.emf.ocl.trigger.TriggerManager;
 import com.sap.emf.ocl.trigger.Triggerable;
 
@@ -40,11 +44,29 @@ public class TriggerManagerImpl implements TriggerManager {
     }
 
     @Override
-    public void register(Triggerable triggerable) throws ParserException {
-        for (AdapterForExpression adapter : triggerable.getAdapters(oppositeEndFinder, impactAnalysisConfiguration)) {
+    public void register(Triggerable triggerable) {
+        for (AdapterForExpression adapter : getAdapters(triggerable, oppositeEndFinder, impactAnalysisConfiguration)) {
             EventFilter filter = adapter.getEventFilter();
             eventManager.subscribe(filter, adapter);
         }
+    }
+
+    /**
+     * Creates one adapter for each expression returned from {@link #getTriggerExpressionsWithContext()} and
+     * {@link #getTriggerExpressionsWithoutContext()}. For the former, the context element 
+     */
+    private Collection<AdapterForExpression> getAdapters(Triggerable triggerable, OppositeEndFinder oppositeEndFinder,
+            ActivationOption impactAnalysisConfiguration) {
+        Collection<AdapterForExpression> result = new LinkedList<AdapterForExpression>();
+        for (ExpressionWithContext expWithContext : triggerable.getTriggerExpressionsWithContext()) {
+            result.add(new AdapterForExpression(triggerable, expWithContext.getExpression(),
+                    expWithContext.getContext(), triggerable.notifyOnNewContextElements(), oppositeEndFinder, impactAnalysisConfiguration));
+        }
+        for (OCLExpression expWithoutContext : triggerable.getTriggerExpressionsWithoutContext()) {
+            result.add(new AdapterForExpression(triggerable, expWithoutContext,
+            /* notifyNewContextElements */false, oppositeEndFinder, impactAnalysisConfiguration));
+        }
+        return result;
     }
 
     @Override

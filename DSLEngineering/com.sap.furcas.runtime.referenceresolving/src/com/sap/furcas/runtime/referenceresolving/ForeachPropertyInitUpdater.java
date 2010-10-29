@@ -10,6 +10,7 @@ import org.eclipse.ocl.ecore.OCLExpression;
 
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+import com.sap.emf.ocl.trigger.ExpressionWithContext;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
 import com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic;
@@ -50,8 +51,8 @@ public class ForeachPropertyInitUpdater extends AbstractOCLBasedModelUpdater {
                 OCLWithHiddenOpposites.newInstance(oppositeEndFinder).createOCLHelper()
                         .createQuery(ContextAndForeachHelper.prepareOclQuery(injectorAction.getValue())),
                 (EClass) ContextAndForeachHelper.getParsingContext(injectorAction.getValue(),
-                        ((InjectorActionsBlock) injectorAction.eContainer()).getParentTemplate()), /* notifyNewContextElements */
-                true));
+                        ((InjectorActionsBlock) injectorAction.eContainer()).getParentTemplate())),
+                        /* notifyNewContextElements */ true);
         triggerExpressionsWithoutContext = new LinkedList<OCLExpression>();
         for (PredicateSemantic whenClause : injectorAction.getPredicateSemantic()) {
             if (whenClause.getWhen() != null) {
@@ -67,7 +68,7 @@ public class ForeachPropertyInitUpdater extends AbstractOCLBasedModelUpdater {
     }
 
     @Override
-    protected Collection<OCLExpression> getTriggerExpressionsWithoutContext() {
+    public Collection<OCLExpression> getTriggerExpressionsWithoutContext() {
         return triggerExpressionsWithoutContext;
     }
 
