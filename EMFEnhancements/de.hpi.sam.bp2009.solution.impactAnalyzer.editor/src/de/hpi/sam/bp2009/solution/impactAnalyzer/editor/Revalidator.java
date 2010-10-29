@@ -1,4 +1,4 @@
-package com.sap.emf.ocl.impactanalysis.example.signature_and_call.presentation;
+package de.hpi.sam.bp2009.solution.impactAnalyzer.editor;
 
 import java.util.Collection;
 import java.util.LinkedList;
