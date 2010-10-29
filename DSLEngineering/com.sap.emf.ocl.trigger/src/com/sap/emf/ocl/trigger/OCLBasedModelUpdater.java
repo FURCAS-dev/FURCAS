@@ -1,9 +1,8 @@
-package com.sap.furcas.runtime.referenceresolving;
+package com.sap.emf.ocl.trigger;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.OCLExpression;
 
-import com.sap.emf.ocl.trigger.Triggerable;
 
 /**
  * Based on one or more {@link OCLExpression OCL expressions}, this object may update a model whenever the value

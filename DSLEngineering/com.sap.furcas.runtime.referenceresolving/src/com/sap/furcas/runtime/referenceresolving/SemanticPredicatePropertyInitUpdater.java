@@ -12,6 +12,7 @@ import org.eclipse.ocl.ecore.OCLExpression;
 
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+import com.sap.emf.ocl.trigger.AbstractOCLBasedModelUpdater;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 
