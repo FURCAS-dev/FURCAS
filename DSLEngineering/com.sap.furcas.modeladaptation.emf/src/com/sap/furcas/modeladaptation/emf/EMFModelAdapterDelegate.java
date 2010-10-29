@@ -131,6 +131,9 @@ public class EMFModelAdapterDelegate {
 	EStructuralFeature feat = (EStructuralFeature) EcoreHelper.lookupElementExtended(mofClass, propertyName);
 	if (feat != null) {
 	    if (feat.getUpperBound() == 1) {
+                if (value instanceof Collection) {
+                    value = ((Collection<? extends Object>) value).iterator().next();
+                }
 		// only set if value really changed
 		Object originalValue = refAObject.eGet(feat);
 		if ((value == null && originalValue != null) || (value != null && originalValue == null)

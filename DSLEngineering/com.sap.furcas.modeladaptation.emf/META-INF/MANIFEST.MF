@@ -11,7 +11,10 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.emf.query2;bundle-version="1.0.0",
  org.eclipse.emf.query.index.ui;bundle-version="1.0.0",
  org.eclipse.core.runtime,
- com.sap.furcas.runtime.common
+ com.sap.furcas.runtime.common,
+ com.sap.emf.ocl.hiddenopposites,
+ com.sap.ocl.oppositefinder.query2,
+ de.hpi.sam.bp2009.solution.queryContextScopeProvider
 Bundle-ClassPath: 
  adapter.jar
 Export-Package: 

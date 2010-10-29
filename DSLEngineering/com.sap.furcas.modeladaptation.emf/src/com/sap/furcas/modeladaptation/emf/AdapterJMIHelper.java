@@ -54,12 +54,16 @@ import org.eclipse.ocl.ecore.OCLExpression;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.ReferenceSettingException;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
+import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
+
+import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectDependencyQueryContextProvider;
 
 /**
  * Util class containing methods dealing with MOIN JMI specific functionality.
@@ -103,7 +107,8 @@ public class AdapterJMIHelper {
 		super();
 		this.root = root;
 		this.resourceSet = ResourceSet;
-		ocl = OCL.newInstance(); 
+		// TODO pass in opposite end finder instead of creating it here
+		ocl = OCLWithHiddenOpposites.newInstance(new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider())); 
 		oclHelper = ocl.createOCLHelper();
 		this.additionalCRIScope = new HashSet<URI>();
 		if(additionalCRIScope != null) {
@@ -623,13 +628,14 @@ public class AdapterJMIHelper {
 		queryToExecute = AdapterEcoreHelper.prepareOclQuery(queryToExecute, keyValue);
 		OCLExpression exp;
 		try {
+		    oclHelper.setContext(objectForSelf.eClass());
 			exp = oclHelper.createQuery(queryToExecute);
 		
 			Object result = ocl.evaluate(objectForSelf, exp);
 			if (ocl.isInvalid(result)) {
 				throw new ModelAdapterException("Cannot evaluate OCLExpression:"
 						+ queryToExecute + " Reason: "
-						+ ocl.getEvaluationProblems().getMessage());
+						+ (ocl.getEvaluationProblems() == null ? "" : ocl.getEvaluationProblems().getMessage()));
 			}
 			if (result instanceof Collection<?>) {
 				if (((Collection<?>) result).size() == 0) {

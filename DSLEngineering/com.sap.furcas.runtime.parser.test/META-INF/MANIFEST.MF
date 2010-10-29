@@ -7,7 +7,7 @@ Bundle-Vendor: SAP
 Fragment-Host: com.sap.furcas.runtime.parser;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.junit;bundle-version="4.8.1",
- com.sap.furcas.test;bundle-version="1.0.0",
- com.sap.furcas.metamodel.tests;bundle-version="1.0.0",
- com.sap.furcas.parser.tcs;bundle-version="1.0.0",
- com.sap.furcas.utils;bundle-version="1.0.0"
+ com.sap.furcas.test,
+ com.sap.furcas.metamodel.tests,
+ com.sap.furcas.parser.tcs,
+ com.sap.furcas.utils
