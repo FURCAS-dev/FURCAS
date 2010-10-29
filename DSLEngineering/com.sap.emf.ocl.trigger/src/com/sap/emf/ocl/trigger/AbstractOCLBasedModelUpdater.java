@@ -1,4 +1,4 @@
-package com.sap.furcas.runtime.referenceresolving;
+package com.sap.emf.ocl.trigger;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -10,8 +10,6 @@ import org.eclipse.ocl.ecore.OCLExpression;
 
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
-import com.sap.emf.ocl.trigger.AbstractTriggerable;
-import com.sap.emf.ocl.trigger.ExpressionWithContext;
 
 public class AbstractOCLBasedModelUpdater extends AbstractTriggerable implements OCLBasedModelUpdater {
     private final EStructuralFeature propertyToUpdate;
