@@ -9,6 +9,8 @@
         <cs:dependency name="org.eclipse.uml2.common.edit" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.uml2.uml.edit" componentType="osgi.bundle"/>
         <cs:dependency name="org.junit4" componentType="osgi.bundle"/>
+        <cs:dependency name="lpg.runtime.java.source" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.xtext.sdk" componentType="eclipse.feature"/>
     </cs:dependencies>
     <cs:actions>
         <cs:public name="setup.promoter" actor="ant">
