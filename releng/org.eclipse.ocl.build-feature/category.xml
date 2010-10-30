@@ -3,9 +3,9 @@
    <feature id="org.eclipse.ocl.all.sdk" version="0.0.0">
       <category name="mdt.ocl"/>
    </feature>  
-   <!--<feature id="org.eclipse.ocl.examples" version="0.0.0">
+   <feature id="org.eclipse.ocl.examples" version="0.0.0">
       <category name="mdt.ocl"/>
-   </feature>-->  
+   </feature>
    <category-def name="mdt.ocl" label="MDT/OCL">
       <description>
          MDT/OCL features.
