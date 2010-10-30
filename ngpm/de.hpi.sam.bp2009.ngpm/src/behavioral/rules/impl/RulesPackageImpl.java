@@ -446,8 +446,9 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
           (this, 
            source, 
            new String[] {
-             "invocationDelegates", "http://de.hpi.sam.bp2009.OCL",
-             "validationDelegates", "http://de.hpi.sam.bp2009.OCL"
+             "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL",
+             "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL",
+             "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL"
            });	
     }
 

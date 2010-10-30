@@ -137,7 +137,7 @@ public class TemplatesValidator extends EObjectValidator {
                  stringTemplate,
                  diagnostics,
                  context,
-                 "http://de.hpi.sam.bp2009.OCL",
+                 "http://www.eclipse.org/emf/2002/Ecore/OCL",
                  "expressionMustBeSideEffectFree",
                  STRING_TEMPLATE__EXPRESSION_MUST_BE_SIDE_EFFECT_FREE__EEXPRESSION,
                  Diagnostic.ERROR,

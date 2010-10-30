@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see dataaccess.expressions.ExpressionsPackage#getConditional()
  * @model abstract="true"
- *        annotation="http://de.hpi.sam.bp2009.OCL ConditionMustBeBoolean='self.condition.getType().upperMultiplicity = 1 and\r\n  self.condition.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n  self.condition.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Boolean\''"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL ConditionMustBeBoolean='self.condition.getType().upperMultiplicity = 1 and\r\n  self.condition.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n  self.condition.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Boolean\''"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ConditionMustBeBoolean'"
  * @generated
  */

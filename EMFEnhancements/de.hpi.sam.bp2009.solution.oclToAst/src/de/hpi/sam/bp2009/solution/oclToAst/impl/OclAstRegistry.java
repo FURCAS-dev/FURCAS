@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
 
 /**
  * This is an special EPackage registry which is used by the {@link EAnnotationOCLParserImpl} 
- * to combine the standard registered pacakge with all packages in scope
+ * to combine the standard registered package with all packages in scope
  * @author Philipp
  *
  */
@@ -27,10 +27,9 @@ public class OclAstRegistry implements EPackage.Registry {
      * Note: by {@link Map#keySet()}, {@link Map#values()} and {@link Map#entrySet()} a new set will be delivered
      * so changes at this Set will have no effect to this registry
      * @param baseRegistry this registry is used as fallback for requests
-     * @param saltPackages this pacakges get sorted by {@link EPackage#getNsURI()} and are delivered first
+     * @param saltPackages this packages get sorted by {@link EPackage#getNsURI()} and are delivered first
      */
     public OclAstRegistry(EPackage.Registry baseRegistry, Collection<EPackage> saltPackages) {
-        this.base = baseRegistry==null?EPackage.Registry.INSTANCE:baseRegistry;
         this.base = new EPackageRegistryImpl();
         this.base.put(EcorePackage.eNS_URI, EcorePackage.eINSTANCE);
         if(saltPackages!=null){

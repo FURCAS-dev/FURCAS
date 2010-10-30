@@ -21,17 +21,20 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ecore.NavigationCallExp;
+import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.TupleType;
 import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.ecore.Variable;
+import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.ecore.impl.TypeExpImpl;
 import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 import com.sap.emf.ocl.hiddenopposites.AbstractVisitorWithHiddenOpposites;
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 import com.sap.emf.ocl.util.OclHelper;
 
@@ -39,8 +42,6 @@ import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
-import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
-import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
 /**
  * Collects the relevant events for a single {@link OCLExpression} recursively. The analyzer can be parameterized during
@@ -171,9 +172,8 @@ implements OperationBodyToCallMapper {
                 // standard library operation: nothing to do
             } else {
                 // handle self defined operation
-                // TODO this is only required to obtain the operation body from our proprietary annotation URI. Could use InvocationBehavior.getOperationBody later
-                EAnnotationOCLParser parser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
-                OCLExpression body = parser.getExpressionFromAnnotationsOf(opCallExp.getReferredOperation(), "body");
+                OCL ocl = OCLWithHiddenOpposites.newInstance();
+                OCLExpression body = InvocationBehavior.INSTANCE.getOperationBody(ocl, opCallExp.getReferredOperation());
                 if (body != null) {
                     Set<OperationCallExp> analyzedCallsToBody = visitedOperationBodies.get(body);
                     if (analyzedCallsToBody == null) {

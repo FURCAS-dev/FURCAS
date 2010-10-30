@@ -39,7 +39,7 @@ import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallEx
 
 /**
  * This class is used to visit a OclExpression and extract all referred Object, which has no resource or are located in the OclEnviroment pseudo resource
- * after visiting an expression, all found object are returned by {@link ResourceChanger#getSet()}
+ * after visiting an expression, all found objects are returned by {@link ResourceChanger#getSet()}
  * @author Philipp
  *
  */

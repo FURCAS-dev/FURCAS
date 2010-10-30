@@ -16,10 +16,7 @@
     </genClasses>
     <genClasses ecoreClass="petriNet.ecore#//Place">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute petriNet.ecore#//Place/noTokens"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference petriNet.ecore#//Place/testHiddenOpposite">
-        <ownedOpposite notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference petriNet.ecore#//Place/testHiddenOpposite/hiddenOpposite"/>
-      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference petriNet.ecore#//Place/hiddenOpposite"/>
     </genClasses>
     <genClasses ecoreClass="petriNet.ecore#//Transition"/>
     <genClasses ecoreClass="petriNet.ecore#//Arc">

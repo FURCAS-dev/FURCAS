@@ -20,7 +20,6 @@ Require-Bundle: de.hpi.sam.bp2009.ngpm,
  de.hpi.sam.bp2009.solution.queryContextScopeProvider,
  org.eclipse.emf.query2,
  org.eclipse.core.runtime,
- de.hpi.sam.bp2009.solution.oclToAst,
  org.eclipse.emf.query.index,
  com.sap.ocl.oppositefinder.query2,
  de.hpi.sam.bp2009.solution.testutils

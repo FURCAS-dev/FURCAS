@@ -16,11 +16,16 @@
  */
 package org.eclipse.ocl.ecore.delegate;
 
+import java.util.Map;
+
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Internal.SettingDelegate;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.ExpressionInOCL;
@@ -60,6 +65,10 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 	}
 
 	public OCLExpression getFeatureBody(OCL ocl, EStructuralFeature structuralFeature) {
+		OCLExpression result = getExpressionFromAnnotationsOf(structuralFeature);
+		if (result != null){
+			return result;
+		}
 		String expr = EcoreUtil.getAnnotation(structuralFeature, OCLDelegateDomain.OCL_DELEGATE_URI, DERIVATION_CONSTRAINT_KEY);
 		if (expr == null) {
 			expr = EcoreUtil.getAnnotation(structuralFeature, OCLDelegateDomain.OCL_DELEGATE_URI, INITIAL_CONSTRAINT_KEY);
@@ -83,7 +92,43 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 		if (specification == null) {
 			return null;
 		}
+		saveExpressionInAnnotation(structuralFeature, constraint);
 		return (OCLExpression) specification.getBodyExpression();
+	}
+
+	private void saveExpressionInAnnotation(EStructuralFeature structuralFeature, Constraint constraint) {
+		String sourceURI = Environment.OCL_NAMESPACE_URI;
+		EAnnotation a = structuralFeature.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+		if (a == null){
+			a = EcoreFactory.eINSTANCE.createEAnnotation();
+			a.setEModelElement(structuralFeature);
+			a.setSource(sourceURI);
+			a.getContents().add(constraint);
+		}
+		a.getContents().add(constraint);
+	}
+
+
+	private OCLExpression getExpressionFromAnnotationsOf(EStructuralFeature structuralFeature) {
+		EAnnotation anno = structuralFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		EAnnotation ast = structuralFeature.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+		if (anno != null && ast != null){
+			int pos = -1;
+			int count = 0;
+			for (Map.Entry<String, String> constraint : anno.getDetails()) {
+				if (constraint.getKey().equals(INITIAL_CONSTRAINT_KEY) || constraint.getKey().equals(DERIVATION_CONSTRAINT_KEY)) {
+					pos = count;
+					break;
+				}
+				count++;
+			}
+			if (pos != -1) {
+				if (ast.getContents().size() > pos) {
+					return (OCLExpression) ((Constraint)ast.getContents().get(pos)).getSpecification().getBodyExpression();
+				}
+			}
+		}
+		return null;
 	}
 	
 	public String getName() {

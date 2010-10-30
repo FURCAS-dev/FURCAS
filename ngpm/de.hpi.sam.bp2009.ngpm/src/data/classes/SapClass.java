@@ -56,7 +56,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see data.classes.ClassesPackage#getSapClass()
- * @model annotation="http://de.hpi.sam.bp2009.OCL OnlyValueClassesCanHaveObjectParameters='self.formalObjectParameters->notEmpty() implies self.valueType' OnlyObjectParameterizedClassesCanHaveConverter='self.converterBetweenParametrizations->notEmpty() implies self.formalObjectParameters->notEmpty()' OnlyTrailingOptionalParameters='self.formalObjectParameters->forAll(p | p.defaultValue->notEmpty() implies Sequence{(self.formalObjectParameters->indexOf(p)+1)..self.formalObjectParameters->size()}->forAll(\r\n    i | self.formalObjectParameters->at(i).defaultValue->notEmpty()))' NoRecursionForObjectParameters='true  --  TODO implement this'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL OnlyValueClassesCanHaveObjectParameters='self.formalObjectParameters->notEmpty() implies self.valueType' OnlyObjectParameterizedClassesCanHaveConverter='self.converterBetweenParametrizations->notEmpty() implies self.formalObjectParameters->notEmpty()' OnlyTrailingOptionalParameters='self.formalObjectParameters->forAll(p | p.defaultValue->notEmpty() implies Sequence{(self.formalObjectParameters->indexOf(p)+1)..self.formalObjectParameters->size()}->forAll(\r\n    i | self.formalObjectParameters->at(i).defaultValue->notEmpty()))' NoRecursionForObjectParameters='true  --  TODO implement this'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='OnlyValueClassesCanHaveObjectParameters OnlyObjectParameterizedClassesCanHaveConverter OnlyTrailingOptionalParameters NoRecursionForObjectParameters'"
  * @generated
  */
@@ -446,7 +446,7 @@ public interface SapClass extends SignatureOwner, EventProducer {
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @model kind="operation" unique="false" required="true" ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='not (self.allSignatures()->forAll(s:MethodSignature | not s.isAbstract()))'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='not (self.allSignatures()->forAll(s:MethodSignature | not s.isAbstract()))'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -456,7 +456,7 @@ public interface SapClass extends SignatureOwner, EventProducer {
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @model kind="operation" unique="false" required="true" ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='self.parameterization->notEmpty()'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.parameterization->notEmpty()'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -469,7 +469,7 @@ public interface SapClass extends SignatureOwner, EventProducer {
      * A class A conforms to a class B if they are the same or if there is a chain of (TypeAdapter_i, Class_i) pairs (0<=i<=n) where TypeAdapter_0 adapts A to Class_0, and where Class_n is B.
      * <!-- end-model-doc -->
      * @model unique="false" required="true" ordered="false" typeUnique="false" typeRequired="true" typeOrdered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='if self.oclIsUndefined() then\n    false\n  else\n    self.conformsToExcluding(type, Sequence{}, Sequence{})\n  endif'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='if self.oclIsUndefined() then\n    false\n  else\n    self.conformsToExcluding(type, Sequence{}, Sequence{})\n  endif'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -482,7 +482,7 @@ public interface SapClass extends SignatureOwner, EventProducer {
      * Computes all locally-defined signatures plus those signatures offered by any Class (directly, or by delegation or recursively by type adaptation) attached to this class as a type adapter, plus allSignatures() recursively of all classes to which this class delegates.
      * <!-- end-model-doc -->
      * @model ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='self.allSignaturesExcluding(Set{})'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.allSignaturesExcluding(Set{})'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -497,7 +497,7 @@ public interface SapClass extends SignatureOwner, EventProducer {
      * Note, that TypeAdapter objects cannot delegate because they cannot have association ends attached to them. They can only expose association ends whose other end is attached to a class to which the TypeAdapter conforms.
      * <!-- end-model-doc -->
      * @model ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='if self.oclIsKindOf(data::generics::ParameterizedClassInstantiation) then\n    self.oclAsType(data::generics::ParameterizedClassInstantiation).parameterizedClass.delegatesTo()\n  else\n    if self.oclIsKindOf(data::generics::FormalTypeParameter) then\n      self.oclAsType(data::generics::FormalTypeParameter).typeConstraint->collect(c:SapClass | c.delegatesTo())->flatten()->asSet()\n    else\n      -- TODO improve OCL impact analysis algorithm so that this doesn\'t kill performance:\n      -- Set{}  -- use this for good performance\n      self.getAssociationEnds().otherEnd()->select(delegation->notEmpty()).type.clazz->reject(c|c=self)->asSet()    -- currently bad performance\n    endif\n  endif'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='if self.oclIsKindOf(data::generics::ParameterizedClassInstantiation) then\n    self.oclAsType(data::generics::ParameterizedClassInstantiation).parameterizedClass.delegatesTo()\n  else\n    if self.oclIsKindOf(data::generics::FormalTypeParameter) then\n      self.oclAsType(data::generics::FormalTypeParameter).typeConstraint->collect(c:SapClass | c.delegatesTo())->flatten()->asSet()\n    else\n      -- TODO improve OCL impact analysis algorithm so that this doesn\'t kill performance:\n      -- Set{}  -- use this for good performance\n      self.getAssociationEnds().otherEnd()->select(delegation->notEmpty()).type.clazz->reject(c|c=self)->asSet()    -- currently bad performance\n    endif\n  endif'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -510,7 +510,7 @@ public interface SapClass extends SignatureOwner, EventProducer {
      * Same as conformsTo(Featured):Boolean but with the possibility to pass pairs of Featured elements that are to be considered conforming and thus don't need further exploration. This can be used to avoid endless recursions in conformance testing.
      * <!-- end-model-doc -->
      * @model unique="false" required="true" ordered="false" typeUnique="false" typeRequired="true" typeOrdered="false" excludingConformingUnique="false" excludingConformingMany="true" excludingToUnique="false" excludingToMany="true"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='if oclIsUndefined() then\n    false\n  else\n  if self = type then\n   true\n  else\n    if Sequence{1..excludingConforming->size()}->exists(i|\n        excludingConforming->asSequence()->at(i) = self and excludingTo->asSequence()->at(i) = type) then\n     true\n  else\n    self.adapters->exists(a|a.to.conformsToExcluding(type, excludingConforming->including(self), excludingTo->including(type))) or\n    (if self.oclIsKindOf(data::generics::FormalTypeParameter) then\n        if self.oclAsType(data::generics::FormalTypeParameter).typeConstraint->notEmpty() then\n            self.oclAsType(data::generics::FormalTypeParameter).typeConstraint.conformsToExcluding(type, excludingConforming->including(self), excludingTo->including(type))\n        else\n            false\n        endif\n    else\n        false\n    endif)\n  endif\n  endif\nendif'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='if oclIsUndefined() then\n    false\n  else\n  if self = type then\n   true\n  else\n    if Sequence{1..excludingConforming->size()}->exists(i|\n        excludingConforming->asSequence()->at(i) = self and excludingTo->asSequence()->at(i) = type) then\n     true\n  else\n    self.adapters->exists(a|a.to.conformsToExcluding(type, excludingConforming->including(self), excludingTo->including(type))) or\n    (if self.oclIsKindOf(data::generics::FormalTypeParameter) then\n        if self.oclAsType(data::generics::FormalTypeParameter).typeConstraint->notEmpty() then\n            self.oclAsType(data::generics::FormalTypeParameter).typeConstraint.conformsToExcluding(type, excludingConforming->including(self), excludingTo->including(type))\n        else\n            false\n        endif\n    else\n        false\n    endif)\n  endif\n  endif\nendif'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -523,7 +523,7 @@ public interface SapClass extends SignatureOwner, EventProducer {
      * Signature declared directly by this class and those signatures obtained by delegation, recursively.
      * <!-- end-model-doc -->
      * @model ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='self.signaturesWithDelegationExcluding(Set{})'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.signaturesWithDelegationExcluding(Set{})'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -536,7 +536,7 @@ public interface SapClass extends SignatureOwner, EventProducer {
      * Signatures obtained by delegation recursively.
      * <!-- end-model-doc -->
      * @model ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='self.delegatesTo().signaturesWithDelegation()->flatten()->asSet()'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.delegatesTo().signaturesWithDelegation()->flatten()->asSet()'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -549,7 +549,7 @@ public interface SapClass extends SignatureOwner, EventProducer {
      * Computes signatures offered by any Class (directly, or by delegation or recursively by type adaptation) attached to this class as a type adapter
      * <!-- end-model-doc -->
      * @model ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='self.adaptedSignaturesExcluding(Set{})'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.adaptedSignaturesExcluding(Set{})'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -562,7 +562,7 @@ public interface SapClass extends SignatureOwner, EventProducer {
      * Computes signatures offered by any type adapter adapting this class to another class, minus those signatures redefined in the local class
      * <!-- end-model-doc -->
      * @model ordered="false" excludingMany="true" excludingOrdered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='if excluding->count(self)=0 then\n    if self.oclIsKindOf(data::generics::ParameterizedClassInstantiation) then\n      self.oclAsType(data::generics::ParameterizedClassInstantiation).parameterizedClass.adaptedSignaturesExcluding(excluding->including(self))\n    else\n      if self.oclIsKindOf(data::generics::FormalTypeParameter) then\n        self.oclAsType(data::generics::FormalTypeParameter).typeConstraint->collect(c:SapClass | c.adaptedSignaturesExcluding(excluding->including(self)))->flatten()->asSet()\n      else\n        self.adapters.allSignaturesExcluding(excluding->including(self))\n          ->select(s | not self.ownedSignatures->exists(os | os.conformsTo(s)))\n          ->flatten()->asSet()\n      endif\n    endif\n  else\n    Set{}\n  endif'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='if excluding->count(self)=0 then\n    if self.oclIsKindOf(data::generics::ParameterizedClassInstantiation) then\n      self.oclAsType(data::generics::ParameterizedClassInstantiation).parameterizedClass.adaptedSignaturesExcluding(excluding->including(self))\n    else\n      if self.oclIsKindOf(data::generics::FormalTypeParameter) then\n        self.oclAsType(data::generics::FormalTypeParameter).typeConstraint->collect(c:SapClass | c.adaptedSignaturesExcluding(excluding->including(self)))->flatten()->asSet()\n      else\n        self.adapters.allSignaturesExcluding(excluding->including(self))\n          ->select(s | not self.ownedSignatures->exists(os | os.conformsTo(s)))\n          ->flatten()->asSet()\n      endif\n    endif\n  else\n    Set{}\n  endif'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -575,7 +575,7 @@ public interface SapClass extends SignatureOwner, EventProducer {
      * Computes all locally-defined signatures plus those signatures offered by any Class (directly, or by delegation or recursively by type adaptation) attached to this class as a type adapter, plus allSignatures() recursively of all classes to which this class delegates.
      * <!-- end-model-doc -->
      * @model ordered="false" excludingMany="true" excludingOrdered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='if excluding->count(self)=0 then\n    if self.oclIsKindOf(data::generics::ParameterizedClassInstantiation) then\n      self.oclAsType(data::generics::ParameterizedClassInstantiation).parameterizedClass.allSignaturesExcluding(excluding->including(self))\n    else\n      if self.oclIsKindOf(data::generics::FormalTypeParameter) then\n        self.oclAsType(data::generics::FormalTypeParameter).typeConstraint->collect(c:SapClass | c.allSignaturesExcluding(excluding->including(self)))->flatten()->asSet()\n      else\n        self.signaturesWithDelegationExcluding(excluding)->union(self.adaptedSignaturesExcluding(excluding))\n      endif\n    endif\n  else\n    Set{}    \n  endif'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='if excluding->count(self)=0 then\n    if self.oclIsKindOf(data::generics::ParameterizedClassInstantiation) then\n      self.oclAsType(data::generics::ParameterizedClassInstantiation).parameterizedClass.allSignaturesExcluding(excluding->including(self))\n    else\n      if self.oclIsKindOf(data::generics::FormalTypeParameter) then\n        self.oclAsType(data::generics::FormalTypeParameter).typeConstraint->collect(c:SapClass | c.allSignaturesExcluding(excluding->including(self)))->flatten()->asSet()\n      else\n        self.signaturesWithDelegationExcluding(excluding)->union(self.adaptedSignaturesExcluding(excluding))\n      endif\n    endif\n  else\n    Set{}    \n  endif'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -588,7 +588,7 @@ public interface SapClass extends SignatureOwner, EventProducer {
      * Signature declared directly by this class and those signatures obtained by delegation, recursively.
      * <!-- end-model-doc -->
      * @model ordered="false" excludingMany="true" excludingOrdered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='if excluding->count(self)=0 then \n    if self.oclIsKindOf(data::generics::ParameterizedClassInstantiation) then\n      self.oclAsType(data::generics::ParameterizedClassInstantiation).parameterizedClass.signaturesWithDelegationExcluding(excluding->including(self))\n    else\n      if self.oclIsKindOf(data::generics::FormalTypeParameter) then\n        self.oclAsType(data::generics::FormalTypeParameter).typeConstraint->collect(c:SapClass | c.signaturesWithDelegationExcluding(excluding->including(self)))->flatten()->asSet()\n      else\n        self.ownedSignatures->union(self.delegatesTo().signaturesWithDelegationExcluding(excluding->including(self)))->flatten()->asSet()\n      endif\n    endif\nelse\n  Set{}\nendif'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='if excluding->count(self)=0 then \n    if self.oclIsKindOf(data::generics::ParameterizedClassInstantiation) then\n      self.oclAsType(data::generics::ParameterizedClassInstantiation).parameterizedClass.signaturesWithDelegationExcluding(excluding->including(self))\n    else\n      if self.oclIsKindOf(data::generics::FormalTypeParameter) then\n        self.oclAsType(data::generics::FormalTypeParameter).typeConstraint->collect(c:SapClass | c.signaturesWithDelegationExcluding(excluding->including(self)))->flatten()->asSet()\n      else\n        self.ownedSignatures->union(self.delegatesTo().signaturesWithDelegationExcluding(excluding->including(self)))->flatten()->asSet()\n      endif\n    endif\nelse\n  Set{}\nendif'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -601,7 +601,7 @@ public interface SapClass extends SignatureOwner, EventProducer {
      * Signatures obtained by delegation recursively.
      * <!-- end-model-doc -->
      * @model ordered="false" excludingMany="true" excludingOrdered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='if excluding->count(self)=0 then\n  self.delegatesTo().signaturesWithDelegationExcluding(excluding->including(self))->flatten()->asSet()\nelse\n  Set{}\nendif'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='if excluding->count(self)=0 then\n  self.delegatesTo().signaturesWithDelegationExcluding(excluding->including(self))->flatten()->asSet()\nelse\n  Set{}\nendif'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -611,7 +611,7 @@ public interface SapClass extends SignatureOwner, EventProducer {
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @model kind="operation" ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='self.adaptedBy.adapted.getConformingClasses()->including(self)->asSet()'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.adaptedBy.adapted.getConformingClasses()->including(self)->asSet()'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -624,7 +624,7 @@ public interface SapClass extends SignatureOwner, EventProducer {
      * Retrieves those association ends that use this class in their type definition.
      * <!-- end-model-doc -->
      * @model kind="operation" ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='self.elementsOfType->collect(associationEnd->asSet())->asSet()'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.elementsOfType->collect(associationEnd->asSet())->asSet()'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -637,7 +637,7 @@ public interface SapClass extends SignatureOwner, EventProducer {
      * Obtains all association ends that use this class in their type definition and that contribute to this class's equality, indicated by their contributesToEquality attribute being set to true.
      * <!-- end-model-doc -->
      * @model kind="operation" ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='self.getAssociationEnds()->select(ae|ae.contributesToEquality)'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.getAssociationEnds()->select(ae|ae.contributesToEquality)'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -650,7 +650,7 @@ public interface SapClass extends SignatureOwner, EventProducer {
      * Determines all classes to which this class conforms, directly and transitively, through chains of TypeAdapters. The result includes this class itself.
      * <!-- end-model-doc -->
      * @model kind="operation" ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='self.adapters.to.getConformsToClasses()->including(self)->asSet()'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.adapters.to.getConformsToClasses()->including(self)->asSet()'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -663,7 +663,7 @@ public interface SapClass extends SignatureOwner, EventProducer {
      * Determines all association ends to whose type this class conforms. This means that an instance of this class can be inserted on that respective end of the corresponding association. For example, if there is an association between Order and Item with ends "order" and "items" and there are classes SalesOrder and SalesOrderItem conforming to Order and Item, respectively, then the "order" end will be returned by this method when invoked on the SalesOrder class because SalesOrder conforms to Order and therefore a SalesOrder can be inserted into the association in role "order."
      * <!-- end-model-doc -->
      * @model kind="operation" ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='self.getConformsToClasses().getAssociationEnds()->asSet()'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.getConformsToClasses().getAssociationEnds()->asSet()'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -676,7 +676,7 @@ public interface SapClass extends SignatureOwner, EventProducer {
      * Like getConformsToAssociationEnds(), but selects only those association ends that are marked as composite.
      * <!-- end-model-doc -->
      * @model kind="operation" ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='self.getConformsToClasses().getAssociationEnds()->select(ae|ae.composite)->asSet()'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.getConformsToClasses().getAssociationEnds()->select(ae|ae.composite)->asSet()'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -689,7 +689,7 @@ public interface SapClass extends SignatureOwner, EventProducer {
      * Like getConformsToAssociationEnds(), but selects only those association ends whose other ends are marked as composite.
      * <!-- end-model-doc -->
      * @model kind="operation" ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='self.getConformsToClasses().getAssociationEnds()->select(ae|ae.otherEnd().composite)->asSet()'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.getConformsToClasses().getAssociationEnds()->select(ae|ae.otherEnd().composite)->asSet()'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */

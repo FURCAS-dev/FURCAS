@@ -60,7 +60,7 @@ public interface Statement extends InScope {
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @model kind="operation" unique="false" required="true" ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='self.block.getOutermostBlock()'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.block.getOutermostBlock()'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -75,7 +75,7 @@ public interface Statement extends InScope {
      * TODO We need a more context-sensitive definition of sideEffectFree. While assigning to a local variable disallows statement reordering within the block, the block can still overall be side effect free such that its invocation may be reordered. There seem to be at least two notions of side effect freeness: one within the block in which it occurs (and variable assignment in this context counts as a side effect because it will disallow reordering), and another one regarding side effects observable outside the block; those are all modifications that can "escape" from the block, including changing the state of an object that is reachable outside the block (even if created in the block but then returned from the block), or changing the contents of a link container visible outside the block.
      * <!-- end-model-doc -->
      * @model kind="operation" unique="false" required="true" ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='not self.oclIsKindOf(AddLink) and\n  not self.oclIsKindOf(RemoveLink) and\n  not self.oclIsKindOf(Assignment) and\n  (self.oclIsKindOf(IfElse) implies self.oclAsType(IfElse).condition.isSideEffectFree()) and\n  (self.oclIsKindOf(WhileLoop) implies self.oclAsType(WhileLoop).condition.isSideEffectFree()) and\n  (self.oclIsKindOf(ExpressionStatement) implies self.oclAsType(ExpressionStatement).expression.isSideEffectFree()) and\n  (self.oclIsKindOf(StatementWithArgument) implies (self.oclAsType(StatementWithArgument).argument->notEmpty() implies self.oclAsType(StatementWithArgument).argument.isSideEffectFree())) and\n  (self.oclIsKindOf(StatementWithNestedBlocks) implies self.oclAsType(StatementWithNestedBlocks).nestedBlocks->forAll(b|b.isSideEffectFree()))'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='not self.oclIsKindOf(AddLink) and\n  not self.oclIsKindOf(RemoveLink) and\n  not self.oclIsKindOf(Assignment) and\n  (self.oclIsKindOf(IfElse) implies self.oclAsType(IfElse).condition.isSideEffectFree()) and\n  (self.oclIsKindOf(WhileLoop) implies self.oclAsType(WhileLoop).condition.isSideEffectFree()) and\n  (self.oclIsKindOf(ExpressionStatement) implies self.oclAsType(ExpressionStatement).expression.isSideEffectFree()) and\n  (self.oclIsKindOf(StatementWithArgument) implies (self.oclAsType(StatementWithArgument).argument->notEmpty() implies self.oclAsType(StatementWithArgument).argument.isSideEffectFree())) and\n  (self.oclIsKindOf(StatementWithNestedBlocks) implies self.oclAsType(StatementWithNestedBlocks).nestedBlocks->forAll(b|b.isSideEffectFree()))'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -88,7 +88,7 @@ public interface Statement extends InScope {
      * Assignment statements to block-local variables do not imply a side effect w.r.t the block
      * <!-- end-model-doc -->
      * @model unique="false" required="true" ordered="false" blockUnique="false" blockRequired="true" blockOrdered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='not self.oclIsKindOf(AddLink) and\n  not self.oclIsKindOf(RemoveLink) and\n  (self.oclIsKindOf(Assignment) implies self.oclAsType(Assignment).assignTo.owner <> block) and\n  (self.oclIsKindOf(IfElse) implies self.oclAsType(IfElse).condition.isSideEffectFree()) and\n  (self.oclIsKindOf(WhileLoop) implies self.oclAsType(WhileLoop).condition.isSideEffectFree()) and\n  (self.oclIsKindOf(ExpressionStatement) implies self.oclAsType(ExpressionStatement).expression.isSideEffectFree()) and\n  (self.oclIsKindOf(StatementWithArgument) implies (self.oclAsType(StatementWithArgument).argument->notEmpty() implies self.oclAsType(StatementWithArgument).argument.isSideEffectFree())) and\n  (self.oclIsKindOf(StatementWithNestedBlocks) implies self.oclAsType(StatementWithNestedBlocks).nestedBlocks->forAll(b|b.isSideEffectFree()))'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='not self.oclIsKindOf(AddLink) and\n  not self.oclIsKindOf(RemoveLink) and\n  (self.oclIsKindOf(Assignment) implies self.oclAsType(Assignment).assignTo.owner <> block) and\n  (self.oclIsKindOf(IfElse) implies self.oclAsType(IfElse).condition.isSideEffectFree()) and\n  (self.oclIsKindOf(WhileLoop) implies self.oclAsType(WhileLoop).condition.isSideEffectFree()) and\n  (self.oclIsKindOf(ExpressionStatement) implies self.oclAsType(ExpressionStatement).expression.isSideEffectFree()) and\n  (self.oclIsKindOf(StatementWithArgument) implies (self.oclAsType(StatementWithArgument).argument->notEmpty() implies self.oclAsType(StatementWithArgument).argument.isSideEffectFree())) and\n  (self.oclIsKindOf(StatementWithNestedBlocks) implies self.oclAsType(StatementWithNestedBlocks).nestedBlocks->forAll(b|b.isSideEffectFree()))'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -98,7 +98,7 @@ public interface Statement extends InScope {
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @model kind="operation" ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='-- collect all NamedValue declarations introduced by statements in this statement\'s owning block, prior to this statement.\n  let pos:Integer = self.block.statements->indexOf(self) in\n  if pos > 1 then\n    self.addNamedValuesWithNewNames(\n    if self.block.statements->at(-1+pos).oclIsKindOf(NamedValueDeclaration) then\n      self.block.statements->at(-1+pos).oclAsType(NamedValueDeclaration).namedValue->asSet()\n    else\n      Set{}\n    endif,\n    self.block.statements->at(-1+pos).getNamedValuesInScope())\n  else\n    -- first statement in block; consider block itself\n    self.block.getNamedValuesInScope()\n  endif'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='-- collect all NamedValue declarations introduced by statements in this statement\'s owning block, prior to this statement.\n  let pos:Integer = self.block.statements->indexOf(self) in\n  if pos > 1 then\n    self.addNamedValuesWithNewNames(\n    if self.block.statements->at(-1+pos).oclIsKindOf(NamedValueDeclaration) then\n      self.block.statements->at(-1+pos).oclAsType(NamedValueDeclaration).namedValue->asSet()\n    else\n      Set{}\n    endif,\n    self.block.statements->at(-1+pos).getNamedValuesInScope())\n  else\n    -- first statement in block; consider block itself\n    self.block.getNamedValuesInScope()\n  endif'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -108,7 +108,7 @@ public interface Statement extends InScope {
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @model kind="operation" unique="false" ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='self.block.getOwningClass()'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.block.getOwningClass()'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */

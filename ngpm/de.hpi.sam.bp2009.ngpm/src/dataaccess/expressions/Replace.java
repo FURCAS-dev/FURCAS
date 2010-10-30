@@ -28,7 +28,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see dataaccess.expressions.ExpressionsPackage#getReplace()
- * @model annotation="http://de.hpi.sam.bp2009.OCL SourceObjectIsOfValueType='self.object.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n  self.object.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType' WithTypeConformsToLastStepsType='self.with.getType().conformsTo(self.steps->at(self.steps->size()).to.type)'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL SourceObjectIsOfValueType='self.object.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n  self.object.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType' WithTypeConformsToLastStepsType='self.with.getType().conformsTo(self.steps->at(self.steps->size()).to.type)'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='SourceObjectIsOfValueType WithTypeConformsToLastStepsType'"
  * @generated
  */

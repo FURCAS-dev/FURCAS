@@ -25,7 +25,7 @@ import data.classes.AssociationEnd;
  * </p>
  *
  * @see dataaccess.expressions.ExpressionsPackage#getAssociationEndNavigationExpression()
- * @model annotation="http://de.hpi.sam.bp2009.OCL ObjectTypeMustMatch='self.object.getType().conformsToIgnoringMultiplicity(self.toEnd.otherEnd().type)' ResultType='self.getType() = self.toEnd.type' EndMustBeNavigable='self.toEnd.navigable'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL ObjectTypeMustMatch='self.object.getType().conformsToIgnoringMultiplicity(self.toEnd.otherEnd().type)' ResultType='self.getType() = self.toEnd.type' EndMustBeNavigable='self.toEnd.navigable'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ObjectTypeMustMatch ResultType EndMustBeNavigable'"
  * @generated
  */

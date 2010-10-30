@@ -16,11 +16,18 @@
  */
 package org.eclipse.ocl.ecore.delegate;
 
+import java.util.Map;
+
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EOperation.Internal.InvocationDelegate;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.ExpressionInOCL;
@@ -68,9 +75,15 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 	}
 
 	public OCLExpression getOperationBody(OCL ocl, EOperation operation) {
+		OCLExpression result = getExpressionFromAnnotationsOf(operation, BODY_CONSTRAINT_KEY);
+		if(result != null){
+			return result;
+		}
 		EClass context = operation.getEContainingClass();
 		OCL.Helper helper = ocl.createOCLHelper();
 		helper.setOperationContext(context, operation);
+		//to deal with hidden opposites
+		helper.setValidating(false);
 		String expr = EcoreUtil.getAnnotation(operation, OCLDelegateDomain.OCL_DELEGATE_URI, BODY_CONSTRAINT_KEY);
 		if (expr == null) {
 			return null;
@@ -88,7 +101,71 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 		if (specification == null) {
 			return null;
 		}
+		saveExpressionInAnnotation(operation, constraint);
 		return (OCLExpression) specification.getBodyExpression();
+	}
+	
+	public OCLExpression getInvariant(EModelElement cls, String constraintName, OCL ocl){
+		OCLExpression result = getExpressionFromAnnotationsOf(cls, constraintName);
+		if (result != null){
+			return result;
+		}
+		OCL.Helper helper = ocl.createOCLHelper();
+		if (!(cls instanceof EClassifier)){
+			return null;
+		}
+		helper.setContext((EClassifier)cls);
+		String expr = EcoreUtil.getAnnotation(cls, OCLDelegateDomain.OCL_DELEGATE_URI, constraintName);
+		if (expr == null){
+			return null;
+		}
+		Constraint constraint;
+		try {
+			constraint = helper.createInvariant(expr);
+		} catch (ParserException e) {
+			throw new OCLDelegateException(e.getLocalizedMessage(), e);
+		}
+		if (constraint == null) {
+			return null;
+		}
+		ExpressionInOCL specification = (ExpressionInOCL) constraint.getSpecification();
+		if (specification == null) {
+			return null;
+		}
+		saveExpressionInAnnotation(cls, constraint);
+		return (OCLExpression) specification.getBodyExpression();
+	}
+
+	private void saveExpressionInAnnotation(EModelElement modelElement, Constraint constraint) {
+		EAnnotation a = modelElement.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+		if (a == null){
+			a = EcoreFactory.eINSTANCE.createEAnnotation();
+			a.setEModelElement(modelElement);
+			a.setSource(Environment.OCL_NAMESPACE_URI);
+		}
+		a.getContents().add(constraint);
+	}
+
+	private OCLExpression getExpressionFromAnnotationsOf(EModelElement modelElement, String constraintKey) {
+		EAnnotation anno = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		EAnnotation ast = modelElement.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+		if (anno != null && ast != null){
+			int pos = -1;
+			int count = 0;
+			for (Map.Entry<String, String> constraint : anno.getDetails()) {
+				if (constraint.getKey().equals(constraintKey)) {
+					pos = count;
+					break;
+				}
+				count++;
+			}
+			if (pos != -1) {
+				if (ast.getContents().size() > pos) {
+					return (OCLExpression) ((Constraint)ast.getContents().get(pos)).getSpecification().getBodyExpression();
+				}
+			}
+		}
+		return null;
 	}
 
 	public Class<InvocationDelegate.Factory.Registry> getRegistryClass() {

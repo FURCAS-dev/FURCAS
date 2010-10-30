@@ -137,7 +137,7 @@ public class TimedependencyValidator extends EObjectValidator {
                  timeDependency,
                  diagnostics,
                  context,
-                 "http://de.hpi.sam.bp2009.OCL",
+                 "http://www.eclipse.org/emf/2002/Ecore/OCL",
                  "RecordCutoffGreaterOrEqualZero",
                  TIME_DEPENDENCY__RECORD_CUTOFF_GREATER_OR_EQUAL_ZERO__EEXPRESSION,
                  Diagnostic.ERROR,

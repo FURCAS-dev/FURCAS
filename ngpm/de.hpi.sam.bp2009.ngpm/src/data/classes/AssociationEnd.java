@@ -32,7 +32,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see data.classes.ClassesPackage#getAssociationEnd()
- * @model annotation="http://de.hpi.sam.bp2009.OCL ExposingClassesEqualOppositeEndsType='self.signatureImplementations.implements_.owner->forAll(c:SignatureOwner | c = self.otherEnd().type.clazz)' NoCompositionWithValueClass='self.composite implies self.association.ends.type->forAll(ctd:ClassTypeDefinition | not ctd.clazz.valueType)' EqualityContributionsMustBeExposedAndNavigable='self.contributesToEquality implies (self.otherEnd().signatureImplementations->notEmpty() and self.otherEnd().navigable)' EqualityContributingEndOnValueMustHaveUnlimitedUpperBounds='(self.type.clazz.valueType and self.contributesToEquality and\r\n   self.type.clazz.getAssociationEnds()->exists(ae |\r\n     ae <> self and ae.contributesToEquality)) implies\r\n  self.type.isMany()'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL ExposingClassesEqualOppositeEndsType='self.signatureImplementations.implements_.owner->forAll(c:SignatureOwner | c = self.otherEnd().type.clazz)' NoCompositionWithValueClass='self.composite implies self.association.ends.type->forAll(ctd:ClassTypeDefinition | not ctd.clazz.valueType)' EqualityContributionsMustBeExposedAndNavigable='self.contributesToEquality implies (self.otherEnd().signatureImplementations->notEmpty() and self.otherEnd().navigable)' EqualityContributingEndOnValueMustHaveUnlimitedUpperBounds='(self.type.clazz.valueType and self.contributesToEquality and\r\n   self.type.clazz.getAssociationEnds()->exists(ae |\r\n     ae <> self and ae.contributesToEquality)) implies\r\n  self.type.isMany()'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ExposingClassesEqualOppositeEndsType NoCompositionWithValueClass EqualityContributionsMustBeExposedAndNavigable EqualityContributingEndOnValueMustHaveUnlimitedUpperBounds'"
  * @generated
  */
@@ -248,7 +248,7 @@ public interface AssociationEnd extends NamedElement {
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @model unique="false" required="true" ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='association.ends->select(ae|ae <> self)->first()'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='association.ends->select(ae|ae <> self)->first()'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */

@@ -20,7 +20,7 @@ package company;
  * </p>
  *
  * @see company.CompanyPackage#getFreelance()
- * @model annotation="http://de.hpi.sam.bp2009.OCL ValidAssignment='self.assignment >= 5 and self.assignment <= 30' ValidAssignmentWarning='self.assignment >= 5 and self.assignment <= 40' StudentAndFreelancesAge='self.age < 40'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL ValidAssignment='self.assignment >= 5 and self.assignment <= 30' ValidAssignmentWarning='self.assignment >= 5 and self.assignment <= 40' StudentAndFreelancesAge='self.age < 40'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ValidAssignment ValidAssignmentWarning StudentAndFreelancesAge'"
  * @generated
  */

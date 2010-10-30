@@ -12,7 +12,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EModelElement;
-import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
@@ -35,11 +34,7 @@ import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
  * @see de.hpi.sam.bp2009.solution.oclToAst.OclToAstPackage#getEAnnotationOCLParser()
  */
 public interface EAnnotationOCLParser {
-    public static final String ANNOTATION_SOURCE ="http://de.hpi.sam.bp2009.OCL";
-    //		OCLDelegateDomain.OCL_DELEGATE_URI;
-
     public static final String EXPRESSION_NOT_FOUND= "Non-compiled expression found (maybe compile error?), please use the OclToAst conversion to attach the compile expression to your model element";
-    public static final String MISSING_BODY_FOR_INVOCATION_DELEGATE = "Missing or invalid body constraint for ";
 
     public static final String OCL_TYPES = "oclTypes";
 
@@ -57,16 +52,6 @@ public interface EAnnotationOCLParser {
      * @param modelElement to parse the {@link EAnnotation}s from
      */
     public void convertOclAnnotation(EModelElement modelElement);
-
-    /**
-     * Extract an OCLExpression matching the given constraint name. Suppose that the OCLExpression previously get parsed through {@link EAnnotationOCLParser#convertOclAnnotation(EModelElement)}
-     * 
-     * @param element with the {@link EAnnotation} which should be searched
-     * @param constraintName the name of the constraint which should be returned, if your searching for pre/post/body/derivation/initial expression give the key defined in {@link OCLDelegateDomain} e.g. pre/post/derive/initial
-     * @return the OCLExpression matching the given constraint name, if no matching Annotation found or the annotation does not contain an precompiled Expression, null is returned.
-     */
-    public OCLExpression getExpressionFromAnnotationsOf(ENamedElement element,
-            String constraintName);
 
     /**
      * Steps through all classes of an {@link EPackage} and invoke for each class an containing {@link EOperation}s and {@link EAttribute}s the {@link EAnnotationOCLParser#convertOclAnnotation(EModelElement)}.

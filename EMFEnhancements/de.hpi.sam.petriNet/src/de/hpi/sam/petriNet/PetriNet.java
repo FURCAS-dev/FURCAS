@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see de.hpi.sam.petriNet.PetriNetPackage#getPetriNet()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='modelName'"
- *        annotation="http://de.hpi.sam.bp2009.OCL modelName='self.elements->notEmpty()'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL modelName='self.elements->notEmpty()'"
  * @generated
  */
 public interface PetriNet extends EObject {

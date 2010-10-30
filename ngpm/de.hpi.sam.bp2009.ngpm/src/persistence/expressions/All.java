@@ -25,7 +25,7 @@ import dataaccess.expressions.Expression;
  * </p>
  *
  * @see persistence.expressions.ExpressionsPackage#getAll()
- * @model annotation="http://de.hpi.sam.bp2009.OCL MustBeEntityClass='not self.ofClass.valueType' ExpressionMustBeSnapshotOrTimePoint='if self.snapshot = SnapshotSelection::SPECIFIED then\r\n    self.snapshotIdentifier.getType().upperMultiplicity = 1 and\r\n    self.snapshotIdentifier.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n   Set{\'Snapshot\', \'TimePoint\'}->includes(self.snapshotIdentifier.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name)\r\n  else\r\n    true\r\n  endif'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL MustBeEntityClass='not self.ofClass.valueType' ExpressionMustBeSnapshotOrTimePoint='if self.snapshot = SnapshotSelection::SPECIFIED then\r\n    self.snapshotIdentifier.getType().upperMultiplicity = 1 and\r\n    self.snapshotIdentifier.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n   Set{\'Snapshot\', \'TimePoint\'}->includes(self.snapshotIdentifier.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name)\r\n  else\r\n    true\r\n  endif'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='MustBeEntityClass ExpressionMustBeSnapshotOrTimePoint'"
  * @generated
  */

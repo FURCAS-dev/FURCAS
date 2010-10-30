@@ -22,7 +22,7 @@ import dataaccess.expressions.ExpressionWithArgument;
  *
  * @see dataaccess.expressions.collectionexpressions.CollectionexpressionsPackage#getWithPosition()
  * @model abstract="true"
- *        annotation="http://de.hpi.sam.bp2009.OCL SourceMustBeOrdered='self.argument.getType().ordered'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL SourceMustBeOrdered='self.argument.getType().ordered'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='SourceMustBeOrdered'"
  * @generated
  */

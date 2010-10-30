@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see data.classes.ClassesPackage#getTypeAdapter()
- * @model annotation="http://de.hpi.sam.bp2009.OCL AllSignatureConforms='self.ownedSignatures->forAll(selfSig:MethodSignature |\r\n    self.to.signaturesWithDelegation()->exists(toSig:MethodSignature |\r\n       selfSig.conformsTo(toSig)))' SignaturesCannotBeAbstract='self.ownedSignatures->forAll(selfSig:MethodSignature | not selfSig.isAbstract())' IsFullAdaptationToTo='self.to.signaturesWithDelegation()->forAll(toSig|\r\n    self.adapted.signaturesWithDelegation()->exists(adaptedSig|\r\n      adaptedSig.conformsTo(toSig))\r\n    or self.ownedSignatures->exists(ownedSig|\r\n      ownedSig.conformsTo(toSig)))' ValuesToValues_EntitiesToEntities='self.adapted.valueType = self.to.valueType'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL AllSignatureConforms='self.ownedSignatures->forAll(selfSig:MethodSignature |\r\n    self.to.signaturesWithDelegation()->exists(toSig:MethodSignature |\r\n       selfSig.conformsTo(toSig)))' SignaturesCannotBeAbstract='self.ownedSignatures->forAll(selfSig:MethodSignature | not selfSig.isAbstract())' IsFullAdaptationToTo='self.to.signaturesWithDelegation()->forAll(toSig|\r\n    self.adapted.signaturesWithDelegation()->exists(adaptedSig|\r\n      adaptedSig.conformsTo(toSig))\r\n    or self.ownedSignatures->exists(ownedSig|\r\n      ownedSig.conformsTo(toSig)))' ValuesToValues_EntitiesToEntities='self.adapted.valueType = self.to.valueType'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='AllSignatureConforms SignaturesCannotBeAbstract IsFullAdaptationToTo ValuesToValues_EntitiesToEntities'"
  * @generated
  */
@@ -91,7 +91,7 @@ public interface TypeAdapter extends SignatureOwner {
      * A class A conforms to a class B if for every signature that B has (either directly or by delegation, but not from any adapters), A has a conforming signature, either immediately declared in A or by delegation or through a type adapter.
      * <!-- end-model-doc -->
      * @model unique="false" required="true" ordered="false" typeUnique="false" typeRequired="true" typeOrdered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='type.signaturesWithDelegation()->forAll(typeSig:MethodSignature |\n    self.allSignatures()->exists(selfSig:MethodSignature |\n       selfSig.conformsToExcluding(typeSig, Sequence{self.to}, Sequence{type})))'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='type.signaturesWithDelegation()->forAll(typeSig:MethodSignature |\n    self.allSignatures()->exists(selfSig:MethodSignature |\n       selfSig.conformsToExcluding(typeSig, Sequence{self.to}, Sequence{type})))'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -104,7 +104,7 @@ public interface TypeAdapter extends SignatureOwner {
      * Same as conformsTo(Featured):Boolean but with the possibility to pass pairs of Featured elements that are to be considered conforming and thus don't need further exploration. This can be used to avoid endless recursions in conformance testing.
      * <!-- end-model-doc -->
      * @model unique="false" required="true" ordered="false" typeUnique="false" typeRequired="true" typeOrdered="false" excludingConformingUnique="false" excludingConformingMany="true" excludingToUnique="false" excludingToMany="true"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='Sequence{1..excludingConforming->size()}->exists(i|\n  excludingConforming->asSequence()->at(i) = self.to and excludingTo->asSequence()->at(i) = type) or\n  type.signaturesWithDelegation()->forAll(typeSig:MethodSignature |\n         self.allSignatures()->exists(selfSig:MethodSignature |\n            selfSig.conformsToExcluding(typeSig,\n                    excludingConforming->asSequence()->append(self.to),\n                    excludingTo->asSequence()->append(type))))'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='Sequence{1..excludingConforming->size()}->exists(i|\n  excludingConforming->asSequence()->at(i) = self.to and excludingTo->asSequence()->at(i) = type) or\n  type.signaturesWithDelegation()->forAll(typeSig:MethodSignature |\n         self.allSignatures()->exists(selfSig:MethodSignature |\n            selfSig.conformsToExcluding(typeSig,\n                    excludingConforming->asSequence()->append(self.to),\n                    excludingTo->asSequence()->append(type))))'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -117,7 +117,7 @@ public interface TypeAdapter extends SignatureOwner {
      * Computes all locally-defined signatures plus not conforming signatures offered by 'To' Class. 
      * <!-- end-model-doc -->
      * @model ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='self.allSignaturesExcluding(Set{})'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.allSignaturesExcluding(Set{})'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -130,7 +130,7 @@ public interface TypeAdapter extends SignatureOwner {
      * Same as allSignatures() but with the possibility to to avoid endless recursions.
      * <!-- end-model-doc -->
      * @model ordered="false" excludingMany="true" excludingOrdered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='self.to.allSignaturesExcluding(excluding)->select(s |\n    not self.ownedSignatures->exists(os | os.conformsTo(s)))->union(\n  self.ownedSignatures)'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.to.allSignaturesExcluding(excluding)->select(s |\n    not self.ownedSignatures->exists(os | os.conformsTo(s)))->union(\n  self.ownedSignatures)'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */

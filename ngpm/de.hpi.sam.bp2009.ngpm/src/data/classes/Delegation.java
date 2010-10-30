@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see data.classes.ClassesPackage#getDelegation()
- * @model annotation="http://de.hpi.sam.bp2009.OCL ToEndMustHaveMultiplicityOfOne='self.from.otherEnd().type.lowerMultiplicity = 1 and\r\n  self.from.otherEnd().type.upperMultiplicity = 1'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL ToEndMustHaveMultiplicityOfOne='self.from.otherEnd().type.lowerMultiplicity = 1 and\r\n  self.from.otherEnd().type.upperMultiplicity = 1'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ToEndMustHaveMultiplicityOfOne'"
  * @generated
  */

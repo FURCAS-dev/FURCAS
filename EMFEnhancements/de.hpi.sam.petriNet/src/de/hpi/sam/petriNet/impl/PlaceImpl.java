@@ -11,9 +11,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import de.hpi.sam.petriNet.Node;
 import de.hpi.sam.petriNet.PetriNetPackage;
 import de.hpi.sam.petriNet.Place;
+import de.hpi.sam.petriNet.Transition;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +23,7 @@ import de.hpi.sam.petriNet.Place;
  * The following features are implemented:
  * <ul>
  *   <li>{@link de.hpi.sam.petriNet.impl.PlaceImpl#getNoTokens <em>No Tokens</em>}</li>
- *   <li>{@link de.hpi.sam.petriNet.impl.PlaceImpl#getTestHiddenOpposite <em>Test Hidden Opposite</em>}</li>
+ *   <li>{@link de.hpi.sam.petriNet.impl.PlaceImpl#getHiddenOpposite <em>Hidden Opposite</em>}</li>
  * </ul>
  * </p>
  *
@@ -51,16 +51,16 @@ public class PlaceImpl extends NodeImpl implements Place {
 	protected int noTokens = NO_TOKENS_EDEFAULT;
 
 	/**
-     * The cached value of the '{@link #getTestHiddenOpposite() <em>Test Hidden Opposite</em>}' reference.
+     * The cached value of the '{@link #getHiddenOpposite() <em>Hidden Opposite</em>}' reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #getTestHiddenOpposite()
+     * <!-- end-user-doc -->
+     * @see #getHiddenOpposite()
      * @generated
      * @ordered
      */
-	protected Node testHiddenOpposite;
+    protected Transition hiddenOpposite;
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -102,43 +102,43 @@ public class PlaceImpl extends NodeImpl implements Place {
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public Node getTestHiddenOpposite() {
-        if (testHiddenOpposite != null && testHiddenOpposite.eIsProxy()) {
-            InternalEObject oldTestHiddenOpposite = (InternalEObject)testHiddenOpposite;
-            testHiddenOpposite = (Node)eResolveProxy(oldTestHiddenOpposite);
-            if (testHiddenOpposite != oldTestHiddenOpposite) {
+    public Transition getHiddenOpposite() {
+        if (hiddenOpposite != null && hiddenOpposite.eIsProxy()) {
+            InternalEObject oldHiddenOpposite = (InternalEObject)hiddenOpposite;
+            hiddenOpposite = (Transition)eResolveProxy(oldHiddenOpposite);
+            if (hiddenOpposite != oldHiddenOpposite) {
                 if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE, oldTestHiddenOpposite, testHiddenOpposite));
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, PetriNetPackage.PLACE__HIDDEN_OPPOSITE, oldHiddenOpposite, hiddenOpposite));
             }
         }
-        return testHiddenOpposite;
+        return hiddenOpposite;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public Node basicGetTestHiddenOpposite() {
-        return testHiddenOpposite;
+    public Transition basicGetHiddenOpposite() {
+        return hiddenOpposite;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setTestHiddenOpposite(Node newTestHiddenOpposite) {
-        Node oldTestHiddenOpposite = testHiddenOpposite;
-        testHiddenOpposite = newTestHiddenOpposite;
+    public void setHiddenOpposite(Transition newHiddenOpposite) {
+        Transition oldHiddenOpposite = hiddenOpposite;
+        hiddenOpposite = newHiddenOpposite;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE, oldTestHiddenOpposite, testHiddenOpposite));
+            eNotify(new ENotificationImpl(this, Notification.SET, PetriNetPackage.PLACE__HIDDEN_OPPOSITE, oldHiddenOpposite, hiddenOpposite));
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -148,9 +148,9 @@ public class PlaceImpl extends NodeImpl implements Place {
         switch (featureID) {
             case PetriNetPackage.PLACE__NO_TOKENS:
                 return getNoTokens();
-            case PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE:
-                if (resolve) return getTestHiddenOpposite();
-                return basicGetTestHiddenOpposite();
+            case PetriNetPackage.PLACE__HIDDEN_OPPOSITE:
+                if (resolve) return getHiddenOpposite();
+                return basicGetHiddenOpposite();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -166,8 +166,8 @@ public class PlaceImpl extends NodeImpl implements Place {
             case PetriNetPackage.PLACE__NO_TOKENS:
                 setNoTokens((Integer)newValue);
                 return;
-            case PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE:
-                setTestHiddenOpposite((Node)newValue);
+            case PetriNetPackage.PLACE__HIDDEN_OPPOSITE:
+                setHiddenOpposite((Transition)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -184,8 +184,8 @@ public class PlaceImpl extends NodeImpl implements Place {
             case PetriNetPackage.PLACE__NO_TOKENS:
                 setNoTokens(NO_TOKENS_EDEFAULT);
                 return;
-            case PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE:
-                setTestHiddenOpposite((Node)null);
+            case PetriNetPackage.PLACE__HIDDEN_OPPOSITE:
+                setHiddenOpposite((Transition)null);
                 return;
         }
         super.eUnset(featureID);
@@ -201,8 +201,8 @@ public class PlaceImpl extends NodeImpl implements Place {
         switch (featureID) {
             case PetriNetPackage.PLACE__NO_TOKENS:
                 return noTokens != NO_TOKENS_EDEFAULT;
-            case PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE:
-                return testHiddenOpposite != null;
+            case PetriNetPackage.PLACE__HIDDEN_OPPOSITE:
+                return hiddenOpposite != null;
         }
         return super.eIsSet(featureID);
     }

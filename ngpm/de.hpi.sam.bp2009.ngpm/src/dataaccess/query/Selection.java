@@ -33,7 +33,7 @@ import dataaccess.expressions.ObjectBasedExpression;
  * </p>
  *
  * @see dataaccess.query.QueryPackage#getSelection()
- * @model annotation="http://de.hpi.sam.bp2009.OCL ConditionMustBeSideEffectFree='self.selectionExpr.isSideEffectFree()' ConditionMustBeBooleanOrNumeric='self.selectionExpr.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n (\r\n    (\r\n      self.selectionExpr.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Boolean\' and\r\n      self.selectionExpr.getType().upperMultiplicity = 1\r\n    )\r\n    or\r\n    (\r\n      self.selectionExpr.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Number\' \r\n      and \r\n      self.object.getType().ordered\r\n    )\r\n  )'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL ConditionMustBeSideEffectFree='self.selectionExpr.isSideEffectFree()' ConditionMustBeBooleanOrNumeric='self.selectionExpr.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n (\r\n    (\r\n      self.selectionExpr.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Boolean\' and\r\n      self.selectionExpr.getType().upperMultiplicity = 1\r\n    )\r\n    or\r\n    (\r\n      self.selectionExpr.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Number\' \r\n      and \r\n      self.object.getType().ordered\r\n    )\r\n  )'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ConditionMustBeSideEffectFree ConditionMustBeBooleanOrNumeric'"
  * @generated
  */

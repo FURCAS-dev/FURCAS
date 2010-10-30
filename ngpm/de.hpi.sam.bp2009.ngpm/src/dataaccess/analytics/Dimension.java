@@ -30,7 +30,7 @@ import modelmanagement.NamedElement;
  * </p>
  *
  * @see dataaccess.analytics.AnalyticsPackage#getDimension()
- * @model annotation="http://de.hpi.sam.bp2009.OCL BlockSignatureMustMatch='self.characteristicFunction.input->size() = 1 and \r\n  self.cellSet.factsType.conformsToIgnoringMultiplicity(self.characteristicFunction.input->at(1).getType())\r\n    -- Add the following again once we have NestedTypeDefinitions under control...\r\n    -- and  self.characteristicFunction.input->at(1).getType().upperMultiplicity = 1' CharacteristicFunctionMustNotBeAbstract='not self.characteristicFunction.isAbstract()'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL BlockSignatureMustMatch='self.characteristicFunction.input->size() = 1 and \r\n  self.cellSet.factsType.conformsToIgnoringMultiplicity(self.characteristicFunction.input->at(1).getType())\r\n    -- Add the following again once we have NestedTypeDefinitions under control...\r\n    -- and  self.characteristicFunction.input->at(1).getType().upperMultiplicity = 1' CharacteristicFunctionMustNotBeAbstract='not self.characteristicFunction.isAbstract()'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='BlockSignatureMustMatch CharacteristicFunctionMustNotBeAbstract'"
  * @generated
  */

@@ -494,7 +494,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
         initEClass(departmentEClass, Department.class, "Department", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getDepartment_Name(), thePrimitivetypesPackage.getString(), "name", null, 0, 1, Department.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getDepartment_MaxJuniors(), thePrimitivetypesPackage.getInteger(), "maxJuniors", null, 0, 1, Department.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getDepartment_Budget(), thePrimitivetypesPackage.getInteger(), "budget", null, 0, 1, Department.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getDepartment_Budget(), thePrimitivetypesPackage.getInteger(), "budget", "0", 0, 1, Department.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDepartment_Employee(), this.getEmployee(), this.getEmployee_Employer(), "employee", null, 0, -1, Department.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDepartment_Boss(), this.getEmployee(), this.getEmployee_Managed(), "boss", null, 0, 1, Department.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDepartment_SubDepartment(), this.getDepartment(), this.getDepartment_ParentDepartment(), "subDepartment", null, 0, -1, Department.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -523,12 +523,10 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
         // Create annotations
         // http://www.eclipse.org/emf/2002/Ecore
         createEcoreAnnotations();
-        // http://de.hpi.sam.bp2009.OCL
-        createDeAnnotations();
+        // http://www.eclipse.org/emf/2002/Ecore/OCL
+        createOCLAnnotations();
         // http://schema.omg.org/spec/MOF/2.0/emof.xml
         createEmofAnnotations();
-        // null
-        createNullAnnotations();
     }
 
     /**
@@ -543,9 +541,9 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
           (this, 
            source, 
            new String[] {
-             "invocationDelegates", "http://de.hpi.sam.bp2009.OCL",
-             "settingDelegates", "http://de.hpi.sam.bp2009.OCL",
-             "validationDelegates", "http://de.hpi.sam.bp2009.OCL"
+             "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL",
+             "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL",
+             "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL"
            });			
         addAnnotation
           (employeeEClass, 
@@ -580,13 +578,13 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
     }
 
     /**
-     * Initializes the annotations for <b>http://de.hpi.sam.bp2009.OCL</b>.
+     * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL</b>.
      * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+         * <!-- end-user-doc -->
      * @generated
      */
-    protected void createDeAnnotations() {
-        String source = "http://de.hpi.sam.bp2009.OCL";			
+        protected void createOCLAnnotations() {
+        String source = "http://www.eclipse.org/emf/2002/Ecore/OCL";			
         addAnnotation
           (employeeEClass, 
            source, 
@@ -652,23 +650,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
            });	
     }
 
-    /**
-     * Initializes the annotations for <b>null</b>.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void createNullAnnotations() {
-        String source = null;						
-        addAnnotation
-          (getEmployee_Intern(), 
-           source, 
-           new String[] {
-             "Property.oppositeRoleName", "student2employee"
-           });												
-    }
-
-    /**
+/**
      * Initializes the annotations for <b>http://schema.omg.org/spec/MOF/2.0/emof.xml</b>.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -681,7 +663,13 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
            source, 
            new String[] {
              "Property.oppositeRoleName", "secretary2boss"
-           });											
+           });		
+        addAnnotation
+          (getEmployee_Intern(), 
+           source, 
+           new String[] {
+             "Property.oppositeRoleName", "student2employee"
+           });										
         addAnnotation
           (getDivision_Department(), 
            source, 

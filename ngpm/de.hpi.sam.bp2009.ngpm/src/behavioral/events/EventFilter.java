@@ -43,7 +43,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see behavioral.events.EventsPackage#getEventFilter()
- * @model annotation="http://de.hpi.sam.bp2009.OCL FilterBlockSignatureMatchNotificationSignature='self.subscription.producer.notificationSignatures->exists(ms:data::classes::MethodSignature |\r\n    ms.conformsTo(self.test.getImplementedSignature()))'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL FilterBlockSignatureMatchNotificationSignature='self.subscription.producer.notificationSignatures->exists(ms:data::classes::MethodSignature |\r\n    ms.conformsTo(self.test.getImplementedSignature()))'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='FilterBlockSignatureMatchNotificationSignature'"
  * @generated
  */

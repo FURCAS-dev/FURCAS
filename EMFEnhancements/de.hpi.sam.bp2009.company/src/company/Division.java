@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see company.CompanyPackage#getDivision()
- * @model annotation="http://de.hpi.sam.bp2009.OCL nasty='self.department->collect(d| \r\nd.employee->including(d.boss)).salary->sum() < budget' limitEmployeesOfTheMonth='self.employeesOfTheMonth->size() <= self.department->size()'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL nasty='self.department->collect(d| \r\nd.employee->including(d.boss)).salary->sum() < budget' limitEmployeesOfTheMonth='self.employeesOfTheMonth->size() <= self.department->size()'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='nasty limitEmployeesOfTheMonth'"
  * @generated
  */
@@ -140,7 +140,7 @@ public interface Division extends EObject {
      * @return the value of the '<em>Employees Of The Month</em>' reference list.
      * @see company.CompanyPackage#getDivision_EmployeesOfTheMonth()
      * @model transient="true" changeable="false" volatile="true" derived="true"
-     *        annotation="http://de.hpi.sam.bp2009.OCL derivation='self.department.employeeOfTheMonth'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL derivation='self.department.employeeOfTheMonth'"
      * @generated
      */
     EList<Employee> getEmployeesOfTheMonth();

@@ -28,7 +28,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see data.generics.GenericsPackage#getParameterizedClassInstantiation()
- * @model annotation="http://de.hpi.sam.bp2009.OCL ActualTypeParametersMatchSignature='self.actualTypeParametersForInstantiation->size() = self.parameterizedClass.parameterization.formalTypeParameters->size() and\r\n  Sequence{1..self.actualTypeParametersForInstantiation->size()}->forAll(i:Integer|\r\n    self.actualTypeParametersForInstantiation->at(i).formalTypeParameter =\r\n    self.parameterizedClass.parameterization.formalTypeParameters->at(i))' ClassMustBeParameterized='self.parameterizedClass.parameterization->notEmpty()'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL ActualTypeParametersMatchSignature='self.actualTypeParametersForInstantiation->size() = self.parameterizedClass.parameterization.formalTypeParameters->size() and\r\n  Sequence{1..self.actualTypeParametersForInstantiation->size()}->forAll(i:Integer|\r\n    self.actualTypeParametersForInstantiation->at(i).formalTypeParameter =\r\n    self.parameterizedClass.parameterization.formalTypeParameters->at(i))' ClassMustBeParameterized='self.parameterizedClass.parameterization->notEmpty()'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ActualTypeParametersMatchSignature ClassMustBeParameterized'"
  * @generated
  */
@@ -84,7 +84,7 @@ public interface ParameterizedClassInstantiation extends SapClass {
      * Returns the ActualTypeParameter's type (a Class) from the actualTypeParameters association end whose formalTypeParameter is the one passed. If no such formal type parameter is found, no object (null) is returned.
      * <!-- end-model-doc -->
      * @model unique="false" ordered="false" ftpUnique="false" ftpRequired="true" ftpOrdered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='self.actualTypeParametersForInstantiation->select(atp:ActualTypeParameter |\n    atp.formalTypeParameter = ftp)->asSequence()->at(1).type'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.actualTypeParametersForInstantiation->select(atp:ActualTypeParameter |\n    atp.formalTypeParameter = ftp)->asSequence()->at(1).type'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -94,7 +94,7 @@ public interface ParameterizedClassInstantiation extends SapClass {
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @model kind="operation" unique="false" required="true" ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='parameterizedClass.parameterization'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='parameterizedClass.parameterization'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */

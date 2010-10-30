@@ -7,16 +7,18 @@ import java.util.Stack;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.ecore.Variable;
+import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.ecore.impl.TypeExpImpl;
 import org.eclipse.ocl.utilities.PredefinedType;
 
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
+
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
-import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
-import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
 public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
     private static final Set<String> sourcePassThroughStdLibOpNames;
@@ -48,19 +50,15 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
         // TODO what about "product"?
     }
 
-    // TODO this is only required to obtain the operation body from our proprietary annotation URI. Could use InvocationBehavior.getOperationBody later
-    private final EAnnotationOCLParser annotationParser;
-    
     public OperationCallExpTracer(OperationCallExp expression, Stack<String> tuplePartNames) {
         super(expression, tuplePartNames);
-        annotationParser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
     }
 
     @Override
     public NavigationStep traceback(EClass context, PathCache pathCache, OperationBodyToCallMapper operationBodyToCallMapper) {
         NavigationStep result;
-
-        OCLExpression body = annotationParser.getExpressionFromAnnotationsOf(getExpression().getReferredOperation(), "body");
+        OCL ocl = OCLWithHiddenOpposites.newInstance();
+        OCLExpression body = InvocationBehavior.INSTANCE.getOperationBody(ocl, getExpression().getReferredOperation());
         if (body != null) {
             // the operation body may lead to a recursion; to avoid a recursion we first create an
             // indirecting step here and insert it into the path cache so it will be found instead
@@ -129,7 +127,8 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
     
     @Override
     protected Set<Variable> calculateEnteringScope(OperationBodyToCallMapper operationBodyToCallMapper) {
-        OCLExpression body = annotationParser.getExpressionFromAnnotationsOf(getExpression().getReferredOperation(), "body");
+        OCL ocl = OCLWithHiddenOpposites.newInstance();
+        OCLExpression body = InvocationBehavior.INSTANCE.getOperationBody(ocl, getExpression().getReferredOperation());
         if (body != null){
             // an OCL-specified operation, the body creates a new scope
             return getVariablesScopedByExpression(body, operationBodyToCallMapper);

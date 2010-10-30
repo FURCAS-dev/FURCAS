@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see data.generics.GenericsPackage#getClassParameterization()
- * @model annotation="http://de.hpi.sam.bp2009.OCL DistinctFormalTypeParameterNames='self.formalTypeParameters->forAll(i,j|i<>j implies i.name<>j.name)'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL DistinctFormalTypeParameterNames='self.formalTypeParameters->forAll(i,j|i<>j implies i.name<>j.name)'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='DistinctFormalTypeParameterNames'"
  * @generated
  */

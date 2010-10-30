@@ -14,7 +14,7 @@ package dataaccess.expressions;
  *
  *
  * @see dataaccess.expressions.ExpressionsPackage#getTail()
- * @model annotation="http://de.hpi.sam.bp2009.OCL IsOrdered='self.object.getType().ordered'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL IsOrdered='self.object.getType().ordered'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='IsOrdered'"
  * @generated
  */

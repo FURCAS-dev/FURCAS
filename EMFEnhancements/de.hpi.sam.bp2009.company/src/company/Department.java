@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see company.CompanyPackage#getDepartment()
- * @model annotation="http://de.hpi.sam.bp2009.OCL NotBossFreelance='not (self.boss.oclIsTypeOf(Freelance))' OldEmployee='self.employee->exists(e | e.age > 45)' MaxJuniors='self.employee->select(e|e.age < 25)->size()\r\n<self.maxJuniors' BossHighestSalary='self.employee->select(e|e.salary >= self.boss.salary)->size() <= 1' boss10YearsOlderThanJunior='let t:Tuple(boss:Employee,junior:Employee)=\r\nTuple{boss=self.boss, junior=self.employee->sortedBy(age)->first()} in\r\nt.boss.age > t.junior.age + 10' BudgetRestriction='self.calcExpenses() <= self.budget' MaxJuniorsWarning='if self.maxJuniors > 1\r\nthen\r\nself.employee->select(e|e.age < 25)->size()\r\n<self.maxJuniors - 1\r\nelse\r\ntrue\r\nendif' departmentMustHaveDivision='self.department2division->notEmpty()'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL NotBossFreelance='not (self.boss.oclIsTypeOf(Freelance))' OldEmployee='self.employee->exists(e | e.age > 45)' MaxJuniors='self.employee->select(e|e.age < 25)->size()\r\n<self.maxJuniors' BossHighestSalary='self.employee->select(e|e.salary >= self.boss.salary)->size() <= 1' boss10YearsOlderThanJunior='let t:Tuple(boss:Employee,junior:Employee)=\r\nTuple{boss=self.boss, junior=self.employee->sortedBy(age)->first()} in\r\nt.boss.age > t.junior.age + 10' BudgetRestriction='self.calcExpenses() <= self.budget' MaxJuniorsWarning='if self.maxJuniors > 1\r\nthen\r\nself.employee->select(e|e.age < 25)->size()\r\n<self.maxJuniors - 1\r\nelse\r\ntrue\r\nendif' departmentMustHaveDivision='self.department2division->notEmpty()'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='NotBossFreelance OldEmployee MaxJuniors BossHighestSalary boss10YearsOlderThanJunior BudgetRestriction MaxJuniorsWarning departmentMustHaveDivision'"
  * @generated
  */
@@ -88,6 +88,7 @@ public interface Department extends EObject {
 
 				/**
      * Returns the value of the '<em><b>Budget</b></em>' attribute.
+     * The default value is <code>"0"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Budget</em>' attribute isn't clear,
@@ -97,7 +98,7 @@ public interface Department extends EObject {
      * @return the value of the '<em>Budget</em>' attribute.
      * @see #setBudget(int)
      * @see company.CompanyPackage#getDepartment_Budget()
-     * @model dataType="primitivetypes.Integer"
+     * @model default="0" dataType="primitivetypes.Integer"
      * @generated
      */
     int getBudget();
@@ -224,7 +225,7 @@ public interface Department extends EObject {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @model dataType="primitivetypes.Integer"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='self.employee->iterate(e ; s : Integer = 0 | s + e.salary) + self.boss.salary'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.employee->iterate(e ; s : Integer = 0 | s + e.salary) + self.boss.salary'"
      * @generated
      */
     int calcExpenses();
@@ -233,7 +234,7 @@ public interface Department extends EObject {
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @model dataType="primitivetypes.Integer"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='if self.subDepartment->size() >= 1 then\r\n\tself.subDepartment->iterate(department; return : Integer = 0 | return + department.sumBudget()) + self.budget\r\nelse\r\n\tself.budget\r\nendif '"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='if self.subDepartment->size() >= 1 then\r\n\tself.subDepartment->iterate(department; return : Integer = 0 | return + department.sumBudget()) + self.budget\r\nelse\r\n\tself.budget\r\nendif '"
      * @generated
      */
         int sumBudget();

@@ -27,7 +27,7 @@ import dataaccess.expressions.collectionexpressions.Iterate;
  * </p>
  *
  * @see behavioral.actions.ActionsPackage#getConstant()
- * @model annotation="http://de.hpi.sam.bp2009.OCL InitExpressionTypeMustMatchVariableType='self.initExpression->notEmpty() implies self.initExpression.getType().conformsTo(self.getType())'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL InitExpressionTypeMustMatchVariableType='self.initExpression->notEmpty() implies self.initExpression.getType().conformsTo(self.getType())'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='InitExpressionTypeMustMatchVariableType'"
  * @generated
  */

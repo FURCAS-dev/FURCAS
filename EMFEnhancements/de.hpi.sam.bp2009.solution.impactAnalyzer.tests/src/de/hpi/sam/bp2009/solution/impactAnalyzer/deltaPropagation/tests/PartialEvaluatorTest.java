@@ -10,6 +10,7 @@ import modelmanagement.ModelmanagementPackage;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -23,6 +24,7 @@ import org.eclipse.ocl.ecore.LetExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.PropertyCallExp;
+import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,7 +46,6 @@ import data.classes.SapClass;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
-import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
 public class PartialEvaluatorTest extends TestCase {
@@ -542,9 +543,10 @@ public class PartialEvaluatorTest extends TestCase {
         subsub.setBudget(300);
         sub.getSubDepartment().add(subsub);
 
-        evaluator.getHelper().setContext(CompanyPackage.eINSTANCE.getDepartment());
-        EAnnotationOCLParser annotationsParser =OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
-        OCLExpression sumBudgetBody = annotationsParser.getExpressionFromAnnotationsOf(CompanyPackage.eINSTANCE.getDepartment().getEOperations().get(1), "body");
+        OclToAstFactory.eINSTANCE.createEAnnotationOCLParser().traversalConvertOclAnnotations(CompanyPackage.eINSTANCE);
+        evaluator.getHelper().setContext(CompanyPackage.eINSTANCE.getDepartment()); 
+        EOperation op = CompanyPackage.eINSTANCE.getDepartment().getEOperations().get(1);
+        OCLExpression sumBudgetBody = InvocationBehavior.INSTANCE.getOperationBody(evaluator.getOcl(), op);
         /* expression expected:
          * if self.subDepartment->size() >= 1 then
               self.subDepartment->iterate(department; return : Integer = 0 | return + department.sumBudget()) + self.budget

@@ -35,7 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see dataaccess.analytics.AnalyticsPackage#getGroupBy()
- * @model annotation="http://de.hpi.sam.bp2009.OCL GroupedFactsIteratorMustExistIfMapExpressionExists='self.mapExpression->notEmpty() implies self.groupedFacts->notEmpty()' MapExpressionMustBeSideEffectFree='if self.mapExpression->notEmpty() then\r\n    self.mapExpression.isSideEffectFree()\r\n  else\r\n    true\r\n  endif' GroupByIteratorsMustHaveDistinctNames='self.dimensions.iterator->asSet()->union(self.groupedFacts->asSet())->union(self.fact->asSet())->forAll(i, j | i<>j implies i.name<>j.name)'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL GroupedFactsIteratorMustExistIfMapExpressionExists='self.mapExpression->notEmpty() implies self.groupedFacts->notEmpty()' MapExpressionMustBeSideEffectFree='if self.mapExpression->notEmpty() then\r\n    self.mapExpression.isSideEffectFree()\r\n  else\r\n    true\r\n  endif' GroupByIteratorsMustHaveDistinctNames='self.dimensions.iterator->asSet()->union(self.groupedFacts->asSet())->union(self.fact->asSet())->forAll(i, j | i<>j implies i.name<>j.name)'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='GroupedFactsIteratorMustExistIfMapExpressionExists MapExpressionMustBeSideEffectFree GroupByIteratorsMustHaveDistinctNames'"
  * @generated
  */

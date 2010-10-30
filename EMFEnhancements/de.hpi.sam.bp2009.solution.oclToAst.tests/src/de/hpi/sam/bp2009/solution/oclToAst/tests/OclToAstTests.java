@@ -16,8 +16,10 @@ public class OclToAstTests extends TestSuite {
 
 	public static Test suite() {
 		TestSuite suite = new OclToAstTests("oclToAst Tests");
+	        //$JUnit-BEGIN$
 		suite.addTestSuite(EAnnotationOCLParserTest.class);
 		suite.addTestSuite(TestEcoreHelper.class);
+	        //$JUnit-END$
 		return suite;
 	}
 

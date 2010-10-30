@@ -29,7 +29,6 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.OrFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.BaseDepartmentTest;
-import de.hpi.sam.bp2009.solution.oclToAst.delegate.OCLSettingDelegateFactory;
 
 public class EventManagerTest extends BaseDepartmentTest {
 
@@ -67,10 +66,7 @@ public class EventManagerTest extends BaseDepartmentTest {
     }
 
     @Override
-    public void setUp() {
-        // register the correct delegate factories
-        EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE.put("http://de.hpi.sam.bp2009.OCL", new OCLSettingDelegateFactory());
-        
+    public void setUp() {       
         super.setUp();
         this.createInstances(1, 3, 4);
         setFixture((EventManager) EventManagerFactory.eINSTANCE.getEventManagerFor(this.comp.eResource().getResourceSet()));

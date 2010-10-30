@@ -4,11 +4,12 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="abapmapping"
     nsURI="http:///abapmapping.ecore" nsPrefix="abapmapping">
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-    <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
-    <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="AbapClassImplementationAnnotation">
-    <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
       <details key="AbapTypeMustBeUnstructured" value="self.kind = AbapClassKind::ABAP_TYPE implies&#xD;&#xA;    self.abapType.oclIsKindOf(abapmapping::abapdictionary::UnstructuredAbapType)"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -39,8 +40,9 @@
   <eSubpackages name="abapdictionary" nsURI="http:///abapmapping/abapdictionary.ecore"
       nsPrefix="abapmapping.abapdictionary">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
-      <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+      <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+      <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+      <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="XsdType">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="xsdType" ordered="false"
@@ -72,7 +74,7 @@
           eType="#//abapdictionary/AbapPrimtiveType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Code" eSuperTypes="#//abapdictionary/DataElement">
-      <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="TypeOfValuesEqualsAbapType" value="self.values->forAll(cv:CodeValue |&#xD;&#xA;      cv.type = self.abapType)"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">

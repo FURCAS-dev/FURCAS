@@ -42,7 +42,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see data.classes.ClassesPackage#getSignature()
  * @model abstract="true"
- *        annotation="http://de.hpi.sam.bp2009.OCL OnlyTrailingOptionalParameters='self.input->forAll(p | p.defaultValue->notEmpty() implies Sequence{(self.input->indexOf(p)+1)..self.input->size()}->forAll(\r\n    i | self.input->at(i).defaultValue->notEmpty()))'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL OnlyTrailingOptionalParameters='self.input->forAll(p | p.defaultValue->notEmpty() implies Sequence{(self.input->indexOf(p)+1)..self.input->size()}->forAll(\r\n    i | self.input->at(i).defaultValue->notEmpty()))'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='OnlyTrailingOptionalParameters'"
  * @generated
  */
@@ -260,7 +260,7 @@ public interface Signature extends EObject {
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @model unique="false" required="true" ordered="false" sUnique="false" sRequired="true" sOrdered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='if self = s then\n    true\n  else\n    self.conformsToExcluding(s, Sequence{}, Sequence{})\n  endif'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='if self = s then\n    true\n  else\n    self.conformsToExcluding(s, Sequence{}, Sequence{})\n  endif'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -273,7 +273,7 @@ public interface Signature extends EObject {
      * Same as conformsTo(Featured):Boolean but with the possibility to pass pairs of Featured elements that are to be considered conforming and thus don't need further exploration. This can be used to avoid endless recursions in conformance testing.
      * <!-- end-model-doc -->
      * @model unique="false" required="true" ordered="false" sUnique="false" sRequired="true" sOrdered="false" excludingConformingUnique="false" excludingConformingMany="true" excludingToUnique="false" excludingToMany="true"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='if s = self then\n    true\n  else\n    let nameConforms:Boolean = self.oclIsKindOf(MethodSignature) and s.oclIsKindOf(MethodSignature) \n       implies s.oclAsType(MethodSignature).name = self.oclAsType(MethodSignature).name in\n    nameConforms and\n    (s.sideEffectFree implies self.sideEffectFree) and\n    s.input->size() = self.input->size() and\n    Sequence{1..self.input->size()}->\n      forAll(i | s.input->at(i).getType().conformsToExcluding(self.input->at(i).getType(), excludingConforming, excludingTo)) and\n    s.output->size() = self.output->size() and\n    Sequence{1..self.output->size()}->\n      forAll(i | self.output->asSequence()->at(i).conformsToExcluding(s.output->asSequence()->at(i), excludingConforming, excludingTo))\n  endif'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='if s = self then\n    true\n  else\n    let nameConforms:Boolean = self.oclIsKindOf(MethodSignature) and s.oclIsKindOf(MethodSignature) \n       implies s.oclAsType(MethodSignature).name = self.oclAsType(MethodSignature).name in\n    nameConforms and\n    (s.sideEffectFree implies self.sideEffectFree) and\n    s.input->size() = self.input->size() and\n    Sequence{1..self.input->size()}->\n      forAll(i | s.input->at(i).getType().conformsToExcluding(self.input->at(i).getType(), excludingConforming, excludingTo)) and\n    s.output->size() = self.output->size() and\n    Sequence{1..self.output->size()}->\n      forAll(i | self.output->asSequence()->at(i).conformsToExcluding(s.output->asSequence()->at(i), excludingConforming, excludingTo))\n  endif'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -286,7 +286,7 @@ public interface Signature extends EObject {
      * For a signature, only the owning class's formal object parameters are in scope.
      * <!-- end-model-doc -->
      * @model kind="operation" ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='self.getOwningClass().formalObjectParameters->asSet()'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.getOwningClass().formalObjectParameters->asSet()'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -296,7 +296,7 @@ public interface Signature extends EObject {
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @model kind="operation" unique="false" ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='if self.oclIsKindOf(MethodSignature) then\n    let owner:SignatureOwner = self.oclAsType(MethodSignature).owner in\n    if owner.oclIsKindOf(SapClass) then\n      owner.oclAsType(SapClass)\n    else\n      null    -- e.g., TypeAdapter\n    endif\n  else\n    self.oclAsType(FunctionSignature).getImplementedAnonymousFunctionExpression().getOwningClass()\n  endif'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='if self.oclIsKindOf(MethodSignature) then\n    let owner:SignatureOwner = self.oclAsType(MethodSignature).owner in\n    if owner.oclIsKindOf(SapClass) then\n      owner.oclAsType(SapClass)\n    else\n      null    -- e.g., TypeAdapter\n    endif\n  else\n    self.oclAsType(FunctionSignature).getImplementedAnonymousFunctionExpression().getOwningClass()\n  endif'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */

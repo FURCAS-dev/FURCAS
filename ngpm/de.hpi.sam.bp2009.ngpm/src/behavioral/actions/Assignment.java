@@ -24,7 +24,7 @@ package behavioral.actions;
  * </p>
  *
  * @see behavioral.actions.ActionsPackage#getAssignment()
- * @model annotation="http://de.hpi.sam.bp2009.OCL AssignmentCompatibility='self.argument.getType().conformsTo(self.assignTo.getType())' MustHaveArgument='self.argument->notEmpty()'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL AssignmentCompatibility='self.argument.getType().conformsTo(self.assignTo.getType())' MustHaveArgument='self.argument->notEmpty()'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='AssignmentCompatibility MustHaveArgument'"
  * @generated
  */

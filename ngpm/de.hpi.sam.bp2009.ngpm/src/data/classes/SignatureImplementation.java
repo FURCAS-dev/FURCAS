@@ -64,7 +64,7 @@ public interface SignatureImplementation extends EObject {
      * A block implements either a FunctionSignature or a MethodSignature. Two different associations connect the Block with the respective Signature subclasses. This operation is a convenience that chooses the one or the other, depending on which one is filled.
      * <!-- end-model-doc -->
      * @model kind="operation" unique="false" required="true" ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='if self.oclIsKindOf(FunctionSignatureImplementation) then\n    if self.oclAsType(FunctionSignatureImplementation).functionSignature->notEmpty() then\n      self.oclAsType(FunctionSignatureImplementation).functionSignature\n    else\n      self.implements_\n    endif\n  else\n    self.implements_\n  endif'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='if self.oclIsKindOf(FunctionSignatureImplementation) then\n    if self.oclAsType(FunctionSignatureImplementation).functionSignature->notEmpty() then\n      self.oclAsType(FunctionSignatureImplementation).functionSignature\n    else\n      self.implements_\n    endif\n  else\n    self.implements_\n  endif'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */

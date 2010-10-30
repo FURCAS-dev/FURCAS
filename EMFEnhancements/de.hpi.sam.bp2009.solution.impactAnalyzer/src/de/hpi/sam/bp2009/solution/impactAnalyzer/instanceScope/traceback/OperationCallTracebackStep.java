@@ -8,11 +8,14 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.TypeExp;
+import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.utilities.PredefinedType;
 
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
@@ -23,8 +26,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.FlatSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.IterableAsOperationCallExpKeyedSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSet;
-import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
-import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
 public class OperationCallTracebackStep extends BranchingTracebackStep<OperationCallExp> {
     private static final Set<String> sourcePassThroughStdLibOpNames;
@@ -156,9 +157,8 @@ public class OperationCallTracebackStep extends BranchingTracebackStep<Operation
     }
 
     private OCLExpression getOperationBody(OperationCallExp sourceExpression) {
-        // TODO this is only required to obtain the operation body from our proprietary annotation URI. Could use InvocationBehavior.getOperationBody later
-        EAnnotationOCLParser annotationParser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
-        OCLExpression body = annotationParser.getExpressionFromAnnotationsOf(sourceExpression.getReferredOperation(), "body");
+        OCL ocl = OCLWithHiddenOpposites.newInstance();
+        OCLExpression body = InvocationBehavior.INSTANCE.getOperationBody(ocl, sourceExpression.getReferredOperation());
         return body;
     }
 

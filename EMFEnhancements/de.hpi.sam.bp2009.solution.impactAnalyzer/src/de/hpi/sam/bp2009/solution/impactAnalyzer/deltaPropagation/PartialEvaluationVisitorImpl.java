@@ -54,10 +54,10 @@ import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 import com.sap.emf.ocl.hiddenopposites.EvaluationEnvironmentWithHiddenOpposites;
+import com.sap.emf.ocl.hiddenopposites.EvaluationVisitorWithHiddenOppositesImpl;
 import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerPlugin;
-import de.hpi.sam.bp2009.solution.oclToAst.OclAstEvaluationVisitor;
 
 /**
  * When a {@link ValueNotFoundException} occurs during evaluating an expression, it is not caught, logged and swallowed but
@@ -80,7 +80,7 @@ import de.hpi.sam.bp2009.solution.oclToAst.OclAstEvaluationVisitor;
  */
 public class PartialEvaluationVisitorImpl
         extends
-        OclAstEvaluationVisitor {
+        EvaluationVisitorWithHiddenOppositesImpl {
     private org.eclipse.ocl.ecore.OCLExpression sourceExpression;
     private Object valueOfSourceExpression;
 
