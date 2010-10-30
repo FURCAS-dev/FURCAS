@@ -9,7 +9,6 @@ import static com.sap.furcas.runtime.textblocks.TbUtil.getNewestVersion;
 import static com.sap.furcas.runtime.textblocks.TbUtil.getRelativeOffsetFromNode;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -166,33 +165,29 @@ public class TbChangeUtil {
 		TextBlock parentBlock = getParentBlock(workingCopy);
 		// first update adjacent tokens
 		List<AbstractToken> siblingTokens = parentBlock.getTokens();
-		for (Iterator<AbstractToken> iterator = siblingTokens.iterator(); iterator
-				.hasNext();) {
-			AbstractToken token = iterator.next();
-			if (isRightOf(token, workingCopy) && !token.equals(workingCopy)
-					|| token instanceof Eostoken /*
-													 * always update
-													 * EOSToken if it is
-													 * contained within the
-													 * affected textblock
-													 */) {
-				token.setOffset(token.getOffset() + lengthToAdd);
-			}
-		}
+		for (AbstractToken token : siblingTokens) {
+if (isRightOf(token, workingCopy) && !token.equals(workingCopy)
+        	|| token instanceof Eostoken /*
+        									 * always update
+        									 * EOSToken if it is
+        									 * contained within the
+        									 * affected textblock
+        									 */) {
+        token.setOffset(token.getOffset() + lengthToAdd);
+}
+}
 
 		// update adjacent textblocks within the parent textblock
 		List<TextBlock> siblingBlocks = parentBlock.getSubBlocks();
-		for (Iterator<TextBlock> iterator = siblingBlocks.iterator(); iterator
-				.hasNext();) {
-			TextBlock tb = iterator.next();
-			if (isRightOf(tb, workingCopy) && !tb.equals(workingCopy)) {
-				int newOffset = tb.getOffset() + lengthToAdd;
-				if (newOffset < 0) {
-				    throw new IllegalStateException("BUG: Attempt to set offset to negative int.");
-				}
-                tb.setOffset(newOffset);
-			}
-		}
+		for (TextBlock tb : siblingBlocks) {
+if (isRightOf(tb, workingCopy) && !tb.equals(workingCopy)) {
+        int newOffset = tb.getOffset() + lengthToAdd;
+        if (newOffset < 0) {
+            throw new IllegalStateException("BUG: Attempt to set offset to negative int.");
+        }
+        tb.setOffset(newOffset);
+}
+}
 	}
 
 	private static boolean isRightOf(DocumentNode d1,

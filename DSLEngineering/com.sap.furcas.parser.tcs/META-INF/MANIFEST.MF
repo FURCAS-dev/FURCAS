@@ -7,7 +7,7 @@ Require-Bundle: org.antlr,
  com.sap.furcas.runtime.common;bundle-version="1.0.0",
  com.sap.furcas.runtime.parser
 Export-Package: 
- com.sap.furcas.parser.tcs.bootstrapped;
+ com.sap.furcas.parser.tcs.stableversion;
   uses:="org.antlr.runtime,
    com.sap.furcas.runtime.parser,
    com.sap.furcas.runtime.parser.impl,

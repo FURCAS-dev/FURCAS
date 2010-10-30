@@ -5,12 +5,12 @@ import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.sap.furcas.parsergenerator.base.EcoreMetaModelLookUp;
+import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
+import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
+import com.sap.furcas.parsergenerator.base.StubModelAdapter;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
-import com.sap.furcas.test.parsing.base.EcoreMetaModelLookUp;
-import com.sap.furcas.test.parsing.base.ExtendedGeneratedParserBasedTest;
-import com.sap.furcas.test.parsing.base.ParserGenerationTestHelper;
-import com.sap.furcas.test.parsing.base.StubModelAdapter;
 
 /**
  * Simple Test for the custom BibText language

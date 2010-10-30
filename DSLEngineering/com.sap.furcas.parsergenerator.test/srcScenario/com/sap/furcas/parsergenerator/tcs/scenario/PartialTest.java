@@ -1,38 +1,37 @@
 package com.sap.furcas.parsergenerator.tcs.scenario;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.sap.furcas.parsergenerator.base.EcoreMetaModelLookUp;
+import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
+import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
+import com.sap.furcas.parsergenerator.base.StubModelAdapter;
 import com.sap.furcas.runtime.common.exceptions.GrammarGenerationException;
-import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
-import com.sap.furcas.test.parsing.base.EcoreMetaModelLookUp;
-import com.sap.furcas.test.parsing.base.ExtendedGeneratedParserBasedTest;
-import com.sap.furcas.test.parsing.base.StubModelAdapter;
+import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 
-
-/**
- * util class to run parsing tests with manually manipulated ANTLR grammar instead of generated one.
- * @author C5107456
- *
- */
+@Ignore("Already ignored in the moin codebase. Furthermore, not even included in the test suite.")
 public class PartialTest extends ExtendedGeneratedParserBasedTest {
 
-	private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
-	private static final String LANGUAGE = "XPath";
-	private static IMetaModelLookup lookup;
-	
-	@Before
-	public void testXPathGenerationOnly() throws GrammarGenerationException {
-	    lookup = new EcoreMetaModelLookUp( "XPath1.ecore", "XPath1.ecore");
-	    super.generateAndCompileParser(LANGUAGE);
-	}
-	
-	@Ignore
-	@Test
-	public void testSample1() throws Exception {
-		StubModelAdapter stubModelHandler = parseFile("XPathSample01.sam", LANGUAGE, DSLSAMPLEDIR);
-		stubModelHandler = parseFile("XPathSample02.sam", LANGUAGE, DSLSAMPLEDIR, 0);
-	}
-	
+    private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
+    private static final String LANGUAGE = "XPath";
+
+    @Before
+    public void testXPathGenerationOnly() throws GrammarGenerationException, FileNotFoundException, ModelAdapterException,
+            IOException {
+        setLookup(new EcoreMetaModelLookUp("XPath1.ecore", "XPath1.ecore"));
+        setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
+        generateParserForLanguage(LANGUAGE);
+    }
+
+    @Test
+    public void testSample1() throws Exception {
+        StubModelAdapter stubModelHandler = parseFile("XPathSample01.sam", LANGUAGE, DSLSAMPLEDIR);
+        stubModelHandler = parseFile("XPathSample02.sam", LANGUAGE, DSLSAMPLEDIR, 0);
+    }
+
 }

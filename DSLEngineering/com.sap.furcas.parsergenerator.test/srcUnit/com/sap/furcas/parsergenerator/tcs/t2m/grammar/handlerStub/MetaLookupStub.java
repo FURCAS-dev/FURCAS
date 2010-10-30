@@ -17,6 +17,7 @@ import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.MultiplicityBean;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.runtime.common.util.EcoreHelper;
 
 /**
  *
@@ -156,7 +157,7 @@ public class MetaLookupStub<Type extends Object> implements IMetaModelLookup<Typ
     public ResolvedNameAndReferenceBean resolveReferenceName(Object reference) {
 	if (reference instanceof EClassifier) {
 	    EClassifier stub = (EClassifier) reference;
-	    ResolvedNameAndReferenceBean bean = new ResolvedNameAndReferenceBean(stub.getQualifiedName(), null);
+	    ResolvedNameAndReferenceBean bean = new ResolvedNameAndReferenceBean(EcoreHelper.getQualifiedName(stub), null);
 	    return bean;
 	}
 	fail("not implemented");

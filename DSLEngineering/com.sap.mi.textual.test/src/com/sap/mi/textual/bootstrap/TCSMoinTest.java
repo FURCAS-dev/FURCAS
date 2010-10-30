@@ -1,4 +1,4 @@
-package com.sap.furcas.parsergenerator.tcs.scenario;
+package com.sap.mi.textual.bootstrap;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
