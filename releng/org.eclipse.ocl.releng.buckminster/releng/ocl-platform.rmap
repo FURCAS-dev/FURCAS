@@ -3,12 +3,12 @@
   <rm:property key="checkout.location" value="${workspace.root}"/>
   <rm:property key="eclipse.download" value="http://download.eclipse.org"/>
   <rm:locator pattern="^org\.eclipse\.ocl\.releng\.buckminster$" searchPathRef="local.releng"/>
+  <rm:locator pattern="^org\.eclipse\.emf\.mwe.*" searchPathRef="mwe"/>
   <rm:locator pattern="^org\.eclipse\.emf.*" searchPathRef="emf"/>
   <rm:locator pattern="^org\.eclipse\.uml2.*" searchPathRef="uml"/>
   <rm:locator pattern="^org\.eclipse\.xtext.*" searchPathRef="xtext"/>
   <rm:locator pattern="^org\.eclipse\.xpand.*" searchPathRef="xpand"/>
   <rm:locator pattern="^org\.eclipse\.xtend.*" searchPathRef="xpand"/>
-  <rm:locator pattern="^org\.eclipse\.emf\.mwe.*" searchPathRef="mwe"/>
   <rm:locator searchPathRef="platform" failOnError="false"/>
   <rm:locator searchPathRef="orbit"/>
   <rm:searchPath name="local.releng">
