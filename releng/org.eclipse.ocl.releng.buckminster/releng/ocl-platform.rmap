@@ -9,6 +9,7 @@
   <rm:locator pattern="^org\.eclipse\.xtext.*" searchPathRef="xtext"/>
   <rm:locator pattern="^org\.eclipse\.xpand.*" searchPathRef="xpand"/>
   <rm:locator pattern="^org\.eclipse\.xtend.*" searchPathRef="xpand"/>
+  <rm:locator pattern="^com\.google\.collect.*" searchPathRef="xtext"/>
   <rm:locator searchPathRef="platform" failOnError="false"/>
   <rm:locator searchPathRef="orbit"/>
   <rm:searchPath name="local.releng">
@@ -49,7 +50,7 @@
   </rm:searchPath>
   <rm:searchPath name="xpand">
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
-      <rm:uri format="{0}/modeling/tmf/updates/milestones">
+      <rm:uri format="{0}/modeling/m2t/xpand/updates/milestones">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
