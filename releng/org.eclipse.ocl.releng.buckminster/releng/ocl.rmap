@@ -2,7 +2,7 @@
 <rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
   <rm:property key="cvs.modeling.repository.location" value=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling"/>
   <rm:property key="cvs.eclipse.repository.location" value=":pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse"/>
-  <rm:locator pattern="^lpg\.runtime\.java$" searchPathRef="p2_orbit" failOnError="false"/>
+  <rm:locator pattern="^lpg\.runtime\.java.*$" searchPathRef="p2_orbit" failOnError="false"/>
   <rm:locator pattern="^org\.eclipse\.ocl.*$" searchPathRef="cvs_ocl"/>
   <rm:locator pattern="^org\.eclipse\.uml2\.uml\.resources$" searchPathRef="cvs_uml"/>
   <rm:locator pattern="^org\.eclipse\.test$" searchPathRef="cvs_eclipse"/>
