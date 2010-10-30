@@ -21,5 +21,7 @@ Require-Bundle: org.eclipse.core.runtime,
  com.sap.emf.ocl.hiddenopposites,
  de.hpi.sam.bp2009.solution.queryContextScopeProvider,
  org.eclipse.emf.query.index,
- org.eclipse.emf.query.index.ui
+ org.eclipse.emf.query.index.ui,
+ de.hpi.sam.bp2009.company,
+ de.hpi.sam.bp2009.ngpm
 Bundle-ActivationPolicy: lazy

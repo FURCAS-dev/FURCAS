@@ -34,7 +34,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see dataaccess.analytics.AnalyticsPackage#getCellSet()
- * @model annotation="http://de.hpi.sam.bp2009.OCL ValueFunctionSignatureMustMatch='self.valueFunction->notEmpty() implies\r\n    (self.valueFunction.input->size() = 1 and\r\n     self.factsType.conformsToIgnoringMultiplicity(self.valueFunction.input->at(1).getType())\r\n    -- Add the following again once we have NestedTypeDefinitions under control...\r\n    -- and  self.valueFunction.input->at(1).getType().upperMultiplicity = 1\r\n    )' AggregationFunctionSignatureMustMatch='self.aggregationFunction.input->size() = 1 and \r\n  self.keyFigureType().conformsTo(self.aggregationFunction.input->at(1).getType())' AggregationFunctionMustNotBeAbstract='not self.aggregationFunction.isAbstract()' ValueFunctionMustNotBeAbstract='self.valueFunction->forAll(vf | not vf.isAbstract())'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL ValueFunctionSignatureMustMatch='self.valueFunction->notEmpty() implies\r\n    (self.valueFunction.input->size() = 1 and\r\n     self.factsType.conformsToIgnoringMultiplicity(self.valueFunction.input->at(1).getType())\r\n    -- Add the following again once we have NestedTypeDefinitions under control...\r\n    -- and  self.valueFunction.input->at(1).getType().upperMultiplicity = 1\r\n    )' AggregationFunctionSignatureMustMatch='self.aggregationFunction.input->size() = 1 and \r\n  self.keyFigureType().conformsTo(self.aggregationFunction.input->at(1).getType())' AggregationFunctionMustNotBeAbstract='not self.aggregationFunction.isAbstract()' ValueFunctionMustNotBeAbstract='self.valueFunction->forAll(vf | not vf.isAbstract())'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ValueFunctionSignatureMustMatch AggregationFunctionSignatureMustMatch AggregationFunctionMustNotBeAbstract ValueFunctionMustNotBeAbstract'"
  * @generated
  */
@@ -147,7 +147,7 @@ public interface CellSet extends FunctionSignatureImplementation {
      * Determines the type over which to aggregate. If no valueFunction is provided, this is the type of the cell set's elements. Otherwise, this is the type output by the valueFunction.
      * <!-- end-model-doc -->
      * @model unique="false" required="true" ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='if self.valueFunction->isEmpty() then\n    self.factsType\n  else\n    self.valueFunction.output\n  endif'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='if self.valueFunction->isEmpty() then\n    self.factsType\n  else\n    self.valueFunction.output\n  endif'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -157,7 +157,7 @@ public interface CellSet extends FunctionSignatureImplementation {
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @model unique="false" required="true" ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='self.aggregationFunction.output'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.aggregationFunction.output'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -167,7 +167,7 @@ public interface CellSet extends FunctionSignatureImplementation {
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @model unique="false" required="true" ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='self.dimensions->forAll(d|d.characteristicFunction.sideEffectFree) and\n  (self.valueFunction->notEmpty() implies self.valueFunction.sideEffectFree) and\n  self.aggregationFunction.sideEffectFree'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.dimensions->forAll(d|d.characteristicFunction.sideEffectFree) and\n  (self.valueFunction->notEmpty() implies self.valueFunction.sideEffectFree) and\n  self.aggregationFunction.sideEffectFree'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */

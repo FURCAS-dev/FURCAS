@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.Variable;
+import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 
 import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
 import com.sap.emf.ocl.util.OclHelper;
@@ -24,7 +25,6 @@ import com.sap.emf.ocl.util.OclHelper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.HighlightingToStringVisitor;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.SemanticIdentity;
-import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 
 /**
  * Abstract implementation of the {@link NavigationStep} interface. Provides fields for source and target type and performs the
@@ -297,7 +297,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         EOperation result = null;
         if (rootExpression.eContainer() instanceof EAnnotation) {
             EAnnotation annotation = (EAnnotation) rootExpression.eContainer();
-            if (annotation.getSource().equals(EAnnotationOCLParser.ANNOTATION_SOURCE) &&
+            if (annotation.getSource().equals(OCLDelegateDomain.OCL_DELEGATE_URI) &&
                     annotation.eContainer() instanceof EOperation) {
                 result = (EOperation) annotation.eContainer();
             }

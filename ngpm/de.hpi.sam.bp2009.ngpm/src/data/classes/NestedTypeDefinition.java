@@ -22,7 +22,7 @@ package data.classes;
  * </p>
  *
  * @see data.classes.ClassesPackage#getNestedTypeDefinition()
- * @model annotation="http://de.hpi.sam.bp2009.OCL NestedIsAlwaysMany='self.isMany()'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL NestedIsAlwaysMany='self.isMany()'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='NestedIsAlwaysMany'"
  * @generated
  */

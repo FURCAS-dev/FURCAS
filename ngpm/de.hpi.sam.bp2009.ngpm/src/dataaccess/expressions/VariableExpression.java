@@ -27,7 +27,7 @@ import data.classes.NamedValue;
  * </p>
  *
  * @see dataaccess.expressions.ExpressionsPackage#getVariableExpression()
- * @model annotation="http://de.hpi.sam.bp2009.OCL VariableExpressionType='self.getType().conformsTo(self.variable.getType())'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL VariableExpressionType='self.getType().conformsTo(self.variable.getType())'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='VariableExpressionType'"
  * @generated
  */

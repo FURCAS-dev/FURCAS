@@ -147,7 +147,7 @@ public class PetriNetValidator extends EObjectValidator {
                  petriNet,
                  diagnostics,
                  context,
-                 "http://de.hpi.sam.bp2009.OCL",
+                 "http://www.eclipse.org/emf/2002/Ecore/OCL",
                  "modelName",
                  PETRI_NET__MODEL_NAME__EEXPRESSION,
                  Diagnostic.ERROR,
@@ -180,7 +180,6 @@ public class PetriNetValidator extends EObjectValidator {
         if (result || diagnostics != null) result &= validate_EveryKeyUnique(place, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(place, diagnostics, context);
         if (result || diagnostics != null) result &= validatePlace_numberOfTokens(place, diagnostics, context);
-        if (result || diagnostics != null) result &= validatePlace_number(place, diagnostics, context);
         return result;
     }
 
@@ -205,38 +204,9 @@ public class PetriNetValidator extends EObjectValidator {
                  place,
                  diagnostics,
                  context,
-                 "http://de.hpi.sam.bp2009.OCL",
+                 "http://www.eclipse.org/emf/2002/Ecore/OCL",
                  "numberOfTokens",
                  PLACE__NUMBER_OF_TOKENS__EEXPRESSION,
-                 Diagnostic.ERROR,
-                 DIAGNOSTIC_SOURCE,
-                 0);
-    }
-
-    /**
-     * The cached validation expression for the number constraint of '<em>Place</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected static final String PLACE__NUMBER__EEXPRESSION = "self.noTokens > 34";
-
-    /**
-     * Validates the number constraint of '<em>Place</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean validatePlace_number(Place place, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return
-            validate
-                (PetriNetPackage.Literals.PLACE,
-                 place,
-                 diagnostics,
-                 context,
-                 "http://de.hpi.sam.bp2009.OCL",
-                 "number",
-                 PLACE__NUMBER__EEXPRESSION,
                  Diagnostic.ERROR,
                  DIAGNOSTIC_SOURCE,
                  0);

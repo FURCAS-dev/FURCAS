@@ -37,7 +37,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see data.classes.ClassesPackage#getContext()
- * @model annotation="http://de.hpi.sam.bp2009.OCL ConditionMustBeBoolean='self.condition.getType().upperMultiplicity = 1 and\r\n  self.condition.getType().oclIsKindOf(ClassTypeDefinition) and\r\n  self.condition.getType().oclAsType(ClassTypeDefinition).clazz.name = \'Boolean\'' ConstraintForRightClass='self.constraints->forAll(c | c.constrainedType = self.for_)'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL ConditionMustBeBoolean='self.condition.getType().upperMultiplicity = 1 and\r\n  self.condition.getType().oclIsKindOf(ClassTypeDefinition) and\r\n  self.condition.getType().oclAsType(ClassTypeDefinition).clazz.name = \'Boolean\'' ConstraintForRightClass='self.constraints->forAll(c | c.constrainedType = self.for_)'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ConditionMustBeBoolean ConstraintForRightClass'"
  * @generated
  */

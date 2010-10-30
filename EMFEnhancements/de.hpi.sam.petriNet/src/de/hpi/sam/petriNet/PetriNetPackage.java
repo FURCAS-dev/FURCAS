@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see de.hpi.sam.petriNet.PetriNetFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore validationDelegates='http://de.hpi.sam.bp2009.OCL' invocationDelegates='http://de.hpi.sam.bp2009.OCL'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL' invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL'"
  * @generated
  */
 public interface PetriNetPackage extends EPackage {
@@ -218,15 +218,15 @@ public interface PetriNetPackage extends EPackage {
 	int PLACE__NO_TOKENS = NODE_FEATURE_COUNT + 0;
 
 	/**
-     * The feature id for the '<em><b>Test Hidden Opposite</b></em>' reference.
+     * The feature id for the '<em><b>Hidden Opposite</b></em>' reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int PLACE__TEST_HIDDEN_OPPOSITE = NODE_FEATURE_COUNT + 1;
+    int PLACE__HIDDEN_OPPOSITE = NODE_FEATURE_COUNT + 1;
 
-	/**
+    /**
      * The number of structural features of the '<em>Place</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -403,17 +403,17 @@ public interface PetriNetPackage extends EPackage {
 	EAttribute getPlace_NoTokens();
 
 	/**
-     * Returns the meta object for the reference '{@link de.hpi.sam.petriNet.Place#getTestHiddenOpposite <em>Test Hidden Opposite</em>}'.
+     * Returns the meta object for the reference '{@link de.hpi.sam.petriNet.Place#getHiddenOpposite <em>Hidden Opposite</em>}'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Test Hidden Opposite</em>'.
-     * @see de.hpi.sam.petriNet.Place#getTestHiddenOpposite()
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Hidden Opposite</em>'.
+     * @see de.hpi.sam.petriNet.Place#getHiddenOpposite()
      * @see #getPlace()
      * @generated
      */
-	EReference getPlace_TestHiddenOpposite();
+    EReference getPlace_HiddenOpposite();
 
-	/**
+    /**
      * Returns the meta object for class '{@link de.hpi.sam.petriNet.Transition <em>Transition</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -572,14 +572,14 @@ public interface PetriNetPackage extends EPackage {
 		EAttribute PLACE__NO_TOKENS = eINSTANCE.getPlace_NoTokens();
 
 		/**
-         * The meta object literal for the '<em><b>Test Hidden Opposite</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Hidden Opposite</b></em>' reference feature.
          * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+         * <!-- end-user-doc -->
          * @generated
          */
-		EReference PLACE__TEST_HIDDEN_OPPOSITE = eINSTANCE.getPlace_TestHiddenOpposite();
+        EReference PLACE__HIDDEN_OPPOSITE = eINSTANCE.getPlace_HiddenOpposite();
 
-		/**
+        /**
          * The meta object literal for the '{@link de.hpi.sam.petriNet.impl.TransitionImpl <em>Transition</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->

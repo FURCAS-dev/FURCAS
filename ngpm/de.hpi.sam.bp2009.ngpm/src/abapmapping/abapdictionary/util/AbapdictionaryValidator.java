@@ -181,7 +181,7 @@ public class AbapdictionaryValidator extends EObjectValidator {
                  code,
                  diagnostics,
                  context,
-                 "http://de.hpi.sam.bp2009.OCL",
+                 "http://www.eclipse.org/emf/2002/Ecore/OCL",
                  "TypeOfValuesEqualsAbapType",
                  CODE__TYPE_OF_VALUES_EQUALS_ABAP_TYPE__EEXPRESSION,
                  Diagnostic.ERROR,

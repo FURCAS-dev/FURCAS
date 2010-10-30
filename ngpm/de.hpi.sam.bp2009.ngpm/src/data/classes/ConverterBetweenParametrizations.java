@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see data.classes.ClassesPackage#getConverterBetweenParametrizations()
- * @model annotation="http://de.hpi.sam.bp2009.OCL MustHaveConcreteMethod='not self.conversionMethod.isAbstract()' FormalObjectParametersConformToMethodParameters='self.conversionMethod.input->size() = self.clazz.formalObjectParameters->size() and\r\n  Sequence{1..self.conversionMethod.input->size()}->forAll(i |\r\n    self.clazz.formalObjectParameters->at(i).conformsTo(self.conversionMethod.input->at(i)))'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL MustHaveConcreteMethod='not self.conversionMethod.isAbstract()' FormalObjectParametersConformToMethodParameters='self.conversionMethod.input->size() = self.clazz.formalObjectParameters->size() and\r\n  Sequence{1..self.conversionMethod.input->size()}->forAll(i |\r\n    self.clazz.formalObjectParameters->at(i).conformsTo(self.conversionMethod.input->at(i)))'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='MustHaveConcreteMethod FormalObjectParametersConformToMethodParameters'"
  * @generated
  */

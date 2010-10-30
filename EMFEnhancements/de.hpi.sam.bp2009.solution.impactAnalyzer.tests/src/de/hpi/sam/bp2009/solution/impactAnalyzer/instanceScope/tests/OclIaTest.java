@@ -44,6 +44,8 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.BaseDepartmentTest;
+import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
+import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
 public class OclIaTest extends BaseDepartmentTest {
 
@@ -355,8 +357,8 @@ public class OclIaTest extends BaseDepartmentTest {
         ve.setVariable(p); // this should infer the variable expression's multiplicity to that of p
         mce.setObject(ve);
 
-        // EAnnotationOCLParser pa = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
-        // pa.traversalConvertOclAnnotations(ClassesPackage.eINSTANCE);
+        EAnnotationOCLParser parser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
+        parser.traversalConvertOclAnnotations(ClassesPackage.eINSTANCE);
 
         assertEquals(1, ve.getType().getLowerMultiplicity());
 

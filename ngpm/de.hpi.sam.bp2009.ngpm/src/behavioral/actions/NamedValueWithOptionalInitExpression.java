@@ -25,7 +25,7 @@ import dataaccess.expressions.Expression;
  *
  * @see behavioral.actions.ActionsPackage#getNamedValueWithOptionalInitExpression()
  * @model abstract="true"
- *        annotation="http://de.hpi.sam.bp2009.OCL AssignmentCompatibility='self.initExpression->forAll(ie | ie.getType().conformsTo(self.getType()))'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL AssignmentCompatibility='self.initExpression->forAll(ie | ie.getType().conformsTo(self.getType()))'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='AssignmentCompatibility'"
  * @generated
  */

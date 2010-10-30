@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see dataaccess.expressions.ExpressionsPackage#getObjectCreationExpression()
- * @model annotation="http://de.hpi.sam.bp2009.OCL CannotInstantiateAbstractClass='not self.classToInstantiate.isAbstract()' ExpressionType='self.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n  self.getType().oclAsType(data::classes::ClassTypeDefinition).clazz = self.classToInstantiate and\r\n  self.getType().lowerMultiplicity = 1 and\r\n  self.getType().upperMultiplicity = 1' HasToOwnTypeDefinition='self.ownedTypeDefinition->notEmpty()' CannotInstantiateValueClass='not self.classToInstantiate.valueType' NoDuplicateInitializers='self.initializers->forAll( a, b | a <> b implies a.methodSignature <> b.methodSignature )'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL CannotInstantiateAbstractClass='not self.classToInstantiate.isAbstract()' ExpressionType='self.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n  self.getType().oclAsType(data::classes::ClassTypeDefinition).clazz = self.classToInstantiate and\r\n  self.getType().lowerMultiplicity = 1 and\r\n  self.getType().upperMultiplicity = 1' HasToOwnTypeDefinition='self.ownedTypeDefinition->notEmpty()' CannotInstantiateValueClass='not self.classToInstantiate.valueType' NoDuplicateInitializers='self.initializers->forAll( a, b | a <> b implies a.methodSignature <> b.methodSignature )'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='CannotInstantiateAbstractClass ExpressionType HasToOwnTypeDefinition CannotInstantiateValueClass NoDuplicateInitializers'"
  * @generated
  */

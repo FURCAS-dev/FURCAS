@@ -28,7 +28,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see behavioral.actions.ActionsPackage#getLinkManipulationStatement()
  * @model abstract="true"
- *        annotation="http://de.hpi.sam.bp2009.OCL ObjectsMustConformToEndTypes='Sequence{1..self.objects->size()}->forAll(i:Integer |\r\n    objects->at(i).getType().conformsTo(association.ends->at(i).type))' BlockMustNotImplementSideEffectFreeSignature='self.block.getImplementedSignature()->notEmpty() implies\r\n  not self.block.getImplementedSignature().sideEffectFree' NoValueMustBeModified='self.association.ends->forAll(ae:data::classes::AssociationEnd |\r\n    ae.type.clazz.valueType implies not ae.contributesToEquality)'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL ObjectsMustConformToEndTypes='Sequence{1..self.objects->size()}->forAll(i:Integer |\r\n    objects->at(i).getType().conformsTo(association.ends->at(i).type))' BlockMustNotImplementSideEffectFreeSignature='self.block.getImplementedSignature()->notEmpty() implies\r\n  not self.block.getImplementedSignature().sideEffectFree' NoValueMustBeModified='self.association.ends->forAll(ae:data::classes::AssociationEnd |\r\n    ae.type.clazz.valueType implies not ae.contributesToEquality)'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ObjectsMustConformToEndTypes BlockMustNotImplementSideEffectFreeSignature NoValueMustBeModified'"
  * @generated
  */

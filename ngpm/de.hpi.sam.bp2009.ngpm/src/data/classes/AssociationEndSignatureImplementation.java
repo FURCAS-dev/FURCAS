@@ -21,7 +21,7 @@ package data.classes;
  *
  * @see data.classes.ClassesPackage#getAssociationEndSignatureImplementation()
  * @model abstract="true"
- *        annotation="http://de.hpi.sam.bp2009.OCL OnlyOnOtherEndsClassOrClassConformingToItOrAdapterAdaptingToIt='(self.implements_.owner.oclIsKindOf(SapClass) and\r\n    self.implements_.owner.oclAsType(SapClass).conformsTo(self.end.otherEnd().type.clazz))\r\n  or   (self.implements_.owner.oclIsKindOf(TypeAdapter) and\r\n    self.implements_.owner.oclAsType(TypeAdapter).adapted.conformsTo(self.end.otherEnd().type.clazz))'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL OnlyOnOtherEndsClassOrClassConformingToItOrAdapterAdaptingToIt='(self.implements_.owner.oclIsKindOf(SapClass) and\r\n    self.implements_.owner.oclAsType(SapClass).conformsTo(self.end.otherEnd().type.clazz))\r\n  or   (self.implements_.owner.oclIsKindOf(TypeAdapter) and\r\n    self.implements_.owner.oclAsType(TypeAdapter).adapted.conformsTo(self.end.otherEnd().type.clazz))'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='OnlyOnOtherEndsClassOrClassConformingToItOrAdapterAdaptingToIt'"
  * @generated
  */

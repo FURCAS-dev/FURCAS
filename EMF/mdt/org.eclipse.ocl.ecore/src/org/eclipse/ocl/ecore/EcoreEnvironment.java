@@ -41,6 +41,7 @@ import org.eclipse.ocl.AbstractEnvironment;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.TypeResolver;
+import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.ecore.internal.EcoreForeignMethods;
 import org.eclipse.ocl.ecore.internal.OCLFactoryImpl;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
@@ -544,7 +545,30 @@ public class EcoreEnvironment
     	
     	return result;
 	}
-	
+
+	public Constraint getBodyCondition(EOperation feature) {
+		Constraint result = null;
+		result = super.getBodyCondition(feature);
+		if (result != null){
+			return result;
+		}
+		ETypedElement typedFeature = (ETypedElement) feature;
+		EAnnotation ann = typedFeature.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+		if (ann == null){
+		InvocationBehavior.INSTANCE.getOperationBody(OCL.newInstance(), feature);
+		ann = typedFeature.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+		}
+		if ((ann != null) && !ann.getContents().isEmpty()) {
+			for (EObject o : ann.getContents()) {
+				if ((o instanceof Constraint)&& UMLReflection.BODY.equals(((Constraint) o).getStereotype())) {
+					result = (Constraint) o;
+					break;
+				}
+			}
+		}
+	return result;
+	}	
+
 	/**
 	 * Looks in the EMF registry for a package with the specified qualified
 	 * package name. Uses the global package registry.

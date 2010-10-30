@@ -461,8 +461,8 @@ public class TemplatesPackageImpl extends EPackageImpl implements TemplatesPacka
         // Create annotations
         // http://www.eclipse.org/emf/2002/Ecore
         createEcoreAnnotations();
-        // http://de.hpi.sam.bp2009.OCL
-        createDeAnnotations();
+        // http://www.eclipse.org/emf/2002/Ecore/OCL
+        createOCLAnnotations();
     }
 
 	/**
@@ -477,8 +477,9 @@ public class TemplatesPackageImpl extends EPackageImpl implements TemplatesPacka
           (this, 
            source, 
            new String[] {
-             "invocationDelegates", "http://de.hpi.sam.bp2009.OCL",
-             "validationDelegates", "http://de.hpi.sam.bp2009.OCL"
+             "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL",
+             "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL",
+             "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL"
            });			
         addAnnotation
           (stringTemplateEClass, 
@@ -489,13 +490,13 @@ public class TemplatesPackageImpl extends EPackageImpl implements TemplatesPacka
     }
 
 	/**
-     * Initializes the annotations for <b>http://de.hpi.sam.bp2009.OCL</b>.
+     * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL</b>.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected void createDeAnnotations() {
-        String source = "http://de.hpi.sam.bp2009.OCL";			
+    protected void createOCLAnnotations() {
+        String source = "http://www.eclipse.org/emf/2002/Ecore/OCL";			
         addAnnotation
           (stringTemplateEClass, 
            source, 

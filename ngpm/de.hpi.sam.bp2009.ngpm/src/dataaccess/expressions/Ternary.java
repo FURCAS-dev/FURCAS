@@ -21,7 +21,7 @@ package dataaccess.expressions;
  * </p>
  *
  * @see dataaccess.expressions.ExpressionsPackage#getTernary()
- * @model annotation="http://de.hpi.sam.bp2009.OCL TrueAndFalseExprsConformToResultType='self.trueExpr.getType().conformsTo(self.getType()) or\r\n  self.falseExpr.getType().conformsTo(self.getType())'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL TrueAndFalseExprsConformToResultType='self.trueExpr.getType().conformsTo(self.getType()) or\r\n  self.falseExpr.getType().conformsTo(self.getType())'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='TrueAndFalseExprsConformToResultType'"
  * @generated
  */

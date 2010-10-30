@@ -208,14 +208,14 @@ public class PetriNetPackageImpl extends EPackageImpl implements PetriNetPackage
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getPlace_TestHiddenOpposite() {
+    public EReference getPlace_HiddenOpposite() {
         return (EReference)placeEClass.getEStructuralFeatures().get(1);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -315,7 +315,7 @@ public class PetriNetPackageImpl extends EPackageImpl implements PetriNetPackage
 
         placeEClass = createEClass(PLACE);
         createEAttribute(placeEClass, PLACE__NO_TOKENS);
-        createEReference(placeEClass, PLACE__TEST_HIDDEN_OPPOSITE);
+        createEReference(placeEClass, PLACE__HIDDEN_OPPOSITE);
 
         transitionEClass = createEClass(TRANSITION);
 
@@ -371,7 +371,7 @@ public class PetriNetPackageImpl extends EPackageImpl implements PetriNetPackage
 
         initEClass(placeEClass, Place.class, "Place", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getPlace_NoTokens(), ecorePackage.getEInt(), "noTokens", null, 0, 1, Place.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getPlace_TestHiddenOpposite(), this.getNode(), null, "testHiddenOpposite", null, 0, 1, Place.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getPlace_HiddenOpposite(), this.getTransition(), null, "hiddenOpposite", null, 0, 1, Place.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(transitionEClass, Transition.class, "Transition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -389,8 +389,8 @@ public class PetriNetPackageImpl extends EPackageImpl implements PetriNetPackage
         // Create annotations
         // http://www.eclipse.org/emf/2002/Ecore
         createEcoreAnnotations();
-        // http://de.hpi.sam.bp2009.OCL
-        createDeAnnotations();
+        // http://www.eclipse.org/emf/2002/Ecore/OCL
+        createOCLAnnotations();
         // http://schema.omg.org/spec/MOF/2.0/emof.xml
         createEmofAnnotations();
     }
@@ -407,8 +407,9 @@ public class PetriNetPackageImpl extends EPackageImpl implements PetriNetPackage
           (this, 
            source, 
            new String[] {
-             "validationDelegates", "http://de.hpi.sam.bp2009.OCL",
-             "invocationDelegates", "http://de.hpi.sam.bp2009.OCL"
+             "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL",
+             "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL",
+             "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL"
            });		
         addAnnotation
           (petriNetEClass, 
@@ -420,18 +421,18 @@ public class PetriNetPackageImpl extends EPackageImpl implements PetriNetPackage
           (placeEClass, 
            source, 
            new String[] {
-             "constraints", "numberOfTokens number"
+             "constraints", "numberOfTokens"
            });		
     }
 
 	/**
-     * Initializes the annotations for <b>http://de.hpi.sam.bp2009.OCL</b>.
+     * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL</b>.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected void createDeAnnotations() {
-        String source = "http://de.hpi.sam.bp2009.OCL";				
+    protected void createOCLAnnotations() {
+        String source = "http://www.eclipse.org/emf/2002/Ecore/OCL";				
         addAnnotation
           (petriNetEClass, 
            source, 
@@ -442,8 +443,7 @@ public class PetriNetPackageImpl extends EPackageImpl implements PetriNetPackage
           (placeEClass, 
            source, 
            new String[] {
-             "numberOfTokens", "self.noTokens > 3",
-             "number", "self.noTokens > 34"
+             "numberOfTokens", "self.noTokens > 3"
            });	
     }
 
@@ -456,10 +456,10 @@ public class PetriNetPackageImpl extends EPackageImpl implements PetriNetPackage
     protected void createEmofAnnotations() {
         String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml";							
         addAnnotation
-          (getPlace_TestHiddenOpposite(), 
+          (getPlace_HiddenOpposite(), 
            source, 
            new String[] {
-             "Property.oppositeRoleName", "hiddenOpposite"
+             "Property.oppositeRoleName", "transition2Place"
            });
     }
 

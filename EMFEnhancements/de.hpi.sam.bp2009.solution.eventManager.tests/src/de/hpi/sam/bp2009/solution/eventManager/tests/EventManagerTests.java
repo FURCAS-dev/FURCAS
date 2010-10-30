@@ -7,7 +7,6 @@
 package de.hpi.sam.bp2009.solution.eventManager.tests;
 
 import de.hpi.sam.bp2009.solution.eventManager.tests.framework.CompositeSetTest;
-import de.hpi.sam.bp2009.solution.eventManager.tests.framework.IncludeSubclassesTest;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 import junit.textui.TestRunner;
@@ -45,7 +44,6 @@ public class EventManagerTests extends TestSuite {
 		suite.addTestSuite(NewValueClassFilterTest.class);
                 suite.addTestSuite(NewValueClassIncludingSubclassesFilterTest.class);
 		suite.addTestSuite(ContainmentFilterTest.class);
-		suite.addTestSuite(IncludeSubclassesTest.class);
 		suite.addTestSuite(CompositeSetTest.class);
 		return suite;
 	}

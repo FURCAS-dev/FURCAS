@@ -19,7 +19,7 @@ import dataaccess.expressions.Expression;
  *
  *
  * @see persistence.expressions.ExpressionsPackage#getCommit()
- * @model annotation="http://de.hpi.sam.bp2009.OCL ReturnsSnapshot='self.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n  self.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Snapshot\''"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL ReturnsSnapshot='self.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n  self.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Snapshot\''"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ReturnsSnapshot'"
  * @generated
  */

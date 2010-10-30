@@ -185,7 +185,7 @@ public class ActionsValidator extends EObjectValidator {
                  statementWithEntityArgument,
                  diagnostics,
                  context,
-                 "http://de.hpi.sam.bp2009.OCL",
+                 "http://www.eclipse.org/emf/2002/Ecore/OCL",
                  "CanStoreOnlyEntities",
                  STATEMENT_WITH_ENTITY_ARGUMENT__CAN_STORE_ONLY_ENTITIES__EEXPRESSION,
                  Diagnostic.ERROR,

@@ -25,7 +25,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see ui.templates.TemplatesPackage#getStringTemplate()
- * @model annotation="http://de.hpi.sam.bp2009.OCL expressionMustBeSideEffectFree='self.expressions->forAll( e | e.isSideEffectFree() )'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL expressionMustBeSideEffectFree='self.expressions->forAll( e | e.isSideEffectFree() )'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='expressionMustBeSideEffectFree'"
  * @generated
  */

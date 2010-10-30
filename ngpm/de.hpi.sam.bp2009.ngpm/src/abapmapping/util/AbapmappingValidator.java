@@ -148,7 +148,7 @@ public class AbapmappingValidator extends EObjectValidator {
                  abapClassImplementationAnnotation,
                  diagnostics,
                  context,
-                 "http://de.hpi.sam.bp2009.OCL",
+                 "http://www.eclipse.org/emf/2002/Ecore/OCL",
                  "AbapTypeMustBeUnstructured",
                  ABAP_CLASS_IMPLEMENTATION_ANNOTATION__ABAP_TYPE_MUST_BE_UNSTRUCTURED__EEXPRESSION,
                  Diagnostic.ERROR,

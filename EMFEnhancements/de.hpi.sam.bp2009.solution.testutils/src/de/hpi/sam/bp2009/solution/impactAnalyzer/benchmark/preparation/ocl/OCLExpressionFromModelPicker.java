@@ -9,8 +9,12 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.Tuple.Pair;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
@@ -56,11 +60,11 @@ public class OCLExpressionFromModelPicker implements OCLExpressionPicker {
 	}
 	for (EPackage p : ps) {
 	    for (EClassifier c : p.getEClassifiers()) {
-		EAnnotation a = c.getEAnnotation("http://de.hpi.sam.bp2009.OCL");
+		EAnnotation a = c.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
 		allConstraints = addConstraintToConstraintList(a, allConstraints, c);
 		if (c instanceof EClass) {
 		    for (EAttribute at : ((EClass) c).getEAttributes()) {
-			a = at.getEAnnotation("http://de.hpi.sam.bp2009.OCL");
+			a = at.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
 			allConstraints = addConstraintToConstraintList(a, allConstraints, c);
 		    }
 		}
@@ -79,8 +83,9 @@ public class OCLExpressionFromModelPicker implements OCLExpressionPicker {
 	    if (e == null) {
 		break;
 	    } else {
-                allConstraints.put(new Pair<String, EClassifier>(e, c), new OCLExpressionWithContext((OCLExpression) a
-                        .getContents().get(index), (EClass) c));
+                EAnnotation astAnno = ((EModelElement)a.eContainer()).getEAnnotation(EcoreEnvironment.OCL_NAMESPACE_URI);
+                OCLExpression expr = (OCLExpression) ((Constraint)astAnno.getContents().get(index)).getSpecification().getBodyExpression();
+                allConstraints.put(new Pair<String, EClassifier>(e, c), new OCLExpressionWithContext(expr ,(EClass) c) );
             }
 	    index++;
 	}

@@ -10,9 +10,6 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EValidator;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.execution.BenchmarkExecutionProcessor;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationResourceLoader;
@@ -20,9 +17,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.Ben
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTaskPreparer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTaskStepwiseBuilder;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.ActivationOption;
-import de.hpi.sam.bp2009.solution.oclToAst.delegate.OCLInvocationDelegateFactory;
-import de.hpi.sam.bp2009.solution.oclToAst.delegate.OCLSettingDelegateFactory;
-import de.hpi.sam.bp2009.solution.oclToAst.delegate.OCLValidationDelegateFactory;
 
 /**
  * The {@link BenchmarkProcessor}s main purpose is to analyze the overall performance of the instance scope analysis. However, the
@@ -43,11 +37,7 @@ public class BenchmarkProcessor {
     // FIXME: Implement code for starting benchmark program
     public static void main(String[] args) throws NumberFormatException, IOException {
         try {
-            // register OCL delegates:
-            EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE.put("http://de.hpi.sam.bp2009.OCL", new OCLSettingDelegateFactory());
-            EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE.put("http://de.hpi.sam.bp2009.OCL", new OCLInvocationDelegateFactory());
-            EValidator.ValidationDelegate.Registry.INSTANCE.put("http://de.hpi.sam.bp2009.OCL", new OCLValidationDelegateFactory());
-            
+           
             List<ActivationOption> optionList = new ArrayList<ActivationOption>();
             // TracebackStep
             optionList.add(new ActivationOption(true, true, true, true, "All optimizations activated, TracebackSteps"));

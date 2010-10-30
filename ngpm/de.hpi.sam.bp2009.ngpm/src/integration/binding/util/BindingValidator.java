@@ -149,7 +149,7 @@ public class BindingValidator extends EObjectValidator {
                  binding,
                  diagnostics,
                  context,
-                 "http://de.hpi.sam.bp2009.OCL",
+                 "http://www.eclipse.org/emf/2002/Ecore/OCL",
                  "FunctionExpressionHasFunctionType",
                  BINDING__FUNCTION_EXPRESSION_HAS_FUNCTION_TYPE__EEXPRESSION,
                  Diagnostic.ERROR,

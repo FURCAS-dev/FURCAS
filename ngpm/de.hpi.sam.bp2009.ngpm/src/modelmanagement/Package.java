@@ -39,7 +39,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see modelmanagement.ModelmanagementPackage#getPackage()
- * @model annotation="http://de.hpi.sam.bp2009.OCL DistinctClassNamesPerPackage='self.classes->forAll( i, j | i <> j implies i.name <> j.name )' NoCyclicOwnership='not self.hasOwnershipCycle(Set{})'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL DistinctClassNamesPerPackage='self.classes->forAll( i, j | i <> j implies i.name <> j.name )' NoCyclicOwnership='not self.hasOwnershipCycle(Set{})'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='DistinctClassNamesPerPackage NoCyclicOwnership'"
  * @generated
  */
@@ -164,7 +164,7 @@ public interface Package extends PackageOwner {
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @model unique="false" required="true" ordered="false" pksMany="true" pksOrdered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='if pks->includes(self) then\n    true\n  else\n    if self.owner->isEmpty() then\n      false\n    else\n      if self.owner.oclIsKindOf(Package) then\n        self.owner.oclAsType(Package).hasOwnershipCycle(pks->including(self))\n      else\n        false\n      endif\n    endif\n  endif'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='if pks->includes(self) then\n    true\n  else\n    if self.owner->isEmpty() then\n      false\n    else\n      if self.owner.oclIsKindOf(Package) then\n        self.owner.oclAsType(Package).hasOwnershipCycle(pks->including(self))\n      else\n        false\n      endif\n    endif\n  endif'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */

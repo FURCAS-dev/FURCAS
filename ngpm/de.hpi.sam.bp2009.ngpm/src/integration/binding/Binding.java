@@ -24,7 +24,7 @@ import modelmanagement.NamedElement;
  *
  * @see integration.binding.BindingPackage#getBinding()
  * @model abstract="true"
- *        annotation="http://de.hpi.sam.bp2009.OCL FunctionExpressionHasFunctionType='self.function.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition)'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL FunctionExpressionHasFunctionType='self.function.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition)'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='FunctionExpressionHasFunctionType'"
  * @generated
  */

@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see company.CompanyPackage#getEmployee()
- * @model annotation="http://de.hpi.sam.bp2009.OCL UniqueNames='Employee.allInstances()->forAll(e | e <> self implies e.name <> self.name)' BossIsOldest='self.age <= self.employer.boss.age' divBossSecretary='if self.directed->isEmpty() then\r\nself.secretary.oclIsUndefined()\r\nelse\r\nnot self.secretary.oclIsUndefined()\r\nendif' secretaryOlderThanBoss='if self.directed->notEmpty() and\r\nnot self.secretary.oclIsUndefined() then\r\nself.age < self.secretary.age \r\nelse true\r\nendif' Boss10YearsOlderThanEmployee='self.age + 10 <= self.employer.boss.age' Secretary10YearsOlderThanBoss='if self.directed->notEmpty() and\r\nnot self.secretary.oclIsUndefined() then\r\nself.age + 10 < self.secretary.age \r\nelse true\r\nendif'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL UniqueNames='Employee.allInstances()->forAll(e | e <> self implies e.name <> self.name)' BossIsOldest='self.age <= self.employer.boss.age' divBossSecretary='if self.directed->isEmpty() then\r\nself.secretary.oclIsUndefined()\r\nelse\r\nnot self.secretary.oclIsUndefined()\r\nendif' secretaryOlderThanBoss='if self.directed->notEmpty() and\r\nnot self.secretary.oclIsUndefined() then\r\nself.age < self.secretary.age \r\nelse true\r\nendif' Boss10YearsOlderThanEmployee='self.age + 10 <= self.employer.boss.age' Secretary10YearsOlderThanBoss='if self.directed->notEmpty() and\r\nnot self.secretary.oclIsUndefined() then\r\nself.age + 10 < self.secretary.age \r\nelse true\r\nendif'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='UniqueNames BossIsOldest divBossSecretary secretaryOlderThanBoss Boss10YearsOlderThanEmployee Secretary10YearsOlderThanBoss'"
  * @generated
  */
@@ -233,7 +233,7 @@ public interface Employee extends EObject {
      * @return the value of the '<em>Intern</em>' reference.
      * @see #setIntern(Student)
      * @see company.CompanyPackage#getEmployee_Intern()
-     * @model
+     * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='student2employee'"
      * @generated
      */
     Student getIntern();

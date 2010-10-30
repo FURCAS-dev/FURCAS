@@ -81,7 +81,7 @@ public class RoseEcoreBuilder implements RoseVisitor
     private static final String INVOCATION_DELEGATES = "invocationDelegates";
     private static final String INV = "inv";
     private static final String COLON = ":";
-    private static final String DELEGATE_URI = "http://de.hpi.sam.bp2009.OCL";
+    private static final String DELEGATE_URI = "http://www.eclipse.org/emf/2002/Ecore/OCL";
     private static final String ECORE_NS_URI = "http://www.eclipse.org/emf/2002/Ecore";
     private static final String CONSTRAINTS = "constraints";
     //do you want to parse the semantic tab info?

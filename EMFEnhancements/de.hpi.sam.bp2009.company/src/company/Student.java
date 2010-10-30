@@ -14,7 +14,7 @@ package company;
  *
  *
  * @see company.CompanyPackage#getStudent()
- * @model annotation="http://de.hpi.sam.bp2009.OCL StudentAndFreelancesAge='self.age < 40'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL StudentAndFreelancesAge='self.age < 40'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='StudentAndFreelancesAge'"
  * @generated
  */

@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see dataaccess.query.QueryPackage#getFromClause()
- * @model annotation="http://de.hpi.sam.bp2009.OCL FromClausesMustBeSideEffectFree='self.fromExpression.isSideEffectFree()'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL FromClausesMustBeSideEffectFree='self.fromExpression.isSideEffectFree()'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='FromClausesMustBeSideEffectFree'"
  * @generated
  */

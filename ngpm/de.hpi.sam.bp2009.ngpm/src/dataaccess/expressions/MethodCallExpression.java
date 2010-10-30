@@ -29,7 +29,7 @@ import data.classes.MethodSignature;
  * </p>
  *
  * @see dataaccess.expressions.ExpressionsPackage#getMethodCallExpression()
- * @model annotation="http://de.hpi.sam.bp2009.OCL ObjectMustSupportOperation='self.object.getType().getInnermost().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n  self.object.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.conformsTo(self.methodSignature.owner.oclAsType(data::classes::SapClass))' OutputMultiplicities='(self.object.getType().isMany() implies (self.getType().isMany() and not self.getType().unique)) and\r\n  (self.object.getType().lowerMultiplicity = 0 implies (self.getType()->isEmpty() or self.getType().lowerMultiplicity = 0))'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL ObjectMustSupportOperation='self.object.getType().getInnermost().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n  self.object.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.conformsTo(self.methodSignature.owner.oclAsType(data::classes::SapClass))' OutputMultiplicities='(self.object.getType().isMany() implies (self.getType().isMany() and not self.getType().unique)) and\r\n  (self.object.getType().lowerMultiplicity = 0 implies (self.getType()->isEmpty() or self.getType().lowerMultiplicity = 0))'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ObjectMustSupportOperation OutputMultiplicities'"
  * @generated
  */

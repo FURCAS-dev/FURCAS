@@ -25,7 +25,7 @@ import dataaccess.expressions.Expression;
  *
  *
  * @see dataaccess.expressions.fp.FpPackage#getAnonymousFunctionExpr()
- * @model annotation="http://de.hpi.sam.bp2009.OCL TypeMustBeSignatureTypeDefinitionWithImplementation='self.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and\r\n  self.getType().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.oclAsType(data::classes::FunctionSignature).implementation->notEmpty()' HasToOwnSignatureTypeDefinition='self.ownedTypeDefinition->notEmpty()' SignatureMustBeFunctionSignature='self.ownedTypeDefinition.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.oclIsKindOf(data::classes::FunctionSignature)'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL TypeMustBeSignatureTypeDefinitionWithImplementation='self.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and\r\n  self.getType().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.oclAsType(data::classes::FunctionSignature).implementation->notEmpty()' HasToOwnSignatureTypeDefinition='self.ownedTypeDefinition->notEmpty()' SignatureMustBeFunctionSignature='self.ownedTypeDefinition.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.oclIsKindOf(data::classes::FunctionSignature)'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='TypeMustBeSignatureTypeDefinitionWithImplementation HasToOwnSignatureTypeDefinition SignatureMustBeFunctionSignature'"
  * @generated
  */
@@ -37,7 +37,7 @@ public interface AnonymousFunctionExpr extends Expression {
      * Determines the Block implementing the function to which this expression evaluates by navigating to the FunctionSignatureTypeDefinition that tells this expression's type, and from there obtaining the signature's implementation.
      * <!-- end-model-doc -->
      * @model kind="operation" unique="false" required="true" ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='self.ownedTypeDefinition.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.oclAsType(data::classes::FunctionSignature).implementation'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.ownedTypeDefinition.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.oclAsType(data::classes::FunctionSignature).implementation'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */

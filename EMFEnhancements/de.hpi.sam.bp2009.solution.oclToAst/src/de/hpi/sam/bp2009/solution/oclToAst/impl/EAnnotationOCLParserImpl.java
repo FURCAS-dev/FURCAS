@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.emf.common.util.Diagnostic;
@@ -34,17 +33,21 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.query.index.ui.IndexFactory;
 import org.eclipse.emf.query2.EcoreHelper;
+import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
-import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.helper.ConstraintKind;
+import org.eclipse.ocl.utilities.UMLReflection;
 
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.ErrorMessage;
-import de.hpi.sam.bp2009.solution.oclToAst.delegate.OclAstEcoreEnvironmentFactory;
 import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectDependencyQueryContextProvider;
 import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl;
 
@@ -53,52 +56,11 @@ import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderIm
  * as environment factory, using a {@link ProjectDependencyQueryContextProvider} as query context provider.
  */
 public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
-    ResourceChanger rc= new ResourceChanger();
+    private ResourceChanger rc= new ResourceChanger();
 
-    /**
-     * Data container for all informations around an exception
-     * @author Philipp
-     */
-    private class ErrorMessageImpl implements ErrorMessage{
-        private Exception e;
-        private String m;
-        private Object o;
-
-        public ErrorMessageImpl(Exception exception, String message, Object object) {
-            this.e=exception;
-            this.m=message;
-            this.o=object;
-        }
-        @Override
-        public Object getAffectedObject() {
-            return o;
-        }
-
-        @Override
-        public Exception getException() {
-            return e;			
-        }
-
-        @Override
-        public String getMessageString() {
-            return m;
-        }
-
-    }
     private List<ErrorMessage> messages = new ArrayList<ErrorMessage>();
     private ResourceSet resourceSet = new ResourceSetImpl();
     private EPackage.Registry registry = EPackage.Registry.INSTANCE;
-
-    public static void main(String[] args) {
-        String uri = "file://c:/Documents%20and%20Settings/D043530/emfmdrs-workspace/com.sap.mdrs.ecore/model/mdrs.ecore";
-
-        if (args.length > 1)
-            uri = args[1];
-        EAnnotationOCLParser parser = new EAnnotationOCLParserImpl();
-        parser.convertAnnotations(URI.createURI(uri));
-
-    }
-
 
     /**
      * Loads the resource specified by the given uri with the default {@link EcoreResourceFactoryImpl}, parse all matching EAnnotations and saves the resource
@@ -149,19 +111,6 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
         }
     }
 
-
-//    private void lookupPackageInRegistryAndHandleOrRecurse(URI fileUri, EPackage sPkg)
-//    {
-//          if(EPackage.Registry.INSTANCE.containsKey(sPkg.getNsURI())){
-//               handlePackage(fileUri, sPkg);
-//          } else {
-//            System.err.println("Couldn't find package "+((EPackage) sPkg).getName()+" with nsURI "+((EPackage) sPkg).getNsURI()+
-//              " in registry. Maybe empty top-level package?");
-//            recursivelySearchForSubpackagesInRegistry(fileUri, sPkg);
-//          }
-//    }
-
-
     private void handlePackage(URI fileUri, EObject sPkg)
     {       /*
         * change the current resource to the ecore from the loaded packages
@@ -179,32 +128,41 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
        }
     }
 
-//    private void recursivelySearchForSubpackagesInRegistry(URI fileUri, EObject sPkg)
-//    {
-//      for (EObject content : sPkg.eContents()) {
-//        if (content instanceof EPackage) {
-//          lookupPackageInRegistryAndHandleOrRecurse(fileUri, (EPackage) content);
-//        }
-//      }
-//    }
-
-
     /* (non-Javadoc)
      * @see de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser#convertOclAnnotation(org.eclipse.emf.ecore.EModelElement)
      */
     public void convertOclAnnotation(EModelElement modelElement) {
-        EAnnotation a = modelElement.getEAnnotation(ANNOTATION_SOURCE);
-        if (a == null)
+//      // to convert generated annotations with 'old' uri into annotations with standard uri
+//      EAnnotation anno = modelElement.getEAnnotation("http://de.hpi.sam.bp2009.OCL");
+//      if (anno != null){
+//          anno.setSource(OCLDelegateDomain.OCL_DELEGATE_URI);
+//          anno.getContents().clear();
+//      }
+//
+        EAnnotation textAnno = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+        if (textAnno == null)
             return;
-        a.getContents().clear();
-        for (Entry<String, String> detail : a.getDetails()) {
+        EAnnotation astAnno = modelElement.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+        if (astAnno == null){
+            astAnno = EcoreFactory.eINSTANCE.createEAnnotation();
+            astAnno.setSource(Environment.OCL_NAMESPACE_URI);
+            modelElement.getEAnnotations().add(astAnno);
+        }      
+        else{ 
+            //remove old ast           
+            astAnno.getContents().clear();          
+//          EcoreUtil.remove(astAnno);
+//            return;
+        }
+        for (Entry<String, String> detail : textAnno.getDetails()) {
             String e = detail.getValue();
             if (e == null)
                 return;
             // TODO can the following lines be pulled out of the loop? This may speed things up a little
-            OCL ocl = OCLWithHiddenOpposites.newInstance(new OclAstEcoreEnvironmentFactory(this.getRegistry(),
-                    new Query2OppositeEndFinder(new de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectDependencyQueryContextProvider())));
+            OCL ocl = OCLWithHiddenOpposites.newInstance(new EcoreEnvironmentFactoryWithHiddenOpposites(this.getRegistry(),
+                    new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider())));
             Helper helper = ocl.createOCLHelper();
+            EOperation op = null;
             /*
              * set correct context
              */
@@ -215,48 +173,72 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
                 helper.setContext((EClassifier) modelElement);
                 break;
             case EcorePackage.EATTRIBUTE:
-                helper.setAttributeContext(((EAttribute) modelElement).getEContainingClass(), (EAttribute) modelElement);
+                EAttribute at = (EAttribute) modelElement;
+                helper.setAttributeContext(at.getEContainingClass(), at);      
                 break;
             case EcorePackage.EOPERATION:
-                helper.setOperationContext(((EOperation) modelElement).getEContainingClass(), (EOperation) modelElement);
+                op = (EOperation)modelElement;
+                helper.setOperationContext(op.getEContainingClass(), op);  
                 break;
             default:
                 helper.setInstanceContext(modelElement);
                 break;
             }
-
-            OCLExpression expr = null;
-            try {
-                expr = helper.createQuery(e);
+            Constraint expr = null;
+            try { 
+                String typ = detail.getKey();
+                if(UMLReflection.DERIVATION.equals(typ)){
+                    expr = helper.createDerivedValueExpression(e);
+                }else if (UMLReflection.INITIAL.equals(typ)){
+                    expr = helper.createInitialValueExpression(e);
+                }else if (UMLReflection.BODY.equals(typ)){
+                    //necessary because of class cast exceptions while validating hidden opposites
+                    helper.setValidating(false);
+                    expr = helper.createConstraint(ConstraintKind.BODYCONDITION, e);
+                    if (op != null){
+                        helper.getEnvironment().setBodyCondition(op, expr);
+                    }
+                }else if (UMLReflection.POSTCONDITION.equals(typ)){
+                    expr = helper.createPostcondition(e);
+                }else if (UMLReflection.PRECONDITION.equals(typ)){
+                    expr = helper.createPrecondition(e);            
+                }else if (UMLReflection.DEFINITION.equals(typ)){
+                    expr = helper.createConstraint(ConstraintKind.DEFINITION, e);
+                }else /*as default value, an invariant is expected*/{                    
+                    expr = helper.createInvariant(e);
+                    expr.setName(typ);
+                }
             } catch (ParserException e1) {
                 // TODO use Eclipse logging!
-              System.err.println("On element "+getQualifiedName(modelElement)+" "+modelElement+":\n" + e + "\n" + e1.getMessage());
-              if (e1.getDiagnostic() != null) {
-                for (Diagnostic c : e1.getDiagnostic().getChildren()) {
-                  System.err.println(c.getMessage());
-                }
-              }
-              getAllOccurredErrorMessages().add(new ErrorMessageImpl(e1, "Error during Query parsing", e));
+                parserExceptionHandling(modelElement, e, e1);
             }
 
             if (expr == null)
                 return;
-                
-            a.getContents().add(expr);
-            
+
+            astAnno.getContents().add(expr);
+
             /*
              * Iterate the AST, search for OCL specific types, and add them to the resource of the EAnnotation
              */
-            expr.accept(rc);
+            expr.getSpecification().getBodyExpression().accept(rc);
             EPackage p = getRootPackage(modelElement);
             if(p != null){
-                addOclTypesAnnotationToPackage(rc.getSet(), p);       			
+                addOclTypesAnnotationToPackage(rc.getSet(), p);                         
             }else{
                 getAllOccurredErrorMessages().add(new ErrorMessageImpl(new IllegalArgumentException(), "No Package as root element available", modelElement));
             }
-
-
         }
+    }
+
+    private void parserExceptionHandling(EModelElement modelElement, String e, ParserException e1) {
+        System.err.println("On element "+getQualifiedName(modelElement)+" "+modelElement+":\n" + e + "\n" + e1.getMessage());
+        if (e1.getDiagnostic() != null) {
+            for (Diagnostic c : e1.getDiagnostic().getChildren()) {
+                System.err.println(c.getMessage());
+            }
+        }
+        getAllOccurredErrorMessages().add(new ErrorMessageImpl(e1, "Error during Query parsing", e));
     }
 
     private String getQualifiedName(EObject modelElement) {
@@ -278,57 +260,20 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
     @Override
     public Collection<ErrorMessage> getAllOccurredErrorMessages() {
         return messages;
-
     }
-
-    /* (non-Javadoc)
-     * @see de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser#getExpressionFromAnnotationsOf(org.eclipse.emf.ecore.ENamedElement, java.lang.String)
-     */
-    public OCLExpression getExpressionFromAnnotationsOf(ENamedElement element, String constraintName) {
-        OCLExpression query = null;
-        EAnnotation annoTest = element.getEAnnotation(EAnnotationOCLParser.ANNOTATION_SOURCE);
-        if (annoTest == null) {
-            return null;
-        }
-        
-        query = getExpressionFromAnnotation(element, constraintName);
-        if (query == null) {
-            // we know the annotation exists, but it seems the OCLExpression is not present in the contents:
-            convertOclAnnotation(element);
-            query = getExpressionFromAnnotation(element, constraintName); // try again
-        }
-        return query;
-    }
-
-
-	private OCLExpression getExpressionFromAnnotation(ENamedElement element,
-			String constraintName) {
-		OCLExpression query = null;
-		EAnnotation anno = element.getEAnnotation(EAnnotationOCLParser.ANNOTATION_SOURCE);
-
-        int pos = -1;
-        int count = 0;
-        for (Map.Entry<String, String> constraint1 : anno.getDetails()) {
-            if (constraint1.getKey().equals(constraintName)) {
-                pos = count;
-                break;
-            }
-            count++;
-        }
-        if (pos != -1) {
-            if (anno.getContents().size() > pos) {
-                query = (OCLExpression) anno.getContents().get(pos);
-            }
-        }
-		return query;
-	}
 
     /* (non-Javadoc)
      * @see de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser#traversalConvertOclAnnotations(org.eclipse.emf.ecore.EPackage)
      */
     @Override
     public void traversalConvertOclAnnotations(EPackage pkg) {
-
+//      // to convert annotations with 'old' uri into annotations with new uri
+//      EAnnotation anno = pkg.getEAnnotation("http://www.eclipse.org/emf/2002/Ecore");
+//      if (anno != null){
+//          for (Entry<String, String>  entry: anno.getDetails()){
+//              entry.setValue(OCLDelegateDomain.OCL_DELEGATE_URI);
+//          }
+//      }
         for (EClassifier cls : pkg.getEClassifiers()) {
             convertOclAnnotation(cls);
             if (cls instanceof EClass) {
@@ -356,6 +301,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             annotation = EcoreFactory.eINSTANCE.createEAnnotation();
             annotation.setSource(OCL_TYPES);
         }else{
+//          EcoreUtil.remove(annotation);
             collection.addAll(annotation.getContents());
             annotation.getContents().clear();
         }

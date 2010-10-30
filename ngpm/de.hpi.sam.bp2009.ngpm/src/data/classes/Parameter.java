@@ -23,7 +23,7 @@ import dataaccess.expressions.Expression;
  * </p>
  *
  * @see data.classes.ClassesPackage#getParameter()
- * @model annotation="http://de.hpi.sam.bp2009.OCL DefaultValueType='self.defaultValue->notEmpty() implies self.defaultValue.getType().conformsTo(self.getType())'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL DefaultValueType='self.defaultValue->notEmpty() implies self.defaultValue.getType().conformsTo(self.getType())'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='DefaultValueType'"
  * @generated
  */

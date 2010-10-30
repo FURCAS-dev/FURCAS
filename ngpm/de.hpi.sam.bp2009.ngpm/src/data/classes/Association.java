@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see data.classes.ClassesPackage#getAssociation()
- * @model annotation="http://de.hpi.sam.bp2009.OCL UniquenessOnBothEndsMustBeTheSame='self.ends->forAll( e1, e2 : AssociationEnd |\r\n              e1 <> e2 implies e1.type.unique = e2.type.unique)' AtMostOneCompositeEnd='self.ends->select(composite)->size() < 2' AtLeastOneNavigableEnd='self.ends->select(ae:AssociationEnd | ae.navigable)->notEmpty()' AtMostOneEqualityContributionForTwoValueClasses='self.ends->select(contributesToEquality and type.clazz.valueType)->size() < 2' AtMostOneOrderedEnd='self.ends->select(ae|ae.type.ordered)->size() < 2'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL UniquenessOnBothEndsMustBeTheSame='self.ends->forAll( e1, e2 : AssociationEnd |\r\n              e1 <> e2 implies e1.type.unique = e2.type.unique)' AtMostOneCompositeEnd='self.ends->select(composite)->size() < 2' AtLeastOneNavigableEnd='self.ends->select(ae:AssociationEnd | ae.navigable)->notEmpty()' AtMostOneEqualityContributionForTwoValueClasses='self.ends->select(contributesToEquality and type.clazz.valueType)->size() < 2' AtMostOneOrderedEnd='self.ends->select(ae|ae.type.ordered)->size() < 2'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='UniquenessOnBothEndsMustBeTheSame AtMostOneCompositeEnd AtLeastOneNavigableEnd AtMostOneEqualityContributionForTwoValueClasses AtMostOneOrderedEnd'"
  * @generated
  */

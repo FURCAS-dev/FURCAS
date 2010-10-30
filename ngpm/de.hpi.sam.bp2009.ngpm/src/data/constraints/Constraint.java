@@ -35,7 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see data.constraints.ConstraintsPackage#getConstraint()
- * @model annotation="http://de.hpi.sam.bp2009.OCL ExpressionTypeMustBeBoolean='self.constraintExpression.getType().upperMultiplicity = 1 and\r\n  self.constraintExpression.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n  self.constraintExpression.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Boolean\'' MustBeOwned='self.constrainedType->notEmpty() or\r\n  self.theContext->notEmpty() or\r\n  self.preconditionForSignature->notEmpty() or\r\n  self.postconditionForSignature->notEmpty()'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL ExpressionTypeMustBeBoolean='self.constraintExpression.getType().upperMultiplicity = 1 and\r\n  self.constraintExpression.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n  self.constraintExpression.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Boolean\'' MustBeOwned='self.constrainedType->notEmpty() or\r\n  self.theContext->notEmpty() or\r\n  self.preconditionForSignature->notEmpty() or\r\n  self.postconditionForSignature->notEmpty()'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ExpressionTypeMustBeBoolean MustBeOwned'"
  * @generated
  */

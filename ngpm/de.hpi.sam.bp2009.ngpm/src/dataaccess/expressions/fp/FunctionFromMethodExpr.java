@@ -27,7 +27,7 @@ import dataaccess.expressions.ObjectBasedExpression;
  * </p>
  *
  * @see dataaccess.expressions.fp.FpPackage#getFunctionFromMethodExpr()
- * @model annotation="http://de.hpi.sam.bp2009.OCL SignatureAvailableOnObjectsClass='self.object.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n  self.object.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.conformsTo(self.method.owner.oclAsType(data::classes::SapClass))' MethodSignatureConformsToFunctionSignature='self.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and\r\n    self.method.conformsTo(self.getType().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature)'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL SignatureAvailableOnObjectsClass='self.object.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n  self.object.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.conformsTo(self.method.owner.oclAsType(data::classes::SapClass))' MethodSignatureConformsToFunctionSignature='self.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and\r\n    self.method.conformsTo(self.getType().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature)'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='SignatureAvailableOnObjectsClass MethodSignatureConformsToFunctionSignature'"
  * @generated
  */

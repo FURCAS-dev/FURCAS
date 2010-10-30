@@ -40,7 +40,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see data.timedependency.TimedependencyPackage#getTimeDependency()
- * @model annotation="http://de.hpi.sam.bp2009.OCL RecordCutoffGreaterOrEqualZero='self.recordCutoffInMilliseconds >= 0'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL RecordCutoffGreaterOrEqualZero='self.recordCutoffInMilliseconds >= 0'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='RecordCutoffGreaterOrEqualZero'"
  * @generated
  */

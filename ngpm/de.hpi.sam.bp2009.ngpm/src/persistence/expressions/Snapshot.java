@@ -15,7 +15,7 @@ import dataaccess.expressions.ObjectBasedExpression;
  *
  *
  * @see persistence.expressions.ExpressionsPackage#getSnapshot()
- * @model annotation="http://de.hpi.sam.bp2009.OCL SourceObjectIsOfClassType='self.object.getType().oclIsKindOf(data::classes::ClassTypeDefinition)'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL SourceObjectIsOfClassType='self.object.getType().oclIsKindOf(data::classes::ClassTypeDefinition)'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='SourceObjectIsOfClassType'"
  * @generated
  */

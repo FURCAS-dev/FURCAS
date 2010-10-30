@@ -56,7 +56,7 @@ public interface FunctionSignatureImplementation extends SignatureImplementation
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @model kind="operation" unique="false" required="true" ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='if self.oclIsKindOf(behavioral::actions::Block) then\n    self.oclAsType(behavioral::actions::Block).localIsSideEffectFree()\n  else\n    if self.oclIsKindOf(dataaccess::analytics::CellSet) then\n      self.oclAsType(dataaccess::analytics::CellSet).localIsSideEffectFree()\n    else\n      false\n    endif\n  endif'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='if self.oclIsKindOf(behavioral::actions::Block) then\n    self.oclAsType(behavioral::actions::Block).localIsSideEffectFree()\n  else\n    if self.oclIsKindOf(dataaccess::analytics::CellSet) then\n      self.oclAsType(dataaccess::analytics::CellSet).localIsSideEffectFree()\n    else\n      false\n    endif\n  endif'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */

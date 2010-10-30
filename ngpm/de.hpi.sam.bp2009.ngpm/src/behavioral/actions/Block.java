@@ -38,7 +38,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see behavioral.actions.ActionsPackage#getBlock()
- * @model annotation="http://de.hpi.sam.bp2009.OCL DoesNotOwnIterators='self.variables->select(i|i.oclIsKindOf(Iterator))->isEmpty()' IsSideEffectFreeIfImplementsSideEffectFreeSignature='self.implements_->notEmpty() implies\r\n    (self.implements_.sideEffectFree implies self.isSideEffectFree())' DistinctNamedValueNames='self.variables->forAll( i, j | i <> j implies i.name <> j.name )'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL DoesNotOwnIterators='self.variables->select(i|i.oclIsKindOf(Iterator))->isEmpty()' IsSideEffectFreeIfImplementsSideEffectFreeSignature='self.implements_->notEmpty() implies\r\n    (self.implements_.sideEffectFree implies self.isSideEffectFree())' DistinctNamedValueNames='self.variables->forAll( i, j | i <> j implies i.name <> j.name )'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='DoesNotOwnIterators IsSideEffectFreeIfImplementsSideEffectFreeSignature DistinctNamedValueNames'"
  * @generated
  */
@@ -114,7 +114,7 @@ public interface Block extends FunctionSignatureImplementation, InScope {
      * Walks up the owningStatement/nestedBlocks association to find owning statements and their owning blocks transitively until it arrives at a block that is not owned by a statement. That block is then returned. Usually, such a block would be the implementation of either a function or a method signature.
      * <!-- end-model-doc -->
      * @model kind="operation" unique="false" required="true" ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='if self.owningStatement->notEmpty() then\n    self.owningStatement.block.getOutermostBlock()\n  else\n    self\n  endif'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='if self.owningStatement->notEmpty() then\n    self.owningStatement.block.getOutermostBlock()\n  else\n    self\n  endif'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -124,7 +124,7 @@ public interface Block extends FunctionSignatureImplementation, InScope {
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @model unique="false" required="true" ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='self.statements->forAll(s|s.isSideEffectFreeForBlock(self))'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.statements->forAll(s|s.isSideEffectFreeForBlock(self))'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -139,7 +139,7 @@ public interface Block extends FunctionSignatureImplementation, InScope {
      * 
      * <!-- end-model-doc -->
      * @model kind="operation" ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='  self.addNamedValuesWithNewNames(\r\n  -- Handle Foreach\r\n  let s:Set(data::classes::NamedValue)=Set{} in\r\n  s->union(if owningStatement.oclIsKindOf(Foreach) and owningStatement->notEmpty() then\r\n    owningStatement.oclAsType(Foreach).forVariable.oclAsType(data::classes::NamedValue)->asSet()\r\n  else\r\n    Set{}\r\n  endif)->union(\r\n  -- add parameters for those blocks that are used as a signature implementation\r\n  functionSignature->collect(input->iterate(i; result:Set(data::classes::NamedValue)=Set{} | result->including(i)))\r\n  )->union(\r\n  implements_->collect(input->iterate(i; result:Set(data::classes::NamedValue)=Set{}| result->including(i)))\r\n  )->asSet(),\r\n  -- then ascend the block composition hierarchy and add all NamedValues defined in parent blocks before the occurrence of the statement with the nested block\r\n  if owningStatement->notEmpty() then\r\n    owningStatement.getNamedValuesInScope()\r\n  else\r\n    -- add formal object parameters from owning class\r\n    let oc:data::classes::SapClass = self.getOwningClass() in\r\n    if oc->notEmpty() then\r\n      oc.formalObjectParameters->iterate(i; result:Set(data::classes::NamedValue)=Set{} | result->including(i))\r\n    else\r\n      let es:Set(data::classes::NamedValue) = Set{} in es\r\n    endif\r\n  endif)'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.addNamedValuesWithNewNames(\n  -- Handle Foreach\n  let s:Set(data::classes::NamedValue)=Set{} in\n  s->union(if owningStatement.oclIsKindOf(Foreach) then\n    owningStatement.oclAsType(Foreach).forVariable->asSet()\n  else\n    Set{}\n  endif)->union(\n  -- add parameters for those blocks that are used as a signature implementation\n  functionSignature.input->asSet()\n  )->union(\n  implements_.input->asSet()\n  ),\n  -- then ascend the block composition hierarchy and add all NamedValues defined in parent blocks before the occurrence of the statement with the nested block\n  if owningStatement->notEmpty() then\n    owningStatement.getNamedValuesInScope()\n  else\n    -- add formal object parameters from owning class\n    let oc:data::classes::SapClass = self.getOwningClass() in\n    if oc->notEmpty() then\n      oc.formalObjectParameters->asSet()\n    else\n      Set{}\n    endif\n  endif)'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -149,7 +149,7 @@ public interface Block extends FunctionSignatureImplementation, InScope {
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @model kind="operation" unique="false" ordered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='let outermost:Block = self.getOutermostBlock() in\n  let implementedSignature:data::classes::Signature = outermost.getImplementedSignature() in\n  if implementedSignature->notEmpty() then\n    implementedSignature.getOwningClass()\n  else\n    null\n  endif'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='let outermost:Block = self.getOutermostBlock() in\n  let implementedSignature:data::classes::Signature = outermost.getImplementedSignature() in\n  if implementedSignature->notEmpty() then\n    implementedSignature.getOwningClass()\n  else\n    null\n  endif'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */

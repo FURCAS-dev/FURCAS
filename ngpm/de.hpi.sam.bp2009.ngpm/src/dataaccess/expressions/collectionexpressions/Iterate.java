@@ -38,7 +38,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see dataaccess.expressions.collectionexpressions.CollectionexpressionsPackage#getIterate()
- * @model annotation="http://de.hpi.sam.bp2009.OCL AccumulatorTypeEqualsExpressionType='self.accumulator->notEmpty() implies\r\n  (self.accumulator.ownedTypeDefinition->notEmpty() implies\r\n     self.accumulator.ownedTypeDefinition.conformsTo(self.iteratorExpression.getType()))'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL AccumulatorTypeEqualsExpressionType='self.accumulator->notEmpty() implies\r\n  (self.accumulator.ownedTypeDefinition->notEmpty() implies\r\n     self.accumulator.ownedTypeDefinition.conformsTo(self.iteratorExpression.getType()))'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='AccumulatorTypeEqualsExpressionType'"
  * @generated
  */

@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see data.generics.GenericsPackage#getActualTypeParameter()
- * @model annotation="http://de.hpi.sam.bp2009.OCL TypeConformsWithFormalParametersTypeConstraint='self.formalTypeParameter.typeConstraint->notEmpty() implies\r\n    self.type.conformsTo(self.formalTypeParameter.typeConstraint)'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL TypeConformsWithFormalParametersTypeConstraint='self.formalTypeParameter.typeConstraint->notEmpty() implies\r\n    self.type.conformsTo(self.formalTypeParameter.typeConstraint)'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='TypeConformsWithFormalParametersTypeConstraint'"
  * @generated
  */

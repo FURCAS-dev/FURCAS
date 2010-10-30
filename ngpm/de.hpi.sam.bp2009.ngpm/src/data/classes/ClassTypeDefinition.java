@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see data.classes.ClassesPackage#getClassTypeDefinition()
- * @model annotation="http://de.hpi.sam.bp2009.OCL ActualObjectsParametersMatchSignature='let numberOfMandatoryParameters:Integer =\r\n    self.clazz.formalObjectParameters->select(p|p.defaultValue->isEmpty())->size()\r\n  in\r\n  self.objectParameters->size() >= numberOfMandatoryParameters and\r\n  self.objectParameters->size() <= self.clazz.formalObjectParameters->size() and\r\n  Sequence{1..self.objectParameters->size()}->forAll(i:Integer|\r\n    self.objectParameters->at(i).formalObjectParameter =\r\n    self.clazz.formalObjectParameters->at(i))'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL ActualObjectsParametersMatchSignature='let numberOfMandatoryParameters:Integer =\r\n    self.clazz.formalObjectParameters->select(p|p.defaultValue->isEmpty())->size()\r\n  in\r\n  self.objectParameters->size() >= numberOfMandatoryParameters and\r\n  self.objectParameters->size() <= self.clazz.formalObjectParameters->size() and\r\n  Sequence{1..self.objectParameters->size()}->forAll(i:Integer|\r\n    self.objectParameters->at(i).formalObjectParameter =\r\n    self.clazz.formalObjectParameters->at(i))'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ActualObjectsParametersMatchSignature'"
  * @generated
  */
@@ -127,7 +127,7 @@ public interface ClassTypeDefinition extends TypeDefinition {
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @model unique="false" required="true" ordered="false" ctdUnique="false" ctdRequired="true" ctdOrdered="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='if self.effectiveObjectParameters()->size()  = ctd.effectiveObjectParameters()->size() then\n    self.clazz.converterBetweenParametrizations->notEmpty() or\n    Sequence{1..self.effectiveObjectParameters()->size()}->forAll(i |\n      self.effectiveObjectParameters()->at(i).evaluatesToEqualAs(ctd.effectiveObjectParameters()->at(i)))\n  else\n    false\n  endif'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='if self.effectiveObjectParameters()->size()  = ctd.effectiveObjectParameters()->size() then\n    self.clazz.converterBetweenParametrizations->notEmpty() or\n    Sequence{1..self.effectiveObjectParameters()->size()}->forAll(i |\n      self.effectiveObjectParameters()->at(i).evaluatesToEqualAs(ctd.effectiveObjectParameters()->at(i)))\n  else\n    false\n  endif'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */
@@ -137,7 +137,7 @@ public interface ClassTypeDefinition extends TypeDefinition {
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @model unique="false"
-     *        annotation="http://de.hpi.sam.bp2009.OCL body='self.objectParameters.value->flatten()->asSequence()->union(\n     Sequence{(self.objectParameters->size()+1)..(self.clazz.formalObjectParameters->size())}->collect(i | \n             self.clazz.formalObjectParameters->at(i).defaultValue->flatten()->asSequence()))->flatten()->asSequence()'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.objectParameters.value->flatten()->asSequence()->union(\n     Sequence{(self.objectParameters->size()+1)..(self.clazz.formalObjectParameters->size())}->collect(i | \n             self.clazz.formalObjectParameters->at(i).defaultValue->flatten()->asSequence()))->flatten()->asSequence()'"
      *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
      * @generated
      */

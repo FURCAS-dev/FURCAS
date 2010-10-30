@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see dataaccess.expressions.literals.LiteralsPackage#getValueInit()
- * @model annotation="http://de.hpi.sam.bp2009.OCL ValueInitTypeConforms='self.value.getType().conformsTo(self.forEnd.type)'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL ValueInitTypeConforms='self.value.getType().conformsTo(self.forEnd.type)'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ValueInitTypeConforms'"
  * @generated
  */

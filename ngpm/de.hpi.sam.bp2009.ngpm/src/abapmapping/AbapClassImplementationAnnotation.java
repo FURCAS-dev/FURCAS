@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see abapmapping.AbapmappingPackage#getAbapClassImplementationAnnotation()
- * @model annotation="http://de.hpi.sam.bp2009.OCL AbapTypeMustBeUnstructured='self.kind = AbapClassKind::ABAP_TYPE implies\r\n    self.abapType.oclIsKindOf(abapmapping::abapdictionary::UnstructuredAbapType)'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL AbapTypeMustBeUnstructured='self.kind = AbapClassKind::ABAP_TYPE implies\r\n    self.abapType.oclIsKindOf(abapmapping::abapdictionary::UnstructuredAbapType)'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='AbapTypeMustBeUnstructured'"
  * @generated
  */

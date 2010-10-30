@@ -18,7 +18,7 @@ package behavioral.actions;
  *
  *
  * @see behavioral.actions.ActionsPackage#getSingleBlockStatement()
- * @model annotation="http://de.hpi.sam.bp2009.OCL OwnsExactlyOneBlock='self.nestedBlocks->size() = 1'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL OwnsExactlyOneBlock='self.nestedBlocks->size() = 1'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='OwnsExactlyOneBlock'"
  * @generated
  */

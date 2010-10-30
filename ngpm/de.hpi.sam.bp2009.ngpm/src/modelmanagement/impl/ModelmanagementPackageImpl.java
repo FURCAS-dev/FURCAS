@@ -672,8 +672,8 @@ public class ModelmanagementPackageImpl extends EPackageImpl implements Modelman
         // Create annotations
         // http://www.eclipse.org/emf/2002/Ecore
         createEcoreAnnotations();
-        // http://de.hpi.sam.bp2009.OCL
-        createDeAnnotations();
+        // http://www.eclipse.org/emf/2002/Ecore/OCL
+        createOCLAnnotations();
         // http://schema.omg.org/spec/MOF/2.0/emof.xml
         createEmofAnnotations();
     }
@@ -690,8 +690,9 @@ public class ModelmanagementPackageImpl extends EPackageImpl implements Modelman
           (this, 
            source, 
            new String[] {
-             "invocationDelegates", "http://de.hpi.sam.bp2009.OCL",
-             "validationDelegates", "http://de.hpi.sam.bp2009.OCL"
+             "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL",
+             "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL",
+             "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL"
            });					
         addAnnotation
           (packageEClass, 
@@ -708,13 +709,13 @@ public class ModelmanagementPackageImpl extends EPackageImpl implements Modelman
     }
 
 	/**
-     * Initializes the annotations for <b>http://de.hpi.sam.bp2009.OCL</b>.
+     * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL</b>.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected void createDeAnnotations() {
-        String source = "http://de.hpi.sam.bp2009.OCL";					
+    protected void createOCLAnnotations() {
+        String source = "http://www.eclipse.org/emf/2002/Ecore/OCL";					
         addAnnotation
           (packageEClass, 
            source, 
@@ -730,7 +731,7 @@ public class ModelmanagementPackageImpl extends EPackageImpl implements Modelman
            });				
     }
 
-	/**
+    /**
      * Initializes the annotations for <b>http://schema.omg.org/spec/MOF/2.0/emof.xml</b>.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

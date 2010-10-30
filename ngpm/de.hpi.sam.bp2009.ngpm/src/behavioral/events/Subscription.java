@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see behavioral.events.EventsPackage#getSubscription()
- * @model annotation="http://de.hpi.sam.bp2009.OCL SubscribingClassMatchProducer='self.producer.notificationSignatures->forAll(ms:data::classes::MethodSignature |\r\n    self.subscribingClass.allSignatures()->exists(s:data::classes::MethodSignature|s.conformsTo(ms)))'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL SubscribingClassMatchProducer='self.producer.notificationSignatures->forAll(ms:data::classes::MethodSignature |\r\n    self.subscribingClass.allSignatures()->exists(s:data::classes::MethodSignature|s.conformsTo(ms)))'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='SubscribingClassMatchProducer'"
  * @generated
  */

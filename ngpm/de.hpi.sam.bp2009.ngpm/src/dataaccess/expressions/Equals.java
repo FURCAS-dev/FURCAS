@@ -27,7 +27,7 @@ package dataaccess.expressions;
  * </p>
  *
  * @see dataaccess.expressions.ExpressionsPackage#getEquals()
- * @model annotation="http://de.hpi.sam.bp2009.OCL ConformaceOneWayOrAnother='self.left.getType().conformsTo(self.right.getType()) or\r\n  self.right.getType().conformsTo(self.left.getType())'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL ConformaceOneWayOrAnother='self.left.getType().conformsTo(self.right.getType()) or\r\n  self.right.getType().conformsTo(self.left.getType())'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ConformaceOneWayOrAnother'"
  * @generated
  */

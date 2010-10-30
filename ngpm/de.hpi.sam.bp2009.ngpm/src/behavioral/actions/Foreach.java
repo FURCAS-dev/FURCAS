@@ -27,7 +27,7 @@ import dataaccess.expressions.Expression;
  * </p>
  *
  * @see behavioral.actions.ActionsPackage#getForeach()
- * @model annotation="http://de.hpi.sam.bp2009.OCL VariableOwnedByRightBlock='self.forVariable.owner = self.nestedBlocks->at(1)'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL VariableOwnedByRightBlock='self.forVariable.owner = self.nestedBlocks->at(1)'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='VariableOwnedByRightBlock'"
  * @generated
  */

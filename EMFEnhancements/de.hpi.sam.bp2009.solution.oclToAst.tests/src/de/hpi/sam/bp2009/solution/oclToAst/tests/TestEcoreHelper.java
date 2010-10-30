@@ -63,28 +63,28 @@ public class TestEcoreHelper extends TestCase {
         EcoreHelper helper = EcoreHelper.getInstance();
         Transition transition = PetriNetFactory.eINSTANCE.createTransition();
         Place place = PetriNetFactory.eINSTANCE.createPlace();
-        place.setTestHiddenOpposite(transition);
+        place.setHiddenOpposite(transition);
         ResourceSet rs = new ResourceSetImpl();
         Resource e = rs.createResource(URI.createURI("http://my.next.resource/somethingElse"));
         e.getContents().add(place);
         e.getContents().add(transition);
         Collection<EObject> result = helper.reverseNavigate(transition, (EReference) place.eClass().getEStructuralFeature(
-                PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE), helper.getQueryContext(rs, IndexFactory.getInstance()), rs, IndexFactory.getInstance());
+                PetriNetPackage.PLACE__HIDDEN_OPPOSITE), helper.getQueryContext(rs, IndexFactory.getInstance()), rs, IndexFactory.getInstance());
         assertEquals(place, result.iterator().next());
     }
     
     public void testHiddenOppositeOclTraversal() throws ParserException {
         Transition transition = PetriNetFactory.eINSTANCE.createTransition();
         Place place = PetriNetFactory.eINSTANCE.createPlace();
-        place.setTestHiddenOpposite(transition);
+        place.setHiddenOpposite(transition);
         ResourceSet rs = new ResourceSetImpl();
         Resource e = rs.createResource(URI.createURI("http://my.next.resource/somethingElse"));
         e.getContents().add(place);
         e.getContents().add(transition);
         OCL ocl = OCLWithHiddenOpposites.newInstance(new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider()));
         Helper oclHelper = ocl.createOCLHelper();
-        oclHelper.setContext(transition.eClass());
-        OCLExpression expr = oclHelper.createQuery("self.hiddenOpposite");
+        oclHelper.setContext(PetriNetPackage.eINSTANCE.getTransition());
+        OCLExpression expr = oclHelper.createQuery("self.transition2Place");
         Object result = ocl.evaluate(transition, expr);
         assertTrue(result instanceof Collection<?>);
         assertEquals(place, ((Collection<?>) result).iterator().next());

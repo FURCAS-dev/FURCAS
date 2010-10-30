@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see abapmapping.abapdictionary.AbapdictionaryPackage#getCode()
- * @model annotation="http://de.hpi.sam.bp2009.OCL TypeOfValuesEqualsAbapType='self.values->forAll(cv:CodeValue |\r\n      cv.type = self.abapType)'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL TypeOfValuesEqualsAbapType='self.values->forAll(cv:CodeValue |\r\n      cv.type = self.abapType)'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='TypeOfValuesEqualsAbapType'"
  * @generated
  */
