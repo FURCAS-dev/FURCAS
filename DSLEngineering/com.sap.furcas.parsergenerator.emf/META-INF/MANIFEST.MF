@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: MoinModelAdaptor
+Bundle-Name: EMF Specific Parsergeneration Logik
 Bundle-SymbolicName: com.sap.furcas.parsergenerator.emf
 Bundle-Version: 1.0.0.qualifier
 Require-Bundle: 
@@ -15,3 +15,4 @@ Require-Bundle:
  com.sap.furcas.parser.tcs
 Export-Package: com.sap.furcas.parsergenerator.emf.lookup,
  com.sap.furcas.parsergenerator.emf.tcs.inject
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

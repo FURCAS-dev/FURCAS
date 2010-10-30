@@ -13,8 +13,8 @@ import java.io.InputStream;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.sap.furcas.parser.tcs.bootstrapped.TCSLexer;
-import com.sap.furcas.parser.tcs.bootstrapped.TCSParser;
+import com.sap.furcas.parser.tcs.stableversion.TCSLexer;
+import com.sap.furcas.parser.tcs.stableversion.TCSParser;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.utils.projects.FileReadHelper;

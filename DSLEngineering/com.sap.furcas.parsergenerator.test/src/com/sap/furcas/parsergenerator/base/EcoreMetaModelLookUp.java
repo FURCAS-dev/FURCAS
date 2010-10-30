@@ -1,4 +1,4 @@
-package com.sap.furcas.test.parsing.base;
+package com.sap.furcas.parsergenerator.base;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,59 +30,55 @@ import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 public class EcoreMetaModelLookUp implements IMetaModelLookup<Object> {
 
     private static final String METAMODELDIR = "scenarioTestResource/metamodels/";
-    
+
     private final List<EPackage> rootPackageList = new ArrayList<EPackage>(3);
     private final Set<EClassifier> classifierList = new HashSet<EClassifier>();
 
-    
     /**
      * 
      * @param rootEcoreFile
      * @param dataTypeEcoreFile
      * @throws IOException
      */
-    public EcoreMetaModelLookUp(File... fileArr) throws MetaModelLookupException  {
-//In this case DataTypes are usually in a separate file, need to load that one as well
-        for (int i = 0; i < fileArr.length; i++) {
-            File file = fileArr[i];
+    public EcoreMetaModelLookUp(File... fileArr) throws MetaModelLookupException {
+        // In this case DataTypes are usually in a separate file, need to load that one as well
+        for (File file : fileArr) {
             java.net.URI uri = file.toURI();
             java.net.URI normUri = uri.normalize();
-            
+
             loadPackagesFromUri(normUri.toString());
         }
     }
-    
+
     /**
      * 
      * @param rootEcoreFile
      * @param dataTypeEcoreFile
      * @throws IOException
      */
-    public EcoreMetaModelLookUp(String... fileArr) throws MetaModelLookupException  {
-//In this case DataTypes are usually in a separate file, need to load that one as well
-        for (int i = 0; i < fileArr.length; i++) {
-            String rootEcoreFile = fileArr[i];
+    public EcoreMetaModelLookUp(String... fileArr) throws MetaModelLookupException {
+        // In this case DataTypes are usually in a separate file, need to load that one as well
+        for (String rootEcoreFile : fileArr) {
             File file = new File(METAMODELDIR + rootEcoreFile);
             String uri = file.toURI().toString();
-           
+
             loadPackagesFromUri(uri);
         }
-        
+
     }
-    
+
     private void loadPackagesFromUri(String uri) throws MetaModelLookupException {
-        Resource resource = new XMIResourceImpl(URI.createURI( uri));
-        
+        Resource resource = new XMIResourceImpl(URI.createURI(uri));
+
         try {
             resource.load(null);
         } catch (IOException e) {
             throw new MetaModelLookupException("Unable to parse ecore xmi for file uri " + uri + " : " + e.getMessage(), e);
         }
         // Load Datatypes
-        
+
         EList<EObject> list = resource.getContents();
-        for (Iterator<EObject> iterator = list.iterator(); iterator.hasNext();) {
-            EObject object = iterator.next();
+        for (EObject object : list) {
             if (object instanceof EPackage) {
                 EPackage new_package = (EPackage) object;
                 rootPackageList.add(new_package);
@@ -90,50 +86,45 @@ public class EcoreMetaModelLookUp implements IMetaModelLookup<Object> {
                 addClassifiersRecursively(new_package);
             }
         }
-        
-       
+
     }
 
     private void addClassifiersRecursively(EPackage currentpackage) {
         EList<EClassifier> coll = currentpackage.getEClassifiers();
-        for (Iterator<EClassifier> iterator = coll.iterator(); iterator.hasNext();) {
-            EClassifier classifier = iterator.next();
-         
+        for (EClassifier classifier : coll) {
             classifierList.add(classifier);
         }
-        
-        
+
         EList<EPackage> subs = currentpackage.getESubpackages();
         for (EPackage loopPackage : subs) {
             addClassifiersRecursively(loopPackage);
         }
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see com.sap.mi.textual.interfaces.IMetaModelLookup#getDirectSubTypes(java.lang.String)
      */
     @Override
     public List<ResolvedNameAndReferenceBean<Object>> getDirectSubTypes(ResolvedNameAndReferenceBean<Object> reference) {
         List<String> typeName = reference.getNames();
         EClassifier typeClass = getEClassifier(typeName);
-        if (typeClass == null) { 
+        if (typeClass == null) {
             // no need to loop over subtypes if the supertype does not exist anyways
             return null;
         }
-        
-        
-//        EList<EClassifier> classiList = rootPackage.getEClassifiers();
+
+        // EList<EClassifier> classiList = rootPackage.getEClassifiers();
         List<ResolvedNameAndReferenceBean<Object>> list = new ArrayList<ResolvedNameAndReferenceBean<Object>>();
-        for (Iterator<EClassifier> iterator = classifierList.iterator(); iterator.hasNext();) {
-            EClassifier classi = iterator.next();
+        for (EClassifier classi : classifierList) {
             // loop only over classes
             if (classi instanceof EClass) {
                 EClass eClass = (EClass) classi;
 
                 // loop over class supertypes to see if the one passed to the method is among them. If so, add it.
                 EList<EClass> superList = eClass.getESuperTypes();
-                for (Iterator<EClass> iterator2 = superList.iterator(); iterator2.hasNext();) {
-                    EClass class1 = iterator2.next();
+                for (EClass class1 : superList) {
                     if (getReferenceBean(class1).equals(reference)) {
                         list.add(getReferenceBean(classi));
                         break;
@@ -144,12 +135,14 @@ public class EcoreMetaModelLookUp implements IMetaModelLookup<Object> {
         return list;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see com.sap.mi.textual.interfaces.IMetaModelLookup#getFeatureClassName(java.lang.String, java.lang.String)
      */
     @Override
-    public ResolvedNameAndReferenceBean<Object> getFeatureClassReference(ResolvedNameAndReferenceBean<Object> reference, String featureName)
-            throws MetaModelLookupException {
+    public ResolvedNameAndReferenceBean<Object> getFeatureClassReference(ResolvedNameAndReferenceBean<Object> reference,
+            String featureName) throws MetaModelLookupException {
 
         EClassifier resultType = null;
         if (reference != null) {
@@ -165,20 +158,21 @@ public class EcoreMetaModelLookUp implements IMetaModelLookup<Object> {
                     resultType = resolved;
                 } else {
                     resultType = eType;
-                   
+
                 }
                 if (resultType == null) { // Ecore lookup inconsistency
                     throw new MetaModelLookupException("Feature Class name is null for " + reference + "." + featureName);
                 }
-            } 
+            }
         }
-
 
         return getReferenceBean(resultType);
 
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see com.sap.mi.textual.interfaces.IMetaModelLookup#getMultiplicity(java.lang.String, java.lang.String)
      */
     @Override
@@ -191,16 +185,17 @@ public class EcoreMetaModelLookUp implements IMetaModelLookup<Object> {
             int lowerbound = feature.getLowerBound();
             int upperbound = feature.getUpperBound();
             multiplicity.setLowerBound(lowerbound);
-          
+
             multiplicity.setUpperBound(upperbound);
-            
+
         }
-       
+
         return multiplicity;
     }
-    
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see com.sap.mi.textual.interfaces.IMetaModelLookup#hasFeature(java.lang.String, java.lang.String)
      */
     public boolean hasFeature(ResolvedNameAndReferenceBean<Object> reference, String featureName) {
@@ -208,47 +203,48 @@ public class EcoreMetaModelLookUp implements IMetaModelLookup<Object> {
         EStructuralFeature feature = getEStructuralFeature(typeName, featureName);
         if (feature != null) {
             return true;
-        } 
+        }
         return false;
     }
 
-   
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see com.sap.mi.textual.interfaces.IMetaModelLookup#isClassName(java.lang.String)
      */
-//    public boolean isClassName(List<String> typeName) {
-//        if (typeName != null && getEClassifier(typeName) != null) {
-//            return true;
-//        } 
-//        return false;
-//    }
+    // public boolean isClassName(List<String> typeName) {
+    // if (typeName != null && getEClassifier(typeName) != null) {
+    // return true;
+    // }
+    // return false;
+    // }
 
-    private EClassifier getEClassifier(List<String> typeNameQ)  {
+    private EClassifier getEClassifier(List<String> typeNameQ) {
 
         if (typeNameQ == null || typeNameQ.size() == 0) {
             return null;
         }
-        
-        // is name qualified or not qualified?
-        if ( typeNameQ.size() == 1) {
-//            String typeName = typeNameQ.get(0);
-//            
-//            // TODO: Search for suitable type in all packages, check if unique
-//            EClassifier returnClass =  rootPackage.getEClassifier(typeName);
-////            EClassifier returnClass = findClassifier(typeName);
-//            if (returnClass instanceof EClass ) {
-//          return (EClass) returnClass;
 
-//          } else {
+        // is name qualified or not qualified?
+        if (typeNameQ.size() == 1) {
+            // String typeName = typeNameQ.get(0);
+            //
+            // // TODO: Search for suitable type in all packages, check if unique
+            // EClassifier returnClass = rootPackage.getEClassifier(typeName);
+            // // EClassifier returnClass = findClassifier(typeName);
+            // if (returnClass instanceof EClass ) {
+            // return (EClass) returnClass;
+
+            // } else {
             return null;
-//          }
+            // }
         } else {
             List<String> packageName = getPackageName(typeNameQ);
-            String typeName = typeNameQ.get(typeNameQ.size()-1); // last element is type name
+            String typeName = typeNameQ.get(typeNameQ.size() - 1); // last element is type name
             EPackage subPackage = getEPackage(packageName);
             if (subPackage != null) {
-                EClassifier returnClass =  subPackage.getEClassifier(typeName);
-                if (returnClass != null ) {
+                EClassifier returnClass = subPackage.getEClassifier(typeName);
+                if (returnClass != null) {
                     return returnClass;
                 }
             }
@@ -257,9 +253,9 @@ public class EcoreMetaModelLookUp implements IMetaModelLookup<Object> {
         }
     }
 
- 
     /**
      * cuts off the last String
+     * 
      * @param typeNameQ
      * @return
      */
@@ -274,12 +270,10 @@ public class EcoreMetaModelLookUp implements IMetaModelLookup<Object> {
         return packageName;
     }
 
-
-    private EPackage getEPackage(List<String> packageNameQ)  {
+    private EPackage getEPackage(List<String> packageNameQ) {
 
         EPackage indexPackage = null;
-        for (Iterator<EPackage> iterator = rootPackageList.iterator(); iterator.hasNext();) {
-            EPackage pack = iterator.next();
+        for (EPackage pack : rootPackageList) {
             if (pack.getName().equals(packageNameQ.get(0))) {
                 indexPackage = pack;
             }
@@ -287,8 +281,7 @@ public class EcoreMetaModelLookUp implements IMetaModelLookup<Object> {
         if (indexPackage == null) {
             return null;
         }
-        
-       
+
         Iterator<String> iterator = packageNameQ.iterator();
         iterator.next(); // jump root package, checked before
         for (; iterator.hasNext();) {
@@ -313,35 +306,37 @@ public class EcoreMetaModelLookUp implements IMetaModelLookup<Object> {
 
     private EStructuralFeature getEStructuralFeature(List<String> typeName, String featureName) {
         EStructuralFeature returnFeature = null;
-        
+
         EClassifier typeClass = getEClassifier(typeName);
         if (typeClass != null && typeClass instanceof EClass) {
-            returnFeature = ((EClass)typeClass).getEStructuralFeature(featureName);
+            returnFeature = ((EClass) typeClass).getEStructuralFeature(featureName);
         }
-        return returnFeature ;
+        return returnFeature;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see com.sap.mi.textual.interfaces.IMetaModelLookup#close()
      */
     @Override
     public void close() {
     }
 
-    private ResolvedNameAndReferenceBean<Object> getReferenceBean(EClassifier type)  {
+    private ResolvedNameAndReferenceBean<Object> getReferenceBean(EClassifier type) {
         if (type == null) {
             return null;
         }
-        
-        List<String> returnlist = new ArrayList<String>(); 
-        
+
+        List<String> returnlist = new ArrayList<String>();
+
         EPackage indexpackage = type.getEPackage();
         if (indexpackage == null) {
             throw new NullPointerException("Type with null package: " + type);
         }
         returnlist.add(type.getName());
         returnlist.add(indexpackage.getName());
-        while (indexpackage.getESuperPackage() != null ) {
+        while (indexpackage.getESuperPackage() != null) {
             EPackage superPack = indexpackage.getESuperPackage();
             returnlist.add(superPack.getName());
             indexpackage = superPack;
@@ -350,106 +345,103 @@ public class EcoreMetaModelLookUp implements IMetaModelLookup<Object> {
         return new ResolvedNameAndReferenceBean<Object>(returnlist, type);
     }
 
-
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see com.sap.mi.textual.interfaces.IMetaModelLookup#qualifyName(java.lang.String)
      */
     @Override
     public List<ResolvedNameAndReferenceBean<Object>> qualifyName(String typeName) {
         // Looks into root package and if present alternative root (as in many test cases here, dirty hack for TCS compatibility)
         List<ResolvedNameAndReferenceBean<Object>> list = new ArrayList<ResolvedNameAndReferenceBean<Object>>();
-        
-        for (Iterator<EClassifier> iterator = classifierList.iterator(); iterator.hasNext();) {
-            EClassifier typeClass = iterator.next();
-            if (typeClass != null && typeClass.getName().equals(typeName) ) {
-              list.add( getReferenceBean(typeClass));
-          }
-            
+
+        for (EClassifier typeClass : classifierList) {
+            if (typeClass != null && typeClass.getName().equals(typeName)) {
+                list.add(getReferenceBean(typeClass));
+            }
+
         }
-        
-//        // TODO: look in all packages instead?
-//        EClassifier typeClass =  rootPackage.getEClassifier(typeName);
-//        if (typeClass != null && typeClass instanceof EClassifier ) {
-//            list.add( getQualifiedName((EClassifier) typeClass));
-//        }
-//        
-//        if (secondPackage != null) {
-//            typeClass = secondPackage.getEClassifier(typeName);
-//            //      EClassifier returnClass = findClassifier(typeName);
-//            if (typeClass != null && typeClass instanceof EClassifier ) {
-//                list.add( getQualifiedName((EClassifier) typeClass));
-//            }
-//        }
+
+        // // TODO: look in all packages instead?
+        // EClassifier typeClass = rootPackage.getEClassifier(typeName);
+        // if (typeClass != null && typeClass instanceof EClassifier ) {
+        // list.add( getQualifiedName((EClassifier) typeClass));
+        // }
+        //
+        // if (secondPackage != null) {
+        // typeClass = secondPackage.getEClassifier(typeName);
+        // // EClassifier returnClass = findClassifier(typeName);
+        // if (typeClass != null && typeClass instanceof EClassifier ) {
+        // list.add( getQualifiedName((EClassifier) typeClass));
+        // }
+        // }
         return list;
     }
 
+    @Override
+    public List<String> getEnumLiterals(ResolvedNameAndReferenceBean<Object> enumeration) {
+        List<String> literals = new ArrayList<String>();
 
-
-
-
-	@Override
-	public List<String> getEnumLiterals(ResolvedNameAndReferenceBean<Object> enumeration) {
-		List<String> literals = new ArrayList<String>();
-        
         EClassifier classifier = getEClassifier(enumeration.getNames());
         if (classifier != null && classifier instanceof EEnum) {
-            for (EEnumLiteral literal : ((EEnum)classifier).getELiterals()) {
-            	literals.add(literal.getLiteral());
-			}
+            for (EEnumLiteral literal : ((EEnum) classifier).getELiterals()) {
+                literals.add(literal.getLiteral());
+            }
         }
-        return literals ;
-	}
+        return literals;
+    }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see com.sap.mi.textual.interfaces.IMetaModelLookup#isSubTypeOf(java.util.List, java.util.List)
      */
     @Override
     public boolean isSubTypeOf(ResolvedNameAndReferenceBean<Object> subType, ResolvedNameAndReferenceBean<Object> superType) {
         EClassifier supertypeClass = getEClassifier(superType.getNames());
         EClassifier subtypeClass = getEClassifier(subType.getNames());
-        
+
         if (supertypeClass == null || subtypeClass == null) {
             return false;
         }
-        if (!  (supertypeClass instanceof EClass) || ! ( subtypeClass instanceof EClass )) {
+        if (!(supertypeClass instanceof EClass) || !(subtypeClass instanceof EClass)) {
             return false;
         }
         if (subtypeClass.equals(supertypeClass)) {
             return true;
         }
 
-        EList<EClass> superList = ((EClass)subtypeClass).getEAllSuperTypes();
-        for (Iterator<EClass> iterator = superList.iterator(); iterator.hasNext();) {
-            EClass generalizableElement = iterator
-                    .next();
+        EList<EClass> superList = ((EClass) subtypeClass).getEAllSuperTypes();
+        for (EClass generalizableElement : superList) {
             if (generalizableElement.equals(supertypeClass)) {
                 return true;
             }
-            
+
         }
-        
+
         return false;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see com.sap.mi.textual.interfaces.IMetaModelLookup#resolveReference(java.util.List)
      */
     @Override
-    public ResolvedNameAndReferenceBean<Object> resolveReference(
-            List<String> names) throws MetaModelLookupException {
+    public ResolvedNameAndReferenceBean<Object> resolveReference(List<String> names) throws MetaModelLookupException {
         if (names == null || names.size() == 0) {
             return null;
         }
-        
+
         EClassifier classi = getEClassifier(names);
         if (classi == null) {
-        
+
             if (names.size() == 1) {
                 List<ResolvedNameAndReferenceBean<Object>> resolvedNames = qualifyName(names.get(0));
                 if (resolvedNames.size() == 1) {
                     return resolvedNames.get(0);
                 } else {
-                   return null;
+                    return null;
                 }
             } else {
                 // workround: map MOIN primitives to Ecore primitives to reduce the hassle
@@ -464,8 +456,8 @@ public class EcoreMetaModelLookUp implements IMetaModelLookup<Object> {
                     }
                     return resolveReference(copy);
                 } else {
-                   return null;
-                }                
+                    return null;
+                }
             }
         } else {
             return getReferenceBean(classi);
@@ -473,7 +465,9 @@ public class EcoreMetaModelLookUp implements IMetaModelLookup<Object> {
 
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see com.sap.mi.textual.interfaces.IMetaModelLookup#resolveReferenceName(java.lang.Object)
      */
     @Override
@@ -481,17 +475,19 @@ public class EcoreMetaModelLookUp implements IMetaModelLookup<Object> {
         if (reference instanceof EClassifier) {
             EClassifier classi = (EClassifier) reference;
             return getReferenceBean(classi);
-        // FIXME what here?
-//        } else if (reference instanceof ModelElement) {
-//            ModelElement classi = (ModelElement) reference;
-//            return resolveReference(classi.getQualifiedName());
+            // FIXME what here?
+            // } else if (reference instanceof ModelElement) {
+            // ModelElement classi = (ModelElement) reference;
+            // return resolveReference(classi.getQualifiedName());
         } else {
             throw new IllegalArgumentException("Expected EClassifier, not " + reference.getClass());
         }
-        
+
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see com.sap.mi.textual.interfaces.IMetaModelLookup#isAbstract(com.sap.mi.textual.interfaces.ResolvedNameAndReferenceBean)
      */
     @Override
@@ -502,10 +498,9 @@ public class EcoreMetaModelLookUp implements IMetaModelLookup<Object> {
     }
 
     @Override
-    public List<String> validateOclQuery(Object template, String query,
-	    Object context) {
-	// TODO Implement for EMF
-	return Collections.emptyList();
+    public List<String> validateOclQuery(Object template, String query, Object context) {
+        // TODO Implement for EMF
+        return Collections.emptyList();
     }
 
 }

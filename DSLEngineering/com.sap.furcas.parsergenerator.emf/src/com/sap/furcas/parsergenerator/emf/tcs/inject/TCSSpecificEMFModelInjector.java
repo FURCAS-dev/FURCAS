@@ -15,8 +15,8 @@ import java.util.Set;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import com.sap.furcas.parser.tcs.bootstrapped.TCSLexer;
-import com.sap.furcas.parser.tcs.bootstrapped.TCSParser;
+import com.sap.furcas.parser.tcs.stableversion.TCSLexer;
+import com.sap.furcas.parser.tcs.stableversion.TCSParser;
 import com.sap.furcas.runtime.parser.IParsingObserver;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
 import com.sap.furcas.runtime.parser.ParserFacade;
@@ -25,7 +25,7 @@ import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.impl.DefaultTextAwareModelAdapter;
 
 /**
- * parses TCS file and injects into MOIN runtime model.
+ * Parses a TCS file and injects the syntax definition into an EMF runtime model.
  * 
  * @author C5107456
  */
@@ -35,60 +35,32 @@ public class TCSSpecificEMFModelInjector {
     // metamodel.
 
     /**
-     * Parse the syntax definition using the current version of TCSParser and
-     * TCSLexer.
+     * Parse the syntax definition using the stable version of the TCSParser and TCSLexer.
      */
-    public static ModelInjectionResult parseSyntaxDefinition(InputStream in, ResourceSet resourceSet, Set<URI> metamodelPRIs,
+    public static ModelInjectionResult parseSyntaxDefinition(InputStream in, ResourceSet resourceSet, Set<URI> referenceScope,
 	    IParsingObserver observer) throws InvalidParserImplementationException, IOException, UnknownProductionRuleException {
-	return parseSyntaxDefinition(in, resourceSet, metamodelPRIs, observer, null);
+        
+        ParserFacade tcsParserFacade = new ParserFacade(TCSParser.class, TCSLexer.class);
+	return parseSyntaxDefinition(in, resourceSet, referenceScope, observer, tcsParserFacade);
     }
 
     /**
-     * Parses the syntax definition.
-     * 
-     * @param in
-     *            the in
-     * @param metamodelPRIs
-     * @param observer
-     * @param alternativeTcsParserFacade
-     *            parser facade initialized with a version of TCSParser and
-     *            TCSLexer (useful to keep the parser stable for testing) or
-     *            null to use the most current version of TCSParser and TCSLexer
-     * 
-     * @return the model parsing result
-     * @throws InvalidParserImplementationException
-     * @throws UnknownProductionRuleException
-     * @throws IOException
+     * Parse the syntax definition using the given version of the TCSParser and TCSLexer.
      */
-    public static ModelInjectionResult parseSyntaxDefinition(InputStream in, ResourceSet resourceSet, Set<URI> metamodelPRIs,
-	    IParsingObserver observer, ParserFacade alternativeTcsParserFacade) throws InvalidParserImplementationException,
-	    IOException, UnknownProductionRuleException {
-	// use a model Handler that is implemented in EMF and only handles TCS
-	// models
-	TCSSpecificEMFModelAdapter handler = null;
-	ModelParsingResult result;
+    public static ModelInjectionResult parseSyntaxDefinition(InputStream in, ResourceSet resourceSet, Set<URI> referenceScope,
+	    IParsingObserver observer, ParserFacade tcsParserFacade) throws IOException, UnknownProductionRuleException {
+        
+	// use a model Handler that is implemented in EMF and only handles TCS models
+	TCSSpecificEMFModelAdapter handler = new TCSSpecificEMFModelAdapter(resourceSet, referenceScope);;
+	
 	try {
-	    handler = new TCSSpecificEMFModelAdapter(resourceSet, metamodelPRIs);
 	    DefaultTextAwareModelAdapter handlerWrapper = new DefaultTextAwareModelAdapter(handler);
-
-	    if (alternativeTcsParserFacade != null) {
-		result = alternativeTcsParserFacade.parseProductionRule(in, handlerWrapper, null, null, observer);
-
-	    } else {
-		// use most recent version of TCSParser and Lexer
-		ParserFacade tcsParserFacade = new ParserFacade(TCSParser.class, TCSLexer.class);
-		result = tcsParserFacade.parseProductionRule(in, handlerWrapper, null, null, observer);
-	    }
-
+	    ModelParsingResult result = tcsParserFacade.parseProductionRule(in, handlerWrapper, null, null, observer);
+	    return new ModelInjectionResult(handler, result);
 	} finally {
-	    if (handler != null) {
-
-		// handler.close();
-
-	    }
+	    handler.close();
 	}
 
-	return new ModelInjectionResult(handler, result);
     }
 
 }

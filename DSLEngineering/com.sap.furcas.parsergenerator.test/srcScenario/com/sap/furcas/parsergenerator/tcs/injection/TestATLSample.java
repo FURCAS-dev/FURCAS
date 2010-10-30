@@ -35,8 +35,6 @@ public class TestATLSample extends AbstractTCSInjectionTest {
 	@Test 
 	public void testSyntax()  {
 		// now check the generated model is okay
-
-
 		assertNotNull(syntax);
 		assertEquals("ATL", syntax.getName());
 		assertEquals(0, modelParsingResult.getResult().getErrors().size());

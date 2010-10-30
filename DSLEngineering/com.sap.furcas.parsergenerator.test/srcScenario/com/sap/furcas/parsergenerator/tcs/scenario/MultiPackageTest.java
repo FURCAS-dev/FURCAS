@@ -8,10 +8,10 @@ import java.util.Set;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.test.parsing.base.EcoreMetaModelLookUp;
-import com.sap.furcas.test.parsing.base.ExtendedGeneratedParserBasedTest;
-import com.sap.furcas.test.parsing.base.ParserGenerationTestHelper;
-import com.sap.furcas.test.parsing.base.StubModelAdapter;
+import com.sap.furcas.parsergenerator.base.EcoreMetaModelLookUp;
+import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
+import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
+import com.sap.furcas.parsergenerator.base.StubModelAdapter;
 
 /**
  * Simple Test for the a custom language having a metamodel with several 

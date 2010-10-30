@@ -43,16 +43,12 @@ public class TestBibTextSample extends AbstractTCSInjectionTest {
 	@Test 
 	public void testSyntax()  {
 		// now check the generated model is okay
-
-
 		assertNotNull(syntax);
 		assertEquals("Bibtext", syntax.getName());
 		assertEquals(0, modelParsingResult.getResult().getErrors().size());
 	}
 	
 	@Test public void testPrimitiveTemplate()  {
-
-		
 		List<Template> templates = syntax.getTemplates();
 		assertNotNull(templates);
 		assertEquals(7, templates.size());

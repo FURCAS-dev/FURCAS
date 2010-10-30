@@ -92,7 +92,6 @@ public class EcoreAnyStub implements EClass, EReference, EEnum, EPackage {
 
     @Override
     public EObject eContainer() {
-	fail("stub method not implemented");
 	return null;
     }
 

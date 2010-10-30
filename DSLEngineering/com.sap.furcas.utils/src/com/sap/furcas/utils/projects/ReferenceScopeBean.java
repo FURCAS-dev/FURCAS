@@ -13,22 +13,19 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
  */
 public class ReferenceScopeBean {
 
-    private final ResourceSet connection;
-    private final Set<URI> referencePRIs;
-    /**
-     * @param connection
-     * @param referencePRIs
-     */
-    public ReferenceScopeBean(ResourceSet connection, Set<URI> referencePRIs) {
+    private final ResourceSet resourceSet;
+    private final Set<URI> referenceScope;
+
+    public ReferenceScopeBean(ResourceSet resourceSet, Set<URI> referencePRIs) {
         super();
-        this.connection = connection;
-        this.referencePRIs = referencePRIs;
+        this.resourceSet = resourceSet;
+        this.referenceScope = referencePRIs;
     }
-    public ResourceSet getConnection() {
-        return connection;
+    public ResourceSet getResourceSet() {
+        return resourceSet;
     }
-    public Set<URI> getReferencePRIs() {
-        return referencePRIs;
+    public Set<URI> getReferenceScope() {
+        return referenceScope;
     }
     
     

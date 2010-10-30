@@ -7,11 +7,11 @@ import java.util.Set;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.test.parsing.base.EcoreMetaModelLookUp;
-import com.sap.furcas.test.parsing.base.ExtendedGeneratedParserBasedTest;
-import com.sap.furcas.test.parsing.base.ParserGenerationTestHelper;
-import com.sap.furcas.test.parsing.base.StubModelAdapter;
-import com.sap.furcas.test.parsing.base.StubModelElement;
+import com.sap.furcas.parsergenerator.base.EcoreMetaModelLookUp;
+import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
+import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
+import com.sap.furcas.parsergenerator.base.StubModelAdapter;
+import com.sap.furcas.parsergenerator.base.StubModelElement;
 
 /**
  * Simple Test for the custom Expression language that uses lots of conditionals.

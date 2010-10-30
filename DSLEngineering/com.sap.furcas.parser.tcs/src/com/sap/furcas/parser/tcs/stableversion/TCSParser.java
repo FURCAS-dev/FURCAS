@@ -1,6 +1,6 @@
 // $ANTLR 3.1.1 parser/TCS.g 2010-02-01 13:00:17
 
-package com.sap.furcas.parser.tcs.bootstrapped;
+package com.sap.furcas.parser.tcs.stableversion;
 
 
 import java.text.CharacterIterator;
