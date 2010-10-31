@@ -85,7 +85,7 @@ public class NavigationPathCreationTest extends TestCase{
     private List<ExceptionWithExpression> tryToCreateNavigationPaths(OCLExpressionWithContext expression) {
 	List<ExceptionWithExpression> excList = new ArrayList<ExceptionWithExpression>();
 
-	FilterSynthesisImpl filterSynthesizer = new FilterSynthesisImpl(expression.getExpression(), false);
+	FilterSynthesisImpl filterSynthesizer = new FilterSynthesisImpl(expression.getExpression(), false, DefaultOppositeEndFinder.getInstance());
 	filterSynthesizer.getSynthesisedFilter();
 
 	Map<EAttribute, Set<PropertyCallExp>> attributeCallExpressions = (Map<EAttribute, Set<PropertyCallExp>>)dirtyReflectionAttributeReader("attributeCallExpressions", filterSynthesizer);
