@@ -107,7 +107,7 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
     }
 
     public EventFilter createFilterForExpression() {
-        filtersyn = new FilterSynthesisImpl(expression, notifyOnNewContextElements);
+        filtersyn = new FilterSynthesisImpl(expression, notifyOnNewContextElements, oppositeEndFinder);
         return filtersyn.getSynthesisedFilter();
     }
 
