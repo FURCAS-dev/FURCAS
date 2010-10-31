@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Internal.SettingDelegate;
-import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ParserException;
@@ -95,19 +94,6 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 		saveExpressionInAnnotation(structuralFeature, constraint);
 		return (OCLExpression) specification.getBodyExpression();
 	}
-
-	private void saveExpressionInAnnotation(EStructuralFeature structuralFeature, Constraint constraint) {
-		String sourceURI = Environment.OCL_NAMESPACE_URI;
-		EAnnotation a = structuralFeature.getEAnnotation(Environment.OCL_NAMESPACE_URI);
-		if (a == null){
-			a = EcoreFactory.eINSTANCE.createEAnnotation();
-			a.setEModelElement(structuralFeature);
-			a.setSource(sourceURI);
-			a.getContents().add(constraint);
-		}
-		a.getContents().add(constraint);
-	}
-
 
 	private OCLExpression getExpressionFromAnnotationsOf(EStructuralFeature structuralFeature) {
 		EAnnotation anno = structuralFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
