@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see com.sap.emf.ocl.impactanalysis.example.signature_and_call.Signature_and_callPackage#getCall()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ArgumentsMustMatchParameterList'"
- *        annotation="http://de.hpi.sam.bp2009.OCL ArgumentsMustMatchParameterList='self.arguments->size() = self.signature.parameters->size()'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL ArgumentsMustMatchParameterList='self.arguments->size() = self.signature.parameters->size()'"
  * @generated
  */
 public interface Call extends Expression {

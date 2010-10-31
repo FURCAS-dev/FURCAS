@@ -20,12 +20,16 @@ package org.eclipse.ocl.ecore.delegate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.OCLExpression;
 
 /**
  * A basic implementation of a delegated behavior.
@@ -126,4 +130,36 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 	public String toString() {
 		return getName() + " => " + getFactoryClass().getName(); //$NON-NLS-1$
 	}
+
+    protected OCLExpression getExpressionFromAnnotationsOf(EModelElement modelElement, String constraintKey) {
+    	EAnnotation anno = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+    	EAnnotation ast = modelElement.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+    	if (anno != null && ast != null){
+    		int pos = -1;
+    		int count = 0;
+    		for (Map.Entry<String, String> constraint : anno.getDetails()) {
+    			if (constraint.getKey().equals(constraintKey)) {
+    				pos = count;
+    				break;
+    			}
+    			count++;
+    		}
+    		if (pos != -1) {
+    			if (ast.getContents().size() > pos) {
+    				return (OCLExpression) ((Constraint)ast.getContents().get(pos)).getSpecification().getBodyExpression();
+    			}
+    		}
+    	}
+    	return null;
+    }
+
+    protected void saveExpressionInAnnotation(EModelElement modelElement, Constraint constraint) {
+    	EAnnotation a = modelElement.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+    	if (a == null){
+    		a = EcoreFactory.eINSTANCE.createEAnnotation();
+    		a.setEModelElement(modelElement);
+    		a.setSource(Environment.OCL_NAMESPACE_URI);
+    	}
+    	a.getContents().add(constraint);
+    }
 }
