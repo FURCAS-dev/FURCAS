@@ -1696,7 +1696,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
           (signatureCallExpressionEClass.getEOperations().get(0), 
            source, 
            new String[] {
-             "body", "if self.oclIsKindOf(FunctionCallExpression) then\n    self.oclAsType(FunctionCallExpression).calledBlock.getType().getInnermost().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature\n  else\n    self.oclAsType(MethodCallExpression).methodSignature\n  endif"
+             "body", "if self.oclIsKindOf(FunctionCallExpression) then\r\n    self.oclAsType(FunctionCallExpression).calledBlock->collect(getType().getInnermost().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature)->any(true)\r\n  else\r\n    self.oclAsType(MethodCallExpression).methodSignature\r\n  endif"
            });				
         addAnnotation
           (signatureCallExpressionEClass.getEOperations().get(1), 
