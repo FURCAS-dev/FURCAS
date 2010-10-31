@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
-import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
+import org.eclipse.ocl.ecore.delegate.ValidationBehavior;
 
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
@@ -47,7 +47,8 @@ public class Revalidator {
                     String[] constraintNames = spaceSeparatedConstraintNames.split(" ");
                     for (final String constraintName : constraintNames) {
                         OCL ocl = OCLWithHiddenOpposites.newInstance();
-                        final OCLExpression invariant = InvocationBehavior.INSTANCE.getInvariant(cls, constraintName, ocl);
+                        // TODO this is slightly unclean; what if a non-standard validation domain has been used? But there is no common base interface above ValidationBehavior that lets us extract the invariant
+                        final OCLExpression invariant = ValidationBehavior.INSTANCE.getInvariant(cls, constraintName, ocl);
                         final ImpactAnalyzer impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(invariant,
                                 /* notifyOnNewContextElements */ true, oppositeEndFinder);
                         Adapter adapter = new AdapterImpl() {

@@ -29,9 +29,9 @@ import org.eclipse.ocl.ecore.IntegerLiteralExp;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
-import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.ecore.delegate.SettingBehavior;
+import org.eclipse.ocl.ecore.delegate.ValidationBehavior;
 
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import company.CompanyFactory;
@@ -154,7 +154,7 @@ public class EAnnotationOCLParserTest extends TestCase {
         Entry<String, String> val = dep.eClass().getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI).getDetails().get(0);
         String content = String.copyValueOf(val.getValue().toCharArray());
         val.setValue("null");
-        expr = InvocationBehavior.INSTANCE.getInvariant(dep.eClass(), "NotBossFreelance", ocl);
+        expr = ValidationBehavior.INSTANCE.getInvariant(dep.eClass(), "NotBossFreelance", ocl);
         //expected Expression: 
         // not (self.boss.oclIsTypeOf(Freelance))
         assertTrue("No parsed ast found, probably annotation converting failed.", expr != null);

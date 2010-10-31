@@ -174,7 +174,7 @@ public class Signature_and_callValidator extends EObjectValidator {
                  call,
                  diagnostics,
                  context,
-                 "http://de.hpi.sam.bp2009.OCL",
+                 "http://www.eclipse.org/emf/2002/Ecore/OCL",
                  "ArgumentsMustMatchParameterList",
                  CALL__ARGUMENTS_MUST_MATCH_PARAMETER_LIST__EEXPRESSION,
                  Diagnostic.ERROR,
