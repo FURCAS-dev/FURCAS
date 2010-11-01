@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.base.EcoreMetaModelLookUp;
+import com.sap.furcas.parsergenerator.base.FileBasedEcoreMetaModelLookUp;
 import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
 import com.sap.furcas.parsergenerator.base.StubModelAdapter;
@@ -23,7 +23,7 @@ public class PartialTest extends ExtendedGeneratedParserBasedTest {
     @Before
     public void testXPathGenerationOnly() throws GrammarGenerationException, FileNotFoundException, ModelAdapterException,
             IOException {
-        setLookup(new EcoreMetaModelLookUp("XPath1.ecore", "XPath1.ecore"));
+        setLookup(new FileBasedEcoreMetaModelLookUp("XPath1.ecore", "XPath1.ecore"));
         setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
         generateParserForLanguage(LANGUAGE);
     }

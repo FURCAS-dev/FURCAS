@@ -6,7 +6,7 @@ package com.sap.mi.textual.test.util;
 import java.io.IOException;
 import java.util.HashSet;
 
-import com.sap.furcas.parsergenerator.emf.lookup.EcoreMetaLookup;
+import com.sap.furcas.parsergenerator.emf.lookup.QueryBasedEcoreMetaModelLookUp;
 
 /**
  *
@@ -21,7 +21,7 @@ public class MOINContainerNameLookUpFactory {
      * @throws IOException 
      * @throws IOException 
      */
-    public static EcoreMetaLookup getMOINContainerNameLookUpFactory(String containerName) throws IOException {
+    public static QueryBasedEcoreMetaModelLookUp getMOINContainerNameLookUpFactory(String containerName) throws IOException {
         HashSet<PRI> newPRIs = null;
 
         if ("sap.com/tc/moin/mof_1.4".equals(containerName)) {
@@ -46,7 +46,7 @@ public class MOINContainerNameLookUpFactory {
                 newPRIs = new HashSet<PRI>(mm.getPRIs());
             }
         }
-        EcoreMetaLookup lookup = new EcoreMetaLookup(ConnectionManager.getInstance().createTransientConnection(), newPRIs);
+        QueryBasedEcoreMetaModelLookUp lookup = new QueryBasedEcoreMetaModelLookUp(ConnectionManager.getInstance().createTransientConnection(), newPRIs);
         return lookup;
     }
 

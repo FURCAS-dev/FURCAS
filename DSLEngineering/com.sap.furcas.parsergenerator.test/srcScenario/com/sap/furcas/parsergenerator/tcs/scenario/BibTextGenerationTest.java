@@ -8,7 +8,7 @@ import java.util.Set;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.base.EcoreMetaModelLookUp;
+import com.sap.furcas.parsergenerator.base.FileBasedEcoreMetaModelLookUp;
 import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
 import com.sap.furcas.parsergenerator.base.StubModelAdapter;
@@ -29,7 +29,7 @@ public class BibTextGenerationTest extends ExtendedGeneratedParserBasedTest {
 	@BeforeClass
 	public static void setupParser() throws Exception {
 		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new EcoreMetaModelLookUp("BibText.ecore", "BibText1.ecore"));
+		setLookup(new FileBasedEcoreMetaModelLookUp("BibText.ecore", "BibText1.ecore"));
 		generateParserForLanguage(LANGUAGE);
 	}
 	

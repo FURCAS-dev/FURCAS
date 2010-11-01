@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.sap.furcas.runtime.parser.impl;
+package com.sap.mi.textual.test.parsingObserver;
 
 import static junit.framework.Assert.assertEquals;
 
@@ -17,6 +17,8 @@ import com.sap.furcas.parser.tcs.stableversion.TCSLexer;
 import com.sap.furcas.parser.tcs.stableversion.TCSParser;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ParserFacade;
+import com.sap.furcas.runtime.parser.impl.ConsistencyChecksObserver;
+import com.sap.furcas.runtime.parser.impl.DelegationParsingObserver;
 import com.sap.furcas.utils.projects.FileReadHelper;
 
 

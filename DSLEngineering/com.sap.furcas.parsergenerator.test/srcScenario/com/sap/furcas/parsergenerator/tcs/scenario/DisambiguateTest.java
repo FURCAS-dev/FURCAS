@@ -4,7 +4,7 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.base.EcoreMetaModelLookUp;
+import com.sap.furcas.parsergenerator.base.FileBasedEcoreMetaModelLookUp;
 import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
 import com.sap.furcas.parsergenerator.base.StubModelAdapter;
@@ -21,7 +21,7 @@ public class DisambiguateTest extends ExtendedGeneratedParserBasedTest {
     @BeforeClass
     public static void setupParser() throws Exception {
         setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-        setLookup(new EcoreMetaModelLookUp("Disambiguate.ecore"));
+        setLookup(new FileBasedEcoreMetaModelLookUp("Disambiguate.ecore"));
         generateParserForLanguage(LANGUAGE);
     }
 

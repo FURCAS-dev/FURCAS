@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.sap.furcas.builder;
+package com.sap.ide.cts.editor.test.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
