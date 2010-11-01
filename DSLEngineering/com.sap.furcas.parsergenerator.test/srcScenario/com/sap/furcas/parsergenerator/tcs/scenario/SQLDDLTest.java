@@ -3,7 +3,7 @@ package com.sap.furcas.parsergenerator.tcs.scenario;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.base.EcoreMetaModelLookUp;
+import com.sap.furcas.parsergenerator.base.FileBasedEcoreMetaModelLookUp;
 import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
 import com.sap.furcas.parsergenerator.base.StubModelAdapter;
@@ -21,7 +21,7 @@ public class SQLDDLTest extends ExtendedGeneratedParserBasedTest {
 	@BeforeClass
 	public static void setupParser() throws Exception {
 		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new EcoreMetaModelLookUp("SQLDDL.ecore"));
+		setLookup(new FileBasedEcoreMetaModelLookUp("SQLDDL.ecore"));
 		generateParserForLanguage(LANGUAGE);
 	}
 	

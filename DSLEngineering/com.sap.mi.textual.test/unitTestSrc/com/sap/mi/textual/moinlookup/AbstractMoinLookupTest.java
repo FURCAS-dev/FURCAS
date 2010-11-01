@@ -17,7 +17,7 @@ import java.util.List;
 import org.eclipse.ocl.utilities.TypedElement;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.emf.lookup.AbstractEcoreLookup;
+import com.sap.furcas.parsergenerator.emf.lookup.AbstractEcoreMetaModelLookup;
 import com.sap.furcas.parsergenerator.testutils.ResolutionBeanHelper;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.interfaces.MultiplicityBean;
@@ -351,7 +351,7 @@ public class AbstractMoinLookupTest {
         assertTrue(lookup.isSubTypeOf(subRefBean, superRefBean ));
     }
     
-    private class MoinLookUpSubTypeStub extends AbstractEcoreLookup {
+    private class MoinLookUpSubTypeStub extends AbstractEcoreMetaModelLookup {
 
         public List<Classifier> qualifiedClassifiers = new ArrayList<Classifier>();
         public Classifier classifier;

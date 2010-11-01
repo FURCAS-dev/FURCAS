@@ -1,11 +1,7 @@
 package com.sap.furcas.ide.dslproject.ui;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -374,27 +370,28 @@ public class SelectMetaModelReferenceUIPage {
 	@Override
 	public Object[] getElements(Object inputElement) {
 
-	    Set<String> nameSet = new HashSet<String>();
-
-	    Collection<MmDeploymentInfo> metamodels = MetamodelManager.getInstance().getDeployedMetamodels();
-
-	    for (MmDeploymentInfo metamodel : metamodels) {
-		nameSet.add(metamodel.getContainerName());
-	    }
-	    Collection<MmDeploymentInfo> importedMetamodels = MetamodelManager.getInstance().getImportedMetamodels();
-	    for (MmDeploymentInfo metamodel : importedMetamodels) {
-		nameSet.add(metamodel.getContainerName());
-	    }
-	    nameSet.add("sap.com/tc/moin/mof_1.4");
-
-	    String[] result = new String[nameSet.size()];
-	    int i = 0;
-	    for (Iterator<String> iterator = nameSet.iterator(); iterator.hasNext();) {
-		String contName = iterator.next();
-		result[i] = contName;
-		i++;
-	    }
-	    return result;
+	    throw new RuntimeException("Not yet migrated to EMF");
+//	    Set<String> nameSet = new HashSet<String>();
+//
+//	    Collection<MmDeploymentInfo> metamodels = MetamodelManager.getInstance().getDeployedMetamodels();
+//
+//	    for (MmDeploymentInfo metamodel : metamodels) {
+//		nameSet.add(metamodel.getContainerName());
+//	    }
+//	    Collection<MmDeploymentInfo> importedMetamodels = MetamodelManager.getInstance().getImportedMetamodels();
+//	    for (MmDeploymentInfo metamodel : importedMetamodels) {
+//		nameSet.add(metamodel.getContainerName());
+//	    }
+//	    nameSet.add("sap.com/tc/moin/mof_1.4");
+//
+//	    String[] result = new String[nameSet.size()];
+//	    int i = 0;
+//	    for (Iterator<String> iterator = nameSet.iterator(); iterator.hasNext();) {
+//		String contName = iterator.next();
+//		result[i] = contName;
+//		i++;
+//	    }
+//	    return result;
 	}
 
 	/*
@@ -433,16 +430,18 @@ public class SelectMetaModelReferenceUIPage {
 	 */
 	@Override
 	public String getText(Object element) {
-	    if (element instanceof MmDeploymentInfo) {
-		MmDeploymentInfo mm = (MmDeploymentInfo) element;
-		return mm.getContainerName();
-	    }
+	    throw new RuntimeException("Not yet migrated to EMF");
 
-	    String label = super.getText(element);
-	    if (label == null) {
-
-	    }
-	    return label;
+//	    if (element instanceof MmDeploymentInfo) {
+//		MmDeploymentInfo mm = (MmDeploymentInfo) element;
+//		return mm.getContainerName();
+//	    }
+//
+//	    String label = super.getText(element);
+//	    if (label == null) {
+//
+//	    }
+//	    return label;
 	}
     }
 
@@ -469,8 +468,7 @@ public class SelectMetaModelReferenceUIPage {
 		IProject[] allProjects = null;
 		allProjects = res.getWorkspace().getRoot().getProjects();
 		ArrayList<IProject> filteredList = new ArrayList<IProject>(allProjects.length);
-		for (int i = 0; i < allProjects.length; i++) {
-		    IProject project = allProjects[i];
+		for (IProject project : allProjects) {
 		    try {
 			if (project.isOpen()) {
 			    if (project.hasNature(Constants.MOIN_METAMODEL_NATURE_ID)) {

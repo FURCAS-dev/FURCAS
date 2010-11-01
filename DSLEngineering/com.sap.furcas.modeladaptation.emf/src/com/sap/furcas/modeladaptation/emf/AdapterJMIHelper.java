@@ -93,8 +93,6 @@ public class AdapterJMIHelper {
     private final QueryProcessor queryProcessor;
     private static final String MQL_ALIAS_INSTANCE = "instance";
     
-    private static final String QUERY_PARAM_NAME = "\\?";
-    
     private final OCL ocl;
     private final Helper oclHelper;
 
@@ -426,25 +424,6 @@ public class AdapterJMIHelper {
     // }
     // }
 
-    /**
-     * @param clazz
-     * @param logicalKey
-     * @param args
-     * @return
-     */
-    private EObject createInstance(EClass clazz) { // , String[] logicalKey,
-        // List<Object> args) {
-
-        EObject result = null;
-
-        if (true /* result == null */) {
-            // result = ((RefClassCalculatedMofId)
-            // clazz).refCreateInstance(args, locality, logicalKey);
-            result = EcoreUtil.create(clazz);
-        }
-        return result;
-    }
-
     private URI getMetaElementUri(String type) {
         String[] tokens = type.split("::");
         return getMetaElementUri(tokens);
@@ -516,7 +495,7 @@ public class AdapterJMIHelper {
 
         useContextInsteadOfSelf = ContextAndForeachHelper.usesContext(queryToExecute);
         // TODO check use of #foreach
-        queryToExecute = prepareOclQuery(queryToExecute, keyValue);
+        queryToExecute = ContextAndForeachHelper.prepareOclQuery(queryToExecute, keyValue);
         OCLExpression exp;
         try {
             exp = oclHelper.createQuery(queryToExecute);
@@ -563,7 +542,7 @@ public class AdapterJMIHelper {
         } else {
             objectForSelf = sourceModelElement;
         }
-        queryToExecute = prepareOclQuery(queryToExecute, keyValue);
+        queryToExecute = ContextAndForeachHelper.prepareOclQuery(queryToExecute, keyValue);
         try {
             oclHelper.setContext(objectForSelf.eClass());
             OCLExpression exp = oclHelper.createQuery(queryToExecute);
@@ -590,22 +569,6 @@ public class AdapterJMIHelper {
         }
     }
     
-
-    private static String prepareOclQuery(String queryToExecute, Object keyValue) {
-        String result = queryToExecute;
-        if (queryToExecute != null) {
-            if (result.startsWith("OCL:")) {
-                result = result.replaceFirst("OCL:", "");
-            }
-            result = ContextAndForeachHelper.prepareOclQuery(queryToExecute);
-
-            if (keyValue != null) {
-                result = result.replaceAll(QUERY_PARAM_NAME, "'" + keyValue.toString() + "'");
-            }
-        }
-        return result;
-    }
-
     private EObject unwrapProxy(Object contextObject) {
         EObject contextRefObject = null;
         if (contextObject instanceof EObject) {
