@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query.index.ui.IndexFactory;
@@ -18,13 +19,13 @@ import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.TypeExp;
 
 import com.sap.emf.ocl.prepared.PreparedOCLExpression;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 
 /**
@@ -55,6 +56,9 @@ public class ContextAndForeachHelper {
     public static final Pattern foreachPattern = Pattern.compile(foreachPatternAsString);
 
     private static final String oclAsTypePatternSuffix = "\\b*\\.\\b*oclAsType\\(\\b*([^\\(]*)\\b*\\)";
+    
+    private static final String QUERY_PARAM_NAME = "\\?";
+
 
     /**
      * The {@link ContextManager#contextPatternAsString} pattern contains two groups where the second group is for the name of the
@@ -85,14 +89,17 @@ public class ContextAndForeachHelper {
         QueryProcessor mql = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
         ResourceSet rs = cs.eResource().getResourceSet();
         QueryContext context = EcoreHelper.getQueryContext(rs);
+        URI uriEClassifier = EcoreUtil.getURI(EcorePackage.eINSTANCE.getEClassifier());
+        URI uriContextTemplate = EcoreUtil.getURI(TCSPackage.eINSTANCE.getContextTemplate());
+        URI uriContextTags = EcoreUtil.getURI(TCSPackage.eINSTANCE.getContextTags());
         ResultSet templatesClasses;
         if (contextTag == null || contextTag.length() == 0) {
-            templatesClasses = mql.execute("select me from Model::Classifier as me," + "FURCAS::TCS::ContextTemplate as ct," + "\""
+            templatesClasses = mql.execute("select me from [" + uriEClassifier + "] as me," + "[" + uriContextTemplate + "] as ct," + "\""
                     + EcoreUtil.getID((cs)) + "\" as cs " + "where ct.concreteSyntax=cs " + "where ct.metaReference=me "
                     + "where ct.contextTags=null " + "where ct.isContext=true", context);
         } else {
-            templatesClasses = mql.execute("select me from Model::Classifier as me," + "FURCAS::TCS::ContextTemplate as ct,"
-                    + "FURCAS::TCS::ContextTags as tags," + "\"" + EcoreUtil.getID((cs)) + "\" as cs " + "where ct.concreteSyntax=cs "
+            templatesClasses = mql.execute("select me from [" + uriEClassifier + "] as me," + "[" + uriContextTemplate + "] as ct,"
+                    + "[" + uriContextTags + "] as tags," + "\"" + EcoreUtil.getID((cs)) + "\" as cs " + "where ct.concreteSyntax=cs "
                     + "where ct.metaReference=me " + "where ct.contextTags=tags " + "where ct.isContext=true "
                     + "where tags.tags='" + contextTag + "'", context);
         }
@@ -127,7 +134,7 @@ public class ContextAndForeachHelper {
             }
         }
         if (needReflectElement) {
-            commonGeneralization = EcorePackage.eINSTANCE.getAnyType();
+            commonGeneralization = org.eclipse.ocl.ecore.EcorePackage.eINSTANCE.getAnyType();
         }
         return commonGeneralization;
     }
@@ -235,6 +242,22 @@ public class ContextAndForeachHelper {
         return matcher.find();
     }
 
+    
+    public static String prepareOclQuery(String queryToExecute, Object keyValue) {
+        String result = queryToExecute;
+        if (queryToExecute != null) {
+            if (result.startsWith("OCL:")) {
+                result = result.replaceFirst("OCL:", "");
+            }
+            result = ContextAndForeachHelper.prepareOclQuery(queryToExecute);
+
+            if (keyValue != null) {
+                result = result.replaceAll(QUERY_PARAM_NAME, "'" + keyValue.toString() + "'");
+            }
+        }
+        return result;
+    }
+    
     /**
      * Replaces occurrences of <code>#context</code> (see {@link #contextPattern}) and <code>#foreach</code>
      * (see {@link #foreachPattern}) by <code>self</code> (see {@link Environment#SELF_VARIABLE_NAME}).

@@ -16,17 +16,15 @@ import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
  */
 public class ResolutionBeanHelper {
 
-    public static ResolvedNameAndReferenceBean<Object> refE(String... entries) {
-        
+    public static ResolvedNameAndReferenceBean<EObject> refE(String... entries) {
         
         ArrayList<String> list = new ArrayList<String>();
         if (entries != null) {
-            for (int i = 0; i < entries.length; i++) {
-                String entry = entries[i];
+            for (String entry : entries) {
                 list.add(entry);    
             }
         }
-        ResolvedNameAndReferenceBean<Object> stub = new ResolvedNameAndReferenceBean<Object>(list, null);
+        ResolvedNameAndReferenceBean<EObject> stub = new ResolvedNameAndReferenceBean<EObject>(list, null);
         return stub;
     }
 
@@ -35,8 +33,7 @@ public class ResolutionBeanHelper {
 
         ArrayList<String> list = new ArrayList<String>();
         if (entries != null) {
-            for (int i = 0; i < entries.length; i++) {
-                String entry = entries[i];
+            for (String entry : entries) {
                 list.add(entry);    
             }
         }
@@ -44,14 +41,13 @@ public class ResolutionBeanHelper {
         return stub;
     }
     
-    public static List<ResolvedNameAndReferenceBean<Object>> multiSimpleList(String... entries) {
-        List<ResolvedNameAndReferenceBean<Object>> list = new ArrayList<ResolvedNameAndReferenceBean<Object>>();
+    public static List<ResolvedNameAndReferenceBean<EObject>> multiSimpleList(String... entries) {
+        List<ResolvedNameAndReferenceBean<EObject>> list = new ArrayList<ResolvedNameAndReferenceBean<EObject>>();
         if (entries != null) {
-            for (int i = 0; i < entries.length; i++) {
+            for (String entry : entries) {
                 ArrayList<String> innerlist = new ArrayList<String>();
-                String entry = entries[i];
                 innerlist.add(entry);   
-                list.add(new ResolvedNameAndReferenceBean<Object>(innerlist, null));
+                list.add(new ResolvedNameAndReferenceBean<EObject>(innerlist, null));
             }
         }
         return list;

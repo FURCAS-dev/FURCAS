@@ -7,7 +7,7 @@ import java.util.Set;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.base.EcoreMetaModelLookUp;
+import com.sap.furcas.parsergenerator.base.FileBasedEcoreMetaModelLookUp;
 import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
 import com.sap.furcas.parsergenerator.base.StubModelAdapter;
@@ -24,7 +24,7 @@ public class EnumTestAutomatic extends ExtendedGeneratedParserBasedTest {
 	@BeforeClass
 	public static void setupParser() throws Exception {
 		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new EcoreMetaModelLookUp("Enumeration.ecore"));
+		setLookup(new FileBasedEcoreMetaModelLookUp("Enumeration.ecore"));
 		generateParserForLanguage(LANGUAGE);
 	}
 
