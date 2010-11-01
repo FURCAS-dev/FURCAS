@@ -77,35 +77,29 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 		EClass context = operation.getEContainingClass();
 		OCL.Helper helper = ocl.createOCLHelper();
 		helper.setOperationContext(context, operation);
-		// to deal with hidden opposites
-		helper.setValidating(false);
-		// pick first delegate domain for whose URI we find a body:
-		for (DelegateDomain dd : getDelegateDomains(operation)) {
-			String expr = EcoreUtil.getAnnotation(operation,
-					dd.getURI(), BODY_CONSTRAINT_KEY);
-			if (expr == null) {
-				return null;
-			}
-			Constraint constraint;
-			try {
-				constraint = helper.createBodyCondition(expr);
-			} catch (ParserException e) {
-				throw new OCLDelegateException(
-						e.getLocalizedMessage(), e);
-			}
-			if (constraint == null) {
-				return null;
-			}
-			ExpressionInOCL specification = (ExpressionInOCL) constraint
-					.getSpecification();
-			if (specification == null) {
-				return null;
-			}
-			saveExpressionInAnnotation(operation, constraint);
-			return (OCLExpression) specification
-					.getBodyExpression();
+		String expr = EcoreUtil.getAnnotation(operation,
+				OCLDelegateDomain.OCL_DELEGATE_URI,
+				BODY_CONSTRAINT_KEY);
+		if (expr == null) {
+			return null;
 		}
-		return null;
+		Constraint constraint;
+		try {
+			constraint = helper.createBodyCondition(expr);
+		} catch (ParserException e) {
+			throw new OCLDelegateException(e.getLocalizedMessage(),
+					e);
+		}
+		if (constraint == null) {
+			return null;
+		}
+		ExpressionInOCL specification = (ExpressionInOCL) constraint
+				.getSpecification();
+		if (specification == null) {
+			return null;
+		}
+		saveExpressionInAnnotation(operation, constraint);
+		return (OCLExpression) specification.getBodyExpression();
 	}
 	
 	public Class<InvocationDelegate.Factory.Registry> getRegistryClass() {
