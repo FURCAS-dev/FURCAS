@@ -3,7 +3,7 @@ package com.sap.furcas.parsergenerator.tcs.scenario;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.base.EcoreMetaModelLookUp;
+import com.sap.furcas.parsergenerator.base.FileBasedEcoreMetaModelLookUp;
 import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
 
@@ -20,7 +20,7 @@ public class BibTextReferSubTypeTest extends ExtendedGeneratedParserBasedTest {
 	@BeforeClass
 	public static void setupParser() throws Exception {
 		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new EcoreMetaModelLookUp("BibTextReferSubType.ecore",
+		setLookup(new FileBasedEcoreMetaModelLookUp("BibTextReferSubType.ecore",
 				"BibText1.ecore"));
 		generateParserForLanguage(LANGUAGE);
 	}

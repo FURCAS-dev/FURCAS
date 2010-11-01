@@ -14,7 +14,7 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.emf.lookup.EcoreMetaLookup;
+import com.sap.furcas.parsergenerator.emf.lookup.QueryBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.mi.textual.test.util.MOINContainerNameLookUpFactory;
 
@@ -39,7 +39,7 @@ public class MoinBugTest  {
     
     @Test 
     public void testWorkaround() throws Exception {
-        EcoreMetaLookup lookup = MOINContainerNameLookUpFactory.getMOINContainerNameLookUpFactory(OclPackage.PACKAGE_DESCRIPTOR.getModelContainerName() );
+        QueryBasedEcoreMetaModelLookUp lookup = MOINContainerNameLookUpFactory.getMOINContainerNameLookUpFactory(OclPackage.PACKAGE_DESCRIPTOR.getModelContainerName() );
         List<ResolvedNameAndReferenceBean<RefObject>> result = lookup.qualifyName("OclExpression");
         assertNotNull(result);
         assertTrue(result.size() > 0);

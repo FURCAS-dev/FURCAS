@@ -3,7 +3,7 @@ package com.sap.furcas.parsergenerator.tcs.scenario;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.base.EcoreMetaModelLookUp;
+import com.sap.furcas.parsergenerator.base.FileBasedEcoreMetaModelLookUp;
 import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
@@ -22,7 +22,7 @@ public class XPathRedGenerationTest extends ExtendedGeneratedParserBasedTest {
 	@BeforeClass
 	public static void setupParser() throws Exception {
 		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new EcoreMetaModelLookUp("XPathReduced.ecore", "XPath.ecore"));
+		setLookup(new FileBasedEcoreMetaModelLookUp("XPathReduced.ecore", "XPath.ecore"));
 		generateParserForLanguage(LANGUAGE);
 	}
 	
