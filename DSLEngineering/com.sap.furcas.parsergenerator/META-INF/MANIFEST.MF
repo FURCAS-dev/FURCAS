@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: TextualSyntaxGenerator
-Bundle-SymbolicName: com.sap.furcas.parsergenerator
+Bundle-SymbolicName: com.sap.furcas.parsergenerator;singleton:=true
 Bundle-Version: 1.0.0
 Export-Package: com.sap.furcas.parsergenerator.tcs.generator,
  com.sap.furcas.parsergenerator.tcs.generator.errorhandling,
