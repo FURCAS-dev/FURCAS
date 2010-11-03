@@ -14,6 +14,7 @@ import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLWithHiddenOppositesFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.ResultDescriptionWriter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationForModelList;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.RawNotification;
@@ -236,7 +237,8 @@ public class BenchmarkTaskStepwiseBuilder implements Queue<BenchmarkTaskContaine
 
 	OppositeEndFinder oppositeEndFinder = new AllInstanceCallCountingOppositeEndFinder();
 	ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression.getExpression(),
-		expression.getContext(), /* notifyOnNewContextElements */ false, oppositeEndFinder, option);
+		expression.getContext(), /* notifyOnNewContextElements */ false, oppositeEndFinder, option,
+		new OCLWithHiddenOppositesFactory());
 
 	Resource model = notificationList.getModel();
 	BenchmarkTaskContainer container = new ModelSizeVariationBenchmarkTaskContainer(model, option, String.valueOf(ids

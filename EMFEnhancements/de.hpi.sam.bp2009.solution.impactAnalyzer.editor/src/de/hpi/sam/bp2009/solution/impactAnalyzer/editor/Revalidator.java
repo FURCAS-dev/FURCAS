@@ -12,11 +12,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.delegate.ValidationBehavior;
 
-import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
@@ -24,6 +22,8 @@ import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLWithHiddenOppositesFactory;
 import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectDependencyQueryContextProvider;
 
 public class Revalidator {
@@ -46,11 +46,12 @@ public class Revalidator {
                 if (spaceSeparatedConstraintNames != null) {
                     String[] constraintNames = spaceSeparatedConstraintNames.split(" ");
                     for (final String constraintName : constraintNames) {
-                        OCL ocl = OCLWithHiddenOpposites.newInstance();
+                        OCLFactory oclFactory = new OCLWithHiddenOppositesFactory();
                         // TODO this is slightly unclean; what if a non-standard validation domain has been used? But there is no common base interface above ValidationBehavior that lets us extract the invariant
-                        final OCLExpression invariant = ValidationBehavior.INSTANCE.getInvariant(cls, constraintName, ocl);
+                        final OCLExpression invariant = ValidationBehavior.INSTANCE.getInvariant(
+                                cls, constraintName, oclFactory.createOCL(oppositeEndFinder));
                         final ImpactAnalyzer impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(invariant,
-                                /* notifyOnNewContextElements */ true, oppositeEndFinder);
+                                /* notifyOnNewContextElements */ true, oppositeEndFinder, oclFactory);
                         Adapter adapter = new AdapterImpl() {
                             @Override
                             public void notifyChanged(Notification msg) {

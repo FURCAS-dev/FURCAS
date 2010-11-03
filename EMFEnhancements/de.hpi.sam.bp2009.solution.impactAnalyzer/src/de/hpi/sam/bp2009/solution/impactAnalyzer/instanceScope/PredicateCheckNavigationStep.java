@@ -16,6 +16,7 @@ import org.eclipse.ocl.utilities.PredefinedType;
 
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
@@ -51,10 +52,13 @@ public class PredicateCheckNavigationStep extends AbstractNavigationStep {
      * hidden opposites.
      */
     private final OppositeEndFinder oppositeEndFinder;
+    
+    private final OCLFactory oclFactory;
 
-    public PredicateCheckNavigationStep(EClass sourceType, EClass targetType, IteratorExp iteratorExp, PathCache pathCache) {
+    public PredicateCheckNavigationStep(EClass sourceType, EClass targetType, IteratorExp iteratorExp, PathCache pathCache, OCLFactory oclFactory) {
         super(sourceType, targetType, (OCLExpression)iteratorExp);
         this.iteratorExp = iteratorExp;
+        this.oclFactory = oclFactory;
         if (!haveIntersectingSubclassTree(sourceType, targetType)) {
             setAlwaysEmpty();
         }
@@ -124,7 +128,7 @@ public class PredicateCheckNavigationStep extends AbstractNavigationStep {
 
         Boolean resultPre = positive;
         if (!(atPre == null)) {
-            PartialEvaluator evalPre = new PartialEvaluator(atPre, oppositeEndFinder);
+            PartialEvaluator evalPre = new PartialEvaluator(atPre, oppositeEndFinder, oclFactory);
             try {
                 Object result = evalPre.evaluate(null, (CallExp) exp, sourceObjects);
                 resultPre = sourceObjects.contains(result);
@@ -137,7 +141,7 @@ public class PredicateCheckNavigationStep extends AbstractNavigationStep {
         }
         // evaluate whether the source object passes the iterator's body after the change
 
-        PartialEvaluator evalPost = new PartialEvaluator();
+        PartialEvaluator evalPost = new PartialEvaluator(oclFactory);
         Boolean resultPost;
         try {
             Object result = evalPost.evaluate(null, (CallExp) exp, sourceObjects);

@@ -17,6 +17,7 @@ import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.IfExp;
 import org.eclipse.ocl.ecore.LoopExp;
+import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.Variable;
@@ -24,6 +25,7 @@ import org.eclipse.ocl.ecore.VariableExp;
 
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.VariableValueNotFoundInfo;
@@ -110,7 +112,7 @@ public class UnusedEvaluationRequest {
      *            the expression to evaluate
      * @param resultIndicatingUnused
      *            if <code>expression</code> evaluates to this result, this request will return <code>true</code> from its
-     *            {@link #evaluate(OppositeEndFinder)} method; as a special case, <code>null</code> will be considered "equal"
+     *            {@link #evaluate(OppositeEndFinder, OCL)} method; as a special case, <code>null</code> will be considered "equal"
      *            to an empty collection as the result of evaluating <code>expression</code>
      * @param inferredVariableValues
      *            may be <code>null</code>. In this case, a new {@link Map} is created internally.
@@ -134,7 +136,7 @@ public class UnusedEvaluationRequest {
      *            the expression to evaluate
      * @param resultIndicatingUnused
      *            if <code>expression</code> evaluates to this result, this request will return <code>true</code> from its
-     *            {@link #evaluate(OppositeEndFinder)} method; as a special case, <code>null</code> will be considered "equal"
+     *            {@link #evaluate(OppositeEndFinder, OCL)} method; as a special case, <code>null</code> will be considered "equal"
      *            to an empty collection as the result of evaluating <code>expression</code>
      * @param inferredVariableValues
      *            may be <code>null</code>. In this case, a new {@link Map} is created internally.
@@ -237,10 +239,10 @@ public class UnusedEvaluationRequest {
      * at all to attempt an evaluation or if a {@link ValueNotFoundException} would inevitably result. This
      * saves the effort for a failing partial evaluation.
      */
-    public boolean evaluate(OppositeEndFinder oppositeEndFinder) throws ValueNotFoundException {
+    public boolean evaluate(OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory) throws ValueNotFoundException {
         // use an evaluator that doesn't even try to perform an allInstances() call because it likely would
         // cost more than it saves
-        PartialEvaluatorNoAllInstances evaluator = new PartialEvaluatorNoAllInstances(oppositeEndFinder);
+        PartialEvaluatorNoAllInstances evaluator = new PartialEvaluatorNoAllInstances(oppositeEndFinder, oclFactory);
         EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> env = evaluator.getOcl()
                 .getEvaluationEnvironment();
         Object context = null;

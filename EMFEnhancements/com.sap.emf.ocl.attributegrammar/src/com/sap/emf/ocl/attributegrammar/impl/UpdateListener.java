@@ -9,9 +9,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 
-import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
-import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
-
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 
 /**
@@ -26,19 +23,18 @@ public class UpdateListener extends AdapterImpl {
     private final EStructuralFeature feature;
     private final OCLExpression oclExpression;
     private final ImpactAnalyzer impactAnalyzer;
-    private final OppositeEndFinder oppositeEndFinder;
+    private final OCL ocl;
 
     public UpdateListener(EStructuralFeature feature, OCLExpression oclExpression, ImpactAnalyzer impactAnalyzer,
-            OppositeEndFinder oppositeEndFinder) {
+            OCL ocl) {
         this.feature = feature;
         this.oclExpression = oclExpression;
         this.impactAnalyzer = impactAnalyzer;
-        this.oppositeEndFinder = oppositeEndFinder;
+        this.ocl = ocl;
     }
 
     @Override
     public void notifyChanged(Notification notification) {
-        OCL ocl = OCLWithHiddenOpposites.newInstance(oppositeEndFinder);
         Collection<EObject> contextObjects = impactAnalyzer.getContextObjects(notification);
         for (EObject contextObject : contextObjects) {
             Object newValue = ocl.evaluate(contextObject, oclExpression);

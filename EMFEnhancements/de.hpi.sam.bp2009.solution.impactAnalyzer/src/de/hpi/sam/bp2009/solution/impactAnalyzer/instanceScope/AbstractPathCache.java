@@ -14,6 +14,7 @@ import org.eclipse.ocl.ecore.TupleLiteralExp;
 
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
 
@@ -114,16 +115,16 @@ public abstract class AbstractPathCache<StepType> {
     }
 
     public StepType getOrCreateNavigationPath(OCLExpression sourceExpression, EClass context,
-            OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor) {
+            OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, OCLFactory oclFactory) {
         StepType result = getPathForNode(sourceExpression, tupleLiteralNamesToLookFor);
         if (result == null) {
-            result = createStep(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor);
+            result = createStep(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, oclFactory);
             put(sourceExpression, tupleLiteralNamesToLookFor, result);
         }
         return result;
     }
 
     protected abstract StepType createStep(OCLExpression sourceExpression, EClass context,
-            OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor);
+            OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, OCLFactory oclFactory);
 
 }

@@ -13,6 +13,7 @@ import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.ActivationOption;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.InstanceScopeAnalysis;
 
@@ -28,6 +29,7 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
     private final OppositeEndFinder oppositeEndFinder;
     private final ActivationOption configuration;
     private final boolean notifyOnNewContextElements;
+    private final OCLFactory oclFactory;
 
     /**
      * Creates a new impact analyzer for the OCL expression given. For event filter synthesis (see
@@ -37,8 +39,7 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
      * <p>
      * 
      * Should you conveniently have the context type available, consider using
-     * {@link #ImpactAnalyzerImpl(OCLExpression, EClass, boolean, ActivationOption)} instead.
-     * 
+     * {@link #ImpactAnalyzerImpl(OCLExpression, EClass, boolean, ActivationOption, OCLFactory)} instead.
      * @param notifyNewContextElements
      *            The analyzer can be parameterized during construction such that it either registers for creation events on the
      *            context type or not. Registering for element creation on the context type is useful for invariants / constraints
@@ -48,15 +49,17 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
      *            expressions. In those cases, some framework may be responsible for the initial evaluation of those OCL
      *            expressions on new element, and therefore, context element creation events are not of interest.
      */
-    public ImpactAnalyzerImpl(OCLExpression expression, boolean notifyOnNewContextElements, ActivationOption configuration) {
-        this(expression, notifyOnNewContextElements, DefaultOppositeEndFinder.getInstance(), configuration);
+    public ImpactAnalyzerImpl(OCLExpression expression, boolean notifyOnNewContextElements, ActivationOption configuration, OCLFactory oclFactory) {
+        this(expression, notifyOnNewContextElements, DefaultOppositeEndFinder.getInstance(), configuration, oclFactory);
     }
 
-    public ImpactAnalyzerImpl(OCLExpression expression, EClass context, boolean notifyOnNewContextElements, ActivationOption configuration) {
-        this(expression, context, notifyOnNewContextElements, DefaultOppositeEndFinder.getInstance(), configuration);
+    public ImpactAnalyzerImpl(OCLExpression expression, EClass context, boolean notifyOnNewContextElements, ActivationOption configuration, OCLFactory oclFactory) {
+        this(expression, context, notifyOnNewContextElements, DefaultOppositeEndFinder.getInstance(), configuration, oclFactory);
     }
 
     /**
+     * @param oppositeEndFinder
+     *            used during partial navigation and for metamodel queries
      * @param notifyNewContextElements
      *            The analyzer can be parameterized during construction such that it either registers for creation events on the
      *            context type or not. Registering for element creation on the context type is useful for invariants / constraints
@@ -65,10 +68,8 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
      *            only wants to receive <em>update</em> events after the element has been fully initialized from those OCL
      *            expressions. In those cases, some framework may be responsible for the initial evaluation of those OCL
      *            expressions on new element, and therefore, context element creation events are not of interest.
-     * @param oppositeEndFinder
-     *            used during partial navigation and for metamodel queries
      */
-    public ImpactAnalyzerImpl(OCLExpression expression, boolean notifyOnNewContextElements, OppositeEndFinder oppositeEndFinder, ActivationOption configuration) {
+    public ImpactAnalyzerImpl(OCLExpression expression, boolean notifyOnNewContextElements, OppositeEndFinder oppositeEndFinder, ActivationOption configuration, OCLFactory oclFactory) {
         this.expression = expression;
         this.context = expression.accept(new ContextTypeRetriever());
         if (this.context == null) {
@@ -79,9 +80,12 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
         this.oppositeEndFinder = oppositeEndFinder;
         this.configuration = configuration;
         this.notifyOnNewContextElements = notifyOnNewContextElements;
+        this.oclFactory = oclFactory;
     }
 
     /**
+     * @param oppositeEndFinder
+     *            used during partial navigation and for metamodel queries
      * @param notifyNewContextElements
      *            The analyzer can be parameterized during construction such that it either registers for creation events on the
      *            context type or not. Registering for element creation on the context type is useful for invariants / constraints
@@ -90,10 +94,8 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
      *            only wants to receive <em>update</em> events after the element has been fully initialized from those OCL
      *            expressions. In those cases, some framework may be responsible for the initial evaluation of those OCL
      *            expressions on new element, and therefore, context element creation events are not of interest.
-     * @param oppositeEndFinder
-     *            used during partial navigation and for metamodel queries
      */
-    public ImpactAnalyzerImpl(OCLExpression expression, EClass context, boolean notifyOnNewContextElements, OppositeEndFinder oppositeEndFinder, ActivationOption configuration) {
+    public ImpactAnalyzerImpl(OCLExpression expression, EClass context, boolean notifyOnNewContextElements, OppositeEndFinder oppositeEndFinder, ActivationOption configuration, OCLFactory oclFactory) {
         this.expression = expression;
         this.context = context;
         EClass inferredContext = expression.accept(new ContextTypeRetriever());
@@ -104,10 +106,11 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
         this.oppositeEndFinder = oppositeEndFinder;
         this.configuration = configuration;
         this.notifyOnNewContextElements = notifyOnNewContextElements;
+        this.oclFactory = oclFactory;
     }
 
     public EventFilter createFilterForExpression() {
-        filtersyn = new FilterSynthesisImpl(expression, notifyOnNewContextElements, oppositeEndFinder);
+        filtersyn = new FilterSynthesisImpl(expression, notifyOnNewContextElements, oclFactory.createOCL(oppositeEndFinder));
         return filtersyn.getSynthesisedFilter();
     }
 
@@ -116,7 +119,7 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
             if (filtersyn == null) {
                 createFilterForExpression();
             }
-            instanceScopeAnalysis = new InstanceScopeAnalysis(expression, context, filtersyn, oppositeEndFinder, configuration);
+            instanceScopeAnalysis = new InstanceScopeAnalysis(expression, context, filtersyn, oppositeEndFinder, configuration, oclFactory);
         }
         return instanceScopeAnalysis.getContextObjects(event);
     }

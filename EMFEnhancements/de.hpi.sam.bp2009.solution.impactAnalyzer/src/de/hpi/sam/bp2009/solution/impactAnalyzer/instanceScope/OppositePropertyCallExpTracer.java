@@ -7,13 +7,14 @@ import org.eclipse.emf.ecore.EReference;
 
 import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 
 
 public class OppositePropertyCallExpTracer extends  AbstractTracer<OppositePropertyCallExp> {
 
-    protected OppositePropertyCallExpTracer(OppositePropertyCallExp expression, Stack<String> tuplePartNames) {
-        super(expression, tuplePartNames);
+    protected OppositePropertyCallExpTracer(OppositePropertyCallExp expression, Stack<String> tuplePartNames, OCLFactory oclFactory) {
+        super(expression, tuplePartNames, oclFactory);
     }
 
     @Override

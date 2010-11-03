@@ -34,8 +34,6 @@ import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 import com.sap.emf.ocl.hiddenopposites.AbstractVisitorWithHiddenOpposites;
-import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
-import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 import com.sap.emf.ocl.util.OclHelper;
 
@@ -78,7 +76,7 @@ implements OperationBodyToCallMapper {
     private final Stack<OCLExpression> visitedOperationBodyStack = new Stack<OCLExpression>();
     private final Map<OCLExpression, Set<Variable>> selfVariablesUsedInBody = new HashMap<OCLExpression, Set<Variable>>();
     private final Map<OCLExpression, Set<Variable>> parameterVariablesUsedInBody = new HashMap<OCLExpression, Set<Variable>>();
-    private final OppositeEndFinder oppositeEndFinder;
+    private final OCL ocl;
  
     /**
      * @param expression The {@link OCLExpression} the filter should be created for. 
@@ -91,12 +89,11 @@ implements OperationBodyToCallMapper {
      *            the element has been fully initialized from those OCL expressions. In those cases, some framework may
      *            be responsible for the initial evaluation of those OCL expressions on new element, and therefore,
      *            context element creation events are not of interest.
-     * @param oppositeEndFinder TODO
      */
-    public FilterSynthesisImpl(OCLExpression expression, boolean notifyNewContextElements, OppositeEndFinder oppositeEndFinder) {
+    public FilterSynthesisImpl(OCLExpression expression, boolean notifyNewContextElements, OCL ocl) {
         super();
         this.notifyNewContextElements = notifyNewContextElements;
-        this.oppositeEndFinder = oppositeEndFinder;
+        this.ocl = ocl;
         walk(expression);
     }
 
@@ -176,8 +173,7 @@ implements OperationBodyToCallMapper {
                 // standard library operation: nothing to do
             } else {
                 // handle self defined operation
-                OCL ocl = OCLWithHiddenOpposites.newInstance(oppositeEndFinder);
-                OCLExpression body = InvocationBehavior.INSTANCE.getOperationBody(ocl, opCallExp.getReferredOperation());
+                OCLExpression body = getOperationBody(opCallExp.getReferredOperation());
                 if (body != null) {
                     Set<OperationCallExp> analyzedCallsToBody = visitedOperationBodies.get(body);
                     if (analyzedCallsToBody == null) {
@@ -349,6 +345,11 @@ implements OperationBodyToCallMapper {
             result = Collections.emptySet();
         }
         return result;
+    }
+
+    public OCLExpression getOperationBody(EOperation operation) {
+        OCLExpression body = InvocationBehavior.INSTANCE.getOperationBody(ocl, operation);
+        return body;
     }
 
 } //FilterSynthesisImpl

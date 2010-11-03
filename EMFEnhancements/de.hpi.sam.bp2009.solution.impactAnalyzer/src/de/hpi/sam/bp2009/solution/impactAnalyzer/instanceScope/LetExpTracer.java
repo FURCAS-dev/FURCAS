@@ -9,17 +9,18 @@ import org.eclipse.ocl.ecore.LetExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.Variable;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 
 public class LetExpTracer extends AbstractTracer<LetExp> {
-    public LetExpTracer(LetExp expression, Stack<String> tuplePartNames) {
-        super(expression, tuplePartNames);
+    public LetExpTracer(LetExp expression, Stack<String> tuplePartNames, OCLFactory oclFactory) {
+        super(expression, tuplePartNames, oclFactory);
     }
 
     @Override
     public NavigationStep traceback(EClass context, PathCache pathCache, OperationBodyToCallMapper operationBodyToCallMapper) {
         NavigationStep result = pathCache.getOrCreateNavigationPath((OCLExpression) getExpression().getIn(), context,
-                operationBodyToCallMapper, getTupleLiteralPartNamesToLookFor());
+                operationBodyToCallMapper, getTupleLiteralPartNamesToLookFor(), oclFactory);
         applyScopesOnNavigationStep(result, operationBodyToCallMapper);
         return result;
     }

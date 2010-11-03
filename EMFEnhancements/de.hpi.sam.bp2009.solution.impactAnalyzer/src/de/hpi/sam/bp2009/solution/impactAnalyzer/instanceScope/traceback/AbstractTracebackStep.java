@@ -21,6 +21,7 @@ import org.eclipse.ocl.ecore.IfExp;
 import org.eclipse.ocl.ecore.IterateExp;
 import org.eclipse.ocl.ecore.LetExp;
 import org.eclipse.ocl.ecore.LoopExp;
+import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.TupleType;
@@ -30,6 +31,7 @@ import org.eclipse.ocl.ecore.VariableExp;
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 import com.sap.emf.ocl.util.OclHelper;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
@@ -88,6 +90,8 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
      * a result was inferred.
      */
     private final String annotation;
+    
+    protected final OCLFactory oclFactory;
 
     /**
      * Encapsulates the scope change that has to happen before invoking a subsequent traceback step.
@@ -178,9 +182,10 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
      */
     protected AbstractTracebackStep(E sourceExpression, Stack<String> tupleLiteralNamesToLookFor,
             OppositeEndFinder oppositeEndFinder, OperationBodyToCallMapper operationBodyToCallMapper,
-            UnusedEvaluationRequestFactory unusedEvaluationRequestFactory) {
+            UnusedEvaluationRequestFactory unusedEvaluationRequestFactory, OCLFactory oclFactory) {
         this.expression = sourceExpression;
         this.oppositeEndFinder = oppositeEndFinder;
+        this.oclFactory = oclFactory;
         EClassifier type = sourceExpression.getType();
         requiredType = getInnermostTypeConsideringTupleLiteralsLookedFor(tupleLiteralNamesToLookFor, type);
         if (OptimizationActivation.getOption().isUnusedDetectionActive()) {
@@ -233,8 +238,8 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
      * during the AST navigation from the <code>sourceExpression</code> to the expression to be evaluated during the "unused"
      * check. They are stored in the {@link TracebackStep} whose expression's unusedness they shall prove. When a step is executed
      * by invoking its {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, TracebackCache, Notification)} method,
-     * these requests are {@link UnusedEvaluationRequest#evaluate(com.sap.emf.ocl.hiddenopposites.OppositeEndFinder) evaluated}.
-     * using {@link UnusedEvaluationRequestSet#evaluate(Set, com.sap.emf.ocl.hiddenopposites.OppositeEndFinder, TracebackCache)}. If this proves
+     * these requests are {@link UnusedEvaluationRequest#evaluate(com.sap.emf.ocl.hiddenopposites.OppositeEndFinder, OCL) evaluated}.
+     * using {@link UnusedEvaluationRequestSet#evaluate(Set, com.sap.emf.ocl.hiddenopposites.OppositeEndFinder, TracebackCache, OCL)}. If this proves
      * that the expression is unused, an empty set can be returned right away. Otherwise, the follow-up
      * {@link UnusedEvaluationRequestSet} delivered via {@link UnusedEvaluationResult#getNewRequestSet()} is merged with the one
      * passed to {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, TracebackCache, Notification)}.
@@ -444,7 +449,7 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
                             // merge the unused evaluation requests that failed for unknown variables
                             // with the ones passed in pendingUnusedEvalRequests and carry on
                             UnusedEvaluationResult unusedEvaluationResult = UnusedEvaluationRequestSet.evaluate(
-                                    unusedEvaluationRequests, oppositeEndFinder, tracebackCache);
+                                    unusedEvaluationRequests, oppositeEndFinder, tracebackCache, oclFactory);
                             if (unusedEvaluationResult.hasProvenUnused()) {
                                 result = tracebackCache.getOperationCallExpKeyedSetFactory().emptySet();
                             } else {
@@ -649,7 +654,7 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
             OCLExpression targetExpression, EClass context, OperationBodyToCallMapper operationBodyToCallMapper,
             Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
         return new TracebackStepAndScopeChange(tracebackStepCache.getOrCreateNavigationPath(targetExpression, context,
-                operationBodyToCallMapper, tupleLiteralNamesToLookFor), getVariablesChangingScope(sourceExpression,
+                operationBodyToCallMapper, tupleLiteralNamesToLookFor, oclFactory), getVariablesChangingScope(sourceExpression,
                 targetExpression, operationBodyToCallMapper));
     }
 
@@ -664,7 +669,7 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
             OCLExpression targetExpression, OperationCallExp call, EClass context, OperationBodyToCallMapper operationBodyToCallMapper,
             Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
         return new TracebackStepAndScopeChangeWithOperationCallExp(tracebackStepCache.getOrCreateNavigationPath(targetExpression, context,
-                operationBodyToCallMapper, tupleLiteralNamesToLookFor), getVariablesChangingScope(sourceExpression,
+                operationBodyToCallMapper, tupleLiteralNamesToLookFor, oclFactory), getVariablesChangingScope(sourceExpression,
                 targetExpression, operationBodyToCallMapper), call);
     }
 
