@@ -12,6 +12,7 @@ import org.eclipse.ocl.ecore.OCLExpression;
 
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.SemanticIdentity;
 
@@ -226,8 +227,8 @@ public class PathCache extends AbstractPathCache<NavigationStep> implements Hash
 
     @Override
     protected NavigationStep createStep(OCLExpression sourceExpression, EClass context,
-            OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor) {
-        NavigationStep result = InstanceScopeAnalysis.createTracer(sourceExpression, tupleLiteralNamesToLookFor).traceback(context, this,
+            OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, OCLFactory oclFactory) {
+        NavigationStep result = InstanceScopeAnalysis.createTracer(sourceExpression, tupleLiteralNamesToLookFor, oclFactory).traceback(context, this,
                 operationBodyToCallMapper);
         NavigationStep existingEqualStep = allNavigationSteps.get(result);
         if (existingEqualStep != null) {

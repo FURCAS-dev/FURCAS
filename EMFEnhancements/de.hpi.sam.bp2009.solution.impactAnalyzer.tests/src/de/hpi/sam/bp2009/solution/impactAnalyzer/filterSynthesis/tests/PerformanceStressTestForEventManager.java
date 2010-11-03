@@ -39,6 +39,7 @@ import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.Statistics;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLWithHiddenOppositesFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.BenchmarkOCLPreparer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 
@@ -171,7 +172,9 @@ public class PerformanceStressTestForEventManager extends TestCase {
     private void registerFilterForExpressionWithEventManager(OCLExpressionWithContext expression) {
         OCLExpression e = expression.getExpression();
         Statistics.getInstance().begin(FILTERCREATION, e);
-        EventFilter filter = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(e, expression.getContext(), /* notifyOnNewContextElements */ false).createFilterForExpression();
+        EventFilter filter = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(e,
+                expression.getContext(), /* notifyOnNewContextElements */ false,
+                new OCLWithHiddenOppositesFactory()).createFilterForExpression();
         Statistics.getInstance().end(FILTERCREATION, e);
         Statistics.getInstance().begin(FILTERSUBSCRIPTION, e);
         NotificationReceiverWithFilter listener = new NotificationReceiverWithFilter(filter);

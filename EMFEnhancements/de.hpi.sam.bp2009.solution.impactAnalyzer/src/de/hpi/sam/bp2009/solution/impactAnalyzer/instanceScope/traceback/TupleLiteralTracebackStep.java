@@ -9,14 +9,15 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
 import org.eclipse.ocl.expressions.TupleLiteralPart;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestFactory;
 
 public class TupleLiteralTracebackStep extends BranchingTracebackStep<TupleLiteralExp> {
 
     public TupleLiteralTracebackStep(TupleLiteralExp sourceExpression, EClass context,
-            OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache, UnusedEvaluationRequestFactory unusedEvaluationRequestFactory) {
-        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder(), operationBodyToCallMapper, unusedEvaluationRequestFactory);
+            OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache, UnusedEvaluationRequestFactory unusedEvaluationRequestFactory, OCLFactory oclFactory) {
+        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder(), operationBodyToCallMapper, unusedEvaluationRequestFactory, oclFactory);
         if (tupleLiteralNamesToLookFor != null && !tupleLiteralNamesToLookFor.isEmpty()) {
             String partName = tupleLiteralNamesToLookFor.peek();
             for (TupleLiteralPart<EClassifier, EStructuralFeature> part : sourceExpression.getPart()) {

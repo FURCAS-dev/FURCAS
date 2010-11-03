@@ -48,6 +48,7 @@ import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallEx
 import com.sap.emf.ocl.util.OclHelper;
 
 import de.hpi.sam.bp2009.solution.eventManager.NotificationHelper;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.ActivationOption;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
@@ -71,6 +72,8 @@ public class InstanceScopeAnalysis {
     private final EClass context;
     private final OppositeEndFinder oppositeEndFinder;
     private final ActivationOption configuration;
+    private final OCLFactory oclFactory;
+    private final PartialEvaluator partialEvaluatorForAllInstancesDeltaPropagation;
 
     private static final Set<String> comparisonOpNames = new HashSet<String>(Arrays.asList(new String[] {
             PredefinedType.EQUAL_NAME, PredefinedType.LESS_THAN_NAME, PredefinedType.LESS_THAN_EQUAL_NAME,
@@ -95,50 +98,51 @@ public class InstanceScopeAnalysis {
     /**
      * Factory method that creates an instance of some {@link Tracer}-implementing class specific to the type of the OCL
      * <tt>expression</tt>.
+     * @param oclFactory TODO
      * @param caller the calling tracer from which the list of tuple part names to look for are copied
      * unchanged to the new tracer created by this operation. May be <tt>null</tt> in which case the
      * new tracer does not look for any tuple literal parts initially.
      */
-    protected static Tracer createTracer(OCLExpression expression, Stack<String> tuplePartNames) {
+    protected static Tracer createTracer(OCLExpression expression, Stack<String> tuplePartNames, OCLFactory oclFactory) {
         // Using the class loader is another option, but that would create implicit naming conventions.
         // Thats why we do the mapping "manually".
         switch (expression.eClass().getClassifierID()) {
         case EcorePackage.PROPERTY_CALL_EXP:
-            return new PropertyCallExpTracer((PropertyCallExp) expression, tuplePartNames);
+            return new PropertyCallExpTracer((PropertyCallExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.BOOLEAN_LITERAL_EXP:
-            return new BooleanLiteralExpTracer((BooleanLiteralExp) expression, tuplePartNames);
+            return new BooleanLiteralExpTracer((BooleanLiteralExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.COLLECTION_LITERAL_EXP:
-            return new CollectionLiteralExpTracer((CollectionLiteralExp) expression, tuplePartNames);
+            return new CollectionLiteralExpTracer((CollectionLiteralExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.ENUM_LITERAL_EXP:
-            return new EnumLiteralExpTracer((EnumLiteralExp) expression, tuplePartNames);
+            return new EnumLiteralExpTracer((EnumLiteralExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.IF_EXP:
-            return new IfExpTracer((IfExp) expression, tuplePartNames);
+            return new IfExpTracer((IfExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.INTEGER_LITERAL_EXP:
-            return new IntegerLiteralExpTracer((IntegerLiteralExp) expression, tuplePartNames);
+            return new IntegerLiteralExpTracer((IntegerLiteralExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.ITERATE_EXP:
-            return new IterateExpTracer((IterateExp) expression, tuplePartNames);
+            return new IterateExpTracer((IterateExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.ITERATOR_EXP:
-            return new IteratorExpTracer((IteratorExp) expression, tuplePartNames);
+            return new IteratorExpTracer((IteratorExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.LET_EXP:
-            return new LetExpTracer((LetExp) expression, tuplePartNames);
+            return new LetExpTracer((LetExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.OPERATION_CALL_EXP:
-            return new OperationCallExpTracer((OperationCallExp) expression, tuplePartNames);
+            return new OperationCallExpTracer((OperationCallExp) expression, tuplePartNames, oclFactory);
         case ExpressionsPackage.OPPOSITE_PROPERTY_CALL_EXP:
-            return new OppositePropertyCallExpTracer((OppositePropertyCallExp) expression, tuplePartNames);
+            return new OppositePropertyCallExpTracer((OppositePropertyCallExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.REAL_LITERAL_EXP:
-            return new RealLiteralExpTracer((RealLiteralExp) expression, tuplePartNames);
+            return new RealLiteralExpTracer((RealLiteralExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.STRING_LITERAL_EXP:
-            return new StringLiteralExpTracer((StringLiteralExp) expression, tuplePartNames);
+            return new StringLiteralExpTracer((StringLiteralExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.TUPLE_LITERAL_EXP:
-            return new TupleLiteralExpTracer((TupleLiteralExp) expression, tuplePartNames);
+            return new TupleLiteralExpTracer((TupleLiteralExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.TYPE_EXP:
-            return new TypeExpTracer((TypeExp) expression, tuplePartNames);
+            return new TypeExpTracer((TypeExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.VARIABLE_EXP:
-            return new VariableExpTracer((VariableExp) expression, tuplePartNames);
+            return new VariableExpTracer((VariableExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.NULL_LITERAL_EXP:
-            return new NullLiteralExpTracer((NullLiteralExp) expression, tuplePartNames);
+            return new NullLiteralExpTracer((NullLiteralExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.INVALID_LITERAL_EXP:
-            return new InvalidlLiteralExpTracer((InvalidLiteralExp) expression, tuplePartNames);
+            return new InvalidlLiteralExpTracer((InvalidLiteralExp) expression, tuplePartNames, oclFactory);
         default:
             throw new RuntimeException("Unsupported expression type " + expression.eClass().getName());
         }
@@ -153,7 +157,7 @@ public class InstanceScopeAnalysis {
      *            {@link AllInstancesNavigationStep}. It is handed to the {@link PathCache} object from where
      *            {@link Tracer}s can retrieve it using {@link PathCache#getOppositeEndFinder()}.
      */
-    public InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer, OppositeEndFinder oppositeEndFinder, ActivationOption configuration) {
+    public InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer, OppositeEndFinder oppositeEndFinder, ActivationOption configuration, OCLFactory oclFactory) {
         if (exprContext == null) {
 	    throw new IllegalArgumentException("exprContext must not be null. Maybe no context type specified to ImpactAnalyzerImpl constructor, and no self-expression found to infer it?");
 	}
@@ -161,6 +165,8 @@ public class InstanceScopeAnalysis {
 	    throw new IllegalArgumentException("Arguments must not be null");
 	}
         context = exprContext;
+        this.oclFactory = oclFactory;
+        partialEvaluatorForAllInstancesDeltaPropagation = new PartialEvaluator(oclFactory);
         this.filterSynthesizer = filterSynthesizer;
         this.oppositeEndFinder = oppositeEndFinder;
         this.configuration = configuration;
@@ -218,9 +224,9 @@ public class InstanceScopeAnalysis {
     private boolean hasNoEffectOnOverallExpression(Notification event, NavigationCallExp attributeOrAssociationEndCall,
             AnnotatedEObject sourceElement){
 	if(configuration.isDeltaPropagationActive()) {
-	    PartialEvaluator partialEvaluatorAtPre = new PartialEvaluator(event, oppositeEndFinder);
+	    PartialEvaluator partialEvaluatorAtPre = new PartialEvaluator(event, oppositeEndFinder, oclFactory);
 	    Object oldValue = partialEvaluatorAtPre.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
-	    PartialEvaluator partialEvaluatorAtPost = new PartialEvaluator(oppositeEndFinder);
+	    PartialEvaluator partialEvaluatorAtPost = new PartialEvaluator(oppositeEndFinder, oclFactory);
 	    Object newValue = partialEvaluatorAtPost.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
 	    return partialEvaluatorAtPost.hasNoEffectOnOverallExpression(attributeOrAssociationEndCall, oldValue, newValue, filterSynthesizer);
 	} else {
@@ -228,7 +234,6 @@ public class InstanceScopeAnalysis {
 	}
     }
 
-    private final PartialEvaluator partialEvaluatorForAllInstancesDeltaPropagation = new PartialEvaluator();
     private Collection<EObject> handleLifeCycleEvent(Notification event) {
         Collection<EObject> result = new HashSet<EObject>();
         Boolean addEvent = NotificationHelper.isAddEvent(event);
@@ -440,7 +445,7 @@ public class InstanceScopeAnalysis {
      *            defines the type for <tt>self</tt> if used outside of operation bodies.
      */
     private NavigationStep getNavigationStepsToSelfForExpression(OCLExpression exp, EClass context) {
-        NavigationStep result = pathCache.getOrCreateNavigationPath(exp, context, filterSynthesizer, /* tupleLiteralNamesToLookFor */ null);
+        NavigationStep result = pathCache.getOrCreateNavigationPath(exp, context, filterSynthesizer, /* tupleLiteralNamesToLookFor */ null, oclFactory);
         return result;
     }
 
@@ -454,7 +459,7 @@ public class InstanceScopeAnalysis {
      */
     private TracebackStep getTracebackStepForExpression(OCLExpression exp, EClass context) {
         TracebackStep result = tracebackStepCache.getOrCreateNavigationPath(exp, context, filterSynthesizer,
-                                                                            /* tupleLiteralNamesToLookFor */ null);
+                                                                            /* tupleLiteralNamesToLookFor */ null, oclFactory);
         return result;
     }
 

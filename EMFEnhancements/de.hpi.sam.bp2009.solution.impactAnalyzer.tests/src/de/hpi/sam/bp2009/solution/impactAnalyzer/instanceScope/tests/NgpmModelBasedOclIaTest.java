@@ -26,6 +26,7 @@ import dataaccess.expressions.ExpressionsPackage;
 import dataaccess.expressions.MethodCallExpression;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLWithHiddenOppositesFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.model.ModelCloner;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationResourceLoader;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.RawNotification;
@@ -51,7 +52,8 @@ public class NgpmModelBasedOclIaTest extends TestCase {
                         ClassesPackage.eINSTANCE).iterator().next().getSpecification().getBodyExpression();
         final MethodSignature append = (MethodSignature) ngpmModel.getEObject("E01F04667A9220905D0911DFA13BFF380A1CE22F");
         assertEquals("append", append.getName());
-        final ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, /* notifyOnNewContextElements */ false);
+        final ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(
+                exp, /* notifyOnNewContextElements */ false, new OCLWithHiddenOppositesFactory());
         final boolean[] result = new boolean[1];
         append.eAdapters().add(new AdapterImpl() {
             @Override
@@ -84,7 +86,9 @@ public class NgpmModelBasedOclIaTest extends TestCase {
 	RawNotification rawNotification = modifyElementaryTypesTrace.get(1);
 	Notification notification = rawNotification.convertToNotification(ModelCloner.cloneResource(ngpmModel,"1"));
 
-	ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, data.classes.ClassesPackage.eINSTANCE.getNestedTypeDefinition(), /* notifyOnNewContextElements */ false);
+	ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp,
+	        data.classes.ClassesPackage.eINSTANCE.getNestedTypeDefinition(),
+	        /* notifyOnNewContextElements */ false, new OCLWithHiddenOppositesFactory());
 	Collection<EObject> impact = ia.getContextObjects(notification);
 	assertEquals(impact.size(), 0);
     }
@@ -94,7 +98,7 @@ public class NgpmModelBasedOclIaTest extends TestCase {
 
 	Notification notification = getNotification(10, ngpmModel);
 
-	ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expr.getExpression(), expr.getContext(),/* notifyOnNewContextElements */ false);
+	ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expr.getExpression(), expr.getContext(),/* notifyOnNewContextElements */ false, new OCLWithHiddenOppositesFactory());
 	Collection<EObject> impact = ia.getContextObjects(notification);
 	assertNotNull(impact);
     }
@@ -110,7 +114,7 @@ public class NgpmModelBasedOclIaTest extends TestCase {
         final ClassTypeDefinition appendParamCTD = (ClassTypeDefinition) append.getInput().get(0).getOwnedTypeDefinition();
         assertEquals(string, appendParamCTD.getClazz());
         assertEquals("append", append.getName());
-        final ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, /* notifyOnNewContextElements */ false);
+        final ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, /* notifyOnNewContextElements */ false, new OCLWithHiddenOppositesFactory());
         final boolean[] result = new boolean[1];
         appendParamCTD.setClazz(null);
         appendParamCTD.eAdapters().add(new AdapterImpl() {
@@ -134,7 +138,7 @@ public class NgpmModelBasedOclIaTest extends TestCase {
                 .parse("context SapClass inv: " + "self.allSignatures()",
                         ClassesPackage.eINSTANCE).iterator().next().getSpecification().getBodyExpression();
         final SapClass string = (SapClass) ngpmModel.getEObject("E0B91841F0303550560511DECC310019D29902CC");
-        final ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, data.classes.ClassesPackage.eINSTANCE.getSapClass(), /* notifyOnNewContextElements */ false);
+        final ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, data.classes.ClassesPackage.eINSTANCE.getSapClass(), /* notifyOnNewContextElements */ false, new OCLWithHiddenOppositesFactory());
         final boolean[] result = new boolean[1];
         string.eAdapters().add(new AdapterImpl() {
             @Override
@@ -156,7 +160,7 @@ public class NgpmModelBasedOclIaTest extends TestCase {
         final SapClass string = (SapClass) ngpmModel.getEObject("E0B91841F0303550560511DECC310019D29902CC");
         final MethodCallExpression callOnStringTypedExpression = (MethodCallExpression) ngpmModel.getEObject("E02C978BFD3F74805D0811DF8A6AFF380A1CE22F");
         final EList<MethodSignature> oldValue = ((ClassTypeDefinition) callOnStringTypedExpression.getObject().getType().getInnermost()).getClazz().allSignatures();
-        final ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, /* notifyOnNewContextElements */ false);
+        final ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, /* notifyOnNewContextElements */ false, new OCLWithHiddenOppositesFactory());
         final boolean[] result = new boolean[1];
         string.eAdapters().add(new AdapterImpl() {
             @Override
@@ -229,7 +233,7 @@ public class NgpmModelBasedOclIaTest extends TestCase {
         final ClassTypeDefinition appendOutputCTD = (ClassTypeDefinition) append.getOutput();
         assertEquals(string, appendOutputCTD.getClazz());
         assertEquals("append", append.getName());
-        final ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, data.classes.ClassesPackage.eINSTANCE.getSapClass(), /* notifyOnNewContextElements */ false);
+        final ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, data.classes.ClassesPackage.eINSTANCE.getSapClass(), /* notifyOnNewContextElements */ false, new OCLWithHiddenOppositesFactory());
         final boolean[] result = new boolean[1];
         appendOutputCTD.eAdapters().add(new AdapterImpl() {
             @Override
@@ -268,7 +272,7 @@ public class NgpmModelBasedOclIaTest extends TestCase {
         final ClassTypeDefinition appendOutputCTD = (ClassTypeDefinition) append.getOutput();
         assertEquals(string, appendOutputCTD.getClazz());
         assertEquals("append", append.getName());
-        final ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, /* notifyOnNewContextElements */ false);
+        final ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, /* notifyOnNewContextElements */ false, new OCLWithHiddenOppositesFactory());
         final boolean[] result = new boolean[1];
         appendOutputCTD.eAdapters().add(new AdapterImpl() {
             @Override

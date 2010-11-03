@@ -7,17 +7,14 @@ import java.util.Stack;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.ecore.Variable;
-import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.ecore.impl.TypeExpImpl;
 import org.eclipse.ocl.utilities.PredefinedType;
 
-import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
-
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 
 public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
@@ -50,22 +47,21 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
         // TODO what about "product"?
     }
 
-    public OperationCallExpTracer(OperationCallExp expression, Stack<String> tuplePartNames) {
-        super(expression, tuplePartNames);
+    public OperationCallExpTracer(OperationCallExp expression, Stack<String> tuplePartNames, OCLFactory oclFactory) {
+        super(expression, tuplePartNames, oclFactory);
     }
 
     @Override
     public NavigationStep traceback(EClass context, PathCache pathCache, OperationBodyToCallMapper operationBodyToCallMapper) {
         NavigationStep result;
-        OCL ocl = OCLWithHiddenOpposites.newInstance();
-        OCLExpression body = InvocationBehavior.INSTANCE.getOperationBody(ocl, getExpression().getReferredOperation());
+        OCLExpression body = operationBodyToCallMapper.getOperationBody(getExpression().getReferredOperation());
         if (body != null) {
             // the operation body may lead to a recursion; to avoid a recursion we first create an
             // indirecting step here and insert it into the path cache so it will be found instead
             // of recurring
             IndirectingStep bodyStep = pathCache.createIndirectingStepFor(getExpression(), getTupleLiteralPartNamesToLookFor());
             // an OCL-specified operation; trace back using the body expression
-            NavigationStep actualStep = pathCache.getOrCreateNavigationPath(body, context, operationBodyToCallMapper, getTupleLiteralPartNamesToLookFor());
+            NavigationStep actualStep = pathCache.getOrCreateNavigationPath(body, context, operationBodyToCallMapper, getTupleLiteralPartNamesToLookFor(), oclFactory);
             bodyStep.setActualStep(actualStep);
             result = bodyStep;
         } else {
@@ -77,7 +73,7 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
                     IdentityNavigationStep identityStep = new IdentityNavigationStep((EClass) getExpression().getType(), (EClass) type,
                             getExpression());
                     NavigationStep sourceStep = pathCache.getOrCreateNavigationPath((OCLExpression) getExpression().getSource(),
-                            context, operationBodyToCallMapper, getTupleLiteralPartNamesToLookFor());
+                            context, operationBodyToCallMapper, getTupleLiteralPartNamesToLookFor(), oclFactory);
                     result = pathCache.navigationStepFromSequence(getExpression(), getTupleLiteralPartNamesToLookFor(), identityStep, sourceStep);
                 } else {
                     throw new RuntimeException("What else could be the argument of oclAsType if not a TypeExp? "
@@ -86,7 +82,7 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
             } else if (sourcePassThroughStdLibOpNames.contains(opName)) {
                 // FIXME handle product
                 NavigationStep sourcePath = pathCache.getOrCreateNavigationPath((OCLExpression) getExpression()
-                        .getSource(), context, operationBodyToCallMapper, getTupleLiteralPartNamesToLookFor());
+                        .getSource(), context, operationBodyToCallMapper, getTupleLiteralPartNamesToLookFor(), oclFactory);
                 if (argumentPassThroughStdLibOpNames.contains(opName)) {
                     int paramPos = 0;
                     if (opName.equals(PredefinedType.INSERT_AT_NAME)) {
@@ -95,7 +91,7 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
                         paramPos = 1;
                     }
                     OCLExpression argument = (OCLExpression) (getExpression().getArgument()).get(paramPos);
-                    NavigationStep argumentPath = pathCache.getOrCreateNavigationPath(argument, context, operationBodyToCallMapper, getTupleLiteralPartNamesToLookFor());
+                    NavigationStep argumentPath = pathCache.getOrCreateNavigationPath(argument, context, operationBodyToCallMapper, getTupleLiteralPartNamesToLookFor(), oclFactory);
                     result = pathCache.navigationStepForBranch(
                             getInnermostElementType(getExpression().getType()),
                             context,
@@ -127,8 +123,7 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
     
     @Override
     protected Set<Variable> calculateEnteringScope(OperationBodyToCallMapper operationBodyToCallMapper) {
-        OCL ocl = OCLWithHiddenOpposites.newInstance();
-        OCLExpression body = InvocationBehavior.INSTANCE.getOperationBody(ocl, getExpression().getReferredOperation());
+        OCLExpression body = operationBodyToCallMapper.getOperationBody(getExpression().getReferredOperation());
         if (body != null){
             // an OCL-specified operation, the body creates a new scope
             return getVariablesScopedByExpression(body, operationBodyToCallMapper);

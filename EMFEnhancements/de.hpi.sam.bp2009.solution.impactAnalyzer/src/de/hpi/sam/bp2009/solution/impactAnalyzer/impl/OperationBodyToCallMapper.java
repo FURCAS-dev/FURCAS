@@ -32,4 +32,9 @@ public interface OperationBodyToCallMapper {
      * but may return an empty set.
      */
     public Set<Variable> getParameterVariablesUsedInBody(OCLExpression body);
+
+    /**
+     * Determines the body expression of an operation
+     */
+    public OCLExpression getOperationBody(EOperation operation);
 }

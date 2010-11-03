@@ -13,6 +13,7 @@ import org.eclipse.ocl.ecore.OCLExpression;
 
 import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
@@ -27,8 +28,8 @@ public class OppositePropertyCallTracebackStep extends AbstractTracebackStep<Opp
 
     public OppositePropertyCallTracebackStep(OppositePropertyCallExp sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor,
-            TracebackStepCache tracebackStepCache, UnusedEvaluationRequestFactory unusedEvaluationRequestFactory) {
-        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder(), operationBodyToCallMapper, unusedEvaluationRequestFactory);
+            TracebackStepCache tracebackStepCache, UnusedEvaluationRequestFactory unusedEvaluationRequestFactory, OCLFactory oclFactory) {
+        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder(), operationBodyToCallMapper, unusedEvaluationRequestFactory, oclFactory);
         OCLExpression source = (OCLExpression) sourceExpression.getSource();
         reference = sourceExpression.getReferredOppositeProperty();
         nextStep = createTracebackStepAndScopeChange(sourceExpression, source, context, operationBodyToCallMapper,

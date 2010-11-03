@@ -21,6 +21,7 @@ import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.VariableExp;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 
 /**
@@ -48,8 +49,8 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
  */
 // TODO refactor into several subclasses, one for each is... case, and let tracer factory in InstanceScopeAnalysis.createTracer choose the appropriate one
 public class VariableExpTracer extends AbstractTracer<VariableExp> {
-    public VariableExpTracer(VariableExp expression, Stack<String> tuplePartNames) {
-        super(expression, tuplePartNames);
+    public VariableExpTracer(VariableExp expression, Stack<String> tuplePartNames, OCLFactory oclFactory) {
+        super(expression, tuplePartNames, oclFactory);
     }
 
     private Variable getVariableDeclaration() {
@@ -138,7 +139,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
         for (OperationCallExp call : operationBodyToCallMapper.getCallsOf(rootExpression)) {
             OCLExpression argumentExpression = (OCLExpression) call.getArgument().get(pos);
             NavigationStep stepForCall = pathCache.getOrCreateNavigationPath(argumentExpression, context, operationBodyToCallMapper,
-                    getTupleLiteralPartNamesToLookFor());
+                    getTupleLiteralPartNamesToLookFor(), oclFactory);
             // leaves all variables currently in scope because it'll jump into a new expression context;
             // the step enters into all scopes in which the argument expression in the operation call is nested,
             // starting from the root expression for the argument expression
@@ -175,7 +176,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
     private NavigationStep tracebackLetVariable(EClass context, PathCache pathCache,
             OperationBodyToCallMapper operationBodyToCallMapper) {
         NavigationStep result = pathCache.getOrCreateNavigationPath((OCLExpression) getVariableDeclaration().getInitExpression(),
-                context, operationBodyToCallMapper, getTupleLiteralPartNamesToLookFor());
+                context, operationBodyToCallMapper, getTupleLiteralPartNamesToLookFor(), oclFactory);
         return result;
     }
 
@@ -183,7 +184,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
             OperationBodyToCallMapper operationBodyToCallMapper) {
         // the init expression can't reference the result variable, therefore no recursive reference may occur here:
         NavigationStep stepForInitExpression = pathCache.getOrCreateNavigationPath((OCLExpression) getVariableDeclaration()
-                .getInitExpression(), context, operationBodyToCallMapper, getTupleLiteralPartNamesToLookFor());
+                .getInitExpression(), context, operationBodyToCallMapper, getTupleLiteralPartNamesToLookFor(), oclFactory);
         // the body expression, however, may reference the result variable; computing the body's navigation step graph
         // may therefore recursively look up the navigation step graph for the result variable. We therefore need to
         // enter a placeholder into the cache before we start computing the navigation step graph for the body expression:
@@ -191,7 +192,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
                 getExpression(), getTupleLiteralPartNamesToLookFor());
         NavigationStep stepForBodyExpression = pathCache.getOrCreateNavigationPath(
                 (OCLExpression) ((IterateExp) getVariableDeclaration().eContainer()).getBody(), context, operationBodyToCallMapper,
-                getTupleLiteralPartNamesToLookFor());
+                getTupleLiteralPartNamesToLookFor(), oclFactory);
         NavigationStep actualStepForIterateResultVariableExp = pathCache.navigationStepForBranch(
                 getInnermostElementType(getExpression().getType()), context, getExpression(),
                 getTupleLiteralPartNamesToLookFor(), stepForInitExpression, stepForBodyExpression);
@@ -203,7 +204,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
             OperationBodyToCallMapper operationBodyToCallMapper) {
         NavigationStep result = pathCache.getOrCreateNavigationPath(
                 (OCLExpression) ((LoopExp) getVariableDeclaration().eContainer()).getSource(), context, operationBodyToCallMapper,
-                getTupleLiteralPartNamesToLookFor());
+                getTupleLiteralPartNamesToLookFor(), oclFactory);
         return result;
     }
 
@@ -221,7 +222,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
             for (OperationCallExp call : calls) {
                 OCLExpression callSource = (OCLExpression) call.getSource();
                 NavigationStep stepForCall = pathCache.getOrCreateNavigationPath(callSource, context, operationBodyToCallMapper,
-                        getTupleLiteralPartNamesToLookFor());
+                        getTupleLiteralPartNamesToLookFor(), oclFactory);
                 // leaves all variables currently in scope because it'll jump into a new expression context;
                 // the step enters into all scopes in which the source expression in the operation call is nested,
                 // starting from the root expression for the source expression

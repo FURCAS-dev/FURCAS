@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.OCLExpression;
 
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
@@ -44,7 +45,8 @@ public class AdapterForExpression extends AdapterImpl {
     public AdapterForExpression(Triggerable triggerableToNotify, OCLExpression expression, boolean notifyOnNewContextElements, OppositeEndFinder oppositeEndFinder, ActivationOption configuration) {
         this.triggerableToNotify = triggerableToNotify;
         this.expression = expression;
-        this.impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, notifyOnNewContextElements, oppositeEndFinder, configuration);
+        this.impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, notifyOnNewContextElements, oppositeEndFinder, configuration,
+                OCLWithHiddenOpposites.newInstance(oppositeEndFinder));
         this.oppositeEndFinder = oppositeEndFinder;
     }
 
@@ -67,7 +69,7 @@ public class AdapterForExpression extends AdapterImpl {
         }
         this.triggerableToNotify = triggerableToNotify;
         this.expression = expression;
-        this.impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, context, notifyOnNewContextElements, oppositeEndFinder, configuration);
+        this.impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, context, notifyOnNewContextElements, oppositeEndFinder, configuration, OCLWithHiddenOpposites.newInstance(oppositeEndFinder));
         this.oppositeEndFinder = oppositeEndFinder;
     }
     

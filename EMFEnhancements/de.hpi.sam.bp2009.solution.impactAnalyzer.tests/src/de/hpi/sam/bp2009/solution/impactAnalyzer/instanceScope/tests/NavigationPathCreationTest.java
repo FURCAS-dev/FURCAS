@@ -17,7 +17,10 @@ import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.junit.Test;
 
 import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLWithHiddenOppositesFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionFromClassTcsPicker;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionFromModelPicker;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
@@ -83,9 +86,10 @@ public class NavigationPathCreationTest extends TestCase{
 
     @SuppressWarnings("unchecked")
     private List<ExceptionWithExpression> tryToCreateNavigationPaths(OCLExpressionWithContext expression) {
+        OCLFactory oclFactory = new OCLWithHiddenOppositesFactory();
 	List<ExceptionWithExpression> excList = new ArrayList<ExceptionWithExpression>();
 
-	FilterSynthesisImpl filterSynthesizer = new FilterSynthesisImpl(expression.getExpression(), false, DefaultOppositeEndFinder.getInstance());
+	FilterSynthesisImpl filterSynthesizer = new FilterSynthesisImpl(expression.getExpression(), false, OCLWithHiddenOpposites.newInstance());
 	filterSynthesizer.getSynthesisedFilter();
 
 	Map<EAttribute, Set<PropertyCallExp>> attributeCallExpressions = (Map<EAttribute, Set<PropertyCallExp>>)dirtyReflectionAttributeReader("attributeCallExpressions", filterSynthesizer);
@@ -96,7 +100,7 @@ public class NavigationPathCreationTest extends TestCase{
 		try {
 		    PathCache cache = new PathCache(DefaultOppositeEndFinder.getInstance());
 		    assertNotNull(cache.getOrCreateNavigationPath((OCLExpression)callExpression.getSource(), expression.getContext(), filterSynthesizer,
-			    null));
+			    null, oclFactory));
 		} catch (RuntimeException e) {
 		    System.out.println(callExpression.getSource());
 		    e.printStackTrace();
@@ -111,7 +115,7 @@ public class NavigationPathCreationTest extends TestCase{
 		try {
 		    PathCache cache = new PathCache(DefaultOppositeEndFinder.getInstance());
 		    assertNotNull(cache.getOrCreateNavigationPath((OCLExpression)callExpression.getSource(), expression.getContext(), filterSynthesizer,
-			    null));
+			    null, oclFactory));
 		} catch (RuntimeException e) {
 		    System.out.println(callExpression.getSource());
 		    e.printStackTrace();
