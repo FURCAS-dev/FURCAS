@@ -219,6 +219,10 @@ public class OppositePropertyCallExpImpl extends NavigationCallExpImpl implement
 	    // in this case T must have been String because ToStringVisitor has T==String
 	    return (T) result.toString();
 	}
-	return ((VisitorWithHiddenOpposite<T>) v).visitOppositePropertyCallExp(this);
+	if (v instanceof VisitorWithHiddenOpposite<?>) {
+	    return ((VisitorWithHiddenOpposite<T>) v).visitOppositePropertyCallExp(this);
+	} else {
+	    return null;
+	}
     }
 } //OppositePropertyCallExpImpl

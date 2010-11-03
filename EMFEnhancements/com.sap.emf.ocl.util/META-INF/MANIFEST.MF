@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Util
+Bundle-SymbolicName: com.sap.emf.ocl.util
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: SAP
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: com.sap.emf.ocl.util
+Require-Bundle: org.eclipse.emf,
+ org.eclipse.ocl.ecore
