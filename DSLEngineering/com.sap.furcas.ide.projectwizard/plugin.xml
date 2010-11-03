@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            name="Furcas Language Workbench"
+            id="com.sap.furcas.ide.projectwizard">
+      </category>
+      <wizard
+            name="Create a FURCAS project"
+            icon="icons/furcasdeath.gif"
+            category="com.sap.furcas.ide.projectwizard"
+            class="com.sap.furcas.ide.projectwizard.wizards.FurcasWizard"
+            id="com.sap.furcas.ide.projectwizard.wizards.FurcasWizard">
+      </wizard>
+   </extension>
+
+</plugin>
