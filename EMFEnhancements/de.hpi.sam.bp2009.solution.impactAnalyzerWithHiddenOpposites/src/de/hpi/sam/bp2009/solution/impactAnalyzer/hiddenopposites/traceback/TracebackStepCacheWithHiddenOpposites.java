@@ -10,13 +10,15 @@ import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallEx
 import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.instancescope.InstanceScopeAnalysisWithHiddenOpposites;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.unusedEvaluation.UnusedEvaluationRequestWithHiddenOppositesFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackStep;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackStepCache;
 
 public class TracebackStepCacheWithHiddenOpposites extends TracebackStepCache {
-    public TracebackStepCacheWithHiddenOpposites(OppositeEndFinder oppositeEndFinder) {
-        super(oppositeEndFinder);
+    public TracebackStepCacheWithHiddenOpposites(OppositeEndFinder oppositeEndFinder, InstanceScopeAnalysisWithHiddenOpposites instanceScopeAnalysis) {
+        super(oppositeEndFinder, new UnusedEvaluationRequestWithHiddenOppositesFactory(), instanceScopeAnalysis);
     }
 
     @Override

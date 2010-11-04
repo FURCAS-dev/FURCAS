@@ -49,6 +49,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluat
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.OCLWithHiddenOppositesFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.deltapropagation.PartialEvaluatorWithHiddenOpposites;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.impl.FilterSynthesisWithHiddenOppositesImpl;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
@@ -60,7 +61,7 @@ public class PartialEvaluatorTest extends TestCase {
     @Before
     public void setUp() {
         oclFactory = new OCLWithHiddenOppositesFactory();
-        evaluator = new PartialEvaluator(oclFactory);
+        evaluator = new PartialEvaluatorWithHiddenOpposites(oclFactory);
     }
 
     @Override
@@ -211,7 +212,7 @@ public class PartialEvaluatorTest extends TestCase {
             public void notifyChanged(Notification n) {
                 try {
                     final ResourceSet rs = new ResourceSetImpl();
-                    PartialEvaluator myEvaluator = new PartialEvaluator(n, oclFactory);
+                    PartialEvaluator myEvaluator = new PartialEvaluatorWithHiddenOpposites(n, oclFactory);
                     myEvaluator.getHelper().setContext(ClassesPackage.eINSTANCE.getSapClass());
                     OCLExpression expression = myEvaluator.getHelper().createQuery("self.ownedSignatures.name");
                     rs.getResources().add(expression.eResource());
@@ -244,7 +245,7 @@ public class PartialEvaluatorTest extends TestCase {
             public void notifyChanged(Notification n) {
                 try {
                     final ResourceSet rs = new ResourceSetImpl();
-                    PartialEvaluator myEvaluator = new PartialEvaluator(n, oclFactory);
+                    PartialEvaluator myEvaluator = new PartialEvaluatorWithHiddenOpposites(n, oclFactory);
                     myEvaluator.getHelper().setContext(ClassesPackage.eINSTANCE.getSapClass());
                     OCLExpression expression = myEvaluator.getHelper().createQuery("self.ownedSignatures.name");
                     rs.getResources().add(expression.eResource());
@@ -281,7 +282,7 @@ public class PartialEvaluatorTest extends TestCase {
             public void notifyChanged(Notification n) {
                 try {
                     final ResourceSet rs = new ResourceSetImpl();
-                    PartialEvaluator myEvaluator = new PartialEvaluator(n, oclFactory);
+                    PartialEvaluator myEvaluator = new PartialEvaluatorWithHiddenOpposites(n, oclFactory);
                     myEvaluator.getHelper().setContext(ClassesPackage.eINSTANCE.getSapClass());
                     OCLExpression expression = myEvaluator.getHelper().createQuery("self.ownedSignatures.name");
                     rs.getResources().add(expression.eResource());
@@ -326,7 +327,7 @@ public class PartialEvaluatorTest extends TestCase {
             public void notifyChanged(Notification n) {
                 try {
                     final ResourceSet rs = new ResourceSetImpl();
-                    PartialEvaluator myEvaluator = new PartialEvaluator(n, oclFactory);
+                    PartialEvaluator myEvaluator = new PartialEvaluatorWithHiddenOpposites(n, oclFactory);
                     myEvaluator.getHelper().setContext(ClassesPackage.eINSTANCE.getSapClass());
                     OCLExpression expression = myEvaluator.getHelper().createQuery("self.ownedSignatures.name");
                     rs.getResources().add(expression.eResource());
@@ -366,7 +367,7 @@ public class PartialEvaluatorTest extends TestCase {
             public void notifyChanged(Notification n) {
                 try {
                     final ResourceSet rs = new ResourceSetImpl();
-                    PartialEvaluator myEvaluator = new PartialEvaluator(n, oclFactory);
+                    PartialEvaluator myEvaluator = new PartialEvaluatorWithHiddenOpposites(n, oclFactory);
                     myEvaluator.getHelper().setContext(ClassesPackage.eINSTANCE.getSapClass());
                     OCLExpression expression = myEvaluator.getHelper().createQuery("self.ownedSignatures.name");
                     rs.getResources().add(expression.eResource());
@@ -399,7 +400,7 @@ public class PartialEvaluatorTest extends TestCase {
             public void notifyChanged(Notification n) {
                 try {
                     final ResourceSet rs = new ResourceSetImpl();
-                    PartialEvaluator myEvaluator = new PartialEvaluator(n, oclFactory);
+                    PartialEvaluator myEvaluator = new PartialEvaluatorWithHiddenOpposites(n, oclFactory);
                     myEvaluator.getHelper().setContext(ClassesPackage.eINSTANCE.getSapClass());
                     OCLExpression expression = myEvaluator.getHelper().createQuery("self.name");
                     rs.getResources().add(expression.eResource());
@@ -427,7 +428,7 @@ public class PartialEvaluatorTest extends TestCase {
             public void notifyChanged(Notification n) {
                 try {
                     final ResourceSet rs = new ResourceSetImpl();
-                    PartialEvaluator myEvaluator = new PartialEvaluator(n, oclFactory);
+                    PartialEvaluator myEvaluator = new PartialEvaluatorWithHiddenOpposites(n, oclFactory);
                     myEvaluator.getHelper().setContext(ClassesPackage.eINSTANCE.getSapClass());
                     OCLExpression expression = myEvaluator.getHelper().createQuery("self.name");
                     rs.getResources().add(expression.eResource());
@@ -478,7 +479,7 @@ public class PartialEvaluatorTest extends TestCase {
             @Override
             public void notifyChanged(Notification n) {
                 try {
-                    PartialEvaluator myEvaluator = new PartialEvaluator(n, oclFactory);
+                    PartialEvaluator myEvaluator = new PartialEvaluatorWithHiddenOpposites(n, oclFactory);
                     myEvaluator.getHelper().setContext(CompanyPackage.eINSTANCE.getDepartment());
                     OCLExpression expression = myEvaluator.getHelper().createQuery("self.department2division");
                     rs.getResources().add(expression.eResource());
@@ -510,7 +511,7 @@ public class PartialEvaluatorTest extends TestCase {
             @Override
             public void notifyChanged(Notification n) {
                 try {
-                    PartialEvaluator myEvaluator = new PartialEvaluator(n, oclFactory);
+                    PartialEvaluator myEvaluator = new PartialEvaluatorWithHiddenOpposites(n, oclFactory);
                     myEvaluator.getHelper().setContext(CompanyPackage.eINSTANCE.getDepartment());
                     OCLExpression expression = myEvaluator.getHelper().createQuery("self.department2division");
                     rs.getResources().add(expression.eResource());

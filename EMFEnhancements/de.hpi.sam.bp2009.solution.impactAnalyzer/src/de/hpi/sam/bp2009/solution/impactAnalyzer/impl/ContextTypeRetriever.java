@@ -37,10 +37,8 @@ import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.VariableExp;
+import org.eclipse.ocl.utilities.AbstractVisitor;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
-
-import com.sap.emf.ocl.hiddenopposites.AbstractVisitorWithHiddenOpposites;
-import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 
 /**
  * From an OCL expression tries to determine the context type for <code>self</code> by looking for {@link VariableExp} expressions
@@ -55,7 +53,7 @@ import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallEx
  * @author Axel Uhl
  * 
  */
-public class ContextTypeRetriever extends AbstractVisitorWithHiddenOpposites<EClass> {
+public class ContextTypeRetriever extends AbstractVisitor<EClass, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> {
 
     /**
      * Initializes the result with <code>null</code> for the case that no <code>self</code> reference is found in the expression
@@ -74,14 +72,6 @@ public class ContextTypeRetriever extends AbstractVisitorWithHiddenOpposites<ECl
             }
         }
         return super.visitVariableExp(v);
-    }
-
-    @Override
-    public EClass visitOppositePropertyCallExp(OppositePropertyCallExp callExp) {
-        if (result == null)
-            return super.visitOppositePropertyCallExp(callExp);
-        else
-            return result;
     }
 
     @Override

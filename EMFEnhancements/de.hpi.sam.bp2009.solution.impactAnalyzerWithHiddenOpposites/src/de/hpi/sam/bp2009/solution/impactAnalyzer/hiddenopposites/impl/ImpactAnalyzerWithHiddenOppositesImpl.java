@@ -89,4 +89,9 @@ public class ImpactAnalyzerWithHiddenOppositesImpl extends ImpactAnalyzerImpl {
     protected FilterSynthesisImpl createFilterSynthesis(OCLExpression expression, boolean notifyOnNewContextElements, OCL ocl) {
         return new FilterSynthesisWithHiddenOppositesImpl(expression, notifyOnNewContextElements, ocl);
     }
+
+    @Override
+    protected ContextTypeRetriever createContextTypeRetriever() {
+        return new ContextTypeRetrieverWithHiddenOpposites();
+    }
 }

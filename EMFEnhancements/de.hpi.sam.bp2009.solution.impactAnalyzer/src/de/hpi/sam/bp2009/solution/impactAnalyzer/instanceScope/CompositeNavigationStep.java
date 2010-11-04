@@ -130,4 +130,8 @@ public abstract class CompositeNavigationStep extends AbstractNavigationStep imp
     public SemanticIdentity getSemanticIdentity() {
 	return semanticIdentity;
     }
+
+    public InstanceScopeAnalysis getInstanceScopeAnalysis() {
+        return null;
+    }
 }

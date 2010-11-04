@@ -39,7 +39,6 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
      * 
      * @param expression
      *            the OCL expression for which this tracer shall determine a navigation step
-     * @param oclFactory TODO
      */
     protected AbstractTracer(T expression, OCLFactory oclFactory) {
         this(expression, (Stack<String>)/* tuplePartNames */null, oclFactory);
@@ -61,7 +60,6 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
      * @param additionalTuplePartNameToLookFor
      *            if along the chain of sub-expressions traversed there was an attribute access on a source expression of a tuple
      *            type that needs to be unwound when at some point a {@link TupleLiteralPart} is found. Must not be <tt>null</tt>.
-     * @param oclFactory TODO
      */
     protected AbstractTracer(T expression, AbstractTracer<?> caller, String additionalTuplePartNameToLookFor, OCLFactory oclFactory) {
         this(expression, getExtendedListOfTuplePartNames(caller.tuplePartNames, additionalTuplePartNameToLookFor), oclFactory);
@@ -199,7 +197,6 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
     
     /**
      * Calculates the scopes the {@link NavigationStep} this {@link Tracer} creates will enter when navigated.
-     * @param operationBodyToCallMapper TODO
      * @return the {@link OCLExpression}s representing the scope the created {@link NavigationStep} will enter when navigated. Always
      * non-<code>null</code>, but possibly empty
      */

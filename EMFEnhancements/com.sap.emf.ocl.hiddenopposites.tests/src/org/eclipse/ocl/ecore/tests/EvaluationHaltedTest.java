@@ -37,12 +37,9 @@ import org.eclipse.ocl.EvaluationVisitorDecorator;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
-import org.eclipse.ocl.ecore.EcoreEnvironment;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
-import org.eclipse.ocl.ecore.EcoreEvaluationEnvironment;
 import org.eclipse.ocl.ecore.OCL;
-import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.OCL.Query;
+import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.util.OCLUtil;
 
 import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
@@ -319,7 +316,7 @@ public class EvaluationHaltedTest
 		}
 
 		@Override
-		protected void setFactory(
+		public void setFactory(
 				EnvironmentFactory<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> factory) {
 			super.setFactory(factory);
 		}

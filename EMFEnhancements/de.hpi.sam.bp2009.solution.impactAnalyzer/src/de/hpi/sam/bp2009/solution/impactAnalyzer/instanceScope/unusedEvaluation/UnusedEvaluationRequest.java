@@ -144,7 +144,7 @@ public class UnusedEvaluationRequest {
      *            the variables currently within their dynamic scope such that, when a value is inferred for such a variable, it
      *            is correct to assign it for use in evaluating <code>expression</code> in this request
      */
-    UnusedEvaluationRequest(OCLExpression expression, Object resultIndicatingUnused,
+    protected UnusedEvaluationRequest(OCLExpression expression, Object resultIndicatingUnused,
             Map<Variable, Object> inferredVariableValues, Set<Variable> slots, Set<VariableExp> inevitableVariableUsages) {
         this.expression = expression;
         this.resultIndicatingUnused = resultIndicatingUnused;
@@ -242,7 +242,7 @@ public class UnusedEvaluationRequest {
     public boolean evaluate(OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory) throws ValueNotFoundException {
         // use an evaluator that doesn't even try to perform an allInstances() call because it likely would
         // cost more than it saves
-        PartialEvaluatorNoAllInstances evaluator = new PartialEvaluatorNoAllInstances(oppositeEndFinder, oclFactory);
+        PartialEvaluatorNoAllInstances evaluator = createPartialEvaluatorNoAllInstances(oppositeEndFinder, oclFactory);
         EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> env = evaluator.getOcl()
                 .getEvaluationEnvironment();
         Object context = null;
@@ -277,6 +277,11 @@ public class UnusedEvaluationRequest {
             evaluationsSucceedingWithoutProvingUnused++;
         }
         return unused;
+    }
+
+    protected PartialEvaluatorNoAllInstances createPartialEvaluatorNoAllInstances(OppositeEndFinder oppositeEndFinder,
+            OCLFactory oclFactory) {
+        return new PartialEvaluatorNoAllInstances(oppositeEndFinder, oclFactory);
     }
     
     /**

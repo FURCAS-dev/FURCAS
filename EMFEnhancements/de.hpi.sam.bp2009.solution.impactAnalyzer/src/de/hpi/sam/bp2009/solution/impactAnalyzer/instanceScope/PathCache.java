@@ -41,8 +41,6 @@ public class PathCache extends AbstractPathCache<NavigationStep> implements Hash
      * order not to create redundant steps. Values are identical to keys per entry.
      */
     private final Map<SemanticIdentity, NavigationStep> allNavigationSteps = new HashMap<SemanticIdentity, NavigationStep>();
-    private InstanceScopeAnalysis instanceScopeAnalysis;
-
     /**
      * @param instanceScopeAnalysis for special cases, e.g., when callers need to invoke this constructor in a super(...)
      * initializer of InstanceScopeAnalysis or its descendents, it may not be possible to pass a readily-initialized
@@ -50,21 +48,9 @@ public class PathCache extends AbstractPathCache<NavigationStep> implements Hash
      * the protected {@link #setInstanceScopeAnalysis} operation with the now initialized object.
      */
     public PathCache(OppositeEndFinder oppositeEndFinder, InstanceScopeAnalysis instanceScopeAnalysis) {
-        super(oppositeEndFinder);
-        this.instanceScopeAnalysis = instanceScopeAnalysis;
+        super(oppositeEndFinder, instanceScopeAnalysis);
     }
     
-    /**
-     * Call only immediately after the constructor was called and only in case <code>null</code> was passed for
-     * the constructor's <code>instanceScopeAnalysis</code> argument.
-     */
-    public void initInstanceScopeAnalysis(InstanceScopeAnalysis instanceScopeAnalysis) {
-        if (this.instanceScopeAnalysis != null) {
-            throw new IllegalStateException("instanceScopeAnalysis field on "+this+" already initialized");
-        }
-        this.instanceScopeAnalysis = instanceScopeAnalysis;
-    }
-
     /**
      * Also adds <code>path</code> to {@link #allNavigationSteps}. If the source type is <code>null</code> and the step is not
      * absolute, this path cache registers as a listener on the step (see
@@ -244,7 +230,7 @@ public class PathCache extends AbstractPathCache<NavigationStep> implements Hash
     @Override
     protected NavigationStep createStep(OCLExpression sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, OCLFactory oclFactory) {
-        NavigationStep result = instanceScopeAnalysis.createTracer(sourceExpression, tupleLiteralNamesToLookFor, oclFactory).traceback(context, this,
+        NavigationStep result = getInstanceScopeAnalysis().createTracer(sourceExpression, tupleLiteralNamesToLookFor, oclFactory).traceback(context, this,
                 operationBodyToCallMapper);
         NavigationStep existingEqualStep = allNavigationSteps.get(result);
         if (existingEqualStep != null) {
@@ -253,4 +239,5 @@ public class PathCache extends AbstractPathCache<NavigationStep> implements Hash
         }
         return result;
     }
+    
 }

@@ -16,6 +16,10 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluat
  */
 public class PartialEvaluatorNoAllInstances extends PartialEvaluator {
     public PartialEvaluatorNoAllInstances(OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory) {
-        super(new PartialEcoreEnvironmentFactoryNoAllInstances(oppositeEndFinder), oclFactory);
+        this(new PartialEcoreEnvironmentFactoryNoAllInstances(oppositeEndFinder), oclFactory);
+    }
+    
+    protected PartialEvaluatorNoAllInstances(PartialEcoreEnvironmentFactoryNoAllInstances environmentFactory, OCLFactory oclFactory) {
+        super(environmentFactory, oclFactory);
     }
 }

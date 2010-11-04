@@ -18,6 +18,7 @@ import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluatorFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestFactory;
@@ -32,10 +33,12 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
     private final boolean checkPredicate;
     private final boolean acceptIfPredicateTrue;
     private final OppositeEndFinder oppositeEndFinder;
+    private final PartialEvaluatorFactory partialEvaluatorFactory;
 
     public IteratorTracebackStep(IteratorExp sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache, UnusedEvaluationRequestFactory unusedEvaluationRequestFactory, OCLFactory oclFactory) {
         super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder(), operationBodyToCallMapper, unusedEvaluationRequestFactory, oclFactory);
+        this.partialEvaluatorFactory = tracebackStepCache.getInstanceScopeAnalysis().getPartialEvaluatorFactory();
         String name = sourceExpression.getName();
         int opCode = OCLStandardLibraryUtil.getOperationCode(name);
         if (opCode == PredefinedType.SELECT || opCode == PredefinedType.REJECT || opCode == PredefinedType.SORTED_BY
@@ -122,7 +125,7 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
         boolean resultPost = acceptIfPredicateTrue;
         if (resultPre != acceptIfPredicateTrue) {
             // evaluate whether the source object passes the iterator's body after the change
-            PartialEvaluator evalPost = new PartialEvaluator(oppositeEndFinder, oclFactory);
+            PartialEvaluator evalPost = partialEvaluatorFactory.createPartialEvaluator(oppositeEndFinder, oclFactory);
             try {
                 Object result = evalPost.evaluate(null, getExpression(), sourceCollection);
                 resultPost = isSourceInResult(sourceObject, result);

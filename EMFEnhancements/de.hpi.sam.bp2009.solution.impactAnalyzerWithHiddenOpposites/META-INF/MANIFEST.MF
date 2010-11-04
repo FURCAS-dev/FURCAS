@@ -9,6 +9,7 @@ Require-Bundle: com.sap.emf.ocl.hiddenopposites,
  de.hpi.sam.bp2009.solution.impactAnalyzer,
  de.hpi.sam.bp2009.solution.eventManager
 Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites,
+ de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.deltapropagation,
  de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.impl;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests",
  de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.instancescope,
  de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.traceback

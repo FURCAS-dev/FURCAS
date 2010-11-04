@@ -21,6 +21,7 @@ import org.eclipse.ocl.AbstractEvaluationVisitor;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.EvaluationHaltedException;
+import org.eclipse.ocl.EvaluationVisitorImpl;
 import org.eclipse.ocl.ecore.CallExp;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
@@ -53,10 +54,6 @@ import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
 
-import com.sap.emf.ocl.hiddenopposites.EvaluationEnvironmentWithHiddenOpposites;
-import com.sap.emf.ocl.hiddenopposites.EvaluationVisitorWithHiddenOppositesImpl;
-import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
-
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerPlugin;
 
 /**
@@ -80,7 +77,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerPlugin;
  */
 public class PartialEvaluationVisitorImpl
         extends
-        EvaluationVisitorWithHiddenOppositesImpl {
+        EvaluationVisitorImpl<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> {
     private org.eclipse.ocl.ecore.OCLExpression sourceExpression;
     private Object valueOfSourceExpression;
 
@@ -478,95 +475,6 @@ public class PartialEvaluationVisitorImpl
         return result;
     }
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public Object visitOppositePropertyCallExp(OppositePropertyCallExp pc) {
-        if (pc == sourceExpression) {
-            sourceExpression = null;
-            return valueOfSourceExpression;
-        }
-        /*
-         * These are the sources of the super implementation copied here which is ugly. We only want to get access to the value of
-         * the source expression because it may be needed for the comparison with the atPre event later.
-         * 
-         * TODO evaluate source expression here and cache the result before delegating to super.visitPropertyCallExp; when then
-         * super.visitPropertyCallExp asks the visitor to evaluate the source expression, the result is taken from the cache
-         */
-        EStructuralFeature property = pc.getReferredOppositeProperty();
-        OCLExpression<EClassifier> source = pc.getSource();
-        // evaluate source
-        Object context = source.accept(getVisitor());
-        Object localResult;
-        // if source is undefined, result is OclInvalid
-        if (isUndefined(context)) {
-            localResult = getInvalid();
-        } else {
-            // TODO consider introduction of derivation expressions also for opposite property; for now it's not supported
-            /* OCLExpression<EClassifier> derivation = getPropertyBody(property);
-            if (derivation != null) {
-                // this is an additional property
-                localResult = navigate(property, derivation, context);
-            } else {
-            */
-                localResult = ((EvaluationEnvironmentWithHiddenOpposites) getEvaluationEnvironment()).navigateOppositeProperty(property, context);
-                if ((pc.getType() instanceof CollectionType<?, ?>) && !(localResult instanceof Collection<?>)) {
-                    // this was an XSD "unspecified multiplicity". Now that we know what
-                    // the multiplicity is, we can coerce it to a collection value
-                    CollectionKind kind = ((CollectionType<EClassifier, EOperation>) pc.getType()).getKind();
-                    Collection<Object> collection = CollectionUtil.createNewCollection(kind);
-                    collection.add(localResult);
-                    localResult = collection;
-                }
-            // }
-        }
-        
-        // for @pre with opposite properties there can't be any ordering
-        if (atPre != null
-                // the source of the opposite property call expression is the target of a normal EMF notification
-                // because the notification talks about a forward reference; the old and new value described by the
-                // event may be a collection of elements or a single element. Check if the source appears somewhere
-                // in the notification's old or new value:
-                && ((atPre.getOldValue() != null && ((atPre.getOldValue() instanceof Collection<?> &&
-                        ((Collection<?>) atPre.getOldValue()).contains(context)) || atPre.getOldValue() == context))
-                        || (atPre.getNewValue() != null && ((atPre.getNewValue() instanceof Collection<?> &&
-                                ((Collection<?>) atPre.getNewValue()).contains(context)) || atPre.getNewValue() == context)))
-                && pc.getReferredOppositeProperty() == atPre.getFeature()) {
-            // evaluate property call based on the model state that existed before the change
-            // described by the atPre notification
-            switch (atPre.getEventType()) {
-            case Notification.ADD:
-            case Notification.ADD_MANY:
-                // if the addition operated on the result of the source expression, remove the element from the local results
-                // again
-                ((Collection<?>) localResult).remove(atPre.getNotifier());
-                break;
-            case Notification.MOVE:
-                // there is no ordering for opposite properties in Ecore; it's safe to ignore this notification
-                break;
-            case Notification.REMOVE:
-            case Notification.REMOVE_MANY:
-                // if the removal operated on the result of the source expression, add the element back at the index provided
-                ((Collection<Object>) localResult).add(atPre.getNotifier());
-                break;
-            case Notification.SET:
-            case Notification.UNSET:
-                if (atPre.getOldValue() == context) {
-                    // the notification tells that previously the source context was referenced by the notifier;
-                    // re-add the notifier to the result:
-                    ((Collection<Object>) localResult).add(atPre.getNotifier());
-                } else if (atPre.getNewValue() == context) {
-                    // the notification tells that after the change the source context is referenced by the notifier;
-                    // remove the notifier from the result:
-                    ((Collection<Object>) localResult).remove(atPre.getNotifier());
-                }
-                break;
-            default:
-                throw new RuntimeException("Don't understand @pre notification " + atPre);
-            }
-        }
-        return localResult;
-    }
-
     @Override
     public Object visitAssociationClassCallExp(AssociationClassCallExp<EClassifier, EStructuralFeature> ae) {
         if (ae == sourceExpression) {
@@ -755,4 +663,7 @@ public class PartialEvaluationVisitorImpl
         return valueOfSourceExpression;
     }
 
+    protected Notification getAtPre() {
+        return atPre;
+    }
 }

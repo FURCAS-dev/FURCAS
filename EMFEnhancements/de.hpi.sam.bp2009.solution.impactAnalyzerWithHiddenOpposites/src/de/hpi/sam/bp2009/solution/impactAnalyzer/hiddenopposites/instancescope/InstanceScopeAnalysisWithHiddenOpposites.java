@@ -1,22 +1,32 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.instancescope;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Stack;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.ecore.NavigationCallExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import com.sap.emf.ocl.oclwithhiddenopposites.expressions.ExpressionsPackage;
 import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
+import de.hpi.sam.bp2009.solution.eventManager.NotificationHelper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.ActivationOption;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.deltapropagation.PartialEvaluatorWithHiddenOpposites;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.traceback.TracebackStepCacheWithHiddenOpposites;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.AllInstancesNavigationStep;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.InstanceScopeAnalysis;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.PathCache;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.Tracer;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
 public class InstanceScopeAnalysisWithHiddenOpposites extends InstanceScopeAnalysis {
     /**
@@ -29,12 +39,10 @@ public class InstanceScopeAnalysisWithHiddenOpposites extends InstanceScopeAnaly
      *            {@link Tracer}s can retrieve it using {@link PathCache#getOppositeEndFinder()}.
      */
     public InstanceScopeAnalysisWithHiddenOpposites(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer, OppositeEndFinder oppositeEndFinder, ActivationOption configuration, OCLFactory oclFactory) {
-        super(expression, exprContext, filterSynthesizer, oppositeEndFinder, configuration, oclFactory,
-                /* pathCache */ configuration.isTracebackStepISAActive() ? null : new PathCache(oppositeEndFinder, null),
-                /* tracebackStepCache */ configuration.isTracebackStepISAActive() ? new TracebackStepCacheWithHiddenOpposites(oppositeEndFinder) : null);
-        if (!configuration.isTracebackStepISAActive()) {
-            getPathCache().initInstanceScopeAnalysis(this);
-        }
+        super(expression, exprContext, filterSynthesizer, oppositeEndFinder, new PartialEvaluatorWithHiddenOpposites(oclFactory),
+                configuration, oclFactory,
+                /* pathCache */configuration.isTracebackStepISAActive() ? null : new PathCache(oppositeEndFinder, null),
+                /* tracebackStepCache */ configuration.isTracebackStepISAActive() ? new TracebackStepCacheWithHiddenOpposites(oppositeEndFinder, null) : null);
     }
 
     /**
@@ -53,5 +61,37 @@ public class InstanceScopeAnalysisWithHiddenOpposites extends InstanceScopeAnaly
         default:
             return super.createTracer(expression, tuplePartNames, oclFactory);
         }
+    }
+
+    /**
+     * Handles the {@link OppositePropertyCallExp} case. If other case, delegates to <code>super</code>.
+     */
+    protected Collection<AnnotatedEObject> getSourceElement(Notification changeEvent, NavigationCallExp attributeOrAssociationEndCall) {
+        assert NotificationHelper.isAttributeValueChangeEvent(changeEvent)
+                || NotificationHelper.isLinkLifeCycleEvent(changeEvent);
+        Collection<AnnotatedEObject> result;
+        if (attributeOrAssociationEndCall instanceof OppositePropertyCallExp) {
+            EClassifier sourceType = attributeOrAssociationEndCall.getSource().getType();
+            result = new HashSet<AnnotatedEObject>();
+            // the old and new object(s) are the source(s) of the opposite property call expression
+            for (Object o : getSourceElementsForOppositePropertyCallExp(changeEvent)) {
+                if (sourceType.isInstance(o)) {
+                    result.add(new AnnotatedEObject((EObject) changeEvent.getNotifier(), "<start>"));
+                }
+            }
+        } else {
+            result = super.getSourceElement(changeEvent, attributeOrAssociationEndCall);
+        }
+        return result;
+    }
+
+    @Override
+    public PartialEvaluator createPartialEvaluator(Notification atPre, OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory) {
+        return new PartialEvaluatorWithHiddenOpposites(atPre, oppositeEndFinder, oclFactory);
+    }
+
+    @Override
+    public PartialEvaluator createPartialEvaluator(OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory) {
+        return new PartialEvaluatorWithHiddenOpposites(oppositeEndFinder, oclFactory);
     }
 }
