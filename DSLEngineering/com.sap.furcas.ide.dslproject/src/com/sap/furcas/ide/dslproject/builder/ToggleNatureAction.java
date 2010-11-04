@@ -20,7 +20,6 @@ import com.sap.furcas.ide.dslproject.Activator;
 import com.sap.furcas.ide.dslproject.Messages;
 import com.sap.furcas.ide.dslproject.conf.ProjectMetaRefConfFactory;
 import com.sap.furcas.ide.dslproject.ui.AddSyntaxNatureWizard;
-import com.sap.furcas.parsergenerator.tcs.generator.errorhandling.EclipseMarkerUtil;
 
 /**
  * The Class ToggleNatureAction.

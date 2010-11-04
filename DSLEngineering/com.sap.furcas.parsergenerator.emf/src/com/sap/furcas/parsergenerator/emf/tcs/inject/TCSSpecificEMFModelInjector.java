@@ -15,8 +15,8 @@ import java.util.Set;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import com.sap.furcas.parser.tcs.stableversion.TCSLexer;
-import com.sap.furcas.parser.tcs.stableversion.TCSParser;
+import com.sap.furcas.parser.tcs.stable.TCSLexer;
+import com.sap.furcas.parser.tcs.stable.TCSParser;
 import com.sap.furcas.runtime.parser.IParsingObserver;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
 import com.sap.furcas.runtime.parser.ParserFacade;

@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import com.sap.furcas.parsergenerator.tcs.t2m.TCSInputStreamGrammarGenerator;
+import com.sap.furcas.parsergenerator.tcs.t2m.InputStreamBasedTCSGrammarGenerator;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.GenerationReport;
 import com.sap.furcas.runtime.common.exceptions.GrammarGenerationException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
@@ -75,7 +75,7 @@ public class GrammarWritingHelper {
         // target file for grammar
         byte[] oldBytes = FileReadHelper.readBytesFromFile(grammarFile);
 
-        TCSInputStreamGrammarGenerator generator = new TCSInputStreamGrammarGenerator(in, out, lookup, targetPackage);
+        InputStreamBasedTCSGrammarGenerator generator = new InputStreamBasedTCSGrammarGenerator(in, out, lookup, targetPackage);
 
         GenerationReport report = null;
         try {

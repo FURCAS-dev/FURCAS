@@ -1,38 +1,10 @@
 package com.sap.furcas.parsergenerator.tcs.generator.errorhandling;
 
 import org.antlr.tool.Message;
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IMarker;
 
-/**
- * handles occuring errors by adding eclipse marker to the grammar file.
- */
-public class GenerationErrorHandler {
+import com.sap.furcas.runtime.parser.impl.ParsingError;
 
-    /** The file. */
-    private final IFile file;
-
-    /**
-     * Instantiates a new grammar generation error handler.
-     * 
-     * @param file
-     *            the file
-     */
-    public GenerationErrorHandler(IFile file) {
-        this.file = file;
-    }
-
-    /**
-     * Adds the marker.
-     * 
-     * @param e
-     *            the e
-     * @param severity
-     *            the severity
-     */
-    private void addMarker(LocalisedSyntaxParsingException e, int severity) {
-        EclipseMarkerUtil.addMarker(file, e.getMessage(), e.getLineNumber(), severity);
-    }
+public interface GenerationErrorHandler {
 
     /**
      * Error.
@@ -40,9 +12,7 @@ public class GenerationErrorHandler {
      * @param exception
      *            the exception
      */
-    public void error(LocalisedSyntaxParsingException exception) {
-        addMarker(exception, IMarker.SEVERITY_ERROR);
-    }
+    public void error(ParsingError exception);
 
     /**
      * Fatal error.
@@ -50,9 +20,7 @@ public class GenerationErrorHandler {
      * @param exception
      *            the exception
      */
-    public void fatalError(LocalisedSyntaxParsingException exception) {
-        addMarker(exception, IMarker.SEVERITY_ERROR);
-    }
+    public void fatalError(ParsingError exception);
 
     /**
      * Warning.
@@ -60,31 +28,23 @@ public class GenerationErrorHandler {
      * @param exception
      *            the exception
      */
-    public void warning(LocalisedSyntaxParsingException exception) {
-        addMarker(exception, IMarker.SEVERITY_WARNING);
-    }
+    public void warning(ParsingError exception);
 
     /**
      * for antlr errors
      * 
      * @param arg0
      */
-    public void error(Message err) {
-        EclipseMarkerUtil.addMarker(file, err.toString(), err.line, IMarker.SEVERITY_ERROR);
-    }
+    public void error(Message err);
 
     /**
      * @param arg0
      */
-    public void warn(Message warn) {
-        EclipseMarkerUtil.addMarker(file, warn.toString(), warn.line, IMarker.SEVERITY_WARNING);
-    }
+    public void warn(Message warn);
 
     /**
      * @param arg0
      */
-    public void info(String info) {
+    public void info(String info);
 
-        EclipseMarkerUtil.addMarker(file, info, 0, IMarker.SEVERITY_INFO);
-    }
 }

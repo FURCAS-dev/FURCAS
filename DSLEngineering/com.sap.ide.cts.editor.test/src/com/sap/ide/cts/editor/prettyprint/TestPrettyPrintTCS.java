@@ -1,6 +1,5 @@
 package com.sap.ide.cts.editor.prettyprint;
 
-import generated.TCSLexer;
 
 import javax.naming.NameNotFoundException;
 
@@ -18,6 +17,7 @@ import com.sap.furcas.metamodel.TCS.Sequence;
 import com.sap.furcas.metamodel.TCS.SpaceKind;
 import com.sap.furcas.metamodel.TCS.Symbol;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.parser.tcs.stableversion.TCSLexer;
 import com.sap.mi.tcs.parser.TcsParserFactory;
 import com.sap.mi.textual.common.util.EcoreHelper;
 import com.sap.mi.textual.tcs.util.TcsUtil;
