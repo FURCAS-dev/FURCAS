@@ -4,7 +4,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 
-import com.sap.emf.ocl.hiddenopposites.AllInstancesContentAdapter;
+import com.sap.emf.oppositeendfinder.AllInstancesContentAdapter;
 
 public class AllInstancesContentAdapterTest
 		extends AbstractTestSuite {

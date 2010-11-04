@@ -14,7 +14,7 @@ import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.expressions.VariableExp;
 
 import com.sap.emf.ocl.hiddenopposites.EvaluationEnvironmentWithHiddenOppositesImpl;
-import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
 public class PartialEcoreEvaluationEnvironment extends EvaluationEnvironmentWithHiddenOppositesImpl {
     private final Map<String, Object> map = new HashMap<String, Object>();

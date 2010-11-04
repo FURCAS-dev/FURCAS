@@ -7,6 +7,8 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
+
 /**
  * Uses {@link OppositeEndFinder#getAllInstancesSeenBy(EClass, org.eclipse.emf.common.notify.Notifier)} to perform
  * an extent lookup.
