@@ -2,6 +2,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import com.sap.emf.oppositeendfinder.DefaultOppositeEndFinder;
@@ -82,5 +83,10 @@ public class ImpactAnalyzerWithHiddenOppositesImpl extends ImpactAnalyzerImpl {
     @Override
     protected InstanceScopeAnalysis createInstanceScopeAnalysis(OCLExpression expression, EClass context, FilterSynthesisImpl filtersyn, OppositeEndFinder oppositeEndFinder, ActivationOption configuration, OCLFactory oclFactory) {
         return new InstanceScopeAnalysisWithHiddenOpposites(expression, context, filtersyn, oppositeEndFinder, configuration, oclFactory);
+    }
+
+    @Override
+    protected FilterSynthesisImpl createFilterSynthesis(OCLExpression expression, boolean notifyOnNewContextElements, OCL ocl) {
+        return new FilterSynthesisWithHiddenOppositesImpl(expression, notifyOnNewContextElements, ocl);
     }
 }

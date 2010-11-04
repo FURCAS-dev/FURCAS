@@ -5,6 +5,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import com.sap.emf.oppositeendfinder.DefaultOppositeEndFinder;
@@ -110,8 +111,14 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
     }
 
     public EventFilter createFilterForExpression() {
-        filtersyn = new FilterSynthesisImpl(expression, notifyOnNewContextElements, oclFactory.createOCL(oppositeEndFinder));
+        if (filtersyn == null) {
+            filtersyn = createFilterSynthesis(expression, notifyOnNewContextElements, oclFactory.createOCL(oppositeEndFinder));
+        }
         return filtersyn.getSynthesisedFilter();
+    }
+
+    protected FilterSynthesisImpl createFilterSynthesis(OCLExpression expression, boolean notifyOnNewContextElements, OCL ocl) {
+        return new FilterSynthesisImpl(expression, notifyOnNewContextElements, ocl);
     }
 
     public Collection<EObject> getContextObjects(Notification event) {
