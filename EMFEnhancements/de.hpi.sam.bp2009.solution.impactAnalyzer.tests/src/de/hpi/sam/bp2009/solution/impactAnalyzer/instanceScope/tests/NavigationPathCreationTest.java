@@ -26,6 +26,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLEx
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.OCLWithHiddenOppositesFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.impl.FilterSynthesisWithHiddenOppositesImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.instancescope.InstanceScopeAnalysisWithHiddenOpposites;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.PathCache;
 
@@ -91,7 +92,7 @@ public class NavigationPathCreationTest extends TestCase{
         OCLFactory oclFactory = new OCLWithHiddenOppositesFactory();
 	List<ExceptionWithExpression> excList = new ArrayList<ExceptionWithExpression>();
 
-	FilterSynthesisImpl filterSynthesizer = new FilterSynthesisImpl(expression.getExpression(), false, OCLWithHiddenOpposites.newInstance());
+	FilterSynthesisImpl filterSynthesizer = new FilterSynthesisWithHiddenOppositesImpl(expression.getExpression(), false, OCLWithHiddenOpposites.newInstance());
 	filterSynthesizer.getSynthesisedFilter();
 
 	Map<EAttribute, Set<PropertyCallExp>> attributeCallExpressions = (Map<EAttribute, Set<PropertyCallExp>>)dirtyReflectionAttributeReader("attributeCallExpressions", filterSynthesizer);
