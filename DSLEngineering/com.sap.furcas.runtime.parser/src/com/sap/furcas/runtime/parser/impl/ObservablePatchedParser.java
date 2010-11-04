@@ -14,8 +14,8 @@ import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenStream;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.IParsingObserver;
-import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
 
 /**
  * A parser suppressing the ANTLR3.0.1 system.err messages and allowing an observer for the parsing process.

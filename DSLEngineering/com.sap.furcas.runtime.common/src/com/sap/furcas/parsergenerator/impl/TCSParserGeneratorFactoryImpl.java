@@ -1,12 +1,12 @@
-package com.sap.furcas.runtime.common.implementation;
+package com.sap.furcas.parsergenerator.impl;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 
+import com.sap.furcas.parsergenerator.TCSParserGenerator;
+import com.sap.furcas.parsergenerator.TCSParserGeneratorFactory;
 import com.sap.furcas.runtime.common.exceptions.ParserGeneratorInvocationException;
-import com.sap.furcas.runtime.common.interfaces.TCSParserGenerator;
-import com.sap.furcas.runtime.common.interfaces.TCSParserGeneratorFactory;
 
 public class TCSParserGeneratorFactoryImpl implements TCSParserGeneratorFactory {
 

@@ -14,16 +14,16 @@ import org.eclipse.ui.PlatformUI;
 
 import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.TCS.Keyword;
+import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.parsergenerator.emf.lookup.QueryBasedEcoreMetaModelLookUp;
 import com.sap.furcas.parsergenerator.tcs.t2m.TCSSyntaxContainerBean;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ANTLR3GrammarWriter;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ANTLRGrammarGenerator;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.GenerationReport;
 import com.sap.furcas.parsergenerator.tcs.t2m.validation.SyntaxDefinitionValidation;
-import com.sap.furcas.runtime.common.exceptions.GrammarGenerationException;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.runtime.parser.TextLocation;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
-import com.sap.furcas.runtime.parser.impl.TextLocation;
 import com.sap.mi.textual.syntaxmodel.emfadapter.EMFTCSAdapter;
 
 public class GenerateGrammarAction extends Action {

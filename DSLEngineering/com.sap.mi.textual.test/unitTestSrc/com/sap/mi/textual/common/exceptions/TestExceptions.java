@@ -8,9 +8,9 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.parsergenerator.tcs.t2m.validation.SyntaxDefValidationException;
 import com.sap.furcas.runtime.common.exceptions.AbstractToolGenerationException;
-import com.sap.furcas.runtime.common.exceptions.GrammarGenerationException;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.exceptions.ParserInvokationException;
 import com.sap.furcas.runtime.common.exceptions.WrappedException;

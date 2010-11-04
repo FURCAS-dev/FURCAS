@@ -5,6 +5,8 @@ package com.sap.furcas.runtime.parser.antlr3;
 
 import org.antlr.runtime.CharStream;
 
+import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
+
 /**
  * creates tokens during lexing of Strings from a CharStream. May reuse existing token objects e.g. from earlier lexing activities.
  */

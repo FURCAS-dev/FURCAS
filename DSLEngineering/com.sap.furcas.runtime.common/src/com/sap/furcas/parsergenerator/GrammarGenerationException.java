@@ -1,7 +1,9 @@
-package com.sap.furcas.runtime.common.exceptions;
+package com.sap.furcas.parsergenerator;
+
+import com.sap.furcas.runtime.common.exceptions.AbstractToolGenerationException;
 
 /**
- * to be thrown when generating of Grammar fails
+ * Thrown when the grammar generation fails.
  * 
  * @author C5107456
  */

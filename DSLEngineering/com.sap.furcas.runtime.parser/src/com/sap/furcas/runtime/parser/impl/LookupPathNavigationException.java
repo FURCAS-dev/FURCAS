@@ -3,7 +3,7 @@
  */
 package com.sap.furcas.runtime.parser.impl;
 
-import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
+import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
 
 /**
  *

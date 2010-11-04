@@ -16,7 +16,7 @@ import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.RecognizerSharedState;
 import org.antlr.runtime.Token;
 
-import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
+import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.antlr3.DefaultANTLR3LocationTokenFactory;
 import com.sap.furcas.runtime.parser.antlr3.ITokenFactory;
 

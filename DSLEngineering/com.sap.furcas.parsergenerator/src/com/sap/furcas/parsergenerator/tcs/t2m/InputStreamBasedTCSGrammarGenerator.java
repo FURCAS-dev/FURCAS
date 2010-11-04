@@ -23,10 +23,10 @@ import com.sap.furcas.parsergenerator.emf.tcs.inject.TCSSpecificEMFModelInjector
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.ParserInvokationException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.runtime.parser.ParsingError;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
-import com.sap.furcas.runtime.parser.impl.ParsingError;
 
 /**
  * The Class TCSInputStreamGrammarGenerator, generates a Grammar based on an InputStream containing a TCS definition of a syntax.

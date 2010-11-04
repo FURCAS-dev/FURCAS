@@ -11,17 +11,19 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 
+import com.sap.furcas.parsergenerator.GenerationErrorHandler;
+import com.sap.furcas.parsergenerator.GrammarGenerationException;
+import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
+import com.sap.furcas.parsergenerator.GrammarGenerationTargetConfiguration;
 import com.sap.furcas.parsergenerator.emf.lookup.QueryBasedEcoreMetaModelLookUp;
-import com.sap.furcas.parsergenerator.tcs.generator.errorhandling.GenerationErrorHandler;
 import com.sap.furcas.parsergenerator.tcs.t2m.InputStreamBasedTCSGrammarGenerator;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.GenerationReport;
-import com.sap.furcas.runtime.common.exceptions.GrammarGenerationException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.ParserInvokationException;
+import com.sap.furcas.runtime.parser.ParsingError;
+import com.sap.furcas.runtime.parser.TextLocation;
 import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
-import com.sap.furcas.runtime.parser.impl.ParsingError;
-import com.sap.furcas.runtime.parser.impl.TextLocation;
 
 /**
  * Reads a syntax definition given as a file and generates a ANTLR gramamr for it.

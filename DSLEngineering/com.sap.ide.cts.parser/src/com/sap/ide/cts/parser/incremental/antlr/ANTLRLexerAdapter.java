@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
 import com.sap.furcas.metamodel.textblocks.Version;
-import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
+import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.impl.ModelInjector;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;

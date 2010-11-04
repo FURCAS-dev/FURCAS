@@ -23,16 +23,16 @@ import java.util.Set;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
-import com.sap.furcas.runtime.common.exceptions.GrammarGenerationException;
+import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
 import com.sap.furcas.runtime.parser.ParserFacade;
+import com.sap.furcas.runtime.parser.ParsingError;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
-import com.sap.furcas.runtime.parser.impl.ParsingError;
 import com.sap.furcas.test.util.StubModelAdapter;
 import com.sap.ide.cts.editor.test.util.ParserGenerationTestHelper;
 

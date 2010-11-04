@@ -19,7 +19,7 @@ import org.antlr.runtime.Lexer;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import com.sap.furcas.runtime.common.exceptions.GrammarGenerationException;
+import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.parser.IModelAdapter;

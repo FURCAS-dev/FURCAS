@@ -13,7 +13,7 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.swt.widgets.Shell;
 
 import com.sap.furcas.ide.dslproject.Activator;
-import com.sap.furcas.runtime.parser.impl.ParsingError;
+import com.sap.furcas.runtime.parser.ParsingError;
 
 
 public class EclipseMarkerUtil {

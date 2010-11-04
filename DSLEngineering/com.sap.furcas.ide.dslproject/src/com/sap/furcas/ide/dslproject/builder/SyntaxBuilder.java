@@ -21,11 +21,11 @@ import com.sap.furcas.ide.dslproject.Activator;
 import com.sap.furcas.ide.dslproject.Constants;
 import com.sap.furcas.ide.dslproject.conf.IProjectMetaRefConf;
 import com.sap.furcas.ide.dslproject.conf.ReferenceScopeBean;
+import com.sap.furcas.parsergenerator.GrammarGenerationException;
+import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
+import com.sap.furcas.parsergenerator.GrammarGenerationTargetConfiguration;
 import com.sap.furcas.parsergenerator.tcs.generator.file.ParserGenerator;
-import com.sap.furcas.parsergenerator.tcs.generator.file.GrammarGenerationSourceConfiguration;
-import com.sap.furcas.parsergenerator.tcs.generator.file.GrammarGenerationTargetConfiguration;
 import com.sap.furcas.parsergenerator.tcs.generator.file.GrammarGenerator;
-import com.sap.furcas.runtime.common.exceptions.GrammarGenerationException;
 import com.sap.furcas.utils.exceptions.EclipseExceptionHelper;
 
 /**

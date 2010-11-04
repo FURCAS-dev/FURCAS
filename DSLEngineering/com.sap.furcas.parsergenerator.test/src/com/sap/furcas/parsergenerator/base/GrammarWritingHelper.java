@@ -24,14 +24,14 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.parsergenerator.tcs.t2m.InputStreamBasedTCSGrammarGenerator;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.GenerationReport;
-import com.sap.furcas.runtime.common.exceptions.GrammarGenerationException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.ParserInvokationException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.runtime.parser.ParsingError;
 import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
-import com.sap.furcas.runtime.parser.impl.ParsingError;
 import com.sap.furcas.utils.projects.FileReadHelper;
 
 /**

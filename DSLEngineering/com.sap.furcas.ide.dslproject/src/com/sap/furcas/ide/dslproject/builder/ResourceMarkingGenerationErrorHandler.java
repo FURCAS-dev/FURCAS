@@ -4,8 +4,8 @@ import org.antlr.tool.Message;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 
-import com.sap.furcas.parsergenerator.tcs.generator.errorhandling.GenerationErrorHandler;
-import com.sap.furcas.runtime.parser.impl.ParsingError;
+import com.sap.furcas.parsergenerator.GenerationErrorHandler;
+import com.sap.furcas.runtime.parser.ParsingError;
 
 /**
  * Handles occuring errors by adding eclipse marker to the grammar file.

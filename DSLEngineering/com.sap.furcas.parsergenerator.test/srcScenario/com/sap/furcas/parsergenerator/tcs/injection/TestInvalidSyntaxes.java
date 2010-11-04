@@ -7,7 +7,7 @@ import java.io.ByteArrayInputStream;
 
 import org.junit.Test;
 
-import com.sap.furcas.runtime.parser.impl.ParsingError;
+import com.sap.furcas.runtime.parser.ParsingError;
 
 ;
 
