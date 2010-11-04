@@ -11,11 +11,9 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.ui,
  org.eclipse.ui.ide,
- org.antlr,
  com.sap.furcas.utils,
  com.sap.furcas.runtime.common,
- com.sap.furcas.runtime.parser,
- com.sap.furcas.parsergenerator
+ org.antlr;bundle-version="3.1.1"
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.furcas.ide.dslproject;
   uses:="org.eclipse.osgi.util,
