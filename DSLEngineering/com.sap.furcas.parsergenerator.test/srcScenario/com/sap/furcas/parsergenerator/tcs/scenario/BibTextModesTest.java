@@ -13,6 +13,7 @@ import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
 import com.sap.furcas.parsergenerator.base.StubModelAdapter;
 import com.sap.furcas.parsergenerator.base.StubModelElement;
+import com.sap.furcas.test.scenario.FixtureData;
 
 /**
  * Simple Test for the custom BibText language
@@ -26,7 +27,7 @@ public class BibTextModesTest extends ExtendedGeneratedParserBasedTest {
 	@BeforeClass
 	public static void setupParser() throws Exception {
 		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new FileBasedEcoreMetaModelLookUp("BibText.ecore", "BibText1.ecore"));
+		setLookup(new FileBasedEcoreMetaModelLookUp(FixtureData.BIBTEXT_METAMODEL, FixtureData.BIBTEXT1_METAMODEL));
 		generateParserForLanguage(LANGUAGE);
 	}
 	

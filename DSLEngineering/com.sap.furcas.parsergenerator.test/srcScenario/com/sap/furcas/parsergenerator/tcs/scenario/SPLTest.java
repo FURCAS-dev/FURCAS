@@ -9,6 +9,7 @@ import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
 import com.sap.furcas.parsergenerator.base.StubModelAdapter;
 import com.sap.furcas.test.parsing.testutils.StringListHelper;
+import com.sap.furcas.test.scenario.FixtureData;
 
 /**
  * Simple Test for the SPL language, especially the word patterns
@@ -22,7 +23,7 @@ public class SPLTest extends ExtendedGeneratedParserBasedTest {
     @BeforeClass
     public static void setupParser() throws Exception {
 	setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-	setLookup(new FileBasedEcoreMetaModelLookUp("SPL.ecore"));
+	setLookup(new FileBasedEcoreMetaModelLookUp(FixtureData.SPL_METAMODEL));
 	generateParserForLanguage(LANGUAGE);
     }
 
