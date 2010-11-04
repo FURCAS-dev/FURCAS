@@ -6,6 +6,7 @@ import org.junit.Test;
 import com.sap.furcas.parsergenerator.base.FileBasedEcoreMetaModelLookUp;
 import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
+import com.sap.furcas.test.scenario.FixtureData;
 
 /**
  * Simple Test for the custom BibText language, using the lower and upper bounds for entries in the metamodel.
@@ -20,8 +21,8 @@ public class BibTextLowerUpperBoundsTest extends ExtendedGeneratedParserBasedTes
 	@BeforeClass
 	public static void setupParser() throws Exception {
 		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new FileBasedEcoreMetaModelLookUp("BibTextUpperLower.ecore",
-				"BibText1.ecore"));
+		setLookup(new FileBasedEcoreMetaModelLookUp(FixtureData.BIBTEXT_UPPER_LOWER_METAMODEL,
+		        FixtureData.BIBTEXT1_METAMODEL));
 		generateParserForLanguage(LANGUAGE);
 	}
 	

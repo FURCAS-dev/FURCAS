@@ -8,6 +8,7 @@ import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
 import com.sap.furcas.parsergenerator.base.StubModelAdapter;
 import com.sap.furcas.test.parsing.testutils.StringListHelper;
+import com.sap.furcas.test.scenario.FixtureData;
 
 /**
  * Simple Test for the custom Expression language
@@ -22,7 +23,7 @@ public class KM3Test extends ExtendedGeneratedParserBasedTest {
 	@BeforeClass
 	public static void setupParser() throws Exception {
 		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new FileBasedEcoreMetaModelLookUp("KM3.ecore"));
+		setLookup(new FileBasedEcoreMetaModelLookUp(FixtureData.KM3_METAMODEL));
 		generateParserForLanguage(LANGUAGE);
 	}
 	

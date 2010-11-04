@@ -12,6 +12,7 @@ import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
 import com.sap.furcas.parsergenerator.base.StubModelAdapter;
 import com.sap.furcas.parsergenerator.base.StubModelElement;
+import com.sap.furcas.test.scenario.FixtureData;
 
 /**
  * Simple Test for the custom Expression language, this time with the lexer not being specified in TCS.
@@ -26,7 +27,7 @@ public class ExpressionNoLexerTest extends ExtendedGeneratedParserBasedTest {
 	@BeforeClass
 	public static void setupParser() throws Exception {
 		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new FileBasedEcoreMetaModelLookUp("Expression.ecore"));
+		setLookup(new FileBasedEcoreMetaModelLookUp(FixtureData.EXPRESSION_METAMODEL));
 		generateParserForLanguage(LANGUAGE);
 	}
 	

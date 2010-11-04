@@ -38,7 +38,7 @@ public class ParserGenerationTestHelper {
     private static final String DEFAULT_GENERATIONDIR_SOURCEROOT = "./scenariotestTemp";
     private static final String DEFAULT_PACKAGE = "generated2";
     private static final String DEFAULT_GENERATIONDIR = DEFAULT_GENERATIONDIR_SOURCEROOT + "/" + DEFAULT_PACKAGE + "/";
-    private static final String DEFAULT_TCSPATH = "./scenarioTestResource";
+    private static final String DEFAULT_TCSPATH = "../com.sap.furcas.test/fixtures";
 
     private final String generationSourceRoot;
     private String generationDirectory;

@@ -14,6 +14,7 @@ import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
 import com.sap.furcas.parsergenerator.base.StubModelAdapter;
 import com.sap.furcas.parsergenerator.base.StubModelElement;
+import com.sap.furcas.test.scenario.FixtureData;
 
 /**
  * Simple Test for the custom Problem language, which acts like a log file.
@@ -26,7 +27,7 @@ public class ProblemTest extends ExtendedGeneratedParserBasedTest {
 	@BeforeClass
 	public static void setupParser() throws Exception {
 		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new FileBasedEcoreMetaModelLookUp("Problem.ecore"));
+		setLookup(new FileBasedEcoreMetaModelLookUp(FixtureData.PROBLEM_METAMODEL));
 		generateParserForLanguage(LANGUAGE);
 	}
 
