@@ -26,7 +26,7 @@ public class TCSBootStrap {
 //            for (String message : warnings) {
 //                System.out.println("Warning: " + message);
 //            }
-            System.out.println("Wrote grammar to " + grammarFile.getAbsolutePath());
+//            System.out.println("Wrote grammar to " + grammarFile.getAbsolutePath());
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("Grammar Generation Failed");
