@@ -16,8 +16,6 @@ import org.eclipse.ocl.ecore.TupleLiteralExp;
 import org.eclipse.ocl.ecore.VariableExp;
 
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
-import com.sap.emf.ocl.oclwithhiddenopposites.expressions.ExpressionsPackage;
-import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
@@ -57,9 +55,6 @@ public class TracebackStepCache extends AbstractPathCache<TracebackStep> {
             break;
         case EcorePackage.PROPERTY_CALL_EXP:
             result = new PropertyCallTracebackStep((PropertyCallExp) sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, this, unusedEvaluationRequestFactory, oclFactory);
-            break;
-        case ExpressionsPackage.OPPOSITE_PROPERTY_CALL_EXP:
-            result = new OppositePropertyCallTracebackStep((OppositePropertyCallExp) sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, this, unusedEvaluationRequestFactory, oclFactory);
             break;
         case EcorePackage.TUPLE_LITERAL_EXP:
             result = new TupleLiteralTracebackStep((TupleLiteralExp) sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, this, unusedEvaluationRequestFactory, oclFactory);

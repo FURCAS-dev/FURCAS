@@ -17,9 +17,9 @@ import company.Employee;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLWithHiddenOppositesFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.ImpactAnalyzerWithHiddenOppositesFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.OCLWithHiddenOppositesFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.ExampleApp;
 
 public class FilterSynthesisEMEnabledTest extends FilterSynthesisTest {
@@ -428,7 +428,7 @@ public class FilterSynthesisEMEnabledTest extends FilterSynthesisTest {
         HashSet<ExpressionInOCL> affectedStmts = new HashSet<ExpressionInOCL>();
         for (Iterator<ExpressionInOCL> i = this.stmts.iterator(); i.hasNext();) {
             ExpressionInOCL exp = i.next();
-            EventFilter filter = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(
+            EventFilter filter = ImpactAnalyzerWithHiddenOppositesFactory.INSTANCE.createImpactAnalyzer(
                     (OCLExpression) exp.getBodyExpression(), (EClass) exp
                     .getContextVariable().getType(), /* notifyOnNewContextElements */ true,
                     new OCLWithHiddenOppositesFactory()).createFilterForExpression();

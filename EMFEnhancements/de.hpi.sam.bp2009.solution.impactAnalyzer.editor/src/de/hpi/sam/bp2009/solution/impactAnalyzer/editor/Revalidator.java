@@ -21,19 +21,20 @@ import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLWithHiddenOppositesFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.ImpactAnalyzerWithHiddenOppositesFactory;
 import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectDependencyQueryContextProvider;
 
 public class Revalidator {
     private final EventManager eventManager;
     @SuppressWarnings("unused") // needed to hold on to event adapters to avoid their being GC'ed
     private final Collection<Adapter> adapters;
+    private final OCLFactory oclFactory;
 
-    public Revalidator(AdapterFactoryEditingDomain editingDomain, EPackage pkg) {
+    public Revalidator(AdapterFactoryEditingDomain editingDomain, EPackage pkg, OCLFactory oclFactory) {
         eventManager = EventManagerFactory.eINSTANCE.createEventManagerFor(editingDomain.getResourceSet());
         adapters = registerInvariants(pkg);
+        this.oclFactory = oclFactory;
     }
 
     private Collection<Adapter> registerInvariants(EPackage pkg) {
@@ -46,11 +47,10 @@ public class Revalidator {
                 if (spaceSeparatedConstraintNames != null) {
                     String[] constraintNames = spaceSeparatedConstraintNames.split(" ");
                     for (final String constraintName : constraintNames) {
-                        OCLFactory oclFactory = new OCLWithHiddenOppositesFactory();
                         // TODO this is slightly unclean; what if a non-standard validation domain has been used? But there is no common base interface above ValidationBehavior that lets us extract the invariant
                         final OCLExpression invariant = ValidationBehavior.INSTANCE.getInvariant(
                                 cls, constraintName, oclFactory.createOCL(oppositeEndFinder));
-                        final ImpactAnalyzer impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(invariant,
+                        final ImpactAnalyzer impactAnalyzer = ImpactAnalyzerWithHiddenOppositesFactory.INSTANCE.createImpactAnalyzer(invariant,
                                 /* notifyOnNewContextElements */ true, oppositeEndFinder, oclFactory);
                         Adapter adapter = new AdapterImpl() {
                             @Override

@@ -119,9 +119,13 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
             if (filtersyn == null) {
                 createFilterForExpression();
             }
-            instanceScopeAnalysis = new InstanceScopeAnalysis(expression, context, filtersyn, oppositeEndFinder, configuration, oclFactory);
+            instanceScopeAnalysis = createInstanceScopeAnalysis(expression, context, filtersyn, oppositeEndFinder, configuration, oclFactory);
         }
         return instanceScopeAnalysis.getContextObjects(event);
+    }
+
+    protected InstanceScopeAnalysis createInstanceScopeAnalysis(OCLExpression expression, EClass context, FilterSynthesisImpl filtersyn, OppositeEndFinder oppositeEndFinder, ActivationOption configuration, OCLFactory oclFactory) {
+        return new InstanceScopeAnalysis(expression, context, filtersyn, oppositeEndFinder, configuration, oclFactory);
     }
 
     protected OCLExpression getExpression() {

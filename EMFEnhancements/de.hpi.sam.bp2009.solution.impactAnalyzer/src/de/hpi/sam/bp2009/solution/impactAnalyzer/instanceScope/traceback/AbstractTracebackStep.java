@@ -97,7 +97,7 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
      * Encapsulates the scope change that has to happen before invoking a subsequent traceback step.
      * @author Axel Uhl (D043530)
      */
-    protected static class TracebackStepAndScopeChange implements TracebackStep {
+    public static class TracebackStepAndScopeChange implements TracebackStep {
         private final TracebackStep step;
         private final Set<Variable> variablesThatLeaveOrEnterScopeWhenCallingStep;
         

@@ -14,6 +14,7 @@ import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.ImpactAnalyzerWithHiddenOppositesFactory;
 
 public class AttributeGrammarImpl implements AttributeGrammar {
     private final Map<EStructuralFeature, OCLExpression> rules;
@@ -56,7 +57,7 @@ public class AttributeGrammarImpl implements AttributeGrammar {
     }
 
     private void initImpactAnalyzers(OCLFactory oclFactory) {
-        ImpactAnalyzerFactory iaFactory = ImpactAnalyzerFactory.INSTANCE;
+        ImpactAnalyzerFactory iaFactory = ImpactAnalyzerWithHiddenOppositesFactory.INSTANCE;
         for (OCLExpression e : rules.values()) {
             ImpactAnalyzer ia;
             if (oppositeEndFinder == null) {

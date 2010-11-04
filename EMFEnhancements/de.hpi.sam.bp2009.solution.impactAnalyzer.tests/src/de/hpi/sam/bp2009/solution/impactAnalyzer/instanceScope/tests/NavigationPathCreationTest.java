@@ -20,11 +20,13 @@ import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLWithHiddenOppositesFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionFromClassTcsPicker;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionFromModelPicker;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.OCLWithHiddenOppositesFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.instancescope.InstanceScopeAnalysisWithHiddenOpposites;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.PathCache;
 
 public class NavigationPathCreationTest extends TestCase{
@@ -98,7 +100,10 @@ public class NavigationPathCreationTest extends TestCase{
 	for (Set<PropertyCallExp> callExpressionSet : attributeCallExpressions.values()) {
 	    for (PropertyCallExp callExpression : callExpressionSet) {
 		try {
-		    PathCache cache = new PathCache(DefaultOppositeEndFinder.getInstance());
+		    PathCache cache = new PathCache(DefaultOppositeEndFinder.getInstance(),
+		            new InstanceScopeAnalysisWithHiddenOpposites(callExpression, /* exprContext */ null,
+		                    filterSynthesizer, DefaultOppositeEndFinder.getInstance(), OptimizationActivation.getOption(),
+		                    oclFactory));
 		    assertNotNull(cache.getOrCreateNavigationPath((OCLExpression)callExpression.getSource(), expression.getContext(), filterSynthesizer,
 			    null, oclFactory));
 		} catch (RuntimeException e) {
@@ -113,7 +118,9 @@ public class NavigationPathCreationTest extends TestCase{
 	for (Set<NavigationCallExp> callExpressionSet : associationEndCallExpressions.values()) {
 	    for (NavigationCallExp callExpression : callExpressionSet) {
 		try {
-		    PathCache cache = new PathCache(DefaultOppositeEndFinder.getInstance());
+		    PathCache cache = new PathCache(DefaultOppositeEndFinder.getInstance(), new InstanceScopeAnalysisWithHiddenOpposites(callExpression, /* exprContext */ null,
+                            filterSynthesizer, DefaultOppositeEndFinder.getInstance(), OptimizationActivation.getOption(),
+                            oclFactory));
 		    assertNotNull(cache.getOrCreateNavigationPath((OCLExpression)callExpression.getSource(), expression.getContext(), filterSynthesizer,
 			    null, oclFactory));
 		} catch (RuntimeException e) {
