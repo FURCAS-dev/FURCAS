@@ -14,6 +14,7 @@ import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.util.QualifiedNamesHelper;
 import com.sap.furcas.test.parsing.testutils.StringListHelper;
+import com.sap.furcas.test.scenario.FixtureData;
 
 /**
  * Tests generation of TCS Parsers.
@@ -21,7 +22,7 @@ import com.sap.furcas.test.parsing.testutils.StringListHelper;
  */
 public class TCSObsoleteTest extends ExtendedGeneratedParserBasedTest {
 
-    private static final String DSLSAMPLEDIR = "./scenarioTestResource/";
+    private static final String DSLSAMPLEDIR = "../com.sap.furcas.test/fixtures/";
     
     private static final String LANGUAGE = "TCSObsolete";
     private static IMetaModelLookup lookup;
@@ -30,7 +31,7 @@ public class TCSObsoleteTest extends ExtendedGeneratedParserBasedTest {
     @BeforeClass
 	public static void setupParser() throws Exception {
 		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new FileBasedEcoreMetaModelLookUp("TCS.ecore"));
+		setLookup(new FileBasedEcoreMetaModelLookUp(FixtureData.TCS_METAMODEL));
 		generateParserForLanguage(LANGUAGE);
 	}
 

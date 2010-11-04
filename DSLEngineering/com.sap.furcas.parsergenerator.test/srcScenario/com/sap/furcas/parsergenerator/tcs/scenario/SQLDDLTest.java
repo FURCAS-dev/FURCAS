@@ -7,6 +7,8 @@ import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
 import com.sap.furcas.parsergenerator.base.StubModelAdapter;
 import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
+import com.sap.furcas.test.scenario.FixtureData;
+
 
 /**
  * Simple Test for the custom Expression language
@@ -21,7 +23,7 @@ public class SQLDDLTest extends ExtendedGeneratedParserBasedTest {
 	@BeforeClass
 	public static void setupParser() throws Exception {
 		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new FileBasedEcoreMetaModelLookUp("SQLDDL.ecore"));
+		setLookup(new FileBasedEcoreMetaModelLookUp(FixtureData.SQLDDL_METAMODEL));
 		generateParserForLanguage(LANGUAGE);
 	}
 	

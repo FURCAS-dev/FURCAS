@@ -97,7 +97,7 @@ public class GeneratedParserBasedTest {
 	// restore the original value
 	System.setErr(systemErr);
     }
-
+    
     /**
      * If antlr wrote to System.err, fail the test with ANTLR messages. If err is empty, continue
      */

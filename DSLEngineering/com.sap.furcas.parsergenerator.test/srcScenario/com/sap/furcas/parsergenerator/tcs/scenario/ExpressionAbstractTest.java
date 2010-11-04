@@ -6,6 +6,9 @@ import org.junit.Test;
 import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
 import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
+import com.sap.furcas.test.scenario.FixtureData;
+
+
 
 /**
  * Test using several (useless) layers of abstraction in the metamodel
@@ -20,7 +23,7 @@ public class ExpressionAbstractTest extends ExtendedGeneratedParserBasedTest {
 	@BeforeClass
 	public static void setupParser() throws Exception {
 		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new FileBasedEcoreMetaModelLookUp("ExpressionAbstract.ecore"));
+		setLookup(new FileBasedEcoreMetaModelLookUp(FixtureData.EXPRESSION_ABSTRACT_METAMODEL));
 		generateParserForLanguage(LANGUAGE);
 	}
 	

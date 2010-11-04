@@ -6,6 +6,9 @@ import org.junit.Test;
 import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
 import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
+import com.sap.furcas.test.scenario.FixtureData;
+
+
 
 /**
  * Simple Test for the custom BibText language
@@ -20,8 +23,8 @@ public class BibTextReferSubTypeTest extends ExtendedGeneratedParserBasedTest {
 	@BeforeClass
 	public static void setupParser() throws Exception {
 		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new FileBasedEcoreMetaModelLookUp("BibTextReferSubType.ecore",
-				"BibText1.ecore"));
+		setLookup(new FileBasedEcoreMetaModelLookUp(FixtureData.BIBTEXT_REFER_SUBTYPE_METAMODEL,
+		        FixtureData.BIBTEXT1_METAMODEL));
 		generateParserForLanguage(LANGUAGE);
 	}
 	

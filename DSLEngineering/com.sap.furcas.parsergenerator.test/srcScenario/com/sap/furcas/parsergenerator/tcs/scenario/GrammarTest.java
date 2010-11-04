@@ -15,6 +15,7 @@ import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
 import com.sap.furcas.parsergenerator.tcs.t2m.InputStreamBasedTCSGrammarGenerator;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ObservationDirectivesHelper;
+import com.sap.furcas.test.scenario.FixtureData;
 
 public class GrammarTest extends ExtendedGeneratedParserBasedTest {
 
@@ -27,13 +28,13 @@ public class GrammarTest extends ExtendedGeneratedParserBasedTest {
     public void testBibTextGrammarGeneration() throws Exception {
 
         // this test relies on the contents of the BibText sample file
-        File sample = new File("scenarioTestResource/Bibtext.tcs");
+        File sample = FixtureData.BIBTEXT_TCS;
         assertTrue(sample.exists());
         InputStream in = new FileInputStream(sample);
 
         OutputStream out = new ByteArrayOutputStream();
-        InputStreamBasedTCSGrammarGenerator generator = new InputStreamBasedTCSGrammarGenerator(in, out, new FileBasedEcoreMetaModelLookUp(
-                "BibText.ecore", "BibText1.ecore"), "generated");
+        InputStreamBasedTCSGrammarGenerator generator = new InputStreamBasedTCSGrammarGenerator(in, out,
+                new FileBasedEcoreMetaModelLookUp(FixtureData.BIBTEXT_METAMODEL, FixtureData.BIBTEXT1_METAMODEL), "generated");
         generator.generateGrammar(createDefaultResourceSet(), createDefaultReferenceScope(), null);
         out.flush();
         String grammar = out.toString();
@@ -53,13 +54,13 @@ public class GrammarTest extends ExtendedGeneratedParserBasedTest {
     public void testExpressionGrammarGeneration() throws Exception {
 
         // this test relies on the contents of the Expression sample file
-        File sample = new File("scenarioTestResource/Expression.tcs");
+        File sample = FixtureData.EXPRESSION_TCS;
         assertTrue(sample.exists());
         InputStream in = new FileInputStream(sample);
 
         OutputStream out = new ByteArrayOutputStream();
-        InputStreamBasedTCSGrammarGenerator generator = new InputStreamBasedTCSGrammarGenerator(in, out, new FileBasedEcoreMetaModelLookUp(
-                "Expression.ecore"), "generated");
+        InputStreamBasedTCSGrammarGenerator generator = new InputStreamBasedTCSGrammarGenerator(in, out,
+                new FileBasedEcoreMetaModelLookUp(FixtureData.EXPRESSION_METAMODEL), "generated");
         generator.generateGrammar(createDefaultResourceSet(), createDefaultReferenceScope(), null);
         out.flush();
         String grammar = out.toString();
