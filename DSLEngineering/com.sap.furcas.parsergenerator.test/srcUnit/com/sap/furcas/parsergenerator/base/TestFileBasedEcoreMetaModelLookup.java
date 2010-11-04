@@ -16,12 +16,13 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.junit.Test;
 
+import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 
 /**
  * Tests the Ecore based lookup class that is used for testing, prerequisite for scenario tests (!).
  */
-public class TestEcoreMetaModelLookup {
+public class TestFileBasedEcoreMetaModelLookup {
 
     @Test
     public void testIsClassNameWithBibText() throws Exception {
