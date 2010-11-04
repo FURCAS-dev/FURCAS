@@ -5,15 +5,16 @@ import com.sap.furcas.runtime.common.implementation.TCSParserGeneratorFactoryImp
 
 
 /**
- * Used to create a TCSParserGenerator.
+ * Factory for {@link TCSParserGenerator} instances.
  * 
  * @author Sebastian Schlag (D049672)
  *
  */
 
 public interface TCSParserGeneratorFactory {
-    static TCSParserGeneratorFactory INSTANCE = new TCSParserGeneratorFactoryImpl();
+    
+    public static TCSParserGeneratorFactory INSTANCE = new TCSParserGeneratorFactoryImpl();
 
-    TCSParserGenerator createTCSParserGenerator() throws ParserGeneratorInvocationException;
+    public TCSParserGenerator createTCSParserGenerator() throws ParserGeneratorInvocationException;
 
 }

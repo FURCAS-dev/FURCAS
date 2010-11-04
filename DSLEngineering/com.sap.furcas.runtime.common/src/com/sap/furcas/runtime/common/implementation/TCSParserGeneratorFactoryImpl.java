@@ -10,7 +10,7 @@ import com.sap.furcas.runtime.common.interfaces.TCSParserGeneratorFactory;
 
 public class TCSParserGeneratorFactoryImpl implements TCSParserGeneratorFactory {
 
-    private String extensionPointId = "com.sap.furcas.parsergenerator.tcsparsergenerator";
+    private final String extensionPointId = "com.sap.furcas.parsergenerator.tcsparsergenerator";
     
     @Override
     public TCSParserGenerator createTCSParserGenerator() throws ParserGeneratorInvocationException {
@@ -35,6 +35,5 @@ public class TCSParserGeneratorFactoryImpl implements TCSParserGeneratorFactory 
         }
         throw new AssertionError("Cannot happen");
     }
-        
 
 }
