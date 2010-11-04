@@ -41,9 +41,28 @@ public class PathCache extends AbstractPathCache<NavigationStep> implements Hash
      * order not to create redundant steps. Values are identical to keys per entry.
      */
     private final Map<SemanticIdentity, NavigationStep> allNavigationSteps = new HashMap<SemanticIdentity, NavigationStep>();
+    private InstanceScopeAnalysis instanceScopeAnalysis;
 
-    public PathCache(OppositeEndFinder oppositeEndFinder) {
+    /**
+     * @param instanceScopeAnalysis for special cases, e.g., when callers need to invoke this constructor in a super(...)
+     * initializer of InstanceScopeAnalysis or its descendents, it may not be possible to pass a readily-initialized
+     * object. Therefore, it is permissible to pass <code>null</code> here and immediately after the constructor call invoke
+     * the protected {@link #setInstanceScopeAnalysis} operation with the now initialized object.
+     */
+    public PathCache(OppositeEndFinder oppositeEndFinder, InstanceScopeAnalysis instanceScopeAnalysis) {
         super(oppositeEndFinder);
+        this.instanceScopeAnalysis = instanceScopeAnalysis;
+    }
+    
+    /**
+     * Call only immediately after the constructor was called and only in case <code>null</code> was passed for
+     * the constructor's <code>instanceScopeAnalysis</code> argument.
+     */
+    public void initInstanceScopeAnalysis(InstanceScopeAnalysis instanceScopeAnalysis) {
+        if (this.instanceScopeAnalysis != null) {
+            throw new IllegalStateException("instanceScopeAnalysis field on "+this+" already initialized");
+        }
+        this.instanceScopeAnalysis = instanceScopeAnalysis;
     }
 
     /**
@@ -207,9 +226,6 @@ public class PathCache extends AbstractPathCache<NavigationStep> implements Hash
      * placeholder step into this cache for <tt>expr</tt>. This mechanism can be used to create cyclic step graphs without running
      * into an endless recursion. When a lookup happens for <tt>expr</tt>, the indirection step returned by this method will be
      * found in this cache and therefore will not lead to an endless-recursive step creation procedure.
-     * 
-     * @param tupleLiteralPartNamesToLookFor
-     *            TODO
      */
     public IndirectingStep createIndirectingStepFor(OCLExpression expr, Stack<String> tupleLiteralPartNamesToLookFor) {
         IndirectingStep result = new IndirectingStep(expr);
@@ -228,7 +244,7 @@ public class PathCache extends AbstractPathCache<NavigationStep> implements Hash
     @Override
     protected NavigationStep createStep(OCLExpression sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, OCLFactory oclFactory) {
-        NavigationStep result = InstanceScopeAnalysis.createTracer(sourceExpression, tupleLiteralNamesToLookFor, oclFactory).traceback(context, this,
+        NavigationStep result = instanceScopeAnalysis.createTracer(sourceExpression, tupleLiteralNamesToLookFor, oclFactory).traceback(context, this,
                 operationBodyToCallMapper);
         NavigationStep existingEqualStep = allNavigationSteps.get(result);
         if (existingEqualStep != null) {

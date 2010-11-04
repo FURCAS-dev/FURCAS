@@ -43,7 +43,6 @@ import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
-import com.sap.emf.ocl.oclwithhiddenopposites.expressions.ExpressionsPackage;
 import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 import com.sap.emf.ocl.util.OclHelper;
 
@@ -80,6 +79,49 @@ public class InstanceScopeAnalysis {
             PredefinedType.GREATER_THAN_NAME, PredefinedType.GREATER_THAN_EQUAL_NAME, PredefinedType.NOT_EQUAL_NAME }));
 
     /**
+     * @param expression
+     *            the OCL expression for which to perform instance scope impact analysis
+     * @param oppositeEndFinder
+     *            used during partial evaluation and for metamodel queries, e.g., finding opposite role names, or finding all
+     *            subclasses of a class; as well as for obtaining all instances of a type while performing an
+     *            {@link AllInstancesNavigationStep}. It is handed to the {@link PathCache} object from where
+     *            {@link Tracer}s can retrieve it using {@link PathCache#getOppositeEndFinder()}.
+     */
+    public InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer, OppositeEndFinder oppositeEndFinder, ActivationOption configuration, OCLFactory oclFactory) {
+        this(expression, exprContext, filterSynthesizer, oppositeEndFinder, configuration, oclFactory,
+                /* pathCache */ configuration.isTracebackStepISAActive() ? null : new PathCache(oppositeEndFinder, null),
+                /* tracebackStepCache */ configuration.isTracebackStepISAActive() ? new TracebackStepCache(oppositeEndFinder) : null);
+        if (!configuration.isTracebackStepISAActive()) {
+            getPathCache().initInstanceScopeAnalysis(this);
+        }
+    }
+
+    protected InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer, OppositeEndFinder oppositeEndFinder, ActivationOption configuration, OCLFactory oclFactory, PathCache pathCache, TracebackStepCache tracebackStepCache) {
+        checkConstructorArgs(expression, exprContext, filterSynthesizer);
+        context = exprContext;
+        this.oclFactory = oclFactory;
+        partialEvaluatorForAllInstancesDeltaPropagation = new PartialEvaluator(oclFactory);
+        this.filterSynthesizer = filterSynthesizer;
+        this.oppositeEndFinder = oppositeEndFinder;
+        this.configuration = configuration;
+        this.tracebackStepCache = tracebackStepCache;
+        this.pathCache = pathCache;
+    }
+
+    private void checkConstructorArgs(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer) {
+        if (exprContext == null) {
+            throw new IllegalArgumentException("exprContext must not be null. Maybe no context type specified to ImpactAnalyzerImpl constructor, and no self-expression found to infer it?");
+        }
+        if (expression == null || filterSynthesizer == null) {
+            throw new IllegalArgumentException("Arguments must not be null");
+        }
+    }
+    
+    protected PathCache getPathCache() {
+        return pathCache;
+    }
+
+    /**
      * Finds all elements of type <code>cls</code> or conforming to <code>cls</code> such that based on the scope definition
      * implemented by the <code>oppositeEndFinder</code>'s
      * {@link OppositeEndFinder#getAllInstancesSeeing(EClass, org.eclipse.emf.common.notify.Notifier)} method, the elements
@@ -98,12 +140,11 @@ public class InstanceScopeAnalysis {
     /**
      * Factory method that creates an instance of some {@link Tracer}-implementing class specific to the type of the OCL
      * <tt>expression</tt>.
-     * @param oclFactory TODO
      * @param caller the calling tracer from which the list of tuple part names to look for are copied
      * unchanged to the new tracer created by this operation. May be <tt>null</tt> in which case the
      * new tracer does not look for any tuple literal parts initially.
      */
-    protected static Tracer createTracer(OCLExpression expression, Stack<String> tuplePartNames, OCLFactory oclFactory) {
+    protected Tracer createTracer(OCLExpression expression, Stack<String> tuplePartNames, OCLFactory oclFactory) {
         // Using the class loader is another option, but that would create implicit naming conventions.
         // Thats why we do the mapping "manually".
         switch (expression.eClass().getClassifierID()) {
@@ -127,8 +168,6 @@ public class InstanceScopeAnalysis {
             return new LetExpTracer((LetExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.OPERATION_CALL_EXP:
             return new OperationCallExpTracer((OperationCallExp) expression, tuplePartNames, oclFactory);
-        case ExpressionsPackage.OPPOSITE_PROPERTY_CALL_EXP:
-            return new OppositePropertyCallExpTracer((OppositePropertyCallExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.REAL_LITERAL_EXP:
             return new RealLiteralExpTracer((RealLiteralExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.STRING_LITERAL_EXP:
@@ -145,37 +184,6 @@ public class InstanceScopeAnalysis {
             return new InvalidlLiteralExpTracer((InvalidLiteralExp) expression, tuplePartNames, oclFactory);
         default:
             throw new RuntimeException("Unsupported expression type " + expression.eClass().getName());
-        }
-    }
-
-    /**
-     * @param expression
-     *            the OCL expression for which to perform instance scope impact analysis
-     * @param oppositeEndFinder
-     *            used during partial evaluation and for metamodel queries, e.g., finding opposite role names, or finding all
-     *            subclasses of a class; as well as for obtaining all instances of a type while performing an
-     *            {@link AllInstancesNavigationStep}. It is handed to the {@link PathCache} object from where
-     *            {@link Tracer}s can retrieve it using {@link PathCache#getOppositeEndFinder()}.
-     */
-    public InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer, OppositeEndFinder oppositeEndFinder, ActivationOption configuration, OCLFactory oclFactory) {
-        if (exprContext == null) {
-	    throw new IllegalArgumentException("exprContext must not be null. Maybe no context type specified to ImpactAnalyzerImpl constructor, and no self-expression found to infer it?");
-	}
-        if (expression == null || filterSynthesizer == null) {
-	    throw new IllegalArgumentException("Arguments must not be null");
-	}
-        context = exprContext;
-        this.oclFactory = oclFactory;
-        partialEvaluatorForAllInstancesDeltaPropagation = new PartialEvaluator(oclFactory);
-        this.filterSynthesizer = filterSynthesizer;
-        this.oppositeEndFinder = oppositeEndFinder;
-        this.configuration = configuration;
-        if (configuration.isTracebackStepISAActive()) {
-            tracebackStepCache = new TracebackStepCache(oppositeEndFinder);
-            pathCache = null;
-        } else {
-            pathCache = new PathCache(oppositeEndFinder);
-            tracebackStepCache = null;
         }
     }
 
@@ -445,7 +453,7 @@ public class InstanceScopeAnalysis {
      *            defines the type for <tt>self</tt> if used outside of operation bodies.
      */
     private NavigationStep getNavigationStepsToSelfForExpression(OCLExpression exp, EClass context) {
-        NavigationStep result = pathCache.getOrCreateNavigationPath(exp, context, filterSynthesizer, /* tupleLiteralNamesToLookFor */ null, oclFactory);
+        NavigationStep result = getPathCache().getOrCreateNavigationPath(exp, context, filterSynthesizer, /* tupleLiteralNamesToLookFor */ null, oclFactory);
         return result;
     }
 

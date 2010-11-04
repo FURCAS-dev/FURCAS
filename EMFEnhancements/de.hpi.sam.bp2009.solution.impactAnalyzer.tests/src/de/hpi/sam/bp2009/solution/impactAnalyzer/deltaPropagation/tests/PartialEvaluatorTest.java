@@ -45,10 +45,10 @@ import data.classes.MethodSignature;
 import data.classes.Parameter;
 import data.classes.SapClass;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLWithHiddenOppositesFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.OCLWithHiddenOppositesFactory;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
 public class PartialEvaluatorTest extends TestCase {

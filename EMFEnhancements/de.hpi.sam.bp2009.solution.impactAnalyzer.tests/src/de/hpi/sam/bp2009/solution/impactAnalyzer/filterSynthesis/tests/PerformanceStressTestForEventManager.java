@@ -38,10 +38,10 @@ import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.Statistics;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLWithHiddenOppositesFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.BenchmarkOCLPreparer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.ImpactAnalyzerWithHiddenOppositesFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.OCLWithHiddenOppositesFactory;
 
 
 public class PerformanceStressTestForEventManager extends TestCase {
@@ -172,7 +172,7 @@ public class PerformanceStressTestForEventManager extends TestCase {
     private void registerFilterForExpressionWithEventManager(OCLExpressionWithContext expression) {
         OCLExpression e = expression.getExpression();
         Statistics.getInstance().begin(FILTERCREATION, e);
-        EventFilter filter = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(e,
+        EventFilter filter = ImpactAnalyzerWithHiddenOppositesFactory.INSTANCE.createImpactAnalyzer(e,
                 expression.getContext(), /* notifyOnNewContextElements */ false,
                 new OCLWithHiddenOppositesFactory()).createFilterForExpression();
         Statistics.getInstance().end(FILTERCREATION, e);

@@ -25,5 +25,6 @@ Require-Bundle: org.eclipse.core.runtime,
  com.sap.emf.ocl.hiddenopposites,
  de.hpi.sam.bp2009.solution.queryContextScopeProvider,
  de.hpi.sam.bp2009.solution.oclToAst,
- de.hpi.sam.bp2009.solution.impactAnalyzer.editor
+ de.hpi.sam.bp2009.solution.impactAnalyzer.editor,
+ de.hpi.sam.bp2009.solution.impactAnalyzerWithHiddenOpposites
 Bundle-ActivationPolicy: lazy

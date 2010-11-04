@@ -1,4 +1,4 @@
-package de.hpi.sam.bp2009.solution.impactAnalyzer;
+package de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites;
 
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
@@ -6,6 +6,8 @@ import org.eclipse.ocl.ecore.OCL;
 import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 
 
 public class OCLWithHiddenOppositesFactory implements OCLFactory {

@@ -29,10 +29,10 @@ import company.Employee;
 import company.Freelance;
 import company.Student;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLWithHiddenOppositesFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.ImpactAnalyzerWithHiddenOppositesFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.OCLWithHiddenOppositesFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.BaseDepartmentTest;
 
 /**
@@ -1079,7 +1079,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
      * @return a Collection of {@link EObject}s representing the affected context instances.
      */
     private Collection<EObject> computeAffectedInstances(ExpressionInOCL eiocl, Notification noti) {
-        return ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer((OCLExpression) eiocl.getBodyExpression(),
+        return ImpactAnalyzerWithHiddenOppositesFactory.INSTANCE.createImpactAnalyzer((OCLExpression) eiocl.getBodyExpression(),
                 (EClass) eiocl.getContextVariable().getType(), /* notifyOnNewContextElements */ false,
                 new OCLWithHiddenOppositesFactory())
                 .getContextObjects(noti);
