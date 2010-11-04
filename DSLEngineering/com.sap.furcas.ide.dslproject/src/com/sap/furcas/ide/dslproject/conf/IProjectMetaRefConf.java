@@ -3,7 +3,6 @@ package com.sap.furcas.ide.dslproject.conf;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 
-import com.sap.furcas.utils.projects.ReferenceScopeBean;
 
 
 

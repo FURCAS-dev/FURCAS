@@ -257,7 +257,10 @@ public class ANTLR3GrammarWriter {
 	public void setGrammarName(final String grammarName) {
 		this.grammarName = grammarName;
 	}
-
+	
+	/**
+	 * Set the name of the java package that the parser class shall be later be placed in.
+	 */
 	public void setTargetPackage(String targetPackage) {
 		this.targetPackage = targetPackage;
 	}

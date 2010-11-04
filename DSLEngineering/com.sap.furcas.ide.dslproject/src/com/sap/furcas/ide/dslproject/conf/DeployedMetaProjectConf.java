@@ -14,7 +14,6 @@ import com.sap.furcas.ide.dslproject.Activator;
 import com.sap.furcas.ide.dslproject.Constants;
 import com.sap.furcas.ide.dslproject.builder.BuildHelper;
 import com.sap.furcas.utils.exceptions.EclipseExceptionHelper;
-import com.sap.furcas.utils.projects.ReferenceScopeBean;
 
 
 

@@ -31,7 +31,7 @@ import com.sap.furcas.runtime.parser.impl.ParsingError;
 /**
  * The Class TCSInputStreamGrammarGenerator, generates a Grammar based on an InputStream containing a TCS definition of a syntax.
  */
-public class TCSInputStreamGrammarGenerator extends AbstractTCSGrammarGenerator {
+public class InputStreamBasedTCSGrammarGenerator extends AbstractTCSGrammarGenerator {
 
     /** The syntax definition stream. */
     private final InputStream syntaxDefinitionStream;
@@ -41,25 +41,25 @@ public class TCSInputStreamGrammarGenerator extends AbstractTCSGrammarGenerator 
      * 
      * @param syntaxDefinitionStream
      *            the syntax definition stream
-     * @param out
-     *            the out
+     * @param outputStream
      * @param lookup
-     *            the lookup
-     * @param qualifiedNamesSeparator
      * @param targetPackage
+     *            the name of the java package the generated java class will be placed into.
+     *            It is required to prevent compilation errors.               
+     *          
      */
-    public TCSInputStreamGrammarGenerator(InputStream syntaxDefinitionStream, OutputStream out, IMetaModelLookup<?> lookup,
+    public InputStreamBasedTCSGrammarGenerator(InputStream syntaxDefinitionStream, OutputStream outputStream, IMetaModelLookup<?> lookup,
             String targetPackage) {
-        super(out, lookup, targetPackage);
+        super(outputStream, lookup, targetPackage);
         this.syntaxDefinitionStream = syntaxDefinitionStream;
     }
 
-    private TCSSyntaxContainerBean initMembers(InputStream definitionInputStream, ResourceSet connection, Set<URI> metamodelPRIs)
+    private TCSSyntaxContainerBean injectTCSModel(InputStream definitionInputStream, ResourceSet resourceSet, Set<URI> referenceScope)
             throws InvalidParserImplementationException, IOException, UnknownProductionRuleException, SyntaxParsingException {
 
         // By choosing this injector, we establish the dependency to EMF.
-        ModelInjectionResult result = TCSSpecificEMFModelInjector.parseSyntaxDefinition(definitionInputStream, connection,
-                metamodelPRIs, /* observer */null);
+        ModelInjectionResult result = TCSSpecificEMFModelInjector.parseSyntaxDefinition(definitionInputStream, resourceSet,
+                referenceScope, /* observer */null);
 
         List<ParsingError> errors = result.getResult().getErrors();
         if (errors != null && errors.size() > 0) {
@@ -77,16 +77,11 @@ public class TCSInputStreamGrammarGenerator extends AbstractTCSGrammarGenerator 
         return returnBean;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.sap.mi.textual.grammar.impl.tcs.t2m.AbstractTCSGrammarGenerator# doGetSyntaxDef()
-     */
     @Override
-    protected TCSSyntaxContainerBean doGetSyntaxDef(ResourceSet connection, Set<URI> metamodelPRIs) throws IOException,
+    protected TCSSyntaxContainerBean doGetSyntaxDef(ResourceSet resourceSet, Set<URI> referenceScope) throws IOException,
             SyntaxParsingException, ModelAdapterException, ParserInvokationException {
         try {
-            return initMembers(syntaxDefinitionStream, connection, metamodelPRIs);
+            return injectTCSModel(syntaxDefinitionStream, resourceSet, referenceScope);
         } catch (IllegalArgumentException e) {
             throw new ParserInvokationException(e);
         } catch (SecurityException e) {

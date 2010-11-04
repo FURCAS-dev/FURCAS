@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.sap.furcas.utils.projects;
+package com.sap.furcas.ide.dslproject.conf;
 
 import java.util.Set;
 

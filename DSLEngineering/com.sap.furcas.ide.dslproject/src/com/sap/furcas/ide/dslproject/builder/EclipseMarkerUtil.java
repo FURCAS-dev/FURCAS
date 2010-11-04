@@ -1,4 +1,4 @@
-package com.sap.furcas.parsergenerator.tcs.generator.errorhandling;
+package com.sap.furcas.ide.dslproject.builder;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -12,8 +12,9 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.swt.widgets.Shell;
 
-import com.sap.furcas.parsergenerator.Activator;
+import com.sap.furcas.ide.dslproject.Activator;
 import com.sap.furcas.runtime.parser.impl.ParsingError;
+
 
 public class EclipseMarkerUtil {
 

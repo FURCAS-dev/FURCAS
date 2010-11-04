@@ -3,7 +3,6 @@
  */
 package com.sap.mi.tcs.editor;
 
-import generated.TCSLexer;
 
 import org.antlr.runtime.Token;
 import org.eclipse.jface.text.TextAttribute;
@@ -11,6 +10,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.RGB;
 
+import com.sap.furcas.parser.tcs.stableversion.TCSLexer;
 import com.sap.ide.cts.editor.ITokenMapper;
 
 

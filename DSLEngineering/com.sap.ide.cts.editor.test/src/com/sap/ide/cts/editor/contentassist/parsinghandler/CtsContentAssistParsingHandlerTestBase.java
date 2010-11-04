@@ -1,11 +1,11 @@
 package com.sap.ide.cts.editor.contentassist.parsinghandler;
 
-import generated.TCSLexer;
-import generated.TCSParser;
 
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.sap.furcas.parser.tcs.stableversion.TCSLexer;
+import com.sap.furcas.parser.tcs.stableversion.TCSParser;
 import com.sap.furcas.parsing.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ParserFacade;
