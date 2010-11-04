@@ -19,8 +19,6 @@ import org.antlr.runtime.Parser;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
-import com.sap.furcas.runtime.parser.impl.ParsingError;
-import com.sap.furcas.runtime.parser.impl.TextLocation;
 import com.sap.furcas.runtime.parser.wrapper.GeneratedParserWrapper;
 
 

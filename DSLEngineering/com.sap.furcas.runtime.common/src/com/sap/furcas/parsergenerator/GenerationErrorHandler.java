@@ -1,8 +1,8 @@
-package com.sap.furcas.parsergenerator.tcs.generator.errorhandling;
+package com.sap.furcas.parsergenerator;
 
 import org.antlr.tool.Message;
 
-import com.sap.furcas.runtime.parser.impl.ParsingError;
+import com.sap.furcas.runtime.parser.ParsingError;
 
 public interface GenerationErrorHandler {
 

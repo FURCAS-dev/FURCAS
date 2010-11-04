@@ -4,9 +4,9 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
+import com.sap.furcas.parsergenerator.TCSParserGenerator;
+import com.sap.furcas.parsergenerator.TCSParserGeneratorFactory;
 import com.sap.furcas.runtime.common.exceptions.ParserGeneratorInvocationException;
-import com.sap.furcas.runtime.common.interfaces.TCSParserGenerator;
-import com.sap.furcas.runtime.common.interfaces.TCSParserGeneratorFactory;
 
 
 /**

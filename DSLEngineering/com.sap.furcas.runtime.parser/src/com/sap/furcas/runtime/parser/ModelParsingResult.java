@@ -11,8 +11,6 @@ package com.sap.furcas.runtime.parser;
 import java.util.List;
 import java.util.Map;
 
-import com.sap.furcas.runtime.parser.impl.ParsingError;
-import com.sap.furcas.runtime.parser.impl.TextLocation;
 
 
 

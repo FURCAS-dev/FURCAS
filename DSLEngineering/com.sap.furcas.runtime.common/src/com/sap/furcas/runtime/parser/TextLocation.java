@@ -6,10 +6,9 @@
  * Revision: $Revision: 6272 $
  * Author: $Author: c5106462 $
  *******************************************************************************/
-package com.sap.furcas.runtime.parser.impl;
+package com.sap.furcas.runtime.parser;
 
-import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
-
+ 
 
 /**
  * serves to store locations in a text. A location starts within some line, 
@@ -118,25 +117,34 @@ public class TextLocation {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         final TextLocation other = (TextLocation) obj;
-        if (endLine != other.endLine)
+        if (endLine != other.endLine) {
             return false;
-        if (endPosition != other.endPosition)
+        }
+        if (endPosition != other.endPosition) {
             return false;
-        if (index != other.index)
+        }
+        if (index != other.index) {
             return false;
-        if (startLine != other.startLine)
+        }
+        if (startLine != other.startLine) {
             return false;
-        if (startPosition != other.startPosition)
+        }
+        if (startPosition != other.startPosition) {
             return false;
-        if (stopindex != other.stopindex)
+        }
+        if (stopindex != other.stopindex) {
             return false;
+        }
         return true;
     }
     

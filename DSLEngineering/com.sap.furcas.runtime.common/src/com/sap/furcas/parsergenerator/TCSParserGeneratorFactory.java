@@ -1,7 +1,7 @@
-package com.sap.furcas.runtime.common.interfaces;
+package com.sap.furcas.parsergenerator;
 
+import com.sap.furcas.parsergenerator.impl.TCSParserGeneratorFactoryImpl;
 import com.sap.furcas.runtime.common.exceptions.ParserGeneratorInvocationException;
-import com.sap.furcas.runtime.common.implementation.TCSParserGeneratorFactoryImpl;
 
 
 /**
@@ -10,7 +10,6 @@ import com.sap.furcas.runtime.common.implementation.TCSParserGeneratorFactoryImp
  * @author Sebastian Schlag (D049672)
  *
  */
-
 public interface TCSParserGeneratorFactory {
     
     public static TCSParserGeneratorFactory INSTANCE = new TCSParserGeneratorFactoryImpl();

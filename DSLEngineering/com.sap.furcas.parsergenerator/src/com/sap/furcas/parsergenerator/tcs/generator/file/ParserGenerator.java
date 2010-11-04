@@ -9,8 +9,9 @@ import org.antlr.tool.Message;
 import org.antlr.tool.ToolMessage;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 
-import com.sap.furcas.parsergenerator.tcs.generator.errorhandling.GenerationErrorHandler;
+import com.sap.furcas.parsergenerator.GenerationErrorHandler;
 
 public class ParserGenerator {
 
@@ -41,6 +42,14 @@ public class ParserGenerator {
             errorhandler.warn(arg0);
         }
     };
+    
+    /**
+     * Reads the ANTLR grammar from the given grammar file and compiles it to java.
+     * The lexer and parser will be placed in the same folder as the grammar file. 
+     */
+    public static void buildParser(IFile grammarfile, GenerationErrorHandler errorhandler) {
+        buildParser(grammarfile, errorhandler, new NullProgressMonitor());
+    }
 
     /**
      * Reads the ANTLR grammar from the given grammar file and compiles it to java.

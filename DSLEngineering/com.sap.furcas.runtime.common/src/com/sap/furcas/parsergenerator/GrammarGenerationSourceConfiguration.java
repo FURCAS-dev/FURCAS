@@ -1,4 +1,4 @@
-package com.sap.furcas.parsergenerator.tcs.generator.file;
+package com.sap.furcas.parsergenerator;
 
 import java.util.Set;
 
@@ -6,6 +6,12 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
+/**
+ * File-based configuration bean for the {@link TCSParserGenerator}.  
+ * 
+ * @author Stephan Erb (d049157)
+ *
+ */
 public class GrammarGenerationSourceConfiguration {
     
     private final IFile syntaxDefFile;

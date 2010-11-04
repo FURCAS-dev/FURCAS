@@ -13,7 +13,7 @@ import java.util.Set;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
-import com.sap.furcas.runtime.parser.impl.TextLocation;
+import com.sap.furcas.runtime.parser.TextLocation;
 
 
 /**

@@ -6,9 +6,8 @@
  * Revision: $Revision: 6272 $
  * Author: $Author: c5106462 $
  *******************************************************************************/
-package com.sap.furcas.runtime.parser.impl;
+package com.sap.furcas.runtime.parser;
 
-import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
 
 
 /**
@@ -17,7 +16,7 @@ import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
 public class ParsingError {
 
 	/** The message. */
-	private String message;
+	private final String message;
 	
 	private TextLocation location;
 	
@@ -96,12 +95,11 @@ public class ParsingError {
         return location.getEndPosition();
     }
 
-
-    
     public TextLocation getLocation() {
         return location;
     }
 
+    @Override
     public String toString() {
         return "ParsingError: \"" + this.getMessage() +  "\" at " +  this.getLine() + ":" + getPosition() + "-" + getEndLine() + ":" + getEndPosition();
     }
@@ -118,23 +116,30 @@ public class ParsingError {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         final ParsingError other = (ParsingError) obj;
         if (location == null) {
-            if (other.location != null)
+            if (other.location != null) {
                 return false;
-        } else if (!location.equals(other.location))
+            }
+        } else if (!location.equals(other.location)) {
             return false;
+        }
         if (message == null) {
-            if (other.message != null)
+            if (other.message != null) {
                 return false;
-        } else if (!message.equals(other.message))
+            }
+        } else if (!message.equals(other.message)) {
             return false;
+        }
         return true;
     }
 	

@@ -1,12 +1,20 @@
-package com.sap.furcas.parsergenerator.tcs.generator.file;
+package com.sap.furcas.parsergenerator;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 
+/**
+ * Configuration bean for the {@link TCSParserGenerator}. It is basically
+ * used to configure where generated grammars and parsers shall be stored.
+ * 
+ * @author Stephan Erb (d049157)
+ *
+ */
 public class GrammarGenerationTargetConfiguration {
 
     private final String parserPackageName;
     private final IFile grammarFile;
+
     
     public GrammarGenerationTargetConfiguration(String parserPackageName, IFile grammarFile) {
         this.parserPackageName = parserPackageName;

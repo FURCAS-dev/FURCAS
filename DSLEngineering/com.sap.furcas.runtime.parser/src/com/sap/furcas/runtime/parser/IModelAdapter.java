@@ -19,7 +19,6 @@ import com.sap.furcas.runtime.common.exceptions.DeferredActionResolvingException
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.ReferenceSettingException;
 import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
-import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
 
 
 /**

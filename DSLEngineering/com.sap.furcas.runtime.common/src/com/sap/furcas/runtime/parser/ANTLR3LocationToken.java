@@ -7,7 +7,7 @@
  * Revision: $Revision: 6272 $
  * Author: $Author: c5106462 $
  *******************************************************************************/
-package com.sap.furcas.runtime.parser.antlr3;
+package com.sap.furcas.runtime.parser;
 
 import org.antlr.runtime.Token;
 
