@@ -24,8 +24,9 @@ import com.sap.furcas.ide.dslproject.conf.ReferenceScopeBean;
 import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
 import com.sap.furcas.parsergenerator.GrammarGenerationTargetConfiguration;
-import com.sap.furcas.parsergenerator.tcs.generator.file.ParserGenerator;
-import com.sap.furcas.parsergenerator.tcs.generator.file.GrammarGenerator;
+import com.sap.furcas.parsergenerator.TCSParserGenerator;
+import com.sap.furcas.parsergenerator.TCSParserGeneratorFactory;
+import com.sap.furcas.runtime.common.exceptions.ParserGeneratorInvocationException;
 import com.sap.furcas.utils.exceptions.EclipseExceptionHelper;
 
 /**
@@ -169,19 +170,20 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
                 GrammarGenerationTargetConfiguration targetConfig = new GrammarGenerationTargetConfiguration(getGrammarFile(syntaxDefFile));
                 IFile gammarFile = targetConfig.getGrammarTargetFile();
 
-                GrammarGenerator.buildGrammar(sourceConfig, targetConfig, new ResourceMarkingGenerationErrorHandler(
-                        syntaxDefFile), new SubProgressMonitor(monitor, 50));
+                TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
+                generator.generateGrammarFromSyntax(sourceConfig, targetConfig, new ResourceMarkingGenerationErrorHandler(
+                        syntaxDefFile));
                 
                 if (gammarFile.exists()) {
-                    ParserGenerator.buildParser(gammarFile,
-                            new ResourceMarkingGenerationErrorHandler(gammarFile),
-                            new SubProgressMonitor(monitor, 50));
+                    generator.generateParserFromGrammar(targetConfig, new ResourceMarkingGenerationErrorHandler(gammarFile));
 
                     // refresh dir where java was generated so that Java builder can compile
                     gammarFile.getParent().refreshLocal(1, new SubProgressMonitor(monitor, 10));
                 }
             } catch (GrammarGenerationException e) {
                throw new CoreException(EclipseExceptionHelper.getErrorStatus(e, Activator.PLUGIN_ID));
+            } catch (ParserGeneratorInvocationException e) {
+                throw new CoreException(EclipseExceptionHelper.getErrorStatus(e, Activator.PLUGIN_ID));
             } finally {
                 monitor.done();
             }
