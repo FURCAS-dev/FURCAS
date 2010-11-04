@@ -2,6 +2,7 @@ package com.sap.furcas.ide.dslproject.builder;
 
 import java.util.Map;
 
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
@@ -11,17 +12,21 @@ import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.SubProgressMonitor;
 
 import com.sap.furcas.ide.dslproject.Activator;
 import com.sap.furcas.ide.dslproject.Constants;
 import com.sap.furcas.ide.dslproject.conf.IProjectMetaRefConf;
 import com.sap.furcas.ide.dslproject.conf.ReferenceScopeBean;
-import com.sap.furcas.parsergenerator.tcs.generator.file.DefaultFileGenerationTargetConfiguration;
-import com.sap.furcas.parsergenerator.tcs.generator.file.FileBasedGrammarGenerator;
-import com.sap.furcas.parsergenerator.tcs.generator.file.FileBasedParserGenerator;
-import com.sap.furcas.parsergenerator.tcs.generator.file.FileGenerationSourceConfiguration;
+import com.sap.furcas.parsergenerator.tcs.generator.file.ParserGenerator;
+import com.sap.furcas.parsergenerator.tcs.generator.file.GrammarGenerationSourceConfiguration;
+import com.sap.furcas.parsergenerator.tcs.generator.file.GrammarGenerationTargetConfiguration;
+import com.sap.furcas.parsergenerator.tcs.generator.file.GrammarGenerator;
+import com.sap.furcas.runtime.common.exceptions.GrammarGenerationException;
+import com.sap.furcas.utils.exceptions.EclipseExceptionHelper;
 
 /**
  * An incremental project builder for .tcs-files. It generates lexer, parser and mapping according to .tcs-files found within a
@@ -31,6 +36,8 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
 
     /** The Constant BUILDER_ID. */
     public static final String BUILDER_ID = Activator.class.getPackage().getName() + ".syntaxBuilder";
+    private static final String GRAMMAR_ANTLR_POSTFIX = ".g";
+
 
     /**
      * Runs a full build
@@ -157,22 +164,24 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
         if (conf != null) {
             ReferenceScopeBean refScopeBean = conf.getMetaLookUpForProject();
             try {
-                FileGenerationSourceConfiguration sourceConfig = new FileGenerationSourceConfiguration(syntaxDefFile,
+                GrammarGenerationSourceConfiguration sourceConfig = new GrammarGenerationSourceConfiguration(syntaxDefFile,
                         refScopeBean.getResourceSet(), refScopeBean.getReferenceScope());
-                DefaultFileGenerationTargetConfiguration targetConfig = new DefaultFileGenerationTargetConfiguration(syntaxDefFile);
+                GrammarGenerationTargetConfiguration targetConfig = new GrammarGenerationTargetConfiguration(getGrammarFile(syntaxDefFile));
                 IFile gammarFile = targetConfig.getGrammarTargetFile();
 
-                FileBasedGrammarGenerator.buildGrammar(sourceConfig, targetConfig, new ResourceMarkingGenerationErrorHandler(
+                GrammarGenerator.buildGrammar(sourceConfig, targetConfig, new ResourceMarkingGenerationErrorHandler(
                         syntaxDefFile), new SubProgressMonitor(monitor, 50));
                 
                 if (gammarFile.exists()) {
-                    FileBasedParserGenerator.buildParser(gammarFile,
+                    ParserGenerator.buildParser(gammarFile,
                             new ResourceMarkingGenerationErrorHandler(gammarFile),
                             new SubProgressMonitor(monitor, 50));
 
                     // refresh dir where java was generated so that Java builder can compile
                     gammarFile.getParent().refreshLocal(1, new SubProgressMonitor(monitor, 10));
                 }
+            } catch (GrammarGenerationException e) {
+               throw new CoreException(EclipseExceptionHelper.getErrorStatus(e, Activator.PLUGIN_ID));
             } finally {
                 monitor.done();
             }
@@ -181,9 +190,22 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
             String message = "Build failed: Project " + project.getName()
                     + " has DSL Syntax Definition Nature but no metamodel reference configured.";
             EclipseMarkerUtil.addMarker(project, message, -1, IMarker.SEVERITY_ERROR);
-
         }
+    }
+    
+    private static IFile getGrammarFile(IFile syntaxDefFile) {
+        IContainer directory = syntaxDefFile.getParent();
+        String newFileName = getFileNameBase(syntaxDefFile) + GRAMMAR_ANTLR_POSTFIX;
+        IFile newFile = directory.getFile(new Path(IPath.SEPARATOR + newFileName));
+        return newFile;
+    }
 
+    private static String getFileNameBase(IFile file) {
+        String fileName = file.getName();
+        // "s m i  l e s".substring(1, 5) returns "mile"
+        // 0 1 2 3 4 5
+        String newFileName = fileName.substring(0, (fileName.length() - file.getFileExtension().length() - 1)); // -1
+        return newFileName;
     }
 
     @Override

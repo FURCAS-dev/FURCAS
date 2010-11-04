@@ -1,4 +1,4 @@
-package com.sap.furcas.parsergenerator.base;
+package com.sap.furcas.parsergenerator.emf.lookup;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
-import com.sap.furcas.parsergenerator.emf.lookup.QueryBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 
 public class FileBasedEcoreMetaModelLookUp extends QueryBasedEcoreMetaModelLookUp {

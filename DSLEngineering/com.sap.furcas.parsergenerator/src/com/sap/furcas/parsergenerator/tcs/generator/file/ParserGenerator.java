@@ -12,7 +12,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 
 import com.sap.furcas.parsergenerator.tcs.generator.errorhandling.GenerationErrorHandler;
 
-public class FileBasedParserGenerator {
+public class ParserGenerator {
 
     private static class DelegatingANTLRErrorListener implements ANTLRErrorListener {
         private final GenerationErrorHandler errorhandler;
@@ -78,4 +78,5 @@ public class FileBasedParserGenerator {
 	    monitor.done();
 	}
     }
+    
 }

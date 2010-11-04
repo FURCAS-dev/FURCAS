@@ -8,14 +8,9 @@ import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.core.runtime.NullProgressMonitor;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
-import com.sap.furcas.parsergenerator.Activator;
 import com.sap.furcas.parsergenerator.emf.lookup.QueryBasedEcoreMetaModelLookUp;
 import com.sap.furcas.parsergenerator.tcs.generator.errorhandling.GenerationErrorHandler;
 import com.sap.furcas.parsergenerator.tcs.t2m.InputStreamBasedTCSGrammarGenerator;
@@ -27,31 +22,43 @@ import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.parser.impl.ParsingError;
 import com.sap.furcas.runtime.parser.impl.TextLocation;
-import com.sap.furcas.utils.exceptions.EclipseExceptionHelper;
 
 /**
  * Reads a syntax definition given as a file and generates a ANTLR gramamr for it.
  * 
  * TODO: In the feature me way want to start with a syntax model, not with a syntax file.
  */
-public class FileBasedGrammarGenerator {
+public class GrammarGenerator {
 
     /**
      * Takes a syntax definition in file form, parses that file and then writes a corresponding ANTLR grammar to the given grammar file.
+     * @throws GrammarGenerationException 
      */
-    public static void buildGrammar(FileGenerationSourceConfiguration sourceConfiguration,
-            FileGenerationTargetConfiguration targetConfiguration, GenerationErrorHandler errorhandler, IProgressMonitor monitor)
-            throws CoreException {
-
+    public static void buildGrammar(GrammarGenerationSourceConfiguration sourceConfiguration,
+            GrammarGenerationTargetConfiguration targetConfiguration, GenerationErrorHandler errorhandler)
+            throws GrammarGenerationException {
+        
+        buildGrammar(sourceConfiguration, targetConfiguration, errorhandler, /* use default parser super class */null, new NullProgressMonitor());
+    }
+    
+    /**
+     * Takes a syntax definition in file form, parses that file and then writes a corresponding ANTLR grammar to the given grammar file.
+     * @throws GrammarGenerationException 
+     */
+    public static void buildGrammar(GrammarGenerationSourceConfiguration sourceConfiguration,
+            GrammarGenerationTargetConfiguration targetConfiguration, GenerationErrorHandler errorhandler, IProgressMonitor monitor)
+            throws GrammarGenerationException {
+        
         buildGrammar(sourceConfiguration, targetConfiguration, errorhandler, /* use default parser super class */null, monitor);
     }
 
     /**
      * Takes a syntax definition in file form, parses that file and then writes a corresponding ANTLR grammar to the given grammar file.
+     * @throws GrammarGenerationException 
      */
-    public static void buildGrammar(FileGenerationSourceConfiguration sourceConfiguration,
-            FileGenerationTargetConfiguration targetConfiguration, GenerationErrorHandler errorhandler,
-            Class<? extends ObservableInjectingParser> parserSuperClass, IProgressMonitor monitor) throws CoreException {
+    public static void buildGrammar(GrammarGenerationSourceConfiguration sourceConfiguration,
+            GrammarGenerationTargetConfiguration targetConfiguration, GenerationErrorHandler errorhandler,
+            Class<? extends ObservableInjectingParser> parserSuperClass, IProgressMonitor monitor) throws GrammarGenerationException {
 
         InputStream inputStream = null;
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -63,13 +70,13 @@ public class FileBasedGrammarGenerator {
         } catch (SyntaxParsingException e) {
             handleSyntaxParsingException(errorhandler, e);
         } catch (ModelAdapterException e) {
-            throw new CoreException(EclipseExceptionHelper.getErrorStatus(e, Activator.PLUGIN_ID));
-        } catch (GrammarGenerationException e) {
-            throw new CoreException(EclipseExceptionHelper.getErrorStatus(e, Activator.PLUGIN_ID));
+            throw new GrammarGenerationException("Model adapter failed", e);
         } catch (IOException e) {
-            throw new CoreException(EclipseExceptionHelper.getErrorStatus(e, Activator.PLUGIN_ID));
+            throw new GrammarGenerationException("Grammar generation failed with IO error", e);
         } catch (ParserInvokationException e) {
-            throw new CoreException(EclipseExceptionHelper.getErrorStatus(e, Activator.PLUGIN_ID));
+            throw new GrammarGenerationException("Failed to instantiate the TCS Parser", e);
+        } catch (CoreException e) {
+            throw new GrammarGenerationException("Grammar generation failed with IO error", e);
         } finally {
             try {
                 outputStream.close();
@@ -77,13 +84,13 @@ public class FileBasedGrammarGenerator {
                     inputStream.close();
                 }
             } catch (IOException e) {
-                throw new CoreException(EclipseExceptionHelper.getErrorStatus(e, Activator.PLUGIN_ID));
+                throw new GrammarGenerationException("Grammar generation failed with IO error", e);
             }
         }
     }
 
-    private static void parseSyntaxAndGenerateGrammar(FileGenerationSourceConfiguration sourceConfiguration,
-            FileGenerationTargetConfiguration targetConfiguration, Class<? extends ObservableInjectingParser> parserSuperClass,
+    private static void parseSyntaxAndGenerateGrammar(GrammarGenerationSourceConfiguration sourceConfiguration,
+            GrammarGenerationTargetConfiguration targetConfiguration, Class<? extends ObservableInjectingParser> parserSuperClass,
             GenerationErrorHandler errorhandler, IProgressMonitor monitor, InputStream inputStream,
             ByteArrayOutputStream outputStream) throws ParserInvokationException, SyntaxParsingException, IOException,
             ModelAdapterException, GrammarGenerationException, CoreException {
@@ -96,7 +103,8 @@ public class FileBasedGrammarGenerator {
         GenerationReport report = generator.generateGrammar(sourceConfiguration.getResourceSet(),
                 sourceConfiguration.getReferenceScope(), parserSuperClass);
 
-        writeMappingToFile(targetConfiguration.getMappingTargetFile(), report.getSyntax());
+        // TODO Not needed for now. Keep it disabled until we have a reasonable way to test
+        // writeMappingToFile(targetConfiguration.getMappingTargetFile(), report.getSyntax());
 
         IFile grammarFile = targetConfiguration.getGrammarTargetFile();
         boolean hasErrors = checkForErrorsAndReport(grammarFile, report, errorhandler);
@@ -127,8 +135,7 @@ public class FileBasedGrammarGenerator {
         return hasErrors;
     }
 
-    private static void writeGrammarToFile(IFile grammarFile, ByteArrayOutputStream outputStream, IProgressMonitor monitor)
-            throws CoreException {
+    private static void writeGrammarToFile(IFile grammarFile, ByteArrayOutputStream outputStream, IProgressMonitor monitor) throws CoreException {
         InputStream resultingIn = new ByteArrayInputStream(outputStream.toByteArray());
         monitor.worked(50);
         if (grammarFile.exists()) {
@@ -141,45 +148,44 @@ public class FileBasedGrammarGenerator {
         return grammarFile.getName().substring(0, grammarFile.getName().length() - (grammarFile.getFileExtension().length() + 1));
     }
 
-    /**
-     * Writes the given syntax to a default resource. The resource location is constructed within the src folder of the given
-     * <tt>project</tt> with the name of the {@link ConcreteSyntax syntax} postfixed with "Mapping.xmi". If the resource already
-     * exists it will be emptied.
-     * 
-     * @param project
-     * @param syntax
-     */
-    private static void writeMappingToFile(IFile mappingFile, ConcreteSyntax syntax) {
-        Resource resource = createOrLoadEmptyMappingResource(mappingFile, syntax.eResource().getResourceSet());
-        try {
-            resource.getContents().add(syntax);
-            resource.save(null);
-        } catch (IOException e) {
-            Activator.logger.logError("Failed to write mapping to file", e);
-        }
-    }
-
-    private static Resource createOrLoadEmptyMappingResource(IFile mappingFile, ResourceSet resourceSet) {
-        IPath partitionRelativePath = mappingFile.getProjectRelativePath();
-        Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(partitionRelativePath.toString(), true), true);
-        if (resource != null) {
-            resource.getContents().clear();
-        } else {
-            resource = resourceSet.createResource(URI.createPlatformResourceURI(partitionRelativePath.toString(), true));
-        }
-        return resource;
-    }
+// TODO Not needed for now. Keep it disabled until we have a reason to use (and test) it
+//    /**
+//     * Writes the given syntax to a default resource. The resource location is constructed within the src folder of the given
+//     * <tt>project</tt> with the name of the {@link ConcreteSyntax syntax} postfixed with "Mapping.xmi". If the resource already
+//     * exists it will be emptied.
+//     * 
+//     * @param project
+//     * @param syntax
+//     */
+//    private static void writeMappingToFile(IFile mappingFile, ConcreteSyntax syntax) {
+//        Resource resource = createOrLoadEmptyMappingResource(mappingFile, syntax.eResource().getResourceSet());
+//        try {
+//            resource.getContents().add(syntax);
+//            resource.save(null);
+//        } catch (IOException e) {
+//            Activator.logger.logError("Failed to write mapping to file", e);
+//        }
+//    }
+//    private static Resource createOrLoadEmptyMappingResource(IFile mappingFile, ResourceSet resourceSet) {
+//        IPath partitionRelativePath = mappingFile.getProjectRelativePath();
+//        Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(partitionRelativePath.toString(), true), true);
+//        if (resource != null) {
+//            resource.getContents().clear();
+//        } else {
+//            resource = resourceSet.createResource(URI.createPlatformResourceURI(partitionRelativePath.toString(), true));
+//        }
+//        return resource;
+//    }
 
     private static void handleSyntaxParsingException(GenerationErrorHandler errorhandler, SyntaxParsingException e)
-            throws CoreException {
+            throws GrammarGenerationException {
         List<ParsingError> errors = e.getErrorList();
         if (errors != null) {
             for (ParsingError parsingError : errors) {
                 errorhandler.fatalError(parsingError);
             }
         } else {
-            throw new CoreException(EclipseExceptionHelper.getErrorStatus("No Parsing Errors delievered with " + e.getMessage(),
-                    Activator.PLUGIN_ID));
+            throw new GrammarGenerationException("No Parsing Errors delievered with " + e.getMessage());
         }
     }
 
