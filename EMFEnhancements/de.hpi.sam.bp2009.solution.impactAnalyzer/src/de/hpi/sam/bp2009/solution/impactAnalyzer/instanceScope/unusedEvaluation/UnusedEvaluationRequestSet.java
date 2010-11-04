@@ -7,10 +7,12 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.Variable;
 
-import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.VariableValueNotFoundInfo;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache;
@@ -149,13 +151,14 @@ public class UnusedEvaluationRequestSet {
      * is aborted immediately, and the method just returns the fact that one of the requests evaluated to <code>true</code>. If
      * the request evaluation fails due to an unknown variable, the request is returned in the
      * {@link UnusedEvaluationResult#getNewRequestSet() new request set} keyed by the now unknown variable.
+     * @param oclFactory TODO
      * 
      * @return a result that tells whether unusedness could be proven and which tells the potentially transformed
      * next {@link UnusedEvaluationRequestSet} which may be this unchanged object in case no request had a slot for
      * the variable inferred, or a new set which contains the re-organized and possibly cloned requests.
      */
     public UnusedEvaluationResult setVariable(Variable variable, EObject value, OppositeEndFinder oppositeEndFinder,
-            de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache) {
+            de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, OCLFactory oclFactory) {
         UnusedEvaluationResult result;
         boolean changed = false;
         Map<Variable, Set<UnusedEvaluationRequest>> newRequestSet = new HashMap<Variable, Set<UnusedEvaluationRequest>>();
@@ -189,7 +192,7 @@ public class UnusedEvaluationRequestSet {
             newRequestSet.remove(variable);
             changed = true;
             UnusedEvaluationRequestSet nextSet = new UnusedEvaluationRequestSet(newRequestSet);
-            UnusedEvaluationResult preResult = evaluate(triggered, oppositeEndFinder, tracebackCache);
+            UnusedEvaluationResult preResult = evaluate(triggered, oppositeEndFinder, tracebackCache, oclFactory);
             result = new UnusedEvaluationResult(preResult.hasProvenUnused(), nextSet.merge(preResult.getNewRequestSet()));
         } else {
             result = new UnusedEvaluationResult(/* provedUnused */ false, changed ? new UnusedEvaluationRequestSet(newRequestSet) : this);
@@ -199,7 +202,7 @@ public class UnusedEvaluationRequestSet {
 
     /**
      * Evaluates the <code>requestsToEvaluate</code>. If any of them returns <code>true</code> from its
-     * {@link UnusedEvaluationRequest#evaluate(OppositeEndFinder)} method, a result will be returned that returns
+     * {@link UnusedEvaluationRequest#evaluate(OppositeEndFinder, OCL)} method, a result will be returned that returns
      * <code>true</code> from its {@link UnusedEvaluationResult#hasProvenUnused()} method. Otherwise, that result's method will
      * return <code>false</code>. If any request's evaluation failed for an unknown variable, the request will be added to a new
      * {@link UnusedEvaluationRequestSet} which is part of this method's result (see
@@ -210,7 +213,7 @@ public class UnusedEvaluationRequestSet {
      *            new, empty {@link UnusedEvaluationRequestSet}.
      */
     public static UnusedEvaluationResult evaluate(Collection<UnusedEvaluationRequest> requestsToEvaluate,
-            OppositeEndFinder oppositeEndFinder, TracebackCache tracebackCache) {
+            OppositeEndFinder oppositeEndFinder, TracebackCache tracebackCache, OCLFactory oclFactory) {
         UnusedEvaluationResult result = null;
         Map<Variable, Set<UnusedEvaluationRequest>> newRequestSet = null;
         if (requestsToEvaluate != null) {
@@ -221,7 +224,7 @@ public class UnusedEvaluationRequestSet {
                     evaluationResult = request.checkValuePresentForAllRequiredVariables();
                     if (evaluationResult == null) { // all inevitably required variables defined
                         try {
-                            evaluationResult = request.evaluate(oppositeEndFinder);
+                            evaluationResult = request.evaluate(oppositeEndFinder, oclFactory);
                         } catch (ValueNotFoundException vnfe) {
                             evaluationResult = vnfe;
                         }

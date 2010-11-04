@@ -26,10 +26,10 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.OCLHelper;
 
-import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
 import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.EvaluationEnvironmentWithHiddenOppositesImpl;
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
+import com.sap.emf.oppositeendfinder.DefaultOppositeEndFinder;
 
 /**
  * Shows the "operation names collision" bug. When defining a new EOperations

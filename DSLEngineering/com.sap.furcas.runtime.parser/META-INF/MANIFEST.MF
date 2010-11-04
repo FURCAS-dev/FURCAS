@@ -2,7 +2,7 @@ daManifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Parsing
 Bundle-SymbolicName: com.sap.furcas.runtime.parser;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.0.0
 Bundle-ClassPath: 
  bin/,
  .

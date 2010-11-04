@@ -11,11 +11,12 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.TupleType;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 
 public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
-    public PropertyCallExpTracer(PropertyCallExp expression, Stack<String> tuplePartNames) {
-        super(expression, tuplePartNames);
+    public PropertyCallExpTracer(PropertyCallExp expression, Stack<String> tuplePartNames, OCLFactory oclFactory) {
+        super(expression, tuplePartNames, oclFactory);
     }
 
     @Override
@@ -76,7 +77,7 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
 	    return getNavigationStepForTuplePartAccess(context, pathCache, operationBodyToCallMapper, sourceExp);
 	else {
             NavigationStep sourceStep = pathCache.getOrCreateNavigationPath(sourceExp, context, operationBodyToCallMapper,
-                    getTupleLiteralPartNamesToLookFor());
+                    getTupleLiteralPartNamesToLookFor(), oclFactory);
             EReference forwardRef = (EReference) getExpression().getReferredProperty();
             NavigationStep reverseTraversal;
             if (forwardRef.getEOpposite() != null) {
@@ -102,7 +103,7 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
             OperationBodyToCallMapper operationBodyToCallMapper, OCLExpression sourceExp) {
         String referredAttributeName = getExpression().getReferredProperty().getName();
         return pathCache.getOrCreateNavigationPath((OCLExpression) getExpression().getSource(), context, operationBodyToCallMapper,
-                getExtendedListOfTuplePartNames(referredAttributeName));
+                getExtendedListOfTuplePartNames(referredAttributeName), oclFactory);
     }
 
     private NavigationStep handleAttributeCall(EClass context, PathCache pathCache, OperationBodyToCallMapper operationBodyToCallMapper) {
@@ -114,6 +115,6 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
 	    return pathCache.navigationStepFromSequence(getExpression(), getTupleLiteralPartNamesToLookFor(),
                     new RefImmediateCompositeNavigationStep((EClass) getExpression().getType(), (EClass) sourceType,
                             getExpression()), pathCache.getOrCreateNavigationPath(sourceExp, context, operationBodyToCallMapper,
-                            getTupleLiteralPartNamesToLookFor()));
+                            getTupleLiteralPartNamesToLookFor(), oclFactory));
     }
 }

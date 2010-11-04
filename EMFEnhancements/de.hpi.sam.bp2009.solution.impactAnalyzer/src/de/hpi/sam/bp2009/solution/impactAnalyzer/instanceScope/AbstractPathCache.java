@@ -12,8 +12,9 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
 
-import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
 
@@ -71,9 +72,27 @@ public abstract class AbstractPathCache<StepType> {
      * query.
      */
     private final OppositeEndFinder oppositeEndFinder;
+    
+    private InstanceScopeAnalysis instanceScopeAnalysis;
 
-    public AbstractPathCache(OppositeEndFinder oppositeEndFinder) {
+    public AbstractPathCache(OppositeEndFinder oppositeEndFinder, InstanceScopeAnalysis instanceScopeAnalysis) {
         this.oppositeEndFinder = oppositeEndFinder;
+        this.instanceScopeAnalysis = instanceScopeAnalysis;
+    }
+
+    /**
+     * Call only immediately after the constructor was called and only in case <code>null</code> was passed for
+     * the constructor's <code>instanceScopeAnalysis</code> argument.
+     */
+    public void initInstanceScopeAnalysis(InstanceScopeAnalysis instanceScopeAnalysis) {
+        if (this.instanceScopeAnalysis != null) {
+            throw new IllegalStateException("instanceScopeAnalysis field on "+this+" already initialized");
+        }
+        this.instanceScopeAnalysis = instanceScopeAnalysis;
+    }
+
+    public InstanceScopeAnalysis getInstanceScopeAnalysis() {
+        return instanceScopeAnalysis;
     }
 
     public OppositeEndFinder getOppositeEndFinder() {
@@ -114,16 +133,16 @@ public abstract class AbstractPathCache<StepType> {
     }
 
     public StepType getOrCreateNavigationPath(OCLExpression sourceExpression, EClass context,
-            OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor) {
+            OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, OCLFactory oclFactory) {
         StepType result = getPathForNode(sourceExpression, tupleLiteralNamesToLookFor);
         if (result == null) {
-            result = createStep(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor);
+            result = createStep(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, oclFactory);
             put(sourceExpression, tupleLiteralNamesToLookFor, result);
         }
         return result;
     }
 
     protected abstract StepType createStep(OCLExpression sourceExpression, EClass context,
-            OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor);
+            OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, OCLFactory oclFactory);
 
 }

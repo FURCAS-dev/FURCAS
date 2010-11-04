@@ -66,23 +66,34 @@ public class UnusedEvaluationRequestFactory {
             Map<Variable, Object> inferredVariableValues, Set<Variable> slots) {
         UnusedEvaluationRequest result = lookUp(expression, resultIndicatingUnused, inferredVariableValues, slots);
         if (result == null) {
-            result = new UnusedEvaluationRequest(expression, resultIndicatingUnused, inferredVariableValues, slots);
+            result = createUnusedEvaluationRequest(expression, resultIndicatingUnused, inferredVariableValues, slots);
             cache.put(result.getSemanticIdentity(), new WeakReference<UnusedEvaluationRequest>(result));
         }
         return result;
+    }
+
+    protected UnusedEvaluationRequest createUnusedEvaluationRequest(OCLExpression expression, Object resultIndicatingUnused,
+            Map<Variable, Object> inferredVariableValues, Set<Variable> slots) {
+        return new UnusedEvaluationRequest(expression, resultIndicatingUnused, inferredVariableValues, slots);
+    }
+
+    protected UnusedEvaluationRequest createUnusedEvaluationRequest(OCLExpression expression, Object resultIndicatingUnused,
+            Map<Variable, Object> inferredVariableValues, Set<Variable> slots, Set<VariableExp> inevitableVariableUsages) {
+        return new UnusedEvaluationRequest(expression, resultIndicatingUnused, inferredVariableValues, slots, inevitableVariableUsages);
     }
 
     public UnusedEvaluationRequest getUnusedEvaluationRequest(OCLExpression expression, Object resultIndicatingUnused,
             Map<Variable, Object> inferredVariableValues, Set<Variable> slots, Set<VariableExp> inevitableVariableUsages) {
         UnusedEvaluationRequest result = lookUp(expression, resultIndicatingUnused, inferredVariableValues, slots);
         if (result == null) {
-            result = new UnusedEvaluationRequest(expression, resultIndicatingUnused, inferredVariableValues, slots, inevitableVariableUsages);
+            result = createUnusedEvaluationRequest(expression, resultIndicatingUnused, inferredVariableValues, slots,
+                    inevitableVariableUsages);
             cache.put(result.getSemanticIdentity(), new WeakReference<UnusedEvaluationRequest>(result));
         }
         return result;
     }
 
-    private UnusedEvaluationRequest lookUp(OCLExpression expression, Object resultIndicatingUnused,
+    protected UnusedEvaluationRequest lookUp(OCLExpression expression, Object resultIndicatingUnused,
             Map<Variable, Object> inferredVariableValues, Set<Variable> slots) {
         UnusedEvaluationRequestValue key = new SemanticIdentityWithFields(inferredVariableValues, slots, expression, resultIndicatingUnused);
         WeakReference<UnusedEvaluationRequest> weakRef = cache.get(key);

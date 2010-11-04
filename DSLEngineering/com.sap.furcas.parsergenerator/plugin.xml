@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="com.sap.furcas.parsergenerator.tcsparsergenerator" name="TCSParsergenerator" schema="schema/com.sap.furcas.parsergenerator.tcsparsergenerator.exsd"/>
+   <extension
+         point="com.sap.furcas.parsergenerator.tcsparsergenerator">
+      <client
+            class="TCSParserGeneratorImpl">
+      </client>
+   </extension>
+
+</plugin>

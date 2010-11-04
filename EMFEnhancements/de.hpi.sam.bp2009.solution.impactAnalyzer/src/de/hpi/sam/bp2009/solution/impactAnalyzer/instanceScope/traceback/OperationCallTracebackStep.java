@@ -8,16 +8,14 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.TypeExp;
-import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.utilities.PredefinedType;
 
-import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
-import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.InstanceScopeAnalysis;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestFactory;
@@ -84,12 +82,12 @@ public class OperationCallTracebackStep extends BranchingTracebackStep<Operation
 
     public OperationCallTracebackStep(OperationCallExp sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor,
-            TracebackStepCache tracebackStepCache, UnusedEvaluationRequestFactory unusedEvaluationRequestFactory) {
-        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder(), operationBodyToCallMapper, unusedEvaluationRequestFactory);
+            TracebackStepCache tracebackStepCache, UnusedEvaluationRequestFactory unusedEvaluationRequestFactory, OCLFactory oclFactory) {
+        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder(), operationBodyToCallMapper, unusedEvaluationRequestFactory, oclFactory);
         oppositeEndFinder = tracebackStepCache.getOppositeEndFinder();
         // important to enter this step before recursive lookups may occur:
         tracebackStepCache.put(sourceExpression, tupleLiteralNamesToLookFor, this);
-        OCLExpression body = getOperationBody(sourceExpression);
+        OCLExpression body = operationBodyToCallMapper.getOperationBody(sourceExpression.getReferredOperation());
         if (body != null) {
             allInstancesClass = null;
             filterResultsByCall = true;
@@ -154,12 +152,6 @@ public class OperationCallTracebackStep extends BranchingTracebackStep<Operation
             throw new RuntimeException("What else could be the argument of oclAsType if not a TypeExp? "
                     + (argument.eClass()).getName());
         }
-    }
-
-    private OCLExpression getOperationBody(OperationCallExp sourceExpression) {
-        OCL ocl = OCLWithHiddenOpposites.newInstance();
-        OCLExpression body = InvocationBehavior.INSTANCE.getOperationBody(ocl, sourceExpression.getReferredOperation());
-        return body;
     }
 
     @Override

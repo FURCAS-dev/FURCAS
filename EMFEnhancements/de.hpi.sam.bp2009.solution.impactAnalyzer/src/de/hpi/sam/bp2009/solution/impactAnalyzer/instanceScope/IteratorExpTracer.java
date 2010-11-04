@@ -14,11 +14,12 @@ import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 
 public class IteratorExpTracer extends AbstractTracer<IteratorExp> {
-    public IteratorExpTracer(IteratorExp expression, Stack<String> tuplePartNames) {
-        super(expression, tuplePartNames);
+    public IteratorExpTracer(IteratorExp expression, Stack<String> tuplePartNames, OCLFactory oclFactory) {
+        super(expression, tuplePartNames, oclFactory);
     }
 
     @Override
@@ -29,18 +30,18 @@ public class IteratorExpTracer extends AbstractTracer<IteratorExp> {
         if (opCode == PredefinedType.SELECT || opCode == PredefinedType.REJECT || opCode == PredefinedType.SORTED_BY
                 || opCode == PredefinedType.ANY) {
             result = pathCache.getOrCreateNavigationPath((OCLExpression) getExpression().getSource(), context, operationBodyToCallMapper,
-                    getTupleLiteralPartNamesToLookFor());
+                    getTupleLiteralPartNamesToLookFor(), oclFactory);
             if (opCode == PredefinedType.SELECT || opCode == PredefinedType.REJECT || opCode == PredefinedType.ANY) {
                 // evaluate predicate before checking how it goes on
                 org.eclipse.ocl.expressions.Variable<EClassifier, EParameter> varDecl = getExpression().getIterator().get(0);
                 EClass iteratorType = getInnermostElementType(varDecl.getType());
                 result = pathCache.navigationStepFromSequence(getExpression(), getTupleLiteralPartNamesToLookFor(),
                         new PredicateCheckNavigationStep(getInnermostElementType(getExpression().getType()), iteratorType,
-                                getExpression(), pathCache), result);
+                                getExpression(), pathCache, oclFactory), result);
             }
         } else if (opCode == PredefinedType.COLLECT || opCode == PredefinedType.COLLECT_NESTED) {
             result = pathCache.getOrCreateNavigationPath((OCLExpression) getExpression().getBody(), context, operationBodyToCallMapper,
-                    getTupleLiteralPartNamesToLookFor());
+                    getTupleLiteralPartNamesToLookFor(), oclFactory);
         } else {
             // boolean or other non-class-type-result iterator
             result = new EmptyResultNavigationStep(getExpression());

@@ -17,16 +17,17 @@ import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.SendSignalAction;
 
-import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
-import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
-import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+import com.sap.emf.oppositeendfinder.DefaultOppositeEndFinder;
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
-public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactoryWithHiddenOpposites {
+public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactory {
     private Object valueOfSourceExpression;
     private OCLExpression sourceExpression;
+    private final OppositeEndFinder oppositeEndFinder;
     
     /**
      * A {@link Notification} object such that an evaluation performed with the {@link EvaluationVisitor} returned by this
@@ -45,10 +46,12 @@ public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactoryWithH
      */
     public PartialEcoreEnvironmentFactory() {
         super();
+        oppositeEndFinder = DefaultOppositeEndFinder.getInstance();
     }
 
     public PartialEcoreEnvironmentFactory(OppositeEndFinder oppositeEndFinder) {
-        super(oppositeEndFinder);
+        super();
+        this.oppositeEndFinder = oppositeEndFinder;
     }
 
     /**
@@ -62,6 +65,7 @@ public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactoryWithH
      * Uses a {@link DefaultOppositeEndFinder} for navigating hidden opposites.
      */
     public PartialEcoreEnvironmentFactory(Notification atPre) {
+        this();
         this.atPre = atPre;
     }
     
@@ -124,5 +128,9 @@ public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactoryWithH
 
     protected Notification getAtPre() {
         return atPre;
+    }
+
+    protected OppositeEndFinder getOppositeEndFinder() {
+        return oppositeEndFinder;
     }
 }

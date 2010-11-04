@@ -42,14 +42,14 @@ import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.utilities.PredefinedType;
 
-import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
-import com.sap.emf.ocl.oclwithhiddenopposites.expressions.ExpressionsPackage;
-import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 import com.sap.emf.ocl.util.OclHelper;
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.eventManager.NotificationHelper;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.ActivationOption;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluatorFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackStep;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackStepCache;
@@ -63,7 +63,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
  * may be called directly of indirectly by the root expression.
  *
  */
-public class InstanceScopeAnalysis {
+public class InstanceScopeAnalysis implements PartialEvaluatorFactory {
     private final Logger logger = Logger.getLogger(InstanceScopeAnalysis.class.getName());
     private final PathCache pathCache;
     private final TracebackStepCache tracebackStepCache;
@@ -71,10 +71,63 @@ public class InstanceScopeAnalysis {
     private final EClass context;
     private final OppositeEndFinder oppositeEndFinder;
     private final ActivationOption configuration;
+    private final OCLFactory oclFactory;
+    private final PartialEvaluator partialEvaluatorForAllInstancesDeltaPropagation;
 
     private static final Set<String> comparisonOpNames = new HashSet<String>(Arrays.asList(new String[] {
             PredefinedType.EQUAL_NAME, PredefinedType.LESS_THAN_NAME, PredefinedType.LESS_THAN_EQUAL_NAME,
             PredefinedType.GREATER_THAN_NAME, PredefinedType.GREATER_THAN_EQUAL_NAME, PredefinedType.NOT_EQUAL_NAME }));
+
+    /**
+     * @param expression
+     *            the OCL expression for which to perform instance scope impact analysis
+     * @param oppositeEndFinder
+     *            used during partial evaluation and for metamodel queries, e.g., finding opposite role names, or finding all
+     *            subclasses of a class; as well as for obtaining all instances of a type while performing an
+     *            {@link AllInstancesNavigationStep}. It is handed to the {@link PathCache} object from where
+     *            {@link Tracer}s can retrieve it using {@link PathCache#getOppositeEndFinder()}.
+     */
+    public InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer, OppositeEndFinder oppositeEndFinder, ActivationOption configuration, OCLFactory oclFactory) {
+        this(expression, exprContext, filterSynthesizer, oppositeEndFinder, new PartialEvaluator(oclFactory), configuration,
+                oclFactory,
+                /* pathCache */ configuration.isTracebackStepISAActive() ? null : new PathCache(oppositeEndFinder, null), /* tracebackStepCache */ configuration.isTracebackStepISAActive() ? new TracebackStepCache(oppositeEndFinder, null) : null);
+        initInstanceScopeAnalysisOnPathCache();
+    }
+
+    protected void initInstanceScopeAnalysisOnPathCache() {
+        if (pathCache != null) {
+            pathCache.initInstanceScopeAnalysis(this);
+        }
+        if (tracebackStepCache != null) {
+            tracebackStepCache.initInstanceScopeAnalysis(this);
+        }
+    }
+
+    protected InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer, OppositeEndFinder oppositeEndFinder, PartialEvaluator partialEvaluator, ActivationOption configuration, OCLFactory oclFactory, PathCache pathCache, TracebackStepCache tracebackStepCache) {
+        checkConstructorArgs(expression, exprContext, filterSynthesizer);
+        context = exprContext;
+        this.oclFactory = oclFactory;
+        partialEvaluatorForAllInstancesDeltaPropagation = partialEvaluator;
+        this.filterSynthesizer = filterSynthesizer;
+        this.oppositeEndFinder = oppositeEndFinder;
+        this.configuration = configuration;
+        this.tracebackStepCache = tracebackStepCache;
+        this.pathCache = pathCache;
+        initInstanceScopeAnalysisOnPathCache();
+    }
+
+    private void checkConstructorArgs(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer) {
+        if (exprContext == null) {
+            throw new IllegalArgumentException("exprContext must not be null. Maybe no context type specified to ImpactAnalyzerImpl constructor, and no self-expression found to infer it?");
+        }
+        if (expression == null || filterSynthesizer == null) {
+            throw new IllegalArgumentException("Arguments must not be null");
+        }
+    }
+    
+    protected PathCache getPathCache() {
+        return pathCache;
+    }
 
     /**
      * Finds all elements of type <code>cls</code> or conforming to <code>cls</code> such that based on the scope definition
@@ -99,77 +152,46 @@ public class InstanceScopeAnalysis {
      * unchanged to the new tracer created by this operation. May be <tt>null</tt> in which case the
      * new tracer does not look for any tuple literal parts initially.
      */
-    protected static Tracer createTracer(OCLExpression expression, Stack<String> tuplePartNames) {
+    protected Tracer createTracer(OCLExpression expression, Stack<String> tuplePartNames, OCLFactory oclFactory) {
         // Using the class loader is another option, but that would create implicit naming conventions.
         // Thats why we do the mapping "manually".
         switch (expression.eClass().getClassifierID()) {
         case EcorePackage.PROPERTY_CALL_EXP:
-            return new PropertyCallExpTracer((PropertyCallExp) expression, tuplePartNames);
+            return new PropertyCallExpTracer((PropertyCallExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.BOOLEAN_LITERAL_EXP:
-            return new BooleanLiteralExpTracer((BooleanLiteralExp) expression, tuplePartNames);
+            return new BooleanLiteralExpTracer((BooleanLiteralExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.COLLECTION_LITERAL_EXP:
-            return new CollectionLiteralExpTracer((CollectionLiteralExp) expression, tuplePartNames);
+            return new CollectionLiteralExpTracer((CollectionLiteralExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.ENUM_LITERAL_EXP:
-            return new EnumLiteralExpTracer((EnumLiteralExp) expression, tuplePartNames);
+            return new EnumLiteralExpTracer((EnumLiteralExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.IF_EXP:
-            return new IfExpTracer((IfExp) expression, tuplePartNames);
+            return new IfExpTracer((IfExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.INTEGER_LITERAL_EXP:
-            return new IntegerLiteralExpTracer((IntegerLiteralExp) expression, tuplePartNames);
+            return new IntegerLiteralExpTracer((IntegerLiteralExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.ITERATE_EXP:
-            return new IterateExpTracer((IterateExp) expression, tuplePartNames);
+            return new IterateExpTracer((IterateExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.ITERATOR_EXP:
-            return new IteratorExpTracer((IteratorExp) expression, tuplePartNames);
+            return new IteratorExpTracer((IteratorExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.LET_EXP:
-            return new LetExpTracer((LetExp) expression, tuplePartNames);
+            return new LetExpTracer((LetExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.OPERATION_CALL_EXP:
-            return new OperationCallExpTracer((OperationCallExp) expression, tuplePartNames);
-        case ExpressionsPackage.OPPOSITE_PROPERTY_CALL_EXP:
-            return new OppositePropertyCallExpTracer((OppositePropertyCallExp) expression, tuplePartNames);
+            return new OperationCallExpTracer((OperationCallExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.REAL_LITERAL_EXP:
-            return new RealLiteralExpTracer((RealLiteralExp) expression, tuplePartNames);
+            return new RealLiteralExpTracer((RealLiteralExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.STRING_LITERAL_EXP:
-            return new StringLiteralExpTracer((StringLiteralExp) expression, tuplePartNames);
+            return new StringLiteralExpTracer((StringLiteralExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.TUPLE_LITERAL_EXP:
-            return new TupleLiteralExpTracer((TupleLiteralExp) expression, tuplePartNames);
+            return new TupleLiteralExpTracer((TupleLiteralExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.TYPE_EXP:
-            return new TypeExpTracer((TypeExp) expression, tuplePartNames);
+            return new TypeExpTracer((TypeExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.VARIABLE_EXP:
-            return new VariableExpTracer((VariableExp) expression, tuplePartNames);
+            return new VariableExpTracer((VariableExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.NULL_LITERAL_EXP:
-            return new NullLiteralExpTracer((NullLiteralExp) expression, tuplePartNames);
+            return new NullLiteralExpTracer((NullLiteralExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.INVALID_LITERAL_EXP:
-            return new InvalidlLiteralExpTracer((InvalidLiteralExp) expression, tuplePartNames);
+            return new InvalidlLiteralExpTracer((InvalidLiteralExp) expression, tuplePartNames, oclFactory);
         default:
             throw new RuntimeException("Unsupported expression type " + expression.eClass().getName());
-        }
-    }
-
-    /**
-     * @param expression
-     *            the OCL expression for which to perform instance scope impact analysis
-     * @param oppositeEndFinder
-     *            used during partial evaluation and for metamodel queries, e.g., finding opposite role names, or finding all
-     *            subclasses of a class; as well as for obtaining all instances of a type while performing an
-     *            {@link AllInstancesNavigationStep}. It is handed to the {@link PathCache} object from where
-     *            {@link Tracer}s can retrieve it using {@link PathCache#getOppositeEndFinder()}.
-     */
-    public InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer, OppositeEndFinder oppositeEndFinder, ActivationOption configuration) {
-        if (exprContext == null) {
-	    throw new IllegalArgumentException("exprContext must not be null. Maybe no context type specified to ImpactAnalyzerImpl constructor, and no self-expression found to infer it?");
-	}
-        if (expression == null || filterSynthesizer == null) {
-	    throw new IllegalArgumentException("Arguments must not be null");
-	}
-        context = exprContext;
-        this.filterSynthesizer = filterSynthesizer;
-        this.oppositeEndFinder = oppositeEndFinder;
-        this.configuration = configuration;
-        if (configuration.isTracebackStepISAActive()) {
-            tracebackStepCache = new TracebackStepCache(oppositeEndFinder);
-            pathCache = null;
-        } else {
-            pathCache = new PathCache(oppositeEndFinder);
-            tracebackStepCache = null;
         }
     }
 
@@ -218,9 +240,9 @@ public class InstanceScopeAnalysis {
     private boolean hasNoEffectOnOverallExpression(Notification event, NavigationCallExp attributeOrAssociationEndCall,
             AnnotatedEObject sourceElement){
 	if(configuration.isDeltaPropagationActive()) {
-	    PartialEvaluator partialEvaluatorAtPre = new PartialEvaluator(event, oppositeEndFinder);
+	    PartialEvaluator partialEvaluatorAtPre = new PartialEvaluator(event, oppositeEndFinder, oclFactory);
 	    Object oldValue = partialEvaluatorAtPre.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
-	    PartialEvaluator partialEvaluatorAtPost = new PartialEvaluator(oppositeEndFinder);
+	    PartialEvaluator partialEvaluatorAtPost = createPartialEvaluator(oppositeEndFinder, oclFactory);
 	    Object newValue = partialEvaluatorAtPost.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
 	    return partialEvaluatorAtPost.hasNoEffectOnOverallExpression(attributeOrAssociationEndCall, oldValue, newValue, filterSynthesizer);
 	} else {
@@ -228,7 +250,6 @@ public class InstanceScopeAnalysis {
 	}
     }
 
-    private final PartialEvaluator partialEvaluatorForAllInstancesDeltaPropagation = new PartialEvaluator();
     private Collection<EObject> handleLifeCycleEvent(Notification event) {
         Collection<EObject> result = new HashSet<EObject>();
         Boolean addEvent = NotificationHelper.isAddEvent(event);
@@ -277,7 +298,7 @@ public class InstanceScopeAnalysis {
             // the overall expression remains unchanged by the original change:
             @SuppressWarnings("unchecked")
             Collection<Object> featureValueAsObjectCollection = (Collection<Object>) featureValue;
-            if (!partialEvaluatorForAllInstancesDeltaPropagation.transitivelyPropagateDelta(allInstancesCall,
+            if (!getPartialEvaluatorForAllInstancesDeltaPropagation().transitivelyPropagateDelta(allInstancesCall,
                     featureValueAsObjectCollection, filterSynthesizer).isEmpty()) {
                 result.addAll(getAllPossibleContextInstances((Notifier) event.getNotifier(), getContext(), oppositeEndFinder));
             }
@@ -440,7 +461,7 @@ public class InstanceScopeAnalysis {
      *            defines the type for <tt>self</tt> if used outside of operation bodies.
      */
     private NavigationStep getNavigationStepsToSelfForExpression(OCLExpression exp, EClass context) {
-        NavigationStep result = pathCache.getOrCreateNavigationPath(exp, context, filterSynthesizer, /* tupleLiteralNamesToLookFor */ null);
+        NavigationStep result = getPathCache().getOrCreateNavigationPath(exp, context, filterSynthesizer, /* tupleLiteralNamesToLookFor */ null, oclFactory);
         return result;
     }
 
@@ -454,7 +475,7 @@ public class InstanceScopeAnalysis {
      */
     private TracebackStep getTracebackStepForExpression(OCLExpression exp, EClass context) {
         TracebackStep result = tracebackStepCache.getOrCreateNavigationPath(exp, context, filterSynthesizer,
-                                                                            /* tupleLiteralNamesToLookFor */ null);
+                                                                            /* tupleLiteralNamesToLookFor */ null, oclFactory);
         return result;
     }
 
@@ -473,7 +494,7 @@ public class InstanceScopeAnalysis {
      *         cannot be resolved (anymore). This is still an open issue. See the to-do marker below. In all other cases, the
      *         source element on which the event occured, is returned.
      */
-    private Collection<AnnotatedEObject> getSourceElement(Notification changeEvent, NavigationCallExp attributeOrAssociationEndCall) {
+    protected Collection<AnnotatedEObject> getSourceElement(Notification changeEvent, NavigationCallExp attributeOrAssociationEndCall) {
         assert NotificationHelper.isAttributeValueChangeEvent(changeEvent)
                 || NotificationHelper.isLinkLifeCycleEvent(changeEvent);
         EClassifier sourceType = attributeOrAssociationEndCall.getSource().getType();
@@ -484,13 +505,6 @@ public class InstanceScopeAnalysis {
             if (sourceType.isInstance(changeEvent.getNotifier())) {
                 result.add(new AnnotatedEObject((EObject) changeEvent.getNotifier(), "<start>"));
             }
-        } else if (attributeOrAssociationEndCall instanceof OppositePropertyCallExp) {
-            // the old and new object(s) are the source(s) of the opposite property call expression
-            for (Object o : getSourceElementsForOppositePropertyCallExp(changeEvent)) {
-                if (sourceType.isInstance(o)) {
-                    result.add(new AnnotatedEObject((EObject) changeEvent.getNotifier(), "<start>"));
-                }
-            }
         } else {
 	    throw new RuntimeException("Can only handle PropertyCallExp and OppositePropertyCallExp expression types, not "+
                     attributeOrAssociationEndCall.getClass().getName());
@@ -498,7 +512,7 @@ public class InstanceScopeAnalysis {
         return result;
     }
 
-    private Collection<Object> getSourceElementsForOppositePropertyCallExp(Notification changeEvent) {
+    protected Collection<Object> getSourceElementsForOppositePropertyCallExp(Notification changeEvent) {
         Collection<Object> result = new HashSet<Object>();
         Object oldValue = changeEvent.getOldValue();
         Object newValue = changeEvent.getNewValue();
@@ -573,5 +587,21 @@ public class InstanceScopeAnalysis {
         TracebackStep step = getTracebackStepForExpression((OCLExpression) attributeOrAssociationEndCall.getSource(), context);
         result = step.traceback(sourceElement, /* pending unused evaluation requests */ null, cache, changeEvent);
         return result;
+    }
+
+    protected PartialEvaluator getPartialEvaluatorForAllInstancesDeltaPropagation() {
+        return partialEvaluatorForAllInstancesDeltaPropagation;
+    }
+
+    public PartialEvaluatorFactory getPartialEvaluatorFactory() {
+        return this;
+    }
+
+    public PartialEvaluator createPartialEvaluator(Notification atPre, OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory) {
+        return new PartialEvaluator(atPre, oppositeEndFinder, oclFactory);
+    }
+
+    public PartialEvaluator createPartialEvaluator(OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory) {
+        return new PartialEvaluator(oppositeEndFinder, oclFactory);
     }
 }

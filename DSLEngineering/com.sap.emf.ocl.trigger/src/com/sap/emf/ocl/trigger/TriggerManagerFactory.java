@@ -1,7 +1,7 @@
 package com.sap.emf.ocl.trigger;
 
-import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 import com.sap.emf.ocl.trigger.impl.TriggerManagerFactoryImpl;
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.ActivationOption;
 

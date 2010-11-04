@@ -11,22 +11,24 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import com.sap.emf.ocl.attributegrammar.AttributeGrammar;
 import com.sap.emf.ocl.attributegrammar.AttributeGrammarFactory;
 import com.sap.emf.ocl.attributegrammar.RuleTypeConformanceException;
-import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
+
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 
 public class AttributeGrammarFactoryImpl implements AttributeGrammarFactory {
 
     @Override
-    public AttributeGrammar createAttributeGrammar(Map<EStructuralFeature, OCLExpression> rules)
+    public AttributeGrammar createAttributeGrammar(Map<EStructuralFeature, OCLExpression> rules, OCLFactory oclFactory)
             throws RuleTypeConformanceException {
         assertTypeConformance(rules);
-        return new AttributeGrammarImpl(rules);
+        return new AttributeGrammarImpl(rules, oclFactory);
     }
 
     @Override
     public AttributeGrammar createAttributeGrammar(Map<EStructuralFeature, OCLExpression> rules,
-            OppositeEndFinder oppositeEndFinder) throws RuleTypeConformanceException {
+            OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory) throws RuleTypeConformanceException {
         assertTypeConformance(rules);
-        return new AttributeGrammarImpl(rules, oppositeEndFinder);
+        return new AttributeGrammarImpl(rules, oppositeEndFinder, oclFactory);
     }
 
     /**

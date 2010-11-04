@@ -13,7 +13,7 @@ import java.util.Set;
 import org.eclipse.ocl.utilities.TypedElement;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.emf.lookup.AbstractQueryBasedEcoreLookUp;
+import com.sap.furcas.parsergenerator.emf.lookup.QueryBasedEcoreMetaModelLookUp;
 import com.sap.furcas.parsergenerator.testutils.StringListHelper;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
@@ -54,13 +54,13 @@ public class AbstractQueryMoinLookupTest {
         classi6.name = "wrongclass"; // stub adds "package" in qualifiedname
         inputClassifiers.add(classi6);
         
-        List<Classifier> result = AbstractQueryBasedEcoreLookUp.filterClassifiers(qualifiedNameOfType, inputClassifiers);
+        List<Classifier> result = QueryBasedEcoreMetaModelLookUp.filterClassifiers(qualifiedNameOfType, inputClassifiers);
         
         assertEquals(expectedResult, result);
     }
 
     
-    private class MoinLookUpSubTypeStub extends AbstractQueryBasedEcoreLookUp {
+    private class MoinLookUpSubTypeStub extends QueryBasedEcoreMetaModelLookUp {
 
         /**
          * @param connection

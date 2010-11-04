@@ -14,9 +14,11 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
 
-import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluatorFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestFactory;
@@ -31,10 +33,12 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
     private final boolean checkPredicate;
     private final boolean acceptIfPredicateTrue;
     private final OppositeEndFinder oppositeEndFinder;
+    private final PartialEvaluatorFactory partialEvaluatorFactory;
 
     public IteratorTracebackStep(IteratorExp sourceExpression, EClass context,
-            OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache, UnusedEvaluationRequestFactory unusedEvaluationRequestFactory) {
-        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder(), operationBodyToCallMapper, unusedEvaluationRequestFactory);
+            OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache, UnusedEvaluationRequestFactory unusedEvaluationRequestFactory, OCLFactory oclFactory) {
+        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder(), operationBodyToCallMapper, unusedEvaluationRequestFactory, oclFactory);
+        this.partialEvaluatorFactory = tracebackStepCache.getInstanceScopeAnalysis().getPartialEvaluatorFactory();
         String name = sourceExpression.getName();
         int opCode = OCLStandardLibraryUtil.getOperationCode(name);
         if (opCode == PredefinedType.SELECT || opCode == PredefinedType.REJECT || opCode == PredefinedType.SORTED_BY
@@ -107,7 +111,7 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
         if (atPre != null) {
             // TODO perform the partial evaluation only if the values of all variables inevitably required by the predicate are known
             // TODO otherwise, think about using the UnusedEvaluationRequest technique to queue predicate evaluation for later
-            PartialEvaluator evalPre = new PartialEvaluator(atPre, oppositeEndFinder);
+            PartialEvaluator evalPre = new PartialEvaluator(atPre, oppositeEndFinder, oclFactory);
             try {
                 Object result = evalPre.evaluate(null, getExpression(), sourceCollection);
                 resultPre = isSourceInResult(sourceObject, result);
@@ -121,7 +125,7 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
         boolean resultPost = acceptIfPredicateTrue;
         if (resultPre != acceptIfPredicateTrue) {
             // evaluate whether the source object passes the iterator's body after the change
-            PartialEvaluator evalPost = new PartialEvaluator(oppositeEndFinder);
+            PartialEvaluator evalPost = partialEvaluatorFactory.createPartialEvaluator(oppositeEndFinder, oclFactory);
             try {
                 Object result = evalPost.evaluate(null, getExpression(), sourceCollection);
                 resultPost = isSourceInResult(sourceObject, result);

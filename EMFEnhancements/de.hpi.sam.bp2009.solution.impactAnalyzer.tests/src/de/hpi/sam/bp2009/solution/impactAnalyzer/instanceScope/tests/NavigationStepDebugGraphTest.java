@@ -17,8 +17,9 @@ import company.CompanyFactory;
 import company.Department;
 import company.impl.DepartmentImpl;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.ImpactAnalyzerWithHiddenOppositesFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.OCLWithHiddenOppositesFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.BaseDepartmentTest;
 
 public class NavigationStepDebugGraphTest extends BaseDepartmentTest  {
@@ -64,7 +65,8 @@ public class NavigationStepDebugGraphTest extends BaseDepartmentTest  {
 	stmts.add(this.recursiveBudgetCalculationAST);
 	
 	Notification noti = NotificationHelper.createAttributeChangeNotification(this.dep3, this.departmentBudget, this.dep3.getBudget(), this.dep3.getBudget() + 20);
-	Collection<EObject> instances = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(this.recursiveBudgetCalculationAST, this.dep1.eClass(), /* notifyOnNewContextElements */ false).getContextObjects(noti);
+	Collection<EObject> instances = ImpactAnalyzerWithHiddenOppositesFactory.INSTANCE.createImpactAnalyzer(this.recursiveBudgetCalculationAST, this.dep1.eClass(), /* notifyOnNewContextElements */ false,
+	        new OCLWithHiddenOppositesFactory()).getContextObjects(noti);
 	
 	compareInstances(instances, new EObject[] { this.dep1, this.dep2, this.dep3 });
     }

@@ -14,7 +14,7 @@ import org.eclipse.ui.PlatformUI;
 
 import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.TCS.Keyword;
-import com.sap.furcas.parsergenerator.emf.lookup.EcoreMetaLookup;
+import com.sap.furcas.parsergenerator.emf.lookup.QueryBasedEcoreMetaModelLookUp;
 import com.sap.furcas.parsergenerator.tcs.t2m.TCSSyntaxContainerBean;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ANTLR3GrammarWriter;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ANTLRGrammarGenerator;
@@ -48,7 +48,7 @@ public class GenerateGrammarAction extends Action {
     public void runWithEvent(Event event) {
         ANTLR3GrammarWriter writer = new ANTLR3GrammarWriter();
         ANTLRGrammarGenerator mapper = new ANTLRGrammarGenerator();
-        EcoreMetaLookup lookup = new  EcoreMetaLookup(connection, null);
+        QueryBasedEcoreMetaModelLookUp lookup = new  QueryBasedEcoreMetaModelLookUp(connection, null);
         EMFTCSAdapter handler = new EMFTCSAdapter(syntax.get___Connection(), null);
         
         TCSSyntaxContainerBean bean = new TCSSyntaxContainerBean();

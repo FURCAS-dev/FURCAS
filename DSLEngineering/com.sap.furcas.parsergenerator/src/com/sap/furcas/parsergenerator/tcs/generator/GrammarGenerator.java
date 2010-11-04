@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.parsergenerator.Activator;
-import com.sap.furcas.parsergenerator.emf.lookup.EcoreMetaLookup;
+import com.sap.furcas.parsergenerator.emf.lookup.QueryBasedEcoreMetaModelLookUp;
 import com.sap.furcas.parsergenerator.tcs.generator.errorhandling.EclipseMarkerUtil;
 import com.sap.furcas.parsergenerator.tcs.generator.errorhandling.GenerationErrorHandler;
 import com.sap.furcas.parsergenerator.tcs.t2m.TCSInputStreamGrammarGenerator;
@@ -111,7 +111,7 @@ public class GrammarGenerator {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         try {
 
-            EcoreMetaLookup lookup = new EcoreMetaLookup(refScopeBean.getResourceSet(), refScopeBean.getReferenceScope());
+            QueryBasedEcoreMetaModelLookUp lookup = new QueryBasedEcoreMetaModelLookUp(refScopeBean.getResourceSet(), refScopeBean.getReferenceScope());
             TCSInputStreamGrammarGenerator generator = new TCSInputStreamGrammarGenerator(in, out, lookup, targetPackage);
             // we may have 2 connections here, one from the scopeBean, one
             // transient

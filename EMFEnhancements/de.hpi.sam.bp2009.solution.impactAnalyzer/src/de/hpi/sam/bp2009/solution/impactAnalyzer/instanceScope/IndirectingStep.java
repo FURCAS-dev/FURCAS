@@ -258,4 +258,8 @@ public class IndirectingStep extends AbstractNavigationStep implements HashCodeC
     public SemanticIdentity getSemanticIdentity() {
 	return semanticIdentity;
     }
+
+    public InstanceScopeAnalysis getInstanceScopeAnalysis() {
+        return null;
+    }
 }
