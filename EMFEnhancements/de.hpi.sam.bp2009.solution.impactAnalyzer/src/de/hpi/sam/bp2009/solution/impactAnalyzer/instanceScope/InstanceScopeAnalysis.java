@@ -42,7 +42,6 @@ import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.utilities.PredefinedType;
 
-import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 import com.sap.emf.ocl.util.OclHelper;
 import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
@@ -50,6 +49,7 @@ import de.hpi.sam.bp2009.solution.eventManager.NotificationHelper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.ActivationOption;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluatorFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackStep;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackStepCache;
@@ -63,7 +63,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
  * may be called directly of indirectly by the root expression.
  *
  */
-public class InstanceScopeAnalysis {
+public class InstanceScopeAnalysis implements PartialEvaluatorFactory {
     private final Logger logger = Logger.getLogger(InstanceScopeAnalysis.class.getName());
     private final PathCache pathCache;
     private final TracebackStepCache tracebackStepCache;
@@ -88,24 +88,32 @@ public class InstanceScopeAnalysis {
      *            {@link Tracer}s can retrieve it using {@link PathCache#getOppositeEndFinder()}.
      */
     public InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer, OppositeEndFinder oppositeEndFinder, ActivationOption configuration, OCLFactory oclFactory) {
-        this(expression, exprContext, filterSynthesizer, oppositeEndFinder, configuration, oclFactory,
-                /* pathCache */ configuration.isTracebackStepISAActive() ? null : new PathCache(oppositeEndFinder, null),
-                /* tracebackStepCache */ configuration.isTracebackStepISAActive() ? new TracebackStepCache(oppositeEndFinder) : null);
-        if (!configuration.isTracebackStepISAActive()) {
-            getPathCache().initInstanceScopeAnalysis(this);
+        this(expression, exprContext, filterSynthesizer, oppositeEndFinder, new PartialEvaluator(oclFactory), configuration,
+                oclFactory,
+                /* pathCache */ configuration.isTracebackStepISAActive() ? null : new PathCache(oppositeEndFinder, null), /* tracebackStepCache */ configuration.isTracebackStepISAActive() ? new TracebackStepCache(oppositeEndFinder, null) : null);
+        initInstanceScopeAnalysisOnPathCache();
+    }
+
+    protected void initInstanceScopeAnalysisOnPathCache() {
+        if (pathCache != null) {
+            pathCache.initInstanceScopeAnalysis(this);
+        }
+        if (tracebackStepCache != null) {
+            tracebackStepCache.initInstanceScopeAnalysis(this);
         }
     }
 
-    protected InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer, OppositeEndFinder oppositeEndFinder, ActivationOption configuration, OCLFactory oclFactory, PathCache pathCache, TracebackStepCache tracebackStepCache) {
+    protected InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer, OppositeEndFinder oppositeEndFinder, PartialEvaluator partialEvaluator, ActivationOption configuration, OCLFactory oclFactory, PathCache pathCache, TracebackStepCache tracebackStepCache) {
         checkConstructorArgs(expression, exprContext, filterSynthesizer);
         context = exprContext;
         this.oclFactory = oclFactory;
-        partialEvaluatorForAllInstancesDeltaPropagation = new PartialEvaluator(oclFactory);
+        partialEvaluatorForAllInstancesDeltaPropagation = partialEvaluator;
         this.filterSynthesizer = filterSynthesizer;
         this.oppositeEndFinder = oppositeEndFinder;
         this.configuration = configuration;
         this.tracebackStepCache = tracebackStepCache;
         this.pathCache = pathCache;
+        initInstanceScopeAnalysisOnPathCache();
     }
 
     private void checkConstructorArgs(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer) {
@@ -234,7 +242,7 @@ public class InstanceScopeAnalysis {
 	if(configuration.isDeltaPropagationActive()) {
 	    PartialEvaluator partialEvaluatorAtPre = new PartialEvaluator(event, oppositeEndFinder, oclFactory);
 	    Object oldValue = partialEvaluatorAtPre.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
-	    PartialEvaluator partialEvaluatorAtPost = new PartialEvaluator(oppositeEndFinder, oclFactory);
+	    PartialEvaluator partialEvaluatorAtPost = createPartialEvaluator(oppositeEndFinder, oclFactory);
 	    Object newValue = partialEvaluatorAtPost.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
 	    return partialEvaluatorAtPost.hasNoEffectOnOverallExpression(attributeOrAssociationEndCall, oldValue, newValue, filterSynthesizer);
 	} else {
@@ -290,7 +298,7 @@ public class InstanceScopeAnalysis {
             // the overall expression remains unchanged by the original change:
             @SuppressWarnings("unchecked")
             Collection<Object> featureValueAsObjectCollection = (Collection<Object>) featureValue;
-            if (!partialEvaluatorForAllInstancesDeltaPropagation.transitivelyPropagateDelta(allInstancesCall,
+            if (!getPartialEvaluatorForAllInstancesDeltaPropagation().transitivelyPropagateDelta(allInstancesCall,
                     featureValueAsObjectCollection, filterSynthesizer).isEmpty()) {
                 result.addAll(getAllPossibleContextInstances((Notifier) event.getNotifier(), getContext(), oppositeEndFinder));
             }
@@ -486,7 +494,7 @@ public class InstanceScopeAnalysis {
      *         cannot be resolved (anymore). This is still an open issue. See the to-do marker below. In all other cases, the
      *         source element on which the event occured, is returned.
      */
-    private Collection<AnnotatedEObject> getSourceElement(Notification changeEvent, NavigationCallExp attributeOrAssociationEndCall) {
+    protected Collection<AnnotatedEObject> getSourceElement(Notification changeEvent, NavigationCallExp attributeOrAssociationEndCall) {
         assert NotificationHelper.isAttributeValueChangeEvent(changeEvent)
                 || NotificationHelper.isLinkLifeCycleEvent(changeEvent);
         EClassifier sourceType = attributeOrAssociationEndCall.getSource().getType();
@@ -497,13 +505,6 @@ public class InstanceScopeAnalysis {
             if (sourceType.isInstance(changeEvent.getNotifier())) {
                 result.add(new AnnotatedEObject((EObject) changeEvent.getNotifier(), "<start>"));
             }
-        } else if (attributeOrAssociationEndCall instanceof OppositePropertyCallExp) {
-            // the old and new object(s) are the source(s) of the opposite property call expression
-            for (Object o : getSourceElementsForOppositePropertyCallExp(changeEvent)) {
-                if (sourceType.isInstance(o)) {
-                    result.add(new AnnotatedEObject((EObject) changeEvent.getNotifier(), "<start>"));
-                }
-            }
         } else {
 	    throw new RuntimeException("Can only handle PropertyCallExp and OppositePropertyCallExp expression types, not "+
                     attributeOrAssociationEndCall.getClass().getName());
@@ -511,7 +512,7 @@ public class InstanceScopeAnalysis {
         return result;
     }
 
-    private Collection<Object> getSourceElementsForOppositePropertyCallExp(Notification changeEvent) {
+    protected Collection<Object> getSourceElementsForOppositePropertyCallExp(Notification changeEvent) {
         Collection<Object> result = new HashSet<Object>();
         Object oldValue = changeEvent.getOldValue();
         Object newValue = changeEvent.getNewValue();
@@ -586,5 +587,21 @@ public class InstanceScopeAnalysis {
         TracebackStep step = getTracebackStepForExpression((OCLExpression) attributeOrAssociationEndCall.getSource(), context);
         result = step.traceback(sourceElement, /* pending unused evaluation requests */ null, cache, changeEvent);
         return result;
+    }
+
+    protected PartialEvaluator getPartialEvaluatorForAllInstancesDeltaPropagation() {
+        return partialEvaluatorForAllInstancesDeltaPropagation;
+    }
+
+    public PartialEvaluatorFactory getPartialEvaluatorFactory() {
+        return this;
+    }
+
+    public PartialEvaluator createPartialEvaluator(Notification atPre, OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory) {
+        return new PartialEvaluator(atPre, oppositeEndFinder, oclFactory);
+    }
+
+    public PartialEvaluator createPartialEvaluator(OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory) {
+        return new PartialEvaluator(oppositeEndFinder, oclFactory);
     }
 }

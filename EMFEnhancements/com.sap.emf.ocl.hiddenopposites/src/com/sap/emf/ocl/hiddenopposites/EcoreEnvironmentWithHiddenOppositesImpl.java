@@ -54,18 +54,18 @@ public class EcoreEnvironmentWithHiddenOppositesImpl extends EcoreEnvironment
 	private List<org.eclipse.ocl.expressions.Variable<EClassifier, EParameter>> implicitNamedElements =
 		new ArrayList<org.eclipse.ocl.expressions.Variable<EClassifier, EParameter>>();
 
-	protected EcoreEnvironmentWithHiddenOppositesImpl(
+	public EcoreEnvironmentWithHiddenOppositesImpl(
 			Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
 		super(parent);
 		oppositeEndFinder = ((EcoreEnvironmentWithHiddenOppositesImpl) parent).oppositeEndFinder;
 	}
 
-	protected EcoreEnvironmentWithHiddenOppositesImpl(EPackage.Registry registry, OppositeEndFinder oppositeEndFinder) {
+	public EcoreEnvironmentWithHiddenOppositesImpl(EPackage.Registry registry, OppositeEndFinder oppositeEndFinder) {
 		super(registry);
 		this.oppositeEndFinder = oppositeEndFinder;
 	}
 
-	protected EcoreEnvironmentWithHiddenOppositesImpl(EPackage.Registry registry, Resource resource, OppositeEndFinder oppositeEndFinder) {
+	public EcoreEnvironmentWithHiddenOppositesImpl(EPackage.Registry registry, Resource resource, OppositeEndFinder oppositeEndFinder) {
 		super(registry, resource);
 		this.oppositeEndFinder = oppositeEndFinder;
 	}
@@ -77,7 +77,7 @@ public class EcoreEnvironmentWithHiddenOppositesImpl extends EcoreEnvironment
 	    this(packageRegistry, DefaultOppositeEndFinder.getInstance());
         }
 
-	/**
+    /**
      * Looks up a non-navigable association end on behalf of
      * the specified <code>owner</code> classifier (which is at that end).
      * 
@@ -340,9 +340,9 @@ public class EcoreEnvironmentWithHiddenOppositesImpl extends EcoreEnvironment
 		}
 	}
 	
-	// make visible in this package
+	// make visible in this package and beyond
 	@Override
-	protected void setFactory(EnvironmentFactory<
+	public void setFactory(EnvironmentFactory<
 			EPackage, EClassifier, EOperation, EStructuralFeature,
 			EEnumLiteral, EParameter,
 			EObject, CallOperationAction, SendSignalAction, Constraint,

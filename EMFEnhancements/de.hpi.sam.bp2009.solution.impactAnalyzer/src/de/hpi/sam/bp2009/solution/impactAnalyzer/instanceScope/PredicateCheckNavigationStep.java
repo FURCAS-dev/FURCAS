@@ -18,6 +18,7 @@ import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluatorFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.SemanticIdentity;
@@ -37,6 +38,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.SemanticIdentity;
 public class PredicateCheckNavigationStep extends AbstractNavigationStep {
     private final String contentAsString;
     private final SemanticIdentity semanticIdentity;
+    private final PartialEvaluatorFactory partialEvaluatorFactory;
 
     /**
      * Tells if the OCL predicate of the {@link #getIteratorExp() iterator expression} needs to be <tt>true</tt> so that the
@@ -68,10 +70,9 @@ public class PredicateCheckNavigationStep extends AbstractNavigationStep {
             positive = false;
         }
         this.oppositeEndFinder = pathCache.getOppositeEndFinder();
-        // TODO check if this is expressive enough
         contentAsString = "checkPredicate[" + iteratorExp.getBody().toString() + "]";
-
         semanticIdentity = new PredicateCheckNavigationStepIdentity();
+        partialEvaluatorFactory = pathCache.getInstanceScopeAnalysis().getPartialEvaluatorFactory();
     }
 
     private class PredicateCheckNavigationStepIdentity extends SemanticIdentity{
@@ -128,7 +129,7 @@ public class PredicateCheckNavigationStep extends AbstractNavigationStep {
 
         Boolean resultPre = positive;
         if (!(atPre == null)) {
-            PartialEvaluator evalPre = new PartialEvaluator(atPre, oppositeEndFinder, oclFactory);
+            PartialEvaluator evalPre = partialEvaluatorFactory.createPartialEvaluator(atPre, oppositeEndFinder, oclFactory);
             try {
                 Object result = evalPre.evaluate(null, (CallExp) exp, sourceObjects);
                 resultPre = sourceObjects.contains(result);
@@ -141,7 +142,7 @@ public class PredicateCheckNavigationStep extends AbstractNavigationStep {
         }
         // evaluate whether the source object passes the iterator's body after the change
 
-        PartialEvaluator evalPost = new PartialEvaluator(oclFactory);
+        PartialEvaluator evalPost = partialEvaluatorFactory.createPartialEvaluator(oppositeEndFinder, oclFactory);
         Boolean resultPost;
         try {
             Object result = evalPost.evaluate(null, (CallExp) exp, sourceObjects);

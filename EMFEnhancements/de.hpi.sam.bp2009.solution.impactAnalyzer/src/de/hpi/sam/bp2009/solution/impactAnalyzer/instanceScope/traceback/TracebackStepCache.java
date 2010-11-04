@@ -20,14 +20,20 @@ import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.AbstractPathCache;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.InstanceScopeAnalysis;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestFactory;
 
 public class TracebackStepCache extends AbstractPathCache<TracebackStep> {
     private final UnusedEvaluationRequestFactory unusedEvaluationRequestFactory;
 
-    public TracebackStepCache(OppositeEndFinder oppositeEndFinder) {
-        super(oppositeEndFinder);
+    public TracebackStepCache(OppositeEndFinder oppositeEndFinder, InstanceScopeAnalysis instanceScopeAnalysis) {
+        super(oppositeEndFinder, instanceScopeAnalysis);
         unusedEvaluationRequestFactory = new UnusedEvaluationRequestFactory();
+    }
+    
+    protected TracebackStepCache(OppositeEndFinder oppositeEndFinder, UnusedEvaluationRequestFactory unusedEvaluationRequestFactory, InstanceScopeAnalysis instanceScopeAnalysis) {
+        super(oppositeEndFinder, instanceScopeAnalysis);
+        this.unusedEvaluationRequestFactory = unusedEvaluationRequestFactory;
     }
 
     @Override

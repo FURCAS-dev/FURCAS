@@ -72,9 +72,27 @@ public abstract class AbstractPathCache<StepType> {
      * query.
      */
     private final OppositeEndFinder oppositeEndFinder;
+    
+    private InstanceScopeAnalysis instanceScopeAnalysis;
 
-    public AbstractPathCache(OppositeEndFinder oppositeEndFinder) {
+    public AbstractPathCache(OppositeEndFinder oppositeEndFinder, InstanceScopeAnalysis instanceScopeAnalysis) {
         this.oppositeEndFinder = oppositeEndFinder;
+        this.instanceScopeAnalysis = instanceScopeAnalysis;
+    }
+
+    /**
+     * Call only immediately after the constructor was called and only in case <code>null</code> was passed for
+     * the constructor's <code>instanceScopeAnalysis</code> argument.
+     */
+    public void initInstanceScopeAnalysis(InstanceScopeAnalysis instanceScopeAnalysis) {
+        if (this.instanceScopeAnalysis != null) {
+            throw new IllegalStateException("instanceScopeAnalysis field on "+this+" already initialized");
+        }
+        this.instanceScopeAnalysis = instanceScopeAnalysis;
+    }
+
+    public InstanceScopeAnalysis getInstanceScopeAnalysis() {
+        return instanceScopeAnalysis;
     }
 
     public OppositeEndFinder getOppositeEndFinder() {

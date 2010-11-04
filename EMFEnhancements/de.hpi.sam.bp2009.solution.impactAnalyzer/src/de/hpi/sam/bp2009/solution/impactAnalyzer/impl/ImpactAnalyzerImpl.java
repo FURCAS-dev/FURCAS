@@ -72,7 +72,7 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
      */
     public ImpactAnalyzerImpl(OCLExpression expression, boolean notifyOnNewContextElements, OppositeEndFinder oppositeEndFinder, ActivationOption configuration, OCLFactory oclFactory) {
         this.expression = expression;
-        this.context = expression.accept(new ContextTypeRetriever());
+        this.context = expression.accept(createContextTypeRetriever());
         if (this.context == null) {
             throw new IllegalArgumentException("Expression "+expression+" does not contain a \"self\" variable reference. "+
                     "Therefore, its context type cannot be inferred and needs to be provided explicitly. Consider using "+
@@ -99,7 +99,7 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
     public ImpactAnalyzerImpl(OCLExpression expression, EClass context, boolean notifyOnNewContextElements, OppositeEndFinder oppositeEndFinder, ActivationOption configuration, OCLFactory oclFactory) {
         this.expression = expression;
         this.context = context;
-        EClass inferredContext = expression.accept(new ContextTypeRetriever());
+        EClass inferredContext = expression.accept(createContextTypeRetriever());
         if (inferredContext != null && inferredContext != context) {
             throw new IllegalArgumentException("Redundant, incorrect context type specification. Expression has "+inferredContext+
                     " as context type, but explicitly-provided context type was "+context);
@@ -108,6 +108,10 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
         this.configuration = configuration;
         this.notifyOnNewContextElements = notifyOnNewContextElements;
         this.oclFactory = oclFactory;
+    }
+
+    protected ContextTypeRetriever createContextTypeRetriever() {
+        return new ContextTypeRetriever();
     }
 
     public EventFilter createFilterForExpression() {
