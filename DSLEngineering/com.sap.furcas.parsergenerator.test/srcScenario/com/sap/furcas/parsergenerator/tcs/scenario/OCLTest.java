@@ -7,6 +7,8 @@ import org.junit.Test;
 import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
 import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
+import com.sap.furcas.test.scenario.FixtureData;
+
 
 /**
  * Simple Test for the custom Expression language
@@ -22,7 +24,7 @@ public class OCLTest extends ExtendedGeneratedParserBasedTest {
 	@BeforeClass
 	public static void setupParser() throws Exception {
 		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new FileBasedEcoreMetaModelLookUp("OCL.ecore"));
+		setLookup(new FileBasedEcoreMetaModelLookUp(FixtureData.OCL_METAMODEL));
 		generateParserForLanguage(LANGUAGE);
 	}
 

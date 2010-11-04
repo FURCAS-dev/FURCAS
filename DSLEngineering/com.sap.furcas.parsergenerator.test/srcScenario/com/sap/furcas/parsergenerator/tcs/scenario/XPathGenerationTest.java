@@ -7,6 +7,7 @@ import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
 import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.test.scenario.FixtureData;
 
 /**
  * Tests currently fail for unknown reason, maybe tcs syntax is corrupt
@@ -22,7 +23,7 @@ public class XPathGenerationTest extends ExtendedGeneratedParserBasedTest {
 	@BeforeClass
 	public static void setupParser() throws Exception {
 		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new FileBasedEcoreMetaModelLookUp("XPath1.ecore", "XPath.ecore"));
+		setLookup(new FileBasedEcoreMetaModelLookUp(FixtureData.XPATH1_METAMODEL, FixtureData.XPATH_METAMODEL));
 		generateParserForLanguage(LANGUAGE);
 	}
 	

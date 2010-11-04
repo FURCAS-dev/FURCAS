@@ -21,6 +21,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.TCS.Token;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
+import com.sap.furcas.test.scenario.FixtureData;
 
 
 public class TestLOTOSSample extends AbstractTCSInjectionTest {
@@ -30,7 +31,7 @@ public class TestLOTOSSample extends AbstractTCSInjectionTest {
 	@BeforeClass	
 	public static void doSetUp() throws Exception {
 
-		 setup("scenarioTestResource/LOTOS.tcs");     
+		 setup(FixtureData.LOTOS_TCS);     
 		
 	}
 
