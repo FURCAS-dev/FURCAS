@@ -41,6 +41,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksFactory;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.ReferenceSettingException;
+import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
 import com.sap.furcas.runtime.common.implementation.ResolvedModelElementProxy;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
@@ -251,6 +252,9 @@ public class DelayedReferencesHelper {
             reportProblem(e.getMessage(), reference.getToken());
             return false;
         } catch (ModelElementCreationException e) {
+            reportProblem(e.getMessage(), reference.getToken());
+            return false;
+        } catch (SyntaxElementException e) {
             reportProblem(e.getMessage(), reference.getToken());
             return false;
         }

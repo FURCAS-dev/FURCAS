@@ -24,12 +24,14 @@ import org.eclipse.ocl.ecore.Variable;
 
 import com.sap.emf.ocl.util.OclHelper;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
 public abstract class AbstractTracer<T extends EObject> implements Tracer {
     private T expression;
     final private Stack<String> tuplePartNames;
+    protected final OCLFactory oclFactory;
 
     /**
      * Creates a tracer with a <tt>null</tt> {@link #tuplePartNames} array, meaninig that this tracer is not looking for
@@ -38,29 +40,29 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
      * @param expression
      *            the OCL expression for which this tracer shall determine a navigation step
      */
-    protected AbstractTracer(T expression) {
-        this(expression, (Stack<String>)/* tuplePartNames */null);
+    protected AbstractTracer(T expression, OCLFactory oclFactory) {
+        this(expression, (Stack<String>)/* tuplePartNames */null, oclFactory);
     }
 
     /**
      * Specifies an explicit list of tuple part names to look for. Useful in combination with
      * {@link #getListOfTuplePartNamesWithFoundRemoved()}.
      */
-    protected AbstractTracer(T expression, Stack<String> tuplePartNames) {
+    protected AbstractTracer(T expression, Stack<String> tuplePartNames, OCLFactory oclFactory) {
         this.expression = expression;
         this.tuplePartNames = tuplePartNames;
+        this.oclFactory = oclFactory;
     }
 
     /**
      * Creates a tracer for OCL expression <tt>expression</tt> and adding another tuple part name to the list of tuple parts to
      * look for as already defined for the <tt>caller</tt> tracer. See also {@link #getExtendedListOfTuplePartNames(String)}.
-     * 
      * @param additionalTuplePartNameToLookFor
      *            if along the chain of sub-expressions traversed there was an attribute access on a source expression of a tuple
      *            type that needs to be unwound when at some point a {@link TupleLiteralPart} is found. Must not be <tt>null</tt>.
      */
-    protected AbstractTracer(T expression, AbstractTracer<?> caller, String additionalTuplePartNameToLookFor) {
-        this(expression, getExtendedListOfTuplePartNames(caller.tuplePartNames, additionalTuplePartNameToLookFor));
+    protected AbstractTracer(T expression, AbstractTracer<?> caller, String additionalTuplePartNameToLookFor, OCLFactory oclFactory) {
+        this(expression, getExtendedListOfTuplePartNames(caller.tuplePartNames, additionalTuplePartNameToLookFor), oclFactory);
     }
 
     protected T getExpression() {
@@ -195,7 +197,6 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
     
     /**
      * Calculates the scopes the {@link NavigationStep} this {@link Tracer} creates will enter when navigated.
-     * @param operationBodyToCallMapper TODO
      * @return the {@link OCLExpression}s representing the scope the created {@link NavigationStep} will enter when navigated. Always
      * non-<code>null</code>, but possibly empty
      */

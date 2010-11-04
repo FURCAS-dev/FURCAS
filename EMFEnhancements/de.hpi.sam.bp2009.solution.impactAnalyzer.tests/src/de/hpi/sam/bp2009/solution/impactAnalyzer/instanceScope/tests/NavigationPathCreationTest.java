@@ -16,12 +16,18 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.junit.Test;
 
-import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
+import com.sap.emf.oppositeendfinder.DefaultOppositeEndFinder;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionFromClassTcsPicker;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionFromModelPicker;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.OCLWithHiddenOppositesFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.impl.FilterSynthesisWithHiddenOppositesImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.instancescope.InstanceScopeAnalysisWithHiddenOpposites;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.PathCache;
 
 public class NavigationPathCreationTest extends TestCase{
@@ -83,9 +89,10 @@ public class NavigationPathCreationTest extends TestCase{
 
     @SuppressWarnings("unchecked")
     private List<ExceptionWithExpression> tryToCreateNavigationPaths(OCLExpressionWithContext expression) {
+        OCLFactory oclFactory = new OCLWithHiddenOppositesFactory();
 	List<ExceptionWithExpression> excList = new ArrayList<ExceptionWithExpression>();
 
-	FilterSynthesisImpl filterSynthesizer = new FilterSynthesisImpl(expression.getExpression(), false, DefaultOppositeEndFinder.getInstance());
+	FilterSynthesisImpl filterSynthesizer = new FilterSynthesisWithHiddenOppositesImpl(expression.getExpression(), false, OCLWithHiddenOpposites.newInstance());
 	filterSynthesizer.getSynthesisedFilter();
 
 	Map<EAttribute, Set<PropertyCallExp>> attributeCallExpressions = (Map<EAttribute, Set<PropertyCallExp>>)dirtyReflectionAttributeReader("attributeCallExpressions", filterSynthesizer);
@@ -94,9 +101,12 @@ public class NavigationPathCreationTest extends TestCase{
 	for (Set<PropertyCallExp> callExpressionSet : attributeCallExpressions.values()) {
 	    for (PropertyCallExp callExpression : callExpressionSet) {
 		try {
-		    PathCache cache = new PathCache(DefaultOppositeEndFinder.getInstance());
+		    PathCache cache = new PathCache(DefaultOppositeEndFinder.getInstance(),
+		            new InstanceScopeAnalysisWithHiddenOpposites(callExpression, /* exprContext */ null,
+		                    filterSynthesizer, DefaultOppositeEndFinder.getInstance(), OptimizationActivation.getOption(),
+		                    oclFactory));
 		    assertNotNull(cache.getOrCreateNavigationPath((OCLExpression)callExpression.getSource(), expression.getContext(), filterSynthesizer,
-			    null));
+			    null, oclFactory));
 		} catch (RuntimeException e) {
 		    System.out.println(callExpression.getSource());
 		    e.printStackTrace();
@@ -109,9 +119,11 @@ public class NavigationPathCreationTest extends TestCase{
 	for (Set<NavigationCallExp> callExpressionSet : associationEndCallExpressions.values()) {
 	    for (NavigationCallExp callExpression : callExpressionSet) {
 		try {
-		    PathCache cache = new PathCache(DefaultOppositeEndFinder.getInstance());
+		    PathCache cache = new PathCache(DefaultOppositeEndFinder.getInstance(), new InstanceScopeAnalysisWithHiddenOpposites(callExpression, /* exprContext */ null,
+                            filterSynthesizer, DefaultOppositeEndFinder.getInstance(), OptimizationActivation.getOption(),
+                            oclFactory));
 		    assertNotNull(cache.getOrCreateNavigationPath((OCLExpression)callExpression.getSource(), expression.getContext(), filterSynthesizer,
-			    null));
+			    null, oclFactory));
 		} catch (RuntimeException e) {
 		    System.out.println(callExpression.getSource());
 		    e.printStackTrace();

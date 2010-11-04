@@ -2,9 +2,9 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Test
 Bundle-SymbolicName: com.sap.furcas.parsergenerator.test
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.0.0
 Bundle-Vendor: SAP
-Fragment-Host: com.sap.furcas.parsergenerator;bundle-version="1.0.0.qualifier"
+Fragment-Host: com.sap.furcas.parsergenerator;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: com.sap.furcas.parsergenerator.base,
  com.sap.furcas.parsergenerator.tcs.injection;uses:="com.sap.furcas.metamodel.TCS,com.sap.mi.textual.syntaxmodel.emfadapter",
@@ -22,8 +22,8 @@ Export-Package: com.sap.furcas.parsergenerator.base,
  com.sap.furcas.parsergenerator.tcs.t2m.validation,
  com.sap.furcas.parsergenerator.testutils
 Require-Bundle: org.junit;bundle-version="4.8.1",
- com.sap.furcas.test;bundle-version="1.0.0",
- com.sap.furcas.metamodel.tests;bundle-version="1.0.0"
+ com.sap.furcas.test,
+ com.sap.furcas.metamodel.tests
 Bundle-ClassPath: scenariotestTemp/,
  .,
  lib/tools.jar

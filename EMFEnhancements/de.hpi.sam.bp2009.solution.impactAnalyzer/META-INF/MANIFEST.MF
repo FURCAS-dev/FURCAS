@@ -13,11 +13,16 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.ocl.ecore,
  org.eclipse.osgi,
  org.eclipse.emf.common,
- org.eclipse.ocl,
- com.sap.emf.ocl.hiddenopposites,
  de.hpi.sam.bp2009.solution.eventManager,
- de.hpi.sam.bp2009.solution.oclToAst,
- com.sap.emf.ocl.prepared
+ com.sap.emf.ocl.util,
+ com.sap.emf.oppositeendfinder
 Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer,
- de.hpi.sam.bp2009.solution.impactAnalyzer.configuration
+ de.hpi.sam.bp2009.solution.impactAnalyzer.configuration,
+ de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzerWithHiddenOpposites",
+ de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzerWithHiddenOpposites",
+ de.hpi.sam.bp2009.solution.impactAnalyzer.impl;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzerWithHiddenOpposites",
+ de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzerWithHiddenOpposites",
+ de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzerWithHiddenOpposites",
+ de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzerWithHiddenOpposites",
+ de.hpi.sam.bp2009.solution.impactAnalyzer.util;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzerWithHiddenOpposites"
 Bundle-Activator: de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerPlugin

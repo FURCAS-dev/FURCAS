@@ -14,29 +14,31 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.ecore.CallOperationAction;
+import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.NavigationCallExp;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.PropertyCallExp;
+import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.TupleType;
 import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.ecore.impl.TypeExpImpl;
 import org.eclipse.ocl.expressions.VariableExp;
+import org.eclipse.ocl.utilities.AbstractVisitor;
 import org.eclipse.ocl.utilities.PredefinedType;
 
-import com.sap.emf.ocl.hiddenopposites.AbstractVisitorWithHiddenOpposites;
-import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
-import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
-import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 import com.sap.emf.ocl.util.OclHelper;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
@@ -57,14 +59,14 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
  * @author Tobias Hoppe
  * @author Axel Uhl
  */
-public class FilterSynthesisImpl extends AbstractVisitorWithHiddenOpposites<EPackage>
+public class FilterSynthesisImpl extends AbstractVisitor<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint>
 implements OperationBodyToCallMapper {
 
     final private boolean notifyNewContextElements;
     /**
      * For each {@link OCLExpression} analyzed, stores the filters to merge into the resulting filter 
      */
-    final private Set<EventFilter> filters = new HashSet<EventFilter>();
+    final protected Set<EventFilter> filters = new HashSet<EventFilter>();
 
     /**
      * For each operation body analyzed, stores the calls to the operation that were visited
@@ -72,13 +74,13 @@ implements OperationBodyToCallMapper {
     final private Map<OCLExpression, Set<OperationCallExp>> visitedOperationBodies = new LinkedHashMap<OCLExpression, Set<OperationCallExp>>();
  
     private final Map<EAttribute, Set<PropertyCallExp>> attributeCallExpressions = new HashMap<EAttribute, Set<PropertyCallExp>>();
-    private final Map<EReference, Set<NavigationCallExp>> associationEndCallExpressions = new HashMap<EReference, Set<NavigationCallExp>>();
+    protected final Map<EReference, Set<NavigationCallExp>> associationEndCallExpressions = new HashMap<EReference, Set<NavigationCallExp>>();
     private final Set<OCLExpression> visitedExpressions = new HashSet<OCLExpression>();
     private final Map<EClassifier, Set<OperationCallExp>> allInstancesCalls = new HashMap<EClassifier, Set<OperationCallExp>>();
     private final Stack<OCLExpression> visitedOperationBodyStack = new Stack<OCLExpression>();
     private final Map<OCLExpression, Set<Variable>> selfVariablesUsedInBody = new HashMap<OCLExpression, Set<Variable>>();
     private final Map<OCLExpression, Set<Variable>> parameterVariablesUsedInBody = new HashMap<OCLExpression, Set<Variable>>();
-    private final OppositeEndFinder oppositeEndFinder;
+    private final OCL ocl;
  
     /**
      * @param expression The {@link OCLExpression} the filter should be created for. 
@@ -91,12 +93,11 @@ implements OperationBodyToCallMapper {
      *            the element has been fully initialized from those OCL expressions. In those cases, some framework may
      *            be responsible for the initial evaluation of those OCL expressions on new element, and therefore,
      *            context element creation events are not of interest.
-     * @param oppositeEndFinder TODO
      */
-    public FilterSynthesisImpl(OCLExpression expression, boolean notifyNewContextElements, OppositeEndFinder oppositeEndFinder) {
+    public FilterSynthesisImpl(OCLExpression expression, boolean notifyNewContextElements, OCL ocl) {
         super();
         this.notifyNewContextElements = notifyNewContextElements;
-        this.oppositeEndFinder = oppositeEndFinder;
+        this.ocl = ocl;
         walk(expression);
     }
 
@@ -135,25 +136,6 @@ implements OperationBodyToCallMapper {
     }
     
     @Override
-    public EPackage handleOppositePropertyCallExp(OppositePropertyCallExp callExp,
-            EPackage sourceResult) {
-        if (callExp.getReferredOppositeProperty() instanceof EReference){
-            EClass cls = (EClass) callExp.getReferredOppositeProperty().eContainer();
-            filters.add(EventManagerFactory.eINSTANCE.createFilterForEReference(cls, callExp.getReferredOppositeProperty( )));
-            EReference refRef = (EReference)callExp.getReferredOppositeProperty();
-            Set<NavigationCallExp> set = associationEndCallExpressions.get(refRef);
-            if (set == null){
-                set = new HashSet<NavigationCallExp>();
-                associationEndCallExpressions.put(refRef, set);
-            }
-            set.add((OppositePropertyCallExp)callExp);
-        } else {
-            System.err.println("Unhandled EStructuralFeature as referredOppositeProperty in FilterSynthesis.");
-        }
-        return result;
-    }
-    
-    @Override
     public EPackage handleOperationCallExp(org.eclipse.ocl.expressions.OperationCallExp<EClassifier, EOperation> opCallExp, EPackage sourceResult, List<EPackage> qualifierResults) {
         if (opCallExp.getReferredOperation().getName().equals(PredefinedType.ALL_INSTANCES_NAME) ) {
             EClass cls = null;
@@ -176,8 +158,7 @@ implements OperationBodyToCallMapper {
                 // standard library operation: nothing to do
             } else {
                 // handle self defined operation
-                OCL ocl = OCLWithHiddenOpposites.newInstance(oppositeEndFinder);
-                OCLExpression body = InvocationBehavior.INSTANCE.getOperationBody(ocl, opCallExp.getReferredOperation());
+                OCLExpression body = getOperationBody(opCallExp.getReferredOperation());
                 if (body != null) {
                     Set<OperationCallExp> analyzedCallsToBody = visitedOperationBodies.get(body);
                     if (analyzedCallsToBody == null) {
@@ -349,6 +330,11 @@ implements OperationBodyToCallMapper {
             result = Collections.emptySet();
         }
         return result;
+    }
+
+    public OCLExpression getOperationBody(EOperation operation) {
+        OCLExpression body = InvocationBehavior.INSTANCE.getOperationBody(ocl, operation);
+        return body;
     }
 
 } //FilterSynthesisImpl

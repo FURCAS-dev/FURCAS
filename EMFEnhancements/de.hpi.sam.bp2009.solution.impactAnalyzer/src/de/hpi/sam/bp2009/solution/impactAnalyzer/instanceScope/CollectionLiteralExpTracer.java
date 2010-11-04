@@ -13,11 +13,12 @@ import org.eclipse.ocl.ecore.CollectionLiteralExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.expressions.CollectionLiteralPart;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 
 public class CollectionLiteralExpTracer extends AbstractTracer<CollectionLiteralExp> {
-    public CollectionLiteralExpTracer(CollectionLiteralExp expression, Stack<String> tuplePartNames) {
-        super(expression, tuplePartNames);
+    public CollectionLiteralExpTracer(CollectionLiteralExp expression, Stack<String> tuplePartNames, OCLFactory oclFactory) {
+        super(expression, tuplePartNames, oclFactory);
     }
 
     @Override
@@ -30,7 +31,7 @@ public class CollectionLiteralExpTracer extends AbstractTracer<CollectionLiteral
             CollectionLiteralPart<EClassifier> part = i.next();
             if (part instanceof CollectionItem) {
                 steps.add(pathCache.getOrCreateNavigationPath((OCLExpression) ((CollectionItem) part)
-                        .getItem(), context, operationBodyToCallMapper, getTupleLiteralPartNamesToLookFor()));
+                        .getItem(), context, operationBodyToCallMapper, getTupleLiteralPartNamesToLookFor(), oclFactory));
             }
         }
         if (getExpression().getPart().size() > 0){

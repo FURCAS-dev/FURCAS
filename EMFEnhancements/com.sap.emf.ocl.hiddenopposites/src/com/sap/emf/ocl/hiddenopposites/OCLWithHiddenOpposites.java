@@ -14,6 +14,7 @@ import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.SyntaxException;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.expressions.OCLExpression;
@@ -22,6 +23,8 @@ import org.eclipse.ocl.parser.OCLAnalyzer;
 import org.eclipse.ocl.parser.backtracking.OCLBacktrackingLexer;
 import org.eclipse.ocl.parser.backtracking.OCLBacktrackingParser;
 import org.eclipse.ocl.util.OCLUtil;
+
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
 public class OCLWithHiddenOpposites extends OCL {
 
@@ -81,7 +84,7 @@ public class OCLWithHiddenOpposites extends OCL {
 	super(envFactory, resource);
     }
 
-    protected OCLWithHiddenOpposites(EcoreEnvironmentFactoryWithHiddenOpposites envFactory) {
+    protected OCLWithHiddenOpposites(EcoreEnvironmentFactory envFactory) {
 	super(envFactory);
     }
 
@@ -118,8 +121,21 @@ public class OCLWithHiddenOpposites extends OCL {
      * @return the new <code>OCL</code>
      */
     public static OCL newInstance(EcoreEnvironmentFactoryWithHiddenOpposites envFactory) {
-
 	return new OCLWithHiddenOpposites(envFactory);
+    }
+
+    /**
+     * Creates a new <code>OCL</code> using the specified Ecore environment factory. This variant
+     * of {@link #newInstance(EcoreEnvironmentFactoryWithHiddenOpposites)} is discriminated from
+     * {@link #newInstance(org.eclipse.ocl.EnvironmentFactory)} by the additional dummy <code>boolean</code>
+     * argument.
+     * 
+     * @param envFactory
+     *            an environment factory for Ecore
+     * @return the new <code>OCL</code>
+     */
+    public static OCL newInstance(EcoreEnvironmentFactory envFactory, boolean dummy) {
+        return new OCLWithHiddenOpposites(envFactory);
     }
 
     /**

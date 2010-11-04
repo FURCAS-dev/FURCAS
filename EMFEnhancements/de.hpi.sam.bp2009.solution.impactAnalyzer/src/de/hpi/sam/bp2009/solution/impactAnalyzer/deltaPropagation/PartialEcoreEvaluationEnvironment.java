@@ -2,6 +2,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -11,21 +12,25 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
+import org.eclipse.ocl.ecore.EcoreEvaluationEnvironment;
 import org.eclipse.ocl.expressions.VariableExp;
 
-import com.sap.emf.ocl.hiddenopposites.EvaluationEnvironmentWithHiddenOppositesImpl;
-import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+import com.sap.emf.oppositeendfinder.ExtentMap;
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
-public class PartialEcoreEvaluationEnvironment extends EvaluationEnvironmentWithHiddenOppositesImpl {
+public class PartialEcoreEvaluationEnvironment extends EcoreEvaluationEnvironment {
     private final Map<String, Object> map = new HashMap<String, Object>();
+    private final OppositeEndFinder oppositeEndFinder;
     
     public PartialEcoreEvaluationEnvironment(OppositeEndFinder oppositeEndFinder) {
-        super(oppositeEndFinder);
+        super();
+        this.oppositeEndFinder = oppositeEndFinder;
     }
     
     public PartialEcoreEvaluationEnvironment(
             EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> parent) {
         super(parent);
+        this.oppositeEndFinder = ((PartialEcoreEvaluationEnvironment) parent).getOppositeEndFinder();
     }
 
     /**
@@ -111,4 +116,21 @@ public class PartialEcoreEvaluationEnvironment extends EvaluationEnvironmentWith
         return map.toString();
     }
 
+    /**
+     * In the case of the "hidden opposites" OCL environment, an instance of the {@link ExtentMap} class is used. Is bases its
+     * <code>allInstances</code> computations on the {@link OppositeEndFinder} passed to the constructor of this object. See
+     * {@link OppositeEndFinder#getAllInstancesSeenBy(EClass, org.eclipse.emf.common.notify.Notifier)}.
+     */
+    @Override
+    public Map<EClass, Set<EObject>> createExtentMap(Object object) {
+        EObject context = null;
+        if (object instanceof EObject) {
+            context = (EObject) object;
+        }
+        return new ExtentMap(context, oppositeEndFinder);
+    }
+
+    protected OppositeEndFinder getOppositeEndFinder() {
+        return oppositeEndFinder;
+    }
 }

@@ -6,10 +6,14 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.expressions.CollectionItem;
@@ -23,11 +27,9 @@ import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.TupleLiteralExp;
 import org.eclipse.ocl.expressions.TupleLiteralPart;
+import org.eclipse.ocl.utilities.AbstractVisitor;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 import org.eclipse.ocl.utilities.PredefinedType;
-
-import com.sap.emf.ocl.hiddenopposites.AbstractVisitorWithHiddenOpposites;
-import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 
 /**
  * For an OCL expression finds out which of the {@link Variable}s referred by any {@link VariableExp} within
@@ -37,7 +39,7 @@ import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallEx
  * @author Axel Uhl (D043530)
  *
  */
-public class FindAlwaysUsedVariablesVisitor extends AbstractVisitorWithHiddenOpposites<Set<VariableExp>> {
+public class FindAlwaysUsedVariablesVisitor extends AbstractVisitor<Set<VariableExp>, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> {
     public FindAlwaysUsedVariablesVisitor() {
         super(new HashSet<VariableExp>());
     }
@@ -47,12 +49,6 @@ public class FindAlwaysUsedVariablesVisitor extends AbstractVisitorWithHiddenOpp
         return Collections.singleton((org.eclipse.ocl.ecore.VariableExp) v);
     }
 
-    @Override
-    protected Set<VariableExp> handleOppositePropertyCallExp(OppositePropertyCallExp callExp, Set<VariableExp> sourceResult) {
-        return sourceResult;
-    }
-
-    
     /**
      * For an operation call it's not sure that the argument expression(s) will actually be evaluated. Examples of unused argument
      * expressions are -&gt;at(...) expressions on empty collections where the partial evaluator may cut that short to <code>invalid</code>

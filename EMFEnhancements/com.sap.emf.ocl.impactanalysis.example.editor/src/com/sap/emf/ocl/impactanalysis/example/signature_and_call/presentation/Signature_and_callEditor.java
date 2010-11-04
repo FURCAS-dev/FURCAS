@@ -126,6 +126,7 @@ import com.sap.emf.ocl.impactanalysis.example.signature_and_call.Signature_and_c
 import com.sap.emf.ocl.impactanalysis.example.signature_and_call.provider.Signature_and_callItemProviderAdapterFactory;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.editor.Revalidator;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.OCLWithHiddenOppositesFactory;
 
 
 /**
@@ -927,7 +928,7 @@ public class Signature_and_callEditor
             resourceToDiagnosticMap.put(resource,  analyzeResourceProblems(resource, exception));
         }
         editingDomain.getResourceSet().eAdapters().add(problemIndicationAdapter);
-        revalidator = new Revalidator(editingDomain, Signature_and_callPackage.eINSTANCE);
+        revalidator = new Revalidator(editingDomain, Signature_and_callPackage.eINSTANCE, new OCLWithHiddenOppositesFactory());
     }
 
     /**
