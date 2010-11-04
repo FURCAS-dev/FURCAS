@@ -39,6 +39,9 @@ import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.PrimitiveType;
 
+import com.sap.emf.oppositeendfinder.DefaultOppositeEndFinder;
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
+
 public class EcoreEnvironmentWithHiddenOppositesImpl extends EcoreEnvironment
 		implements EcoreEnvironmentWithHiddenOpposites {
 

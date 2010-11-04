@@ -20,8 +20,8 @@ import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.SendSignalAction;
 
-import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
-import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+import com.sap.emf.oppositeendfinder.DefaultOppositeEndFinder;
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEcoreEnvironmentFactory;
 

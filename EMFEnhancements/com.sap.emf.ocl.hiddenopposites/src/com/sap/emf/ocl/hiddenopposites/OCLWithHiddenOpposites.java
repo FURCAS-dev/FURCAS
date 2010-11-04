@@ -23,6 +23,8 @@ import org.eclipse.ocl.parser.backtracking.OCLBacktrackingLexer;
 import org.eclipse.ocl.parser.backtracking.OCLBacktrackingParser;
 import org.eclipse.ocl.util.OCLUtil;
 
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
+
 public class OCLWithHiddenOpposites extends OCL {
 
     @Override

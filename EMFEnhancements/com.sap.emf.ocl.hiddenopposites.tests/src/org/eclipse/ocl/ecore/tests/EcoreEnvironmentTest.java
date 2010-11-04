@@ -53,10 +53,10 @@ import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.helper.OCLHelper;
 import org.eclipse.ocl.options.ParsingOptions;
 
-import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
 import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentWithHiddenOppositesImpl;
 import com.sap.emf.ocl.hiddenopposites.EvaluationEnvironmentWithHiddenOppositesImpl;
+import com.sap.emf.oppositeendfinder.DefaultOppositeEndFinder;
 
 /**
  * Tests the {@link ExpressionsUtil} class.

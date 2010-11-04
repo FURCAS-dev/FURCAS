@@ -45,11 +45,11 @@ import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.OCL.Query;
 import org.eclipse.ocl.util.OCLUtil;
 
-import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
 import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentWithHiddenOppositesImpl;
 import com.sap.emf.ocl.hiddenopposites.EvaluationEnvironmentWithHiddenOppositesImpl;
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
+import com.sap.emf.oppositeendfinder.DefaultOppositeEndFinder;
 
 /**
  * Tests usage of EvaluationHaltedException.

@@ -18,11 +18,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
-import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 import com.sap.emf.ocl.trigger.AbstractTriggerable;
 import com.sap.emf.ocl.trigger.TriggerManager;
 import com.sap.emf.ocl.trigger.TriggerManagerFactory;
 import com.sap.emf.ocl.trigger.Triggerable;
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
+
 import company.CompanyFactory;
 import company.CompanyPackage;
 import company.Department;

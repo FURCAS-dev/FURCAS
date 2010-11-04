@@ -28,8 +28,8 @@ import org.eclipse.ocl.ecore.TupleType;
 import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.VariableExp;
 
-import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 import com.sap.emf.ocl.util.OclHelper;
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
@@ -238,8 +238,8 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
      * during the AST navigation from the <code>sourceExpression</code> to the expression to be evaluated during the "unused"
      * check. They are stored in the {@link TracebackStep} whose expression's unusedness they shall prove. When a step is executed
      * by invoking its {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, TracebackCache, Notification)} method,
-     * these requests are {@link UnusedEvaluationRequest#evaluate(com.sap.emf.ocl.hiddenopposites.OppositeEndFinder, OCL) evaluated}.
-     * using {@link UnusedEvaluationRequestSet#evaluate(Set, com.sap.emf.ocl.hiddenopposites.OppositeEndFinder, TracebackCache, OCL)}. If this proves
+     * these requests are {@link UnusedEvaluationRequest#evaluate(com.sap.emf.oppositeendfinder.OppositeEndFinder, OCL) evaluated}.
+     * using {@link UnusedEvaluationRequestSet#evaluate(Set, com.sap.emf.oppositeendfinder.OppositeEndFinder, TracebackCache, OCL)}. If this proves
      * that the expression is unused, an empty set can be returned right away. Otherwise, the follow-up
      * {@link UnusedEvaluationRequestSet} delivered via {@link UnusedEvaluationResult#getNewRequestSet()} is merged with the one
      * passed to {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, TracebackCache, Notification)}.

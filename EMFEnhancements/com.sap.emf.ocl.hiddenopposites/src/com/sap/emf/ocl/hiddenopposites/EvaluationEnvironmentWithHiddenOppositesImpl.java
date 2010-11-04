@@ -19,6 +19,8 @@ import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.util.ObjectUtil;
 
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
+
 public class EvaluationEnvironmentWithHiddenOppositesImpl extends EcoreEvaluationEnvironment implements
         EvaluationEnvironmentWithHiddenOpposites {
 

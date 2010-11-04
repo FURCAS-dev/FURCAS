@@ -11,8 +11,8 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
-import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+import com.sap.emf.oppositeendfinder.DefaultOppositeEndFinder;
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
 public class AllInstanceCallCountingOppositeEndFinder implements OppositeEndFinder{
     private int allInstancesCalled = 0;

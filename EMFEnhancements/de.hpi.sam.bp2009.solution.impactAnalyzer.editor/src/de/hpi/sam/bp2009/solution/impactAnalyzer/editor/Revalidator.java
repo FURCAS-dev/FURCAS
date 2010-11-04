@@ -15,7 +15,7 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.delegate.ValidationBehavior;
 
-import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;

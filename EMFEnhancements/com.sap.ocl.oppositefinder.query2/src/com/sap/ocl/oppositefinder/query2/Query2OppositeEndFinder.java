@@ -30,8 +30,8 @@ import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.emf.query2.SelectAlias;
 import org.eclipse.emf.query2.SelectEntry;
 
-import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
-import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+import com.sap.emf.oppositeendfinder.DefaultOppositeEndFinder;
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider;
 

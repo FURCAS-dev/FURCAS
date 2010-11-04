@@ -23,7 +23,8 @@ Require-Bundle: de.hpi.sam.bp2009.ngpm,
  org.eclipse.emf.query.index,
  com.sap.ocl.oppositefinder.query2,
  de.hpi.sam.bp2009.solution.testutils,
- de.hpi.sam.bp2009.solution.impactAnalyzerWithHiddenOpposites
+ de.hpi.sam.bp2009.solution.impactAnalyzerWithHiddenOpposites,
+ com.sap.emf.oppositeendfinder
 Import-Package: company,
  company.impl
 Bundle-ClassPath: lib/bb.jar,

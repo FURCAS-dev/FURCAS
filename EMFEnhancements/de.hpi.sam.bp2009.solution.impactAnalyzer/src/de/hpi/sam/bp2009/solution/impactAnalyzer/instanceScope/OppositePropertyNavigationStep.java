@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.OCLExpression;
 
-import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.SemanticIdentity;

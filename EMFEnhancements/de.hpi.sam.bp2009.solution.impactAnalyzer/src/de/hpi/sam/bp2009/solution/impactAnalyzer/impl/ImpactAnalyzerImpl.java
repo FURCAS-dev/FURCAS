@@ -7,8 +7,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.OCLExpression;
 
-import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
-import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+import com.sap.emf.oppositeendfinder.DefaultOppositeEndFinder;
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;

@@ -14,7 +14,6 @@ import org.eclipse.ocl.ecore.OCLExpression;
 
 import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
-import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 import com.sap.emf.ocl.prepared.parameters.DuplicateParameterValueException;
 import com.sap.emf.ocl.prepared.parameters.Parameter;
@@ -22,6 +21,7 @@ import com.sap.emf.ocl.prepared.parameters.ParameterFactory;
 import com.sap.emf.ocl.prepared.parameters.ParameterFinder;
 import com.sap.emf.ocl.prepared.parameters.ParameterNotFoundException;
 import com.sap.emf.ocl.util.OclHelper;
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
 /**
  * Similar to a JDBC prepared statement, where parameters can be set to specific values before executing it,

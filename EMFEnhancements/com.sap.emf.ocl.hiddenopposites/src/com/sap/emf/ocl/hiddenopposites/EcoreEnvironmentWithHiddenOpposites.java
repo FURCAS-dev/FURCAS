@@ -32,11 +32,6 @@ public interface EcoreEnvironmentWithHiddenOpposites
         extends
         Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> {
     /**
-     * The key that identifies opposite role names in an annotation
-     */
-    public static final String PROPERTY_OPPOSITE_ROLE_NAME_KEY = "Property.oppositeRoleName"; //$NON-NLS-1$
-
-    /**
      * Finds a property defined or inherited by the specified classifier, based on a hidden opposite's name which is
      * specified in an annotation on the property.
      * 
