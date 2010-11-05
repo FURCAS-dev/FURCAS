@@ -19,7 +19,6 @@ import org.eclipse.emf.common.util.URI;
  * Partition search criterion. A partition expression contains the information
  * whether selected objects belong to certain partitions or not.
  */
-@Deprecated
 public final class SpiPartitionExpression {
 
 	// partition list containing the MRIs of the partitions that shall be included or excluded.

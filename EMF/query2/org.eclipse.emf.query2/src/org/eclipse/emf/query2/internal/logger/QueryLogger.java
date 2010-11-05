@@ -88,17 +88,6 @@ public interface QueryLogger {
 	public void trace(Throwable throwable, LogSeverity severity, String message, Object... args);
 
 	/**
-	 * @param sev
-	 * @param message
-	 * @param e
-	 * @deprecated can lead to ambiguous parameter assignments due to vargs; use
-	 *             {@link #trace(Throwable throwable, LogSeverity severity, String message, Object... args )}
-	 *             instead
-	 */
-	@Deprecated
-	public void trace(LogSeverity sev, String message, Throwable e);
-
-	/**
 	 * Prints the message and the Exception to the trace file
 	 * <p>
 	 * Allows reporting of the message context, see

@@ -16,14 +16,12 @@ import java.util.List;
 /**
  * Implements the Or operator.
  */
-@Deprecated
 public final class SpiOr extends SpiMultinaryExpression {
 
 	/**
 	 * Constructor takes a list of operands
 	 */
-	public SpiOr(List anExpressionList) {
-
+	public SpiOr(List<?> anExpressionList) {
 		super(anExpressionList);
 	}
 
@@ -37,7 +35,7 @@ public final class SpiOr extends SpiMultinaryExpression {
 		}
 		sb.append(SpiUtils.OPENING_PARENTHESES);
 		sb.append(SpiUtils.OR);
-		for (Iterator it = this.getOperands(); it.hasNext();) {
+		for (Iterator<?> it = this.getOperands(); it.hasNext();) {
 			((SpiAttributeExpression) it.next()).toString(sb, ident + 1, true);
 		}
 		sb.append(SpiUtils.CLOSING_PARENTHESES);

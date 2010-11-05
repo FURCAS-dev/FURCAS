@@ -21,7 +21,6 @@ import org.eclipse.emf.query2.internal.index.SpiFacilityQueryServiceException;
  * Select list containing the attributes which are to be selected for a model
  * element
  */
-@Deprecated
 public final class SpiSelectList {
 
 	private SpiModelElementExpression modelElementExpression;

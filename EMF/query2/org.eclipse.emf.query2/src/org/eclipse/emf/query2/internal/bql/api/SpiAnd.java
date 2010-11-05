@@ -16,14 +16,12 @@ import java.util.List;
 /**
  * Implements the AND operator.
  */
-@Deprecated
 public final class SpiAnd extends SpiMultinaryExpression {
 
 	/**
 	 * Constructor takes a list of operands
 	 */
-	public SpiAnd(List anExpressionList) {
-
+	public SpiAnd(List<?> anExpressionList) {
 		super(anExpressionList);
 	}
 
@@ -37,7 +35,7 @@ public final class SpiAnd extends SpiMultinaryExpression {
 		}
 		sb.append(SpiUtils.OPENING_PARENTHESES);
 		sb.append(SpiUtils.AND);
-		for (Iterator it = this.getOperands(); it.hasNext();) {
+		for (Iterator<?> it = this.getOperands(); it.hasNext();) {
 			((SpiAttributeExpression) it.next()).toString(sb, ident + 1, true);
 		}
 		sb.append(SpiUtils.CLOSING_PARENTHESES);

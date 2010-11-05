@@ -16,7 +16,6 @@ import org.eclipse.emf.query2.internal.fql.SpiFqlPrimitiveType;
 /**
  * Implements comparisons of two attributes.
  */
-@Deprecated
 public final class SpiAttributeToAttributeComparisonExpression extends SpiLeafExpression {
 
 	private SpiFqlComparisonOperation operator;
@@ -33,7 +32,6 @@ public final class SpiAttributeToAttributeComparisonExpression extends SpiLeafEx
 	 */
 	public SpiAttributeToAttributeComparisonExpression(String anId, SpiFqlPrimitiveType attributeValueType,
 			SpiFqlComparisonOperation operator, SpiAttributeInModelElement comparedAttributeInModelElement) {
-
 		super(anId, attributeValueType);
 		this.operator = operator;
 		this.comparedAttributeInModelElement = comparedAttributeInModelElement;
@@ -52,9 +50,6 @@ public final class SpiAttributeToAttributeComparisonExpression extends SpiLeafEx
 		return this.operator;
 	}
 
-	/**
-     *
-     */
 	public void toString(StringBuffer sb, int ident, boolean newline) {
 
 		if (newline) {
