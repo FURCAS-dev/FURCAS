@@ -1,4 +1,4 @@
-package com.sap.furcas.parsergenerator.tcs;
+package com.sap.furcas.parsergenerator.tcs.generator;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -14,7 +14,7 @@ import com.sap.furcas.runtime.common.exceptions.ParserGeneratorInvocationExcepti
  * 
  * @author Stephan Erb (d049157)
  */
-public class TestGrammarGeneratorLookup {
+public class TestTCSGrammarGenerator {
 
     
     @Test
