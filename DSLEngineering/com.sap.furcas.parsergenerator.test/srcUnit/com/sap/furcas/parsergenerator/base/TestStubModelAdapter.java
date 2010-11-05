@@ -39,8 +39,7 @@ public class TestStubModelAdapter {
         assertNotNull(objects);
         assertEquals(2, objects.size());
         objects = handler.getElementsbyType("test2");
-        assertNotNull(objects);
-        assertEquals(1, objects.size());
+        assertNull("No such element was created", objects);
     }
 
     @Test

@@ -1968,7 +1968,7 @@ public class TCSParser extends ObservableInjectingParser {
 
         Object temp = null;
 
-
+ 
         List<String> metaType=list("Model","Classifier");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createReferenceProxy(metaType) : null;

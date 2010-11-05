@@ -19,7 +19,7 @@ import org.antlr.runtime.Token;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.antlr3.DefaultANTLR3LocationTokenFactory;
 import com.sap.furcas.runtime.parser.antlr3.ITokenFactory;
-
+ 
 public class TCSLexer extends Lexer {
     public static final int LT=19;
     public static final int DLCURLY=29;
