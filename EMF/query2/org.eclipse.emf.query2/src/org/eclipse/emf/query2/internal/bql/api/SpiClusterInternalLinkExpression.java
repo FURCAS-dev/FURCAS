@@ -18,7 +18,6 @@ import org.eclipse.emf.common.util.URI;
  * LinkExpression with a model element expression as link target. The isLinked()
  * condition is always true.
  */
-@Deprecated
 public final class SpiClusterInternalLinkExpression extends SpiLinkExpression {
 
 	/**
@@ -37,7 +36,6 @@ public final class SpiClusterInternalLinkExpression extends SpiLinkExpression {
 	 */
 	protected SpiClusterInternalLinkExpression(URI linkType, SpiModelElementExpression fromModelElementExpression,
 			SpiModelElementExpression linkTarget) {
-
 		super(true, linkType, fromModelElementExpression, linkTarget);
 	}
 

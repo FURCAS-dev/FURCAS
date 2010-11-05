@@ -15,7 +15,6 @@ import org.eclipse.emf.query2.internal.fql.SpiFqlPrimitiveType;
 /**
  * Implements the handling of a single attribute id
  */
-@Deprecated
 public abstract class SpiLeafExpression implements SpiAttributeExpression {
 
 	private String attributeId;
