@@ -19,7 +19,7 @@ import org.antlr.runtime.Lexer;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import com.sap.furcas.runtime.common.exceptions.GrammarGenerationException;
+import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.parser.IModelAdapter;
@@ -38,7 +38,7 @@ public class ParserGenerationTestHelper {
     private static final String DEFAULT_GENERATIONDIR_SOURCEROOT = "./scenariotestTemp";
     private static final String DEFAULT_PACKAGE = "generated2";
     private static final String DEFAULT_GENERATIONDIR = DEFAULT_GENERATIONDIR_SOURCEROOT + "/" + DEFAULT_PACKAGE + "/";
-    private static final String DEFAULT_TCSPATH = "./scenarioTestResource";
+    private static final String DEFAULT_TCSPATH = "../com.sap.furcas.test/fixtures";
 
     private final String generationSourceRoot;
     private String generationDirectory;

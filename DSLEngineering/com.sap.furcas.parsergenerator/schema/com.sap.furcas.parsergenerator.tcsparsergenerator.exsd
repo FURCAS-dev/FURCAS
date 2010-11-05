@@ -3,10 +3,10 @@
 <schema targetNamespace="com.sap.furcas.parsergenerator" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="com.sap.furcas.parsergenerator" id="com.sap.furcas.parsergenerator.tcsparsergenerator" name="TCSParsergenerator"/>
+         <meta.schema plugin="com.sap.furcas.parsergenerator" id="com.sap.furcas.parsergenerator.tcsparsergenerator" name="TCSParserGenerator"/>
       </appinfo>
       <documentation>
-         [Enter description of this extension point.]
+         Facade allowing to generate parsers for given TCS files and/or syntax models.
       </documentation>
    </annotation>
 

@@ -3,7 +3,7 @@ package com.sap.ide.cts.editor.contentassist.processor;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import com.sap.furcas.runtime.common.exceptions.GrammarGenerationException;
+import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;

@@ -12,8 +12,6 @@ import java.util.List;
 
 import org.antlr.runtime.RecognitionException;
 
-import com.sap.furcas.runtime.parser.impl.ParsingError;
-import com.sap.furcas.runtime.parser.impl.TextLocation;
 
 
 

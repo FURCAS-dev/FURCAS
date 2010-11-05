@@ -7,11 +7,14 @@ import java.util.Set;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.base.FileBasedEcoreMetaModelLookUp;
 import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
 import com.sap.furcas.parsergenerator.base.StubModelAdapter;
 import com.sap.furcas.parsergenerator.base.StubModelElement;
+import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
+import com.sap.furcas.test.scenario.FixtureData;
+
+
 
 
 /**
@@ -26,7 +29,7 @@ public class ExpressionTest extends ExtendedGeneratedParserBasedTest {
 	@BeforeClass
 	public static void setupParser() throws Exception {
 		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new FileBasedEcoreMetaModelLookUp("Expression.ecore"));
+		setLookup(new FileBasedEcoreMetaModelLookUp(FixtureData.EXPRESSION_METAMODEL));
 		generateParserForLanguage(LANGUAGE);
 	}
 	

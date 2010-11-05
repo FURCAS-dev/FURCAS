@@ -32,8 +32,7 @@ public abstract class AbstractTCSInjectionTest {
     protected static ConcreteSyntax syntax;
     protected static ModelInjectionResult modelParsingResult;
 
-    protected static void setup(String tcsSampleDef) throws InvalidParserImplementationException, IOException, UnknownProductionRuleException {
-        File sample = new File(tcsSampleDef);
+    protected static void setup(File sample) throws InvalidParserImplementationException, IOException, UnknownProductionRuleException {
         assertTrue(sample.exists());
         parseInputStream(new FileInputStream(sample));
         syntax = modelParsingResult.getSyntax();

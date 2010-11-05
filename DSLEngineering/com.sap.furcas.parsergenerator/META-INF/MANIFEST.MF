@@ -3,14 +3,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: TextualSyntaxGenerator
 Bundle-SymbolicName: com.sap.furcas.parsergenerator;singleton:=true
 Bundle-Version: 1.0.0
-Export-Package: com.sap.furcas.parsergenerator.tcs.generator,
- com.sap.furcas.parsergenerator.tcs.generator.errorhandling,
- com.sap.furcas.parsergenerator.tcs.t2m,
- com.sap.furcas.parsergenerator.tcs.t2m.grammar,
- com.sap.furcas.parsergenerator.tcs.t2m.grammar.constraints,
- com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules,
- com.sap.furcas.parsergenerator.tcs.t2m.validation,
- com.sap.furcas.parsergenerator.util
 Require-Bundle: org.antlr;bundle-version="3.1.1",
  org.eclipse.core.runtime,
  org.eclipse.core.resources,

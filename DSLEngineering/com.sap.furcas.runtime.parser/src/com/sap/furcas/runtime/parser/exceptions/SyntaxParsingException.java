@@ -10,7 +10,7 @@ package com.sap.furcas.runtime.parser.exceptions;
 
 import java.util.List;
 
-import com.sap.furcas.runtime.parser.impl.ParsingError;
+import com.sap.furcas.runtime.parser.ParsingError;
 
 
 

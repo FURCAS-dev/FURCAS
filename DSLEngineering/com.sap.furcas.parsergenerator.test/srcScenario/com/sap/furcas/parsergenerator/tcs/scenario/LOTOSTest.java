@@ -3,10 +3,12 @@ package com.sap.furcas.parsergenerator.tcs.scenario;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.base.FileBasedEcoreMetaModelLookUp;
 import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
 import com.sap.furcas.parsergenerator.base.StubModelAdapter;
+import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
+import com.sap.furcas.test.scenario.FixtureData;
+
 
 /**
  * Simple Test for the custom Expression language
@@ -21,7 +23,7 @@ public class LOTOSTest extends ExtendedGeneratedParserBasedTest {
 	@BeforeClass
 	public static void setupParser() throws Exception {
 		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new FileBasedEcoreMetaModelLookUp("LOTOS.ecore"));
+		setLookup(new FileBasedEcoreMetaModelLookUp(FixtureData.LOTOS_METAMODEL));
 		generateParserForLanguage(LANGUAGE);
 	}
 	

@@ -10,7 +10,6 @@ package com.sap.furcas.runtime.parser;
 
 import java.util.List;
 
-import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.impl.DelayedReference;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.parser.impl.context.ContextManager;

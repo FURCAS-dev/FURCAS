@@ -3,7 +3,6 @@ package com.sap.ide.cts.editor.test.util;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
-import generated.TCSParser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,6 +17,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.builder.ProjectSyntaxHelper;
 import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.parser.tcs.stableversion.TCSParser;
 import com.sap.furcas.runtime.parser.ParserFacade;
 
 

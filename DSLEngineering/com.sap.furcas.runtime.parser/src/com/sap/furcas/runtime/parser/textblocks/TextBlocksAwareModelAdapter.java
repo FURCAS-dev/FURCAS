@@ -16,8 +16,8 @@ import com.sap.furcas.runtime.common.exceptions.DeferredActionResolvingException
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.ReferenceSettingException;
 import com.sap.furcas.runtime.common.interfaces.IBareModelAdapter;
+import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.ModelElementCreationException;
-import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.impl.DefaultTextAwareModelAdapter;
 import com.sap.furcas.runtime.parser.impl.ModelElementProxy;
 import com.sap.furcas.runtime.tcs.TcsUtil;

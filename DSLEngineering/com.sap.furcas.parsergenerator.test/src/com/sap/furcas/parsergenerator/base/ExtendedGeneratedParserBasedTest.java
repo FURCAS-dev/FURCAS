@@ -11,9 +11,9 @@ import java.util.List;
 
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
+import com.sap.furcas.runtime.parser.ParsingError;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
-import com.sap.furcas.runtime.parser.impl.ParsingError;
 
 /**
  *  Parser generation test base class. Provides several methods for parsing text

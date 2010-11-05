@@ -5,8 +5,8 @@ import java.util.List;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenStream;
 
+import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.IModelInjector;
-import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.impl.context.ContextManager;
 
 /**

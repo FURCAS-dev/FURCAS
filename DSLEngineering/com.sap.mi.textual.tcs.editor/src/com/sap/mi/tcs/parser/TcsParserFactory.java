@@ -1,7 +1,5 @@
 package com.sap.mi.tcs.parser;
 
-import generated.TCSLexer;
-import generated.TCSParser;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -10,6 +8,9 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
+
+import com.sap.furcas.parser.tcs.stableversion.TCSLexer;
+import com.sap.furcas.parser.tcs.stableversion.TCSParser;
 
 
 

@@ -2,7 +2,6 @@ package com.sap.ide.cts.parser.incremental;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-import generated.TCSLexer;
 
 import java.util.Iterator;
 
@@ -18,6 +17,7 @@ import com.sap.furcas.metamodel.textblocks.Bostoken;
 import com.sap.furcas.metamodel.textblocks.Eostoken;
 import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.parser.tcs.stableversion.TCSLexer;
 =======
 import tcs.TcsPackage;
 import textblocks.AbstractToken;

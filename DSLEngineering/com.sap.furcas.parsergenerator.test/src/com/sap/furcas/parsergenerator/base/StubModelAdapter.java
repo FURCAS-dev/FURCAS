@@ -15,8 +15,8 @@ import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.ReferenceSettingException;
 import com.sap.furcas.runtime.common.interfaces.IBareModelAdapter;
 import com.sap.furcas.runtime.common.util.QualifiedNamesHelper;
+import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.IModelAdapter;
-import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
 
 public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
 

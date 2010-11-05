@@ -1,5 +1,7 @@
 package com.sap.furcas.runtime.common.exceptions;
 
+import com.sap.furcas.parsergenerator.GrammarGenerationException;
+
 
 /**
  * The Class MetaModelLookupException.

@@ -8,9 +8,9 @@ import static org.junit.Assert.fail;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ANTLR3GrammarWriter;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.AbstractAntlr3Rule;
-import com.sap.furcas.runtime.common.exceptions.GrammarGenerationException;
 
 /**
  * Stub needed mainly to collect rules written by syntax element handlers.
