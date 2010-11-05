@@ -13,8 +13,8 @@ Require-Bundle: org.eclipse.emf.ecore,
  com.sap.emf.ocl.hiddenopposites,
  com.sap.emf.oppositeendfinder,
  de.hpi.sam.bp2009.solution.testutils,
- de.hpi.sam.bp2009.solution.impactAnalyzerWithHiddenOpposites
-Fragment-Host: de.hpi.sam.bp2009.solution.impactAnalyzer
+ de.hpi.sam.bp2009.solution.impactAnalyzerWithHiddenOpposites,
+ de.hpi.sam.bp2009.solution.impactAnalyzer
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper
 Import-Package: org.eclipse.emf.query.index.ui,
