@@ -18,6 +18,7 @@ import org.junit.Test;
 
 import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.test.scenario.FixtureData;
 
 /**
  * Tests the Ecore based lookup class that is used for testing, prerequisite for scenario tests (!).
@@ -26,7 +27,7 @@ public class TestFileBasedEcoreMetaModelLookup {
 
     @Test
     public void testIsClassNameWithBibText() throws Exception {
-        FileBasedEcoreMetaModelLookUp lookup = new FileBasedEcoreMetaModelLookUp("BibText.ecore", "BibText1.ecore");
+        FileBasedEcoreMetaModelLookUp lookup = new FileBasedEcoreMetaModelLookUp(FixtureData.BIBTEXT_METAMODEL, FixtureData.BIBTEXT1_METAMODEL);
         assertNotNull(lookup.resolveReference(list("BibText", "Article")));
         assertNotNull(lookup.resolveReference(list("BibText", "Author")));
         assertNotNull(lookup.resolveReference(list("BibText", "BibTextFile")));
@@ -42,7 +43,7 @@ public class TestFileBasedEcoreMetaModelLookup {
 
     @Test
     public void testIsSubtypeWithBibText() throws Exception {
-        FileBasedEcoreMetaModelLookUp lookup = new FileBasedEcoreMetaModelLookUp("BibText.ecore", "BibText1.ecore");
+        FileBasedEcoreMetaModelLookUp lookup = new FileBasedEcoreMetaModelLookUp(FixtureData.BIBTEXT_METAMODEL, FixtureData.BIBTEXT1_METAMODEL);
         assertTrue(lookup.isSubTypeOf(refE("BibText", "Article"), refE("BibText", "Article")));
         assertTrue(lookup.isSubTypeOf(refE("BibText", "Article"), refE("BibText", "BibTextEntry")));
         assertTrue(lookup.isSubTypeOf(refE("BibText", "Author"), refE("BibText", "BibTextEntry")));
@@ -60,7 +61,7 @@ public class TestFileBasedEcoreMetaModelLookup {
 
     @Test
     public void testMultiWithBibText() throws Exception {
-        FileBasedEcoreMetaModelLookUp lookup = new FileBasedEcoreMetaModelLookUp("BibText.ecore", "BibText1.ecore");
+        FileBasedEcoreMetaModelLookUp lookup = new FileBasedEcoreMetaModelLookUp(FixtureData.BIBTEXT_METAMODEL, FixtureData.BIBTEXT1_METAMODEL);
         assertFalse(lookup.getMultiplicity(refE("BibText", "Article"), "author").isOptional());
         assertFalse(lookup.getMultiplicity(refE("BibText", "Article"), "author").isMultiple());
         assertFalse(lookup.getMultiplicity(refE("BibText", "Article"), "key").isMultiple());
@@ -75,7 +76,7 @@ public class TestFileBasedEcoreMetaModelLookup {
 
     @Test
     public void testFeatureClassNameWithBibText() throws Exception {
-        FileBasedEcoreMetaModelLookUp lookup = new FileBasedEcoreMetaModelLookUp("BibText.ecore", "BibText1.ecore");
+        FileBasedEcoreMetaModelLookUp lookup = new FileBasedEcoreMetaModelLookUp(FixtureData.BIBTEXT_METAMODEL, FixtureData.BIBTEXT1_METAMODEL);
         assertEquals(refE("BibText", "Author"), lookup.getFeatureClassReference(refE("BibText", "Article"), "author"));
         assertEquals(refE("PrimitiveTypes", "String"), lookup.getFeatureClassReference(refE("BibText", "Article"), "key"));
         assertEquals(refE("PrimitiveTypes", "String"), lookup.getFeatureClassReference(refE("BibText", "Author"), "key"));
@@ -91,7 +92,7 @@ public class TestFileBasedEcoreMetaModelLookup {
 
     @Test
     public void testSubTypesWithBibText() throws Exception {
-        FileBasedEcoreMetaModelLookUp lookup = new FileBasedEcoreMetaModelLookUp("BibText.ecore", "BibText1.ecore");
+        FileBasedEcoreMetaModelLookUp lookup = new FileBasedEcoreMetaModelLookUp(FixtureData.BIBTEXT_METAMODEL, FixtureData.BIBTEXT1_METAMODEL);
         List<ResolvedNameAndReferenceBean<EObject>> result = lookup.getDirectSubTypes(refE("BibText", "BibTextEntry"));
         assertEquals(2, result.size());
         assertTrue(result.contains(refE("BibText", "Article")));
@@ -109,7 +110,7 @@ public class TestFileBasedEcoreMetaModelLookup {
     // TODO test with more packages, change above when BibText has packages
     @Test
     public void testSubTypesWithXPath() throws Exception {
-        FileBasedEcoreMetaModelLookUp lookup = new FileBasedEcoreMetaModelLookUp("XPath1.ecore", "XPath.ecore");
+        FileBasedEcoreMetaModelLookUp lookup = new FileBasedEcoreMetaModelLookUp(FixtureData.XPATH1_METAMODEL, FixtureData.XPATH_METAMODEL);
         List<ResolvedNameAndReferenceBean<EObject>> result = lookup.getDirectSubTypes(refE("XPath", "LocatedElement"));
         assertEquals(6, result.size());
         assertTrue(result.contains(refE("XPath", "Axis")));
@@ -134,7 +135,7 @@ public class TestFileBasedEcoreMetaModelLookup {
 
     @Test
     public void testSubTypesWithMultiPackages() throws Exception {
-        FileBasedEcoreMetaModelLookUp lookup = new FileBasedEcoreMetaModelLookUp("MultiPackage.ecore");
+        FileBasedEcoreMetaModelLookUp lookup = new FileBasedEcoreMetaModelLookUp(FixtureData.MULTIPACKAGE_METAMODEL);
         List<ResolvedNameAndReferenceBean<EObject>> result = lookup.getDirectSubTypes(refE("expression", "Expression"));
         assertEquals(3, result.size());
         assertTrue(result.contains(refE("expression", "rightPackage", "BinaryExpression")));
@@ -144,7 +145,7 @@ public class TestFileBasedEcoreMetaModelLookup {
 
     @Test
     public void testQualifyNamesWithMultiPackages() throws Exception {
-        FileBasedEcoreMetaModelLookUp lookup = new FileBasedEcoreMetaModelLookUp("MultiPackage.ecore");
+        FileBasedEcoreMetaModelLookUp lookup = new FileBasedEcoreMetaModelLookUp(FixtureData.MULTIPACKAGE_METAMODEL);
         List<ResolvedNameAndReferenceBean<EObject>> result = lookup.qualifyName("Expression");
         assertNotNull(result);
         assertEquals(1, result.size());

@@ -40,7 +40,7 @@ public class GrammarTest extends ExtendedGeneratedParserBasedTest {
         String grammar = out.toString();
         assertTrue(grammar.indexOf("grammar Bibtext") > -1);
         assertTrue(grammar.indexOf("package generated;") > -1);
-        assertTrue(grammar.indexOf("import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken") > -1);
+        assertTrue(grammar.indexOf("import com.sap.furcas.runtime.parser.ANTLR3LocationToken") > -1);
         assertTrue(grammar.indexOf("main returns[Object ret2]") > -1);
         assertTrue(grammar.indexOf("public com.sap.furcas.runtime.parser.IModelInjector ei = null;") > -1);
 
@@ -66,7 +66,7 @@ public class GrammarTest extends ExtendedGeneratedParserBasedTest {
         String grammar = out.toString();
         assertTrue(grammar.indexOf("grammar Expression;") > -1);
         assertTrue(grammar.indexOf("package generated;") > -1);
-        assertTrue(grammar.indexOf("import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken") > -1);
+        assertTrue(grammar.indexOf("import com.sap.furcas.runtime.parser.ANTLR3LocationToken") > -1);
         assertTrue(grammar.indexOf("main returns[Object ret2]") > -1);
         assertTrue(grammar.indexOf("public com.sap.furcas.runtime.parser.IModelInjector ei = null;") > -1);
 
