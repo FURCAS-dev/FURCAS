@@ -1,4 +1,4 @@
-package com.sap.furcas.parsergenerator.tcs.generator.file;
+package com.sap.furcas.parsergenerator.tcs.generator;
 
 import java.util.ArrayList;
 

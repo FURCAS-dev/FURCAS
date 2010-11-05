@@ -5,8 +5,6 @@ import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
 import com.sap.furcas.parsergenerator.GrammarGenerationTargetConfiguration;
 import com.sap.furcas.parsergenerator.TCSParserGenerator;
-import com.sap.furcas.parsergenerator.tcs.generator.file.GrammarGenerator;
-import com.sap.furcas.parsergenerator.tcs.generator.file.ParserGenerator;
 
 public class TCSParserGeneratorImpl implements TCSParserGenerator {
 
