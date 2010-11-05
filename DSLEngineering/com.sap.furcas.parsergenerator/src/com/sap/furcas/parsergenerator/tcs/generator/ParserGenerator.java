@@ -1,5 +1,6 @@
 package com.sap.furcas.parsergenerator.tcs.generator;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import org.antlr.Tool;
@@ -7,7 +8,6 @@ import org.antlr.tool.ANTLRErrorListener;
 import org.antlr.tool.ErrorManager;
 import org.antlr.tool.Message;
 import org.antlr.tool.ToolMessage;
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 
@@ -47,7 +47,7 @@ public class ParserGenerator {
      * Reads the ANTLR grammar from the given grammar file and compiles it to java.
      * The lexer and parser will be placed in the same folder as the grammar file. 
      */
-    public static void buildParser(IFile grammarfile, GenerationErrorHandler errorhandler) {
+    public static void buildParser(File grammarfile, GenerationErrorHandler errorhandler) {
         buildParser(grammarfile, errorhandler, new NullProgressMonitor());
     }
 
@@ -55,7 +55,7 @@ public class ParserGenerator {
      * Reads the ANTLR grammar from the given grammar file and compiles it to java.
      * The lexer and parser will be placed in the same folder as the grammar file. 
      */
-    public static void buildParser(IFile grammarfile, GenerationErrorHandler errorhandler, IProgressMonitor monitor) {
+    public static void buildParser(File grammarfile, GenerationErrorHandler errorhandler, IProgressMonitor monitor) {
         monitor.beginTask("Compiling Parser from ANTLR Grammar", 10);
 	
         ArrayList<String> argList = new ArrayList<String>();
@@ -67,7 +67,7 @@ public class ParserGenerator {
 	// argList.add(grammarfile.getParent().getRawLocation().toOSString());
 	// // does not work, ANTLR does not look in lib for grammar
 
-	argList.add(grammarfile.getRawLocation().toOSString());
+	argList.add(grammarfile.getAbsolutePath());
 	argList.add("-report");
 
 	String[] args = argList.toArray(new String[argList.size()]);

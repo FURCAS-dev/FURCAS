@@ -5,7 +5,7 @@
    <extension
          point="com.sap.furcas.parsergenerator.tcsparsergenerator">
       <client
-            class="TCSParserGeneratorImpl">
+            class="com.sap.furcas.parsergenerator.tcs.generator.TCSParserGeneratorImpl">
       </client>
    </extension>
 

@@ -1,5 +1,6 @@
 package com.sap.furcas.ide.dslproject.builder;
 
+import java.io.File;
 import java.util.Map;
 
 import org.eclipse.core.resources.IContainer;
@@ -165,20 +166,21 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
         if (conf != null) {
             ReferenceScopeBean refScopeBean = conf.getMetaLookUpForProject();
             try {
-                GrammarGenerationSourceConfiguration sourceConfig = new GrammarGenerationSourceConfiguration(syntaxDefFile,
+                GrammarGenerationSourceConfiguration sourceConfig = new GrammarGenerationSourceConfiguration(convertIFileToFile(syntaxDefFile),
                         refScopeBean.getResourceSet(), refScopeBean.getReferenceScope());
-                GrammarGenerationTargetConfiguration targetConfig = new GrammarGenerationTargetConfiguration(getGrammarFile(syntaxDefFile));
-                IFile gammarFile = targetConfig.getGrammarTargetFile();
+                
+                IFile grammarFile = getGrammarFile(syntaxDefFile);
+                GrammarGenerationTargetConfiguration targetConfig = new GrammarGenerationTargetConfiguration(getPackageName(grammarFile), convertIFileToFile(grammarFile));
 
                 TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
                 generator.generateGrammarFromSyntax(sourceConfig, targetConfig, new ResourceMarkingGenerationErrorHandler(
                         syntaxDefFile));
                 
-                if (gammarFile.exists()) {
-                    generator.generateParserFromGrammar(targetConfig, new ResourceMarkingGenerationErrorHandler(gammarFile));
+                if (grammarFile.exists()) {
+                    generator.generateParserFromGrammar(targetConfig, new ResourceMarkingGenerationErrorHandler(grammarFile));
 
                     // refresh dir where java was generated so that Java builder can compile
-                    gammarFile.getParent().refreshLocal(1, new SubProgressMonitor(monitor, 10));
+                    grammarFile.getParent().refreshLocal(1, new SubProgressMonitor(monitor, 10));
                 }
             } catch (GrammarGenerationException e) {
                throw new CoreException(EclipseExceptionHelper.getErrorStatus(e, Activator.PLUGIN_ID));
@@ -195,11 +197,35 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
         }
     }
     
+    /**
+     * Returns the files path in package notation except for the filename,
+     * or returns "generated" if no such path exists
+     */
+    private static String getPackageName(IFile file) {
+        String targetPackage = null;
+        IPath path = file.getParent().getProjectRelativePath();
+        if (path != null && path.segmentCount() >= 2) { // source folder /
+            // packagefolder1
+            targetPackage = path.segment(1);
+            for (int i = 2; i < path.segmentCount(); i++) {
+                String segment = path.segment(i);
+                targetPackage += '.' + segment;
+            }
+        } else {
+            targetPackage = "generated";
+        }
+        return targetPackage;
+    }
+    
     private static IFile getGrammarFile(IFile syntaxDefFile) {
         IContainer directory = syntaxDefFile.getParent();
         String newFileName = getFileNameBase(syntaxDefFile) + GRAMMAR_ANTLR_POSTFIX;
         IFile newFile = directory.getFile(new Path(IPath.SEPARATOR + newFileName));
         return newFile;
+    }
+    
+    private static File convertIFileToFile(IFile file) {
+        return new File(file.getRawLocation().toOSString());
     }
 
     private static String getFileNameBase(IFile file) {
