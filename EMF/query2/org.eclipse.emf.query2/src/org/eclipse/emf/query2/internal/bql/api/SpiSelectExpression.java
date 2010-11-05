@@ -15,7 +15,6 @@ import org.eclipse.emf.query2.internal.index.SpiFacilityQueryServiceException;
 /**
  * Select expression for model elements and selected primitive attributes.
  */
-@Deprecated
 public final class SpiSelectExpression {
 
 	/**

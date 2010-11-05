@@ -17,4 +17,3 @@ Require-Bundle: org.eclipse.core.runtime,
  de.hpi.sam.bp2009.solution.testutils,
  org.eclipse.ocl.ecore
 Bundle-ActivationPolicy: lazy
-Import-Package: de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper

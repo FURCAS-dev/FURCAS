@@ -19,10 +19,7 @@ package org.eclipse.emf.query2.internal.bql.api;
  * expression, like expression, AND expression and OR expression and specify how
  * to construct complex attribute expressions.
  * 
- * @author d029158
- * @version Created at 26 Jan 2006
  */
-@Deprecated
 public interface SpiAttributeExpression {
 
 	public void toString(StringBuffer sb, int ident, boolean newline);

@@ -22,7 +22,6 @@ import org.eclipse.emf.query2.internal.index.SpiFacilityQueryServiceException;
 /**
  * Expression for selecting model elements
  */
-@Deprecated
 public final class SpiModelElementExpression {
 
 	private URI[] types;

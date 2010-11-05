@@ -17,7 +17,6 @@ import org.eclipse.emf.common.util.URI;
 /**
  * LinkExpression with a model element cluster expression as link target.
  */
-@Deprecated
 public final class SpiClusterExternalLinkExpression extends SpiLinkExpression {
 
 	/**
