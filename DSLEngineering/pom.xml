@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.sap.dsl</groupId>
+  <artifactId>DSLEngineering</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <parent>
+    <groupId>com.sap.dsl</groupId>
+    <artifactId>root</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+  <modules>
+    <!--
+    <module>FURCAS</module>
+    <module>FURCAS-Update-Site</module>
+    <module>bibtex.editor</module>
+    <module>bibtex.metamodel</module>
+    <module>bibtex.metamodel.epi</module>
+    <module>bibtex.test</module>
+    -->
+    <module>com.sap.emf.ocl.trigger</module>
+    <module>com.sap.emf.ocl.trigger.tests</module>
+    <module>com.sap.furcas.ide.dslproject</module>
+    <module>com.sap.furcas.ide.projectwizard</module>
+    <module>com.sap.furcas.metamodel</module>
+    <module>com.sap.furcas.metamodel.edit</module>
+    <module>com.sap.furcas.metamodel.editor</module>
+    <module>com.sap.furcas.metamodel.tests</module>
+    <module>com.sap.furcas.modeladaptation.emf</module>
+    <module>com.sap.furcas.parser.tcs</module>
+    <module>com.sap.furcas.parsergenerator</module>
+    <module>com.sap.furcas.parsergenerator.emf</module>
+    <module>com.sap.furcas.parsergenerator.test</module>
+    <module>com.sap.furcas.runtime.common</module>
+    <module>com.sap.furcas.runtime.common.test</module>
+    <module>com.sap.furcas.runtime.parser</module>
+    <module>com.sap.furcas.runtime.parser.test</module>
+    <module>com.sap.furcas.runtime.referenceresolving</module>
+    <module>com.sap.furcas.runtime.tcs</module>
+    <module>com.sap.furcas.runtime.textblocks</module>
+    <module>com.sap.furcas.runtime.textblocks.test</module>
+    <module>com.sap.furcas.test</module>
+    <module>com.sap.furcas.utils</module>
+	<!--
+    <module>com.sap.ide.cts.editor</module>
+    <module>com.sap.ide.cts.editor.tests</module>
+    <module>com.sap.ide.cts.moin</module>
+    <module>com.sap.ide.cts.parser</module>
+    <module>com.sap.ide.cts.product</module>
+    <module>com.sap.mi.textual.parsing.textblocks</module>
+    <module>com.sap.mi.textual.tcs.editor</module>
+    <module>com.sap.mi.textual.test</module>
+    <module>com.sap.tc.moin.globalmodellistener</module>
+    <module>com.sap.tc.moin.tcs.mof.editor</module>
+    <module>cts.test.fixture</module>
+    <module>editor.test.metamodel</module>
+    <module>editor.test.metamodel.epi</module>
+	-->
+    <module>org.antlr</module>
+  </modules>
+
+</project>
+

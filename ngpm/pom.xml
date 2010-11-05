@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.sap.dsl</groupId>
+  <artifactId>ngpm</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <parent>
+    <groupId>com.sap.dsl</groupId>
+    <artifactId>root</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+  <modules>
+	<!--
+    <module>coghead.test</module>
+    <module>com.sap.ap.cts.editor</module>
+    <module>com.sap.ap.cts.refactoring</module>
+    <module>com.sap.ap.cts.test</module>
+    <module>com.sap.ap.metamodel.core</module>
+    <module>com.sap.ap.metamodel.core.epi</module>
+    <module>com.sap.coghead.editor</module>
+    <module>com.sap.coghead.metamodel.epi</module>
+    <module>com.sap.finex.editor</module>
+    <module>com.sap.finex.editor.tests</module>
+    <module>com.sap.finex.expressionpad</module>
+    <module>com.sap.finex.interpreter</module>
+    <module>com.sap.finex.interpreter.tests</module>
+    <module>com.sap.finex.metamodel.epi</module>
+    <module>com.sap.ide.refactoring</module>
+    <module>com.sap.ide.refactoring.test</module>
+    <module>com.sap.ide.treeprovider</module>
+    <module>com.sap.ngpm.utils</module>
+    <module>com.sap.runlet.abstractexpressionpad</module>
+    <module>com.sap.runlet.abstractinterpreter</module>
+    <module>com.sap.runlet.apps.dunning</module>
+    <module>com.sap.runlet.apps.opportunitymanagement</module>
+    <module>com.sap.runlet.apps.wave</module>
+    <module>com.sap.runlet.expressionpad</module>
+    <module>com.sap.runlet.interpreter</module>
+    <module>com.sap.runlet.interpreter.test</module>
+    <module>com.sap.runlet.operationaltransformation</module>
+    <module>com.sap.runlet.testmetamodel</module>
+    <module>com.sap.runlet.testmetamodel.editor</module>
+    <module>com.sap.runlet.testmetamodel.epi</module>
+    <module>com.sap.runlet.tomcat</module>
+    <module>com.sap.tc.moin.incubation.contentprovider</module>
+    <module>com.sap.tc.moin.incubation.jdfacility.epi</module>
+    <module>com.sap.tc.moin.incubation.mm</module>
+    <module>com.sap.tc.moin.incubation.pffacility.epi</module>
+    <module>com.sap.tc.moin.incubation.sampledata.epi</module>
+    <module>com.sap.tc.moin.standalone</module>
+    <module>com.sap.trex.client</module>
+    <module>finex.stdlib</module>
+    <module>finex.test</module>
+    <module>ngpm.stdlib</module>
+	-->
+    <module>de.hpi.sam.bp2009.ngpm</module>
+  </modules>
+
+</project>
