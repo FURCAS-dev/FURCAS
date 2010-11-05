@@ -1,1 +1,1 @@
-Contains the stable TCS-Parser.
+Contains the stable TCS-Parser. It will be used per-default.
