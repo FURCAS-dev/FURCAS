@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
@@ -22,7 +21,6 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
-import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 
@@ -180,7 +178,7 @@ public class ShortPrettyPrinter {
 //			query = AdapterEcoreHelper.prepareOclQuery(query, token.getValue());
 
 			if (self != null) {
-				EPackage root = EcoreHelper.getOutermostPackage(self);
+				//EPackage root = EcoreHelper.getOutermostPackage(self);
 				// Collection<EPackage> packagesForLookup = new
 				// ArrayList<EPackage>();
 				// packagesForLookup.addAll(MoinHelper.getImportedRefPackages(root));
