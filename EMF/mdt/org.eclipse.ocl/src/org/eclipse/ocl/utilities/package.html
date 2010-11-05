@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="IBM">
+<!--
+
+/******************************************************************************
+ * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    IBM Corporation - initial API and implementation 
+ ****************************************************************************/
+
+-->
+</head>
+<body>
+
+Abstract API for OCL AST utilities and extensions of the UML metamodel.
+
+<h2>Package Specification</h2>
+
+<p>
+This package defines a number of utility interfaces that are mixed in to the
+AST model defined in the {@link org.eclipse.ocl.expressions} and
+{@link org.eclipse.ocl.types} packages, as well as UML metamodel extensions and
+related services.  These utilities include:
+</p>
+<ul>
+<li>a {@link org.eclipse.ocl.utilities.Visitor Visitor} pattern definition</li>
+<li>{@linkplain org.eclipse.ocl.utilities.Visitable visitor accept} protocol</li>
+<li>tracking from where in the source text an
+    {@linkplain org.eclipse.ocl.utilities.ASTNode AST node} was parsed</li>
+<li>an emulation of the UML
+    {@link org.eclipse.ocl.utilities.TypedElement TypedElement} metaclass</li>
+<li>access to the name and operations of the types
+    {@linkplain org.eclipse.ocl.utilities.PredefinedType pre-defined} by OCL</li>
+</ul>
+<p>
+These concerns are orthogonal to the definition of the abstract syntax model and
+do not affect XMI serialization.
+</p>
+<p>
+This package also defines the {@link org.eclipse.ocl.utilities.ExpressionInOCL}
+metaclass that extends the UML <tt>OpaqueExpression</tt> metaclass to support
+embedding of OCL expressions in models.
+</p>
+<p>
+Also of note is the {@link org.eclipse.ocl.utilities.UMLReflection} interface
+that provides introspection and construction of the model concepts that OCL
+re-uses from the UML.  Providers of OCL metamodel bindings (i.e.,
+{@link org.eclipse.ocl.Environment}s) are required to implement this interface
+to manipulate metaclasses either from the metamodel that they are binding, or
+that they define themselves to implement these concepts.
+</p>
+
+@see org.eclipse.ocl.expressions
+@see org.eclipse.ocl.types
+
+</body>
+</html>

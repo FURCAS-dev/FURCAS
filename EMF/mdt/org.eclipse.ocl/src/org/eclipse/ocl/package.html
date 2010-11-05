@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<!--
+
+/******************************************************************************
+ * Copyright (c) 2004, 2007 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    IBM Corporation - initial API and implementation 
+ ****************************************************************************/
+
+-->
+</head>
+<body>
+
+Definition of the extensible environment API for OCL parsing and evaluation.
+
+<h2>Package Specification</h2>
+<p>
+This package defines the API for the environments in which OCL expressions are
+parsed and evaluated, along with the parser fa&ccedil;ade.
+</p>
+<p>
+First, and most importantly to users of the OCL parser API, parsing of OCL
+documents is performed by the {@link org.eclipse.ocl.OCL} parser fa&ccedil;ade.
+OCL documents are provide as {@link org.eclipse.ocl.OCLInput} objects, obtaining
+their content from a string or a data stream.  These documents declare constraints
+of the following forms in one or more classifier, operation, or property
+contexts (with optional package context declarations):
+</p>
+<ul>
+  <li>invariant constraints (in classifier context)</li>
+  <li>pre-condition, post-condition constraints, and body expressions (in
+      operation context)</li>
+  <li>initial value and derivation expressions (in property context)</li>
+  <li>additional operation and property definitions (in classifier context)</li>
+</ul>
+<p>
+These constraints are defined within the context of a particular <code>OCL</code>
+instance; thus the <code>OCL</code> defines a root environment.  Disparate sets
+of constraints (including additional operations and properties) may be defined
+in multiple different <code>OCL</code>s.  The constraints and
+{@link org.eclipse.ocl.expressions.OCLExpression}s parsed by an <code>OCL</code>
+may be checked (in the case of constraints) or evaluated (in the case of
+expressions) by the <code>OCL</code> on a context element, an instance of the
+metamodel supported by that <code>OCL</code>'s environment factory.
+</p>
+<p>
+The {@link org.eclipse.ocl.helper.OCLHelper} interface provides a convenient
+API for parsing constraints and query expressions on a finer granularity than
+the document.  It is particularly convenient for parsing end evaluating
+constraints that are embedded in models, in which the context is usually
+defined by the placement of the constraint.  The OCL helper also provides
+content-assist (expression completion) facilities.
+</p>
+<p>
+The {@link org.eclipse.ocl.Environment} interface describes the
+environment in which an OCL expression is parsed.  The environment provides
+two major functions to the parser:
+</p>
+<ul>
+  <li>Name resolution:  the parser looks up in its current environment names
+      that it finds in an expression.  These include package, classifier,
+      attribute, reference, operation, and variable names.  Nested environments
+      define nested scopes, to support shadowing of names (e.g., operation
+      parameters or <tt>let</tt> variables that hide attributes of the context
+      classifier)</li>
+  <li>Tracking the context:  the environment defines an optional package
+      context, a mandatory classifier context, and (for feature constraints)
+      an operation or property context.  An feature context is implemented as a
+      child environment of a classifier context; this allows for definition of
+      constraints on operations in a different classifier context than the
+      classifier that defines the operation</li>
+  <li>Metamodel introspection:  because the OCL parser API is generic, targeting
+      any EMF-based metamodel that defines UML-like semantics, the environment
+      API also provides the introspection facilities required by the parser to
+      distinguish different kinds of classifiers, to determine the generalization
+      relationships between them, obtain the types of properties, etc.</li>
+      
+</ul>
+<p>
+Environments are created by environment factories.  An
+{@link org.eclipse.ocl.EnvironmentFactory} is provided to an
+{@link org.eclipse.ocl.OCL} to create environments when it needs to.
+Environment factories are the starting point for plugging an EMF-based
+metamodel into the parser framework.  The environments that they create provide
+the bindings for the generic types representing the UML concepts required
+by OCL, and perform introspection of the particular metamodel.  Abstract partial
+implementations of the factory and environment are provided and may be extended
+by clients to support their metamodels.  Existing concrete implementations of
+the environment API may be found in the {@link org.eclipse.ocl.ecore} package
+(for the OCL binding to Ecore) and the {@link org.eclipse.ocl.uml} package
+(for the OCL binding to UML).
+</p>
+<p>
+While the {@link org.eclipse.ocl.Environment} class provides a
+parse-time environment, the {@link org.eclipse.ocl.EvaluationEnvironment}
+keeps track of the current values of variables in the evaluation of an OCL
+expression.  It also implements the metamodel-specific mechanisms for invoking
+operations, navigating properties, etc.  The <code>EnvironmentFactory</code>
+is responsible for constructing <code>EvaluationEnvironment</code>s.  For
+evaluating OCL constraints, the {@link org.eclipse.ocl.EvaluationVisitor}
+walks the AST (parsed representation of an OCL expression), using the
+evaluation environment to compute values.  The
+{@link org.eclipse.ocl.AbstractEnvironmentFactory} creates a useful default
+implementation of the evaluation visitor, which supports any metamodel binding.
+The behavior of this default implementation may be modified as need by custom
+environment factories, by wrapping it with a custom visitor.
+</p>
+
+@see org.eclipse.ocl.OCL
+@see org.eclipse.ocl.EnvironmentFactory
+@see org.eclipse.ocl.Environment
+@see org.eclipse.ocl.helper
+
+</body>
+</html>
