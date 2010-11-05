@@ -26,7 +26,6 @@ import org.eclipse.emf.query2.internal.shared.EmfHelper;
  * Basic query language for querying partitions, model elements and links on a
  * given facility. BasicQL itself is facility independent.
  */
-@Deprecated
 public abstract class SpiAbstractBasicQueryProcessor implements SpiBasicQueryProcessor {
 
 	/**
@@ -123,7 +122,7 @@ public abstract class SpiAbstractBasicQueryProcessor implements SpiBasicQueryPro
 
 		if (attributeExpression instanceof SpiMultinaryExpression) {
 			SpiMultinaryExpression multinaryExpression = (SpiMultinaryExpression) attributeExpression;
-			List operands = multinaryExpression.operands;
+			List<?> operands = multinaryExpression.operands;
 			int size = operands.size();
 			for (int i = 0; i < size; i++) {
 				this.checkAttributeExpressionInClusterConsistency((SpiAttributeExpression) operands.get(i), modelElementClusterExpression);
@@ -248,7 +247,6 @@ public abstract class SpiAbstractBasicQueryProcessor implements SpiBasicQueryPro
 	 * #getFacilityId()
 	 */
 	public String getFacilityId() {
-
 		return facilityId;
 	}
 

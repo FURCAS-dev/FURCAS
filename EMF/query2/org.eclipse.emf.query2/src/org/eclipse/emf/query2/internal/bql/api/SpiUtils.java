@@ -19,7 +19,6 @@ import org.eclipse.emf.query2.internal.fql.SpiFqlComparisonOperation;
 /**
  * Utilities
  */
-@Deprecated
 public final class SpiUtils {
 
 	protected static final String OPENING_PARENTHESES = "("; //$NON-NLS-1$

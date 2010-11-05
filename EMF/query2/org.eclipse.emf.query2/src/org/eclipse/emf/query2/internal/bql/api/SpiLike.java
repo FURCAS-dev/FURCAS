@@ -20,7 +20,6 @@ import org.eclipse.emf.query2.internal.index.SpiFacilityQueryServiceException;
 /**
  * Implements the Like operator
  */
-@Deprecated
 public final class SpiLike extends SpiLeafExpression {
 
 	// wildcard characters

@@ -29,7 +29,6 @@ import org.eclipse.emf.common.util.URI;
  * S for which such a link exists or if isLinked is false and there is no model
  * element ME1 in S for which such a link exists.
  */
-@Deprecated
 abstract public class SpiLinkExpression {
 
 	private boolean isLinked;

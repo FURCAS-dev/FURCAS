@@ -19,9 +19,6 @@ import org.eclipse.emf.common.util.URI;
  */
 public interface EReferenceDescriptor {
 
-	@Deprecated
-	int NO_INDEX = -1;
-
 	String getSourceFragment();
 
 	String getTargetFragment();
