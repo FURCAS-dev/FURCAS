@@ -59,6 +59,8 @@ http://www.eclipse.org/legal/epl-v10.html
          version="0.0.0"
          unpack="false"/>
 
+<!--
+
    <plugin
          id="org.eclipse.emf.query2.librarytest"
          download-size="0"
@@ -80,12 +82,16 @@ http://www.eclipse.org/legal/epl-v10.html
          version="0.0.0"
          unpack="false"/>
 
+-->
+
    <plugin
          id="org.eclipse.emf.query2.test"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+
+<!--
 
    <plugin
          id="org.eclipse.emf.query2.tools.ui"
@@ -100,6 +106,8 @@ http://www.eclipse.org/legal/epl-v10.html
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+
+-->
 
    <plugin
          id="net.sourceforge.lpg.lpgjavaruntime"
