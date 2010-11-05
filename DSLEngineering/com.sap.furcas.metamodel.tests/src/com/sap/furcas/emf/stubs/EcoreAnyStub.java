@@ -341,7 +341,7 @@ public class EcoreAnyStub implements EClass, EReference, EEnum, EPackage {
     }
 
     @Override
-    public EClassifier getEClassifier(@SuppressWarnings("hiding") String name) {
+    public EClassifier getEClassifier(String name) {
 	fail("stub method not implemented");
 	return null;
     }
@@ -365,7 +365,7 @@ public class EcoreAnyStub implements EClass, EReference, EEnum, EPackage {
     }
 
     @Override
-    public EEnumLiteral getEEnumLiteral(@SuppressWarnings("hiding") String name) {
+    public EEnumLiteral getEEnumLiteral(String name) {
 	fail("stub method not implemented");
 	return null;
     }

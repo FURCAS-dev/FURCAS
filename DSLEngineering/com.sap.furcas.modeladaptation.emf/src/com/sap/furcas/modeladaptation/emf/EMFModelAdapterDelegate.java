@@ -440,7 +440,7 @@ public class EMFModelAdapterDelegate {
         return refObject;
     }
 
-    public Collection<?> getOclEvaluation(EObject sourceModelElement, @SuppressWarnings("unused") String referencePropertyName, Object keyValue,
+    public Collection<?> getOclEvaluation(EObject sourceModelElement, String referencePropertyName, Object keyValue,
             String oclQuery, Object contextObject) throws ModelAdapterException, ReferenceSettingException {
 
         if (keyValue instanceof EObject || keyValue instanceof StructureTypeMockObject) {
