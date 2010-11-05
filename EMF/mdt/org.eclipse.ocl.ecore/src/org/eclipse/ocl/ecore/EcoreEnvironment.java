@@ -552,7 +552,7 @@ public class EcoreEnvironment
 		if (result != null){
 			return result;
 		}
-		ETypedElement typedFeature = (ETypedElement) feature;
+		ETypedElement typedFeature = feature;
 		EAnnotation ann = typedFeature.getEAnnotation(Environment.OCL_NAMESPACE_URI);
 		if (ann == null){
 		InvocationBehavior.INSTANCE.getOperationBody(OCL.newInstance(), feature);
