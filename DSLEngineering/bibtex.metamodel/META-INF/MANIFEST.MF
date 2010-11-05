@@ -4,6 +4,9 @@ Bundle-Name: Bibtex Metamodel Plug-in
 Bundle-SymbolicName: bibtex.metamodel;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: bibtex,
- bibtex.__impl,
- com.sap.tc.moin.packageFF55A7A61D954C2D4FDB0176F04FBF6E6366AA78
+Export-Package: Bibtex,
+ Bibtex.impl,
+ Bibtex.util
+Require-Bundle: org.eclipse.emf;bundle-version="2.6.0",
+ org.eclipse.emf.common;bundle-version="2.6.0",
+ org.eclipse.emf.ecore;bundle-version="2.6.1"

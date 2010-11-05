@@ -117,7 +117,7 @@ public class SequenceStub extends LocatedElementStub implements Sequence {
     /* (non-Javadoc)
      * @see TCS.Sequence#setAlternativeContainer(TCS.Alternative)
      */
-    public void setAlternativeContainer(@SuppressWarnings("unused") Alternative value) {
+    public void setAlternativeContainer(Alternative value) {
         fail("not implemented yet");
         
     }
