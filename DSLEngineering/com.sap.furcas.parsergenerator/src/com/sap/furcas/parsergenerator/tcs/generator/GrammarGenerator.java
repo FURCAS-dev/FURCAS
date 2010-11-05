@@ -1,13 +1,13 @@
 package com.sap.furcas.parsergenerator.tcs.generator;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 
@@ -21,7 +21,6 @@ import com.sap.furcas.parsergenerator.tcs.t2m.grammar.GenerationReport;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.ParserInvokationException;
 import com.sap.furcas.runtime.parser.ParsingError;
-import com.sap.furcas.runtime.parser.TextLocation;
 import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 
@@ -65,7 +64,7 @@ public class GrammarGenerator {
         InputStream inputStream = null;
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         try {
-            inputStream = sourceConfiguration.getSyntaxDefinitionFile().getContents();
+            inputStream = new FileInputStream(sourceConfiguration.getSyntaxDefinitionFile());
             parseSyntaxAndGenerateGrammar(sourceConfiguration, targetConfiguration, parserSuperClass, errorhandler, monitor,
                     inputStream, outputStream);
 
@@ -77,8 +76,6 @@ public class GrammarGenerator {
             throw new GrammarGenerationException("Grammar generation failed with IO error", e);
         } catch (ParserInvokationException e) {
             throw new GrammarGenerationException("Failed to instantiate the TCS Parser", e);
-        } catch (CoreException e) {
-            throw new GrammarGenerationException("Grammar generation failed with IO error", e);
         } finally {
             try {
                 outputStream.close();
@@ -95,7 +92,7 @@ public class GrammarGenerator {
             GrammarGenerationTargetConfiguration targetConfiguration, Class<? extends ObservableInjectingParser> parserSuperClass,
             GenerationErrorHandler errorhandler, IProgressMonitor monitor, InputStream inputStream,
             ByteArrayOutputStream outputStream) throws ParserInvokationException, SyntaxParsingException, IOException,
-            ModelAdapterException, GrammarGenerationException, CoreException {
+            ModelAdapterException, GrammarGenerationException {
 
         QueryBasedEcoreMetaModelLookUp metamodelLookup = new QueryBasedEcoreMetaModelLookUp(sourceConfiguration.getResourceSet(),
                 sourceConfiguration.getReferenceScope());
@@ -108,21 +105,15 @@ public class GrammarGenerator {
         // TODO Not needed for now. Keep it disabled until we have a reasonable way to test
         // writeMappingToFile(targetConfiguration.getMappingTargetFile(), report.getSyntax());
 
-        IFile grammarFile = targetConfiguration.getGrammarTargetFile();
-        boolean hasErrors = checkForErrorsAndReport(grammarFile, report, errorhandler);
+        boolean hasErrors = checkForErrorsAndReport(report, errorhandler);
         if (!hasErrors) {
+            File grammarFile = targetConfiguration.getGrammarTargetFile();
             writeGrammarToFile(grammarFile, outputStream, monitor);
         }
     }
 
-    private static boolean checkForErrorsAndReport(IFile grammarFile, GenerationReport report, GenerationErrorHandler errorhandler) {
+    private static boolean checkForErrorsAndReport(GenerationReport report, GenerationErrorHandler errorhandler) {
         boolean hasErrors = false;
-        if (!getFileNameWithoutSuffix(grammarFile).equals(report.getSyntaxName())) {
-            report.addError(new ParsingError("Syntax name and file name must be equal: " + getFileNameWithoutSuffix(grammarFile)
-                    + " != " + report.getSyntaxName(), (TextLocation) null));
-            hasErrors = true;
-        }
-
         if (report.getWarnings() != null && report.getWarnings().size() > 0) {
             for (ParsingError warning : report.getWarnings()) {
                 errorhandler.warning(warning);
@@ -137,17 +128,15 @@ public class GrammarGenerator {
         return hasErrors;
     }
 
-    private static void writeGrammarToFile(IFile grammarFile, ByteArrayOutputStream outputStream, IProgressMonitor monitor) throws CoreException {
-        InputStream resultingIn = new ByteArrayInputStream(outputStream.toByteArray());
-        monitor.worked(50);
+    private static void writeGrammarToFile(File grammarFile, ByteArrayOutputStream grammarDataStream, @SuppressWarnings("unused") IProgressMonitor mointor) throws IOException {
         if (grammarFile.exists()) {
-            grammarFile.delete(true, monitor);
+            grammarFile.delete();
         }
-        grammarFile.create(resultingIn, true, null);
-    }
-
-    private static String getFileNameWithoutSuffix(IFile grammarFile) {
-        return grammarFile.getName().substring(0, grammarFile.getName().length() - (grammarFile.getFileExtension().length() + 1));
+        grammarFile.createNewFile();
+        
+        FileOutputStream outputStream = new FileOutputStream(grammarFile);
+        outputStream.write(grammarDataStream.toByteArray());
+        outputStream.close();
     }
 
 // TODO Not needed for now. Keep it disabled until we have a reason to use (and test) it
