@@ -12,4 +12,5 @@ Require-Bundle: org.junit;bundle-version="4.8.1",
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.furcas.test.parsing.testutils,
+ com.sap.furcas.test.scenario,
  com.sap.furcas.test.util

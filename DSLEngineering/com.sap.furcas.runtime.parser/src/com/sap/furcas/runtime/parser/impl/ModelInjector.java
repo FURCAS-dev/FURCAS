@@ -22,9 +22,11 @@ import org.antlr.runtime.BaseRecognizer;
 import com.sap.furcas.runtime.common.exceptions.DeferredActionResolvingException;
 import com.sap.furcas.runtime.common.exceptions.DeferredModelElementCreationException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
+import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.IModelInjector;
 import com.sap.furcas.runtime.parser.ModelElementCreationException;
-import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
+import com.sap.furcas.runtime.parser.ParsingError;
+import com.sap.furcas.runtime.parser.TextLocation;
 import com.sap.furcas.runtime.parser.exceptions.ModelCreationOntheFlyRuntimeException;
 import com.sap.furcas.runtime.parser.impl.context.ContextManager;
 

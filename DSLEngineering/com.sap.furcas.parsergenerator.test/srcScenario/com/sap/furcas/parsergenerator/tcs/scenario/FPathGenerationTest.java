@@ -7,12 +7,13 @@ import java.util.Set;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.base.FileBasedEcoreMetaModelLookUp;
 import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
 import com.sap.furcas.parsergenerator.base.StubModelAdapter;
 import com.sap.furcas.parsergenerator.base.StubModelElement;
+import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.test.scenario.FixtureData;
 
 /**
  * Currently fails because Enums are not implemented yet
@@ -26,7 +27,7 @@ public class FPathGenerationTest extends ExtendedGeneratedParserBasedTest {
     @BeforeClass
 	public static void setupParser() throws Exception {
 		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new FileBasedEcoreMetaModelLookUp("FPath1.ecore", "FPath.ecore"));
+		setLookup(new FileBasedEcoreMetaModelLookUp(FixtureData.FPATH1_METAMODEL, FixtureData.FPATH_METAMODEL));
 		generateParserForLanguage(LANGUAGE);
 	}
 

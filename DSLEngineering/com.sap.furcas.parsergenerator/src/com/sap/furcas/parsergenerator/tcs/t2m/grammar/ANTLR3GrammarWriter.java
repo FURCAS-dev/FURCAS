@@ -13,12 +13,12 @@ import static com.sap.furcas.parsergenerator.util.StringConcatUtil.concat;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.AbstractAntlr3Rule;
 import com.sap.furcas.parsergenerator.util.VarStringBuffer;
-import com.sap.furcas.runtime.common.exceptions.GrammarGenerationException;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
+import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.IModelInjector;
-import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.antlr3.DefaultANTLR3LocationTokenFactory;
 import com.sap.furcas.runtime.parser.antlr3.ITokenFactory;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
@@ -257,7 +257,10 @@ public class ANTLR3GrammarWriter {
 	public void setGrammarName(final String grammarName) {
 		this.grammarName = grammarName;
 	}
-
+	
+	/**
+	 * Set the name of the java package that the parser class shall be later be placed in.
+	 */
 	public void setTargetPackage(String targetPackage) {
 		this.targetPackage = targetPackage;
 	}

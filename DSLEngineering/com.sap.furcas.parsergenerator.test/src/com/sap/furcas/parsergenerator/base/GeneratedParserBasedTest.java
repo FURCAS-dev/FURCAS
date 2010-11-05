@@ -18,8 +18,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.junit.AfterClass;
 
 import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
+import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ObservationDirectivesHelper;
-import com.sap.furcas.runtime.common.exceptions.GrammarGenerationException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 
@@ -97,7 +97,7 @@ public class GeneratedParserBasedTest {
 	// restore the original value
 	System.setErr(systemErr);
     }
-
+    
     /**
      * If antlr wrote to System.err, fail the test with ANTLR messages. If err is empty, continue
      */

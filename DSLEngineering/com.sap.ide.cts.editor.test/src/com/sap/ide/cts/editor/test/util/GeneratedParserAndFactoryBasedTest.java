@@ -9,9 +9,9 @@ import java.io.IOException;
 import org.antlr.runtime.Lexer;
 import org.eclipse.emf.ecore.EPackage;
 
+import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.parsergenerator.moin.standalone.MOINTCSMetaConnectionProvider;
 import com.sap.furcas.parsing.textblocks.TextBlocksAwareModelAdapter;
-import com.sap.furcas.runtime.common.exceptions.GrammarGenerationException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;

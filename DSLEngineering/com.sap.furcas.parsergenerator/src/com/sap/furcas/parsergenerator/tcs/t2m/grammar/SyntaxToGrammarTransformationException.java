@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import com.sap.furcas.runtime.common.exceptions.AbstractToolGenerationException;
-import com.sap.furcas.runtime.parser.impl.ParsingError;
+import com.sap.furcas.runtime.parser.ParsingError;
 
 /**
  *

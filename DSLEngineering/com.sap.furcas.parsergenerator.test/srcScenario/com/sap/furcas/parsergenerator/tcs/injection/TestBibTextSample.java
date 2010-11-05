@@ -27,6 +27,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.TCS.Token;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
+import com.sap.furcas.test.scenario.FixtureData;
 
 
 public class TestBibTextSample extends AbstractTCSInjectionTest {
@@ -36,7 +37,7 @@ public class TestBibTextSample extends AbstractTCSInjectionTest {
 	@BeforeClass	
 	public static void doSetUp() throws Exception {
 
-	    setup("scenarioTestResource/Bibtext.tcs");        
+	    setup(FixtureData.BIBTEXT_TCS);        
 		
 	}
 

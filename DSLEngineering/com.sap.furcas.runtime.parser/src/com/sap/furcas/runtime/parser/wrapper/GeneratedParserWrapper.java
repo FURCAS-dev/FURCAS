@@ -29,12 +29,12 @@ import org.antlr.runtime.TokenStream;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.IParsingObserver;
 import com.sap.furcas.runtime.parser.InjectionOptionsBean;
+import com.sap.furcas.runtime.parser.ParsingError;
+import com.sap.furcas.runtime.parser.TextLocation;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.impl.ModelInjector;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
-import com.sap.furcas.runtime.parser.impl.ParsingError;
-import com.sap.furcas.runtime.parser.impl.TextLocation;
 
 
 /**

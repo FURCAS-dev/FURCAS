@@ -1,6 +1,5 @@
 package com.sap.ide.cts.editor.contentassist.processor;
 
-import generated.TCSLexer;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,6 +9,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.sap.furcas.parser.tcs.stableversion.TCSLexer;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;

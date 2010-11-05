@@ -12,6 +12,8 @@ package com.sap.furcas.runtime.parser.antlr3;
 import org.antlr.runtime.CharStream;
 import org.antlr.runtime.CommonToken;
 
+import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
+
 
 /**
  * The Class ANTLR3LocationToken.

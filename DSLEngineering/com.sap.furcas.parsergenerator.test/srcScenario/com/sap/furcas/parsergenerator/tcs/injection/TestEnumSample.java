@@ -18,6 +18,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.TCS.Token;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
+import com.sap.furcas.test.scenario.FixtureData;
 
 
 public class TestEnumSample extends AbstractTCSInjectionTest {
@@ -27,7 +28,7 @@ public class TestEnumSample extends AbstractTCSInjectionTest {
 	@BeforeClass	
 	public static void doSetUp() throws Exception {
 
-		 setup("scenarioTestResource/EnumTest.tcs");       
+		 setup(FixtureData.ENUMTEST_TCS);       
 		
 	}
 

@@ -2,7 +2,6 @@ package com.sap.ide.cts.editor.prettyprint;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-import generated.TCSLexer;
 
 import java.util.Iterator;
 
@@ -14,6 +13,7 @@ import org.junit.Test;
 import com.sap.furcas.metamodel.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.TCS.TCSPackage;
 import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.parser.tcs.stableversion.TCSLexer;
 =======
 import tcs.ClassTemplate;
 import tcs.TcsPackage;

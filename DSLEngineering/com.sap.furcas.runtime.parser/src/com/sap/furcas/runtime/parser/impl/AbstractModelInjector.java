@@ -18,6 +18,8 @@ import org.antlr.runtime.RecognitionException;
 import com.sap.furcas.runtime.parser.IInjectionHelper;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.InjectionOptionsBean;
+import com.sap.furcas.runtime.parser.ParsingError;
+import com.sap.furcas.runtime.parser.TextLocation;
 
 
 /**
