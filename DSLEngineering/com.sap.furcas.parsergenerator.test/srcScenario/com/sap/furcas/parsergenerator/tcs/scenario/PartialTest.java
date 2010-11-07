@@ -1,38 +1,39 @@
 package com.sap.furcas.parsergenerator.tcs.scenario;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.File;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.parsergenerator.base.GeneratedParserBasedTest;
-import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
+import com.sap.furcas.parsergenerator.base.GeneratedParserTestConfiguration;
+import com.sap.furcas.parsergenerator.base.ParsingHelper;
 import com.sap.furcas.parsergenerator.base.StubModelAdapter;
-import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
-import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
+import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.test.fixture.FixtureData;
 
 @Ignore("Already ignored in the moin codebase. Furthermore, not even included in the test suite.")
 public class PartialTest extends GeneratedParserBasedTest {
 
-    private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
     private static final String LANGUAGE = "XPath";
+    private static final File TCS = FixtureData.XPATH_TCS;
+    private static final File[] METAMODELS = { FixtureData.XPATH1_METAMODEL };
+    private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
 
-    @Before
-    public void testXPathGenerationOnly() throws GrammarGenerationException, FileNotFoundException, ModelAdapterException,
-            IOException {
-        setLookup(new FileBasedEcoreMetaModelLookUp(FixtureData.XPATH1_METAMODEL));
-        setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-        generateParserForLanguage(LANGUAGE);
+    private static ParsingHelper parsingHelper;
+
+    @BeforeClass
+    public static void setupParser() throws Exception {
+        GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
+        ParserFacade facade = generateParserForLanguage(testConfig);
+        parsingHelper = new ParsingHelper(facade);
     }
 
     @Test
     public void testSample1() throws Exception {
-        StubModelAdapter stubModelHandler = parseFile("XPathSample01.sam", LANGUAGE, DSLSAMPLEDIR);
-        stubModelHandler = parseFile("XPathSample02.sam", LANGUAGE, DSLSAMPLEDIR, 0);
+        StubModelAdapter stubModelHandler = parsingHelper.parseFile("XPathSample01.sam", DSLSAMPLEDIR);
+        stubModelHandler = parsingHelper.parseFile("XPathSample02.sam", DSLSAMPLEDIR, 0);
     }
 
 }

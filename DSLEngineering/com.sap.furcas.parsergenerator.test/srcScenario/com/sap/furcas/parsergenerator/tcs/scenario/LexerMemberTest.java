@@ -2,15 +2,18 @@ package com.sap.furcas.parsergenerator.tcs.scenario;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.sap.furcas.parsergenerator.base.GeneratedParserBasedTest;
-import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
+import com.sap.furcas.parsergenerator.base.GeneratedParserTestConfiguration;
+import com.sap.furcas.parsergenerator.base.ParsingHelper;
 import com.sap.furcas.parsergenerator.base.StubModelAdapter;
-import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
+import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.test.fixture.FixtureData;
 
 /**
@@ -18,23 +21,25 @@ import com.sap.furcas.test.fixture.FixtureData;
  */
 public class LexerMemberTest extends GeneratedParserBasedTest {
 
-	private static final String LANGUAGE = "LexerMember";
+    private static final String LANGUAGE = "LexerMember";
+    private static final File TCS = FixtureData.LEXER_MEMBER_TCS;
+    private static final File[] METAMODELS = { FixtureData.BIBTEXT_METAMODEL, FixtureData.BIBTEXT1_METAMODEL };
 
-	
-	@BeforeClass
-	public static void setupParser() throws Exception {
-		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new FileBasedEcoreMetaModelLookUp(FixtureData.BIBTEXT_METAMODEL, FixtureData.BIBTEXT1_METAMODEL));
-		generateParserForLanguage(LANGUAGE);
-	}
-	
-	    
-	    @Test
-	    public void testbadKeyword() throws Exception {
-	        IModelAdapter modelAdapter = new StubModelAdapter();
-	        String sample = "test";
-	        ModelParsingResult result = parseString(sample, LANGUAGE, modelAdapter );
-	        assertEquals(0, result.getErrors().size());
+    private static ParsingHelper parsingHelper;
 
-	    }
+    @BeforeClass
+    public static void setupParser() throws Exception {
+        GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
+        ParserFacade facade = generateParserForLanguage(testConfig);
+        parsingHelper = new ParsingHelper(facade);
+    }
+
+    @Test
+    public void testbadKeyword() throws Exception {
+        IModelAdapter modelAdapter = new StubModelAdapter();
+        String sample = "test";
+        ModelParsingResult result = parsingHelper.parseString(sample, modelAdapter);
+        assertEquals(0, result.getErrors().size());
+
+    }
 }

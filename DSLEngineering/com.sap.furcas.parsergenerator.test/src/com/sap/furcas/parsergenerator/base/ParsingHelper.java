@@ -55,7 +55,7 @@ public class ParsingHelper {
         parseStream(expectedErrors, charStream, adapter);
     }
 
-    private void parseStream(int expectedErrors, InputStream in, IModelAdapter modelAdapter) throws IOException,
+    public void parseStream(int expectedErrors, InputStream in, IModelAdapter modelAdapter) throws IOException,
             UnknownProductionRuleException {
 
         ModelParsingResult result = parse(in, modelAdapter);

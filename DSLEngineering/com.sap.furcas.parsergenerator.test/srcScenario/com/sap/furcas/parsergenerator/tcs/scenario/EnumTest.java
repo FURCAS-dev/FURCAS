@@ -2,50 +2,54 @@ package com.sap.furcas.parsergenerator.tcs.scenario;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
 import java.util.Set;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.sap.furcas.parsergenerator.base.GeneratedParserBasedTest;
-import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
+import com.sap.furcas.parsergenerator.base.GeneratedParserTestConfiguration;
+import com.sap.furcas.parsergenerator.base.ParsingHelper;
 import com.sap.furcas.parsergenerator.base.StubModelAdapter;
 import com.sap.furcas.parsergenerator.base.StubModelElement;
-import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
+import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.test.fixture.FixtureData;
-
 
 /**
  * Simple Test for the custom Expression language
  */
 public class EnumTest extends GeneratedParserBasedTest {
 
-	private static final String LANGUAGE = "EnumTest";
+    private static final String LANGUAGE = "EnumTest";
+    private static final File TCS = FixtureData.ENUMTEST_TCS;
+    private static final File[] METAMODELS = { FixtureData.ENUMERATION_METAMODEL };
 
-	
-	@BeforeClass
-	public static void setupParser() throws Exception {
-		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new FileBasedEcoreMetaModelLookUp(FixtureData.ENUMERATION_METAMODEL));
-		generateParserForLanguage(LANGUAGE);
-	}
+    private static ParsingHelper parsingHelper;
 
+    @BeforeClass
+    public static void setupParser() throws Exception {
+        GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
+        ParserFacade facade = generateParserForLanguage(testConfig);
+        parsingHelper = new ParsingHelper(facade);
+    }
 
-	/**
-	 * test syntax errors cause parsing errors
-	 * @throws Exception
-	 */
-	@Test
-	public void testSampleDirect() throws Exception {
+    /**
+     * test syntax errors cause parsing errors
+     * 
+     * @throws Exception
+     */
+    @Test
+    public void testSampleDirect() throws Exception {
 
-	    StubModelAdapter stubModelHandler = parseString("mars with speed slow", LANGUAGE,  0);
+        StubModelAdapter stubModelHandler = parsingHelper.parseString("mars with speed slow", 0);
 
-	    Set<StubModelElement> expressions = stubModelHandler.getElementsbyType("enumtest::PlanetExpression");
+        Set<StubModelElement> expressions = stubModelHandler.getElementsbyType("enumtest::PlanetExpression");
         assertEquals(1, expressions.size());
         StubModelElement element = expressions.iterator().next();
         StubModelElement planet = (StubModelElement) element.get("planet");
         assertEquals("mars", planet.type);
         StubModelElement speed = (StubModelElement) element.get("speed");
         assertEquals("slow", speed.type);
-	}
+    }
 }

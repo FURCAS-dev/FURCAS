@@ -1,38 +1,41 @@
 package com.sap.furcas.parsergenerator.tcs.scenario;
 
+import java.io.File;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.sap.furcas.parsergenerator.base.GeneratedParserBasedTest;
-import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
+import com.sap.furcas.parsergenerator.base.GeneratedParserTestConfiguration;
+import com.sap.furcas.parsergenerator.base.ParsingHelper;
 import com.sap.furcas.parsergenerator.base.StubModelAdapter;
-import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
+import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.test.fixture.FixtureData;
-
 
 /**
  * Simple Test for the custom Expression language
  */
 public class LOTOSTest extends GeneratedParserBasedTest {
 
+    private static final String LANGUAGE = "LOTOS";
+    private static final File TCS = FixtureData.LOTOS_TCS;
+    private static final File[] METAMODELS = { FixtureData.LOTOS_METAMODEL };
+    private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
 
-	private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
-	private static final String LANGUAGE = "LOTOS";
+    private static ParsingHelper parsingHelper;
 
+    @BeforeClass
+    public static void setupParser() throws Exception {
+        GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
+        ParserFacade facade = generateParserForLanguage(testConfig);
+        parsingHelper = new ParsingHelper(facade);
+    }
 
-	@BeforeClass
-	public static void setupParser() throws Exception {
-		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new FileBasedEcoreMetaModelLookUp(FixtureData.LOTOS_METAMODEL));
-		generateParserForLanguage(LANGUAGE);
-	}
-	
-	
-	@Test
-	public void testSample1() throws Exception {
-		
-		StubModelAdapter stubModelHandler = parseFile("LOTOSSample.sam", LANGUAGE, DSLSAMPLEDIR, 0);
-		
-	}
-	
+    @Test
+    public void testSample1() throws Exception {
+
+        StubModelAdapter stubModelHandler = parsingHelper.parseFile("LOTOSSample.sam", DSLSAMPLEDIR, 0);
+
+    }
+
 }
