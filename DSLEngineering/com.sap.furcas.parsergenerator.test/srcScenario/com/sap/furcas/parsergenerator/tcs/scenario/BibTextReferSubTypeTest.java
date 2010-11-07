@@ -1,11 +1,14 @@
 package com.sap.furcas.parsergenerator.tcs.scenario;
 
+import java.io.File;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.sap.furcas.parsergenerator.base.GeneratedParserBasedTest;
-import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
-import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
+import com.sap.furcas.parsergenerator.base.GeneratedParserTestConfiguration;
+import com.sap.furcas.parsergenerator.base.ParsingHelper;
+import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.test.fixture.FixtureData;
 
 
@@ -16,20 +19,20 @@ import com.sap.furcas.test.fixture.FixtureData;
 public class BibTextReferSubTypeTest extends GeneratedParserBasedTest {
 
 
-	private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
-	private static final String LANGUAGE = "BibtextReferSubType";
+    private static final String LANGUAGE = "BibtextReferSubType";
+    private static final File TCS = FixtureData.BIBTEXT_REFER_SUBTYPE_TCS;
+    private static final File[] METAMODELS = { FixtureData.BIBTEXT_REFER_SUBTYPE_METAMODEL,  FixtureData.BIBTEXT1_METAMODEL };
+    
+    private static ParsingHelper parsingHelper;
 
+    @BeforeClass
+    public static void setupParser() throws Exception {
+        GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
+        ParserFacade facade = generateParserForLanguage(testConfig);
+        parsingHelper = new ParsingHelper(facade);
+    }
 	
-	@BeforeClass
-	public static void setupParser() throws Exception {
-		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new FileBasedEcoreMetaModelLookUp(FixtureData.BIBTEXT_REFER_SUBTYPE_METAMODEL,
-		        FixtureData.BIBTEXT1_METAMODEL));
-		generateParserForLanguage(LANGUAGE);
-	}
-	
-	
-	/**
+    /**
      * tests metamodel upper and lower bounds are used and cause errors when violated
      * @throws Exception
      */
@@ -45,6 +48,6 @@ public class BibTextReferSubTypeTest extends GeneratedParserBasedTest {
         + "author = \"Jane Doll\"."
         ;
 
-        parseString(sample, LANGUAGE, 0);
+        parsingHelper.parseString(sample, 0);
     }
 }

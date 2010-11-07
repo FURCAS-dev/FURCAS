@@ -1,15 +1,17 @@
 package com.sap.furcas.parsergenerator.tcs.scenario;
 
+import java.io.File;
+
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.parsergenerator.base.GeneratedParserBasedTest;
-import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
+import com.sap.furcas.parsergenerator.base.GeneratedParserTestConfiguration;
+import com.sap.furcas.parsergenerator.base.ParsingHelper;
 import com.sap.furcas.parsergenerator.base.StubModelAdapter;
-import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
+import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.test.fixture.FixtureData;
-
 
 /**
  * Simple Test for the custom Disambiguate language
@@ -17,20 +19,24 @@ import com.sap.furcas.test.fixture.FixtureData;
 @Ignore("Already broken in the moin codebase")
 public class DisambiguateTest extends GeneratedParserBasedTest {
 
-    private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
     private static final String LANGUAGE = "Disambiguate";
+    private static final File TCS = FixtureData.DISAMBIGUATE_TCS;
+    private static final File[] METAMODELS = { FixtureData.DISAMBIGUATE_METAMODEL };
+    private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
+
+    private static ParsingHelper parsingHelper;
 
     @BeforeClass
     public static void setupParser() throws Exception {
-        setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-        setLookup(new FileBasedEcoreMetaModelLookUp(FixtureData.DISAMBIGUATE_METAMODEL));
-        generateParserForLanguage(LANGUAGE);
+        GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
+        ParserFacade facade = generateParserForLanguage(testConfig);
+        parsingHelper = new ParsingHelper(facade);
     }
 
     @Test
     public void testSample1() throws Exception {
 
-        StubModelAdapter stubModelHandler = parseFile("DisambiguateSample.sam", LANGUAGE, DSLSAMPLEDIR, 0);
+        StubModelAdapter stubModelHandler = parsingHelper.parseFile("DisambiguateSample.sam", DSLSAMPLEDIR, 0);
 
     }
 
