@@ -7,20 +7,20 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
+import com.sap.furcas.parsergenerator.base.GeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
 import com.sap.furcas.parsergenerator.base.StubModelAdapter;
 import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.util.QualifiedNamesHelper;
+import com.sap.furcas.test.fixture.FixtureData;
 import com.sap.furcas.test.parsing.testutils.StringListHelper;
-import com.sap.furcas.test.scenario.FixtureData;
 
 /**
  * Tests generation of TCS Parsers.
  * This is using an old obsolete implementation of TCS whithout direct links betweeen syntax definition and Metamodel
  */
-public class TCSObsoleteTest extends ExtendedGeneratedParserBasedTest {
+public class TCSObsoleteTest extends GeneratedParserBasedTest {
 
     private static final String DSLSAMPLEDIR = "../com.sap.furcas.test/fixtures/";
     

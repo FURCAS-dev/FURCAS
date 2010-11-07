@@ -2,37 +2,43 @@ package com.sap.furcas.parsergenerator.tcs.scenario;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
 import java.util.Set;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
-import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
+import com.sap.furcas.parsergenerator.base.GeneratedParserBasedTest;
+import com.sap.furcas.parsergenerator.base.GeneratedParserTestConfiguration;
+import com.sap.furcas.parsergenerator.base.ParsingHelper;
 import com.sap.furcas.parsergenerator.base.StubModelAdapter;
 import com.sap.furcas.parsergenerator.base.StubModelElement;
-import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
-import com.sap.furcas.test.scenario.FixtureData;
+import com.sap.furcas.runtime.parser.ParserFacade;
+import com.sap.furcas.test.fixture.FixtureData;
 
 /**
  * Simple Test for the custom Expression language, this time with the lexer not being specified in TCS.
  */
-public class ExpressionNoLexerTest extends ExtendedGeneratedParserBasedTest {
+public class ExpressionNoLexerTest extends GeneratedParserBasedTest {
 
-    private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
     private static final String LANGUAGE = "ExpressionNoLexer";
+    private static final File TCS = FixtureData.EXPRESSION_NO_LEXER_TCS;
+    private static final File[] METAMODELS = { FixtureData.EXPRESSION_METAMODEL };
+    private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
+
+    private static ParsingHelper parsingHelper;
 
     @BeforeClass
     public static void setupParser() throws Exception {
-        setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-        setLookup(new FileBasedEcoreMetaModelLookUp(FixtureData.EXPRESSION_METAMODEL));
-        generateParserForLanguage(LANGUAGE);
+        GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
+        ParserFacade facade = generateParserForLanguage(testConfig);
+        parsingHelper = new ParsingHelper(facade);
     }
 
     @Test
     public void testSample1() throws Exception {
 
-        StubModelAdapter stubModelHandler = parseFile("ExpressionSample01.sam", LANGUAGE, DSLSAMPLEDIR, 0);
+        StubModelAdapter stubModelHandler = parsingHelper.parseFile("ExpressionSample01.sam", DSLSAMPLEDIR, 0);
         Set<StubModelElement> values = stubModelHandler.getElementsbyType("expression::ExpressionList");
         assertEquals(1, values.size());
 
@@ -45,8 +51,7 @@ public class ExpressionNoLexerTest extends ExtendedGeneratedParserBasedTest {
 
     @Test
     public void testSample2() throws Exception {
-
-        parseFile("ExpressionSample02.sam", LANGUAGE, DSLSAMPLEDIR, 1);
+        parsingHelper.parseFile("ExpressionSample02.sam", DSLSAMPLEDIR, 1);
 
     }
 
@@ -58,11 +63,11 @@ public class ExpressionNoLexerTest extends ExtendedGeneratedParserBasedTest {
     @Test
     public void testSampleDirect() throws Exception {
 
-        parseString("1+1+2", LANGUAGE, 0);
+        parsingHelper.parseString("1+1+2", 0);
 
-        parseString("1+1+", LANGUAGE, 1);
-        parseString("1+1+a", LANGUAGE, 1);
-        parseString("1+1+b, 2+c", LANGUAGE, 2);
+        parsingHelper.parseString("1+1+", 1);
+        parsingHelper.parseString("1+1+a", 1);
+        parsingHelper.parseString("1+1+b, 2+c", 2);
 
     }
 }

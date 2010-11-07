@@ -1,137 +1,152 @@
 package com.sap.furcas.parsergenerator.base;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.PrintStream;
-import java.util.Collections;
-import java.util.Set;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.junit.AfterClass;
+import org.antlr.runtime.Lexer;
 
-import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
 import com.sap.furcas.parsergenerator.GrammarGenerationException;
+import com.sap.furcas.parsergenerator.TCSParserGenerator;
+import com.sap.furcas.parsergenerator.TCSParserGeneratorFactory;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ObservationDirectivesHelper;
-import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
-import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
-
+import com.sap.furcas.runtime.common.exceptions.ParserGeneratorInvocationException;
+import com.sap.furcas.runtime.parser.ParserFacade;
+import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
+import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sun.tools.javac.Main;
 
 /**
- * Parser generation test base class. Allows to generate arbitrary parsers.
- *
+ * 
+ * @author Stephan Erb (d049157)
+ * 
  */
 public class GeneratedParserBasedTest {
 
-    private static IMetaModelLookup<?> lookup;
-    private static ParserGenerationTestHelper generationHelper;
-    
-    
-    public static void setParserGenerationTestHelper(ParserGenerationTestHelper helper) {
-	generationHelper = helper;
-    }
-    
-    public static ParserGenerationTestHelper getParserGenerationTestHelper() {
-        return generationHelper;
-    }
+    {{
+            ObservationDirectivesHelper.doAddObserverParts = ObservationDirectivesHelper.ALL;
+    }}
 
-    public static void setLookup(IMetaModelLookup<?> modelLookup) {
-	lookup = modelLookup;
+    public static ParserFacade generateParserForLanguage(GeneratedParserTestConfiguration testConfig) throws GrammarGenerationException, ParserGeneratorInvocationException, InvalidParserImplementationException {
+        generateGrammar(testConfig);
+        generateParser(testConfig);
+        compileParser(testConfig);
+        
+        return loadParserFacade(testConfig);
     }
 
-    public static void generateParserForLanguage(String language) throws FileNotFoundException, GrammarGenerationException,
-	    ModelAdapterException, IOException {
-
-        assertNotNull(generationHelper);
-	assertNotNull(lookup);
-
-	ObservationDirectivesHelper.doAddObserverParts = ObservationDirectivesHelper.ALL;
-
-	ResourceSet resourceSet = createDefaultResourceSet();
-	Set<URI> referenceScope = createDefaultReferenceScope();
-	
-	generateParser(language, resourceSet, referenceScope);
+    protected final static void generateGrammar(GeneratedParserTestConfiguration testConfig) throws GrammarGenerationException {
+        SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
+        try {
+            TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
+            generator.generateGrammarFromSyntax(testConfig.getSourceConfiguration(), testConfig.getTargetConfiguration(), errorHandler);
+        } catch (ParserGeneratorInvocationException e) {
+            e.printStackTrace();
+            fail("Failed to generate grammar:" + e.getMessage());
+        }
+        assertFalse("Must have completed without (critical) errors", errorHandler.hasFailedWithError());
     }
 
-    protected static Set<URI> createDefaultReferenceScope() {
-        Set<URI> referenceScope = Collections.emptySet();
-        return referenceScope;
+    protected static void generateParser(GeneratedParserTestConfiguration testConfig) {
+        ByteArrayOutputStream errByteStream = new ByteArrayOutputStream();
+        PrintStream systemErrOld = redirectSystemErrTo(errByteStream);
+
+        SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
+        try {
+            TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
+            generator.generateParserFromGrammar(testConfig.getTargetConfiguration(), errorHandler);
+        } catch (ParserGeneratorInvocationException e) {
+            e.printStackTrace();
+            fail("Failed go generate Parser/Lexer class: " + e.getMessage());
+        } finally {
+            restoreOldSystemErr(systemErrOld);
+        }
+        checkSystemErrForANTLRErrosAndFailIfNecessary(errByteStream);
+        assertFalse("Must have completed without (critical) errors. See syserr.", errorHandler.hasFailedWithError());
     }
 
-    protected static ResourceSet createDefaultResourceSet() {
-        ResourceSet resourceSet =  new ResourceSetImpl();
-        resourceSet.getPackageRegistry().put(FURCASPackage.eNS_URI, FURCASPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put(FURCASPackage.eNAME, FURCASPackage.eINSTANCE);
-        return resourceSet;
+    protected static void compileParser(GeneratedParserTestConfiguration testConfig) {
+        ByteArrayOutputStream errByteStream = new ByteArrayOutputStream();
+        PrintStream systemErrOld = redirectSystemErrTo(errByteStream);
+        try {
+            int success = Main.compile(new String[] {
+                    testConfig.getRelativePathToGeneratedLexerClass(),
+                    testConfig.getRelativePathToGeneratedParserClass(),
+                    "-cp",
+                    System.getProperty("antlr.lib.dir") + File.pathSeparator + "../com.sap.furcas.runtime.parser/bin"
+                            + File.pathSeparator + "../com.sap.furcas.runtime.common/bin" + File.pathSeparator
+                            + "../com.sap.furcas.parsergenerator.emf/bin" });
+            if (success != 0) {
+                fail("Parser compilation failed with code '" + success + "'. Messages: \n" + errByteStream.toString());
+            }
+        } finally {
+            restoreOldSystemErr(systemErrOld);
+        }
     }
 
-    private static void generateParser(String language, ResourceSet resourceSet, Set<URI> referenceScope) throws FileNotFoundException, GrammarGenerationException, ModelAdapterException, IOException {
-	generationHelper.generateParserGrammar(language, lookup, resourceSet, referenceScope);
-	generateAndCompileParser(language);
+    protected static ParserFacade loadParserFacade(GeneratedParserTestConfiguration testConfig)
+            throws ParserGeneratorInvocationException, InvalidParserImplementationException {
+        // try loading compiled classes
+        try {
+            @SuppressWarnings("unchecked")
+            Class<? extends Lexer> lexerclass = (Class<? extends Lexer>) Class.forName(testConfig.getClassNameOfCompiledLexer());
+            @SuppressWarnings("unchecked")
+            Class<? extends ObservableInjectingParser> parserclass = (Class<? extends ObservableInjectingParser>) Class
+                    .forName(testConfig.getClassNameOfCompiledParser());
+            ParserFacade facade = new ParserFacade(parserclass, lexerclass);
+            return facade;
+
+        } catch (ClassNotFoundException cnfe) { // catching from Class.forName
+            throw new ParserGeneratorInvocationException("Can't find generated classes " + testConfig.getClassNameOfCompiledLexer() + " and "
+                    + testConfig.getClassNameOfCompiledLexer() + ". Try to do an Eclipse refresh on the project.", cnfe);
+        }
     }
 
-    private static void generateAndCompileParser(String languageName) {
-	// Hold on to the original value
-	PrintStream systemErr = System.err;
-	// redirect Std.err to be able to check it for errors
-	ByteArrayOutputStream errByteStream = new ByteArrayOutputStream();
-	System.setErr(new PrintStream(errByteStream));
-
-	generationHelper.generateParserClasses(languageName);
-	checkSystemErrForErros(errByteStream);
-	
-	// compile generated Java
-	int success = generationHelper.compileParser(languageName);
-	if (success != 0) {
-	    systemErr.println(errByteStream.toString());
-	    fail("Parser compilation failed with code '" + success + "'. Messages: \n" + errByteStream.toString());
-	}
-
-	// restore the original value
-	System.setErr(systemErr);
+    private static PrintStream redirectSystemErrTo(ByteArrayOutputStream errByteStream) {
+        PrintStream originalSystemErr = System.err;
+        System.setErr(new PrintStream(errByteStream));
+        return originalSystemErr;
     }
-    
+
+    private static void restoreOldSystemErr(PrintStream systemErr) {
+        System.setErr(systemErr);
+    }
+
     /**
      * If antlr wrote to System.err, fail the test with ANTLR messages. If err is empty, continue
      */
-    private static void checkSystemErrForErros(ByteArrayOutputStream errByteStream) {
+    private static void checkSystemErrForANTLRErrosAndFailIfNecessary(ByteArrayOutputStream errByteStream) {
         String errString = errByteStream.toString().trim();
         if (!"".equals(errString)) {
             if (errString.toLowerCase().indexOf("error") > -1) { // ignore
-        	// warnings written to System.err
-        	fail(errString);
+                // warnings written to System.err
+                fail(errString);
             } else {
-        	System.out.println(errString);
-        	errByteStream.reset(); // discarding warnings from stream, so
-        	// that error only shows errors
+                System.out.println(errString);
+                errByteStream.reset(); // discarding warnings from stream, so
+                // that error only shows errors
             }
         }
     }
 
-    
-    @AfterClass
-    public static void teardown() {
-	if (generationHelper != null) {
-	    // delete generated Files
-	    File genDir = generationHelper.getGenerationDir();
-	    assertTrue(genDir.getAbsolutePath() + " is not a directory", genDir.isDirectory());
-	    File[] files = genDir.listFiles();
-	    for (File file : files) {
-		if (file.getName().endsWith(".class")) { // keeping grammars for
-		    // lookup
-		    file.delete();
-		}
-	    }
-	}
-	lookup = null;
-	generationHelper = null;
-    }
+    // FIXME: do cleanup somewhere...
+//    @AfterClass
+//    public static void teardown() {
+//        if (generationHelper != null) {
+//            // delete generated Files
+//            File genDir = generationHelper.getGenerationDir();
+//            assertTrue(genDir.getAbsolutePath() + " is not a directory", genDir.isDirectory());
+//            File[] files = genDir.listFiles();
+//            for (File file : files) {
+//                if (file.getName().endsWith(".class")) { // keeping grammars for
+//                    // lookup
+//                    file.delete();
+//                }
+//            }
+//        }
+//    }
 
 }

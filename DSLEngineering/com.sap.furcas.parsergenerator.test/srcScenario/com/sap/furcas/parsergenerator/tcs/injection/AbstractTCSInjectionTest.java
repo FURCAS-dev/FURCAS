@@ -38,15 +38,13 @@ public abstract class AbstractTCSInjectionTest {
         syntax = modelParsingResult.getSyntax();
     }
 
-    protected static void parseInputStream(InputStream in) throws InvalidParserImplementationException, IOException,
-            UnknownProductionRuleException {
+    protected static void parseInputStream(InputStream in) throws InvalidParserImplementationException, IOException, UnknownProductionRuleException {
         ResourceSet resourceSet = new ResourceSetImpl();
         resourceSet.getPackageRegistry().put(FURCASPackage.eNS_URI, FURCASPackage.eINSTANCE);
         resourceSet.getPackageRegistry().put(FURCASPackage.eNAME, FURCASPackage.eINSTANCE);
         Set<URI> referenceScope = Collections.emptySet();
 
-        modelParsingResult = TCSSpecificEMFModelInjector.parseSyntaxDefinition(in, resourceSet, referenceScope,
-                /* observer */ null);
+        modelParsingResult = TCSSpecificEMFModelInjector.parseSyntaxDefinition(in, resourceSet, referenceScope,/* observer */null);
     }
 
 }

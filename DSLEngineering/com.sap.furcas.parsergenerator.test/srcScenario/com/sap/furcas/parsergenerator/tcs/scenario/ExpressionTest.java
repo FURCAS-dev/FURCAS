@@ -7,12 +7,12 @@ import java.util.Set;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
+import com.sap.furcas.parsergenerator.base.GeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
 import com.sap.furcas.parsergenerator.base.StubModelAdapter;
 import com.sap.furcas.parsergenerator.base.StubModelElement;
 import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
-import com.sap.furcas.test.scenario.FixtureData;
+import com.sap.furcas.test.fixture.FixtureData;
 
 
 
@@ -20,7 +20,7 @@ import com.sap.furcas.test.scenario.FixtureData;
 /**
  * Simple Test for the custom Expression language
  */
-public class ExpressionTest extends ExtendedGeneratedParserBasedTest {
+public class ExpressionTest extends GeneratedParserBasedTest {
 
 	private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
 	private static final String LANGUAGE = "Expression";

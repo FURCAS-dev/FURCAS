@@ -8,15 +8,15 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.parsergenerator.GrammarGenerationException;
-import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
+import com.sap.furcas.parsergenerator.base.GeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
 import com.sap.furcas.parsergenerator.base.StubModelAdapter;
 import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
-import com.sap.furcas.test.scenario.FixtureData;
+import com.sap.furcas.test.fixture.FixtureData;
 
 @Ignore("Already ignored in the moin codebase. Furthermore, not even included in the test suite.")
-public class PartialTest extends ExtendedGeneratedParserBasedTest {
+public class PartialTest extends GeneratedParserBasedTest {
 
     private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
     private static final String LANGUAGE = "XPath";

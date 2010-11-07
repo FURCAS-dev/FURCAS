@@ -1,4 +1,4 @@
-package com.sap.furcas.parsergenerator.tcs.scenario;
+package com.sap.furcas.parsergenerator.tcs.grammar;
 
 import static org.junit.Assert.assertTrue;
 
@@ -7,17 +7,26 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Collections;
+import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
+import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
 import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
 import com.sap.furcas.parsergenerator.tcs.t2m.InputStreamBasedTCSGrammarGenerator;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ObservationDirectivesHelper;
-import com.sap.furcas.test.scenario.FixtureData;
+import com.sap.furcas.test.fixture.FixtureData;
 
-public class GrammarTest extends ExtendedGeneratedParserBasedTest {
+/**
+ * Simple test case that assures we can generate an ANTLR grammar
+ * from a given syntax definition. 
+ */
+public class GrammarGenerationTest {
 
     @BeforeClass
     public static void setup() {
@@ -30,13 +39,15 @@ public class GrammarTest extends ExtendedGeneratedParserBasedTest {
         // this test relies on the contents of the BibText sample file
         File sample = FixtureData.BIBTEXT_TCS;
         assertTrue(sample.exists());
+        
         InputStream in = new FileInputStream(sample);
-
         OutputStream out = new ByteArrayOutputStream();
+        
         InputStreamBasedTCSGrammarGenerator generator = new InputStreamBasedTCSGrammarGenerator(in, out,
                 new FileBasedEcoreMetaModelLookUp(FixtureData.BIBTEXT_METAMODEL, FixtureData.BIBTEXT1_METAMODEL), "generated");
-        generator.generateGrammar(createDefaultResourceSet(), createDefaultReferenceScope(), null);
+        generator.generateGrammar(createResourceSet(), createReferenceScope(), null);
         out.flush();
+        
         String grammar = out.toString();
         assertTrue(grammar.indexOf("grammar Bibtext") > -1);
         assertTrue(grammar.indexOf("package generated;") > -1);
@@ -56,13 +67,15 @@ public class GrammarTest extends ExtendedGeneratedParserBasedTest {
         // this test relies on the contents of the Expression sample file
         File sample = FixtureData.EXPRESSION_TCS;
         assertTrue(sample.exists());
+        
         InputStream in = new FileInputStream(sample);
-
         OutputStream out = new ByteArrayOutputStream();
+        
         InputStreamBasedTCSGrammarGenerator generator = new InputStreamBasedTCSGrammarGenerator(in, out,
                 new FileBasedEcoreMetaModelLookUp(FixtureData.EXPRESSION_METAMODEL), "generated");
-        generator.generateGrammar(createDefaultResourceSet(), createDefaultReferenceScope(), null);
+        generator.generateGrammar(createResourceSet(), createReferenceScope(), null);
         out.flush();
+        
         String grammar = out.toString();
         assertTrue(grammar.indexOf("grammar Expression;") > -1);
         assertTrue(grammar.indexOf("package generated;") > -1);
@@ -80,5 +93,17 @@ public class GrammarTest extends ExtendedGeneratedParserBasedTest {
 
         in.close();
         out.close();
+    }
+
+    private static Set<URI> createReferenceScope() {
+        Set<URI> referenceScope = Collections.emptySet();
+        return referenceScope;
+    }
+
+    private static ResourceSet createResourceSet() {
+        ResourceSet resourceSet = new ResourceSetImpl();
+        resourceSet.getPackageRegistry().put(FURCASPackage.eNS_URI, FURCASPackage.eINSTANCE);
+        resourceSet.getPackageRegistry().put(FURCASPackage.eNAME, FURCASPackage.eINSTANCE);
+        return resourceSet;
     }
 }

@@ -18,7 +18,7 @@ import org.junit.Test;
 
 import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
-import com.sap.furcas.test.scenario.FixtureData;
+import com.sap.furcas.test.fixture.FixtureData;
 
 /**
  * Tests the Ecore based lookup class that is used for testing, prerequisite for scenario tests (!).

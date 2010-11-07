@@ -24,6 +24,6 @@ Export-Package: com.sap.furcas.parsergenerator.base,
 Require-Bundle: org.junit;bundle-version="4.8.1",
  com.sap.furcas.test,
  com.sap.furcas.metamodel.tests
-Bundle-ClassPath: scenariotestTemp/,
- .,
- lib/tools.jar
+Bundle-ClassPath: .,
+ lib/tools.jar,
+ generationTemp/

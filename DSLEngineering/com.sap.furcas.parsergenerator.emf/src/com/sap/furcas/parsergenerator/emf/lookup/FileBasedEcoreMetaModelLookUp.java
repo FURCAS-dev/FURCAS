@@ -2,8 +2,6 @@ package com.sap.furcas.parsergenerator.emf.lookup;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -16,9 +14,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 
 public class FileBasedEcoreMetaModelLookUp extends QueryBasedEcoreMetaModelLookUp {
-
-    // FIXME: make this configurable!
-    private static final String METAMODELDIR = "scenarioTestResource/metamodels/";
 
     /**
      * 
@@ -41,25 +36,6 @@ public class FileBasedEcoreMetaModelLookUp extends QueryBasedEcoreMetaModelLookU
             loadResourceFromUri(resourceSet, normUri.toString());
         }
         return resourceSet;
-    }
-
-    /**
-     * 
-     * @param rootEcoreFile
-     * @param dataTypeEcoreFile
-     * @throws IOException
-     */
-    public FileBasedEcoreMetaModelLookUp(String... fileArr) throws MetaModelLookupException {
-        super(loadResourceSet(loadFiles(fileArr)));
-    }
-
-    private static File[] loadFiles(String[] fileArr) {
-        Collection<File> files = new ArrayList<File>();
-        for (String rootEcoreFile : fileArr) {
-            File file = new File(METAMODELDIR + rootEcoreFile);
-            files.add(file);
-        }
-        return files.toArray(new File[files.size()]);
     }
 
     private static void loadResourceFromUri(ResourceSet resourceSet, String uri) throws MetaModelLookupException {
