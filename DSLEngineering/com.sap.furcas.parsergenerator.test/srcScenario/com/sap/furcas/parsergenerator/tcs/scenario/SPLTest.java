@@ -1,13 +1,16 @@
 package com.sap.furcas.parsergenerator.tcs.scenario;
 
+import java.io.File;
+
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.parsergenerator.base.GeneratedParserBasedTest;
-import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
+import com.sap.furcas.parsergenerator.base.GeneratedParserTestConfiguration;
+import com.sap.furcas.parsergenerator.base.ParsingHelper;
 import com.sap.furcas.parsergenerator.base.StubModelAdapter;
-import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
+import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.test.fixture.FixtureData;
 import com.sap.furcas.test.parsing.testutils.StringListHelper;
 
@@ -18,13 +21,17 @@ import com.sap.furcas.test.parsing.testutils.StringListHelper;
 public class SPLTest extends GeneratedParserBasedTest {
 
     private static final String LANGUAGE = "SPL";
+    private static final File TCS = FixtureData.SPL_TCS;
+    private static final File[] METAMODELS = { FixtureData.SPL_METAMODEL };
     private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
+
+    private static ParsingHelper parsingHelper;
 
     @BeforeClass
     public static void setupParser() throws Exception {
-	setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-	setLookup(new FileBasedEcoreMetaModelLookUp(FixtureData.SPL_METAMODEL));
-	generateParserForLanguage(LANGUAGE);
+        GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
+        ParserFacade facade = generateParserForLanguage(testConfig);
+        parsingHelper = new ParsingHelper(facade);
     }
 
     /**
@@ -36,10 +43,9 @@ public class SPLTest extends GeneratedParserBasedTest {
     @Ignore
     public void testSample02Direct() throws Exception {
 
-	StubModelAdapter stubModelHandler = getSPLStubAdapter();
+        StubModelAdapter stubModelHandler = getSPLStubAdapter();
 
-	parseFile("SPLSample02.sam", LANGUAGE, DSLSAMPLEDIR, 0,
-		stubModelHandler);
+        parsingHelper.parseFile("SPLSample02.sam", DSLSAMPLEDIR, 0, stubModelHandler);
 
     }
 
@@ -52,10 +58,9 @@ public class SPLTest extends GeneratedParserBasedTest {
     @Ignore
     public void testSample01Direct() throws Exception {
 
-	StubModelAdapter stubModelHandler = getSPLStubAdapter();
+        StubModelAdapter stubModelHandler = getSPLStubAdapter();
 
-	parseFile("SPLSample01.sam", LANGUAGE, DSLSAMPLEDIR, 0,
-		stubModelHandler);
+        parsingHelper.parseFile("SPLSample01.sam", DSLSAMPLEDIR, 0, stubModelHandler);
 
     }
 
@@ -63,26 +68,18 @@ public class SPLTest extends GeneratedParserBasedTest {
      * @return
      */
     private StubModelAdapter getSPLStubAdapter() {
-	StubModelAdapter stubModelHandler = new StubModelAdapter();
-	// help stub along with supertypes
-	stubModelHandler.supertypes.put("SPL::Argument", StringListHelper.list(
-		"SPL::VariableDeclaration", "SPL::Declaration"));
-	stubModelHandler.supertypes.put("SPL::WhenHeader", StringListHelper
-		.list("SPL::VariableDeclaration", "SPL::Declaration"));
-	stubModelHandler.supertypes.put("SPL::Iterator", StringListHelper.list(
-		"SPL::VariableDeclaration", "SPL::Declaration"));
-	stubModelHandler.supertypes.put("SPL::VariableDeclaration",
-		StringListHelper.list("SPL::Declaration"));
-	stubModelHandler.supertypes.put("SPL::StructureDeclaration",
-		StringListHelper.list("SPL::Declaration"));
-	stubModelHandler.supertypes.put("SPL::FunctionDeclaration",
-		StringListHelper.list("SPL::Declaration"));
-	stubModelHandler.supertypes.put("SPL::LocalFunctionDeclaration",
-		StringListHelper.list("SPL::FunctionDeclaration",
-			"SPL::Declaration"));
-	stubModelHandler.supertypes.put("SPL::RemoteFunctionDeclaration",
-		StringListHelper.list("SPL::FunctionDeclaration",
-			"SPL::Declaration"));
-	return stubModelHandler;
+        StubModelAdapter stubModelHandler = new StubModelAdapter();
+        // help stub along with supertypes
+        stubModelHandler.supertypes.put("SPL::Argument", StringListHelper.list("SPL::VariableDeclaration", "SPL::Declaration"));
+        stubModelHandler.supertypes.put("SPL::WhenHeader", StringListHelper.list("SPL::VariableDeclaration", "SPL::Declaration"));
+        stubModelHandler.supertypes.put("SPL::Iterator", StringListHelper.list("SPL::VariableDeclaration", "SPL::Declaration"));
+        stubModelHandler.supertypes.put("SPL::VariableDeclaration", StringListHelper.list("SPL::Declaration"));
+        stubModelHandler.supertypes.put("SPL::StructureDeclaration", StringListHelper.list("SPL::Declaration"));
+        stubModelHandler.supertypes.put("SPL::FunctionDeclaration", StringListHelper.list("SPL::Declaration"));
+        stubModelHandler.supertypes.put("SPL::LocalFunctionDeclaration",
+                StringListHelper.list("SPL::FunctionDeclaration", "SPL::Declaration"));
+        stubModelHandler.supertypes.put("SPL::RemoteFunctionDeclaration",
+                StringListHelper.list("SPL::FunctionDeclaration", "SPL::Declaration"));
+        return stubModelHandler;
     }
 }
