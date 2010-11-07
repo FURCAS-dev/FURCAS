@@ -3,16 +3,16 @@ package com.sap.furcas.parsergenerator.tcs.scenario;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
+import com.sap.furcas.parsergenerator.base.GeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
 import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
-import com.sap.furcas.test.scenario.FixtureData;
+import com.sap.furcas.test.fixture.FixtureData;
 
 /**
  * Tests currently fail for unknown reason, maybe tcs syntax is corrupt
  */
-public class XPathRedGenerationTest extends ExtendedGeneratedParserBasedTest {
+public class XPathRedGenerationTest extends GeneratedParserBasedTest {
 
 
 	private static final String DSLSAMPLEDIR = "./scenarioTestSample/";

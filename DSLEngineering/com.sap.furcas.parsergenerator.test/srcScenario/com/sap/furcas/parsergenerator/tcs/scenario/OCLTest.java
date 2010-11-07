@@ -4,17 +4,17 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
+import com.sap.furcas.parsergenerator.base.GeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
 import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
-import com.sap.furcas.test.scenario.FixtureData;
+import com.sap.furcas.test.fixture.FixtureData;
 
 
 /**
  * Simple Test for the custom Expression language
  */
 @Ignore("Already broken in the moin codebase. Was not even included in the test suite.")
-public class OCLTest extends ExtendedGeneratedParserBasedTest {
+public class OCLTest extends GeneratedParserBasedTest {
 
 
 	private static final String DSLSAMPLEDIR = "./scenarioTestSample/";

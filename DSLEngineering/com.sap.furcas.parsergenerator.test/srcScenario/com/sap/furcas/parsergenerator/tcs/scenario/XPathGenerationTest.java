@@ -1,44 +1,42 @@
 package com.sap.furcas.parsergenerator.tcs.scenario;
 
+import java.io.File;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
-import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
-import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
-import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
-import com.sap.furcas.test.scenario.FixtureData;
+import com.sap.furcas.parsergenerator.base.GeneratedParserBasedTest;
+import com.sap.furcas.parsergenerator.base.GeneratedParserTestConfiguration;
+import com.sap.furcas.parsergenerator.base.ParsingHelper;
+import com.sap.furcas.runtime.parser.ParserFacade;
+import com.sap.furcas.test.fixture.FixtureData;
 
 /**
  * Tests currently fail for unknown reason, maybe tcs syntax is corrupt
  */
-public class XPathGenerationTest extends ExtendedGeneratedParserBasedTest {
+public class XPathGenerationTest extends GeneratedParserBasedTest {
 
+    private static final String LANGUAGE = "XPath";
+    private static final File TCS = FixtureData.XPATH_TCS;
+    private static final File[] METAMODELS = { FixtureData.XPATH1_METAMODEL, FixtureData.XPATH_METAMODEL };
+    private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
+    
+    private static ParsingHelper parsingHelper;
 
-	private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
-	private static final String LANGUAGE = "XPath";
-	private static IMetaModelLookup lookup;
+    @BeforeClass
+    public static void setupParser() throws Exception {
+        GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
+        ParserFacade facade = generateParserForLanguage(testConfig);
+        parsingHelper = new ParsingHelper(facade);
+    }
 
-	
-	@BeforeClass
-	public static void setupParser() throws Exception {
-		setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-		setLookup(new FileBasedEcoreMetaModelLookUp(FixtureData.XPATH1_METAMODEL, FixtureData.XPATH_METAMODEL));
-		generateParserForLanguage(LANGUAGE);
-	}
-	
-	
-	@Test
-	public void testSample1() throws Exception {
-		
-		parseFile("XPathSample01.sam", LANGUAGE, DSLSAMPLEDIR);
-		
-	}
-	
-	@Test
-	public void testSample2() throws Exception {
-		
-		parseFile("XPathSample02.sam", LANGUAGE, DSLSAMPLEDIR, 0);
-		
-	}
+    @Test
+    public void testSample1() throws Exception {
+        parsingHelper.parseFile("XPathSample01.sam", DSLSAMPLEDIR);
+    }
+
+    @Test
+    public void testSample2() throws Exception {
+        parsingHelper.parseFile("XPathSample02.sam", DSLSAMPLEDIR, 0);
+    }
 }

@@ -6,20 +6,20 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
+import com.sap.furcas.parsergenerator.base.GeneratedParserBasedTest;
 import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
 import com.sap.furcas.parsergenerator.base.StubModelAdapter;
 import com.sap.furcas.parsergenerator.base.StubModelElement;
 import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
-import com.sap.furcas.test.scenario.FixtureData;
+import com.sap.furcas.test.fixture.FixtureData;
 
 /**
  * Tests generation of TCS Parsers using metamodel in MOIN.
  */
 @Ignore("Already ignored in the moin codebase")
-public class TCSMQLTest extends ExtendedGeneratedParserBasedTest {
+public class TCSMQLTest extends GeneratedParserBasedTest {
 
     private static final String DSLSAMPLEDIR = "./scenarioTestResource/";
     

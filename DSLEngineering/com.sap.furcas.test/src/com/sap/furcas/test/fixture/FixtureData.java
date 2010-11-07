@@ -1,4 +1,4 @@
-package com.sap.furcas.test.scenario;
+package com.sap.furcas.test.fixture;
 
 import java.io.File;
 

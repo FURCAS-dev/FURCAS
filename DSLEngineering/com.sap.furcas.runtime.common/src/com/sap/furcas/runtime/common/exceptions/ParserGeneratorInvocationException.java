@@ -14,5 +14,9 @@ public class ParserGeneratorInvocationException extends AbstractToolGenerationEx
     public ParserGeneratorInvocationException(String msg) {
         super(msg);
     }
+    
+    public ParserGeneratorInvocationException(String msg, Throwable cause) {
+        super(msg, cause);
+    }
 
 }

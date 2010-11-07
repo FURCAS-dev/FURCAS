@@ -1,39 +1,43 @@
 package com.sap.furcas.parsergenerator.tcs.scenario;
 
+import java.io.File;
+
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.base.ExtendedGeneratedParserBasedTest;
-import com.sap.furcas.parsergenerator.base.ParserGenerationTestHelper;
+import com.sap.furcas.parsergenerator.base.GeneratedParserBasedTest;
+import com.sap.furcas.parsergenerator.base.GeneratedParserTestConfiguration;
+import com.sap.furcas.parsergenerator.base.ParsingHelper;
 import com.sap.furcas.parsergenerator.base.StubModelAdapter;
-import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
+import com.sap.furcas.runtime.parser.ParserFacade;
+import com.sap.furcas.test.fixture.FixtureData;
 import com.sap.furcas.test.parsing.testutils.StringListHelper;
-import com.sap.furcas.test.scenario.FixtureData;
 
 /**
  * Simple Test for the custom Expression language
  */
 @Ignore("Already broken in the moin codebase")
-public class ATLTest extends ExtendedGeneratedParserBasedTest {
+public class ATLTest extends GeneratedParserBasedTest {
 
-    private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
     private static final String LANGUAGE = "ATL";
-
-    // Problems with OperatorCalls
+    private static final File TCS = FixtureData.ATL_TCS;
+    private static final File[] METAMODELS = { FixtureData.ATL_METAMODEL };
+    private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
+    
+    private static ParsingHelper parsingHelper;
+    
     @BeforeClass
     public static void setupParser() throws Exception {
-        setParserGenerationTestHelper(ParserGenerationTestHelper.getDefault());
-        setLookup(new FileBasedEcoreMetaModelLookUp(FixtureData.ATL_METAMODEL));
-        generateParserForLanguage(LANGUAGE);
+        GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
+        ParserFacade facade = generateParserForLanguage(testConfig);
+        parsingHelper = new ParsingHelper(facade);
     }
 
     @Test
     public void testSample1() throws Exception {
-
         StubModelAdapter stubModelHandler = getATLMetaConfiguredStubAdapter();
-        parseFile("ATLSample.sam", LANGUAGE, DSLSAMPLEDIR, 0, stubModelHandler);
-
+        parsingHelper.parseFile("ATLSample.sam", DSLSAMPLEDIR, 0, stubModelHandler);
     }
 
     private StubModelAdapter getATLMetaConfiguredStubAdapter() {
