@@ -4,6 +4,7 @@
 package com.sap.furcas.parsergenerator.emf.lookup;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -48,7 +49,11 @@ public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup
         return new QueryContext() {
             @Override
             public URI[] getResourceScope() {
-                return referenceScope.toArray(new URI[referenceScope.size()]);
+                Collection<URI> result = new HashSet<URI>(referenceScope);
+                for (Resource resource: resourceSet.getResources()) {
+                    result.add(resource.getURI());
+                }
+                return result.toArray(new URI[result.size()]);
             }
 
             @Override
@@ -85,9 +90,7 @@ public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup
         List<EClassifier> classifiers = getClassifiers(name);
 
         if (qualifiedNameOfType.size() > 1) {
-
             classifiers = filterClassifiers(qualifiedNameOfType, classifiers);
-
         }
         return classifiers;
 
