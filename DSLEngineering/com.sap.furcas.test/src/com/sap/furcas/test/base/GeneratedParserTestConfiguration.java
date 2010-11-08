@@ -42,14 +42,32 @@ public class GeneratedParserTestConfiguration {
     private final String generationDir;
     private final File grammarFile;
     
+
     /**
      * A default configuration that dumps everything into the "generated" package in the
      * "generationTemp" source folder.
+     * 
+     * @param languageName the name of the language as specified in the tcs-File
+     * @param syntaxDefFile the tcs-File
+     * @param metamodels the metamodels which are referenced/used within the tcs file.
+     * 
+     * @throws MetaModelLookupException
      */
     public GeneratedParserTestConfiguration(String languageName, File syntaxDefFile, File... metamodels) throws MetaModelLookupException {
         this(languageName, syntaxDefFile, DEFAULT_GENERATIONDIR, DEFAULT_PACKAGE, metamodels);
     }
 
+    /**
+     * A more advanced configuration that allows to alter the generation target.
+     * 
+     * @param languageName the name of the language as specified in the tcs-File
+     * @param syntaxDefFile the tcs-File
+     * @param generationDir a relative path to the directoy where all generated files (grammar, lexer, parser) shall be written to
+     * @param packageName the Java interpretation generationDir in form of the package name.
+     * @param metamodels the metamodels which are referenced/used within the tcs file.
+     * 
+     * @throws MetaModelLookupException
+     */
     public GeneratedParserTestConfiguration(String languageName, File syntaxDefFile, String generationDir, String packageName, File... metamodels) throws MetaModelLookupException {
         this.languageName = languageName;
         this.syntaxDefFile = syntaxDefFile;
