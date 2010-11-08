@@ -20,6 +20,11 @@ import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sun.tools.javac.Main;
 
 /**
+ * A Test base class that allows to generate a language specific parser from
+ * a given TCS file.
+ * 
+ * The base class is configured (what to create, where to create it, ...) with the
+ * help {@link GeneratedParserTestConfiguration}. 
  * 
  * @author Stephan Erb (d049157)
  * 
