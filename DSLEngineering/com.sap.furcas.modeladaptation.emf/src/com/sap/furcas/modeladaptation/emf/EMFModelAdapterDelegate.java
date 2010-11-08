@@ -473,8 +473,9 @@ public class EMFModelAdapterDelegate {
      * @param typeName
      * @param attributes
      * @return
+     * @throws ModelAdapterException 
      */
-    public Collection<Object> queryElement(List<String> typeName, Map<String, List<Object>> attributes) {
+    public Collection<Object> queryElement(List<String> typeName, Map<String, List<Object>> attributes) throws ModelAdapterException {
 
         // Map<String, Collection<?>> multiValuedAttributesMap = new
         // HashMap<String, Collection<?>>();

@@ -6,11 +6,11 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.base.GeneratedParserBasedTest;
-import com.sap.furcas.parsergenerator.base.GeneratedParserTestConfiguration;
-import com.sap.furcas.parsergenerator.base.ParsingHelper;
-import com.sap.furcas.parsergenerator.base.StubModelAdapter;
 import com.sap.furcas.runtime.parser.ParserFacade;
+import com.sap.furcas.test.base.GeneratedParserBasedTest;
+import com.sap.furcas.test.base.GeneratedParserTestConfiguration;
+import com.sap.furcas.test.base.ParsingHelper;
+import com.sap.furcas.test.base.StubModelAdapter;
 import com.sap.furcas.test.fixture.FixtureData;
 import com.sap.furcas.test.parsing.testutils.StringListHelper;
 
@@ -30,7 +30,7 @@ public class ATLTest extends GeneratedParserBasedTest {
     @BeforeClass
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
-        ParserFacade facade = generateParserForLanguage(testConfig);
+        ParserFacade facade = generateParserForLanguage(testConfig, new ClassLookupImpl());
         parsingHelper = new ParsingHelper(facade);
     }
 
