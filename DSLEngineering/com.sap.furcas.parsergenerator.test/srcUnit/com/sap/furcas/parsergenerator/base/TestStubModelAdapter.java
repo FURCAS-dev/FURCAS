@@ -10,6 +10,8 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import com.sap.furcas.test.base.StubModelAdapter;
+import com.sap.furcas.test.base.StubModelElement;
 import com.sap.furcas.test.parsing.testutils.StringListHelper;
 
 /**

@@ -39,8 +39,6 @@ Require-Bundle: org.antlr,
  com.sap.furcas.runtime.common,
  com.sap.furcas.runtime.tcs,
  com.sap.furcas.parsergenerator.emf,
- com.sap.furcas.parser.tcs,
- com.sap.furcas.parsergenerator,
  com.sap.furcas.ide.dslproject,
  com.sap.ide.cts.editor.test;bundle-version="1.0.0"
 Bundle-ClassPath: scenariotestTemp/,

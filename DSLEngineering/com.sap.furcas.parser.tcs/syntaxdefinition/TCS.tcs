@@ -32,33 +32,32 @@ syntax TCS {
           primitiveTemplate qualifiedNameSymbolList for PrimitiveTypes::String using QNAME:
                 value = "java.util.Arrays.asList(unescapeString(%token%).split(\"::\"))";
 */
-        -- MOF element representation in qualified names
+        -- ecore element representation in qualified names
         
         -- A modelClassifier is either its container followed by :: and a name, or just a name
-        template Model::Classifier referenceOnly -- should never be created
+        template ecore::EClassifier referenceOnly -- should never be created
         : ( isDefined(container) ? container   -- is of type Namespace in MM
           "::" name : name)
         ;
         
-        
         -- Namespace gets operatored using the :: operator to resolve left recursion
-        template Model::Namespace abstract operatored(DBLCOLON);
+        template ecore:EObject abstract operatored(DBLCOLON);
         
         -- if parsed path has more than one element, 
         -- the first will be of type Generalizable element
         -- because that is the type of Mode::ModelElement.container
-        template Model::GeneralizableElement referenceOnly -- should never be created
+        template ecore::EClass referenceOnly -- should never be created
                 : name
                 ;
                 
         -- any following elements in a package path will be resolved using this
-        operatorTemplate Model::ModelElement(operators =
+        operatorTemplate ecore::EModelElement(operators =
                         opDlColon, source = 'container') referenceOnly -- should never be created
                 :
                         name
                 ;
 
-        -- end MOF element representation
+        -- end ecore element representation
 
 
         -- @begin TextBlockDefintion
@@ -88,7 +87,7 @@ syntax TCS {
 /**               [[
                         metaReference{as=qualifiedNameSymbol,
                         query="let e=Sequence{1..?.size()}->select(j|?.subString(j, j+1) = '::')->iterate(
-                                        i; acc:Tuple(pos:Integer, ns:Set(Model::Namespace), qn:String)=Tuple{pos=1, ns=null, qn=''} |
+                                        i; acc:Tuple(pos:Integer, ns:Set(ecore:EObject), qn:String)=Tuple{pos=1, ns=null, qn=''} |
                                 let namePart=?.subString(acc.pos, -1+i) in
                                 Tuple{pos=i+2,
                                       ns=if acc.ns=null then
@@ -230,13 +229,13 @@ syntax TCS {
                                 query="OCL:let c = #context.oclAsType(TCS::Template).metaReference in
                                                 let result = c.lookupElementExtended(?) in
                                                 if not (result.oclIsInvalid()) then
-                                                        if(result.oclIsTypeOf(Model::Attribute) or
-                                                                        result.oclIsTypeOf(Model::Reference)
-                                                                        or result.oclIsTypeOf(Model::StructureField)) then
+                                                        if(result.oclIsTypeOf(ecore::EAttribute) or
+                                                                        result.oclIsTypeOf(ecore::EReference)
+                                                                        or result.oclIsTypeOf(ecore::StructureField)) then
                                                                 Bag{result}     
                                                         else            
                                                                 c.allSupertypes()->prepend(c)->collect(
-                                                                        st | st.oclAsType(Model::Classifier).typedElements->select(
+                                                                        st | st.oclAsType(ecore::EClassifier).typedElements->select(
                                                                                 te | 
                                                                                         if te.oclIsTypeOf(Model::AssociationEnd) then
                                                                                                 te.oclAsType(Model::AssociationEnd).otherEnd().name = ? 
@@ -248,7 +247,7 @@ syntax TCS {
                                                         endif 
                                                 else    
                                                         c.allSupertypes()->prepend(c)->collect(
-                                                                st | st.oclAsType(Model::Classifier).typedElements->select(
+                                                                st | st.oclAsType(ecore::EClassifier).typedElements->select(
                                                                         te | 
                                                                                 if te.oclIsTypeOf(Model::AssociationEnd) then
                                                                                         te.oclAsType(Model::AssociationEnd).otherEnd().name = ? 
@@ -332,7 +331,7 @@ syntax TCS {
                                         query="OCL:self.foreachParent.injectorActionsBlockReference.parentTemplate.concreteSyntax.templates", 
                                         filter="->select(t | if(t.oclIsTypeOf(TCS::ClassTemplate)) then 
                                 let e=Sequence{1..?.size()}->select(j|?.subString(j, j+1) = '::')->iterate(
-                                        i; acc:Tuple(pos:Integer, ns:Set(Model::Namespace), qn:String)=Tuple{pos=1, ns=null, qn=''} |
+                                        i; acc:Tuple(pos:Integer, ns:Set(ecore:EObject), qn:String)=Tuple{pos=1, ns=null, qn=''} |
                                 let namePart=?.subString(acc.pos, -1+i) in
                                 Tuple{pos=i+2,
                                       ns=if acc.ns=null then
@@ -432,7 +431,7 @@ syntax TCS {
                                         query="OCL:self.property.parentTemplate.concreteSyntax.templates", 
                                         filter="->select(t | if(t.oclIsTypeOf(TCS::ClassTemplate)) then 
                                 let e=Sequence{1..?.size()}->select(j|?.subString(j, j+1) = '::')->iterate(
-                                        i; acc:Tuple(pos:Integer, ns:Set(Model::Namespace), qn:String)=Tuple{pos=1, ns=null, qn=''} |
+                                        i; acc:Tuple(pos:Integer, ns:Set(ecore:EObject), qn:String)=Tuple{pos=1, ns=null, qn=''} |
                                 let namePart=?.subString(acc.pos, -1+i) in
                                 Tuple{pos=i+2,
                                       ns=if acc.ns=null then

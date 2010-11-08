@@ -1,4 +1,4 @@
-package com.sap.furcas.parsergenerator.base;
+package com.sap.furcas.test.base;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
@@ -20,6 +20,11 @@ import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sun.tools.javac.Main;
 
 /**
+ * A Test base class that allows to generate a language specific parser from
+ * a given TCS file.
+ * 
+ * The base class is configured (what to create, where to create it, ...) with the
+ * help {@link GeneratedParserTestConfiguration}. 
  * 
  * @author Stephan Erb (d049157)
  * 
@@ -30,12 +35,12 @@ public class GeneratedParserBasedTest {
             ObservationDirectivesHelper.doAddObserverParts = ObservationDirectivesHelper.ALL;
     }}
 
-    public static ParserFacade generateParserForLanguage(GeneratedParserTestConfiguration testConfig) throws GrammarGenerationException, ParserGeneratorInvocationException, InvalidParserImplementationException {
+    public static ParserFacade generateParserForLanguage(GeneratedParserTestConfiguration testConfig, ClassLookup classLookup) throws GrammarGenerationException, ParserGeneratorInvocationException, InvalidParserImplementationException {
         generateGrammar(testConfig);
         generateParser(testConfig);
         compileParser(testConfig);
         
-        return loadParserFacade(testConfig);
+        return loadParserFacade(testConfig, classLookup);
     }
 
     protected final static void generateGrammar(GeneratedParserTestConfiguration testConfig) throws GrammarGenerationException {
@@ -87,15 +92,14 @@ public class GeneratedParserBasedTest {
         }
     }
 
-    protected static ParserFacade loadParserFacade(GeneratedParserTestConfiguration testConfig)
+    protected static ParserFacade loadParserFacade(GeneratedParserTestConfiguration testConfig, ClassLookup classLookup)
             throws ParserGeneratorInvocationException, InvalidParserImplementationException {
         // try loading compiled classes
         try {
             @SuppressWarnings("unchecked")
-            Class<? extends Lexer> lexerclass = (Class<? extends Lexer>) Class.forName(testConfig.getClassNameOfCompiledLexer());
+            Class<? extends Lexer> lexerclass = (Class<? extends Lexer>) classLookup.loadClass(testConfig.getClassNameOfCompiledLexer());
             @SuppressWarnings("unchecked")
-            Class<? extends ObservableInjectingParser> parserclass = (Class<? extends ObservableInjectingParser>) Class
-                    .forName(testConfig.getClassNameOfCompiledParser());
+            Class<? extends ObservableInjectingParser> parserclass = (Class<? extends ObservableInjectingParser>) classLookup.loadClass(testConfig.getClassNameOfCompiledParser());
             ParserFacade facade = new ParserFacade(parserclass, lexerclass);
             return facade;
 

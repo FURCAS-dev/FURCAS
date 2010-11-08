@@ -1,4 +1,4 @@
-package com.sap.furcas.parsergenerator.base;
+package com.sap.furcas.parser.tcs.bootstrap;
 
 import org.antlr.tool.Message;
 
