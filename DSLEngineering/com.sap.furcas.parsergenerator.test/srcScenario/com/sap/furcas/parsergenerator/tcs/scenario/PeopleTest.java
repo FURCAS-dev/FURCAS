@@ -12,14 +12,14 @@ import java.util.Set;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.base.GeneratedParserBasedTest;
-import com.sap.furcas.parsergenerator.base.GeneratedParserTestConfiguration;
-import com.sap.furcas.parsergenerator.base.ParsingHelper;
-import com.sap.furcas.parsergenerator.base.StubModelAdapter;
-import com.sap.furcas.parsergenerator.base.StubModelElement;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
+import com.sap.furcas.test.base.GeneratedParserBasedTest;
+import com.sap.furcas.test.base.GeneratedParserTestConfiguration;
+import com.sap.furcas.test.base.ParsingHelper;
+import com.sap.furcas.test.base.StubModelAdapter;
+import com.sap.furcas.test.base.StubModelElement;
 import com.sap.furcas.test.fixture.FixtureData;
 
 /**
