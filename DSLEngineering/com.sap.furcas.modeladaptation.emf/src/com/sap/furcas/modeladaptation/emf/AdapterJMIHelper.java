@@ -682,23 +682,19 @@ public class AdapterJMIHelper {
      * @param attributes
      * @param multiValuedAttributesKeys2
      * @return
+     * @throws ModelAdapterException 
      */
     public Collection<Object> queryElement(List<String> typeName, Map<String, EObject> partitionableReferenceValuedAttributesMap,
             Map<String, Object> singleAttributesMap/*
                                                     * , Map<String, Collection<?>> multiValuedAttributeMap
-                                                    */) {
+                                                    */) throws ModelAdapterException {
 
         StringBuilder queryBuilder = new StringBuilder();
 
-        queryBuilder.append("select instance \n").append("from ");
-        for (Iterator<String> iterator = typeName.iterator(); iterator.hasNext();) {
-            String string = iterator.next();
-            queryBuilder.append(string);
-            if (iterator.hasNext()) {
-                queryBuilder.append("::");
-            }
-        }
-        queryBuilder.append(" as instance");
+        queryBuilder.append("select instance \n").append("from [");
+        URI uriEClass = EcoreUtil.getURI(getEClass(typeName));
+        queryBuilder.append(uriEClass);
+        queryBuilder.append("] as instance");
 
         Set<String> singleValueFeatureNames = singleAttributesMap.keySet();
         int index = 0;
