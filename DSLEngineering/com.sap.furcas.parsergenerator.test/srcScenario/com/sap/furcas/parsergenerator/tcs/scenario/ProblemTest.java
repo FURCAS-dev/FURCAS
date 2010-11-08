@@ -32,7 +32,7 @@ public class ProblemTest extends GeneratedParserBasedTest {
     @BeforeClass
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
-        ParserFacade facade = generateParserForLanguage(testConfig);
+        ParserFacade facade = generateParserForLanguage(testConfig, new ClassLookupImpl());
         parsingHelper = new ParsingHelper(facade);
     }
 
