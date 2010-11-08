@@ -11,8 +11,7 @@ import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.TokenStream;
 import org.junit.Before;
 
-import tcs.ConcreteSyntax;
-
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.parser.tcs.stable.TCSLexer;
 import com.sap.furcas.parser.tcs.stable.TCSParser;
 
@@ -30,7 +29,7 @@ public abstract class FurcasMappingBasedTest extends TestCase {
     public void setUp() throws IOException, RecognitionException {
         TCSParser parser = new TCSParser(getMappingDefinition());
         ConcreteSyntax syntax = (ConcreteSyntax) parser.main();
-        
+        syntax.eAdapters(); // TODO continue here...
     }
 
     /**

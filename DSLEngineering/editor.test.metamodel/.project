@@ -17,8 +17,6 @@
 		</buildCommand>
 	</buildSpec>
 	<natures>
-		<nature>com.sap.mi.fwk.dcfwk.MoinNature</nature>
 		<nature>org.eclipse.pde.PluginNature</nature>
-		<nature>com.sap.tc.moin.nwdi.dctype.mm.MoinMetaModelNature</nature>
 	</natures>
 </projectDescription>

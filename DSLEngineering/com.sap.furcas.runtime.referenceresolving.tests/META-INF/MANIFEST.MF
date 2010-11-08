@@ -1,11 +1,15 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Tests
-Bundle-SymbolicName: com.sap.furcas.referenceresolving.tests
+Bundle-SymbolicName: com.sap.furcas.runtime.referenceresolving.tests
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SAP
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: org.junit;bundle-version="4.8.1",
+Require-Bundle: com.sap.furcas.runtime.parser,
+ org.junit;bundle-version="4.8.1",
  com.sap.tcsmeta.mm.eclipse,
  org.antlr;bundle-version="3.1.1",
- com.sap.furcas.parser.tcs
+ com.sap.furcas.parser.tcs,
+ com.sap.furcas.parsergenerator,
+ org.antlr.runtime;bundle-version="3.0.0",
+ com.sap.furcas.metamodel
