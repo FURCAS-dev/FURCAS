@@ -48,8 +48,13 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
         StubModelAdapter stubModelHandler = parsingHelper.parseString(sample, 0);
         Set<StubModelElement> authors = stubModelHandler.getElementsbyType("BibText::Author");
         assertEquals(2, authors.size());
-        StubModelElement johnDoe = authors.iterator().next();
-
+        StubModelElement johnDoe = null;
+        for (StubModelElement author : authors) {
+        	if (author.get("name").equals("John Doe")) {
+        		johnDoe = author;
+        	}
+        }
+        assertNotNull(johnDoe);
         Set<StubModelElement> articles = stubModelHandler.getElementsbyType("BibText::Article");
         assertEquals(1, articles.size());
         StubModelElement article = articles.iterator().next();
@@ -58,6 +63,7 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
         // assertNotNull(johnDoe.get("articles")); StubModelHandler not powerful enough
         assertNotNull(article.get("author"));
         assertEquals(johnDoe, article.get("author"));
+        // assertEquals("somewhere", article.get("location"));
     }
 
 }
