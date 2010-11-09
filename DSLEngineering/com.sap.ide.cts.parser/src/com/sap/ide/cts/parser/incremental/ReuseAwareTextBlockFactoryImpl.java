@@ -1,18 +1,24 @@
 package com.sap.ide.cts.parser.incremental;
 
+import static com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil.addToBlockAt;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
-import com.sap.furcas.metamodel.TCS.ClassTemplate;
-import com.sap.furcas.metamodel.TCS.Template;
-import com.sap.furcas.metamodel.textblockdefinition.TextblockDefinition;
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
-import com.sap.furcas.metamodel.textblocks.Version;
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
+import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
+import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionFactory;
+import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionPackage;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksFactory;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.parser.textblocks.ModelElementFromTextBlocksFactory;
 import com.sap.furcas.runtime.parser.textblocks.TextBlockFactory;
@@ -22,25 +28,28 @@ import com.sap.furcas.runtime.tcs.TcsUtil;
 
 public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 
-	private TextblocksPackage textblocksPackage;
-	private Map<Template, TextblockDefinition> tbDefsMap = new HashMap<Template, TextBlockDefinition>();
-	private TextBlockReuseStrategy reuseStrategy;
-	private ModelElementFromTextBlocksFactory modelElementFactory;
-	
+	private final TextblocksFactory textblocksFactory;
+	private final Map<Template, TextBlockDefinition> tbDefsMap = new HashMap<Template, TextBlockDefinition>();
+	private final TextBlockReuseStrategy reuseStrategy;
+	private final ModelElementFromTextBlocksFactory modelElementFactory;
+	private final OppositeEndFinder oppositeEndFinder;
+	private final EStructuralFeature templateTypeRef;
 	
 
-	public ReuseAwareTextBlockFactoryImpl(TextblocksPackage textblocksPackage, 
-		TextBlockReuseStrategy tbReuseStrategy, ModelElementFromTextBlocksFactory modelElementFactory) {
+	public ReuseAwareTextBlockFactoryImpl(TextblocksFactory textblocksPackage, 
+		TextBlockReuseStrategy tbReuseStrategy, ModelElementFromTextBlocksFactory modelElementFactory,
+		OppositeEndFinder oppositeEndFinder) {
 		super();
-		this.textblocksPackage = textblocksPackage;
+		this.textblocksFactory = textblocksPackage;
 		reuseStrategy = tbReuseStrategy;
 		this.modelElementFactory = modelElementFactory;
+		this.oppositeEndFinder = oppositeEndFinder;
+		this.templateTypeRef = TextblockdefinitionPackage.eINSTANCE.getTextBlockDefinition_ParseRule();
 	}
 
 	@Override
 	public TextBlock createBlock() {
-		TextBlock textBlock = (TextBlock) textblocksPackage.getTextBlock()
-			.refCreateInstance();
+		TextBlock textBlock = textblocksFactory.createTextBlock();
 		// TODO: check versioning for incremental parsing and adapt
 		// correspondingly here
 		textBlock.setVersion(Version.CURRENT);
@@ -75,7 +84,7 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 	private TextBlock instantiateBlockAndMoveTokens(TextBlockProxy newVersion,
 			TextBlock parent) {
 		TextBlock tb = this.createBlock();
-		TextblockDefinition tbDef = getTbDef(newVersion.getTemplate());
+		TextBlockDefinition tbDef = getTbDef(newVersion.getTemplate());
 		tb.setType(tbDef);
 		tb.setSequenceElement(newVersion.getSequenceElement());
 		tb.getParentAltChoices().addAll(newVersion.getAlternativeChoices());
@@ -142,18 +151,17 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 	 * @param template
 	 * @return
 	 */
-	public TextblockDefinition getTbDef(Template template) {
-		TextblockDefinition tbDef = tbDefsMap.get(template);
+	@Override
+	public TextBlockDefinition getTbDef(Template template) {
+		TextBlockDefinition tbDef = tbDefsMap.get(template);
 		if (tbDef == null && template != null) {
 			// check if there was already a corresponding tbdef within the
 			// mapping definition
-			Collection<TextblockDefinition> tbDefs = textblocksPackage
-					.getTextblockdefinition()
-					.getTextblockDefinitionReferencesProduction()
-					.getTextBlockDefinition(template);
+			Collection<EObject> tbDefs = oppositeEndFinder.
+				navigateOppositePropertyWithBackwardScope(templateTypeRef, template);
 			if (!tbDefs.isEmpty()) {
 				if (tbDefs.size() == 1) {
-					tbDef = tbDefs.iterator().next();
+					tbDef = (TextBlockDefinition) tbDefs.iterator().next();
 				} else {
 					// TODO What to do if there is more than one?
 					// for now this case seems strange, so throw an exception
@@ -175,13 +183,10 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 	 * @param template
 	 * @return
 	 */
-	private TextblockDefinition initializeTextBlockDefinition(Template template) {
-		TextblockDefinition tbDef = (TextblockDefinition) textblocksPackage
-				.getTextblockdefinition().getTextBlockDefinition()
-				.refCreateInstance();
+	private TextBlockDefinition initializeTextBlockDefinition(Template template) {
+		TextBlockDefinition tbDef = TextblockdefinitionFactory.eINSTANCE.createTextBlockDefinition();
 		tbDef.setParseRule(template);
-		((EObject) template).eResource()
-				.assignElementIncludingChildren(tbDef);
+		((EObject) template).eResource().getContents().add(tbDef);
 		return tbDef;
 	}
 }

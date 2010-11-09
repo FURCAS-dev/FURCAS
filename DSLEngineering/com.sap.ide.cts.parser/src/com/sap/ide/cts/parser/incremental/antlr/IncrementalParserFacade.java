@@ -6,16 +6,18 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.Lexer;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
+import org.eclipse.emf.edit.domain.EditingDomain;
 
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.metamodel.textblocks.Version;
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ParsingError;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
@@ -52,26 +54,26 @@ public class IncrementalParserFacade {
 
 	public IncrementalParserFacade(
 			ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory,
-			IModelAdapter modelAdapter, ResourceSet connection,
-			Collection<URI> additionalCRIScope) {
+			IModelAdapter modelAdapter, EditingDomain editingDomain,
+			Set<URI> additionalCRIScope, OppositeEndFinder oppositeEndFinder) {
 		this.parserFactory = parserFactory;
 		// TODO use token wrapper factory her
 		TextBlockReuseStrategyImpl reuseStrategy = new TextBlockReuseStrategyImpl(
 				parserFactory.createLexer(null), modelAdapter);
 		Lexer domainLexer = parserFactory.createLexer(null);
 		ANTLRLexerAdapter lexerAdapter = new ANTLRLexerAdapter(domainLexer,
-				reuseStrategy, connection);
+				reuseStrategy);
 		incrementalLexer = new ANTLRIncrementalLexerAdapter(lexerAdapter,
-				modelAdapter, connection);
+				modelAdapter, editingDomain);
 		tbTokenStream = (ANTLRIncrementalTokenStream) parserFactory
 				.createIncrementalTokenStream(incrementalLexer);
 
 		this.domainParser = parserFactory.createParser(tbTokenStream,
-				connection);
+				editingDomain.getResourceSet());
 
-		incrementalParser = new IncrementalParser(connection, parserFactory,
+		incrementalParser = new IncrementalParser(editingDomain, parserFactory,
 				incrementalLexer, domainParser, reuseStrategy,
-				additionalCRIScope);
+				additionalCRIScope, oppositeEndFinder);
 
 		// TODO use token wrapper factory here
 		this.injector = new ModelInjector(domainParser.getTokenNames());
@@ -79,11 +81,11 @@ public class IncrementalParserFacade {
 
 		domainParser.setInjector(injector);
 
-		observer = new ParserTextBlocksHandler(tbTokenStream, connection,
-				parserFactory.getMetamodelUri(connection), TcsUtil
-						.getSyntaxePartitions(connection, parserFactory
+		observer = new ParserTextBlocksHandler(tbTokenStream, editingDomain.getResourceSet(),
+				parserFactory.getMetamodelUri(editingDomain.getResourceSet()), TcsUtil
+						.getSyntaxePartitions(editingDomain.getResourceSet(), parserFactory
 								.getLanguageId()), parserFactory
-						.getParserLookupScope(connection), additionalCRIScope);
+						.getParserLookupScope(editingDomain.getResourceSet()), additionalCRIScope);
 		domainParser.setObserver(observer);
 		try {
 			try {
@@ -212,7 +214,7 @@ public class IncrementalParserFacade {
 		ObservableInjectingParser p = getParserFactory().createParser(
 				new CommonTokenStream(getParserFactory().createLexer(
 						new ANTLRStringStream(rootBlock.getCachedString()))),
-				TcsUtil.getConnectionFromRefObject(rootBlock));
+				rootBlock.eResource().getResourceSet());
 		return p.checkSyntaxWithoutInjecting();
 	}
 

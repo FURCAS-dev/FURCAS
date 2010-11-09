@@ -6,27 +6,25 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.naming.NameNotFoundException;
-
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.utilities.TypedElement;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
-import com.sap.furcas.metamodel.TCS.Alternative;
-import com.sap.furcas.metamodel.TCS.ClassTemplate;
-import com.sap.furcas.metamodel.TCS.ConditionalElement;
-import com.sap.furcas.metamodel.TCS.FunctionTemplate;
-import com.sap.furcas.metamodel.TCS.InjectorAction;
-import com.sap.furcas.metamodel.TCS.InjectorActionsBlock;
-import com.sap.furcas.metamodel.TCS.PrimitivePropertyInit;
-import com.sap.furcas.metamodel.TCS.SequenceElement;
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.textblocks.LexedToken;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.metamodel.textblocks.Version;
+import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
+import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
+import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
+import com.sap.furcas.metamodel.FURCAS.TCS.PrimitivePropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
+import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.parser.impl.DelayedReference;
 import com.sap.furcas.runtime.parser.impl.ModelElementProxy;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
@@ -39,10 +37,10 @@ import com.sap.ide.cts.parser.Activator;
 
 public class ReferenceHandlerImpl implements ReferenceHandler {
 
-	private ObservableInjectingParser batchParser;
-	private ITextBlocksTokenStream tbtokenStream;
-	private Collection<AbstractToken> tokensForReferenceResolving = new ArrayList<AbstractToken>();
-	private Collection<DelayedReference> newlyResolvableReferences = new ArrayList<DelayedReference>();
+	private final ObservableInjectingParser batchParser;
+	private final ITextBlocksTokenStream tbtokenStream;
+	private final Collection<AbstractToken> tokensForReferenceResolving = new ArrayList<AbstractToken>();
+	private final Collection<DelayedReference> newlyResolvableReferences = new ArrayList<DelayedReference>();
 
 	public ReferenceHandlerImpl(ObservableInjectingParser batchParser,
 		ITextBlocksTokenStream tbtokenStream) {
@@ -128,9 +126,9 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 						SequenceElement seqEl = lexedToken.getSequenceElement();
 						while (seqEl != null
 								&& !(seqEl.getElementSequence()
-										.refImmediateComposite() instanceof ClassTemplate || seqEl
+										.eContainer() instanceof ClassTemplate || seqEl
 										.getElementSequence()
-										.refImmediateComposite() instanceof FunctionTemplate)) {
+										.eContainer() instanceof FunctionTemplate)) {
 							SequenceElement parentSequenceElement = TcsUtil
 									.getContainerSequenceElement(seqEl);
 							if (parentSequenceElement instanceof Alternative
@@ -151,23 +149,18 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 						if (injectorAction instanceof PrimitivePropertyInit) {
 							PrimitivePropertyInit init = (PrimitivePropertyInit) injectorAction;
 
-							String name = init.getPropertyReference()
-									.getStrucfeature().getName();
-							try {
-								modelElement.refGetValue(name);
-								List<Object> value = proxy.getAttributeMap().get(
-									name);
-								if (value != null && value.size() > 0) {
-									batchParser.getInjector().set(modelElement,
-											name, value.iterator().next());
-								} else {
-									batchParser.getInjector().unset(modelElement,
-											name, null);
-								}
-							} catch(InvalidCallException ex) {
-								//do nothing just try to continue with next element.
+							EStructuralFeature feat = init.getPropertyReference()
+									.getStrucfeature();
+							modelElement.eGet(feat);
+							List<Object> value = proxy.getAttributeMap().get(
+								feat);
+							if (value != null && value.size() > 0) {
+								batchParser.getInjector().set(modelElement,
+										feat.getName(), value.iterator().next());
+							} else {
+								batchParser.getInjector().unset(modelElement,
+										feat.getName(), null);
 							}
-							
 						}
 					}
 				}
@@ -181,6 +174,7 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 	 * that contains the value that was used to do the initial resolving
 	 * changed.
 	 */
+	@Override
 	public void resolveRemainingReferences() {
 		for (DelayedReference ref : new ArrayList<DelayedReference>(batchParser
 				.getUnresolvedReferences())) {
@@ -230,39 +224,33 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 						// parent textblock.
 						EModelElement me;
 						boolean propertyIsAssocEnd = false;
-						try {
-							me = ((EClass) modelElement.refMetaObject())
-									.lookupElementExtended(ref
-											.getPropertyName());
-							if (me instanceof TypedElement) {
-								TypedElement feature = (TypedElement) me;
-								for (EObject actualValue : refToken
-										.getParent()
-										.getReferencedElements()) {
-									try {
-										if (actualValue.refIsInstanceOf(feature
-												.getType(), true)) {
-											batchParser.getInjector().unset(
-													modelElement,
-													ref.getPropertyName(),
-													actualValue);
-										}
-									} catch (Exception ex) {
-										// TODO find out which corresponding
-										// element was the correct one
-										// instead of trying this here
+						me = EcoreHelper.lookupElementExtended(
+								modelElement.eClass(),
+								ref.getPropertyName());
+						if (me instanceof EStructuralFeature) {
+							EStructuralFeature feature = (EStructuralFeature) me;
+							for (EObject actualValue : refToken
+									.getParent()
+									.getReferencedElements()) {
+								try {
+									if (feature.getEType().isInstance(actualValue)) {
+										batchParser.getInjector().unset(
+												modelElement,
+												ref.getPropertyName(),
+												actualValue);
 									}
+								} catch (Exception ex) {
+									// TODO find out which corresponding
+									// element was the correct one
+									// instead of trying this here
 								}
 							}
-						} catch (JmiException e) {
-							propertyIsAssocEnd = true;
-						} catch (NameNotFoundException e) {
-							propertyIsAssocEnd = true;
 						}
 						if (propertyIsAssocEnd) {
-							// try to find the association end and check there
-							// if the correspondingmodelelement
-							// is the correct one.
+						//TODO check for hiddenOpposite?
+						// try to find the association end and check there
+						// if the correspondingmodelelement
+						// is the correct one.
 						}
 					} else {
 						if (refToken.getReferencedElements().size() > 0) {

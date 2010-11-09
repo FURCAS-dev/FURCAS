@@ -25,7 +25,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query2.QueryContext;
@@ -476,7 +475,7 @@ public class DelayedReferencesHelper {
         }
     }
 
-    private Template findTemplate(EClass modelElement, String mode, Collection<Resource> partitionScope) {
+    private Template findTemplate(EClass modelElement, String mode, Collection<URI> partitionScope) {
 
         // TODO query fully qualified name!
         ResultSet result;

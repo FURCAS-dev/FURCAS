@@ -1,35 +1,38 @@
 package com.sap.ide.cts.parser.incremental;
 
+import static com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil.getOtherVersion;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import javax.naming.NameNotFoundException;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.utilities.TypedElement;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import com.sap.furcas.metamodel.TCS.AndExp;
-import com.sap.furcas.metamodel.TCS.AtomExp;
-import com.sap.furcas.metamodel.TCS.ConditionalElement;
-import com.sap.furcas.metamodel.TCS.OperatorTemplate;
-import com.sap.furcas.metamodel.TCS.Property;
-import com.sap.furcas.metamodel.TCS.PropertyReference;
-import com.sap.furcas.metamodel.TCS.SequenceElement;
-import com.sap.furcas.metamodel.TCS.Template;
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.textblocks.DocumentNode;
-import com.sap.furcas.metamodel.textblocks.LexedToken;
-import com.sap.furcas.metamodel.textblocks.OmittedToken;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.metamodel.textblocks.Version;
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
+import com.sap.furcas.metamodel.FURCAS.TCS.AndExp;
+import com.sap.furcas.metamodel.FURCAS.TCS.AtomExp;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.Property;
+import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
+import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.parser.IModelInjector;
 import com.sap.furcas.runtime.parser.exceptions.ModelCreationOntheFlyRuntimeException;
 import com.sap.furcas.runtime.parser.impl.ModelElementProxy;
@@ -176,7 +179,7 @@ public class IncrementalParsingUtil {
 	 * @return
 	 */
 	static SetNewFeatureBean setFeatureWithNewValue(TextBlockProxy newVersion,
-		TextBlock parentTextBlock) {
+		TextBlock parentTextBlock, OppositeEndFinder oppositeEndFinder) {
 		if (newVersion.getParent() != null) {
 			int indexInCorrespondingElements = 0;
 			for (IModelElementProxy parentProxy : newVersion.getParent()
@@ -196,7 +199,8 @@ public class IncrementalParsingUtil {
 									proxy,
 									key,
 									indexInCorrespondingElements,
-									parentTextBlock);
+									parentTextBlock,
+									oppositeEndFinder);
 								if (parentRefObject != null) {
 									return new SetNewFeatureBean(
 										parentRefObject,
@@ -216,7 +220,8 @@ public class IncrementalParsingUtil {
 									proxy,
 									key,
 									indexInCorrespondingElements,
-									parentTextBlock);
+									parentTextBlock,
+									oppositeEndFinder);
 								if (parentRefObject != null) {
 									return new SetNewFeatureBean(
 										parentRefObject,
@@ -237,7 +242,7 @@ public class IncrementalParsingUtil {
 	}
 
     static EObject getCorrespondingElement(TextBlockProxy textblock, IModelElementProxy proxy, String propertyName,
-	    int i, TextBlock parentBlock) {
+	    int i, TextBlock parentBlock, OppositeEndFinder oppositeEndFinder) {
 	// TODO this is an initial implementation which might not be perfect
 	// as it just takes the type of the element
 	Collection<EClassifier> metaClasses = new ArrayList<EClassifier>();
@@ -248,21 +253,15 @@ public class IncrementalParsingUtil {
 
 	for (EObject element : parentBlock.getCorrespondingModelElements()) {
 	    for (EClassifier classifier : metaClasses) {
-		if (element.refIsInstanceOf(classifier, true)) {
-		    try {
-			((EClass) element.refMetaObject()).lookupElementExtended(propertyName);
-			return element;
-		    } catch (JmiException e) {
-			continue;
-		    } catch (NameNotFoundException e) {
-			// not a reference or attribute; check for unexposed association end
-			AssociationBean associationBean = AdapterJMIHelper.findAssociation(element, propertyName,
-				element.get___Connection().getJmiHelper());
-			if (associationBean == null) {
-			    continue;
-			} else {
-			    return element;
-			}
+		if (classifier.isInstance(element)) {
+			EModelElement result = EcoreHelper.lookupElementExtended(element.eClass(), propertyName);
+			if(result != null) {
+				return element;
+		    } else if(oppositeEndFinder.getAllOppositeEnds(classifier).containsKey(propertyName)) {
+		    	//there is a hidden opposite with the specified name, so retunr the element
+		    	return element;
+		    }else {
+		    	continue;
 		    }
 		}
 	    }
@@ -302,8 +301,8 @@ public class IncrementalParsingUtil {
 			newFeatureBean.value, newFeatureBean.valueIndex);
 		// as default assign elements to the same partition as parents
 		if (newFeatureBean.value instanceof EObject && assignToPartition) {
-			((EObject) newFeatureBean.parentRefObject).eResource()
-				.assignElementIncludingChildren(
+			(newFeatureBean.parentRefObject).eResource()
+				.getContents().add(
 					(EObject) newFeatureBean.value);
 		}
 	}
@@ -311,7 +310,7 @@ public class IncrementalParsingUtil {
 	public static void setNewPrimitiveFeature(TextBlockProxy newVersion, TextBlock oldVersion,
 		AbstractToken subNode, IModelInjector injector) {
 		int i = 0;
-		TypedElement compareToProperty = null;
+		EStructuralFeature compareToProperty = null;
 		if (subNode instanceof LexedToken) {
 	                if(((LexedToken) subNode).isOperator()) {
 		                PropertyReference storeOperatorTo = ((OperatorTemplate) newVersion.getTemplate()).getStoreOperatorTo();
@@ -336,8 +335,7 @@ public class IncrementalParsingUtil {
 						.getExpressions().size() == 1)) {
 					throw new IllegalStateException(
 						"isDefined expression expected but got:"
-							+ parent.refMetaObject()
-								.refGetValue("name"));
+							+ parent.eClass().getName());
 				} else {
 					AndExp andExp = (AndExp) ((ConditionalElement) parent)
 						.getCondition();
@@ -442,7 +440,7 @@ public class IncrementalParsingUtil {
 	}
 
 	public static Collection<? extends EObject> deleteNextEmptyBlocks(TextBlock original) {
-		if (original != null && original.is___Alive()) {
+		if (original != null && EcoreHelper.isAlive(original)) {
 			TextBlock next = TbNavigationUtil.nextBlockInSubTree(original);
 			if (next != null) {
 				Collection<EObject> affectedModelElements = new ArrayList<EObject>();
@@ -465,12 +463,12 @@ public class IncrementalParsingUtil {
 	public static Collection<? extends EObject> deleteEmptyBlocks(TextBlock original) {
 		TextBlock tbDeletionCandidate = original;
 		Collection<EObject> affectedModelElements = new ArrayList<EObject>();
-		if (((EObject) original).is___Alive()) {
+		if (EcoreHelper.isAlive(original)) {
                     for (TextBlock subBlock : new ArrayList<TextBlock>(original.getSubBlocks())) {
                             affectedModelElements.addAll(deleteEmptyBlocks(subBlock));
                     }
                 }
-		if (((EObject) original).is___Alive()  && TbNavigationUtil.firstToken(tbDeletionCandidate) == null
+		if (EcoreHelper.isAlive(original)  && TbNavigationUtil.firstToken(tbDeletionCandidate) == null
 	                    // this may be the case if there are any empty blocks before
 	                    // remaining tokens
 	                    // inside the block
@@ -480,7 +478,7 @@ public class IncrementalParsingUtil {
                                 affectedModelElements.addAll(deleteTB
                                         .getCorrespondingModelElements());
                         }
-                        deleteTB.refDelete();
+                        EcoreUtil.delete(deleteTB, true);
                
 		}
 		return affectedModelElements;
@@ -498,11 +496,11 @@ public class IncrementalParsingUtil {
 				propertyToDeleteFrom);
 			if (value instanceof Collection<?>) {
 				if (((Collection<?>) value).contains(oldModelElement)) {
-					oldModelElement.refDelete();
+					EcoreUtil.delete(oldModelElement, true);
 				}
 			} else if (value instanceof EObject) {
 				if (value.equals(oldModelElement)) {
-					oldModelElement.refDelete();
+					EcoreUtil.delete(oldModelElement, true);
 				}
 			}
 		}
@@ -529,7 +527,7 @@ public class IncrementalParsingUtil {
             TextBlock original) {
 	    Collection<EObject> affectedModelElements = new ArrayList<EObject>();
 	    TextBlock tbDeletionCandidate = original;
-	    while (tbDeletionCandidate != null && tbDeletionCandidate.is___Alive()
+	    while (tbDeletionCandidate != null && EcoreHelper.isAlive(tbDeletionCandidate)
                     && TbNavigationUtil.firstToken(tbDeletionCandidate) == null
                     // this may be the case if there are any empty blocks before
                     // remaining tokens
@@ -541,7 +539,7 @@ public class IncrementalParsingUtil {
                                     .getCorrespondingModelElements());
                     }
                     tbDeletionCandidate = tbDeletionCandidate.getParent();
-                    deleteTB.refDelete();
+                    EcoreUtil.delete(deleteTB, true);
             }
 	    return affectedModelElements;
 	}
@@ -646,63 +644,60 @@ public class IncrementalParsingUtil {
 	 */
 	public static IncrementalParsingUtil.CompositeRefAssociationBean findComposingFeature(EObject parent,
 			EObject child, ResourceSet connection) {
-		IncrementalParsingUtil.CompositeRefAssociationBean bean = null;
-		if (parent != null && child != null) {
-			Collection<EReference> compositeAssociations = connection
-					.getJmiHelper().getCompositeAssociations(
-							(EClass) parent.refMetaObject(),
-							(EClass) child.refMetaObject());
-			for (EReference association : compositeAssociations) {
-				// as defined in the MOF Spec the immediate composite of an
-				// association is always a
-				// package
-				EReference refAssoc = connection.getJmiHelper()
-						.getRefAssociationForAssociation(association);
-				if (IncrementalParsingUtil.typesMatch(association, parent.refMetaObject(), child
-						.refMetaObject(), connection)
-						&& refAssoc.refLinkExists(parent, child)) {
-					bean = new IncrementalParsingUtil.CompositeRefAssociationBean(refAssoc, true);
-					break; // the first valid association is the correct one as
-					// there may only be
-					// one composite relationship between
-					// two elements
-				} else if (IncrementalParsingUtil.typesMatch(association, child.refMetaObject(),
-						parent.refMetaObject(), connection)
-						&& refAssoc.refLinkExists(child, parent)) {
-					bean = new IncrementalParsingUtil.CompositeRefAssociationBean(refAssoc, false);
-					break; // the first valid association is the correct one as
-					// there may only be
-					// one composite relationship between
-					// two elements
-				}
-			}
-		}
+		IncrementalParsingUtil.CompositeRefAssociationBean bean = 
+			new IncrementalParsingUtil.CompositeRefAssociationBean(child.eContainmentFeature(), true);
+//		if (parent != null && child != null) {
+//			Collection<EReference> compositeAssociations = EcoreHelper.getCompositeReferences(
+//							parent.eClass(),
+//							child.eClass());
+//			for (EReference reference : compositeAssociations) {
+//				if (IncrementalParsingUtil.typesMatch(reference, parent.eClass(), child
+//						.eClass(), connection)
+//						&& (parent.eGet(reference).equals(child))) {
+//					bean = new IncrementalParsingUtil.CompositeRefAssociationBean(reference, true);
+//					break; // the first valid reference is the correct one as
+//					// there may only be
+//					// one composite relationship between
+//					// two elements
+//				} else if (IncrementalParsingUtil.typesMatch(reference, child.eClass(),
+//						parent.eClass(), connection)
+//						&& linkExists(parent, child, reference)) {
+//					bean = new IncrementalParsingUtil.CompositeRefAssociationBean(reference, false);
+//					break; // the first valid association is the correct one as
+//					// there may only be
+//					// one composite relationship between
+//					// two elements
+//				}
+//			}
+//		}
 		return bean;
+	}
+
+	private static boolean linkExists(EObject parent, EObject child,
+			EReference reference) {
+		return ((parent.eGet(reference) instanceof Collection) &&
+				((Collection<?>)parent.eGet(reference)).contains(child));
 	}
 
 	/**
 	 * Checks whether the types of the given refObjects match the types of the
 	 * association ends of the given association.
 	 * 
-	 * @param association
-	 * @param refMetaObject
-	 * @param refMetaObject2
+	 * @param reference
+	 * @param metaObject1
+	 * @param metaObject2
 	 * @param ResourceSet the connection to get things like the {@link JmiHelper} from.
 	 * @return
 	 */
-	static boolean typesMatch(EReference association,
-			EObject refMetaObject, EObject refMetaObject2, ResourceSet connection) {
-		List<EReference> associationEnds = connection.getJmiHelper()
-				.getAssociationEnds(association);
-		EClassifier firstEndType = associationEnds.get(0).getEType();
-		EClassifier secondEndType = associationEnds.get(1).getEType();
-		if (firstEndType.equals(refMetaObject)
-				|| connection.getJmiHelper().getAllSubtypes(firstEndType)
-						.contains(refMetaObject)) {
+	static boolean typesMatch(EReference reference,
+			EClass metaObject1, EClass metaObject2, ResourceSet connection) {
+		EClassifier firstEndType = reference.getEContainingClass();
+		EClassifier secondEndType = reference.getEType();
+		if (firstEndType.equals(metaObject1)
+				|| metaObject1.getEAllSuperTypes().contains(firstEndType)) {
 			// first end matches, so check second end
-			if (secondEndType.equals(refMetaObject2)
-					|| connection.getJmiHelper().getAllSubtypes(secondEndType)
-							.contains(refMetaObject2)) {
+			if (secondEndType.equals(metaObject2)
+					|| metaObject2.getEAllSuperTypes().contains(secondEndType)) {
 				return true;
 			}
 		}
@@ -710,19 +705,19 @@ public class IncrementalParsingUtil {
 	}
 
 	static boolean isInTransientPartition(EObject correspondingNewElement) {
-		boolean isInTransientPartition = false;
-		ResourceSet connection = correspondingNewElement.get___Connection();
-		for (Resource part : connection.getTransientPartitions()) {
-			if (correspondingNewElement.eResource().getURI().equals(
-					part.getURI())) {
-				isInTransientPartition = true;
-			}
-		}
-		if (correspondingNewElement.eResource().getURI().equals(
-				connection.getNullPartition().getPri())) {
-			isInTransientPartition = true;
-		}
-		return isInTransientPartition;
+//		boolean isInTransientPartition = false;
+//		ResourceSet connection = correspondingNewElement.get___Connection();
+//		for (Resource part : connection.getTransientPartitions()) {
+//			if (correspondingNewElement.eResource().getURI().equals(
+//					part.getURI())) {
+//				isInTransientPartition = true;
+//			}
+//		}
+//		if (correspondingNewElement.eResource().getURI().equals(
+//				connection.getNullPartition().getPri())) {
+//			isInTransientPartition = true;
+//		}
+		return correspondingNewElement.eResource() == null;
 	}
 
 }

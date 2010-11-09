@@ -2,7 +2,7 @@ package com.sap.ide.cts.parser.incremental;
 
 import java.util.List;
 
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 
 public interface LexerAdapter {
 	
