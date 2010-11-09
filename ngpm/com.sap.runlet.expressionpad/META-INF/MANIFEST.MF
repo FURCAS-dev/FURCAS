@@ -7,7 +7,7 @@ Bundle-Vendor: SAP
 Require-Bundle: org.eclipse.core.runtime,
  com.sap.runlet.interpreter,
  com.sap.ide.cts.editor,
- com.sap.ide.cts.parser,
+ com.sap.furcas.runtime.parser.incremental,
  com.sap.mi.textual.parsing,
  com.sap.mi.textual.parsing.textblocks,
  com.sap.ap.metamodel.core,
