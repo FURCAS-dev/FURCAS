@@ -101,9 +101,9 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
         // assertNotNull(johnDoe.get("articles")); StubModelHandler not powerful enough
         assertNotNull(article.eGet(articleClass.getEStructuralFeature("author")));
         assertEquals(johnDoe, article.eGet(articleClass.getEStructuralFeature("author")));
-        assertEquals("somewhere", article.eGet(articleClass.getEStructuralFeature("location")));
+        assertEquals("Where John Doe wrote it", article.eGet(articleClass.getEStructuralFeature("location")));
     }
-
+    
     /**
      * Finds an EPackage in the {@link #resourceSet} by the <code>name</code> specified 
      */
