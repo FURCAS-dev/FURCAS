@@ -1,20 +1,27 @@
 package com.sap.furcas.referenceresolving.tests;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.sap.furcas.modeladaptation.emf.EMFModelAdapter;
+import com.sap.furcas.runtime.parser.ModelParsingResult;
 import com.sap.furcas.runtime.parser.ParserFacade;
+import com.sap.furcas.runtime.parser.impl.DefaultTextAwareModelAdapter;
 import com.sap.furcas.test.base.GeneratedParserBasedTest;
 import com.sap.furcas.test.base.GeneratedParserTestConfiguration;
 import com.sap.furcas.test.base.ParsingHelper;
-import com.sap.furcas.test.base.StubModelAdapter;
-import com.sap.furcas.test.base.StubModelElement;
 import com.sap.furcas.test.fixture.FixtureData;
 
 /**
@@ -33,10 +40,12 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
     private static final File[] METAMODELS = { FixtureData.BIBTEXT_METAMODEL, FixtureData.BIBTEXT1_METAMODEL };
     
     private static ParsingHelper parsingHelper;
+	private static ResourceSet resourceSet;
 
     @BeforeClass
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
+        resourceSet = testConfig.getSourceConfiguration().getResourceSet();
         ParserFacade facade = generateParserForLanguage(testConfig, new ClassLookupImpl());
         parsingHelper = new ParsingHelper(facade);
     }
@@ -45,7 +54,15 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
     public void testSample1() throws Exception {
         String sample = "article{" + "  Testing, \"John Doe\"," + "  year = \"2002\"" + "}" + "author = \"John Doe\"."
         + "author = \"Jane Doll\".";
-        StubModelAdapter stubModelHandler = parsingHelper.parseString(sample, 0);
+        Set<URI> referenceScope = Collections.emptySet();
+        EPackage ePackage = findPackage("BibText");
+    	EMFModelAdapter handler = new EMFModelAdapter(ePackage, new ResourceSetImpl(), referenceScope);
+    	DefaultTextAwareModelAdapter handlerWrapper = new DefaultTextAwareModelAdapter(handler);
+
+        ModelParsingResult parsingResult = parsingHelper.parseString(sample, handlerWrapper);
+        EObject bibTexFile = (EObject) parsingResult.getParsedModelElement();
+        assertNotNull(bibTexFile);
+        /*
         Set<StubModelElement> authors = stubModelHandler.getElementsbyType("BibText::Author");
         assertEquals(2, authors.size());
         StubModelElement johnDoe = null;
@@ -64,6 +81,21 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
         assertNotNull(article.get("author"));
         assertEquals(johnDoe, article.get("author"));
         // assertEquals("somewhere", article.get("location"));
+         */
     }
+
+    /**
+     * Finds an EPackage in the {@link #resourceSet} by the <code>name</code> specified 
+     */
+	private EPackage findPackage(String name) {
+		for (Resource r : resourceSet.getResources()) {
+			for (EObject c : r.getContents()) {
+				if (c instanceof EPackage && ((EPackage) c).getName().equals(name)) {
+					return (EPackage) c;
+				}
+			}
+		}
+		return null;
+	}
 
 }
