@@ -110,7 +110,7 @@ public class AdapterJMIHelper {
         referenceScope = new HashSet<URI>(explicitReferenceScope);
         referenceScope.add(EcoreUtil.getURI(rootPackage.eClass()));
 
-        transientResource = resourceSet.createResource(URI.createURI("http://" + rootPackage.getNsURI()
+        transientResource = resourceSet.createResource(URI.createURI(rootPackage.getNsURI()
                 + "/transientParsingResource"));
         referenceScope.add(transientResource.getURI());
 
