@@ -16,10 +16,11 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.navigator.ILinkHelper;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.textblocks.DocumentNode;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
+import com.sap.furcas.runtime.textblocks.TbUtil;
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.editor.document.CtsDocument;
 
@@ -27,7 +28,7 @@ public class LinkHelper implements ILinkHelper {
 
     public static final String ANNOTATION_HIGHLIGHT_TYPE = "com.sap.ide.cts.editor.link_highlight";
 
-    private Map<AbstractGrammarBasedEditor, Annotation> editorsToAnnotation = new WeakHashMap<AbstractGrammarBasedEditor, Annotation>();
+    private final Map<AbstractGrammarBasedEditor, Annotation> editorsToAnnotation = new WeakHashMap<AbstractGrammarBasedEditor, Annotation>();
 
     @Override
     public void activateEditor(IWorkbenchPage page,
@@ -40,7 +41,7 @@ public class LinkHelper implements ILinkHelper {
 	    EObject ro = (EObject) adaptedSelection
 		    .getAdapter(EObject.class);
 	    if (ro != null) {
-		Collection<DocumentNode> docNodes = ((EObject) ro)
+		Collection<DocumentNode> docNodes = (ro)
 			.get___Connection().getPackage(
 				TextblocksPackage.PACKAGE_DESCRIPTOR)
 			.getDocumentNodeReferencesCorrespondingModelElement()

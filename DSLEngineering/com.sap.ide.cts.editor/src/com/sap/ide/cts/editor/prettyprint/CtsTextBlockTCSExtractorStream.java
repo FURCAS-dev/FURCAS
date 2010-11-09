@@ -9,23 +9,26 @@ import java.util.Stack;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.Token;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
-import com.sap.furcas.metamodel.TCS.ClassTemplate;
-import com.sap.furcas.metamodel.TCS.ContextTemplate;
-import com.sap.furcas.metamodel.TCS.SequenceElement;
-import com.sap.furcas.metamodel.TCS.Template;
-import com.sap.furcas.metamodel.textblockdefinition.TextblockDefinition;
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.textblocks.Bostoken;
-import com.sap.furcas.metamodel.textblocks.Eostoken;
-import com.sap.furcas.metamodel.textblocks.LexedToken;
-import com.sap.furcas.metamodel.textblocks.OmittedToken;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
-import com.sap.furcas.metamodel.textblocks.Version;
+import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
+import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.tcs.TcsUtil;
+import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
+import com.sap.furcas.runtime.textblocks.modifcation.TbMarkingUtil;
+import com.sap.furcas.runtime.textblocks.validation.TbValidationUtil;
 import com.sap.ide.cts.editor.contentassist.TcsDebugUtil;
 import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorStream;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
@@ -44,7 +47,7 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 	 */
 	private int				textBlocksHandleCounter	= 0;
 
-	private Stack<Integer>	openTextBlocksHandles	= new Stack<Integer>();
+	private final Stack<Integer>	openTextBlocksHandles	= new Stack<Integer>();
 
 	interface TextBlockCommand
 	{
@@ -54,10 +57,10 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 	class AddNextTextBlockCommand implements TextBlockCommand
 	{
 
-		private EObject		object;
-		private Template		t;
-		private SequenceElement	se;
-		private int				handle;
+		private final EObject		object;
+		private final Template		t;
+		private final SequenceElement	se;
+		private final int				handle;
 
 		public AddNextTextBlockCommand(EObject object, Template t,
 				SequenceElement se, int handle)
@@ -68,6 +71,7 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 			this.handle = handle;
 		}
 
+		@Override
 		public void execute()
 		{
 			addNextTextBlock(object, t, se, handle);
@@ -77,13 +81,14 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 	class FinishTextBlockCommand implements TextBlockCommand
 	{
 
-		private int	handle;
+		private final int	handle;
 
 		public FinishTextBlockCommand(int handle)
 		{
 			this.handle = handle;
 		}
 
+		@Override
 		public void execute()
 		{
 			finishTextBlock(handle);
@@ -93,8 +98,8 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 	class AddNextTokenCommand implements TextBlockCommand
 	{
 
-		private String			s;
-		private SequenceElement	se;
+		private final String			s;
+		private final SequenceElement	se;
 
 		public AddNextTokenCommand(String s, SequenceElement se)
 		{
@@ -102,6 +107,7 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 			this.se = se;
 		}
 
+		@Override
 		public void execute()
 		{
 			addNextToken(s, se);
@@ -109,10 +115,10 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 	}
 
 	private List<TextBlockCommand>					current					= new ArrayList<TextBlockCommand>();
-	private Map<Integer, List<TextBlockCommand>>	backup					= new HashMap<Integer, List<TextBlockCommand>>();
+	private final Map<Integer, List<TextBlockCommand>>	backup					= new HashMap<Integer, List<TextBlockCommand>>();
 	private int										curBackupHandle			= 0;
-	private Stack<SequenceElement>					currentSE				= new Stack<SequenceElement>();
-	private Map<TextBlock, Template>				blockToTemplate			= new HashMap<TextBlock, Template>();
+	private final Stack<SequenceElement>					currentSE				= new Stack<SequenceElement>();
+	private final Map<TextBlock, Template>				blockToTemplate			= new HashMap<TextBlock, Template>();
 
 	TextblocksPackage								pack					= null;
 	Resource									part					= null;
