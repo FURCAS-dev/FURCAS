@@ -3,11 +3,11 @@ package com.sap.ide.cts.parser.incremental;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 
 public class LookAheadSet {
 
-	private List<Entry> list = new ArrayList<Entry>();
+	private final List<Entry> list = new ArrayList<Entry>();
 	
 //	private Entry currentEntry;
 
@@ -63,7 +63,7 @@ public class LookAheadSet {
 	}
 
 	private class Entry {
-		private AbstractToken token;
+		private final AbstractToken token;
 		private int characterLookahead;
 		private int tokenLookback;
 

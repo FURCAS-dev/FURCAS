@@ -2,8 +2,8 @@ package com.sap.ide.cts.parser.incremental;
 
 import java.util.Collection;
 
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.runtime.parser.textblocks.TextBlockFactory;
 import com.sap.furcas.runtime.parser.textblocks.observer.TextBlockProxy;
 

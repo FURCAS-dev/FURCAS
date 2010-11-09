@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.runtime.common.exceptions.DeferredActionResolvingException;
@@ -168,6 +168,6 @@ public interface IModelAdapter extends IModelElementInvestigator { // extends In
      * @param languageId
      * @return
      */
-    Collection<Resource> getPRIPartitions(ResourceSet rs, String languageId);
+    Collection<URI> getPRIPartitions(ResourceSet rs, String languageId);
 
 }
