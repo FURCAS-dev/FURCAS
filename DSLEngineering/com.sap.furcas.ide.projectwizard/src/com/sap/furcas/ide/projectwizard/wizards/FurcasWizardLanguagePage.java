@@ -40,8 +40,8 @@ public class FurcasWizardLanguagePage extends WizardPage {
     
     public FurcasWizardLanguagePage(ISelection selection) {
         super("wizardPage");
-        setTitle("Xtext projects wizard");
-        setDescription("This wizard creates a pair of projects for your Xtext DSL.");
+        setTitle("Furcas Project Wizard");
+        setDescription("This wizard creates a pair of projects for your DSL.");
     }
 
     public void createControl(Composite parent) {
