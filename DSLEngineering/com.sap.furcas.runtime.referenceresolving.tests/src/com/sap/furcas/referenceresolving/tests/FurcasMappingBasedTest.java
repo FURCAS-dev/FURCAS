@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.modeladaptation.emf.EMFModelAdapter;
@@ -102,6 +103,12 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
         assertNotNull(article.eGet(articleClass.getEStructuralFeature("author")));
         assertEquals(johnDoe, article.eGet(articleClass.getEStructuralFeature("author")));
         assertEquals("Where John Doe wrote it", article.eGet(articleClass.getEStructuralFeature("location")));
+    }
+    
+    @Ignore // failing test case as preparation of impact analysis requirements
+    public void testChangeAuthorName() {
+    	johnDoe.eSet(authorClass.getEStructuralFeature("name"), "John Dough");
+        assertEquals("Where John Dough wrote it", article.eGet(articleClass.getEStructuralFeature("location")));
     }
     
     /**
