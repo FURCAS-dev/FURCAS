@@ -25,203 +25,203 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class TextblocksFactoryImpl extends EFactoryImpl implements TextblocksFactory {
         /**
-     * Creates the default factory implementation.
-     * <!-- begin-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public static TextblocksFactory init() {
-        try {
-            TextblocksFactory theTextblocksFactory = (TextblocksFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.furcas.org/textblocks"); 
-            if (theTextblocksFactory != null) {
-                return theTextblocksFactory;
-            }
-        }
-        catch (Exception exception) {
-            EcorePlugin.INSTANCE.log(exception);
-        }
-        return new TextblocksFactoryImpl();
-    }
+		try {
+			TextblocksFactory theTextblocksFactory = (TextblocksFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.furcas.org/textblocks"); 
+			if (theTextblocksFactory != null) {
+				return theTextblocksFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new TextblocksFactoryImpl();
+	}
 
         /**
-     * Creates an instance of the factory.
-     * <!-- begin-user-doc -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public TextblocksFactoryImpl() {
-        super();
-    }
+		super();
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public EObject create(EClass eClass) {
-        switch (eClass.getClassifierID()) {
-            case TextblocksPackage.TEXT_BLOCK: return createTextBlock();
-            case TextblocksPackage.ABSTRACT_TOKEN: return createAbstractToken();
-            case TextblocksPackage.OMITTED_TOKEN: return createOmittedToken();
-            case TextblocksPackage.LEXED_TOKEN: return createLexedToken();
-            case TextblocksPackage.UNLEXED_TOKEN: return createUnlexedToken();
-            case TextblocksPackage.FOR_EACH_CONTEXT: return createForEachContext();
-            case TextblocksPackage.EOSTOKEN: return createEostoken();
-            case TextblocksPackage.BOSTOKEN: return createBostoken();
-            default:
-                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-        }
-    }
+		switch (eClass.getClassifierID()) {
+			case TextblocksPackage.TEXT_BLOCK: return createTextBlock();
+			case TextblocksPackage.ABSTRACT_TOKEN: return createAbstractToken();
+			case TextblocksPackage.OMITTED_TOKEN: return createOmittedToken();
+			case TextblocksPackage.LEXED_TOKEN: return createLexedToken();
+			case TextblocksPackage.UNLEXED_TOKEN: return createUnlexedToken();
+			case TextblocksPackage.FOR_EACH_CONTEXT: return createForEachContext();
+			case TextblocksPackage.EOSTOKEN: return createEostoken();
+			case TextblocksPackage.BOSTOKEN: return createBostoken();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Object createFromString(EDataType eDataType, String initialValue) {
-        switch (eDataType.getClassifierID()) {
-            case TextblocksPackage.VERSION:
-                return createVersionFromString(eDataType, initialValue);
-            default:
-                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-        }
-    }
+		switch (eDataType.getClassifierID()) {
+			case TextblocksPackage.VERSION:
+				return createVersionFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public String convertToString(EDataType eDataType, Object instanceValue) {
-        switch (eDataType.getClassifierID()) {
-            case TextblocksPackage.VERSION:
-                return convertVersionToString(eDataType, instanceValue);
-            default:
-                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-        }
-    }
+		switch (eDataType.getClassifierID()) {
+			case TextblocksPackage.VERSION:
+				return convertVersionToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public TextBlock createTextBlock() {
-        TextBlockImpl textBlock = new TextBlockImpl();
-        return textBlock;
-    }
+		TextBlockImpl textBlock = new TextBlockImpl();
+		return textBlock;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public AbstractToken createAbstractToken() {
-        AbstractTokenImpl abstractToken = new AbstractTokenImpl();
-        return abstractToken;
-    }
+		AbstractTokenImpl abstractToken = new AbstractTokenImpl();
+		return abstractToken;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public OmittedToken createOmittedToken() {
-        OmittedTokenImpl omittedToken = new OmittedTokenImpl();
-        return omittedToken;
-    }
+		OmittedTokenImpl omittedToken = new OmittedTokenImpl();
+		return omittedToken;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public LexedToken createLexedToken() {
-        LexedTokenImpl lexedToken = new LexedTokenImpl();
-        return lexedToken;
-    }
+		LexedTokenImpl lexedToken = new LexedTokenImpl();
+		return lexedToken;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public UnlexedToken createUnlexedToken() {
-        UnlexedTokenImpl unlexedToken = new UnlexedTokenImpl();
-        return unlexedToken;
-    }
+		UnlexedTokenImpl unlexedToken = new UnlexedTokenImpl();
+		return unlexedToken;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public ForEachContext createForEachContext() {
-        ForEachContextImpl forEachContext = new ForEachContextImpl();
-        return forEachContext;
-    }
+		ForEachContextImpl forEachContext = new ForEachContextImpl();
+		return forEachContext;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public Eostoken createEostoken() {
-        EostokenImpl eostoken = new EostokenImpl();
-        return eostoken;
-    }
+		EostokenImpl eostoken = new EostokenImpl();
+		return eostoken;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public Bostoken createBostoken() {
-        BostokenImpl bostoken = new BostokenImpl();
-        return bostoken;
-    }
+		BostokenImpl bostoken = new BostokenImpl();
+		return bostoken;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public Version createVersionFromString(EDataType eDataType, String initialValue) {
-        Version result = Version.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-        return result;
-    }
+		Version result = Version.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public String convertVersionToString(EDataType eDataType, Object instanceValue) {
-        return instanceValue == null ? null : instanceValue.toString();
-    }
+		return instanceValue == null ? null : instanceValue.toString();
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public TextblocksPackage getTextblocksPackage() {
-        return (TextblocksPackage)getEPackage();
-    }
+		return (TextblocksPackage)getEPackage();
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @deprecated
-     * @generated
-     */
+	 * @deprecated
+	 * @generated
+	 */
         @Deprecated
         public static TextblocksPackage getPackage() {
-        return TextblocksPackage.eINSTANCE;
-    }
+		return TextblocksPackage.eINSTANCE;
+	}
 
 } //TextblocksFactoryImpl
