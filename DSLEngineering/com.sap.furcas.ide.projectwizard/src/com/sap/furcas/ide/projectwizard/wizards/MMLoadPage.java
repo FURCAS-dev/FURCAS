@@ -14,7 +14,7 @@ public class MMLoadPage extends WizardPage  {
 		super(pageName);
 		wizard = wiz;
 		setTitle("Uh oh");
-        setDescription("Doesn't work right now, you have to do it manually. furcas.org");
+        setDescription("Not fully implemented yet.");
 	}
 
 	@Override
@@ -25,11 +25,11 @@ public class MMLoadPage extends WizardPage  {
         layout.numColumns = 1;
         layout.verticalSpacing = 1;
         Label label = new Label(container, SWT.NULL);
-        label.setText("Option not built in yet. Create new ecore model in your project,");
+        label.setText("All you have to do is a right click in the editor view");
         Label label1 = new Label (container, SWT.NULL);
-        label1.setText("right click in the editor area, Load Resources and select the desired");
+        label1.setText("after the wizard has finished. Then click on \"Load Resource...\"");
         Label label2 = new Label (container, SWT.NULL);
-        label2.setText("Metamodel. Then finish the Furcas configuration manually.");
+        label2.setText("Now feel free to choose a desired MetaModel for your DSL.");
         setErrorMessage(null);
         setPageComplete(true);
         setControl(container);

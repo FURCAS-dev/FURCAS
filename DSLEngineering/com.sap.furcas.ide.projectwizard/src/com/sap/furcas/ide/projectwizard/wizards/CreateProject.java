@@ -19,10 +19,9 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.wizards.newresource.BasicNewResourceWizard;
 
 
-//import com.sap.furcas.ide.dslproject.conf.ProjectMetaRefConfFactory;
-import com.sap.furcas.ide.projectwizard.wizards.SourceCodeFactory;
+import com.sap.furcas.ide.projectwizard.EclipseProjectHelper;
 import com.sap.furcas.ide.projectwizard.wizards.ProjectInfo;
-import com.sap.furcas.utils.projects.EclipseProjectHelper;
+import com.sap.furcas.ide.projectwizard.wizards.SourceCodeFactory;
 
 public class CreateProject extends WorkspaceModifyOperation {
 	protected static final String ORIGINAL_FILE_LOCATION_ROOT = "src";
@@ -64,8 +63,6 @@ public class CreateProject extends WorkspaceModifyOperation {
 		monitor.beginTask("Creating project " + pi.getProjectName(), 2);
 
     	IProject project = createProject(monitor);
-//    	new EclipseProjectBuildStarter();
-//		EclipseProjectBuildStarter.buildProject(project, this.shell);
 		if (project != null) {
 /*			ProjectMetaRefConfFactory.configure(project, conf);*/
 		}
@@ -102,8 +99,8 @@ public class CreateProject extends WorkspaceModifyOperation {
 				exportedPackages, 
 				extraclasspath, 
 				monitor, 
-				this.shell, 
-				"w00t");           // Missing nature information
+				this.shell,
+				null);           // Missing nature information TODO
 
 		if (dslProject == null) {
 			return null;
