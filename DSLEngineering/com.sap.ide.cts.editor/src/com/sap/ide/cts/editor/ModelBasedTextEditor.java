@@ -1,5 +1,8 @@
 package com.sap.ide.cts.editor;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -11,24 +14,77 @@ import org.eclipse.jface.text.source.IVerticalRuler;
 import org.eclipse.jface.text.source.IVerticalRulerColumn;
 import org.eclipse.jface.text.source.SourceViewerConfiguration;
 import org.eclipse.jface.text.source.projection.ProjectionViewer;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.INavigationLocationProvider;
+import org.eclipse.ui.IPersistableEditor;
+import org.eclipse.ui.IPropertyListener;
+import org.eclipse.ui.IReusableEditor;
+import org.eclipse.ui.ISaveablesSource;
+import org.eclipse.ui.ISelectionListener;
+import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.texteditor.AbstractTextEditor;
+import org.eclipse.ui.texteditor.ITextEditor;
+import org.eclipse.ui.texteditor.ITextEditorExtension;
+import org.eclipse.ui.texteditor.ITextEditorExtension2;
+import org.eclipse.ui.texteditor.ITextEditorExtension3;
+import org.eclipse.ui.texteditor.ITextEditorExtension4;
 import org.eclipse.ui.texteditor.SourceViewerDecorationSupport;
 
 import com.sap.ide.cts.editor.document.CtsHistoryDocumentProvider;
 
-public class TextEditorDelegate extends TextEditor {
+public class ModelBasedTextEditor extends TextEditor implements ITextEditor, IReusableEditor, ITextEditorExtension,
+	ITextEditorExtension2, ITextEditorExtension3, ITextEditorExtension4, INavigationLocationProvider,
+	ISaveablesSource, IPersistableEditor, ISelectionListener {
 	
-	public TextEditorDelegate(ModelBasedTextEditor delegator) {
-		this.delegtor = delegator;
+
+	protected TextEditorDelegate textEditorDelegate;
+	private static Collection<IPropertyListener> deferredListenersToAdd = new ArrayList<IPropertyListener>();
+	
+	
+	public ModelBasedTextEditor() {
+		deferredListenersToAdd.clear();
 	}
+
+
 	/**
-	 * Used for callback methods;
+	 * Empty default implementation of
+	 * {@link ISelectionListener#selectionChanged(IWorkbenchPart, ISelection)}.
 	 */
-	private ModelBasedTextEditor delegtor;
+	@Override
+	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+	}
+
+	/* 
+	 * This is overridden because the Savable that is is used to perform the save action can only be created by the
+	 * TextEditor. This way the delegator also gets informed about the save. 
+	 * (non-Javadoc)
+	 * @see org.eclipse.ui.texteditor.AbstractTextEditor#doSave(org.eclipse.core.runtime.IProgressMonitor)
+	 */
+	@Override
+	public void doSave(IProgressMonitor progressMonitor) {
+		doSaveAboutToPerform(progressMonitor);
+		super.doSave(progressMonitor);
+	}
+	
+	/**
+	 * Hook for subclasses that want to take actions before save is performed.
+	 * @param monitor
+	 */
+	public void doSaveAboutToPerform(IProgressMonitor monitor) {
+	}
+
+	/**
+	 * @return
+	 * @see org.eclipse.ui.part.EditorPart#getEditorInput()
+	 */
+	@Override
+	public IEditorInput getEditorInput() {
+		return super.getEditorInput();
+	}
 
 //	/* (non-Javadoc)
 //	 * @see org.eclipse.ui.texteditor.AbstractDecoratedTextEditor#createAnnotationRulerColumn(org.eclipse.jface.text.source.CompositeRuler)
@@ -36,7 +92,7 @@ public class TextEditorDelegate extends TextEditor {
 //	@Override
 //	protected IVerticalRulerColumn createAnnotationRulerColumn(
 //			CompositeRuler ruler) {
-//		return delegtor.createAnnotationRulerColumn(ruler);
+//		return this.createAnnotationRulerColumn(ruler);
 //	}
 
 	/* (non-Javadoc)
@@ -62,7 +118,8 @@ public class TextEditorDelegate extends TextEditor {
 		return viewer;  
         }
     
-        public void setPreferenceStore(IPreferenceStore store) {
+        @Override
+		public void setPreferenceStore(IPreferenceStore store) {
     
     		super.setPreferenceStore(store);
         }
@@ -72,7 +129,8 @@ public class TextEditorDelegate extends TextEditor {
             return super.getPreferenceStore();
         }
         
-        public ISharedTextColors getSharedColors() {
+        @Override
+		public ISharedTextColors getSharedColors() {
             return super.getSharedColors();
         }
         public ISourceViewer getSourceView() {
@@ -83,7 +141,7 @@ public class TextEditorDelegate extends TextEditor {
         @Override
         protected void configureSourceViewerDecorationSupport(
     	    SourceViewerDecorationSupport support) {
-    		delegtor.configureSourceViewerDecorationSupport(support);
+    		this.configureSourceViewerDecorationSupport(support);
     		super.configureSourceViewerDecorationSupport(support);
         }
 	
@@ -91,6 +149,7 @@ public class TextEditorDelegate extends TextEditor {
 		return getSourceViewer();
 	}
 
+	@Override
 	public IAnnotationAccess getAnnotationAccess() {
 		return super.getAnnotationAccess(); 
 	}
@@ -111,28 +170,19 @@ public class TextEditorDelegate extends TextEditor {
 			return;
 		}
 		super.doSetInput(input);
-		delegtor.doSetInputPublic(input);
+//		doSetInputPublic(input);
 	}
 	
+	@Override
 	public IVerticalRulerColumn createAnnotationRulerColumn(CompositeRuler ruler) {
 		return super.createAnnotationRulerColumn(ruler);
 	}
 	
+	@Override
 	public SourceViewerDecorationSupport getSourceViewerDecorationSupport(ISourceViewer viewer) {
 		return super.getSourceViewerDecorationSupport(viewer);
 	}
-	
-	/* 
-	 * This is overridden because the Savable that is is used to perform the save action can only be created by the
-	 * TextEditor. This way the delegator also gets informed about the save. 
-	 * (non-Javadoc)
-	 * @see org.eclipse.ui.texteditor.AbstractTextEditor#doSave(org.eclipse.core.runtime.IProgressMonitor)
-	 */
-	@Override
-	public void doSave(IProgressMonitor progressMonitor) {
-		delegtor.doSave(progressMonitor);
-		super.doSave(progressMonitor);
-	}
+
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.ui.texteditor.AbstractTextEditor#setStatusLineErrorMessage(java.lang.String)
@@ -170,6 +220,7 @@ public class TextEditorDelegate extends TextEditor {
 	 *
 	 * @param input the input of this editor.
 	 */
+	@Override
 	protected void setDocumentProvider(IEditorInput input) {
 		//if(input instanceof ModelEditorInput) {
 			setDocumentProvider(new CtsHistoryDocumentProvider(
@@ -194,13 +245,14 @@ public class TextEditorDelegate extends TextEditor {
 //		@Override
 //		public void doSave(IProgressMonitor monitor) throws CoreException {
 //			modelBasedTextEditorDelegator.getWorkingConnection().getCommandStack().openGroup(groupDescription)
-//			delegtor.doSave(monitor);
+//			this.doSave(monitor);
 //			super.doSave(monitor);
 //		}
 //
 //		@Override
 //		public boolean isDirty() {
-//			return delegtor.isDirty();
+//			return this.isDirty();
 //		}
 //	}
+
 }

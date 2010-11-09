@@ -2,9 +2,9 @@ package com.sap.ide.cts.parser.incremental;
 
 import org.eclipse.emf.ecore.EObject;
 
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.textblocks.LexedToken;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.runtime.parser.impl.DelayedReference;
 import com.sap.furcas.runtime.parser.textblocks.observer.TextBlockProxy;
 

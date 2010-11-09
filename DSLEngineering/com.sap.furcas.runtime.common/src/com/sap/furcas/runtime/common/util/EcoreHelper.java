@@ -1,6 +1,7 @@
 package com.sap.furcas.runtime.common.util;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -227,6 +228,12 @@ public class EcoreHelper {
 	public static boolean isAlive(EObject object) {
 		//TODO how to check whether an object is alive or not in EMF?
 		return true;
+	}
+
+	public static Collection<EReference> getCompositeReferences(EClass eClass,
+			EClass eClass2) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

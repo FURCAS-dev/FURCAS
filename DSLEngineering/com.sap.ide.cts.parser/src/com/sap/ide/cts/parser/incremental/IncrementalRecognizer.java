@@ -6,18 +6,21 @@ import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getSubNodeAt;
 import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getSubNodes;
 import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.isLastInSubTree;
 import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.isToken;
+import static com.sap.furcas.runtime.textblocks.modifcation.TbMarkingUtil.isEOS;
+import static com.sap.furcas.runtime.textblocks.modifcation.TbMarkingUtil.marked;
+import static com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil.getOtherVersion;
 
 import java.util.List;
 
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.edit.domain.EditingDomain;
 
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.textblocks.Bostoken;
-import com.sap.furcas.metamodel.textblocks.DocumentNode;
-import com.sap.furcas.metamodel.textblocks.Eostoken;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.metamodel.textblocks.TextblocksFactory;
-import com.sap.furcas.metamodel.textblocks.Version;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksFactory;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 
 
 
@@ -31,10 +34,10 @@ public abstract class IncrementalRecognizer {
 	protected Bostoken bosRef;
 	protected Eostoken eosRef;
 	protected TextblocksFactory textblocksFactory;
-	protected ResourceSet connection;
+	private final EditingDomain editingDomain;
 	
-	public IncrementalRecognizer(ResourceSet resourceSet) {
-		this.connection = resourceSet;
+	public IncrementalRecognizer(EditingDomain resourceSet) {
+		this.editingDomain = resourceSet;
 		textblocksFactory = TextblocksFactory.eINSTANCE;
 	}
 
@@ -117,4 +120,12 @@ public abstract class IncrementalRecognizer {
 		// TODO check if this is correct here
 		return token.isRelexingNeeded();
 	}
+
+
+	public EditingDomain getEditingDomain() {
+		return editingDomain;
+	}
+
+	
+	
 }

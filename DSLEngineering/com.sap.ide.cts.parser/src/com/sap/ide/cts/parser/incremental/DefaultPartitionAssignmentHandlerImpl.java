@@ -4,6 +4,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
 
+
+
 public class DefaultPartitionAssignmentHandlerImpl implements PartitionAssignmentHandler {
 
 	private Resource defaultPartition;
@@ -54,7 +56,7 @@ public class DefaultPartitionAssignmentHandlerImpl implements PartitionAssignmen
 			// store in partition of composite parent
 			partition = elementInPartition.eResource();
 		//}
-		partition.assignElementIncludingChildren(element);
+		partition.getContents().add(element);
 	}
 
 	@Override
@@ -64,7 +66,6 @@ public class DefaultPartitionAssignmentHandlerImpl implements PartitionAssignmen
 
 	@Override
 	public void assignToDefaultPartition(EObject element) {
-		defaultPartition.assignElementIncludingChildren(element);
+		defaultPartition.getContents().add(element);
 	}
-
 }

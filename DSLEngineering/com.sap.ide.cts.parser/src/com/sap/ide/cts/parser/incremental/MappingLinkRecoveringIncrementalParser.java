@@ -2,27 +2,28 @@ package com.sap.ide.cts.parser.incremental;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.domain.EditingDomain;
 
-
-import com.sap.furcas.metamodel.TCS.ClassTemplate;
-import com.sap.furcas.metamodel.TCS.ForeachPredicatePropertyInit;
-import com.sap.furcas.metamodel.TCS.Template;
-import com.sap.furcas.metamodel.textblockdefinition.TextblockDefinition;
-import com.sap.furcas.metamodel.textblocks.Bostoken;
-import com.sap.furcas.metamodel.textblocks.DocumentNode;
-import com.sap.furcas.metamodel.textblocks.ForEachContext;
-import com.sap.furcas.metamodel.textblocks.LexedToken;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
+import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
+import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionPackage;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext;
+import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.parser.impl.DelayedReference;
 import com.sap.furcas.runtime.parser.impl.DelayedReferencesHelper;
@@ -36,14 +37,15 @@ import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
 
 public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
 
-    public MappingLinkRecoveringIncrementalParser(ResourceSet connection,
+    public MappingLinkRecoveringIncrementalParser(EditingDomain editingDomain,
             ParserFactory<?, ?> parserFactory,
             IncrementalLexer incrementalLexer,
             ObservableInjectingParser batchParser,
             TextBlockReuseStrategy reuseStrategy,
-            Collection<URI> additionalCRIScope) {
-        super(connection, parserFactory, incrementalLexer, batchParser,
-                reuseStrategy, additionalCRIScope);
+            Set<URI> additionalCRIScope,
+            OppositeEndFinder oppositeEndFinder) {
+        super(editingDomain, parserFactory, incrementalLexer, batchParser,
+                reuseStrategy, additionalCRIScope, oppositeEndFinder);
     }
 
     /**
@@ -59,11 +61,11 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
             ClassTemplate rootTemplate)
             throws TextBlockMappingRecoveringFailedException {
         ParserTextBlocksHandler parserTextBlocksHandler = new ParserTextBlocksHandler(
-                tbtokenStream, connection, parserFactory
-                        .getMetamodelUri(connection), TcsUtil
-                        .getSyntaxePartitions(connection, parserFactory
+                tbtokenStream, getEditingDomain().getResourceSet(), parserFactory
+                        .getMetamodelUri(getEditingDomain().getResourceSet()), TcsUtil
+                        .getSyntaxePartitions(getEditingDomain().getResourceSet(), parserFactory
                                 .getLanguageId()), parserFactory
-                        .getParserLookupScope(connection), additionalCRIScope);
+                        .getParserLookupScope(getEditingDomain().getResourceSet()), additionalCRIScope);
         // IParsingObserver originalObserver = batchParser.getObserver();
         batchParser.setObserver(parserTextBlocksHandler);
         ((ANTLRIncrementalLexerAdapter) batchParser.input.getTokenSource())
@@ -76,8 +78,8 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
         try {
             existingRoot.setType(tbFactory.getTbDef(rootTemplate));
             RecoverMappingLinkComand rmlc = new RecoverMappingLinkComand(
-                    connection, existingRoot, parserTextBlocksHandler);
-            connection.getCommandStack().execute(rmlc);
+                    existingRoot, parserTextBlocksHandler, getOppositeEndFinder());
+            getEditingDomain().getCommandStack().execute(rmlc);
             if (rmlc.hasFailed()) {
                 // connection.getCommandStack().undo();
                 throw new TextBlockMappingRecoveringFailedException(rmlc.getException(), 
@@ -96,20 +98,23 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
         }
     }
 
-    public class RecoverMappingLinkComand extends Command {
+    public class RecoverMappingLinkComand extends AbstractCommand {
 
         private final TextBlock existingRoot;
         private boolean failed = false;
         private Exception exception;
         private final ParserTextBlocksHandler parserTextBlocksHandler;
         private Map<TextBlockProxy, List<DelayedReference>> tBProxy2Reference;
+		private final OppositeEndFinder oppositeEndFinder;
+		private final EStructuralFeature templateTypeRef;
 
-        public RecoverMappingLinkComand(ResourceSet con, TextBlock existingRoot,
-                ParserTextBlocksHandler parserTextBlocksHandler) {
-            super(con);
+        public RecoverMappingLinkComand(TextBlock existingRoot,
+                ParserTextBlocksHandler parserTextBlocksHandler, OppositeEndFinder oppositeEndFinder) {
+            super("Recover Link to Mapping Model");
             this.existingRoot = existingRoot;
             this.parserTextBlocksHandler = parserTextBlocksHandler;
-
+			this.oppositeEndFinder = oppositeEndFinder;
+            templateTypeRef = TextblockdefinitionPackage.eINSTANCE.getTextBlockDefinition_ParseRule();
         }
 
         @Override
@@ -118,7 +123,7 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
         }
 
         @Override
-        public void doExecute() {
+        public void execute() {
             try {
                 callBatchParser(existingRoot);
                 // FIXME: evaluate foreach references to reestablish links where
@@ -164,7 +169,7 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
                 }
             }
             textBlock.setSequenceElement(proxy.getSequenceElement());
-            TextblockDefinition tbDef = getTbDef(proxy.getTemplate());
+            TextBlockDefinition tbDef = getTbDef(proxy.getTemplate());
             if (tbDef == null) {
                 failed = true;
                 return;
@@ -209,12 +214,8 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
                                     textBlock.getAdditionalTemplates().add(
                                             fec.getForeachPedicatePropertyInit().getInjectorActionsBlock().getParentTemplate());
                                 }
-                            } catch (JmiException e) {
-                                // TODO Auto-generated catch block
-                                e.printStackTrace();
                             } catch (ModelAdapterException e) {
-                                // TODO Auto-generated catch block
-                                e.printStackTrace();
+                                throw new RuntimeException(e);
                             }
                         }
                     }
@@ -232,34 +233,36 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
             return true;
         }
 
-        private TextblockDefinition getTbDef(Template t) {
-            Collection<TextblockDefinition> tbDefs = getConnection()
-                    .getPackage(TextblocksPackage.PACKAGE_DESCRIPTOR)
-                    .getTextblockdefinition()
-                    .getTextblockDefinitionReferencesProduction()
-                    .getTextBlockDefinition(t);
+        private TextBlockDefinition getTbDef(Template t) {
+            Collection<EObject> tbDefs = oppositeEndFinder.
+            	navigateOppositePropertyWithBackwardScope(templateTypeRef, t);
             if (!tbDefs.isEmpty()) {
                 if (tbDefs.size() == 1) {
-                    return tbDefs.iterator().next();
+                    return (TextBlockDefinition) tbDefs.iterator().next();
                 } else {
                     // TODO What to do if there is more than one?
                     // for now this case seems strange, so throw an exception
-
+                	throw new RuntimeException("Found more than one TextBlockDefinition for template: " + t);
                 }
             }
             return null;
         }
 
-        @Override
-        public Collection<EOperation> getAffectedPartitions() {
-            EObject partitionable = existingRoot;
-            URI pri = partitionable.eResource().getURI();
-            EOperation editOperation = new EOperation(
-                    EOperation.Operation.EDIT, pri);
-            return Collections.singleton(editOperation);
-        }
+       
 
-        public boolean hasFailed() {
+        @Override
+		public void redo() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public Collection<?> getAffectedObjects() {
+			// TODO Auto-generated method stub
+			return super.getAffectedObjects();
+		}
+
+		public boolean hasFailed() {
             return failed;
         }
 

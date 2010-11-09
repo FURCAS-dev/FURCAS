@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.runtime.common.exceptions.DeferredActionResolvingException;
@@ -305,7 +305,7 @@ public class DefaultTextAwareModelAdapter implements IModelAdapter {
 	}
 
 	@Override
-	public Collection<Resource> getPRIPartitions(ResourceSet conn, String languageId) {
+	public Collection<URI> getPRIPartitions(ResourceSet conn, String languageId) {
 		//must be done in a subclass
 		return null;
 	}

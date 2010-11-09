@@ -1,5 +1,7 @@
 package com.sap.ide.cts.parser.incremental;
 
+import static com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil.addToBlockAt;
+import static com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil.getOtherVersion;
 import static com.sap.ide.cts.parser.incremental.IncrementalParsingUtil.checkIsDefinedOptional;
 import static com.sap.ide.cts.parser.incremental.IncrementalParsingUtil.deleteCorrespondingModelElements;
 import static com.sap.ide.cts.parser.incremental.IncrementalParsingUtil.getOriginalVersion;
@@ -14,24 +16,26 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.ocl.utilities.TypedElement;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import com.sap.furcas.metamodel.TCS.Alternative;
-import com.sap.furcas.metamodel.TCS.AndExp;
-import com.sap.furcas.metamodel.TCS.AtomExp;
-import com.sap.furcas.metamodel.TCS.ConditionalElement;
-import com.sap.furcas.metamodel.TCS.LiteralRef;
-import com.sap.furcas.metamodel.TCS.Property;
-import com.sap.furcas.metamodel.TCS.SequenceElement;
-import com.sap.furcas.metamodel.TCS.Template;
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.textblocks.Bostoken;
-import com.sap.furcas.metamodel.textblocks.DocumentNode;
-import com.sap.furcas.metamodel.textblocks.LexedToken;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.metamodel.textblocks.Version;
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
+import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
+import com.sap.furcas.metamodel.FURCAS.TCS.AndExp;
+import com.sap.furcas.metamodel.FURCAS.TCS.AtomExp;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
+import com.sap.furcas.metamodel.FURCAS.TCS.Property;
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
+import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.impl.ModelElementProxy;
 import com.sap.furcas.runtime.parser.textblocks.TextBlockFactory;
@@ -56,7 +60,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 	private ReferenceHandler referenceHandler;
 	private final Lexer lexer;
 	private ShortPrettyPrinter shortPrettyPrinter;
-	private Collection<TextBlock> changedBlocks = new ArrayList<TextBlock>();
+	private final Collection<TextBlock> changedBlocks = new ArrayList<TextBlock>();
 
 	public TextBlockReuseStrategyImpl(Lexer lexer, IModelElementInvestigator mi) {
 		setModelElementInvestigator(mi);
@@ -118,7 +122,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 						SetNewFeatureBean newFeatureBean = IncrementalParsingUtil
 							.setFeatureWithNewValue(
 								(TextBlockProxy) subNode,
-								oldVersion);
+								oldVersion, getOppositeEndFinder());
 						if (subNodeResult.reuseType
 							.equals(ReuseType.DELETE)) {
 							// Delete all blocks that are empty now
@@ -126,9 +130,9 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 								.deleteEmptyBlocksIncludingAdjecentBlocks(original);
 							// delete all affected modelelements
 							for (EObject refObject : affectedModelElements) {
-								if (refObject.is___Alive()
+								if (EcoreHelper.isAlive(refObject)
 									&& !isFromReferenceOnlyTemplate(subNodeResult.textBlock)) {
-									refObject.refDelete();
+									EcoreUtil.delete(refObject);
 								}
 							}
 							// this block
@@ -138,7 +142,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 							// otherwise the client has to be
 							// responsible for
 							// dealing with these elements
-							if (((EObject) original).is___Alive()
+							if (EcoreHelper.isAlive((original))
 								&& TbNavigationUtil
 									.getSubNodesSize(original) == 0) {
 								// delete only if original subblock
@@ -239,6 +243,11 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 
 	}
 
+	private OppositeEndFinder getOppositeEndFinder() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	/**
 	 * Synchronizes the elements that reside in the #context of the {@link TextBlock}s.
 	 * 
@@ -317,6 +326,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 	 * @param nextToken
 	 * @return
 	 */
+	@Override
 	public boolean canBeReUsed(AbstractToken candidate, Object lexerToken) {
 	        if(!Version.PREVIOUS.equals(candidate.getVersion())) {
 	            throw new IllegalArgumentException("Candidate token has to be in PREVIOUS Version but was: " + candidate.getVersion());
@@ -436,11 +446,11 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 				// ensure templates were the same
 				if (newVersion.getTemplate().equals(
 					oldVersion.getType().getParseRule())) {
-					if (newVersion.getTemplate().getMetaReference() instanceof StructureType) {
-						// a structure type has no identity so we have to
-						// re-create it every time
-						return false;
-					}
+//					if (newVersion.getTemplate().getMetaReference() instanceof StructureType) {
+//						// a structure type has no identity so we have to
+//						// re-create it every time
+//						return false;
+//					}
 					// if(TcsUtil.isReferenceOnly(newVersion.getTemplate())) {
 					// //a reference only textblock does not need to be retained
 					// return false;
@@ -779,7 +789,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
          * @param oldVersion
          */
         private void deleteElementsForRemovedSubBlocks(TextBlock oldVersion) {
-            if (oldVersion.is___Alive()) {
+            if (EcoreHelper.isAlive(oldVersion)) {
                 TextBlock reference = TbVersionUtil.getOtherVersion(oldVersion,
                         Version.REFERENCE);
                 if (reference != null) {
@@ -826,8 +836,8 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
                                     // such as property inits
                                     for (EObject ro : new ArrayList<EObject>(tb
                                             .getCorrespondingModelElements())) {
-                                        if (((EObject) ro).is___Alive()) {
-                                            ro.refDelete();
+                                        if (EcoreHelper.isAlive((ro))) {
+                                            EcoreUtil.delete(ro);
                                         }
                                     }
                                 } else {

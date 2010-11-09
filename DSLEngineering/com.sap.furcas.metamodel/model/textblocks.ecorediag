@@ -7,6 +7,10 @@
         <element xmi:type="ecore:EAttribute" href="textblocks.ecore#//TextBlock/parentAltChoices"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_iFJZw4J_Ed-OCMPTt29mTg"/>
       </children>
+      <children xmi:type="notation:Node" xmi:id="_XsWQ8evdEd-Nvre4moivaw" type="2001">
+        <element xmi:type="ecore:EAttribute" href="textblocks.ecore#//TextBlock/complete"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_XsWQ8uvdEd-Nvre4moivaw"/>
+      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_iFHkkoJ_Ed-OCMPTt29mTg"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_iFHkk4J_Ed-OCMPTt29mTg"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_iFHklIJ_Ed-OCMPTt29mTg"/>
@@ -364,7 +368,7 @@
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_jIo3EYJ_Ed-OCMPTt29mTg" routing="Rectilinear" lineColor="4210752"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_jIo3EoJ_Ed-OCMPTt29mTg" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
     <element xmi:type="ecore:EReference" href="textblocks.ecore#//DocumentNode/referencedElements"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jIo3E4J_Ed-OCMPTt29mTg" points="[-25, 0, 96, 92]$[-25, -92, 96, 0]"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jIo3E4J_Ed-OCMPTt29mTg" points="[0, 0, 141, 67]$[0, -34, 141, 33]$[-25, -34, 116, 33]$[-25, -67, 116, 0]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jI-1UIJ_Ed-OCMPTt29mTg" id="(0.958974358974359,0.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jI-1UYJ_Ed-OCMPTt29mTg" id="(0.39215686274509803,1.0)"/>
   </edges>

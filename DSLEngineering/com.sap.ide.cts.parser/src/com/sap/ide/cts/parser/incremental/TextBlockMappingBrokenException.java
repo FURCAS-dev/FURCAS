@@ -1,6 +1,6 @@
 package com.sap.ide.cts.parser.incremental;
 
-import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 
 public class TextBlockMappingBrokenException extends Exception {
 

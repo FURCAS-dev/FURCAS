@@ -30,6 +30,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.dialogs.ErrorDialog;
@@ -68,12 +69,21 @@ import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.eclipse.ui.texteditor.SourceViewerDecorationSupport;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
-import com.sap.furcas.metamodel.TCS.ClassTemplate;
-import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.textblocks.DocumentNode;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
+import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
+import com.sap.furcas.runtime.parser.ParsingError;
+import com.sap.furcas.runtime.parser.impl.ModelInjector;
+import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.parser.textblocks.ITextBlocksTokenStream;
+import com.sap.furcas.runtime.parser.textblocks.ParsingTextblocksActivator;
+import com.sap.furcas.runtime.parser.textblocks.observer.ParserTextBlocksHandler;
+import com.sap.furcas.runtime.tcs.TcsUtil;
+import com.sap.furcas.runtime.textblocks.TbUtil;
+import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
+import com.sap.furcas.runtime.textblocks.shortprettyprint.ShortPrettyPrinter;
 import com.sap.ide.cts.dialogs.PrettyPrintPreviewDialog;
 import com.sap.ide.cts.editor.action.GotoDeclarationAction;
 import com.sap.ide.cts.editor.action.HighlightTextBlockAction;
@@ -98,7 +108,7 @@ import com.sap.ide.cts.parser.incremental.antlr.ANTLRLexerAdapter;
 
 
 public abstract class AbstractGrammarBasedEditor extends
-		ModelBasedTextEditorDelegator implements MarkerRefreshListener {
+		ModelBasedTextEditor implements MarkerRefreshListener {
     
     	private ICharacterPairMatcher fBracketMatcher;
     	private ProjectionAnnotationModel annotationModel;
@@ -230,7 +240,7 @@ public abstract class AbstractGrammarBasedEditor extends
 	/**
 	 * A thread-safe queue with the data which {@link OnMarkerChangeJob} needs to process it's work.
 	 */
-	private ConcurrentLinkedQueue<IDocumentProvider> providerTaskQueue = new ConcurrentLinkedQueue<IDocumentProvider>();
+	private final ConcurrentLinkedQueue<IDocumentProvider> providerTaskQueue = new ConcurrentLinkedQueue<IDocumentProvider>();
 	
 	private OnMarkerChangeJob onMarkerChangeJob = null;
 	
@@ -284,12 +294,10 @@ public abstract class AbstractGrammarBasedEditor extends
 	}
 	
 	@Override
-	protected void createPartControlDeferred(Composite parent) {
+	public void createPartControl(Composite parent) {
 		final AbstractGrammarBasedViewerConfiguration config = createSourceViewerConfig(getDocumentProvider()
 				.getAnnotationModel(getEditorInput()));
 		setSourceViewerConfiguration(config);
-
-		super.createPartControlDeferred(parent);
 		
 		ProjectionViewer viewer =(ProjectionViewer)getSourceViewer();
 	        projectionSupport = new ProjectionSupport(viewer,getAnnotationAccess(),getSharedColors());
@@ -798,11 +806,11 @@ public abstract class AbstractGrammarBasedEditor extends
 	}
 
 	
-	private Set<Resource> annotatedPartitionsToUpdate = Collections.synchronizedSet(new HashSet<Resource>());
+	private final Set<Resource> annotatedPartitionsToUpdate = Collections.synchronizedSet(new HashSet<Resource>());
 	
 	private class AnnotationUpdater implements Runnable {
     
-	    	private Resource rootPartition;
+	    	private final Resource rootPartition;
         
         	public AnnotationUpdater(Resource partition) {
         	    this.rootPartition = partition;

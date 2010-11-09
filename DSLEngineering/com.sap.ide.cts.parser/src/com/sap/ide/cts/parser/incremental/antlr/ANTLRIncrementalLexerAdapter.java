@@ -1,17 +1,19 @@
 package com.sap.ide.cts.parser.incremental.antlr;
 
+import static com.sap.furcas.runtime.textblocks.modifcation.TbMarkingUtil.isBOS;
+import static com.sap.furcas.runtime.textblocks.modifcation.TbMarkingUtil.isEOS;
+
 import java.util.LinkedHashMap;
 
 import org.antlr.runtime.CharStream;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenSource;
-import org.eclipse.emf.ecore.Version;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.edit.domain.EditingDomain;
 
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.metamodel.textblocks.Version;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.IModelInjector;
@@ -69,8 +71,8 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements
 	}
 
 	public ANTLRIncrementalLexerAdapter(LexerAdapter lexerAdapter, IModelElementInvestigator mi,
-			ResourceSet moinConnection) {
-		super(lexerAdapter, mi, moinConnection, bosTokenType, eosTokenType);
+			EditingDomain editingDomain) {
+		super(lexerAdapter, mi, editingDomain, bosTokenType, eosTokenType);
 	}
 
 	@Override
@@ -323,7 +325,7 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements
 
 	@Override
 	public String getSourceName() {
-		return "From connection: " + connection.getLabel();
+		return "From editing domain: " + getEditingDomain().toString();
 	}
 
 	@Override

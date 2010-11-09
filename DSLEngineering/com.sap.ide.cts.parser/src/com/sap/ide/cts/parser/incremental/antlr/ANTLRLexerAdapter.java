@@ -7,11 +7,10 @@ import java.util.Set;
 
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.Token;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
-import com.sap.furcas.metamodel.textblocks.Version;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksFactory;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.impl.ModelInjector;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
@@ -24,25 +23,23 @@ import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategy;
 public class ANTLRLexerAdapter implements LexerAdapter {
 
 	public static final String LEXER_INJECTOR_FIELD_NAME = "ei";
-	private Lexer antlrLexer;
-	private TextblocksPackage textblocksPackage;
-	private final ResourceSet connection;
+	private final Lexer antlrLexer;
+	private final TextblocksFactory textblocksFactory;
 	private IncrementalLexer incrementalLexer;
-	private Set<AbstractToken> reusedTokens = new HashSet<AbstractToken>();
+	private final Set<AbstractToken> reusedTokens = new HashSet<AbstractToken>();
 	private TextBlockReuseStrategy reuseStrategy = null;
 
 	public Lexer getANTLRLexer() {
 		return antlrLexer;
 	}
 
-	public ANTLRLexerAdapter(Lexer antlrLexer, TextBlockReuseStrategy reuseStrategy, ResourceSet conn) {
+	public ANTLRLexerAdapter(Lexer antlrLexer, TextBlockReuseStrategy reuseStrategy) {
 		this.reuseStrategy = reuseStrategy;
-		this.connection = conn;
-		this.textblocksPackage = connection
-				.getPackage(TextblocksPackage.PACKAGE_DESCRIPTOR);
+		this.textblocksFactory = TextblocksFactory.eINSTANCE;
 		this.antlrLexer = antlrLexer;
 	}
 
+	@Override
 	public int getState(AbstractToken tok) {
 		//State was already set in the moreTokens phase.	    
 		return tok.getState();
@@ -51,6 +48,7 @@ public class ANTLRLexerAdapter implements LexerAdapter {
 	/**
 	 * IMPORTANT: The returned token's offset is relative to the last construction location!!!
 	 */
+	@Override
 	public List<AbstractToken> moreTokens() {
 		// ANTLR always seems to return one token at a time, no token sequences
 		// seem to be supported
@@ -94,12 +92,10 @@ public class ANTLRLexerAdapter implements LexerAdapter {
 				reusedTokens.add(tok);
 			} else {
 				if(nextToken.getChannel() == Token.HIDDEN_CHANNEL) {
-					tok = (AbstractToken) textblocksPackage.getOmittedToken()
-						.refCreateInstance();
+					tok = textblocksFactory.createOmittedToken();
 					tok.setState(Token.HIDDEN_CHANNEL);
 				} else {
-					tok = (AbstractToken) textblocksPackage.getLexedToken()
-						.refCreateInstance();
+					tok = textblocksFactory.createLexedToken();
 				}
 				ANTLR3LocationToken aToken = (ANTLR3LocationToken) nextToken;
 				
@@ -177,12 +173,14 @@ public class ANTLRLexerAdapter implements LexerAdapter {
     		reusedTokens.contains(TbVersionUtil.getOtherVersion(candidate, Version.CURRENT));
     }
 
+	@Override
 	public void setIncrementalLexer(IncrementalLexer incrementalLexer) {
 		antlrLexer
 				.setCharStream((ANTLRIncrementalLexerAdapter) incrementalLexer);
 		this.incrementalLexer = incrementalLexer;
 	}
 
+	@Override
 	public void setState(int state) {
 		// TODO Auto-generated method stub
 
