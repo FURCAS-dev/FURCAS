@@ -554,9 +554,9 @@ public class EcoreEnvironment
 		}
 		ETypedElement typedFeature = feature;
 		EAnnotation ann = typedFeature.getEAnnotation(Environment.OCL_NAMESPACE_URI);
-		if (ann == null){
-		InvocationBehavior.INSTANCE.getOperationBody(OCL.newInstance(), feature);
-		ann = typedFeature.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+		if (ann == null) {
+			InvocationBehavior.INSTANCE.getOperationBody(OCL.newInstance(), feature);
+			ann = typedFeature.getEAnnotation(Environment.OCL_NAMESPACE_URI);
 		}
 		if ((ann != null) && !ann.getContents().isEmpty()) {
 			for (EObject o : ann.getContents()) {
