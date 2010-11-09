@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Parser Plug-in
-Bundle-SymbolicName: com.sap.ide.cts.parser;singleton:=true
+Bundle-SymbolicName: com.sap.furcas.runtime.parser.incremental;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.sap.ide.cts.parser.Activator
 Require-Bundle: com.sap.furcas.metamodel,

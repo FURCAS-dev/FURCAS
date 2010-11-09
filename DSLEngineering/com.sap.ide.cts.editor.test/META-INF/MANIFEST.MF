@@ -16,7 +16,7 @@ Require-Bundle: org.eclipse.core.runtime,
  com.sap.furcas.ide.dslproject,
  com.sap.furcas.parsergenerator,
  org.eclipse.jface.text,
- com.sap.ide.cts.parser,
+ com.sap.furcas.runtime.parser.incremental,
  com.sap.ide.cts.editor,
  com.sap.mi.textual.tcs.editor,
  com.sap.ide.cts.moin

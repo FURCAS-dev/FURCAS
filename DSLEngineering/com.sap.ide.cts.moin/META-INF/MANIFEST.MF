@@ -9,7 +9,7 @@ Require-Bundle: org.eclipse.emf,
  org.eclipse.emf.ecore,
  com.sap.furcas.runtime.parser,
  com.sap.mi.textual.parsing.textblocks,
- com.sap.ide.cts.parser,
+ com.sap.furcas.runtime.parser.incremental,
  com.sap.furcas.parsergenerator.emf,
  com.sap.tc.moin.textual.runtime.emf;bundle-version="1.0.0",
  com.sap.furcas.runtime.common;bundle-version="1.0.0"

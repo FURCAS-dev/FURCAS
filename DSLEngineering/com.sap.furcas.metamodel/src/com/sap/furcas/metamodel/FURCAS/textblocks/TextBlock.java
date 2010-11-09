@@ -187,7 +187,7 @@ public interface TextBlock extends DocumentNode {
          * <!-- end-user-doc -->
 	 * @model kind="operation"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
-	 *        annotation="http://de.hpi.sam.bp2009.OCL body='self.subNodes->select(n | n.oclIsKindOf(TextBlock)).oclAsType(TextBlock)'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.subNodes->select(n | n.oclIsKindOf(TextBlock)).oclAsType(TextBlock)->asOrderedSet()'"
 	 * @generated
 	 */
         EList<TextBlock> getSubBlocks();
@@ -197,7 +197,7 @@ public interface TextBlock extends DocumentNode {
          * <!-- end-user-doc -->
 	 * @model kind="operation"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
-	 *        annotation="http://de.hpi.sam.bp2009.OCL body='self.subNodes->select(n | n.oclIsKindOf(AbstractToken)).oclAsType(AbstractToken)'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.subNodes->select(n | n.oclIsKindOf(AbstractToken)).oclAsType(AbstractToken)->asOrderedSet()'"
 	 * @generated
 	 */
         EList<AbstractToken> getTokens();

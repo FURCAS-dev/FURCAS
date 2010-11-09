@@ -9,8 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
-import com.sap.ide.cts.editor.test.util.StandaloneConnectionBasedTest;
-import com.sap.ide.cts.editor.test.util.TcsTestHelper;
+import com.sap.furcas.test.base.StandaloneConnectionBasedTest;
+import com.sap.furcas.test.util.TcsTestHelper;
 
 public class CtsContentAssistParsingHandlerTest extends
 		StandaloneConnectionBasedTest {

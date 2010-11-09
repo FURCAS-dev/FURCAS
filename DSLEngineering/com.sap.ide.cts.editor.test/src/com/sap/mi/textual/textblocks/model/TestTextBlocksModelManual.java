@@ -12,7 +12,7 @@ import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.furcas.metamodel.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
-import com.sap.ide.cts.editor.test.util.StandaloneConnectionBasedTest;
+import com.sap.furcas.test.base.StandaloneConnectionBasedTest;
 
 public class TestTextBlocksModelManual extends StandaloneConnectionBasedTest {
 

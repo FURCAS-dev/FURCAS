@@ -4,7 +4,7 @@ import org.eclipse.emf.ecore.EEnum;
 import org.junit.Before;
 
 import com.sap.furcas.metamodel.textblocks.LexedToken;
-import com.sap.ide.cts.editor.test.util.StandaloneConnectionBasedTest;
+import com.sap.furcas.test.base.StandaloneConnectionBasedTest;
 
 /**
  * Base class for TextBlock related test cases. Sets up a common fixture model

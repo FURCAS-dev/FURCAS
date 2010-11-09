@@ -501,7 +501,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 
 			AbstractToken oldTokenInCurrentBlock = getOtherVersion(
 					tok, Version.CURRENT);
-			int index = currentTextBlock.getTokens().indexOf(
+			int index = currentTextBlock.getSubNodes().indexOf(
 					oldTokenInCurrentBlock);
 			//removeFromBlockConsistent(currentTextBlock, oldTokenInCurrentBlock);
 
@@ -538,7 +538,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 								currentTextBlock = oldTokenInCurrentBlock
 										.getParent();
 								changedBlocks.add(currentTextBlock);
-								index = currentTextBlock.getTokens().indexOf(
+								index = currentTextBlock.getSubNodes().indexOf(
 										oldTokenInCurrentBlock);
 							}
 					}
@@ -566,17 +566,17 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 
 		}
 		// Adds EOS token if missing fro mnew copy: TODO When and why would we ever expect this to happen?
-		if (!(currentRoot.getTokens().get(currentRoot.getTokens().size() - 1) instanceof Eostoken)) {
+		if (!(currentRoot.getSubNodes().get(currentRoot.getSubNodes().size() - 1) instanceof Eostoken)) {
 			AbstractToken eosTok = createEOSToken(textblocksFactory, Version.CURRENT,
 					getEOSTokenType());
 			eosTok.setOffset(currentRoot.getLength());
 			eosTok.setOffsetRelative(true);
 			
-			currentRoot.getTokens().add(eosTok);
+			currentRoot.getSubNodes().add(eosTok);
 		}
 		//TODO BOS might have been compromised concerning its offset, don't do this here but at a more appropriate point.
-		if (currentRoot.getTokens().get(0) instanceof Bostoken) {
-			currentRoot.getTokens().get(0).setOffset(0);
+		if (currentRoot.getSubNodes().get(0) instanceof Bostoken) {
+			currentRoot.getSubNodes().get(0).setOffset(0);
 		}
 		
 		//If a token was (re-)moved because it's lexeme was joined with another token of 
@@ -620,7 +620,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 			//if the original parent was a direct or indirect child of the current node it can be left there
 			if(!(TbUtil.isAncestorOf(currentTextBlock, tok.getParent()) || currentTextBlock.equals(tok.getParent()))){	
 				tok.setParent(null);
-				currentTextBlock.getTokens().add(index, tok);
+				currentTextBlock.getSubNodes().add(index, tok);
 				TbChangeUtil.updateLengthAscending(currentTextBlock, tok.getLength());
 				TbChangeUtil.updateOffsets(tok, tok.getLength());
 				// increment so that next new tokens will be added behind
@@ -631,7 +631,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 				TbChangeUtil.updateOffsets(tok, lengthDiff);
 			}
 		} else {
-			currentTextBlock.getTokens().add(index, tok);
+			currentTextBlock.getSubNodes().add(index, tok);
 			TbChangeUtil.updateLengthAscending(currentTextBlock, tok.getLength());
 			TbChangeUtil.updateOffsets(tok, tok.getLength());
 			// increment so that next new tokens will be added behind
@@ -722,7 +722,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 			TbUtil.referenceVersions(currentVersion, tb);
 			if (tb.getParent() == null) {
 				// If its the root block then add also the BOS token
-				currentVersion.getTokens().add(
+				currentVersion.getSubNodes().add(
 						createBOSToken(textblocksFactory, Version.CURRENT,
 								getBOSTokenType()));
 			}

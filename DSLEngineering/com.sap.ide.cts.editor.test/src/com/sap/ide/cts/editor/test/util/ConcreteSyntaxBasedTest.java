@@ -8,6 +8,7 @@ import org.junit.BeforeClass;
 
 import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.TCS.TCSPackage;
+import com.sap.furcas.test.util.TcsTestHelper;
 import com.sap.ide.cts.editor.contentassist.TcsModelElementFactory;
 import com.sap.ide.cts.editor.contentassist.TcsModelElementMoinFactory;
 
