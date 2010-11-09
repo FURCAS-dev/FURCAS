@@ -20,6 +20,7 @@ syntax BibtexWithPropertyInits {
 		->key "," ->author{refersTo=name} "," ->attributes{separator = ","}
 		]
 		"}"
+		{{ ->location = lookIn("OCL:'somewhere'") }}
 		;
 	
 	template ->Attribute abstract;
