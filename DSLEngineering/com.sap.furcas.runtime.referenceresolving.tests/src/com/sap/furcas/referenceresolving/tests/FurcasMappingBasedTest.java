@@ -1,19 +1,21 @@
 package com.sap.furcas.referenceresolving.tests;
 
-import java.io.IOException;
-import java.io.InputStream;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-import junit.framework.TestCase;
+import java.io.File;
+import java.util.Set;
 
-import org.antlr.runtime.ANTLRInputStream;
-import org.antlr.runtime.CommonTokenStream;
-import org.antlr.runtime.RecognitionException;
-import org.antlr.runtime.TokenStream;
-import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
-import com.sap.furcas.parser.tcs.stable.TCSLexer;
-import com.sap.furcas.parser.tcs.stable.TCSParser;
+import com.sap.furcas.runtime.parser.ParserFacade;
+import com.sap.furcas.test.base.GeneratedParserBasedTest;
+import com.sap.furcas.test.base.GeneratedParserTestConfiguration;
+import com.sap.furcas.test.base.ParsingHelper;
+import com.sap.furcas.test.base.StubModelAdapter;
+import com.sap.furcas.test.base.StubModelElement;
+import com.sap.furcas.test.fixture.FixtureData;
 
 /**
  * Base class for test cases that use a FURCAS mapping specification (".tcs" file) and based on this
@@ -24,21 +26,38 @@ import com.sap.furcas.parser.tcs.stable.TCSParser;
  * @author Axel Uhl (D043530)
  *
  */
-public abstract class FurcasMappingBasedTest extends TestCase {
-    @Before
-    public void setUp() throws IOException, RecognitionException {
-        TCSParser parser = new TCSParser(getMappingDefinition());
-        ConcreteSyntax syntax = (ConcreteSyntax) parser.main();
-        syntax.eAdapters(); // TODO continue here...
+public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
+    private static final String LANGUAGE = "BibtexWithPropertyInits";
+    private static final File TCS = new File("fixtures/BibtexWithPropertyInits.tcs");
+
+    private static final File[] METAMODELS = { FixtureData.BIBTEXT_METAMODEL, FixtureData.BIBTEXT1_METAMODEL };
+    
+    private static ParsingHelper parsingHelper;
+
+    @BeforeClass
+    public static void setupParser() throws Exception {
+        GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
+        ParserFacade facade = generateParserForLanguage(testConfig, new ClassLookupImpl());
+        parsingHelper = new ParsingHelper(facade);
     }
 
-    /**
-     * Obtains a token stream containing the mapping definition. Presumably, the token stream is
-     * produced by a {@link TCSLexer}.
-     */
-    private TokenStream getMappingDefinition() throws IOException {
-        return new CommonTokenStream(new TCSLexer(new ANTLRInputStream(getMappingDefinitionAsInputStream())));
+    @Test
+    public void testSample1() throws Exception {
+        String sample = "article{" + "  Testing, \"John Doe\"," + "  year = \"2002\"" + "}" + "author = \"John Doe\"."
+        + "author = \"Jane Doll\".";
+        StubModelAdapter stubModelHandler = parsingHelper.parseString(sample, 0);
+        Set<StubModelElement> authors = stubModelHandler.getElementsbyType("BibText::Author");
+        assertEquals(2, authors.size());
+        StubModelElement johnDoe = authors.iterator().next();
+
+        Set<StubModelElement> articles = stubModelHandler.getElementsbyType("BibText::Article");
+        assertEquals(1, articles.size());
+        StubModelElement article = articles.iterator().next();
+
+        // now check the reference was set using the right property name
+        // assertNotNull(johnDoe.get("articles")); StubModelHandler not powerful enough
+        assertNotNull(article.get("author"));
+        assertEquals(johnDoe, article.get("author"));
     }
-    
-    protected abstract InputStream getMappingDefinitionAsInputStream();
+
 }
