@@ -38,7 +38,7 @@ public class TextBlockHouseKeepingCommand extends Command {
  
     @Override
     public void doExecute() {
-	EObject[] allBlocks = getAllTextBlocks(getConnection(), project);
+	EObject[] allBlocks = getAllTextBlocks(getEditingDomain(), project);
 
 	for (EObject refObj : allBlocks) {
 	    TextBlock block = (TextBlock) refObj;
