@@ -431,6 +431,10 @@ public class AdapterJMIHelper {
 
     private URI getMetaElementUri(String[] tokens) {
         EPackage pack = resourceSet.getPackageRegistry().getEPackage(tokens[0]);
+        // TODO this works if the rootPackage happens to be the one sought but fails in all other cases; clarify metamodel lookup strategy!
+        if (pack == null && rootPackage.getName().equals(tokens[0])) {
+        	pack = rootPackage;
+        }
         URI result = null;
         if (pack != null) {
             for (int i = 1; i < tokens.length - 1; i++) {
