@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Incremental Parser Tests
+Bundle-SymbolicName: com.sap.furcas.runtime.parser.incremental.test
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: SAP
+Fragment-Host: com.sap.furcas.runtime.parser.incremental
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.junit;bundle-version="4.8.1",
+ com.sap.furcas.test;bundle-version="1.0.0"
