@@ -807,8 +807,8 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
-		// http://de.hpi.sam.bp2009.OCL
-		createDeAnnotations();
+		// http://www.eclipse.org/emf/2002/Ecore/OCL
+		createOCLAnnotations();
 		// http://schema.omg.org/spec/MOF/2.0/emof.xml
 		createEmofAnnotations();
 	}
@@ -825,8 +825,8 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
 		  (this, 
 		   source, 
 		   new String[] {
-			 "invocationDelegates", "http://de.hpi.sam.bp2009.OCL",
-			 "validationDelegates", "http://de.hpi.sam.bp2009.OCL"
+			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL",
+			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL"
 		   });		
 		addAnnotation
 		  (textBlockEClass.getEOperations().get(0), 
@@ -843,28 +843,28 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
 	}
 
         /**
-	 * Initializes the annotations for <b>http://de.hpi.sam.bp2009.OCL</b>.
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL</b>.
 	 * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-        protected void createDeAnnotations() {
-		String source = "http://de.hpi.sam.bp2009.OCL";				
+	protected void createOCLAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL";				
 		addAnnotation
 		  (textBlockEClass.getEOperations().get(0), 
 		   source, 
 		   new String[] {
-			 "body", "self.subNodes->select(n | n.oclIsKindOf(TextBlock)).oclAsType(TextBlock)"
+			 "body", "self.subNodes->select(n | n.oclIsKindOf(TextBlock)).oclAsType(TextBlock)->asOrderedSet()"
 		   });			
 		addAnnotation
 		  (textBlockEClass.getEOperations().get(1), 
 		   source, 
 		   new String[] {
-			 "body", "self.subNodes->select(n | n.oclIsKindOf(AbstractToken)).oclAsType(AbstractToken)"
+			 "body", "self.subNodes->select(n | n.oclIsKindOf(AbstractToken)).oclAsType(AbstractToken)->asOrderedSet()"
 		   });		
 	}
 
-        /**
+								/**
 	 * Initializes the annotations for <b>http://schema.omg.org/spec/MOF/2.0/emof.xml</b>.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

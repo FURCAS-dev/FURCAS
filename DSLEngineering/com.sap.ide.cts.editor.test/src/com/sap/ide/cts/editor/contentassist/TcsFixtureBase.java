@@ -30,7 +30,7 @@ import com.sap.furcas.metamodel.TCS.Sequence;
 import com.sap.furcas.metamodel.TCS.SequenceInAlternative;
 import com.sap.furcas.metamodel.TCS.Symbol;
 import com.sap.furcas.parsergenerator.common.util.EcoreHelper;
-import com.sap.ide.cts.editor.test.util.StandaloneConnectionBasedTest;
+import com.sap.furcas.test.base.StandaloneConnectionBasedTest;
 
 public class TcsFixtureBase extends StandaloneConnectionBasedTest {
 

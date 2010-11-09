@@ -4,24 +4,24 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="textblocks"
     nsURI="http://www.furcas.org/textblocks" nsPrefix="com.sap.furcas.textblocks">
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-    <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
-    <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="TextBlock" eSuperTypes="#//DocumentNode">
     <eOperations name="getSubBlocks" upperBound="-1" eType="#//TextBlock">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="body"/>
       </eAnnotations>
-      <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-        <details key="body" value="self.subNodes->select(n | n.oclIsKindOf(TextBlock)).oclAsType(TextBlock)"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="body" value="self.subNodes->select(n | n.oclIsKindOf(TextBlock)).oclAsType(TextBlock)->asOrderedSet()"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="getTokens" upperBound="-1" eType="#//AbstractToken">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="body"/>
       </eAnnotations>
-      <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-        <details key="body" value="self.subNodes->select(n | n.oclIsKindOf(AbstractToken)).oclAsType(AbstractToken)"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="body" value="self.subNodes->select(n | n.oclIsKindOf(AbstractToken)).oclAsType(AbstractToken)->asOrderedSet()"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="getAdditionalTemplates" upperBound="-1" eType="ecore:EClass TCS.ecore#//Template"/>
