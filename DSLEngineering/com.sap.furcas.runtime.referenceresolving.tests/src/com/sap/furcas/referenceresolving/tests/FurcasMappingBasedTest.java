@@ -21,6 +21,7 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.modeladaptation.emf.EMFModelAdapter;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
 import com.sap.furcas.runtime.parser.ParserFacade;
@@ -48,6 +49,7 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
     
     private static ParsingHelper parsingHelper;
 	private static ResourceSet resourceSet;
+	private static ConcreteSyntax syntax;
 	private EObject johnDoe;
 	private EObject article;
 	private EClass authorClass;
@@ -58,6 +60,7 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
         resourceSet = testConfig.getSourceConfiguration().getResourceSet();
         ParserFacade facade = generateParserForLanguage(testConfig, new ClassLookupImpl());
+        syntax = facade.getSyntax();
         parsingHelper = new ParsingHelper(facade);
     }
     
@@ -97,6 +100,8 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
 
     @Test
     public void testInitialModel() throws Exception {
+    	assertNotNull(syntax);
+    	assertEquals("BibtexWithPropertyInits", syntax.getName());
         assertNotNull(johnDoe);
         // now check the reference was set using the right property name
         // assertNotNull(johnDoe.get("articles")); StubModelHandler not powerful enough

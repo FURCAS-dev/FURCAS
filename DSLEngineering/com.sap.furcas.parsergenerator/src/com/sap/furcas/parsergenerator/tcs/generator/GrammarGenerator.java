@@ -11,6 +11,7 @@ import java.util.List;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.parsergenerator.GenerationErrorHandler;
 import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
@@ -35,29 +36,29 @@ public class GrammarGenerator {
      * Takes a syntax definition in file form, parses that file and then writes a corresponding ANTLR grammar to the given grammar file.
      * @throws GrammarGenerationException 
      */
-    public static void buildGrammar(GrammarGenerationSourceConfiguration sourceConfiguration,
+    public static ConcreteSyntax buildGrammar(GrammarGenerationSourceConfiguration sourceConfiguration,
             GrammarGenerationTargetConfiguration targetConfiguration, GenerationErrorHandler errorhandler)
             throws GrammarGenerationException {
         
-        buildGrammar(sourceConfiguration, targetConfiguration, errorhandler, /* use default parser super class */null, new NullProgressMonitor());
+        return buildGrammar(sourceConfiguration, targetConfiguration, errorhandler, /* use default parser super class */null, new NullProgressMonitor());
     }
     
     /**
      * Takes a syntax definition in file form, parses that file and then writes a corresponding ANTLR grammar to the given grammar file.
      * @throws GrammarGenerationException 
      */
-    public static void buildGrammar(GrammarGenerationSourceConfiguration sourceConfiguration,
+    public static ConcreteSyntax buildGrammar(GrammarGenerationSourceConfiguration sourceConfiguration,
             GrammarGenerationTargetConfiguration targetConfiguration, GenerationErrorHandler errorhandler, IProgressMonitor monitor)
             throws GrammarGenerationException {
         
-        buildGrammar(sourceConfiguration, targetConfiguration, errorhandler, /* use default parser super class */null, monitor);
+        return buildGrammar(sourceConfiguration, targetConfiguration, errorhandler, /* use default parser super class */null, monitor);
     }
 
     /**
      * Takes a syntax definition in file form, parses that file and then writes a corresponding ANTLR grammar to the given grammar file.
      * @throws GrammarGenerationException 
      */
-    public static void buildGrammar(GrammarGenerationSourceConfiguration sourceConfiguration,
+    public static ConcreteSyntax buildGrammar(GrammarGenerationSourceConfiguration sourceConfiguration,
             GrammarGenerationTargetConfiguration targetConfiguration, GenerationErrorHandler errorhandler,
             Class<? extends ObservableInjectingParser> parserSuperClass, IProgressMonitor monitor) throws GrammarGenerationException {
 
@@ -65,11 +66,12 @@ public class GrammarGenerator {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         try {
             inputStream = new FileInputStream(sourceConfiguration.getSyntaxDefinitionFile());
-            parseSyntaxAndGenerateGrammar(sourceConfiguration, targetConfiguration, parserSuperClass, errorhandler, monitor,
+            return parseSyntaxAndGenerateGrammar(sourceConfiguration, targetConfiguration, parserSuperClass, errorhandler, monitor,
                     inputStream, outputStream);
 
         } catch (SyntaxParsingException e) {
             handleSyntaxParsingException(errorhandler, e);
+            return null;
         } catch (ModelAdapterException e) {
             throw new GrammarGenerationException("Model adapter failed", e);
         } catch (IOException e) {
@@ -88,7 +90,7 @@ public class GrammarGenerator {
         }
     }
 
-    private static void parseSyntaxAndGenerateGrammar(GrammarGenerationSourceConfiguration sourceConfiguration,
+    private static ConcreteSyntax parseSyntaxAndGenerateGrammar(GrammarGenerationSourceConfiguration sourceConfiguration,
             GrammarGenerationTargetConfiguration targetConfiguration, Class<? extends ObservableInjectingParser> parserSuperClass,
             GenerationErrorHandler errorhandler, IProgressMonitor monitor, InputStream inputStream,
             ByteArrayOutputStream outputStream) throws ParserInvokationException, SyntaxParsingException, IOException,
@@ -101,6 +103,7 @@ public class GrammarGenerator {
                 metamodelLookup, targetConfiguration.getParserTargetPackageName());
         GenerationReport report = generator.generateGrammar(sourceConfiguration.getResourceSet(),
                 sourceConfiguration.getReferenceScope(), parserSuperClass);
+        ConcreteSyntax result = generator.getSyntax();
 
         // TODO Not needed for now. Keep it disabled until we have a reasonable way to test
         // writeMappingToFile(targetConfiguration.getMappingTargetFile(), report.getSyntax());
@@ -110,6 +113,7 @@ public class GrammarGenerator {
             File grammarFile = targetConfiguration.getGrammarTargetFile();
             writeGrammarToFile(grammarFile, outputStream, monitor);
         }
+        return result;
     }
 
     private static boolean checkForErrorsAndReport(GenerationReport report, GenerationErrorHandler errorhandler) {
@@ -128,7 +132,7 @@ public class GrammarGenerator {
         return hasErrors;
     }
 
-    private static void writeGrammarToFile(File grammarFile, ByteArrayOutputStream grammarDataStream, @SuppressWarnings("unused") IProgressMonitor mointor) throws IOException {
+    private static void writeGrammarToFile(File grammarFile, ByteArrayOutputStream grammarDataStream, IProgressMonitor mointor) throws IOException {
         if (grammarFile.exists()) {
             grammarFile.delete();
         }
