@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: FURCAS Project Wizard
-Bundle-SymbolicName: com.sap.furcas.ide.projectwizard; singleton:=true
+Bundle-SymbolicName: com.sap.furcas.ide.projectwizard;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.sap.furcas.ide.projectwizard.Activator
 Bundle-Vendor: SAP
@@ -15,4 +15,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Import-Package: com.sap.furcas.utils.projects,
  org.eclipse.emf.ecore,
- org.eclipse.emf.edit.ui.provider
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.emf.edit.ui.provider,
+ org.eclipse.jdt.core
