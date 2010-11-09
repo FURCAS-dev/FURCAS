@@ -23,7 +23,7 @@ public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
     protected StubModel model = new StubModel();
     public String stringLiteralType = "FURCAS::TCS::Literal";
     public Map<String, List<String>> supertypes = new HashMap<String, List<String>>();
-    public String mqlQuery;
+    public String oclQuery;
     public Object queryResult;
 
     /*
@@ -193,9 +193,9 @@ public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
      * @see com.sap.mi.textual.grammar.IModelAdapter#setMQLReference(java.lang.Object , java.lang.String, java.lang.String)
      */
     @Override
-    public Object setOclReference(Object modelElement, String propertyName, Object keyValue, String mqlQuery,
+    public Object setOclReference(Object modelElement, String propertyName, Object keyValue, String oclQuery,
             Object contextObject, Object currentForeachElement) {
-        this.mqlQuery = mqlQuery;
+        this.oclQuery = oclQuery;
         ((StubModelElement) modelElement).set(propertyName, queryResult);
         return queryResult;
     }

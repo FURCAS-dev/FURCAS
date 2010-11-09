@@ -6,11 +6,6 @@
 	</projects>
 	<buildSpec>
 		<buildCommand>
-			<name>com.sap.mi.tools.metamodelbuilder.MetamodelBuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>
 			<arguments>
 			</arguments>
@@ -25,18 +20,9 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
-		<buildCommand>
-			<name>com.sap.mi.fwk.MoinConstraintChecker</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
 	</buildSpec>
 	<natures>
-		<nature>com.sap.mi.tools.metamodelbuilder.metamodelBuildNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
-		<nature>com.sap.tools.japro.japroProjectNature</nature>
 		<nature>org.eclipse.pde.PluginNature</nature>
-		<nature>com.sap.mi.fwk.dcfwk.MoinNature</nature>
-		<nature>com.sap.tc.moin.nwdi.dctype.mm.MoinMetaModelNature</nature>
 	</natures>
 </projectDescription>

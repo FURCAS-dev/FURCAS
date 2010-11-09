@@ -56,7 +56,7 @@ public class TCSMQLTest extends GeneratedParserBasedTest {
         StubModelElement ct = stubModelHandler.getElementsbyType("TCS::ClassTemplate").iterator().next();
         assertEquals(expected, ct.get("operatorList"));
 
-        assertEquals("test 'my' query", stubModelHandler.mqlQuery);
+        assertEquals("test 'my' query", stubModelHandler.oclQuery);
     }
 
 }

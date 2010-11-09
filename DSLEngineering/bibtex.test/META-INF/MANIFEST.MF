@@ -5,4 +5,4 @@ Bundle-SymbolicName: bibtex.test;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-Vendor: SAP AG
 Require-Bundle: bibtex.editor;bundle-version="1.0.0",
- bibtex.metamodel.epi;bundle-version="1.0.0"
+ bibtex.metamodel

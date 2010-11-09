@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>editor.test.metamodel.epi</name>
+	<name>com.sap.furcas.runtime.referenceresolving.tests</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -25,11 +25,4 @@
 		<nature>org.eclipse.pde.PluginNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>xmisrc</name>
-			<type>2</type>
-			<locationURI>DSL_ENGINEERING/editor.test.metamodel</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>
