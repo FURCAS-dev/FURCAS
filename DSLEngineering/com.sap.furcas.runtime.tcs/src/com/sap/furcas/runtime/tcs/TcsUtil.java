@@ -1489,14 +1489,14 @@ public class TcsUtil {
         return results;
     }
 
-    public static Set<Resource> getSyntaxePartitions(ResourceSet connection, String languageId) {
+    public static Set<URI> getSyntaxePartitions(ResourceSet connection, String languageId) {
         ConcreteSyntax cs = getSyntaxByName(connection, languageId);
         if (cs == null) {
             throw new RuntimeException("Concrete syntax with id '" + languageId + "' not found.");
         }
         // TODO for language composition return also all partitions of
         // dependencies
-        return Collections.singleton(((EObject) cs).eResource());
+        return Collections.singleton(((EObject) cs).eResource().getURI());
     }
 
     public static ClassTemplate resolveClassTemplate(List<String> qualifiedName, String mode,

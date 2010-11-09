@@ -17,9 +17,9 @@ import com.sap.furcas.runtime.parser.textblocks.observer.TextBlockProxy;
 
 public class ModelElementFromTextBlocksFactoryImpl implements ModelElementFromTextBlocksFactory {
 
-	private ObservableInjectingParser batchParser;
-	private ReferenceHandler referenceManager;
-	private PartitionAssignmentHandler partitionHandler;
+	private final ObservableInjectingParser batchParser;
+	private final ReferenceHandler referenceManager;
+	private final PartitionAssignmentHandler partitionHandler;
 
 	public ModelElementFromTextBlocksFactoryImpl(ObservableInjectingParser batchParser,
 		ReferenceHandler referenceManager, PartitionAssignmentHandler partitionHandler) {
@@ -67,7 +67,7 @@ public class ModelElementFromTextBlocksFactoryImpl implements ModelElementFromTe
 						// by a reference only template
 						partitionHandler.assignToDefaultPartition((EObject) result);
 					}
-				} else if (result instanceof StructureTypeMockObject) {
+//				} else if (result instanceof StructureTypeMockObject) {
 					// try {
 					// adapterJmiHelper.actualCreateFromMock((StructureTypeMockObject)
 					// result);

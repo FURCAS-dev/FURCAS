@@ -3,15 +3,15 @@ package com.sap.ide.cts.parser.incremental;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.runtime.parser.textblocks.TextBlockFactory;
 import com.sap.furcas.runtime.parser.textblocks.observer.TextBlockProxy;
 
 public class DefaultTextBlockReuseStrategy implements TextBlockReuseStrategy {
 
 	private TextBlockFactory creator;
-	private Collection<TextBlock> changedTbs = new ArrayList<TextBlock>();
+	private final Collection<TextBlock> changedTbs = new ArrayList<TextBlock>();
 
 	@Override
 	public boolean canBeReUsed(AbstractToken candidate, Object newToken) {
@@ -21,7 +21,7 @@ public class DefaultTextBlockReuseStrategy implements TextBlockReuseStrategy {
 	@Override
 	public TbBean reuseTextBlock(TextBlock oldVersion, TextBlockProxy newVersion) {
 		//default is to never reuse 
-		TextBlock newTb = creator.createNewTextBlock(newVersion, oldVersion.getParentBlock());
+		TextBlock newTb = creator.createNewTextBlock(newVersion, oldVersion.getParent());
 		changedTbs.add(newTb);
 		return new TbBean(newTb, true, ReuseType.DELETE);
 	}

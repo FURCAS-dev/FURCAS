@@ -1562,7 +1562,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 		new String[] { "graphics" }));
 	Diagram gd = (Diagram) gpackage1.getPictograms().getDiagram().refCreateInstance();
 	com.sap.mi.gfw.mm.pictograms.ResourceSet gc =  (com.sap.mi.gfw.mm.pictograms.ResourceSet) gpackage1.getPictograms()
-		.getConnection().refCreateInstance();
+		.getEditingDomain().refCreateInstance();
 
 	// DiagramAggregatesConnections ass0Comp = gpackage1.getPictograms(
 	// ).getDiagramAggregatesConnections( );

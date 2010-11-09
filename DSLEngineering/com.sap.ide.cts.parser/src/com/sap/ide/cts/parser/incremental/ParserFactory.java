@@ -4,6 +4,7 @@
 package com.sap.ide.cts.parser.incremental;
 
 import java.util.Collection;
+import java.util.Set;
 
 import org.antlr.runtime.CharStream;
 import org.antlr.runtime.Lexer;
@@ -43,7 +44,7 @@ public interface ParserFactory<P extends ObservableInjectingParser,
     
     public String getLanguageId();
 
-    public Collection<URI> getParserLookupScope(ResourceSet connection);
+    public Set<URI> getParserLookupScope(ResourceSet connection);
 
     public String getSyntaxUUID();
 

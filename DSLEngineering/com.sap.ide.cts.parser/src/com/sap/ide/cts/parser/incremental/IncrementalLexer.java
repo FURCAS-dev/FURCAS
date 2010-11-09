@@ -16,16 +16,16 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.EditingDomain;
 
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.textblocks.Bostoken;
-import com.sap.furcas.metamodel.textblocks.DocumentNode;
-import com.sap.furcas.metamodel.textblocks.Eostoken;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.metamodel.textblocks.TextblocksFactory;
-import com.sap.furcas.metamodel.textblocks.Version;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksFactory;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
@@ -79,8 +79,8 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 	private final List<TextBlock> changedBlocks = new ArrayList<TextBlock>();
 	protected ShortPrettyPrinter shortPrettyPrinter;
 	public IncrementalLexer(LexerAdapter lexerAdapter, IModelElementInvestigator mi,
-			ResourceSet moinConnection, int bosTokenType, int eosTokenType) {
-		super(moinConnection);
+			EditingDomain editingDomain, int bosTokenType, int eosTokenType) {
+		super(editingDomain);
 		this.shortPrettyPrinter = new ShortPrettyPrinter(mi);
 		setBatchLexer(lexerAdapter);
 		getBatchLexer().setIncrementalLexer(this);

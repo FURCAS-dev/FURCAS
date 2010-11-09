@@ -7,7 +7,7 @@ import java.util.List;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.Token;
 
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.runtime.parser.textblocks.ITextBlocksTokenStream;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
@@ -24,7 +24,7 @@ public class ANTLRIncrementalTokenStream extends CommonTokenStream implements
 		ITextBlocksTokenStream {
 
 
-	private List<AbstractToken> offChannelTokens = new ArrayList<AbstractToken>();
+	private final List<AbstractToken> offChannelTokens = new ArrayList<AbstractToken>();
 	private Token lastConsumed;
 	private AbstractToken lastConsumedModelElementToken;
 
@@ -39,6 +39,7 @@ public class ANTLRIncrementalTokenStream extends CommonTokenStream implements
 	/**
 	 * Resets all states to the intial values.
 	 */
+	@Override
 	public void reset(){
 		seek(-1);
 		tokens.clear();
@@ -121,7 +122,7 @@ public class ANTLRIncrementalTokenStream extends CommonTokenStream implements
 	    List<AbstractToken> returnList = new ArrayList<AbstractToken>();
 	    if (endToken != null) { // need to check token offsets to see whether they are before endToken or not
 	        for (Iterator<AbstractToken> iterator = offChannelTokens.iterator(); iterator.hasNext();) {
-	            AbstractToken offChannelToken = (AbstractToken) iterator.next();
+	            AbstractToken offChannelToken = iterator.next();
 	            if (TbUtil.getAbsoluteOffset(offChannelToken) < TbUtil.getAbsoluteOffset(endToken)) {
 	                returnList.add(offChannelToken);
 	            } else { // do not add token
@@ -133,7 +134,7 @@ public class ANTLRIncrementalTokenStream extends CommonTokenStream implements
 	            offChannelTokens.clear();
 	        } else { // can happen for great lookaheads.
 	            for (Iterator<AbstractToken> iterator = returnList.iterator(); iterator.hasNext();) {
-	                AbstractToken addedToken = (AbstractToken) iterator.next();
+	                AbstractToken addedToken = iterator.next();
 	                offChannelTokens.remove(addedToken); 
 	            }
 	        }
@@ -180,6 +181,7 @@ public class ANTLRIncrementalTokenStream extends CommonTokenStream implements
 		//set the local read to back to the start
 	}
 
+	@Override
 	public AbstractToken getLastConsumedToken() {
 	    return this.lastConsumedModelElementToken;
 	}

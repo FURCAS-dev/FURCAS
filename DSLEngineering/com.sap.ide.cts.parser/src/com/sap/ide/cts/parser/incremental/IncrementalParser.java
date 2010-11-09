@@ -1,5 +1,10 @@
 package com.sap.ide.cts.parser.incremental;
 
+import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getSubNodeAt;
+import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getSubNodesSize;
+import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.nextToken;
+import static com.sap.furcas.runtime.textblocks.modifcation.TbMarkingUtil.isEOS;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -12,26 +17,31 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.EditingDomain;
 
-import com.sap.furcas.metamodel.TCS.ClassTemplate;
-import com.sap.furcas.metamodel.TCS.OperatorTemplate;
-import com.sap.furcas.metamodel.TCS.Property;
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.textblocks.DocumentNode;
-import com.sap.furcas.metamodel.textblocks.Eostoken;
-import com.sap.furcas.metamodel.textblocks.OmittedToken;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.metamodel.textblocks.Version;
+import com.sap.emf.oppositeendfinder.OppositeEndFinder;
+import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.Property;
+import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
+import com.sap.furcas.parsergenerator.emf.lookup.QueryBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
+import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.parser.ParsingError;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.parser.textblocks.ITextBlocksTokenStream;
 import com.sap.furcas.runtime.parser.textblocks.ModelElementFromTextBlocksFactory;
+import com.sap.furcas.runtime.parser.textblocks.TbParsingUtil;
 import com.sap.furcas.runtime.parser.textblocks.TextBlockFactory;
 import com.sap.furcas.runtime.parser.textblocks.observer.ParserTextBlocksHandler;
 import com.sap.furcas.runtime.parser.textblocks.observer.TextBlockProxy;
@@ -60,7 +70,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 	
 	protected final ParserFactory<?, ?> parserFactory;
 
-	protected final Collection<URI> additionalCRIScope;
+	protected final Set<URI> additionalCRIScope;
 
 	protected final ObservableInjectingParser batchParser;
 	
@@ -70,7 +80,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 	
 	private final ReferenceHandler referenceHandler;
 
-	private Collection<URI> syntaxPartitions;
+	private Set<URI> syntaxPartitions;
 
 	private TemplateNamingHelper<EObject> namingHelper;
 
@@ -78,17 +88,19 @@ public class IncrementalParser extends IncrementalRecognizer {
 
 	private SyntaxLookup syntaxLookup;
 
-	private ModelElementFromTextBlocksFactory modelElementFactory;
+	private final ModelElementFromTextBlocksFactory modelElementFactory;
 
-	private PartitionAssignmentHandler partitionHandler;
+	private final PartitionAssignmentHandler partitionHandler;
+
+	private final OppositeEndFinder oppositeEndFinder;
 	
-	public IncrementalParser(ResourceSet connection,
+	public IncrementalParser(EditingDomain editingDomain,
 		ParserFactory<?, ?> parserFactory,
 		IncrementalLexer incrementalLexer,
 		ObservableInjectingParser batchParser,
 		TextBlockReuseStrategy reuseStrategy,
-		Collection<URI> additionalCRIScope) {
-        	super(connection);
+		Set<URI> additionalCRIScope, OppositeEndFinder oppositeEndFinder) {
+        	super(editingDomain);
         	this.parserFactory = parserFactory;
         	this.additionalCRIScope = additionalCRIScope;
         	if (!(batchParser.getTokenStream() instanceof ITextBlocksTokenStream)) {
@@ -98,14 +110,17 @@ public class IncrementalParser extends IncrementalRecognizer {
         	}
         	this.tbtokenStream = (ITextBlocksTokenStream) batchParser.getTokenStream();
         	this.batchParser = batchParser;
+        	this.oppositeEndFinder = oppositeEndFinder;
         	this.partitionHandler = new DefaultPartitionAssignmentHandlerImpl();
         	this.referenceHandler = new ReferenceHandlerImpl(batchParser, tbtokenStream);
         	this.modelElementFactory = new ModelElementFromTextBlocksFactoryImpl(
         			batchParser, getReferenceHandler(), partitionHandler);
-        	this.tbFactory = new ReuseAwareTextBlockFactoryImpl(textblocksFactory, reuseStrategy, modelElementFactory);
+        	this.tbFactory = new ReuseAwareTextBlockFactoryImpl(textblocksFactory,
+        			reuseStrategy, modelElementFactory, oppositeEndFinder);
         	this.reuseStrategy = reuseStrategy;
         	this.reuseStrategy.setReferenceHandler(getReferenceHandler());
         	this.reuseStrategy.setTextBlockFactory(tbFactory);
+        	
 	}
 	
 	public TextBlock incrementalParse(TextBlock root) {
@@ -134,12 +149,12 @@ public class IncrementalParser extends IncrementalRecognizer {
 		// if there is a change
 		if (!isEOS(findNextRegion(root))) {
 
-			syntaxPartitions = TcsUtil.getSyntaxePartitions(connection,
+			syntaxPartitions = TcsUtil.getSyntaxePartitions(getEditingDomain().getResourceSet(),
 					parserFactory.getLanguageId());
 			ParserTextBlocksHandler parserTextBlocksHandler = new ParserTextBlocksHandler(
-					tbtokenStream, connection, parserFactory
-							.getMetamodelUri(connection), syntaxPartitions,
-					parserFactory.getParserLookupScope(connection),
+					tbtokenStream, getEditingDomain().getResourceSet(), parserFactory
+							.getMetamodelUri(getEditingDomain().getResourceSet()), syntaxPartitions,
+					parserFactory.getParserLookupScope(getEditingDomain().getResourceSet()),
 					additionalCRIScope);
 			// IParsingObserver originalObserver = batchParser.getObserver();
 			batchParser.setObserver(parserTextBlocksHandler);
@@ -254,8 +269,6 @@ public class IncrementalParser extends IncrementalRecognizer {
 
 				} catch (SyntaxElementException e) {
 					throw new RuntimeException(e);
-				} catch (JmiException e) {
-					throw new RuntimeException(e);
 				} catch (SecurityException e) {
 					throw new RuntimeException(e);
 				} catch (IllegalArgumentException e) {
@@ -339,7 +352,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 	private void setDefaultPartitionFromRoot(TextBlock root) {
 		Resource defaultPartition = null;
 		if (root.getCorrespondingModelElements().size() != 0) {
-			defaultPartition = ((EObject) root
+			defaultPartition = (root
 					.getCorrespondingModelElements().iterator().next())
 					.eResource();
 		} else {
@@ -444,16 +457,17 @@ public class IncrementalParser extends IncrementalRecognizer {
 			// the element that was created for the new textblock has to be
 			// added to the composite of the old one
 			// i.e., the old element has to be deleted as it is obsolete now.
-			if (TcsUtil.isStructureTypeTemplate(result.getType().getParseRule())
-					|| TcsUtil.isReferenceOnly(newVersion.getTemplate())) {
+			if (/*TcsUtil.isStructureTypeTemplate(result.getType().getParseRule())
+					|| */ TcsUtil.isReferenceOnly(newVersion.getTemplate())) {
 				// TODO maybe also do this for non compositely referenced
 				// elements??
 				IModelElementProxy value = null;
-				if (TcsUtil.isStructureTypeTemplate(result.getType()
-						.getParseRule())) {
-					value = newVersion.getCorrespondingModelElementProxies()
-							.iterator().next();
-				} else if (TcsUtil.isReferenceOnly(newVersion.getTemplate())) {
+//				if (TcsUtil.isStructureTypeTemplate(result.getType()
+//						.getParseRule())) {
+//					value = newVersion.getCorrespondingModelElementProxies()
+//							.iterator().next();
+//				} else
+				if (TcsUtil.isReferenceOnly(newVersion.getTemplate())) {
 					value = newVersion.getReferencedElementProxies().iterator()
 							.next();
 				}
@@ -505,7 +519,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 				handleUltraRoot(result, oldVersion);
 			}
 			// the old textblocks should be empty now so delete them
-			oldVersion.refDelete();
+			EcoreUtil.delete(oldVersion);
 		}
 		return result;
 	}
@@ -530,12 +544,13 @@ public class IncrementalParser extends IncrementalRecognizer {
 		        Set<EObject> elementsToDelete = new HashSet<EObject>(1);
 			for (EObject correspondingModelElement : correspondingModelElements) {
 
-				EObject parent = (EObject) correspondingModelElement
-						.refImmediateComposite();
+				EObject parent = correspondingModelElement
+						.eContainer();
 
 				if (parent != null) {
-					IncrementalParsingUtil.CompositeRefAssociationBean compositeFeatureAssocBean = IncrementalParsingUtil.findComposingFeature(
-							parent, correspondingModelElement, connection);
+					IncrementalParsingUtil.CompositeRefAssociationBean compositeFeatureAssocBean = 
+							IncrementalParsingUtil.findComposingFeature(
+							parent, correspondingModelElement, getEditingDomain().getResourceSet());
 
 					if (compositeFeatureAssocBean != null
 							&& compositeFeatureAssocBean.compositeFeatureAssoc != null) {
@@ -556,24 +571,8 @@ public class IncrementalParser extends IncrementalRecognizer {
 							// if(newVersion.getCorrespondingModelElements().indexOf(correspondingNewCandidate)
 							// ==
 							// oldVersion.getCorrespondingModelElements().indexOf(correspondingModelElement)){
-							EReference assignToEnd = null;
-							if (compositeFeatureAssocBean.isParentFirstEnd) {
-								assignToEnd = connection
-										.getJmiHelper()
-										.getAssociationEnds(
-												compositeFeatureAssocBean.compositeFeatureAssoc
-														.refMetaObject())
-										.get(1);
-							} else {
-								assignToEnd = connection
-										.getJmiHelper()
-										.getAssociationEnds(
-												compositeFeatureAssocBean.compositeFeatureAssoc
-														.refMetaObject())
-										.get(0);
-							}
-							if (correspondingNewCandidate.refIsInstanceOf(
-									assignToEnd.getType(), true)) {
+							if (compositeFeatureAssocBean.compositeFeatureAssoc.getEType().isInstance(
+									correspondingNewCandidate)) {
 								correspondingNew.add(correspondingNewCandidate);
 							}
 							// }
@@ -591,16 +590,20 @@ public class IncrementalParser extends IncrementalRecognizer {
 								.contains(correspondingModelElement)) {
 							elementsToDelete.add(correspondingModelElement);
 							// Remove from feature
-							if (compositeFeatureAssocBean.isParentFirstEnd) {
-								compositeFeatureAssocBean.compositeFeatureAssoc
-										.refRemoveLink(parent,
-												correspondingModelElement);
-							} else {
-								compositeFeatureAssocBean.compositeFeatureAssoc
-										.refRemoveLink(
-												correspondingModelElement,
-												parent);
-							}
+//							if (compositeFeatureAssocBean.isParentFirstEnd) {
+								if (compositeFeatureAssocBean.compositeFeatureAssoc.getUpperBound() == 1) { 
+									parent.eUnset(compositeFeatureAssocBean.compositeFeatureAssoc);
+								} else {
+									((Collection<?>)parent.eGet(
+											compositeFeatureAssocBean.compositeFeatureAssoc)).
+											remove(correspondingModelElement);
+								}
+//							} else {
+//								compositeFeatureAssocBean.compositeFeatureAssoc
+//										.refRemoveLink(
+//												correspondingModelElement,
+//												parent);
+//							}
 						}
 						for (EObject correspondingNewElement : correspondingNew) {
 							// only add if it is not contained within another
@@ -614,17 +617,22 @@ public class IncrementalParser extends IncrementalRecognizer {
 							// isOutermostComposite = false;
 							// }
 							// }
-							if (correspondingNewElement.refImmediateComposite() == null) {
-								if (compositeFeatureAssocBean.isParentFirstEnd) {
-									compositeFeatureAssocBean.compositeFeatureAssoc
-											.refAddLink(parent,
-													correspondingNewElement);
+							if (correspondingNewElement.eContainer() == null) {
+//								if (compositeFeatureAssocBean.isParentFirstEnd) {
+								if (compositeFeatureAssocBean.compositeFeatureAssoc.getUpperBound() == 1) { 
+									parent.eSet(compositeFeatureAssocBean.compositeFeatureAssoc,
+											correspondingNewElement);
 								} else {
-									compositeFeatureAssocBean.compositeFeatureAssoc
-											.refAddLink(
-													correspondingNewElement,
-													parent);
+									((Collection<EObject>)parent.eGet(
+											compositeFeatureAssocBean.compositeFeatureAssoc)).
+											add(correspondingNewElement);
 								}
+//								} else {
+//									compositeFeatureAssocBean.compositeFeatureAssoc
+//											.refAddLink(
+//													correspondingNewElement,
+//													parent);
+//								}
 								boolean isInTransientPartition = IncrementalParsingUtil.isInTransientPartition(correspondingNewElement);
 								if (isInTransientPartition) {
 									partitionHandler.assignToPartition(correspondingNewElement, parent);
@@ -632,9 +640,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 							}
 						}
 						if (correspondingNew.size() > 0) {
-							newVersion
-									.assign___PartitionIncludingChildren(oldVersion
-											.eResource());
+							oldVersion.eResource().getContents().add(newVersion);
 						}
 
 					} else {
@@ -663,8 +669,8 @@ public class IncrementalParser extends IncrementalRecognizer {
 				}
 			}
 			for (EObject elementToDelete : elementsToDelete) {
-			    if(elementToDelete.is___Alive()) {
-				elementToDelete.refDelete();
+			    if(EcoreHelper.isAlive(elementToDelete)) {
+			    	EcoreUtil.delete(elementToDelete);
 			    }
 			}
 		}
@@ -684,12 +690,12 @@ public class IncrementalParser extends IncrementalRecognizer {
 	 * @throws UnknownProductionRuleException
 	 */
 	void callBatchParser(TextBlock root) throws SyntaxElementException,
-			JmiException, SecurityException, NoSuchMethodException,
+			SecurityException, NoSuchMethodException,
 			IllegalArgumentException, IllegalAccessException,
 			InvocationTargetException, UnknownProductionRuleException {
 
 		// reconstruct the context
-		TbUtil.constructContext(root, batchParser);
+		TbParsingUtil.constructContext(root, batchParser);
 
 		String ruleName = null;
 		if (root.getType() == null || root.getType().getParseRule() == null) {
@@ -720,7 +726,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 
 	private SyntaxLookup getSyntaxLookup() {
 		if (syntaxLookup == null) {
-			syntaxLookup = new SyntaxLookup(TcsUtil.getSyntaxByName(connection,
+			syntaxLookup = new SyntaxLookup(TcsUtil.getSyntaxByName(getEditingDomain().getResourceSet(),
 					parserFactory.getLanguageId()), null, getResolutionHelper());
 		}
 		return syntaxLookup;
@@ -737,9 +743,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 	private MetaModelElementResolutionHelper<EObject> getResolutionHelper() {
 		if (resolutionHelper == null) {
 			resolutionHelper = new MetaModelElementResolutionHelper<EObject>(
-					new MoinMetaLookup(connection, connection.getSession()
-							.getInnerPartitions(
-									parserFactory.getMetamodelUri(connection))));
+					new QueryBasedEcoreMetaModelLookUp(getEditingDomain().getResourceSet()));
 		}
 		return resolutionHelper;
 	}
@@ -789,6 +793,10 @@ public class IncrementalParser extends IncrementalRecognizer {
     public ReferenceHandler getReferenceHandler() {
         return referenceHandler;
     }
+
+	public OppositeEndFinder getOppositeEndFinder() {
+		return oppositeEndFinder;
+	}
 	
 
 }
