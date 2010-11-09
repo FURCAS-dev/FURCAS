@@ -76,6 +76,7 @@ public class MetaModelElementResolutionHelper<Type extends Object> {
     }
     
     public ResolvedNameAndReferenceBean<Type> resolve(List<String> names) throws MetaModelLookupException {
+    	// TODO if a primitive type such as String is looked up, the null result is re-entered into the cache, causing repeated lookups; try to avoid!
         ResolvedNameAndReferenceBean<Type> cachedBean = resolutionCache.get(names);
         if (cachedBean != null) {
             return cachedBean;

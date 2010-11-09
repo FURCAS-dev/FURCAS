@@ -4,6 +4,7 @@ Bundle-Name: Test
 Bundle-SymbolicName: com.sap.furcas.parsergenerator.test
 Bundle-Version: 1.0.0
 Bundle-Vendor: SAP
+Fragment-Host: com.sap.furcas.parsergenerator;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: com.sap.furcas.parsergenerator.tcs.injection;uses:="com.sap.furcas.metamodel.TCS,com.sap.mi.textual.syntaxmodel.emfadapter",
  com.sap.furcas.parsergenerator.tcs.scenario;uses:="com.sap.mi.textual.grammar,com.sap.ide.cts.editor.test.util,com.sap.mi.textual.test.util",
@@ -21,8 +22,6 @@ Export-Package: com.sap.furcas.parsergenerator.tcs.injection;uses:="com.sap.furc
  com.sap.furcas.parsergenerator.testutils
 Require-Bundle: org.junit;bundle-version="4.8.1",
  com.sap.furcas.test,
- com.sap.furcas.metamodel.tests,
- com.sap.furcas.runtime.common,
- org.antlr
+ com.sap.furcas.metamodel.tests
 Bundle-ClassPath: .,
  generationTemp/
