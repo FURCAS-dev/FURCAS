@@ -566,6 +566,7 @@ public class EcoreEnvironment
 		ETypedElement typedFeature = feature;
 		EAnnotation ann = typedFeature.getEAnnotation(Environment.OCL_NAMESPACE_URI);
 		if (ann == null) {
+			// expects getOperationBody(...) to store the AST in the OCL annotation's contents
 			InvocationBehavior.INSTANCE.getOperationBody(OCL.newInstance(), feature);
 			ann = typedFeature.getEAnnotation(Environment.OCL_NAMESPACE_URI);
 		}
