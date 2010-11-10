@@ -7,7 +7,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.emf.ecore,
  de.hpi.sam.bp2009.ngpm,
  org.eclipse.ocl.ecore,
- com.sap.emf.oppositeendfinder,
+ org.eclipse.emf.oppositeendfinder,
  com.sap.emf.ocl.hiddenopposites,
  de.hpi.sam.bp2009.solution.oclToAst
 Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.model,

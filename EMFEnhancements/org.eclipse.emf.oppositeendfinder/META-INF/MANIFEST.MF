@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Oppositeendfinder
-Bundle-SymbolicName: com.sap.emf.oppositeendfinder
+Bundle-SymbolicName: org.eclipse.emf.oppositeendfinder
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SAP
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
