@@ -20,5 +20,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.ocl;visibility:=reexport,
  org.eclipse.ocl.ecore;visibility:=reexport,
- com.sap.emf.oppositeendfinder
+ org.eclipse.emf.oppositeendfinder
 Bundle-ActivationPolicy: lazy
