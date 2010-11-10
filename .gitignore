@@ -1,6 +1,7 @@
 .svn*
 obj/
 bin/
+target/
 *.suo
 *.user
 *.db
