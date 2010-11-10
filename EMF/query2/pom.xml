@@ -19,12 +19,15 @@
     <module>org.eclipse.emf.query.index.test</module>
     <module>org.eclipse.emf.query.index.ui</module>
     <module>org.eclipse.emf.query2</module>
+	<!--
+
+    <module>org.eclipse.emf.query2.test</module>
+    <module>org.eclipse.emf.query2.test-feature</module>
     <module>org.eclipse.emf.query2-feature</module>
     <module>org.eclipse.emf.query2.index-feature</module>
     <module>org.eclipse.emf.query2.master-feature</module>
-    <module>org.eclipse.emf.query2.test</module>
-    <module>org.eclipse.emf.query2.test-feature</module>
-	<!--
+
+
     <module>org.eclipse.emf.query2.syntax.test</module>
 	org.eclipse.emf.query2.syntax.tools.ui
     <module>org.eclipse.emf.query2.tools.ui</module>
