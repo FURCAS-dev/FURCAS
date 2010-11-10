@@ -8,9 +8,8 @@ Bundle-Vendor: SAP
 Require-Bundle: org.junit;bundle-version="4.8.1",
  org.antlr;bundle-version="3.1.1",
  org.eclipse.core.runtime,
- com.sap.furcas.runtime.common,
- com.sap.furcas.runtime.parser;bundle-version="1.0.0",
- com.sap.furcas.parsergenerator;bundle-version="1.0.0"
+ com.sap.furcas.runtime.common;bundle-version="1.0.0",
+ com.sap.furcas.runtime.parser;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.furcas.test.base,
