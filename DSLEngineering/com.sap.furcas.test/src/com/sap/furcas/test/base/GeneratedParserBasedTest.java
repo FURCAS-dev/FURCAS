@@ -13,7 +13,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.parsergenerator.TCSParserGenerator;
 import com.sap.furcas.parsergenerator.TCSParserGeneratorFactory;
-import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ObservationDirectivesHelper;
 import com.sap.furcas.runtime.common.exceptions.ParserGeneratorInvocationException;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
@@ -31,10 +30,6 @@ import com.sun.tools.javac.Main;
  * 
  */
 public class GeneratedParserBasedTest {
-
-    {{
-            ObservationDirectivesHelper.doAddObserverParts = ObservationDirectivesHelper.ALL;
-    }}
 
     public static ParserFacade generateParserForLanguage(GeneratedParserTestConfiguration testConfig, ClassLookup classLookup) throws GrammarGenerationException, ParserGeneratorInvocationException, InvalidParserImplementationException {
         ConcreteSyntax syntax = generateGrammar(testConfig);
