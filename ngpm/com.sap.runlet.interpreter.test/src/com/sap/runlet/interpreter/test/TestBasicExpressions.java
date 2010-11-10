@@ -21,7 +21,6 @@ import org.eclipse.emf.query.index.ui.IndexFactory;
 import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
 import org.eclipse.emf.query.index.update.UpdateCommand;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
