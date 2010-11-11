@@ -21,7 +21,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.TCS.Token;
-import com.sap.furcas.parsergenerator.tcs.t2m.TCSSyntaxContainerBean;
+import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.SymbolProductionRule;
 import com.sap.furcas.parsergenerator.tcs.t2m.validation.SyntaxDefinitionValidation;
 import com.sap.furcas.parsergenerator.util.LexerStringMemberExtractor;

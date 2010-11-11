@@ -6,7 +6,7 @@
  * @version $Revision: 6272 $
  * @author: $Author: c5106462 $
  *******************************************************************************/
-package com.sap.furcas.parsergenerator.tcs.t2m;
+package com.sap.furcas.parsergenerator;
 
 import java.util.Map;
 import java.util.Set;

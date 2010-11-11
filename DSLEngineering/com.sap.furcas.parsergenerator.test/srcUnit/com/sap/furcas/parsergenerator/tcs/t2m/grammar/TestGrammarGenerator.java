@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
 import com.sap.furcas.metamodel.FURCAS.TCS.stubs.ConcreteSyntaxStub;
-import com.sap.furcas.parsergenerator.tcs.t2m.TCSSyntaxContainerBean;
+import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.ANTLR3WriterStub;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.MetaLookupStub;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;

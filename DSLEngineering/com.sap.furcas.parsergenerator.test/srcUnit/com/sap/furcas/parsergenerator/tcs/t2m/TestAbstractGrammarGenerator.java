@@ -14,6 +14,7 @@ import org.junit.Test;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
 import com.sap.furcas.metamodel.FURCAS.TCS.stubs.ConcreteSyntaxStub;
+import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 
 
 /**
@@ -34,7 +35,7 @@ public class TestAbstractGrammarGenerator {
 
     /**
      * Test method for
-     * {@link com.sap.furcas.parsergenerator.tcs.t2m.TCSSyntaxContainerBean}.
+     * {@link com.sap.furcas.parsergenerator.TCSSyntaxContainerBean}.
      */
     @Test
     public void testBean() {
