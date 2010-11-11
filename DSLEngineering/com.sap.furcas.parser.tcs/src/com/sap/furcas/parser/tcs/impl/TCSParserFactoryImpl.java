@@ -11,7 +11,7 @@ public class TCSParserFactoryImpl implements TCSParserFactory {
         // TODO: make it configurable whether a stable or an unstable version is used        
         return new ParserFacade(
                 com.sap.furcas.parser.tcs.stable.TCSParser.class,
-                com.sap.furcas.parser.tcs.stable.TCSLexer.class, /* syntax */ null); // ConcreteSyntax object not known yet
+                com.sap.furcas.parser.tcs.stable.TCSLexer.class);
     }
 
 }

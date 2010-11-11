@@ -1,6 +1,9 @@
 package com.sap.ide.cts.editor.contentassist.parsinghandler;
 
 
+import generated.TCSLexer;
+import generated.TCSParser;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -23,7 +26,7 @@ public abstract class CtsContentAssistParsingHandlerTestBase extends
 	protected void observeFixture(String path)
 			throws InvalidParserImplementationException, IOException,
 			UnknownProductionRuleException {
-		ParserFacade facade = new ParserFacade(TCSParser.class, TCSLexer.class, syntax);
+		ParserFacade facade = new ParserFacade(TCSParser.class, TCSLexer.class);
 		InputStream in = TcsFixtureBase.class
 				.getResourceAsStream(path + ".dsl");
 		IModelAdapter modelHandler = new TextBlocksAwareModelAdapter(
