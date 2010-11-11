@@ -7,6 +7,7 @@ import junit.framework.TestCase;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.opposites.OppositeEndFinder;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -22,7 +23,6 @@ import com.sap.emf.ocl.trigger.AbstractTriggerable;
 import com.sap.emf.ocl.trigger.TriggerManager;
 import com.sap.emf.ocl.trigger.TriggerManagerFactory;
 import com.sap.emf.ocl.trigger.Triggerable;
-import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
 import company.CompanyFactory;
 import company.CompanyPackage;

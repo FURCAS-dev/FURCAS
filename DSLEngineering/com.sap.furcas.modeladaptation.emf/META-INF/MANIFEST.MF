@@ -13,7 +13,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.core.runtime,
  com.sap.furcas.runtime.common,
  com.sap.emf.ocl.hiddenopposites,
- org.eclipse.emf.oppositeendfinder,
+ org.eclipse.emf.ecore.opposites,
  com.sap.ocl.oppositefinder.query2,
  de.hpi.sam.bp2009.solution.queryContextScopeProvider
 Bundle-ClassPath: 

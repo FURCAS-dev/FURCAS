@@ -11,9 +11,9 @@ import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.opposites.OppositeEndFinder;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
-import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;

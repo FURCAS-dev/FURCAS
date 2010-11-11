@@ -11,13 +11,13 @@ import junit.framework.TestCase;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.NavigationCallExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.junit.Test;
 
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
-import com.sap.emf.oppositeendfinder.DefaultOppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionFromClassTcsPicker;

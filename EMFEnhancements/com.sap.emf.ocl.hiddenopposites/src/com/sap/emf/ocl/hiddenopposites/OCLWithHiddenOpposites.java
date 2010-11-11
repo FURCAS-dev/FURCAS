@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.opposites.OppositeEndFinder;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.SemanticException;
@@ -24,7 +25,6 @@ import org.eclipse.ocl.parser.backtracking.OCLBacktrackingLexer;
 import org.eclipse.ocl.parser.backtracking.OCLBacktrackingParser;
 import org.eclipse.ocl.util.OCLUtil;
 
-import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
 public class OCLWithHiddenOpposites extends OCL {
 

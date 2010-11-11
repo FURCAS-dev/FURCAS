@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.ecore.LiteralExp;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
@@ -21,7 +22,6 @@ import com.sap.emf.ocl.prepared.parameters.ParameterFactory;
 import com.sap.emf.ocl.prepared.parameters.ParameterFinder;
 import com.sap.emf.ocl.prepared.parameters.ParameterNotFoundException;
 import com.sap.emf.ocl.util.OclHelper;
-import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
 /**
  * Similar to a JDBC prepared statement, where parameters can be set to specific values before executing it,
