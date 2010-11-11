@@ -20,6 +20,8 @@ import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 
 /**
+ * The SyntaxParser parses a TCS file and returns a TCSSyntaxContainerBean that contains the ConcreteSyntax.
+ * It is used by the {@link TCSParsergenerator}.
  * 
  * @author Sebastian Schlag (D049672)
  * 

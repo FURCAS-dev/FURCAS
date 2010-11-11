@@ -38,10 +38,10 @@ public class GrammarGenerator {
      */
     public static void buildGrammar(GrammarGenerationSourceConfiguration sourceConfiguration,
             GrammarGenerationTargetConfiguration targetConfiguration, GenerationErrorHandler errorhandler,
-            TCSSyntaxContainerBean containerBean) throws GrammarGenerationException {
+            TCSSyntaxContainerBean syntaxBean) throws GrammarGenerationException {
 
         buildGrammar(sourceConfiguration, targetConfiguration, errorhandler, /* use default parser super class */null,
-                new NullProgressMonitor(), containerBean);
+                new NullProgressMonitor(), syntaxBean);
     }
 
     /**
@@ -52,10 +52,10 @@ public class GrammarGenerator {
      */
     public static void buildGrammar(GrammarGenerationSourceConfiguration sourceConfiguration,
             GrammarGenerationTargetConfiguration targetConfiguration, GenerationErrorHandler errorhandler,
-            IProgressMonitor monitor, TCSSyntaxContainerBean containerBean) throws GrammarGenerationException {
+            IProgressMonitor monitor, TCSSyntaxContainerBean syntaxBean) throws GrammarGenerationException {
 
         buildGrammar(sourceConfiguration, targetConfiguration, errorhandler, /* use default parser super class */null, monitor,
-                containerBean);
+                syntaxBean);
     }
 
     /**
@@ -67,12 +67,12 @@ public class GrammarGenerator {
     public static void buildGrammar(GrammarGenerationSourceConfiguration sourceConfiguration,
             GrammarGenerationTargetConfiguration targetConfiguration, GenerationErrorHandler errorhandler,
             Class<? extends ObservableInjectingParser> parserSuperClass, IProgressMonitor monitor,
-            TCSSyntaxContainerBean containerBean) throws GrammarGenerationException {
+            TCSSyntaxContainerBean syntaxBean) throws GrammarGenerationException {
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         try {
             generateGrammar(sourceConfiguration, targetConfiguration, parserSuperClass, errorhandler, monitor, outputStream,
-                    containerBean);
+                    syntaxBean);
 
         } catch (SyntaxParsingException e) {
             handleSyntaxParsingException(errorhandler, e);
@@ -94,7 +94,7 @@ public class GrammarGenerator {
     private static void generateGrammar(GrammarGenerationSourceConfiguration sourceConfiguration,
             GrammarGenerationTargetConfiguration targetConfiguration,
             Class<? extends ObservableInjectingParser> parserSuperClass, GenerationErrorHandler errorhandler,
-            IProgressMonitor monitor, ByteArrayOutputStream outputStream, TCSSyntaxContainerBean containerBean)
+            IProgressMonitor monitor, ByteArrayOutputStream outputStream, TCSSyntaxContainerBean syntaxBean)
             throws ParserInvokationException, SyntaxParsingException, IOException, ModelAdapterException,
             GrammarGenerationException {
 
@@ -102,7 +102,7 @@ public class GrammarGenerator {
                 sourceConfiguration.getReferenceScope());
 
         ModelBasedTCSGrammarGenerator modelBasedGenerator = new ModelBasedTCSGrammarGenerator(outputStream, metamodelLookup,
-                targetConfiguration.getParserTargetPackageName(), containerBean);
+                targetConfiguration.getParserTargetPackageName(), syntaxBean);
 
         GenerationReport report = modelBasedGenerator.generateGrammar(sourceConfiguration.getResourceSet(),
                 sourceConfiguration.getReferenceScope(), parserSuperClass);

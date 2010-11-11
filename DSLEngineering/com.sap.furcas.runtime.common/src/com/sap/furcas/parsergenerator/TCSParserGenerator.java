@@ -13,14 +13,13 @@ import com.sap.furcas.runtime.common.exceptions.ParserInvokationException;
  */
 public interface TCSParserGenerator {
 
-    public void generateGrammarFromSyntax(GrammarGenerationSourceConfiguration sourceConfiguration,
-            GrammarGenerationTargetConfiguration targetConfiguration, GenerationErrorHandler errorhandler,
-            TCSSyntaxContainerBean containerBean) throws GrammarGenerationException;
+    public TCSSyntaxContainerBean parseSyntax(GrammarGenerationSourceConfiguration sourceConfiguration, File syntaxDefFile) throws ParserInvokationException;
+
+    public void generateGrammarFromSyntax(TCSSyntaxContainerBean syntaxBean,
+            GrammarGenerationSourceConfiguration sourceConfiguration, GrammarGenerationTargetConfiguration targetConfiguration,
+            GenerationErrorHandler errorhandler) throws GrammarGenerationException;
 
     public void generateParserFromGrammar(GrammarGenerationTargetConfiguration targetConfiguration,
             GenerationErrorHandler errorhandler);
-
-    public TCSSyntaxContainerBean parseSyntax(GrammarGenerationSourceConfiguration sourceConfiguration, File syntaxDefFile)
-            throws ParserInvokationException;
 
 }
