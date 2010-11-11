@@ -1,5 +1,7 @@
 package com.sap.furcas.parsergenerator.tcs.generator;
 
+import java.io.File;
+
 import com.sap.furcas.parsergenerator.GenerationErrorHandler;
 import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
@@ -25,8 +27,9 @@ public class TCSParserGeneratorImpl implements TCSParserGenerator {
     }
 
     @Override
-    public TCSSyntaxContainerBean parseSyntax(GrammarGenerationSourceConfiguration sourceConfiguration) throws ParserInvokationException {
-        return SyntaxParser.parse(sourceConfiguration);
+    public TCSSyntaxContainerBean parseSyntax(GrammarGenerationSourceConfiguration sourceConfiguration, File syntaxDefFile) throws ParserInvokationException{
+        return SyntaxParser.parse(sourceConfiguration, syntaxDefFile);
     }
+
 
 }

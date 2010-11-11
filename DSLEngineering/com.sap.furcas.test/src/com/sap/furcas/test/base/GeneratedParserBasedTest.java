@@ -10,39 +10,52 @@ import java.io.PrintStream;
 import org.antlr.runtime.Lexer;
 
 import com.sap.furcas.parsergenerator.GrammarGenerationException;
+import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
 import com.sap.furcas.parsergenerator.TCSParserGenerator;
 import com.sap.furcas.parsergenerator.TCSParserGeneratorFactory;
+import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.common.exceptions.ParserGeneratorInvocationException;
+import com.sap.furcas.runtime.common.exceptions.ParserInvokationException;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sun.tools.javac.Main;
 
 /**
- * A Test base class that allows to generate a language specific parser from
- * a given TCS file.
+ * A Test base class that allows to generate a language specific parser from a given TCS file.
  * 
- * The base class is configured (what to create, where to create it, ...) with the
- * help {@link GeneratedParserTestConfiguration}. 
+ * The base class is configured (what to create, where to create it, ...) with the help {@link GeneratedParserTestConfiguration}.
  * 
  * @author Stephan Erb (d049157)
  * 
  */
 public class GeneratedParserBasedTest {
 
-    public static ParserFacade generateParserForLanguage(GeneratedParserTestConfiguration testConfig, ClassLookup classLookup) throws GrammarGenerationException, ParserGeneratorInvocationException, InvalidParserImplementationException {
-        generateGrammar(testConfig);
+    public static ParserFacade generateParserForLanguage(GeneratedParserTestConfiguration testConfig, ClassLookup classLookup, TCSSyntaxContainerBean containerBean)
+            throws GrammarGenerationException, ParserGeneratorInvocationException, InvalidParserImplementationException {
+        generateGrammar(testConfig, containerBean);
         generateParser(testConfig);
         compileParser(testConfig);
-        
+
         return loadParserFacade(testConfig, classLookup);
     }
 
-    protected final static void generateGrammar(GeneratedParserTestConfiguration testConfig) throws GrammarGenerationException {
+    public static TCSSyntaxContainerBean parseSyntax(GeneratedParserTestConfiguration testConfig, File syntaxDefFile)
+            throws ParserGeneratorInvocationException, ParserInvokationException {
+
+        TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
+        TCSSyntaxContainerBean containerBean = generator.parseSyntax(testConfig.getSourceConfiguration(),
+                testConfig.getSyntaxDefinitionFile());
+        return containerBean;
+
+    }
+
+    protected final static void generateGrammar(GeneratedParserTestConfiguration testConfig, TCSSyntaxContainerBean containerBean) throws GrammarGenerationException {
         SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
         try {
             TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
-            generator.generateGrammarFromSyntax(testConfig.getSourceConfiguration(), testConfig.getTargetConfiguration(), errorHandler);
+            generator.generateGrammarFromSyntax(testConfig.getSourceConfiguration(), testConfig.getTargetConfiguration(),
+                    errorHandler, containerBean);
         } catch (ParserGeneratorInvocationException e) {
             e.printStackTrace();
             fail("Failed to generate grammar:" + e.getMessage());
@@ -93,15 +106,18 @@ public class GeneratedParserBasedTest {
         // try loading compiled classes
         try {
             @SuppressWarnings("unchecked")
-            Class<? extends Lexer> lexerclass = (Class<? extends Lexer>) classLookup.loadClass(testConfig.getClassNameOfCompiledLexer());
+            Class<? extends Lexer> lexerclass = (Class<? extends Lexer>) classLookup.loadClass(testConfig
+                    .getClassNameOfCompiledLexer());
             @SuppressWarnings("unchecked")
-            Class<? extends ObservableInjectingParser> parserclass = (Class<? extends ObservableInjectingParser>) classLookup.loadClass(testConfig.getClassNameOfCompiledParser());
+            Class<? extends ObservableInjectingParser> parserclass = (Class<? extends ObservableInjectingParser>) classLookup
+                    .loadClass(testConfig.getClassNameOfCompiledParser());
             ParserFacade facade = new ParserFacade(parserclass, lexerclass);
             return facade;
 
         } catch (ClassNotFoundException cnfe) { // catching from Class.forName
-            throw new ParserGeneratorInvocationException("Can't find generated classes " + testConfig.getClassNameOfCompiledLexer() + " and "
-                    + testConfig.getClassNameOfCompiledLexer() + ". Try to do an Eclipse refresh on the project.", cnfe);
+            throw new ParserGeneratorInvocationException("Can't find generated classes "
+                    + testConfig.getClassNameOfCompiledLexer() + " and " + testConfig.getClassNameOfCompiledLexer()
+                    + ". Try to do an Eclipse refresh on the project.", cnfe);
         }
     }
 
@@ -133,20 +149,20 @@ public class GeneratedParserBasedTest {
     }
 
     // FIXME: do cleanup somewhere...
-//    @AfterClass
-//    public static void teardown() {
-//        if (generationHelper != null) {
-//            // delete generated Files
-//            File genDir = generationHelper.getGenerationDir();
-//            assertTrue(genDir.getAbsolutePath() + " is not a directory", genDir.isDirectory());
-//            File[] files = genDir.listFiles();
-//            for (File file : files) {
-//                if (file.getName().endsWith(".class")) { // keeping grammars for
-//                    // lookup
-//                    file.delete();
-//                }
-//            }
-//        }
-//    }
+    // @AfterClass
+    // public static void teardown() {
+    // if (generationHelper != null) {
+    // // delete generated Files
+    // File genDir = generationHelper.getGenerationDir();
+    // assertTrue(genDir.getAbsolutePath() + " is not a directory", genDir.isDirectory());
+    // File[] files = genDir.listFiles();
+    // for (File file : files) {
+    // if (file.getName().endsWith(".class")) { // keeping grammars for
+    // // lookup
+    // file.delete();
+    // }
+    // }
+    // }
+    // }
 
 }

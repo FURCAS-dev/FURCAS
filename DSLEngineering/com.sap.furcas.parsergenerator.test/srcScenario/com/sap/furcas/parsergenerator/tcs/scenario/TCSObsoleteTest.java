@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.common.util.QualifiedNamesHelper;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.test.base.GeneratedParserBasedTest;
@@ -33,7 +34,8 @@ public class TCSObsoleteTest extends GeneratedParserBasedTest {
     @BeforeClass
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
-        ParserFacade facade = generateParserForLanguage(testConfig, new ClassLookupImpl());
+        TCSSyntaxContainerBean containerBean = parseSyntax(testConfig, testConfig.getSyntaxDefinitionFile());
+        ParserFacade facade = generateParserForLanguage(testConfig, new ClassLookupImpl(), containerBean);
         parsingHelper = new ParsingHelper(facade);
     }
 
