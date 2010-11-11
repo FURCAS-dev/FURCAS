@@ -31,9 +31,9 @@ import com.sun.tools.javac.Main;
  */
 public class GeneratedParserBasedTest {
 
-    public static ParserFacade generateParserForLanguage(GeneratedParserTestConfiguration testConfig, ClassLookup classLookup, TCSSyntaxContainerBean containerBean)
+    public static ParserFacade generateParserForLanguage(TCSSyntaxContainerBean syntaxBean, GeneratedParserTestConfiguration testConfig, ClassLookup classLookup)
             throws GrammarGenerationException, ParserGeneratorInvocationException, InvalidParserImplementationException {
-        generateGrammar(testConfig, containerBean);
+        generateGrammar(testConfig, syntaxBean);
         generateParser(testConfig);
         compileParser(testConfig);
 
@@ -44,18 +44,18 @@ public class GeneratedParserBasedTest {
             throws ParserGeneratorInvocationException, ParserInvokationException {
 
         TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
-        TCSSyntaxContainerBean containerBean = generator.parseSyntax(testConfig.getSourceConfiguration(),
+        TCSSyntaxContainerBean syntaxBean = generator.parseSyntax(testConfig.getSourceConfiguration(),
                 testConfig.getSyntaxDefinitionFile());
-        return containerBean;
+        return syntaxBean;
 
     }
 
-    protected final static void generateGrammar(GeneratedParserTestConfiguration testConfig, TCSSyntaxContainerBean containerBean) throws GrammarGenerationException {
+    protected final static void generateGrammar(GeneratedParserTestConfiguration testConfig, TCSSyntaxContainerBean syntaxBean) throws GrammarGenerationException {
         SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
         try {
             TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
-            generator.generateGrammarFromSyntax(testConfig.getSourceConfiguration(), testConfig.getTargetConfiguration(),
-                    errorHandler, containerBean);
+            generator.generateGrammarFromSyntax(syntaxBean, testConfig.getSourceConfiguration(),
+                    testConfig.getTargetConfiguration(), errorHandler);
         } catch (ParserGeneratorInvocationException e) {
             e.printStackTrace();
             fail("Failed to generate grammar:" + e.getMessage());

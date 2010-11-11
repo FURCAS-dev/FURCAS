@@ -31,7 +31,7 @@ public class TCSBootstrap {
     
     private static GrammarGenerationSourceConfiguration sourceConfiguration;
     private static GrammarGenerationTargetConfiguration targetConfiguration;
-    private static TCSSyntaxContainerBean containerBean;
+    private static TCSSyntaxContainerBean syntaxBean;
 
     
     @BeforeClass
@@ -49,8 +49,8 @@ public class TCSBootstrap {
 
         TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
         try {
-            containerBean = generator.parseSyntax(sourceConfiguration, new File(SYNTAXDEFINITION));
-            generator.generateGrammarFromSyntax(sourceConfiguration, targetConfiguration, errorHandler, containerBean);
+            syntaxBean = generator.parseSyntax(sourceConfiguration, new File(SYNTAXDEFINITION));
+            generator.generateGrammarFromSyntax(syntaxBean, sourceConfiguration, targetConfiguration, errorHandler);
             assertFalse("Must have completed without (critical) errors", errorHandler.hasFailedWithError());
         } catch (ParserInvokationException e) {
             fail("Failed to parse syntax:" + e.getMessage());
@@ -67,7 +67,7 @@ public class TCSBootstrap {
         SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
 
         TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
-        generator.generateGrammarFromSyntax(sourceConfiguration, targetConfiguration, errorHandler,containerBean);
+        generator.generateGrammarFromSyntax(syntaxBean, sourceConfiguration, targetConfiguration,errorHandler);
         
         assertFalse("Must have completed without (critical) errors", errorHandler.hasFailedWithError());
     }

@@ -27,8 +27,8 @@ public class XPathGenerationTest extends GeneratedParserBasedTest {
     @BeforeClass
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
-        TCSSyntaxContainerBean containerBean = parseSyntax(testConfig, testConfig.getSyntaxDefinitionFile());
-        ParserFacade facade = generateParserForLanguage(testConfig, new ClassLookupImpl(), containerBean);
+        TCSSyntaxContainerBean syntaxBeanyntaxBean = parseSyntax(testConfig, testConfig.getSyntaxDefinitionFile());
+        ParserFacade facade = generateParserForLanguage(syntaxBeanyntaxBean, testConfig, new ClassLookupImpl());
         parsingHelper = new ParsingHelper(facade);
     }
 

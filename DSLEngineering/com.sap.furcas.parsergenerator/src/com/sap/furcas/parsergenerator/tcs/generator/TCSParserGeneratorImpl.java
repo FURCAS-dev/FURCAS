@@ -11,12 +11,17 @@ import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.common.exceptions.ParserInvokationException;
 
 public class TCSParserGeneratorImpl implements TCSParserGenerator {
+    
+    @Override
+    public TCSSyntaxContainerBean parseSyntax(GrammarGenerationSourceConfiguration sourceConfiguration, File syntaxDefFile) throws ParserInvokationException{
+        return SyntaxParser.parse(sourceConfiguration, syntaxDefFile);
+    }
 
     @Override
-    public void generateGrammarFromSyntax(GrammarGenerationSourceConfiguration sourceConfiguration,
-            GrammarGenerationTargetConfiguration targetConfiguration, GenerationErrorHandler errorhandler, TCSSyntaxContainerBean containerBean)
+    public void generateGrammarFromSyntax(TCSSyntaxContainerBean syntaxBean,
+            GrammarGenerationSourceConfiguration sourceConfiguration, GrammarGenerationTargetConfiguration targetConfiguration, GenerationErrorHandler errorhandler)
             throws GrammarGenerationException {
-        GrammarGenerator.buildGrammar(sourceConfiguration, targetConfiguration, errorhandler, containerBean);
+        GrammarGenerator.buildGrammar(sourceConfiguration, targetConfiguration, errorhandler, syntaxBean);
     }
 
     @Override
@@ -25,11 +30,5 @@ public class TCSParserGeneratorImpl implements TCSParserGenerator {
 
         ParserGenerator.buildParser(targetConfiguration.getGrammarTargetFile(), errorhandler);
     }
-
-    @Override
-    public TCSSyntaxContainerBean parseSyntax(GrammarGenerationSourceConfiguration sourceConfiguration, File syntaxDefFile) throws ParserInvokationException{
-        return SyntaxParser.parse(sourceConfiguration, syntaxDefFile);
-    }
-
 
 }

@@ -175,9 +175,9 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
                 GrammarGenerationTargetConfiguration targetConfig = new GrammarGenerationTargetConfiguration(getPackageName(grammarFile), convertIFileToFile(grammarFile));
 
                 TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
-                TCSSyntaxContainerBean containerBean = generator.parseSyntax(sourceConfig, convertIFileToFile(syntaxDefFile));
-                generator.generateGrammarFromSyntax(sourceConfig, targetConfig, new ResourceMarkingGenerationErrorHandler(
-                        syntaxDefFile), containerBean);
+                TCSSyntaxContainerBean syntaxBean = generator.parseSyntax(sourceConfig, convertIFileToFile(syntaxDefFile));
+                generator.generateGrammarFromSyntax(syntaxBean, sourceConfig, targetConfig, new ResourceMarkingGenerationErrorHandler(
+                                syntaxDefFile));
                 
                 if (grammarFile.exists()) {
                     generator.generateParserFromGrammar(targetConfig, new ResourceMarkingGenerationErrorHandler(grammarFile));

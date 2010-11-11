@@ -45,10 +45,10 @@ public class GrammarGenerationTest {
         GrammarGenerationSourceConfiguration sourceConfiguration = new GrammarGenerationSourceConfiguration(
                 createResourceSet(), createReferenceScope());
 
-        TCSSyntaxContainerBean containerBean = SyntaxParser.parse(sourceConfiguration,sample);
+        TCSSyntaxContainerBean syntaxBean = SyntaxParser.parse(sourceConfiguration,sample);
         ModelBasedTCSGrammarGenerator modelBasedGenerator = new ModelBasedTCSGrammarGenerator(out,
                 new FileBasedEcoreMetaModelLookUp(FixtureData.BIBTEXT_METAMODEL, FixtureData.BIBTEXT1_METAMODEL), "generated",
-                containerBean);
+                syntaxBean);
 
         modelBasedGenerator.generateGrammar(createResourceSet(), createReferenceScope(), null);
         out.flush();
@@ -77,9 +77,9 @@ public class GrammarGenerationTest {
         GrammarGenerationSourceConfiguration sourceConfiguration = new GrammarGenerationSourceConfiguration(
                 createResourceSet(), createReferenceScope());
 
-        TCSSyntaxContainerBean containerBean = SyntaxParser.parse(sourceConfiguration,sample);
+        TCSSyntaxContainerBean syntaxBean = SyntaxParser.parse(sourceConfiguration,sample);
         ModelBasedTCSGrammarGenerator modelBasedGenerator = new ModelBasedTCSGrammarGenerator(out,
-                new FileBasedEcoreMetaModelLookUp(FixtureData.EXPRESSION_METAMODEL), "generated", containerBean);
+                new FileBasedEcoreMetaModelLookUp(FixtureData.EXPRESSION_METAMODEL), "generated", syntaxBean);
 
         modelBasedGenerator.generateGrammar(createResourceSet(), createReferenceScope(), null);
         out.flush();

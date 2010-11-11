@@ -15,23 +15,23 @@ import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 
 public class ModelBasedTCSGrammarGenerator extends AbstractTCSGrammarGenerator {
 
-    private TCSSyntaxContainerBean containerBean;
+    private TCSSyntaxContainerBean syntaxBean;
 
     public ModelBasedTCSGrammarGenerator(OutputStream out, IMetaModelLookup<?> lookup, String targetPackage,
-            TCSSyntaxContainerBean containerBean) {
+            TCSSyntaxContainerBean syntaxBean) {
         super(out, lookup, targetPackage);
-        this.containerBean = containerBean;
+        this.syntaxBean = syntaxBean;
     }
 
     @Override
     protected TCSSyntaxContainerBean doGetSyntaxDef(ResourceSet resourceSet, Set<URI> metamodelURIs)
             throws SyntaxParsingException, IOException, ModelAdapterException, ParserInvokationException {
-        return this.containerBean;
+        return this.syntaxBean;
     }
 
     @Override
     protected TCSSyntaxContainerBean doGetSyntaxDef(ResourceSet resourceSet, Set<URI> metamodelURIs, String languageId)
             throws SyntaxParsingException, IOException, ModelAdapterException, ParserInvokationException {
-        return this.containerBean;
+        return this.syntaxBean;
     }
 }
