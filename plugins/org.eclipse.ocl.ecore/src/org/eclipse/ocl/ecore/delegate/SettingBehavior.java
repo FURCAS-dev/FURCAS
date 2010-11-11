@@ -60,6 +60,10 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 	}
 
 	public OCLExpression getFeatureBody(OCL ocl, EStructuralFeature structuralFeature) {
+		OCLExpression result = getExpressionFromAnnotationsOf(structuralFeature, INITIAL_CONSTRAINT_KEY, DERIVATION_CONSTRAINT_KEY);
+		if (result != null){
+			return result;
+		}
 		String expr = EcoreUtil.getAnnotation(structuralFeature, OCLDelegateDomain.OCL_DELEGATE_URI, DERIVATION_CONSTRAINT_KEY);
 		if (expr == null) {
 			expr = EcoreUtil.getAnnotation(structuralFeature, OCLDelegateDomain.OCL_DELEGATE_URI, INITIAL_CONSTRAINT_KEY);
@@ -83,6 +87,7 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 		if (specification == null) {
 			return null;
 		}
+		saveExpressionInAnnotation(structuralFeature, constraint);
 		return (OCLExpression) specification.getBodyExpression();
 	}
 	

@@ -20,12 +20,18 @@ package org.eclipse.ocl.ecore.delegate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.ExpressionInOCL;
+import org.eclipse.ocl.ecore.OCLExpression;
 
 /**
  * A basic implementation of a delegated behavior.
@@ -126,4 +132,63 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 	public String toString() {
 		return getName() + " => " + getFactoryClass().getName(); //$NON-NLS-1$
 	}
+
+	/**
+	 * Looks for a {@link Constraint} element attached to the
+	 * {@link Environment#OCL_NAMESPACE_URI} annotation of
+	 * <code>modelElement</code> at the same position at which the
+	 * {@link OCLDelegateDomain#OCL_DELEGATE_URI} annotation holds a detail
+	 * using any of the <code>constraintKeys</code>. For example, if there is a
+	 * detail at position 3 with key "body" and "body" is part of
+	 * <code>constraintKeys</code> then the contents element at position 3 of
+	 * the {@link Environment#OCL_NAMESPACE_URI} annotation is returned if it is
+	 * a {@link Constraint} element. If a {@link Constraint} element is found,
+	 * the {@link OCLExpression} obtained by calling
+	 * {@link Constraint#getSpecification() getSpecification()}.
+	 * {@link ExpressionInOCL#getBodyExpression() getBodyExpression()} on the
+	 * constraint is returned.
+	 * 
+	 * @return <code>null</code> if no {@link Constraint} is found in the
+	 *         position expected
+	 * @since 3.1
+	 */
+    protected OCLExpression getExpressionFromAnnotationsOf(EModelElement modelElement, String... constraintKeys) {
+    	EAnnotation anno = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+    	EAnnotation ast = modelElement.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+    	if (anno != null && ast != null){
+    		int pos = -1;
+    		int count = 0;
+    		for (Map.Entry<String, String> constraint : anno.getDetails()) {
+				for (String constraintKey : constraintKeys) {
+					if (constraint.getKey().equals(constraintKey)) {
+						pos = count;
+						break;
+					}
+				}
+    			count++;
+    		}
+    		if (pos != -1) {
+    			if (ast.getContents().size() > pos) {
+    				EObject contentElement = ast.getContents().get(pos);
+    				if (contentElement instanceof Constraint) {
+    					return (OCLExpression) ((Constraint) contentElement).getSpecification().getBodyExpression();
+    				}
+    			}
+    		}
+    	}
+    	return null;
+    }
+
+    /**
+	 * @since 3.1
+	 */
+    protected void saveExpressionInAnnotation(EModelElement modelElement, Constraint constraint) {
+    	EAnnotation a = modelElement.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+    	if (a == null){
+    		a = EcoreFactory.eINSTANCE.createEAnnotation();
+    		a.setEModelElement(modelElement);
+    		a.setSource(Environment.OCL_NAMESPACE_URI);
+    	}
+    	a.getContents().add(constraint);
+    }
 }

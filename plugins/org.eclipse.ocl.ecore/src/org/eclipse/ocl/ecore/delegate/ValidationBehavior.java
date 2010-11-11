@@ -17,8 +17,15 @@
 package org.eclipse.ocl.ecore.delegate;
 
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.ExpressionInOCL;
+import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.delegate.ValidationDelegate.Factory;
 
 /**
@@ -58,4 +65,39 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 	public Class<ValidationDelegate.Factory.Registry> getRegistryClass() {
 		return ValidationDelegate.Factory.Registry.class;
 	}
+
+        /**
+		 * @since 3.1
+		 */
+        public OCLExpression getInvariant(EModelElement cls, String constraintName, OCL ocl){
+            OCLExpression result = getExpressionFromAnnotationsOf(cls, constraintName);
+            if (result != null){
+                    return result;
+            }
+            OCL.Helper helper = ocl.createOCLHelper();
+            if (!(cls instanceof EClassifier)){
+                    return null;
+            }
+            helper.setContext((EClassifier)cls);
+            String expr = EcoreUtil.getAnnotation(cls, OCLDelegateDomain.OCL_DELEGATE_URI, constraintName);
+            if (expr == null){
+                    return null;
+            }
+            Constraint constraint;
+            try {
+                    constraint = helper.createInvariant(expr);
+            } catch (ParserException e) {
+                    throw new OCLDelegateException(e.getLocalizedMessage(), e);
+            }
+            if (constraint == null) {
+                    return null;
+            }
+            ExpressionInOCL specification = (ExpressionInOCL) constraint.getSpecification();
+            if (specification == null) {
+                    return null;
+            }
+            saveExpressionInAnnotation(cls, constraint);
+            return (OCLExpression) specification.getBodyExpression();
+    }
+
 }

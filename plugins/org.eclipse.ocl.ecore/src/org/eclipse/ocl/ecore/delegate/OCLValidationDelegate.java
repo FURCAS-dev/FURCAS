@@ -19,12 +19,16 @@ package org.eclipse.ocl.ecore.delegate;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OCL.Helper;
@@ -94,20 +98,45 @@ public class OCLValidationDelegate implements ValidationDelegate
 		return "<" + delegateDomain.getURI() + ":validate> " + eClassifier.getEPackage().getName() + "::" + eClassifier.getName(); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
+	private OCLExpression getExpressionFromAnnotationsOf(ENamedElement element, String constraintName) {
+		EAnnotation anno = element.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		EAnnotation ast = element.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+		if (anno != null && ast != null){
+			int pos = -1;
+			int count = 0;
+			for (Map.Entry<String, String> constraint : anno.getDetails()) {
+				if (constraint.getKey().equals(constraintName)) {
+					pos = count;
+					break;
+				}
+				count++;
+			}
+			if (pos != -1) {
+				if (ast.getContents().size() > pos) {
+					return (OCLExpression) ((Constraint)ast.getContents().get(pos)).getSpecification().getBodyExpression();
+				}
+			}
+		}
+		return null;
+	}
+	
 	public boolean validate(EClass eClass, EObject eObject,
 			Map<Object, Object> context, EOperation invariant, String expression) {
-		if (invariantOperationMap == null) {
-			invariantOperationMap = new HashMap<EOperation, OCLExpression>();
-		}
-		OCLExpression query = invariantOperationMap.get(invariant);
-		if ((query == null) && (constraintNameMap != null)) {
-			query = constraintNameMap.get(invariant.getName());
-		}
-		if ((query == null) & !invariantOperationMap.containsKey(invariant)) {
-			try {
-				query = createQuery(expression);
-			} finally {
-				invariantOperationMap.put(invariant, query);
+		OCLExpression query = getExpressionFromAnnotationsOf(eClass, invariant.getName());
+		if (query == null){	  
+			if (invariantOperationMap == null) {
+				invariantOperationMap = new HashMap<EOperation, OCLExpression>();
+			}
+			query = invariantOperationMap.get(invariant);
+			if ((query == null) && (constraintNameMap != null)) {
+				query = constraintNameMap.get(invariant.getName());
+			}
+			if ((query == null) & !invariantOperationMap.containsKey(invariant)) {
+				try {
+					query = createQuery(expression);
+				} finally {
+					invariantOperationMap.put(invariant, query);
+				}
 			}
 		}
 		return check(eObject, invariant.getName(), query);
@@ -115,15 +144,18 @@ public class OCLValidationDelegate implements ValidationDelegate
 
 	public boolean validate(EClass eClass, EObject eObject,
 			Map<Object, Object> context, String constraint, String expression) {
-		if (constraintNameMap == null) {
-			constraintNameMap = new HashMap<String, OCLExpression>();
-		}
-		OCLExpression query = constraintNameMap.get(constraint);
-		if ((query == null) & !constraintNameMap.containsKey(constraint)) {
-			try {
-				query = createQuery(expression);
-			} finally {
-				constraintNameMap.put(constraint, query);
+		OCLExpression query = getExpressionFromAnnotationsOf(eClass, constraint);
+		if (query == null){
+			if (constraintNameMap == null) {
+				constraintNameMap = new HashMap<String, OCLExpression>();
+			}
+			query = constraintNameMap.get(constraint);
+			if ((query == null) & !constraintNameMap.containsKey(constraint)) {
+				try {
+					query = createQuery(expression);
+				} finally {
+					constraintNameMap.put(constraint, query);
+				}
 			}
 		}
 		return check(eObject, constraint, query);
@@ -131,15 +163,18 @@ public class OCLValidationDelegate implements ValidationDelegate
 
 	public boolean validate(EDataType eDataType, Object value,
 			Map<Object, Object> context, String constraint, String expression) {
-		if (constraintNameMap == null) {
-			constraintNameMap = new HashMap<String, OCLExpression>();
-		}
-		OCLExpression query = constraintNameMap.get(constraint);
-		if ((query == null) & !constraintNameMap.containsKey(constraint)) {
-			try {
-				query = createQuery(expression);
-			} finally {
-				constraintNameMap.put(constraint, query);
+		OCLExpression query = getExpressionFromAnnotationsOf(eDataType, constraint);
+		if (query == null){
+			if (constraintNameMap == null) {
+				constraintNameMap = new HashMap<String, OCLExpression>();
+			}
+			query = constraintNameMap.get(constraint);
+			if ((query == null) & !constraintNameMap.containsKey(constraint)) {
+				try {
+					query = createQuery(expression);
+				} finally {
+					constraintNameMap.put(constraint, query);
+				}
 			}
 		}
 		return check(value, constraint, query);

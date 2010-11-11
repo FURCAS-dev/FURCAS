@@ -40,7 +40,11 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.AbstractEnvironment;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
+import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.TypeResolver;
+import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
+import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.ecore.delegate.OCLDelegateException;
 import org.eclipse.ocl.ecore.internal.EcoreForeignMethods;
 import org.eclipse.ocl.ecore.internal.OCLFactoryImpl;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
@@ -527,24 +531,59 @@ public class EcoreEnvironment
 	public Constraint getDefinition(Object feature) {
     	Constraint result = null;
 		ETypedElement typedFeature = (ETypedElement) feature;
-    	
-    	EAnnotation ann = typedFeature.getEAnnotation(
-    			Environment.OCL_NAMESPACE_URI);
-    	
-    	if ((ann != null) && !ann.getContents().isEmpty()) {
-    		for (EObject o : ann.getContents()) {
-    			if ((o instanceof Constraint)
-    					&& UMLReflection.DEFINITION.equals(((Constraint) o).getStereotype())) {
-    				
-    				result = (Constraint) o;
-    				break;
-    			}
-    		}
+    	EAnnotation ann = typedFeature.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+    	if ((ann != null)) {
+			if (!ann.getContents().isEmpty()) {
+				for (EObject o : ann.getContents()) {
+					if ((o instanceof Constraint) && UMLReflection.DEFINITION.equals(((Constraint) o).getStereotype())) {
+						result = (Constraint) o;
+						break;
+					}
+				}
+			} else {
+				String expr = EcoreUtil.getAnnotation(typedFeature, OCLDelegateDomain.OCL_DELEGATE_URI, InvocationBehavior.BODY_CONSTRAINT_KEY);
+				if (expr == null) {
+					return null;
+				}
+				try {
+					result = OCL.newInstance().createOCLHelper().createBodyCondition(expr);
+					ann.getContents().add(result);
+				} catch (ParserException e) {
+					throw new OCLDelegateException(e.getLocalizedMessage(), e);
+				}
+			}
     	}
     	
     	return result;
 	}
 	
+	/**
+	 * @since 3.1
+	 */
+	public Constraint getBodyCondition(EOperation feature) {
+		Constraint result = null;
+		result = super.getBodyCondition(feature);
+		if (result != null){
+			return result;
+		}
+		ETypedElement typedFeature = feature;
+		EAnnotation ann = typedFeature.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+		if (ann == null) {
+			// expects getOperationBody(...) to store the AST in the OCL annotation's contents
+			InvocationBehavior.INSTANCE.getOperationBody(OCL.newInstance(), feature);
+			ann = typedFeature.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+		}
+		if ((ann != null) && !ann.getContents().isEmpty()) {
+			for (EObject o : ann.getContents()) {
+				if ((o instanceof Constraint)&& UMLReflection.BODY.equals(((Constraint) o).getStereotype())) {
+					result = (Constraint) o;
+					break;
+				}
+			}
+		}
+	return result;
+	}	
+
 	/**
 	 * Looks in the EMF registry for a package with the specified qualified
 	 * package name. Uses the global package registry.
