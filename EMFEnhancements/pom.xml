@@ -26,7 +26,6 @@
     <module>com.sap.emf.ocl.impactanalysis.example.tests</module>
     <module>com.sap.emf.ocl.prepared</module>
     <module>com.sap.emf.ocl.util</module>
-    <module>com.sap.emf.oppositeendfinder</module>
     <module>com.sap.ocl.oppositefinder.query2</module>
     <module>com.sap.ocl.oppositefinder.query2.test</module>
     <module>de.hpi.sam.activityDiagram</module>
@@ -48,6 +47,7 @@
     <module>de.hpi.sam.bp2009.solution.scopeProvider.tests</module>
     <module>de.hpi.sam.bp2009.solution.testutils</module>
     <module>de.hpi.sam.petriNet</module>
+    <module>org.eclipse.emf.ecore.opposites</module>
   </modules>
 
 </project>
