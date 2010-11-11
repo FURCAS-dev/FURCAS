@@ -1,215 +1,229 @@
 package com.sap.ide.refactoring.core.textual;
 
-import java.util.Collection;
+import static com.sap.ide.refactoring.core.textual.TextBlockRefactoringUtil.findCorrespondingTextBlocks;
+import static com.sap.ide.refactoring.core.textual.TextBlockRefactoringUtil.findReferencedTextBlocks;
+import static com.sap.ide.refactoring.core.textual.TextBlockRefactoringUtil.findTextBlockRootDomainRootObjectTuples;
+
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.ide.refactoring.core.textual.ModelElementDocumentNodeChangeDescriptor.ChangeType;
 
-import com.sap.furcas.metamodel.textblocks.DocumentNode;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
-import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
-import com.sap.mi.textual.parsing.textblocks.TbUtil;
-
-
+/**
+ * For a set of changed model elements, determines the minimal TextBlock trees that need
+ * to be pretty printed.
+ * 
+ * We are interested in a minimal tree because a) we want to retain formatting
+ * as far as possible and b) it does not make sense to e.g. re-print a TextBlock if we already
+ * pretty printed it's composite parent.
+ * 
+ * See {@link TextBlocksNeedingPrettyPrintChangeListener}
+ * 
+ * TODO: Refactor this class. Looks like we can drop the whole root tuple handling
+ * and can just use the rootblock instead. Should kill some looping.
+ * 
+ * @author Stephan Erb (d049157)
+ * 
+ */
 public class TextBlockInChangeCalculator {
 
-    public static class ModelElementTextBlockTuple {
+    private final Map<RootElementTextBlockTuple, List<ModelElementDocumentNodeChangeDescriptor>> correspondingTextBlocksPerRootObject = new HashMap<RootElementTextBlockTuple, List<ModelElementDocumentNodeChangeDescriptor>>();
+    private final Map<RootElementTextBlockTuple, List<ModelElementDocumentNodeChangeDescriptor>> referencingTextBlocksPerRootObject = new HashMap<RootElementTextBlockTuple, List<ModelElementDocumentNodeChangeDescriptor>>();
 
-	public final EObject modelElement;
-	public final TextBlock textBlock;
-
-	public ModelElementTextBlockTuple(EObject modelElement, TextBlock textBlock) {
-	    this.modelElement = modelElement;
-	    this.textBlock = textBlock;
+    public void add(RefObject modelElement, ChangeType changeType) {
+	if (modelElement instanceof DocumentNode) {
+	    // this is a shortcut. We only care about real model elements that
+	    // changed, but about no events
+	    // related to textblocks that happened during pretty printing
+	    return;
 	}
 
-	@Override
-	public int hashCode() {
-	    final int prime = 31;
-	    int result = 1;
-	    result = prime * result + ((modelElement == null) ? 0 : modelElement.hashCode());
-	    result = prime * result + ((textBlock == null) ? 0 : textBlock.hashCode());
-	    return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-	    if (this == obj)
-		return true;
-	    if (obj == null)
-		return false;
-	    if (getClass() != obj.getClass())
-		return false;
-	    ModelElementTextBlockTuple other = (ModelElementTextBlockTuple) obj;
-	    if (modelElement == null) {
-		if (other.modelElement != null)
-		    return false;
-	    } else if (!modelElement.equals(other.modelElement))
-		return false;
-	    if (textBlock == null) {
-		if (other.textBlock != null)
-		    return false;
-	    } else if (!textBlock.equals(other.textBlock))
-		return false;
-	    return true;
+	if (changeType.equals(ChangeType.CREATED)) {
+	    // TODO: If a new element is created and it is a root element, we
+	    // might want to automatically
+	    // generate a TB tree. Otherwise now preview is shown and the TB
+	    // model will only be created if an editor is hopened.
+	} else {
+	    addCorrespondingTextBlocks(modelElement, changeType);
+	    addReferencedTextBlocks(modelElement, changeType);
 	}
     }
 
-    private Map<EObject, List<ModelElementTextBlockTuple>> correspondingTextBlocksPerRootObject = new HashMap<EObject, List<ModelElementTextBlockTuple>>();
-    private Map<EObject, List<ModelElementTextBlockTuple>> referencingTextBlocksPerRootObject = new HashMap<EObject, List<ModelElementTextBlockTuple>>();
-
-
-    public void add(EObject modelElement) {
-	for (EObject decoratedDomainRootObject : findDecoratedDomainRootObjects(modelElement)) {
-
-	    for (DocumentNode tbToAdd : findCorrespondingTextBlocks(modelElement)) {
-		if (!isValidTextBlock(tbToAdd)) {
-		    continue;
-		}
-		mergeTextBlockIntoList(modelElement, tbToAdd, getCorrespondingTextBlockListOfComposite(decoratedDomainRootObject));
+    private void addCorrespondingTextBlocks(RefObject modelElement, ChangeType changeType) {
+	for (DocumentNode tbToAdd : findCorrespondingTextBlocks(modelElement)) {
+	    if (!isValidTextBlock(tbToAdd)) {
+		continue;
 	    }
-
-	    for (DocumentNode tbToAdd : findReferencedTextBlocks(modelElement)) {
-		if (!isValidTextBlock(tbToAdd)) {
-		    continue;
+	    // FIXME: looks like fetching the rootobject tuples is not needed. 
+	    for (RootElementTextBlockTuple rootTuple : findTextBlockRootDomainRootObjectTuples(tbToAdd)) {
+		if (tbToAdd instanceof AbstractToken) {
+		    // Individual tokens cannot be pretty printed. Add their
+		    // parent instead.
+		    addParentTextBlockForToken(modelElement, changeType, rootTuple);
+		} else {
+		    assert tbToAdd instanceof TextBlock;
+		    mergeTextBlockIntoList(modelElement, tbToAdd, changeType, getCorrespondingTextBlockListOfComposite(rootTuple));
 		}
-		mergeTextBlockIntoList(modelElement, tbToAdd, getReferencingTextBlockListOfComposite(decoratedDomainRootObject));
+	    }
+	}
+    }
+
+    private void addParentTextBlockForToken(RefObject modelElement, ChangeType changeType, RootElementTextBlockTuple rootTuple) {
+	// The following is just a heuristic and could probably be improved.
+	// (it might happen that we pretty print to much)
+	RefObject parent = findParentWithCorrespondingTextBlocks(modelElement, rootTuple);
+	for (DocumentNode documentNode : findCorrespondingTextBlocks(parent)) {
+	    // filter AbstractTokens to prevent recursion
+	    if (documentNode instanceof TextBlock) {
+		mergeTextBlockIntoList(parent, documentNode, changeType, getCorrespondingTextBlockListOfComposite(rootTuple));
+	    }
+	}
+    }
+
+    private void addReferencedTextBlocks(RefObject modelElement, ChangeType changeType) {
+	for (DocumentNode tbToAdd : findReferencedTextBlocks(modelElement)) {
+	    if (!isValidTextBlock(tbToAdd)) {
+		continue;
+	    }
+	    // FIXME: looks like fetching the rootobject tuples is not needed. 
+	    for (RootElementTextBlockTuple rootTuple : findTextBlockRootDomainRootObjectTuples(tbToAdd)) {
+		mergeTextBlockIntoList(modelElement, tbToAdd, changeType, getReferencingTextBlockListOfComposite(rootTuple));
 	    }
 	}
     }
 
     private boolean isValidTextBlock(DocumentNode tbToAdd) {
 	if (!TbUtil.getNewestVersion(tbToAdd).equals(tbToAdd)) {
-	    System.out.println("Skipping TB because it was of an older version");
 	    return false;
 	}
 	return true;
     }
 
-    private void mergeTextBlockIntoList(EObject modelElement, DocumentNode tbToAdd, List<ModelElementTextBlockTuple> textBlocks) {
+    private void mergeTextBlockIntoList(RefObject modelElement, DocumentNode tbToAdd, ChangeType changeType,
+	    List<ModelElementDocumentNodeChangeDescriptor> textBlocks) {
 	int insertPosition = findInsertPosition(tbToAdd, textBlocks);
 	if (insertPosition >= 0) {
 	    removeChildBlocks(insertPosition, tbToAdd, textBlocks);
-	    TextBlock textBlock = tbToAdd instanceof TextBlock ? (TextBlock) tbToAdd : TbNavigationUtil.getParentBlock(tbToAdd);
-	    textBlocks.add(insertPosition, new ModelElementTextBlockTuple(modelElement, textBlock));
+	    textBlocks.add(insertPosition, new ModelElementDocumentNodeChangeDescriptor(modelElement, tbToAdd, changeType));
 	} else {
 	    // No need to add tbToAdd. We have already stored a parent Block.
 	}
     }
 
-    private int findInsertPosition(DocumentNode tbToAdd, List<ModelElementTextBlockTuple> textBlocks) {
-	ListIterator<ModelElementTextBlockTuple> iter = textBlocks.listIterator();
+    private int findInsertPosition(DocumentNode tbToAdd, List<ModelElementDocumentNodeChangeDescriptor> textBlocks) {
+	ListIterator<ModelElementDocumentNodeChangeDescriptor> iter = textBlocks.listIterator();
 	int insertPosition = 0;
 	while (iter.hasNext()) {
 	    insertPosition = iter.nextIndex();
-	    DocumentNode currentTb = iter.next().textBlock;
-	    if (currentTb.getOffset() < tbToAdd.getOffset()) {
+	    DocumentNode currentTb = iter.next().documentNode;
+	    if (currentTb.getAbsoluteOffset() < tbToAdd.getAbsoluteOffset()) {
 		// currentTb is left of our insert position
-		// If iter.hasNext() is false we will spring out of the while lopp in the next run.
-		// In this special case the following incrementation is required, because we want to insert
+		// If iter.hasNext() is false we will spring out of the while
+		// lopp in the next run.
+		// In this special case the following incrementation is
+		// required, because we want to insert
 		// behind the last element, not before.
 		insertPosition++;
 		continue;
 	    } else {
-		// currentTb is right of our insert position
-		if (iter.hasPrevious()) {
-		    DocumentNode tbLeftOfInsertPosition = iter.previous().textBlock;
-		    int coveredRange = tbLeftOfInsertPosition.getOffset() + tbLeftOfInsertPosition.getLength();
-		    if (coveredRange >= tbToAdd.getOffset() + tbToAdd.getLength()) {
-			// tbToAdd is a subBlock of tbLeftOfInsertPosition. No need to add tbToAdd
-			return -1;
-		    } else {
-			return insertPosition;
-		    }
-		} else {
-		    assert insertPosition == 0 : "Only the first element cannot have a previous element.";
-		    return 0;
-		}
+		// found the insert position
+		break;
 	    }
 	}
-	assert insertPosition == 0 || insertPosition == textBlocks.size();
-	return insertPosition;
+	// Check if the block really needs to be added
+	if (iter.hasPrevious()) {
+	    DocumentNode tbLeftOfInsertPosition = iter.previous().documentNode;
+	    int coveredRange = tbLeftOfInsertPosition.getAbsoluteOffset() + tbLeftOfInsertPosition.getLength();
+	    if (coveredRange >= tbToAdd.getAbsoluteOffset() + tbToAdd.getLength()) {
+		// tbToAdd is a subBlock of tbLeftOfInsertPosition. No need to
+		// add tbToAdd
+		return -1;
+	    } else {
+		return insertPosition;
+	    }
+	} else {
+	    assert insertPosition == 0 : "Only the first element cannot have a previous element.";
+	    return 0;
+	}
     }
 
-    private void removeChildBlocks(int insertPosition, DocumentNode tbToAdd, List<ModelElementTextBlockTuple> textBlocks) {
+    private void removeChildBlocks(int insertPosition, DocumentNode tbToAdd,
+	    List<ModelElementDocumentNodeChangeDescriptor> textBlocks) {
 	if (insertPosition == textBlocks.size()) {
 	    // insert at the end, so there is nothing behind us and therefore
 	    // nothing to delete.
 	} else {
-	    ListIterator<ModelElementTextBlockTuple> iter = textBlocks.listIterator(insertPosition);
+	    ListIterator<ModelElementDocumentNodeChangeDescriptor> iter = textBlocks.listIterator(insertPosition);
 	    while (iter.hasNext()) {
-		DocumentNode tbRightOfInsertPosition = iter.next().textBlock;
-		int coveredRange = tbRightOfInsertPosition.getOffset() + tbRightOfInsertPosition.getLength();
-		if (coveredRange <= tbToAdd.getOffset() + tbToAdd.getLength()) {
-		    // tbToAdd is a superBlock of tbRightOfInsertPosition. We can delete it.
+		DocumentNode tbRightOfInsertPosition = iter.next().documentNode;
+		int coveredRange = tbRightOfInsertPosition.getAbsoluteOffset() + tbRightOfInsertPosition.getLength();
+		if (coveredRange <= tbToAdd.getAbsoluteOffset() + tbToAdd.getLength()) {
+		    // tbToAdd is a superBlock of tbRightOfInsertPosition. We
+		    // can delete it.
 		    iter.remove();
 		}
 	    }
 	}
     }
 
-    private Collection<EObject> findDecoratedDomainRootObjects(EObject modelElement) {
-	ResourceSet co = modelElement.get___Connection();
-	DocumentNodeReferencesCorrespondingModelElement assoc = co.getPackage(TextblocksPackage.PACKAGE_DESCRIPTOR).getDocumentNodeReferencesCorrespondingModelElement();
-	Set<EObject> roots = new HashSet<EObject>();
-	for (DocumentNode node : assoc.getDocumentNode(modelElement)) {
-	    DocumentNode tbRootNode = TbNavigationUtil.getUltraRoot(node);
-	    roots.addAll(assoc.getCorrespondingModelElements(tbRootNode));
+    /**
+     * Find a suitable parent for pretty printing (this implies that the parent
+     * has corresponding ModelElements)
+     */
+    private RefObject findParentWithCorrespondingTextBlocks(RefObject modelElement, RootElementTextBlockTuple rootTuple) {
+	RefObject parent = (RefObject) modelElement.refImmediateComposite();
+	while (parent != null) {
+	    for (DocumentNode parentBlock : findCorrespondingTextBlocks(parent)) {
+		if (TbNavigationUtil.getUltraRoot(parentBlock).equals(rootTuple.textBlock)) {
+		    return parent;
+		}
+	    }
+	    parent = (RefObject) parent.refImmediateComposite();
 	}
-	return roots;
+	return rootTuple.modelElement; // fallback if we did not return earlier
     }
 
-    private List<ModelElementTextBlockTuple> getCorrespondingTextBlockListOfComposite(EObject decoratedDomainRootObject) {
-	if (!correspondingTextBlocksPerRootObject.containsKey(decoratedDomainRootObject)) {
-	    correspondingTextBlocksPerRootObject.put(decoratedDomainRootObject, new LinkedList<ModelElementTextBlockTuple>());
+    private List<ModelElementDocumentNodeChangeDescriptor> getCorrespondingTextBlockListOfComposite(
+	    RootElementTextBlockTuple rootTuple) {
+	if (!correspondingTextBlocksPerRootObject.containsKey(rootTuple)) {
+	    correspondingTextBlocksPerRootObject.put(rootTuple, new LinkedList<ModelElementDocumentNodeChangeDescriptor>());
 	}
-	return correspondingTextBlocksPerRootObject.get(decoratedDomainRootObject);
+	return correspondingTextBlocksPerRootObject.get(rootTuple);
     }
 
-    private List<ModelElementTextBlockTuple> getReferencingTextBlockListOfComposite(EObject decoratedDomainRootObject) {
-	if (!referencingTextBlocksPerRootObject.containsKey(decoratedDomainRootObject)) {
-	    referencingTextBlocksPerRootObject.put(decoratedDomainRootObject, new LinkedList<ModelElementTextBlockTuple>());
+
+    private List<ModelElementDocumentNodeChangeDescriptor> getReferencingTextBlockListOfComposite(
+	    RootElementTextBlockTuple rootTuple) {
+	if (!referencingTextBlocksPerRootObject.containsKey(rootTuple)) {
+	    referencingTextBlocksPerRootObject.put(rootTuple, new LinkedList<ModelElementDocumentNodeChangeDescriptor>());
 	}
-	return referencingTextBlocksPerRootObject.get(decoratedDomainRootObject);
+	return referencingTextBlocksPerRootObject.get(rootTuple);
     }
 
-    private Collection<DocumentNode> findCorrespondingTextBlocks(EObject modelElement) {
-	ResourceSet co = modelElement.get___Connection();
-	DocumentNodeReferencesCorrespondingModelElement assoc = co.getPackage(TextblocksPackage.PACKAGE_DESCRIPTOR).getDocumentNodeReferencesCorrespondingModelElement();
-	return assoc.getDocumentNode(modelElement);
-    }
-
-    private Collection<DocumentNode> findReferencedTextBlocks(EObject modelElement) {
-	ResourceSet co = modelElement.get___Connection();
-	DocumentNodeReferencedElement assoc = co.getPackage(TextblocksPackage.PACKAGE_DESCRIPTOR).getDocumentNodeReferencedElement();
-	return assoc.getDocumentNode(modelElement);
-    }
-
-    public Map<EObject, List<ModelElementTextBlockTuple>> getTextBlocksNeedingPrettyPrinting() {
-	Map<EObject, List<ModelElementTextBlockTuple>> cpy = new HashMap<EObject, List<ModelElementTextBlockTuple>>(correspondingTextBlocksPerRootObject);
-	for (Entry<EObject, List<ModelElementTextBlockTuple>> entry : cpy.entrySet()) {
-	    cpy.put(entry.getKey(), new LinkedList<ModelElementTextBlockTuple>(entry.getValue()));
-	}
-	return cpy;
-
-    }
-
-    public Map<EObject, List<ModelElementTextBlockTuple>> getTextBlocksNeedingShortPrettyPrinting() {
-	Map<EObject, List<ModelElementTextBlockTuple>> cpy = new HashMap<EObject, List<ModelElementTextBlockTuple>>(referencingTextBlocksPerRootObject);
-	for (Entry<EObject, List<ModelElementTextBlockTuple>> entry : cpy.entrySet()) {
-	    cpy.put(entry.getKey(), new LinkedList<ModelElementTextBlockTuple>(entry.getValue()));
+    public Map<RootElementTextBlockTuple, List<ModelElementDocumentNodeChangeDescriptor>> getTextBlocksNeedingPrettyPrinting() {
+	Map<RootElementTextBlockTuple, List<ModelElementDocumentNodeChangeDescriptor>> cpy = new HashMap<RootElementTextBlockTuple, List<ModelElementDocumentNodeChangeDescriptor>>(
+		correspondingTextBlocksPerRootObject);
+	for (Entry<RootElementTextBlockTuple, List<ModelElementDocumentNodeChangeDescriptor>> entry : cpy.entrySet()) {
+	    cpy.put(entry.getKey(), new LinkedList<ModelElementDocumentNodeChangeDescriptor>(entry.getValue()));
 	}
 	return cpy;
     }
 
+
+    public Map<RootElementTextBlockTuple, List<ModelElementDocumentNodeChangeDescriptor>> getTextBlocksNeedingShortPrettyPrinting() {
+	Map<RootElementTextBlockTuple, List<ModelElementDocumentNodeChangeDescriptor>> cpy = new HashMap<RootElementTextBlockTuple, List<ModelElementDocumentNodeChangeDescriptor>>(
+		referencingTextBlocksPerRootObject);
+	for (Entry<RootElementTextBlockTuple, List<ModelElementDocumentNodeChangeDescriptor>> entry : cpy.entrySet()) {
+	    cpy.put(entry.getKey(), new LinkedList<ModelElementDocumentNodeChangeDescriptor>(entry.getValue()));
+	}
+	return cpy;
+    }
 
 }

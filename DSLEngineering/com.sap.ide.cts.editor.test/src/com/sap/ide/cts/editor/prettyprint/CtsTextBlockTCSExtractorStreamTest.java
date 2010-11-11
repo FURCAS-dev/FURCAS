@@ -8,35 +8,26 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-<<<<<<< HEAD
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.textblocks.Bostoken;
-import com.sap.furcas.metamodel.textblocks.Eostoken;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
-=======
-import textblocks.AbstractToken;
-import textblocks.Bostoken;
-import textblocks.Eostoken;
-import textblocks.TextBlock;
-import textblocks.TextblocksPackage;
-
-import com.sap.furcas.test.base.StandaloneConnectionBasedTest;
-import com.sap.furcas.textual.textblocks.model.TextBlocksModel;
-import com.sap.furcas.textual.textblocks.testutils.TextblocksTestHelper;
->>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
+import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
+import com.sap.ide.cts.editor.prettyprint.textblocks.TextBlockTCSExtractorStream;
 import com.sap.mi.tcs.parser.TcsParserFactory;
+import com.sap.mi.textual.parsing.textblocks.TextblocksTestHelper;
 
 public class CtsTextBlockTCSExtractorStreamTest extends
 		StandaloneConnectionBasedTest {
 
 	protected TextblocksPackage pack = null;
-	protected CtsTextBlockTCSExtractorStream stream = null;
+	protected TextBlockTCSExtractorStream stream = null;
 
 	@Before
 	public void initStream() {
 		pack = connection.getPackage(TextblocksPackage.PACKAGE_DESCRIPTOR);
-		stream = new CtsTextBlockTCSExtractorStream(pack, null,
+		stream = new TextBlockTCSExtractorStream(pack, null,
 				new TcsParserFactory());
 	}
 
@@ -83,7 +74,7 @@ public class CtsTextBlockTCSExtractorStreamTest extends
 
 		String refString = "a false\"a(%tok%\"\n\n \\\"%token%\\\"\n\n 2000( PrimitiveTypes::String ";
 
-		TextBlock rootBlock = stream.getRootBlock();
+		TextBlock rootBlock = stream.getPrintedResultRootBlock();
 
 		assertEquals(refString, rootBlock.getCachedString());
 		assertEquals(62, rootBlock.getLength());
@@ -299,7 +290,7 @@ public class CtsTextBlockTCSExtractorStreamTest extends
 
 		stream.close();
 
-		assertEquals(null, stream.getRootBlock());
+		assertEquals(null, stream.getPrintedResultRootBlock());
 	}
 
 	@Test
@@ -349,7 +340,7 @@ public class CtsTextBlockTCSExtractorStreamTest extends
 
 		stream.close();
 
-		TextBlock rootBlock = stream.getRootBlock();
+		TextBlock rootBlock = stream.getPrintedResultRootBlock();
 
 		assertEquals("", rootBlock.getCachedString());
 		assertEquals(0, rootBlock.getLength());
@@ -408,7 +399,7 @@ public class CtsTextBlockTCSExtractorStreamTest extends
 
 		String refString = "a false\"a(%tok%\"\n\n \\\"%token%\\\"\n\n 2000( PrimitiveTypes::String ";
 
-		TextBlock rootBlock = stream.getRootBlock();
+		TextBlock rootBlock = stream.getPrintedResultRootBlock();
 
 		assertEquals(refString, rootBlock.getCachedString());
 		assertEquals(62, rootBlock.getLength());
@@ -635,7 +626,7 @@ public class CtsTextBlockTCSExtractorStreamTest extends
 
 		String refString = "a false\"a(%tok%\"\n\n \\\"%token%\\\"\n\n 2000( PrimitiveTypes::String ";
 
-		TextBlock rootBlock = stream.getRootBlock();
+		TextBlock rootBlock = stream.getPrintedResultRootBlock();
 
 		assertEquals(refString, rootBlock.getCachedString());
 		assertEquals(62, rootBlock.getLength());

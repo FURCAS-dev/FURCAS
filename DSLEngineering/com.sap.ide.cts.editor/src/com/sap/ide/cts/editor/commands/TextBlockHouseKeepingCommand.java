@@ -8,7 +8,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
+import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
+import com.sap.furcas.runtime.textblocks.validation.IllegalTextBlocksStateException;
+import com.sap.furcas.runtime.textblocks.validation.TbValidationUtil;
+import com.sap.ide.cts.editor.CtsActivator;
+
 
 /**
  * Command to clean-up all TextBlocks of a project. <b>Generally
@@ -40,6 +46,8 @@ public class TextBlockHouseKeepingCommand extends Command {
     public void doExecute() {
 	EObject[] allBlocks = getAllTextBlocks(getEditingDomain(), project);
 
+	System.out.println("Clean up started for: " + allBlocks.length + " Blocks");
+
 	for (EObject refObj : allBlocks) {
 	    TextBlock block = (TextBlock) refObj;
 
@@ -59,25 +67,30 @@ public class TextBlockHouseKeepingCommand extends Command {
 		    if (!success) {
 			// There is nothing we can do
 			block.refDelete();
+			continue;
 		    }
 		}
 		TbChangeUtil.cleanUp(block);
 	    }
-
-	    try {
-		// final check if everything is OK
-		if (block.is___Alive()) {
-		    TbValidationUtil.assertTextBlockConsistency(block);
-		}
-	    } catch (IllegalTextBlocksStateException e) {
-		// sorry my friend, we failed
-		block.refDelete();
-	    }
 	}
+	System.out.println("Clean up finished");
     }
 
     private Boolean handleBrokenMapping(TextBlock block) {
-	System.out.println("Not yet implemented: handle broken Mapping for " + block);
+	try {
+	    TbValidationUtil.assertTextBlockConsistencyRecursive(block);
+	} catch (IllegalTextBlocksStateException e) {
+	    CtsActivator.logWarning("Deleteing TB: Borken Mapping AND Inconsistent");
+	    return false;
+	}
+	try {
+	    TbValidationUtil.assertCacheIsUpToDate(block);
+	} catch (IllegalTextBlocksStateException e) {
+	    CtsActivator.logWarning("Deleteing TB: Borken Mapping AND Cached String does not match TB conent.");
+	    return false;
+	}
+	
+	
 	return true;
     }
 

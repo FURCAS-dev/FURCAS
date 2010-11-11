@@ -52,6 +52,11 @@ public abstract class ProjectConnectionBasedTest {
 	public void setUp() throws CoreException, IOException {
 	    	mProject = ResourcesPlugin.getWorkspace().getRoot().getProject(getProjectName());
 		if (!memoryChangesOnly || !mProject.exists()) {
+		    if (mProject.exists()) {
+			// always delete old project before trying to write a new project
+			// allows to mix memory only and persistent tests in the same suite
+			deleteProject();
+		    }
 		    InputStream data = getProjectContentAsStream();
 		    mProject = createProjectWithData(getProjectName(), data);
 		    refreshProject(mProject);

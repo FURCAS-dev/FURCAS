@@ -19,23 +19,25 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import com.sap.furcas.metamodel.TCS.ContextTemplate;
-import com.sap.furcas.metamodel.TCS.InjectorAction;
-import com.sap.furcas.metamodel.TCS.InjectorActionsBlock;
-import com.sap.furcas.metamodel.TCS.Property;
-import com.sap.furcas.metamodel.TCS.Template;
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.textblocks.DocumentNode;
-import com.sap.furcas.metamodel.textblocks.ForEachContext;
-import com.sap.furcas.metamodel.textblocks.LexedToken;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.parsing.textblocks.LexedTokenWrapper;
-import com.sap.furcas.parsing.textblocks.LocalContextBuilder;
+import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
+import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
+import com.sap.furcas.metamodel.FURCAS.TCS.Property;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext;
+import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 import com.sap.furcas.runtime.parser.impl.DelayedReference;
+import com.sap.furcas.runtime.parser.textblocks.LexedTokenWrapper;
+import com.sap.furcas.runtime.parser.textblocks.LocalContextBuilder;
 import com.sap.furcas.runtime.tcs.TcsUtil;
-import com.sap.furcas.textual.textblocks.TbUtil;
+import com.sap.furcas.runtime.textblocks.TbUtil;
+import com.sap.furcas.runtime.textblocks.shortprettyprint.ShortPrettyPrinter;
 
 
 
@@ -65,27 +67,31 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
 
     @Override
     public void notifyUpdate(EventChain events) {
-	if (!events.getEvents().isEmpty()) {
-	   ResourceSet conn = events.getEvents().iterator().next().getEventTriggerConnection();
-	    if (reference.isGenericReference()) {
-		// Its a generic reference not an unresolved one
-		if (reference.getQueryElement() != null) {
-		    List<DelayedReference> newRefs = null;
-		    if (reference.getQueryElement() instanceof InjectorAction) {
-			newRefs = filterEventsAndRegisterDelayedReferencesForInjectorAction(events.getEvents(), conn);
-		    } else if (reference.getQueryElement() instanceof Property) {
-			if (reference.getType() == DelayedReference.CONTEXT_LOOKUP) {
-			    newRefs = filterEventsAndQueueDelayedReferencesForContextLookup(events.getEvents(), conn);
-			} else {
-			    newRefs = filterEventsAndQueueDelayedReferencesForPropertyQuery(events.getEvents(), conn);
-			}
-		    }
-		    if (newRefs != null && newRefs.size() > 0) {
-			resolve(newRefs);
-		    }
-		}
-	    }
-	}
+    	try {
+    	    if (!events.getEvents().isEmpty()) {
+    		ResourceSet conn = events.getEvents().iterator().next().getEventTriggerConnection();
+    		if (reference.isGenericReference()) {
+    		    // Its a generic reference not an unresolved one
+    		    if (reference.getQueryElement() != null) {
+    			List<DelayedReference> newRefs = null;
+    			if (reference.getQueryElement() instanceof InjectorAction) {
+    			    newRefs = filterEventsAndRegisterDelayedReferencesForInjectorAction(events.getEvents(), conn);
+    			} else if (reference.getQueryElement() instanceof Property) {
+    			    if (reference.getType() == DelayedReference.CONTEXT_LOOKUP) {
+    				newRefs = filterEventsAndQueueDelayedReferencesForContextLookup(events.getEvents(), conn);
+    			    } else {
+    				newRefs = filterEventsAndQueueDelayedReferencesForPropertyQuery(events.getEvents(), conn);
+    			    }
+    			}
+    			if (newRefs != null && newRefs.size() > 0) {
+    			    resolve(newRefs);
+    			}
+    		    }
+    		}
+    	    }
+    	} catch (Exception e) {
+    	    Activator.logError(e, "Preparing Delayed Reference Re-Evaluation");
+    	}
     }
 
     private void resolve(Collection<DelayedReference> unresolvedReferences) {
@@ -150,51 +156,57 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
      */
     @Override
     public void notify(ChangeEvent event) {
-	ResourceSet conn = event.getEventTriggerConnection();
-	if (reference.isGenericReference()) {
-	    // Its a generic reference not an unresolved one
-	    if (reference.getQueryElement() != null) {
-		if (reference.getQueryElement() instanceof InjectorAction) {
-		    if (!areAllRegistrationsUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(event,
-			    /* replacement for __TEMP__*/ null)) {
-			if (getTextBlocksInChosenAlternativeForInjectorAction(conn).size() > 0) {
-			    elementsImpactedByEvent.put(event, getAffectedElements(event, conn));
-			}
-		    }
-		} else {
-		    // compute affected elements because
-		    // filterEventsAndQueueDelayedReferencesForContextLookup
-		    // and filterEventsAndQueueDelayedReferencesForPropertyQuery
-		    // always need them
-		    elementsImpactedByEvent.put(event, getAffectedElements(event, conn));
-		}
-	    }
-	}
+    	try {
+    	    ResourceSet conn = event.getEventTriggerConnection();
+    	    if (reference.isGenericReference()) {
+    		// Its a generic reference not an unresolved one
+    		if (reference.getQueryElement() != null) {
+    		    if (reference.getQueryElement() instanceof InjectorAction) {
+    			if (!areAllRegistrationsUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(event,
+    				/* replacement for __TEMP__*/ null)) {
+    			    if (getTextBlocksInChosenAlternativeForInjectorAction(conn).size() > 0) {
+    				elementsImpactedByEvent.put(event, getAffectedElements(event, conn));
+    			    }
+    			}
+    		    } else {
+    			// compute affected elements because
+    			// filterEventsAndQueueDelayedReferencesForContextLookup
+    			// and filterEventsAndQueueDelayedReferencesForPropertyQuery
+    			// always need them
+    			elementsImpactedByEvent.put(event, getAffectedElements(event, conn));
+    		    }
+    		}
+    	    }
+    	} catch (Exception e) {
+    	    Activator.logError(e, "Calculating effected elements for change event: " + event);
+    	}
     }
 
     private Collection<TextBlock> getTextBlocksInChosenAlternativeForInjectorAction(ResourceSet conn) {
 	Collection<TextBlock> result = new ArrayList<TextBlock>();
 	InjectorAction injectorAction = (InjectorAction) conn.getElement(((EObject) reference.getQueryElement())
 		.get___Mri());
-	InjectorActionsBlock injectorActionsBlock = (InjectorActionsBlock) injectorAction.refImmediateComposite();
-	Template template = injectorActionsBlock.getParentTemplate();
-
-	// now find all TextBlocks referencing this template;
-	Collection<TextBlock> tbs = getTextBlocksUsingQueryElement(conn, template);
-
-	for (TextBlock textBlock : tbs) {
-	    // first check if the alternative in which the injector action
-	    // resides was
-	    // chosen during the parsing process
-	    // TODO this is a workaround. to properly decide this we need to
-	    // keep track
-	    // of the alternative chosen at runtime of the parser
-	    boolean wasInChosenAlternative = isInjectorActionInChosenAlternative(injectorActionsBlock, textBlock);
-
-	    if (wasInChosenAlternative) {
-		result.add(textBlock);
-	    }
-	}
+	if(injectorAction != null) {
+    	InjectorActionsBlock injectorActionsBlock = (InjectorActionsBlock) injectorAction.refImmediateComposite();
+    	Template template = injectorActionsBlock.getParentTemplate();
+    
+    	// now find all TextBlocks referencing this template;
+    	Collection<TextBlock> tbs = getTextBlocksUsingQueryElement(conn, template);
+    
+    	for (TextBlock textBlock : tbs) {
+    	    // first check if the alternative in which the injector action
+    	    // resides was
+    	    // chosen during the parsing process
+    	    // TODO this is a workaround. to properly decide this we need to
+    	    // keep track
+    	    // of the alternative chosen at runtime of the parser
+    	    boolean wasInChosenAlternative = isInjectorActionInChosenAlternative(injectorActionsBlock, textBlock);
+    
+    	    if (wasInChosenAlternative) {
+    		result.add(textBlock);
+    	    }
+    	}
+}
 	return result;
     }
 
@@ -266,8 +278,12 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
 	    // elements are cached in elementsImpactedByEvent
 	    if (affectedElements != null && affectedElements.size() > 0) {
 		for (LexedToken lt : toks) {
+			if (lt == null || lt.getParent() == null) {
+				// dangling token. Ignoring
+				continue;
+			}
 		    Set<EObject> intersectionOfCorrespondingAndAffectedElements = filterCorrespondingOrContextElementWithAffectedElements(
-			    conn, affectedElements, lt.getParentBlock());
+			    conn, affectedElements, lt.getParent());
 		    if (intersectionOfCorrespondingAndAffectedElements.size() > 0) {
 			tokensForWhichToAddNewReference.add(lt);
 		    }
@@ -316,8 +332,13 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
 	    clonedRef.setResourceSet(conn);
 
 	    clonedRef.setToken(new LexedTokenWrapper(lt));
-	    clonedRef.setTextBlock(lt.getParentBlock());
-	    clonedRef.setKeyValue(lt.getValue());
+	
+	    RefPackage outermostPackage = MoinHelper.getOutermostPackageThroughClusteredImports(conn, (RefBaseObject) clonedRef.getModelElement());
+	    ShortPrettyPrinter shortPrettyPrinter = new ShortPrettyPrinter(resolver.constructModelInjector(conn, outermostPackage).getModelAdapter());
+	    clonedRef.setKeyValue(shortPrettyPrinter.resynchronizeToEditableState(lt));
+	
+	    clonedRef.setTextBlock(lt.getParent());
+	    
 	    String oclQuery = clonedRef.getOclQuery();
 	    clonedRef.setOclQuery(oclQuery.replaceAll(GlobalDelayedReferenceResolver.TEMPORARY_QUERY_PARAM_REPLACEMENT, lt
 		    .getValue()));

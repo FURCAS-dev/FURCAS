@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
-import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.runtime.common.interfaces.IRuleName;
 import com.sap.furcas.runtime.parser.impl.DelayedReference;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;

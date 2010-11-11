@@ -40,14 +40,19 @@ import com.sap.ide.cts.editor.document.CtsDocument;
 public class AbstractGrammarBasedViewerConfiguration extends SourceViewerConfiguration {
 
     	protected final AbstractGrammarBasedEditor editor;
-    	private IAnnotationModel annotationModel;
-	private Class<? extends Lexer> myLexerClass;
-	private Class<? extends Parser> parserClass;
-	private ITokenMapper myMapper;
+    	private final IAnnotationModel annotationModel;
+	private final Class<? extends Lexer> myLexerClass;
+	private final Class<? extends Parser> parserClass;
+	private final ITokenMapper myMapper;
 //	private Parameter[] context = null;
 	private ContentAssistant myAssistant;
+<<<<<<< HEAD
     private ResourceSet connection;
 	private String languageId;
+=======
+    private final Connection connection;
+	private final String languageId;
+>>>>>>> origin/master
 
 	/**
 	 * 
@@ -169,16 +174,17 @@ public class AbstractGrammarBasedViewerConfiguration extends SourceViewerConfigu
 		return parserClass;
 	}
 
-}
+
 
 // annotation hover manager
-class AnnotationHover implements IAnnotationHover, ITextHover {
-	private IAnnotationModel fAnnotationModel;
+public static class AnnotationHover implements IAnnotationHover, ITextHover {
+	private final IAnnotationModel fAnnotationModel;
 
 	public AnnotationHover(IAnnotationModel annotationModel) {
 		this.fAnnotationModel = annotationModel;
 	}
 
+	@Override
 	public String getHoverInfo(ISourceViewer sourceViewer, int lineNumber) {
 	    if (fAnnotationModel == null) {
 	        // TODO remove if robust
@@ -212,14 +218,17 @@ class AnnotationHover implements IAnnotationHover, ITextHover {
 		return total.toString();
 	}
 
+	@Override
 	public String getHoverInfo(ITextViewer viewer, IRegion hoverRegion) {
 		AbstractToken token = ((CtsDocument)viewer.getDocument()).getTextBlocksModelStore().getFloorToken(hoverRegion.getOffset());
 		return token.toString();
 	}
 
+	@Override
 	public IRegion getHoverRegion(ITextViewer viewer, int offset) {
 			AbstractToken token = ((CtsDocument)viewer.getDocument()).getTextBlocksModelStore().getFloorToken(offset);
 			IRegion region = new Region(TbUtil.getAbsoluteOffset(token), token.getLength());
 			return region;
 	}
+}
 }

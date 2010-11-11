@@ -384,7 +384,7 @@ public abstract class Evaluator<MetaClass extends EObject,
 		}
 	    }
 	}
-	return new ExecuteResult(result
+	return new ExecuteResult<LinkEndMetaObject, TypeUsage, ClassUsage>((RunletObject<LinkEndMetaObject, TypeUsage, ClassUsage>[]) result
 		.toArray(new RunletObject<?, ?, ?>[0]), errors.toArray(new String[0]));
     }
 

@@ -3,7 +3,10 @@ package com.sap.ide.cts.editor.prettyprint;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.ide.cts.editor.prettyprint.imported.SyntaxAndModelMismatchException;
+
+
 
 public class TestPrettyPrintSymbolSpaces extends CtsPrettyPrinterTestBase {
 

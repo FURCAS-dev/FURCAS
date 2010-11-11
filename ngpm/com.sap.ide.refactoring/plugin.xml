@@ -13,6 +13,41 @@
             id="com.sap.ide.refactoring.rename"
             name="Rename">
       </command>
+      <command
+            categoryId="com.sap.ide.refactoring.category"
+            description="Move a Model Element"
+            id="com.sap.ide.refactoring.move"
+            name="Move">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ltk.ui.refactoring.statusContextViewers">
+      <statusContextViewer
+            class="com.sap.ide.refactoring.ui.ExceptionStatusContextViewer"
+            id="com.sap.ide.refactoring.ui.ExceptionStatusContextViewer">
+         <enablement>
+            <instanceof
+                  value="com.sap.ide.refactoring.ui.ExceptionStatusContext">
+            </instanceof>
+         </enablement>
+      </statusContextViewer>
+      <statusContextViewer
+            class="com.sap.ide.refactoring.ui.ConstraintViolationStatusContextViewer"
+            id="com.sap.ide.refactoring.ui.ConstraintViolationStatusContextViewer">
+         <enablement>
+            <instanceof
+                  value="com.sap.ide.refactoring.ui.ConstraintViolationStatusContext">
+            </instanceof></enablement>
+      </statusContextViewer>
+      <statusContextViewer
+            class="com.sap.ide.refactoring.ui.ReEvaluationStatusContextViewer"
+            id="com.sap.ide.refactoring.ui.ReEvaluationStatusContextViewer">
+         <enablement>
+            <instanceof
+                  value="com.sap.ide.refactoring.ui.ReEvaluationStatusContext">
+            </instanceof>
+         </enablement>
+      </statusContextViewer>
    </extension>
 
 </plugin>

@@ -5,15 +5,9 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sap.ap.cts.monet.parser.ClassParserFactory;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.ide.cts.editor.prettyprint.SyntaxAndModelMismatchException;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.ide.cts.editor.prettyprint.TcsPrettyPrinterTestHelper;
-
-import data.classes.Association;
-import data.classes.AssociationEnd;
-import data.classes.ClassTypeDefinition;
-import data.classes.SapClass;
+import com.sap.ide.cts.editor.prettyprint.imported.SyntaxAndModelMismatchException;
 
 public class TestPrettyPrintClass extends CtsPrettyPrinterIntegrationTestBase {
 

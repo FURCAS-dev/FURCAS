@@ -10,8 +10,6 @@ Require-Bundle: org.eclipse.ui,
  com.sap.ide.cts.editor;bundle-version="1.0.0",
  org.eclipse.ui.editors;bundle-version="3.4.0",
  org.eclipse.jface.text;bundle-version="3.4.2",
- com.sap.mi.textual.epi;bundle-version="1.0.0",
- com.sap.mi.textual;bundle-version="1.0.0",
  com.sap.mi.textual.parsing.textblocks;bundle-version="1.0.0",
  org.eclipse.ltk.core.refactoring,
  com.sap.furcas.runtime.parser.incremental;bundle-version="1.0.0",
@@ -21,5 +19,8 @@ Require-Bundle: org.eclipse.ui,
  com.sap.ide.cts.moin;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
-Export-Package: com.sap.ide.refactoring.core.model.rename,
+Export-Package: com.sap.ide.refactoring.model,
+ com.sap.ide.refactoring.model.move,
+ com.sap.ide.refactoring.model.rename,
+ com.sap.ide.refactoring.op.move,
  com.sap.ide.refactoring.op.rename

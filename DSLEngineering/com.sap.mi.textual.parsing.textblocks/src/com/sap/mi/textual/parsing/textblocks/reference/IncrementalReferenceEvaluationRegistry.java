@@ -19,17 +19,17 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
-import com.sap.furcas.metamodel.TCS.ClassTemplate;
-import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
-import com.sap.furcas.metamodel.TCS.FilterPArg;
-import com.sap.furcas.metamodel.TCS.ForeachPredicatePropertyInit;
-import com.sap.furcas.metamodel.TCS.InjectorAction;
-import com.sap.furcas.metamodel.TCS.InjectorActionsBlock;
-import com.sap.furcas.metamodel.TCS.LookupPropertyInit;
-import com.sap.furcas.metamodel.TCS.PredicateSemantic;
-import com.sap.furcas.metamodel.TCS.Property;
-import com.sap.furcas.metamodel.TCS.QueryPArg;
-import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
+import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
+import com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic;
+import com.sap.furcas.metamodel.FURCAS.TCS.Property;
+import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.interfaces.IRuleName;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
@@ -51,8 +51,8 @@ public class IncrementalReferenceEvaluationRegistry {
     private final Map<DelayedReference, Map<EventFilter, Map<ListenerType, EventListener>>> delayedReference2ReEvaluationListener = new HashMap<DelayedReference, Map<EventFilter, Map<ListenerType, EventListener>>>();
     private final Map<String, DelayedReference> registration2DelayedReference = new HashMap<String, DelayedReference>();
 
-    private BundleContext context;
-    private ServiceReference globalEventListenerRegistryRef;
+    private final BundleContext context;
+    private final ServiceReference globalEventListenerRegistryRef;
     private ReferenceResolver resolver;
 
     public IncrementalReferenceEvaluationRegistry(ServiceReference globalEventListenerRegistryRef, BundleContext context) {
@@ -179,9 +179,10 @@ public class IncrementalReferenceEvaluationRegistry {
 	LookupPropertyInit injectorAction = (LookupPropertyInit) injectorActionBase;
 	Template template = ((InjectorActionsBlock) injectorAction.refImmediateComposite()).getParentTemplate();
 	String query = injectorAction.getValue();
-	EObject parsingContext = ContextAndForeachHelper.getParsingContext(connection, query, template, packagesForLookup,
-		elementClass);
+	
 	try {
+		EObject parsingContext = ContextAndForeachHelper.getParsingContext(connection, query, template, packagesForLookup,
+				elementClass);
 	    DelayedReference ref = new DelayedReference(null, null, null, injectorAction.getPropertyReference().getStrucfeature()
 		    .getName(), null, null, query, false, null);
 	    // now replace any #context parts within the query with self
@@ -219,7 +220,9 @@ public class IncrementalReferenceEvaluationRegistry {
 	} catch (MoinLocalizedBaseRuntimeException ex) {
 	    System.err.println("Failed to register at IA: " + injectorAction.getValue() + "\n" + ex.getMessage());
 	    ex.printStackTrace();
-	}
+    } catch (RuntimeException ex) {
+	    System.err.println("Failed to register at IA: " + injectorAction.getValue() + "\n" + ex.getMessage());
+    }
     }
 
     /**

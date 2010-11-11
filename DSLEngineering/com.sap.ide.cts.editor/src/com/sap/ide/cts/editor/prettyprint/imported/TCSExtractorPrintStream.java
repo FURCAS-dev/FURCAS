@@ -17,10 +17,9 @@ import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EObject;
-
-import com.sap.furcas.metamodel.TCS.SequenceElement;
-import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 
 /**
  * 
@@ -31,115 +30,138 @@ import com.sap.furcas.metamodel.TCS.Template;
  */
 public class TCSExtractorPrintStream implements TCSExtractorStream {
 
-	private PrintStream out;
-	private StringBuffer current;
-	private Map<Integer, StringBuffer> backup = new HashMap<Integer, StringBuffer>();
-	private int curBackupHandle = 0;
+    private final PrintStream out;
+    private StringBuffer current;
+    private final Map<Integer, StringBuffer> backup = new HashMap<Integer, StringBuffer>();
+    private int curBackupHandle = 0;
 
-	public TCSExtractorPrintStream(OutputStream target) {
-		out = new PrintStream(target);
-		current = new StringBuffer();
+    public TCSExtractorPrintStream(OutputStream target) {
+	out = new PrintStream(target);
+	current = new StringBuffer();
 
-	}
+    }
 
-	public void close() {
-		// no more backtracking after this point
-		// print all to output stream
-		out.print(current.toString());
-		out.close();
-	}
+    @Override
+    public void close() {
+	// no more backtracking after this point
+	// print all to output stream
+	out.print(current.toString());
+	out.close();
+    }
 
-	public void debug(String string) {
-		current.append(string);
-	}
+    @Override
+    public void debug(String string) {
+	current.append(string);
+    }
 
-	public void printBoolean(boolean v) {
-		current.append(v);
-	}
+    @Override
+    public void printBoolean(boolean v) {
+	current.append(v);
+    }
 
-	public void printComment(String c) {
-		current.append(c);
-	}
+    @Override
+    public void printComment(String c) {
+	current.append(c);
+    }
 
-	public void printEscapedIdentifier(String identEscStart, String ident,
-			String identEscEnd) {
-		current.append(identEscStart);
-		current.append(ident);
-		current.append(identEscEnd);
-	}
+    @Override
+    public void printEscapedIdentifier(String identEscStart, String ident, String identEscEnd) {
+	current.append(identEscStart);
+	current.append(ident);
+	current.append(identEscEnd);
+    }
 
-	public void printIdentifier(String ident) {
-		current.append(ident);
-	}
+    @Override
+    public void printIdentifier(String ident) {
+	current.append(ident);
+    }
 
-	public void printInteger(int v) {
-		current.append(v);
-	}
+    @Override
+    public void printInteger(int v) {
+	current.append(v);
+    }
 
-	public void printKeyword(String keyword) {
-		current.append(keyword);
-	}
+    @Override
+    public void printKeyword(String keyword) {
+	current.append(keyword);
+    }
 
-	public void printReal(String string) {
-		current.append(string);
-	}
+    @Override
+    public void printReal(String string) {
+	current.append(string);
+    }
 
-	public void printString(String stringDelim, String v) {
-		current.append(stringDelim);
-		current.append(v);
-		current.append(stringDelim);
-	}
+    @Override
+    public void printString(String stringDelim, String v) {
+	current.append(stringDelim);
+	current.append(v);
+	current.append(stringDelim);
+    }
 
-	public void printSymbol(String symbol) {
-		current.append(symbol);
-	}
+    @Override
+    public void printSymbol(String symbol) {
+	current.append(symbol);
+    }
 
-	public void printWhiteSpace(String ws) {
-		current.append(ws);
-	}
+    @Override
+    public void printWhiteSpace(String ws) {
+	current.append(ws);
+    }
 
-	@Override
-	public void endClassTemplate(int handle) {
-		// do nothing
+    @Override
+    public void endClassTemplate(int handle) {
+	// do nothing
 
-	}
+    }
 
-	@Override
-	public int startClassTemplateForObject(EObject object, Template t) {
-		// do nothing
-		return 0;
+    @Override
+    public int startClassTemplateForObject(RefObject object, Template t) {
+	// do nothing
+	return 0;
 
-	}
+    }
 
-	@Override
-	public int createSafePoint() {
-		StringBuffer store = new StringBuffer(current.toString());
-		curBackupHandle++;
-		backup.put(curBackupHandle, store);
-		return curBackupHandle;
-	}
+    @Override
+    public int createSafePoint() {
+	StringBuffer store = new StringBuffer(current.toString());
+	curBackupHandle++;
+	backup.put(curBackupHandle, store);
+	return curBackupHandle;
+    }
 
-	@Override
-	public void resetToSafePoint(int handle) {
-		current = backup.get(new Integer(handle));
-	}
+    @Override
+    public void resetToSafePoint(int handle) {
+	current = backup.get(new Integer(handle));
+    }
 
-	@Override
-	public void enterSequenceElement(SequenceElement e) {
-		// do nothing
+    @Override
+    public void enterSequenceElement(SequenceElement e) {
+	// do nothing
+    }
 
-	}
+    @Override
+    public void exitSequenceElement() {
+	// do nothing
+    }
 
-	@Override
-	public void exitSequenceElement() {
-		// do nothing
+    @Override
+    public void printDefault(String value) {
+	current.append(value);
+    }
 
-	}
+    @Override
+    public void enterAlternative(Alternative alt) {
+	// do nothing
+    }
 
-	@Override
-	public void printDefault(String value)
-	{
-		current.append(value);
-	}
+    @Override
+    public void beginAlternativeChoice(int choiceIndexInAlternative) {
+	// do nothing
+    }
+
+    @Override
+    public void exitAlternative() {
+	// do nothing
+    }
 
 }
