@@ -1,6 +1,6 @@
 package com.sap.emf.ocl.trigger;
 
-import org.eclipse.emf.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.emf.ocl.trigger.impl.TriggerManagerFactoryImpl;
 

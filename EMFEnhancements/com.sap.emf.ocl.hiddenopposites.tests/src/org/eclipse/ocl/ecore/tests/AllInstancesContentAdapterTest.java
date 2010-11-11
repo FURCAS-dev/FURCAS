@@ -11,9 +11,9 @@
 package org.eclipse.ocl.ecore.tests;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.opposites.AllInstancesContentAdapter;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+import org.eclipse.ocl.ecore.opposites.AllInstancesContentAdapter;
 
 
 public class AllInstancesContentAdapterTest
