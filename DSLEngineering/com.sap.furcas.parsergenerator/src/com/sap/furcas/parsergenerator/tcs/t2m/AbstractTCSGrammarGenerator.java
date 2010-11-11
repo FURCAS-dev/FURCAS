@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.parsergenerator.GrammarGenerationException;
+import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ANTLR3GrammarWriter;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ANTLRGrammarGenerator;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.GenerationReport;

@@ -2,10 +2,8 @@ package com.sap.furcas.parsergenerator.tcs.generator;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -15,8 +13,9 @@ import com.sap.furcas.parsergenerator.GenerationErrorHandler;
 import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
 import com.sap.furcas.parsergenerator.GrammarGenerationTargetConfiguration;
+import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.parsergenerator.emf.lookup.QueryBasedEcoreMetaModelLookUp;
-import com.sap.furcas.parsergenerator.tcs.t2m.InputStreamBasedTCSGrammarGenerator;
+import com.sap.furcas.parsergenerator.tcs.t2m.ModelBasedTCSGrammarGenerator;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.GenerationReport;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.ParserInvokationException;
@@ -38,11 +37,11 @@ public class GrammarGenerator {
      * @throws GrammarGenerationException
      */
     public static void buildGrammar(GrammarGenerationSourceConfiguration sourceConfiguration,
-            GrammarGenerationTargetConfiguration targetConfiguration, GenerationErrorHandler errorhandler)
-            throws GrammarGenerationException {
+            GrammarGenerationTargetConfiguration targetConfiguration, GenerationErrorHandler errorhandler,
+            TCSSyntaxContainerBean containerBean) throws GrammarGenerationException {
 
         buildGrammar(sourceConfiguration, targetConfiguration, errorhandler, /* use default parser super class */null,
-                new NullProgressMonitor());
+                new NullProgressMonitor(), containerBean);
     }
 
     /**
@@ -53,9 +52,10 @@ public class GrammarGenerator {
      */
     public static void buildGrammar(GrammarGenerationSourceConfiguration sourceConfiguration,
             GrammarGenerationTargetConfiguration targetConfiguration, GenerationErrorHandler errorhandler,
-            IProgressMonitor monitor) throws GrammarGenerationException {
+            IProgressMonitor monitor, TCSSyntaxContainerBean containerBean) throws GrammarGenerationException {
 
-        buildGrammar(sourceConfiguration, targetConfiguration, errorhandler, /* use default parser super class */null, monitor);
+        buildGrammar(sourceConfiguration, targetConfiguration, errorhandler, /* use default parser super class */null, monitor,
+                containerBean);
     }
 
     /**
@@ -66,15 +66,13 @@ public class GrammarGenerator {
      */
     public static void buildGrammar(GrammarGenerationSourceConfiguration sourceConfiguration,
             GrammarGenerationTargetConfiguration targetConfiguration, GenerationErrorHandler errorhandler,
-            Class<? extends ObservableInjectingParser> parserSuperClass, IProgressMonitor monitor)
-            throws GrammarGenerationException {
+            Class<? extends ObservableInjectingParser> parserSuperClass, IProgressMonitor monitor,
+            TCSSyntaxContainerBean containerBean) throws GrammarGenerationException {
 
-        InputStream inputStream = null;
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         try {
-            inputStream = new FileInputStream(sourceConfiguration.getSyntaxDefinitionFile());
-            parseSyntaxAndGenerateGrammar(sourceConfiguration, targetConfiguration, parserSuperClass, errorhandler, monitor,
-                    inputStream, outputStream);
+            generateGrammar(sourceConfiguration, targetConfiguration, parserSuperClass, errorhandler, monitor, outputStream,
+                    containerBean);
 
         } catch (SyntaxParsingException e) {
             handleSyntaxParsingException(errorhandler, e);
@@ -87,28 +85,26 @@ public class GrammarGenerator {
         } finally {
             try {
                 outputStream.close();
-                if (inputStream != null) {
-                    inputStream.close();
-                }
             } catch (IOException e) {
                 throw new GrammarGenerationException("Grammar generation failed with IO error", e);
             }
         }
     }
 
-    private static void parseSyntaxAndGenerateGrammar(GrammarGenerationSourceConfiguration sourceConfiguration,
+    private static void generateGrammar(GrammarGenerationSourceConfiguration sourceConfiguration,
             GrammarGenerationTargetConfiguration targetConfiguration,
             Class<? extends ObservableInjectingParser> parserSuperClass, GenerationErrorHandler errorhandler,
-            IProgressMonitor monitor, InputStream inputStream, ByteArrayOutputStream outputStream)
+            IProgressMonitor monitor, ByteArrayOutputStream outputStream, TCSSyntaxContainerBean containerBean)
             throws ParserInvokationException, SyntaxParsingException, IOException, ModelAdapterException,
             GrammarGenerationException {
 
         QueryBasedEcoreMetaModelLookUp metamodelLookup = new QueryBasedEcoreMetaModelLookUp(sourceConfiguration.getResourceSet(),
                 sourceConfiguration.getReferenceScope());
 
-        InputStreamBasedTCSGrammarGenerator generator = new InputStreamBasedTCSGrammarGenerator(inputStream, outputStream,
-                metamodelLookup, targetConfiguration.getParserTargetPackageName());
-        GenerationReport report = generator.generateGrammar(sourceConfiguration.getResourceSet(),
+        ModelBasedTCSGrammarGenerator modelBasedGenerator = new ModelBasedTCSGrammarGenerator(outputStream, metamodelLookup,
+                targetConfiguration.getParserTargetPackageName(), containerBean);
+
+        GenerationReport report = modelBasedGenerator.generateGrammar(sourceConfiguration.getResourceSet(),
                 sourceConfiguration.getReferenceScope(), parserSuperClass);
 
         // TODO Not needed for now. Keep it disabled until we have a reasonable way to test
