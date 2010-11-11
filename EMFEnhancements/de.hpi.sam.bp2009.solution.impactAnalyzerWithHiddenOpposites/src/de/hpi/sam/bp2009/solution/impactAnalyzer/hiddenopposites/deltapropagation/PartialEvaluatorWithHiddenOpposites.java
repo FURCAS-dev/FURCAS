@@ -1,10 +1,10 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.deltapropagation;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.emf.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.ecore.CallExp;
 
-import com.sap.emf.oppositeendfinder.DefaultOppositeEndFinder;
-import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;

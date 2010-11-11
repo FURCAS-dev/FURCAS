@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.emf.ecore.opposites.OppositeEndFinder;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.ecore.OCLExpression;
 
@@ -11,8 +13,6 @@ import com.sap.emf.ocl.trigger.AdapterForExpression;
 import com.sap.emf.ocl.trigger.ExpressionWithContext;
 import com.sap.emf.ocl.trigger.TriggerManager;
 import com.sap.emf.ocl.trigger.Triggerable;
-import com.sap.emf.oppositeendfinder.DefaultOppositeEndFinder;
-import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;

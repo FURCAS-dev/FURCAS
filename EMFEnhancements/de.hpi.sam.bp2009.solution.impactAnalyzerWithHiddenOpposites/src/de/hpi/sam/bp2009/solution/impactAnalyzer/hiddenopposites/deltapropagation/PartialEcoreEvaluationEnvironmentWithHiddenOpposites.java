@@ -5,11 +5,11 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.EvaluationEnvironment;
 
 import com.sap.emf.ocl.hiddenopposites.EvaluationEnvironmentWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.OppositePropertyNavigator;
-import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEcoreEvaluationEnvironment;
 

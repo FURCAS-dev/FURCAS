@@ -13,7 +13,7 @@ Require-Bundle: com.sap.furcas.metamodel,
  com.sap.furcas.runtime.parser,
  com.sap.furcas.parsergenerator.emf,
  org.eclipse.emf;bundle-version="2.6.0",
- org.eclipse.emf.oppositeendfinder;bundle-version="1.0.0",
+ org.eclipse.emf.ecore.opposites;bundle-version="1.0.0",
  org.eclipse.emf.edit;bundle-version="2.6.0"
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.ide.cts.parser,

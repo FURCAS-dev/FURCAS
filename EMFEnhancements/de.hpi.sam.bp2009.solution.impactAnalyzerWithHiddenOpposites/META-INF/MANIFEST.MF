@@ -5,7 +5,7 @@ Bundle-SymbolicName: de.hpi.sam.bp2009.solution.impactAnalyzerWithHiddenOpposite
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: com.sap.emf.ocl.hiddenopposites,
- org.eclipse.emf.oppositeendfinder,
+ org.eclipse.emf.ecore.opposites,
  de.hpi.sam.bp2009.solution.impactAnalyzer,
  de.hpi.sam.bp2009.solution.eventManager
 Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites,

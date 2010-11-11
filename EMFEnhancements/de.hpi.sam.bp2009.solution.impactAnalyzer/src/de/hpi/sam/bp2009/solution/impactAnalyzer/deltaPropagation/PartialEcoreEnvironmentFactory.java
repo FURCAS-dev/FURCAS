@@ -12,6 +12,8 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.emf.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.EvaluationVisitor;
@@ -21,8 +23,6 @@ import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.SendSignalAction;
 
-import com.sap.emf.oppositeendfinder.DefaultOppositeEndFinder;
-import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
 public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactory {
     private Object valueOfSourceExpression;

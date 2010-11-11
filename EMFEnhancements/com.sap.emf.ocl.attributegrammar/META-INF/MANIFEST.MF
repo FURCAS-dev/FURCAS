@@ -9,5 +9,5 @@ Require-Bundle: org.eclipse.ocl.ecore,
  de.hpi.sam.bp2009.solution.eventManager,
  de.hpi.sam.bp2009.solution.impactAnalyzer,
  com.sap.emf.ocl.hiddenopposites,
- org.eclipse.emf.oppositeendfinder,
+ org.eclipse.emf.ecore.opposites,
  de.hpi.sam.bp2009.solution.impactAnalyzerWithHiddenOpposites
