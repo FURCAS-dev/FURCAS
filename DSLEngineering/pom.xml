@@ -20,7 +20,6 @@
     <module>FURCAS-Update-Site</module>
     <module>bibtex.editor</module>
     <module>bibtex.metamodel</module>
-    <module>bibtex.metamodel.epi</module>
     <module>bibtex.test</module>
     -->
     <module>com.sap.emf.ocl.trigger</module>
@@ -39,18 +38,21 @@
     <module>com.sap.furcas.runtime.common</module>
     <module>com.sap.furcas.runtime.common.test</module>
     <module>com.sap.furcas.runtime.parser</module>
+    <module>com.sap.furcas.runtime.parser.incremental</module>
+    <module>com.sap.furcas.runtime.parser.incremental.test</module>
     <module>com.sap.furcas.runtime.parser.test</module>
     <module>com.sap.furcas.runtime.referenceresolving</module>
+    <module>com.sap.furcas.runtime.referenceresolving.tests</module>
     <module>com.sap.furcas.runtime.tcs</module>
     <module>com.sap.furcas.runtime.textblocks</module>
     <module>com.sap.furcas.runtime.textblocks.test</module>
     <module>com.sap.furcas.test</module>
     <module>com.sap.furcas.utils</module>
+
 	<!--
     <module>com.sap.ide.cts.editor</module>
     <module>com.sap.ide.cts.editor.tests</module>
     <module>com.sap.ide.cts.moin</module>
-    <module>com.sap.ide.cts.parser</module>
     <module>com.sap.ide.cts.product</module>
     <module>com.sap.mi.textual.parsing.textblocks</module>
     <module>com.sap.mi.textual.tcs.editor</module>
@@ -61,6 +63,7 @@
     <module>editor.test.metamodel</module>
     <module>editor.test.metamodel.epi</module>
 	-->
+
     <module>org.antlr</module>
   </modules>
 
