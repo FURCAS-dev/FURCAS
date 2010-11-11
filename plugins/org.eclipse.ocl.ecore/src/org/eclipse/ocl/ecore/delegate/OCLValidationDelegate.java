@@ -26,12 +26,12 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
-import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OCL.Helper;
+import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.osgi.util.NLS;
@@ -94,13 +94,28 @@ public class OCLValidationDelegate implements ValidationDelegate
 		}
 	}
 
+	/**
+	 * @param context TODO
+	 * @since 3.1
+	 */
+	protected Constraint createConstraint(EOperation context, String expression) {
+		OCL ocl = delegateDomain.getOCL();
+		Helper helper = ocl.createOCLHelper();
+		helper.setOperationContext((EClassifier) context.eContainer(), context);
+		try {
+			return helper.createConstraint(ConstraintKind.BODYCONDITION, /*(String)*/expression);
+		} catch (ParserException e) {
+			throw new OCLDelegateException(e.getLocalizedMessage(), e);
+		}
+	}
+
 	public String toString() {
 		return "<" + delegateDomain.getURI() + ":validate> " + eClassifier.getEPackage().getName() + "::" + eClassifier.getName(); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 	private OCLExpression getExpressionFromAnnotationsOf(ENamedElement element, String constraintName) {
 		EAnnotation anno = element.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
-		EAnnotation ast = element.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+		EAnnotation ast = anno;
 		if (anno != null && ast != null){
 			int pos = -1;
 			int count = 0;
@@ -122,7 +137,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 	
 	public boolean validate(EClass eClass, EObject eObject,
 			Map<Object, Object> context, EOperation invariant, String expression) {
-		OCLExpression query = getExpressionFromAnnotationsOf(eClass, invariant.getName());
+		OCLExpression query = getExpressionFromAnnotationsOf(invariant, "body"); //$NON-NLS-1$
 		if (query == null){	  
 			if (invariantOperationMap == null) {
 				invariantOperationMap = new HashMap<EOperation, OCLExpression>();
@@ -133,7 +148,9 @@ public class OCLValidationDelegate implements ValidationDelegate
 			}
 			if ((query == null) & !invariantOperationMap.containsKey(invariant)) {
 				try {
-					query = createQuery(expression);
+					Constraint constraint = createConstraint(invariant, expression);
+					ValidationBehavior.INSTANCE.saveExpressionInAnnotation(invariant, constraint);
+					query = (OCLExpression) constraint.getSpecification().getBodyExpression();
 				} finally {
 					invariantOperationMap.put(invariant, query);
 				}

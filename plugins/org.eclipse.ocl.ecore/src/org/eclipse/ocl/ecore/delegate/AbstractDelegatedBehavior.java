@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.ExpressionInOCL;
 import org.eclipse.ocl.ecore.OCLExpression;
@@ -135,13 +134,13 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 
 	/**
 	 * Looks for a {@link Constraint} element attached to the
-	 * {@link Environment#OCL_NAMESPACE_URI} annotation of
+	 * {@link OCLDelegateDomain#OCL_DELEGATE_URI} annotation of
 	 * <code>modelElement</code> at the same position at which the
 	 * {@link OCLDelegateDomain#OCL_DELEGATE_URI} annotation holds a detail
 	 * using any of the <code>constraintKeys</code>. For example, if there is a
 	 * detail at position 3 with key "body" and "body" is part of
 	 * <code>constraintKeys</code> then the contents element at position 3 of
-	 * the {@link Environment#OCL_NAMESPACE_URI} annotation is returned if it is
+	 * the {@link OCLDelegateDomain#OCL_DELEGATE_URI} annotation is returned if it is
 	 * a {@link Constraint} element. If a {@link Constraint} element is found,
 	 * the {@link OCLExpression} obtained by calling
 	 * {@link Constraint#getSpecification() getSpecification()}.
@@ -154,7 +153,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 	 */
     protected OCLExpression getExpressionFromAnnotationsOf(EModelElement modelElement, String... constraintKeys) {
     	EAnnotation anno = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
-    	EAnnotation ast = modelElement.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+    	EAnnotation ast = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
     	if (anno != null && ast != null){
     		int pos = -1;
     		int count = 0;
@@ -183,11 +182,11 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 	 * @since 3.1
 	 */
     protected void saveExpressionInAnnotation(EModelElement modelElement, Constraint constraint) {
-    	EAnnotation a = modelElement.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+    	EAnnotation a = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
     	if (a == null){
     		a = EcoreFactory.eINSTANCE.createEAnnotation();
     		a.setEModelElement(modelElement);
-    		a.setSource(Environment.OCL_NAMESPACE_URI);
+    		a.setSource(OCLDelegateDomain.OCL_DELEGATE_URI);
     	}
     	a.getContents().add(constraint);
     }

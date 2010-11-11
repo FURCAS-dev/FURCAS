@@ -42,6 +42,7 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.TypeResolver;
+import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateException;
@@ -457,10 +458,10 @@ public class EcoreEnvironment
 			// replace existing definition
 			EcoreUtil.replace(existing, constraint);
 		} else {
-			EAnnotation ann = result.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+			EAnnotation ann = result.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
 			if (ann == null) {
 				ann = EcoreFactory.eINSTANCE.createEAnnotation();
-				ann.setSource(Environment.OCL_NAMESPACE_URI);
+				ann.setSource(OCLDelegateDomain.OCL_DELEGATE_URI);
 				result.getEAnnotations().add(ann);
 			}
 
@@ -498,10 +499,10 @@ public class EcoreEnvironment
 			// replace existing definition
 			EcoreUtil.replace(existing, constraint);
 		} else {
-			EAnnotation ann = result.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+			EAnnotation ann = result.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
 			if (ann == null) {
 				ann = EcoreFactory.eINSTANCE.createEAnnotation();
-				ann.setSource(Environment.OCL_NAMESPACE_URI);
+				ann.setSource(OCLDelegateDomain.OCL_DELEGATE_URI);
 				result.getEAnnotations().add(ann);
 			}
 
@@ -531,7 +532,7 @@ public class EcoreEnvironment
 	public Constraint getDefinition(Object feature) {
     	Constraint result = null;
 		ETypedElement typedFeature = (ETypedElement) feature;
-    	EAnnotation ann = typedFeature.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+    	EAnnotation ann = typedFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
     	if ((ann != null)) {
 			if (!ann.getContents().isEmpty()) {
 				for (EObject o : ann.getContents()) {
@@ -546,7 +547,14 @@ public class EcoreEnvironment
 					return null;
 				}
 				try {
-					result = OCL.newInstance().createOCLHelper().createBodyCondition(expr);
+					Helper helper = OCL.newInstance().createOCLHelper();
+					if (feature instanceof EOperation) {
+						EOperation op = (EOperation) feature;
+						helper.setOperationContext((EClassifier) ((EOperation) feature).eContainer(), op);
+					} else if (feature instanceof EStructuralFeature) {
+						helper.setContext((EClassifier) ((EStructuralFeature) feature).eContainer());
+					}
+					result = helper.createBodyCondition(expr);
 					ann.getContents().add(result);
 				} catch (ParserException e) {
 					throw new OCLDelegateException(e.getLocalizedMessage(), e);
@@ -567,11 +575,11 @@ public class EcoreEnvironment
 			return result;
 		}
 		ETypedElement typedFeature = feature;
-		EAnnotation ann = typedFeature.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+		EAnnotation ann = typedFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
 		if (ann == null) {
 			// expects getOperationBody(...) to store the AST in the OCL annotation's contents
 			InvocationBehavior.INSTANCE.getOperationBody(OCL.newInstance(), feature);
-			ann = typedFeature.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+			ann = typedFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
 		}
 		if ((ann != null) && !ann.getContents().isEmpty()) {
 			for (EObject o : ann.getContents()) {
