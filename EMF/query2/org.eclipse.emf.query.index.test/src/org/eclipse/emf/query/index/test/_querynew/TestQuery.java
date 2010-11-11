@@ -18,13 +18,18 @@ import static org.eclipse.emf.query.index.test._querynew.Query.resource;
 import static org.eclipse.emf.query.index.test._querynew.Query.resources;
 import static org.eclipse.emf.query.index.test._querynew.Query.select;
 
+import org.junit.Ignore;
+import org.junit.Test;
+
 /**
  * @author Martin Strenge, SAP AG
  * @author Bernd Kolb, SAP AG
  * 
  */
+@Ignore("Not working!")
 public class TestQuery {
 
+	@Test
 	public void test() {
 		select(resources("*").containing(eobject("f*").ofType("uri")));
 
