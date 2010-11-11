@@ -43,7 +43,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notificat
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.ImpactAnalyzerWithHiddenOppositesFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.OCLWithHiddenOppositesFactory;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.BaseDepartmentTest;
+import de.hpi.sam.bp2009.solution.testutils.BaseDepartmentTest;
 
 /**
  * Tests whether the right context instances are computed. This is done as follows: A simple instance of the company model is

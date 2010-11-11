@@ -11,7 +11,7 @@
 package de.hpi.sam.bp2009.solution.eventManager.tests;
 
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.BaseDepartmentTest;
+import de.hpi.sam.bp2009.solution.testutils.BaseDepartmentTest;
 
 /**
  * <!-- begin-user-doc --> A test case for the model object '<em><b>Event Filter</b></em>'. <!-- end-user-doc -->
