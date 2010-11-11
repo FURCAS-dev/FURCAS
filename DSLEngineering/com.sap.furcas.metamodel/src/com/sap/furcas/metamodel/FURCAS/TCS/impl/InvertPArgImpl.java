@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class InvertPArgImpl extends OclPArgImpl implements InvertPArg {
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected InvertPArgImpl() {
-        super();
-    }
+		super();
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         protected EClass eStaticClass() {
-        return TCSPackage.Literals.INVERT_PARG;
-    }
+		return TCSPackage.Literals.INVERT_PARG;
+	}
 
 } //InvertPArgImpl

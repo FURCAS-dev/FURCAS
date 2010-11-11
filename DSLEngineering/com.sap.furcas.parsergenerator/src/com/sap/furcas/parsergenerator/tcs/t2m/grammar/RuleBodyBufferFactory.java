@@ -53,6 +53,36 @@ public class RuleBodyBufferFactory {
      * 
      * @param element
      *            the element
+ 	 * @param semanticRef
+     *            This is the label of the ocl which points to a literal. This will
+     *            be exchanged with a real value in the delayed reference
+     * 
+     * @return the new rule body prefix for a semantic predicated rule
+     * 
+     * @throws SyntaxParsingException
+     *             the syntax parsing exception
+     * @throws MetaModelLookupException
+     *             the meta model lookup exception
+     */
+    protected String getNewRuleBodyForSemDisambiguate(Sequence element, String semanticRef)
+            throws MetaModelLookupException {
+    	propertyHandler.setSkipDelayedReferences(true);
+        SemanticRuleBodyStringBuffer buffer = new SemanticRuleBodyStringBuffer(
+                alternativeHandler, blockHandler, conElHandler,
+                propertyHandler, syntaxLookup, namingHelper, actionsHandler, errorBucket, semanticRef);
+        
+        buffer.addToRuleFragment(element);
+        propertyHandler.setSkipDelayedReferences(false);
+        return buffer.getResult();
+    }
+    
+    /**
+     * creates a new factory using the Handler created in the wrapping
+     * class.
+     * 
+     * @param element
+     *            the element
+     * 
      * 
      * @return the new rule body fragment
      * 

@@ -1,6 +1,5 @@
 package com.sap.mi.textual.parsing.textblocks.reference;
 
-import java.util.Collection;
 import java.util.EventListener;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -84,17 +83,6 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener {
 	listeners.remove(listener);
     }
 
-    void notifyReferenceResolvingListenerReferenceResolved(DelayedReference ref) {
-	for (ReferenceResolvingListener listener : listeners) {
-	    listener.referenceResolved(ref);
-	}
-    }
-
-    void notifyReferenceResolvingListenerReferencesRemoved(Collection<DelayedReference> refs) {
-	for (ReferenceResolvingListener listener : listeners) {
-	    listener.outdatedReferencesRemoved(refs);
-	}
-    }
 
     public void registerReferenceForIncrementalEvaluation(ConcreteSyntax syntax, ResourceSet connection,
 	    EPackage outermostPackageOfMetamodel, ObservableInjectingParser parser, IRuleName ruleNameBuilder,
@@ -118,5 +106,20 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener {
     public void clearUnresolvedIAReferences() {
 	resolver.clearUnresolvedReferences();
     }
+    
+	void notifyReferenceUnset(DelayedReference reference,
+			Object valueRemovedFromProperty) {
+		for (ReferenceResolvingListener listener : listeners) {
+			listener.outdatedReferencesRemoved(reference,
+					valueRemovedFromProperty);
+		}
+	}
+
+	void notifyReferenceSet(DelayedReference reference,
+			Object valueSetOnProperty) {
+		for (ReferenceResolvingListener listener : listeners) {
+			listener.referenceResolved(reference, valueSetOnProperty);
+		}
+	}
 
 }

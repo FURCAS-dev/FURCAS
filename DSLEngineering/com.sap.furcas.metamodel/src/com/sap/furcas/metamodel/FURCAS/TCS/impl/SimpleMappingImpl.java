@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class SimpleMappingImpl extends MappingImpl implements SimpleMapping {
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected SimpleMappingImpl() {
-        super();
-    }
+		super();
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         protected EClass eStaticClass() {
-        return TCSPackage.Literals.SIMPLE_MAPPING;
-    }
+		return TCSPackage.Literals.SIMPLE_MAPPING;
+	}
 
 } //SimpleMappingImpl

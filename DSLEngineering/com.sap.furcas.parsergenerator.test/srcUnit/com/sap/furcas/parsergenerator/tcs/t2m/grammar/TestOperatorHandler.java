@@ -68,7 +68,7 @@ public class TestOperatorHandler {
         prioList.add(priority1);
         opList.priorities = prioList ;
 
-        ophandler.addOperatorList(opList , classTemplateName , true);
+        ophandler.addOperatorList(opList , classTemplateName , true, null, null);
 
         assertEquals(1, writerStub.rules.size());
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
@@ -98,7 +98,7 @@ public class TestOperatorHandler {
         OperatorListStub opList = getMockOperatorList(list("TestOp"));
         /******/
         
-        ophandler.addOperatorList(opList , classTemplateName , true);
+        ophandler.addOperatorList(opList , classTemplateName , true, null, null);
 
         assertEquals(1, writerStub.rules.size());
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
@@ -131,7 +131,7 @@ public class TestOperatorHandler {
         OperatorTemplateStub optemplate = (OperatorTemplateStub) operator.templatesList.get(0);
         optemplate.disambiguateV3 = "DISAMBIGUATE";
         
-        ophandler.addOperatorList(opList , classTemplateName , true);
+        ophandler.addOperatorList(opList , classTemplateName , true, null, null);
 
         assertEquals(1, writerStub.rules.size());
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
@@ -163,7 +163,7 @@ public class TestOperatorHandler {
         OperatorListStub opList = getMockOperatorList(list("TestOp", "OtherTestOp"));
         /******/
         
-        ophandler.addOperatorList(opList , classTemplateName , true);
+        ophandler.addOperatorList(opList , classTemplateName , true, null, null);
 
         assertEquals(1, writerStub.rules.size());
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
@@ -194,7 +194,7 @@ public class TestOperatorHandler {
         OperatorListStub opList = getMockOperatorList(list("TestOp", "OtherTestOp"), list("TestOp222", "OtherTestOp222"), list("TestOp333", "OtherTestOp333"));
         /******/
         
-        ophandler.addOperatorList(opList , classTemplateName , true);
+        ophandler.addOperatorList(opList , classTemplateName , true, null, null);
 
         assertEquals(3, writerStub.rules.size());
        
@@ -260,7 +260,7 @@ public class TestOperatorHandler {
         priority1.operators = operatorsList ;
 
         
-        ophandler.addOperatorList(opList , classTemplateName , true);
+        ophandler.addOperatorList(opList , classTemplateName , true, null, null);
 
         assertEquals(1, writerStub.rules.size());
          AbstractAntlr3Rule result = writerStub.rules.get(0);
@@ -316,7 +316,7 @@ public class TestOperatorHandler {
         priority1.operators = operatorsList ;
 
         
-        ophandler.addOperatorList(opList , classTemplateName , true);
+        ophandler.addOperatorList(opList , classTemplateName , true, null, null);
 
         assertEquals(1, writerStub.rules.size());
          AbstractAntlr3Rule result = writerStub.rules.get(0);
@@ -373,7 +373,7 @@ public class TestOperatorHandler {
         priority1.operators = operatorsList ;
 
         
-        ophandler.addOperatorList(opList , classTemplateName , true);
+        ophandler.addOperatorList(opList , classTemplateName , true, null, null);
 
         assertEquals(1, writerStub.rules.size());
          AbstractAntlr3Rule result = writerStub.rules.get(0);

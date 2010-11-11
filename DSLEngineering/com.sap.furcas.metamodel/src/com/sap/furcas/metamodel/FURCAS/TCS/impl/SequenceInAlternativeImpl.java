@@ -36,232 +36,232 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  */
 public class SequenceInAlternativeImpl extends SequenceImpl implements SequenceInAlternative {
         /**
-     * The default value of the '{@link #getDisambiguate() <em>Disambiguate</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getDisambiguate() <em>Disambiguate</em>}' attribute.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @see #getDisambiguate()
-     * @generated
-     * @ordered
-     */
+	 * @see #getDisambiguate()
+	 * @generated
+	 * @ordered
+	 */
         protected static final String DISAMBIGUATE_EDEFAULT = null;
 
         /**
-     * The cached value of the '{@link #getDisambiguate() <em>Disambiguate</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getDisambiguate() <em>Disambiguate</em>}' attribute.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @see #getDisambiguate()
-     * @generated
-     * @ordered
-     */
+	 * @see #getDisambiguate()
+	 * @generated
+	 * @ordered
+	 */
         protected String disambiguate = DISAMBIGUATE_EDEFAULT;
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected SequenceInAlternativeImpl() {
-        super();
-    }
+		super();
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         protected EClass eStaticClass() {
-        return TCSPackage.Literals.SEQUENCE_IN_ALTERNATIVE;
-    }
+		return TCSPackage.Literals.SEQUENCE_IN_ALTERNATIVE;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public Alternative getAlternativeContainer() {
-        if (eContainerFeatureID() != TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER) return null;
-        return (Alternative)eContainer();
-    }
+		if (eContainerFeatureID() != TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER) return null;
+		return (Alternative)eContainer();
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public NotificationChain basicSetAlternativeContainer(Alternative newAlternativeContainer, NotificationChain msgs) {
-        msgs = eBasicSetContainer((InternalEObject)newAlternativeContainer, TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER, msgs);
-        return msgs;
-    }
+		msgs = eBasicSetContainer((InternalEObject)newAlternativeContainer, TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER, msgs);
+		return msgs;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public void setAlternativeContainer(Alternative newAlternativeContainer) {
-        if (newAlternativeContainer != eInternalContainer() || (eContainerFeatureID() != TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER && newAlternativeContainer != null)) {
-            if (EcoreUtil.isAncestor(this, newAlternativeContainer))
-                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-            NotificationChain msgs = null;
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            if (newAlternativeContainer != null)
-                msgs = ((InternalEObject)newAlternativeContainer).eInverseAdd(this, TCSPackage.ALTERNATIVE__SEQUENCES, Alternative.class, msgs);
-            msgs = basicSetAlternativeContainer(newAlternativeContainer, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER, newAlternativeContainer, newAlternativeContainer));
-    }
+		if (newAlternativeContainer != eInternalContainer() || (eContainerFeatureID() != TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER && newAlternativeContainer != null)) {
+			if (EcoreUtil.isAncestor(this, newAlternativeContainer))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newAlternativeContainer != null)
+				msgs = ((InternalEObject)newAlternativeContainer).eInverseAdd(this, TCSPackage.ALTERNATIVE__SEQUENCES, Alternative.class, msgs);
+			msgs = basicSetAlternativeContainer(newAlternativeContainer, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER, newAlternativeContainer, newAlternativeContainer));
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public String getDisambiguate() {
-        return disambiguate;
-    }
+		return disambiguate;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public void setDisambiguate(String newDisambiguate) {
-        String oldDisambiguate = disambiguate;
-        disambiguate = newDisambiguate;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.SEQUENCE_IN_ALTERNATIVE__DISAMBIGUATE, oldDisambiguate, disambiguate));
-    }
+		String oldDisambiguate = disambiguate;
+		disambiguate = newDisambiguate;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.SEQUENCE_IN_ALTERNATIVE__DISAMBIGUATE, oldDisambiguate, disambiguate));
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER:
-                if (eInternalContainer() != null)
-                    msgs = eBasicRemoveFromContainer(msgs);
-                return basicSetAlternativeContainer((Alternative)otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetAlternativeContainer((Alternative)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER:
-                return basicSetAlternativeContainer(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER:
+				return basicSetAlternativeContainer(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID()) {
-            case TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER:
-                return eInternalContainer().eInverseRemove(this, TCSPackage.ALTERNATIVE__SEQUENCES, Alternative.class, msgs);
-        }
-        return super.eBasicRemoveFromContainerFeature(msgs);
-    }
+		switch (eContainerFeatureID()) {
+			case TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER:
+				return eInternalContainer().eInverseRemove(this, TCSPackage.ALTERNATIVE__SEQUENCES, Alternative.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER:
-                return getAlternativeContainer();
-            case TCSPackage.SEQUENCE_IN_ALTERNATIVE__DISAMBIGUATE:
-                return getDisambiguate();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER:
+				return getAlternativeContainer();
+			case TCSPackage.SEQUENCE_IN_ALTERNATIVE__DISAMBIGUATE:
+				return getDisambiguate();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER:
-                setAlternativeContainer((Alternative)newValue);
-                return;
-            case TCSPackage.SEQUENCE_IN_ALTERNATIVE__DISAMBIGUATE:
-                setDisambiguate((String)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER:
+				setAlternativeContainer((Alternative)newValue);
+				return;
+			case TCSPackage.SEQUENCE_IN_ALTERNATIVE__DISAMBIGUATE:
+				setDisambiguate((String)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public void eUnset(int featureID) {
-        switch (featureID) {
-            case TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER:
-                setAlternativeContainer((Alternative)null);
-                return;
-            case TCSPackage.SEQUENCE_IN_ALTERNATIVE__DISAMBIGUATE:
-                setDisambiguate(DISAMBIGUATE_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER:
+				setAlternativeContainer((Alternative)null);
+				return;
+			case TCSPackage.SEQUENCE_IN_ALTERNATIVE__DISAMBIGUATE:
+				setDisambiguate(DISAMBIGUATE_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER:
-                return getAlternativeContainer() != null;
-            case TCSPackage.SEQUENCE_IN_ALTERNATIVE__DISAMBIGUATE:
-                return DISAMBIGUATE_EDEFAULT == null ? disambiguate != null : !DISAMBIGUATE_EDEFAULT.equals(disambiguate);
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER:
+				return getAlternativeContainer() != null;
+			case TCSPackage.SEQUENCE_IN_ALTERNATIVE__DISAMBIGUATE:
+				return DISAMBIGUATE_EDEFAULT == null ? disambiguate != null : !DISAMBIGUATE_EDEFAULT.equals(disambiguate);
+		}
+		return super.eIsSet(featureID);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (disambiguate: ");
-        result.append(disambiguate);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (disambiguate: ");
+		result.append(disambiguate);
+		result.append(')');
+		return result.toString();
+	}
 
 } //SequenceInAlternativeImpl

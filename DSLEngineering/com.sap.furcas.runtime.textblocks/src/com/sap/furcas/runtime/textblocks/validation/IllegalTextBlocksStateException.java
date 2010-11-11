@@ -1,9 +1,7 @@
 package com.sap.furcas.runtime.textblocks.validation;
 
-import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
-import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
+import com.sap.furcas.runtime.textblocks.TbDebugUtil;
 
 public class IllegalTextBlocksStateException extends IllegalStateException {
 
@@ -18,24 +16,6 @@ public class IllegalTextBlocksStateException extends IllegalStateException {
     @Override
     public String getMessage() {
 	return super.getMessage() + "\n" + 
-		"TextBlock was:\n" + getTextBlockAsString(currentTextBlock);
-    }
-
-    private String getTextBlockAsString(TextBlock currentTextBlock) {
-	String temp = "";
-	for (DocumentNode node : TbNavigationUtil.getSubNodes(currentTextBlock)) {
-	    if (node instanceof TextBlock) {
-		TextBlock tb = (TextBlock) node;
-		 temp += "tb["+tb.getSubNodes().size()+"]:\"" + getTextBlockAsString(tb) + "\"";
-	    } 
-	    if (node instanceof AbstractToken) {
-		AbstractToken tok = (AbstractToken) node;
-		temp += tok.getValue();
-	    }
-	}
-	return temp+ "[o:"+ currentTextBlock.getOffset() +
-		(currentTextBlock.isOffsetRelative() ? "r":"a") +
-		",l:" + currentTextBlock.getLength() + "]<Version:"+
-		currentTextBlock.getVersion()+">";
+		"TextBlock was:\n" + TbDebugUtil.getTextBlockAsAnnotatedString(currentTextBlock);
     }
 }

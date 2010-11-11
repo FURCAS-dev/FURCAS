@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class WildcardMappingImpl extends MappingImpl implements WildcardMapping {
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected WildcardMappingImpl() {
-        super();
-    }
+		super();
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         protected EClass eStaticClass() {
-        return TCSPackage.Literals.WILDCARD_MAPPING;
-    }
+		return TCSPackage.Literals.WILDCARD_MAPPING;
+	}
 
 } //WildcardMappingImpl

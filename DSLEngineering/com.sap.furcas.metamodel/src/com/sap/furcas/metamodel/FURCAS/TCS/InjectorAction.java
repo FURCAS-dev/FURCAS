@@ -26,31 +26,31 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface InjectorAction extends EObject {
         /**
-     * Returns the value of the '<em><b>Injector Actions Block</b></em>' container reference.
-     * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock#getPropertyInits <em>Property Inits</em>}'.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Injector Actions Block</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock#getPropertyInits <em>Property Inits</em>}'.
+	 * <!-- begin-user-doc -->
          * <p>
          * If the meaning of the '<em>Injector Actions Block</em>' container reference isn't clear,
          * there really should be more of a description here...
          * </p>
          * <!-- end-user-doc -->
-     * @return the value of the '<em>Injector Actions Block</em>' container reference.
-     * @see #setInjectorActionsBlock(InjectorActionsBlock)
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getInjectorAction_InjectorActionsBlock()
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock#getPropertyInits
-     * @model opposite="propertyInits" transient="false"
-     * @generated
-     */
+	 * @return the value of the '<em>Injector Actions Block</em>' container reference.
+	 * @see #setInjectorActionsBlock(InjectorActionsBlock)
+	 * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getInjectorAction_InjectorActionsBlock()
+	 * @see com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock#getPropertyInits
+	 * @model opposite="propertyInits" transient="false"
+	 * @generated
+	 */
         InjectorActionsBlock getInjectorActionsBlock();
 
         /**
-     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction#getInjectorActionsBlock <em>Injector Actions Block</em>}' container reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction#getInjectorActionsBlock <em>Injector Actions Block</em>}' container reference.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Injector Actions Block</em>' container reference.
-     * @see #getInjectorActionsBlock()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Injector Actions Block</em>' container reference.
+	 * @see #getInjectorActionsBlock()
+	 * @generated
+	 */
         void setInjectorActionsBlock(InjectorActionsBlock value);
 
 } // InjectorAction

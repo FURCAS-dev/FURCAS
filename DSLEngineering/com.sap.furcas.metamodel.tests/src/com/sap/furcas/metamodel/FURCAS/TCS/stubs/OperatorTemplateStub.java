@@ -219,5 +219,17 @@ public class OperatorTemplateStub extends TemplateStub implements OperatorTempla
 	
     }
 
+	@Override
+	public String getSemDisambiguate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setSemDisambiguate(String value) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

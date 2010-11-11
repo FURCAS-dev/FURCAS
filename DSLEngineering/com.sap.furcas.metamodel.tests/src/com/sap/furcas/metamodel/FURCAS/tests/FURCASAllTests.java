@@ -22,32 +22,32 @@ import junit.textui.TestRunner;
 public class FURCASAllTests extends TestSuite {
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public static void main(String[] args) {
-                TestRunner.run(suite());
-        }
+		TestRunner.run(suite());
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public static Test suite() {
-                TestSuite suite = new FURCASAllTests("FURCAS Tests");
-                suite.addTest(TextblocksTests.suite());
-                return suite;
-        }
+		TestSuite suite = new FURCASAllTests("FURCAS Tests");
+		suite.addTest(TextblocksTests.suite());
+		return suite;
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public FURCASAllTests(String name) {
-                super(name);
-        }
+		super(name);
+	}
 
 } //FURCASAllTests

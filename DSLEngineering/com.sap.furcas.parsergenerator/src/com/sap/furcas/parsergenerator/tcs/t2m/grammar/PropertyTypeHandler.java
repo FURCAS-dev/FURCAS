@@ -75,6 +75,8 @@ public class PropertyTypeHandler<Type extends Object> {
 
 	private MetaModelElementResolutionHelper<Type> resolutionHelper;
 
+	private boolean skipDelayedReferences = false;
+	
 	/**
 	 * Instantiates a new property type handler.
 	 * 
@@ -207,7 +209,8 @@ public class PropertyTypeHandler<Type extends Object> {
 							.getModeSuffix(args.modePArg.getMode()));
 				}
 				repeatablePart.append(" {setProperty(ret, \"").append(
-						propertyName).append("\", temp);}");
+                        propertyName).append("\", temp);\nsetParent(temp,ret,\""+
+                        propertyName+"\");}");
 			}
 
 			// treat multiplicity
@@ -331,7 +334,7 @@ public class PropertyTypeHandler<Type extends Object> {
 	 * @param prop
 	 * @return
 	 */
-	private static String getPropertyName(Property prop) {
+	protected static String getPropertyName(Property prop) {
 		PropertyReference propRef = prop.getPropertyReference();
 		if (propRef != null) {
 			if (propRef.getName() != null) {
@@ -377,12 +380,16 @@ public class PropertyTypeHandler<Type extends Object> {
 		validateOclQuery(prop, args, query);
 		
 		if (args.refersTo != null) {
-			ruleBodyPart.append(concatBuf(" {setOclRef(ret, \"", propertyName,
+			if(!skipDelayedReferences) {
+				ruleBodyPart.append(concatBuf(" {setOclRef(ret, \"", propertyName,
 					"\", \"", args.refersTo.getPropertyName(), "\", temp, \""
 							+ javaQuery + "\");}"));
+			}
 		} else {
-			ruleBodyPart.append(concatBuf(" {setOclRef(ret, \"", propertyName,
+			if(!skipDelayedReferences) {
+				ruleBodyPart.append(concatBuf(" {setOclRef(ret, \"", propertyName,
 					"\", null, temp, \"" + javaQuery + "\");}"));
+			}
 		}
 
 	}
@@ -464,11 +471,13 @@ public class PropertyTypeHandler<Type extends Object> {
 			createIn = "\"" + createDotSeparatedList(argPropertyName) + "\"";
 
 		}
-		ruleBodyPart.append(concatBuf(" {setRef(ret, \"", propertyName, "\", ",
+		if(!skipDelayedReferences) {
+			ruleBodyPart.append(concatBuf(" {setRef(ret, \"", propertyName, "\", ",
 				resolvedTypeOfPropertyName, ", \"", refersTo.getPropertyName(),
 				"\", temp, " + lookIn + ", " + autoCreate + ", " + createAs
 						+ ", " + (args.importContextPArg != null) + ", "
 						+ createIn + ");}"));
+		}
 	}
 
 	/**
@@ -999,4 +1008,9 @@ public class PropertyTypeHandler<Type extends Object> {
 			}
 		}
 	}
+	
+	public void setSkipDelayedReferences(boolean skipDelayedReferences) {
+		this.skipDelayedReferences = skipDelayedReferences;
+	}
+	
 }

@@ -20,55 +20,55 @@ import junit.textui.TestRunner;
 public class FilterPArgTest extends OclPArgTest {
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public static void main(String[] args) {
-                TestRunner.run(FilterPArgTest.class);
-        }
+		TestRunner.run(FilterPArgTest.class);
+	}
 
         /**
-         * Constructs a new Filter PArg test case with the given name.
-         * <!-- begin-user-doc -->
+	 * Constructs a new Filter PArg test case with the given name.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public FilterPArgTest(String name) {
-                super(name);
-        }
+		super(name);
+	}
 
         /**
-         * Returns the fixture for this Filter PArg test case.
-         * <!-- begin-user-doc -->
+	 * Returns the fixture for this Filter PArg test case.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         @Override
         protected FilterPArg getFixture() {
-                return (FilterPArg)fixture;
-        }
+		return (FilterPArg)fixture;
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#setUp()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#setUp()
+	 * @generated
+	 */
         @Override
         protected void setUp() throws Exception {
-                setFixture(TCSFactory.eINSTANCE.createFilterPArg());
-        }
+		setFixture(TCSFactory.eINSTANCE.createFilterPArg());
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#tearDown()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#tearDown()
+	 * @generated
+	 */
         @Override
         protected void tearDown() throws Exception {
-                setFixture(null);
-        }
+		setFixture(null);
+	}
 
 } //FilterPArgTest

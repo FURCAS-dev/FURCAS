@@ -19,41 +19,41 @@ import junit.framework.TestCase;
 public abstract class InjectorActionTest extends TestCase {
 
         /**
-         * The fixture for this Injector Action test case.
-         * <!-- begin-user-doc -->
+	 * The fixture for this Injector Action test case.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         protected InjectorAction fixture = null;
 
         /**
-         * Constructs a new Injector Action test case with the given name.
-         * <!-- begin-user-doc -->
+	 * Constructs a new Injector Action test case with the given name.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public InjectorActionTest(String name) {
-                super(name);
-        }
+		super(name);
+	}
 
         /**
-         * Sets the fixture for this Injector Action test case.
-         * <!-- begin-user-doc -->
+	 * Sets the fixture for this Injector Action test case.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         protected void setFixture(InjectorAction fixture) {
-                this.fixture = fixture;
-        }
+		this.fixture = fixture;
+	}
 
         /**
-         * Returns the fixture for this Injector Action test case.
-         * <!-- begin-user-doc -->
+	 * Returns the fixture for this Injector Action test case.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         protected InjectorAction getFixture() {
-                return fixture;
-        }
+		return fixture;
+	}
 
 } //InjectorActionTest

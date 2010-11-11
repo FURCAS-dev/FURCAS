@@ -16,6 +16,7 @@ public class TemplateStub extends LocatedElementStub implements Template {
 
     public EList<String> names;
     public String disambiguateV3;
+	public String semDisambiguate;    
     public EClass metaReference;
     
     public TemplateStub() {
@@ -118,6 +119,14 @@ public class TemplateStub extends LocatedElementStub implements Template {
 //    	return null;
 //    }
     
- 
+    @Override
+	public String getSemDisambiguate() {
+		return semDisambiguate;
+	}
+
+	@Override
+	public void setSemDisambiguate(String newValue) {
+		semDisambiguate = newValue;
+	}
 
 }

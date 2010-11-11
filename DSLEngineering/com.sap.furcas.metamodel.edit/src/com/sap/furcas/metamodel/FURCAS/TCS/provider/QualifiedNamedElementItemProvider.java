@@ -41,130 +41,130 @@ public class QualifiedNamedElementItemProvider
                 IItemLabelProvider,
                 IItemPropertySource {
         /**
-         * This constructs an instance from a factory and a notifier.
-         * <!-- begin-user-doc -->
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public QualifiedNamedElementItemProvider(AdapterFactory adapterFactory) {
-                super(adapterFactory);
-        }
+		super(adapterFactory);
+	}
 
         /**
-         * This returns the property descriptors for the adapted class.
-         * <!-- begin-user-doc -->
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         @Override
         public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-                if (itemPropertyDescriptors == null) {
-                        super.getPropertyDescriptors(object);
+		if (itemPropertyDescriptors == null) {
+			super.getPropertyDescriptors(object);
 
-                        addNamesPropertyDescriptor(object);
-                        addMetaReferencePropertyDescriptor(object);
-                }
-                return itemPropertyDescriptors;
-        }
+			addNamesPropertyDescriptor(object);
+			addMetaReferencePropertyDescriptor(object);
+		}
+		return itemPropertyDescriptors;
+	}
 
         /**
-         * This adds a property descriptor for the Names feature.
-         * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Names feature.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         protected void addNamesPropertyDescriptor(Object object) {
-                itemPropertyDescriptors.add
-                        (createItemPropertyDescriptor
-                                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                                 getResourceLocator(),
-                                 getString("_UI_QualifiedNamedElement_names_feature"),
-                                 getString("_UI_PropertyDescriptor_description", "_UI_QualifiedNamedElement_names_feature", "_UI_QualifiedNamedElement_type"),
-                                 TCSPackage.Literals.QUALIFIED_NAMED_ELEMENT__NAMES,
-                                 true,
-                                 false,
-                                 false,
-                                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                                 null,
-                                 null));
-        }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_QualifiedNamedElement_names_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_QualifiedNamedElement_names_feature", "_UI_QualifiedNamedElement_type"),
+				 TCSPackage.Literals.QUALIFIED_NAMED_ELEMENT__NAMES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
 
         /**
-         * This adds a property descriptor for the Meta Reference feature.
-         * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Meta Reference feature.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         protected void addMetaReferencePropertyDescriptor(Object object) {
-                itemPropertyDescriptors.add
-                        (createItemPropertyDescriptor
-                                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                                 getResourceLocator(),
-                                 getString("_UI_QualifiedNamedElement_metaReference_feature"),
-                                 getString("_UI_PropertyDescriptor_description", "_UI_QualifiedNamedElement_metaReference_feature", "_UI_QualifiedNamedElement_type"),
-                                 TCSPackage.Literals.QUALIFIED_NAMED_ELEMENT__META_REFERENCE,
-                                 true,
-                                 false,
-                                 true,
-                                 null,
-                                 null,
-                                 null));
-        }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_QualifiedNamedElement_metaReference_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_QualifiedNamedElement_metaReference_feature", "_UI_QualifiedNamedElement_type"),
+				 TCSPackage.Literals.QUALIFIED_NAMED_ELEMENT__META_REFERENCE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
 
         /**
-         * This returns QualifiedNamedElement.gif.
-         * <!-- begin-user-doc -->
+	 * This returns QualifiedNamedElement.gif.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         @Override
         public Object getImage(Object object) {
-                return overlayImage(object, getResourceLocator().getImage("full/obj16/QualifiedNamedElement"));
-        }
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/QualifiedNamedElement"));
+	}
 
         /**
-         * This returns the label text for the adapted class.
-         * <!-- begin-user-doc -->
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         @Override
         public String getText(Object object) {
-                String label = ((QualifiedNamedElement)object).getLocation();
-                return label == null || label.length() == 0 ?
-                        getString("_UI_QualifiedNamedElement_type") :
-                        getString("_UI_QualifiedNamedElement_type") + " " + label;
-        }
+		String label = ((QualifiedNamedElement)object).getLocation();
+		return label == null || label.length() == 0 ?
+			getString("_UI_QualifiedNamedElement_type") :
+			getString("_UI_QualifiedNamedElement_type") + " " + label;
+	}
 
         /**
-         * This handles model notifications by calling {@link #updateChildren} to update any cached
-         * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-         * <!-- begin-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         @Override
         public void notifyChanged(Notification notification) {
-                updateChildren(notification);
+		updateChildren(notification);
 
-                switch (notification.getFeatureID(QualifiedNamedElement.class)) {
-                        case TCSPackage.QUALIFIED_NAMED_ELEMENT__NAMES:
-                                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                                return;
-                }
-                super.notifyChanged(notification);
-        }
+		switch (notification.getFeatureID(QualifiedNamedElement.class)) {
+			case TCSPackage.QUALIFIED_NAMED_ELEMENT__NAMES:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
+		super.notifyChanged(notification);
+	}
 
         /**
-         * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-         * that can be created under this object.
-         * <!-- begin-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         @Override
         protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-                super.collectNewChildDescriptors(newChildDescriptors, object);
-        }
+		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
 
 }

@@ -22,72 +22,72 @@ import junit.textui.TestRunner;
 public class PredicateSemanticTest extends TestCase {
 
         /**
-         * The fixture for this Predicate Semantic test case.
-         * <!-- begin-user-doc -->
+	 * The fixture for this Predicate Semantic test case.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         protected PredicateSemantic fixture = null;
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public static void main(String[] args) {
-                TestRunner.run(PredicateSemanticTest.class);
-        }
+		TestRunner.run(PredicateSemanticTest.class);
+	}
 
         /**
-         * Constructs a new Predicate Semantic test case with the given name.
-         * <!-- begin-user-doc -->
+	 * Constructs a new Predicate Semantic test case with the given name.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public PredicateSemanticTest(String name) {
-                super(name);
-        }
+		super(name);
+	}
 
         /**
-         * Sets the fixture for this Predicate Semantic test case.
-         * <!-- begin-user-doc -->
+	 * Sets the fixture for this Predicate Semantic test case.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         protected void setFixture(PredicateSemantic fixture) {
-                this.fixture = fixture;
-        }
+		this.fixture = fixture;
+	}
 
         /**
-         * Returns the fixture for this Predicate Semantic test case.
-         * <!-- begin-user-doc -->
+	 * Returns the fixture for this Predicate Semantic test case.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         protected PredicateSemantic getFixture() {
-                return fixture;
-        }
+		return fixture;
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#setUp()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#setUp()
+	 * @generated
+	 */
         @Override
         protected void setUp() throws Exception {
-                setFixture(TCSFactory.eINSTANCE.createPredicateSemantic());
-        }
+		setFixture(TCSFactory.eINSTANCE.createPredicateSemantic());
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#tearDown()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#tearDown()
+	 * @generated
+	 */
         @Override
         protected void tearDown() throws Exception {
-                setFixture(null);
-        }
+		setFixture(null);
+	}
 
 } //PredicateSemanticTest

@@ -12,6 +12,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.runtime.textblocks.TbUtil;
+import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 
 public class TbValidationUtil {
 
@@ -62,6 +63,21 @@ public class TbValidationUtil {
 			assertTextBlockConsistencyRecursive(subBlock);
 		}
 		assertTextBlockConsistency(currentTextBlock);
+	}
+	
+	public static void assertCacheIsUpToDate(TextBlock rootBlock) {
+	    TextBlocksModel model = new TextBlocksModel(rootBlock, /*modelAdapter*/ null);
+	    model.setUsecache(false);
+	    String uncached = model.get(0, model.getLength());
+	    model.setUsecache(true);
+	    String cached = model.get(0, model.getLength());
+	    if (!cached.equals(uncached)) {
+		System.out.println("Uncached");
+		System.out.println(uncached);
+		System.out.println("Cached");
+		System.out.println(cached);
+		throw new IllegalTextBlocksStateException("TextBlock and its cache are not in Sync", rootBlock);
+	    }
 	}
 
 	public static boolean hasGap(AbstractToken abstractToken,

@@ -168,6 +168,7 @@ public class ANTLR3GrammarWriter {
 		+ ANTLR3LocationToken.class.getCanonicalName() + ";\n" + "import "
 		+ IModelElementProxy.class.getCanonicalName() + ";\n"
 		+ "import com.sap.furcas.runtime.parser.impl.PredicateSemantic;\n"
+		+ "import com.sap.mi.textual.grammar.impl.SemanticDisambRuleData;\n"
 		+ "import com.sap.furcas.parsergenerator.emf.lookup.RuleNameFinder;\n"
 		+ "import java.text.CharacterIterator;\n"
 		+ "import java.text.StringCharacterIterator;\n" + "import %superclass%;\n"

@@ -30,7 +30,7 @@ import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.SourceViewerConfiguration;
 
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.runtime.textblocks.TbUtil;
 import com.sap.ide.cts.editor.autoedit.ClosingBraceAutoEditStrategy;
 import com.sap.ide.cts.editor.autoedit.CtsAutoEditStrategy;
 import com.sap.ide.cts.editor.contentassist.CtsContentAssistProcessor;
@@ -46,13 +46,9 @@ public class AbstractGrammarBasedViewerConfiguration extends SourceViewerConfigu
 	private final ITokenMapper myMapper;
 //	private Parameter[] context = null;
 	private ContentAssistant myAssistant;
-<<<<<<< HEAD
-    private ResourceSet connection;
-	private String languageId;
-=======
-    private final Connection connection;
+    private final ResourceSet connection;
 	private final String languageId;
->>>>>>> origin/master
+
 
 	/**
 	 * 

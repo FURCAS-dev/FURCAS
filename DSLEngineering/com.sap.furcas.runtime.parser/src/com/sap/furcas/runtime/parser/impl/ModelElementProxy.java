@@ -23,13 +23,15 @@ import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
  */
 public class ModelElementProxy implements IModelElementProxy {
 
-	private List<String> type;
-	private Map<String, List<Object>> attributeMap = new HashMap<String, List<Object>>();
+	private final List<String> type;
+	private final Map<String, List<Object>> attributeMap = new HashMap<String, List<Object>>();
 	private Object realObject;
 	private boolean referenceOnly;
 	private Token firstToken;
 	private Token lastToken;
 	private Object textBlock;
+	private Object parent;
+	private String parentPropertyName; //used for semanticDisambiguate
 
 	/**
 	 * @param name
@@ -50,6 +52,23 @@ public class ModelElementProxy implements IModelElementProxy {
 			Token firstToken) {
 		this(name, creationCandidate);
 		this.firstToken = firstToken;
+	}
+	
+	@Override
+	public Object getParent() {
+		return parent;
+	}
+
+	public void setParent(Object parent) {
+		this.parent = parent;
+	}
+
+	public String getParentPropertyName() {
+		return parentPropertyName;
+	}
+
+	public void setParentPropertyName(String parentPropertyName) {
+		this.parentPropertyName = parentPropertyName;
 	}
 
 	/**
@@ -116,6 +135,7 @@ public class ModelElementProxy implements IModelElementProxy {
 		realObject = createdObject;
 	}
 
+	@Override
 	public Object getRealObject() {
 		return realObject;
 	}

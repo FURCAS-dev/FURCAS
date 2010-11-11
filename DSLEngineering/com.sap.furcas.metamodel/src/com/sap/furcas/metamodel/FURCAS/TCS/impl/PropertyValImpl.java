@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class PropertyValImpl extends ValueImpl implements PropertyVal {
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected PropertyValImpl() {
-        super();
-    }
+		super();
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         protected EClass eStaticClass() {
-        return TCSPackage.Literals.PROPERTY_VAL;
-    }
+		return TCSPackage.Literals.PROPERTY_VAL;
+	}
 
 } //PropertyValImpl

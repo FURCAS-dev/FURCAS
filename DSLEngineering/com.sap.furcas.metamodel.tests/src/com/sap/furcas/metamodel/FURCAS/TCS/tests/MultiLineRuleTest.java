@@ -20,55 +20,55 @@ import junit.textui.TestRunner;
 public class MultiLineRuleTest extends RuleTest {
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public static void main(String[] args) {
-                TestRunner.run(MultiLineRuleTest.class);
-        }
+		TestRunner.run(MultiLineRuleTest.class);
+	}
 
         /**
-         * Constructs a new Multi Line Rule test case with the given name.
-         * <!-- begin-user-doc -->
+	 * Constructs a new Multi Line Rule test case with the given name.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public MultiLineRuleTest(String name) {
-                super(name);
-        }
+		super(name);
+	}
 
         /**
-         * Returns the fixture for this Multi Line Rule test case.
-         * <!-- begin-user-doc -->
+	 * Returns the fixture for this Multi Line Rule test case.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         @Override
         protected MultiLineRule getFixture() {
-                return (MultiLineRule)fixture;
-        }
+		return (MultiLineRule)fixture;
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#setUp()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#setUp()
+	 * @generated
+	 */
         @Override
         protected void setUp() throws Exception {
-                setFixture(TCSFactory.eINSTANCE.createMultiLineRule());
-        }
+		setFixture(TCSFactory.eINSTANCE.createMultiLineRule());
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#tearDown()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#tearDown()
+	 * @generated
+	 */
         @Override
         protected void tearDown() throws Exception {
-                setFixture(null);
-        }
+		setFixture(null);
+	}
 
 } //MultiLineRuleTest

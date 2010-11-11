@@ -6,7 +6,6 @@ package com.sap.furcas.runtime.parser.textblocks.observer;
 import java.util.List;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
-import com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 
@@ -109,19 +108,19 @@ public class TextBlockTraverser {
 	    stack.peek().addElementToContext(element);
 	}
 
-	public void enterAlternative(int choice) {
-		TextBlockProxyTraversationContext context = stack.peek();
-		if(context.getCurrentSequenceElement() instanceof Alternative) {
-			context.setCurrentAlternative(choice);
-		} else if(context.getCurrentSequenceElement() instanceof ConditionalElement) {
-			context.setCurrentAlternative(choice);
-		}
-		
-	}
+    public void enterAlternative(int choice) {
+    	TextBlockProxyTraversationContext context = stack.peek();
+    	if (context.getCurrentSequenceElement() instanceof Alternative) {
+    	    context.setCurrentAlternative(choice);
+    	}
+        }
 
-	public void exitAlternative() {
-		//do nothing
-	}
+    public void exitAlternative() {
+		TextBlockProxyTraversationContext context = stack.peek();
+		if (context.getCurrentSequenceElement() instanceof Alternative) {
+		    context.exitAlternative();
+		}
+    }
 
     public void setOperatorToken(boolean b) {
         stack.peek().setOperatorToken(b);
