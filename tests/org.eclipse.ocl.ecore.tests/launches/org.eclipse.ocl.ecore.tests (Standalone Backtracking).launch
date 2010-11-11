@@ -18,7 +18,7 @@
 <stringAttribute key="org.eclipse.jdt.junit.TEST_KIND" value="org.eclipse.jdt.junit.loader.junit4"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.eclipse.ocl.ecore.tests.AllTestsBacktracking"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="org.eclipse.ocl.ecore.tests"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dorg.eclipse.ocl.ecore.tests=${resource_loc:/org.eclipse.ocl.ecore.tests}&#13;&#10;-Dorg.eclipse.ocl.ecore=${resource_loc:/org.eclipse.ocl.ecore}&#13;&#10;-Dorg.eclipse.ocl.ecore.tests.nodebug=true&#13;&#10;-ea"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dorg.eclipse.ocl.ecore.tests=&quot;${resource_loc:/org.eclipse.ocl.ecore.tests}&quot;&#13;&#10;-Dorg.eclipse.ocl.ecore=&quot;${resource_loc:/org.eclipse.ocl.ecore}&quot;&#13;&#10;-Dorg.eclipse.ocl.ecore.tests.nodebug=true&#13;&#10;-ea"/>
 <booleanAttribute key="org.eclipse.tptp.platform.jvmti.client.ATTR_EXEC_OBJ_ALLOC_SITE" value="false"/>
 <booleanAttribute key="org.eclipse.tptp.platform.jvmti.client.ATTR_HEAP_COLLECT_INSTANCE" value="true"/>
 </launchConfiguration>
