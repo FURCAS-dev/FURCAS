@@ -10,10 +10,10 @@ import com.sap.furcas.parsergenerator.TCSParserGenerator;
 public class TCSParserGeneratorImpl implements TCSParserGenerator {
 
     @Override
-    public ConcreteSyntax generateGrammarFromSyntax(GrammarGenerationSourceConfiguration sourceConfiguration,
+    public void generateGrammarFromSyntax(GrammarGenerationSourceConfiguration sourceConfiguration,
             GrammarGenerationTargetConfiguration targetConfiguration, GenerationErrorHandler errorhandler)
             throws GrammarGenerationException {
-        return GrammarGenerator.buildGrammar(sourceConfiguration, targetConfiguration, errorhandler);
+        GrammarGenerator.buildGrammar(sourceConfiguration, targetConfiguration, errorhandler);
     }
 
     @Override
