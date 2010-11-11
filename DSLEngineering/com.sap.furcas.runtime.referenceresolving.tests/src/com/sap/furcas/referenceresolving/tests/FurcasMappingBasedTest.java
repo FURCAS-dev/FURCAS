@@ -23,6 +23,7 @@ import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.modeladaptation.emf.EMFModelAdapter;
+import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
@@ -59,8 +60,9 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
         resourceSet = testConfig.getSourceConfiguration().getResourceSet();
-        ParserFacade facade = generateParserForLanguage(testConfig, new ClassLookupImpl());
-        syntax = facade.getSyntax();
+        TCSSyntaxContainerBean containerBean = parseSyntax(testConfig, testConfig.getSyntaxDefinitionFile());
+        syntax = containerBean.getSyntax();
+        ParserFacade facade = generateParserForLanguage(testConfig, new ClassLookupImpl(), containerBean);
         parsingHelper = new ParsingHelper(facade);
     }
     

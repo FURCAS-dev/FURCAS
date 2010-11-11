@@ -1,5 +1,6 @@
 package com.sap.furcas.parsergenerator.tcs.generator;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -25,12 +26,12 @@ import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
  */
 public class SyntaxParser {
 
-    public static TCSSyntaxContainerBean parse(GrammarGenerationSourceConfiguration sourceConfiguration)
+    public static TCSSyntaxContainerBean parse(GrammarGenerationSourceConfiguration sourceConfiguration, File syntaxDefFile)
             throws ParserInvokationException {
 
         InputStream inputStream = null;
         try {
-            inputStream = new FileInputStream(sourceConfiguration.getSyntaxDefinitionFile());
+            inputStream = new FileInputStream(syntaxDefFile);
 
             // By choosing this injector, we establish the dependency to EMF.
             ModelInjectionResult result = TCSSpecificEMFModelInjector.parseSyntaxDefinition(inputStream,

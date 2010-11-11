@@ -6,6 +6,7 @@ package com.sap.furcas.parser.tcs.bootstrap;
 import static com.sap.furcas.parser.tcs.bootstrap.BootstrapHelper.createReferenceScope;
 import static com.sap.furcas.parser.tcs.bootstrap.BootstrapHelper.createResourceSet;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 
@@ -17,7 +18,9 @@ import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
 import com.sap.furcas.parsergenerator.GrammarGenerationTargetConfiguration;
 import com.sap.furcas.parsergenerator.TCSParserGenerator;
 import com.sap.furcas.parsergenerator.TCSParserGeneratorFactory;
+import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.common.exceptions.ParserGeneratorInvocationException;
+import com.sap.furcas.runtime.common.exceptions.ParserInvokationException;
 
 public class TCSBootstrap {
     
@@ -28,11 +31,12 @@ public class TCSBootstrap {
     
     private static GrammarGenerationSourceConfiguration sourceConfiguration;
     private static GrammarGenerationTargetConfiguration targetConfiguration;
+    private static TCSSyntaxContainerBean containerBean;
 
     
     @BeforeClass
     public static void setup() {
-        sourceConfiguration = new GrammarGenerationSourceConfiguration(new File(SYNTAXDEFINITION), createResourceSet(), createReferenceScope());
+        sourceConfiguration = new GrammarGenerationSourceConfiguration(createResourceSet(), createReferenceScope());
         targetConfiguration = new GrammarGenerationTargetConfiguration(PACKAGE, new File(GRAMMAR));
     }
     
@@ -44,9 +48,15 @@ public class TCSBootstrap {
         SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
 
         TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
-        generator.generateGrammarFromSyntax(sourceConfiguration, targetConfiguration, errorHandler);
+        try {
+            containerBean = generator.parseSyntax(sourceConfiguration, new File(SYNTAXDEFINITION));
+            generator.generateGrammarFromSyntax(sourceConfiguration, targetConfiguration, errorHandler, containerBean);
+            assertFalse("Must have completed without (critical) errors", errorHandler.hasFailedWithError());
+        } catch (ParserInvokationException e) {
+            fail("Failed to parse syntax:" + e.getMessage());
+            e.printStackTrace();
+        }
 
-        assertFalse("Must have completed without (critical) errors", errorHandler.hasFailedWithError());
     }
 
     /**
@@ -57,7 +67,7 @@ public class TCSBootstrap {
         SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
 
         TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
-        generator.generateGrammarFromSyntax(sourceConfiguration, targetConfiguration, errorHandler);
+        generator.generateGrammarFromSyntax(sourceConfiguration, targetConfiguration, errorHandler,containerBean);
         
         assertFalse("Must have completed without (critical) errors", errorHandler.hasFailedWithError());
     }

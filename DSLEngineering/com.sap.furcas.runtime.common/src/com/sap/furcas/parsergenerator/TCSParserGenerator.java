@@ -1,5 +1,7 @@
 package com.sap.furcas.parsergenerator;
 
+import java.io.File;
+
 import com.sap.furcas.runtime.common.exceptions.ParserInvokationException;
 
 /**
@@ -12,12 +14,13 @@ import com.sap.furcas.runtime.common.exceptions.ParserInvokationException;
 public interface TCSParserGenerator {
 
     public void generateGrammarFromSyntax(GrammarGenerationSourceConfiguration sourceConfiguration,
-            GrammarGenerationTargetConfiguration targetConfiguration, GenerationErrorHandler errorhandler, TCSSyntaxContainerBean containerBean)
-            throws GrammarGenerationException;
+            GrammarGenerationTargetConfiguration targetConfiguration, GenerationErrorHandler errorhandler,
+            TCSSyntaxContainerBean containerBean) throws GrammarGenerationException;
 
     public void generateParserFromGrammar(GrammarGenerationTargetConfiguration targetConfiguration,
             GenerationErrorHandler errorhandler);
 
-    public TCSSyntaxContainerBean parseSyntax(GrammarGenerationSourceConfiguration sourceConfiguration) throws ParserInvokationException;
+    public TCSSyntaxContainerBean parseSyntax(GrammarGenerationSourceConfiguration sourceConfiguration, File syntaxDefFile)
+            throws ParserInvokationException;
 
 }

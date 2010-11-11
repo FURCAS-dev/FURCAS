@@ -124,7 +124,7 @@ public class GeneratedParserTestConfiguration {
     }
     
     public GrammarGenerationSourceConfiguration getSourceConfiguration() {
-        return new GrammarGenerationSourceConfiguration(syntaxDefFile, resourceSet, referenceScope);
+        return new GrammarGenerationSourceConfiguration(resourceSet, referenceScope);
     }
     
     public String getRelativePathToGeneratedParserClass() {
@@ -141,5 +141,9 @@ public class GeneratedParserTestConfiguration {
     
     public String getClassNameOfCompiledParser() {
         return packageName + "." + languageName + "Parser";
+    }
+    
+    public File getSyntaxDefinitionFile(){
+        return syntaxDefFile;
     }
 }

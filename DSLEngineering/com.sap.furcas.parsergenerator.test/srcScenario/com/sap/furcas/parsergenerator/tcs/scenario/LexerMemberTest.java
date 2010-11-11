@@ -7,6 +7,7 @@ import java.io.File;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
 import com.sap.furcas.runtime.parser.ParserFacade;
@@ -30,7 +31,8 @@ public class LexerMemberTest extends GeneratedParserBasedTest {
     @BeforeClass
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
-        ParserFacade facade = generateParserForLanguage(testConfig, new ClassLookupImpl());
+        TCSSyntaxContainerBean containerBean = parseSyntax(testConfig, testConfig.getSyntaxDefinitionFile());
+        ParserFacade facade = generateParserForLanguage(testConfig, new ClassLookupImpl(), containerBean);
         parsingHelper = new ParsingHelper(facade);
     }
 
