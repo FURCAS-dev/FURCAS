@@ -22,6 +22,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.emf.ecore.opposites.OppositeEndFinder;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.AmbiguousLookupException;
 import org.eclipse.ocl.Environment;
@@ -39,8 +41,6 @@ import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.PrimitiveType;
 
-import com.sap.emf.oppositeendfinder.DefaultOppositeEndFinder;
-import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
 public class EcoreEnvironmentWithHiddenOppositesImpl extends EcoreEnvironment
 		implements EcoreEnvironmentWithHiddenOpposites {

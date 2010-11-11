@@ -21,7 +21,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.jface,
  org.eclipse.core.resources,
  com.sap.ocl.oppositefinder.query2,
- com.sap.emf.oppositeendfinder,
+ org.eclipse.emf.ecore.opposites,
  com.sap.emf.ocl.hiddenopposites,
  de.hpi.sam.bp2009.solution.queryContextScopeProvider,
  de.hpi.sam.bp2009.solution.scopeProvider

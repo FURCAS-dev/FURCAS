@@ -4,14 +4,12 @@ package com.sap.ide.cts.editor.contentassist.parsinghandler;
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.sap.furcas.parser.tcs.stableversion.TCSLexer;
-import com.sap.furcas.parser.tcs.stableversion.TCSParser;
-import com.sap.furcas.parsing.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.impl.DelegationParsingObserver;
+import com.sap.furcas.runtime.parser.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.ide.cts.editor.contentassist.CtsContentAssistParsingHandler;
 import com.sap.ide.cts.editor.contentassist.TcsFixtureBase;
 import com.sap.ide.cts.editor.contentassist.modeladapter.StubModelAdapter;
@@ -25,7 +23,7 @@ public abstract class CtsContentAssistParsingHandlerTestBase extends
 	protected void observeFixture(String path)
 			throws InvalidParserImplementationException, IOException,
 			UnknownProductionRuleException {
-		ParserFacade facade = new ParserFacade(TCSParser.class, TCSLexer.class);
+		ParserFacade facade = new ParserFacade(TCSParser.class, TCSLexer.class, syntax);
 		InputStream in = TcsFixtureBase.class
 				.getResourceAsStream(path + ".dsl");
 		IModelAdapter modelHandler = new TextBlocksAwareModelAdapter(

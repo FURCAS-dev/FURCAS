@@ -1,9 +1,9 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.ecore.OCLExpression;
 
-import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;

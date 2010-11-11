@@ -1,4 +1,4 @@
-package com.sap.emf.oppositeendfinder;
+package org.eclipse.emf.ecore.opposites;
 
 import java.util.Collections;
 import java.util.HashMap;

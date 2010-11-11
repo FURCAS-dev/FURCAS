@@ -1,6 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation;
 
-import com.sap.emf.oppositeendfinder.OppositeEndFinder;
+import org.eclipse.emf.ecore.opposites.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;

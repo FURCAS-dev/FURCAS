@@ -1,8 +1,9 @@
 package com.sap.emf.ocl.trigger.impl;
 
+import org.eclipse.emf.ecore.opposites.OppositeEndFinder;
+
 import com.sap.emf.ocl.trigger.TriggerManager;
 import com.sap.emf.ocl.trigger.TriggerManagerFactory;
-import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.ActivationOption;
 

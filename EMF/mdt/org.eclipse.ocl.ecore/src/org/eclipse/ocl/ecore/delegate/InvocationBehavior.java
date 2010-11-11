@@ -69,17 +69,14 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 	}
 
 	public OCLExpression getOperationBody(OCL ocl, EOperation operation) {
-		OCLExpression result = getExpressionFromAnnotationsOf(
-				operation, BODY_CONSTRAINT_KEY);
+		OCLExpression result = getExpressionFromAnnotationsOf(operation, BODY_CONSTRAINT_KEY);
 		if (result != null) {
 			return result;
 		}
 		EClass context = operation.getEContainingClass();
 		OCL.Helper helper = ocl.createOCLHelper();
 		helper.setOperationContext(context, operation);
-		String expr = EcoreUtil.getAnnotation(operation,
-				OCLDelegateDomain.OCL_DELEGATE_URI,
-				BODY_CONSTRAINT_KEY);
+		String expr = EcoreUtil.getAnnotation(operation, OCLDelegateDomain.OCL_DELEGATE_URI, BODY_CONSTRAINT_KEY);
 		if (expr == null) {
 			return null;
 		}
@@ -87,14 +84,12 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 		try {
 			constraint = helper.createBodyCondition(expr);
 		} catch (ParserException e) {
-			throw new OCLDelegateException(e.getLocalizedMessage(),
-					e);
+			throw new OCLDelegateException(e.getLocalizedMessage(), e);
 		}
 		if (constraint == null) {
 			return null;
 		}
-		ExpressionInOCL specification = (ExpressionInOCL) constraint
-				.getSpecification();
+		ExpressionInOCL specification = (ExpressionInOCL) constraint.getSpecification();
 		if (specification == null) {
 			return null;
 		}
