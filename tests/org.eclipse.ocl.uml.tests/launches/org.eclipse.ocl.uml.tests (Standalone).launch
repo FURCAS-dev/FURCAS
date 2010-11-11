@@ -18,5 +18,5 @@
 <stringAttribute key="org.eclipse.jdt.junit.TEST_KIND" value="org.eclipse.jdt.junit.loader.junit4"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.eclipse.ocl.uml.tests.AllTests"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="org.eclipse.ocl.uml.tests"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dorg.eclipse.ocl.uml.tests=${resource_loc:/org.eclipse.ocl.uml.tests}&#13;&#10;-Dorg.eclipse.ocl.uml=${resource_loc:/org.eclipse.ocl.uml}&#13;&#10;-Dorg.eclipse.ocl=${resource_loc:/org.eclipse.ocl}&#13;&#10;-Dorg.eclipse.uml2.uml.resources=${resource_loc:/org.eclipse.uml2.uml.resources}&#13;&#10;-Dorg.eclipse.ocl.uml.tests.nodebug=true&#13;&#10;-ea"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dorg.eclipse.ocl.uml.tests=&quot;${resource_loc:/org.eclipse.ocl.uml.tests}&quot;&#13;&#10;-Dorg.eclipse.ocl.uml=&quot;${resource_loc:/org.eclipse.ocl.uml}&quot;&#13;&#10;-Dorg.eclipse.ocl=&quot;${resource_loc:/org.eclipse.ocl}&quot;&#13;&#10;-Dorg.eclipse.uml2.uml.resources=&quot;${resource_loc:/org.eclipse.uml2.uml.resources}&quot;&#13;&#10;-Dorg.eclipse.ocl.uml.tests.nodebug=true&#13;&#10;-ea"/>
 </launchConfiguration>
