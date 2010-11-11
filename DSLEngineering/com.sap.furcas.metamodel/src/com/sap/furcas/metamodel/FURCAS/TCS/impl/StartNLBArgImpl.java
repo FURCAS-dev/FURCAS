@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class StartNLBArgImpl extends BlockArgImpl implements StartNLBArg {
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected StartNLBArgImpl() {
-        super();
-    }
+		super();
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         protected EClass eStaticClass() {
-        return TCSPackage.Literals.START_NLB_ARG;
-    }
+		return TCSPackage.Literals.START_NLB_ARG;
+	}
 
 } //StartNLBArgImpl

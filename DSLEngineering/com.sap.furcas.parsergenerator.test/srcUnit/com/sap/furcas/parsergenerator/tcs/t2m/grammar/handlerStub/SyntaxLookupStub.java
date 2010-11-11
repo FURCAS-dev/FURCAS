@@ -8,6 +8,7 @@ import static com.sap.furcas.test.parsing.testutils.StringListHelper.list;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -28,7 +29,8 @@ import com.sap.furcas.runtime.tcs.SyntaxLookup;
 public class SyntaxLookupStub extends SyntaxLookup {
 
     public int highestIndex;
-    public Template typeTemplate;
+    public Template typeTemplate=null;
+    public HashMap<String, Template> subtemplates;
     public Template enclosingName;
     public Set<Keyword> keywords;
     public List<ClassTemplate> nonPrimaries = new ArrayList<ClassTemplate>();
@@ -40,6 +42,7 @@ public class SyntaxLookupStub extends SyntaxLookup {
      */
     public SyntaxLookupStub() {
         super(null, null, null);
+        subtemplates = new HashMap<String, Template>();
     }
 
 
@@ -97,6 +100,8 @@ public class SyntaxLookupStub extends SyntaxLookup {
 	    return primaries;
 	}
 
-    
+	public void addSubtemplate(String name, Template tmpl) {
+		subtemplates.put(name, tmpl);
+	}
     
 }

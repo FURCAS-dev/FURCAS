@@ -42,30 +42,30 @@ public class RuleBodyStringBuffer {
 
     // elements protected to make unit testing a bit easier
     /** The alternative handler. */
-    private final AlternativeHandler alternativeHandler;
+    protected final AlternativeHandler alternativeHandler;
     
     private final InjectorActionsHandler<?> injectorActionsHandler;
 
     /** The block handler. */
-    private final BlockTypeHandler blockHandler;
+    protected final BlockTypeHandler blockHandler;
 
     /** The con el handler. */
-    private final ConditionalElementHandler<?> conElHandler;
+    protected final ConditionalElementHandler<?> conElHandler;
 
     /** The property handler. */
-    private final PropertyTypeHandler<?> propertyHandler;
+    protected final PropertyTypeHandler<?> propertyHandler;
 
     /** The syntax lookup. */
-    private final SyntaxLookup syntaxLookup;
+    protected final SyntaxLookup syntaxLookup;
 
     /** The buf. */
     private final VarStringBuffer buf = new VarStringBuffer();
 
-    private final TemplateNamingHelper<?> namingHelper;
+    protected final TemplateNamingHelper<?> namingHelper;
     
     private final List<RuleBodyPropertyConstraint> constraints = new ArrayList<RuleBodyPropertyConstraint>();
 
-    private final SemanticErrorBucket errorBucket;
+    protected final SemanticErrorBucket errorBucket;
 
 
     /**

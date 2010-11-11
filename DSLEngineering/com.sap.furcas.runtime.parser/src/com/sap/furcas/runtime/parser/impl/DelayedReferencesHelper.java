@@ -20,6 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -32,6 +33,8 @@ import org.eclipse.emf.query2.QueryProcessor;
 import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.emf.query2.TypeScopeProvider;
+
+import antlr.Token;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
@@ -102,7 +105,10 @@ public class DelayedReferencesHelper {
 
         if (reference.getType() == DelayedReference.TYPE_SEMANTIC_PREDICATE) {
             return setDelayedReferenceWithPredicate(reference, modelAdapter, contextManager, contextElement, parser);
-        }
+        }else if (reference.getType() == DelayedReference.SEMANTIC_DISAMBIGUATE) {
+			return setDelayedReferenceWithSemanticDisambiguate(reference,
+				modelAdapter, contextManager, contextElement, parser);
+		}
         if (reference.getOclQuery() != null && reference.getType() != DelayedReference.CONTEXT_LOOKUP) {
             return setDelayedReferenceWithQuery(reference, modelAdapter, contextManager, contextElement);
         } else {
@@ -264,11 +270,81 @@ public class DelayedReferencesHelper {
 
     public Collection<?> evaluateForeachOcl(EObject sourceElement, DelayedReference reference, IModelAdapter modelAdapter,
             Object contextElement) throws ModelAdapterException {
-        String flattenOCL = appendFlattenToOclQuery(reference);
+        String flattenOCL = appendFlattenToOclQuery(reference.getOclQuery());
         // evaluate the predicate by OCL, return value is a list of objects
         Collection<?> result = modelAdapter.getPredicateOclReference(sourceElement, reference.getPropertyName(),
                 reference.getKeyValue(), flattenOCL, contextElement);
         return result;
+    }
+    
+    private void setReferenceForSemanticDisambiguatedRule(
+    					ObservableInjectingParser parser, DelayedReference reference,
+    					String ruleName, IModelAdapter modelAdapter)
+    					throws SecurityException, UnknownProductionRuleException,
+    					NoSuchMethodException, IllegalArgumentException,
+    					IllegalAccessException, InvocationTargetException,
+    					ModelElementCreationException, ModelAdapterException {
+    			// invoke the parser to execute the template
+    			Method methodToCall = parser.getClass().getMethod(ruleName, String.class, Object.class, Token.class);
+    			if (!Modifier.isFinal(methodToCall.getModifiers())) {
+    			    throw new UnknownProductionRuleException(ruleName
+    				    + " is not a production rule in generated Parser.");
+    			}
+    			boolean originalResolveProxiesValue = parser.isResolveProxies();
+    			parser.setResolveProxies(false);
+    			parser.reset();
+
+    			IModelElementProxy proxyForContextElement = null;
+    			if (reference.getContextElement() instanceof IModelElementProxy) {
+    			    proxyForContextElement = (IModelElementProxy) reference.getContextElement();
+    			} else {
+    			    proxyForContextElement = new ResolvedModelElementProxy(reference.getContextElement());
+    			}
+
+    			if (parser.getContextManager().getContextForElement(reference.getContextElement()) == null) {
+    		            parser.addContext(proxyForContextElement);
+    		            if(proxyForContextElement.getRealObject() != null && reference.getContextElement() instanceof EObject) {
+    		                parser.getContextManager().notifyProxyResolvedWith(proxyForContextElement,  reference.getContextElement(),   /*
+    		                         * no creation context element needs to be provided here because the proxy has just been created and has
+    		                         * not been added to any other context
+    		                         */null);
+    		            }
+    		        } else {
+    		            parser.getCurrentContextStack().push(proxyForContextElement); // the Context object was already created elsewhere
+    		        }
+    			try {
+    				parser.getTokenStream().seek(reference.getFirstToken().getTokenIndex());
+    				Object parseReturn;
+    			    if(reference.isSemanticDisambiguatedOperatorRule())
+    			    	parseReturn = methodToCall.invoke(parser,
+    			    			reference.getPropertyName(),
+    			    			reference.getOpTemplateLefthand(),
+    			    			reference.getFirstToken());
+    			    else
+    			    	parseReturn = methodToCall.invoke(parser);
+    			    // add the parsed part to the object
+    			    parser.setResolveProxies(originalResolveProxiesValue);
+    			    reference.setRealValue(injector.createOrResolve(parseReturn, null, null));
+    			    // by default use partition of reference.getModelElement
+    			    if (reference.getModelElement() instanceof EObject
+    				    && reference.getRealValue() instanceof EObject) {
+    				((EObject) reference.getContextElement()).eResource()
+    					.getContents().add((EObject) reference.getRealValue());
+    			    }
+    			    
+    			    ModelElementProxy oldModelElement = ((ModelElementProxy)reference.getModelElement());
+    			    oldModelElement.setRealObject(reference.getRealValue());
+    			    Object parentProxy = oldModelElement.getParent();
+    			    Object parentElement = ((ModelElementProxy)parentProxy).getRealObject();
+    			    String parentPropertyName = oldModelElement.getParentPropertyName();
+    			    modelAdapter.set(parentElement, parentPropertyName, reference
+    			    	    		    .getRealValue());
+    			} finally {
+    			    if (reference.hasContext()) {
+    				parser.leaveContext();
+    			    }
+    			    parser.getCurrentContextStack().pop();
+    			}
     }
 
     private Template getTemplateFromPredicateSemantic(PredicateSemantic activePredicateSemantic, DelayedReference ref) {
@@ -446,14 +522,14 @@ public class DelayedReferencesHelper {
         return null;
     }
 
-    private String appendFlattenToOclQuery(DelayedReference reference) {
-        String flattenOCL = "";
-        if (reference.getOclQuery().startsWith("OCL:")) {
-            flattenOCL = "OCL:(" + reference.getOclQuery().substring(4) + ")->asSequence()->flatten()";
-        } else {
-            flattenOCL = "(" + reference.getOclQuery() + ")->asSequence()->flatten()";
-        }
-        return flattenOCL;
+    private String appendFlattenToOclQuery(String ocl) {
+     	String flattenOCL = "";
+     	if (ocl.startsWith("OCL:")) {
+     	    flattenOCL = "OCL:(" + ocl.substring(4) + ")->asSequence()->flatten()";
+     	} else {
+     	    flattenOCL = "OCL:(" + ocl + ")->asSequence()->flatten()";
+     	}
+     	return flattenOCL;
     }
 
     /**
@@ -784,7 +860,131 @@ public class DelayedReferencesHelper {
                 reference.getValueTypeName(), reference.getKeyName(), reference.getKeyValue());
         return result;
     }
+    
+	private boolean setDelayedReferenceWithSemanticDisambiguate(
+			DelayedReference reference, IModelAdapter modelAdapter,
+			ContextManager contextManager, Object contextElement,
+			ObservableInjectingParser parser) {
+		try {
+			Iterator<SemanticDisambRuleData> dataIt = reference.getSemRulData()
+					.iterator();
+			boolean resultFound = false;
+			while (dataIt.hasNext()) {
+				SemanticDisambRuleData nextRuleData = dataIt.next();
+				int beginRef = nextRuleData.getOcl().indexOf("${");
+				String flattenOCL = appendFlattenToOclQuery(nextRuleData
+						.getOcl());
+				if (beginRef >= 0) {
+					String semReference = nextRuleData.getOcl()
+							.substring(
+									beginRef,
+									nextRuleData.getOcl().indexOf('}',
+											beginRef + 1) + 1);
+					String replacedBy;
+					// TODO support other types than string
+					if (isBasicType(reference.getSemanticObject()))
+						replacedBy = "'"
+								+ reference.getSemanticObject().toString()
+								+ "'";
+					else
+						replacedBy = "?";
+					String replacedOCL = nextRuleData.getOcl().replaceAll(
+							Pattern.quote(semReference), replacedBy);
+					if (replacedOCL.contains("#source"))
+						replacedOCL = replacedOCL.replace("#source", "self");
+					flattenOCL = appendFlattenToOclQuery(replacedOCL);
+				}
 
+				// evaluate the predicate by OCL, return value is a list of
+				// objects
+				Object currentContextElement;
+				if (nextRuleData.getOcl().contains("#source")
+						&& reference.isSemanticDisambiguatedOperatorRule()) {
+					if (reference.getOpTemplateLefthand() instanceof ModelElementProxy)
+						currentContextElement = ((ModelElementProxy) reference
+								.getOpTemplateLefthand()).getRealObject();
+					else
+						currentContextElement = reference
+								.getOpTemplateLefthand();
+				} else
+					currentContextElement = contextElement;
+				Collection<?> result = modelAdapter.getPredicateOclReference(
+						currentContextElement, null, null, flattenOCL,
+						currentContextElement);
+				// if there is no result it will be null
+				if (result == null) {
+					resultFound = false;
+				} else {
+					Iterator<?> resultIt = result.iterator();
+					// loop over the results to handle them one by one
+					boolean ruleFound = false;
+					while (resultIt.hasNext()) {
+						Object nextResult = resultIt.next();
+						if (nextResult instanceof Boolean) {
+							if (((Boolean) nextResult).booleanValue()) {
+								if (ruleFound) {
+									reportProblem(
+											"The semantic disambiguate matches more than one rule",
+											reference.getToken());
+									return false;
+								}
+								ruleFound = true;
+								resultFound = true;
+								setReferenceForSemanticDisambiguatedRule(
+										parser, reference,
+										nextRuleData.getRule(), modelAdapter);
+							}
+						} else {
+							reportProblem(
+									"The rule "
+											+ nextRuleData.getRule()
+											+ " has a semantic disambiguate which does not evaluate to a bool value",
+									reference.getToken());
+							return false;
+						}
+					}
+				}
+			}
+			if (!resultFound) {
+				reportProblem(
+						"The semantic disambiguate did not match any rule",
+						reference.getToken());
+				return false;
+			}
+		} catch (IllegalAccessException e) {
+			reportProblem(e.getMessage(), reference.getToken());
+			return false;
+		} catch (SecurityException e) {
+			reportProblem(e.getMessage(), reference.getToken());
+			return false;
+		} catch (IllegalArgumentException e) {
+			reportProblem(e.getMessage(), reference.getToken());
+			return false;
+		} catch (UnknownProductionRuleException e) {
+			reportProblem(e.getMessage(), reference.getToken());
+			return false;
+		} catch (NoSuchMethodException e) {
+			reportProblem(e.getMessage(), reference.getToken());
+			return false;
+		} catch (InvocationTargetException e) {
+			reportProblem(e.getMessage(), reference.getToken());
+			return false;
+		} catch (ModelElementCreationException e) {
+			reportProblem(e.getMessage(), reference.getToken());
+			return false;
+		} catch (ModelAdapterException e) {
+			reportProblem(e.getMessage(), reference.getToken());
+			return false;
+		}
+		return true;
+	}
+
+	// TODO support the other basic types as well
+	private boolean isBasicType(Object ref) {
+		if (ref instanceof String)
+			return true;
+		return false;
+	}
     // /**
     // * reports a problem with a reference.
     // *

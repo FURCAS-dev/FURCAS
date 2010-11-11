@@ -28,94 +28,94 @@ import junit.textui.TestRunner;
 public class TextBlockTest extends DocumentNodeTest {
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public static void main(String[] args) {
-                TestRunner.run(TextBlockTest.class);
-        }
+		TestRunner.run(TextBlockTest.class);
+	}
 
         /**
-         * Constructs a new Text Block test case with the given name.
-         * <!-- begin-user-doc -->
+	 * Constructs a new Text Block test case with the given name.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public TextBlockTest(String name) {
-                super(name);
-        }
+		super(name);
+	}
 
         /**
-         * Returns the fixture for this Text Block test case.
-         * <!-- begin-user-doc -->
+	 * Returns the fixture for this Text Block test case.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         @Override
         protected TextBlock getFixture() {
-                return (TextBlock)fixture;
-        }
+		return (TextBlock)fixture;
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#setUp()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#setUp()
+	 * @generated
+	 */
         @Override
         protected void setUp() throws Exception {
-                setFixture(TextblocksFactory.eINSTANCE.createTextBlock());
-        }
+		setFixture(TextblocksFactory.eINSTANCE.createTextBlock());
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#tearDown()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#tearDown()
+	 * @generated
+	 */
         @Override
         protected void tearDown() throws Exception {
-                setFixture(null);
-        }
+		setFixture(null);
+	}
 
         /**
-         * Tests the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getSubBlocks() <em>Get Sub Blocks</em>}' operation.
-         * <!-- begin-user-doc -->
+	 * Tests the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getSubBlocks() <em>Get Sub Blocks</em>}' operation.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getSubBlocks()
-         * @generated
-         */
+	 * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getSubBlocks()
+	 * @generated
+	 */
         public void testGetSubBlocks() {
-                // TODO: implement this operation test method
-                // Ensure that you remove @generated or mark it @generated NOT
-                fail();
-        }
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
 
         /**
-         * Tests the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getTokens() <em>Get Tokens</em>}' operation.
-         * <!-- begin-user-doc -->
+	 * Tests the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getTokens() <em>Get Tokens</em>}' operation.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getTokens()
-         * @generated
-         */
+	 * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getTokens()
+	 * @generated
+	 */
         public void testGetTokens() {
-                // TODO: implement this operation test method
-                // Ensure that you remove @generated or mark it @generated NOT
-                fail();
-        }
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
 
         /**
-         * Tests the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getAdditionalTemplates() <em>Get Additional Templates</em>}' operation.
-         * <!-- begin-user-doc -->
+	 * Tests the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getAdditionalTemplates() <em>Get Additional Templates</em>}' operation.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getAdditionalTemplates()
-         * @generated
-         */
+	 * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getAdditionalTemplates()
+	 * @generated
+	 */
         public void testGetAdditionalTemplates() {
-                // TODO: implement this operation test method
-                // Ensure that you remove @generated or mark it @generated NOT
-                fail();
-        }
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
 
 } //TextBlockTest

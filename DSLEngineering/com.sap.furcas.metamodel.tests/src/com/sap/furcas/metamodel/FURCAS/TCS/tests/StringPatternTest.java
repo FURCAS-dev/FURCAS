@@ -20,55 +20,55 @@ import junit.textui.TestRunner;
 public class StringPatternTest extends SimplePatternTest {
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public static void main(String[] args) {
-                TestRunner.run(StringPatternTest.class);
-        }
+		TestRunner.run(StringPatternTest.class);
+	}
 
         /**
-         * Constructs a new String Pattern test case with the given name.
-         * <!-- begin-user-doc -->
+	 * Constructs a new String Pattern test case with the given name.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public StringPatternTest(String name) {
-                super(name);
-        }
+		super(name);
+	}
 
         /**
-         * Returns the fixture for this String Pattern test case.
-         * <!-- begin-user-doc -->
+	 * Returns the fixture for this String Pattern test case.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         @Override
         protected StringPattern getFixture() {
-                return (StringPattern)fixture;
-        }
+		return (StringPattern)fixture;
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#setUp()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#setUp()
+	 * @generated
+	 */
         @Override
         protected void setUp() throws Exception {
-                setFixture(TCSFactory.eINSTANCE.createStringPattern());
-        }
+		setFixture(TCSFactory.eINSTANCE.createStringPattern());
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#tearDown()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#tearDown()
+	 * @generated
+	 */
         @Override
         protected void tearDown() throws Exception {
-                setFixture(null);
-        }
+		setFixture(null);
+	}
 
 } //StringPatternTest

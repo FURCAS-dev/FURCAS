@@ -20,55 +20,55 @@ import junit.textui.TestRunner;
 public class EnumerationTemplateTest extends TemplateTest {
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public static void main(String[] args) {
-                TestRunner.run(EnumerationTemplateTest.class);
-        }
+		TestRunner.run(EnumerationTemplateTest.class);
+	}
 
         /**
-         * Constructs a new Enumeration Template test case with the given name.
-         * <!-- begin-user-doc -->
+	 * Constructs a new Enumeration Template test case with the given name.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public EnumerationTemplateTest(String name) {
-                super(name);
-        }
+		super(name);
+	}
 
         /**
-         * Returns the fixture for this Enumeration Template test case.
-         * <!-- begin-user-doc -->
+	 * Returns the fixture for this Enumeration Template test case.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         @Override
         protected EnumerationTemplate getFixture() {
-                return (EnumerationTemplate)fixture;
-        }
+		return (EnumerationTemplate)fixture;
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#setUp()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#setUp()
+	 * @generated
+	 */
         @Override
         protected void setUp() throws Exception {
-                setFixture(TCSFactory.eINSTANCE.createEnumerationTemplate());
-        }
+		setFixture(TCSFactory.eINSTANCE.createEnumerationTemplate());
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#tearDown()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#tearDown()
+	 * @generated
+	 */
         @Override
         protected void tearDown() throws Exception {
-                setFixture(null);
-        }
+		setFixture(null);
+	}
 
 } //EnumerationTemplateTest

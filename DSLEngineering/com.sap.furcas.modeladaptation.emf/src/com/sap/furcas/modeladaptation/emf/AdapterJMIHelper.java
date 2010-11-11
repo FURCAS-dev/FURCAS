@@ -191,18 +191,22 @@ public class AdapterJMIHelper {
         EModelElement modelElement = EcoreHelper.findElementByQualifiedName(qualifiedNameList, rootPackage);
         if (modelElement != null) {
             if (modelElement instanceof EClass) {
-                EClass mofClass = (EClass) modelElement;
-                EObject created = EcoreUtil.create(mofClass);
-                transientResource.getContents().add(created);
-                return created;
+            	if( ! ((EClass) modelElement).isAbstract()) {
+	                EClass mofClass = (EClass) modelElement;
+	                EObject created = EcoreUtil.create(mofClass);
+	                transientResource.getContents().add(created);
+	                return created;
+            	} else {
+            		throw new RuntimeException("Cannot instantiate EClass " + modelElement.toString() + 
+            				" as it is abstract.");
+            	}
             } else if (modelElement instanceof EDataType) {
                 EDataType structype = (EDataType) modelElement;
                 StructureTypeMockObject mock = new StructureTypeMockObject(structype);
                 // FIXME: resource assignment needed?
                 return mock;
             } else {
-                throw new RuntimeException("EModelElement Class " + modelElement.getClass()
-                        + " RefClass lookup not supported yet.");
+                throw new RuntimeException("Cannot instantiate EModelElement " + modelElement.toString());
             }
 
         } else {
@@ -510,11 +514,7 @@ public class AdapterJMIHelper {
                         + ocl.getEvaluationProblems().getMessage());
             }
             if (result instanceof Collection<?>) {
-                if (((Collection<?>) result).size() == 0) {
-                    return null;
-                } else {
-                    return (Collection<?>) result;
-                }
+                return (Collection<?>) result;
             } else {
                 Collection<?> al = Collections.singleton(result);
                 return al;
@@ -548,6 +548,10 @@ public class AdapterJMIHelper {
         }
         queryToExecute = ContextAndForeachHelper.prepareOclQuery(queryToExecute, keyValue);
         try {
+        	if(objectForSelf == null) {
+        		return null;
+        		//TODO throw exception rather than returning null?
+        	}
             oclHelper.setContext(objectForSelf.eClass());
             OCLExpression exp = oclHelper.createQuery(queryToExecute);
 

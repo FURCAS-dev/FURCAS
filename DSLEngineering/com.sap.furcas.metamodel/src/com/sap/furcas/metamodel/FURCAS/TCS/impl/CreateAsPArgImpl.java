@@ -32,120 +32,120 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  */
 public class CreateAsPArgImpl extends PropertyArgImpl implements CreateAsPArg {
         /**
-     * The cached value of the '{@link #getName() <em>Name</em>}' attribute list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute list.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
         protected EList<String> name;
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected CreateAsPArgImpl() {
-        super();
-    }
+		super();
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         protected EClass eStaticClass() {
-        return TCSPackage.Literals.CREATE_AS_PARG;
-    }
+		return TCSPackage.Literals.CREATE_AS_PARG;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public EList<String> getName() {
-        if (name == null) {
-            name = new EDataTypeUniqueEList<String>(String.class, this, TCSPackage.CREATE_AS_PARG__NAME);
-        }
-        return name;
-    }
+		if (name == null) {
+			name = new EDataTypeUniqueEList<String>(String.class, this, TCSPackage.CREATE_AS_PARG__NAME);
+		}
+		return name;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case TCSPackage.CREATE_AS_PARG__NAME:
-                return getName();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case TCSPackage.CREATE_AS_PARG__NAME:
+				return getName();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @SuppressWarnings("unchecked")
         @Override
         public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case TCSPackage.CREATE_AS_PARG__NAME:
-                getName().clear();
-                getName().addAll((Collection<? extends String>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case TCSPackage.CREATE_AS_PARG__NAME:
+				getName().clear();
+				getName().addAll((Collection<? extends String>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public void eUnset(int featureID) {
-        switch (featureID) {
-            case TCSPackage.CREATE_AS_PARG__NAME:
-                getName().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case TCSPackage.CREATE_AS_PARG__NAME:
+				getName().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case TCSPackage.CREATE_AS_PARG__NAME:
-                return name != null && !name.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case TCSPackage.CREATE_AS_PARG__NAME:
+				return name != null && !name.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (name: ");
-        result.append(name);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(')');
+		return result.toString();
+	}
 
 } //CreateAsPArgImpl

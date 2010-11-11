@@ -20,55 +20,55 @@ import junit.textui.TestRunner;
 public class LookupPropertyInitTest extends PropertyInitTest {
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public static void main(String[] args) {
-                TestRunner.run(LookupPropertyInitTest.class);
-        }
+		TestRunner.run(LookupPropertyInitTest.class);
+	}
 
         /**
-         * Constructs a new Lookup Property Init test case with the given name.
-         * <!-- begin-user-doc -->
+	 * Constructs a new Lookup Property Init test case with the given name.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public LookupPropertyInitTest(String name) {
-                super(name);
-        }
+		super(name);
+	}
 
         /**
-         * Returns the fixture for this Lookup Property Init test case.
-         * <!-- begin-user-doc -->
+	 * Returns the fixture for this Lookup Property Init test case.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         @Override
         protected LookupPropertyInit getFixture() {
-                return (LookupPropertyInit)fixture;
-        }
+		return (LookupPropertyInit)fixture;
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#setUp()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#setUp()
+	 * @generated
+	 */
         @Override
         protected void setUp() throws Exception {
-                setFixture(TCSFactory.eINSTANCE.createLookupPropertyInit());
-        }
+		setFixture(TCSFactory.eINSTANCE.createLookupPropertyInit());
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#tearDown()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#tearDown()
+	 * @generated
+	 */
         @Override
         protected void tearDown() throws Exception {
-                setFixture(null);
-        }
+		setFixture(null);
+	}
 
 } //LookupPropertyInitTest

@@ -17,24 +17,24 @@ import com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg;
 public abstract class PropertyArgTest extends LocatedElementTest {
 
         /**
-         * Constructs a new Property Arg test case with the given name.
-         * <!-- begin-user-doc -->
+	 * Constructs a new Property Arg test case with the given name.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public PropertyArgTest(String name) {
-                super(name);
-        }
+		super(name);
+	}
 
         /**
-         * Returns the fixture for this Property Arg test case.
-         * <!-- begin-user-doc -->
+	 * Returns the fixture for this Property Arg test case.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         @Override
         protected PropertyArg getFixture() {
-                return (PropertyArg)fixture;
-        }
+		return (PropertyArg)fixture;
+	}
 
 } //PropertyArgTest

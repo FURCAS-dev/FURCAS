@@ -130,6 +130,7 @@ public class EMFModelAdapterDelegate {
             if (feat.getUpperBound() == 1) {
                 if (value instanceof Collection) {
                     value = ((Collection<? extends Object>) value).iterator().next();
+                    //TODO Issue warning if collection.size > 1?
                 }
                 // only set if value really changed
                 Object originalValue = refAObject.eGet(feat);

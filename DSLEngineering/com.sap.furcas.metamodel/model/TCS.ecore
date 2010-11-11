@@ -39,6 +39,7 @@
         unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="disambiguateV3" ordered="false"
         unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="semDisambiguate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionTemplate" eSuperTypes="#//Template">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="functionName" ordered="false"
@@ -451,7 +452,6 @@
         eType="#//Alternative" eOpposite="#//Alternative/sequences"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="disambiguate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EClass0"/>
   <eClassifiers xsi:type="ecore:EClass" name="PartialPArg" eSuperTypes="#//PropertyArg"/>
   <eClassifiers xsi:type="ecore:EClass" name="DisambiguatePArg" eSuperTypes="#//PropertyArg">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="disambiguation" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>

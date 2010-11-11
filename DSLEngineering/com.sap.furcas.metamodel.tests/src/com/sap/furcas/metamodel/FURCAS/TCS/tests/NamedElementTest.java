@@ -17,24 +17,24 @@ import com.sap.furcas.metamodel.FURCAS.TCS.NamedElement;
 public abstract class NamedElementTest extends LocatedElementTest {
 
         /**
-         * Constructs a new Named Element test case with the given name.
-         * <!-- begin-user-doc -->
+	 * Constructs a new Named Element test case with the given name.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public NamedElementTest(String name) {
-                super(name);
-        }
+		super(name);
+	}
 
         /**
-         * Returns the fixture for this Named Element test case.
-         * <!-- begin-user-doc -->
+	 * Returns the fixture for this Named Element test case.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         @Override
         protected NamedElement getFixture() {
-                return (NamedElement)fixture;
-        }
+		return (NamedElement)fixture;
+	}
 
 } //NamedElementTest

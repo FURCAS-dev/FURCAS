@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class IsDefinedExpImpl extends AtomExpImpl implements IsDefinedExp {
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected IsDefinedExpImpl() {
-        super();
-    }
+		super();
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         protected EClass eStaticClass() {
-        return TCSPackage.Literals.IS_DEFINED_EXP;
-    }
+		return TCSPackage.Literals.IS_DEFINED_EXP;
+	}
 
 } //IsDefinedExpImpl

@@ -17,24 +17,24 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Expression;
 public abstract class ExpressionTest extends LocatedElementTest {
 
         /**
-         * Constructs a new Expression test case with the given name.
-         * <!-- begin-user-doc -->
+	 * Constructs a new Expression test case with the given name.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public ExpressionTest(String name) {
-                super(name);
-        }
+		super(name);
+	}
 
         /**
-         * Returns the fixture for this Expression test case.
-         * <!-- begin-user-doc -->
+	 * Returns the fixture for this Expression test case.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         @Override
         protected Expression getFixture() {
-                return (Expression)fixture;
-        }
+		return (Expression)fixture;
+	}
 
 } //ExpressionTest

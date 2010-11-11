@@ -20,55 +20,55 @@ import junit.textui.TestRunner;
 public class SeparatorPArgTest extends PropertyArgTest {
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public static void main(String[] args) {
-                TestRunner.run(SeparatorPArgTest.class);
-        }
+		TestRunner.run(SeparatorPArgTest.class);
+	}
 
         /**
-         * Constructs a new Separator PArg test case with the given name.
-         * <!-- begin-user-doc -->
+	 * Constructs a new Separator PArg test case with the given name.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public SeparatorPArgTest(String name) {
-                super(name);
-        }
+		super(name);
+	}
 
         /**
-         * Returns the fixture for this Separator PArg test case.
-         * <!-- begin-user-doc -->
+	 * Returns the fixture for this Separator PArg test case.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         @Override
         protected SeparatorPArg getFixture() {
-                return (SeparatorPArg)fixture;
-        }
+		return (SeparatorPArg)fixture;
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#setUp()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#setUp()
+	 * @generated
+	 */
         @Override
         protected void setUp() throws Exception {
-                setFixture(TCSFactory.eINSTANCE.createSeparatorPArg());
-        }
+		setFixture(TCSFactory.eINSTANCE.createSeparatorPArg());
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#tearDown()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#tearDown()
+	 * @generated
+	 */
         @Override
         protected void tearDown() throws Exception {
-                setFixture(null);
-        }
+		setFixture(null);
+	}
 
 } //SeparatorPArgTest

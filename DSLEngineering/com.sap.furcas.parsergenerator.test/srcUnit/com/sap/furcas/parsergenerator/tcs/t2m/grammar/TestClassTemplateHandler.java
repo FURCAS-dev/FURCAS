@@ -4,11 +4,13 @@
 package com.sap.furcas.parsergenerator.tcs.t2m.grammar;
 
 import static com.sap.furcas.parsergenerator.testutils.RuleComparisonHelper.tokens;
+import static org.easymock.EasyMock.createMock;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,6 +20,7 @@ import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.TCS.stubs.ClassTemplateStub;
 import com.sap.furcas.metamodel.FURCAS.TCS.stubs.OperatorListStub;
 import com.sap.furcas.metamodel.FURCAS.TCS.stubs.OperatorTemplateStub;
@@ -34,11 +37,13 @@ import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.AbstractAntlr3Rule;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.ClassProductionRule;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 import com.sap.furcas.runtime.tcs.SyntaxLookup;
 import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
 import com.sap.furcas.test.parsing.testutils.ResolutionBeanHelper;
 import com.sap.furcas.test.parsing.testutils.StringListHelper;
+
 
 
 /**
@@ -73,9 +78,9 @@ public class TestClassTemplateHandler {
         assertEquals(1, writerStub.rules.size());
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
 
-        String expected = "testclass returns[Object ret2] @init{List<String> metaType=testclass;" + 
-        		" onEnterTemplateRule(metaType);" + 
-        		" IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;" + 
+        String expected = "testclass returns[Object ret2] @init{IModelElementProxy ret; List<String> metaType=testclass;" +  
+        		" ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;" + 
+        		" onEnterTemplateRule(metaType);" +
         		" org.antlr.runtime.Token firstToken=input.LT(1);" + 
         		" }" + 
         		"  :" + 
@@ -114,10 +119,10 @@ public class TestClassTemplateHandler {
         assertEquals(1, writerStub.rules.size());
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
 
-        String expected = "testclass returns[Object ret2] @init{List<String> metaType=testclass;" + 
-        " onEnterTemplateRule(metaType);" + 
-        " IModelElementProxy ret=(getBacktrackingLevel()==0) ? createReferenceProxy(metaType) : null;" + 
-        " org.antlr.runtime.Token firstToken=input.LT(1);" + 
+        String expected = "testclass returns[Object ret2] @init{IModelElementProxy ret; List<String> metaType=testclass;" +  
+        		" ret=(getBacktrackingLevel()==0) ? createReferenceProxy(metaType) : null;" + 
+        		" onEnterTemplateRule(metaType);" +
+        		" org.antlr.runtime.Token firstToken=input.LT(1);" + 
         " }" + 
         "  :" + 
         "  " + 
@@ -156,9 +161,9 @@ public class TestClassTemplateHandler {
         assertEquals(1, writerStub.rules.size());
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
 
-        String expected = "testclass_testmode returns[Object ret2] @init{List<String> metaType=testclass;" + 
+        String expected = "testclass_testmode returns[Object ret2] @init{IModelElementProxy ret; List<String> metaType=testclass;" + 
+        " ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;" + 
         " onEnterTemplateRule(metaType,\"testmode\");" + 
-        " IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;" + 
         " org.antlr.runtime.Token firstToken=input.LT(1);" + 
         " }" + 
         "  :" + 
@@ -250,9 +255,9 @@ public class TestClassTemplateHandler {
         assertEquals(1, writerStub.rules.size());
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
 
-        String expected = "testclass returns[Object ret2] @init{List<String> metaType=testclass;" + 
+        String expected = "testclass returns[Object ret2] @init{IModelElementProxy ret; List<String> metaType=testclass;" + 
+        " ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, true, false) : null;" + 
         " onEnterTemplateRule(metaType);" + 
-        " IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, true, false) : null;" + 
         " org.antlr.runtime.Token firstToken=input.LT(1);" + 
         " }" + 
         "  :" + 
@@ -296,9 +301,9 @@ public class TestClassTemplateHandler {
         assertEquals(1, writerStub.rules.size());
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
 
-        String expected = "testclass returns[Object ret2] @init{List<String> metaType=testclass;" + 
-        " onEnterTemplateRule(metaType);" + 
-        " IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, true, false, new String[]{\"testTag\"}) : null;" + 
+        String expected = "testclass returns[Object ret2] @init{IModelElementProxy ret; List<String> metaType=testclass;" + 
+        " ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, true, false, new String[]{\"testTag\"}) : null;" + 
+        " onEnterTemplateRule(metaType);" +
         " org.antlr.runtime.Token firstToken=input.LT(1);" + 
         " }" + 
         "  :" + 
@@ -343,9 +348,9 @@ public class TestClassTemplateHandler {
         assertEquals(1, writerStub.rules.size());
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
 
-        String expected = "testclass returns[Object ret2] @init{List<String> metaType=testclass;" + 
-        " onEnterTemplateRule(metaType);" + 
-        " IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, true, false, new String[]{\"testTag1\", \"testTag2\"}) : null;" + 
+        String expected = "testclass returns[Object ret2] @init{IModelElementProxy ret; List<String> metaType=testclass;" + 
+        " ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, true, false, new String[]{\"testTag1\", \"testTag2\"}) : null;" + 
+        " onEnterTemplateRule(metaType);" +
         " org.antlr.runtime.Token firstToken=input.LT(1);" + 
         " }" + 
         "  :" + 
@@ -388,9 +393,9 @@ public class TestClassTemplateHandler {
         assertEquals(1, writerStub.rules.size());
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
 
-        String expected = "testclass returns[Object ret2] @init{List<String> metaType=testclass;" + 
-        " onEnterTemplateRule(metaType);" + 
-        " IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, true) : null;" + 
+        String expected = "testclass returns[Object ret2] @init{IModelElementProxy ret; List<String> metaType=testclass;" + 
+        " ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, true) : null;" + 
+        " onEnterTemplateRule(metaType);" +
         " org.antlr.runtime.Token firstToken=input.LT(1);" + 
         " }" + 
         "  :" + 
@@ -434,9 +439,9 @@ public class TestClassTemplateHandler {
         assertEquals(1, writerStub.rules.size());
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
 
-        String expected = "testclass returns[Object ret2] @init{List<String> metaType=testclass;" + 
-        " onEnterTemplateRule(metaType);" + 
-        " IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, true, true) : null;" + 
+        String expected = "testclass returns[Object ret2] @init{IModelElementProxy ret; List<String> metaType=testclass;" + 
+        " ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, true, true) : null;" + 
+        " onEnterTemplateRule(metaType);" +
         " org.antlr.runtime.Token firstToken=input.LT(1);" + 
         " }" + 
         "  :" + 
@@ -484,9 +489,9 @@ public class TestClassTemplateHandler {
         assertEquals(1, writerStub.rules.size());
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
         
-        String expected = "testclass returns[Object ret2] @init{List<String> metaType=testclass;" + 
-        " onEnterTemplateRule(metaType);" + 
-        " IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;" + 
+        String expected = "testclass returns[Object ret2] @init{IModelElementProxy ret; List<String> metaType=testclass;" + 
+        " ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;" + 
+        " onEnterTemplateRule(metaType);" +
         " org.antlr.runtime.Token firstToken=input.LT(1);" + 
         " }" + 
         "  :" + 
@@ -628,9 +633,9 @@ public class TestClassTemplateHandler {
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
         ClassProductionRule result2 = (ClassProductionRule) writerStub.rules.get(1);        
         
-        String expected = "testclass__impl returns[Object ret2] @init{List<String> metaType=testclass;\n"
+        String expected = "testclass__impl returns[Object ret2] @init{IModelElementProxy ret; List<String> metaType=testclass;\n"
+		+ "ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;\n"
 		+ "onEnterTemplateRule(metaType);\n"
-		+ "IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;\n"
 		+ "org.antlr.runtime.Token firstToken=input.LT(1);\n"
 		+ "}\n"
 		+ ":\n"
@@ -755,6 +760,80 @@ public class TestClassTemplateHandler {
                 "  :  () {\r\n" + 
                 " }\n" +
                 "  ;";
+        
+        List tokens = tokens( expected); 
+        List tokens2 = tokens( result.toString()); 
+
+        assertEquals(expected + "\n!=\n" + result +'\n', tokens, tokens2);
+
+    }
+    
+    @Test
+    public void testAddElementSemanticDisambiguate() throws Exception {
+    	SyntaxLookupStub syntaxLookupStub = new SyntaxLookupStub() {
+
+			@Override
+			public Collection<Template> getTCSTemplate(
+					ResolvedNameAndReferenceBean<?> refBean, String mode) {
+				// TODO Auto-generated method stub
+				return Collections.singleton(subtemplates.get(refBean.getNames().get(0)));
+			}
+    		
+    	};
+        MetaLookupStub metaLookupStub = new MetaLookupStub();
+        OperatorHandlerStub operatorHandlerStub = new OperatorHandlerStub();
+        TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
+        ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
+        MetaModelElementResolutionHelperStub resolutionHelperStub = new MetaModelElementResolutionHelperStub();
+        // Class under test
+        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, 
+        		operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, 
+        		null, resolutionHelperStub);
+
+
+        ClassTemplateStub template = new ClassTemplateStub();
+        template.names = StringListHelper.list("test", "class");
+       /** !!!**/ 
+        template.isAbstract = true;
+        
+        // subtypes to be used for abstact rule
+        metaLookupStub.subTypes = ResolutionBeanHelper.multiSimpleList("subtype1", "subtype2");
+        
+        ClassTemplateStub subtemplate = new ClassTemplateStub();
+        subtemplate.names = StringListHelper.list("subtype1");
+        subtemplate.semDisambiguate = "true";
+        syntaxLookupStub.addSubtemplate("subtype1", subtemplate);
+        
+        subtemplate = new ClassTemplateStub();
+        subtemplate.names = StringListHelper.list("subtype2");
+        subtemplate.semDisambiguate = "false";
+        syntaxLookupStub.addSubtemplate("subtype2", subtemplate);
+        
+        RuleBodyBufferFactory ruleBodyBufferFactory = createMock(RuleBodyBufferFactory.class);
+        classhandler.addTemplate(template, ruleBodyBufferFactory);
+        
+        assertTrue(writerStub.rules.size() == 1);
+        // this is a white Box test, so casting is allowed
+        ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
+
+        
+        
+        String expected = "testclass returns[Object ret2] @init{Object semRef = null;\n"+
+							"IModelElementProxy ret;\n"+
+							"List<String> metaType=testclass;\n"+
+							"ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;\n"+
+							"onEnterTemplateRule(metaType);\n"+
+							"org.antlr.runtime.Token firstToken=input.LT(1);\n"+
+							"}\n"+
+							  ":\n"+
+							 " (\n"+
+							"{List<SemanticDisambRuleData> semDisambRuleData = new ArrayList<SemanticDisambRuleData>();\n"+
+							"semDisambRuleData.add(new SemanticDisambRuleData(\"subtype1\",\"true\"));\n"+
+							"semDisambRuleData.add(new SemanticDisambRuleData(\"subtype2\",\"false\"));\n"+
+							"setSemDisambiguate(ret,null,null,semRef,semDisambRuleData,false, (ANTLR3LocationToken)firstToken);\n"+
+							"})\n"+
+							 " {\n"+
+							"ret2=ret;\n} \n;";
         
         List tokens = tokens( expected); 
         List tokens2 = tokens( result.toString()); 
@@ -912,9 +991,9 @@ public class TestClassTemplateHandler {
         
         AbstractAntlr3Rule result = writerStub.rules.get(0);
 
-        String expected = "testclass_abstractContents returns[Object ret2] @init{List<String> metaType=testclass;" + 
-        		" onEnterTemplateRule(metaType);" + 
-        		" IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;" + 
+        String expected = "testclass_abstractContents returns[Object ret2] @init{IModelElementProxy ret; List<String> metaType=testclass;" +  
+        		" ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;" + 
+        		" onEnterTemplateRule(metaType);" +
         		" org.antlr.runtime.Token firstToken=input.LT(1);" + 
         		" }" + 
         		"  :" + 
@@ -991,9 +1070,9 @@ public class TestClassTemplateHandler {
         
         AbstractAntlr3Rule result = writerStub.rules.get(0);
 
-        String expected = "testclass_abstractContents returns[Object ret2] @init{List<String> metaType=testclass;" + 
-        " onEnterTemplateRule(metaType);" + 
-        " IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, true, false) : null;" + 
+        String expected = "testclass_abstractContents returns[Object ret2] @init{IModelElementProxy ret; List<String> metaType=testclass;" + 
+        " ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, true, false) : null;" + 
+        " onEnterTemplateRule(metaType);" +
         " org.antlr.runtime.Token firstToken=input.LT(1);" + 
         " }" + 
         "  :" + 
@@ -1071,9 +1150,9 @@ public class TestClassTemplateHandler {
         
         AbstractAntlr3Rule result = writerStub.rules.get(0);
 
-        String expected = "testclass_abstractContents returns[Object ret2] @init{List<String> metaType=testclass;" + 
-        " onEnterTemplateRule(metaType);" + 
-        " IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, true, false) : null;" + 
+        String expected = "testclass_abstractContents returns[Object ret2] @init{IModelElementProxy ret; List<String> metaType=testclass;" +  
+        " ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, true, false) : null;" + 
+        " onEnterTemplateRule(metaType);" +
         " org.antlr.runtime.Token firstToken=input.LT(1);" + 
         " }" + 
         "  :" + 

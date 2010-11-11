@@ -361,7 +361,7 @@ public class TestPropertyTypeHandler {
 
         propHandler.addElement(prop, buf);
 
-        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);})", buf.getResult());
+        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");})", buf.getResult() );
     }
 
     @Test
@@ -384,7 +384,7 @@ public class TestPropertyTypeHandler {
 
         propHandler.addElement(prop, buf);
 
-        assertEquals("( temp=FeatureTypeName_testmode {setProperty(ret, \"PropertyName\", temp);})", buf.getResult());
+        assertEquals("( temp=FeatureTypeName_testmode {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");})", buf.getResult() );
     }
 
     /**
@@ -433,7 +433,7 @@ public class TestPropertyTypeHandler {
 
         propHandler.addElement(prop, buf);
 
-        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);})? ", buf.getResult());
+        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");})? ", buf.getResult());
     }
 
     /**
@@ -458,9 +458,7 @@ public class TestPropertyTypeHandler {
 
         propHandler.addElement(prop, buf);
 
-        assertEquals(
-                "( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);} ( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);})* )",
-                buf.getResult());
+        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");} ( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");})* )", buf.getResult() );
     }
 
     /**
@@ -491,9 +489,9 @@ public class TestPropertyTypeHandler {
 
         propHandler.addElement(prop, buf);
 
-        assertEquals(
-                "( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);} ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);})* )",
-                buf.getResult());
+        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");}" +
+        		" ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");})* )", 
+        		buf.getResult() );
     }
 
     /**
@@ -518,9 +516,9 @@ public class TestPropertyTypeHandler {
 
         propHandler.addElement(prop, buf);
 
-        assertEquals(
-                "( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);} ( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);})* )? ",
-                buf.getResult());
+        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");" +
+        		"} ( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");})* )? ",
+        		buf.getResult() );
     }
 
     /**
@@ -553,9 +551,9 @@ public class TestPropertyTypeHandler {
 
         propHandler.addElement(prop, buf);
 
-        assertEquals(
-                "( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);} ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);}) ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);})+)",
-                buf.getResult());
+        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");}" +
+        		" ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");}) ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);" +
+        		"\nsetParent(temp,ret,\"PropertyName\");})+)", buf.getResult() );
     }
 
     /**
@@ -587,9 +585,11 @@ public class TestPropertyTypeHandler {
 
         propHandler.addElement(prop, buf);
 
-        assertEquals(
-                "( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);} ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);}) ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);}) ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);})? ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);})?)",
-                buf.getResult());
+        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");" +
+        		"} ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");}) ((SEP) temp=FeatureTypeName " +
+        		"{setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");}) ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");" +
+        		"})? ((SEP) temp=FeatureTypeName " +
+        		"{setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");})?)", buf.getResult() );
     }
 
     /**
@@ -621,9 +621,9 @@ public class TestPropertyTypeHandler {
 
         propHandler.addElement(prop, buf);
 
-        assertEquals(
-                "( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);} ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);})? ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);})?)",
-                buf.getResult());
+        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");" +
+        		"} ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");" +
+        		"})? ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");})?)", buf.getResult() );
     }
 
     /**
@@ -655,9 +655,10 @@ public class TestPropertyTypeHandler {
 
         propHandler.addElement(prop, buf);
 
-        assertEquals(
-                "( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);} ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);})? ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);})?)? ",
-                buf.getResult());
+        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");" +
+        		"} ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");" +
+        		"})? ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");" +
+        		"})?)? ", buf.getResult() );
     }
 
     /**
@@ -689,9 +690,10 @@ public class TestPropertyTypeHandler {
 
         propHandler.addElement(prop, buf);
 
-        assertEquals(
-                "( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);} ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);}) ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);}))",
-                buf.getResult());
+        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");" +
+        		"} ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");" +
+        		"}) ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");" +
+        		"}))", buf.getResult() );
     }
 
     /**
@@ -1172,7 +1174,8 @@ public class TestPropertyTypeHandler {
          * 
          * @see TCS.SeparatorPArg#getSeparatorSequence()
          */
-        public Sequence getSeparatorSequence() {
+        @Override
+		public Sequence getSeparatorSequence() {
             return sequence;
         }
 
@@ -1181,7 +1184,8 @@ public class TestPropertyTypeHandler {
          * 
          * @see TCS.SeparatorPArg#setSeparatorSequence(TCS.Sequence)
          */
-        public void setSeparatorSequence(Sequence value) {
+        @Override
+		public void setSeparatorSequence(Sequence value) {
         }
 
     }
@@ -1239,7 +1243,8 @@ public class TestPropertyTypeHandler {
          * 
          * @see TCS.AutoCreatePArg#getValue()
          */
-        public AutoCreateKind getValue() {
+        @Override
+		public AutoCreateKind getValue() {
             return kind;
         }
 
@@ -1248,7 +1253,8 @@ public class TestPropertyTypeHandler {
          * 
          * @see TCS.AutoCreatePArg#setValue(TCS.AutoCreateKind)
          */
-        public void setValue(AutoCreateKind value) {
+        @Override
+		public void setValue(AutoCreateKind value) {
 
         }
 
@@ -1258,7 +1264,8 @@ public class TestPropertyTypeHandler {
 
         public EList<String> propertyName;
 
-        public EList<String> getPropertyName() {
+        @Override
+		public EList<String> getPropertyName() {
             return propertyName;
         }
 
@@ -1276,7 +1283,8 @@ public class TestPropertyTypeHandler {
          * 
          * @see TCS.AsPArg#getValue()
          */
-        public String getValue() {
+        @Override
+		public String getValue() {
             return value;
         }
 
@@ -1285,7 +1293,8 @@ public class TestPropertyTypeHandler {
          * 
          * @see TCS.AsPArg#setValue(java.lang.String)
          */
-        public void setValue(String value) {
+        @Override
+		public void setValue(String value) {
 
         }
 
@@ -1310,7 +1319,8 @@ public class TestPropertyTypeHandler {
          * 
          * @see TCS.AsPArg#getValue()
          */
-        public String getMode() {
+        @Override
+		public String getMode() {
             return mode;
         }
 
@@ -1319,7 +1329,8 @@ public class TestPropertyTypeHandler {
          * 
          * @see TCS.AsPArg#setValue(java.lang.String)
          */
-        public void setMode(String value) {
+        @Override
+		public void setMode(String value) {
 
         }
 
@@ -1329,7 +1340,8 @@ public class TestPropertyTypeHandler {
 
         public String propertyName;
 
-        public String getPropertyName() {
+        @Override
+		public String getPropertyName() {
             return propertyName;
         }
 
@@ -1338,7 +1350,8 @@ public class TestPropertyTypeHandler {
          * 
          * @see TCS.RefersToPArg#setPropertyName(java.lang.String)
          */
-        public void setPropertyName(String value) {
+        @Override
+		public void setPropertyName(String value) {
 
         }
     }
@@ -1347,7 +1360,8 @@ public class TestPropertyTypeHandler {
 
         public String query;
 
-        public String getQuery() {
+        @Override
+		public String getQuery() {
             return query;
         }
 
@@ -1356,7 +1370,8 @@ public class TestPropertyTypeHandler {
          * 
          * @see TCS.RefersToPArg#setPropertyName(java.lang.String)
          */
-        public void setQuery(String value) {
+        @Override
+		public void setQuery(String value) {
 
         }
 
@@ -1377,11 +1392,13 @@ public class TestPropertyTypeHandler {
     class PargStub extends LocatedElementStub implements PropertyArg {
         public Property property;
 
-        public final Property getProperty() {
+        @Override
+		public final Property getProperty() {
             return property;
         }
 
-        public final void setProperty(Property property) {
+        @Override
+		public final void setProperty(Property property) {
             this.property = property;
         }
     }
@@ -1399,7 +1416,8 @@ public class TestPropertyTypeHandler {
          * 
          * @see TCS.CreateInPArg#getPropertyName()
          */
-        public EList<String> getPropertyName() {
+        @Override
+		public EList<String> getPropertyName() {
             return pName;
         }
 

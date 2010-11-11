@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class NbNLBArgImpl extends BlockArgImpl implements NbNLBArg {
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected NbNLBArgImpl() {
-        super();
-    }
+		super();
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         protected EClass eStaticClass() {
-        return TCSPackage.Literals.NB_NLB_ARG;
-    }
+		return TCSPackage.Literals.NB_NLB_ARG;
+	}
 
 } //NbNLBArgImpl

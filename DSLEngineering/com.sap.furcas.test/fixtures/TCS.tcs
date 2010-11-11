@@ -154,6 +154,7 @@ syntax TCS {
 				(isDefined(mode) ? "#" mode)
 				(isDefined(disambiguate) ? "(" "disambiguate" "=" disambiguate{as = stringSymbol} ")")
 				(isDefined(disambiguateV3) ? "(" "disambiguateV3" "=" disambiguateV3{as = stringSymbol} ")")
+                                (isDefined(semDisambiguate) ? "(" "semDisambiguate" "=" semDisambiguate{as = stringSymbol} ")" )				
 				(isMulti ? "multi")
 				(isMain ? "main")
 				(isAbstract ? (isDeep ? "deep") "abstract")
@@ -175,6 +176,7 @@ syntax TCS {
 				(isDefined(storeRightSideTo) ? "," "storeRightTo" "=" storeRightSideTo)
 				(isDefined(disambiguate) ? "," "disambiguate" "=" disambiguate{as = stringSymbol})
 				(isDefined(disambiguateV3) ? "," "disambiguateV3" "=" disambiguateV3{as = stringSymbol})
+			        (isDefined(semDisambiguate) ? "," "semDisambiguate" "=" semDisambiguate{as = stringSymbol})
 			")"
 			(isReferenceOnly ? "referenceOnly" :
 				(isContext ? "context" (isDefined(contextTags) ? contextTags))

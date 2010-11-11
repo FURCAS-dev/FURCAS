@@ -571,11 +571,11 @@ public class IncrementalParsingUtil {
         if (oldVersion.getCorrespondingModelElements().size() > 0
                 && tb.getSequenceElement() != null
                 && tb.getSequenceElement() instanceof Property) {
-            for (RefObject ro : oldVersion.getCorrespondingModelElements()) {
-                Collection<RefObject> elements = new ArrayList<RefObject>(tb
+            for (EObject ro : oldVersion.getCorrespondingModelElements()) {
+                Collection<EObject> elements = new ArrayList<EObject>(tb
                         .getReferencedElements());
                 elements.addAll(tb.getCorrespondingModelElements());
-                for (RefObject refObject : elements) {
+                for (EObject refObject : elements) {
                     try {
                         injector.unset(ro, ((Property) tb.getSequenceElement())
                                 .getPropertyReference().getStrucfeature()

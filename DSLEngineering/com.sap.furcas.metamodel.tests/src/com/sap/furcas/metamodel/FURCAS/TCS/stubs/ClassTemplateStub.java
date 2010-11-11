@@ -29,6 +29,7 @@ public class ClassTemplateStub extends TemplateStub implements ClassTemplate {
     public boolean referenceOnly;
     public ContextTagsStub contextTags = new ContextTagsStub() {
     };
+	public String semDisambiguate;
 
     @Override
     public boolean isIsContext() {
@@ -285,5 +286,15 @@ public class ClassTemplateStub extends TemplateStub implements ClassTemplate {
 	fail("not implemented yet");
 	return null;
     }
+
+	@Override
+	public String getSemDisambiguate() {
+		return semDisambiguate;
+	}
+
+	@Override
+	public void setSemDisambiguate(String value) {
+		semDisambiguate = value;
+	}
 
 }

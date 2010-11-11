@@ -20,55 +20,55 @@ import junit.textui.TestRunner;
 public class AndExpTest extends ExpressionTest {
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public static void main(String[] args) {
-                TestRunner.run(AndExpTest.class);
-        }
+		TestRunner.run(AndExpTest.class);
+	}
 
         /**
-         * Constructs a new And Exp test case with the given name.
-         * <!-- begin-user-doc -->
+	 * Constructs a new And Exp test case with the given name.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public AndExpTest(String name) {
-                super(name);
-        }
+		super(name);
+	}
 
         /**
-         * Returns the fixture for this And Exp test case.
-         * <!-- begin-user-doc -->
+	 * Returns the fixture for this And Exp test case.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         @Override
         protected AndExp getFixture() {
-                return (AndExp)fixture;
-        }
+		return (AndExp)fixture;
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#setUp()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#setUp()
+	 * @generated
+	 */
         @Override
         protected void setUp() throws Exception {
-                setFixture(TCSFactory.eINSTANCE.createAndExp());
-        }
+		setFixture(TCSFactory.eINSTANCE.createAndExp());
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#tearDown()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#tearDown()
+	 * @generated
+	 */
         @Override
         protected void tearDown() throws Exception {
-                setFixture(null);
-        }
+		setFixture(null);
+	}
 
 } //AndExpTest

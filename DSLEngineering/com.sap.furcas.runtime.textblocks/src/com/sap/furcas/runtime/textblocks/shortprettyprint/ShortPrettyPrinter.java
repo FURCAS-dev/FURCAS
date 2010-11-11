@@ -124,27 +124,31 @@ public class ShortPrettyPrinter {
 	    }	    
 	} else {
 	    //it is always the first element as all others do not have a syntax contribution!
-	    EObject referencedObject;
+	    EObject referencedObject = null;
 	    List<EObject> correspondingElements = token.getParent().getCorrespondingModelElements();
 	    if (correspondingElements.isEmpty()) {
-		referencedObject = token.getParent().getReferencedElements().iterator().next();
+	    	if( token.getParent().getReferencedElements().size() > 0) {
+	            referencedObject = token.getParent().getReferencedElements().iterator().next();
+	        }
 	    } else {
-		referencedObject = correspondingElements.get(0);
+	    	referencedObject = correspondingElements.get(0);
 	    }
             try {
-                Object value = investigator.get(referencedObject, se
-                        .getPropertyReference().getStrucfeature().getName());
-                // TODO handle pretty printing and escaping according to
-                // syntax
-                if (value instanceof Collection<?>
-                        && ((Collection<?>) value).size() > 0) {
-                    value = ((Collection<?>) value).iterator().next();
-                }
-                if (value != null && !(value instanceof EObject)
-                        && !(value instanceof Collection<?>)) {
-                    newvalue = value.toString();
-                }
-                // break;
+            	if(referencedObject != null) {
+	                Object value = investigator.get(referencedObject, se
+	                        .getPropertyReference().getStrucfeature().getName());
+	                // TODO handle pretty printing and escaping according to
+	                // syntax
+	                if (value instanceof Collection<?>
+	                        && ((Collection<?>) value).size() > 0) {
+	                    value = ((Collection<?>) value).iterator().next();
+	                }
+	                if (value != null && !(value instanceof EObject)
+	                        && !(value instanceof Collection<?>)) {
+	                    newvalue = value.toString();
+	                }
+	                // break;
+            	}
             } catch (ModelAdapterException e) {
                 // element does not have such a property
                 // continue;

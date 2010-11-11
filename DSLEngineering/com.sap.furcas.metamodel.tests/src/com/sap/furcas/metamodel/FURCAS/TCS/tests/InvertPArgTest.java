@@ -20,55 +20,55 @@ import junit.textui.TestRunner;
 public class InvertPArgTest extends OclPArgTest {
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public static void main(String[] args) {
-                TestRunner.run(InvertPArgTest.class);
-        }
+		TestRunner.run(InvertPArgTest.class);
+	}
 
         /**
-         * Constructs a new Invert PArg test case with the given name.
-         * <!-- begin-user-doc -->
+	 * Constructs a new Invert PArg test case with the given name.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public InvertPArgTest(String name) {
-                super(name);
-        }
+		super(name);
+	}
 
         /**
-         * Returns the fixture for this Invert PArg test case.
-         * <!-- begin-user-doc -->
+	 * Returns the fixture for this Invert PArg test case.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         @Override
         protected InvertPArg getFixture() {
-                return (InvertPArg)fixture;
-        }
+		return (InvertPArg)fixture;
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#setUp()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#setUp()
+	 * @generated
+	 */
         @Override
         protected void setUp() throws Exception {
-                setFixture(TCSFactory.eINSTANCE.createInvertPArg());
-        }
+		setFixture(TCSFactory.eINSTANCE.createInvertPArg());
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#tearDown()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#tearDown()
+	 * @generated
+	 */
         @Override
         protected void tearDown() throws Exception {
-                setFixture(null);
-        }
+		setFixture(null);
+	}
 
 } //InvertPArgTest

@@ -20,55 +20,55 @@ import junit.textui.TestRunner;
 public class PrimitiveTemplateTest extends TemplateTest {
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public static void main(String[] args) {
-                TestRunner.run(PrimitiveTemplateTest.class);
-        }
+		TestRunner.run(PrimitiveTemplateTest.class);
+	}
 
         /**
-         * Constructs a new Primitive Template test case with the given name.
-         * <!-- begin-user-doc -->
+	 * Constructs a new Primitive Template test case with the given name.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public PrimitiveTemplateTest(String name) {
-                super(name);
-        }
+		super(name);
+	}
 
         /**
-         * Returns the fixture for this Primitive Template test case.
-         * <!-- begin-user-doc -->
+	 * Returns the fixture for this Primitive Template test case.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         @Override
         protected PrimitiveTemplate getFixture() {
-                return (PrimitiveTemplate)fixture;
-        }
+		return (PrimitiveTemplate)fixture;
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#setUp()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#setUp()
+	 * @generated
+	 */
         @Override
         protected void setUp() throws Exception {
-                setFixture(TCSFactory.eINSTANCE.createPrimitiveTemplate());
-        }
+		setFixture(TCSFactory.eINSTANCE.createPrimitiveTemplate());
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#tearDown()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#tearDown()
+	 * @generated
+	 */
         @Override
         protected void tearDown() throws Exception {
-                setFixture(null);
-        }
+		setFixture(null);
+	}
 
 } //PrimitiveTemplateTest

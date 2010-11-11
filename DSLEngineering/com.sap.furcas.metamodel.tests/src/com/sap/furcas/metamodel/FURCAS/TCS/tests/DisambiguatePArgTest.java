@@ -20,55 +20,55 @@ import junit.textui.TestRunner;
 public class DisambiguatePArgTest extends PropertyArgTest {
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public static void main(String[] args) {
-                TestRunner.run(DisambiguatePArgTest.class);
-        }
+		TestRunner.run(DisambiguatePArgTest.class);
+	}
 
         /**
-         * Constructs a new Disambiguate PArg test case with the given name.
-         * <!-- begin-user-doc -->
+	 * Constructs a new Disambiguate PArg test case with the given name.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public DisambiguatePArgTest(String name) {
-                super(name);
-        }
+		super(name);
+	}
 
         /**
-         * Returns the fixture for this Disambiguate PArg test case.
-         * <!-- begin-user-doc -->
+	 * Returns the fixture for this Disambiguate PArg test case.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         @Override
         protected DisambiguatePArg getFixture() {
-                return (DisambiguatePArg)fixture;
-        }
+		return (DisambiguatePArg)fixture;
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#setUp()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#setUp()
+	 * @generated
+	 */
         @Override
         protected void setUp() throws Exception {
-                setFixture(TCSFactory.eINSTANCE.createDisambiguatePArg());
-        }
+		setFixture(TCSFactory.eINSTANCE.createDisambiguatePArg());
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#tearDown()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#tearDown()
+	 * @generated
+	 */
         @Override
         protected void tearDown() throws Exception {
-                setFixture(null);
-        }
+		setFixture(null);
+	}
 
 } //DisambiguatePArgTest

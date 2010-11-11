@@ -20,55 +20,55 @@ import junit.textui.TestRunner;
 public class StartNbNLBArgTest extends BlockArgTest {
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public static void main(String[] args) {
-                TestRunner.run(StartNbNLBArgTest.class);
-        }
+		TestRunner.run(StartNbNLBArgTest.class);
+	}
 
         /**
-         * Constructs a new Start Nb NLB Arg test case with the given name.
-         * <!-- begin-user-doc -->
+	 * Constructs a new Start Nb NLB Arg test case with the given name.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public StartNbNLBArgTest(String name) {
-                super(name);
-        }
+		super(name);
+	}
 
         /**
-         * Returns the fixture for this Start Nb NLB Arg test case.
-         * <!-- begin-user-doc -->
+	 * Returns the fixture for this Start Nb NLB Arg test case.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         @Override
         protected StartNbNLBArg getFixture() {
-                return (StartNbNLBArg)fixture;
-        }
+		return (StartNbNLBArg)fixture;
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#setUp()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#setUp()
+	 * @generated
+	 */
         @Override
         protected void setUp() throws Exception {
-                setFixture(TCSFactory.eINSTANCE.createStartNbNLBArg());
-        }
+		setFixture(TCSFactory.eINSTANCE.createStartNbNLBArg());
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#tearDown()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#tearDown()
+	 * @generated
+	 */
         @Override
         protected void tearDown() throws Exception {
-                setFixture(null);
-        }
+		setFixture(null);
+	}
 
 } //StartNbNLBArgTest

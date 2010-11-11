@@ -17,24 +17,24 @@ import com.sap.furcas.metamodel.FURCAS.TCS.SimplePattern;
 public abstract class SimplePatternTest extends NamedElementTest {
 
         /**
-         * Constructs a new Simple Pattern test case with the given name.
-         * <!-- begin-user-doc -->
+	 * Constructs a new Simple Pattern test case with the given name.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public SimplePatternTest(String name) {
-                super(name);
-        }
+		super(name);
+	}
 
         /**
-         * Returns the fixture for this Simple Pattern test case.
-         * <!-- begin-user-doc -->
+	 * Returns the fixture for this Simple Pattern test case.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         @Override
         protected SimplePattern getFixture() {
-                return (SimplePattern)fixture;
-        }
+		return (SimplePattern)fixture;
+	}
 
 } //SimplePatternTest

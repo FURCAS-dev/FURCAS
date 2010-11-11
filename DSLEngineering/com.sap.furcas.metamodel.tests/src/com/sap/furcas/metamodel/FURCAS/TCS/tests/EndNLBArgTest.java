@@ -20,55 +20,55 @@ import junit.textui.TestRunner;
 public class EndNLBArgTest extends BlockArgTest {
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public static void main(String[] args) {
-                TestRunner.run(EndNLBArgTest.class);
-        }
+		TestRunner.run(EndNLBArgTest.class);
+	}
 
         /**
-         * Constructs a new End NLB Arg test case with the given name.
-         * <!-- begin-user-doc -->
+	 * Constructs a new End NLB Arg test case with the given name.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         public EndNLBArgTest(String name) {
-                super(name);
-        }
+		super(name);
+	}
 
         /**
-         * Returns the fixture for this End NLB Arg test case.
-         * <!-- begin-user-doc -->
+	 * Returns the fixture for this End NLB Arg test case.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+	 * @generated
+	 */
         @Override
         protected EndNLBArg getFixture() {
-                return (EndNLBArg)fixture;
-        }
+		return (EndNLBArg)fixture;
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#setUp()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#setUp()
+	 * @generated
+	 */
         @Override
         protected void setUp() throws Exception {
-                setFixture(TCSFactory.eINSTANCE.createEndNLBArg());
-        }
+		setFixture(TCSFactory.eINSTANCE.createEndNLBArg());
+	}
 
         /**
-         * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see junit.framework.TestCase#tearDown()
-         * @generated
-         */
+	 * @see junit.framework.TestCase#tearDown()
+	 * @generated
+	 */
         @Override
         protected void tearDown() throws Exception {
-                setFixture(null);
-        }
+		setFixture(null);
+	}
 
 } //EndNLBArgTest

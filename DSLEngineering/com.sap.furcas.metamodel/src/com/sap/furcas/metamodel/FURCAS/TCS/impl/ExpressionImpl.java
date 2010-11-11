@@ -35,165 +35,165 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  */
 public abstract class ExpressionImpl extends LocatedElementImpl implements Expression {
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected ExpressionImpl() {
-        super();
-    }
+		super();
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         protected EClass eStaticClass() {
-        return TCSPackage.Literals.EXPRESSION;
-    }
+		return TCSPackage.Literals.EXPRESSION;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public ConditionalElement getConditionalElement() {
-        if (eContainerFeatureID() != TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT) return null;
-        return (ConditionalElement)eContainer();
-    }
+		if (eContainerFeatureID() != TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT) return null;
+		return (ConditionalElement)eContainer();
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public NotificationChain basicSetConditionalElement(ConditionalElement newConditionalElement, NotificationChain msgs) {
-        msgs = eBasicSetContainer((InternalEObject)newConditionalElement, TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT, msgs);
-        return msgs;
-    }
+		msgs = eBasicSetContainer((InternalEObject)newConditionalElement, TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT, msgs);
+		return msgs;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public void setConditionalElement(ConditionalElement newConditionalElement) {
-        if (newConditionalElement != eInternalContainer() || (eContainerFeatureID() != TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT && newConditionalElement != null)) {
-            if (EcoreUtil.isAncestor(this, newConditionalElement))
-                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-            NotificationChain msgs = null;
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            if (newConditionalElement != null)
-                msgs = ((InternalEObject)newConditionalElement).eInverseAdd(this, TCSPackage.CONDITIONAL_ELEMENT__CONDITION, ConditionalElement.class, msgs);
-            msgs = basicSetConditionalElement(newConditionalElement, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT, newConditionalElement, newConditionalElement));
-    }
+		if (newConditionalElement != eInternalContainer() || (eContainerFeatureID() != TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT && newConditionalElement != null)) {
+			if (EcoreUtil.isAncestor(this, newConditionalElement))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newConditionalElement != null)
+				msgs = ((InternalEObject)newConditionalElement).eInverseAdd(this, TCSPackage.CONDITIONAL_ELEMENT__CONDITION, ConditionalElement.class, msgs);
+			msgs = basicSetConditionalElement(newConditionalElement, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT, newConditionalElement, newConditionalElement));
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT:
-                if (eInternalContainer() != null)
-                    msgs = eBasicRemoveFromContainer(msgs);
-                return basicSetConditionalElement((ConditionalElement)otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetConditionalElement((ConditionalElement)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT:
-                return basicSetConditionalElement(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT:
+				return basicSetConditionalElement(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID()) {
-            case TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT:
-                return eInternalContainer().eInverseRemove(this, TCSPackage.CONDITIONAL_ELEMENT__CONDITION, ConditionalElement.class, msgs);
-        }
-        return super.eBasicRemoveFromContainerFeature(msgs);
-    }
+		switch (eContainerFeatureID()) {
+			case TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT:
+				return eInternalContainer().eInverseRemove(this, TCSPackage.CONDITIONAL_ELEMENT__CONDITION, ConditionalElement.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT:
-                return getConditionalElement();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT:
+				return getConditionalElement();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT:
-                setConditionalElement((ConditionalElement)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT:
+				setConditionalElement((ConditionalElement)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public void eUnset(int featureID) {
-        switch (featureID) {
-            case TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT:
-                setConditionalElement((ConditionalElement)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT:
+				setConditionalElement((ConditionalElement)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT:
-                return getConditionalElement() != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT:
+				return getConditionalElement() != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //ExpressionImpl
