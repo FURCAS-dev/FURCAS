@@ -30,7 +30,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notificat
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.ImpactAnalyzerWithHiddenOppositesFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.OCLWithHiddenOppositesFactory;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.BaseDepartmentTest;
+import de.hpi.sam.bp2009.solution.testutils.BaseDepartmentTest;
 
 public class TracebackStepTests extends BaseDepartmentTest {
     private EPackage cp;
