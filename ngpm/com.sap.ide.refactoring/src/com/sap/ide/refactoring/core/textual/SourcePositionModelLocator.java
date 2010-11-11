@@ -18,7 +18,7 @@ import com.sap.mi.textual.textblocks.model.TextBlocksModel;
  * Helper to access the underlying domain model through the textblocks model.
  * Works based on the current cursor position and text selection.
  *
- * @author D049157
+ * @author Stephan Erb (d049157)
  *
  */
 public class SourcePositionModelLocator {

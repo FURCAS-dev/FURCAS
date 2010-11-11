@@ -21,6 +21,7 @@ import org.junit.Test;
 
 import behavioral.actions.Block;
 import behavioral.actions.NamedValueDeclaration;
+import behavioral.actions.Return;
 
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.editor.document.CtsDocument;
@@ -30,9 +31,13 @@ import com.sap.ide.cts.editor.junitcreate.SnapshotVersion;
 
 import data.classes.MethodSignature;
 import data.classes.SapClass;
+import dataaccess.expressions.Expression;
+import dataaccess.expressions.MethodCallExpression;
 import dataaccess.expressions.VariableExpression;
+import dataaccess.expressions.literals.NumberLiteral;
 
 public class FailingEditingActions extends RunletEditorTest {
+  
 
     /**
      * Added a parameter to two operations and used the new parameter in both operations' implementation
