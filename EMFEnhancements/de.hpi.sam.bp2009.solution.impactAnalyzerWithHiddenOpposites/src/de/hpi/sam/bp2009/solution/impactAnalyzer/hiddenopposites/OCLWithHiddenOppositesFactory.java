@@ -10,9 +10,9 @@
  ******************************************************************************/
 package de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites;
 
-import org.eclipse.emf.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 

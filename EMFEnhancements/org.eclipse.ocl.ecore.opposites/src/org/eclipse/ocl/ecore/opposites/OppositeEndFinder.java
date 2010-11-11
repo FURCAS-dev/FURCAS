@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package org.eclipse.emf.ecore.opposites;
+package org.eclipse.ocl.ecore.opposites;
 
 import java.util.Collection;
 import java.util.List;

@@ -1,8 +1,8 @@
 package com.sap.furcas.runtime.referenceresolving;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.emf.ocl.trigger.AbstractOCLBasedModelUpdater;

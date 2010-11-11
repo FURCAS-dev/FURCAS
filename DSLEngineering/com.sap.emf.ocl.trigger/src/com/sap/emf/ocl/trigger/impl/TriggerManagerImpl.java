@@ -4,10 +4,10 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.opposites.DefaultOppositeEndFinder;
-import org.eclipse.emf.ecore.opposites.OppositeEndFinder;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.emf.ocl.trigger.AdapterForExpression;
 import com.sap.emf.ocl.trigger.ExpressionWithContext;

@@ -8,6 +8,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.ocl.ecore,
  org.junit,
  com.sap.emf.ocl.hiddenopposites,
- org.eclipse.emf.ecore.opposites,
+ org.eclipse.ocl.ecore.opposites,
  com.sap.emf.ocl.util
 Export-Package: com.sap.emf.ocl.prepared

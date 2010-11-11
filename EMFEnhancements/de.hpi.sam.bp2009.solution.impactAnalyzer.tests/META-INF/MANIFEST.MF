@@ -11,7 +11,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.junit4,
  de.hpi.sam.bp2009.solution.oclToAst,
  com.sap.emf.ocl.hiddenopposites,
- org.eclipse.emf.ecore.opposites,
+ org.eclipse.ocl.ecore.opposites,
  de.hpi.sam.bp2009.solution.testutils,
  de.hpi.sam.bp2009.solution.impactAnalyzerWithHiddenOpposites,
  de.hpi.sam.bp2009.solution.impactAnalyzer
