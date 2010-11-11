@@ -6,12 +6,12 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import com.sap.emf.ocl.attributegrammar.AttributeGrammar;
 import com.sap.emf.ocl.attributegrammar.AttributeGrammarFactory;
 import com.sap.emf.ocl.attributegrammar.RuleTypeConformanceException;
-import com.sap.emf.oppositeendfinder.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 

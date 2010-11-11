@@ -1,5 +1,7 @@
 package com.sap.furcas.parsergenerator;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+
 
 /**
  * Generator facade featuring the generation of ANTLR grammars from TCS syntaxes, and subsequently, featuring the generation of
@@ -10,7 +12,7 @@ package com.sap.furcas.parsergenerator;
  */
 public interface TCSParserGenerator {
 
-    public void generateGrammarFromSyntax(GrammarGenerationSourceConfiguration sourceConfiguration, GrammarGenerationTargetConfiguration targetConfiguration, GenerationErrorHandler errorhandler) throws GrammarGenerationException;
+    public ConcreteSyntax generateGrammarFromSyntax(GrammarGenerationSourceConfiguration sourceConfiguration, GrammarGenerationTargetConfiguration targetConfiguration, GenerationErrorHandler errorhandler) throws GrammarGenerationException;
     
     public void generateParserFromGrammar(GrammarGenerationTargetConfiguration targetConfiguration, GenerationErrorHandler errorhandler);
 

@@ -1,23 +1,31 @@
 package com.sap.furcas.referenceresolving.tests;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.modeladaptation.emf.EMFModelAdapter;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
 import com.sap.furcas.runtime.parser.ParserFacade;
+import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.impl.DefaultTextAwareModelAdapter;
 import com.sap.furcas.test.base.GeneratedParserBasedTest;
 import com.sap.furcas.test.base.GeneratedParserTestConfiguration;
@@ -41,17 +49,23 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
     
     private static ParsingHelper parsingHelper;
 	private static ResourceSet resourceSet;
+	private static ConcreteSyntax syntax;
+	private EObject johnDoe;
+	private EObject article;
+	private EClass authorClass;
+	private EClass articleClass;
 
     @BeforeClass
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
         resourceSet = testConfig.getSourceConfiguration().getResourceSet();
         ParserFacade facade = generateParserForLanguage(testConfig, new ClassLookupImpl());
+        syntax = facade.getSyntax();
         parsingHelper = new ParsingHelper(facade);
     }
-
-    @Test
-    public void testSample1() throws Exception {
+    
+    @Before
+    public void setupInitialModel() throws IOException, UnknownProductionRuleException {
         String sample = "article{" + "  Testing, \"John Doe\"," + "  year = \"2002\"" + "}" + "author = \"John Doe\"."
         + "author = \"Jane Doll\".";
         Set<URI> referenceScope = Collections.emptySet();
@@ -62,32 +76,50 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
         ModelParsingResult parsingResult = parsingHelper.parseString(sample, handlerWrapper);
         EObject bibTexFile = (EObject) parsingResult.getParsedModelElement();
         assertNotNull(bibTexFile);
-        /*
-        Set<StubModelElement> authors = stubModelHandler.getElementsbyType("BibText::Author");
-        assertEquals(2, authors.size());
-        StubModelElement johnDoe = null;
-        for (StubModelElement author : authors) {
-        	if (author.get("name").equals("John Doe")) {
-        		johnDoe = author;
+        EClass bibTexFileClass = bibTexFile.eClass();
+        assertEquals("BibTextFile", bibTexFileClass.getName());
+        @SuppressWarnings("unchecked")
+		Collection<EObject> entries = (Collection<EObject>) bibTexFile.eGet(bibTexFileClass.getEStructuralFeature("entries"));
+        assertEquals(3, entries.size());
+        johnDoe = null;
+        article = null;
+        authorClass = null;
+        articleClass = null;
+        for (EObject entry : entries) {
+        	if (entry.eClass().getName().equals("Author")) {
+        		authorClass = entry.eClass();
+            	if (entry.eGet(authorClass.getEStructuralFeature("name")).equals("John Doe")) {
+            		johnDoe = entry;
+            	}
+        	} else if (entry.eClass().getName().equals("Article")) {
+        		articleClass = entry.eClass();
+        		article = entry;
         	}
         }
-        assertNotNull(johnDoe);
-        Set<StubModelElement> articles = stubModelHandler.getElementsbyType("BibText::Article");
-        assertEquals(1, articles.size());
-        StubModelElement article = articles.iterator().next();
-
-        // now check the reference was set using the right property name
-        // assertNotNull(johnDoe.get("articles")); StubModelHandler not powerful enough
-        assertNotNull(article.get("author"));
-        assertEquals(johnDoe, article.get("author"));
-        // assertEquals("somewhere", article.get("location"));
-         */
     }
 
+    @Test
+    public void testInitialModel() throws Exception {
+    	assertNotNull(syntax);
+    	assertEquals("BibtexWithPropertyInits", syntax.getName());
+        assertNotNull(johnDoe);
+        // now check the reference was set using the right property name
+        // assertNotNull(johnDoe.get("articles")); StubModelHandler not powerful enough
+        assertNotNull(article.eGet(articleClass.getEStructuralFeature("author")));
+        assertEquals(johnDoe, article.eGet(articleClass.getEStructuralFeature("author")));
+        assertEquals("Where John Doe wrote it", article.eGet(articleClass.getEStructuralFeature("location")));
+    }
+    
+    @Ignore // failing test case as preparation of impact analysis requirements
+    public void testChangeAuthorName() {
+    	johnDoe.eSet(authorClass.getEStructuralFeature("name"), "John Dough");
+        assertEquals("Where John Dough wrote it", article.eGet(articleClass.getEStructuralFeature("location")));
+    }
+    
     /**
      * Finds an EPackage in the {@link #resourceSet} by the <code>name</code> specified 
      */
-	private EPackage findPackage(String name) {
+	private static EPackage findPackage(String name) {
 		for (Resource r : resourceSet.getResources()) {
 			for (EObject c : r.getContents()) {
 				if (c instanceof EPackage && ((EPackage) c).getName().equals(name)) {

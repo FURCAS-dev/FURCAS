@@ -9,10 +9,10 @@ import java.io.PrintStream;
 
 import org.antlr.runtime.Lexer;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.parsergenerator.TCSParserGenerator;
 import com.sap.furcas.parsergenerator.TCSParserGeneratorFactory;
-import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ObservationDirectivesHelper;
 import com.sap.furcas.runtime.common.exceptions.ParserGeneratorInvocationException;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
@@ -31,28 +31,25 @@ import com.sun.tools.javac.Main;
  */
 public class GeneratedParserBasedTest {
 
-    {{
-            ObservationDirectivesHelper.doAddObserverParts = ObservationDirectivesHelper.ALL;
-    }}
-
     public static ParserFacade generateParserForLanguage(GeneratedParserTestConfiguration testConfig, ClassLookup classLookup) throws GrammarGenerationException, ParserGeneratorInvocationException, InvalidParserImplementationException {
-        generateGrammar(testConfig);
+        ConcreteSyntax syntax = generateGrammar(testConfig);
         generateParser(testConfig);
         compileParser(testConfig);
         
-        return loadParserFacade(testConfig, classLookup);
+        return loadParserFacade(testConfig, classLookup, syntax);
     }
 
-    protected final static void generateGrammar(GeneratedParserTestConfiguration testConfig) throws GrammarGenerationException {
+    protected final static ConcreteSyntax generateGrammar(GeneratedParserTestConfiguration testConfig) throws GrammarGenerationException {
         SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
         try {
             TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
-            generator.generateGrammarFromSyntax(testConfig.getSourceConfiguration(), testConfig.getTargetConfiguration(), errorHandler);
+            return generator.generateGrammarFromSyntax(testConfig.getSourceConfiguration(), testConfig.getTargetConfiguration(), errorHandler);
         } catch (ParserGeneratorInvocationException e) {
             e.printStackTrace();
             fail("Failed to generate grammar:" + e.getMessage());
         }
         assertFalse("Must have completed without (critical) errors", errorHandler.hasFailedWithError());
+        return null;
     }
 
     protected static void generateParser(GeneratedParserTestConfiguration testConfig) {
@@ -92,7 +89,7 @@ public class GeneratedParserBasedTest {
         }
     }
 
-    protected static ParserFacade loadParserFacade(GeneratedParserTestConfiguration testConfig, ClassLookup classLookup)
+    protected static ParserFacade loadParserFacade(GeneratedParserTestConfiguration testConfig, ClassLookup classLookup, ConcreteSyntax syntax)
             throws ParserGeneratorInvocationException, InvalidParserImplementationException {
         // try loading compiled classes
         try {
@@ -100,7 +97,7 @@ public class GeneratedParserBasedTest {
             Class<? extends Lexer> lexerclass = (Class<? extends Lexer>) classLookup.loadClass(testConfig.getClassNameOfCompiledLexer());
             @SuppressWarnings("unchecked")
             Class<? extends ObservableInjectingParser> parserclass = (Class<? extends ObservableInjectingParser>) classLookup.loadClass(testConfig.getClassNameOfCompiledParser());
-            ParserFacade facade = new ParserFacade(parserclass, lexerclass);
+            ParserFacade facade = new ParserFacade(parserclass, lexerclass, syntax);
             return facade;
 
         } catch (ClassNotFoundException cnfe) { // catching from Class.forName

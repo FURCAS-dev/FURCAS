@@ -8,7 +8,7 @@ Require-Bundle: org.eclipse.ocl,
  org.eclipse.emf.query.index,
  org.eclipse.emf.query2,
  com.sap.emf.ocl.hiddenopposites,
- com.sap.emf.oppositeendfinder,
+ org.eclipse.emf.ecore.opposites,
  de.hpi.sam.bp2009.solution.queryContextScopeProvider,
  de.hpi.sam.bp2009.solution.scopeProvider,
  org.eclipse.emf.query.index.ui

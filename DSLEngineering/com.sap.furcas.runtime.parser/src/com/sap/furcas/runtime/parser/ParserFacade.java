@@ -16,6 +16,7 @@ import java.util.Map;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.Parser;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
@@ -30,16 +31,25 @@ import com.sap.furcas.runtime.parser.wrapper.GeneratedParserWrapper;
 public class ParserFacade  {
 
     private final GeneratedParserWrapper wrapper;
+    private final ConcreteSyntax syntax;
  
-    public ParserFacade(Class<? extends ObservableInjectingParser> parserClass, Class<? extends Lexer> lexerClass) throws InvalidParserImplementationException  {
+    /**
+     * @param syntax optionally pass in the syntax that the lexer/parser combo understands; may be <code>null</code>. Is returned
+     * by the {@link #getSyntax()} operation.
+     */
+    public ParserFacade(Class<? extends ObservableInjectingParser> parserClass, Class<? extends Lexer> lexerClass, ConcreteSyntax syntax) throws InvalidParserImplementationException  {
         wrapper = new GeneratedParserWrapper(parserClass, lexerClass );
-    }
-    
-    public ParserFacade(ObservableInjectingParser parser, Lexer lexer) throws InvalidParserImplementationException  {
-        wrapper = new GeneratedParserWrapper(parser, lexer );
+        this.syntax = syntax;
     }
     
     /**
+     * Returns whatever was passed as syntax to the constructor. 
+     */
+    public ConcreteSyntax getSyntax() {
+		return syntax;
+	}
+
+	/**
      * 
      * @param in may not be null
      * @param modelHandler may not be null

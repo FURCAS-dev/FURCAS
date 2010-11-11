@@ -30,6 +30,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false"
         lowerBound="1" eType="ecore:EDataType BibText1.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="articles" ordered="false"
-        upperBound="-1" eType="#//Article" containment="true" eOpposite="#//Article/author"/>
+        upperBound="-1" eType="#//Article" eOpposite="#//Article/author"/>
   </eClassifiers>
 </ecore:EPackage>
