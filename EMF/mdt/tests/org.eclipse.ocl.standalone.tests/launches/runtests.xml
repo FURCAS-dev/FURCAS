@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2007, 2008 IBM Corporation and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   IBM - Initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id: runtests.xml,v 1.6 2009/12/16 10:54:37 aigdalov Exp $
+ */
+-->
+<project name="project" default="default">
+    <description>Runs all OCL tests in stand-alone mode</description>
+
+    <target name="default">
+        <junit>
+        	<sysproperty key="workspace.location" value="${workspace.location}/"/>
+        	<sysproperty key="target.location" value="${target.location}/"/>
+        	<sysproperty key="org.eclipse.ocl" value="${workspace.location}/org.eclipse.ocl"/>
+        	<sysproperty key="org.eclipse.ocl.ecore.tests" value="${workspace.location}/org.eclipse.ocl.ecore.tests"/>
+        	<sysproperty key="org.eclipse.ocl.ecore.tests.testmodel" value="${workspace.location}/org.eclipse.ocl.ecore.tests/model/OCLTest.ecore"/>
+        	<sysproperty key="org.eclipse.ocl.uml" value="${workspace.location}/org.eclipse.ocl.uml"/>
+        	<sysproperty key="org.eclipse.ocl.uml.tests" value="${workspace.location}/org.eclipse.ocl.uml.tests"/>
+        	<sysproperty key="org.eclipse.ocl.uml.tests.testmodel" value="${workspace.location}/org.eclipse.ocl.uml.tests/model/OCLTest.uml"/>
+        	<sysproperty key="org.eclipse.uml2.uml.resources" value="${workspace.location}/org.eclipse.uml2.uml.resources"/>
+        	
+        	<classpath>
+        		<fileset dir="${target.location}">
+        			<include name="**/plugins/org.junit4*/junit.jar"/>
+        			<include name="**/plugins/org.eclipse.emf.common_*.jar"/>
+        			<include name="**/plugins/org.eclipse.emf.ecore_*.jar"/>
+        			<include name="**/plugins/org.eclipse.emf.ecore.xmi_*.jar"/>
+        			<include name="**/plugins/org.eclipse.uml2.common_*.jar"/>
+        			<include name="**/plugins/org.eclipse.uml2.uml_*.jar"/>
+        		</fileset>
+        		<dirset dir="${workspace.location}">
+        			<include name="net.sourceforge.lpg*"/>
+        			<include name="org.eclipse.ocl*/bin"/>
+        		</dirset>
+        	</classpath>
+        	
+        	<formatter type="plain"/>
+        	
+        	<test name="org.eclipse.ocl.standalone.tests.AllTests"
+        		outfile="../test-results"/>
+        </junit>
+    </target>
+
+</project>

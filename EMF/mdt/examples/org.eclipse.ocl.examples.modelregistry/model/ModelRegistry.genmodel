@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.ocl.examples.modelregistry/src"
+    modelPluginID="org.eclipse.ocl.examples.modelregistry" modelName="ModelRegistry"
+    editPluginClass="org.eclipse.ocl.examples.modelregistry.provider.ModelRegistryEditPlugin"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+  <foreignModel>ModelRegistry.ecore</foreignModel>
+  <genPackages prefix="ModelRegistry" basePackage="org.eclipse.ocl.examples" disposableProviderFactory="true"
+      ecorePackage="ModelRegistry.ecore#/">
+    <genClasses ecoreClass="ModelRegistry.ecore#//ModelRegistration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute ModelRegistry.ecore#//ModelRegistration/accessor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelRegistry.ecore#//ModelRegistration/kind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelRegistry.ecore#//ModelRegistration/serialization"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelRegistry.ecore#//ModelRegistration/uri"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelRegistry.ecore#//ModelRegistry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelRegistry.ecore#//ModelRegistry/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModelRegistry.ecore#//ModelRegistry/entry"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelRegistry.ecore#//ModelRegistrySettings">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ModelRegistry.ecore#//ModelRegistrySettings/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ModelRegistry.ecore#//ModelRegistrySettings/resource"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

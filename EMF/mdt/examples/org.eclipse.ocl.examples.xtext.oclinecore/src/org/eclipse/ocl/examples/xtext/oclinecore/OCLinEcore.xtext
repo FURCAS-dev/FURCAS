@@ -1,0 +1,315 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2010 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id: OCLinEcore.xtext,v 1.6 2010/08/17 18:55:40 ewillink Exp $
+ */
+grammar org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+import "platform:/resource/org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore" as base
+import "platform:/resource/org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.ecore" as essentialocl
+import "platform:/resource/org.eclipse.ocl.examples.xtext.oclinecore/model/OCLinEcoreCST.ecore"
+//generate oclinEcore2 "http://www.eclipse.org/ocl/examples/xtext/oclinecore/OCLinEcore"
+
+OCLinEcoreDocumentCS returns OCLinEcoreDocumentCS:
+	(libraries+=LibraryCS)*
+	(imports+=ImportCS)*
+	(packages+=PackageCS)*
+;
+
+terminal UNQUOTED_STRING:	// Never forward parsed; just provides a placeholder
+	'£$%^£$%^'				//  for reverse serialisation of embedded OCL 
+;
+
+INTEGER returns ecore::EInt:
+	INT
+;
+
+LOWER returns ecore::EInt:
+	INT
+;
+
+UPPER returns ecore::EInt:
+	INT | '*'
+;
+
+RestrictedKeywords:		// ANTLr cannot quite handle all the restricted keywords
+	EssentialOCLRestrictedKeywords
+|	'abstract'
+|	'annotation'
+|	'attribute'
+|	'body'
+|	'class'
+|	'composes'
+|	'datatype'
+//|	'definition'
+//|	'derivation'
+|	'derived'
+|	'documentation'
+|	'enum'
+|	'extends'
+|	'id'
+|	'import'
+|	'initial'
+|	'interface'
+|	'invariant'
+|	'library'
+|	'operation'
+|	'ordered'
+|	'package'
+//|	'postcondition'
+//|	'precondition'
+|	'property'
+|	'readonly'
+|	'resolve'
+|	'serializable'
+|	'static'
+|	'super'
+//|	'throws'
+|	'transient'
+|	'unique'
+|	'unsettable'
+|	'volatile'
+;
+
+BodyConstraintCS returns ConstraintCS:
+	stereotype='body' name=Identifier? ':' (exprValue=ExpCS|exprString=UNQUOTED_STRING)? ';'
+;
+
+DerivedConstraintCS returns ConstraintCS:
+	stereotype='derivation' ':' (exprValue=ExpCS|exprString=UNQUOTED_STRING)? ';'
+;
+
+InitialConstraintCS returns ConstraintCS:
+	stereotype='initial' ':' (exprValue=ExpCS|exprString=UNQUOTED_STRING)? ';'
+;
+
+InvariantConstraintCS returns ConstraintCS:
+	stereotype='invariant' name=Identifier? ':' (exprValue=ExpCS|exprString=UNQUOTED_STRING)? ';'
+;
+
+PostconditionConstraintCS returns PostconditionCS:
+	stereotype='postcondition' name=Identifier? ':' (exprValue=ExpCS|exprString=UNQUOTED_STRING)? ';'
+;
+
+PreconditionConstraintCS returns ConstraintCS:
+	stereotype='precondition' name=Identifier? ':' (exprValue=ExpCS|exprString=UNQUOTED_STRING)? ';'
+;
+
+AnnotationCS returns AnnotationCS:
+	'annotation' (idSource=Identifier|stringSource=SINGLE_QUOTED_STRING)
+	('(' details+=DetailCS (',' details+=DetailCS)* ')')?
+	(('{' (annotations+=AnnotationElementCS
+	     | contents+=ModelElementCS
+	     | references+=ModelElementCSRef)+
+	  '}')
+	|';'
+	)
+;
+
+AnnotationElementCS returns base::AnnotationElementCS:
+	AnnotationCS | DocumentationCS
+;
+
+AttributeCS returns OCLinEcoreAttributeCS:
+	(isStatic?='static')?
+	(isDefinition?='definition')?
+	'attribute' name=Identifier
+	(':' type=TypedRefCS
+		('[' ((lower=LOWER ('..' upper=UPPER)?) | (multiplicity=('*'|'+'|'?'))) ']' )?)?
+	('=' defaultValueLiteral=SINGLE_QUOTED_STRING)?
+	('{' qualifiers+=('derived'|'!derived'|'id'|'!id'|'ordered'|'!ordered'|'readonly'|'!readonly'|'transient'|'!transient'|'unique'|'!unique'|'unsettable'|'!unsettable'|'volatile'|'!volatile')
+	 (',' qualifiers+=('derived'|'!derived'|'id'|'!id'|'ordered'|'!ordered'|'readonly'|'!readonly'|'transient'|'!transient'|'unique'|'!unique'|'unsettable'|'!unsettable'|'volatile'|'!volatile'))*
+	 '}')?
+	(	('{' (annotations+=AnnotationElementCS  | constraints+=(InitialConstraintCS|DerivedConstraintCS))* '}')
+	|	';'
+	)
+;
+
+ClassCS returns OCLinEcoreClassCS:
+	'class' name=Identifier
+	('<' typeParameters+=TypeParameterCS (',' typeParameters+=TypeParameterCS)*'>')?
+	('extends' superTypes+=TypedRefCS (',' superTypes+=TypedRefCS)*)?
+	(':' instanceClassName=SINGLE_QUOTED_STRING)?
+	('{' qualifiers+=('abstract'|'!abstract'|'interface'|'!interface')
+	 (',' qualifiers+=('abstract'|'!abstract'|'interface'|'!interface'))*
+	 '}')?
+	(	('{' (annotations+=AnnotationElementCS | operations+=OperationCS | structuralFeatures+=StructuralFeatureCS | constraints+=InvariantConstraintCS)* '}')
+	|	';'
+	)
+;
+
+ClassifierCS returns OCLinEcoreClassifierCS:
+	ClassCS | DataTypeCS | EnumCS 
+;
+
+CollectionTypeRefCS returns base::CollectionTypeRefCS:
+	name=CollectionTypeIdentifier
+	('(' (typeArguments=TypeRefCS)? ')')?	
+;
+
+DataTypeCS returns DataTypeCS:
+	'datatype' name=Identifier
+	('<' typeParameters+=TypeParameterCS (',' typeParameters+=TypeParameterCS)*'>')?	
+	(':' instanceClassName=SINGLE_QUOTED_STRING)?
+	('{' qualifiers+=('serializable'|'!serializable') '}')?
+	(	('{' (annotations+=AnnotationElementCS | constraints+=InvariantConstraintCS)* '}')
+	|	';'
+	)
+;
+
+DetailCS returns base::DetailCS:
+	(idName=Identifier|stringName=SINGLE_QUOTED_STRING) '=' value+=SINGLE_QUOTED_STRING*
+;
+
+DocumentationCS returns DocumentationCS:
+	{DocumentationCS} 'documentation' value=SINGLE_QUOTED_STRING?
+	('(' details+=DetailCS (',' details+=DetailCS)* ')')?
+	 ';'
+;
+
+EnumCS returns EnumCS:
+	'enum' name=Identifier
+	('<' typeParameters+=TypeParameterCS (',' typeParameters+=TypeParameterCS)*'>')?	
+	(':' instanceClassName=SINGLE_QUOTED_STRING)?
+	(	('{' (annotations+=AnnotationElementCS | literals+=EnumLiteralCS | constraints+=InvariantConstraintCS)* '}')
+	| 	';'
+	)
+;
+
+EnumLiteralCS returns base::EnumLiteralCS:
+	name=Identifier ('=' value=INTEGER)?
+	(('{' annotations+=AnnotationElementCS* '}')
+	|';'
+	)
+;
+
+ImportCS returns base::ImportCS:
+	'import' (name=Identifier ':')? namespace=[base::NamespaceCS|SINGLE_QUOTED_STRING] ';'
+;
+
+LibraryCS returns base::LibraryCS:
+	'library' (name=Identifier ':')? package=[base::PackageCS|SINGLE_QUOTED_STRING] ';'
+;
+
+ModelElementCS returns base::ModelElementCS:
+	ClassifierCS | EnumLiteralCS | OperationCS | PackageCS | StructuralFeatureCS
+;
+
+ModelElementCSRef returns base::ModelElementCSRef:
+	ref=[base::ModelElementCS|Identifier]
+; 
+
+OperationCS returns OCLinEcoreOperationCS:
+	(isStatic?='static')?
+	(isDefinition?='definition')?
+	'operation' name=Identifier
+	('<' typeParameters+=TypeParameterCS (',' typeParameters+=TypeParameterCS)*'>')?	
+	'(' (parameters+=ParameterCS (',' parameters+=ParameterCS)*)? ')'
+	(':' type=TypedRefCS?
+		('[' ((lower=LOWER ('..' upper=UPPER)?) | (multiplicity=('*'|'+'|'?'))) ']' )?)?
+	('throws' exceptions+=TypedRefCS (',' exceptions+=TypedRefCS)*)?
+	('{' qualifiers+=('derived'|'!derived'|'ordered'|'!ordered'|'unique'|'!unique')
+	 (',' qualifiers+=('derived'|'!derived'|'ordered'|'!ordered'|'unique'|'!unique'))*
+	 '}')?
+	(	('{' (annotations+=AnnotationElementCS | constraints+=(PreconditionConstraintCS | BodyConstraintCS | PostconditionConstraintCS))* '}')
+	|	';'
+	)
+;
+	
+PackageCS returns OCLinEcorePackageCS:
+	'package' name=Identifier
+	(':' prefix=Identifier '=' uri=SINGLE_QUOTED_STRING)?
+	(('{'
+		(annotations+=AnnotationElementCS | subpackages+=PackageCS | classifiers+=ClassifierCS)*
+		'}')
+	|';'
+	)
+;
+
+ParameterCS returns base::ParameterCS:
+	name=Identifier
+	(':' type=TypedRefCS
+		('[' ((lower=LOWER ('..' upper=UPPER)?) | (multiplicity=('*'|'+'|'?'))) ']' )?)?
+	('{' qualifiers+=('ordered'|'!ordered'|'unique'|'!unique')
+	 (',' qualifiers+=('ordered'|'!ordered'|'unique'|'!unique'))*
+	 '}')?
+	('{' annotations+=AnnotationElementCS* '}')?
+;
+
+PrimitiveTypeRefCS returns base::PrimitiveTypeRefCS:
+	name=PrimitiveTypeIdentifier
+;
+
+QualifiedTypeRefCS returns base::QualifiedTypeRefCS:
+	namespace=[base::NamespaceCS|Identifier]
+	('<' typeArguments+=TypeRefCS (',' typeArguments+=TypeRefCS)* '>')?	
+	'::' element=TypedRefCS
+;
+
+ReferenceCS returns OCLinEcoreReferenceCS:
+	(isStatic?='static')?
+	(isDefinition?='definition')?
+	'property' name=Identifier
+	('#' opposite=ReferenceCSRef)?	
+	(':' type=TypedRefCS
+		('[' ((lower=LOWER ('..' upper=UPPER)?) | (multiplicity=('*'|'+'|'?'))) ']' )?)?
+	('=' defaultValueLiteral=SINGLE_QUOTED_STRING)?
+	('{' qualifiers+=('composes'|'!composes'|'derived'|'!derived'|'ordered'|'!ordered'|'readonly'|'!readonly'|'resolve'|'!resolve'|'transient'|'!transient'|'unique'|'!unique'|'unsettable'|'!unsettable'|'volatile'|'!volatile')
+	 (',' qualifiers+=('composes'|'!composes'|'derived'|'!derived'|'ordered'|'!ordered'|'readonly'|'!readonly'|'resolve'|'!resolve'|'transient'|'!transient'|'unique'|'!unique'|'unsettable'|'!unsettable'|'volatile'|'!volatile'))*
+	 '}')?
+	(	('{' (annotations+=AnnotationElementCS | constraints+=(InitialConstraintCS|DerivedConstraintCS))* '}')
+	|	';'
+	)
+;
+
+ReferenceCSRef returns base::ReferenceCSRef:
+	ref=[base::ReferenceCS|Identifier] 
+; 
+
+StructuralFeatureCS returns OCLinEcoreStructuralFeatureCS:
+	AttributeCS | ReferenceCS
+;
+
+TypeIdentifier:
+	Identifier
+|	PrimitiveTypeIdentifier
+;
+
+TypeParameterCS returns base::TypeParameterCS:
+	name=Identifier
+	( ('extends' extends+=TypedRefCS ('&&' extends+=TypedRefCS)*)
+	| ('super' super=TypedRefCS)
+	)?
+;
+
+TypeRefCS returns base::TypeRefCS:
+	TypedRefCS | WildcardTypeRefCS
+;
+
+TypedRefCS returns base::TypedRefCS:
+	QualifiedTypeRefCS | PrimitiveTypeRefCS | CollectionTypeRefCS | TypedTypeRefCS
+;
+
+TypedTypeRefCS returns base::TypedTypeRefCS:
+	type=[base::TypeCS|Identifier]
+	('<' typeArguments+=TypeRefCS (',' typeArguments+=TypeRefCS)* '>')?	
+;
+
+WildcardTypeRefCS returns base::WildcardTypeRefCS:
+	{base::WildcardTypeRefCS} '?'
+	( ('extends' extends=TypedRefCS)
+	| ('super' super=TypedRefCS)
+	)?
+;

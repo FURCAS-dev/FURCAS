@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/4" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/4 pathmap://UML_PROFILES/Ecore.profile.uml#_B7dOIMEREduRdatXodjBjA http://www.eclipse.org/uml2/schemas/Standard/1 pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w">
+  <uml:Package xmi:id="_kFEgAJaZEdunUqiNpqprXQ" name="ocltest">
+    <packagedElement xmi:type="uml:Class" xmi:id="_qpGNsJaZEdunUqiNpqprXQ" name="Fruit" clientDependency="_rBjYQKDREdu3G72hG9l7lw" isActive="true">
+      <ownedAttribute xmi:id="_RJ_1wJacEdunUqiNpqprXQ" name="color" type="_AOeasJaaEdunUqiNpqprXQ"/>
+      <ownedAttribute xmi:id="_g6PbYJacEdunUqiNpqprXQ" name="name" isReadOnly="true" isDerived="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_pd5hsJagEdunUqiNpqprXQ" name="relatedFruits" type="_qpGNsJaZEdunUqiNpqprXQ" isDerived="true">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4AfocJagEdunUqiNpqprXQ" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3PaJwJagEdunUqiNpqprXQ"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_KdWsMKjzEduxg7dv5zLR_A" name="friends" type="_qpGNsJaZEdunUqiNpqprXQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_U8SJMKjzEduxg7dv5zLR_A" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_V6pO4KjzEduxg7dv5zLR_A"/>
+      </ownedAttribute>
+      <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_5m9dgJjxEdu_6rUYlTCsuA" name="Lifecycle">
+        <region xmi:id="_9HTXwJjxEdu_6rUYlTCsuA" name="main">
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="__qIg4JjxEdu_6rUYlTCsuA"/>
+          <subvertex xmi:type="uml:FinalState" xmi:id="_AsCCwJjyEdu_6rUYlTCsuA"/>
+          <subvertex xmi:type="uml:State" xmi:id="_F1DLAJjyEdu_6rUYlTCsuA" name="Unripe"/>
+          <subvertex xmi:type="uml:State" xmi:id="_Bgp9oJjyEdu_6rUYlTCsuA" name="Ripe"/>
+          <subvertex xmi:type="uml:State" xmi:id="_CFz5IJjyEdu_6rUYlTCsuA" name="Bad"/>
+          <transition xmi:id="_JHQioJjyEdu_6rUYlTCsuA" name="grow" target="_F1DLAJjyEdu_6rUYlTCsuA" source="__qIg4JjxEdu_6rUYlTCsuA"/>
+          <transition xmi:id="_N1nvMJjyEdu_6rUYlTCsuA" name="ripen" target="_Bgp9oJjyEdu_6rUYlTCsuA" source="_F1DLAJjyEdu_6rUYlTCsuA"/>
+          <transition xmi:id="_X5g2AJjyEdu_6rUYlTCsuA" name="rot" target="_CFz5IJjyEdu_6rUYlTCsuA" source="_Bgp9oJjyEdu_6rUYlTCsuA"/>
+          <transition xmi:id="_dpyLgJjyEdu_6rUYlTCsuA" name="cease" target="_AsCCwJjyEdu_6rUYlTCsuA" source="_CFz5IJjyEdu_6rUYlTCsuA"/>
+        </region>
+      </ownedBehavior>
+      <interfaceRealization xmi:id="_rBjYQKDREdu3G72hG9l7lw" supplier="_bZznUKDREdu3G72hG9l7lw" client="_qpGNsJaZEdunUqiNpqprXQ" contract="_bZznUKDREdu3G72hG9l7lw"/>
+      <ownedOperation xmi:id="_rgBZMJaaEdunUqiNpqprXQ" name="ripen" isQuery="true">
+        <ownedParameter xmi:id="_RZXj8JabEdunUqiNpqprXQ" direction="return" effect="read">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_X3SCkJabEdunUqiNpqprXQ" name="color" type="_AOeasJaaEdunUqiNpqprXQ" effect="read"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_hsqMQJabEdunUqiNpqprXQ" name="preferredColor" isQuery="true">
+        <ownedParameter xmi:id="_hsqMQpabEdunUqiNpqprXQ" name="color" type="_AOeasJaaEdunUqiNpqprXQ" direction="return" effect="read"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_sFdzIJabEdunUqiNpqprXQ" name="newFruit" isStatic="true" isQuery="true">
+        <ownedParameter xmi:id="_2I4Y0JabEdunUqiNpqprXQ" type="_qpGNsJaZEdunUqiNpqprXQ" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="__3AD8JabEdunUqiNpqprXQ" name="setColor">
+        <ownedParameter xmi:id="_EeS_MJacEdunUqiNpqprXQ" name="fruit" type="_qpGNsJaZEdunUqiNpqprXQ" effect="read"/>
+        <ownedParameter xmi:id="_LgaXEJacEdunUqiNpqprXQ" name="newColor" type="_AOeasJaaEdunUqiNpqprXQ" effect="read"/>
+      </ownedOperation>
+      <ownedReception xmi:id="_befTcJkEEduWwaY4uwuu9A" name="drop" signal="_H79H8JkEEduWwaY4uwuu9A">
+        <ownedParameter xmi:id="_hcUj0JkEEduWwaY4uwuu9A" name="delay" type="_ArzUEJkEEduWwaY4uwuu9A" effect="read"/>
+        <ownedParameter xmi:id="_oTvHkJkEEduWwaY4uwuu9A" name="stem" type="_E4vKYJaaEdunUqiNpqprXQ" effect="read">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pe5TIJkEEduWwaY4uwuu9A"/>
+        </ownedParameter>
+      </ownedReception>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_0dzpAJaZEdunUqiNpqprXQ" name="Apple" isActive="true">
+      <generalization xmi:id="_2OgKkJaZEdunUqiNpqprXQ" general="_qpGNsJaZEdunUqiNpqprXQ"/>
+      <ownedAttribute xmi:id="_lKF4QJaiEdunUqiNpqprXQ" name="tree" type="_uwFXkJahEdunUqiNpqprXQ" association="_E4vKYJaaEdunUqiNpqprXQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nL-3gJaiEdunUqiNpqprXQ"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_P7SqwKAPEdu3G72hG9l7lw" name="label">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_VszWYKAPEdu3G72hG9l7lw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_Z0rbgKjzEduxg7dv5zLR_A" name="appleFriends" type="_0dzpAJaZEdunUqiNpqprXQ" redefinedProperty="_KdWsMKjzEduxg7dv5zLR_A">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Z0rbgajzEduxg7dv5zLR_A" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Z0rbgqjzEduxg7dv5zLR_A"/>
+      </ownedAttribute>
+      <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_om4LMJjyEdu_6rUYlTCsuA" name="RefinedLifecycle" redefinedBehavior="_5m9dgJjxEdu_6rUYlTCsuA">
+        <region xmi:id="_6WuREJjyEdu_6rUYlTCsuA" name="main" extendedRegion="_9HTXwJjxEdu_6rUYlTCsuA">
+          <subvertex xmi:type="uml:State" xmi:id="__F8ZQJjyEdu_6rUYlTCsuA" name="Bad" redefinedState="_CFz5IJjyEdu_6rUYlTCsuA">
+            <region xmi:id="_IQKGEJjzEdu_6rUYlTCsuA">
+              <subvertex xmi:type="uml:State" xmi:id="_cVjuEJjzEdu_6rUYlTCsuA" name="Bruised"/>
+              <subvertex xmi:type="uml:State" xmi:id="_d0fKMJjzEdu_6rUYlTCsuA" name="Rotten"/>
+              <transition xmi:id="_fvZXsJjzEdu_6rUYlTCsuA" name="bruise" redefinedTransition="_X5g2AJjyEdu_6rUYlTCsuA" target="_cVjuEJjzEdu_6rUYlTCsuA" source="_Bgp9oJjyEdu_6rUYlTCsuA"/>
+              <transition xmi:id="_t6aE4JjzEdu_6rUYlTCsuA" name="rot" target="_d0fKMJjzEdu_6rUYlTCsuA" source="_cVjuEJjzEdu_6rUYlTCsuA"/>
+              <transition xmi:id="_1eI8EJjzEdu_6rUYlTCsuA" name="cease" redefinedTransition="_dpyLgJjyEdu_6rUYlTCsuA" target="_AsCCwJjyEdu_6rUYlTCsuA" source="_d0fKMJjzEdu_6rUYlTCsuA"/>
+            </region>
+          </subvertex>
+        </region>
+      </ownedBehavior>
+      <ownedOperation xmi:id="_EDsUkJahEdunUqiNpqprXQ" name="label">
+        <ownedParameter xmi:id="_MdkwoJahEdunUqiNpqprXQ" name="text" effect="read">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_STYtcJahEdunUqiNpqprXQ" name="newApple" isStatic="true" isQuery="true">
+        <ownedParameter xmi:id="_WA0BcJahEdunUqiNpqprXQ" type="_0dzpAJaZEdunUqiNpqprXQ" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_YSphMJahEdunUqiNpqprXQ" name="preferredLabel" isQuery="true">
+        <ownedParameter xmi:id="_ZJd0cJahEdunUqiNpqprXQ" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_bY6HgJahEdunUqiNpqprXQ" name="text" effect="read">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_AOeasJaaEdunUqiNpqprXQ" name="Color">
+      <ownedLiteral xmi:id="_a0X7QJaaEdunUqiNpqprXQ" name="black"/>
+      <ownedLiteral xmi:id="_cq_eoJaaEdunUqiNpqprXQ" name="red"/>
+      <ownedLiteral xmi:id="_d2uR8JaaEdunUqiNpqprXQ" name="green"/>
+      <ownedLiteral xmi:id="_eJKFwJaaEdunUqiNpqprXQ" name="yellow"/>
+      <ownedLiteral xmi:id="_eOgf0JaaEdunUqiNpqprXQ" name="orange"/>
+      <ownedLiteral xmi:id="_eUhoQJaaEdunUqiNpqprXQ" name="brown"/>
+      <ownedLiteral xmi:id="_eaP1wJaaEdunUqiNpqprXQ" name="pink"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:AssociationClass" xmi:id="_E4vKYJaaEdunUqiNpqprXQ" name="Stem" memberEnd="_lKF4QJaiEdunUqiNpqprXQ _TUnrgJaiEdunUqiNpqprXQ">
+      <ownedAttribute xmi:id="_KYpPAJaiEdunUqiNpqprXQ" name="length">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_VMUtoJaaEdunUqiNpqprXQ" name="FruitUtil">
+      <ownedAttribute xmi:id="_vtzcsJakEdunUqiNpqprXQ" name="bag" isStatic="true" type="_qpGNsJaZEdunUqiNpqprXQ" isUnique="false">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3RiT4JakEdunUqiNpqprXQ" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ybP6YJakEdunUqiNpqprXQ"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_4_j78JakEdunUqiNpqprXQ" name="sequence" isStatic="true" type="_qpGNsJaZEdunUqiNpqprXQ" isOrdered="true" isUnique="false">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4_j78ZakEdunUqiNpqprXQ" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4_j78pakEdunUqiNpqprXQ"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_5JrhQJakEdunUqiNpqprXQ" name="set" isStatic="true" type="_qpGNsJaZEdunUqiNpqprXQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5JrhQZakEdunUqiNpqprXQ" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5JrhQpakEdunUqiNpqprXQ"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_5RbIAJakEdunUqiNpqprXQ" name="orderedSet" isStatic="true" type="_qpGNsJaZEdunUqiNpqprXQ" isOrdered="true">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5RbIAZakEdunUqiNpqprXQ" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5RbIApakEdunUqiNpqprXQ"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_-Mqk4JaiEdunUqiNpqprXQ" name="processBag" isStatic="true" isQuery="true">
+        <ownedParameter xmi:id="_AhK-IJajEdunUqiNpqprXQ" type="_qpGNsJaZEdunUqiNpqprXQ" isUnique="false" direction="return">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_OwMooJajEdunUqiNpqprXQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AhK-IZajEdunUqiNpqprXQ"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_62jIMJajEdunUqiNpqprXQ" name="fruits" type="_qpGNsJaZEdunUqiNpqprXQ" isUnique="false" effect="read">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-0TXMJajEdunUqiNpqprXQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9roe8JajEdunUqiNpqprXQ"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_G6_xgJakEdunUqiNpqprXQ" name="processSequence" isStatic="true" isQuery="true">
+        <ownedParameter xmi:id="_G6_xgZakEdunUqiNpqprXQ" type="_qpGNsJaZEdunUqiNpqprXQ" isOrdered="true" isUnique="false" direction="return">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_G6_xgpakEdunUqiNpqprXQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_G6_xg5akEdunUqiNpqprXQ"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_G6_xhJakEdunUqiNpqprXQ" name="fruits" type="_qpGNsJaZEdunUqiNpqprXQ" isOrdered="true" isUnique="false" effect="read">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_G6_xhZakEdunUqiNpqprXQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_G6_xhpakEdunUqiNpqprXQ"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_HT6n0JakEdunUqiNpqprXQ" name="processSet" isStatic="true" isQuery="true">
+        <ownedParameter xmi:id="_HT6n0ZakEdunUqiNpqprXQ" type="_qpGNsJaZEdunUqiNpqprXQ" direction="return">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HT6n0pakEdunUqiNpqprXQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HT6n05akEdunUqiNpqprXQ"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_HT6n1JakEdunUqiNpqprXQ" name="fruits" type="_qpGNsJaZEdunUqiNpqprXQ" effect="read">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HT6n1ZakEdunUqiNpqprXQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HT6n1pakEdunUqiNpqprXQ"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_HoLAkJakEdunUqiNpqprXQ" name="processOrderedSet" isStatic="true" isQuery="true">
+        <ownedParameter xmi:id="_HoLAkZakEdunUqiNpqprXQ" type="_qpGNsJaZEdunUqiNpqprXQ" isOrdered="true" direction="return">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HoLAkpakEdunUqiNpqprXQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HoLAk5akEdunUqiNpqprXQ"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_HoLAlJakEdunUqiNpqprXQ" name="fruits" type="_qpGNsJaZEdunUqiNpqprXQ" isOrdered="true" effect="read">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HoLAlZakEdunUqiNpqprXQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HoLAlpakEdunUqiNpqprXQ"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_uwFXkJahEdunUqiNpqprXQ" name="Tree">
+      <ownedAttribute xmi:id="_TUnrgJaiEdunUqiNpqprXQ" name="apples" type="_0dzpAJaZEdunUqiNpqprXQ" association="_E4vKYJaaEdunUqiNpqprXQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aImgwJaiEdunUqiNpqprXQ" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZMPmMJaiEdunUqiNpqprXQ"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_P-3OsOj2EduQJ6rCINLedw" name="height">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_M5BZsJalEdunUqiNpqprXQ" name="Forest">
+      <ownedAttribute xmi:id="_UXyRUJalEdunUqiNpqprXQ" name="trees" type="_uwFXkJahEdunUqiNpqprXQ" aggregation="shared" association="_hZEWUJalEdunUqiNpqprXQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bxAhoJalEdunUqiNpqprXQ" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_a4kdwJalEdunUqiNpqprXQ"/>
+        <qualifier xmi:id="_yO-70JarEdunUqiNpqprXQ" name="zone">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </qualifier>
+        <qualifier xmi:id="_4btj0JarEdunUqiNpqprXQ" name="index">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </qualifier>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_3EBqgIpTEdyNSeNejJrajg" name="area">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_hZEWUJalEdunUqiNpqprXQ" name="A_Forest_Tree" memberEnd="_UXyRUJalEdunUqiNpqprXQ _sY79MJalEdunUqiNpqprXQ">
+      <ownedEnd xmi:id="_sY79MJalEdunUqiNpqprXQ" name="forest" type="_M5BZsJalEdunUqiNpqprXQ" association="_hZEWUJalEdunUqiNpqprXQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ybiY0JalEdunUqiNpqprXQ"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_ArzUEJkEEduWwaY4uwuu9A" name="Real"/>
+    <packagedElement xmi:type="uml:Signal" xmi:id="_H79H8JkEEduWwaY4uwuu9A" name="Drop">
+      <ownedAttribute xmi:id="_KvHzIJkEEduWwaY4uwuu9A" name="delay" type="_ArzUEJkEEduWwaY4uwuu9A"/>
+      <ownedAttribute xmi:id="_RXQkwJkEEduWwaY4uwuu9A" name="stem" type="_E4vKYJaaEdunUqiNpqprXQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TG59cJkEEduWwaY4uwuu9A"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_bZznUKDREdu3G72hG9l7lw" name="Edible">
+      <ownedAttribute xmi:id="_gY4wcKDREdu3G72hG9l7lw" name="isTasty">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_tI-dMA39EdymkvpiqN3P8A" name="Aliased">
+      <ownedAttribute xmi:id="_9pqBQA39EdymkvpiqN3P8A" name="isAliased">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_LJlxIA3-EdymkvpiqN3P8A" name="aliased">
+        <ownedParameter xmi:id="_S3B98A3-EdymkvpiqN3P8A" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <profileApplication xmi:id="_7ZyNkJaiEdunUqiNpqprXQ">
+      <eAnnotations xmi:id="_7aEhcJaiEdunUqiNpqprXQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_6ay4kA39EdymkvpiqN3P8A">
+      <eAnnotations xmi:id="_6bMhMA39EdymkvpiqN3P8A" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_B7dOIMEREduRdatXodjBjA"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
+    </profileApplication>
+  </uml:Package>
+  <Standard:Utility xmi:id="_9WOsIJaiEdunUqiNpqprXQ" base_Class="_VMUtoJaaEdunUqiNpqprXQ"/>
+  <Ecore:EClass xmi:id="_8TuwIA39EdymkvpiqN3P8A" base_Class="_tI-dMA39EdymkvpiqN3P8A" className="HasAliases"/>
+  <Ecore:EOperation xmi:id="_raDn0A3-EdymkvpiqN3P8A" base_Operation="_LJlxIA3-EdymkvpiqN3P8A" operationName="getAliased"/>
+  <Ecore:EAttribute xmi:id="_vJIhoA3-EdymkvpiqN3P8A" base_Property="_9pqBQA39EdymkvpiqN3P8A" attributeName="aliased"/>
+</xmi:XMI>

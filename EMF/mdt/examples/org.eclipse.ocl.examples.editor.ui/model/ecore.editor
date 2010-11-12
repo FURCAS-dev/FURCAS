@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ed:EditorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:ed="http://www.eclipse.org/ocl/1.0/Editor" language="ecore">
+  <node xsi:type="ed:EcoreNode">
+    <behavior xsi:type="ed:LabelBehavior" image="/org.eclipse.emf.ecore.edit/icons/full/obj16/EAnnotation.gif" format="{0}">
+      <elements xsi:type="ed:EcoreLabelElement">
+        <end xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/Ecore#//EAnnotation/source"/>
+      </elements>
+    </behavior>
+    <element xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EAnnotation"/>
+  </node>
+  <node xsi:type="ed:EcoreNode">
+    <behavior xsi:type="ed:LabelBehavior" image="/org.eclipse.emf.ecore.edit/icons/full/obj16/EAttribute.gif" format="{0} : {1}">
+      <elements xsi:type="ed:EcoreLabelElement">
+        <end xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+      </elements>
+      <elements xsi:type="ed:EcoreLabelElement">
+        <path href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/eAttributeType"/>
+        <end xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+      </elements>
+    </behavior>
+    <element xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
+  </node>
+  <node xsi:type="ed:EcoreNode">
+    <behavior xsi:type="ed:LabelBehavior" image="/org.eclipse.emf.ecore.edit/icons/full/obj16/EClass.gif" format="{0}">
+      <elements xsi:type="ed:EcoreLabelElement">
+        <end xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+      </elements>
+    </behavior>
+    <element xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+  </node>
+  <node xsi:type="ed:EcoreNode">
+    <behavior xsi:type="ed:LabelBehavior" image="/org.eclipse.emf.ecore.edit/icons/full/obj16/EDataType.gif" format="{0}">
+      <elements xsi:type="ed:EcoreLabelElement">
+        <end xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+      </elements>
+    </behavior>
+    <element xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EDataType"/>
+  </node>
+  <node xsi:type="ed:EcoreNode">
+    <behavior xsi:type="ed:LabelBehavior" image="/org.eclipse.emf.ecore.edit/icons/full/obj16/EEnum.gif" format="{0}">
+      <elements xsi:type="ed:EcoreLabelElement">
+        <end xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+      </elements>
+    </behavior>
+    <element xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EEnum"/>
+  </node>
+  <node xsi:type="ed:EcoreNode">
+    <behavior xsi:type="ed:LabelBehavior" image="/org.eclipse.emf.ecore.edit/icons/full/obj16/EEnumLiteral.gif" format="{0}">
+      <elements xsi:type="ed:EcoreLabelElement">
+        <end xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+      </elements>
+    </behavior>
+    <element xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EEnumLiteral"/>
+  </node>
+  <node xsi:type="ed:EcoreNode">
+    <behavior xsi:type="ed:LabelBehavior" image="/org.eclipse.emf.ecore.edit/icons/full/obj16/EGenericType.gif" format="{0}">
+      <elements xsi:type="ed:EcoreLabelElement">
+        <end xsi:type="ecore:EReference" href="http://www.eclipse.org/emf/2002/Ecore#//EGenericType/eRawType"/>
+      </elements>
+    </behavior>
+    <element xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EGenericType"/>
+  </node>
+  <node xsi:type="ed:EcoreNode">
+    <behavior xsi:type="ed:LabelBehavior" image="/org.eclipse.ocl.edit/icons/full/obj16/VoidType.gif" format="{0}">
+      <elements xsi:type="ed:EcoreLabelElement"/>
+    </behavior>
+    <element xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </node>
+  <node xsi:type="ed:EcoreNode">
+    <behavior xsi:type="ed:LabelBehavior" image="/org.eclipse.emf.ecore.edit/icons/full/obj16/EOperation.gif" format="{0}({1}) : {2}">
+      <elements xsi:type="ed:EcoreLabelElement">
+        <end xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+      </elements>
+      <elements xsi:type="ed:EcoreLabelElement" separator=",">
+        <path href="http://www.eclipse.org/emf/2002/Ecore#//EOperation/eParameters"/>
+        <path href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement/eType"/>
+        <end xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+      </elements>
+      <elements xsi:type="ed:EcoreLabelElement">
+        <end xsi:type="ecore:EReference" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement/eType"/>
+      </elements>
+    </behavior>
+    <behavior xsi:type="ed:OutlineBehavior">
+      <elements xsi:type="ed:OutlineGroup" hidden="true">
+        <elements xsi:type="ed:OutlineElement">
+          <feature xsi:type="ecore:EReference" href="http://www.eclipse.org/emf/2002/Ecore#//EModelElement/eAnnotations"/>
+        </elements>
+      </elements>
+      <elements xsi:type="ed:OutlineGroup" hidden="true">
+        <elements xsi:type="ed:OutlineElement">
+          <feature xsi:type="ecore:EReference" href="http://www.eclipse.org/emf/2002/Ecore#//EOperation/eExceptions"/>
+        </elements>
+      </elements>
+      <elements xsi:type="ed:OutlineGroup" hidden="true">
+        <elements xsi:type="ed:OutlineElement">
+          <feature xsi:type="ecore:EReference" href="http://www.eclipse.org/emf/2002/Ecore#//EOperation/eParameters"/>
+        </elements>
+      </elements>
+    </behavior>
+    <element xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EOperation"/>
+  </node>
+  <node xsi:type="ed:EcoreNode">
+    <behavior xsi:type="ed:LabelBehavior" image="/org.eclipse.emf.ecore.edit/icons/full/obj16/EPackage.gif" format="{0}">
+      <elements xsi:type="ed:EcoreLabelElement">
+        <end xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+      </elements>
+    </behavior>
+    <element xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+  </node>
+  <node xsi:type="ed:EcoreNode">
+    <behavior xsi:type="ed:LabelBehavior" image="/org.eclipse.emf.ecore.edit/icons/full/obj16/EParameter.gif" format="{0} : {1}">
+      <elements xsi:type="ed:EcoreLabelElement">
+        <end xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+      </elements>
+      <elements xsi:type="ed:EcoreLabelElement">
+        <end xsi:type="ecore:EReference" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement/eType"/>
+      </elements>
+    </behavior>
+    <behavior xsi:type="ed:OutlineBehavior" elements=""/>
+    <element xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EParameter"/>
+  </node>
+  <node xsi:type="ed:EcoreNode">
+    <behavior xsi:type="ed:LabelBehavior" image="/org.eclipse.emf.ecore.edit/icons/full/obj16/EReference.gif" format="{0} : {1}">
+      <elements xsi:type="ed:EcoreLabelElement">
+        <end xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+      </elements>
+      <elements xsi:type="ed:EcoreLabelElement">
+        <path href="http://www.eclipse.org/emf/2002/Ecore#//EReference/eReferenceType"/>
+        <end xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+      </elements>
+    </behavior>
+    <element xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
+  </node>
+  <node xsi:type="ed:EcoreNode">
+    <behavior xsi:type="ed:LabelBehavior" image="/org.eclipse.emf.ecore.edit/icons/full/obj16/EStringToStringMapEntry.gif" format="{0} -> {1}">
+      <elements xsi:type="ed:EcoreLabelElement">
+        <end xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/Ecore#//EStringToStringMapEntry/key"/>
+      </elements>
+      <elements xsi:type="ed:EcoreLabelElement">
+        <end xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/Ecore#//EStringToStringMapEntry/value"/>
+      </elements>
+    </behavior>
+    <element xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EStringToStringMapEntry"/>
+  </node>
+</ed:EditorDefinition>

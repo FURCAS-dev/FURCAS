@@ -1,0 +1,73 @@
+!***************  MDT CONTRIBUTION  ******************************************************** 
+
+!*** Special entries from eclipse
+
+plugin@org.eclipse.test=v20091002,:pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,
+fragment@org.eclipse.ant.optional.junit=R3_5_1,:pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,
+
+!*** MDT plugins, features and fragments
+
+feature@org.eclipse.ocl.master=v201009280940,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.master-feature
+
+feature@org.eclipse.ocl=v201009280940,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl-feature
+feature@org.eclipse.ocl.uml=v201009280940,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.uml-feature
+plugin@org.eclipse.ocl=v201009280940,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl
+plugin@org.eclipse.ocl.ecore=v201009280940,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.ecore
+plugin@org.eclipse.ocl.uml=v201006141954,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.uml
+
+feature@org.eclipse.ocl.doc=v201009280940,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/doc/org.eclipse.ocl.doc-feature
+plugin@org.eclipse.ocl.doc=v201009280940,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/doc/org.eclipse.ocl.doc
+
+feature@org.eclipse.ocl.edit=v201009280940,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.edit-feature
+plugin@org.eclipse.ocl.edit=v201006141954,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.edit
+plugin@org.eclipse.ocl.ecore.edit=v201006141954,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.ecore.edit
+plugin@org.eclipse.ocl.uml.edit=v201006141954,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.uml.edit
+
+feature@org.eclipse.ocl.examples=v201009280940,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples-feature
+plugin@org.eclipse.ocl.examples=v201009280940,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples
+plugin@org.eclipse.ocl.examples.common=v201006141954,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.common
+plugin@org.eclipse.ocl.examples.editor.model=v201006141954,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.editor.model
+plugin@org.eclipse.ocl.examples.editor.model.edit=v201006141954,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.editor.model.edit
+plugin@org.eclipse.ocl.examples.editor.model.editor=v201006141954,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.editor.model.editor
+plugin@org.eclipse.ocl.examples.interpreter=v201006141954,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.interpreter
+plugin@org.eclipse.ocl.examples.modelregistry=v201006141954,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.modelregistry
+plugin@org.eclipse.ocl.examples.modelregistry.edit=v201006141954,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.modelregistry.edit
+plugin@org.eclipse.ocl.examples.modelregistry.editor=v201006141954,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.modelregistry.editor
+plugin@org.eclipse.ocl.examples.modelregistry.ui=v201006141954,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.modelregistry.ui
+plugin@org.eclipse.ocl.examples.parser=v201006141954,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.parser
+plugin@org.eclipse.ocl.examples.parser.ocl=v201006141954,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.parser.ocl
+plugin@org.eclipse.ocl.examples.parser.unresolved=v201006141954,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.parser.unresolved
+plugin@org.eclipse.ocl.examples.project.empty=v201006141954,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.project.empty
+plugin@org.eclipse.ocl.examples.project.royalandloyal=v201006141954,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.project.royalandloyal
+
+plugin@org.eclipse.ocl.examples.xtext.base=v201009280940,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.base
+plugin@org.eclipse.ocl.examples.xtext.completeocl=v201009280940,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.completeocl
+plugin@org.eclipse.ocl.examples.xtext.completeocl.ui=v201009280940,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.completeocl.ui
+plugin@org.eclipse.ocl.examples.xtext.essentialocl=v201009280940,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.essentialocl
+plugin@org.eclipse.ocl.examples.xtext.essentialocl.ui=v201009280940,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.essentialocl.ui
+plugin@org.eclipse.ocl.examples.xtext.oclinecore=v201009280940,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.oclinecore
+plugin@org.eclipse.ocl.examples.xtext.oclinecore.ui=v201009280940,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.oclinecore.ui
+plugin@org.eclipse.ocl.examples.xtext.oclstdlib=v201009280940,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.oclstdlib
+plugin@org.eclipse.ocl.examples.xtext.oclstdlib.ui=v201009280940,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.oclstdlib.ui
+
+feature@org.eclipse.ocl.tests=v201009280940,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.ocl.tests-feature
+plugin@org.eclipse.ocl.tests=v201006141954,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.ocl.tests
+plugin@org.eclipse.ocl.ecore.tests=v201009280940,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.ocl.ecore.tests
+plugin@org.eclipse.ocl.uml.tests=v201009280940,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.ocl.uml.tests
+plugin@org.eclipse.ocl.examples.tests=v201006141954,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.ocl.examples.tests
+plugin@org.eclipse.ocl.examples.xtext.tests=v201009280940,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.ocl.examples.xtext.tests
+
+!*** Plugins, features and fragments for Eclipse Coordinated Releases
+
+feature@org.eclipse.ocl.all=v201009280940,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/coordinated/org.eclipse.ocl.all-feature
+feature@org.eclipse.ocl.all.sdk=v201009280940,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/coordinated/org.eclipse.ocl.all.sdk-feature
+feature@org.eclipse.ocl.core.sdk=v201009280940,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/coordinated/org.eclipse.ocl.core.sdk-feature
+
+!*** EMF Examples plugins
+plugin@org.eclipse.emf.examples.library=R2_5_0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf/examples/org.eclipse.emf.examples.library
+plugin@org.eclipse.emf.examples.library.edit=R2_5_0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf/examples/org.eclipse.emf.examples.library.edit
+plugin@org.eclipse.emf.examples.library.editor=R2_5_0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf/examples/org.eclipse.emf.examples.library.editor
+
+!*** LPG Distribution
+plugin@lpg.runtime.java,2.0.17=GET,http://download.eclipse.org/tools/orbit/downloads/drops/R20100519200754/bundles/lpg.runtime.java_2.0.17.v201004271640.jar
+plugin@lpg.runtime.java.source,2.0.17=GET,http://download.eclipse.org/tools/orbit/downloads/drops/R20100519200754/bundles/lpg.runtime.java.source_2.0.17.v201004271640.jar

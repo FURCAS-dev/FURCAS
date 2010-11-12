@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="Stylesheet" type="text/css" href="doc.css" />
+<title>OCL Relationship to Metamodels</title>
+</head>
+<body>
+<h1>OCL Relationship to Metamodels</h1>
+<p>
+The OCL implementation provides support for models defined using either the
+Ecore or the UML metamodel (as implemented by the Eclipse EMF and UML2 projects),
+and an
+<a href="advanced/metamodelBindings.html">extensibility API</a> that allows
+additional EMF-based metamodels to be plugged in.
+</p><p>
+The OCL API implements support for different target metamodels via the
+<a href="../javadoc/org/eclipse/ocl/EnvironmentFactory.html"><em class="CodeName">EnvironmentFactory</em></a>
+interface.  An implementation of this interface binds the metamodel's metaclasses
+to the generic type parameters of the
+<a href="../javadoc/org/eclipse/ocl/OCL.html"><em class="CodeName">OCL</em></a>
+class.  The metamodel-specific
+<a href="../javadoc/org/eclipse/ocl/Environment.html"><em class="CodeName">Environment</em></a>
+implementation constructed by this factory implements the reflection capability
+required by OCL to discover the elements of the model being constrained and the
+relationships between them.
+</p>
+
+<h2>The Ecore Metamodel Binding</h2>
+
+<p>
+An OCL binding for the Ecore metamodel is provided by the
+<em class="CodeName">org.eclipse.ocl.ecore</em> plug-in.  It is best suited to
+parsing and evaluating OCL constraints on Ecore models.  Evaluation of constraints
+is supported on instances of the EMF-generated Java API (Ecore as the source for
+the genmodel) and on dynamic EObjects.
+</p><p>
+As is illustrated by most of the examples in this documentation, the Ecore binding
+is provided by the
+<a href="../javadoc/org/eclipse/ocl/ecore/EcoreEnvironmentFactory.html"><em class="CodeName">EcoreEnvironmentFactory</em></a>
+class.  By default, the Ecore environment uses the static <em class="CodeName">EPackage</em>
+registry to look up package names.  It can also be supplied with an alternative
+package registry (for example, one local to a <em class="CodeName">ResourceSet</em>)
+but it will always use the static registry as a backup.  Aside from the package
+registry, the Ecore environment factory maintains no state.  So, when the shared
+registry is to be used, the static <em class="CodeName">EcoreEnvironmentFactory.INSTANCE</em>
+is most practical.
+</p><p>
+The Ecore binding for OCL provides the following capabilities, reflecting the
+subset of Ecore's modeling constructs with respect to UML:
+</p>
+<table cellpadding="4" border="1">
+	<caption align="bottom">Ecore metamodel capability matrix</caption>
+	<thead>
+  <tr><th>Capability</th><th>Parse</th><th>Evaluate</th></tr>
+</thead>
+<tbody>
+	<tr><td>Classifier invariant constraints</td><td>Y</td><td>Y</td></tr>
+	<tr><td>Operation precondition and postcondition constraints and body conditions</td><td>Y</td><td>N</td></tr>
+	<tr><td>Property constraints (initial-value and derivation)</td><td>Y</td><td>Y<sup>1</sup></td></tr>
+	<tr><td>Attribute and operation definitions (def: expressions)</td><td>Y</td><td>Y</td></tr>
+	<tr><td>Package context declaration</td><td>Y</td><td>n/a</td></tr>
+	<tr><td>Basic values and types, mapped from the standard EDataTypes to OCL's
+	    primitive types</td><td>Y</td><td>Y</td></tr>
+	<tr><td>Collection types</td><td>Y</td><td>Y</td></tr>
+	<tr><td>Navigation of attributes and references</td><td>Y</td><td>Y</td></tr>
+	<tr><td>Operation invocation</td><td>Y</td><td>Y</td></tr>
+	<tr><td>Iteration expressions (all standard iterators)</td><td>Y</td><td>Y</td></tr>
+	<tr><td>Let expressions</td><td>Y</td><td>Y</td></tr>
+	<tr><td>If expressions</td><td>Y</td><td>Y</td></tr>
+	<tr><td>Tuples</td><td>Y</td><td>Y</td></tr>
+	<tr><td>Message expressions, including unspecified values</td><td>Y</td><td>N</td></tr>
+	<tr><td>Operations predefined by OCL:  allInstances()</td><td>Y</td><td>Y</td></tr>
+	<tr><td>Operations predefined by OCL:  oclIsKindOf(), oclIsTypeOf(), oclAsType()</td><td>Y</td><td>Y</td></tr>
+	<tr><td>Operations predefined by OCL:  oclIsNew()</td><td>Y</td><td>N</td></tr>
+	<tr><td>@pre expressions</td><td>Y</td><td>N</td></tr>
+</tbody>
+<tfoot><tr><td colspan="3"><sup>1</sup> derivation only</td></tr></tfoot>
+</table>
+<p>
+Because Ecore does not define analogues of some of the UML metaclasses required
+by the OCL Abstract Syntax Model, the Ecore binding defines these on its
+behalf, in the
+<em class="CodeName">platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.ecore</em>
+metamodel.  These include:
+</p>
+<ul>
+  <li><em class="CodeName">Constraint</em>: the model of an OCL constraint (when
+      the <em class="CodeName">language</em> is OCL)</li>
+  <li><em class="CodeName">CallOperationAction</em>:  used in the model of
+      message expressions</li>
+  <li><em class="CodeName">SendSignalAction</em>: used in the model of
+      message expressions</li>
+  <li><em class="CodeName">ExpressionInOcl</em>:  it is this metaclass's
+      general class <em class="CodeName">OpaqueExpression</em> that Ecore
+      does not define.  It is elided in the Ecore binding</li>
+  <li><em class="CodeName">State</em>:  Ecore provides no behaviour modeling
+      capabilities.  The Ecore binding simply substitutes
+      <em class="CodeName">EObject</em></li>
+</ul>
+<p>
+For applications that work exclusively with the Ecore binding for OCL, the
+<em class="CodeName">org.eclipse.ocl.ecore</em> package defines a subclass of
+the <em class="CodeName">OCL</em> class that supplies all of the generic type
+parameter bindings to simplify typing (in the absence of type aliasing in Java).
+It also provides Ecore-specific convenience factory methods for the
+<em class="CodeName">OCL</em>, itself, and narrows the return type of the factory
+methods for the <em class="CodeName">OCLHelper</em> and
+<em class="CodeName">Query</em> interfaces.  These specialized interfaces likewise
+supply the generic type parameter bindings for Ecore.
+</p>
+
+<h2>The UML Metamodel Binding</h2>
+
+<p>
+An OCL binding for the UML metamodel is provided by the
+<em class="CodeName">org.eclipse.ocl.uml</em> plug-in.  It is best suited to
+parsing and evaluating OCL constraints on UML models.  Evaluation of constraints
+is supported on instances of the UML2-generated Java API (UML as the source for
+the genmodel), on dynamic EObjects (using an Ecore model created by the
+UML-to-Ecore converter), and on <em class="CodeName">InstanceSpecification</em>
+elements in the UML model.
+</p><p>
+The UML binding is provided by the
+<a href="../javadoc/org/eclipse/ocl/uml/UMLEnvironmentFactory.html"><em class="CodeName">UMLEnvironmentFactory</em></a>
+class.  By default, the UML environment factory and all of the environment contexts
+that it creates use a private <em class="CodeName">ResourceSet</em> to look up
+the corresponding UML model(s) against which OCL constraints are parsed.
+</p>
+<p class="Note">
+It is the client's responsibility to ensure that the UML model is
+loaded in the resource set used by the UML environment factory instance.
+</p>
+<p>
+The UML environment factory can alternatively be initialized with a resource set
+of the client's choosing.  Ordinarily, the UML environment uses its resource set's
+local <em class="CodeName">EPackage</em> registry to look up EMF-generated
+<em class="CodeName">EPackage</em> names corresponding to UML models.  A custom
+package registry may be provided by the client if necessary.
+</p><p>
+The UML binding for OCL provides the following capabilities:
+</p>
+<table cellpadding="4" border="1">
+	<caption align="bottom">UML metamodel capability matrix</caption>
+	<thead>
+  <tr><th>Capability</th><th>Parse</th><th>Evaluate</th></tr>
+</thead>
+<tbody>
+	<tr><td>Classifier invariant constraints</td><td>Y</td><td>Y</td></tr>
+	<tr><td>Operation precondition and postcondition constraints and body conditions</td><td>Y</td><td>N</td></tr>
+	<tr><td>Property constraints (initial-value and derivation)</td><td>Y</td><td>Y<sup>1</sup></td></tr>
+	<tr><td>Attribute and operation definitions (def: expressions)</td><td>Y</td><td>Y</td></tr>
+	<tr><td>Package context declaration</td><td>Y</td><td>n/a</td></tr>
+	<tr><td>Basic values and types</td><td>Y</td><td>Y<sup>2</sup></td></tr>
+	<tr><td>Collection types</td><td>Y</td><td>Y</td></tr>
+	<tr><td>Operation invocation</td><td>Y</td><td>Y<sup>3</sup></td></tr>
+	<tr><td>Navigation of attributes and references</td><td>Y</td><td>Y</td></tr>
+	<tr><td>Navigation of non-navigable association ends (including
+	        those that are owned by the association)</td><td>Y</td><td>Y</td></tr>
+	<tr><td>Qualified association end navigation</td><td>Y</td><td>Y<sup>4</sup></td></tr>
+	<tr><td>Navigation to association classes, including source qualifiers</td><td>Y</td><td>Y<sup>4</sup></td></tr>
+	<tr><td>Iteration expressions (all standard iterators)</td><td>Y</td><td>Y</td></tr>
+	<tr><td>Let expressions</td><td>Y</td><td>Y</td></tr>
+	<tr><td>If expressions</td><td>Y</td><td>Y</td></tr>
+	<tr><td>Tuples</td><td>Y</td><td>Y</td></tr>
+	<tr><td>Message expressions, including unspecified values</td><td>Y</td><td>N</td></tr>
+	<tr><td>Operations predefined by OCL:  allInstances()</td><td>Y</td><td>Y</td></tr>
+	<tr><td>Operations predefined by OCL:  oclIsKindOf(), oclIsTypeOf(), oclAsType()</td><td>Y</td><td>Y</td></tr>
+	<tr><td>Operations predefined by OCL:  oclIsInState()</td><td>Y</td><td>N</td></tr>
+	<tr><td>Operations predefined by OCL:  oclIsNew()</td><td>Y</td><td>N</td></tr>
+	<tr><td>@pre expressions</td><td>Y</td><td>N</td></tr>
+</tbody>
+<tfoot><tr><td colspan="3">
+    <sup>1</sup> derivation only<br/>
+    <sup>2</sup> OCL defines the Real primitive type that is missing from UML, but not a LiteralReal<br/>
+    <sup>3</sup> with InstanceSpecifications, only where body constraints are defined<br/>
+    <sup>4</sup> only with InstanceSpecifications</td></tr></tfoot>
+</table>
+<p>
+A special case of the UML environment's support for dynamic EObjects, mentioned
+above, is stereotype applications.  The Eclipse UML2 component uses dynamic
+EMF in the implementation of stereotype applications, by converting UML
+<em class="CodeName">Profile</em>s to <em class="CodeName">EPackage</em>s.
+Constraints parsed in the context of a UML <em class="CodeName">Stereotype</em>
+can be evaluated on applications (instances) of that stereotype or on model
+elements to which the stereotype is applied.  This applies only to UML models,
+themselves, as instances of the UML metamodel (stereotyping is only available
+in the UML metamodel).
+</p>
+<p>
+For applications that work exclusively with the UML binding for OCL, the
+<em class="CodeName">org.eclipse.ocl.uml</em> package defines a subclass of
+the <em class="CodeName">OCL</em> class that supplies all of the generic type
+parameter bindings to simplify typing (in the absence of type aliasing in Java).
+It also provides UML-specific convenience factory methods for the
+<em class="CodeName">OCL</em>, itself, and narrows the return type of the factory
+methods for the <em class="CodeName">OCLHelper</em> and
+<em class="CodeName">Query</em> interfaces.  These specialized interfaces likewise
+supply the generic type parameter bindings for UML.
+</p>
+
+<hr/>
+
+<p>
+<a href="http://www.eclipse.org/legal/epl-v10.html">Copyright (c) 2000, 2007 IBM Corporation and others. All Rights Reserved.</a>
+</p>
+</body>
+</html>

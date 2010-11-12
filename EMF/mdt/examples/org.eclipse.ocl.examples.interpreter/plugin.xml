@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<!--
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2005, 2006 IBM Corporation and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   IBM - Initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id: plugin.xml,v 1.2 2010/06/03 06:28:20 ewillink Exp $
+ */
+-->
+<plugin>
+
+     <extension point="org.eclipse.ui.editorActions"> 
+      <editorContribution 
+         id="org.eclipse.ocl.examples.interpreter.extlibraryEditorContribution" 
+         targetID="org.eclipse.emf.examples.extlibrary.presentation.EXTLibraryEditorID"> 
+        <menu
+               label="%_UI_OCLMenu_label"
+               path="org.eclipse.emf.examples.extlibraryMenuID/additions"
+               id="org.eclipse.oclEngineMenuID">
+            <separator name="additions"/>
+         </menu>
+         <action
+               label="%_UI_ShowConsole_label"
+               class="org.eclipse.ocl.examples.interpreter.actions.ShowConsoleDelegate"
+               menubarPath="org.eclipse.emf.examples.extlibraryMenuID/org.eclipse.oclEngineMenuID/additions"
+               icon="$nl$/icons/elcl16/oclconsole_co.gif"
+               id="org.eclipse.ocl.examples.interpreter.ShowConsoleAction"/>
+      </editorContribution>
+      <editorContribution
+            id="org.eclipse.ocl.examples.interpreter.ecoreEditorContribution"
+            targetID="org.eclipse.emf.ecore.presentation.EcoreEditorID">
+         <action
+               label="%_UI_ShowOCLConsole_label"
+               class="org.eclipse.ocl.examples.interpreter.actions.ShowEcoreConsoleDelegate"
+               menubarPath="org.eclipse.emf.ecoreMenuID/additions"
+               icon="$nl$/icons/elcl16/oclconsole_co.gif"
+               id="org.eclipse.ocl.examples.interpreter.ShowEcoreConsoleAction"/>
+      </editorContribution> 
+      <editorContribution
+            id="org.eclipse.ocl.examples.interpreter.ecoreReflectiveEditorContribution"
+            targetID="org.eclipse.emf.ecore.presentation.ReflectiveEditorID">
+         <action
+               label="%_UI_ShowOCLConsole_label"
+               class="org.eclipse.ocl.examples.interpreter.actions.ShowEcoreConsoleDelegate"
+               menubarPath="org.eclipse.emf.ecoreMenuID/additions"
+               icon="$nl$/icons/elcl16/oclconsole_co.gif"
+               id="org.eclipse.ocl.examples.interpreter.ShowEcoreReflectiveConsoleAction"/>
+      </editorContribution> 
+      <editorContribution
+            id="org.eclipse.ocl.examples.interpreter.umlEditorContribution"
+            targetID="org.eclipse.uml2.uml.editor.presentation.UMLEditorID">
+         <action
+               label="%_UI_ShowOCLConsole_label"
+               class="org.eclipse.ocl.examples.interpreter.actions.ShowUMLConsoleDelegate"
+               menubarPath="org.eclipse.uml2.umlMenuID/additions"
+               icon="$nl$/icons/elcl16/oclconsole_co.gif"
+               id="org.eclipse.ocl.examples.interpreter.ShowUMLConsoleAction"/>
+      </editorContribution> 
+   </extension> 
+   
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <viewerContribution
+            targetID="org.eclipse.emf.examples.extlibrary.presentation.EXTLibraryEditorID"
+            id="org.eclipse.ocl.examples.extlibraryViewerContribution">
+        <menu
+               label="%_UI_OCLMenu_label"
+               path="additions"
+               id="org.eclipse.oclEngineMenuID">
+            <separator name="additions"/>
+         </menu>
+         <action
+               label="%_UI_ShowConsole_label"
+               class="org.eclipse.ocl.examples.interpreter.actions.ShowConsoleDelegate"
+               menubarPath="org.eclipse.oclEngineMenuID/additions"
+               icon="$nl$/icons/elcl16/oclconsole_co.gif"
+               id="org.eclipse.ocl.examples.interpreter.ShowConsoleAction"/>
+      </viewerContribution>
+      <viewerContribution
+            targetID="org.eclipse.emf.ecore.presentation.EcoreEditorID"
+            id="org.eclipse.ocl.examples.ecoreViewerContribution">
+         <action
+               label="%_UI_ShowOCLConsole_label"
+               class="org.eclipse.ocl.examples.interpreter.actions.ShowEcoreConsoleDelegate"
+               menubarPath="additions"
+               icon="$nl$/icons/elcl16/oclconsole_co.gif"
+               id="org.eclipse.ocl.examples.interpreter.ShowEcoreConsoleAction"/>
+      </viewerContribution>
+      <viewerContribution
+            targetID="org.eclipse.emf.ecore.presentation.ReflectiveEditorID"
+            id="org.eclipse.ocl.examples.ecoreReflectiveViewerContribution">
+         <action
+               label="%_UI_ShowOCLConsole_label"
+               class="org.eclipse.ocl.examples.interpreter.actions.ShowEcoreConsoleDelegate"
+               menubarPath="additions"
+               icon="$nl$/icons/elcl16/oclconsole_co.gif"
+               id="org.eclipse.ocl.examples.interpreter.ShowEcoreReflectiveConsoleAction"/>
+      </viewerContribution>
+      <viewerContribution
+            targetID="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
+            id="org.eclipse.ocl.examples.umlViewerContribution">
+         <action
+               label="%_UI_ShowOCLConsole_label"
+               class="org.eclipse.ocl.examples.interpreter.actions.ShowUMLConsoleDelegate"
+               menubarPath="additions"
+               icon="$nl$/icons/elcl16/oclconsole_co.gif"
+               id="org.eclipse.ocl.examples.interpreter.ShowUMLConsoleAction"/>
+      </viewerContribution>
+   </extension>
+   
+   <extension point="org.eclipse.ui.console.consoleFactories">
+      <consoleFactory
+            label="%_UI_ConsoleFactory_label"
+            class="org.eclipse.ocl.examples.interpreter.console.OCLConsoleFactory"
+            icon="$nl$/icons/elcl16/oclconsole_co.gif">
+      </consoleFactory>
+   </extension>
+</plugin>

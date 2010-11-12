@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="Stylesheet" type="text/css" href="../doc.css" />
+<title>Creating Metamodel Bindings</title>
+</head>
+<body>
+<h1>Creating Metamodel Bindings</h1>
+<p>
+The MDT OCL component provides a generic specification of the OCL Abstract Syntax Model
+plus bindings for two popular Eclipse metamodels:  Ecore and UML.  Users of the OCL API
+can likewise create bindings for their metamodels, to integrate OCL with their modeling
+languages.
+</p><p>
+The <a href="../../javadoc/org/eclipse/ocl/Environment.html"><em class="CodeName">Environment</em></a>
+interface has a generic type signature with several parameters, representing the metamodeling
+constructs required by OCL, that it borrows from UML, EMOF, and the other metamodels that
+it targets.  The Javadoc for that interface defines the mappings, and the same type parameter
+names are used consistently throughout the OCL API.
+</p>
+
+<blockquote>
+	<img src="../images/bindings.png" alt="Metamodel Bindings API"/><br/>
+	<font size="-2">[<a target="_blank" href="../images/bindings.svg">as SVG</a>]</font>
+</blockquote>
+
+<p>
+To provide a metamodel binding, a client must provide implementations of the following
+interfaces:
+</p>
+<ul>
+  <li><em class="CodeName">Environment</em> and <em class="CodeName">EnvironmentFactory</em>,
+      supplying suitable substitutions for the generic type parameters.  Note that not all
+      of these are actually required; for example, Ecore does not have the concept of
+      <em class="CodeName">State</em>, so it just substitutes <em class="CodeName">EObject</em></li>
+  <li><em class="CodeName">EvaluationEnvironment</em> for accessing properties of
+      run-time instances of models</li>
+  <li><em class="CodeName">UMLReflection</em> for introspecting models (instances of the
+      target metamodel)</li>
+  <li><em class="CodeName">OCLStandardLibrary</em>, providing the instances of the
+      metamodel's <em class="CodeName">Classifier</em> metaclass that implement the OCL
+      Standard Library types</li>
+  <li><em class="CodeName">OCLFactory</em>, providing a factory for all of the metaclasses
+      of the Abstract Syntax Model</li>
+</ul>
+<p>
+This last item, above, necessitates furthermore that the metamodel binding provide a
+concrete specialization of the Abstract Syntax Model (in its entirety) that mixes in the
+target metamodel's correspondents of the UML <em class="CodeName">Classifier</em> and
+<em class="CodeName">TypedElement</em> metaclasses.  The former is required to provide
+compatibility of the metaclasses in the OCL <em class="CodeName">Types</em> with the
+target metamodel's type system.  The latter is required for compatibility of the metaclasses
+in the OCL <em class="CodeName">Expressions</em> package with the target metamodel's
+typed elements.
+</p>
+
+<h2>The OCL Abstract Syntax Model</h2>
+
+<p>
+The following diagram summarizes the metaclasses of the
+OCL <em class="CodeName">Types</em> package:
+</p>
+
+<blockquote>
+	<img src="../images/ocltypes.png" alt="OCL Types Package"/><br/>
+	<font size="-2">[<a target="_blank" href="../images/ocltypes.svg">as SVG</a>]</font>
+</blockquote>
+
+<p>
+The following diagram summarizes the call expression metaclasses of the
+OCL <em class="CodeName">Expressions</em> package:
+</p>
+
+<blockquote>
+	<img src="../images/callexp.png" alt="OCL Ecpressions Package - the Call Expressions"/><br/>
+	<font size="-2">[<a target="_blank" href="../images/callexp.svg">as SVG</a>]</font>
+</blockquote>
+
+<p>
+The following diagram summarizes the literal expression metaclasses of the
+OCL <em class="CodeName">Expressions</em> package:
+</p>
+
+<blockquote>
+	<img src="../images/literalexp.png" alt="OCL Ecpressions Package - the Literal Expressions"/><br/>
+	<font size="-2">[<a target="_blank" href="../images/literalexp.svg">as SVG</a>]</font>
+</blockquote>
+
+<p>
+The following diagram summarizes the remaining metaclasses of the
+OCL <em class="CodeName">Expressions</em> package:
+</p>
+
+<blockquote>
+	<img src="../images/miscexp.png" alt="OCL Ecpressions Package - the Remainder"/><br/>
+	<font size="-2">[<a target="_blank" href="../images/miscexp.svg">as SVG</a>]</font>
+</blockquote>
+
+
+<hr/>
+
+<p>
+<a href="http://www.eclipse.org/legal/epl-v10.html">Copyright (c) 2000, 2007 IBM Corporation and others. All Rights Reserved.</a>
+</p>
+</body>
+</html>

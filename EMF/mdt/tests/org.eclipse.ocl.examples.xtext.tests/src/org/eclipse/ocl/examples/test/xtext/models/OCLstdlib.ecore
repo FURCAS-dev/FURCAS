@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="library"
+    nsURI="http://www.eclipse.org/ocl/library/OCLstdlib" nsPrefix="oclstdlib">
+  <eClassifiers xsi:type="ecore:EClass" name="OCLRoot"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OCLBoundType" eSuperTypes="#//OCLTypeValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//OCLTypeDefinition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeBinding" upperBound="-1"
+        eType="#//OCLTypeBinding" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OCLElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OCLLibraryIteration" eSuperTypes="#//OCLTypedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="iterator" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="iterators" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="class" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OCLLibrary" eSuperTypes="#//OCLRoot #//OCLPackageParent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="imports" unique="false"
+        upperBound="-1" eType="#//OCLLibrary"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OCLNamedElement" eSuperTypes="#//OCLElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OCLLibraryOperation" eSuperTypes="#//OCLTypedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStatic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeParameter" upperBound="-1"
+        eType="#//OCLTypeParameter" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" upperBound="-1"
+        eType="#//OCLParameter" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="class" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OCLPackage" eSuperTypes="#//OCLPackageParent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" upperBound="-1" eType="#//OCLTypeDefinition"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OCLPackageParent" eSuperTypes="#//OCLNamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="package" upperBound="-1"
+        eType="#//OCLPackage" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OCLParameter" eSuperTypes="#//OCLTypedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OCLLibraryProperty" eSuperTypes="#//OCLTypedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStatic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="class" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OCLType" eSuperTypes="#//OCLNamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OCLTypeBinding" eSuperTypes="#//OCLElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeParameter" eType="#//OCLTypeValue"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OCLTypeDefinition" eSuperTypes="#//OCLType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeParameter" upperBound="-1"
+        eType="#//OCLTypeParameter" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conformsTo" upperBound="-1"
+        eType="#//OCLTypeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="iteration" upperBound="-1"
+        eType="#//OCLLibraryIteration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operation" upperBound="-1"
+        eType="#//OCLLibraryOperation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="property" upperBound="-1"
+        eType="#//OCLLibraryProperty" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OCLTypedElement" eSuperTypes="#//OCLNamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//OCLTypeValue"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OCLTypeParameter" eSuperTypes="#//OCLType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OCLTypeReference" eSuperTypes="#//OCLTypeValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//OCLType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OCLTypeValue" eSuperTypes="#//OCLElement"/>
+</ecore:EPackage>

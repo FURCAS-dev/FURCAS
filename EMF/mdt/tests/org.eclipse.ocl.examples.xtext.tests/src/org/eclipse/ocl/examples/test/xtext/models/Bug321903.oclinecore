@@ -1,0 +1,18 @@
+import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';
+
+package tutorial : tut = 'http://www.eclipse.org/mdt/ocl/oclinecore/tutorial'
+{
+ package core : cre = 'http://www.eclipse.org/mdt/ocl/oclinecore/tutorial/core' {
+    class NamedElement
+    {
+      attribute name : String;
+    }   
+ }
+ class Parameter extends core::NamedElement
+ {
+   property _'signature'#parameters : Signature[1];
+ }
+ class Signature  {
+   invariant parameterMustHaveUniqueNames: self.parameters->isUnique(p:Parameter | p.name);    property parameters#_'signature' : Parameter[0..*] { composes };
+ }
+} 

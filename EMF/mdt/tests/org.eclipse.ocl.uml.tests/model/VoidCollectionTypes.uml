@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ocl.uml="http://www.eclipse.org/ocl/1.1.0/UML" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_LaPN8R76Ed2I9KNo7KvMFg" name="voidcollectiontypes">
+  <packagedElement xmi:type="ocl.uml:SetType" xmi:id="_YlJwEB76Ed2I9KNo7KvMFg" name="Set(T)">
+    <elementType xmi:type="ocl.uml:VoidType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.uml#_akVE1KjQEdu4LJng8Rasow"/>
+  </packagedElement>
+  <packagedElement xmi:type="ocl.uml:BagType" xmi:id="_YlMzYB76Ed2I9KNo7KvMFg">
+    <elementType xmi:type="ocl.uml:VoidType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.uml#_akVE1KjQEdu4LJng8Rasow"/>
+  </packagedElement>
+</uml:Package>

@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="Stylesheet" type="text/css" href="doc.css" />
+<title>Evaluating Constraints and Queries</title>
+</head>
+<body>
+<h1>Evaluating Constraints and Queries</h1>
+
+<p>
+In the <a href="parsingConstraints.html">previous topic</a>, we saw how to use
+the <em class="CodeName">OCLHelper</em> API for parsing OCL constraints and
+query expressions.  Parsing constraints is very interesting in itself, but
+we can also make OCL come alive in our applications by evaluating these
+constraints.  For this, OCL provides a <em class="CodeName">Query</em> API.
+</p>
+
+<h2>The OCL Query</h2>
+
+<p>
+Like the <em class="CodeName">OCLHelper</em> for parsing constraints, the OCL
+facade object provides
+<a href="../javadoc/org/eclipse/ocl/Query.html"><em class="CodeName">Query</em></a>
+objects for evaluating constraints and query expressions.
+</p>
+
+<blockquote>
+	<img src="images/query.png" alt="OCL Query API"/><br/>
+	<font size="-2">[<a target="_blank" href="images/query.svg">as SVG</a>]</font>
+</blockquote>
+
+<p>
+The <em class="CodeName">Query</em> encapsulates an
+<a href="../javadoc/org/eclipse/ocl/EvaluationEnvironment.html"><em class="CodeName">EvaluationEnvironment</em></a>
+providing the run-time values of context variables to the OCL interpreter.  These
+context variables are set and retrieved using the following methods:
+</p>
+<ul>
+  <li><em class="CodeName">add(String, Object)</em>: adds a name-value binding
+      for a variable</li>
+  <li><em class="CodeName">replace(String, Object)</em>:  replaces an existing
+      variable binding</li>
+  <li><em class="CodeName">remove()</em>:  removes a variable binding</li>
+  <li><em class="CodeName">getValueOf(String)</em>:  obtains a variable value</li>
+</ul>
+<p>
+The context variables of primary interest are <em class="CodeName">self</em>
+and, in operation constraints, the variables corresponding to its parameters.
+The <em class="CodeName">EvaluationEnvironment</em> API is also used to supply
+values for "global" variables added to the parsing <em class="CodeName">Environment</em>
+by the client.
+</p><p>
+Another important consideration in the evaluation environment is the
+<em class="CodeName">allInstance()</em> operation, which obtains the entire
+extent of a classifier.  For data types, this is a simple problem:  the extent
+of an <em class="CodeName">Enumeration</em> is well defined and the extents of
+other kinds of <em class="CodeName">DataType</em>s are undefined.  For
+<em class="CodeName">Class</em> extents, the <em class="CodeName">EvaluationEnvironment</em>
+provides support for an extent map, mapping classes to the sets of their
+instances, as determined by the client.  A client sets the extent map using the
+<a href="../javadoc/org/eclipse/ocl/OCL.html#setExtentMap(java.util.Map)"><em class="CodeName">OCL.setExtentMap()</em></a>
+method.  The default extent map, if none is provided by the client, lazily
+computes the extent of a class from the EMF <em class="CodeName">Resource</em>
+containing the context element of the evaluation.
+</p><p>
+So, after optionally setting values of context variables (other than
+<em class="CodeName">self</em>; the <em class="CodeName">Query</em> takes care
+of this) and an extent map, simply construct a query and use it to evaluate
+the expression or check the constraint:
+</p>
+<pre class="Code">
+OCL&lt;?, EClassifier, ?, ?, ?, ?, ?, ?, ?, Constraint, EClass, EObject&gt; ocl;
+ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
+OCLHelper&lt;EClassifier, ?, ?, Constraint&gt; helper = ocl.createOCLHelper();
+
+helper.setContext(EXTLibraryPackage.Literals.LIBRARY);
+Constraint invariant = helper.createInvariant(
+    "books-&gt;forAll(b1, b2 | b1 &lt;&gt; b2 implies b1.title &lt;&gt; b2.title)");
+OCLExpression&lt;EClassifier&gt; query = helper.createQuery(
+    "books-&gt;collect(b : Book | b.category)-&gt;asSet()");
+
+// create a Query to evaluate our query expression
+Query&lt;EClassifier, EClass, EObject&gt; <b>queryEval</b> = ocl.<b>createQuery</b>(query);
+
+// create another to check our constraint
+Query&lt;EClassifier, EClass, EObject&gt; <b>constraintEval</b> = ocl.<b>createQuery</b>(constraint);
+
+List&lt;Library&gt; libraries = getLibraries();  // hypothetical source of libraries
+
+// only print the set of book categories for valid libraries
+for (Library next : libraries) {
+    if (constraintEval.<b>check</b>(next)) {
+        // the OCL result type of our query expression is Set(BookCategory)
+        @SuppressWarnings("unchecked")
+        Set&lt;BookCategory&gt; categories = (Set&lt;BookCategory&gt;) queryEval.<b>evaluate</b>(next);
+        
+        System.out.printf("%s: %s%n", next.getName(), categories);
+    }
+}
+</pre>
+<p>
+One of the advantages of the <em class="CodeName">Query</em> API is that a
+query's evaluation environment can be reused for multiple evaluations, as
+above.  The extent of any classifier is only computed once.  For convenience,
+however, in situations where only a single evaluation is required, the
+<em class="CodeName">OCL</em> class provides shortcuts:
+</p>
+<pre class="Code">
+// check a single library
+Library lib = getLibrary();  // hypothetical source of a library
+
+// check whether it satisfies the constraint
+System.out.printf("%s valid: %b", lib.getName(), ocl.<b>check</b>(lib, constraint)) {
+</pre>
+<p>
+The <em class="CodeName">Query</em> API also provides methods that work on
+multiple elements.  The first example, above, could be written more succinctly as:
+</p>
+<pre class="Code">
+List&lt;Library&gt; libraries = getLibraries();  // hypothetical source of libraries
+
+// only print the set of book categories for valid libraries
+for (Library next : constraintEval.<b>select</b>(libraries)) {
+    @SuppressWarnings("unchecked")
+    Set&lt;BookCategory&gt; categories = (Set&lt;BookCategory&gt;) queryEval.evaluate(next);
+    
+    System.out.printf("%s: %s%n", next.getName(), categories);
+}
+</pre>
+
+<hr/>
+
+<p>
+<a href="http://www.eclipse.org/legal/epl-v10.html">Copyright (c) 2000, 2007 IBM Corporation and others. All Rights Reserved.</a>
+</p>
+</body>
+</html>

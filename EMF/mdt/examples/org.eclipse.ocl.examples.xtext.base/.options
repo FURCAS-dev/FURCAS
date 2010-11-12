@@ -1,0 +1,7 @@
+# Debugging options for the org.eclipse.ocl.examples.xtext.base plug-in
+
+# Turn on general reference lookup tracing
+org.eclipse.ocl.examples.xtext.base/lookup=false
+
+# Turn on general work tracing
+org.eclipse.ocl.examples.xtext.base/work=false

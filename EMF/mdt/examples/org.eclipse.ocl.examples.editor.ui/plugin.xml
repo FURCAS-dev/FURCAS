@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension point="org.eclipse.ui.newWizards">
+      <category id="org.eclipse.ocl.editor.ui"
+            name="Modeling (OCL) File Creation Wizards"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+      <propertyContributor contributorId="org.eclipse.ocl.editor.ui">
+            <!--labelProvider="org.eclipse.emf.ecoretools.diagram.sheet.EcoreSheetLabelProvider"
+            typeMapper="org.eclipse.emf.ecoretools.diagram.sheet.TabbedPropertiesTypeMapper"-->
+         <propertyCategory category="debug"/>
+         <propertyCategory category="domain"/>
+         <propertyCategory category="visual"/>
+         <propertyCategory category="extra"/>
+      </propertyContributor>
+   </extension>
+   
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+      <propertyTabs contributorId="org.eclipse.ocl.editor.ui">
+         <propertyTab
+               category="domain"
+               id="propery.tab.Model"
+               label="Model"/>
+         <propertyTab
+               afterTab="propery.tab.Model"
+               category="debug"
+               id="propery.tab.Debug"
+               label="Debug"/>
+      </propertyTabs>
+   </extension>   
+   
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertySections">
+      <propertySections contributorId="org.eclipse.ocl.editor.ui">
+	     <propertySection id="property.section.ResourcePropertySection"
+	        class="org.eclipse.ocl.examples.editor.ui.sections.ResourcePropertySection"
+	        tab="propery.tab.Model" enablesFor="1">
+	        <input type="org.eclipse.emf.ecore.resource.Resource"/>
+	     </propertySection>
+	  </propertySections>
+   </extension>   
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category name="Modeling (OCL)"
+            id="org.eclipse.ocl.editor.ui">
+      </category>
+      <view id="org.eclipse.ocl.editor.ui.cst"
+            name="CST Outline"
+            icon="icons/cstview.gif"
+            category="org.eclipse.ocl.editor.ui"
+            class="org.eclipse.ocl.examples.editor.ui.cst.CSTOutline"/>
+   </extension>
+   
+
+</plugin>

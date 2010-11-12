@@ -1,0 +1,19 @@
+import sm : 'SmallModel.ecore'
+import 'LittleModel.ecore'
+
+package sm::small
+context Baby
+inv: true
+endpackage
+
+package little
+context Minute
+inv: true
+endpackage
+
+context sm::small::Tiny
+inv: true
+
+context little::Minute
+inv too: true
+

@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.ocl.examples.common" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="org.eclipse.ocl.examples.common" id="label_generator" name="Label Generator Registry"/>
+      </appinfo>
+      <documentation>
+         A label generator registry provides an extensible custimzable capability to generate labels for objects.
+
+This extension point defines a generator to provide a label for a class. The global label generator registry, &lt;samp&gt;ILabelGenerator.Registry.INSTANCE&lt;/samp&gt;, is used to record the registration.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="generator" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A fully qualified identifier of the target extension point.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  An optional identifier of the extension instance.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  An optional name of the extension instance.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="generator">
+      <annotation>
+         <appinfo>
+            <meta.element labelAttribute="id"/>
+         </appinfo>
+      </annotation>
+      <complexType>
+         <attribute name="for" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The fully qualified name of a Java class for which label generation is provided.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The fully qualified name of a Java class implementing &lt;samp&gt;org.eclipse.ocl.examples.common.label.ILabelGenerator&lt;/samp&gt; which generates the label.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.ocl.examples.common.label.ILabelGenerator"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         3.0.0
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         Following is an example of how a label generator can be registered: 
+&lt;pre&gt;
+  &lt;extension point=&quot;org.eclipse.ocl.examples.common.label_generator&quot; &gt;
+    &lt;generator for=&quot;org.eclipse.emf.ecore.ENamedElement&quot; class=&quot;org.eclipse.ocl.examples.common.label.generators.ENamedElementLabelGenerator&quot;/&gt; 
+  &lt;/extension&gt;
+&lt;/pre&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiInfo"/>
+      </appinfo>
+      <documentation>
+         The value of the class attribute must represent a class that implements &lt;samp&gt;org.eclipse.ocl.examples.common.label.ILabelGenerator&lt;/samp&gt; and has a no argument contructor.
+&lt;p&gt;
+A label generator can be also registered from the source code with the &lt;samp&gt;ILabelGenerator.Registry.INSTANCE&lt;/samp&gt; as follows:
+&lt;/p&gt;
+&lt;pre&gt;
+  ILabelGenerator.Registry.INSTANCE.install(ENamedElement.class, new ENamedElementLabelGenerator());
+&lt;/pre&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         org.eclipse.ocl.examples.common.label.generators.EcoreURILabelGenerator,
+org.eclipse.ocl.examples.common.label.generators.ENamedElementLabelGenerator,
+org.eclipse.ocl.examples.common.label.generators.EObjectLabelGenerator,
+org.eclipse.ocl.examples.common.label.generators.StringLabelGenerator
+
+EcoreUtils.QUALIFIED_NAME_REGISTRY
+EcoreUtils.SIMPLE_NAME_REGISTRY
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="copyright"/>
+      </appinfo>
+      <documentation>
+         Copyright (c) 2010 E.D.Willink and others.&lt;br&gt;
+All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at &lt;a 
+href=&quot;http://www.eclipse.org/legal/epl-v10.html&quot;&gt;http://www.eclipse.org/legal/epl-v10.html&lt;/a&gt;
+      </documentation>
+   </annotation>
+
+</schema>

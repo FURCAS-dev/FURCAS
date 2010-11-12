@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.ocl.core.sdk"
+      label="%featureName"
+      version="3.1.0.qualifier"
+      provider-name="%providerName"
+      image="modeling32.png">
+
+   <description url="http://www.eclipse.org/modeling/mdt/ocl">
+      %description
+   </description>
+
+   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
+      Copyright (c) 2005, 2010 IBM Corporation and others.
+All rights reserved.   This program and the accompanying materials
+are made available under the terms of the Eclipse Public License
+v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+
+Contributors:
+    IBM Corporation - Initial API and implementation
+    Adolfo Sanchez-Barbudo Herrera (Open Canarias S.L.) - Bug 313124
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <url>
+      <update label="%updateSiteName" url="http://download.eclipse.org/modeling/mdt/ocl/updates/"/>
+      <discovery label="%updateSiteName" url="http://download.eclipse.org/modeling/mdt/ocl/updates/"/>
+   </url>
+
+   <includes
+         id="org.eclipse.ocl.all"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.ocl.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.ocl.uml.source"
+         version="0.0.0"/>
+
+</feature>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ed:EditorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ed="http://www.eclipse.org/ocl/1.0/Editor" language="ocl">
+  <extends href="../../../plugin/org.eclipse.ocl.examples.editor.ocl.ui/model/ocl.ecore.editor#/"/>
+  <extends href="../../org.eclipse.ocl.examples.editor.ocl.ui/model/ocl.cst.editor#/"/>
+  <extends href="../../../plugin/org.eclipse.ocl.examples.editor.ui/model/ecore.editor#/"/>
+</ed:EditorDefinition>

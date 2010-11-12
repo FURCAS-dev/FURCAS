@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.eclipse.org/ocl/3.0.0/CompleteOCLCST" 
+       class = "org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage"
+       genModel = "model/CompleteOCLCST.genmodel" /> 
+  </extension>
+
+</plugin>

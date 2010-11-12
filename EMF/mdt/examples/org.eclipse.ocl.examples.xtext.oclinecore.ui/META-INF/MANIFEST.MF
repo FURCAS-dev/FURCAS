@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-Version: 3.1.0.qualifier
+Bundle-SymbolicName: org.eclipse.ocl.examples.xtext.oclinecore.ui; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.ocl.examples.xtext.essentialocl.ui;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
+ org.eclipse.ocl.examples.xtext.oclinecore;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
+ org.eclipse.ui;visibility:=reexport,
+ org.eclipse.jdt.core,
+ org.antlr.runtime,
+ org.eclipse.xtext.ui,
+ org.eclipse.xtext.ui.shared,
+ org.eclipse.ui.editors,
+ org.eclipse.xtext.builder,
+ org.eclipse.emf.ecore.editor;bundle-version="[2.6.0,3.0.0)";resolution:=optional,
+ org.eclipse.core.expressions
+Import-Package: org.apache.log4j
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.ocl.examples.xtext.oclinecore.ui,
+ org.eclipse.ocl.examples.xtext.oclinecore.ui.contentassist.antlr,
+ org.eclipse.ocl.examples.xtext.oclinecore.ui.outline
+Bundle-Activator: org.eclipse.ocl.examples.xtext.oclinecore.ui.internal.OCLinEcoreActivator

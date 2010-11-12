@@ -1,0 +1,5 @@
+--import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';
+package Annotations : ann = 'http://test/annotations'
+{
+annotation 'http:/anno'(key1 = 'text1', key2 = '(â€œAbstract Syntaxâ€?)');
+}

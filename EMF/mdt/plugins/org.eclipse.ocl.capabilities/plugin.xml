@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?><!--
+     Copyright (c) 2009 Open Canarias S.L. and others.
+     All rights reserved. This program and the accompanying materials
+     are made available under the terms of the Eclipse Public License v1.0
+     which accompanies this distribution, and is available at
+     http://www.eclipse.org/legal/epl-v10.html
+    
+     Contributors:
+         Adolfo Sanchez-Barbudo Herrera - initial API and implementation
+     
+     $Id: plugin.xml,v 1.2 2010/04/19 09:30:36 asanchez Exp $
+ -->
+
+<plugin>   
+   <extension
+         point="org.eclipse.ui.activities">
+      <!-- Activity definition -->
+      <activity
+            description="%_UI_capabilities.activity.description"
+            id="org.eclipse.ocl.activity"
+            name="%_UI_capabilities.activity.name">
+      </activity>
+      <!-- Activity pattern bindings --> 
+      
+      <!-- Contributions to Examples --> 
+      <activityPatternBinding
+            activityId="org.eclipse.ocl.activity"
+            pattern="org\.eclipse\.ocl\.examples.*">
+      </activityPatternBinding>
+      
+      <!-- Contributions to UI -->
+      <activityPatternBinding
+            activityId="org.eclipse.ocl.activity"
+            pattern="org\.eclipse\.ocl\.ui.*">
+      </activityPatternBinding>
+      
+      <!-- Category definition -->
+       <category id="org.eclipse.ocl.category"
+            name="%_UI_capabilities.category.name"
+            description="%_UI_capabilities.category.description"/>
+            
+      <!-- Category-Activity binding and default enablement -->
+      <categoryActivityBinding categoryId="org.eclipse.ocl.category"
+            activityId="org.eclipse.ocl.activity"/>
+      <defaultEnablement id="org.eclipse.ocl.activity"/>
+   </extension>
+</plugin>

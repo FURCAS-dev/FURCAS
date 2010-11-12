@@ -1,0 +1,49 @@
+# Debugging options for the org.eclipse.ocl.examples.editor.ui plug-in
+
+# Turn on general debugging for the org.eclipse.ocl.examples.editor.ui plug-in
+org.eclipse.ocl.examples.editor.ui/debug=true
+
+# Generate a diagnostic for editor saving
+org.eclipse.ocl.examples.editor.ui/editor/save=false
+
+# Generate a diagnostic for resource loading
+org.eclipse.ocl.examples.editor.ui/resource/load=false
+
+# Generate a diagnostic for each visit
+org.eclipse.ocl.examples.editor.ui/visitor/trace=false
+
+# Generate a diagnostic for each visit result
+org.eclipse.ocl.examples.editor.ui/visitor/selection=false
+
+# Generate a diagnostic for each applicable operation history
+org.eclipse.ocl.examples.editor.ui/operation/show/applicable=false
+
+# Generate a diagnostic for each inapplicable operation history
+org.eclipse.ocl.examples.editor.ui/operation/show/inapplicable=false
+
+# Generate a diagnostic for each dirty change
+org.eclipse.ocl.examples.editor.ui/operation/show/dirty=false
+
+# Generate a diagnostic for each hover proposal
+org.eclipse.ocl.examples.editor.ui/hover/debug=false
+
+# Generate a diagnostic for parser creation and initialisation
+org.eclipse.ocl.examples.editor.ui/parser/progress=false
+
+# Generate a diagnostic for each completion proposal
+org.eclipse.ocl.examples.editor.ui/proposal/debug=false
+
+# Generate a dependency dump for each build
+org.eclipse.ocl.examples.editor.ui/builder/dependencies=false
+
+# Generate a dependency dump for each marker creation/deletion
+org.eclipse.ocl.examples.editor.ui/marker/create=false
+org.eclipse.ocl.examples.editor.ui/marker/delete=false
+
+# Generate a dependency dump for each annotation creation/deletion/update
+org.eclipse.ocl.examples.editor.ui/annotation/create=false
+org.eclipse.ocl.examples.editor.ui/annotation/delete=false
+org.eclipse.ocl.examples.editor.ui/annotation/update=false
+
+# Generate a diagnostic for each selection change
+org.eclipse.ocl.examples.editor.ui/selection=false

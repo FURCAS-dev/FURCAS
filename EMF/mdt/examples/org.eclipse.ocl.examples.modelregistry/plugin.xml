@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="org.eclipse.ocl.modelregistry.namespace" name="%ExtPoint.namespace" schema="schema/namespace.exsd"/>
+   <extension-point id="org.eclipse.ocl.modelregistry.model_serialization" name="%ExtPoint.model_serialization" schema="schema/model_serialization.exsd"/>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package uri="http://www.eclipse.org/gmt/umlx/2007/ModelRegistry" 
+       class="org.eclipse.ocl.examples.modelregistry.ModelRegistryPackage"
+       genModel="model/ModelRegistry.genmodel" /> 
+    <package uri="http://www.eclipse.org/qvt/1.0/ModelRegistry" 
+       class="org.eclipse.ocl.examples.modelregistry.ModelRegistryPackage"
+       genModel="model/ModelRegistry.genmodel" /> 
+    <package uri="http://www.eclipse.org/ocl/1.0/ModelRegistry" 
+       class="org.eclipse.ocl.examples.modelregistry.ModelRegistryPackage"
+       genModel="model/ModelRegistry.genmodel" /> 
+  </extension>
+  
+  <extension point="org.eclipse.ocl.modelregistry.namespace">
+     <accessor class="org.eclipse.ocl.examples.modelregistry.model.ModelNameAccessor$Installer"/>
+     <accessor class="org.eclipse.ocl.examples.modelregistry.model.URIAccessor$Installer"/>
+  </extension>
+
+  <extension point="org.eclipse.ocl.modelregistry.model_serialization">
+     <entry name="XML" factory="org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl"/>
+  </extension>
+
+</plugin>
