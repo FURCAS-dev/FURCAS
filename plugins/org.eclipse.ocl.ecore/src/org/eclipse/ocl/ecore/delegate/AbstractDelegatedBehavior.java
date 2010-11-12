@@ -153,7 +153,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 	 */
     protected OCLExpression getCachedExpression(EModelElement modelElement, String... constraintKeys) {
     	EAnnotation anno = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
-    	EAnnotation ast = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+    	EAnnotation ast = anno;
     	if (anno != null && ast != null){
     		int pos = -1;
     		int count = 0;

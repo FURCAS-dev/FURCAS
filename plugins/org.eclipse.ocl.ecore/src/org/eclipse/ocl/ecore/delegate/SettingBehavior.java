@@ -16,11 +16,12 @@
  */
 package org.eclipse.ocl.ecore.delegate;
 
+import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Internal.SettingDelegate;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.ExpressionInOCL;
@@ -64,9 +65,14 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 		if (result != null){
 			return result;
 		}
-		String expr = EcoreUtil.getAnnotation(structuralFeature, OCLDelegateDomain.OCL_DELEGATE_URI, DERIVATION_CONSTRAINT_KEY);
+	    EAnnotation eAnnotation = structuralFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+	    if (eAnnotation == null) {
+	    	return null;
+	    }
+	    EMap<String, String> details = eAnnotation.getDetails();
+		String expr = details.get(DERIVATION_CONSTRAINT_KEY);
 		if (expr == null) {
-			expr = EcoreUtil.getAnnotation(structuralFeature, OCLDelegateDomain.OCL_DELEGATE_URI, INITIAL_CONSTRAINT_KEY);
+			expr = details.get(INITIAL_CONSTRAINT_KEY);
 			if (expr == null) {
 				return null;
 			}
