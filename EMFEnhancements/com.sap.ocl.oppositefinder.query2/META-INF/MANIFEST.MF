@@ -12,7 +12,5 @@ Require-Bundle: org.eclipse.emf,
  org.eclipse.emf.query2,
  org.eclipse.emf.query.index.ui,
  org.eclipse.emf.query.index,
- com.sap.emf.ocl.hiddenopposites,
- de.hpi.sam.bp2009.solution.queryContextScopeProvider,
- org.eclipse.ocl.ecore.opposites
+ de.hpi.sam.bp2009.solution.queryContextScopeProvider
 Export-Package: com.sap.ocl.oppositefinder.query2

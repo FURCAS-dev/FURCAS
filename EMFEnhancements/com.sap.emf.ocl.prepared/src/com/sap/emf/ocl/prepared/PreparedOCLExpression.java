@@ -8,14 +8,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.LiteralExp;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
-import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
-import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
-import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 import com.sap.emf.ocl.prepared.parameters.DuplicateParameterValueException;
 import com.sap.emf.ocl.prepared.parameters.Parameter;
 import com.sap.emf.ocl.prepared.parameters.ParameterFactory;
@@ -54,7 +53,7 @@ public class PreparedOCLExpression {
     private final List<Parameter<?>> params;
     private final Map<Object, Parameter<?>> paramsByIdentifyingSymbols;
     private OppositeEndFinder oppositeEndFinder;
-    private EcoreEnvironmentFactoryWithHiddenOpposites environmentFactory;
+    private EcoreEnvironmentFactory environmentFactory;
     
     public class ParameterValue<T> {
         private final Parameter<T> param;
@@ -144,7 +143,7 @@ public class PreparedOCLExpression {
      * Like {@link #PreparedOCLExpression(OCLExpression, LiteralExp...)}, but allows clients to specify a specific OCL environment
      * factory to be used for expression evaluation.
      */
-    public PreparedOCLExpression(EcoreEnvironmentFactoryWithHiddenOpposites environmentFactory,
+    public PreparedOCLExpression(EcoreEnvironmentFactory environmentFactory,
             OCLExpression expression, LiteralExp... params) {
         this(expression, params);
         this.environmentFactory = environmentFactory;
@@ -213,12 +212,12 @@ public class PreparedOCLExpression {
 
     private OCL getOCL() {
         if (oppositeEndFinder != null) {
-            return OCLWithHiddenOpposites.newInstance(oppositeEndFinder);
+            return OCL.newInstance(oppositeEndFinder);
         } else {
             if (environmentFactory != null) {
-                return OCLWithHiddenOpposites.newInstance(environmentFactory);
+                return OCL.newInstance(environmentFactory);
             } else {
-                return OCLWithHiddenOpposites.newInstance();
+                return OCL.newInstance();
             }
         }
     }

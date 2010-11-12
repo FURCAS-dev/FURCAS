@@ -27,6 +27,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
@@ -36,8 +37,6 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ui.PlatformUI;
-
-import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 
@@ -128,7 +127,7 @@ public class RevalidateAction extends ValidateAction {
     private void validateConstraints(IProgressMonitor progressMonitor) throws CoreException {
         int selectionSize = contextObjects.size();
         progressMonitor.beginTask("", selectionSize);
-        OCL ocl = OCLWithHiddenOpposites.newInstance(oppositeEndFinder);
+        OCL ocl = OCL.newInstance(oppositeEndFinder);
         for (EObject eObject : contextObjects) {
             System.out.println("Re-validating "+constraintName+" on "+EcoreUtil.getURI(eObject));
             IFile fileForContext = getFile(eObject);

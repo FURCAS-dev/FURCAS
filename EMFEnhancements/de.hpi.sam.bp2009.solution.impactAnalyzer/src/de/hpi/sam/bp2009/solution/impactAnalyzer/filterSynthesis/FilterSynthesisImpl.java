@@ -38,6 +38,7 @@ import org.eclipse.ocl.ecore.NavigationCallExp;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.TupleType;
@@ -347,4 +348,33 @@ implements OperationBodyToCallMapper {
         return body;
     }
 
+    public EPackage handleOppositePropertyCallExp(OppositePropertyCallExp callExp,
+            EPackage sourceResult) {
+        if (callExp.getReferredOppositeProperty() instanceof EReference){
+            EClass cls = (EClass) callExp.getReferredOppositeProperty().eContainer();
+            filters.add(EventManagerFactory.eINSTANCE.createFilterForEReference(cls, (EReference) callExp.getReferredOppositeProperty( )));
+            EReference refRef = (EReference)callExp.getReferredOppositeProperty();
+            Set<NavigationCallExp> set = associationEndCallExpressions.get(refRef);
+            if (set == null){
+                set = new HashSet<NavigationCallExp>();
+                associationEndCallExpressions.put(refRef, set);
+            }
+            set.add((OppositePropertyCallExp)callExp);
+        } else {
+            System.err.println("Unhandled EStructuralFeature as referredOppositeProperty in FilterSynthesis.");
+        }
+        return result;
+    }
+
+    /**
+     * Visits the property-call source and then its qualifiers (if any). Returns the result of
+     * {@link #handlePropertyCallExp(PropertyCallExp, Object, List)}.
+     */
+    public EPackage visitOppositePropertyCallExp(OppositePropertyCallExp callExp) {
+        // source is null when the property call expression is an
+        // association class navigation qualifier
+        EPackage sourceResult = safeVisit(callExp.getSource());
+        return handleOppositePropertyCallExp(callExp, sourceResult);
+    }
+    
 } //FilterSynthesisImpl

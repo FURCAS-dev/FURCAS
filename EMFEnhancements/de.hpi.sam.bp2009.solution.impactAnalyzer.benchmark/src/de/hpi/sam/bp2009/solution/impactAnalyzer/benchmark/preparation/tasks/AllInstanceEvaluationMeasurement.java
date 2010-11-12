@@ -20,8 +20,6 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
-import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
-
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 
 /** It is not necessary that a all instance evaluation is measured multiple times for one single model size
@@ -48,7 +46,7 @@ public class AllInstanceEvaluationMeasurement {
 	this.model = model;
 	this.expression = expression;
 
-	this.ocl =  OCLWithHiddenOpposites.newInstance(oppositeEndFinder);
+	this.ocl =  OCL.newInstance(oppositeEndFinder);
     }
 
     public LinkedHashMap<String, String> getAdditionalInformation(){
