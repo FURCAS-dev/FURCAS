@@ -20,7 +20,6 @@ package org.eclipse.ocl.ecore.delegate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
@@ -61,8 +60,8 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
     	EAnnotation a = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
     	if (a == null){
     		a = EcoreFactory.eINSTANCE.createEAnnotation();
-    		a.setEModelElement(modelElement);
     		a.setSource(OCLDelegateDomain.OCL_DELEGATE_URI);
+    		modelElement.getEAnnotations().add(a);
     	}
     	a.getContents().add(constraint);
     }
@@ -87,25 +86,15 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 	 * @since 3.1
 	 */
     protected OCLExpression getCachedExpression(EModelElement modelElement, String... constraintKeys) {
-    	EAnnotation anno = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
-    	EAnnotation ast = anno;
-    	if (anno != null && ast != null){
-    		int pos = -1;
-    		int count = 0;
-    		for (Map.Entry<String, String> constraint : anno.getDetails()) {
-				for (String constraintKey : constraintKeys) {
-					if (constraint.getKey().equals(constraintKey)) {
-						pos = count;
-						break;
-					}
-				}
-    			count++;
-    		}
-    		if (pos != -1) {
-    			if (ast.getContents().size() > pos) {
-    				EObject contentElement = ast.getContents().get(pos);
-    				if (contentElement instanceof Constraint) {
-    					return (OCLExpression) ((Constraint) contentElement).getSpecification().getBodyExpression();
+    	EAnnotation ast = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+    	if (ast != null) {
+    		for (EObject content : ast.getContents()) {
+    			if (content instanceof Constraint) {
+    				String stereotype = ((Constraint) content).getStereotype();
+    				for (String constraintKey : constraintKeys) {
+    					if (stereotype == constraintKey || (stereotype != null && stereotype.equals(constraintKey))) {
+    						return (OCLExpression) ((Constraint) content).getSpecification().getBodyExpression();
+    					}
     				}
     			}
     		}
