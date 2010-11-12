@@ -151,7 +151,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 	 *         position expected
 	 * @since 3.1
 	 */
-    protected OCLExpression getExpressionFromAnnotationsOf(EModelElement modelElement, String... constraintKeys) {
+    protected OCLExpression getCachedExpression(EModelElement modelElement, String... constraintKeys) {
     	EAnnotation anno = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
     	EAnnotation ast = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
     	if (anno != null && ast != null){
@@ -181,7 +181,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
     /**
 	 * @since 3.1
 	 */
-    protected void saveExpressionInAnnotation(EModelElement modelElement, Constraint constraint) {
+    protected void cacheExpression(EModelElement modelElement, Constraint constraint) {
     	EAnnotation a = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
     	if (a == null){
     		a = EcoreFactory.eINSTANCE.createEAnnotation();

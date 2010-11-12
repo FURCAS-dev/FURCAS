@@ -70,7 +70,7 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 		 * @since 3.1
 		 */
         public OCLExpression getInvariant(EModelElement cls, String constraintName, OCL ocl){
-            OCLExpression result = getExpressionFromAnnotationsOf(cls, constraintName);
+            OCLExpression result = getCachedExpression(cls, constraintName);
             if (result != null){
                     return result;
             }
@@ -96,7 +96,7 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
             if (specification == null) {
                     return null;
             }
-            saveExpressionInAnnotation(cls, constraint);
+            cacheExpression(cls, constraint);
             return (OCLExpression) specification.getBodyExpression();
     }
 

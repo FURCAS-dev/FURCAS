@@ -60,7 +60,7 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 	}
 
 	public OCLExpression getFeatureBody(OCL ocl, EStructuralFeature structuralFeature) {
-		OCLExpression result = getExpressionFromAnnotationsOf(structuralFeature, INITIAL_CONSTRAINT_KEY, DERIVATION_CONSTRAINT_KEY);
+		OCLExpression result = getCachedExpression(structuralFeature, INITIAL_CONSTRAINT_KEY, DERIVATION_CONSTRAINT_KEY);
 		if (result != null){
 			return result;
 		}
@@ -87,7 +87,7 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 		if (specification == null) {
 			return null;
 		}
-		saveExpressionInAnnotation(structuralFeature, constraint);
+		cacheExpression(structuralFeature, constraint);
 		return (OCLExpression) specification.getBodyExpression();
 	}
 	

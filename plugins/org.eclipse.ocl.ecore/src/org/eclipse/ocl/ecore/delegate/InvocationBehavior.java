@@ -69,7 +69,7 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 	}
 
 	public OCLExpression getOperationBody(OCL ocl, EOperation operation) {
-		OCLExpression result = getExpressionFromAnnotationsOf(operation, BODY_CONSTRAINT_KEY);
+		OCLExpression result = getCachedExpression(operation, BODY_CONSTRAINT_KEY);
 		if (result != null) {
 			return result;
 		}
@@ -93,7 +93,7 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 		if (specification == null) {
 			return null;
 		}
-		saveExpressionInAnnotation(operation, constraint);
+		cacheExpression(operation, constraint);
 		return (OCLExpression) specification.getBodyExpression();
 	}
 
