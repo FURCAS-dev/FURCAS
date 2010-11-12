@@ -2,12 +2,11 @@
 <genmodel:GenModel xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.ocl.ecore.tests/src"
-    modelPluginID="org.eclipse.ocl.ecore.tests" modelName="Company"
-    nonNLSMarkers="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
-    copyrightFields="false" operationReflection="true">
+    modelPluginID="org.eclipse.ocl.ecore.tests" modelName="Company" nonNLSMarkers="true"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    operationReflection="true">
   <foreignModel>Company.ecore</foreignModel>
-  <genPackages prefix="Company" disposableProviderFactory="true"
-      ecorePackage="Company.ecore#/">
+  <genPackages prefix="Company" disposableProviderFactory="true" ecorePackage="Company.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Company.ecore#//CompanySizeKind">
       <genEnumLiterals ecoreEnumLiteral="Company.ecore#//CompanySizeKind/small"/>
       <genEnumLiterals ecoreEnumLiteral="Company.ecore#//CompanySizeKind/medium"/>
@@ -17,6 +16,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Company.ecore#//Company/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Company.ecore#//Company/employees"/>
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute Company.ecore#//Company/size"/>
+      <genOperations ecoreOperation="Company.ecore#//Company/dummyInvariant">
+        <genParameters ecoreParameter="Company.ecore#//Company/dummyInvariant/diagnostics"/>
+        <genParameters ecoreParameter="Company.ecore#//Company/dummyInvariant/context"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="Company.ecore#//Employee">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Company.ecore#//Employee/name"/>
@@ -25,6 +28,7 @@
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference Company.ecore#//Employee/directReports"/>
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference Company.ecore#//Employee/allReports"/>
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference Company.ecore#//Employee/reportingChain"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute Company.ecore#//Employee/hasNameAsAttribute"/>
       <genOperations ecoreOperation="Company.ecore#//Employee/reportsTo">
         <genParameters ecoreParameter="Company.ecore#//Employee/reportsTo/manager"/>
       </genOperations>
@@ -32,6 +36,7 @@
         <genParameters ecoreParameter="Company.ecore#//Employee/noManagerImpliesDirectReports/diagnostics"/>
         <genParameters ecoreParameter="Company.ecore#//Employee/noManagerImpliesDirectReports/context"/>
       </genOperations>
+      <genOperations ecoreOperation="Company.ecore#//Employee/hasNameAsOperation"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

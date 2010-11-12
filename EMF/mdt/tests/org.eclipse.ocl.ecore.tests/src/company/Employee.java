@@ -42,8 +42,8 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see company.CompanyPackage#getEmployee()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='mustHaveName'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL mustHaveName='not name.oclIsUndefined() and hasNameAsAttribute and hasNameAsOperation()'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='mustHaveName mustHaveNonEmptyName'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL mustHaveName='not name.oclIsUndefined() and hasNameAsAttribute and hasNameAsOperation()' mustHaveNonEmptyName='name->notEmpty() implies name.size() > 0'"
  * @generated
  */
 public interface Employee extends EObject {
