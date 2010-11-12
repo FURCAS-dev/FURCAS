@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+<provider id="org.eclipse.egit.core.GitProvider"/>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1289252596060_6" label="EMF Enhancements" name="EMF Enhancements">
+<item elementID="=de.hpi.sam.bp2009.solution.eventManager" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=de.hpi.sam.bp2009.company" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=de.hpi.sam.activityDiagram" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.emf.ocl.impactanalysis.example.model" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=de.hpi.sam.bp2009.solution.impactAnalyzer" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.emf.ocl.impactanalysis.example.edit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.emf.ocl.impactanalysis.example.editor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=de.hpi.sam.bp2009.solution.impactAnalyzer.editor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=de.hpi.sam.bp2009.solution.impactAnalyzer.debug" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=de.hpi.sam.bp2009.solution.oclToMqlMapping.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=de.hpi.sam.petriNet" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=de.hpi.sam.bp2009.solution.oclToMqlMapping" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.emf.ocl.prepared" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=de.hpi.sam.bp2009.solution.oclToAst.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=de.hpi.sam.bp2009.solution.impactAnalyzer.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=de.hpi.sam.bp2009.solution.impactAnalyzerWithHiddenOpposites" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=de.hpi.sam.bp2009.solution.testutils" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=de.hpi.sam.bp2009.solution.scopeProvider.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=de.hpi.sam.bp2009.solution.scopeProvider" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=de.hpi.sam.bp2009.solution.oclToAst" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.emf.ocl.util" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.ocl.oppositefinder.query2.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.emf.ocl.hiddenopposites" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.emf.imported.moin.rose" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.emf.ocl.impactanalysis.example" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=de.hpi.sam.bp2009.solution.queryContextScopeProvider" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.emf.ocl.impactanalysis.example.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.emf.ocl.attributegrammar" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.emf.ocl.hiddenopposites.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=de.hpi.sam.bp2009.solution.eventManager.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.ocl.oppositefinder.query2" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.ocl.ecore.opposites" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1289252566342_2" label="EMF Sources" name="EMF Sources">
+<item elementID="=org.eclipse.ocl" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.ocl.ecore" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.ocl.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.query.index.internal.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.query.index.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.query2" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1289252555482_1" label="FURCAS" name="FURCAS">
+<item elementID="=bibtex.editor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.mi.textual.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.query.index.internal" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.emf.ocl.trigger" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/bibtex.test" type="4"/>
+<item elementID="=com.sap.ide.cts.editor.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.furcas.ide.projectwizard" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.mi.textual.parsing.textblocks" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.furcas.runtime.parser.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.ide.cts.parser" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.furcas.parsergenerator" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.furcas.metamodel.edit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.furcas.runtime.referenceresolving.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.furcas.utils" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.furcas.parsergenerator.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.tc.moin.tcs.mof.editor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.furcas.runtime.common.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.furcas.runtime.referenceresolving" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.furcas.parser.tcs" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.ide.cts.product" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.furcas.metamodel.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.mi.textual.tcs.editor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.furcas.runtime.textblocks" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.furcas.runtime.common" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.furcas.runtime.tcs" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.furcas.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.furcas.ide.dslproject" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.furcas.modeladaptation.emf" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.ide.cts.editor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.furcas.runtime.textblocks.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.furcas.parsergenerator.emf" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.furcas.metamodel.editor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.antlr" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.emf.ocl.trigger.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.furcas.metamodel" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.furcas.runtime.parser" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=bibtex.metamodel" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.ide.cts.moin" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1289252579842_4" label="Runlet EMF" name="Runlet EMF">
+<item elementID="=com.sap.runlet.interpreter.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.ngpm.utils" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.runlet.interpreter" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.runlet.operationaltransformation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.sap.runlet.abstractinterpreter" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=de.hpi.sam.bp2009.ngpm" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+</psf>
