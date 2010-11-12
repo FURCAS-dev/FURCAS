@@ -589,7 +589,7 @@ public class EcoreEnvironment
 				}
 			}
 		}
-	return result;
+		return result;
 	}	
 
 	/**

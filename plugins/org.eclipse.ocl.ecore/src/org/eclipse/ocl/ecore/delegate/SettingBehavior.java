@@ -93,7 +93,7 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 		if (specification == null) {
 			return null;
 		}
-		cacheExpression(structuralFeature, constraint);
+		cacheExpression(structuralFeature, constraint, INITIAL_CONSTRAINT_KEY, DERIVATION_CONSTRAINT_KEY);
 		return (OCLExpression) specification.getBodyExpression();
 	}
 	

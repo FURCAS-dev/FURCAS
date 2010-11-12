@@ -25,12 +25,15 @@ import java.util.Map;
 
 import noreflectioncompany.NoreflectioncompanyPackage;
 
+import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -46,6 +49,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
+import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.delegate.DelegateDomain;
 import org.eclipse.ocl.ecore.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
@@ -55,10 +62,13 @@ import org.eclipse.ocl.ecore.delegate.OCLInvocationDelegateFactory;
 import org.eclipse.ocl.ecore.delegate.OCLSettingDelegateFactory;
 import org.eclipse.ocl.ecore.delegate.OCLValidationDelegateFactory;
 import org.eclipse.ocl.ecore.delegate.ValidationDelegate;
+import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.osgi.util.NLS;
 
 import company.CompanyPackage;
+import company.Employee;
+import company.util.CompanyValidator;
 
 
 
@@ -406,6 +416,67 @@ public class DelegatesTest extends AbstractTestSuite
 		doTest_eReferenceDerivation(COMPANY_XMI);
 	}
 
+	public void test_invariantCacheBeingUsed() throws ParserException {
+		initPackageRegistrations();
+		initModel(COMPANY_XMI);
+		EAnnotation annotation = employeeClass.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		annotation.getContents().clear(); // remove any previously cached compiled OCL Constraint
+		
+		DiagnosticChain diagnostics = new BasicDiagnostic();
+		// first ensure that contents are padded up to where we need it:
+		assertTrue("Expecting \"Amy\" to be a valid name",
+			CompanyValidator.INSTANCE.validateEmployee_mustHaveName((Employee) employee("Amy"), diagnostics, context));
+		int posOfMustHaveName = annotation.getDetails().indexOfKey("mustHaveName");
+		Helper helper = OCL.newInstance().createOCLHelper();
+		helper.setContext(employeeClass);
+		Constraint constraint = helper.createConstraint(ConstraintKind.INVARIANT, "false"); // a constraint always returning false
+		annotation.getContents().set(posOfMustHaveName, constraint);
+		assertFalse("Expected the always-false cached constraint to be used",
+			CompanyValidator.INSTANCE.validateEmployee_mustHaveName((Employee) employee("Amy"), diagnostics, context));
+	}
+	
+	public void test_invariantCachingForFirst() {
+		initPackageRegistrations();
+		initModel(COMPANY_XMI);
+		EAnnotation annotation = employeeClass.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		annotation.getContents().clear(); // remove any previously cached compiled OCL Constraint
+		DiagnosticChain diagnostics = new BasicDiagnostic();
+		CompanyValidator.INSTANCE.validateEmployee_mustHaveName((Employee) employee("Amy"), diagnostics, context);
+		assertTrue("Expected to find compiled expression in annotation", !annotation.getContents().isEmpty());
+		boolean foundMustHaveName = false;
+		for (int i=0; i<annotation.getDetails().size(); i++) {
+			String key = annotation.getDetails().get(i).getKey();
+			if (key.equals("mustHaveName")) {
+				foundMustHaveName = true;
+				assertTrue("Annotation contents too small; expected to find cached constraint", annotation.getContents().size() > i);
+				EObject eo = annotation.getContents().get(i);
+				assertTrue("Expected to find a Constraint element at position "+i+" in annotation", eo instanceof Constraint);
+			}
+		}
+		assertTrue("Expected to find compiled constraint mustHaveName on Employee", foundMustHaveName);
+	}
+	
+	public void test_invariantCachingForSecond() {
+		initPackageRegistrations();
+		initModel(COMPANY_XMI);
+		EAnnotation annotation = employeeClass.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		annotation.getContents().clear(); // remove any previously cached compiled OCL Constraint
+		DiagnosticChain diagnostics = new BasicDiagnostic();
+		CompanyValidator.INSTANCE.validateEmployee_mustHaveNonEmptyName((Employee) employee("Amy"), diagnostics, context);
+		assertTrue("Expected to find compiled expression in annotation", !annotation.getContents().isEmpty());
+		boolean foundMustHaveName = false;
+		for (int i=0; i<annotation.getDetails().size(); i++) {
+			String key = annotation.getDetails().get(i).getKey();
+			if (key.equals("mustHaveNonEmptyName")) {
+				foundMustHaveName = true;
+				assertTrue("Annotation contents too small; expected to find cached constraint", annotation.getContents().size() > i);
+				EObject eo = annotation.getContents().get(i);
+				assertTrue("Expected to find a Constraint element at position "+i+" in annotation", eo instanceof Constraint);
+			}
+		}
+		assertTrue("Expected to find compiled constraint mustHaveName on Employee", foundMustHaveName);
+	}
+	
 	public void test_invariantValidation() {
 		doTest_invariantValidation(COMPANY_XMI, true);
 	}

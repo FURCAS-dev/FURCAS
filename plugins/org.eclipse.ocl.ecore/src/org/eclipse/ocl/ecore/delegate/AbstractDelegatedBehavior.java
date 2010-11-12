@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
@@ -40,6 +41,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 		implements DelegatedBehavior<E, R, F> {
 
 	private static List<DelegatedBehavior<?, ?, ?>> delegatedBehaviors = null;
+	private static final Constraint DUMMY_CONSTRAINT = org.eclipse.ocl.ecore.EcoreFactory.eINSTANCE.createConstraint();
 
 	public static List<DelegatedBehavior<?, ?, ?>> getDelegatedBehaviors() {
 		// FIXME Maybe use an extension point here (but need a common
@@ -54,19 +56,29 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 	};
 
     /**
-	 * @since 3.1
+     * @since 3.1
 	 */
-    protected void cacheExpression(EModelElement modelElement, Constraint constraint) {
+    protected void cacheExpression(EModelElement modelElement, Constraint constraint, String... keys) {
     	EAnnotation a = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
     	if (a == null){
     		a = EcoreFactory.eINSTANCE.createEAnnotation();
     		a.setSource(OCLDelegateDomain.OCL_DELEGATE_URI);
     		modelElement.getEAnnotations().add(a);
-    	}
-    	a.getContents().add(constraint);
+		}
+		for (String key : keys) {
+			int indexOfKey = a.getDetails().indexOfKey(key);
+			if (indexOfKey >= 0) {
+				pad(a.getContents(), indexOfKey);
+				a.getContents().add(constraint);
+				return;
+			}
+		}
+		a.getDetails().put(keys[0], null);
+		pad(a.getContents(), a.getDetails().size()-1);
+		a.getContents().add(constraint);
     }
 
-    /**
+	/**
 	 * Looks for a {@link Constraint} element attached to the
 	 * {@link OCLDelegateDomain#OCL_DELEGATE_URI} annotation of
 	 * <code>modelElement</code> at the same position at which the
@@ -85,21 +97,30 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 	 *         position expected
 	 * @since 3.1
 	 */
-    protected OCLExpression getCachedExpression(EModelElement modelElement, String... constraintKeys) {
-    	EAnnotation ast = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
-    	if (ast != null) {
-    		for (EObject content : ast.getContents()) {
-    			if (content instanceof Constraint) {
-    				String stereotype = ((Constraint) content).getStereotype();
-    				for (String constraintKey : constraintKeys) {
-    					if (stereotype == constraintKey || (stereotype != null && stereotype.equals(constraintKey))) {
-    						return (OCLExpression) ((Constraint) content).getSpecification().getBodyExpression();
-    					}
-    				}
-    			}
-    		}
-    	}
-    	return null;
+	protected OCLExpression getCachedExpression(EModelElement modelElement,
+			String... constraintKeys) {
+		EAnnotation anno = modelElement
+			.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		if (anno != null) {
+			int pos = -1;
+			// find the position of the first constraintKey that is a key in details 
+			for (String constraintKey : constraintKeys) {
+				pos = anno.getDetails().indexOfKey(constraintKey);
+				if (pos >= 0) {
+					break;
+				}
+			}
+			if (pos >= 0) {
+				if (anno.getContents().size() > pos) {
+					EObject contentElement = anno.getContents().get(pos);
+					if (contentElement instanceof Constraint && contentElement != DUMMY_CONSTRAINT) {
+						return (OCLExpression) ((Constraint) contentElement)
+							.getSpecification().getBodyExpression();
+					}
+				}
+			}
+		}
+		return null;
     }
 
 	public List<DelegateDomain> getDelegateDomains(E eObject) {
@@ -150,6 +171,16 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * pads <code>contents</code> with <code>null</code> elements so that adding
+	 * another object to it as position <code>upTo</code> becomes possible.
+	 */
+    private void pad(EList<EObject> contents, int upTo) {
+		for (int i=contents.size(); i<upTo; i++) {
+			contents.add(DUMMY_CONSTRAINT); // can't use null in an EList
+		}
 	}
 
 	public void setDelegates(EPackage ePackage, List<String> delegateURIs) {

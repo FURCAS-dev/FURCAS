@@ -117,10 +117,10 @@ public class OCLValidationDelegate implements ValidationDelegate
 
 	public boolean validate(EClass eClass, EObject eObject,
 			Map<Object, Object> context, EOperation invariant, String expression) {
-		OCLExpression query = ValidationBehavior.INSTANCE.getCachedExpression(invariant, "body"); //$NON-NLS-1$
+		OCLExpression query = ValidationBehavior.INSTANCE.getCachedExpression(invariant, InvocationBehavior.BODY_CONSTRAINT_KEY);
 		if (query == null) {
 			Constraint constraint = createConstraint(invariant, expression);
-			ValidationBehavior.INSTANCE.cacheExpression(invariant, constraint);
+			ValidationBehavior.INSTANCE.cacheExpression(invariant, constraint, InvocationBehavior.BODY_CONSTRAINT_KEY);
 			query = (OCLExpression) constraint.getSpecification()
 				.getBodyExpression();
 		}
@@ -133,7 +133,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 			eClass, constraint);
 		if (query == null) {
 			Constraint constraintAST = createConstraint(eClass, expression);
-			ValidationBehavior.INSTANCE.cacheExpression(eClass, constraintAST);
+			ValidationBehavior.INSTANCE.cacheExpression(eClass, constraintAST, constraint);
 			query = (OCLExpression) constraintAST.getSpecification()
 				.getBodyExpression();
 		}
@@ -147,7 +147,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 		if (query == null) {
 			Constraint constraintAST = createConstraint(eDataType, expression);
 			ValidationBehavior.INSTANCE.cacheExpression(eDataType,
-				constraintAST);
+				constraintAST, constraint);
 			query = (OCLExpression) constraintAST.getSpecification()
 				.getBodyExpression();
 		}

@@ -96,7 +96,7 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
             if (specification == null) {
                     return null;
             }
-            cacheExpression(cls, constraint);
+            cacheExpression(cls, constraint, constraintName);
             return (OCLExpression) specification.getBodyExpression();
     }
 
