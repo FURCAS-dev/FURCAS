@@ -26,8 +26,6 @@ public class FurcasWizardLanguagePage extends WizardPage {
     private Text fileExtensionText;
 
     private Text nsURIText;
-
-    private Text basePackageText;
     
     public boolean valid = true;
 
@@ -97,17 +95,6 @@ public class FurcasWizardLanguagePage extends WizardPage {
                 dialogChanged();
             }
         });
-        label = new Label(container, SWT.NULL);
-        label.setText("Base package:");
-
-        basePackageText = new Text(container, SWT.BORDER | SWT.SINGLE);
-        gd = new GridData(GridData.FILL_HORIZONTAL);
-        basePackageText.setLayoutData(gd);
-        basePackageText.addModifyListener(new ModifyListener() {
-            public void modifyText(ModifyEvent e) {
-                dialogChanged();
-            }
-        });
 
 
 
@@ -122,12 +109,10 @@ public class FurcasWizardLanguagePage extends WizardPage {
         languageNameText.setText("mydsl");
         fileExtensionText.setText("dsl");
         nsURIText.setText("http://www.example.org/my/dsl");
-        basePackageText.setText("org.example.dsl");
 
     }
 
     void dialogChanged() {
-        projectInfo.setBasePackage(basePackageText.getText());
         projectInfo.setProjectName(projectText.getText());
         projectInfo.setLanguageName(languageNameText.getText());
         projectInfo.setFileExtension(fileExtensionText.getText());
@@ -141,11 +126,6 @@ public class FurcasWizardLanguagePage extends WizardPage {
         if (!projectInfo.getLanguageName().matches("\\w{3,}")) {
         	valid = false;
             setErrorMessage("Language name must be specified (no whitespace, no special chars!)");
-            return;
-        }
-        if (!projectInfo.getBasePackage().matches("\\w+[\\w\\.]*\\w+")) {
-        	valid = false;
-            setErrorMessage("Base package name must be specified (example: my.package.name)");
             return;
         }
         if (!projectInfo.getFileExtension().matches("\\w{2,6}")) {
