@@ -1,0 +1,31 @@
+package $ProjectName$.parser;
+
+import generated.Lexer;
+import generated.Parser;
+
+public class ParserFactory extends AbstractRunletParserFactory<Parser, Lexer> {
+
+    private static final String LANGUAGE_ID = "$CapLangName$";
+
+    @Override
+    public Class<Lexer> getLexerClass() {
+	return Lexer.class;
+    }
+
+    @Override
+    public Class<Parser> getParserClass() {
+	return Parser.class;
+    }
+
+    @Override
+    public String getLanguageId() {
+	return LANGUAGE_ID;
+    }
+
+	@Override
+	public Integer[] getOmittedTokensForFormatting() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}
+
