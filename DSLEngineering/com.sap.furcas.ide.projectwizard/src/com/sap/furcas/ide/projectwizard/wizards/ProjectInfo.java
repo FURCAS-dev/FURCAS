@@ -10,7 +10,6 @@ public class ProjectInfo {
     private String languageName;
     private String fileExtension;
     private String nsURI;
-    private String basePackage;
     private boolean createGeneratorProject = false;
 
     public boolean isCreateGeneratorProject() {
@@ -19,14 +18,6 @@ public class ProjectInfo {
 
     public void setCreateGeneratorProject(boolean createGeneratorProject) {
 	this.createGeneratorProject = createGeneratorProject;
-    }
-
-    public String getBasePackage() {
-	return basePackage;
-    }
-
-    public void setBasePackage(String basePackage) {
-	this.basePackage = basePackage;
     }
 
     public String getFileExtension() {
@@ -66,7 +57,7 @@ public class ProjectInfo {
     }
 
     public String getBasePath() {
-	return getBasePackage().replaceAll("\\.", "/");
+	return getProjectName().replaceAll("\\.", "/");
     }
 
 }

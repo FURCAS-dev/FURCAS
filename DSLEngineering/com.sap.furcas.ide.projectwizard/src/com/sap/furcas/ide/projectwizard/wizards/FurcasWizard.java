@@ -51,7 +51,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -60,7 +59,6 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.INewWizard;
@@ -89,6 +87,10 @@ public class FurcasWizard extends Wizard implements INewWizard
 	  public boolean lpe;
 	  public Wizard getWiz() {
 		return this;
+	  }
+	  
+	  public FurcasWizard getFurcasWizard(){
+		  return this;
 	  }
 
 
@@ -168,9 +170,12 @@ public class FurcasWizard extends Wizard implements INewWizard
    */
   protected List<String> initialObjectNames;
   
+  public ClassLoader cL;
+  
+  
   protected ImageDescriptor getDefaultImageDescriptor()
   {
-	  ClassLoader cL = this.getClass().getClassLoader();
+	  cL = this.getClass().getClassLoader();
 	  ImageDescriptor iD = null;
 	  URL url=cL.getResource("icons/furcasdeath.gif");
 	  iD=ImageDescriptor.createFromURL(url);
@@ -189,7 +194,7 @@ public class FurcasWizard extends Wizard implements INewWizard
     this.workbench = workbench;
     this.selection = selection;
     setWindowTitle(EcoreEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
-    setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(EcoreEditorPlugin.INSTANCE.getImage("full/wizban/NewEcore")));
+    setDefaultPageImageDescriptor(getDefaultImageDescriptor());
   }
 
   /**
@@ -490,21 +495,7 @@ public class FurcasWizard extends Wizard implements INewWizard
 
 
 	}
-	
-/*	  Used to see when to enable the Finish button. Has to be changed when changing the 
-	  amount of pages in the wizard.*/
-	  @Override
-	  public boolean canFinish()
-	  {
-		  IWizardPage[] pages = getPages();
-	      for (int i = 0; i < pages.length; i++) {
-	    	  if (!createmm && lpe)
-	    		  return true;
-	          if (!pages[i].isPageComplete())
-	        	  return false;
-	      }
-	      return true;
-	  }
+
 
 }
 

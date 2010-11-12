@@ -1,0 +1,7 @@
+core.project.name=$ProjectName$
+grammar=.$TCSPath$
+debug.grammar=true
+language.name=$LangName$
+language.nsURI=$URI$
+language.fileextension=$Ext$
+basepath=$BasePath$
