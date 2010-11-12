@@ -9,12 +9,10 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ocl.ecore;bundle-version="3.0.0",
  org.eclipse.jface,
  org.eclipse.emf.edit.ui,
- com.sap.emf.ocl.hiddenopposites,
  de.hpi.sam.bp2009.solution.eventManager,
  de.hpi.sam.bp2009.solution.impactAnalyzer,
  de.hpi.sam.bp2009.solution.oclToAst,
  com.sap.ocl.oppositefinder.query2,
  de.hpi.sam.bp2009.solution.queryContextScopeProvider,
- de.hpi.sam.bp2009.solution.impactAnalyzerWithHiddenOpposites,
- org.eclipse.ocl.ecore.opposites
+ de.hpi.sam.bp2009.solution.impactAnalyzerWithHiddenOpposites
 Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer.editor

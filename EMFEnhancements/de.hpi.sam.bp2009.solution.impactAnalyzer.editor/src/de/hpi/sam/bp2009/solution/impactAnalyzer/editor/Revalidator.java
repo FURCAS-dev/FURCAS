@@ -18,11 +18,19 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.ExpressionInOCL;
+import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.ecore.delegate.OCLDelegateException;
 import org.eclipse.ocl.ecore.delegate.ValidationBehavior;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
@@ -37,7 +45,8 @@ import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectDependen
 
 public class Revalidator {
     private final EventManager eventManager;
-    @SuppressWarnings("unused") // needed to hold on to event adapters to avoid their being GC'ed
+    @SuppressWarnings("unused")
+    // needed to hold on to event adapters to avoid their being GC'ed
     private final Collection<Adapter> adapters;
     private final OCLFactory oclFactory;
 
@@ -49,7 +58,8 @@ public class Revalidator {
 
     private Collection<Adapter> registerInvariants(EPackage pkg) {
         Collection<Adapter> result = new LinkedList<Adapter>();
-        final OppositeEndFinder oppositeEndFinder = new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider());
+        final OppositeEndFinder oppositeEndFinder = new Query2OppositeEndFinder(
+                new ProjectDependencyQueryContextProvider());
         for (final EClassifier cls : pkg.getEClassifiers()) {
             EAnnotation ann = cls.getEAnnotation(EcorePackage.eNS_URI);
             if (ann != null) {
@@ -57,18 +67,21 @@ public class Revalidator {
                 if (spaceSeparatedConstraintNames != null) {
                     String[] constraintNames = spaceSeparatedConstraintNames.split(" ");
                     for (final String constraintName : constraintNames) {
-                        // TODO this is slightly unclean; what if a non-standard validation domain has been used? But there is no common base interface above ValidationBehavior that lets us extract the invariant
-                        final OCLExpression invariant = ValidationBehavior.INSTANCE.getInvariant(
-                                cls, constraintName, oclFactory.createOCL(oppositeEndFinder));
-                        final ImpactAnalyzer impactAnalyzer = ImpactAnalyzerWithHiddenOppositesFactory.INSTANCE.createImpactAnalyzer(invariant,
-                                /* notifyOnNewContextElements */ true, oppositeEndFinder, oclFactory);
+                        // TODO this is slightly unclean; what if a non-standard validation domain has been used? But
+                        // there is no common base interface above ValidationBehavior that lets us extract the invariant
+                        final OCLExpression invariant = ValidationBehavior.INSTANCE.getInvariant(cls, constraintName,
+                                oclFactory.createOCL(oppositeEndFinder));
+                        final ImpactAnalyzer impactAnalyzer = ImpactAnalyzerWithHiddenOppositesFactory.INSTANCE
+                                .createImpactAnalyzer(invariant,
+                                /* notifyOnNewContextElements */true, oppositeEndFinder, oclFactory);
                         Adapter adapter = new AdapterImpl() {
                             @Override
                             public void notifyChanged(Notification msg) {
                                 // revalidate invariant on context objects that impact analysis will produce:
                                 Collection<EObject> revalidateOn = impactAnalyzer.getContextObjects(msg);
                                 if (revalidateOn != null && !revalidateOn.isEmpty()) {
-                                    new RevalidateAction(constraintName, revalidateOn, invariant, oppositeEndFinder).run();
+                                    new RevalidateAction(constraintName, revalidateOn, invariant, oppositeEndFinder)
+                                            .run();
                                 }
                             }
                         };

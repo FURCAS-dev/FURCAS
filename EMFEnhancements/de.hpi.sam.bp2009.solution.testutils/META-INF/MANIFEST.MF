@@ -7,8 +7,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.emf.ecore,
  de.hpi.sam.bp2009.ngpm,
  org.eclipse.ocl.ecore,
- org.eclipse.ocl.ecore.opposites,
- com.sap.emf.ocl.hiddenopposites,
  de.hpi.sam.bp2009.solution.oclToAst,
  de.hpi.sam.bp2009.company,
  org.junit4;bundle-version="4.8.1"

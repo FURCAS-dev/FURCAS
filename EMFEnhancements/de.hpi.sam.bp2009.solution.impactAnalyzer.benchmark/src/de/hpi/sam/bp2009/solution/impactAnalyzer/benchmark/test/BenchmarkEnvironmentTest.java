@@ -25,11 +25,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
 import org.junit.Test;
-
-import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
-import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.PathOptions;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.ProcessingOptions;
@@ -104,8 +102,8 @@ public class BenchmarkEnvironmentTest extends TestCase {
     }
 
     private void evaluate(Resource fullSizeModel, OCLExpressionWithContext expression, RawNotification rawNoti) {
-	OCL ocl = OCLWithHiddenOpposites.newInstance();
-	ocl = OCLWithHiddenOpposites.newInstance(((EcoreEnvironmentFactoryWithHiddenOpposites) ocl.getEnvironment().getFactory()).
+	OCL ocl = OCL.newInstance();
+	ocl = OCL.newInstance(((EcoreEnvironmentFactory) ocl.getEnvironment().getFactory()).
 	        createPackageContext(ocl.getEnvironment(), expression.getOclWithPackage().getPackage()));
 
 	EClass context = expression.getContext();

@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.VariableExp;
@@ -224,4 +225,18 @@ public class FindAlwaysUsedVariablesVisitor extends AbstractVisitor<Set<Variable
         return super.visitExpressionInOCL(expression);
     }
 
+    protected Set<VariableExp> handleOppositePropertyCallExp(OppositePropertyCallExp callExp, Set<VariableExp> sourceResult) {
+        return sourceResult;
+    }
+
+    /**
+     * Visits the property-call source and then its qualifiers (if any). Returns the result of
+     * {@link #handlePropertyCallExp(PropertyCallExp, Object, List)}.
+     */
+    public Set<VariableExp> visitOppositePropertyCallExp(OppositePropertyCallExp callExp) {
+        // source is null when the property call expression is an
+        // association class navigation qualifier
+        Set<VariableExp> sourceResult = safeVisit(callExp.getSource());
+        return handleOppositePropertyCallExp(callExp, sourceResult);
+    }
 }

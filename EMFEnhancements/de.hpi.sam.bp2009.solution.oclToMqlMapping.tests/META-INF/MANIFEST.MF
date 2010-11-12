@@ -11,7 +11,6 @@ Require-Bundle: org.eclipse.emf.ecore,
  de.hpi.sam.bp2009.ngpm,
  de.hpi.sam.bp2009.company,
  org.junit4,
- com.sap.emf.ocl.hiddenopposites,
  org.eclipse.emf.query.index,
  org.eclipse.emf.query.index.ui
 Import-Package: company,

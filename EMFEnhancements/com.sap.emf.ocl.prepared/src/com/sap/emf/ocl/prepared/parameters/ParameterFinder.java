@@ -8,15 +8,21 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.ecore.CallOperationAction;
+import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.ocl.expressions.EnumLiteralExp;
 import org.eclipse.ocl.expressions.IntegerLiteralExp;
 import org.eclipse.ocl.expressions.LiteralExp;
 import org.eclipse.ocl.expressions.RealLiteralExp;
 import org.eclipse.ocl.expressions.StringLiteralExp;
-
-import com.sap.emf.ocl.hiddenopposites.AbstractVisitorWithHiddenOpposites;
+import org.eclipse.ocl.utilities.AbstractVisitor;
 
 /**
  * Finds values in the symbol specification of the literal expressions in an {@link OCLExpression} by
@@ -27,7 +33,7 @@ import com.sap.emf.ocl.hiddenopposites.AbstractVisitorWithHiddenOpposites;
  * @author Axel Uhl (D043530)
  *
  */
-public class ParameterFinder extends AbstractVisitorWithHiddenOpposites<Map<Object, Parameter<?>>> {
+public class ParameterFinder extends AbstractVisitor<Map<Object, Parameter<?>>, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> {
     private Set<Object> parameterValuesToFindInLiterals;
     private ParameterFactory paramFactory = ParameterFactory.INSTANCE;
 

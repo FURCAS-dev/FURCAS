@@ -26,12 +26,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
-
-import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
-import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
@@ -99,10 +97,10 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     		}
     	}
 
-    	setOcl(OCLWithHiddenOpposites.newInstance(getOppositeEndFinder()));
+    	setOcl(OCL.newInstance(getOppositeEndFinder()));
 
 	if(expression.getOclWithPackage() != null){
-	    setOcl(OCLWithHiddenOpposites.newInstance( ((EcoreEnvironmentFactoryWithHiddenOpposites) getOcl().getEnvironment().getFactory()).
+	    setOcl(OCL.newInstance( ((EcoreEnvironmentFactory) getOcl().getEnvironment().getFactory()).
 		    createPackageContext(getOcl().getEnvironment(), expression.getOclWithPackage().getPackage())));
 	}
 

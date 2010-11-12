@@ -36,6 +36,7 @@ import org.eclipse.ocl.expressions.LetExp;
 import org.eclipse.ocl.expressions.MessageExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.RealLiteralExp;
 import org.eclipse.ocl.expressions.StateExp;
@@ -300,4 +301,15 @@ public class ContextTypeRetriever extends AbstractVisitor<EClass, EClassifier, E
             return result;
     }
 
+    @Override
+    public EClass visitOppositePropertyCallExp(OppositePropertyCallExp<EClassifier, EStructuralFeature> callExp) {
+        if (result == null) {
+            // source is null when the property call expression is an
+            // association class navigation qualifier
+            safeVisit(callExp.getSource());
+            return result;
+        } else {
+            return result;
+        }
+    }
 }
