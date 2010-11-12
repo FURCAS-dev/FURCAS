@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="Stylesheet" type="text/css" href="doc.css" />
+<title>Parsing OCL Documents</title>
+</head>
+<body>
+<h1>Parsing OCL Documents</h1>
+<p>
+As we saw in the "<a href="parsingConstraints.html">Parsing Constraints and Queries</a>"
+topic, the OCL parser provides an
+<a href="../javadoc/org/eclipse/ocl/helper/OCLHelper.html"><em class="CodeName">OCLHelper</em></a>
+API for parsing constraints embedded in models.  OCL also permits constraints
+to be specified in a text document, as an adjunct to the model.  In this case,
+the concrete syntax for context declarations indicates the context of
+constraints, equivalent to their placement in models.
+</p>
+<p>
+As an example, consider the following document:
+</p>
+<pre class="Code">
+<b>package</b> extlibrary
+
+<b>context</b> Library
+<i>-- get all books with a title in a library and its branches (recursively)</i>
+<b>def</b>: getBooks(title : String) : Set(Book) =
+    books-&gt;select(b | b.title = title)-&gt;asSet()-&gt;union(
+        branches.getBooks(title))
+
+<b>context</b> Book
+<i>-- the library containing a book</i>
+<b>def</b>: library : Library = Library.allInstances()-&gt;any(books-&gt;includes(self))
+
+<i>-- book titles are unique within their library branch (and its sub-branches)</i>
+<b>inv</b> unique_title: not library.oclIsUndefined() implies
+     library.getBooks(title) = Set{self})
+ 
+<b>endpackage</b>
+</pre>
+
+<h2>The OCL Input</h2>
+<p>
+The <a href="../javadoc/org/eclipse/ocl/OCLInput.html"><em class="CodeName">OCLInput</em></a>
+class encapsulates an OCL document.  An input can be created from a string or an
+input stream.
+</p>
+
+<blockquote>
+	<img src="images/input.png" alt="Core OCL Document API"/><br/>
+	<font size="-2">[<a target="_blank" href="images/input.svg">as SVG</a>]</font>
+</blockquote>
+
+<p>
+Given an <em class="CodeName">OCLInput</em>, simply ask an <em class="CodeName">OCL</em>
+to parse it:
+</p>
+<pre class="Code">
+OCL&lt;?, EClassifier, ?, ?, ?, ?, ?, ?, ?, Constraint, EClass, EObject&gt; ocl;
+ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
+
+// get an OCL text file via some hypothetical API
+IFile file = getWorkspaceFile("/ocl/constraints.ocl");
+
+InputStream in = file.getContents();
+
+Map&lt;String, Constraint&gt; constraintMap = new HashMap&lt;String, Constraint&gt;();
+
+// parse the contents as an OCL document
+try {
+    OCLInput document = new <b>OCLInput</b>(in, file.getCharset());
+    
+    List&lt;Constraint&gt; constraints = ocl.<b>parse</b>(input);
+    for (Constraint next : constraints) {
+        constraintMap.put(next.getName(), next);
+        
+        OCLExpression&lt;EClassifier&gt; body = next.getSpecification().getBodyExpression();
+        System.out.printf("%s: %s%n", next.getName(), body);
+    }
+} finally {
+    in.close();
+}
+</pre>
+
+<h2>Accessing the Constraints</h2>
+
+<p>
+The <em class="CodeName">OCL</em> returns the list of constraints if they were
+successfully parsed.  They are retained by the OCL (available via the
+<em class="CodeName">getConstraints()</em> method at any time), and in particular,
+any definitions of additional operations or attributes are available for
+subsequent constraint parsing.  Any number of OCL documents may be parsed by
+the same <em class="CodeName">OCL</em> instance, combined also with constraints
+parsed by <em class="CodeName">OCLHelpers</em>.  All of these constraints are
+retained by the <em class="CodeName">OCL</em> environment.
+</p>
+<pre class="Code">
+Library library = getLibrary();  // get library from a hypothetical source
+
+OCLHelper&lt;EClassifier, ?, ?, Constraint&gt; helper = ocl.createOCLHelper();
+
+// use the constraints defined in the OCL document
+
+// use the getBooks() additional operation to find a book
+helper.setContext(EXTLibraryPackage.Literals.LIBRARY);
+OCLExpression&lt;EClassifier&gt; query = helper.createQuery(
+    "getBooks('Bleak House')-&gt;asSequence()-&gt;first()");
+
+Book book = (Book) ocl.evaluate(library, query);
+System.out.printf("Got book: %s%n", book);
+
+// use the unique_title constraint to validate the book
+System.out.printf("Validate book: %b%n",
+    ocl.check(book, constraintMap.get("unique_title"));
+</pre>
+
+<hr/>
+
+<p>
+<a href="http://www.eclipse.org/legal/epl-v10.html">Copyright (c) 2000, 2007 IBM Corporation and others. All Rights Reserved.</a>
+</p>
+</body>
+</html>

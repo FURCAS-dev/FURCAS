@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id: plugin.xml,v 1.1 2010/03/11 13:57:45 ewillink Exp $
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.ocl.examples.editor.presentation.EditorModelWizardID"
+            name="%_UI_EditorModelWizard_label"
+            class="org.eclipse.ocl.examples.editor.presentation.EditorModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/EditorModelFile.gif">
+         <description>%_UI_EditorModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="org.eclipse.ocl.examples.editor.presentation.EditorEditorID"
+            name="%_UI_EditorEditor_label"
+            icon="icons/full/obj16/EditorModelFile.gif"
+            extensions="editor"
+            class="org.eclipse.ocl.examples.editor.presentation.EditorEditor"
+            contributorClass="org.eclipse.ocl.examples.editor.presentation.EditorActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.ocl.ecore.tests/src"
+    modelPluginID="org.eclipse.ocl.ecore.tests" modelName="Company" nonNLSMarkers="true"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false">
+  <foreignModel>NoReflectionCompany.ecore</foreignModel>
+  <genPackages prefix="Noreflectioncompany" disposableProviderFactory="true" ecorePackage="NoReflectionCompany.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="NoReflectionCompany.ecore#//CompanySizeKind">
+      <genEnumLiterals ecoreEnumLiteral="NoReflectionCompany.ecore#//CompanySizeKind/small"/>
+      <genEnumLiterals ecoreEnumLiteral="NoReflectionCompany.ecore#//CompanySizeKind/medium"/>
+      <genEnumLiterals ecoreEnumLiteral="NoReflectionCompany.ecore#//CompanySizeKind/large"/>
+    </genEnums>
+    <genClasses ecoreClass="NoReflectionCompany.ecore#//Company">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute NoReflectionCompany.ecore#//Company/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference NoReflectionCompany.ecore#//Company/employees"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute NoReflectionCompany.ecore#//Company/size"/>
+      <genOperations ecoreOperation="NoReflectionCompany.ecore#//Company/dummyInvariant">
+        <genParameters ecoreParameter="NoReflectionCompany.ecore#//Company/dummyInvariant/diagnostics"/>
+        <genParameters ecoreParameter="NoReflectionCompany.ecore#//Company/dummyInvariant/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="NoReflectionCompany.ecore#//Employee">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute NoReflectionCompany.ecore#//Employee/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference NoReflectionCompany.ecore#//Employee/manager"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference NoReflectionCompany.ecore#//Employee/company"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference NoReflectionCompany.ecore#//Employee/directReports"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference NoReflectionCompany.ecore#//Employee/allReports"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference NoReflectionCompany.ecore#//Employee/reportingChain"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute NoReflectionCompany.ecore#//Employee/hasNameAsAttribute"/>
+      <genOperations ecoreOperation="NoReflectionCompany.ecore#//Employee/reportsTo">
+        <genParameters ecoreParameter="NoReflectionCompany.ecore#//Employee/reportsTo/manager"/>
+      </genOperations>
+      <genOperations ecoreOperation="NoReflectionCompany.ecore#//Employee/noManagerImpliesDirectReports">
+        <genParameters ecoreParameter="NoReflectionCompany.ecore#//Employee/noManagerImpliesDirectReports/diagnostics"/>
+        <genParameters ecoreParameter="NoReflectionCompany.ecore#//Employee/noManagerImpliesDirectReports/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="NoReflectionCompany.ecore#//Employee/hasNameAsOperation"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

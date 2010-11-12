@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id: plugin.xml,v 1.1 2010/03/11 14:08:48 ewillink Exp $
+-->
+
+<plugin>
+
+  <extension point="org.eclipse.ui.editors">
+    <editor id = "org.eclipse.ocl.examples.modelregistry.presentation.ModelRegistryEditorID"
+        name = "%_UI_ModelRegistryEditor_label"
+        icon = "icons/full/obj16/ModelRegistryModelFile.gif"
+        extensions = "modelregistry"
+        class = "org.eclipse.ocl.examples.modelregistry.presentation.ModelRegistryEditor" 
+        contributorClass="org.eclipse.ocl.examples.modelregistry.presentation.ModelRegistryActionBarContributor"/>
+  </extension>    
+</plugin>

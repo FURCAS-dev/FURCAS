@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+    <extension
+            point="org.eclipse.ui.editors">
+        <editor
+            class="org.eclipse.ocl.examples.xtext.oclstdlib.ui.OCLstdlibExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+            contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
+            default="true"
+            extensions="oclstdlib"
+            id="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib"
+            name="%MF_OCLstdlibEditor">
+        </editor>
+    </extension>
+    <extension
+        point="org.eclipse.ui.handlers">
+        <handler
+            class="org.eclipse.ocl.examples.xtext.oclstdlib.ui.OCLstdlibExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
+            commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
+            <activeWhen>
+                <reference
+                    definitionId="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib.Editor.opened">
+                </reference>
+            </activeWhen>
+        </handler>
+        <handler
+            class="org.eclipse.ocl.examples.xtext.oclstdlib.ui.OCLstdlibExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
+            commandId="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib.validate">
+         <activeWhen>
+            <reference
+                    definitionId="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib.Editor.opened">
+            </reference>
+         </activeWhen>
+      </handler>
+    </extension>
+    <extension point="org.eclipse.core.expressions.definitions">
+        <definition id="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib.Editor.opened">
+            <and>
+                <reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
+                <with variable="activeEditor">
+                    <test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
+                        value="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib" 
+                        forcePluginActivation="true"/>
+                </with>        
+            </and>
+        </definition>
+    </extension>
+    <extension
+            point="org.eclipse.ui.preferencePages">
+        <page
+            class="org.eclipse.ocl.examples.xtext.oclstdlib.ui.OCLstdlibExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            id="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib"
+            name="%MF_OCLstdlib">
+            <keywordReference id="org.eclipse.ocl.examples.xtext.oclstdlib.ui.keyword_OCLstdlib"/>
+        </page>
+        <page
+            category="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib"
+            class="org.eclipse.ocl.examples.xtext.oclstdlib.ui.OCLstdlibExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
+            id="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib.coloring"
+            name="%MF_SyntaxColoring">
+            <keywordReference id="org.eclipse.ocl.examples.xtext.oclstdlib.ui.keyword_OCLstdlib"/>
+        </page>
+        <page
+            category="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib"
+            class="org.eclipse.ocl.examples.xtext.oclstdlib.ui.OCLstdlibExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
+            id="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib.templates"
+            name="%MF_Templates">
+            <keywordReference id="org.eclipse.ocl.examples.xtext.oclstdlib.ui.keyword_OCLstdlib"/>
+        </page>
+    </extension>
+    <extension
+        point="org.eclipse.ui.keywords">
+        <keyword
+            id="org.eclipse.ocl.examples.xtext.oclstdlib.ui.keyword_OCLstdlib"
+            label="%MF_OCLstdlib"/>
+    </extension>
+    <extension
+         point="org.eclipse.ui.commands">
+      <command
+            description="%MF_TriggerExpensiveValidation"
+            id="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib.validate"
+            name="%MF_Validate">
+      </command>
+    </extension>
+    <extension point="org.eclipse.ui.menus">
+        <menuContribution
+            locationURI="popup:#TextEditorContext?after=group.edit">
+             <command
+                 commandId="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib.validate"
+                 style="push"
+                 tooltip="%MF_TriggerExpensiveValidation">
+            <visibleWhen checkEnabled="false">
+                <reference
+                    definitionId="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib.Editor.opened">
+                </reference>
+            </visibleWhen>
+         </command>  
+         </menuContribution>
+    </extension>
+    <extension point="org.eclipse.ui.menus">
+		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">
+			<command commandId="org.eclipse.xtext.ui.editor.FindReferences">
+				<visibleWhen checkEnabled="false">
+                	<reference definitionId="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib.Editor.opened">
+                	</reference>
+            	</visibleWhen>
+			</command>
+		</menuContribution>
+	</extension>
+	<extension point="org.eclipse.ui.handlers">
+	    <handler
+            class="org.eclipse.ocl.examples.xtext.oclstdlib.ui.OCLstdlibExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
+            commandId="org.eclipse.xtext.ui.editor.FindReferences">
+            <activeWhen>
+                <reference
+                    definitionId="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib.Editor.opened">
+                </reference>
+            </activeWhen>
+        </handler>
+    </extension>   
+
+<!-- adding resource factories -->
+
+	<extension
+		point="org.eclipse.emf.ecore.extension_parser">
+		<parser
+			class="org.eclipse.ocl.examples.xtext.oclstdlib.ui.OCLstdlibExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
+			type="oclstdlib">
+		</parser>
+	</extension>
+	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
+        <resourceServiceProvider
+            class="org.eclipse.ocl.examples.xtext.oclstdlib.ui.OCLstdlibExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
+            uriExtension="oclstdlib">
+        </resourceServiceProvider>
+    </extension>
+
+
+
+
+	<!-- Quick Outline -->
+	<extension
+		point="org.eclipse.ui.handlers">
+		<handler 
+			class="org.eclipse.ocl.examples.xtext.oclstdlib.ui.OCLstdlibExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
+			commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline">
+			<activeWhen>
+				<reference
+					definitionId="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib.Editor.opened">
+				</reference>
+			</activeWhen>
+		</handler>
+	</extension>
+	<extension
+		point="org.eclipse.ui.commands">
+		<command
+			description="%MF_OpenQuickOutline"
+			id="org.eclipse.xtext.ui.editor.outline.QuickOutline"
+			name="%MF_QuickOutline">
+		</command>
+	</extension>
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution
+			locationURI="popup:#TextEditorContext?after=group.open">
+			<command commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline"
+				style="push"
+				tooltip="%MF_OpenQuickOutline">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib.Editor.opened"/>
+				</visibleWhen>
+			</command>
+		</menuContribution>
+	</extension>
+   <!-- quickfix marker resolution generator -->
+   <extension
+         point="org.eclipse.ui.ide.markerResolution">
+      <markerResolutionGenerator
+            class="org.eclipse.ocl.examples.xtext.oclstdlib.ui.OCLstdlibExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator">
+      </markerResolutionGenerator>
+   </extension>
+
+</plugin>

@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Editor Model Semantics</title>
+</head><body lang="EN-US">
+<h1>Editor Model Semantics</h1>
+ 
+<h2>EditorDefinition</h2>
+The EditorDefinition defines the configurable behavior of the editor.
+<h3>name : String[1]</h3>
+The name of the language for which this editor model applies.
+<br>
+This name is not currently used.
+<br>
+It should be the same as the IMP language name.
+
+<h3>extends : EditorDefinition[*]</h3>
+Editor definitions can be re-used by specifying that an editor definition extends
+other editor definitions.
+<br>
+The first defining node discovered during a depth-first search occludes all
+other definitions. So definition in this model overrides all others and
+definitions in a first extends override a second extend.
+<br>
+This should be persisted as a <tt>platform:/...</tt> reference to ensure that
+it is resolvable when used.
+
+<h3>node : AbstractNode[*]</h3>
+The AST or CST node classes for which editing behavior is defined. 
+
+<h2>AbstractNode</h2>
+An AbstractNode defines the configurable behavior of a particular class
+of AST or CST node. Derived AbstractNodes support identification of that
+class by its Ecore classifier (EcoreNode) or Java class name (JavaNode).
+
+<h3>base : AbstractNode[*]</h3>
+Node definitions can be re-used by specifying that a node definition extends
+other node definitions.
+<br>
+The first defining node discovered during a depth-first search occludes all
+other definitions. So definition in this node overrides all others and
+definitions in a first base overrides a second base.
+
+<h3>behavior : Behavior[*]</h3>
+The editing behaviors defined for the node.
+
+<h2>EcoreNode extends AbstractNode</h2>
+An JavaNode defines the behavior of an AST or CST node according to
+the its Ecore EClassifier. 
+
+<h3>element : EClassifier[1]</h3>
+The Ecore classifier.
+
+<h2>JavaNode extends AbstractNode</h2>
+A JavaNode defines the behavior of an AST or CST node according to
+its Java class name. This is necessary for non-Ecore modelled nodes
+such as IFile, Resource and ResourceSet.
+
+<h3>name : String[1]</h3>
+The Java class name.
+<p>
+Example: <tt>org.eclipse.emf.ecore.resource.ResourceSet</tt>
+
+<h2>Behavior</h2>
+Derived behaviors configure an editing behavior of a particular
+class of AST or CST node.
+
+<h2>FoldingBehavior extends Behavior</h2>
+A paragraph folding icon is shown at the top line of every CST node
+for which the most derived AbstractNode exists and has a FoldingBehavior.
+
+<h2>LabelBehavior extends Behavior</h2>
+The Label icon and text of an AST or CST node within an Outline display is
+configured by the most derived AbstractNode for the AST or CST node class.
+<br>
+The text LabelBehavior may be used recursively.
+
+<h3>image : String[?]</h3>
+The workspace-relative name of a file to be accompany the label.
+<br>
+This should usually be the name of an icon in the associated model edit
+plug-in to ensure that icons are re-used between standard and custom
+Ecore editors.
+<p>
+Example: <tt>/org.eclipse.emf.edit/icons/full/obj16/ResourceSet.gif</tt>
+<p>
+This attribute is ignored if the imageProvider is non-null and provides
+a non-null image.
+
+<h3>imageProvider : ImageProvider[?]</h3>
+A provider for the workspace-relative name of a file to be accompany the label.
+<br>
+A custom class can be provided to make a data-dependent image selection.
+
+<h3>format : String[1]</h3>
+The java.text.MessageFormat format string. 
+<br>
+Braces surround the 0-based index of the value of an associated elements.
+<p>
+Example: <tt>{0} = {1}</tt>
+
+<h3>elements : AbstractLabelElement[*]</h3>
+Each element provides the text for one format argument.
+
+<h2>OutlineBehavior extends Behavior</h2>
+The immediate children within an Outline display may be
+configured by the most derived AbstractNode for the AST or CST node class.
+
+</body></html>

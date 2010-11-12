@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="OCL Developer Guide">
+	<anchor id="overviews-before" />
+	<topic label="Programmer&apos;s Guide">
+		<topic label="OCL Overview" href="references/overview/OCLOverview.html" />
+		<topic label="Parsing Constraints and Queries" href="references/overview/parsingConstraints.html" />
+		<topic label="Evaluating Constraints and Queries" href="references/overview/evaluatingConstraints.html" />
+		<topic label="Parsing OCL Documents" href="references/overview/parsingDocuments.html" />
+		<topic label="OCL Relationship to Metamodels" href="references/overview/targetMetamodels.html" />
+		<topic label="Content Assist Support" href="references/overview/contentAssist.html" />
+		<topic label="OCL Abstract Syntax Model" href="references/overview/abstractSyntax.html" />
+		<topic label="Advanced Topics">
+			<topic label="Customizing the Environment" href="references/overview/advanced/customization.html" />
+			<topic label="OCL Persistence" href="references/overview/advanced/persistence.html" />
+			<topic label="Creating Metamodel Bindings" href="references/overview/advanced/metamodelBindings.html" />
+		</topic>
+	</topic>
+	<anchor id="overviews-after" />
+
+	<anchor id="tutorial-before" />
+	<topic label="Tutorials">	
+		<topic label="OCLinEcore Tutorial" href="tutorials/oclinecore/oclInEcoreTutorial.html" />	
+		<topic label="OCL Interpreter Tutorial" href="tutorials/oclInterpreterTutorial.html" />
+	</topic>
+	<anchor id="tutorial-after" />
+
+	<anchor id="example-guide-before" />
+	<topic label="Examples Guide">	
+		<topic label="OCL Interpreter Example" href="references/examples/oclInterpreterExample.html" />	
+	</topic>
+	<anchor id="example-guide-after" />
+	
+	<anchor id="reference-before" />
+	<topic label="Reference">
+		<link toc="topics_Reference.xml"/>
+		<anchor id="reference-ext-pt-before" />
+		<topic label="Extension Points Reference">
+			<topic label="org.eclipse.ocl.environments" href="references/extension-points/org_eclipse_ocl_environments.html" />
+		</topic>
+		<anchor id="reference-ext-pt-after" />
+		<anchor id="other-reference"/>
+	</topic>
+	<anchor id="reference-after" />
+</toc>

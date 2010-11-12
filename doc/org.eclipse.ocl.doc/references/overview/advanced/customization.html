@@ -1,0 +1,360 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="Stylesheet" type="text/css" href="../doc.css" />
+<title>Customizing the Environment</title>
+</head>
+<body>
+<h1>Customizing the Environment</h1>
+<p>
+An application that integrates OCL may find it advantageous to provide its users with an
+enhanced OCL environment, to simplify their task of formulating OCL constraints and queries.
+For example, an application might define additional "primitive" operations on the OCL
+standard data types that are pertinent to its domain, or "global" variables that inject
+useful objects into the user's context. It is also possible to customize the way
+"hidden" opposites are looked up and navigated, specifically to allow reverse navigation
+across Ecore references that have no opposite defined.
+</p>
+
+<h2>Defining Global Variables</h2>
+
+<p>
+Consider an application that allows end-users to specify conditions, using OCL, to filter
+the objects that are shown in the user interface.  Given a sufficiently rich model
+(expressed in Ecore or UML) of the objects that the UI presents, many conditions can be
+expressed entirely in terms of this model.  However, some queries might depend on state
+of the application, itself, not the data:  which perspective is active, whether some view
+is showing, or even the time of day.  These are not characteristics of the objects that the
+user wishes to filter.
+</p><p>
+Such an application might, then, choose to define application-specific variables that a
+filter condition can query:  <em class="CodeName">app$perspective</em>,
+<em class="CodeName">app$views</em>, <em class="CodeName">app$time</em>.  Or, perhaps a
+single variable <em class="CodeName">app$</em>, that has properties that a condition
+can access:
+</p>
+<pre class="Code">
+-- filter out OCL files in the Web Development perspective
+self.extension = 'ocl' and app$.perspective = 'Web Development'
+</pre>
+<p>
+To do this, we define a small Ecore model of our application context, e.g.:
+</p>
+<blockquote>
+	<img src="../images/appcontext.png" alt="Application Context Model"/>
+</blockquote>
+<p>
+Then, in the code that parses a user's filter condition:
+</p>
+<pre class="Code">
+OCL&lt;?, EClassifier, ?, ?, ?, ?, ?, ?, ?, Constraint, EClass, EObject&gt; ocl;
+ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
+
+OCLHelper&lt;EClassifier, ?, ?, Constraint&gt; helper = ocl.createOCLHelper();
+helper.setContext(MyPackage.Literals.FILE);
+
+// create a variable declaring our global application context object
+Variable&lt;EClassifier, EParameter&gt; appContextVar =
+        ExpressionsFactory.eINSTANCE.<b>createVariable</b>();
+appContextVar.setName(<b>"app$"</b>);
+appContextVar.setType(AppPackage.Literals.APP_CONTEXT);
+
+// add it to the global OCL environment
+ocl.getEnvironment().<b>addElement</b>(appContextVar.getName(), appContextVar, true);
+
+List&lt;Constraint&gt; conditions = new ArrayList&lt;Constraint&gt;();
+
+// parse the user's filter conditions
+for (String cond : getFilterConditions()) {
+    conditions.add(helper.<b>createInvariant</b>(cond));
+}
+
+// apply the filters
+applyFilters(conditions);
+</pre>
+<p>
+The body of our hypothetical <em class="CodeName">applyFilters()</em> method must bind this
+context variable to a value.  In this case, the value can be computed when we apply the
+filters:
+</p>
+<pre class="Code">
+AppContext appContext = AppFactory.eINSTANCE.<b>createAppContext</b>();
+
+// hypothetical workbench utilities
+appContext.<b>setPerspective</b>(WorkbenchUtil.getCurrentPerspective());
+appContext.<b>getViews</b>().addAll(WorkbenchUtil.getOpenViewIDs());
+appContext.<b>setTime</b>(new Date());
+
+List&lt;Query&lt;EClassifier, EClass, EObject&gt;&gt; queries =
+        new ArrayListlt;Query&lt;EClassifier, EClass, EObject&gt;&gt;(constraints.size());
+
+for (Constraint next : constraints) {
+    Query&lt;EClassifier, EClass, EObject&gt; query = ocl.createQuery(next);
+
+    // bind the variable value
+    query.getEvaluationEnvironment().<b>add</b>(<b>"app$"</b>, appContext());
+    
+    queries.add(query);
+}
+
+filter(queries);  // applies these filters to the current objects by evaluating
+                  // the OCLS on them.
+</pre>
+ 
+<h2>Defining Helper Operations in Java</h2>
+
+<p>
+OCL allows the definition of additional operations and attributes using
+<em class="CodeName">def:</em> expressions.  This is very convenient for the formulation
+of constraints, but what if the operation that we need is something like a regex pattern
+match?
+</p>
+
+<pre class="Code">
+class Person
+inv valid_ssn: self.ssn.<b>regexMatch</b>('\d{3}-\d{3}-\d{3}') &lt;&gt; <b>null</b>
+</pre>
+
+<p>
+We might try to define this using OCL, as an additional operation on the OCL Standard
+Library's <em class="CodeName">String</em> primitive type:
+</p>
+
+<pre class="Code">
+class String
+def: regexMatch(pattern : String) : String =
+    -- ???
+</pre>
+
+<p>
+The operations available in the OCL Standard Library simply are not sufficient to express
+the value of this operation, which should return the substring matching a regex pattern or
+<em class="CodeName">null</em> if the pattern does not match.  We need to implement this
+operation in Java.  We can do that by creating a custom <em class="CodeName">Environment</em>
+that knows how to look up this operation, and an <em class="CodeName">EvaluationEnvironment</em>
+that knows how it is implemented.
+</p>
+<p>
+First, let's start by defining a specialization of the
+<a href="../../javadoc/org/eclipse/ocl/ecore/EcoreEnvironment.html"><em class="CodeName">EcoreEnvironment</em></a>.
+The constructor that is used to initialize the root environment of an <em class="CodeName">OCL</em>
+instance will add our <em class="CodeName">regexMatch</em> additional operation to the
+<em class="CodeName">String</em> primitive type.  The constructor that is used to create
+nested environments copies the operation from its parent.
+</p>
+<pre class="Code">
+class MyEnvironment extends EcoreEnvironment {
+    EOperation regexMatch;
+    
+    // this constructor is used to initialize the root environment
+    MyEnvironment(EPackage.Registry registry) {
+        super(registry);
+        
+        <b>defineCustomOperations</b>();
+    }
+    
+    // this constructor is used to initialize child environments
+    MyEnvironment(MyEnvironment parent) {
+        super(parent);
+        
+        // get the parent's custom operations
+        regexMatch = parent.regexMatch;
+    }
+	
+	// override this to provide visibility of the inherited protected method
+    @Override
+    protected void setFactory(
+            EnvironmentFactory&lt;EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject&gt; factory) {
+        super.setFactory(factory);
+    }
+    
+    // use the AbstractEnvironment's mechanism for defining "additional operations"
+    // to add our custom operation to OCL's String primitive type
+    private void defineCustomOperations() {
+        // pattern-matching operation
+        regexMatch = EcoreFactory.eINSTANCE.<b>createEOperation</b>();
+        regexMatch.setName(<b>"regexMatch"</b>);
+        regexMatch.setEType(<b>getOCLStandardLibrary().getString()</b>);
+        EParameter parm = EcoreFactory.eINSTANCE.createEParameter();
+        parm.setName("pattern");
+        parm.setEType(getOCLStandardLibrary().getString());
+        regexMatch.getEParameters().add(parm);
+        
+        // annotate it so that we will recognize it in the evaluation environment
+        EAnnotation annotation = EcoreFactory.eINSTANCE.createEAnnotation();
+        annotation.setSource(<b>"MyEnvironment"</b>);
+        regexMatch.getEAnnotations().<b>add</b>(annotation);
+        
+        // define it as an additional operation on OCL String
+        <b>addOperation(getOCLStandardLibrary().getString(), regexMatch)</b>;
+    }
+}
+</pre>
+<p>
+Next, we will define the corresponding specialization of the
+<a href="../../javadoc/org/eclipse/ocl/ecore/EcoreEvaluationEnvironment.html"><em class="CodeName">EcoreEvaluationEnvironment</em></a>
+that will know how to evaluate calls to this custom operation:
+</p>
+<pre class="Code">
+class MyEvaluationEnvironment extends EcoreEvaluationEnvironment {
+    MyEvaluationEnvironment() {
+        super();
+    }
+
+    MyEvaluationEnvironment(
+            EvaluationEnvironment&lt;EClassifier, EOperation, EStructuralFeature, EClass, EObject&gt; parent) {
+        super(parent);
+    }
+    
+    public Object callOperation(EOperation operation, int opcode, Object source, Object[] args) {
+        if (operation.<b>getEAnnotation("MyEnvironment")</b> == null) {
+            // not our custom regex operation
+            return super.callOperation(operation, opcode, source, args);
+        }
+        
+        if (<b>"regexMatch"</b>.equals(operation.getName())) {
+            Pattern pattern = Pattern.compile((String) args[0]);
+            Matcher matcher = pattern.matcher((String) source);
+            
+            return <b>matcher.matches()? matcher.group() : null</b>;
+        }
+        
+        throw new UnsupportedOperationException();  // unknown operation
+    }
+}
+</pre>
+<p>
+Finally, we define a specialization of the
+<a href="../../javadoc/org/eclipse/ocl/ecore/EcoreEnvironmentFactory.html"><em class="CodeName">EcoreEnvironmentFactory</em></a>
+that creates our custom environments:
+</p>
+<pre class="Code">
+class MyEnvironmentFactory extends EcoreEnvironmentFactory {
+    public Environment&lt;EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject&gt;
+    createEnvironment() {
+        MyEnvironment result = new <b>MyEnvironment</b>(getEPackageRegistry());
+        result.setFactory(this);
+        return result;
+    }
+    
+    public Environment&lt;EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject&gt;
+    createEnvironment(Environment&lt;EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject&gt; parent) {
+        if (!(parent instanceof MyEnvironment)) {
+            throw new IllegalArgumentException(
+                "Parent environment must be my environment: " + parent);
+        }
+        
+        MyEnvironment result = new <b>MyEnvironment</b>((MyEnvironment) parent);
+        result.setFactory(this);
+        return result;
+    }
+
+    public EvaluationEnvironment&lt;EClassifier, EOperation, EStructuralFeature, EClass, EObject&gt;
+    createEvaluationEnvironment() {
+        return new <b>MyEvaluationEnvironment</b>();
+    }
+
+    public EvaluationEnvironment&lt;EClassifier, EOperation, EStructuralFeature, EClass, EObject&gt;
+    createEvaluationEnvironment(
+            EvaluationEnvironment&lt;EClassifier, EOperation, EStructuralFeature, EClass, EObject&gt; parent) {
+        return new <b>MyEvaluationEnvironment</b>(parent);
+    }
+}
+</pre>
+<p>
+Now, we can use our environment to parse the kind of expression that we were looking for:
+</p>
+<pre class="Code">
+OCL&lt;?, EClassifier, ?, ?, ?, ?, ?, ?, ?, Constraint, EClass, EObject&gt; ocl;
+ocl = OCL.newInstance(new <b>MyEnvironmentFactory</b>());
+
+OCLHelper&lt;EClassifier, ?, ?, Constraint&gt; helper = ocl.createOCLHelper();
+helper.setContext(MyPackage.Literals.PERSON);
+
+// double the '\' to escape it in a Java string literal
+Constraint validSSN = helper.createInvariant(
+        "self.ssn.<b>regexMatch</b>('\\d{3}-\\d{3}-\\d{3}') &lt;&gt; <b>null</b>");
+        
+Person person = getPersonToValidate();
+
+System.out.printf("%s valid SSN: %b%n", person, ocl.<b>check</b>(person, validSSN));
+</pre>
+
+<h2>Customizing "Hidden" Opposite Lookup and Navigation</h2>
+
+<p>
+The default <a href="../../javadoc/org/eclipse/ocl/ecore/EcoreEnvironmentFactory.html"><em class="CodeName">EcoreEnvironmentFactory</em></a>
+produces environments which can find references that have an annotation with source <em class="CodeName">http://schema.omg.org/spec/MOF/2.0/emof.xml</em>
+that have a detail with key <em class="CodeName">Property.oppositeRoleName</em>. In the class that is the type of the reference,
+and all its subclasses, for OCL this annotation defines an otherwise "hidden" opposite property which can be used
+in OCL expressions. This can be convenient when it is not possible or desirable to define an explicit
+opposite reference, e.g., because the class that would have to own the opposite reference can't easily be
+modified or the serialization of that class must not be changed.
+</p>
+
+<p>
+The logic used to find these "hidden" opposites and to navigate them is provided by implementations
+of the <a href="../../javadoc/org/eclipse/ocl/ecore/OppositeEndFinder.html"><em class="CodeName">OppositeEndFinder</em></a>
+interface. By default, the <em class="CodeName">EcoreEnvironmentFactory</em> uses the
+<a href="../../javadoc/org/eclipse/ocl/ecore/DefaultOppositeEndFinder.html"><em class="CodeName">DefaultOppositeEndFinder</em></a>
+implementation. It performs the lookup of annotated references by maintaining a cache based on
+the Ecore package registry. Successful navigation of those "hidden" opposites requires an
+<a href="../../javadoc/org/eclipse/emf/ecore/util/ECrossReferenceAdapter.html"><em class="CodeName">ECrossReferenceAdapter</em></a>
+to be registered for the containment hierarchy or the resource or resource set that should be used as the
+scope of the navigation.
+</p>
+
+<p>
+Obviously, <a href="../../javadoc/org/eclipse/emf/ecore/util/ECrossReferenceAdapter.html"><em class="CodeName">ECrossReferenceAdapter</em></a>
+has a significant downside: it responds to "hidden" opposite navigation requests only based on what has
+so far been loaded by EMF. If the set of resources held by an underlying EMF storage system contains more
+resources than have so far been loaded into the resource set, non-loaded content from that storage system
+won't be considered by the <em class="CodeName">ECrossReferenceAdapter</em>. Given a store with reasonable
+search capabilities it is desirable to take advantage of these capabilities also to perform reverse navigation
+of those "hidden" opposites. To achieve this, a specific implementation of the
+<a href="../../javadoc/org/eclipse/ocl/ecore/OppositeEndFinder.html"><em class="CodeName">OppositeEndFinder</em></a>
+interface can be provided. It may be a specialization of
+<a href="../../javadoc/org/eclipse/ocl/ecore/DefaultOppositeEndFinder.html"><em class="CodeName">DefaultOppositeEndFinder</em></a>,
+e.g., when the reference lookup based on the Ecore package registry is sufficient and only the
+navigation behavior shall be redefined:
+</p>
+
+<pre class="Code">
+  class MyOppositeEndFinder extends DefaultOppositeEndFinder {
+      MyOppositeEndFinder(EPackage.Registry registry) {
+          super(registry);
+      }
+      
+      @Override
+      public Object navigateOppositeProperty(EStructuralFeature property, Object target) {
+		  Collection<Object> result = null;
+		  EObject eTarget = (EObject) target;
+		  // do something clever, e.g., using your underlying store's query facility or
+		  // the new EMF Query2 component (incubation)
+		  // ...
+		  return result;
+      }
+  }
+</pre>
+
+With this, OCL can be instantiated using the custom opposite end finder as follows:
+
+<pre class="Code">   
+  OCL ocl = OCL.newInstance(new MyOppositeEndFinder());
+  ...
+</pre>
+
+With this, when the use of a property in an OCL expression cannot be resolved to an attribute
+or reference, the opposite end finder is asked to look for a correspondingly-named "hidden"
+opposite. Navigation across this "hidden" opposite will then call the <em class="CodeName">navigateOppositeProperty</em>
+method on <em class="CodeName">MyOppositeEndFinder</em>.
+
+<hr/>
+
+<p>
+<a href="http://www.eclipse.org/legal/epl-v10.html">Copyright (c) 2000, 2007 IBM Corporation and others. All Rights Reserved.</a>
+</p>
+
+</body>
+</html>

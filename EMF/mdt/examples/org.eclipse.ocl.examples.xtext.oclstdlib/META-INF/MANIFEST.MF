@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-Vendor: %providerName
+Bundle-Version: 3.1.0.qualifier
+Bundle-Localization: plugin
+Bundle-SymbolicName: org.eclipse.ocl.examples.xtext.oclstdlib; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.ocl.examples.xtext.base;bundle-version="3.0.0";visibility:=reexport,
+ org.eclipse.xtext,
+ org.eclipse.xtext.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.antlr.runtime
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.ocl.examples.xtext.oclstdlib,
+ org.eclipse.ocl.examples.xtext.oclstdlib.formatting,
+ org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST,
+ org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl,
+ org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.util,
+ org.eclipse.ocl.examples.xtext.oclstdlib.parseTreeConstruction,
+ org.eclipse.ocl.examples.xtext.oclstdlib.parser.antlr,
+ org.eclipse.ocl.examples.xtext.oclstdlib.parser.antlr.internal,
+ org.eclipse.ocl.examples.xtext.oclstdlib.scoping,
+ org.eclipse.ocl.examples.xtext.oclstdlib.services,
+ org.eclipse.ocl.examples.xtext.oclstdlib.validation
+Import-Package: org.apache.log4j

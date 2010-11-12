@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="Stylesheet" type="text/css" href="doc.css" />
+<title>Parsing Constraints and Queries</title>
+</head>
+<body>
+<h1>Parsing Constraints and Queries</h1>
+<p>
+The OCL parser provides two APIs for parsing constraint and query expressions.
+The <a href="../javadoc/org/eclipse/ocl/helper/OCLHelper.html"><em class="CodeName">OCLHelper</em></a>
+interface is designed primarily for parsing constraints and query expressions
+embedded in models, such as Ecore or UML models.  The
+<a href="../javadoc/org/eclipse/ocl/OCL.html"><em class="CodeName">OCL</em></a>
+class serves as the main entrypoint into the parsing API but also implements the
+parsing of <a href="parsingDocuments.html">OCL documents</a>, for example from
+text files.  In both cases, the concept of <em class="CodeName">Environment</em>
+is crucial.
+</p>
+
+<h2>The OCL Environment</h2>
+<p>
+The following diagram shows the core of the <em class="CodeName">Environment</em>
+API, that clients of the OCL parser interact with:
+</p>
+
+<blockquote>
+	<img src="images/environment.png" alt="Core OCL Environment API"/><br/>
+	<font size="-2">[<a target="_blank" href="images/environment.svg">as SVG</a>]</font>
+</blockquote>
+
+<p>
+The <a href="../javadoc/org/eclipse/ocl/OCL.html"><em class="CodeName">OCL</em></a>
+class is a generic type; its type parameters represent the various metaclasses
+of the metamodels that OCL works with in the UML/MOF family of OMG specifications.
+For example, <em class="CodeName">&lt;C&gt;</em> represents the Classifier
+concept, <em class="CodeName">&lt;O&gt;</em> the Operation concept, etc.  See
+the discussion of <a href="targetMetamodels.html">metamodels supported by OCL</a>
+for details of the mappings.  The same type parameter names are used consistently
+throughout the OCL APIs to represent the same metaclasses.
+</p>
+<p>
+The <em class="CodeName">OCL</em> class defines instances of autonomous OCL
+parsing and evaluation environments.  It has a single root
+<a href="../javadoc/org/eclipse/ocl/Environment.html"><em class="CodeName">Environment</em></a>
+created by an
+<a href="../javadoc/org/eclipse/ocl/EnvironmentFactory.html"><em class="CodeName">EnvironmentFactory</em></a>
+implementation for a particular EMF-based metamodel.  The OCL environment
+consists, conceptually, of the model that is to be constrained together with
+all of the constraints and additional operations and attributes defined (via
+OCL) for the purpose of formulating constraints.
+</p><p>
+<em class="CodeName">Environment</em>s nest.  Usually the root environment has
+no correlation to an element in the model, or it may correspond to some
+<em class="CodeName">Package</em> providing a default namespace (called a package
+context).  Alternatively, it may contain one or more nested environments
+defining package namespaces.  A package context contains one or more classifier
+contexts, which in turn can contain operation and/or attribute contexts.  Whereas
+the purpose of a package context is primarily to assist in the look-up of named
+model elements, the classifier, operation, and attribute contexts have deeper
+meaning.
+</p><p>
+A classifier context defines the type of the <em class="CodeName">self</em>
+variable in OCL constraints and queries.  By itself, it is the context for
+invariant constraints for the context classifier.  Additionally, as the parent
+context for operation and attribute constraints, it indicates the classifier
+in which context an operation or attribute constraint applies; this may be the
+classifier that defines these features, or it may inherit them from some more
+general classifier.
+</p><p>
+An <em class="CodeName">Environment</em> may contain named
+<a href="../javadoc/org/eclipse/ocl/expressions/Variable.html"><em class="CodeName">Variable</em></a>s
+to which OCL expressions can refer.  The most common of these is
+<em class="CodeName">self</em>.  Others include the parameters defined by an
+operation (and its <em class="CodeName">result</em>), in the case of an
+operation context.  The OCL API even allows clients to add variables, in code,
+to define "global" names.
+</p>
+
+<h2>Creating an OCL Environment</h2>
+
+<p>
+The static factory methods on the <em class="CodeName">OCL</em> class are used
+to create instances.  It is a good practice to re-use the same OCL instance for
+all parsing and evaluation of constraints and queries on a model while that
+model is loaded (usually in some <em class="CodeName">ResourceSet</em> in an
+editor).  Using the shared environment factory for the Ecore
+<a href="targetMetamodels.html">metamodel</a>, we can create an OCL
+environment suitable for parsing OCL constraints on any Ecore model and
+evaluating them on instances of the model:
+</p>
+<pre class="Code">
+// create an OCL instance for Ecore
+OCL&lt;?, EClassifier, ?, ?, ?, ?, ?, ?, ?, Constraint, EClass, EObject&gt; ocl;
+ocl = <b>OCL.newInstance</b>(EcoreEnvironmentFactory.INSTANCE);
+</pre>
+<p>
+Several of the type parameters in the <em class="CodeName">OCL</em> generic type
+signature are useful mostly within the OCL API.  We leave them, here, as wildcards.
+</p>
+
+<h2>The OCL Helper</h2>
+<p>
+From an OCL instance, we can create a helper object with which to parse constraints
+and additional operation/attribute definitions.  This
+<a href="../javadoc/org/eclipse/ocl/helper/OCLHelper.html"><em class="CodeName">OCLHelper</em></a>
+stores all of the instantiations of OCL template metaclasses (such as
+<a href="../javadoc/org/eclipse/ocl/types/CollectionType.html"><em class="CodeName">CollectionType(T)</em></a>
+and <a href="../javadoc/org/eclipse/ocl/types/TupleType.html"><em class="CodeName">TupleType</em></a>)
+and additional operation/attribute definitions in the root environment of the
+<em class="CodeName">OCL</em> that created it.  This ensures that all of these
+constructs are available for reuse in subsequent parsing.
+</p>
+
+<blockquote>
+	<img src="images/oclhelper.png" alt="OCL Parsing Helper API"/><br/>
+	<font size="-2">[<a target="_blank" href="images/oclhelper.svg">as SVG</a>]</font>
+</blockquote>
+
+<p>
+The <em class="CodeName">OCLHelper</em> is primarily designed for parsing
+constraints and query expressions embedded in models, providing the following
+API for that purpose:
+</p>
+<ul>
+  <li><em class="CodeName">createQuery()</em>: parses a query expression</li>
+  <li><em class="CodeName">createConstraint()</em>: parses a constraint of a
+      given <em class="CodeName">ConstraintKind</em></li>
+  <li><em class="CodeName">createInvariant()</em>: convenience for invariant constraints</li>
+  <li><em class="CodeName">createPrecondition()</em>: convenience for pre-condition constraints</li>
+  <li><em class="CodeName">createPostcondition()</em>: convenience for post-condition constraints</li>
+  <li><em class="CodeName">createBodyCondition()</em>: convenience for body conditions</li>
+  <li><em class="CodeName">createInitialValueExpression()</em>: convenience for attribute initial values</li>
+  <li><em class="CodeName">createDerivedValueExpression()</em>: convenience for attribute derived values</li>
+  <li><em class="CodeName">defineOperation()</em>: convenience for additional operation definitions</li>
+  <li><em class="CodeName">defineAttribute()</em>: convenience for additional attribute definitions</li>
+</ul>
+<p>
+Different kinds of constraints require different context environments.  The
+<em class="CodeName">setContext()</em>, <em class="CodeName">setOperationContext()</em>,
+and <em class="CodeName">setAttributeContext()</em> methods create the appropriate
+nested <em class="CodeName">Environment</em>s in the host <em class="CodeName">OCL</em>
+instance's root environment.
+</p>
+
+<p>
+The result of parsing a query expression is an
+<a href="../javadoc/org/eclipse/ocl/expressions/OCLExpression.html"><em class="CodeName">OCLExpression</em></a>,
+an instance of the <a href="abstractSyntax.html">Abstract Syntax Model</a>.  The
+result of parsing a constraint is an instance of the
+<em class="CodeName">Constraint</em> metaclass defined by the
+<em class="CodeName">OCL</em>'s <a href="targetMetamodels.html">target metamodel</a>.
+</p>
+<pre class="Code">
+// create an OCL helper object
+OCLHelper&lt;EClassifier, ?, ?, Constraint&gt; helper = <b>ocl.createOCLHelper()</b>;
+
+// set the OCL context classifier
+helper.<b>setContext</b>(EXTLibraryPackage.Literals.LIBRARY);
+
+Constraint invariant = helper.<b>createInvariant</b>(
+    "books-&gt;forAll(b1, b2 | b1 &lt;&gt; b2 implies b1.title &lt;&gt; b2.title)");
+   
+OCLExpression&lt;EClassifier&gt; query = helper.<b>createQuery</b>(
+    "books-&gt;collect(b : Book | b.category)-&gt;asSet()");
+</pre>
+<p>
+Ecore does not define a <em class="CodeName">Constraint</em> metaclass, so the
+OCL <a href="targetMetamodels.html">binding</a> for Ecore supplies one.
+</p>
+
+<h2>Operation and Attribute Contexts</h2>
+
+<p>
+In the case of constraints on operations or attributes, the context consists
+of two elements:  the constrained operation/attribute and a classifier in the
+context of which the constraint is to apply.  This accounts for the possibility
+that a classifier defines constraints on inherited features.  As an example,
+consider the <em class="CodeName">EModelElement::getEAnnotation(EString)</em>
+operation and <em class="CodeName">EReference::eReferenceType</em> property in the Ecore
+metamodel.  These can be constrained as follows:
+</p>
+<pre>
+EOperation oper = null;
+for (EOperation next : EcorePackage.Literals.EMODEL_ELEMENT.getEOperations()) {
+    if ("getEAnnotation".equals(next.getName()) {
+        oper = next;
+        break;
+    }
+}
+
+// define a post-condition specifying the value of EModelElement::getEAnnotation(EString).
+// This operation environment includes variables representing the operation
+// parameters (in this case, only "source : String") and the operation result
+helper.<b>setContextOperation</b>(EcorePackage.Literals.ECLASS, oper);
+Constraint body = helper.<b>createPostcondition</b>(
+    "result = self.eAnnotations-&gt;any(ann | ann.source = source)");
+
+// define a derivation constraint for the EReference::eReferenceType property
+helper.<b>setContextAttribute</b>(
+    EcorePackage.Literals.EREFERENCE,
+    EcorePackage.Literals.EREFERENCE__EREFERENCE_TYPE);
+Constraint derive = helper.<b>createDerivedValueExpression</b>(
+    "self.eType-&gt;oclAsType(EReference)");
+</pre>
+
+
+<hr/>
+
+<p>
+<a href="http://www.eclipse.org/legal/epl-v10.html">Copyright (c) 2000, 2007 IBM Corporation and others. All Rights Reserved.</a>
+</p>
+</body>
+</html>

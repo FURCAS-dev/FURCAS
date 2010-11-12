@@ -1,0 +1,38 @@
+package ocltest
+	context Fruit
+		inv not_black: self.color <> Color::black
+		inv not_foo: self.name <> 'Foo'
+		inv not_pink: color <> Color::pink
+endpackage
+
+package ocltest
+	context Fruit
+		def property_helper:
+			otherFruits : Set(Fruit) = Fruit.allInstances()->excluding(self)
+		def operation_helper:
+			getOtherFruits(dummy : Boolean) : Set(Fruit) = Fruit.allInstances()->excluding(self)
+endpackage
+
+package ocltest
+	context Fruit
+		inv not_black1: self.color <> Color::black
+		inv not_foo1: self.name <> 'Foo'
+		inv not_pink1: color <> Color::pink
+		def property_helper1:
+			otherFruits1 : Set(Fruit) = Fruit.allInstances()->excluding(self)
+		def operation_helper1:
+			getOtherFruits1(dummy : Boolean) : Set(Fruit) = Fruit.allInstances()->excluding(self)
+			
+	context Apple::label(text : String) :
+		pre text_not_null: not text.oclIsUndefined()
+		pre text_not_label: text <> label
+		post label_is_changed: label <> label@pre
+		post label_is_set: label = text
+
+	context Apple::preferredLabel(proposed : String) : String
+		body compute_label: if proposed = label then '' else proposed endif
+		
+	context Apple::name : String
+		init: ''
+		derive: if label.oclIsUndefined() then '' else label endif
+endpackage

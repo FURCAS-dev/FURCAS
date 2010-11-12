@@ -1,0 +1,201 @@
+<project default="run" name="Project's .releng buildExtra.xml">
+
+	<target name="init">
+	</target>
+
+	<target name="run">
+		<!-- TODO: write code that's hooked into o.e.d.commonbuilder.releng's build.xml to do extra configs (eg., for inserting 3rd party libs into plugins) 
+		-->
+	</target>
+
+	<target name="getDependencies">
+		<echo message="getDependencies!!!" />
+	</target>
+
+	<target name="preFetch">
+		<echo message="[[[Unzipping LPG from ${downloadsDir}/${tools.orbit.file}]]]" />
+		<unzip dest="${buildDirectory}/LPG/eclipse" src="${downloadsDir}/${tools.orbit.file}">
+			<patternset>
+				<!--include name="**/lpg.runtime.java_${LPGRuntimeVersion}*.jar"/-->
+				<include name="**/lpg.runtime.java.source_${LPGRuntimeVersion}*.jar"/>
+			</patternset>
+		</unzip>
+		
+		<!-- Here is where we fetch all of the example plugins from CVS
+		      We don't need them to be packaged into the Master zip, but rather
+		      they are needed so that they can be zipped up into the examples
+		      plugin as part of the build for that plugin. See the postProcess
+		      target below for the other part of this process.-->
+		<echo message="[[[Fetching org.eclipse.ocl.examples.interpreter]]]" />
+		<ant target="fetchElement" antfile="${eclipse.pdebuild.scripts}/genericTargets.xml">
+			<property name="type" value="plugin"/>
+			<property name="id" value="org.eclipse.ocl.examples.interpreter"/>
+		</ant>
+		<echo message="[[[Fetching org.eclipse.emf.examples.library]]]" />
+		<ant target="fetchElement" antfile="${eclipse.pdebuild.scripts}/genericTargets.xml">
+			<property name="type" value="plugin"/>
+			<property name="id" value="org.eclipse.emf.examples.library"/>
+		</ant>
+		<echo message="[[[Fetching org.eclipse.emf.examples.library.edit]]]" />
+		<ant target="fetchElement" antfile="${eclipse.pdebuild.scripts}/genericTargets.xml">
+			<property name="type" value="plugin"/>
+			<property name="id" value="org.eclipse.emf.examples.library.edit"/>
+		</ant>
+		<echo message="[[[Fetching org.eclipse.emf.examples.library.editor]]]" />
+		<ant target="fetchElement" antfile="${eclipse.pdebuild.scripts}/genericTargets.xml">
+			<property name="type" value="plugin"/>
+			<property name="id" value="org.eclipse.emf.examples.library.editor"/>
+		</ant>
+		<echo message="[[[Fetching org.eclipse.ocl.examples.project.empty]]]" />
+		<ant target="fetchElement" antfile="${eclipse.pdebuild.scripts}/genericTargets.xml">
+			<property name="type" value="plugin"/>
+			<property name="id" value="org.eclipse.ocl.examples.project.empty"/>
+		</ant>
+		<echo message="[[[Fetching org.eclipse.ocl.examples.project.royalandloyal]]]" />
+		<ant target="fetchElement" antfile="${eclipse.pdebuild.scripts}/genericTargets.xml">
+			<property name="type" value="plugin"/>
+			<property name="id" value="org.eclipse.ocl.examples.project.royalandloyal"/>
+		</ant>
+	</target>
+
+	<target name="postFetch">
+		<echo message="postFetch!!!" />
+	</target>
+	
+	<target name="preGenerate">
+		<echo message="preGenerate!!!" />
+	</target>
+	
+	<target name="postGenerate">
+		<echo message="postGenerate!!!" />
+	</target>
+	
+	<target name="preAssemble">
+		<echo message="preAssemble!!!" />
+	</target>
+	
+	<target name="postAssemble">
+		<echo message="[[[Add the LPG bundles into Master zip]]]" />
+		<zip destfile="${buildDirectory}/${buildLabel}/${masterZip}" update="true">
+			<zipfileset dir="${buildDirectory}/LPG" 
+						includes="**/lpg.runtime.java*_${LPGRuntimeVersion}.*.jar"
+			/>
+		</zip>
+	</target>
+	
+	<target name="prePackage">
+		<echo message="prePackage!!!" />
+	</target>
+	
+	<target name="postPackage">
+		<echo message="postPackage!!!" />
+	</target>
+	
+	<target name="preProcess">
+		<echo message="preProcess!!!" />
+	</target>
+	
+	<target name="postProcess">
+		<echo message="postProcess!!!" />
+
+		<!-- We call the special ant task in the example plugin in order to
+		      zip up all of the actual examples plugins as zips contained in this
+		      plugin. -->
+		<ant dir="${buildDirectory}/plugins/org.eclipse.ocl.examples" antfile="${buildDirectory}/plugins/org.eclipse.ocl.examples/buildZips.xml"/>
+	</target>
+
+	<target name="postBuild">
+		<echo message="postBuild!!!" />
+	</target>
+
+	<target name="extraPackaging">
+		<!-- Add the LPG bundles into SDK zip-->
+		<zip destfile="${buildDirectory}/${buildLabel}/${SDKZip}" update="true">
+			<zipfileset dir="${buildDirectory}/LPG" 
+						includes="**/lpg.runtime.java*_${LPGRuntimeVersion}*.jar"
+			/>
+			<zipfileset src="${buildDirectory}/${buildLabel}/${allZip}"
+			            dirmode="775"
+			            filemode="664"
+						includes="**/org.eclipse.ocl.all*/**"
+			/>
+			<zipfileset dir="${buildDirectory}" 
+						includes="epl-v10.html, notice.html" prefix="eclipse"
+			/>
+		</zip>
+
+		<!-- build Core SDK from SDK -->
+		<zip destfile="${buildDirectory}/${buildLabel}/${zipPrefix}-CoreSDK${incubation}-${buildAlias}.zip" update="true">
+			<zipfileset src="${buildDirectory}/${buildLabel}/${SDKZip}"
+			            dirmode="775"
+			            filemode="664"
+			>
+				<include name="**/features/${domainNamespace}.ocl.core.sdk_*/" />
+				<include name="**/features/${domainNamespace}.ocl.all_*/" />
+				<include name="**/features/${domainNamespace}.ocl_*/" />
+				<include name="**/features/${domainNamespace}.ocl.uml_*/" />
+				<include name="**/features/${domainNamespace}.ocl.source_*/" />
+				<include name="**/features/${domainNamespace}.ocl.uml.source_*/" />
+				<include name="**/plugins/lpg.runtime.java*_${LPGRuntimeVersion}*" />			
+				<include name="**/plugins/${domainNamespace}.ocl_*/" />
+				<include name="**/plugins/${domainNamespace}.ocl.ecore_*/" />
+				<include name="**/plugins/${domainNamespace}.ocl.uml_*/" />
+				<include name="**/plugins/${domainNamespace}.ocl.source_*/" />
+				<include name="**/plugins/${domainNamespace}.ocl.ecore.source_*/" />
+				<include name="**/plugins/${domainNamespace}.ocl.uml.source_*/" />
+				<include name="**/eclipse/epl-v10.html" />
+				<include name="**/eclipse/notice.html" />
+			</zipfileset>
+		</zip>
+
+		<!-- build runtime from SDK -->
+		<zip destfile="${buildDirectory}/${buildLabel}/${zipPrefix}-runtime${incubation}-${buildAlias}.zip" update="true">
+			<zipfileset src="${buildDirectory}/${buildLabel}/${SDKZip}"
+			            dirmode="775"
+			            filemode="664"
+			>
+				<include name="**/features/${domainNamespace}.ocl.all_*/" />
+				<include name="**/features/${domainNamespace}.ocl_*/" />
+				<include name="**/features/${domainNamespace}.ocl.uml_*/" />
+				<include name="**/plugins/${domainNamespace}.ocl_*/" />
+				<include name="**/plugins/${domainNamespace}.ocl.ecore_*/" />
+				<include name="**/plugins/${domainNamespace}.ocl.uml_*/" />
+				<include name="**/lpg.runtime.java_${LPGRuntimeVersion}*" />
+				<include name="**/eclipse/epl-v10.html" />
+				<include name="**/eclipse/notice.html" />
+			</zipfileset>
+		</zip>
+
+		<!-- standalone: extract the jars we need into ./lib/, then the readme into ./, then zip the whole thing and clean up -->
+		<property name="allSDKZipUnpackTemp" value="${buildDirectory}/allSDKZipUnpackTemp" />
+		<mkdir dir="${allSDKZipUnpackTemp}/lib" />
+		<copy todir="${allSDKZipUnpackTemp}/lib" preservelastmodified="true">
+			<zipfileset src="${buildDirectory}/${buildLabel}/${SDKZip}">
+				<patternset>
+					<include name="**/plugins/org.eclipse.ocl.ecore_*.jar" />
+					<include name="**/plugins/org.eclipse.ocl.uml_*.jar" />
+					<include name="**/plugins/org.eclipse.ocl_*.jar" />
+					<include name="**/plugins/lpg.runtime.java_*.jar" />
+				</patternset>
+			</zipfileset>
+			<mapper type="flatten" />
+		</copy>
+		<copy todir="${allSDKZipUnpackTemp}" preservelastmodified="true">
+	        <zipfileset src="${buildDirectory}/${buildLabel}/${SDKZip}">
+	            <patternset>
+	                <include name="**/eclipse/epl-v10.html" />
+	                <include name="**/eclipse/notice.html" />
+	            </patternset>
+	        </zipfileset>
+			<fileset dir="${relengBuilderDir}/builder/extras">
+				<include name="readme_standalone.html" />
+			</fileset>
+			<mapper type="flatten" />
+		</copy>
+		<zip destfile="${buildDirectory}/${buildLabel}/${zipPrefix}-standalone${incubation}-${buildAlias}.zip" update="true">
+			<fileset dir="${allSDKZipUnpackTemp}" />
+		</zip>
+		<delete dir="${allSDKZipUnpackTemp}" />
+		
+	</target>
+</project>

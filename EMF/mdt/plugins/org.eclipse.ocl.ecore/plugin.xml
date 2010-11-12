@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ Copyright (c) 2006, 2010 IBM Corporation, Zeligsoft Inc., and others.
+ All rights reserved.   This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+
+ Contributors:
+   IBM - initial API and implementation
+   Zeligsoft - Bugs 231435, 248869, 256040
+   Kenn Hussey - 191689, 291361, 291365
+
+ $Id: plugin.xml,v 1.5 2010/02/27 13:27:32 ewillink Exp $
+-->
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.eclipse.org/ocl/1.1.0/Ecore" 
+       class = "org.eclipse.ocl.ecore.EcorePackage"
+       genModel = "model/OCLEcore.genmodel" /> 
+  </extension>
+
+  <extension point="org.eclipse.ocl.environments">
+    <environmentFactory
+        class="org.eclipse.ocl.ecore.EcoreEnvironmentFactory">
+      <package nsURI="http://www.eclipse.org/emf/2002/Ecore"/>
+      <package nsURI="http://www.eclipse.org/ocl/1.1.0/Ecore"/>
+    </environmentFactory>
+  </extension>
+  
+  <extension
+        point="org.eclipse.emf.ecore.uri_mapping">
+     <mapping
+           source="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore"
+           target="platform:/plugin/org.eclipse.ocl.ecore/model/oclstdlib.ecore">
+     </mapping>
+  </extension>
+
+  <extension
+        point="org.eclipse.emf.ecore.content_parser">
+     <parser
+           contentTypeIdentifier="org.eclipse.ocl.ecore"
+           class="org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl" />
+  </extension>
+
+  <extension
+        point="org.eclipse.core.contenttype.contentTypes">
+     <content-type
+           base-type="org.eclipse.ocl"
+           file-extensions="oclecore,oclxmi"
+           id="org.eclipse.ocl.ecore"
+           name="%_UI_Ecore_content_type"
+           priority="high">
+        <describer
+              class="org.eclipse.emf.ecore.xmi.impl.RootXMLContentHandlerImpl$Describer">
+           <parameter
+                 name="namespacePattern"
+                 value="http://www\.eclipse\.org/ocl/1\.1\.0/Ecore" />
+           <parameter
+                 name="kind"
+                 value="xmi" />
+        </describer>
+     </content-type>
+  </extension>
+  <extension
+        point="org.eclipse.team.core.fileTypes">
+     <fileTypes
+           extension="oclecore"
+           type="text">
+     </fileTypes>
+  </extension>
+
+  <extension point = "org.eclipse.emf.ecore.validation_delegate">
+    <delegate uri = "http://www.eclipse.org/emf/2002/Ecore/OCL"
+       class = "org.eclipse.ocl.ecore.delegate.OCLValidationDelegateFactory$Global" />
+  </extension>
+
+  <extension point = "org.eclipse.emf.ecore.setting_delegate">
+    <factory uri = "http://www.eclipse.org/emf/2002/Ecore/OCL"
+       class = "org.eclipse.ocl.ecore.delegate.OCLSettingDelegateFactory$Global" />
+  </extension>
+
+  <extension point = "org.eclipse.emf.ecore.invocation_delegate">
+    <factory uri = "http://www.eclipse.org/emf/2002/Ecore/OCL"
+       class = "org.eclipse.ocl.ecore.delegate.OCLInvocationDelegateFactory$Global" />
+  </extension>
+ 
+</plugin>

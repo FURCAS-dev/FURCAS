@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="Stylesheet" type="text/css" href="doc.css" />
+<title>Content Assist Support</title>
+</head>
+<body>
+<h1>Content Assist Support</h1>
+
+<p>
+The <a href="../javadoc/org/eclipse/ocl/helper/OCLHelper.html"><em class="CodeName">OCLHelper</em></a>
+API provides support for content-assist in rich editors, by parsing partial OCL
+expressions and supplying completion suggestions. The
+<em class="CodeName">List&lt;Choice&gt; getSyntaxHelp(ConstraintKind, String)</em> operation
+returns a list of suggestions for the next token to follow the end of the
+expression fragment.
+</p>
+
+<blockquote>
+	<img src="images/contentassist.png" alt="OCL Content Assist API"/><br/>
+	<font size="-2">[<a target="_blank" href="images/contentassist.svg">as SVG</a>]</font>
+</blockquote>
+
+<p>
+The <a href="../javadoc/org/eclipse/ocl/helper/Choice.html"><em class="CodeName">Choice</em></a>
+objects returned by the helper include some convenient text strings (name and
+description) to formulate basic JFace content-assist proposals.  Each choice
+also carries a reference to the element that it represents, the kind of element
+indicated by the <em class="CodeName">ChoiceKind</em> enumeration, for a more
+sophisticated content assist that might inlude context information, documentation,
+etc. as in Eclipse JDT.  The list of choices depends in part on the kind of
+constraint expression that is to be completed, as for example, the
+<em class="CodeName">oclIsNew()</em> operation is only permitted in operation
+post-conditions.
+</p>
+<pre class="Code">
+helper.setContext(EXTLibraryPackage.Literals.BOOK);
+
+List&lt;Choice&gt; choices = helper.<b>getSyntaxHelp</b>(ConstraintKind.INVARIANT,
+    "Book.allInstances()-&gt;collect(author)<b>-&gt;</b>");
+
+for (Choice next : choices) {
+    switch (next.<b>getKind</b>()) {
+    case OPERATION:
+    case SIGNAL:
+        // the description is already complete
+        System.out.println(next.getDescription());
+    case PROPERTY:
+    case ENUMERATION_LITERAL:
+    case VARIABLE:
+        System.out.println(next.getName() + " : " + next.getDescription();
+        break;
+    default:
+        System.out.println(next.getName());
+        break;
+    }
+}
+</pre>
+
+<h2>Syntax Completion Choices</h2>
+
+<p>
+The computation of <em class="CodeName">Choice</em>s is supported for the
+following tokens, which may be used by a client as auto-assist triggers:
+</p>
+<table cellpadding="4" border="1">
+	<caption align="bottom">Content-assist triggers</caption>
+	<thead>
+  <tr><th>Token</th><th>Completion choices</th></tr>
+</thead>
+<tbody>
+  <tr><td><em class="CodeName">.</em></td><td>Features applicable to the
+      type of the expression to the left of the dot, or its element type if it
+      is a collection.  These choices include properties, operations, and
+      association classes (in the UML environment only)</td></tr>
+  <tr><td><em class="CodeName">-&gt;</em></td><td>Collection operations and
+      iterators</td></tr>
+  <tr><td><em class="CodeName">::</em></td><td>Packages, types, enumeration
+      literals, and states (in the UML environment only)</td></tr>
+  <tr><td><em class="CodeName">^</em></td><td rowspan="2" valign="top">
+      Operations and signals (in the UML environment only)</td></tr>
+  <tr><td><em class="CodeName">^^</em></td></tr>
+  <tr><td><em class="CodeName"></em></td><td>In other situations, the choices
+      the current context variables and implicit references to features of
+      the <em class="CodeName">self</em> variable.  For example, if the input
+      is something like <code>""</code> or <code>"self.isOrdered&nbsp;and&nbsp;"</code></td></tr>
+</tbody>
+</table>
+<p>
+The completion of partially specified identifiers is also supported, by
+backtracking to look for one of these triggering tokens.  This supports
+interactively narrowing the choices while the content-assist window is active.
+</p>
+
+<pre class="Code">
+choices = helper.<b>getSyntaxHelp</b>(ConstraintKind.POSTCONDITION,
+    "self.author<b>.oclIs</b>");
+</pre>
+
+<hr/>
+
+<p>
+<a href="http://www.eclipse.org/legal/epl-v10.html">Copyright (c) 2000, 2007 IBM Corporation and others. All Rights Reserved.</a>
+</p>
+</body>
+</html>

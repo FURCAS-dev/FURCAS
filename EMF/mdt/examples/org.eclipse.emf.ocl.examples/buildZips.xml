@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="org.eclipse.emf.ocl.examples" default="zip.examples" basedir=".">
+	<target name="init">
+	</target>
+
+	<patternset id="zip.excludes"
+		excludes="src.zip,build.xml,javaCompiler*,temp.folder/**,@dot/**"/>
+	
+	<target name="zip.examples" depends="init">
+		<!-- This example may have been compiled already in the Master feature -->
+		<zip destfile="zips/interpreter.zip" basedir="../org.eclipse.emf.ocl.examples.interpreter">
+			<patternset refid="zip.excludes"/>
+		</zip>
+		
+		<zip destfile="zips/library.zip" basedir="../org.eclipse.emf.examples.library"/>
+		<zip destfile="zips/libraryEdit.zip" basedir="../org.eclipse.emf.examples.library.edit"/>
+		<zip destfile="zips/libraryEditor.zip" basedir="../org.eclipse.emf.examples.library.editor"/>
+	</target>
+
+	<target name="clean" depends="init" description="Clean the plug-in: org.eclipse.emf.ocl.examples.">
+		<delete>
+			<fileset dir="zips" includes="*.zip"/>
+		</delete>
+		<antcall target="refresh"/>
+	</target>
+
+	<target name="refresh" depends="init" if="eclipse.running" description="Refresh this folder.">
+		<eclipse.refreshLocal resource="/org.eclipse.emf.ocl.examples" depth="infinite"/>
+	</target>
+</project>

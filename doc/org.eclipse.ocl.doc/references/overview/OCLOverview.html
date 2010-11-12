@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="Stylesheet" type="text/css" href="doc.css" />
+<title>OCL Overview</title>
+</head>
+<body>
+<h1>OCL Overview</h1>
+<p>
+The OCL Parser/Interpreter provides an implementation of the <a target="_blanck" href="http://www.omg.org/spec/OCL/2.2"> Object Constraint
+Language 2.2</a> specification for EMF-based metamodels and models.  It offers OCL
+constraint and query parsing and evaluation, model-based validation, and
+provides an infrastructure for content assist in textual editors.
+</p>
+<p>
+The following features are supported in the current version:
+</p>
+<ul>
+	<li>Classifier invariant constraints</li>
+	<li>Operation precondition and postcondition constraints and body conditions</li>
+	<li>Property constraints (initial-value and derivation)</li>
+	<li>Attribute and operation definitions (def: expressions)</li>
+	<li>Package context declaration</li>
+	<li>Basic values and types</li>
+	<li>Collection types</li>
+	<li>Navigation of attributes and association ends</li>
+	<li>Operation invocation</li>
+	<li>Iteration expressions (all standard iterators)</li>
+	<li>Let expressions</li>
+	<li>If expressions</li>
+	<li>Tuples</li>
+	<li>Message expressions, including unspecified values</li>
+	<li>Operations predefined by OCL:  allInstances(), oclIsKindOf(), oclIsTypeOf(), oclAsType(), oclIsNew()</li>
+	<li>
+		Escape syntax for illegal names:  type, operation, attribute, etc. names
+		that correspond to OCL reserved words can be escaped in the standard
+		fashion using a leading underscore ('_').  In addition, names that contain spaces or tabs can
+		be escaped by enclosing them in double-quotes ('"'; this is non-standard).  e.g.,
+		<pre class="Code">self.ownedRule-&gt;forAll(c : Constraint | c._context = self)</pre>
+	</li>
+</ul>
+<p>
+The above constructs are supported by the parser for parsing and
+for evaluation, with the exception of the oclIsNew() operation and
+message expressions.  All of the above are supported for both Ecore
+and UML models.  The following are supported by default for UML
+(both in parsing and evaluation):
+<ul>
+	<li>Navigation of non-navigable association ends (including
+	    those that are owned by the association)</li>
+	<li>Qualified association end navigation</li>
+	<li>Navigation to association classes, including source qualifiers</li>
+	<li>Operations predefined by OCL: oclIsInState()</li>
+</ul>
+<p>
+The following features are provided in addition to the OCL specification:
+</p>
+<ul>
+	<li>String case conversion operations:  toUpper(), toLower()</li>
+	<li>Support for comparison (&lt;, &lt;=, etc.) and sorting of any
+	    java <code>Comparable</code>s of conformant types</li>
+	<li>Transitive closure of associations:  closure(expr : OCLExpression) iterator</li>
+	<li>Navigation of "hidden" opposites of references specified in Ecore models using
+	    a <em class="CodeName">Property.oppositeRoleName</em> annotation with source
+	    <em class="CodeName">http://schema.omg.org/spec/MOF/2.0/emof.xml</em> on the
+	    forward reference, producing an <em class="CodeName">OppositePropertyCallExp</em>
+	    expression</li>
+</ul>
+<p>
+The OCL implementation is defined in plug-ins for convenient deployment in
+Eclipse, but as is the case for EMF, it can also be used stand-alone.  The
+plug-ins are partitioned thus:
+</p>
+<ul>
+	<li><em class="CodeName">org.eclipse.ocl</em>:  the core parsing, evaluation, and content
+		assist services.  Definition of the OCL Abstract Syntax Model and
+		Environment API.  These APIs are generic, independent of any particular
+		metamodel (though using Ecore/EMF as the meta-meta-model).</li>
+	<li><em class="CodeName">org.eclipse.ocl.ecore</em>:  implementation of the Ecore metamodel
+		environment, binding the generic Environment and AST APIs to the
+		Ecore language.  Provides support for working with OCL constraints and
+		queries targeting Ecore models.</li>
+	<li><em class="CodeName">org.eclipse.ocl.uml</em>:  implementation of the UML metamodel
+		environment, binding the generic Environment and AST APIs to the
+		UML language.  Provides support for working with OCL targeting
+		UML models.</li>
+</ul>
+</p>
+<p>
+Please refer to the 
+<a href="../../tutorials/oclInterpreterTutorial.html">OCL Interpreter Tutorial</a>
+for review of the code samples.
+</p>
+
+<hr/>
+
+<p>
+<a href="http://www.eclipse.org/legal/epl-v10.html">Copyright (c) 2000, 2007 IBM Corporation and others. All Rights Reserved.</a>
+</p>
+</body>
+</html>

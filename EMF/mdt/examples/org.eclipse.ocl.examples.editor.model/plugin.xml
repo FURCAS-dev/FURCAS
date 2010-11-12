@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id: plugin.xml,v 1.1 2010/03/11 11:49:55 ewillink Exp $
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/ocl/1.0/Editor"
+            class="org.eclipse.ocl.examples.editor.EditorPackage"
+            genModel="model/Editor.genmodel"/>
+      <package
+            uri="http://www.eclipse.org/qvt/1.0/Editor"
+            class="org.eclipse.ocl.examples.editor.EditorPackage"
+            genModel="model/Editor.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.content_parser">
+     <parser contentTypeIdentifier="org.eclipse.ocl.examples.editor"
+           class="org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.core.contenttype.contentTypes">
+     <content-type id="org.eclipse.ocl.editor"
+           base-type="org.eclipse.emf.ecore.xmi"
+           file-extensions="editor"          
+           name="%_UI_Editor_content_type"
+           priority="normal">
+        <describer class="org.eclipse.emf.ecore.xmi.impl.RootXMLContentHandlerImpl$Describer">
+           <parameter name="namespace" value="http://www.eclipse.org/ocl/1.0/Editor"/>
+           <parameter name="kind" value="xmi"/>
+        </describer>
+     </content-type>
+   </extension>
+
+</plugin>

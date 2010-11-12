@@ -1,0 +1,12 @@
+import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';
+package X : xx = 'yy'
+{
+  class C123
+  {
+--    attribute b : Boolean;
+--    attribute i : Integer;
+    attribute i2 : ecore::EIntegerObject[?];
+--    attribute r : Real;
+--    attribute s : String { initial: i2.toString(); }
+  }
+} 

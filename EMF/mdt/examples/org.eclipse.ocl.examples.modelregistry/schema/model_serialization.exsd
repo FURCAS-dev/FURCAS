@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.ocl.modelregistry" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="org.eclipse.ocl.modelregistry" id="model_serialization" name="%ExtPoint.model_serialization"/>
+      </appinfo>
+      <documentation>
+         The model_serialization extension point supports registration of an EMF Resource.Factory implementation for use by models complying with a particular serialization, the most notable of which is XML. Alternate serializations can be defined for textual model representations.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <choice>
+            <element ref="entry" minOccurs="0" maxOccurs="unbounded"/>
+         </choice>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The standard extension point type name.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  The optional extension point identifier.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  The optional extension point name.
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="entry">
+      <annotation>
+         <documentation>
+            Defines a model serialization with an informal name and the Resource.Factory that implements it.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The root namespace value that identifies the content.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="factory" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The Resource.Factory class that creates and loads resources of this serialization.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.emf.ecore.resource.Resource$Factory"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         ? a candidate for Eclipse EMF 2.3.0.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         The default XML registration of:
+&lt;pre&gt;
+  &lt;extension point=&quot;org.eclipse.gmt.umlx.registry.model_serialization&quot;&gt;
+     &lt;entry name=&quot;XML&quot; factory=&quot;org.eclipse.gmt.umlx.registry.resource.EcoreFamilyResourceFactoryImpl&quot;/&gt;
+  &lt;/extension&gt;
+&lt;/pre&gt;
+causes XML models loaded through the model registry to use the EcoreFamilyResourceFactoryImpl
+to create them. The EcoreFamilyResourceFactoryImpl examines the namespace URI of the root
+element to determine whether to use the EcoreResourceFactoryImpl or EMOFResourceFactoryImpl
+or some other factory registered through the model_content extension point.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiInfo"/>
+      </appinfo>
+      <documentation>
+         Registered serialization factories must implement the &lt;tt&gt;Resource.Factory&lt;/tt&gt; interface.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         A default serialization is registered for XML that examines the namespace URI of the
+root element to determine the model content.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="copyright"/>
+      </appinfo>
+      <documentation>
+         Copyright (c) 2007 E.D.Willink and others.&lt;br&gt;
+All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at &lt;a 
+href=&quot;http://www.eclipse.org/legal/epl-v10.html&quot;&gt;http://www.eclipse.org/legal/epl-v10.html&lt;/a&gt;
+      </documentation>
+   </annotation>
+
+</schema>

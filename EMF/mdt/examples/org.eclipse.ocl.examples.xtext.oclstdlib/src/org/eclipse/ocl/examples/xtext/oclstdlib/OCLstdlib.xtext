@@ -1,0 +1,167 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2010 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id: OCLstdlib.xtext,v 1.6 2010/08/17 18:53:32 ewillink Exp $
+ */
+grammar org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib hidden(WS, ML_COMMENT, SL_COMMENT)
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+import "platform:/resource/org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore" as base
+import "platform:/resource/org.eclipse.ocl.examples.xtext.oclstdlib/model/OCLstdlibCST.ecore"
+//generate OCLstdlib "http://www.eclipse.org/ocl/examples/xtext/oclstdlib/OCLstdlibCST"
+
+Library returns LibDocumentCS:
+    'library' name=Identifier
+	(imports+=LibImportCS)*
+	'{' (packages+=LibPackageCS)* '}'
+;
+
+terminal DOUBLE_QUOTED_STRING:
+	'"' ( '\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') | !('\\'|'"') )* '"'
+;
+
+terminal SINGLE_QUOTED_STRING :
+	"'" ( '\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') | !('\\'|"'") )* "'"
+; 
+	
+terminal ID :
+	(('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*)
+| 	("_" SINGLE_QUOTED_STRING)
+;
+
+terminal ML_COMMENT	: '/*' -> '*/';
+terminal SL_COMMENT : '--' !('\n'|'\r')* ('\r'? '\n')?;
+terminal WS			: (' '|'\t'|'\r'|'\n')+;
+
+terminal INT:											// String to allow diverse re-use
+	('0'..'9')+
+;
+
+LOWER returns ecore::EInt:
+	INT
+;
+
+UPPER returns ecore::EInt:
+	INT | '*'
+;
+
+Identifier:
+	ID
+|	RestrictedKeywords
+;
+
+RestrictedKeywords:
+	'conformsTo'
+|	'extends'
+|	'import'
+|	'iteration'
+|	'library'
+|	'operation'
+|	'package'
+|	'property'
+|	'super'
+|	'type'
+;
+
+Name:
+	Identifier
+|	DOUBLE_QUOTED_STRING
+;
+
+LibImportCS returns base::ImportCS :
+	'import' (name=Identifier ':')? namespace=[base::NamespaceCS|SINGLE_QUOTED_STRING]
+;
+
+LibClassCS returns LibClassCS:
+	'type' name=Identifier
+	 ('<' typeParameters+=LibTypeParameterCS (',' typeParameters+=LibTypeParameterCS)* '>')?
+	 ('conformsTo' conformsTo+=LibTypedRefCS (',' conformsTo+=LibTypedRefCS)*)?
+	'{' (operations+=(LibIterationCS|LibOperationCS) | structuralFeatures+=LibPropertyCS)* '}'
+;
+
+LibClassifierCS returns base::ClassifierCS:
+	LibClassCS 
+;
+
+LibIterationCS returns LibIterationCS:
+	'iteration' name=Name
+	 ('<' typeParameters+=LibTypeParameterCS (',' typeParameters+=LibTypeParameterCS)* '>')?
+	 '(' parameters+=LibParameterCS (',' parameters+=LibParameterCS)* ')'
+	 ':' type=LibTypedRefCS
+	'=>' class=SINGLE_QUOTED_STRING
+//	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
+	 ';'
+;
+
+LibOperationCS returns LibOperationCS:
+	'operation' name=Name
+	 ('<' typeParameters+=LibTypeParameterCS (',' typeParameters+=LibTypeParameterCS)* '>')?
+	 '(' (parameters+=LibParameterCS (',' parameters+=LibParameterCS)*)? ')'
+	 ':' type=LibTypedRefCS
+	'=>' class=SINGLE_QUOTED_STRING
+//	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
+	 ';'
+;
+
+LibPackageCS returns LibPackageCS:
+	'package' name=Identifier '{'
+		(subpackages+=LibPackageCS | classifiers+=LibClassifierCS)*
+	'}'
+;
+
+LibParameterCS returns base::ParameterCS:
+	name=Identifier ':' type=LibTypedRefCS
+		('[' ((lower=LOWER ('..' upper=UPPER)?) | (multiplicity=('*'|'+'|'?'))) ']' )?
+;
+
+LibPropertyCS returns LibPropertyCS:
+	'property' name=Name
+	':' type=LibTypedRefCS
+	'=>' class=SINGLE_QUOTED_STRING
+//	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
+	';'
+;
+
+LibQualifiedTypeRefCS returns base::QualifiedTypeRefCS:
+	namespace=[base::NamespaceCS|Identifier]
+	('<' typeArguments+=LibTypeRefCS (',' typeArguments+=LibTypeRefCS)* '>')?	
+	'::' element=LibTypedRefCS
+;
+
+LibTypeParameterCS returns base::TypeParameterCS:
+	name=Identifier
+	( ('extends' extends+=LibTypedRefCS ('&&' extends+=LibTypedRefCS)*)
+	| ('super' super=LibTypedRefCS)
+	)?
+;
+
+LibTypeRefCS returns base::TypeRefCS:
+	LibTypedRefCS | LibWildcardTypeRefCS
+;
+
+LibTypedRefCS returns base::TypedRefCS:
+	LibQualifiedTypeRefCS | LibTypedTypeRefCS
+;
+
+LibTypedTypeRefCS returns base::TypedTypeRefCS:
+	type=[base::TypeCS|Identifier]
+	('<' typeArguments+=LibTypeRefCS (',' typeArguments+=LibTypeRefCS)* '>')?	
+;
+
+LibWildcardTypeRefCS returns base::WildcardTypeRefCS:
+	{base::WildcardTypeRefCS} '?'
+	( ('extends' extends=LibTypedRefCS)
+	| ('super' super=LibTypedRefCS)
+	)?
+;

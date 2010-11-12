@@ -1,0 +1,16 @@
+import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';
+
+package X
+{ 
+	
+	datatype BigInteger : 'java.lang.BigInteger';
+
+	class C123 {
+		attribute x : BigInteger [+] {unique}
+		{
+			initial : 4.toString() = 2;
+		}
+		property r : C123 {readonly};
+		property e1 : ecore::EObject {readonly};
+	}
+}

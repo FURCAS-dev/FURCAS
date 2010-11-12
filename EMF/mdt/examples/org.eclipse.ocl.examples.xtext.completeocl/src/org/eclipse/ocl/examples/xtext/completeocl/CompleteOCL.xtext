@@ -1,0 +1,205 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2010 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id: CompleteOCL.xtext,v 1.6 2010/05/21 20:20:26 ewillink Exp $
+ */
+grammar org.eclipse.ocl.examples.xtext.completeocl.CompleteOCL with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+import "platform:/resource/org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore" as base
+import "platform:/resource/org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.ecore" as essentialocl
+import "platform:/resource/org.eclipse.ocl.examples.xtext.oclinecore/model/OCLinEcoreCST.ecore" as oclinecore
+import "platform:/resource/org.eclipse.ocl.examples.xtext.completeocl/model/CompleteOCLCST.ecore"
+//generate completeOCL "http://www.eclipse.org/ocl/examples/xtext/completeocl/CompleteOCL"
+
+CompleteOCLDocumentCS returns CompleteOCLDocumentCS:
+	(imports+=ImportCS)* 
+	(packages+=PackageDeclarationCS | contexts+=ContextDeclCS)*
+;
+
+RestrictedKeywords:
+	EssentialOCLRestrictedKeywords
+|	'body'
+|	'context'
+|	'def'
+|	'derive'
+//|	'endpackage'
+|	'import'
+|	'init'
+|	'inv'
+//|	'package'
+//|	'post'
+//|	'pre'
+//|	'static'
+;
+
+PrimitiveTypeIdentifier:
+	'Boolean'
+|	'Integer'
+|	'Real'
+|	'String'
+|	'UnlimitedNatural'
+|	'OclAny'
+|	'OclInvalid'
+|	'OclMessage'
+|	'OclState'
+|	'OclVoid'
+;
+
+
+BodyCS returns BodyCS :
+	'body' (constraintName=SimpleName)? ':' expression=ExpCS
+;
+
+ClassifierContextDeclCS returns ClassifierContextDeclCS :
+	'context' (selfName=SimpleName ':' )? classifier=ClassifierRefCS (invs+=InvCS | defs+=DefCS)*
+;
+
+ClassifierRefCS returns base::ClassifierRefCS:
+	QualifiedClassifierRefCS | SimpleClassifierRefCS
+;
+
+ContextDeclCS returns ContextDeclCS:
+	PropertyContextDeclCS
+|	ClassifierContextDeclCS
+|	OperationContextDeclCS
+;
+
+DefCS returns DefCS :
+	(static?='static')? 'def' (constraintName=SimpleName)? ':' constrainedName=SimpleName
+	('(' (parameters+=ParameterCS (',' parameters+=ParameterCS)*)? ')')?
+	':' (type=TypeExpCS)? '=' expression=ExpCS
+;
+
+DerCS returns DerCS :
+	'derive' ':' expression=ExpCS
+;
+
+ImportCS returns base::ImportCS :
+	'import' (name=Identifier ':')? namespace=[base::NamespaceCS|SINGLE_QUOTED_STRING]
+;
+
+InitCS returns InitCS :
+	'init' ':' expression=ExpCS
+;
+
+InvCS returns InvCS :
+	'inv' (constraintName=SimpleName)? ':' expression=ExpCS
+;
+
+OperationContextDeclCS returns OperationContextDeclCS :
+	'context' operation=OperationRefCS '('
+	(parameters+=ParameterCS (',' parameters+=ParameterCS)*)?
+	')' ':' (type=TypeExpCS)?
+	((pres+=PreCS) | (posts+=PostCS) | (bodies+=BodyCS))*
+;
+
+OperationRefCS returns base::OperationRefCS:
+	QualifiedOperationRefCS | SimpleOperationRefCS
+;
+
+PackageDeclarationCS returns PackageDeclarationCS:
+	'package' package=PackageRefCS (contexts+=ContextDeclCS)* 'endpackage'
+;
+
+PackageRefCS returns base::PackageRefCS:
+	QualifiedPackageRefCS | SimplePackageRefCS
+;
+
+ParameterCS returns essentialocl::VariableCS:
+	(name=SimpleName ':')? type=TypeExpCS
+;
+
+PostCS returns PostCS :
+	'post' (constraintName=SimpleName)? ':' expression=ExpCS
+;
+
+PreCS returns PreCS :
+	'pre' (constraintName=SimpleName)? ':' expression=ExpCS
+;
+
+PropertyContextDeclCS returns PropertyContextDeclCS :
+	'context' property=PropertyRefCS ':' type=TypeExpCS
+	((init=InitCS (der=DerCS)?)? | (der=DerCS (init=InitCS)?))
+;
+
+PropertyRefCS returns base::StructuralFeatureRefCS:
+	QualifiedPropertyRefCS | SimplePropertyRefCS
+;
+
+QualifiedClassifierRefCS returns base::QualifiedClassifierRefCS:
+	namespace=[base::NamespaceCS|Identifier]
+	'::' element=ClassifierRefCS
+;
+
+QualifiedOperationRefCS returns base::QualifiedOperationRefCS:
+	namespace=[base::NamespaceCS|Identifier]
+	'::' element=OperationRefCS
+;
+
+QualifiedPropertyRefCS returns base::QualifiedStructuralFeatureRefCS:
+	namespace=[base::NamespaceCS|Identifier]
+	'::' element=PropertyRefCS
+;
+
+QualifiedPackageRefCS returns base::QualifiedPackageRefCS:
+	namespace=[base::NamespaceCS|Identifier]
+	'::' element=PackageRefCS
+;
+
+SimpleClassifierRefCS returns base::SimpleClassifierRefCS:
+	classifier=[base::ClassifierCS|Identifier]
+;
+
+SimpleOperationRefCS returns base::SimpleOperationRefCS:
+	operation=[base::OperationCS|Identifier]
+;
+
+SimplePackageRefCS returns base::SimplePackageRefCS:
+	package=[base::PackageCS|Identifier]
+;
+
+SimplePropertyRefCS returns base::SimpleStructuralFeatureRefCS:
+	feature=[base::StructuralFeatureCS|Identifier]
+;
+
+//---------------------------------------------------------------------------------
+//	EssentialOCL overrides
+//---------------------------------------------------------------------------------
+NavigationExpCS returns essentialocl::ExpCS:
+	SubNavigationExpCS
+	(
+		({essentialocl::InfixExpCS.source=current} op=('.'|'->') argument=NavigatingExpCS)
+	|	({OclMessageCS.source=current} op=('^^'|'^') messageName=SimpleName
+			'(' (arguments+=OclMessageArgCS (',' arguments+=OclMessageArgCS)*)? ')')
+	)?
+;
+
+// Follows ., ->, ^
+NavigatingExpCS returns essentialocl::ExpCS:
+	SubNavigatingExpCS
+	(
+		({essentialocl::InfixExpCS.source=current} op=('.'|'->') argument=NavigatingExpCS)
+	|	({OclMessageCS.source=current} op=('^^'|'^') messageName=SimpleName
+			'(' (arguments+=OclMessageArgCS (',' arguments+=OclMessageArgCS)*)? ')')
+	)?
+;
+
+// FIXME @pre
+
+OclMessageArgCS returns essentialocl::ExpCS:
+	({OclMessageArgCS}'?' (':' type=TypeExpCS)?)
+|	ExpCS
+;
+
