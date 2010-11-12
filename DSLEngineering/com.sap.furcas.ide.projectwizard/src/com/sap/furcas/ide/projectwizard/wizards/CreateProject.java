@@ -16,198 +16,180 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.wizards.newresource.BasicNewResourceWizard;
 
-import com.sap.furcas.ide.projectwizard.EclipseProjectHelper;
+import com.sap.furcas.ide.projectwizard.WizardProjectHelper;
 
+/* 
+ * This class is called by the doFinish() method of the Wizard. It creates the Language Project and the necessary
+ * files etc with the help of the classes SourceCodeFactory and WizardProjectHelper.
+ * 
+ * */
 public class CreateProject extends WorkspaceModifyOperation {
-	protected static final String ORIGINAL_FILE_LOCATION_ROOT = "src";
+    protected static final String ORIGINAL_FILE_LOCATION_ROOT = "src";
 
-	private static final String[] EXTRA_CLASSPATH = {/* 
-		"platform:/plugin/com.sap.mi.textual.parsing/lib/antlr-3.1.1.jar",
-		"platform:/plugin/com.sap.mi.textual.parsing/lib/antlr-2.7.7.jar", 
-		"platform:/plugin/com.sap.mi.textual.parsing/lib/stringtemplate.jar"*/
-	};
-	ProjectInfo pi;
-	Shell shell;
-	FurcasWizard wizard;
-	static SourceCodeFactory scf;
+    private static final String[] EXTRA_CLASSPATH = {/*
+                                                      * "platform:/plugin/com.sap.mi.textual.parsing/lib/antlr-3.1.1.jar",
+                                                      * "platform:/plugin/com.sap.mi.textual.parsing/lib/antlr-2.7.7.jar",
+                                                      * "platform:/plugin/com.sap.mi.textual.parsing/lib/stringtemplate.jar"
+                                                      */
+    };
+    ProjectInfo pi;
+    Shell shell;
+    FurcasWizard wizard;
+    static SourceCodeFactory scf;
 
-	public CreateProject(ProjectInfo pi, Shell shell) {
-		this.pi = pi;
-		this.shell = shell;
-		scf = new SourceCodeFactory();
-		
-	}
-	
-	protected void execute(IProgressMonitor monitor) throws CoreException, InvocationTargetException, InterruptedException {
-		monitor.beginTask("Creating project " + pi.getProjectName(), 2);
+    public CreateProject(ProjectInfo pi, Shell shell) {
+        this.pi = pi;
+        this.shell = shell;
+        scf = new SourceCodeFactory();
 
-    	IProject project = createProject(monitor);
-		if (project != null) {
-/*			ProjectMetaRefConfFactory.configure(project, conf);*/
-		}
-	}
-	
-	private IProject createProject(IProgressMonitor monitor) {
+    }
 
-		List<String> srcfolders = new ArrayList<String>();
-		srcfolders.add("src");
-		srcfolders.add("generated");
+    protected void execute(IProgressMonitor monitor) throws CoreException, InvocationTargetException, InterruptedException {
+        monitor.beginTask("Creating project " + pi.getProjectName(), 2);
 
-		List<String> exportedPackages = new ArrayList<String>();
-		exportedPackages.add(pi.getProjectName() + ".editor");
-		exportedPackages.add(pi.getProjectName() + ".parser");
-//		exportedPackages.add(pi.getBasePackage() + ".tree");
+        IProject project = createProject(monitor);
+        if (project != null) {
+            /* ProjectMetaRefConfFactory.configure(project, conf);  TODO */
+        }
+    }
 
-		List<String> nonSrcFolders = new ArrayList<String>();
-		nonSrcFolders.add("resources");
-		//nonSrcFolders.add("mappings");
+    private IProject createProject(IProgressMonitor monitor) {
 
-		List<String> extraclasspath = new ArrayList<String>(Arrays.asList(EXTRA_CLASSPATH));
+        List<String> srcfolders = new ArrayList<String>();
+        srcfolders.add("src");
+        srcfolders.add("generated");
 
-		IProject dslProject = EclipseProjectHelper.createPlugInProject(
-				pi.getProjectName(),
-				srcfolders, 
-				nonSrcFolders, 
-				Collections.<IProject> emptyList(),
-				exportedPackages, 
-				extraclasspath, 
-				monitor, 
-				this.shell,
-				null);           // Missing nature information TODO
+        List<String> exportedPackages = new ArrayList<String>();
+        exportedPackages.add(pi.getProjectName() + ".editor");
+        exportedPackages.add(pi.getProjectName() + ".parser");
+        // exportedPackages.add(pi.getBasePackage() + ".tree");
 
-		if (dslProject == null) {
-			return null;
-		}
-		monitor.worked(1);
+        List<String> nonSrcFolders = new ArrayList<String>();
+        nonSrcFolders.add("resources");
+        // nonSrcFolders.add("mappings");
 
-		// 
-		IFolder sourceTargetRootFolder = dslProject.getFolder(ORIGINAL_FILE_LOCATION_ROOT);
-		assert(sourceTargetRootFolder.exists());
-		
-		IFolder genRootFolder = dslProject.getFolder('/' + "generated");
-		assert (genRootFolder.exists());
+        List<String> extraclasspath = new ArrayList<String>(Arrays.asList(EXTRA_CLASSPATH));
 
-		// set up the "plugin.xml" and store in root directory
-		EclipseProjectHelper.createFile("plugin.xml", 
-				dslProject, 
-				scf.createPluginXML(pi), 
-				monitor);
+        IProject dslProject = WizardProjectHelper.createPlugInProject(pi.getProjectName(), srcfolders, nonSrcFolders,
+                Collections.<IProject> emptyList(), exportedPackages, extraclasspath, monitor, this.shell, null);
 
-		// create package folder "generated" with contents
-		IFolder genSrcFolder = null;
-		try {
-			genSrcFolder = createGeneratedFolder(genRootFolder, monitor, "");
-		} catch (CoreException e) {
-			System.out.println("Fehlerquelle I");
-		}
+        if (dslProject == null) {
+            return null;
+        }
+        monitor.worked(1);
 
-		// create package folders under "src"
-		try {
-			createSource(pi, sourceTargetRootFolder, dslProject, monitor);
-		} catch (CoreException e) {
-			System.out.println("Fehlerquelle II");
-		}
-		
-		// contents of the generate.properties file
-		String props = scf.createdPropertiesCode(pi);
-		EclipseProjectHelper.createFile("generate.properties", sourceTargetRootFolder, props, monitor);
+        //
+        IFolder sourceTargetRootFolder = dslProject.getFolder(ORIGINAL_FILE_LOCATION_ROOT);
+        assert (sourceTargetRootFolder.exists());
 
-		
-		// create a sample TCS file and store it in folder "generated"
-		String templateString = scf.createSampleTCS(pi);
-		IFile grammar = EclipseProjectHelper.createFile(pi.getTCSFileName(), genSrcFolder, templateString ,
-				monitor);
+        IFolder genRootFolder = dslProject.getFolder('/' + "generated");
+        assert (genRootFolder.exists());
 
-		monitor.setTaskName("Opening file for editing...");
-		BasicNewResourceWizard.selectAndReveal(grammar, PlatformUI.getWorkbench().getActiveWorkbenchWindow());
-		monitor.worked(1);
+        // set up the "plugin.xml" and store in root directory
+        WizardProjectHelper.createFile("plugin.xml", dslProject, scf.createPluginXML(pi), monitor);
 
-		return dslProject;
-	}
+        // create package folder "generated" with contents
+        IFolder genSrcFolder = null;
+        try {
+            genSrcFolder = createGeneratedFolder(genRootFolder, monitor, "");
+        } catch (CoreException e) {
+            System.out.println("Fehlerquelle I");
+        }
 
-	private static IFolder createSource(ProjectInfo pi, IFolder srcDir,
-			IProject dslProject, IProgressMonitor monitor) throws CoreException {
+        // create package folders under "src"
+        try {
+            createSource(pi, sourceTargetRootFolder, dslProject, monitor);
+        } catch (CoreException e) {
+            System.out.println("Fehlerquelle II");
+        }
 
-		String basePath = "";
-		String[] split = pi.getProjectName().split("\\.");
-		for (int i=0; i<split.length; i++) {
-			basePath += '/' + split[i];
-			IFolder f = srcDir.getFolder(basePath);
-			if (!f.exists()) {
-				f.create(false, true, monitor);
-			}
-		}
+        // contents of the generate.properties file
+        String props = scf.createdPropertiesCode(pi);
+        WizardProjectHelper.createFile("generate.properties", sourceTargetRootFolder, props, monitor);
 
-		createEditorFolder(srcDir, monitor, basePath, pi);
-		createParserFolder(srcDir, monitor, basePath, pi);
-		createTreeFolder(srcDir, monitor, basePath, pi);
-		
-		return srcDir;
-	}
+        // create a sample TCS file and store it in folder "generated"
+        String templateString = scf.createSampleTCS(pi);
+        IFile grammar = WizardProjectHelper.createFile(pi.getTCSFileName(), genSrcFolder, templateString, monitor);
 
-	private static IFolder createGeneratedFolder(IFolder srcDir,
-			IProgressMonitor monitor, String basePath) throws CoreException {
-		String treeFolderPath = basePath + "/generated";
-		IFolder treeFolder = srcDir.getFolder(treeFolderPath);
-		if (!treeFolder.exists()) {
-			treeFolder.create(false, true, monitor);
-		}
-		return treeFolder;
-	}
-	
-	private static IFolder createTreeFolder(IFolder srcDir,
-			IProgressMonitor monitor, String basePath, ProjectInfo pi) throws CoreException {
-		String treeFolderPath = basePath + "/tree";
-		IFolder treeFolder = srcDir.getFolder(treeFolderPath);
-		if (!treeFolder.exists()) {
-			treeFolder.create(false, true, monitor);
-		}
-		return treeFolder;
-	}
+        monitor.setTaskName("Opening file for editing...");
+        BasicNewResourceWizard.selectAndReveal(grammar, PlatformUI.getWorkbench().getActiveWorkbenchWindow());
+        monitor.worked(1);
 
-	private static IFolder createParserFolder(IFolder srcDir,
-			IProgressMonitor monitor, String basePath, ProjectInfo pi) throws CoreException {
-		String parserFolderPath = basePath + "/parser";
-		IFolder parserFolder = srcDir.getFolder(parserFolderPath);
-		if (!parserFolder.exists()) {
-			parserFolder.create(false, true, monitor);
-		}
+        return dslProject;
+    }
 
-		EclipseProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "ParserFactory.java", 
-				parserFolder, 
-				scf.createParserFactory(pi), 
-				monitor);
-		
-		return parserFolder;
-	}
+    private static IFolder createSource(ProjectInfo pi, IFolder srcDir, IProject dslProject, IProgressMonitor monitor)
+            throws CoreException {
 
-	private static IFolder createEditorFolder(IFolder srcDir,
-			IProgressMonitor monitor, String basePath, ProjectInfo pi) throws CoreException {
-		String editorFolderPath = basePath + "/editor";
-		IFolder editorFolder = srcDir.getFolder(editorFolderPath);
-		if (!editorFolder.exists()) {
-			editorFolder.create(false, true, monitor);
-		}
-		
-		EclipseProjectHelper.createFile("Activator.java", 
-				editorFolder, 
-				scf.createActivator(pi), 
-				monitor);
-		EclipseProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "Editor.java", 
-				editorFolder, 
-				scf.createEditorCode(pi), 
-				monitor);
-		EclipseProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "Mapper.java", 
-				editorFolder, 
-				scf.createMapperCode(pi), 
-				monitor);
-		
-		return editorFolder;
-	}
-	
-	protected static String capitalizeFirstChar(String s) {
-		return ("" + s.charAt(0)).toUpperCase() + s.substring(1);
-	}
+        String basePath = "";
+        String[] split = pi.getProjectName().split("\\.");
+        for (int i = 0; i < split.length; i++) {
+            basePath += '/' + split[i];
+            IFolder f = srcDir.getFolder(basePath);
+            if (!f.exists()) {
+                f.create(false, true, monitor);
+            }
+        }
+
+        createEditorFolder(srcDir, monitor, basePath, pi);
+        createParserFolder(srcDir, monitor, basePath, pi);
+        createTreeFolder(srcDir, monitor, basePath, pi);
+
+        return srcDir;
+    }
+
+    private static IFolder createGeneratedFolder(IFolder srcDir, IProgressMonitor monitor, String basePath) throws CoreException {
+        String treeFolderPath = basePath + "/generated";
+        IFolder treeFolder = srcDir.getFolder(treeFolderPath);
+        if (!treeFolder.exists()) {
+            treeFolder.create(false, true, monitor);
+        }
+        return treeFolder;
+    }
+
+    private static IFolder createTreeFolder(IFolder srcDir, IProgressMonitor monitor, String basePath, ProjectInfo pi)
+            throws CoreException {
+        String treeFolderPath = basePath + "/tree";
+        IFolder treeFolder = srcDir.getFolder(treeFolderPath);
+        if (!treeFolder.exists()) {
+            treeFolder.create(false, true, monitor);
+        }
+        return treeFolder;
+    }
+
+    private static IFolder createParserFolder(IFolder srcDir, IProgressMonitor monitor, String basePath, ProjectInfo pi)
+            throws CoreException {
+        String parserFolderPath = basePath + "/parser";
+        IFolder parserFolder = srcDir.getFolder(parserFolderPath);
+        if (!parserFolder.exists()) {
+            parserFolder.create(false, true, monitor);
+        }
+
+        WizardProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "ParserFactory.java", parserFolder,
+                scf.createParserFactory(pi), monitor);
+
+        return parserFolder;
+    }
+
+    private static IFolder createEditorFolder(IFolder srcDir, IProgressMonitor monitor, String basePath, ProjectInfo pi)
+            throws CoreException {
+        String editorFolderPath = basePath + "/editor";
+        IFolder editorFolder = srcDir.getFolder(editorFolderPath);
+        if (!editorFolder.exists()) {
+            editorFolder.create(false, true, monitor);
+        }
+
+        WizardProjectHelper.createFile("Activator.java", editorFolder, scf.createActivator(pi), monitor);
+        WizardProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "Editor.java", editorFolder,
+                scf.createEditorCode(pi), monitor);
+        WizardProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "Mapper.java", editorFolder,
+                scf.createMapperCode(pi), monitor);
+
+        return editorFolder;
+    }
+
+    protected static String capitalizeFirstChar(String s) {
+        return ("" + s.charAt(0)).toUpperCase() + s.substring(1);
+    }
 
 }
-
