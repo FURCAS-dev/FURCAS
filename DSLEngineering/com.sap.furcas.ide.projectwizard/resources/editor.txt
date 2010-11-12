@@ -1,0 +1,23 @@
+package ProjectName.editor; 
+
+import textblocks.TextBlock; 
+
+import com.sap.ide.cts.editor.AbstractGrammarBasedEditor; 
+import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
+import ProjectName.parser.$CapLangname$ParserFactory;
+
+public class $CapLangName$Editor extends AbstractGrammarBasedEditor { 
+
+	public $CapLangName$Editor() { 
+		super(new $CapLangName$ParserFactory(), new $CapLangName$Mapper()); 
+	} 
+
+	@Override 
+	public TextBlock parse(TextBlock rootBlock) throws SemanticParserException { 
+		Connection connection = getWorkingConnection();
+		initializeNewParser(connection);
+		TextBlock newRoot =  super.parse(rootBlock); 
+		return newRoot; 
+	} 
+
+}
