@@ -1,3 +1,120 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <component id="org.eclipse.ocl" version="2">
+    <resource path="src/org/eclipse/ocl/expressions/ExpressionsFactory.java" type="org.eclipse.ocl.expressions.ExpressionsFactory">
+        <filter id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.ExpressionsFactory"/>
+                <message_argument value="createOppositePropertyCallExp()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/ocl/expressions/ExpressionsPackage.java" type="org.eclipse.ocl.expressions.ExpressionsPackage">
+        <filter id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.ExpressionsPackage"/>
+                <message_argument value="OPPOSITE_PROPERTY_CALL_EXP"/>
+            </message_arguments>
+        </filter>
+        <filter id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.ExpressionsPackage"/>
+                <message_argument value="OPPOSITE_PROPERTY_CALL_EXP_FEATURE_COUNT"/>
+            </message_arguments>
+        </filter>
+        <filter id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.ExpressionsPackage"/>
+                <message_argument value="OPPOSITE_PROPERTY_CALL_EXP__END_POSITION"/>
+            </message_arguments>
+        </filter>
+        <filter id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.ExpressionsPackage"/>
+                <message_argument value="OPPOSITE_PROPERTY_CALL_EXP__MARKED_PRE"/>
+            </message_arguments>
+        </filter>
+        <filter id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.ExpressionsPackage"/>
+                <message_argument value="OPPOSITE_PROPERTY_CALL_EXP__NAVIGATION_SOURCE"/>
+            </message_arguments>
+        </filter>
+        <filter id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.ExpressionsPackage"/>
+                <message_argument value="OPPOSITE_PROPERTY_CALL_EXP__PROPERTY_END_POSITION"/>
+            </message_arguments>
+        </filter>
+        <filter id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.ExpressionsPackage"/>
+                <message_argument value="OPPOSITE_PROPERTY_CALL_EXP__PROPERTY_START_POSITION"/>
+            </message_arguments>
+        </filter>
+        <filter id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.ExpressionsPackage"/>
+                <message_argument value="OPPOSITE_PROPERTY_CALL_EXP__QUALIFIER"/>
+            </message_arguments>
+        </filter>
+        <filter id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.ExpressionsPackage"/>
+                <message_argument value="OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY"/>
+            </message_arguments>
+        </filter>
+        <filter id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.ExpressionsPackage"/>
+                <message_argument value="OPPOSITE_PROPERTY_CALL_EXP__SOURCE"/>
+            </message_arguments>
+        </filter>
+        <filter id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.ExpressionsPackage"/>
+                <message_argument value="OPPOSITE_PROPERTY_CALL_EXP__START_POSITION"/>
+            </message_arguments>
+        </filter>
+        <filter id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.ExpressionsPackage"/>
+                <message_argument value="getOppositePropertyCallExp()"/>
+            </message_arguments>
+        </filter>
+        <filter id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.ExpressionsPackage"/>
+                <message_argument value="getOppositePropertyCallExp_ReferredOppositeProperty()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/ocl/expressions/util/ExpressionsValidator.java" type="org.eclipse.ocl.expressions.util.ExpressionsValidator">
+        <filter id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.expressions.util.ExpressionsValidator"/>
+                <message_argument value="DIAGNOSTIC_CODE_COUNT"/>
+                <message_argument value="39"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/ocl/utilities/UtilitiesPackage.java" type="org.eclipse.ocl.utilities.UtilitiesPackage">
+        <filter id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.UtilitiesPackage"/>
+                <message_argument value="VISITOR_WITH_HIDDEN_OPPOSITE"/>
+            </message_arguments>
+        </filter>
+        <filter id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.UtilitiesPackage"/>
+                <message_argument value="VISITOR_WITH_HIDDEN_OPPOSITE_FEATURE_COUNT"/>
+            </message_arguments>
+        </filter>
+        <filter id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.utilities.UtilitiesPackage"/>
+                <message_argument value="getVisitorWithHiddenOpposite()"/>
+            </message_arguments>
+        </filter>
+    </resource>
 </component>

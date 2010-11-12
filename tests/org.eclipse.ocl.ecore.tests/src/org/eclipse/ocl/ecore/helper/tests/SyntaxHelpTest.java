@@ -40,6 +40,25 @@ public class SyntaxHelpTest
 	/**
 	 * Basic completion test for metamodel level.
 	 */
+	public void testMetaModelCompletionsForOppositePropertyCallExp() {
+		helper.setContext(apple);
+		List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "self.");
+		
+		assertChoice(choices, ChoiceKind.PROPERTY, "droppedUnderTree");
+		assertChoice(choices, ChoiceKind.PROPERTY, "tree");
+		
+		choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "self.tree.");
+		
+		assertChoice(choices, ChoiceKind.PROPERTY, "fruits");
+
+		helper.setContext(stem);
+		choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "self.");
+		assertChoice(choices, ChoiceKind.PROPERTY, "stemOfApple");
+	}
+	
+	/**
+	 * Basic completion test for metamodel level.
+	 */
 	public void testMetaModelCompletions() {
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
 		List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "self.");

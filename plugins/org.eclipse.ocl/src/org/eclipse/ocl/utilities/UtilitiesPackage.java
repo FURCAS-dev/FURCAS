@@ -422,6 +422,17 @@ public interface UtilitiesPackage
 	int EXPRESSION_IN_OCL_FEATURE_COUNT = VISITABLE_FEATURE_COUNT + 5;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.utilities.VisitorWithHiddenOpposite <em>Visitor With Hidden Opposite</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.utilities.VisitorWithHiddenOpposite
+	 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getVisitorWithHiddenOpposite()
+	 * @generated
+	 * @since 3.1
+	 */
+	int VISITOR_WITH_HIDDEN_OPPOSITE = 8;
+
+	/**
 	 * The number of structural features of the '<em>Predefined Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -431,6 +442,16 @@ public interface UtilitiesPackage
 	 * @ordered
 	 */
 	int PREDEFINED_TYPE_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of structural features of the '<em>Visitor With Hidden Opposite</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @since 3.1
+	 */
+	int VISITOR_WITH_HIDDEN_OPPOSITE_FEATURE_COUNT = VISITOR_FEATURE_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.utilities.ASTNode <em>AST Node</em>}'.
@@ -505,6 +526,17 @@ public interface UtilitiesPackage
 	 * @generated
 	 */
 	EClass getPredefinedType();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.utilities.VisitorWithHiddenOpposite <em>Visitor With Hidden Opposite</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Visitor With Hidden Opposite</em>'.
+	 * @see org.eclipse.ocl.utilities.VisitorWithHiddenOpposite
+	 * @generated
+	 * @since 3.1
+	 */
+	EClass getVisitorWithHiddenOpposite();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.utilities.TypedASTNode <em>Typed AST Node</em>}'.
@@ -723,6 +755,17 @@ public interface UtilitiesPackage
 		 * @generated
 		 */
 		EClass PREDEFINED_TYPE = eINSTANCE.getPredefinedType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.utilities.VisitorWithHiddenOpposite <em>Visitor With Hidden Opposite</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.utilities.VisitorWithHiddenOpposite
+		 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getVisitorWithHiddenOpposite()
+		 * @generated
+		 * @since 3.1
+		 */
+		EClass VISITOR_WITH_HIDDEN_OPPOSITE = eINSTANCE.getVisitorWithHiddenOpposite();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.utilities.TypedASTNode <em>Typed AST Node</em>}' class.

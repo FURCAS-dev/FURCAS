@@ -48,6 +48,7 @@ import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.NumericLiteralExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PrimitiveLiteralExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.RealLiteralExp;
@@ -403,12 +404,21 @@ public class ExpressionsValidator
 	public static final int VARIABLE_EXP__VAR_TYPE = 39;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Check Property Type' of 'Opposite Property Call Exp'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @since 3.1
+	 */
+	public static final int OPPOSITE_PROPERTY_CALL_EXP__PROPERTY_TYPE = 40;
+
+	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 39;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 40;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -551,6 +561,9 @@ public class ExpressionsValidator
 			case ExpressionsPackage.VARIABLE_EXP :
 				return validateVariableExp((VariableExp<?, ?>) value,
 					diagnostics, context);
+			case ExpressionsPackage.OPPOSITE_PROPERTY_CALL_EXP :
+				return validateOppositePropertyCallExp(
+					(OppositePropertyCallExp<?, ?>) value, diagnostics, context);
 			case ExpressionsPackage.COLLECTION_KIND :
 				return validateCollectionKind((CollectionKind) value,
 					diagnostics, context);
@@ -2035,6 +2048,60 @@ public class ExpressionsValidator
 			VariableExp<?, ?> variableExp, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return variableExp.checkVarType(diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @since 3.1
+	 */
+	public boolean validateOppositePropertyCallExp(
+			OppositePropertyCallExp<?, ?> oppositePropertyCallExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(oppositePropertyCallExp,
+			diagnostics, context))
+			return false;
+		boolean result = validate_EveryMultiplicityConforms(
+			oppositePropertyCallExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryDataValueConforms(oppositePropertyCallExp,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryReferenceIsContained(
+				oppositePropertyCallExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				oppositePropertyCallExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryProxyResolves(oppositePropertyCallExp,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_UniqueID(oppositePropertyCallExp, diagnostics,
+				context);
+		if (result || diagnostics != null)
+			result &= validate_EveryKeyUnique(oppositePropertyCallExp,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryMapEntryUnique(oppositePropertyCallExp,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateOppositePropertyCallExp_checkPropertyType(
+				oppositePropertyCallExp, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the checkPropertyType constraint of '<em>Opposite Property Call Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @since 3.1
+	 */
+	public boolean validateOppositePropertyCallExp_checkPropertyType(
+			OppositePropertyCallExp<?, ?> oppositePropertyCallExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return oppositePropertyCallExp.checkPropertyType(diagnostics, context);
 	}
 
 	/**

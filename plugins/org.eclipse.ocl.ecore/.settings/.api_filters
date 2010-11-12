@@ -1,3 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <component id="org.eclipse.ocl.ecore" version="2">
+    <resource path="src/org/eclipse/ocl/ecore/EcoreFactory.java" type="org.eclipse.ocl.ecore.EcoreFactory">
+        <filter id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.ecore.EcoreFactory"/>
+                <message_argument value="createOppositePropertyCallExp()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/ocl/ecore/EcorePackage.java" type="org.eclipse.ocl.ecore.EcorePackage$Literals">
+        <filter id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.ecore.EcorePackage.Literals"/>
+                <message_argument value="OPPOSITE_PROPERTY_CALL_EXP"/>
+            </message_arguments>
+        </filter>
+    </resource>
 </component>

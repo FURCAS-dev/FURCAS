@@ -368,6 +368,10 @@ public class TupleLiteralPartItemProvider extends ETypedElementItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__VALUE,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__VALUE,
 				ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -455,6 +459,10 @@ public class TupleLiteralPartItemProvider extends ETypedElementItemProvider
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__VALUE,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__VALUE,
+				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
@@ -631,6 +639,10 @@ public class TupleLiteralPartItemProvider extends ETypedElementItemProvider
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
 				EcoreFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
 
 		newChildDescriptors
 				.add(createChildParameter(
@@ -869,6 +881,10 @@ public class TupleLiteralPartItemProvider extends ETypedElementItemProvider
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
 	}
 
 	/**

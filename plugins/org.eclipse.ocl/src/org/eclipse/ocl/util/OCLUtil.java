@@ -27,6 +27,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
+import org.eclipse.ocl.EnvironmentWithHiddenOpposites;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.LookupException;
 import org.eclipse.ocl.Query;
@@ -109,11 +110,12 @@ public final class OCLUtil {
 				result = (T) getBasicEnvironment(env);
 			} else if (adapterType == ProblemHandler.class) {
 				result = (T) getAdapter(env, BasicEnvironment.class).getProblemHandler();
-			} else if (adapterType == Environment.Lookup.class) {
+			} else if (adapterType == Environment.Lookup.class ||
+					adapterType == EnvironmentWithHiddenOpposites.Lookup.class) {
 			    final Environment<Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object> _env =
 			        (Environment<Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object>) env;
 			    
-				result = (T) new Environment.Lookup<Object, Object, Object, Object>() {
+				result = (T) new EnvironmentWithHiddenOpposites.Lookup<Object, Object, Object, Object>() {
 				    public Object tryLookupPackage(List<String> names)
                         throws LookupException {
                         
@@ -139,7 +141,15 @@ public final class OCLUtil {
                         return _env.lookupProperty(owner, name);
                     }
 
-                    public Object tryLookupAssociationClassReference(Object owner,
+
+					public Object tryLookupOppositeProperty(Object owner,
+							String name)
+							throws LookupException {
+
+						return ((EnvironmentWithHiddenOpposites<?, Object, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) _env).lookupOppositeProperty(owner, name);
+					}
+					
+					public Object tryLookupAssociationClassReference(Object owner,
                             String name)
                         throws LookupException {
                         

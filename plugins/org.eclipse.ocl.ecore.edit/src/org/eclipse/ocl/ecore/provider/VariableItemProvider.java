@@ -383,6 +383,10 @@ public class VariableItemProvider extends ETypedElementItemProvider implements
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
 				ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -470,6 +474,10 @@ public class VariableItemProvider extends ETypedElementItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
 	}
 
 	/**

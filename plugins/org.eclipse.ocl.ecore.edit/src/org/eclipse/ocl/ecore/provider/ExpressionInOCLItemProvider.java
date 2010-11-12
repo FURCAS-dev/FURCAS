@@ -279,6 +279,10 @@ public class ExpressionInOCLItemProvider extends ItemProviderAdapter implements
 
 		newChildDescriptors.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__BODY_EXPRESSION,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__BODY_EXPRESSION,
 				ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -366,6 +370,10 @@ public class ExpressionInOCLItemProvider extends ItemProviderAdapter implements
 		newChildDescriptors.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__BODY_EXPRESSION,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__BODY_EXPRESSION,
+				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__CONTEXT_VARIABLE,
@@ -568,6 +576,10 @@ public class ExpressionInOCLItemProvider extends ItemProviderAdapter implements
 		newChildDescriptors.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
 				EcoreFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
 
 		newChildDescriptors
 				.add(createChildParameter(
@@ -806,6 +818,10 @@ public class ExpressionInOCLItemProvider extends ItemProviderAdapter implements
 		newChildDescriptors.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
 	}
 
 	/**

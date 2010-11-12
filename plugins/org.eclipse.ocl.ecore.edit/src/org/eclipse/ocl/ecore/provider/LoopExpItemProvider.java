@@ -252,6 +252,10 @@ public class LoopExpItemProvider extends CallExpItemProvider implements
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.LOOP_EXP__BODY,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.LOOP_EXP__BODY,
 				ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -339,6 +343,10 @@ public class LoopExpItemProvider extends CallExpItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.LOOP_EXP__BODY,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.LOOP_EXP__BODY,
+				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.LOOP_EXP__ITERATOR,

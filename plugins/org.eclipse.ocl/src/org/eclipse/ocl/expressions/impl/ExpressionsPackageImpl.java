@@ -55,6 +55,7 @@ import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.NumericLiteralExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PrimitiveLiteralExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.RealLiteralExp;
@@ -327,6 +328,13 @@ public class ExpressionsPackageImpl
 	 * @generated
 	 */
 	private EClass variableExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass oppositePropertyCallExpEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1172,6 +1180,27 @@ public class ExpressionsPackageImpl
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
+	 * @since 3.1
+	 */
+	public EClass getOppositePropertyCallExp() {
+		return oppositePropertyCallExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @since 3.1
+	 */
+	public EReference getOppositePropertyCallExp_ReferredOppositeProperty() {
+		return (EReference) oppositePropertyCallExpEClass
+			.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public EEnum getCollectionKind() {
 		return collectionKindEEnum;
@@ -1333,6 +1362,10 @@ public class ExpressionsPackageImpl
 		variableExpEClass = createEClass(VARIABLE_EXP);
 		createEReference(variableExpEClass, VARIABLE_EXP__REFERRED_VARIABLE);
 
+		oppositePropertyCallExpEClass = createEClass(OPPOSITE_PROPERTY_CALL_EXP);
+		createEReference(oppositePropertyCallExpEClass,
+			OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY);
+
 		// Create enums
 		collectionKindEEnum = createEEnum(COLLECTION_KIND);
 	}
@@ -1477,6 +1510,10 @@ public class ExpressionsPackageImpl
 			variableExpEClass, "C"); //$NON-NLS-1$
 		ETypeParameter variableExpEClass_PM = addETypeParameter(
 			variableExpEClass, "PM"); //$NON-NLS-1$
+		ETypeParameter oppositePropertyCallExpEClass_C = addETypeParameter(
+			oppositePropertyCallExpEClass, "C"); //$NON-NLS-1$
+		ETypeParameter oppositePropertyCallExpEClass_P = addETypeParameter(
+			oppositePropertyCallExpEClass, "P"); //$NON-NLS-1$
 
 		// Set bounds for type parameters
 
@@ -1649,6 +1686,12 @@ public class ExpressionsPackageImpl
 		g2 = createEGenericType(variableExpEClass_C);
 		g1.getETypeArguments().add(g2);
 		variableExpEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getNavigationCallExp());
+		g2 = createEGenericType(oppositePropertyCallExpEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(oppositePropertyCallExpEClass_P);
+		g1.getETypeArguments().add(g2);
+		oppositePropertyCallExpEClass.getEGenericSuperTypes().add(g1);
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(
@@ -2521,6 +2564,29 @@ public class ExpressionsPackageImpl
 
 		op = addEOperation(variableExpEClass, ecorePackage.getEBoolean(),
 			"checkVarType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEDiagnosticChain(),
+			"diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(
+			oppositePropertyCallExpEClass,
+			OppositePropertyCallExp.class,
+			"OppositePropertyCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		g1 = createEGenericType(oppositePropertyCallExpEClass_P);
+		initEReference(
+			getOppositePropertyCallExp_ReferredOppositeProperty(),
+			g1,
+			null,
+			"referredOppositeProperty", null, 0, 1, OppositePropertyCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		op = addEOperation(oppositePropertyCallExpEClass,
+			ecorePackage.getEBoolean(),
+			"checkPropertyType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(),
 			"diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(ecorePackage.getEMap());

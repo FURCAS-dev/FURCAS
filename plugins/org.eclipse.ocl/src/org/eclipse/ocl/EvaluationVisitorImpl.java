@@ -52,6 +52,7 @@ import org.eclipse.ocl.expressions.MessageExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.RealLiteralExp;
 import org.eclipse.ocl.expressions.StateExp;
@@ -1936,6 +1937,51 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			result = collection;
 		}
 		
+		return result;
+	}
+
+	/**
+	 * Callback for a PropertyCallExp visit. Evaluates the source of the
+	 * expression and then reflectively gets the value of the property on the
+	 * result. For example, in "self.foo", "self" is the source and would be
+	 * evaluated first, then the value of the property "foo" would be accessed
+	 * on that object.
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+    public Object visitOppositePropertyCallExp(OppositePropertyCallExp<C, P> pc) {
+		P property = pc.getReferredOppositeProperty();
+		OCLExpression<C> source = pc.getSource();
+		// evaluate source
+		Object context = source.accept(getVisitor());
+		// if source is undefined, result is OclInvalid
+		if (isUndefined(context)) {
+            return getInvalid();
+        }
+		List<Object> qualifiers;
+		if (pc.getQualifier().isEmpty()) {
+			qualifiers = Collections.emptyList();
+		} else {
+			// handle qualified association navigation
+			qualifiers = new java.util.ArrayList<Object>();
+			
+			for (OCLExpression<C> q : pc.getQualifier()) {
+				qualifiers.add(q.accept(getVisitor()));
+			}
+		}
+		Object result = ((EvaluationEnvironmentWithHiddenOpposites<P>) getEvaluationEnvironment())
+			.navigateOppositeProperty(property, qualifiers, context);
+		if ((pc.getType() instanceof CollectionType<?, ?>)
+			&& !(result instanceof Collection<?>)) {
+			// this was an XSD "unspecified multiplicity".  Now that we know what
+			//    the multiplicity is, we can coerce it to a collection value
+			CollectionKind kind = ((CollectionType<C, O>) pc.getType()).getKind();
+			Collection<Object> collection = CollectionUtil.createNewCollection(kind);
+			if (result != null) {
+				collection.add(result);
+			}
+			result = collection;
+		}
 		return result;
 	}
 

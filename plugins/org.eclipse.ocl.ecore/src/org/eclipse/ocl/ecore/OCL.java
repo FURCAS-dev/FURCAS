@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.helper.OCLHelper;
 
 /**
@@ -126,6 +127,18 @@ public class OCL extends org.eclipse.ocl.OCL<
      */
 	public static OCL newInstance() {
 		return new OCL(EcoreEnvironmentFactory.INSTANCE);
+	}
+	
+    /**
+     * Creates a new <code>OCL</code> creating a new Ecore environment
+     * factory instance that uses the <code>oppositeEndFinder</code>
+     * specified.
+     * 
+     * @return the new <code>OCL</code>
+     * @since 3.1
+     */
+	public static OCL newInstance(OppositeEndFinder oppositeEndFinder) {
+		return new OCL(new EcoreEnvironmentFactory(oppositeEndFinder));
 	}
 	
     /**

@@ -38,6 +38,7 @@ import org.eclipse.ocl.utilities.UtilitiesFactory;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 import org.eclipse.ocl.utilities.Visitable;
 import org.eclipse.ocl.utilities.Visitor;
+import org.eclipse.ocl.utilities.VisitorWithHiddenOpposite;
 
 /**
  * <!-- begin-user-doc -->
@@ -69,6 +70,13 @@ public class UtilitiesPackageImpl
 	 * @generated
 	 */
 	private EClass predefinedTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass visitorWithHiddenOppositeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -255,6 +263,16 @@ public class UtilitiesPackageImpl
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
+	 * @since 3.1
+	 */
+	public EClass getVisitorWithHiddenOpposite() {
+		return visitorWithHiddenOppositeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public EClass getTypedASTNode() {
 		return typedASTNodeEClass;
@@ -428,6 +446,8 @@ public class UtilitiesPackageImpl
 			EXPRESSION_IN_OCL__GENERATED_TYPE);
 
 		predefinedTypeEClass = createEClass(PREDEFINED_TYPE);
+
+		visitorWithHiddenOppositeEClass = createEClass(VISITOR_WITH_HIDDEN_OPPOSITE);
 	}
 
 	/**
@@ -498,6 +518,26 @@ public class UtilitiesPackageImpl
 			expressionInOCLEClass, "PM"); //$NON-NLS-1$
 		ETypeParameter predefinedTypeEClass_O = addETypeParameter(
 			predefinedTypeEClass, "O"); //$NON-NLS-1$
+		ETypeParameter visitorWithHiddenOppositeEClass_T = addETypeParameter(
+			visitorWithHiddenOppositeEClass, "T"); //$NON-NLS-1$
+		ETypeParameter visitorWithHiddenOppositeEClass_C = addETypeParameter(
+			visitorWithHiddenOppositeEClass, "C"); //$NON-NLS-1$
+		ETypeParameter visitorWithHiddenOppositeEClass_O = addETypeParameter(
+			visitorWithHiddenOppositeEClass, "O"); //$NON-NLS-1$
+		ETypeParameter visitorWithHiddenOppositeEClass_P = addETypeParameter(
+			visitorWithHiddenOppositeEClass, "P"); //$NON-NLS-1$
+		ETypeParameter visitorWithHiddenOppositeEClass_EL = addETypeParameter(
+			visitorWithHiddenOppositeEClass, "EL"); //$NON-NLS-1$
+		ETypeParameter visitorWithHiddenOppositeEClass_PM = addETypeParameter(
+			visitorWithHiddenOppositeEClass, "PM"); //$NON-NLS-1$
+		ETypeParameter visitorWithHiddenOppositeEClass_S = addETypeParameter(
+			visitorWithHiddenOppositeEClass, "S"); //$NON-NLS-1$
+		ETypeParameter visitorWithHiddenOppositeEClass_COA = addETypeParameter(
+			visitorWithHiddenOppositeEClass, "COA"); //$NON-NLS-1$
+		ETypeParameter visitorWithHiddenOppositeEClass_SSA = addETypeParameter(
+			visitorWithHiddenOppositeEClass, "SSA"); //$NON-NLS-1$
+		ETypeParameter visitorWithHiddenOppositeEClass_CT = addETypeParameter(
+			visitorWithHiddenOppositeEClass, "CT"); //$NON-NLS-1$
 
 		// Set bounds for type parameters
 
@@ -505,6 +545,28 @@ public class UtilitiesPackageImpl
 		callingASTNodeEClass.getESuperTypes().add(this.getASTNode());
 		typedASTNodeEClass.getESuperTypes().add(this.getASTNode());
 		expressionInOCLEClass.getESuperTypes().add(this.getVisitable());
+		EGenericType g1 = createEGenericType(this.getVisitor());
+		EGenericType g2 = createEGenericType(visitorWithHiddenOppositeEClass_T);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(visitorWithHiddenOppositeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(visitorWithHiddenOppositeEClass_O);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(visitorWithHiddenOppositeEClass_P);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(visitorWithHiddenOppositeEClass_EL);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(visitorWithHiddenOppositeEClass_PM);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(visitorWithHiddenOppositeEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(visitorWithHiddenOppositeEClass_COA);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(visitorWithHiddenOppositeEClass_SSA);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(visitorWithHiddenOppositeEClass_CT);
+		g1.getETypeArguments().add(g2);
+		visitorWithHiddenOppositeEClass.getEGenericSuperTypes().add(g1);
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(astNodeEClass, ASTNode.class,
@@ -551,8 +613,8 @@ public class UtilitiesPackageImpl
 			"accept", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		ETypeParameter t1 = addETypeParameter(op, "T"); //$NON-NLS-1$
 		ETypeParameter t2 = addETypeParameter(op, "U"); //$NON-NLS-1$
-		EGenericType g1 = createEGenericType(this.getVisitor());
-		EGenericType g2 = createEGenericType(t1);
+		g1 = createEGenericType(this.getVisitor());
+		g2 = createEGenericType(t1);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
@@ -946,6 +1008,23 @@ public class UtilitiesPackageImpl
 		op = addEOperation(predefinedTypeEClass, null,
 			"oclOperations", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(predefinedTypeEClass_O);
+		initEOperation(op, g1);
+
+		initEClass(
+			visitorWithHiddenOppositeEClass,
+			VisitorWithHiddenOpposite.class,
+			"VisitorWithHiddenOpposite", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		op = addEOperation(visitorWithHiddenOppositeEClass, null,
+			"visitOppositePropertyCallExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		g1 = createEGenericType(theExpressionsPackage
+			.getOppositePropertyCallExp());
+		g2 = createEGenericType(visitorWithHiddenOppositeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(visitorWithHiddenOppositeEClass_P);
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "callExp", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		g1 = createEGenericType(visitorWithHiddenOppositeEClass_T);
 		initEOperation(op, g1);
 
 		// Create resource

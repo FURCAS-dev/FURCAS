@@ -30,6 +30,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.EnvironmentWithHiddenOpposites;
 import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.TypeChecker;
 import org.eclipse.ocl.expressions.CollectionKind;
@@ -249,6 +250,27 @@ public class TypeUtil {
 			C owner,
 			P property) {
        return getTypeCheckerAdapter(env).getPropertyType(owner, property);
+	}
+	
+	/**
+     * Gets the type of a property's (hidden) opposite.
+     * 
+     * @param env the OCL environment
+     * @param owner the source of the navigation of the property, which may
+     *     be an association class (the interesting scenario)
+     * @param property the property to navigate
+     * 
+     * @return the effective type of the property, which may not be a
+     *    collection type despite its declared multiplicity in the association
+     *    class case
+	 * @since 3.1
+	 */
+	public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+	C getOppositePropertyType(
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			C owner,
+			P property) {
+       return ((EnvironmentWithHiddenOpposites<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>) env).getOppositePropertyType(owner, property);
 	}
 	
     /**

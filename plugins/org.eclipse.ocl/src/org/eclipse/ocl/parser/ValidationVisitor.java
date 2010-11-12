@@ -46,6 +46,7 @@ import org.eclipse.ocl.expressions.MessageExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.RealLiteralExp;
 import org.eclipse.ocl.expressions.StateExp;
@@ -80,6 +81,7 @@ import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.utilities.UMLReflection;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 import org.eclipse.ocl.utilities.Visitor;
+import org.eclipse.ocl.utilities.VisitorWithHiddenOpposite;
 
 /**
  * Checks the well-formedness rules for the expressions package
@@ -88,7 +90,7 @@ import org.eclipse.ocl.utilities.Visitor;
  * @author Christian W. Damus (cdamus)
  */
 public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-	implements Visitor<Boolean, C, O, P, EL, PM, S, COA, SSA, CT> {
+	implements VisitorWithHiddenOpposite<Boolean, C, O, P, EL, PM, S, COA, SSA, CT> {
 	
 	private Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env = null;
     private UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> uml = null;
@@ -376,6 +378,92 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 						OCLMessages.MismatchedQualifiers_ERROR_,
 						pc.toString());
 				return validatorError(pc, message, "visitPropertyCallExp");//$NON-NLS-1$
+			} else {
+				Iterator<P> eiter = expectedQualifierTypes.iterator();
+				Iterator<OCLExpression<C>> qiter = qualifiers.iterator();
+				
+				while (eiter.hasNext()) {
+					C expectedType = getOCLType(eiter.next());
+					OCLExpression<C> qualifier = qiter.next();
+					
+					C qualifierType = qualifier.getType();
+					
+					if ((TypeUtil.getRelationship(env, qualifierType, expectedType)
+							& UMLReflection.SUBTYPE) == 0) {
+						
+						String message = OCLMessages.bind(
+								OCLMessages.MismatchedQualifiers_ERROR_,
+								pc.toString());
+						return validatorError(pc, message, "visitPropertyCallExp");//$NON-NLS-1$
+					}
+				}
+			}
+		}
+		
+		if (visitFeatureCallExp(pc)) {
+            return Boolean.TRUE;
+        }
+		
+		source.accept(this);
+
+		C refType = TypeUtil.getPropertyType(env, source.getType(), property);
+		
+		if (!pc.getQualifier().isEmpty() && (refType instanceof CollectionType<?, ?>)) {
+			// qualifying the navigation results in a non-collection
+			//    type
+			@SuppressWarnings("unchecked")
+			CollectionType<C, O> ct = (CollectionType<C, O>) refType;
+			
+			refType = ct.getElementType();
+		}
+		
+		return Boolean.valueOf(TypeUtil.exactTypeMatch(env, refType, type));
+	}
+
+	/**
+	 * Callback for an PropertyCallExp visit. Well-formedness rule: The
+	 * type of the PropertyCallExp is the type of the referred
+	 * EStructuralFeature.
+	 * 
+	 * @param pc the property call expression
+	 * @return Boolean -- true if validated
+	 * @since 3.1
+	 */
+	public Boolean visitOppositePropertyCallExp(OppositePropertyCallExp<C, P> pc) {
+		P property = pc.getReferredOppositeProperty();
+		OCLExpression<C> source = pc.getSource();
+		C type = pc.getType();
+
+		if (property == null) {
+			String message = OCLMessages.bind(
+					OCLMessages.NullProperty_ERROR_,
+					pc.toString());
+			return validatorError(pc, message, "visitOppositePropertyCallExp");//$NON-NLS-1$
+		}
+		
+		if (source == null) {
+			String message = OCLMessages.bind(
+					OCLMessages.NullNavigationSource_ERROR_,
+					pc.toString());
+			return validatorError(pc, message, "visitOppositePropertyCallExp");//$NON-NLS-1$
+		}
+		if (type == null) {
+			String message = OCLMessages.bind(
+					OCLMessages.NullNavigationType_ERROR_,
+					pc.toString());
+			return validatorError(pc, message, "visitOppositePropertyCallExp");//$NON-NLS-1$
+		}
+		
+		List<OCLExpression<C>> qualifiers = pc.getQualifier();
+		if (!qualifiers.isEmpty()) {
+			// navigation qualifiers must conform to expected qualifier types
+			List<P> expectedQualifierTypes = uml.getQualifiers(property);
+			
+			if (expectedQualifierTypes.size() != qualifiers.size()) {
+				String message = OCLMessages.bind(
+						OCLMessages.MismatchedQualifiers_ERROR_,
+						pc.toString());
+				return validatorError(pc, message, "visitOppositePropertyCallExp");//$NON-NLS-1$
 			} else {
 				Iterator<P> eiter = expectedQualifierTypes.iterator();
 				Iterator<OCLExpression<C>> qiter = qualifiers.iterator();

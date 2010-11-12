@@ -48,6 +48,7 @@ import org.eclipse.ocl.expressions.LetExp;
 import org.eclipse.ocl.expressions.MessageExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.RealLiteralExp;
 import org.eclipse.ocl.expressions.StateExp;
@@ -60,6 +61,7 @@ import org.eclipse.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.utilities.OCLFactory;
+import org.eclipse.ocl.utilities.OCLFactoryWithHiddenOpposite;
 import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.ocl.utilities.UMLReflection;
 
@@ -70,7 +72,7 @@ import org.eclipse.ocl.utilities.UMLReflection;
  * @author Christian W. Damus (cdamus)
  */
 @SuppressWarnings("unchecked")
-public class OCLFactoryImpl implements OCLFactory {
+public class OCLFactoryImpl implements OCLFactoryWithHiddenOpposite {
     public static OCLFactory INSTANCE = new OCLFactoryImpl();
     
     private OCLFactoryImpl() {
@@ -242,6 +244,11 @@ public class OCLFactoryImpl implements OCLFactory {
     public <C, O> OperationCallExp<C, O> createOperationCallExp() {
         return (OperationCallExp<C, O>)
             EcoreFactory.eINSTANCE.createOperationCallExp();
+    }
+
+    public <C, P> OppositePropertyCallExp<C, P> createOppositePropertyCallExp() {
+        return (OppositePropertyCallExp<C, P>)
+            EcoreFactory.eINSTANCE.createOppositePropertyCallExp();
     }
 
     public <C, P> PropertyCallExp<C, P> createPropertyCallExp() {

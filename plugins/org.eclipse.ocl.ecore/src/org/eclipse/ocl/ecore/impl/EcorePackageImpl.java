@@ -57,6 +57,7 @@ import org.eclipse.ocl.ecore.NullLiteralExp;
 import org.eclipse.ocl.ecore.NumericLiteralExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.OrderedSetType;
 import org.eclipse.ocl.ecore.PrimitiveLiteralExp;
 import org.eclipse.ocl.ecore.PrimitiveType;
@@ -464,6 +465,13 @@ public class EcorePackageImpl
 	 * @generated
 	 */
 	private EClass variableExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass oppositePropertyCallExpEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1074,6 +1082,16 @@ public class EcorePackageImpl
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
+	 * @since 3.1
+	 */
+	public EClass getOppositePropertyCallExp() {
+		return oppositePropertyCallExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public EcoreFactory getEcoreFactory() {
 		return (EcoreFactory) getEFactoryInstance();
@@ -1210,6 +1228,8 @@ public class EcorePackageImpl
 		variableEClass = createEClass(VARIABLE);
 
 		variableExpEClass = createEClass(VARIABLE_EXP);
+
+		oppositePropertyCallExpEClass = createEClass(OPPOSITE_PROPERTY_CALL_EXP);
 	}
 
 	/**
@@ -1624,6 +1644,15 @@ public class EcorePackageImpl
 		g2 = createEGenericType(theEcorePackage_1.getEParameter());
 		g1.getETypeArguments().add(g2);
 		variableExpEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getNavigationCallExp());
+		oppositePropertyCallExpEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theExpressionsPackage
+			.getOppositePropertyCallExp());
+		g2 = createEGenericType(theEcorePackage_1.getEClassifier());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theEcorePackage_1.getEStructuralFeature());
+		g1.getETypeArguments().add(g2);
+		oppositePropertyCallExpEClass.getEGenericSuperTypes().add(g1);
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(anyTypeEClass, AnyType.class,
@@ -1903,6 +1932,11 @@ public class EcorePackageImpl
 			variableExpEClass,
 			VariableExp.class,
 			"VariableExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(
+			oppositePropertyCallExpEClass,
+			OppositePropertyCallExp.class,
+			"OppositePropertyCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);

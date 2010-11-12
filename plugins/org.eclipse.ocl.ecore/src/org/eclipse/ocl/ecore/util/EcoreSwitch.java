@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
+import org.eclipse.ocl.ecore.*;
 import org.eclipse.ocl.ecore.AnyType;
 import org.eclipse.ocl.ecore.AssociationClassCallExp;
 import org.eclipse.ocl.ecore.BagType;
@@ -1513,6 +1514,45 @@ public class EcoreSwitch<T> {
 					result = defaultCase(theEObject);
 				return result;
 			}
+			case EcorePackage.OPPOSITE_PROPERTY_CALL_EXP : {
+				OppositePropertyCallExp oppositePropertyCallExp = (OppositePropertyCallExp) theEObject;
+				T result = caseOppositePropertyCallExp(oppositePropertyCallExp);
+				if (result == null)
+					result = caseNavigationCallExp(oppositePropertyCallExp);
+				if (result == null)
+					result = caseExpressions_OppositePropertyCallExp(oppositePropertyCallExp);
+				if (result == null)
+					result = caseFeatureCallExp(oppositePropertyCallExp);
+				if (result == null)
+					result = caseExpressions_NavigationCallExp(oppositePropertyCallExp);
+				if (result == null)
+					result = caseCallExp(oppositePropertyCallExp);
+				if (result == null)
+					result = caseExpressions_FeatureCallExp(oppositePropertyCallExp);
+				if (result == null)
+					result = caseOCLExpression(oppositePropertyCallExp);
+				if (result == null)
+					result = caseExpressions_CallExp(oppositePropertyCallExp);
+				if (result == null)
+					result = caseETypedElement(oppositePropertyCallExp);
+				if (result == null)
+					result = caseExpressions_OCLExpression(oppositePropertyCallExp);
+				if (result == null)
+					result = caseCallingASTNode(oppositePropertyCallExp);
+				if (result == null)
+					result = caseENamedElement(oppositePropertyCallExp);
+				if (result == null)
+					result = caseTypedElement(oppositePropertyCallExp);
+				if (result == null)
+					result = caseVisitable(oppositePropertyCallExp);
+				if (result == null)
+					result = caseASTNode(oppositePropertyCallExp);
+				if (result == null)
+					result = caseEModelElement(oppositePropertyCallExp);
+				if (result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
 			default :
 				return defaultCase(theEObject);
 		}
@@ -2311,6 +2351,22 @@ public class EcoreSwitch<T> {
 	 * @generated
 	 */
 	public T caseVariableExp(VariableExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Opposite Property Call Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Opposite Property Call Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 * @since 3.1
+	 */
+	public T caseOppositePropertyCallExp(OppositePropertyCallExp object) {
 		return null;
 	}
 
@@ -3386,6 +3442,23 @@ public class EcoreSwitch<T> {
 	public <C, PM> T caseExpressions_VariableExp(
 			org.eclipse.ocl.expressions.VariableExp<C, PM> object) {
 		return caseVariableExp_1(object);
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Opposite Property Call Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Opposite Property Call Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 * @since 3.1
+	 */
+	public <C, P> T caseExpressions_OppositePropertyCallExp(
+			org.eclipse.ocl.expressions.OppositePropertyCallExp<C, P> object) {
+		return null;
 	}
 
 	/**

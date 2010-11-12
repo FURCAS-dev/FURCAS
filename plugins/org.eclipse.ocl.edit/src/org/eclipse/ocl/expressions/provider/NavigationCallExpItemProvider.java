@@ -278,6 +278,10 @@ public class NavigationCallExpItemProvider extends FeatureCallExpItemProvider
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
+				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
 	}
 
 	/**

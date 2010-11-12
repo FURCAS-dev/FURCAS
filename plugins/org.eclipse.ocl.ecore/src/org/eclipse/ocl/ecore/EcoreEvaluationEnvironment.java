@@ -22,7 +22,6 @@ package org.eclipse.ocl.ecore;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -44,12 +43,15 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.ocl.AbstractEvaluationEnvironment;
 import org.eclipse.ocl.EvaluationEnvironment;
-import org.eclipse.ocl.LazyExtentMap;
+import org.eclipse.ocl.EvaluationEnvironmentWithHiddenOpposites;
 import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.ecore.internal.OCLEcorePlugin;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.internal.OCLStatusCodes;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.ocl.ecore.opposites.ExtentMap;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.types.CollectionType;
@@ -70,15 +72,21 @@ import org.eclipse.ocl.utilities.PredefinedType;
 public class EcoreEvaluationEnvironment
 		extends
 		AbstractEvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject>
-		implements EvaluationEnvironment.Enumerations<EEnumLiteral> {
+		implements EvaluationEnvironment.Enumerations<EEnumLiteral>,
+		EvaluationEnvironmentWithHiddenOpposites<EStructuralFeature> {
 
 	private boolean mustCheckOperationReflectionConsistency = true;
+
+    private final OppositeEndFinder oppositeEndFinder;
+    private final OppositePropertyNavigator oppositePropertyNavigator;
 
 	/**
 	 * Initializes me.
 	 */
 	public EcoreEvaluationEnvironment() {
 		super();
+		oppositeEndFinder = new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE);
+		oppositePropertyNavigator = new OppositePropertyNavigator(oppositeEndFinder);
 	}
 
 	/**
@@ -90,7 +98,17 @@ public class EcoreEvaluationEnvironment
 	public EcoreEvaluationEnvironment(
 			EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> parent) {
 		super(parent);
+		oppositeEndFinder = ((EcoreEvaluationEnvironment) parent).oppositeEndFinder;
+		oppositePropertyNavigator = new OppositePropertyNavigator(oppositeEndFinder);
+	}
 
+	/**
+	 * @since 3.1
+	 */
+	public EcoreEvaluationEnvironment(OppositeEndFinder oppositeEndFinder) {
+		super();
+		this.oppositeEndFinder = oppositeEndFinder;
+		oppositePropertyNavigator = new OppositePropertyNavigator(oppositeEndFinder);
 	}
 
 	@Override
@@ -384,23 +402,21 @@ public class EcoreEvaluationEnvironment
 		return result;
 	}
 
-	// implements the inherited specification
-	public Map<EClass, Set<EObject>> createExtentMap(Object object) {
-		if (object instanceof EObject) {
-			return new LazyExtentMap<EClass, EObject>((EObject) object) {
+	
+    /**
+     * In the case of the "hidden opposites" OCL environment, an instance of the {@link ExtentMap} class is used. Is bases its
+     * <code>allInstances</code> computations on the {@link OppositeEndFinder} passed to the constructor of this object. See
+     * {@link OppositeEndFinder#getAllInstancesSeenBy(EClass, org.eclipse.emf.common.notify.Notifier)}.
+     */
+    public Map<EClass, Set<EObject>> createExtentMap(Object object) {
+        EObject context = null;
+        if (object instanceof EObject) {
+            context = (EObject) object;
+        }
+        return new ExtentMap(context, oppositeEndFinder);
+    }
 
-				// implements the inherited specification
-				@Override
-				protected boolean isInstance(EClass cls, EObject element) {
-					return cls.isInstance(element);
-				}
-			};
-		}
-
-		return Collections.emptyMap();
-	}
-
-	// implements the inherited specification
+    // implements the inherited specification
 	public boolean isKindOf(Object object, EClassifier classifier) {
 		// special case for Integer/UnlimitedNatural and Real which
 		// are not related types in java but are in OCL
@@ -482,5 +498,14 @@ public class EcoreEvaluationEnvironment
 		} catch (SecurityException e) {
 			throw new IllegalArgumentException(e);
 		}
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	public Object navigateOppositeProperty(EStructuralFeature property,
+			List<?> qualifiers, Object source)
+			throws IllegalArgumentException {
+		return oppositePropertyNavigator.navigateOppositeProperty(property, source);
 	}
 }

@@ -295,6 +295,10 @@ public class CallExpItemProvider extends OCLExpressionItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.CALL_EXP__SOURCE,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.CALL_EXP__SOURCE,
+				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
 	}
 
 }

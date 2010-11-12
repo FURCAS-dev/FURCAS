@@ -364,6 +364,10 @@ public class TupleLiteralPartItemProvider extends ItemProviderAdapter implements
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
 
 		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__VALUE,
+				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
+
+		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
 				ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
 
@@ -468,6 +472,10 @@ public class TupleLiteralPartItemProvider extends ItemProviderAdapter implements
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,

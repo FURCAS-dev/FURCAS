@@ -77,6 +77,7 @@
       <genClasses ecoreClass="OCLEcore.ecore#//ecore/UnspecifiedValueExp"/>
       <genClasses ecoreClass="OCLEcore.ecore#//ecore/Variable"/>
       <genClasses ecoreClass="OCLEcore.ecore#//ecore/VariableExp"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/OppositePropertyCallExp"/>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

@@ -278,6 +278,10 @@ public class CollectionItemItemProvider extends
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.COLLECTION_ITEM__ITEM,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.COLLECTION_ITEM__ITEM,
+				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
 	}
 
 }

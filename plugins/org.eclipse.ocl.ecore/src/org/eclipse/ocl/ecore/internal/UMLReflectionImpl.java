@@ -630,7 +630,7 @@ public class UMLReflectionImpl
      * 
      * @see #getOCLType(EClassifier)
      */ 
-    EClassifier getOCLCollectionType(EClassifier type,
+    public EClassifier getOCLCollectionType(EClassifier type,
             boolean isOrdered, boolean isUnique) {
         EClassifier resultType = type;
     

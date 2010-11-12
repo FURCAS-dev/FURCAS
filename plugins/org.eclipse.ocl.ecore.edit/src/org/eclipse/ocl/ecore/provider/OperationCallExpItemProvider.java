@@ -309,6 +309,10 @@ public class OperationCallExpItemProvider extends FeatureCallExpItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.OPERATION_CALL_EXP__ARGUMENT,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.OPERATION_CALL_EXP__ARGUMENT,
 				ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -396,6 +400,10 @@ public class OperationCallExpItemProvider extends FeatureCallExpItemProvider
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.OPERATION_CALL_EXP__ARGUMENT,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.OPERATION_CALL_EXP__ARGUMENT,
+				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
 	}
 
 	/**

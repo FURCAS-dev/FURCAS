@@ -35,6 +35,7 @@ import org.eclipse.ocl.expressions.LetExp;
 import org.eclipse.ocl.expressions.MessageExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.RealLiteralExp;
 import org.eclipse.ocl.expressions.StateExp;
@@ -56,6 +57,7 @@ import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.utilities.OCLFactory;
+import org.eclipse.ocl.utilities.OCLFactoryWithHiddenOpposite;
 import org.eclipse.ocl.utilities.TypedElement;
 
 /**
@@ -68,7 +70,7 @@ import org.eclipse.ocl.utilities.TypedElement;
  * 
  * @since 1.2
  */
-class OCLFactoryWithHistory implements OCLFactory {
+class OCLFactoryWithHistory implements OCLFactoryWithHiddenOpposite {
 
     private final OCLFactory delegate;
     private List<Object> history = new java.util.ArrayList<Object>();
@@ -195,6 +197,14 @@ class OCLFactoryWithHistory implements OCLFactory {
 
     public <C, P> PropertyCallExp<C, P> createPropertyCallExp() {
         return record(delegate.<C, P>createPropertyCallExp());
+    }
+
+    public <C, P> OppositePropertyCallExp<C, P> createOppositePropertyCallExp() {
+    	if (delegate instanceof OCLFactoryWithHiddenOpposite) {
+    		return record(((OCLFactoryWithHiddenOpposite) delegate).<C, P>createOppositePropertyCallExp());
+    	} else {
+    		return null;
+    	}
     }
 
     public <C> RealLiteralExp<C> createRealLiteralExp() {

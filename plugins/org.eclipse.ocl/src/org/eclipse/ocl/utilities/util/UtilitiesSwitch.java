@@ -25,8 +25,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-//import org.eclipse.ocl.utilities.*;
 import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.CallingASTNode;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
@@ -36,6 +34,7 @@ import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 import org.eclipse.ocl.utilities.Visitable;
 import org.eclipse.ocl.utilities.Visitor;
+import org.eclipse.ocl.utilities.VisitorWithHiddenOpposite;
 
 /**
  * <!-- begin-user-doc -->
@@ -172,6 +171,15 @@ public class UtilitiesSwitch<T1> {
 					result = defaultCase(theEObject);
 				return result;
 			}
+			case UtilitiesPackage.VISITOR_WITH_HIDDEN_OPPOSITE : {
+				VisitorWithHiddenOpposite<?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitorWithHiddenOpposite = (VisitorWithHiddenOpposite<?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) theEObject;
+				T1 result = caseVisitorWithHiddenOpposite(visitorWithHiddenOpposite);
+				if (result == null)
+					result = caseVisitor(visitorWithHiddenOpposite);
+				if (result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
 			default :
 				return defaultCase(theEObject);
 		}
@@ -219,6 +227,23 @@ public class UtilitiesSwitch<T1> {
 	 * @generated
 	 */
 	public <O> T1 casePredefinedType(PredefinedType<O> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Visitor With Hidden Opposite</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Visitor With Hidden Opposite</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 * @since 3.1
+	 */
+	public <T, C, O, P, EL, PM, S, COA, SSA, CT> T1 caseVisitorWithHiddenOpposite(
+			VisitorWithHiddenOpposite<T, C, O, P, EL, PM, S, COA, SSA, CT> object) {
 		return null;
 	}
 

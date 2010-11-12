@@ -36,6 +36,7 @@ import org.eclipse.ocl.expressions.MessageExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.RealLiteralExp;
 import org.eclipse.ocl.expressions.StateExp;
@@ -48,6 +49,7 @@ import org.eclipse.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
+import org.eclipse.ocl.utilities.VisitorWithHiddenOpposite;
 
 
 /**
@@ -66,7 +68,7 @@ import org.eclipse.ocl.utilities.ExpressionInOCL;
  * @author Christian W. Damus (cdamus)
  */
 public class EvaluationVisitorDecorator<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-    implements EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
+    implements EvaluationVisitorWithHiddenOpposite<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 
     private final EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> delegate;
     
@@ -274,6 +276,19 @@ public class EvaluationVisitorDecorator<PK, C, O, P, EL, PM, S, COA, SSA, CT, CL
      */
     public Object visitPropertyCallExp(PropertyCallExp<C, P> callExp) {
         return getDelegate().visitPropertyCallExp(callExp);
+    }
+
+    /**
+     * Delegates to my decorated visitor.
+     * @since 3.1
+     */
+    @SuppressWarnings("unchecked")
+	public Object visitOppositePropertyCallExp(OppositePropertyCallExp<C, P> callExp) {
+    	if (getDelegate() instanceof VisitorWithHiddenOpposite) {
+    		return ((VisitorWithHiddenOpposite<Object, C, O, P, EL, PM, S, COA, SSA, CT>) getDelegate()).visitOppositePropertyCallExp(callExp);
+    	} else {
+    		return null;
+    	}
     }
 
     /**

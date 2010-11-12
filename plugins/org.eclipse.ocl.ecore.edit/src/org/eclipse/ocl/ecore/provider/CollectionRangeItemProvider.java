@@ -307,6 +307,10 @@ public class CollectionRangeItemProvider extends
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
 				ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -394,6 +398,10 @@ public class CollectionRangeItemProvider extends
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
@@ -485,6 +493,10 @@ public class CollectionRangeItemProvider extends
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
 				ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -572,6 +584,10 @@ public class CollectionRangeItemProvider extends
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
 	}
 
 	/**

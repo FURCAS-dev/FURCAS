@@ -324,6 +324,10 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
 				ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -413,6 +417,10 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
 
 		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
+				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
+
+		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
 				EcoreFactory.eINSTANCE.createAssociationClassCallExp()));
 
@@ -499,6 +507,10 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
 				EcoreFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
@@ -591,6 +603,10 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
 
 		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
+				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
+
+		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
 				EcoreFactory.eINSTANCE.createAnyType()));
 
@@ -765,6 +781,10 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
 				EcoreFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
 
 		newChildDescriptors
 				.add(createChildParameter(
@@ -1005,6 +1025,10 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
 
 		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
+
+		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
 				EcoreFactory.eINSTANCE.createAnyType()));
 
@@ -1179,6 +1203,10 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
 				EcoreFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
 
 		newChildDescriptors
 				.add(createChildParameter(
@@ -1417,6 +1445,10 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
 	}
 
 	/**

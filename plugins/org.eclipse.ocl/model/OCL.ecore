@@ -720,6 +720,40 @@
         <eGenericType eTypeParameter="#//utilities/PredefinedType/O"/>
       </eOperations>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="VisitorWithHiddenOpposite" abstract="true"
+        interface="true">
+      <eTypeParameters name="T"/>
+      <eTypeParameters name="C"/>
+      <eTypeParameters name="O"/>
+      <eTypeParameters name="P"/>
+      <eTypeParameters name="EL"/>
+      <eTypeParameters name="PM"/>
+      <eTypeParameters name="S"/>
+      <eTypeParameters name="COA"/>
+      <eTypeParameters name="SSA"/>
+      <eTypeParameters name="CT"/>
+      <eOperations name="visitOppositePropertyCallExp">
+        <eGenericType eTypeParameter="#//utilities/VisitorWithHiddenOpposite/T"/>
+        <eParameters name="callExp" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/OppositePropertyCallExp">
+            <eTypeArguments eTypeParameter="#//utilities/VisitorWithHiddenOpposite/C"/>
+            <eTypeArguments eTypeParameter="#//utilities/VisitorWithHiddenOpposite/P"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eGenericSuperTypes eClassifier="#//utilities/Visitor">
+        <eTypeArguments eTypeParameter="#//utilities/VisitorWithHiddenOpposite/T"/>
+        <eTypeArguments eTypeParameter="#//utilities/VisitorWithHiddenOpposite/C"/>
+        <eTypeArguments eTypeParameter="#//utilities/VisitorWithHiddenOpposite/O"/>
+        <eTypeArguments eTypeParameter="#//utilities/VisitorWithHiddenOpposite/P"/>
+        <eTypeArguments eTypeParameter="#//utilities/VisitorWithHiddenOpposite/EL"/>
+        <eTypeArguments eTypeParameter="#//utilities/VisitorWithHiddenOpposite/PM"/>
+        <eTypeArguments eTypeParameter="#//utilities/VisitorWithHiddenOpposite/S"/>
+        <eTypeArguments eTypeParameter="#//utilities/VisitorWithHiddenOpposite/COA"/>
+        <eTypeArguments eTypeParameter="#//utilities/VisitorWithHiddenOpposite/SSA"/>
+        <eTypeArguments eTypeParameter="#//utilities/VisitorWithHiddenOpposite/CT"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
   </eSubpackages>
   <eSubpackages name="expressions" nsURI="http://www.eclipse.org/ocl/1.1.0/OCL/Expressions"
       nsPrefix="ocl.expr">
@@ -1878,6 +1912,36 @@
       </eStructuralFeatures>
       <eGenericSuperTypes eClassifier="#//expressions/OCLExpression">
         <eTypeArguments eTypeParameter="#//expressions/VariableExp/C"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OppositePropertyCallExp">
+      <eTypeParameters name="C"/>
+      <eTypeParameters name="P"/>
+      <eOperations name="property_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="type = referredProperty.opposite.type"/>
+        </eAnnotations>
+        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The chain of diagnostics to which problems are to be appended."/>
+          </eAnnotations>
+        </eParameters>
+        <eParameters name="context">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The cache of context-specific information."/>
+          </eAnnotations>
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+            <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="referredOppositeProperty">
+        <eGenericType eTypeParameter="#//expressions/OppositePropertyCallExp/P"/>
+      </eStructuralFeatures>
+      <eGenericSuperTypes eClassifier="#//expressions/NavigationCallExp">
+        <eTypeArguments eTypeParameter="#//expressions/OppositePropertyCallExp/C"/>
+        <eTypeArguments eTypeParameter="#//expressions/OppositePropertyCallExp/P"/>
       </eGenericSuperTypes>
     </eClassifiers>
   </eSubpackages>

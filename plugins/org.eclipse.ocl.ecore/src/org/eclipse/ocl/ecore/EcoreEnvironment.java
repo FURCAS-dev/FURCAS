@@ -18,6 +18,7 @@
 
 package org.eclipse.ocl.ecore;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -40,12 +41,15 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.AbstractEnvironment;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
+import org.eclipse.ocl.EnvironmentWithHiddenOpposites;
 import org.eclipse.ocl.TypeResolver;
 import org.eclipse.ocl.ecore.internal.EcoreForeignMethods;
 import org.eclipse.ocl.ecore.internal.OCLFactoryImpl;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.internal.TypeResolverImpl;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl;
@@ -69,10 +73,16 @@ public class EcoreEnvironment
 		EPackage, EClassifier, EOperation, EStructuralFeature,
 		EEnumLiteral, EParameter,
 		EObject, CallOperationAction, SendSignalAction, Constraint,
-		EClass, EObject> {
+		EClass, EObject>
+    implements EnvironmentWithHiddenOpposites<
+        EPackage, EClassifier, EOperation, EStructuralFeature,
+        EEnumLiteral, EParameter,
+        EObject, CallOperationAction, SendSignalAction, Constraint,
+        EClass, EObject> {
 	
 	/**
-	 * The namespace URI of the Ecore representation of the OCL Standard Library.
+	 * The namespace URI of the Ecore representation of the OCL Standard
+	 * Library.
 	 * 
 	 * @since 1.3
 	 */
@@ -117,7 +127,8 @@ public class EcoreEnvironment
 	factory;
 	
 	private TypeResolver<EClassifier, EOperation, EStructuralFeature> typeResolver;
-	
+
+	private final OppositeEndFinder oppositeEndFinder;
 
 	/**
 	 * Initializes me with a package registry for package look-ups.
@@ -125,7 +136,15 @@ public class EcoreEnvironment
 	 * @param reg a package registry
 	 */
 	protected EcoreEnvironment(EPackage.Registry reg) {
-		registry = reg;
+		this(reg, new DefaultOppositeEndFinder(reg));
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	public EcoreEnvironment(EPackage.Registry registry, OppositeEndFinder oppositeEndFinder) {
+		this.registry = registry;
+		this.oppositeEndFinder = oppositeEndFinder;
 		typeResolver = createTypeResolver();
 	}
 	
@@ -137,8 +156,16 @@ public class EcoreEnvironment
      * @param resource a resource, which may or may not already have content
      */
 	protected EcoreEnvironment(EPackage.Registry reg, Resource resource) {
-		registry = reg;
+		this(reg, resource, new DefaultOppositeEndFinder(reg));
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	public EcoreEnvironment(EPackage.Registry registry, Resource resource, OppositeEndFinder oppositeEndFinder) {
+		this.registry = registry;
 		typeResolver = createTypeResolver(resource);
+		this.oppositeEndFinder = oppositeEndFinder;
 	}
 
     /**
@@ -157,9 +184,11 @@ public class EcoreEnvironment
 		if (eparent != null) {
 			registry = eparent.registry;
 			typeResolver = eparent.getTypeResolver();
+			oppositeEndFinder = eparent.oppositeEndFinder;
 		} else {
 			registry = EPackage.Registry.INSTANCE;
 			typeResolver = createTypeResolver();
+			oppositeEndFinder = new DefaultOppositeEndFinder(registry);
 		}
 	}
 
@@ -677,7 +706,48 @@ public class EcoreEnvironment
 		}
 		
 		return (constraint != null)
-				&& UMLReflection.POSTCONDITION.equals(constraint.getStereotype());
+			&& UMLReflection.POSTCONDITION.equals(constraint.getStereotype());
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	@Override
+	protected void findOppositeEnds(EClassifier classifier, String name,
+			List<EStructuralFeature> ends) {
+		if (oppositeEndFinder != null) {
+			oppositeEndFinder.findOppositeEnds(classifier, name, ends);
+		}
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	public EClassifier getOppositePropertyType(EClassifier owner,
+			EStructuralFeature property) {
+		return ((UMLReflectionImpl) getUMLReflection()).getOCLCollectionType(
+			(EClassifier) property.eContainer(),
+			/* ordered */false, /* unique */false);
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	public Map<String, EStructuralFeature> getHiddenOppositeProperties(
+			EClassifier classifier) {
+		Map<String, EStructuralFeature> result;
+		if (oppositeEndFinder == null) {
+			result = Collections.emptyMap();
+		} else {
+			result = oppositeEndFinder.getAllOppositeEnds(classifier);
+		}
+		return result;
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	public OppositeEndFinder getOppositeEndFinder() {
+		return oppositeEndFinder;
 	}
 }
-

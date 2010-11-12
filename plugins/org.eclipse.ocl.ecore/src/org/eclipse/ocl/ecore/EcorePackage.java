@@ -9182,6 +9182,217 @@ public interface EcorePackage
 	int VARIABLE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.OppositePropertyCallExpImpl <em>Opposite Property Call Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.ecore.impl.OppositePropertyCallExpImpl
+	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getOppositePropertyCallExp()
+	 * @generated
+	 * @since 3.1
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP = 53;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @since 3.1
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__EANNOTATIONS = NAVIGATION_CALL_EXP__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @since 3.1
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__NAME = NAVIGATION_CALL_EXP__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @since 3.1
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__ORDERED = NAVIGATION_CALL_EXP__ORDERED;
+
+	/**
+	 * The feature id for the '<em><b>Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @since 3.1
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__UNIQUE = NAVIGATION_CALL_EXP__UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @since 3.1
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__LOWER_BOUND = NAVIGATION_CALL_EXP__LOWER_BOUND;
+
+	/**
+	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @since 3.1
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__UPPER_BOUND = NAVIGATION_CALL_EXP__UPPER_BOUND;
+
+	/**
+	 * The feature id for the '<em><b>Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @since 3.1
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__MANY = NAVIGATION_CALL_EXP__MANY;
+
+	/**
+	 * The feature id for the '<em><b>Required</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @since 3.1
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__REQUIRED = NAVIGATION_CALL_EXP__REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>EType</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @since 3.1
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__ETYPE = NAVIGATION_CALL_EXP__ETYPE;
+
+	/**
+	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @since 3.1
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__EGENERIC_TYPE = NAVIGATION_CALL_EXP__EGENERIC_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @since 3.1
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__START_POSITION = NAVIGATION_CALL_EXP__START_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>End Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @since 3.1
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__END_POSITION = NAVIGATION_CALL_EXP__END_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>Property Start Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @since 3.1
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__PROPERTY_START_POSITION = NAVIGATION_CALL_EXP__PROPERTY_START_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>Property End Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @since 3.1
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__PROPERTY_END_POSITION = NAVIGATION_CALL_EXP__PROPERTY_END_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @since 3.1
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__SOURCE = NAVIGATION_CALL_EXP__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Marked Pre</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @since 3.1
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__MARKED_PRE = NAVIGATION_CALL_EXP__MARKED_PRE;
+
+	/**
+	 * The feature id for the '<em><b>Qualifier</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @since 3.1
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__QUALIFIER = NAVIGATION_CALL_EXP__QUALIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Navigation Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @since 3.1
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__NAVIGATION_SOURCE = NAVIGATION_CALL_EXP__NAVIGATION_SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Referred Opposite Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @since 3.1
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY = NAVIGATION_CALL_EXP_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Opposite Property Call Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @since 3.1
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP_FEATURE_COUNT = NAVIGATION_CALL_EXP_FEATURE_COUNT + 1;
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.ecore.AnyType <em>Any Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9766,6 +9977,17 @@ public interface EcorePackage
 	 * @generated
 	 */
 	EClass getVariableExp();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.ecore.OppositePropertyCallExp <em>Opposite Property Call Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Opposite Property Call Exp</em>'.
+	 * @see org.eclipse.ocl.ecore.OppositePropertyCallExp
+	 * @generated
+	 * @since 3.1
+	 */
+	EClass getOppositePropertyCallExp();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -10367,6 +10589,17 @@ public interface EcorePackage
 		 * @generated
 		 */
 		EClass VARIABLE_EXP = eINSTANCE.getVariableExp();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.ecore.impl.OppositePropertyCallExpImpl <em>Opposite Property Call Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.ecore.impl.OppositePropertyCallExpImpl
+		 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getOppositePropertyCallExp()
+		 * @generated
+		 * @since 3.1
+		 */
+		EClass OPPOSITE_PROPERTY_CALL_EXP = eINSTANCE.getOppositePropertyCallExp();
 
 	}
 

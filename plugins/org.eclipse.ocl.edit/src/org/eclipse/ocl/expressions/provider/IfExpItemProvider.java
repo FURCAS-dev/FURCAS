@@ -264,6 +264,10 @@ public class IfExpItemProvider extends OCLExpressionItemProvider implements
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
 
 		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.IF_EXP__CONDITION,
+				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
+
+		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
 				ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
 
@@ -354,6 +358,10 @@ public class IfExpItemProvider extends OCLExpressionItemProvider implements
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
 
 		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
+
+		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
 				ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
 
@@ -442,6 +450,10 @@ public class IfExpItemProvider extends OCLExpressionItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
 	}
 
 	/**

@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
+import org.eclipse.ocl.EnvironmentWithHiddenOpposites;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.LookupException;
@@ -180,16 +181,16 @@ public class ExtensibilityTest
 	    return OCL.newInstance(new WrapperEnvironmentFactory());
 	}
 	
-	class WrapperEnvironment implements Environment<
+	class WrapperEnvironment implements EnvironmentWithHiddenOpposites<
             EPackage, EClassifier, EOperation, EStructuralFeature,
             EEnumLiteral, EParameter,
             EObject, CallOperationAction, SendSignalAction, Constraint,
             EClass, EObject> {
 	    
-	    private final Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
+	    private final EnvironmentWithHiddenOpposites<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
 	    delegate;
 	    
-        private final Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
+        private final EnvironmentWithHiddenOpposites<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
         parent;
         
         private final WrapperEnvironmentFactory factory;
@@ -204,8 +205,8 @@ public class ExtensibilityTest
             Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
             
             this.factory = factory;
-            this.delegate = delegate;
-            this.parent = parent;
+            this.delegate = (EnvironmentWithHiddenOpposites<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>) delegate;
+            this.parent = (EnvironmentWithHiddenOpposites<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>) parent;
         }
     
         public Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> getParent() {
@@ -373,7 +374,16 @@ public class ExtensibilityTest
             return delegate.lookupProperty(owner, name);
         }
 
-        public EClassifier lookupSignal(EClassifier owner, String name,
+        public EStructuralFeature lookupOppositeProperty(EClassifier owner, String name)
+            throws LookupException {
+	    return delegate.lookupOppositeProperty(owner, name);
+	}
+
+	public EClassifier getOppositePropertyType(EClassifier owner, EStructuralFeature property) {
+		return delegate.getOppositePropertyType(owner, property);
+	}
+
+	public EClassifier lookupSignal(EClassifier owner, String name,
                 List<? extends TypedElement<EClassifier>> args) {
             return delegate.lookupSignal(owner, name, args);
         }
@@ -409,6 +419,11 @@ public class ExtensibilityTest
         public void undefine(Object feature) {
             delegate.undefine(feature);
         }
+
+		public Map<String, EStructuralFeature> getHiddenOppositeProperties(
+				EClassifier classifier) {
+			return delegate.getHiddenOppositeProperties(classifier);
+		}
 	}
 
 	class WrapperEnvironmentFactory implements EnvironmentFactory<

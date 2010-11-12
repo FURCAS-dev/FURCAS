@@ -284,6 +284,10 @@ public class CollectionItemItemProvider extends
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.COLLECTION_ITEM__ITEM,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.COLLECTION_ITEM__ITEM,
 				ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -371,6 +375,10 @@ public class CollectionItemItemProvider extends
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.COLLECTION_ITEM__ITEM,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.COLLECTION_ITEM__ITEM,
+				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
 	}
 
 }

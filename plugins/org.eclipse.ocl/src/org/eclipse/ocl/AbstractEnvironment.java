@@ -75,7 +75,7 @@ import org.eclipse.ocl.utilities.TypedElement;
 public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	extends AbstractBasicEnvironment
 	implements Environment.Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>,
-	    Environment.Lookup<PK, C, O, P> {
+	    EnvironmentWithHiddenOpposites.Lookup<PK, C, O, P> {
     
 	/* Used to generate implicit iterator variables */
 	private int generatorInt = 0;
@@ -790,6 +790,43 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	}
 
     // implements the interface method
+	/**
+	 * @since 3.1
+	 */
+	public Variable<C, PM> lookupImplicitSourceForOppositeProperty(String name) {
+		Variable<C, PM> vdcl;
+		
+		for (int i = namedElements.size() - 1; i >= 0; i--) {
+			VariableEntry element = namedElements.get(i);
+			vdcl = element.variable;
+			C owner = vdcl.getType();
+			
+			if (!element.isExplicit && (owner != null)) {
+				P property = safeTryLookupOppositeProperty(owner, name);
+				if (property != null) {
+					return vdcl;
+				}
+			}
+
+		}
+		
+		// try the "self" variable, last
+		vdcl = getSelfVariable();
+		if (vdcl != null) {
+			C owner = vdcl.getType();
+			if (owner != null) {
+				P property = safeTryLookupOppositeProperty(owner, name);
+				if (property != null) {
+					return vdcl;
+				}
+			}
+		}
+		
+		return null;
+
+	}
+
+	// implements the interface method
 	public Variable<C, PM> lookupImplicitSourceForProperty(String name) {
 		Variable<C, PM> vdcl;
 		
@@ -833,6 +870,25 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	    
 	    try {
 	        result = tryLookupProperty(owner, name);
+        } catch (LookupException e) {
+            if (!e.getAmbiguousMatches().isEmpty()) {
+                result = (P) e.getAmbiguousMatches().get(0);
+            }
+	    }
+        
+        return result;
+	}
+
+	/**
+	 * Wrapper for the "try" operation that doesn't throw, but just returns the
+	 * first ambiguous match in case of ambiguity.
+	 */
+	@SuppressWarnings("unchecked")
+    private P safeTryLookupOppositeProperty(C owner, String name) {
+	    P result = null;
+	    
+	    try {
+	        result = tryLookupOppositeProperty(owner, name);
         } catch (LookupException e) {
             if (!e.getAmbiguousMatches().isEmpty()) {
                 result = (P) e.getAmbiguousMatches().get(0);
@@ -1055,6 +1111,21 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
     }
 
     /**
+     * This default implementation simply delegates to the
+     * {@link Environment#lookupOppositeProperty(Object, String)} method.
+     * 
+     * @since 3.1
+     */
+    public P tryLookupOppositeProperty(C owner, String name)
+        throws LookupException {
+        P result = lookupOppositeProperty(owner, name);
+        if ((result == null) && AbstractOCLAnalyzer.isEscaped(name)) {
+            result = lookupOppositeProperty(owner, AbstractOCLAnalyzer.unescape(name));
+        }
+        return result;
+    }
+
+    /**
      * Looks up a non-navigable association end on behalf of
      * the specified <code>owner</code> classifier (which is at that end).
      * 
@@ -1113,6 +1184,60 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
     }
     
     /**
+     * Looks up a non-navigable association end on behalf of
+     * the specified <code>owner</code> classifier (which is at that end).
+     * 
+     * @param owner
+     *            a classifier in the context of which the property is used
+     * @param name
+     *            the end name to look up
+     * 
+     * @return the non-navigable end, or <code>null</code> if it cannot
+     *         be found
+     *         
+     * @throws LookupException in case that multiple non-navigable properties
+     *     are found that have the same name and the problem option is ERROR
+     *     or worse
+     * @since 3.1
+     */
+    public P lookupOppositeProperty(C owner, String name) throws LookupException {
+        if (owner == null) {
+            Variable<C, PM> vdcl = lookupImplicitSourceForOppositeProperty(name);
+
+            if (vdcl == null) {
+                return null;
+            }
+
+            owner = vdcl.getType();
+        }
+
+        List<P> matches = new java.util.ArrayList<P>(2);
+        findOppositeEnds(owner, name, matches);
+
+        if (matches.isEmpty()) {
+            return null;
+        } else if (matches.size() > 1) {
+            // ambiguous matches.  What to do?
+            if (notOK(ProblemOption.AMBIGUOUS_ASSOCIATION_ENDS)) {
+                ProblemHandler.Severity sev = getValue(ProblemOption.AMBIGUOUS_ASSOCIATION_ENDS);
+
+                // will have to report the problem
+                String message = OCLMessages.bind(OCLMessages.Ambig_AssocEnd_,
+                    name, getUMLReflection().getName(owner));
+
+                if (sev.getDiagnosticSeverity() >= Diagnostic.ERROR) {
+                    throw new AmbiguousLookupException(message, matches);
+                } else {
+                    getProblemHandler().analyzerProblem(sev, message,
+                        "lookupNonNavigableProperty", -1, -1); //$NON-NLS-1$
+                }
+            }
+        }
+        
+        return matches.get(0);
+    }
+    
+    /**
      * Searches for non-navigable association ends with the specified
      * <tt>name</tt> at the given <tt>classifier</tt>'s end of an association.
      * Subclasses should reimplement this method if they support non-navigable
@@ -1123,6 +1248,21 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
      * @param ends collects the ends found by the subclass implementation
      */
     protected void findNonNavigableAssociationEnds(C classifier, String name, List<P> ends) {
+        // no default implementation
+    }
+    
+    /**
+     * Searches for non-navigable association ends with the specified
+     * <tt>name</tt> at the given <tt>classifier</tt>'s end of an association.
+     * Subclasses should reimplement this method if they support non-navigable
+     * association ends.
+     * 
+     * @param classifier a classifier at an association end
+     * @param name the non-navigable end name to look for
+     * @param ends collects the ends found by the subclass implementation
+     * @since 3.1
+     */
+    protected void findOppositeEnds(C classifier, String name, List<P> ends) {
         // no default implementation
     }
     
