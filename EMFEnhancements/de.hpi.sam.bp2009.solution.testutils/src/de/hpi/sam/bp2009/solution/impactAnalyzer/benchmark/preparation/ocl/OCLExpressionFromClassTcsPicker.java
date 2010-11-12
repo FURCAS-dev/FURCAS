@@ -18,12 +18,10 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
-
-import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
-import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLTestExpressionContainer.OclExpressionWithPackage;
 
@@ -63,8 +61,8 @@ public class OCLExpressionFromClassTcsPicker implements OCLExpressionPicker {
 		EPackage.Registry.INSTANCE.put(nsPrefix, basePackage);
 		ArrayList<String> path = new ArrayList<String>();
 		path.add(nsPrefix);
-		OCL ocl = OCLWithHiddenOpposites.newInstance();
-	        ocl = OCLWithHiddenOpposites.newInstance(((EcoreEnvironmentFactoryWithHiddenOpposites) ocl.getEnvironment().getFactory()).
+		OCL ocl = OCL.newInstance();
+	        ocl = OCL.newInstance(((EcoreEnvironmentFactory) ocl.getEnvironment().getFactory()).
 	                createPackageContext(ocl.getEnvironment(), basePackage));
 		OCLExpressionWithContext result = null;
 		try {

@@ -37,7 +37,6 @@ import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.eclipse.ocl.ecore.delegate.ValidationBehavior;
 
-import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import company.CompanyFactory;
 import company.CompanyPackage;
 import company.Department;
@@ -142,7 +141,7 @@ public class EAnnotationOCLParserTest extends TestCase {
         e1.setEmployer(dep);
 
         getFixture().traversalConvertOclAnnotations(CompanyPackage.eINSTANCE);
-        OCL ocl = OCLWithHiddenOpposites.newInstance();
+        OCL ocl = OCL.newInstance();
         //change the annotation string value to proof usage of already parsed ast.
         Entry<String, String> value = CompanyPackage.eINSTANCE.getDepartment().getEOperations().get(0).getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI).getDetails().get(0);
         String v = String.copyValueOf(value.getValue().toCharArray());
@@ -186,7 +185,7 @@ public class EAnnotationOCLParserTest extends TestCase {
         anno.getDetails().put(SettingBehavior.INITIAL_CONSTRAINT_KEY, "10000");
 
         getFixture().traversalConvertOclAnnotations(CompanyPackage.eINSTANCE);
-        OCL ocl = OCLWithHiddenOpposites.newInstance();
+        OCL ocl = OCL.newInstance();
         //change the annotation string value to proof usage of already parsed ast.
         CompanyPackage.eINSTANCE.getDepartment_Budget().getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI).getDetails().get(0).setValue("-2");
         OCLExpression expr = SettingBehavior.INSTANCE.getFeatureBody(ocl, CompanyPackage.eINSTANCE.getDepartment_Budget());
@@ -259,7 +258,7 @@ public class EAnnotationOCLParserTest extends TestCase {
         annotation.getContents();
         OCLExpression expr = (OCLExpression) ((Constraint)operation.getEAnnotation(Environment.OCL_NAMESPACE_URI).getContents().get(0)).getSpecification().getBodyExpression();
         assertTrue(expr instanceof IntegerLiteralExp);
-        OCL ocl = OCLWithHiddenOpposites.newInstance();
+        OCL ocl = OCL.newInstance();
         Object result = ocl.evaluate(operation, expr);
         assertTrue("Expected value: '4', got: " + result.toString(), "4".equals(result.toString()));
     }

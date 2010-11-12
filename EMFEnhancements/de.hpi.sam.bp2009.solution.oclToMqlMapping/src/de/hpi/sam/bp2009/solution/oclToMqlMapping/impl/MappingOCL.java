@@ -27,14 +27,13 @@ import org.eclipse.ocl.EvaluationHaltedException;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 
-import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
-
-public class MappingOCL extends OCLWithHiddenOpposites {
+public class MappingOCL extends OCL {
 
     protected MappingOCL(MappingOCLEnvironmentFactory instance) {
         super(instance);

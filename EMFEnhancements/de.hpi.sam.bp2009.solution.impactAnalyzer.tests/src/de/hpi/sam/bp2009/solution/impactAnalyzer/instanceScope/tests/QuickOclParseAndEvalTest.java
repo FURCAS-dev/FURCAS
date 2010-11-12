@@ -31,7 +31,6 @@ import org.eclipse.ocl.util.Bag;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import company.CompanyFactory;
 import company.CompanyPackage;
 
@@ -68,7 +67,7 @@ public class QuickOclParseAndEvalTest extends TestCase
     ctd.setClazz(class1);
     param.setOwnedTypeDefinition(ctd);
     signature.setOwner(class2);
-    ocl = OCLWithHiddenOpposites.newInstance();
+    ocl = OCL.newInstance();
     oclHelper = ocl.createOCLHelper();
     oclHelper.setContext(ClassesPackage.eINSTANCE.getParameter());
   }

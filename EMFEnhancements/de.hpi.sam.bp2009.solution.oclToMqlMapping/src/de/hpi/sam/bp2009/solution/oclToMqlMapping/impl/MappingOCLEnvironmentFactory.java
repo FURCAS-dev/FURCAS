@@ -26,13 +26,12 @@ import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
-import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
-
-public class MappingOCLEnvironmentFactory extends EcoreEnvironmentFactoryWithHiddenOpposites {
+public class MappingOCLEnvironmentFactory extends EcoreEnvironmentFactory {
     public static MappingOCLEnvironmentFactory INSTANCE = new MappingOCLEnvironmentFactory();
 
     /**

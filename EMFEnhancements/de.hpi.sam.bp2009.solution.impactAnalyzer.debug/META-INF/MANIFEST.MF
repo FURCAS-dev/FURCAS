@@ -9,6 +9,5 @@ Bundle-ClassPath: lib/y.jar,
 Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.debug
 Import-Package: org.junit
 Require-Bundle: de.hpi.sam.bp2009.solution.impactAnalyzer,
- de.hpi.sam.bp2009.solution.impactAnalyzerWithHiddenOpposites,
  org.eclipse.emf.ecore,
  org.eclipse.ocl.ecore

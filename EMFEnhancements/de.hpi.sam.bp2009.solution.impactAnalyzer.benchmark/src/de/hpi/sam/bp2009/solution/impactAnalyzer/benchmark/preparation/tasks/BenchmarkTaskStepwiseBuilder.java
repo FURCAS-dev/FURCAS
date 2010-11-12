@@ -21,15 +21,14 @@ import java.util.Queue;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
-
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.ResultDescriptionWriter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationForModelList;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.RawNotification;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.ActivationOption;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.OCLWithHiddenOppositesFactory;
 
 /**
  * In order to be able to create many more BenchmarkTasks they must be created
@@ -248,7 +247,7 @@ public class BenchmarkTaskStepwiseBuilder implements Queue<BenchmarkTaskContaine
 	OppositeEndFinder oppositeEndFinder = new AllInstanceCallCountingOppositeEndFinder();
 	ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression.getExpression(),
 		expression.getContext(), /* notifyOnNewContextElements */ false, oppositeEndFinder, option,
-		new OCLWithHiddenOppositesFactory());
+		OCLFactory.INSTANCE);
 
 	Resource model = notificationList.getModel();
 	BenchmarkTaskContainer container = new ModelSizeVariationBenchmarkTaskContainer(model, option, String.valueOf(ids

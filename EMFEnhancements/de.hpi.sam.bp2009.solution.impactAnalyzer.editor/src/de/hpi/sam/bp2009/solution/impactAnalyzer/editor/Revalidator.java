@@ -18,19 +18,11 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.Constraint;
-import org.eclipse.ocl.ecore.ExpressionInOCL;
-import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
-import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.ecore.delegate.OCLDelegateException;
 import org.eclipse.ocl.ecore.delegate.ValidationBehavior;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
@@ -39,8 +31,8 @@ import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.ImpactAnalyzerWithHiddenOppositesFactory;
 import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectDependencyQueryContextProvider;
 
 public class Revalidator {
@@ -71,7 +63,7 @@ public class Revalidator {
                         // there is no common base interface above ValidationBehavior that lets us extract the invariant
                         final OCLExpression invariant = ValidationBehavior.INSTANCE.getInvariant(cls, constraintName,
                                 oclFactory.createOCL(oppositeEndFinder));
-                        final ImpactAnalyzer impactAnalyzer = ImpactAnalyzerWithHiddenOppositesFactory.INSTANCE
+                        final ImpactAnalyzer impactAnalyzer = ImpactAnalyzerFactory.INSTANCE
                                 .createImpactAnalyzer(invariant,
                                 /* notifyOnNewContextElements */true, oppositeEndFinder, oclFactory);
                         Adapter adapter = new AdapterImpl() {

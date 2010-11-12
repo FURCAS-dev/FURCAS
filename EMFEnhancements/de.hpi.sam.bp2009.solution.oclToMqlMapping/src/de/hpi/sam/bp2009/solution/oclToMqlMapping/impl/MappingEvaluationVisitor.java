@@ -24,20 +24,19 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
+import org.eclipse.ocl.EvaluationVisitorImpl;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.SendSignalAction;
-import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.expressions.IteratorExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.TypeExp;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
 
-import com.sap.emf.ocl.hiddenopposites.EvaluationVisitorWithHiddenOppositesImpl;
-
-public class MappingEvaluationVisitor extends EvaluationVisitorWithHiddenOppositesImpl {
+public class MappingEvaluationVisitor extends EvaluationVisitorImpl<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> {
 
     private boolean isNotMapped = false; ;
     private Object query2Result;
@@ -90,7 +89,7 @@ public class MappingEvaluationVisitor extends EvaluationVisitorWithHiddenOpposit
 
                 EClassifier ocType=null;
                 if (ocSource instanceof TypeExp){
-                    ocType = ((TypeExp) ocSource).getReferredType();
+                    ocType = (EClassifier) ((TypeExp<EClassifier>) ocSource).getReferredType();
                 }
                 /*
                  * the expression must have the form allInstances()->IteratorExp(body)

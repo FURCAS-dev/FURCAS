@@ -26,10 +26,10 @@ import data.classes.ClassesFactory;
 import data.classes.ClassesPackage;
 import data.classes.SapClass;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.ImpactAnalyzerWithHiddenOppositesFactory;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.OCLWithHiddenOppositesFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OCLFactoryImpl;
 import de.hpi.sam.bp2009.solution.testutils.BaseDepartmentTest;
 
 public class TracebackStepTests extends BaseDepartmentTest {
@@ -66,9 +66,9 @@ public class TracebackStepTests extends BaseDepartmentTest {
         this.cp.eResource().getContents().add(c1);
         Notification noti = NotificationHelper.createAttributeChangeNotification(c1, ModelmanagementPackage.eINSTANCE
                 .getNamedElement_Name(), "Trala", "Humba");
-        ImpactAnalyzer ia = ImpactAnalyzerWithHiddenOppositesFactory.INSTANCE.createImpactAnalyzer(exp,
+        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp,
                 ClassesPackage.eINSTANCE.getSapClass(), /* notifyOnNewContextElements */ false,
-                new OCLWithHiddenOppositesFactory());
+                new OCLFactoryImpl());
         Collection<EObject> impact = ia.getContextObjects(noti);
         assertEquals(1, impact.size());
         assertTrue(impact.contains(c1));
