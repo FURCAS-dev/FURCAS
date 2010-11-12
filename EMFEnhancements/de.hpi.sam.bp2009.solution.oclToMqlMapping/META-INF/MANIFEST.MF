@@ -9,5 +9,6 @@ Require-Bundle: org.eclipse.ocl,
  org.eclipse.emf.query2,
  de.hpi.sam.bp2009.solution.queryContextScopeProvider,
  de.hpi.sam.bp2009.solution.scopeProvider,
- org.eclipse.emf.query.index.ui
+ org.eclipse.emf.query.index.ui,
+ org.eclipse.ocl.ecore
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

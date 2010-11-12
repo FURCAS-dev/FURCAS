@@ -27,14 +27,13 @@ import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.ExpressionInOCL;
 import org.eclipse.ocl.ecore.OCL;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 
-import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
-import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import company.CompanyFactory;
 import company.CompanyPackage;
 import company.Employee;
@@ -570,8 +569,8 @@ public class BaseDepartmentTest extends TestCase {
         OCLInput exp = new OCLInput(expression);
         String nsPrefix = basePackage.getNsPrefix();
         EPackage.Registry.INSTANCE.put(nsPrefix, basePackage);
-        OCL ocl = OCLWithHiddenOpposites.newInstance();
-        ocl = OCLWithHiddenOpposites.newInstance(((EcoreEnvironmentFactoryWithHiddenOpposites) ocl.getEnvironment().getFactory()).
+        OCL ocl = OCL.newInstance();
+        ocl = OCL.newInstance(((EcoreEnvironmentFactory) ocl.getEnvironment().getFactory()).
                 createPackageContext(ocl.getEnvironment(), basePackage));
         List<Constraint> result = null;
         try {

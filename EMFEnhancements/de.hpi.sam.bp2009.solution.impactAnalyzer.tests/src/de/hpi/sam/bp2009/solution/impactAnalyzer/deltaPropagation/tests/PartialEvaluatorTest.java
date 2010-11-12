@@ -31,16 +31,16 @@ import org.eclipse.ocl.ecore.IfExp;
 import org.eclipse.ocl.ecore.IterateExp;
 import org.eclipse.ocl.ecore.IteratorExp;
 import org.eclipse.ocl.ecore.LetExp;
+import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
-import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 import company.CompanyFactory;
 import company.CompanyPackage;
 import company.Department;
@@ -58,9 +58,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.OCLWithHiddenOppositesFactory;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.deltapropagation.PartialEvaluatorWithHiddenOpposites;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.impl.FilterSynthesisWithHiddenOppositesImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OCLFactoryImpl;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
 public class PartialEvaluatorTest extends TestCase {
@@ -70,8 +68,8 @@ public class PartialEvaluatorTest extends TestCase {
     @Override
     @Before
     public void setUp() {
-        oclFactory = new OCLWithHiddenOppositesFactory();
-        evaluator = new PartialEvaluatorWithHiddenOpposites(oclFactory);
+        oclFactory = new OCLFactoryImpl();
+        evaluator = new PartialEvaluator(oclFactory);
     }
 
     @Override
@@ -131,7 +129,7 @@ public class PartialEvaluatorTest extends TestCase {
         rs.getResources().add(expression.eResource());
         assertTrue(expression instanceof OperationCallExp);
         OperationCallExp oce = (OperationCallExp) expression;
-        FilterSynthesisImpl mapper = new FilterSynthesisWithHiddenOppositesImpl(expression, /* notifyNewContextElements */false, OCLWithHiddenOpposites.newInstance());
+        FilterSynthesisImpl mapper = new FilterSynthesisImpl(expression, /* notifyNewContextElements */false, OCL.newInstance());
         assertTrue(evaluator.hasNoEffectOnOverallExpression((OCLExpression) oce.getSource(), "Humba", "Trala", mapper));
         assertFalse(evaluator.hasNoEffectOnOverallExpression((OCLExpression) oce.getSource(), "Humba", "Humba Humba", mapper));
     }
@@ -146,7 +144,7 @@ public class PartialEvaluatorTest extends TestCase {
         rs.getResources().add(expression.eResource());
         assertTrue(expression instanceof IteratorExp);
         IteratorExp iteratorExp = (IteratorExp) expression;
-        FilterSynthesisImpl mapper = new FilterSynthesisWithHiddenOppositesImpl(expression, /* notifyNewContextElements */false, OCLWithHiddenOpposites.newInstance());
+        FilterSynthesisImpl mapper = new FilterSynthesisImpl(expression, /* notifyNewContextElements */false, OCL.newInstance());
         assertTrue(evaluator.hasNoEffectOnOverallExpression((OCLExpression) iteratorExp.getSource(), Collections.EMPTY_SET,
                 Collections.singleton(ms), mapper));
         ms.setName("abc");
@@ -167,7 +165,7 @@ public class PartialEvaluatorTest extends TestCase {
         IteratorExp selectExp = (IteratorExp) expression; // select
         IteratorExp collectExp = (IteratorExp) selectExp.getSource();
         PropertyCallExp inputPropertyCallExp = (PropertyCallExp) collectExp.getBody(); // s.input->select(...)
-        FilterSynthesisImpl mapper = new FilterSynthesisWithHiddenOppositesImpl(expression, /* notifyNewContextElements */false, OCLWithHiddenOpposites.newInstance());
+        FilterSynthesisImpl mapper = new FilterSynthesisImpl(expression, /* notifyNewContextElements */false, OCL.newInstance());
         assertTrue(evaluator.hasNoEffectOnOverallExpression(inputPropertyCallExp, Collections.EMPTY_SET,
                 Collections.singleton(p), mapper));
         p.setName("abc");
@@ -199,7 +197,7 @@ public class PartialEvaluatorTest extends TestCase {
         ResourceSet rs = new ResourceSetImpl();
         // the following expresssion becomes self.ownedSignatures->collect(s | s.input)->select(name='abc')
         OCLExpression expression = evaluator.getHelper().createQuery("self.getAssociationEnds().otherEnd()->select(delegation->notEmpty()).type.clazz->reject(c|c=self)->asSet()");
-        FilterSynthesisImpl mapper = new FilterSynthesisWithHiddenOppositesImpl(expression, /* notifyNewContextElements */false, OCLWithHiddenOpposites.newInstance());
+        FilterSynthesisImpl mapper = new FilterSynthesisImpl(expression, /* notifyNewContextElements */false, OCL.newInstance());
         OperationCallExp getAssociationEnds = ((OperationCallExp) ((IteratorExp) ((IteratorExp) ((IteratorExp) ((IteratorExp) ((IteratorExp) ((CallExp) expression) /*asSet*/.getSource())/*reject*/.getSource())/*collect(clazz)*/.getSource())/*collect(type)*/.getSource())/*select(delegation->notEmpty())*/.getSource())/*collect(otherEnd())*/.getSource())/*self.getAssociationEnds()*/;
         // getAssociationEnds(): self.elementsOfType->collect(associationEnd->asSet())->asSet()
         OCLExpression getAssociationEndsBody = mapper.getBodyForCall(getAssociationEnds);
@@ -222,7 +220,7 @@ public class PartialEvaluatorTest extends TestCase {
             public void notifyChanged(Notification n) {
                 try {
                     final ResourceSet rs = new ResourceSetImpl();
-                    PartialEvaluator myEvaluator = new PartialEvaluatorWithHiddenOpposites(n, oclFactory);
+                    PartialEvaluator myEvaluator = new PartialEvaluator(n, oclFactory);
                     myEvaluator.getHelper().setContext(ClassesPackage.eINSTANCE.getSapClass());
                     OCLExpression expression = myEvaluator.getHelper().createQuery("self.ownedSignatures.name");
                     rs.getResources().add(expression.eResource());
@@ -255,7 +253,7 @@ public class PartialEvaluatorTest extends TestCase {
             public void notifyChanged(Notification n) {
                 try {
                     final ResourceSet rs = new ResourceSetImpl();
-                    PartialEvaluator myEvaluator = new PartialEvaluatorWithHiddenOpposites(n, oclFactory);
+                    PartialEvaluator myEvaluator = new PartialEvaluator(n, oclFactory);
                     myEvaluator.getHelper().setContext(ClassesPackage.eINSTANCE.getSapClass());
                     OCLExpression expression = myEvaluator.getHelper().createQuery("self.ownedSignatures.name");
                     rs.getResources().add(expression.eResource());
@@ -292,7 +290,7 @@ public class PartialEvaluatorTest extends TestCase {
             public void notifyChanged(Notification n) {
                 try {
                     final ResourceSet rs = new ResourceSetImpl();
-                    PartialEvaluator myEvaluator = new PartialEvaluatorWithHiddenOpposites(n, oclFactory);
+                    PartialEvaluator myEvaluator = new PartialEvaluator(n, oclFactory);
                     myEvaluator.getHelper().setContext(ClassesPackage.eINSTANCE.getSapClass());
                     OCLExpression expression = myEvaluator.getHelper().createQuery("self.ownedSignatures.name");
                     rs.getResources().add(expression.eResource());
@@ -337,7 +335,7 @@ public class PartialEvaluatorTest extends TestCase {
             public void notifyChanged(Notification n) {
                 try {
                     final ResourceSet rs = new ResourceSetImpl();
-                    PartialEvaluator myEvaluator = new PartialEvaluatorWithHiddenOpposites(n, oclFactory);
+                    PartialEvaluator myEvaluator = new PartialEvaluator(n, oclFactory);
                     myEvaluator.getHelper().setContext(ClassesPackage.eINSTANCE.getSapClass());
                     OCLExpression expression = myEvaluator.getHelper().createQuery("self.ownedSignatures.name");
                     rs.getResources().add(expression.eResource());
@@ -377,7 +375,7 @@ public class PartialEvaluatorTest extends TestCase {
             public void notifyChanged(Notification n) {
                 try {
                     final ResourceSet rs = new ResourceSetImpl();
-                    PartialEvaluator myEvaluator = new PartialEvaluatorWithHiddenOpposites(n, oclFactory);
+                    PartialEvaluator myEvaluator = new PartialEvaluator(n, oclFactory);
                     myEvaluator.getHelper().setContext(ClassesPackage.eINSTANCE.getSapClass());
                     OCLExpression expression = myEvaluator.getHelper().createQuery("self.ownedSignatures.name");
                     rs.getResources().add(expression.eResource());
@@ -410,7 +408,7 @@ public class PartialEvaluatorTest extends TestCase {
             public void notifyChanged(Notification n) {
                 try {
                     final ResourceSet rs = new ResourceSetImpl();
-                    PartialEvaluator myEvaluator = new PartialEvaluatorWithHiddenOpposites(n, oclFactory);
+                    PartialEvaluator myEvaluator = new PartialEvaluator(n, oclFactory);
                     myEvaluator.getHelper().setContext(ClassesPackage.eINSTANCE.getSapClass());
                     OCLExpression expression = myEvaluator.getHelper().createQuery("self.name");
                     rs.getResources().add(expression.eResource());
@@ -438,7 +436,7 @@ public class PartialEvaluatorTest extends TestCase {
             public void notifyChanged(Notification n) {
                 try {
                     final ResourceSet rs = new ResourceSetImpl();
-                    PartialEvaluator myEvaluator = new PartialEvaluatorWithHiddenOpposites(n, oclFactory);
+                    PartialEvaluator myEvaluator = new PartialEvaluator(n, oclFactory);
                     myEvaluator.getHelper().setContext(ClassesPackage.eINSTANCE.getSapClass());
                     OCLExpression expression = myEvaluator.getHelper().createQuery("self.name");
                     rs.getResources().add(expression.eResource());
@@ -489,7 +487,7 @@ public class PartialEvaluatorTest extends TestCase {
             @Override
             public void notifyChanged(Notification n) {
                 try {
-                    PartialEvaluator myEvaluator = new PartialEvaluatorWithHiddenOpposites(n, oclFactory);
+                    PartialEvaluator myEvaluator = new PartialEvaluator(n, oclFactory);
                     myEvaluator.getHelper().setContext(CompanyPackage.eINSTANCE.getDepartment());
                     OCLExpression expression = myEvaluator.getHelper().createQuery("self.department2division");
                     rs.getResources().add(expression.eResource());
@@ -521,7 +519,7 @@ public class PartialEvaluatorTest extends TestCase {
             @Override
             public void notifyChanged(Notification n) {
                 try {
-                    PartialEvaluator myEvaluator = new PartialEvaluatorWithHiddenOpposites(n, oclFactory);
+                    PartialEvaluator myEvaluator = new PartialEvaluator(n, oclFactory);
                     myEvaluator.getHelper().setContext(CompanyPackage.eINSTANCE.getDepartment());
                     OCLExpression expression = myEvaluator.getHelper().createQuery("self.department2division");
                     rs.getResources().add(expression.eResource());

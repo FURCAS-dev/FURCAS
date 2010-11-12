@@ -31,7 +31,6 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 
-import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectDependencyQueryContextProvider;
@@ -91,7 +90,7 @@ public class TestEcoreHelper extends TestCase {
         Resource e = rs.createResource(URI.createURI("http://my.next.resource/somethingElse"));
         e.getContents().add(place);
         e.getContents().add(transition);
-        OCL ocl = OCLWithHiddenOpposites.newInstance(new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider()));
+        OCL ocl = OCL.newInstance(new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider()));
         Helper oclHelper = ocl.createOCLHelper();
         oclHelper.setContext(PetriNetPackage.eINSTANCE.getTransition());
         OCLExpression expr = oclHelper.createQuery("self.transition2Place");

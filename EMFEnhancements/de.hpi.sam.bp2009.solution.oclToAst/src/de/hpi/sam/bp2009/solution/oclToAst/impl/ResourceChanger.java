@@ -17,6 +17,7 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
@@ -25,6 +26,7 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ecore.CallOperationAction;
+import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.CollectionItem;
@@ -36,16 +38,15 @@ import org.eclipse.ocl.expressions.IteratorExp;
 import org.eclipse.ocl.expressions.LetExp;
 import org.eclipse.ocl.expressions.MessageExp;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.TupleLiteralExp;
 import org.eclipse.ocl.expressions.TupleLiteralPart;
 import org.eclipse.ocl.expressions.TypeExp;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.VariableExp;
+import org.eclipse.ocl.utilities.AbstractVisitor;
 import org.eclipse.ocl.utilities.Visitable;
-
-import com.sap.emf.ocl.hiddenopposites.AbstractVisitorWithHiddenOpposites;
-import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 
 /**
  * This class is used to visit a OclExpression and extract all referred Object, which has no resource or are located in the OclEnviroment pseudo resource
@@ -55,7 +56,7 @@ import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallEx
  */
 class ResourceChanger
         extends
-        AbstractVisitorWithHiddenOpposites<EPackage> {
+        AbstractVisitor<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> {
     private static final String OCL_PSEUDO_RESOURCE_URI = "ocl:///oclenv.ecore";
     private Map<EObject, EObject> orgToCopy;
 
@@ -316,14 +317,14 @@ class ResourceChanger
      * , java.lang.Object, java.util.List)
      */
     @Override
-    protected EPackage handleOppositePropertyCallExp(OppositePropertyCallExp callExp,
-            EPackage sourceResult) {
+    protected EPackage handleOppositePropertyCallExp(OppositePropertyCallExp<EClassifier, EStructuralFeature> callExp,
+            EPackage sourceResult, List<EPackage> qualifierResults) {
         EClassifier newType = handle(callExp.getType());
         if (newType != null) {
             orgToCopy.put(callExp.getType(), newType);
             callExp.setType(newType);
         }
-        return super.handleOppositePropertyCallExp(callExp, sourceResult);
+        return super.handleOppositePropertyCallExp(callExp, sourceResult, qualifierResults);
 
     }
 

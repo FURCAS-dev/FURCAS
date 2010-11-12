@@ -39,9 +39,9 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.ClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.LogicalOperationFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.StructuralFeatureFilter;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.ImpactAnalyzerWithHiddenOppositesFactory;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.hiddenopposites.OCLWithHiddenOppositesFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OCLFactoryImpl;
 import de.hpi.sam.bp2009.solution.testutils.BaseDepartmentTest;
 
 /**
@@ -420,7 +420,7 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
     @Test
     public void testFilterConsistencyClassBased() {
         for(ExpressionInOCL exp : this.stmts){
-            EventFilter f = ImpactAnalyzerWithHiddenOppositesFactory.INSTANCE.createImpactAnalyzer((OCLExpression) exp.getBodyExpression(), (EClass) exp.getContextVariable().getType(), /* notifyOnNewContextElements */ true, new OCLWithHiddenOppositesFactory()).createFilterForExpression();
+            EventFilter f = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer((OCLExpression) exp.getBodyExpression(), (EClass) exp.getContextVariable().getType(), /* notifyOnNewContextElements */ true, new OCLFactoryImpl()).createFilterForExpression();
             assertAllReferencesInPackage(f, this.comp);
             assertAllClassesOfClassFiltersInPackage(f, this.comp);
         }
@@ -437,8 +437,8 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
             }
         };
         EventManager eventManager = EventManagerFactory.eINSTANCE.getEventManagerFor(rs);
-        EventFilter filter = ImpactAnalyzerWithHiddenOppositesFactory.INSTANCE.createImpactAnalyzer((OCLExpression) getSimpleAllInstancesAST().getBodyExpression(),
-                CompanyPackage.eINSTANCE.getEmployee(), /* notifyOnNewContextElements */ false, new OCLWithHiddenOppositesFactory())
+        EventFilter filter = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer((OCLExpression) getSimpleAllInstancesAST().getBodyExpression(),
+                CompanyPackage.eINSTANCE.getEmployee(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl())
                 .createFilterForExpression();
         eventManager.subscribe(filter, listener);
         
@@ -504,7 +504,7 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         HashSet<ExpressionInOCL> affectedStmts = new HashSet<ExpressionInOCL>();
         for (Iterator<ExpressionInOCL> i = statements.iterator(); i.hasNext();) {
             ExpressionInOCL exp = i.next();
-            EventFilter filter = ImpactAnalyzerWithHiddenOppositesFactory.INSTANCE.createImpactAnalyzer((OCLExpression) exp.getBodyExpression(), (EClass) exp.getContextVariable().getType(), /* notifyOnNewContextElements */ true, new OCLWithHiddenOppositesFactory()).createFilterForExpression();
+            EventFilter filter = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer((OCLExpression) exp.getBodyExpression(), (EClass) exp.getContextVariable().getType(), /* notifyOnNewContextElements */ true, new OCLFactoryImpl()).createFilterForExpression();
             if (filter.matchesFor(noti)) {
                 affectedStmts.add(exp);
             }

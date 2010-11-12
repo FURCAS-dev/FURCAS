@@ -14,8 +14,11 @@ import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OCLFactoryImpl;
+
 
 public interface OCLFactory {
+    static final OCLFactory INSTANCE = new OCLFactoryImpl();
     OCL createOCL(EcoreEnvironmentFactory environmentFactory);
     OCL createOCL(OppositeEndFinder oppositeEndFinder);
 }

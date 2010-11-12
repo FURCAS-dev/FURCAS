@@ -40,14 +40,13 @@ import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.utilities.UMLReflection;
 
-import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
-import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
@@ -163,7 +162,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             if (e == null)
                 return;
             // TODO can the following lines be pulled out of the loop? This may speed things up a little
-            OCL ocl = OCLWithHiddenOpposites.newInstance(new EcoreEnvironmentFactoryWithHiddenOpposites(this.getRegistry(),
+            OCL ocl = OCL.newInstance(new EcoreEnvironmentFactory(this.getRegistry(),
                     new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider())));
             Helper helper = ocl.createOCLHelper();
             EOperation op = null;
