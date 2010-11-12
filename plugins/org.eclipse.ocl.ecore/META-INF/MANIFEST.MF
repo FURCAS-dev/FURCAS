@@ -7,13 +7,13 @@ Bundle-Activator: org.eclipse.ocl.ecore.internal.OCLEcorePlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.ocl;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
- org.eclipse.ocl.ecore.opposites;bundle-version="[3.1.0,4.0.0)"
+ org.eclipse.ocl;bundle-version="[3.0.0,4.0.0)";visibility:=reexport
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.ocl.ecore,
  org.eclipse.ocl.ecore.delegate,
  org.eclipse.ocl.ecore.impl,
  org.eclipse.ocl.ecore.internal;x-friends:="org.eclipse.ocl.ecore.tests",
+ org.eclipse.ocl.ecore.opposites,
  org.eclipse.ocl.ecore.util
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
