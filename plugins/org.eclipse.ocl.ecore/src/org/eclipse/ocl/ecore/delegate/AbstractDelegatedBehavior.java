@@ -54,6 +54,65 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 		return delegatedBehaviors;
 	};
 
+    /**
+	 * @since 3.1
+	 */
+    protected void cacheExpression(EModelElement modelElement, Constraint constraint) {
+    	EAnnotation a = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+    	if (a == null){
+    		a = EcoreFactory.eINSTANCE.createEAnnotation();
+    		a.setEModelElement(modelElement);
+    		a.setSource(OCLDelegateDomain.OCL_DELEGATE_URI);
+    	}
+    	a.getContents().add(constraint);
+    }
+
+    /**
+	 * Looks for a {@link Constraint} element attached to the
+	 * {@link OCLDelegateDomain#OCL_DELEGATE_URI} annotation of
+	 * <code>modelElement</code> at the same position at which the
+	 * {@link OCLDelegateDomain#OCL_DELEGATE_URI} annotation holds a detail
+	 * using any of the <code>constraintKeys</code>. For example, if there is a
+	 * detail at position 3 with key "body" and "body" is part of
+	 * <code>constraintKeys</code> then the contents element at position 3 of
+	 * the {@link OCLDelegateDomain#OCL_DELEGATE_URI} annotation is returned if it is
+	 * a {@link Constraint} element. If a {@link Constraint} element is found,
+	 * the {@link OCLExpression} obtained by calling
+	 * {@link Constraint#getSpecification() getSpecification()}.
+	 * {@link ExpressionInOCL#getBodyExpression() getBodyExpression()} on the
+	 * constraint is returned.
+	 * 
+	 * @return <code>null</code> if no {@link Constraint} is found in the
+	 *         position expected
+	 * @since 3.1
+	 */
+    protected OCLExpression getCachedExpression(EModelElement modelElement, String... constraintKeys) {
+    	EAnnotation anno = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+    	EAnnotation ast = anno;
+    	if (anno != null && ast != null){
+    		int pos = -1;
+    		int count = 0;
+    		for (Map.Entry<String, String> constraint : anno.getDetails()) {
+				for (String constraintKey : constraintKeys) {
+					if (constraint.getKey().equals(constraintKey)) {
+						pos = count;
+						break;
+					}
+				}
+    			count++;
+    		}
+    		if (pos != -1) {
+    			if (ast.getContents().size() > pos) {
+    				EObject contentElement = ast.getContents().get(pos);
+    				if (contentElement instanceof Constraint) {
+    					return (OCLExpression) ((Constraint) contentElement).getSpecification().getBodyExpression();
+    				}
+    			}
+    		}
+    	}
+    	return null;
+    }
+
 	public List<DelegateDomain> getDelegateDomains(E eObject) {
 		EPackage ePackage = getEPackage(eObject);
 		DelegateEPackageAdapter adapter = DelegateEPackageAdapter.getAdapter(ePackage);
@@ -131,63 +190,4 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 	public String toString() {
 		return getName() + " => " + getFactoryClass().getName(); //$NON-NLS-1$
 	}
-
-	/**
-	 * Looks for a {@link Constraint} element attached to the
-	 * {@link OCLDelegateDomain#OCL_DELEGATE_URI} annotation of
-	 * <code>modelElement</code> at the same position at which the
-	 * {@link OCLDelegateDomain#OCL_DELEGATE_URI} annotation holds a detail
-	 * using any of the <code>constraintKeys</code>. For example, if there is a
-	 * detail at position 3 with key "body" and "body" is part of
-	 * <code>constraintKeys</code> then the contents element at position 3 of
-	 * the {@link OCLDelegateDomain#OCL_DELEGATE_URI} annotation is returned if it is
-	 * a {@link Constraint} element. If a {@link Constraint} element is found,
-	 * the {@link OCLExpression} obtained by calling
-	 * {@link Constraint#getSpecification() getSpecification()}.
-	 * {@link ExpressionInOCL#getBodyExpression() getBodyExpression()} on the
-	 * constraint is returned.
-	 * 
-	 * @return <code>null</code> if no {@link Constraint} is found in the
-	 *         position expected
-	 * @since 3.1
-	 */
-    protected OCLExpression getCachedExpression(EModelElement modelElement, String... constraintKeys) {
-    	EAnnotation anno = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
-    	EAnnotation ast = anno;
-    	if (anno != null && ast != null){
-    		int pos = -1;
-    		int count = 0;
-    		for (Map.Entry<String, String> constraint : anno.getDetails()) {
-				for (String constraintKey : constraintKeys) {
-					if (constraint.getKey().equals(constraintKey)) {
-						pos = count;
-						break;
-					}
-				}
-    			count++;
-    		}
-    		if (pos != -1) {
-    			if (ast.getContents().size() > pos) {
-    				EObject contentElement = ast.getContents().get(pos);
-    				if (contentElement instanceof Constraint) {
-    					return (OCLExpression) ((Constraint) contentElement).getSpecification().getBodyExpression();
-    				}
-    			}
-    		}
-    	}
-    	return null;
-    }
-
-    /**
-	 * @since 3.1
-	 */
-    protected void cacheExpression(EModelElement modelElement, Constraint constraint) {
-    	EAnnotation a = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
-    	if (a == null){
-    		a = EcoreFactory.eINSTANCE.createEAnnotation();
-    		a.setEModelElement(modelElement);
-    		a.setSource(OCLDelegateDomain.OCL_DELEGATE_URI);
-    	}
-    	a.getContents().add(constraint);
-    }
 }
