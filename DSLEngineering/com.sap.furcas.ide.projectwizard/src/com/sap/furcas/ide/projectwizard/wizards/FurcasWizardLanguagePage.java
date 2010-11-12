@@ -1,6 +1,3 @@
-/*******************************************************************************
-*
- *******************************************************************************/
 package com.sap.furcas.ide.projectwizard.wizards;
 
 import java.net.URI;
@@ -17,6 +14,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
+/* 
+ * This is the first page of the wizard used to collect all the necessary information needed for the
+ * creation of a new Furcas DSL project.
+ * */
 
 public class FurcasWizardLanguagePage extends WizardPage {
     private Text projectText;
@@ -26,7 +27,7 @@ public class FurcasWizardLanguagePage extends WizardPage {
     private Text fileExtensionText;
 
     private Text nsURIText;
-    
+
     public boolean valid = true;
 
     private ProjectInfo projectInfo = new ProjectInfo();
@@ -35,7 +36,6 @@ public class FurcasWizardLanguagePage extends WizardPage {
         return projectInfo;
     }
 
-    
     public FurcasWizardLanguagePage(ISelection selection) {
         super("wizardPage");
         setTitle("Furcas Project Wizard");
@@ -96,13 +96,10 @@ public class FurcasWizardLanguagePage extends WizardPage {
             }
         });
 
-
-
         initialize();
         dialogChanged();
         setControl(container);
     }
-
 
     private void initialize() {
         projectText.setText("my.dsl");
@@ -119,24 +116,24 @@ public class FurcasWizardLanguagePage extends WizardPage {
         projectInfo.setNsURI(nsURIText.getText());
 
         if (!projectInfo.getProjectName().matches("\\w+[\\w\\.]*\\w+")) {
-        	valid = false;
+            valid = false;
             setErrorMessage("Project name must be specified (And must be in Java Package syntax (e.g. org.example))");
             return;
         }
         if (!projectInfo.getLanguageName().matches("\\w{3,}")) {
-        	valid = false;
+            valid = false;
             setErrorMessage("Language name must be specified (no whitespace, no special chars!)");
             return;
         }
         if (!projectInfo.getFileExtension().matches("\\w{2,6}")) {
-        	valid = false;
+            valid = false;
             setErrorMessage("A file extension consists of 2 to 6 characters (example: dsl)");
             return;
         }
         try {
             new URI(projectInfo.getNsURI());
         } catch (URISyntaxException e) {
-        	valid = false;
+            valid = false;
             setErrorMessage("The namespace URI is no valid URI (example: 'http://www.example-org/my/dsl')");
             return;
         }
