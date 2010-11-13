@@ -1,4 +1,4 @@
-package com.sap.furcas.parsergenerator.emf.lookup;
+package com.sap.furcas.modeladaptation.emf.lookup;
 
 import java.io.File;
 import java.io.IOException;

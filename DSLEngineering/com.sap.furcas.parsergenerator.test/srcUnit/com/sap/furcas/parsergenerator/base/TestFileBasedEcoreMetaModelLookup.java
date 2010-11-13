@@ -15,7 +15,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.emf.lookup.FileBasedEcoreMetaModelLookUp;
+import com.sap.furcas.modeladaptation.emf.lookup.FileBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.furcas.test.fixture.FixtureData;
 

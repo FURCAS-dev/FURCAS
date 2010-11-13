@@ -23,5 +23,6 @@ Export-Package:
   uses:="com.sap.tc.moin.repository,
    javax.jmi.reflect,
    com.sap.mi.textual.grammar,
-   javax.jmi.model"
+   javax.jmi.model",
+ com.sap.furcas.modeladaptation.emf.lookup
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
