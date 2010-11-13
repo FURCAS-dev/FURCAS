@@ -4,7 +4,7 @@
 package com.sap.furcas.parsergenerator.tcs.t2m.grammar;
 
 import static com.sap.furcas.parsergenerator.testutils.RuleComparisonHelper.assertEqualTokens;
-import static com.sap.furcas.test.parsing.testutils.StringListHelper.list;
+import static com.sap.furcas.runtime.parser.testutils.StringListHelper.list;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;

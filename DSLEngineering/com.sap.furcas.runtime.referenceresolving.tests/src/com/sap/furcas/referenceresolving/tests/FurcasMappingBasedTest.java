@@ -28,9 +28,9 @@ import com.sap.furcas.runtime.parser.ModelParsingResult;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.impl.DefaultTextAwareModelAdapter;
-import com.sap.furcas.test.base.GeneratedParserBasedTest;
-import com.sap.furcas.test.base.GeneratedParserTestConfiguration;
-import com.sap.furcas.test.base.ParsingHelper;
+import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
+import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
+import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
 import com.sap.furcas.test.fixture.FixtureData;
 
 /**

@@ -1,4 +1,4 @@
-package com.sap.furcas.test.base;
+package com.sap.furcas.runtime.parser.testbase;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;

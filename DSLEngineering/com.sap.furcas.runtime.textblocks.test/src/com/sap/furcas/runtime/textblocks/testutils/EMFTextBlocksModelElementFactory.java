@@ -1,4 +1,4 @@
-package com.sap.furcas.test.parsing.textblocks;
+package com.sap.furcas.runtime.textblocks.testutils;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;

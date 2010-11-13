@@ -1,6 +1,6 @@
 package com.sap.furcas.parsergenerator.base;
 
-import static com.sap.furcas.test.parsing.testutils.StringListHelper.list;
+import static com.sap.furcas.runtime.parser.testutils.StringListHelper.list;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -10,9 +10,9 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import com.sap.furcas.test.base.StubModelAdapter;
-import com.sap.furcas.test.base.StubModelElement;
-import com.sap.furcas.test.parsing.testutils.StringListHelper;
+import com.sap.furcas.runtime.parser.testbase.StubModelAdapter;
+import com.sap.furcas.runtime.parser.testbase.StubModelElement;
+import com.sap.furcas.runtime.parser.testutils.StringListHelper;
 
 /**
  * Tests the Stub ModelAdapter used in Scenario tests.

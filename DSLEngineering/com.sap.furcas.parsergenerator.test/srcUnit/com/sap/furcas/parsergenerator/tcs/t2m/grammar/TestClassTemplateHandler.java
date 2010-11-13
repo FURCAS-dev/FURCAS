@@ -39,10 +39,10 @@ import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
+import com.sap.furcas.runtime.parser.testutils.ResolutionBeanHelper;
+import com.sap.furcas.runtime.parser.testutils.StringListHelper;
 import com.sap.furcas.runtime.tcs.SyntaxLookup;
 import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
-import com.sap.furcas.test.parsing.testutils.ResolutionBeanHelper;
-import com.sap.furcas.test.parsing.testutils.StringListHelper;
 
 
 

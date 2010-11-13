@@ -1,4 +1,4 @@
-package com.sap.furcas.test.base;
+package com.sap.furcas.runtime.parser.testbase;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package com.sap.furcas.test.base;
+package com.sap.furcas.runtime.parser.testbase;
 
 /**
  * This interface is used by {@link GeneratedParserBasedTest} to load the compiled parser- and lexer-classes from your test project's "generated" folder.

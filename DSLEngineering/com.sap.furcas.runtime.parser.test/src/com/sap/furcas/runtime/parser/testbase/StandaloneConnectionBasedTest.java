@@ -1,4 +1,4 @@
-package com.sap.furcas.test.base;
+package com.sap.furcas.runtime.parser.testbase;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;

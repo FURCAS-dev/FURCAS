@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.sap.furcas.test.parsing.textblocks;
+package com.sap.furcas.runtime.textblocks.testutils;
 
 import org.eclipse.emf.ecore.EObject;
 

@@ -1,6 +1,6 @@
 package com.sap.furcas.referenceresolving.tests;
 
-import com.sap.furcas.test.base.ClassLookup;
+import com.sap.furcas.runtime.parser.testbase.ClassLookup;
 
 
 /**

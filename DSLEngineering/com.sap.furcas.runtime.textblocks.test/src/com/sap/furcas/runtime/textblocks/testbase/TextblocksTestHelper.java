@@ -1,4 +1,4 @@
-package com.sap.furcas.runtime.textblocks.testutils;
+package com.sap.furcas.runtime.textblocks.testbase;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

@@ -12,11 +12,11 @@ import org.junit.Test;
 
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.parser.ParserFacade;
-import com.sap.furcas.test.base.GeneratedParserBasedTest;
-import com.sap.furcas.test.base.GeneratedParserTestConfiguration;
-import com.sap.furcas.test.base.ParsingHelper;
-import com.sap.furcas.test.base.StubModelAdapter;
-import com.sap.furcas.test.base.StubModelElement;
+import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
+import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
+import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
+import com.sap.furcas.runtime.parser.testbase.StubModelAdapter;
+import com.sap.furcas.runtime.parser.testbase.StubModelElement;
 import com.sap.furcas.test.fixture.FixtureData;
 
 /**
