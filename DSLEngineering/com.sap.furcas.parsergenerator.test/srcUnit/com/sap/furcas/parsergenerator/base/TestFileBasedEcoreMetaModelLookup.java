@@ -2,9 +2,8 @@
  * 
  */
 package com.sap.furcas.parsergenerator.base;
-
-import static com.sap.furcas.test.parsing.testutils.ResolutionBeanHelper.refE;
-import static com.sap.furcas.test.parsing.testutils.StringListHelper.list;
+import static com.sap.furcas.runtime.parser.testutils.ResolutionBeanHelper.refE;
+import static com.sap.furcas.runtime.parser.testutils.StringListHelper.list;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;

@@ -1,4 +1,4 @@
-package com.sap.furcas.test.base;
+package com.sap.furcas.runtime.parser.testbase;
 
 import java.io.File;
 import java.io.IOException;

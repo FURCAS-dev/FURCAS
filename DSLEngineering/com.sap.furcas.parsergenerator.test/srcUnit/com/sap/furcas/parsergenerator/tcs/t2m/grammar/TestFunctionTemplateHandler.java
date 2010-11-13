@@ -17,8 +17,8 @@ import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.ANTLR3WriterSt
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.RuleBufferFactoryStub;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.TemplateNamingHelperStub;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.FunctionProductionRule;
+import com.sap.furcas.runtime.parser.testutils.StringListHelper;
 import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
-import com.sap.furcas.test.parsing.testutils.StringListHelper;
 
 /**
  * Probably one of the most important tests for DSL Engineering.

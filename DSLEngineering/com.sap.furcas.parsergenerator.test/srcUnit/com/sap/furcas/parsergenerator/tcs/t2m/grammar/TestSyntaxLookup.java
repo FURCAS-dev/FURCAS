@@ -3,8 +3,8 @@
  */
 package com.sap.furcas.parsergenerator.tcs.t2m.grammar;
 
-import static com.sap.furcas.test.parsing.testutils.ResolutionBeanHelper.refE;
-import static com.sap.furcas.test.parsing.testutils.StringListHelper.list;
+import static com.sap.furcas.runtime.parser.testutils.ResolutionBeanHelper.refE;
+import static com.sap.furcas.runtime.parser.testutils.StringListHelper.list;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -32,7 +32,6 @@ import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
 import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 import com.sap.furcas.runtime.tcs.MetamodelNameResolvingException;
 import com.sap.furcas.runtime.tcs.SyntaxLookup;
-
 
 /**
  *

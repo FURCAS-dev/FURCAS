@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import com.sap.furcas.runtime.textblocks.modifcation.TbMarkingUtil;
-import com.sap.furcas.runtime.textblocks.testutils.FixtureProvidingTextBlockTest;
+import com.sap.furcas.runtime.textblocks.testbase.FixtureProvidingTextBlockTest;
 
 /**
  * 

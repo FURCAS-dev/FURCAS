@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.sap.furcas.test.parsing.testutils;
+package com.sap.furcas.runtime.parser.testutils;
 
 import java.util.ArrayList;
 import java.util.List;

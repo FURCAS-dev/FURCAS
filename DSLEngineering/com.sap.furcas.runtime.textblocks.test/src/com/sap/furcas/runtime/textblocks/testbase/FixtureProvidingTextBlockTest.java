@@ -1,4 +1,4 @@
-package com.sap.furcas.runtime.textblocks.testutils;
+package com.sap.furcas.runtime.textblocks.testbase;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Before;
@@ -8,7 +8,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
-import com.sap.furcas.test.parsing.textblocks.TextBlockTest;
+import com.sap.furcas.runtime.textblocks.testutils.TextBlockTest;
 
 /**
  * Base class for TextBlock related test cases. Sets up a common fixture model

@@ -1,4 +1,4 @@
-package com.sap.furcas.test.base;
+package com.sap.furcas.runtime.parser.testbase;
 
 import static org.junit.Assert.fail;
 
@@ -249,7 +249,7 @@ public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
     }
 
     @Override
-    public Collection<?> getPredicateOclReference(Object modelElement, String propertyName, Object keyValue, String oclQuery,
+    public Collection<?> getPredicateOclReference(Object modelElement, String propertyName, Object keyValue, @SuppressWarnings("hiding") String oclQuery,
             Object contextElement) {
         fail("not implemented yet");
         return null;

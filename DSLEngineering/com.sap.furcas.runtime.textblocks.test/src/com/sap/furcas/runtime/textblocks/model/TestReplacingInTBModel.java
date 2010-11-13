@@ -16,7 +16,7 @@ import com.sap.furcas.runtime.textblocks.TbUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbReplacingHelper;
 import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
 import com.sap.furcas.runtime.textblocks.shortprettyprint.ShortPrettyPrinter;
-import com.sap.furcas.test.parsing.textblocks.TextBlockTest;
+import com.sap.furcas.runtime.textblocks.testutils.TextBlockTest;
 
 public class TestReplacingInTBModel extends TextBlockTest {
 
