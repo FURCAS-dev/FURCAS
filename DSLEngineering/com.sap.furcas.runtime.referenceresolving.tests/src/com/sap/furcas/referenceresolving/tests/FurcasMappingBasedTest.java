@@ -60,7 +60,7 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
         resourceSet = testConfig.getSourceConfiguration().getResourceSet();
-        TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig, testConfig.getSyntaxDefinitionFile());
+        TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
         syntax = syntaxBean.getSyntax();
         ParserFacade facade = generateParserForLanguage(syntaxBean, testConfig, new ClassLookupImpl());
         parsingHelper = new ParsingHelper(facade);

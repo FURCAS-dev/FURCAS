@@ -10,7 +10,6 @@ import java.io.PrintStream;
 import org.antlr.runtime.Lexer;
 
 import com.sap.furcas.parsergenerator.GrammarGenerationException;
-import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
 import com.sap.furcas.parsergenerator.TCSParserGenerator;
 import com.sap.furcas.parsergenerator.TCSParserGeneratorFactory;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
@@ -31,16 +30,7 @@ import com.sun.tools.javac.Main;
  */
 public class GeneratedParserBasedTest {
 
-    public static ParserFacade generateParserForLanguage(TCSSyntaxContainerBean syntaxBean, GeneratedParserTestConfiguration testConfig, ClassLookup classLookup)
-            throws GrammarGenerationException, ParserGeneratorInvocationException, InvalidParserImplementationException {
-        generateGrammar(testConfig, syntaxBean);
-        generateParser(testConfig);
-        compileParser(testConfig);
-
-        return loadParserFacade(testConfig, classLookup);
-    }
-
-    public static TCSSyntaxContainerBean parseSyntax(GeneratedParserTestConfiguration testConfig, File syntaxDefFile)
+    public static TCSSyntaxContainerBean parseSyntax(GeneratedParserTestConfiguration testConfig)
             throws ParserGeneratorInvocationException, ParserInvokationException {
 
         TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
@@ -48,6 +38,16 @@ public class GeneratedParserBasedTest {
                 testConfig.getSyntaxDefinitionFile());
         return syntaxBean;
 
+    }
+    
+    public static ParserFacade generateParserForLanguage(TCSSyntaxContainerBean syntaxBean,
+            GeneratedParserTestConfiguration testConfig, ClassLookup classLookup) throws GrammarGenerationException,
+            ParserGeneratorInvocationException, InvalidParserImplementationException {
+        generateGrammar(testConfig, syntaxBean);
+        generateParser(testConfig);
+        compileParser(testConfig);
+
+        return loadParserFacade(testConfig, classLookup);
     }
 
     protected final static void generateGrammar(GeneratedParserTestConfiguration testConfig, TCSSyntaxContainerBean syntaxBean) throws GrammarGenerationException {

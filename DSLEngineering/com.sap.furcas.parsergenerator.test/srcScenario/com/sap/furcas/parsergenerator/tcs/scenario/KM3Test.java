@@ -29,7 +29,7 @@ public class KM3Test extends GeneratedParserBasedTest {
     @BeforeClass
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
-        TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig, testConfig.getSyntaxDefinitionFile());
+        TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
         ParserFacade facade = generateParserForLanguage(syntaxBean, testConfig, new ClassLookupImpl());
         parsingHelper = new ParsingHelper(facade);
     }
