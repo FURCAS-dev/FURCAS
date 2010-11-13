@@ -18,8 +18,8 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 
-import org.eclipse.emf.ecore.opposites.OppositeEndFinder;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;

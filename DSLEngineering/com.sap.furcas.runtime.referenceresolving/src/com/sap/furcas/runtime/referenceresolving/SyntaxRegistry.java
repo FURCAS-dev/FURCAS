@@ -5,8 +5,8 @@ import java.util.WeakHashMap;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 

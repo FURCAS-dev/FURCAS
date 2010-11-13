@@ -15,7 +15,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.emf.common,
  de.hpi.sam.bp2009.solution.eventManager,
  com.sap.emf.ocl.util,
- org.eclipse.emf.ecore.opposites
+ org.eclipse.ocl.ecore.opposites
 Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer,
  de.hpi.sam.bp2009.solution.impactAnalyzer.configuration,
  de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzerWithHiddenOpposites,de.hpi.sam.bp2009.solution.impactAnalyzer.debug,de.hpi.sam.bp2009.solution.impactAnalyzer.tests",

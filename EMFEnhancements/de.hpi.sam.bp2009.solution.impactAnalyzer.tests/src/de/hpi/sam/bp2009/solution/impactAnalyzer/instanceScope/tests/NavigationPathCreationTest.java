@@ -21,10 +21,10 @@ import junit.framework.TestCase;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.NavigationCallExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.PropertyCallExp;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.junit.Test;
 
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;

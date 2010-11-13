@@ -20,11 +20,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.opposites.ExtentMap;
-import org.eclipse.emf.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.EcoreEvaluationEnvironment;
+import org.eclipse.ocl.ecore.opposites.ExtentMap;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.expressions.VariableExp;
 
 

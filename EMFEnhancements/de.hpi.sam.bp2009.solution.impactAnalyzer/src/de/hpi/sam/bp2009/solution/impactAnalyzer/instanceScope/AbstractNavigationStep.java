@@ -25,10 +25,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 
 import com.sap.emf.ocl.util.OclHelper;
 

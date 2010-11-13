@@ -13,7 +13,6 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 import java.util.Stack;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.ecore.CollectionLiteralExp;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.IfExp;
@@ -25,6 +24,7 @@ import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
 import org.eclipse.ocl.ecore.VariableExp;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;

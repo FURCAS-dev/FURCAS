@@ -11,7 +11,7 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
