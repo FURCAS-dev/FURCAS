@@ -1,12 +1,11 @@
-package com.sap.furcas.parsergenerator.emf.lookup;
+package com.sap.furcas.runtime.tcs;
 
 import org.eclipse.emf.ecore.EObject;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.modeladaptation.emf.lookup.QueryBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
 import com.sap.furcas.runtime.common.interfaces.IRuleName;
-import com.sap.furcas.runtime.tcs.MetaModelElementResolutionHelper;
-import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
 
 public class RuleNameFinder implements IRuleName {
 

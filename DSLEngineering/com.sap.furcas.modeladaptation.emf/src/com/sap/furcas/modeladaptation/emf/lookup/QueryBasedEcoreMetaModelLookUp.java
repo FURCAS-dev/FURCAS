@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.sap.furcas.parsergenerator.emf.lookup;
+package com.sap.furcas.modeladaptation.emf.lookup;
 
 import java.util.ArrayList;
 import java.util.Collection;
