@@ -16,8 +16,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.ecore.opposites.OppositeEndFinder;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
 import com.sap.furcas.metamodel.FURCAS.TCS.AndExp;
