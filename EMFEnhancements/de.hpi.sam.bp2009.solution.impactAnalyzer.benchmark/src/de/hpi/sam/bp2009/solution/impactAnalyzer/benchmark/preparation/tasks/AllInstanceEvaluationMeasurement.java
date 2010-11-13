@@ -15,10 +15,10 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.opposites.OppositeEndFinder;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 

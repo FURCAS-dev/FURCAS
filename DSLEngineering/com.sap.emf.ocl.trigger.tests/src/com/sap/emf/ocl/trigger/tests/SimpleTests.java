@@ -7,13 +7,13 @@ import junit.framework.TestCase;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.opposites.OppositeEndFinder;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL.Helper;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.junit.Before;
 import org.junit.Test;

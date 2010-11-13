@@ -19,7 +19,6 @@ import java.util.Stack;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.ecore.CollectionItem;
 import org.eclipse.ocl.ecore.CollectionLiteralExp;
 import org.eclipse.ocl.ecore.CollectionRange;
@@ -32,6 +31,7 @@ import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
 import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.VariableExp;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.emf.ocl.util.OclHelper;
 

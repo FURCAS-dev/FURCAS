@@ -23,8 +23,6 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.opposites.DefaultOppositeEndFinder;
-import org.eclipse.emf.ecore.opposites.OppositeEndFinder;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -41,6 +39,8 @@ import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.emf.query2.SelectAlias;
 import org.eclipse.emf.query2.SelectEntry;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 
 import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider;
