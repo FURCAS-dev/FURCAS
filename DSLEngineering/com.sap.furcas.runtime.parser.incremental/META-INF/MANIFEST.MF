@@ -4,17 +4,17 @@ Bundle-Name: Parser Plug-in
 Bundle-SymbolicName: com.sap.furcas.runtime.parser.incremental;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.sap.ide.cts.parser.Activator
-Require-Bundle: com.sap.furcas.metamodel,
+Require-Bundle: org.antlr,
+ org.eclipse.core.runtime,
+ org.eclipse.emf;bundle-version="2.6.0",
+ org.eclipse.emf.edit;bundle-version="2.6.0",
+ org.eclipse.ocl.ecore.opposites,
+ com.sap.furcas.metamodel,
  com.sap.furcas.runtime.common,
  com.sap.furcas.runtime.tcs,
  com.sap.furcas.runtime.textblocks,
- org.antlr,
- org.eclipse.core.runtime,
  com.sap.furcas.runtime.parser,
- com.sap.furcas.parsergenerator.emf,
- org.eclipse.emf;bundle-version="2.6.0",
- org.eclipse.emf.ecore.opposites;bundle-version="1.0.0",
- org.eclipse.emf.edit;bundle-version="2.6.0"
+ com.sap.furcas.modeladaptation.emf
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.ide.cts.parser,
  com.sap.ide.cts.parser.errorhandling,

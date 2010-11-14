@@ -1,6 +1,7 @@
 package com.sap.furcas.parsergenerator.tcs.scenario;
 
-import com.sap.furcas.test.base.ClassLookup;
+import com.sap.furcas.runtime.parser.testbase.ClassLookup;
+
 
 /**
  * Default interface implementation for com.sap.furcas.parsergenerator.test package.

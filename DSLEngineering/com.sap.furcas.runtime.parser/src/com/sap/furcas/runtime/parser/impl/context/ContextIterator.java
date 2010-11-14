@@ -17,7 +17,7 @@ import java.util.List;
  * The Class ContextIterator allows to traverse a context including imported contexts.
  * 
  */
-class ContextIterator implements Iterator<Object> {
+public class ContextIterator implements Iterator<Object> {
 	
 	/** This Iterator returns elements of the model  */
 	private Iterator<?> generalIterator;
@@ -26,10 +26,10 @@ class ContextIterator implements Iterator<Object> {
 	private ContextIterator currentIterator = null;
 	
 	/** The imported contexts. */
-	private Iterator<Object> importedContexts;
+	private final Iterator<Object> importedContexts;
 	
 	/** The traversed. */
-	private List<Context> traversed;
+	private final List<Context> traversed;
 	
 	// TODO: Use this for Delayed references somehow
 	/** The finish current. */
@@ -74,7 +74,8 @@ class ContextIterator implements Iterator<Object> {
 	/* (non-Javadoc)
 	 * @see java.util.Iterator#hasNext()
 	 */
-	public boolean hasNext() {
+	@Override
+    public boolean hasNext() {
 	    if ( ! this.generalIterator.hasNext()) {
 	        // analyze whether we need to find another generalContext to go through next
 	        while (importedContexts.hasNext() && !finishCurrent) {
@@ -98,14 +99,16 @@ class ContextIterator implements Iterator<Object> {
 	/* (non-Javadoc)
 	 * @see java.util.Iterator#next()
 	 */
-	public Object next() {
+	@Override
+    public Object next() {
 		return generalIterator.next();
 	}
 
 	/* (non-Javadoc)
 	 * @see java.util.Iterator#remove()
 	 */
-	public void remove() {
+	@Override
+    public void remove() {
 		throw new UnsupportedOperationException();
 	}
 }

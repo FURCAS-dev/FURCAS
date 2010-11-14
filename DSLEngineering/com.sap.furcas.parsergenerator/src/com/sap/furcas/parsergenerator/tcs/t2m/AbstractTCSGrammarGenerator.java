@@ -15,9 +15,9 @@ import java.util.Set;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.parsergenerator.GrammarGenerationException;
+import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ANTLR3GrammarWriter;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ANTLRGrammarGenerator;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.GenerationReport;
@@ -50,8 +50,6 @@ public abstract class AbstractTCSGrammarGenerator {
     private final IMetaModelLookup<?> lookup;
 
     private String targetPackage = "generated";
-
-	private ConcreteSyntax syntax;
 
     /**
      * Instantiates a new abstract tcs grammar generator.
@@ -99,7 +97,6 @@ public abstract class AbstractTCSGrammarGenerator {
         }
 
         TCSSyntaxContainerBean bean = doGetSyntaxDef(resourceSet, referenceScope, languageId);
-        syntax = bean.getSyntax();
 
         ANTLR3GrammarWriter writer = new ANTLR3GrammarWriter();
         ANTLRGrammarGenerator mapper = new ANTLRGrammarGenerator();
@@ -111,16 +108,7 @@ public abstract class AbstractTCSGrammarGenerator {
         return report;
     }
 
-	/**
-	 * Yields a valid syntax after
-	 * {@link #generateGrammar(ResourceSet, Set, Class)} or
-	 * {@link #generateGrammar(ResourceSet, Set, Class, String)} has been called
-	 */
-    public ConcreteSyntax getSyntax() {
-		return syntax;
-	}
-
-	/**
+    /**
      * Do get syntax def.
      * 
      * @param metamodelURIs

@@ -5,10 +5,11 @@ import java.io.File;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.parser.ParserFacade;
-import com.sap.furcas.test.base.GeneratedParserBasedTest;
-import com.sap.furcas.test.base.GeneratedParserTestConfiguration;
-import com.sap.furcas.test.base.ParsingHelper;
+import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
+import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
+import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
 import com.sap.furcas.test.fixture.FixtureData;
 
 /**
@@ -25,7 +26,8 @@ public class BibTextLowerUpperBoundsTest extends GeneratedParserBasedTest {
     @BeforeClass
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
-        ParserFacade facade = generateParserForLanguage(testConfig, new ClassLookupImpl());
+        TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
+        ParserFacade facade = generateParserForLanguage(syntaxBean, testConfig, new ClassLookupImpl());
         parsingHelper = new ParsingHelper(facade);
     }
 

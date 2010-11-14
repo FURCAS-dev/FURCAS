@@ -21,8 +21,8 @@ import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.parser.impl.context.AmbiguousLookupException;
 import com.sap.furcas.runtime.parser.impl.context.ContextManager;
-import com.sap.furcas.test.parsing.testutils.StringListHelper;
-import com.sap.furcas.test.parsing.testutils.StubTokenStream;
+import com.sap.furcas.test.testutils.StringListHelper;
+import com.sap.furcas.test.testutils.StubTokenStream;
 
 
 /**
@@ -127,9 +127,15 @@ public class TestObservableInjectingParser {
             return contextMock;
         }
         
+        @Override
+        public  final IModelElementProxy createModelElementProxy(
+                List<String> name, boolean context, boolean addToContext) {
+                return super.createModelElementProxy(name, context, addToContext);
+        }
+        
     }
     
-    private class ContextManagerMock extends ContextManager {
+    class ContextManagerMock extends ContextManager {
 
         public List<IModelElementProxy> rootElements = new ArrayList<IModelElementProxy>();
         public ArrayList<SimpleContextLink> inContextLinks = new ArrayList<SimpleContextLink>();
@@ -211,7 +217,7 @@ public class TestObservableInjectingParser {
         
     }
     
-    private class SimpleContextLink {
+    class SimpleContextLink {
 
         public Object contextElement;
         public Object newElement;
@@ -227,7 +233,7 @@ public class TestObservableInjectingParser {
         
     }
     
-    private class SubContextLink {
+    class SubContextLink {
 
         public Object supercontextElement;
         public Object subContextElement;

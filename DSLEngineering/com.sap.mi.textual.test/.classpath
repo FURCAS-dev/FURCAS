@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="scenarioTestSrc"/>
 	<classpathentry kind="src" path="unitTestSrc"/>
 	<classpathentry kind="src" path="moinTest"/>
-	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="lib" path="scenariotestTemp/"/>
 	<classpathentry kind="lib" path="lib/easymock-3.0.jar"/>
 	<classpathentry kind="lib" path="lib/cglib-2.2.jar"/>

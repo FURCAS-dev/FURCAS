@@ -4,7 +4,11 @@ Bundle-Name: Test
 Bundle-SymbolicName: com.sap.furcas.runtime.textblocks.test
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SAP
-Fragment-Host: com.sap.furcas.runtime.textblocks;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.junit;bundle-version="4.8.1",
- com.sap.furcas.test
+ com.sap.furcas.test,
+ com.sap.furcas.runtime.common,
+ com.sap.furcas.runtime.tcs,
+ com.sap.furcas.runtime.textblocks
+Export-Package: com.sap.furcas.runtime.textblocks.testbase,
+ com.sap.furcas.runtime.textblocks.testutils

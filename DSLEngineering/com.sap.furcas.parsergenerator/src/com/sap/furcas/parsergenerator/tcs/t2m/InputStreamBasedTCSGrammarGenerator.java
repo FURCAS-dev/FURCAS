@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.parsergenerator.emf.tcs.inject.ModelInjectionResult;
 import com.sap.furcas.parsergenerator.emf.tcs.inject.TCSSpecificEMFModelInjector;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;

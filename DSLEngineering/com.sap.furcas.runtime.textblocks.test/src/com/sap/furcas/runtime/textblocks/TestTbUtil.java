@@ -15,7 +15,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
-import com.sap.furcas.runtime.textblocks.testutils.FixtureProvidingTextBlockTest;
+import com.sap.furcas.runtime.textblocks.testbase.FixtureProvidingTextBlockTest;
 
 /**
  * 

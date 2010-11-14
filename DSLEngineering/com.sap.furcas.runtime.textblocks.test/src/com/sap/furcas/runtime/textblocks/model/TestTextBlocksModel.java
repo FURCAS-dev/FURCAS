@@ -15,8 +15,8 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.shortprettyprint.ShortPrettyPrinter;
-import com.sap.furcas.runtime.textblocks.testutils.FixtureProvidingTextBlockTest;
-import com.sap.furcas.runtime.textblocks.testutils.TextblocksTestHelper;
+import com.sap.furcas.runtime.textblocks.testbase.FixtureProvidingTextBlockTest;
+import com.sap.furcas.runtime.textblocks.testbase.TextblocksTestHelper;
 import com.sap.furcas.runtime.textblocks.validation.TbValidationUtil;
 
 public class TestTextBlocksModel extends FixtureProvidingTextBlockTest {

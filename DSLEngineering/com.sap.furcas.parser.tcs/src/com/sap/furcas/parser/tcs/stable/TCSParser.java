@@ -2040,7 +2040,7 @@ public class TCSParser extends ObservableInjectingParser {
 			return ret2;
 		    }
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "container", temp);
+                      setProperty(ret, "ePackage", temp);
                     }
 
                     }
@@ -2475,7 +2475,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("ecore","EClass");
+        List<String> metaType=list("ecore","EPackage");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createReferenceProxy(metaType) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
@@ -2543,7 +2543,7 @@ public class TCSParser extends ObservableInjectingParser {
         Object temp = null;
 
 
-        List<String> metaType=list("ecore","EModelElement");
+        List<String> metaType=list("ecore","EClassifier");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ?  createReferenceProxy(metaType) : null;
 
@@ -2584,7 +2584,7 @@ public class TCSParser extends ObservableInjectingParser {
             if ( state.backtracking==0 ) {
 
               // discarding operator name instead of storing it here
-              setProperty(ret,"container" , left);
+              setProperty(ret,"ePackage" , left);
               ret2 = createOrResolve(ret, firstToken);
               onRuleElementCreationCommited(ret2);
 
@@ -8724,7 +8724,41 @@ public class TCSParser extends ObservableInjectingParser {
 			return ret2;
 		    }
                     if ( state.backtracking==0 ) {
-                      setOclRef(ret, "strucfeature", "name", temp, "OCL:let c:ecore::EClass = #context.oclAsType(FURCAS::TCS::Template).metaReference in"+"                                                let result = c.lookupElementExtended(?) in"+"                                                if not (result.oclIsInvalid()) then"+"                                                        if(result.oclIsTypeOf(ecore::EAttribute) or"+"                                                                        result.oclIsTypeOf(ecore::EReference)"+"                                                                        or result.oclIsTypeOf(Model::StructureField)) then"+"                                                                Bag{result}     "+"                                                        else            "+"                                                                c.eAllSuperTypes->prepend(c)->collect("+"                                                                        st | st.oclAsType(ecore::EClassifier).typedElements->select("+"                                                                                te | "+"                                                                                        if te.oclIsTypeOf(Model::AssociationEnd) then"+"                                                                                                te.oclAsType(Model::AssociationEnd).otherEnd().name = ? "+"                                                                                        else            "+"                                                                                                false "+"                                                                                        endif"+"                                                                                )->collect(ae | ae.oclAsType(Model::AssociationEnd).otherEnd())"+"                                                                )"+"                                                        endif "+"                                                else    "+"                                                        c.eAllSuperTypes->prepend(c)->collect("+"                                                                st | st.oclAsType(ecore::EClassifier).typedElements->select("+"                                                                        te | "+"                                                                                if te.oclIsTypeOf(Model::AssociationEnd) then"+"                                                                                        te.oclAsType(Model::AssociationEnd).otherEnd().name = ? "+"                                                                                else"+"                                                                                        false "+"                                                                                endif"+"                                                                        )"+"                                                                )->collect(ae | ae.oclAsType(Model::AssociationEnd).otherEnd()"+"                                                        ) "+"                                                endif"+"                                                        ");
+                      setOclRef(ret, "strucfeature", "name", temp, "OCL:let c:ecore::EClass = #context.oclAsType(FURCAS::TCS::Template).metaReference in"+
+                              "                                                let result:ecore::EStructuralFeature = c.getEStructuralFeature(?) in"+
+                              "                                                if not (result.oclIsInvalid()) then"+
+//                              "                                                        if(result.oclIsTypeOf(ecore::EAttribute) or"+
+//                              "                                                                        result.oclIsTypeOf(ecore::EReference)"+
+//                              "                                                                        ) then"+
+                                "                                                                Bag{result}     "+
+//                              "                                                        else            "+
+//                              "                                                                c.eAllSuperTypes->prepend(c)->collect("+
+//                              "                                                                        st | st.oclAsType(ecore::EClassifier).typedElements->select("+
+//                              "                                                                                te | "+
+//                              "                                                                                        if te.oclIsTypeOf(Model::AssociationEnd) then"+
+//                              "                                                                                                te.oclAsType(Model::AssociationEnd).otherEnd().name = ? "+
+//                              "                                                                                        else            "+
+//                              "                                                                                                false "+
+//                              "                                                                                        endif"+
+//                              "                                                                                )->collect(ae | ae.oclAsType(Model::AssociationEnd).otherEnd())"+
+//                              "                                                                )"+"                                                        endif "+
+                              "                                                else    "+
+                                                                                         // modified EMF code
+                                                                                         " Bag{}" +
+                                                                                         // original MOIN code
+//                              "                                                        c.eAllSuperTypes->prepend(c)->collect("+
+//                              "                                                                st | st.oclAsType(ecore::EClassifier).typedElements->select("+
+//                              "                                                                        te | "+
+//                              "                                                                                if te.oclIsTypeOf(Model::AssociationEnd) then"+
+//                              "                                                                                        te.oclAsType(Model::AssociationEnd).otherEnd().name = ? "+
+//                              "                                                                                else"+
+//                              "                                                                                        false "+
+//                              "                                                                                endif"+
+//                              "                                                                        )"+
+//                              "                                                                )->collect(ae | ae.oclAsType(Model::AssociationEnd).otherEnd()"+
+//                              "                                                        ) "+
+                                "                                                endif"+
+                              "                                                        ");
                     }
 
                     }

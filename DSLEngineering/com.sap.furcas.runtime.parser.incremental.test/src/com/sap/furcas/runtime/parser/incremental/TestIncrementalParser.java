@@ -26,9 +26,8 @@ import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
-import com.sap.furcas.test.parsing.textblocks.TestSourceTextBlockCreator;
-import com.sap.furcas.test.parsing.textblocks.TextBlockTest;
-import com.sap.ide.cts.editor.test.util.TcsTestHelper;
+import com.sap.furcas.runtime.textblocks.testutils.TestSourceTextBlockCreator;
+import com.sap.furcas.runtime.textblocks.testutils.TextBlockTest;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 
 

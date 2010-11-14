@@ -5,7 +5,9 @@ package com.sap.furcas.parser.tcs.bootstrap;
 
 import static com.sap.furcas.parser.tcs.bootstrap.BootstrapHelper.createReferenceScope;
 import static com.sap.furcas.parser.tcs.bootstrap.BootstrapHelper.createResourceSet;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 
@@ -17,48 +19,71 @@ import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
 import com.sap.furcas.parsergenerator.GrammarGenerationTargetConfiguration;
 import com.sap.furcas.parsergenerator.TCSParserGenerator;
 import com.sap.furcas.parsergenerator.TCSParserGeneratorFactory;
+import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.common.exceptions.ParserGeneratorInvocationException;
+import com.sap.furcas.runtime.common.exceptions.ParserInvokationException;
 
 public class TCSBootstrap {
     
     private static final String GENERATIONDIR = "./generationTemp/";
-    private static final String GRAMMAR = GENERATIONDIR + "TCS.g";
     private static final String PACKAGE = "generated";
+    private static final String GRAMMAR = GENERATIONDIR + PACKAGE + "/TCS.g";
     private static final String SYNTAXDEFINITION = "./syntaxdefinition/TCS.tcs";
     
     private static GrammarGenerationSourceConfiguration sourceConfiguration;
     private static GrammarGenerationTargetConfiguration targetConfiguration;
+    private static TCSParserGenerator generator;
 
+    /**
+     * Result of Step #1: The parsed TCS.tcs
+     */
+    private static TCSSyntaxContainerBean syntaxBean;
     
     @BeforeClass
-    public static void setup() {
-        sourceConfiguration = new GrammarGenerationSourceConfiguration(new File(SYNTAXDEFINITION), createResourceSet(), createReferenceScope());
+    public static void setup() throws ParserGeneratorInvocationException {
+        sourceConfiguration = new GrammarGenerationSourceConfiguration(createResourceSet(), createReferenceScope());
         targetConfiguration = new GrammarGenerationTargetConfiguration(PACKAGE, new File(GRAMMAR));
+        generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
     }
     
     /**
-     * Step 1: Parse the TCS.tcs and generate a corresponding ANTLR grammar.
+     * Step 1: Parse the TCS.tcs syntax definition
      */
     @Test
-    public void step1_GenerateGrammar() throws GrammarGenerationException, ParserGeneratorInvocationException {
+    public void step1_ParseSyntaxDefintion() {        
         SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
-
-        TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
-        generator.generateGrammarFromSyntax(sourceConfiguration, targetConfiguration, errorHandler);
-
-        assertFalse("Must have completed without (critical) errors", errorHandler.hasFailedWithError());
+        try {
+            syntaxBean = generator.parseSyntax(sourceConfiguration, new File(SYNTAXDEFINITION));
+            assertFalse("Must have completed without (critical) errors", errorHandler.hasFailedWithError());
+            assertEquals("TCS", syntaxBean.getSyntax().getName());
+        } catch (ParserInvokationException e) {
+            e.printStackTrace();
+            fail("Failed to parse syntax:" + e.getMessage());
+        }
+    }
+    
+    /**
+     * Step 2: Walk the syntax and generate a corresponding ANTLR grammar
+     */
+    @Test
+    public void step2_GenerateGrammar() {
+        SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
+        try {
+            generator.generateGrammarFromSyntax(syntaxBean, sourceConfiguration, targetConfiguration, errorHandler);
+            assertFalse("Must have completed without (critical) errors", errorHandler.hasFailedWithError());
+        } catch (GrammarGenerationException e) {
+            e.printStackTrace();
+            fail("Failed to parse syntax:" + e.getMessage());
+        }
     }
 
     /**
-     * Step 2: Use ANTLR to generate  TCSParser.java and TCSLexer.java.
+     * Step 3: Use ANTLR to generate a TCSParser.java and TCSLexer.java from the grammar.
      */
     @Test
-    public void step2_GenerateParser() throws GrammarGenerationException, ParserGeneratorInvocationException {
+    public void step3_GenerateParser() {
         SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
-
-        TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
-        generator.generateGrammarFromSyntax(sourceConfiguration, targetConfiguration, errorHandler);
-        
+        generator.generateParserFromGrammar(targetConfiguration, errorHandler);
         assertFalse("Must have completed without (critical) errors", errorHandler.hasFailedWithError());
     }
     

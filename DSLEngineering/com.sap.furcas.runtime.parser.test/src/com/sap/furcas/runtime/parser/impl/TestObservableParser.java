@@ -8,186 +8,187 @@ import static junit.framework.Assert.assertEquals;
 import java.util.List;
 
 import org.antlr.runtime.RecognitionException;
+import org.antlr.runtime.RecognizerSharedState;
 import org.antlr.runtime.Token;
+import org.antlr.runtime.TokenStream;
 import org.junit.Test;
 
+import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.IParsingObserver;
 import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationTokenImpl;
-import com.sap.furcas.test.parsing.testutils.StringListHelper;
+import com.sap.furcas.test.testutils.StringListHelper;
 
 /**
  * 
  */
 public class TestObservableParser {
 
-	@Test
-	public void testNullObserverNoException() throws Exception {
-		ObservablePatchedParser parser = new ObservablePatchedParser(null, null) {
-		};
-		parser._afterSeqEl();
-		parser._beforeSeqEl();
-		parser._enterAlt(1);
-		parser._exitAlt();
-		parser.onEnterTemplateRule(null);
-		parser.onEnterTemplateRule(null, null);
-		parser.onErrorInTemplateRule(null);
-		parser.onExitTemplateRule(null);
-		parser.onRuleElementCreationCommited(null);
-		parser.onRuleElementResolvedOutOfContext(null, null, null, null);
-	}
+    
+    @Test
+    public void testNullObserverNoException() throws Exception {
+        TestableObservablePatchedParser parser = new TestableObservablePatchedParser(null, null);
+        parser._afterSeqEl();
+        parser._beforeSeqEl();
+        parser._enterAlt(1);
+        parser._exitAlt();
+        parser.onEnterTemplateRule(null);
+        parser.onEnterTemplateRule(null, null);
+        parser.onErrorInTemplateRule(null);
+        parser.onExitTemplateRule(null);
+        parser.onRuleElementCreationCommited(null);
+        parser.onRuleElementResolvedOutOfContext(null, null, null, null);
+    }
 
-	/**
-	 * test add and remove functionality of the DelegationParsingObserver helper
-	 * class
-	 */
-	@Test
-	public void testDelegationParsingObserverAddRemove() {
-		MockObserver mock = new MockObserver();
-		DelegationParsingObserver delegationObserver = new DelegationParsingObserver();
+    /**
+     * test add and remove functionality of the DelegationParsingObserver helper class
+     */
+    @Test
+    public void testDelegationParsingObserverAddRemove() {
+        MockObserver mock = new MockObserver();
+        DelegationParsingObserver delegationObserver = new DelegationParsingObserver();
 
-		assertEquals("", mock.result);
+        assertEquals("", mock.result);
 
-		// not yet added mock observer
-		delegationObserver.notifyEnterSequenceElement();
+        // not yet added mock observer
+        delegationObserver.notifyEnterSequenceElement();
 
-		assertEquals("", mock.result);
+        assertEquals("", mock.result);
 
-		delegationObserver.addParsingObserver(mock);
+        delegationObserver.addParsingObserver(mock);
 
-		// should fire
-		delegationObserver.notifyEnterSequenceElement();
-		assertEquals("3", mock.result);
+        // should fire
+        delegationObserver.notifyEnterSequenceElement();
+        assertEquals("3", mock.result);
 
-		delegationObserver.removeParsingObserver(mock);
+        delegationObserver.removeParsingObserver(mock);
 
-		// should not fire, result should not change
-		delegationObserver.notifyCommittedModelElementCreation(null);
-		assertEquals("3", mock.result);
-	}
+        // should not fire, result should not change
+        delegationObserver.notifyCommittedModelElementCreation(null);
+        assertEquals("3", mock.result);
+    }
 
-	/**
-	 * a mere regression test
-	 * 
-	 * @throws Exception
-	 */
-	@Test
-	public void testObserverOneEvent() throws Exception {
-		ObservablePatchedParser parser = new ObservablePatchedParser(null, null) {
-		};
-		MockObserver mock = new MockObserver();
+    /**
+     * a mere regression test
+     * 
+     * @throws Exception
+     */
+    @Test
+    public void testObserverOneEvent() throws Exception {
+        TestableObservablePatchedParser parser = new TestableObservablePatchedParser(null, null);
+        MockObserver mock = new MockObserver();
 
-		// test the (simple) DelegationParsingObserver class also
-		DelegationParsingObserver delegationObserver = new DelegationParsingObserver();
-		delegationObserver.addParsingObserver(mock);
+        // test the (simple) DelegationParsingObserver class also
+        DelegationParsingObserver delegationObserver = new DelegationParsingObserver();
+        delegationObserver.addParsingObserver(mock);
 
-		parser.setObserver(delegationObserver);
+        parser.setObserver(delegationObserver);
 
-		parser._afterSeqEl();
-		assertEquals("7", mock.result);
+        parser._afterSeqEl();
+        assertEquals("7", mock.result);
 
-		parser._beforeSeqEl();
-		assertEquals("3", mock.result);
+        parser._beforeSeqEl();
+        assertEquals("3", mock.result);
 
-		parser._enterAlt(1);
-		assertEquals("21", mock.result);
+        parser._enterAlt(1);
+        assertEquals("21", mock.result);
 
-		parser._enterAlt(0);
-		assertEquals("20", mock.result);
+        parser._enterAlt(0);
+        assertEquals("20", mock.result);
 
-		parser._exitAlt();
-		assertEquals("6", mock.result);
+        parser._exitAlt();
+        assertEquals("6", mock.result);
 
-		parser.onEnterTemplateRule(StringListHelper.list("test", "1234"));
-		assertEquals("1[test, 1234]null", mock.result);
+        parser.onEnterTemplateRule(StringListHelper.list("test", "1234"));
+        assertEquals("1[test, 1234]null", mock.result);
 
-		parser.onEnterTemplateRule(StringListHelper.list("test", "1234"),
-				"hello");
-		assertEquals("1[test, 1234]hello", mock.result);
+        parser.onEnterTemplateRule(StringListHelper.list("test", "1234"), "hello");
+        assertEquals("1[test, 1234]hello", mock.result);
 
-		parser.onErrorInTemplateRule(new RecognitionException());
-		assertEquals("4null", mock.result);
+        parser.onErrorInTemplateRule(new RecognitionException());
+        assertEquals("4null", mock.result);
 
-		parser.onExitTemplateRule(StringListHelper.list("test", "1234"));
-		assertEquals("5[test, 1234]", mock.result);
+        parser.onExitTemplateRule(StringListHelper.list("test", "1234"));
+        assertEquals("5[test, 1234]", mock.result);
 
-		parser.onRuleElementCreationCommited("test");
-		assertEquals("8test", mock.result);
+        parser.onRuleElementCreationCommited("test");
+        assertEquals("8test", mock.result);
 
-		parser.onRuleElementResolvedOutOfContext("test", "1234",
-				new ANTLR3LocationTokenImpl(3, "hello"), null);
-		assertEquals("9test1234hello", mock.result);
+        parser.onRuleElementResolvedOutOfContext("test", "1234", new ANTLR3LocationTokenImpl(3, "hello"), null);
+        assertEquals("9test1234hello", mock.result);
 
-	}
+    }
 
-	/**
-	 * @return
-	 */
-	private class MockObserver implements IParsingObserver {
-		public String result = "";
+    /**
+     * @return
+     */
+    private class MockObserver implements IParsingObserver {
+        public String result = "";
 
-		@Override
-                public void notifyEnterRule(List<String> createdElement, String mode) {
-                        result = 1 + createdElement.toString() + mode;
-                }
+        @Override
+        public void notifyEnterRule(List<String> createdElement, String mode) {
+            result = 1 + createdElement.toString() + mode;
+        }
 
-		@Override
-		public void notifyEnterSequenceAlternative(int choice) {
-			result = 2 + Integer.toString(choice);
-		}
+        @Override
+        public void notifyEnterSequenceAlternative(int choice) {
+            result = 2 + Integer.toString(choice);
+        }
 
-		@Override
-		public void notifyEnterSequenceElement() {
-			result = "3";
-		}
-		
-		@Override
-		public void notifyEnterSequenceElement(String mri) {
-			result = "3";
-		}
+        @Override
+        public void notifyEnterSequenceElement() {
+            result = "3";
+        }
 
-		@Override
-		public void notifyErrorInRule(RecognitionException re) {
-			result = 4 + re.getMessage();
-		}
+        @Override
+        public void notifyEnterSequenceElement(String mri) {
+            result = "3";
+        }
 
-		@Override
-		public void notifyExitRule(List<String> createdElementType) {
-			result = 5 + createdElementType.toString();
-		}
+        @Override
+        public void notifyErrorInRule(RecognitionException re) {
+            result = 4 + re.getMessage();
+        }
 
-		@Override
-		public void notifyExitSequenceAlternative() {
-			result = "6";
-		}
+        @Override
+        public void notifyExitRule(List<String> createdElementType) {
+            result = 5 + createdElementType.toString();
+        }
 
-		@Override
-		public void notifyExitSequenceElement() {
-			result = "7";
-		}
+        @Override
+        public void notifyExitSequenceAlternative() {
+            result = "6";
+        }
 
-		@Override
-		public void notifyCommittedModelElementCreation(Object newModelElement) {
-			result = 8 + newModelElement.toString();
-		}
+        @Override
+        public void notifyExitSequenceElement() {
+            result = "7";
+        }
 
-		@Override
-		public void notifyModelElementResolvedOutOfContext(Object modelElement,
-				Object contextModelElement, Token referenceLocation, DelayedReference reference) {
-			result = 9 + modelElement.toString() + contextModelElement
-					+ referenceLocation.getText() + ((reference == null) ? "" : reference);
-		}
+        @Override
+        public void notifyCommittedModelElementCreation(Object newModelElement) {
+            result = 8 + newModelElement.toString();
+        }
 
-		@Override
-		public void notifyTokenConsume(Token token) {
-			result = 10 + token.getText();
-		}
+        @Override
+        public void notifyModelElementResolvedOutOfContext(Object modelElement, Object contextModelElement,
+                Token referenceLocation, DelayedReference reference) {
+            result = 9 + modelElement.toString() + contextModelElement + referenceLocation.getText()
+                    + ((reference == null) ? "" : reference);
+        }
 
-		@Override
-		public void notifyTokenConsumeWithError(Token token) {
-			result = 11 + token.getText();
-		}
+        @Override
+        public void notifyTokenConsume(Token token) {
+            result = 10 + token.getText();
+        }
 
-        /* (non-Javadoc)
+        @Override
+        public void notifyTokenConsumeWithError(Token token) {
+            result = 11 + token.getText();
+        }
+
+        /*
+         * (non-Javadoc)
+         * 
          * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyModelElementResolutionFailed()
          */
         @Override
@@ -195,16 +196,20 @@ public class TestObservableParser {
             result = "12";
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
+         * 
          * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyEnterSeparatorSequence()
          */
         @Override
         public void notifyEnterSeparatorSequence() {
             result = "13";
-            
+
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
+         * 
          * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyExitSeparatorSequence()
          */
         @Override
@@ -212,7 +217,9 @@ public class TestObservableParser {
             result = "14";
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
+         * 
          * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyEnterOperatoredBrackettedSequence()
          */
         @Override
@@ -220,7 +227,9 @@ public class TestObservableParser {
             result = "15";
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
+         * 
          * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyExitOperatoredBrackettedSequence()
          */
         @Override
@@ -228,16 +237,19 @@ public class TestObservableParser {
             result = "16";
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
+         * 
          * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyEnterOperatorSequence(java.lang.String, int, boolean)
          */
         @Override
-        public void notifyEnterOperatorSequence(String operator, int arity,
-                boolean isUnaryPostfix) {
+        public void notifyEnterOperatorSequence(String operator, int arity, boolean isUnaryPostfix) {
             result = "17";
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
+         * 
          * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyExitOperatorSequence()
          */
         @Override
@@ -245,33 +257,92 @@ public class TestObservableParser {
             result = "18";
         }
 
-	@Override
-	public void notifyElementAddedToContext(Object element) {
-	    result = "19";
-	}
+        @Override
+        public void notifyElementAddedToContext(Object element) {
+            result = "19";
+        }
 
-	@Override
-	public void notifyDelayedReferenceCreated(DelayedReference ref) {
-	    result = "20";
-	}
+        @Override
+        public void notifyDelayedReferenceCreated(DelayedReference ref) {
+            result = "20";
+        }
 
-	@Override
-	public void notifyEnterInjectorAction() {
-	    result = "21";
-	}
+        @Override
+        public void notifyEnterInjectorAction() {
+            result = "21";
+        }
 
-	@Override
-	public void notifyExitInjectorAction() {
-	    result = "22";
-	}
+        @Override
+        public void notifyExitInjectorAction() {
+            result = "22";
+        }
 
-	@Override
-	public void reset() {
-	    result = "23";
-	}
+        @Override
+        public void reset() {
+            result = "23";
+        }
 
-		
+    }
+    
+    /**
+     * Delegate to protected / private methods.
+     */
+    private class TestableObservablePatchedParser extends ObservablePatchedParser {
 
-	}
+        @Override
+        public void onErrorInTemplateRule(RecognitionException re) {
+            super.onErrorInTemplateRule(re);
+        }
+
+        public TestableObservablePatchedParser(TokenStream input, RecognizerSharedState state) {
+            super(input, state);
+        }
+
+        @Override
+        public void onEnterTemplateRule(List<String> createdElement) {
+            super.onEnterTemplateRule(createdElement);
+        }
+        
+        @Override
+        public void onEnterTemplateRule(List<String> createdElement, String mode) {
+            super.onEnterTemplateRule(createdElement, mode);
+        }
+
+        @Override
+        public void onRuleElementCreationCommited(Object modelElement) {
+            super.onRuleElementCreationCommited(modelElement);
+        }
+
+        @Override
+        public void onRuleElementResolvedOutOfContext(Object modelElement, Object contextModelElement,
+                ANTLR3LocationToken referenceLocation, DelayedReference reference) {
+            super.onRuleElementResolvedOutOfContext(modelElement, contextModelElement, referenceLocation, reference);
+        }
+
+        @Override
+        public void onExitTemplateRule(List<String> createdElement) {
+            super.onExitTemplateRule(createdElement);
+        }
+
+        @Override
+        public void _beforeSeqEl() {
+            super._beforeSeqEl();
+        }
+
+        @Override
+        public void _afterSeqEl() {
+            super._afterSeqEl();
+        }
+
+        @Override
+        public void _enterAlt(int choice) {
+            super._enterAlt(choice);
+        }
+
+        @Override
+        public void _exitAlt() {
+            super._exitAlt();
+        }
+    }
 
 }

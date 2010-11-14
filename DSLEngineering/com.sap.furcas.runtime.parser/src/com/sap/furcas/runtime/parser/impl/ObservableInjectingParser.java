@@ -189,7 +189,7 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser
 		return new ContextManager();
 	}
 
-	protected final IModelElementProxy createModelElementProxy(
+	protected IModelElementProxy createModelElementProxy(
 			List<String> name, boolean context, boolean addToContext) {
 		return createModelElementProxy(name, context, addToContext,
 				(String[]) null);
@@ -334,64 +334,55 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser
 			// now we still have DelayedReferences being set in the context of
 			// this object.
 			ArrayList<DelayedReference> tempResolvedDelayedReferenceList = new ArrayList<DelayedReference>();
-			for (Iterator<DelayedReference> it = unResolvedDelayedReferenceList
-					.iterator(); it.hasNext();) {
-				DelayedReference ref = it.next();
-
-				// Check if the unresolved reference is trying to resolve some
-				// feature of the
-				// element represented by object:
-				if (ref.getModelElement().equals(object)) {
-					// if so, the resolved object proxy (result) can now be
-					// substituted in the reference
-					ref.setModelElement(result);
-					// if not to be resolved by a context lookup, do a deferred
-					// lookup
-					if (ref.getContextElement() == null) {
-						tempResolvedDelayedReferenceList.add(ref);
-					}
-					// Those with a context lookup will be handled below
-				} else if(ref.getType() == DelayedReference.SEMANTIC_DISAMBIGUATE) {
-					tempResolvedDelayedReferenceList.add(ref);
-				}
-				// TODO what if the context-Proxy gets resolved before the
-				// modelElement proxy? Then the DelayedReference would no longer
-				// be in unResolvedDelayedReferenceList and therefore the
-				// modelElement wouldn't be correctly substituted.
-				if (ref.getContextElement() != null
-						&& ref.getContextElement().equals(object)) {
-					// now both modelElement and context should be resolved.
-					ref.setContextElement(result);
-					tempResolvedDelayedReferenceList.add(ref);
-				}
-			}
-			for (Iterator<DelayedReference> iterator = tempResolvedDelayedReferenceList
-					.iterator(); iterator.hasNext();) {
-				DelayedReference delayedReference = iterator.next();
-				unResolvedDelayedReferenceList.remove(delayedReference);
-				delayedReferenceList.add(delayedReference);
-			}
+			for (DelayedReference ref : unResolvedDelayedReferenceList) {
+// Check if the unresolved reference is trying to resolve some
+// feature of the
+// element represented by object:
+if (ref.getModelElement().equals(object)) {
+            // if so, the resolved object proxy (result) can now be
+            // substituted in the reference
+            ref.setModelElement(result);
+            // if not to be resolved by a context lookup, do a deferred
+            // lookup
+            if (ref.getContextElement() == null) {
+            	tempResolvedDelayedReferenceList.add(ref);
+            }
+            // Those with a context lookup will be handled below
+} else if(ref.getType() == DelayedReference.SEMANTIC_DISAMBIGUATE) {
+            tempResolvedDelayedReferenceList.add(ref);
+}
+// TODO what if the context-Proxy gets resolved before the
+// modelElement proxy? Then the DelayedReference would no longer
+// be in unResolvedDelayedReferenceList and therefore the
+// modelElement wouldn't be correctly substituted.
+if (ref.getContextElement() != null
+            	&& ref.getContextElement().equals(object)) {
+            // now both modelElement and context should be resolved.
+            ref.setContextElement(result);
+            tempResolvedDelayedReferenceList.add(ref);
+}
+}
+			for (DelayedReference delayedReference : tempResolvedDelayedReferenceList) {
+unResolvedDelayedReferenceList.remove(delayedReference);
+delayedReferenceList.add(delayedReference);
+}
 		} else {
 			// resolution or creation of object from proxy failed, errors should
 			// have been generated
 			// in other places.
 			ArrayList<DelayedReference> tempObsoleteDelayedReferenceList = new ArrayList<DelayedReference>();
-			for (Iterator<DelayedReference> it = unResolvedDelayedReferenceList
-					.iterator(); it.hasNext();) {
-				DelayedReference ref = it.next();
-				if (ref.getModelElement().equals(object)) {
-					tempObsoleteDelayedReferenceList.add(ref);
-				}
-				if (ref.getContextElement() != null
-						&& ref.getContextElement().equals(object)) {
-					tempObsoleteDelayedReferenceList.add(ref);
-				}
-			}
-			for (Iterator<DelayedReference> iterator = tempObsoleteDelayedReferenceList
-					.iterator(); iterator.hasNext();) {
-				DelayedReference delayedReference = iterator.next();
-				unResolvedDelayedReferenceList.remove(delayedReference);
-			}
+			for (DelayedReference ref : unResolvedDelayedReferenceList) {
+if (ref.getModelElement().equals(object)) {
+            tempObsoleteDelayedReferenceList.add(ref);
+}
+if (ref.getContextElement() != null
+            	&& ref.getContextElement().equals(object)) {
+            tempObsoleteDelayedReferenceList.add(ref);
+}
+}
+			for (DelayedReference delayedReference : tempObsoleteDelayedReferenceList) {
+unResolvedDelayedReferenceList.remove(delayedReference);
+}
 		}
 		return result;
 	}
@@ -720,10 +711,9 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser
 				injector.getErrorList().clear();
 				// if in the resolving part some new references are created they
 				// must be evaluated as well
-				for (Iterator<DelayedReference> it = unResolvedDelayedReferenceList
-						.iterator(); it.hasNext();) {
-					delayedReferenceList.add(it.next());
-				}
+				for (DelayedReference delayedReference : unResolvedDelayedReferenceList) {
+delayedReferenceList.add(delayedReference);
+}
 				unResolvedDelayedReferenceList.clear();
 				resolvedNewReference = false;
 				for (Iterator<DelayedReference> iterator = delayedReferenceList
