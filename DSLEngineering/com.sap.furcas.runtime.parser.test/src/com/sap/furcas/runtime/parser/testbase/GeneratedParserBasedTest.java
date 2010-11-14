@@ -92,7 +92,8 @@ public class GeneratedParserBasedTest {
                     "-cp",
                     System.getProperty("antlr.lib.dir") + File.pathSeparator + "../com.sap.furcas.runtime.parser/bin"
                             + File.pathSeparator + "../com.sap.furcas.runtime.common/bin" + File.pathSeparator
-                            + "../com.sap.furcas.parsergenerator.emf/bin" });
+                            + "../com.sap.furcas.parsergenerator.emf/bin" + File.pathSeparator
+                            + "../com.sap.furcas.runtime.tcs/bin"}); 
             if (success != 0) {
                 fail("Parser compilation failed with code '" + success + "'. Messages: \n" + errByteStream.toString());
             }
