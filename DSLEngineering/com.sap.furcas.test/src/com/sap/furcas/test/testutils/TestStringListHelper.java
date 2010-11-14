@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.sap.furcas.runtime.parser.testutils;
+package com.sap.furcas.test.testutils;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

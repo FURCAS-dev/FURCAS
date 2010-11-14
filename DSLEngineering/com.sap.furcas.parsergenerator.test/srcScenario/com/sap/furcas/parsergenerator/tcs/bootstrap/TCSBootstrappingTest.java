@@ -1,4 +1,4 @@
-package com.sap.mi.textual.bootstrap;
+package com.sap.furcas.parsergenerator.tcs.bootstrap;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -14,17 +14,15 @@ import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.runtime.parser.impl.DefaultTextAwareModelAdapter;
-import com.sap.furcas.test.parsing.base.ExtendedGeneratedParserBasedTest;
-import com.sap.furcas.test.parsing.base.ParserGenerationTestHelper;
+import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 
 /**
  * Tests generation of TCS Parsers using metamodel in MOIN.
  * uses scenarioTestResource/TCS.tcs to generate a new TCS Parser, and then parses other Syntax definitions for testing. 
  */
-public class TCSMoinTest extends ExtendedGeneratedParserBasedTest {
+public class TCSBootstrappingTest extends GeneratedParserBasedTest {
 
     private static final String DSLSAMPLEDIR = "./scenarioTestResource/";
-    
     private static final String LANGUAGE = "TCS";
     
     private static com.sap.furcas.runtime.parser.IModelAdapter adapter;

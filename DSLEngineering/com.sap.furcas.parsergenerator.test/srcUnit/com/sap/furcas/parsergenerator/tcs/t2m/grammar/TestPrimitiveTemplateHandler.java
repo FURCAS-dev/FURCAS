@@ -23,8 +23,8 @@ import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.TemplateNaming
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.AbstractAntlr3Rule;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
-import com.sap.furcas.runtime.parser.testutils.StringListHelper;
 import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
+import com.sap.furcas.test.testutils.StringListHelper;
 
 /**
  * Probably one of the most important tests for DSL Engineering.

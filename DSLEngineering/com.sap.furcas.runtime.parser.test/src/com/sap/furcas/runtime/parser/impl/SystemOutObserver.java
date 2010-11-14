@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.sap.mi.textual.test.parsingObserver;
+package com.sap.furcas.runtime.parser.impl;
 
 import java.util.List;
 
@@ -9,7 +9,6 @@ import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
 
 import com.sap.furcas.runtime.parser.IParsingObserver;
-import com.sap.furcas.runtime.parser.impl.ConsistencyChecksObserver;
 import com.sap.furcas.runtime.parser.impl.DelayedReference;
 
 /**
