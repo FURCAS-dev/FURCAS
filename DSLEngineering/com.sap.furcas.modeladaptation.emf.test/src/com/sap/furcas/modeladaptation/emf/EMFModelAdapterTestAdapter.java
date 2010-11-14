@@ -1,28 +1,27 @@
 /**
  * 
  */
-package com.sap.tc.moin.textual.moinadapter.adapter;
+package com.sap.furcas.modeladaptation.emf;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
+import java.util.Set;
+
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 
 /**
  * helper class to help with changing method signatures
  */
-public class MOINModelAdapterTestAdapter extends MOINModelAdapter{
+public class EMFModelAdapterTestAdapter extends EMFModelAdapter {
 
-    /**
-     * @param root
-     * @param connection
-     * @param referenceScope
-     */
-    public MOINModelAdapterTestAdapter(RefPackage root, Connection connection,
-            Collection<PRI> referenceScope, Collection<CRI> criScope) {
-        super(root, connection, referenceScope, criScope);
 
+
+    public EMFModelAdapterTestAdapter(EPackage root, ResourceSet ResourceSet, Set<URI> referenceScope) {
+        super(root, ResourceSet, referenceScope);
     }
 
     /**
