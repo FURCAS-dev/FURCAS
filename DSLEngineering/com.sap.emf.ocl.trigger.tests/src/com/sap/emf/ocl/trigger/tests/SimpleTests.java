@@ -12,18 +12,17 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
-import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.emf.ocl.trigger.AbstractTriggerable;
 import com.sap.emf.ocl.trigger.TriggerManager;
 import com.sap.emf.ocl.trigger.TriggerManagerFactory;
 import com.sap.emf.ocl.trigger.Triggerable;
-
 import company.CompanyFactory;
 import company.CompanyPackage;
 import company.Department;
@@ -46,7 +45,7 @@ public class SimpleTests extends TestCase {
     public void testTrivialTrigger() throws ParserException {
         final Department d = CompanyFactory.eINSTANCE.createDepartment();
         resource.getContents().add(d);
-        Helper helper = OCLWithHiddenOpposites.newInstance().createOCLHelper();
+        Helper helper = OCL.newInstance().createOCLHelper();
         helper.setContext(CompanyPackage.eINSTANCE.getDepartment());
         final OCLExpression trivialExpression = helper.createQuery("self.name");
         final boolean[] result = new boolean[1];
@@ -68,7 +67,7 @@ public class SimpleTests extends TestCase {
         resource.getContents().add(d1);
         final Department d2 = CompanyFactory.eINSTANCE.createDepartment();
         resource.getContents().add(d2);
-        Helper helper = OCLWithHiddenOpposites.newInstance().createOCLHelper();
+        Helper helper = OCL.newInstance().createOCLHelper();
         helper.setContext(CompanyPackage.eINSTANCE.getDepartment());
         final OCLExpression trivialExpression = helper.createQuery("self.name");
         final boolean[] result = new boolean[1];

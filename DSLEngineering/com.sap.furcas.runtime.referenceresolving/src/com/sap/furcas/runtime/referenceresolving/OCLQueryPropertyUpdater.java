@@ -2,9 +2,9 @@ package com.sap.furcas.runtime.referenceresolving;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
-import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.emf.ocl.trigger.AbstractOCLBasedModelUpdater;
 import com.sap.emf.ocl.trigger.ExpressionWithContext;
 import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
@@ -34,7 +34,7 @@ public class OCLQueryPropertyUpdater extends AbstractOCLBasedModelUpdater {
 
     protected OCLQueryPropertyUpdater(Property propertyInit, OppositeEndFinder oppositeEndFinder) throws ParserException {
         super(propertyInit.getPropertyReference().getStrucfeature(), oppositeEndFinder, new ExpressionWithContext(
-                OCLWithHiddenOpposites.newInstance(oppositeEndFinder).createOCLHelper()
+                OCL.newInstance(oppositeEndFinder).createOCLHelper()
                 .createQuery(ContextAndForeachHelper.prepareOclQuery(getExpressionString(propertyInit))),
         (EClass) ContextAndForeachHelper.getParsingContext(getExpressionString(propertyInit),
                 propertyInit.getParentTemplate())),

@@ -54,7 +54,6 @@ import org.eclipse.ocl.ecore.OCLExpression;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.ReferenceSettingException;
@@ -102,7 +101,7 @@ public class AdapterJMIHelper {
         this.rootPackage = rootPackage;
         this.resourceSet = resourceSet;
 
-        ocl = OCLWithHiddenOpposites.newInstance(new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider()));
+        ocl = OCL.newInstance(new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider()));
         oclHelper = ocl.createOCLHelper();
 
         queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());

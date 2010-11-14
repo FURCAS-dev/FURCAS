@@ -4,7 +4,6 @@ Bundle-Name: EMF Specific Parsergeneration Logik
 Bundle-SymbolicName: com.sap.furcas.parsergenerator.emf
 Bundle-Version: 1.0.0.qualifier
 Require-Bundle: 
- com.sap.emf.ocl.hiddenopposites,
  com.sap.furcas.runtime.common,
  com.sap.furcas.runtime.parser,
  com.sap.furcas.modeladaptation.emf,
