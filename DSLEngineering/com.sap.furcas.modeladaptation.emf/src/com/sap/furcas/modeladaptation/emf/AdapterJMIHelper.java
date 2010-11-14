@@ -197,7 +197,7 @@ public class AdapterJMIHelper {
 	                transientResource.getContents().add(created);
 	                return created;
             	} else {
-            		throw new RuntimeException("Cannot instantiate EClass " + modelElement.toString() + 
+            		throw new ModelAdapterException("Cannot instantiate EClass " + modelElement.toString() + 
             				" as it is abstract.");
             	}
             } else if (modelElement instanceof EDataType) {
@@ -206,7 +206,7 @@ public class AdapterJMIHelper {
                 // FIXME: resource assignment needed?
                 return mock;
             } else {
-                throw new RuntimeException("Cannot instantiate EModelElement " + modelElement.toString());
+                throw new ModelAdapterException("Cannot instantiate EModelElement " + modelElement.toString());
             }
 
         } else {
@@ -724,8 +724,8 @@ public class AdapterJMIHelper {
         Set<String> partitionableFeatureNames = partitionableReferenceValuedAttributesMap.keySet();
         for (String featureName : partitionableFeatureNames) {
             EObject value = partitionableReferenceValuedAttributesMap.get(featureName);
-            queryBuilder.append(",\n \"").append(EcoreUtil.getURI(value)).append("\" as ").append(featureName).append("_alias")
-                    .append("\n");
+            queryBuilder.append(",\n [").append(EcoreUtil.getURI(value.eClass())).append("] as ").append(featureName).append("_alias")
+                    .append(" in elements {[").append(EcoreUtil.getURI(value)).append("]}").append("\n");
         }
         for (String featureName : partitionableFeatureNames) {
             queryBuilder.append(" where instance.").append(featureName).append(" = ").append(featureName).append("_alias")
