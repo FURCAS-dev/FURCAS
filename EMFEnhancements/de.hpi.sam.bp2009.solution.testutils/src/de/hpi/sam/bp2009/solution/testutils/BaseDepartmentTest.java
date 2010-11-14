@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.ExpressionInOCL;
 import org.eclipse.ocl.ecore.OCL;
 import org.junit.After;
@@ -42,6 +41,8 @@ import company.impl.DepartmentImpl;
 import company.impl.DivisionImpl;
 import company.impl.EmployeeImpl;
 import company.impl.FreelanceImpl;
+
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.EnvironmentFactory;
 
 /**
  * This is the super class for all tests based on the Department model.
@@ -570,8 +571,7 @@ public class BaseDepartmentTest extends TestCase {
         String nsPrefix = basePackage.getNsPrefix();
         EPackage.Registry.INSTANCE.put(nsPrefix, basePackage);
         OCL ocl = OCL.newInstance();
-        ocl = OCL.newInstance(((EcoreEnvironmentFactory) ocl.getEnvironment().getFactory()).
-                createPackageContext(ocl.getEnvironment(), basePackage));
+        ocl = OCL.newInstance(new EnvironmentFactory().createPackageContext(ocl.getEnvironment(), basePackage));
         List<Constraint> result = null;
         try {
             result = ocl.parse(exp);

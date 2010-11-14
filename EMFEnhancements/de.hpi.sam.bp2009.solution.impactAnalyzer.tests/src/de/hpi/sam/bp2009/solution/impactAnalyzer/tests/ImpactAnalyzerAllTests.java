@@ -40,6 +40,9 @@ public class ImpactAnalyzerAllTests extends TestSuite {
         suite.addTestSuite(OclIaTest.class);
         suite.addTestSuite(RevPathComputationTest.class);
         suite.addTestSuite(PartialEvaluatorTest.class);
+        // TODO The NavigationPathCreationTest is not yet ready for inclusion here; takes too long and doesn't
+        // pass because it tests with the individual PropertyCallExp without considering their context
+        // suite.addTestSuite(NavigationPathCreationTest.class);
         suite.addTestSuite(NavigationStepDebugGraphTest.class);
         suite.addTestSuite(QuickOclParseAndEvalTest.class);
         suite.addTestSuite(FilterSynthesisTest.class);

@@ -52,13 +52,9 @@ public class PathCache extends AbstractPathCache<NavigationStep> implements Hash
      */
     private final Map<SemanticIdentity, NavigationStep> allNavigationSteps = new HashMap<SemanticIdentity, NavigationStep>();
     /**
-     * @param instanceScopeAnalysis for special cases, e.g., when callers need to invoke this constructor in a super(...)
-     * initializer of InstanceScopeAnalysis or its descendents, it may not be possible to pass a readily-initialized
-     * object. Therefore, it is permissible to pass <code>null</code> here and immediately after the constructor call invoke
-     * the protected {@link #setInstanceScopeAnalysis} operation with the now initialized object.
      */
-    public PathCache(OppositeEndFinder oppositeEndFinder, InstanceScopeAnalysis instanceScopeAnalysis) {
-        super(oppositeEndFinder, instanceScopeAnalysis);
+    public PathCache(OppositeEndFinder oppositeEndFinder) {
+        super(oppositeEndFinder);
     }
     
     /**

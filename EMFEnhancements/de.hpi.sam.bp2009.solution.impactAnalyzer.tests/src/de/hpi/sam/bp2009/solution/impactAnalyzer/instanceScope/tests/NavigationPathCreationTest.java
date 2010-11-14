@@ -35,137 +35,143 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLEx
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OCLFactoryImpl;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.InstanceScopeAnalysis;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.PathCache;
 
-public class NavigationPathCreationTest extends TestCase{
+public class NavigationPathCreationTest extends TestCase {
     private Collection<OCLExpressionWithContext> classTcsExpressionList = null;
     private Collection<OCLExpressionWithContext> metamodelExpressionList = null;
 
     @Override
-    public void setUp(){
-	classTcsExpressionList = new OCLExpressionFromClassTcsPicker().pickUpExpressions();
-	metamodelExpressionList = new OCLExpressionFromModelPicker().pickUpExpressions();
+    public void setUp() {
+        classTcsExpressionList = new OCLExpressionFromClassTcsPicker().pickUpExpressions();
+        metamodelExpressionList = new OCLExpressionFromModelPicker().pickUpExpressions();
     }
 
     @Test
-    public void testProducingNavigationStepsForTcsExpressions(){
-	List<ExceptionWithExpression> excList = tryCreationAndCatchAllRuntimeExceptions(classTcsExpressionList);
-	assertEquals(0, excList.size());
+    public void testProducingNavigationStepsForTcsExpressions() {
+        List<ExceptionWithExpression> excList = tryCreationAndCatchAllRuntimeExceptions(classTcsExpressionList);
+        assertEquals(0, excList.size());
     }
 
     @Test
-    public void testProducingNavigationStepsForMetamodelExpressions(){
-	List<ExceptionWithExpression> excList = tryCreationAndCatchAllRuntimeExceptions(metamodelExpressionList);
-	assertEquals(0, excList.size());
+    public void testProducingNavigationStepsForMetamodelExpressions() {
+        List<ExceptionWithExpression> excList = tryCreationAndCatchAllRuntimeExceptions(metamodelExpressionList);
+        assertEquals(0, excList.size());
     }
 
-    public List<ExceptionWithExpression> tryCreationAndCatchAllRuntimeExceptions(Collection<OCLExpressionWithContext> expressionList){
-	List<ExceptionWithExpression> excList = new ArrayList<ExceptionWithExpression>();
+    public List<ExceptionWithExpression> tryCreationAndCatchAllRuntimeExceptions(
+            Collection<OCLExpressionWithContext> expressionList) {
+        List<ExceptionWithExpression> excList = new ArrayList<ExceptionWithExpression>();
 
-	for (OCLExpressionWithContext expression : expressionList) {
-	    try {
-		excList.addAll(tryToCreateNavigationPaths(expression));
-	    } catch (RuntimeException e) {
-		excList.add(new ExceptionWithExpression(e, expression));
-	    }
-	}
+        for (OCLExpressionWithContext expression : expressionList) {
+            try {
+                excList.addAll(tryToCreateNavigationPaths(expression));
+            } catch (RuntimeException e) {
+                excList.add(new ExceptionWithExpression(e, expression));
+            }
+        }
 
-	return excList;
+        return excList;
     }
 
-    public void printExceptions(List<ExceptionWithExpression> excList){
-	for(ExceptionWithExpression e : excList){
-	    e.print();
-	}
+    public void printExceptions(List<ExceptionWithExpression> excList) {
+        for (ExceptionWithExpression e : excList) {
+            e.print();
+        }
     }
 
-    private class ExceptionWithExpression{
-	private final Exception e;
-	private final OCLExpressionWithContext expr;
+    private class ExceptionWithExpression {
+        private final Exception e;
+        private final OCLExpressionWithContext expr;
 
-	public ExceptionWithExpression(Exception e, OCLExpressionWithContext expr){
-	    this.e = e;
-	    this.expr = expr;
-	}
+        public ExceptionWithExpression(Exception e, OCLExpressionWithContext expr) {
+            this.e = e;
+            this.expr = expr;
+        }
 
-	public void print(){
-	    System.out.println(expr);
-	    e.printStackTrace();
-	}
+        public void print() {
+            System.out.println(expr);
+            e.printStackTrace();
+        }
     }
 
     @SuppressWarnings("unchecked")
     private List<ExceptionWithExpression> tryToCreateNavigationPaths(OCLExpressionWithContext expression) {
         OCLFactory oclFactory = new OCLFactoryImpl();
-	List<ExceptionWithExpression> excList = new ArrayList<ExceptionWithExpression>();
+        List<ExceptionWithExpression> excList = new ArrayList<ExceptionWithExpression>();
 
-	FilterSynthesisImpl filterSynthesizer = new FilterSynthesisImpl(expression.getExpression(), false, OCL.newInstance());
-	filterSynthesizer.getSynthesisedFilter();
+        FilterSynthesisImpl filterSynthesizer = new FilterSynthesisImpl(expression.getExpression(), false,
+                OCL.newInstance());
+        filterSynthesizer.getSynthesisedFilter();
 
-	Map<EAttribute, Set<PropertyCallExp>> attributeCallExpressions = (Map<EAttribute, Set<PropertyCallExp>>)dirtyReflectionAttributeReader("attributeCallExpressions", filterSynthesizer);
-	Map<EReference, Set<NavigationCallExp>> associationEndCallExpressions = (Map<EReference, Set<NavigationCallExp>>)dirtyReflectionAttributeReader("associationEndCallExpressions", filterSynthesizer);
+        Map<EAttribute, Set<PropertyCallExp>> attributeCallExpressions = (Map<EAttribute, Set<PropertyCallExp>>) dirtyReflectionAttributeReader(
+                "attributeCallExpressions", filterSynthesizer);
+        Map<EReference, Set<NavigationCallExp>> associationEndCallExpressions = (Map<EReference, Set<NavigationCallExp>>) dirtyReflectionAttributeReader(
+                "associationEndCallExpressions", filterSynthesizer);
 
-	for (Set<PropertyCallExp> callExpressionSet : attributeCallExpressions.values()) {
-	    for (PropertyCallExp callExpression : callExpressionSet) {
-		try {
-		    PathCache cache = new PathCache(DefaultOppositeEndFinder.getInstance(),
-		            new InstanceScopeAnalysis(callExpression, /* exprContext */ null,
-		                    filterSynthesizer, DefaultOppositeEndFinder.getInstance(), OptimizationActivation.getOption(),
-		                    oclFactory));
-		    assertNotNull(cache.getOrCreateNavigationPath((OCLExpression)callExpression.getSource(), expression.getContext(), filterSynthesizer,
-			    null, oclFactory));
-		} catch (RuntimeException e) {
-		    System.out.println(callExpression.getSource());
-		    e.printStackTrace();
-		    excList.add(new ExceptionWithExpression(e, expression));
-		}
+        for (Set<PropertyCallExp> callExpressionSet : attributeCallExpressions.values()) {
+            for (PropertyCallExp callExpression : callExpressionSet) {
+                try {
+                    ImpactAnalyzerImplWithPublicInstanceScopeAnalysis ia = new ImpactAnalyzerImplWithPublicInstanceScopeAnalysis(
+                            callExpression,
+                            /* notifyOnNewContextElements */ true,
+                            OptimizationActivation.getOption(), oclFactory);
+                    PathCache cache = new PathCache(DefaultOppositeEndFinder.getInstance());
+                    cache.initInstanceScopeAnalysis(ia.createInstanceScopeAnalysis());
+                    assertNotNull(cache.getOrCreateNavigationPath((OCLExpression) callExpression.getSource(),
+                            expression.getContext(), filterSynthesizer, null, oclFactory));
+                } catch (RuntimeException e) {
+                    System.out.println(callExpression.getSource());
+                    e.printStackTrace();
+                    excList.add(new ExceptionWithExpression(e, expression));
+                }
+            }
+        }
 
-	    }
-	}
+        for (Set<NavigationCallExp> callExpressionSet : associationEndCallExpressions.values()) {
+            for (NavigationCallExp callExpression : callExpressionSet) {
+                try {
+                    ImpactAnalyzerImplWithPublicInstanceScopeAnalysis ia = new ImpactAnalyzerImplWithPublicInstanceScopeAnalysis(
+                            callExpression,
+                            /* notifyOnNewContextElements */ true,
+                            OptimizationActivation.getOption(), oclFactory);
+                    PathCache cache = new PathCache(DefaultOppositeEndFinder.getInstance());
+                    cache.initInstanceScopeAnalysis(ia.createInstanceScopeAnalysis());
+                    assertNotNull(cache.getOrCreateNavigationPath((OCLExpression) callExpression.getSource(),
+                            expression.getContext(), filterSynthesizer, null, oclFactory));
+                } catch (RuntimeException e) {
+                    System.out.println(callExpression.getSource());
+                    e.printStackTrace();
+                    excList.add(new ExceptionWithExpression(e, expression));
+                }
 
-	for (Set<NavigationCallExp> callExpressionSet : associationEndCallExpressions.values()) {
-	    for (NavigationCallExp callExpression : callExpressionSet) {
-		try {
-		    PathCache cache = new PathCache(DefaultOppositeEndFinder.getInstance(), new InstanceScopeAnalysis(callExpression, /* exprContext */ null,
-                            filterSynthesizer, DefaultOppositeEndFinder.getInstance(), OptimizationActivation.getOption(),
-                            oclFactory));
-		    assertNotNull(cache.getOrCreateNavigationPath((OCLExpression)callExpression.getSource(), expression.getContext(), filterSynthesizer,
-			    null, oclFactory));
-		} catch (RuntimeException e) {
-		    System.out.println(callExpression.getSource());
-		    e.printStackTrace();
-		    excList.add(new ExceptionWithExpression(e, expression));
-		}
+            }
+        }
 
-	    }
-	}
-
-	return excList;
+        return excList;
     }
 
+    private Object dirtyReflectionAttributeReader(String attribute, Object target) {
+        try {
+            Field field = target.getClass().getDeclaredField(attribute);
+            field.setAccessible(true);
+            return field.get(target);
 
-    private Object dirtyReflectionAttributeReader(String attribute, Object target){
-	try {
-	    Field field = target.getClass().getDeclaredField(attribute);
-	    field.setAccessible(true);
-	    return field.get(target);
+        } catch (SecurityException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
-	} catch (SecurityException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	} catch (IllegalArgumentException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	} catch (IllegalAccessException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	} catch (NoSuchFieldException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	}
-
-	throw new RuntimeException("Cannot reflect on " + target);
+        throw new RuntimeException("Cannot reflect on " + target);
     }
 
 }

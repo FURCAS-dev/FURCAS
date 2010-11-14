@@ -37,7 +37,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.query.index.ui.IndexFactory;
 import org.eclipse.emf.query2.EcoreHelper;
-import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
@@ -135,29 +134,11 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
      * @see de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser#convertOclAnnotation(org.eclipse.emf.ecore.EModelElement)
      */
     public void convertOclAnnotation(EModelElement modelElement) {
-//      // to convert generated annotations with 'old' uri into annotations with standard uri
-//      EAnnotation anno = modelElement.getEAnnotation("http://de.hpi.sam.bp2009.OCL");
-//      if (anno != null){
-//          anno.setSource(OCLDelegateDomain.OCL_DELEGATE_URI);
-//          anno.getContents().clear();
-//      }
-//
-        EAnnotation textAnno = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
-        if (textAnno == null)
+        EAnnotation anno = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+        if (anno == null)
             return;
-        EAnnotation astAnno = modelElement.getEAnnotation(Environment.OCL_NAMESPACE_URI);
-        if (astAnno == null){
-            astAnno = EcoreFactory.eINSTANCE.createEAnnotation();
-            astAnno.setSource(Environment.OCL_NAMESPACE_URI);
-            modelElement.getEAnnotations().add(astAnno);
-        }      
-        else{ 
-            //remove old ast           
-            astAnno.getContents().clear();          
-//          EcoreUtil.remove(astAnno);
-//            return;
-        }
-        for (Entry<String, String> detail : textAnno.getDetails()) {
+        anno.getContents().clear();          
+        for (Entry<String, String> detail : anno.getDetails()) {
             String e = detail.getValue();
             if (e == null)
                 return;
@@ -219,7 +200,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             if (expr == null)
                 return;
 
-            astAnno.getContents().add(expr);
+            anno.getContents().add(expr);
 
             /*
              * Iterate the AST, search for OCL specific types, and add them to the resource of the EAnnotation

@@ -42,6 +42,7 @@ import org.eclipse.ocl.ecore.NavigationCallExp;
 import org.eclipse.ocl.ecore.NullLiteralExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.PrimitiveLiteralExp;
 import org.eclipse.ocl.ecore.PrimitiveType;
 import org.eclipse.ocl.ecore.PropertyCallExp;
@@ -100,8 +101,7 @@ public class InstanceScopeAnalysis implements PartialEvaluatorFactory {
     public InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer, OppositeEndFinder oppositeEndFinder, ActivationOption configuration, OCLFactory oclFactory) {
         this(expression, exprContext, filterSynthesizer, oppositeEndFinder, new PartialEvaluator(oclFactory), configuration,
                 oclFactory,
-                /* pathCache */ configuration.isTracebackStepISAActive() ? null : new PathCache(oppositeEndFinder, null), /* tracebackStepCache */ configuration.isTracebackStepISAActive() ? new TracebackStepCache(oppositeEndFinder, null) : null);
-        initInstanceScopeAnalysisOnPathCache();
+                /* pathCache */ configuration.isTracebackStepISAActive() ? null : new PathCache(oppositeEndFinder), /* tracebackStepCache */ configuration.isTracebackStepISAActive() ? new TracebackStepCache(oppositeEndFinder) : null);
     }
 
     protected void initInstanceScopeAnalysisOnPathCache() {
@@ -168,6 +168,8 @@ public class InstanceScopeAnalysis implements PartialEvaluatorFactory {
         switch (expression.eClass().getClassifierID()) {
         case EcorePackage.PROPERTY_CALL_EXP:
             return new PropertyCallExpTracer((PropertyCallExp) expression, tuplePartNames, oclFactory);
+        case EcorePackage.OPPOSITE_PROPERTY_CALL_EXP:
+            return new OppositePropertyCallExpTracer((OppositePropertyCallExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.BOOLEAN_LITERAL_EXP:
             return new BooleanLiteralExpTracer((BooleanLiteralExp) expression, tuplePartNames, oclFactory);
         case EcorePackage.COLLECTION_LITERAL_EXP:
