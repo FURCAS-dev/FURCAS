@@ -27,7 +27,9 @@ import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
 import com.sap.furcas.parsergenerator.GrammarGenerationTargetConfiguration;
 import com.sap.furcas.parsergenerator.TCSParserGenerator;
 import com.sap.furcas.parsergenerator.TCSParserGeneratorFactory;
+import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.common.exceptions.ParserGeneratorInvocationException;
+import com.sap.furcas.runtime.common.exceptions.ParserInvokationException;
 import com.sap.furcas.utils.exceptions.EclipseExceptionHelper;
 
 /**
@@ -166,15 +168,16 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
         if (conf != null) {
             ReferenceScopeBean refScopeBean = conf.getMetaLookUpForProject();
             try {
-                GrammarGenerationSourceConfiguration sourceConfig = new GrammarGenerationSourceConfiguration(convertIFileToFile(syntaxDefFile),
+                GrammarGenerationSourceConfiguration sourceConfig = new GrammarGenerationSourceConfiguration(
                         refScopeBean.getResourceSet(), refScopeBean.getReferenceScope());
                 
                 IFile grammarFile = getGrammarFile(syntaxDefFile);
                 GrammarGenerationTargetConfiguration targetConfig = new GrammarGenerationTargetConfiguration(getPackageName(grammarFile), convertIFileToFile(grammarFile));
 
                 TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
-                generator.generateGrammarFromSyntax(sourceConfig, targetConfig, new ResourceMarkingGenerationErrorHandler(
-                        syntaxDefFile));
+                TCSSyntaxContainerBean syntaxBean = generator.parseSyntax(sourceConfig, convertIFileToFile(syntaxDefFile));
+                generator.generateGrammarFromSyntax(syntaxBean, sourceConfig, targetConfig, new ResourceMarkingGenerationErrorHandler(
+                                syntaxDefFile));
                 
                 if (grammarFile.exists()) {
                     generator.generateParserFromGrammar(targetConfig, new ResourceMarkingGenerationErrorHandler(grammarFile));
@@ -185,6 +188,8 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
             } catch (GrammarGenerationException e) {
                throw new CoreException(EclipseExceptionHelper.getErrorStatus(e, Activator.PLUGIN_ID));
             } catch (ParserGeneratorInvocationException e) {
+                throw new CoreException(EclipseExceptionHelper.getErrorStatus(e, Activator.PLUGIN_ID));
+            } catch (ParserInvokationException e) {
                 throw new CoreException(EclipseExceptionHelper.getErrorStatus(e, Activator.PLUGIN_ID));
             } finally {
                 monitor.done();

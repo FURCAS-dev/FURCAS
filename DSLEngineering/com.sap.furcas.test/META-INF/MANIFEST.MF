@@ -8,18 +8,15 @@ Bundle-Vendor: SAP
 Require-Bundle: org.junit;bundle-version="4.8.1",
  org.antlr;bundle-version="3.1.1",
  org.eclipse.core.runtime,
- com.sap.furcas.runtime.common;bundle-version="1.0.0",
- com.sap.furcas.runtime.parser;bundle-version="1.0.0"
+ org.eclipse.emf.ecore,
+ com.sap.furcas.runtime.common
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
-Export-Package: com.sap.furcas.test.base,
- com.sap.furcas.test.fixture,
- com.sap.furcas.test.parsing.testutils,
- com.sap.furcas.test.parsing.textblocks,
+Export-Package: com.sap.furcas.test.fixture,
+ com.sap.furcas.test.testutils,
  com.sap.furcas.test.util,
  org.easymock
 Bundle-ClassPath: .,
- lib/tools.jar,
  lib/easymock-3.0.jar,
  lib/cglib-2.2.jar,
  lib/objenesis-1.2.jar,

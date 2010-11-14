@@ -21,9 +21,9 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.util.TextblocksAdapterFactory;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
+import com.sap.furcas.runtime.textblocks.testutils.TestSourceTextBlockCreator;
+import com.sap.furcas.runtime.textblocks.testutils.TextBlockTest;
 import com.sap.furcas.runtime.textblocks.validation.TbValidationUtil;
-import com.sap.furcas.test.parsing.textblocks.TestSourceTextBlockCreator;
-import com.sap.furcas.test.parsing.textblocks.TextBlockTest;
 import com.sap.ide.cts.parser.incremental.IncrementalLexer;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
 

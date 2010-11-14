@@ -1,19 +1,27 @@
 package com.sap.furcas.parsergenerator.tcs.generator;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import java.io.File;
+
 import com.sap.furcas.parsergenerator.GenerationErrorHandler;
 import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
 import com.sap.furcas.parsergenerator.GrammarGenerationTargetConfiguration;
 import com.sap.furcas.parsergenerator.TCSParserGenerator;
+import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
+import com.sap.furcas.runtime.common.exceptions.ParserInvokationException;
 
 public class TCSParserGeneratorImpl implements TCSParserGenerator {
+    
+    @Override
+    public TCSSyntaxContainerBean parseSyntax(GrammarGenerationSourceConfiguration sourceConfiguration, File syntaxDefFile) throws ParserInvokationException{
+        return SyntaxParser.parse(sourceConfiguration, syntaxDefFile);
+    }
 
     @Override
-    public ConcreteSyntax generateGrammarFromSyntax(GrammarGenerationSourceConfiguration sourceConfiguration,
-            GrammarGenerationTargetConfiguration targetConfiguration, GenerationErrorHandler errorhandler)
+    public void generateGrammarFromSyntax(TCSSyntaxContainerBean syntaxBean,
+            GrammarGenerationSourceConfiguration sourceConfiguration, GrammarGenerationTargetConfiguration targetConfiguration, GenerationErrorHandler errorhandler)
             throws GrammarGenerationException {
-        return GrammarGenerator.buildGrammar(sourceConfiguration, targetConfiguration, errorhandler);
+        GrammarGenerator.buildGrammar(sourceConfiguration, targetConfiguration, errorhandler, syntaxBean);
     }
 
     @Override

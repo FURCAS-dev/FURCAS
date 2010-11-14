@@ -37,7 +37,7 @@ import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.SyntaxLookupSt
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.TemplateNamingHelperStub;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
-import com.sap.furcas.test.parsing.testutils.StringListHelper;
+import com.sap.furcas.test.testutils.StringListHelper;
 
 /**
  * tests the grammar generatio for conditional elements in the Syntax definition

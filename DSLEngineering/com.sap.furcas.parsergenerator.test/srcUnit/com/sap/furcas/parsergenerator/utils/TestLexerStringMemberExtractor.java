@@ -3,7 +3,7 @@
  */
 package com.sap.furcas.parsergenerator.utils;
 
-import static com.sap.furcas.test.parsing.testutils.StringListHelper.list;
+import static com.sap.furcas.test.testutils.StringListHelper.list;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Collections;

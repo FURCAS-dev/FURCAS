@@ -23,13 +23,14 @@ import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.modeladaptation.emf.EMFModelAdapter;
+import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.impl.DefaultTextAwareModelAdapter;
-import com.sap.furcas.test.base.GeneratedParserBasedTest;
-import com.sap.furcas.test.base.GeneratedParserTestConfiguration;
-import com.sap.furcas.test.base.ParsingHelper;
+import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
+import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
+import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
 import com.sap.furcas.test.fixture.FixtureData;
 
 /**
@@ -59,8 +60,9 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
         resourceSet = testConfig.getSourceConfiguration().getResourceSet();
-        ParserFacade facade = generateParserForLanguage(testConfig, new ClassLookupImpl());
-        syntax = facade.getSyntax();
+        TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
+        syntax = syntaxBean.getSyntax();
+        ParserFacade facade = generateParserForLanguage(syntaxBean, testConfig, new ClassLookupImpl());
         parsingHelper = new ParsingHelper(facade);
     }
     

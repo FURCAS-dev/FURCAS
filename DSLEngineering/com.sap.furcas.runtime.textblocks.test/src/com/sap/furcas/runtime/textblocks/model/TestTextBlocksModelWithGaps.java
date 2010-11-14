@@ -10,8 +10,8 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
-import com.sap.furcas.runtime.textblocks.testutils.FixtureWithGapsProvidingTextBlockTest;
-import com.sap.furcas.runtime.textblocks.testutils.TextblocksTestHelper;
+import com.sap.furcas.runtime.textblocks.testbase.FixtureWithGapsProvidingTextBlockTest;
+import com.sap.furcas.runtime.textblocks.testbase.TextblocksTestHelper;
 
 public class TestTextBlocksModelWithGaps extends FixtureWithGapsProvidingTextBlockTest {
 

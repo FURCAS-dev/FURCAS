@@ -41,8 +41,8 @@ import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 import com.sap.furcas.runtime.tcs.SyntaxLookup;
 import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
-import com.sap.furcas.test.parsing.testutils.ResolutionBeanHelper;
-import com.sap.furcas.test.parsing.testutils.StringListHelper;
+import com.sap.furcas.test.testutils.ResolutionBeanHelper;
+import com.sap.furcas.test.testutils.StringListHelper;
 
 
 

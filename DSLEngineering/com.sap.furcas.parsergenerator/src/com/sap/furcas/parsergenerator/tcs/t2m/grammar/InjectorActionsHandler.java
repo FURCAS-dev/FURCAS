@@ -26,7 +26,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.PropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
 import com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
-import com.sap.furcas.parsergenerator.emf.lookup.RuleNameFinder;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.constraints.PropertyInstanceOfConstraint;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.constraints.RuleBodyPropertyConstraint;
 import com.sap.furcas.parsergenerator.util.TcsUtil;
@@ -39,6 +38,7 @@ import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 import com.sap.furcas.runtime.tcs.MessageHelper;
 import com.sap.furcas.runtime.tcs.MetaModelElementResolutionHelper;
 import com.sap.furcas.runtime.tcs.MetamodelNameResolvingException;
+import com.sap.furcas.runtime.tcs.RuleNameFinder;
 import com.sap.furcas.runtime.tcs.SyntaxLookup;
 import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
 

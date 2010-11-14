@@ -11,7 +11,6 @@ package com.sap.furcas.runtime.parser.impl.context;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -19,7 +18,7 @@ import java.util.Set;
 /**
  * implements a tree based structure to look up duplicates and missing references.
  */
-class Context {
+public class Context {
 	
 	/** The context element. */
 	private Object element;
@@ -28,10 +27,10 @@ class Context {
 	private Context parent;
 	
 	/** The contents. Does not have to be list, but makes it easier this way for testing */
-	private List<Object> contents = new ArrayList<Object>();
+	private final List<Object> contents = new ArrayList<Object>();
 	
 	/** The imported contexts. */
-	private List<Object> importedContexts = new ArrayList<Object>(); 
+	private final List<Object> importedContexts = new ArrayList<Object>(); 
 	
 	private Collection<Context> childContexts;
 	
@@ -150,7 +149,8 @@ class Context {
         this.element = element;
     }
 
-	public String toString() {
+	@Override
+    public String toString() {
 	    return this.element + " " + this.contents;
 	}
 
@@ -189,13 +189,11 @@ class Context {
         Collection<Context> childSubContexts = childContext.childContexts;
         if (childSubContexts != null) {
             List<Context> toBeRemoved = new ArrayList<Context>();
-            for (Iterator<Context> iterator = childSubContexts.iterator(); iterator.hasNext();) {
-                Context subContext = iterator.next();
+            for (Context subContext : childSubContexts) {
                 toBeRemoved.add(subContext);
             }
             // cannot remove while going through iterator, therefore removing here.
-            for (Iterator<Context> iterator = toBeRemoved.iterator(); iterator.hasNext();) {
-                Context subContext = iterator.next();
+            for (Context subContext : toBeRemoved) {
                 removeWithChildren(childContext, subContext, deletedObjects);
             }
         }

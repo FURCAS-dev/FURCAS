@@ -24,7 +24,7 @@ import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.RuleBufferFact
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.TemplateNamingHelperStub;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
-import com.sap.furcas.test.parsing.testutils.StringListHelper;
+import com.sap.furcas.test.testutils.StringListHelper;
 
 /**
  * Probably one of the most important tests for DSL Engineering.

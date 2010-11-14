@@ -3,60 +3,62 @@
 -- Comments begin with -- and end with the end of the line
 syntax TCS {
 
-        primitiveTemplate identifier for PrimitiveTypes::String default using NAME :
+        primitiveTemplate identifier for ->String default using NAME :
                 value = "unescapeString(%token%)";
 
-        primitiveTemplate identifierOrKeyword for PrimitiveTypes::String using NAME orKeyword:
+        primitiveTemplate identifierOrKeyword for ->String using NAME orKeyword:
                 value = "unescapeString(%token%)";
                 
-        primitiveTemplate escapedIdentifierOrKeyword for PrimitiveTypes::String using NAME orKeyword:
+        primitiveTemplate escapedIdentifierOrKeyword for ->String using NAME orKeyword:
                 value = "unescapeString(%token%)",
                 serializer = "\'%value%\'";
 
-        primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:
+        primitiveTemplate stringSymbol for ->String using STRING:
                 value = "unescapeString(%token%)",
 				serializer="\"%value%\"";
 	
-	primitiveTemplate plainStringSymbol for PrimitiveTypes::String using STRING:
+	primitiveTemplate plainStringSymbol for ->String using STRING:
                 value = "unescapeString(%token%)";
 
-        primitiveTemplate integerSymbol for PrimitiveTypes::Integer default using INT:
+        primitiveTemplate integerSymbol for ->Integer default using INT:
                 value = "Integer.valueOf(%token%)";
 
-        primitiveTemplate floatSymbol for PrimitiveTypes::Double default using FLOAT:
+        primitiveTemplate floatSymbol for ->Double default using FLOAT:
                 value = "Double.valueOf(%token%)";
        
-/**        primitiveTemplate qualifiedNameSymbol for PrimitiveTypes::String using QNAME:
+/**        primitiveTemplate qualifiedNameSymbol for ->String using QNAME:
                 value = "unescapeString(%token%)";
                 
-          primitiveTemplate qualifiedNameSymbolList for PrimitiveTypes::String using QNAME:
+          primitiveTemplate qualifiedNameSymbolList for ->String using QNAME:
                 value = "java.util.Arrays.asList(unescapeString(%token%).split(\"::\"))";
 */
         -- ecore element representation in qualified names
+
+/** TODO: Find out how to do this properly. Currently it does not really make sense  
         
         -- A modelClassifier is either its container followed by :: and a name, or just a name
-        template ecore::EClassifier referenceOnly -- should never be created
-        : ( isDefined(container) ? container   -- is of type Namespace in MM
+        template ->EClassifier referenceOnly -- should never be created
+        : ( isDefined(ePackage) ? ePackage   -- is of type Namespace in MM
           "::" name : name)
         ;
         
         -- Namespace gets operatored using the :: operator to resolve left recursion
-        template ecore:EObject abstract operatored(DBLCOLON);
+        template ->EPackage abstract operatored(DBLCOLON);
         
         -- if parsed path has more than one element, 
         -- the first will be of type Generalizable element
         -- because that is the type of Mode::ModelElement.container
-        template ecore::EClass referenceOnly -- should never be created
+        template ->EObject referenceOnly -- should never be created
                 : name
                 ;
                 
         -- any following elements in a package path will be resolved using this
-        operatorTemplate ecore::EModelElement(operators =
-                        opDlColon, source = 'container') referenceOnly -- should never be created
+        operatorTemplate ->EModelElement(operators =
+                        opDlColon, source = 'eContainer') referenceOnly -- should never be created
                 :
                         name
                 ;
-
+*/
         -- end ecore element representation
 
 
@@ -133,7 +135,9 @@ syntax TCS {
                                         "," "serializer" "=" serializer{as = stringSymbol}
                                 )
                         ";"
+/** TODO: property not specified in the metamodel
                         textBlockDefinition{forcedUpper=1}
+*/
                 ;
 
         template TCS::EnumerationTemplate context addToContext
@@ -145,7 +149,9 @@ syntax TCS {
                                 :
                                         ";"
                         )
+/** TODO: property not specified in the metamodel
                         textBlockDefinition{forcedUpper=1}
+*/
                 ;
 
         template TCS::EnumLiteralMapping
@@ -171,7 +177,9 @@ syntax TCS {
                                 (isDefined(prefixSequence) ? "prefix" [ ":" [ prefixSequence ] {startNL = false} ])
                           )
                         (isDefined(templateSequence) ? [ ":" [ templateSequence ] {startNL = false} ";" ] : ";")
+/** TODO: property not specified in the metamodel
                         textBlockDefinition{forcedUpper=1}
+*/
                 ;
 
         template TCS::OperatorTemplate context addToContext
@@ -188,7 +196,9 @@ syntax TCS {
                                 (isContext ? "context" (isDefined(contextTags) ? contextTags))
                         )
                         (isDefined(otSequence) ? [ ":" [ otSequence ] {startNL = false} ";" ] : ";")
+/** TODO: property not specified in the metamodel
                         textBlockDefinition{forcedUpper=1}
+*/
                 ;
 
         template TCS::FunctionTemplate context addToContext
@@ -228,15 +238,15 @@ syntax TCS {
                   (isDefined(strucfeature) ? 
                         strucfeature{
                                 refersTo=name, 
-                                query="OCL:let c = #context.oclAsType(TCS::Template).metaReference in
-                                                let result = c.lookupElementExtended(?) in
+                                query="OCL:let c:ecore::EClass = #context.oclAsType(FURCAS::TCS::Template).metaReference in
+                                                let result:ecore::EClass = c.getEStructuralFeature(?) in
                                                 if not (result.oclIsInvalid()) then
                                                         if(result.oclIsTypeOf(ecore::EAttribute) or
                                                                         result.oclIsTypeOf(ecore::EReference)
                                                                         or result.oclIsTypeOf(ecore::StructureField)) then
                                                                 Bag{result}     
                                                         else            
-                                                                c.allSupertypes()->prepend(c)->collect(
+                                                                c.eAllSuperTypes->prepend(c)->collect(
                                                                         st | st.oclAsType(ecore::EClassifier).typedElements->select(
                                                                                 te | 
                                                                                         if te.oclIsTypeOf(Model::AssociationEnd) then
@@ -248,7 +258,7 @@ syntax TCS {
                                                                 )
                                                         endif 
                                                 else    
-                                                        c.allSupertypes()->prepend(c)->collect(
+                                                        c.eAllSuperTypes->prepend(c)->collect(
                                                                 st | st.oclAsType(ecore::EClassifier).typedElements->select(
                                                                         te | 
                                                                                 if te.oclIsTypeOf(Model::AssociationEnd) then
@@ -310,6 +320,8 @@ syntax TCS {
         
         template TCS::PropertyInit abstract;
         
+/** TODO: Properties not specified within the metamodel  
+        
         template TCS::PrimitivePropertyInit
                 :       propertyReference (isDefault ? "<-" : "=") value { as = escapedIdentifierOrKeyword }
                 ;
@@ -321,9 +333,11 @@ syntax TCS {
                 :       propertyReference (isDefault ? "<-" : "=") "foreach" "(" 
                                 value {as = stringSymbol} 
                                 (isDefined(mode)? "," "mode" "=" mode {as = identifierOrKeyword})
-                                (isDefined(predicatesemantic)? "," [ predicatesemantic {separator=","} ] )
+                                (isDefined(predicateSemantic)? "," [ predicateSemantic {separator=","} ] )
                                 ")"
                 ;
+*/                
+
                 template TCS::PredicateSemantic
                 : (isDefined(when)?  "when" "=" when {as = stringSymbol}",") 
                   (isDefined(mode)?  "mode" "=" mode {as = identifierOrKeyword}",")
@@ -331,7 +345,7 @@ syntax TCS {
 /**               [[
                   as {as = qualifiedNameSymbol, 
                                         query="OCL:self.foreachParent.injectorActionsBlockReference.parentTemplate.concreteSyntax.templates", 
-                                        filter="->select(t | if(t.oclIsTypeOf(TCS::ClassTemplate)) then 
+                                        filter="->select(t | if(t.oclIsTypeOf(FURCAS::TCS::ClassTemplate)) then 
                                 let e=Sequence{1..?.size()}->select(j|?.subString(j, j+1) = '::')->iterate(
                                         i; acc:Tuple(pos:Integer, ns:Set(ecore:EObject), qn:String)=Tuple{pos=1, ns=null, qn=''} |
                                 let namePart=?.subString(acc.pos, -1+i) in
@@ -344,30 +358,30 @@ syntax TCS {
                                   endif,
                                   qn=acc.qn.concat('::').concat(namePart)}) in
                                   e.ns.contents->select(c | c.name=?.subString(e.pos, ?.size()))->asSequence()->at(1) =
-                                                                                t.oclAsType(TCS::ClassTemplate).metaReference
-                                                                                and(t.oclAsType(TCS::ClassTemplate).metaReference).allSupertypes()
-                                                                                        ->prepend(t.oclAsType(TCS::ClassTemplate).metaReference)
-                                                                                        ->includes(self.foreachParent.propertyReference.strucfeature.type)
+                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference
+                                                                                and(t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference).eAllSuperTypes
+                                                                                        TCS::prepend(t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference)
+                                                                                        TCS::includes(self.foreachParent.propertyReference.strucfeature.type)
                                                                                 and (
                                                                                         if(not self.mode.oclIsUndefined()) then
-                                                                                                t.oclAsType(TCS::ClassTemplate).mode = self.mode
+                                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).mode = self.mode
                                                                                         else
-                                                                                                t.oclAsType(TCS::ClassTemplate).mode = self.foreachParent.mode
+                                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).mode = self.foreachParent.mode
                                                                                         endif
                                                                                 )                                                                       
                                                                         else
-                                                                                if(t.oclIsTypeOf(TCS::PrimitiveTemplate)) then
-                                                                                        t.oclAsType(TCS::PrimitiveTemplate).templateName = ?
+                                                                                if(t.oclIsTypeOf(FURCAS::TCS::PrimitiveTemplate)) then
+                                                                                        t.oclAsType(FURCAS::TCS::PrimitiveTemplate).templateName = ?
                                                                                 else
                                                                                         false
                                                                                 endif
                                                                         endif)
                                                                 ",
-                                                        invert="OCL:if self.oclIsTypeOf(TCS::ClassTemplate) then
-                                                                                        self.oclAsType(TCS::ClassTemplate).metaReference.name
+                                                        invert="OCL:if self.oclIsTypeOf(FURCAS::TCS::ClassTemplate) then
+                                                                                        self.oclAsType(FURCAS::TCS::ClassTemplate).metaReference.name
                                                                                 else 
-                                                                                        if self.oclIsTypeOf(TCS::PrimitiveTemplate) then
-                                                                                                self.oclAsType(TCS::PrimitiveTemplate).templateName
+                                                                                        if self.oclIsTypeOf(FURCAS::TCS::PrimitiveTemplate) then
+                                                                                                self.oclAsType(FURCAS::TCS::PrimitiveTemplate).templateName
                                                                                         else
                                                                                                 '<no name?>'
                                                                                         endif
@@ -376,31 +390,31 @@ syntax TCS {
 */                              as {as = identifierOrKeyword, 
                                                                 query="OCL:self.foreachParent.injectorActionsBlockReference.parentTemplate.concreteSyntax.templates", 
                                                         filter="->select(t | 
-                                                                        if(t.oclIsTypeOf(TCS::ClassTemplate)) then 
-                                                                                t.oclAsType(TCS::ClassTemplate).metaReference.name = ?
-                                                                                and(t.oclAsType(TCS::ClassTemplate).metaReference).allSupertypes()
-                                                                                        ->prepend(t.oclAsType(TCS::ClassTemplate).metaReference)
-                                                                                        ->includes(self.foreachParent.propertyReference.strucfeature.type)
+                                                                        if(t.oclIsTypeOf(FURCAS::TCS::ClassTemplate)) then 
+                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference.name = ?
+                                                                                and(t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference).eAllSuperTypes
+                                                                                        TCS::prepend(t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference)
+                                                                                        TCS::includes(self.foreachParent.propertyReference.strucfeature.type)
                                                                                 and (
                                                                                         if(not self.mode.oclIsUndefined()) then
-                                                                                                t.oclAsType(TCS::ClassTemplate).mode = self.mode
+                                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).mode = self.mode
                                                                                         else
-                                                                                                t.oclAsType(TCS::ClassTemplate).mode = self.foreachParent.mode
+                                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).mode = self.foreachParent.mode
                                                                                         endif
                                                                                 )                                                                       
                                                                         else
-                                                                                if(t.oclIsTypeOf(TCS::PrimitiveTemplate)) then
-                                                                                        t.oclAsType(TCS::PrimitiveTemplate).templateName = ?
+                                                                                if(t.oclIsTypeOf(FURCAS::TCS::PrimitiveTemplate)) then
+                                                                                        t.oclAsType(FURCAS::TCS::PrimitiveTemplate).templateName = ?
                                                                                 else
                                                                                         false
                                                                                 endif
                                                                         endif)
                                                                 ",
-                                                        invert="OCL:if self.oclIsTypeOf(TCS::ClassTemplate) then
-                                                                                        self.oclAsType(TCS::ClassTemplate).metaReference.name
+                                                        invert="OCL:if self.oclIsTypeOf(FURCAS::TCS::ClassTemplate) then
+                                                                                        self.oclAsType(FURCAS::TCS::ClassTemplate).metaReference.name
                                                                                 else 
-                                                                                        if self.oclIsTypeOf(TCS::PrimitiveTemplate) then
-                                                                                                self.oclAsType(TCS::PrimitiveTemplate).templateName
+                                                                                        if self.oclIsTypeOf(FURCAS::TCS::PrimitiveTemplate) then
+                                                                                                self.oclAsType(FURCAS::TCS::PrimitiveTemplate).templateName
                                                                                         else
                                                                                                 '<no name?>'
                                                                                         endif
@@ -431,7 +445,7 @@ syntax TCS {
 /**                     [[
                                 template {as = qualifiedNameSymbol, 
                                         query="OCL:self.property.parentTemplate.concreteSyntax.templates", 
-                                        filter="->select(t | if(t.oclIsTypeOf(TCS::ClassTemplate)) then 
+                                        filter="->select(t | if(t.oclIsTypeOf(FURCAS::TCS::ClassTemplate)) then 
                                 let e=Sequence{1..?.size()}->select(j|?.subString(j, j+1) = '::')->iterate(
                                         i; acc:Tuple(pos:Integer, ns:Set(ecore:EObject), qn:String)=Tuple{pos=1, ns=null, qn=''} |
                                 let namePart=?.subString(acc.pos, -1+i) in
@@ -444,37 +458,37 @@ syntax TCS {
                                   endif,
                                   qn=acc.qn.concat('::').concat(namePart)}) in
                                   e.ns.contents->select(c | c.name=?.subString(e.pos, ?.size()))->asSequence()->at(1) =
-                                                                                t.oclAsType(TCS::ClassTemplate).metaReference
-                                                                                and(self.property.propertyReference.strucfeature.type.allSupertypes()
-                                                                                        ->prepend(self.property.propertyReference.strucfeature.type)
-                                                                                        ->includes(t.oclAsType(TCS::ClassTemplate).metaReference))
+                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference
+                                                                                and(self.property.propertyReference.strucfeature.type.eAllSuperTypes
+                                                                                        TCS::prepend(self.property.propertyReference.strucfeature.type)
+                                                                                        TCS::includes(t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference))
                                                                                 and (
                                                                                         if (not self.property.propertyArgs->select(
-                                                                                                        arg | arg.oclIsTypeOf(TCS::ModePArg))->isEmpty()
+                                                                                                        arg | arg.oclIsTypeOf(FURCAS::TCS::ModePArg))->isEmpty()
                                                                                                 ) 
                                                                                         then
-                                                                                                t.oclAsType(TCS::ClassTemplate).mode = 
+                                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).mode = 
                                                                                                         self.property.propertyArgs->select(
-                                                                                                                arg | arg.oclIsTypeOf(TCS::ModePArg))
-                                                                                                                        .oclAsType(TCS::ModePArg)->asSequence()->at(1)
+                                                                                                                arg | arg.oclIsTypeOf(FURCAS::TCS::ModePArg))
+                                                                                                                        .oclAsType(FURCAS::TCS::ModePArg)->asSequence()->at(1)
                                                                                                         .mode
                                                                                         else
-                                                                                                t.oclAsType(TCS::ClassTemplate).mode.oclIsUndefined()
+                                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).mode.oclIsUndefined()
                                                                                         endif
                                                                                 )
                                                                         else
-                                                                                if(t.oclIsTypeOf(TCS::PrimitiveTemplate)) then
-                                                                                        t.oclAsType(TCS::PrimitiveTemplate).templateName = ? 
+                                                                                if(t.oclIsTypeOf(FURCAS::TCS::PrimitiveTemplate)) then
+                                                                                        t.oclAsType(FURCAS::TCS::PrimitiveTemplate).templateName = ? 
                                                                                 else
                                                                                         false
                                                                                 endif
                                                                         endif)
                                                                 ",
-                                                        invert="OCL:if self.oclIsTypeOf(TCS::ClassTemplate) then
-                                                                                        self.oclAsType(TCS::ClassTemplate).metaReference.name
+                                                        invert="OCL:if self.oclIsTypeOf(FURCAS::TCS::ClassTemplate) then
+                                                                                        self.oclAsType(FURCAS::TCS::ClassTemplate).metaReference.name
                                                                                 else 
-                                                                                        if self.oclIsTypeOf(TCS::PrimitiveTemplate) then
-                                                                                                self.oclAsType(TCS::PrimitiveTemplate).templateName
+                                                                                        if self.oclIsTypeOf(FURCAS::TCS::PrimitiveTemplate) then
+                                                                                                self.oclAsType(FURCAS::TCS::PrimitiveTemplate).templateName
                                                                                         else
                                                                                                 '<no name?>'
                                                                                         endif
@@ -484,38 +498,38 @@ syntax TCS {
                                 template {as = identifierOrKeyword, 
                                                                 query="OCL:self.property.parentTemplate.concreteSyntax.templates", 
                                                                 filter="->select(t | 
-                                                                        if(t.oclIsTypeOf(TCS::ClassTemplate)) then 
-                                                                                t.oclAsType(TCS::ClassTemplate).metaReference.name = ? 
-                                                                                and(self.property.propertyReference.strucfeature.type.allSupertypes()
-                                                                                        ->prepend(self.property.propertyReference.strucfeature.type)
-                                                                                        ->includes(t.oclAsType(TCS::ClassTemplate).metaReference))
+                                                                        if(t.oclIsTypeOf(FURCAS::TCS::ClassTemplate)) then 
+                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference.name = ? 
+                                                                                and(self.property.propertyReference.strucfeature.type.eAllSuperTypes
+                                                                                        TCS::prepend(self.property.propertyReference.strucfeature.type)
+                                                                                        TCS::includes(t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference))
                                                                                 and (
                                                                                         if (not self.property.propertyArgs->select(
-                                                                                                        arg | arg.oclIsTypeOf(TCS::ModePArg))->isEmpty()
+                                                                                                        arg | arg.oclIsTypeOf(FURCAS::TCS::ModePArg))->isEmpty()
                                                                                                 ) 
                                                                                         then
-                                                                                                t.oclAsType(TCS::ClassTemplate).mode = 
+                                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).mode = 
                                                                                                         self.property.propertyArgs->select(
-                                                                                                                arg | arg.oclIsTypeOf(TCS::ModePArg))
-                                                                                                                        .oclAsType(TCS::ModePArg)->asSequence()->at(1)
+                                                                                                                arg | arg.oclIsTypeOf(FURCAS::TCS::ModePArg))
+                                                                                                                        .oclAsType(FURCAS::TCS::ModePArg)->asSequence()->at(1)
                                                                                                         .mode
                                                                                         else
-                                                                                                t.oclAsType(TCS::ClassTemplate).mode.oclIsUndefined()
+                                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).mode.oclIsUndefined()
                                                                                         endif
                                                                                 )
                                                                         else
-                                                                                if(t.oclIsTypeOf(TCS::PrimitiveTemplate)) then
-                                                                                        t.oclAsType(TCS::PrimitiveTemplate).templateName = ? 
+                                                                                if(t.oclIsTypeOf(FURCAS::TCS::PrimitiveTemplate)) then
+                                                                                        t.oclAsType(FURCAS::TCS::PrimitiveTemplate).templateName = ? 
                                                                                 else
                                                                                         false
                                                                                 endif
                                                                         endif)
                                                                 ", 
-                                                                invert="OCL:if self.oclIsTypeOf(TCS::ClassTemplate) then
-                                                                                        self.oclAsType(TCS::ClassTemplate).metaReference.name
+                                                                invert="OCL:if self.oclIsTypeOf(FURCAS::TCS::ClassTemplate) then
+                                                                                        self.oclAsType(FURCAS::TCS::ClassTemplate).metaReference.name
                                                                                 else 
-                                                                                        if self.oclIsTypeOf(TCS::PrimitiveTemplate) then
-                                                                                                self.oclAsType(TCS::PrimitiveTemplate).templateName
+                                                                                        if self.oclIsTypeOf(FURCAS::TCS::PrimitiveTemplate) then
+                                                                                                self.oclAsType(FURCAS::TCS::PrimitiveTemplate).templateName
                                                                                         else
                                                                                                 '<no name?>'
                                                                                         endif
@@ -539,7 +553,7 @@ syntax TCS {
                 :       "autoCreate" "=" value
                 ;
 
-        enumerationTemplate TCS::AutoCreateKind
+        enumerationTemplate ->AutoCreateKind
                 :       #always         = "always",
                         #ifmissing      = "ifmissing",
                         #never          = "never"
@@ -580,6 +594,8 @@ syntax TCS {
 
 
 -- @begin Block Arguments
+/** TODO: Properties not specified within the metamodel  
+
         template TCS::BlockArg abstract;
 
         template TCS::NbNLBArg -- Number of New Line
@@ -601,6 +617,7 @@ syntax TCS {
         template TCS::EndNLBArg -- one newline after block plus indent -1
                 :       "endNL" "=" (value ? "true" : "false") --boolean
                 ;
+*/
 -- @end Block Arguments
 
 
@@ -611,7 +628,7 @@ syntax TCS {
                 :       name "=" value{as = stringSymbol} (isDefined(spaces) ? ":" spaces{separator = ","}) ";"
                 ;
 
-        enumerationTemplate TCS::SpaceKind
+        enumerationTemplate ->SpaceKind
                 :       #leftSpace      =       "leftSpace",
                         #leftNone       =       "leftNone",
                         #rightSpace     =       "rightSpace",
@@ -652,7 +669,7 @@ syntax TCS {
                         "," arity ";"
                 ;
 
-        enumerationTemplate TCS::Associativity
+        enumerationTemplate ->Associativity
                 :       #left           = "left",
                         #right          = "right"
                 ;
@@ -720,7 +737,7 @@ syntax TCS {
 
 -- @begin Tokens
         template TCS::Token
-                :       (isOmitted ? "omitted") "token" name ":" pattern ";"
+                :       (omitted ? "omitted") "token" name ":" pattern ";"
                 ;
 
         template TCS::OrPattern
@@ -776,10 +793,11 @@ syntax TCS {
         
         template TCS::Mapping abstract;
         
+      /** TODO: Properties not specified within the metamodel  
         template TCS::SimpleMapping
                 :       key "->" value
                 ;
-                
+      */      
         template TCS::WildcardMapping
                 :       "." "->" "."
                 ;
