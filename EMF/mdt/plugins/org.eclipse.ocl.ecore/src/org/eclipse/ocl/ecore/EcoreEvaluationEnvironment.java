@@ -22,6 +22,7 @@ package org.eclipse.ocl.ecore;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -78,7 +79,6 @@ public class EcoreEvaluationEnvironment
 	private boolean mustCheckOperationReflectionConsistency = true;
 
     private final OppositeEndFinder oppositeEndFinder;
-    private final OppositePropertyNavigator oppositePropertyNavigator;
 
 	/**
 	 * Initializes me.
@@ -86,7 +86,6 @@ public class EcoreEvaluationEnvironment
 	public EcoreEvaluationEnvironment() {
 		super();
 		oppositeEndFinder = new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE);
-		oppositePropertyNavigator = new OppositePropertyNavigator(oppositeEndFinder);
 	}
 
 	/**
@@ -99,7 +98,6 @@ public class EcoreEvaluationEnvironment
 			EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> parent) {
 		super(parent);
 		oppositeEndFinder = ((EcoreEvaluationEnvironment) parent).oppositeEndFinder;
-		oppositePropertyNavigator = new OppositePropertyNavigator(oppositeEndFinder);
 	}
 
 	/**
@@ -107,8 +105,10 @@ public class EcoreEvaluationEnvironment
 	 */
 	public EcoreEvaluationEnvironment(OppositeEndFinder oppositeEndFinder) {
 		super();
+		if (oppositeEndFinder == null) {
+			throw new IllegalArgumentException("Must provide a non-null opposite end finder"); //$NON-NLS-1$
+		}
 		this.oppositeEndFinder = oppositeEndFinder;
-		oppositePropertyNavigator = new OppositePropertyNavigator(oppositeEndFinder);
 	}
 
 	@Override
@@ -506,6 +506,34 @@ public class EcoreEvaluationEnvironment
 	public Object navigateOppositeProperty(EStructuralFeature property,
 			List<?> qualifiers, Object source)
 			throws IllegalArgumentException {
-		return oppositePropertyNavigator.navigateOppositeProperty(property, source);
+		return navigateOppositeProperty((EReference) property, source);
 	}
+
+    private Object navigateOppositeProperty(EReference property, Object target) throws IllegalArgumentException {
+        Object result;
+        if (property.isContainment()) {
+            EObject resultCandidate = ((EObject) target).eContainer();
+            if (resultCandidate == null) {
+                result = null;
+            } else {
+                // first check if the container is assignment-compatible to the property's owning type:
+                if (property.getEContainingClass().isInstance(resultCandidate)) {
+                    Object propertyValue = resultCandidate.eGet(property);
+                    if (propertyValue == target
+                            || (propertyValue instanceof Collection<?> && ((Collection<?>) propertyValue).contains(target))) {
+                        // important to create a copy because, e.g., the partial evaluator may modify the resulting collection
+                        result = CollectionUtil.createNewBag(Collections.singleton(resultCandidate));
+                    } else {
+                        result = null;
+                    }
+                } else {
+                    result = null;
+                }
+            }
+        } else {
+            result = oppositeEndFinder.navigateOppositePropertyWithForwardScope(property, (EObject) target);
+        }
+        return result;
+    }
+
 }

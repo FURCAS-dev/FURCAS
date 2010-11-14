@@ -23,6 +23,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
+import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
+import org.eclipse.ocl.ecore.EcoreEnvironment;
 
 /**
  * Implementations shall be able to find and navigate "hidden references" on a classifier by name. Such references can be declared
@@ -70,7 +72,7 @@ public interface OppositeEndFinder {
      * no such objects are found, it is permissible for an implementation to return <code>null</code>. As scope used
      * for this query one should be used by implementers that contains everything that can be seen from <code>target</code>.
      */
-    Collection<EObject> navigateOppositePropertyWithForwardScope(EStructuralFeature property, EObject target);
+    Collection<EObject> navigateOppositePropertyWithForwardScope(EReference property, EObject target);
 
     /**
      * Reverse-navigates the <code>property</code> starting at <code>target</code>. As a result, one or more objects may result
@@ -78,7 +80,7 @@ public interface OppositeEndFinder {
      * no such objects are found, it is permissible for an implementation to return <code>null</code>. As scope used
      * for this query one should be used by implementers that contains everything that can see <code>target</code>.
      */
-    Collection<EObject> navigateOppositePropertyWithBackwardScope(EStructuralFeature property, EObject target);
+    Collection<EObject> navigateOppositePropertyWithBackwardScope(EReference property, EObject target);
     
     /**
      * Finds all instances of class <code>cls</code> and all its subclasses that can "see" <code>context</code>.
