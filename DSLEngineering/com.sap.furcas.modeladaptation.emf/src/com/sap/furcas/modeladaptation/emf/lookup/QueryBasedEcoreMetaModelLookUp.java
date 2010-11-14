@@ -102,7 +102,7 @@ public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup
      * @param qualifiedNameOfType
      * @param classifiers
      */
-    private static List<EClassifier> filterClassifiers(List<String> qualifiedNameOfType, List<EClassifier> classifiers) {
+    protected static List<EClassifier> filterClassifiers(List<String> qualifiedNameOfType, List<EClassifier> classifiers) {
         if (classifiers == null || classifiers.size() == 0 || qualifiedNameOfType == null) {
             return Collections.emptyList();
         }

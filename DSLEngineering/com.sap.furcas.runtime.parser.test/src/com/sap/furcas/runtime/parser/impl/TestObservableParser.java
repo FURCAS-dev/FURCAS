@@ -13,7 +13,7 @@ import org.junit.Test;
 
 import com.sap.furcas.runtime.parser.IParsingObserver;
 import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationTokenImpl;
-import com.sap.furcas.runtime.parser.testutils.StringListHelper;
+import com.sap.furcas.test.testutils.StringListHelper;
 
 /**
  * 

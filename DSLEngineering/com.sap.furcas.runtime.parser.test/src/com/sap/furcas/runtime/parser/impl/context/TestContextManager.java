@@ -4,7 +4,7 @@
 package com.sap.furcas.runtime.parser.impl.context;
 
 
-import static com.sap.furcas.runtime.parser.testutils.StringListHelper.list;
+import static com.sap.furcas.test.testutils.StringListHelper.list;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;

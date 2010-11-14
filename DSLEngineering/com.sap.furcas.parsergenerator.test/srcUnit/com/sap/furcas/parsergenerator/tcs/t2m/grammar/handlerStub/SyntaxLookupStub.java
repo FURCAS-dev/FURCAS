@@ -3,7 +3,7 @@
  */
 package com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub;
 
-import static com.sap.furcas.runtime.parser.testutils.StringListHelper.list;
+import static com.sap.furcas.test.testutils.StringListHelper.list;
 
 import java.util.ArrayList;
 import java.util.Collection;

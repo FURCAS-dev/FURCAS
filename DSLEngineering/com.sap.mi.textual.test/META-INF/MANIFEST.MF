@@ -4,7 +4,6 @@ Bundle-Name: Test
 Bundle-SymbolicName: com.sap.mi.textual.test
 Bundle-Version: 1.0.0.qualifier
 Export-Package: com.sap.mi.textual.bootstrap,
- com.sap.mi.textual.common.exceptions,
  com.sap.mi.textual.grammar.impl;uses:="com.sap.furcas.textual.common.interfaces",
  com.sap.mi.textual.grammar.impl.context,
  com.sap.mi.textual.moinlookup;uses:="com.sap.ide.cts.editor.test.util",

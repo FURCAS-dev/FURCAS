@@ -6,10 +6,14 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.sap.furcas.test.Activator
 Bundle-Vendor: SAP
 Require-Bundle: org.junit;bundle-version="4.8.1",
- org.eclipse.core.runtime
+ org.antlr;bundle-version="3.1.1",
+ org.eclipse.core.runtime,
+ org.eclipse.emf.ecore,
+ com.sap.furcas.runtime.common
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.furcas.test.fixture,
+ com.sap.furcas.test.testutils,
  com.sap.furcas.test.util,
  org.easymock
 Bundle-ClassPath: .,

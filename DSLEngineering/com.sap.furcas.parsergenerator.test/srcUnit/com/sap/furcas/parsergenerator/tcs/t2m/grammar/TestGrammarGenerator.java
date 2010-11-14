@@ -17,7 +17,7 @@ import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.ANTLR3WriterSt
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.MetaLookupStub;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
-import com.sap.furcas.runtime.parser.testutils.StringListHelper;
+import com.sap.furcas.test.testutils.StringListHelper;
 
 /**
  *

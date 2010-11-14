@@ -1,4 +1,4 @@
-package com.sap.furcas.runtime.parser.testutils;
+package com.sap.furcas.test.testutils;
 
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;

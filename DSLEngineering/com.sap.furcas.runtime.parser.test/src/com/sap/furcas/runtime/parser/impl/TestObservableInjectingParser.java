@@ -21,8 +21,8 @@ import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.parser.impl.context.AmbiguousLookupException;
 import com.sap.furcas.runtime.parser.impl.context.ContextManager;
-import com.sap.furcas.runtime.parser.testutils.StringListHelper;
-import com.sap.furcas.runtime.parser.testutils.StubTokenStream;
+import com.sap.furcas.test.testutils.StringListHelper;
+import com.sap.furcas.test.testutils.StubTokenStream;
 
 
 /**

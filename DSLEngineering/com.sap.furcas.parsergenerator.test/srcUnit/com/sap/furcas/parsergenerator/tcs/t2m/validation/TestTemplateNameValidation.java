@@ -3,7 +3,7 @@
  */
 package com.sap.furcas.parsergenerator.tcs.t2m.validation;
 
-import static com.sap.furcas.runtime.parser.testutils.StringListHelper.list;
+import static com.sap.furcas.test.testutils.StringListHelper.list;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;

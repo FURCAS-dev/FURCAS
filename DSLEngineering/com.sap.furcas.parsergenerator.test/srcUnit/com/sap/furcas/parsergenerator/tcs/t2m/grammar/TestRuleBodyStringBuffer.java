@@ -33,8 +33,8 @@ import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.SyntaxLookupSt
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.TemplateNamingHelperStub;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
-import com.sap.furcas.runtime.parser.testutils.StringListHelper;
 import com.sap.furcas.runtime.tcs.SyntaxLookup;
+import com.sap.furcas.test.testutils.StringListHelper;
 
 /**
  *

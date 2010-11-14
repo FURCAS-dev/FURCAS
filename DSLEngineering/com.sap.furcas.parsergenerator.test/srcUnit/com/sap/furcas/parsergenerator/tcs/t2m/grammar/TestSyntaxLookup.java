@@ -3,8 +3,8 @@
  */
 package com.sap.furcas.parsergenerator.tcs.t2m.grammar;
 
-import static com.sap.furcas.runtime.parser.testutils.ResolutionBeanHelper.refE;
-import static com.sap.furcas.runtime.parser.testutils.StringListHelper.list;
+import static com.sap.furcas.test.testutils.ResolutionBeanHelper.refE;
+import static com.sap.furcas.test.testutils.StringListHelper.list;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;

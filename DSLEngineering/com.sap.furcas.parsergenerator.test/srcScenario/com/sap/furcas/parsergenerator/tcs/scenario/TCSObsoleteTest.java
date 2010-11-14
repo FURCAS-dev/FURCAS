@@ -15,8 +15,8 @@ import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
 import com.sap.furcas.runtime.parser.testbase.StubModelAdapter;
-import com.sap.furcas.runtime.parser.testutils.StringListHelper;
 import com.sap.furcas.test.fixture.FixtureData;
+import com.sap.furcas.test.testutils.StringListHelper;
 
 /**
  * Tests generation of TCS Parsers. This is using an old obsolete implementation of TCS whithout direct links betweeen syntax
