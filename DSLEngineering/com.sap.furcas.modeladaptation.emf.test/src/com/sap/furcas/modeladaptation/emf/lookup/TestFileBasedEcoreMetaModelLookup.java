@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.sap.furcas.parsergenerator.base;
+package com.sap.furcas.modeladaptation.emf.lookup;
 import static com.sap.furcas.test.testutils.ResolutionBeanHelper.refE;
 import static com.sap.furcas.test.testutils.StringListHelper.list;
 import static org.junit.Assert.assertEquals;

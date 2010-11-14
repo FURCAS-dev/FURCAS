@@ -1,4 +1,4 @@
-package com.sap.furcas.parsergenerator.base;
+package com.sap.furcas.runtime.parser.testbase;
 
 import static com.sap.furcas.test.testutils.StringListHelper.list;
 import static org.junit.Assert.assertEquals;
@@ -10,8 +10,6 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import com.sap.furcas.runtime.parser.testbase.StubModelAdapter;
-import com.sap.furcas.runtime.parser.testbase.StubModelElement;
 import com.sap.furcas.test.testutils.StringListHelper;
 
 /**
