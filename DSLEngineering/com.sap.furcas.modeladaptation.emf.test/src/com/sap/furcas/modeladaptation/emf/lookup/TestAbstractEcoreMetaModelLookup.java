@@ -1,9 +1,9 @@
 /**
  * 
  */
-package com.sap.mi.textual.moinlookup;
+package com.sap.furcas.modeladaptation.emf.lookup;
 
-import static com.sap.furcas.parsergenerator.testutils.StringListHelper.list;
+import static com.sap.furcas.test.testutils.StringListHelper.list;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -14,24 +14,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.utilities.TypedElement;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.emf.lookup.AbstractEcoreMetaModelLookup;
-import com.sap.furcas.parsergenerator.testutils.ResolutionBeanHelper;
+import com.sap.furcas.emf.stubs.EcoreAnyStub;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.interfaces.MultiplicityBean;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
-import com.sap.furcas.test.stubs.MofAnyStub;
-import com.sap.mi.textual.parsing.EnumerationTypeStub;
-import com.sap.mi.textual.parsing.MofStructureFieldStub;
-import com.sap.mi.textual.parsing.MofStructureTypeStub;
+import com.sap.furcas.test.testutils.ResolutionBeanHelper;
 
 /**
  * Tests the abstract AbstractMoinLookup class by creating a stub subclass and testing that.
  * Special care need to me taken to test for features that are structural features, Associations, or StructureTypes.
  */
-public class AbstractMoinLookupTest {
+public class TestAbstractEcoreMetaModelLookup {
 
     @Test
     public void testGetFeatureClassnameNull() throws Exception {
@@ -49,15 +46,15 @@ public class AbstractMoinLookupTest {
         assertNull(featureClassname);
         
         // create classifier stub
-        MofAnyStub classi = new MofAnyStub();
+        EcoreAnyStub classi = new EcoreAnyStub();
         classi.lookupElementExtendedKey = "feature";
         lookup.classifier = classi;
         
         // create feature stub
-        MofAnyStub feature = new MofAnyStub();
+        EcoreAnyStub feature = new EcoreAnyStub();
         classi.lookupElementExtended = feature;
         
-        MofAnyStub featureType = new MofAnyStub();     
+        EcoreAnyStub featureType = new EcoreAnyStub();     
         featureType.name = "featureType";
         feature.type = featureType;
         
@@ -74,15 +71,15 @@ public class AbstractMoinLookupTest {
         assertNull(featureClassname);
         
         // create classifier stub
-        MofAnyStub classi = new MofAnyStub();
+        EcoreAnyStub classi = new EcoreAnyStub();
         classi.lookupElementExtendedKey = "feature";
         lookup.classifier = classi;
         
         // create asso stub
-        MofAnyStub assoEnd = new MofAnyStub();
+        EcoreAnyStub assoEnd = new EcoreAnyStub();
         lookup.assoEnd = assoEnd;
         
-        MofAnyStub featureType = new MofAnyStub();     
+        EcoreAnyStub featureType = new EcoreAnyStub();     
         featureType.name = "featureType";
         assoEnd.type = featureType;
         
@@ -107,7 +104,7 @@ public class AbstractMoinLookupTest {
         MofStructureFieldStub field = new MofStructureFieldStub();
         strucType.lookupElementExtended = field;
         
-        MofAnyStub featureType = new MofAnyStub();     
+        EcoreAnyStub featureType = new EcoreAnyStub();     
         featureType.name = "featureType";
         field.type = featureType;
        
@@ -123,13 +120,13 @@ public class AbstractMoinLookupTest {
         
         assertNull(lookup.getMultiplicity(ResolutionBeanHelper.refM("package", "testType"), "feature"));
         
-        MofAnyStub classi = new MofAnyStub();
+        EcoreAnyStub classi = new EcoreAnyStub();
         classi.lookupElementExtendedKey = "feature";
-        MofAnyStub multiplicityType = new MofAnyStub();
+        EcoreAnyStub multiplicityType = new EcoreAnyStub();
         
         
         lookup.classifier = classi;
-        MofAnyStub feature = new MofAnyStub();
+        EcoreAnyStub feature = new EcoreAnyStub();
         classi.lookupElementExtended = feature;
         feature.multiplicityType = multiplicityType;
         
@@ -143,12 +140,12 @@ public class AbstractMoinLookupTest {
     public void testGetMultiplicityAssociation() throws Exception {
         MoinLookUpSubTypeStub lookup = new MoinLookUpSubTypeStub();
         
-        MofAnyStub classi = new MofAnyStub();
+        EcoreAnyStub classi = new EcoreAnyStub();
         classi.lookupElementExtendedKey = "feature";
-        MofAnyStub multiplicityType = new MofAnyStub();
+        EcoreAnyStub multiplicityType = new EcoreAnyStub();
         
         // create asso stub
-        MofAnyStub assoEnd = new MofAnyStub();
+        EcoreAnyStub assoEnd = new EcoreAnyStub();
         lookup.assoEnd = assoEnd;
         
 //        assoEnd.type = featureType;
@@ -185,12 +182,12 @@ public class AbstractMoinLookupTest {
         
         assertNull(lookup.getMultiplicity(ResolutionBeanHelper.refM("package", "testType"), "feature"));
         
-        MofAnyStub classi = new MofAnyStub();
+        EcoreAnyStub classi = new EcoreAnyStub();
         classi.lookupElementExtendedKey = "feature";
         lookup.classifier = classi;
         
-        MofAnyStub feature = new MofAnyStub();
-        feature.multiplicityType = new MofAnyStub();
+        EcoreAnyStub feature = new EcoreAnyStub();
+        feature.multiplicityType = new EcoreAnyStub();
         classi.lookupElementExtended = feature;
         
         assertNotNull(lookup.getMultiplicity(ResolutionBeanHelper.refM("package", "testType"), "feature"));
@@ -203,8 +200,8 @@ public class AbstractMoinLookupTest {
         
         assertNull(lookup.getMultiplicity(ResolutionBeanHelper.refM("package", "testType"), "feature"));
         
-        MofAnyStub assoEnd = new MofAnyStub();
-        assoEnd.multiplicityType = new MofAnyStub();
+        EcoreAnyStub assoEnd = new EcoreAnyStub();
+        assoEnd.multiplicityType = new EcoreAnyStub();
         lookup.assoEnd = assoEnd;
 
         assertNotNull(lookup.getMultiplicity(ResolutionBeanHelper.refM("package", "testType"), "feature"));
@@ -217,14 +214,14 @@ public class AbstractMoinLookupTest {
 
         assertNull(lookup.publicGetTypedElement(ResolutionBeanHelper.refM("package", "testType"), "feature"));
         
-        MofAnyStub classi = new MofAnyStub();
+        EcoreAnyStub classi = new EcoreAnyStub();
         classi.lookupElementExtendedKey = "feature";
         
         lookup.classifier = classi;
         // still expect null, as we did not set feature in the stub
         assertNull(lookup.publicGetTypedElement(ResolutionBeanHelper.refM("package", "testType"), "feature"));
         
-        MofAnyStub feature = new MofAnyStub();
+        EcoreAnyStub feature = new EcoreAnyStub();
         classi.lookupElementExtended = feature;
         assertNotNull(lookup.publicGetTypedElement(ResolutionBeanHelper.refM("package", "testType"), "feature"));
     }
@@ -245,7 +242,7 @@ public class AbstractMoinLookupTest {
         
         assertNull(lookup.resolveReference(list("package", "testType")));
         
-        MofAnyStub classi = new MofAnyStub();
+        EcoreAnyStub classi = new EcoreAnyStub();
         classi.name = "testType";
         lookup.classifier = classi;
         
@@ -258,13 +255,13 @@ public class AbstractMoinLookupTest {
         MoinLookUpSubTypeStub lookup = new MoinLookUpSubTypeStub();
         
         /*** Test with no results **/
-        List<ResolvedNameAndReferenceBean<RefObject>> result = lookup.qualifyName("typeName");
+        List<ResolvedNameAndReferenceBean<EObject>> result = lookup.qualifyName("typeName");
         assertEquals(0, result.size());
         
         
         /*** Test with one results **/
-        MofAnyStub classi = new MofAnyStub();
-        // MofAnyStub will add package to qualified Name
+        EcoreAnyStub classi = new EcoreAnyStub();
+        // EcoreAnyStub will add package to qualified Name
         classi.name = "Test";
         lookup.qualifiedClassifiers.add(classi ); 
             
@@ -273,8 +270,8 @@ public class AbstractMoinLookupTest {
         assertEquals(ResolutionBeanHelper.refM("package", "Test"), result.get(0));
         
         /*** Test with many results **/
-        classi = new MofAnyStub();
-        // MofAnyStub will add package to qualified Name
+        classi = new EcoreAnyStub();
+        // EcoreAnyStub will add package to qualified Name
         classi.name = "Test2";
         lookup.qualifiedClassifiers.add(classi ); 
             
@@ -306,7 +303,7 @@ public class AbstractMoinLookupTest {
         MoinLookUpSubTypeStub lookup = new MoinLookUpSubTypeStub();
         
 
-        final MofAnyStub subTypeClass = new MofAnyStub();
+        final EcoreAnyStub subTypeClass = new EcoreAnyStub();
         lookup.classifier = subTypeClass;
         // test is independent of passed Strings
         assertTrue(lookup.isSubTypeOf(ResolutionBeanHelper.refM("foo"), ResolutionBeanHelper.refM("bar")));
@@ -317,14 +314,14 @@ public class AbstractMoinLookupTest {
 
         final List<String> subTypeName = list("package", "subtype");
         final List<String> superTypeName = list("package", "supertype");
-        ResolvedNameAndReferenceBean<RefObject> superRefBean = new ResolvedNameAndReferenceBean<RefObject>(superTypeName, null);
-        ResolvedNameAndReferenceBean<RefObject> subRefBean = new ResolvedNameAndReferenceBean<RefObject>(subTypeName, null);
+        ResolvedNameAndReferenceBean<EObject> superRefBean = new ResolvedNameAndReferenceBean<EObject>(superTypeName, null);
+        ResolvedNameAndReferenceBean<EObject> subRefBean = new ResolvedNameAndReferenceBean<EObject>(subTypeName, null);
         
-        final MofAnyStub subTypeClass = new MofAnyStub();
-        final MofAnyStub superTypeClass = new MofAnyStub();
+        final EcoreAnyStub subTypeClass = new EcoreAnyStub();
+        final EcoreAnyStub superTypeClass = new EcoreAnyStub();
         
         List<GeneralizableElement> supers = new ArrayList<GeneralizableElement>();
-        supers.add(new MofAnyStub());
+        supers.add(new EcoreAnyStub());
         supers.add(superTypeClass);
         subTypeClass.supertypes = supers ;
         
@@ -361,7 +358,7 @@ public class AbstractMoinLookupTest {
          * @see com.sap.mi.textual.moinlookup.AbstractMoinLookup#getAssociationEnd(java.util.List, java.lang.String)
          */
         @Override
-        protected AssociationEnd getAssociationEnd(ResolvedNameAndReferenceBean<RefObject> reference,
+        protected AssociationEnd getAssociationEnd(ResolvedNameAndReferenceBean<EObject> reference,
                 String featureName) throws MetaModelLookupException {
             return assoEnd;
         }
@@ -383,7 +380,7 @@ public class AbstractMoinLookupTest {
         /* (non-Javadoc)
          * @see com.sap.mi.textual.interfaces.IMetaModelLookup#getDirectSubTypes(java.util.List)
          */
-        public List<ResolvedNameAndReferenceBean<RefObject>> getDirectSubTypes(ResolvedNameAndReferenceBean<RefObject> typeName)
+        public List<ResolvedNameAndReferenceBean<EObject>> getDirectSubTypes(ResolvedNameAndReferenceBean<EObject> typeName)
                 throws MetaModelLookupException {
             fail("Not implemented");
             return null;
