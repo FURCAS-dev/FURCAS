@@ -1,9 +1,11 @@
-package com.sap.furcas.runtime.textblocks.testutils;
+package com.sap.furcas.runtime.textblocks.testbase;
 
 import org.junit.Before;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
+import com.sap.furcas.runtime.textblocks.testutils.EMFTextBlocksModelElementFactory;
+import com.sap.furcas.runtime.textblocks.testutils.TextBlocksModelElementFactory;
 
 /**
  * Base class for TextBlock related test cases. Sets up a common fixture model
