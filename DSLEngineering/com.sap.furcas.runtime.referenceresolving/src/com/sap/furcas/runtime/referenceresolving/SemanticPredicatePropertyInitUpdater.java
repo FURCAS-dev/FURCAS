@@ -7,11 +7,11 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
-import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
-import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.emf.ocl.trigger.AbstractOCLBasedModelUpdater;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
@@ -62,7 +62,7 @@ public class SemanticPredicatePropertyInitUpdater extends AbstractOCLBasedModelU
     @Override
     public Collection<OCLExpression> getTriggerExpressionsWithoutContext() {
         Collection<OCLExpression> result = new LinkedList<OCLExpression>();
-        Helper oclHelper = OCLWithHiddenOpposites.newInstance(getOppositeEndFinder()).createOCLHelper();
+        Helper oclHelper = OCL.newInstance(getOppositeEndFinder()).createOCLHelper();
         for (SemanticDisambRuleData predicate : predicates) {
             try {
                 oclHelper.setContext(ContextAndForeachHelper.getParsingContext(predicate.getOCL(), containingTemplate));
