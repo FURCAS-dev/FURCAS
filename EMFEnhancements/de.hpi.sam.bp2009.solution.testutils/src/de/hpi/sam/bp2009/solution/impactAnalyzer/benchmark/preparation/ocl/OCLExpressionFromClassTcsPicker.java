@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
@@ -62,8 +61,7 @@ public class OCLExpressionFromClassTcsPicker implements OCLExpressionPicker {
 		ArrayList<String> path = new ArrayList<String>();
 		path.add(nsPrefix);
 		OCL ocl = OCL.newInstance();
-	        ocl = OCL.newInstance(((EcoreEnvironmentFactory) ocl.getEnvironment().getFactory()).
-	                createPackageContext(ocl.getEnvironment(), basePackage));
+        ocl = OCL.newInstance(new EnvironmentFactory().createPackageContext(ocl.getEnvironment(), basePackage));
 		OCLExpressionWithContext result = null;
 		try {
 		    @SuppressWarnings("rawtypes")

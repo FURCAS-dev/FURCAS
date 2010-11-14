@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
@@ -93,7 +92,7 @@ public class OCLExpressionFromModelPicker implements OCLExpressionPicker {
 	    if (e == null) {
 		break;
 	    } else {
-                EAnnotation astAnno = ((EModelElement)a.eContainer()).getEAnnotation(Environment.OCL_NAMESPACE_URI);
+                EAnnotation astAnno = ((EModelElement)a.eContainer()).getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
                 OCLExpression expr = (OCLExpression) ((Constraint)astAnno.getContents().get(index)).getSpecification().getBodyExpression();
                 allConstraints.put(new Pair<String, EClassifier>(e, c), new OCLExpressionWithContext(expr ,(EClass) c) );
             }

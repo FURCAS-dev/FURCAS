@@ -120,8 +120,8 @@ public class EAnnotationOCLParserTest extends TestCase {
         placeC.getEAnnotations().add(anno);
 
         getFixture().convertOclAnnotation(placeC);        
-        assertTrue(placeC.getEAnnotation(Environment.OCL_NAMESPACE_URI).getContents().get(0) instanceof Constraint);
-        assertTrue(((Constraint)placeC.getEAnnotation(Environment.OCL_NAMESPACE_URI).getContents().get(0)).getSpecification().getBodyExpression() instanceof OperationCallExp);
+        assertTrue(placeC.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI).getContents().get(0) instanceof Constraint);
+        assertTrue(((Constraint)placeC.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI).getContents().get(0)).getSpecification().getBodyExpression() instanceof OperationCallExp);
     }
 
     public void testInvocationDelegate_AST_Usage(){
@@ -150,7 +150,7 @@ public class EAnnotationOCLParserTest extends TestCase {
         assertEquals("Expected budget: 1100, got: " + result , 1100, result);
         value.setValue(v);
         EAnnotation anno = null;
-        anno = CompanyPackage.eINSTANCE.getDepartment().getEAnnotation(Environment.OCL_NAMESPACE_URI);
+        anno = CompanyPackage.eINSTANCE.getDepartment().getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
         assertTrue("No annotation found, annotation converting failed.", anno != null);
         OCLExpression expr = null;
         //change the annotation string value to proof usage of already parsed ast.
@@ -254,9 +254,9 @@ public class EAnnotationOCLParserTest extends TestCase {
 
         //change ocl expression string to ensure usage of already parsed ast
         anno.getDetails().get(0).setValue("null");
-        EAnnotation annotation = operation.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+        EAnnotation annotation = operation.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
         annotation.getContents();
-        OCLExpression expr = (OCLExpression) ((Constraint)operation.getEAnnotation(Environment.OCL_NAMESPACE_URI).getContents().get(0)).getSpecification().getBodyExpression();
+        OCLExpression expr = (OCLExpression) ((Constraint)operation.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI).getContents().get(0)).getSpecification().getBodyExpression();
         assertTrue(expr instanceof IntegerLiteralExp);
         OCL ocl = OCL.newInstance();
         Object result = ocl.evaluate(operation, expr);

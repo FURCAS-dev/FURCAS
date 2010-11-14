@@ -137,15 +137,15 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
 
     public Collection<EObject> getContextObjects(Notification event) {
         if (instanceScopeAnalysis == null) {
-            if (filtersyn == null) {
-                createFilterForExpression();
-            }
-            instanceScopeAnalysis = createInstanceScopeAnalysis(expression, context, filtersyn, oppositeEndFinder, configuration, oclFactory);
+            instanceScopeAnalysis = createInstanceScopeAnalysis();
         }
         return instanceScopeAnalysis.getContextObjects(event);
     }
 
-    protected InstanceScopeAnalysis createInstanceScopeAnalysis(OCLExpression expression, EClass context, FilterSynthesisImpl filtersyn, OppositeEndFinder oppositeEndFinder, ActivationOption configuration, OCLFactory oclFactory) {
+    protected InstanceScopeAnalysis createInstanceScopeAnalysis() {
+        if (filtersyn == null) {
+            createFilterForExpression();
+        }
         return new InstanceScopeAnalysis(expression, context, filtersyn, oppositeEndFinder, configuration, oclFactory);
     }
 

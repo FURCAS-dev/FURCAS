@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
@@ -34,6 +33,7 @@ import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.RawNotification;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.EnvironmentFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 
 @SuppressWarnings("restriction")
@@ -100,8 +100,8 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     	setOcl(OCL.newInstance(getOppositeEndFinder()));
 
 	if(expression.getOclWithPackage() != null){
-	    setOcl(OCL.newInstance( ((EcoreEnvironmentFactory) getOcl().getEnvironment().getFactory()).
-		    createPackageContext(getOcl().getEnvironment(), expression.getOclWithPackage().getPackage())));
+	    setOcl(OCL.newInstance(new EnvironmentFactory().createPackageContext(ocl.getEnvironment(),
+	            expression.getOclWithPackage().getPackage())));
 	}
 
 	additionalInformation.putAll(allInstanceMeasurement.getAdditionalInformation());

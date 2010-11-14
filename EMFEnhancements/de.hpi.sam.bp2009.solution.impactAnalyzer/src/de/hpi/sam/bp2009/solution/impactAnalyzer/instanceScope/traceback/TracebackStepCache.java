@@ -21,11 +21,11 @@ import org.eclipse.ocl.ecore.IteratorExp;
 import org.eclipse.ocl.ecore.LetExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
 import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
-
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
@@ -36,13 +36,13 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.
 public class TracebackStepCache extends AbstractPathCache<TracebackStep> {
     private final UnusedEvaluationRequestFactory unusedEvaluationRequestFactory;
 
-    public TracebackStepCache(OppositeEndFinder oppositeEndFinder, InstanceScopeAnalysis instanceScopeAnalysis) {
-        super(oppositeEndFinder, instanceScopeAnalysis);
+    public TracebackStepCache(OppositeEndFinder oppositeEndFinder) {
+        super(oppositeEndFinder);
         unusedEvaluationRequestFactory = new UnusedEvaluationRequestFactory();
     }
     
     protected TracebackStepCache(OppositeEndFinder oppositeEndFinder, UnusedEvaluationRequestFactory unusedEvaluationRequestFactory, InstanceScopeAnalysis instanceScopeAnalysis) {
-        super(oppositeEndFinder, instanceScopeAnalysis);
+        super(oppositeEndFinder);
         this.unusedEvaluationRequestFactory = unusedEvaluationRequestFactory;
     }
 
@@ -71,6 +71,9 @@ public class TracebackStepCache extends AbstractPathCache<TracebackStep> {
             break;
         case EcorePackage.PROPERTY_CALL_EXP:
             result = new PropertyCallTracebackStep((PropertyCallExp) sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, this, unusedEvaluationRequestFactory, oclFactory);
+            break;
+        case EcorePackage.OPPOSITE_PROPERTY_CALL_EXP:
+            result = new OppositePropertyCallTracebackStep((OppositePropertyCallExp) sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, this, unusedEvaluationRequestFactory, oclFactory);
             break;
         case EcorePackage.TUPLE_LITERAL_EXP:
             result = new TupleLiteralTracebackStep((TupleLiteralExp) sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, this, unusedEvaluationRequestFactory, oclFactory);

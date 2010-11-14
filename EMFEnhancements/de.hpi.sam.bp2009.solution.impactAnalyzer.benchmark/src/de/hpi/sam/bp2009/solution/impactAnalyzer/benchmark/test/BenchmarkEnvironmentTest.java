@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
 import org.junit.Test;
 
@@ -35,6 +34,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notificat
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.RawNotification;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.RealWorldReplayNotificationProducer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.BenchmarkOCLPreparer;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.EnvironmentFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTask;
 
@@ -103,8 +103,8 @@ public class BenchmarkEnvironmentTest extends TestCase {
 
     private void evaluate(Resource fullSizeModel, OCLExpressionWithContext expression, RawNotification rawNoti) {
 	OCL ocl = OCL.newInstance();
-	ocl = OCL.newInstance(((EcoreEnvironmentFactory) ocl.getEnvironment().getFactory()).
-	        createPackageContext(ocl.getEnvironment(), expression.getOclWithPackage().getPackage()));
+	ocl = OCL.newInstance(new EnvironmentFactory().createPackageContext(ocl.getEnvironment(),
+	        expression.getOclWithPackage().getPackage()));
 
 	EClass context = expression.getContext();
 	TreeIterator<EObject> iterator = fullSizeModel.getAllContents();

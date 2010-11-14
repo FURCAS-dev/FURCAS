@@ -85,9 +85,8 @@ public abstract class AbstractPathCache<StepType> {
     
     private InstanceScopeAnalysis instanceScopeAnalysis;
 
-    public AbstractPathCache(OppositeEndFinder oppositeEndFinder, InstanceScopeAnalysis instanceScopeAnalysis) {
+    public AbstractPathCache(OppositeEndFinder oppositeEndFinder) {
         this.oppositeEndFinder = oppositeEndFinder;
-        this.instanceScopeAnalysis = instanceScopeAnalysis;
     }
 
     /**
