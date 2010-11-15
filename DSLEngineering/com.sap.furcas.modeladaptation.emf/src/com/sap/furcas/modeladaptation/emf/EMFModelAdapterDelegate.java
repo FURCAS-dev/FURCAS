@@ -80,19 +80,15 @@ public class EMFModelAdapterDelegate {
         return enumLiteral;
     }
 
-    public Object get(EObject refObject, String propertyName) {
-        Object value = null;
+    public Object get(EObject refObject, String propertyName) throws ModelAdapterException {
+        EClass eClass = refObject.eClass();
 
-        EClass mofClass = refObject.eClass();
-
-        EStructuralFeature strucFeat = mofClass.getEStructuralFeature(propertyName);
-        if (strucFeat != null) {
-            value = refObject.eGet(strucFeat);
-        } else {
-            // TODO look for hidden opposite
-
-        } // end if is attribute else try reference
-        return value;
+        // TODO look for hidden opposite
+        EStructuralFeature strucFeat = eClass.getEStructuralFeature(propertyName);
+        if (strucFeat == null) {
+            throw new ModelAdapterException("No such feature \"" + propertyName + "\" defined for  " + eClass);
+        }
+        return  refObject.eGet(strucFeat);
     }
 
     public String getString(EObject refObject, String propertyName) {
@@ -120,37 +116,36 @@ public class EMFModelAdapterDelegate {
             } else {
                 value = jmiHelperDelegate.actualCreateFromMock(mock);
             }
-
             mock2ModelElementMap.put(mock, value);
         }
 
-        EClass mofClass = refAObject.eClass();
-
-        EStructuralFeature feat = (EStructuralFeature) EcoreHelper.lookupElementExtended(mofClass, propertyName);
-        if (feat != null) {
-            if (feat.getUpperBound() == 1) {
+        EClass eClass = refAObject.eClass();
+        EStructuralFeature feat = eClass.getEStructuralFeature(propertyName);
+        if (feat == null) {
+            throw new ModelAdapterException("No such feature \"" + propertyName + "\" defined for  " + refAObject.eClass());
+        }
+        if (feat.getUpperBound() == 1) {
+            if (value instanceof Collection) {
+                value = ((Collection<? extends Object>) value).iterator().next();
+                // TODO Issue warning if collection.size > 1?
+            }
+            // only set if value really changed
+            Object originalValue = refAObject.eGet(feat);
+            if ((value == null && originalValue != null) || (value != null && originalValue == null)
+                    || !originalValue.equals(value)) {
+                refAObject.eSet(feat, value);
+            }
+        } else {
+            Collection<Object> multiProperty = (Collection<Object>) refAObject.eGet(feat);
+            if (feat.getUpperBound() < 0 || multiProperty.size() < feat.getUpperBound()) {
                 if (value instanceof Collection) {
-                    value = ((Collection<? extends Object>) value).iterator().next();
-                    //TODO Issue warning if collection.size > 1?
-                }
-                // only set if value really changed
-                Object originalValue = refAObject.eGet(feat);
-                if ((value == null && originalValue != null) || (value != null && originalValue == null)
-                        || !originalValue.equals(value)) {
-                    refAObject.eSet(feat, value);
+                    multiProperty.addAll((Collection<? extends Object>) value);
+                } else {
+                    multiProperty.add(value);
                 }
             } else {
-                Collection<Object> multiProperty = (Collection<Object>) refAObject.eGet(feat);
-                if (feat.getUpperBound() < 0 || multiProperty.size() < feat.getUpperBound()) {
-                    if (value instanceof Collection) {
-                        multiProperty.addAll((Collection<? extends Object>) value);
-                    } else {
-                        multiProperty.add(value);
-                    }
-                } else {
-                    throw new ModelAdapterException("Cannot add value, property " + propertyName
-                            + " has an upper multiplicity of " + feat.getUpperBound());
-                }
+                throw new ModelAdapterException("Cannot add value, property " + propertyName + " has an upper multiplicity of "
+                        + feat.getUpperBound());
             }
         }
     }
@@ -218,25 +213,26 @@ public class EMFModelAdapterDelegate {
 
     @SuppressWarnings("unchecked")
     public void unset(EObject refAObject, String propertyName, Object value) throws ModelAdapterException {
-        EClass mofClass = refAObject.eClass();
+        EClass eClass = refAObject.eClass();
 
-        EStructuralFeature feat = (EStructuralFeature) EcoreHelper.lookupElementExtended(mofClass, propertyName);
-        if (feat != null) {
-            if (feat.getUpperBound() == 1) {
-                refAObject.eSet(feat, null);
-            } else {
-                if (!feat.isOrdered()) {
-                    Collection<Object> multiProperty = (Collection<Object>) refAObject.eGet(feat);
-                    if (feat.getUpperBound() < 0 || multiProperty.size() < feat.getUpperBound()) {
-                        if (value instanceof Collection) {
-                            multiProperty.removeAll((Collection<? extends Object>) value);
-                        } else {
-                            multiProperty.remove(value);
-                        }
+        EStructuralFeature feat = eClass.getEStructuralFeature(propertyName);
+        if (feat == null) {
+            throw new ModelAdapterException("No such feature \"" + propertyName + "\" defined for  " + refAObject.eClass());
+        }
+        if (feat.getUpperBound() == 1) {
+            refAObject.eSet(feat, null);
+        } else {
+            if (!feat.isOrdered()) {
+                Collection<Object> multiProperty = (Collection<Object>) refAObject.eGet(feat);
+                if (feat.getUpperBound() < 0 || multiProperty.size() < feat.getUpperBound()) {
+                    if (value instanceof Collection) {
+                        multiProperty.removeAll((Collection<? extends Object>) value);
                     } else {
-                        throw new ModelAdapterException("Cannot add value, property " + propertyName
-                                + " has an upper multiplicity of " + feat.getUpperBound());
+                        multiProperty.remove(value);
                     }
+                } else {
+                    throw new ModelAdapterException("Cannot add value, property " + propertyName
+                            + " has an upper multiplicity of " + feat.getUpperBound());
                 }
             }
         }
