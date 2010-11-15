@@ -35,8 +35,6 @@ public class TCSSpecificEMFModelAdapter implements IBareModelAdapter {
      */
     public TCSSpecificEMFModelAdapter(ResourceSet resourceSet, Set<URI> referenceScope) {
         Set<URI> adapterReferenceScopeURIs = new HashSet<URI>(referenceScope);
-        adapterReferenceScopeURIs.add(URI.createURI("http://www.eclipse.org/emf/2002/Ecore"));
-
         adapter = new EMFModelAdapter(FURCASPackage.eINSTANCE, resourceSet, adapterReferenceScopeURIs);
     }
 
