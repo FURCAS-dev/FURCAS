@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.utilities;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 
 /**
