@@ -6,10 +6,10 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
+import org.eclipse.emf.ecore.EClass;
+
 import com.sap.furcas.metamodel.FURCAS.TCS.Rule;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
-
-import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public abstract class RuleImpl extends LocatedElementImpl implements Rule {
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         protected RuleImpl() {
-		super();
-	}
+        super();
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected EClass eStaticClass() {
-		return TCSPackage.Literals.RULE;
-	}
+        return TCSPackage.Literals.RULE;
+    }
 
 } //RuleImpl
