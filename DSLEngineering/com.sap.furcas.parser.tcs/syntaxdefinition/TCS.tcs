@@ -3,63 +3,63 @@
 -- Comments begin with -- and end with the end of the line
 syntax TCS {
 
-        primitiveTemplate identifier for ->String default using NAME :
+        primitiveTemplate identifier for ecore::EString default using NAME :
                 value = "unescapeString(%token%)";
 
-        primitiveTemplate identifierOrKeyword for ->String using NAME orKeyword:
+        primitiveTemplate identifierOrKeyword for ecore::EString using NAME orKeyword:
                 value = "unescapeString(%token%)";
                 
-        primitiveTemplate escapedIdentifierOrKeyword for ->String using NAME orKeyword:
+        primitiveTemplate escapedIdentifierOrKeyword for ecore::EString using NAME orKeyword:
                 value = "unescapeString(%token%)",
                 serializer = "\'%value%\'";
 
-        primitiveTemplate stringSymbol for ->String using STRING:
+        primitiveTemplate stringSymbol for ecore::EString using STRING:
                 value = "unescapeString(%token%)",
 				serializer="\"%value%\"";
 	
-	primitiveTemplate plainStringSymbol for ->String using STRING:
+	primitiveTemplate plainStringSymbol for ecore::EString using STRING:
                 value = "unescapeString(%token%)";
 
-        primitiveTemplate integerSymbol for ->Integer default using INT:
+        primitiveTemplate integerSymbol for ecore::EIntegerObject default using INT:
                 value = "Integer.valueOf(%token%)";
 
-        primitiveTemplate floatSymbol for ->Double default using FLOAT:
+        primitiveTemplate floatSymbol for ecore::EDoubleObject default using FLOAT:
                 value = "Double.valueOf(%token%)";
        
-/**        primitiveTemplate qualifiedNameSymbol for ->String using QNAME:
+/**        primitiveTemplate qualifiedNameSymbol for ecore::EString using QNAME:
                 value = "unescapeString(%token%)";
                 
-          primitiveTemplate qualifiedNameSymbolList for ->String using QNAME:
+          primitiveTemplate qualifiedNameSymbolList for ecore::EString using QNAME:
                 value = "java.util.Arrays.asList(unescapeString(%token%).split(\"::\"))";
 */
         -- ecore element representation in qualified names
 
-/** TODO: Find out how to do this properly. Currently it does not really make sense  
         
         -- A modelClassifier is either its container followed by :: and a name, or just a name
-        template ->EClassifier referenceOnly -- should never be created
+        template ecore::EClassifier referenceOnly --should never be created
         : ( isDefined(ePackage) ? ePackage   -- is of type Namespace in MM
           "::" name : name)
         ;
-        
+/** TODO: Find out how to do this properly. Currently it does not really make sense          
         -- Namespace gets operatored using the :: operator to resolve left recursion
-        template ->EPackage abstract operatored(DBLCOLON);
-        
+        template ecore::ENamedElement abstract operatored(DBLCOLON);
+*/        
         -- if parsed path has more than one element, 
         -- the first will be of type Generalizable element
         -- because that is the type of Mode::ModelElement.container
-        template ->EObject referenceOnly -- should never be created
+        template ecore::EPackage referenceOnly -- should never be created
                 : name
                 ;
                 
+/** TODO: Find out how to do this properly. Currently it does not really make sense  
         -- any following elements in a package path will be resolved using this
-        operatorTemplate ->EModelElement(operators =
-                        opDlColon, source = 'eContainer') referenceOnly -- should never be created
+        operatorTemplate ecore::EClassifier(operators =
+                        opDlColon, source = 'ePackage') referenceOnly -- should never be created
                 :
                         name
                 ;
-*/
         -- end ecore element representation
+*/
 
 
         -- @begin TextBlockDefintion
@@ -220,6 +220,8 @@ syntax TCS {
 -- @begin Sequence Elements
         template TCS::SequenceElement abstract;
 
+/** TODO keyword property not defined
+
         template TCS::LiteralRef
                 :
 -- COMMENT FOR EXTRACTOR
@@ -230,7 +232,7 @@ syntax TCS {
 --                      ]]
                         {{ parentTemplate = lookIn("OCL:#context") }}
                 ;
-
+*/
 
         template TCS::PropertyReference 
             :
@@ -553,7 +555,7 @@ syntax TCS {
                 :       "autoCreate" "=" value
                 ;
 
-        enumerationTemplate ->AutoCreateKind
+        enumerationTemplate TCS::AutoCreateKind
                 :       #always         = "always",
                         #ifmissing      = "ifmissing",
                         #never          = "never"
@@ -594,10 +596,10 @@ syntax TCS {
 
 
 -- @begin Block Arguments
-/** TODO: Properties not specified within the metamodel  
 
         template TCS::BlockArg abstract;
 
+/** TODO: Properties not specified within the metamodel  
         template TCS::NbNLBArg -- Number of New Line
                 :       "nbNL" "=" value --int
                 ;
@@ -628,15 +630,17 @@ syntax TCS {
                 :       name "=" value{as = stringSymbol} (isDefined(spaces) ? ":" spaces{separator = ","}) ";"
                 ;
 
-        enumerationTemplate ->SpaceKind
+        enumerationTemplate TCS::SpaceKind
                 :       #leftSpace      =       "leftSpace",
                         #leftNone       =       "leftNone",
                         #rightSpace     =       "rightSpace",
                         #rightNone      =       "rightNone"
                 ;
-
         template TCS::Keyword addToContext
-                :       name "=" value{as = stringSymbol} ";"
+                :       
+/** TODO: Properties not specified within the metamodel  
+                name "=" value{as = stringSymbol} ";"
+*/               
                 ;
 -- @end Literals
 
@@ -660,16 +664,18 @@ syntax TCS {
                 ;
                 
         template TCS::Operator addToContext
-                :       (isPostfix ? "postfix") name "="
+                :       
+/** TODO keyword property not defined
+                		(isPostfix ? "postfix") name "="
                         (isDefined(literal) ? [[
                                 literal{refersTo = name}
                         |
                                 literal{refersTo = value, lookIn = #all, as = stringSymbol, autoCreate = ifmissing, createAs = Keyword}
                         ]])
                         "," arity ";"
+*/
                 ;
-
-        enumerationTemplate ->Associativity
+        enumerationTemplate TCS::Associativity
                 :       #left           = "left",
                         #right          = "right"
                 ;
