@@ -108,7 +108,8 @@ public class AdapterJMIHelper {
         queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
 
         referenceScope = new HashSet<URI>(explicitReferenceScope);
-        referenceScope.add(EcoreUtil.getURI(rootPackage.eClass()));
+        referenceScope.add(URI.createURI(rootPackage.eClass().getEPackage().getNsURI()));
+        referenceScope.add(URI.createURI(rootPackage.getNsURI()));
 
         transientResource = resourceSet.createResource(URI.createURI(rootPackage.getNsURI()
                 + "/transientParsingResource"));
@@ -134,8 +135,7 @@ public class AdapterJMIHelper {
         WhereClause clause = new WhereString(targetKeyName, Operation.EQUAL, String.valueOf(targetKeyValue));
         WhereEntry we = new LocalWhereEntry(MQL_ALIAS_INSTANCE, clause);
         Query mq = new Query(new SelectEntry[] { se }, new FromEntry[] { fe }, new WhereEntry[] { we });
-        Set<URI> partScope = referenceScope;
-        QueryContext scopeProvider = EcoreHelper.getQueryContext(resourceSet, partScope);
+        QueryContext scopeProvider = EcoreHelper.getQueryContext(resourceSet, referenceScope);
         ResultSet mrs = queryProcessor.execute(mq, scopeProvider); // ,
         // QueryProcessor.getInclusivePartitionScopeProvider(
         // ));
@@ -166,8 +166,7 @@ public class AdapterJMIHelper {
         SelectEntry se = new SelectAlias(MQL_ALIAS_INSTANCE);
         FromEntry fe = new FromType(MQL_ALIAS_INSTANCE, qName, true);
         Query mq = new Query(new SelectEntry[] { se }, new FromEntry[] { fe });
-        Set<URI> partScope = referenceScope;
-        QueryContext scopeProvider = EcoreHelper.getQueryContext(resourceSet, partScope);
+        QueryContext scopeProvider = EcoreHelper.getQueryContext(resourceSet, referenceScope);
         ResultSet mrs = queryProcessor.execute(mq, scopeProvider); // ,
 
         Set<EObject> eObjects = new HashSet<EObject>();
@@ -310,7 +309,7 @@ public class AdapterJMIHelper {
                     + result.size() + " instances");
         }
     }
-
+    
     /**
      * @param query
      * @return

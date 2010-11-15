@@ -27,9 +27,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.query2.QueryContext;
-import org.eclipse.emf.query2.QueryProcessor;
-import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
@@ -76,6 +73,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.TCS.Token;
 import com.sap.furcas.modeladaptation.emf.AdapterJMIHelper;
 import com.sap.furcas.modeladaptation.emf.EMFModelAdapterDelegate;
+import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
@@ -1117,15 +1115,11 @@ public class TcsUtil {
     }
 
     public static ResultSet queryConn(ResourceSet resourceSet, String query) {
-        QueryProcessor queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(getIndex(resourceSet));
-
-        QueryContext context = EcoreHelper.getQueryContext(resourceSet);
-        return queryProcessor.execute(query, context);
-    }
-
-    private static org.eclipse.emf.query.index.Index getIndex(ResourceSet resourceSet) {
-        // TODO Auto-generated method stub
-        return null;
+        try {
+            return EcoreHelper.executeQuery(query, EcoreHelper.getQueryContext(resourceSet));
+        } catch (MetaModelLookupException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static ResultSet querySameConn(EObject r, String query) {
