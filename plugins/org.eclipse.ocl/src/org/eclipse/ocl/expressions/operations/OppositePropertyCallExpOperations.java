@@ -12,8 +12,11 @@ package org.eclipse.ocl.expressions.operations;
 
 import java.util.Map;
 
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.ocl.expressions.OppositePropertyCallExp;
+import org.eclipse.ocl.expressions.util.ExpressionsValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -60,6 +63,20 @@ public class OppositePropertyCallExpOperations
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics
+					.add(new BasicDiagnostic(
+						Diagnostic.ERROR,
+						ExpressionsValidator.DIAGNOSTIC_SOURCE,
+						ExpressionsValidator.OPPOSITE_PROPERTY_CALL_EXP__PROPERTY_TYPE,
+						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
+							.getString(
+								"_UI_GenericInvariant_diagnostic", new Object[]{"checkPropertyType", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(oppositePropertyCallExp, context)}), //$NON-NLS-1$ //$NON-NLS-2$
+						new Object[]{oppositePropertyCallExp}));
+			}
+			return false;
+		}
 		return true;
 	}
 

@@ -90,7 +90,7 @@ import org.eclipse.ocl.utilities.VisitorWithHiddenOpposite;
  * @author Christian W. Damus (cdamus)
  */
 public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-	implements VisitorWithHiddenOpposite<Boolean, C, O, P, EL, PM, S, COA, SSA, CT> {
+	implements Visitor<Boolean, C, O, P, EL, PM, S, COA, SSA, CT>, VisitorWithHiddenOpposite<Boolean, C, O, P, EL, PM, S, COA, SSA, CT> {
 	
 	private Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env = null;
     private UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> uml = null;

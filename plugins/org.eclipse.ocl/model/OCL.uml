@@ -1975,7 +1975,6 @@
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_6T1NBe2LEd-bD_PIt3VXeg" name="CT" templateParameter="_6T1NBO2LEd-bD_PIt3VXeg"/>
           </ownedParameter>
         </ownedTemplateSignature>
-        <generalization xmi:id="_Gz548O2lEd-IcOEPKToVpA" general="_FXDeQO2WEd-IcOEPKToVpA"/>
         <ownedOperation xmi:id="_6T1NFu2LEd-bD_PIt3VXeg" name="visitOppositePropertyCallExp" visibility="public">
           <ownedParameter xmi:id="_6T1NF-2LEd-bD_PIt3VXeg" type="_6T1M8-2LEd-bD_PIt3VXeg" isOrdered="true" direction="return">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6T1NGO2LEd-bD_PIt3VXeg"/>
@@ -1986,20 +1985,6 @@
           <templateBinding xmi:id="_6T1Nhe2LEd-bD_PIt3VXeg" signature="_tvbxwH69Ed-dfIaVcwZYqg">
             <parameterSubstitution xmi:id="_NFyaoO2NEd-bD_PIt3VXeg" formal="_tvbxwX69Ed-dfIaVcwZYqg" actual="_6T1M9e2LEd-bD_PIt3VXeg"/>
             <parameterSubstitution xmi:id="_hZBDQO2NEd-bD_PIt3VXeg" formal="_tvbxw369Ed-dfIaVcwZYqg" actual="_6T1M-e2LEd-bD_PIt3VXeg"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Interface" xmi:id="_FXDeQO2WEd-IcOEPKToVpA" name="Visitor_T_C_O_P_EL_PM_S_COA_SSA_CT">
-          <templateBinding xmi:id="_5nX18O2TEd-IcOEPKToVpA" signature="_unvT6dppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_-Qf9MO2TEd-IcOEPKToVpA" formal="_unvT6tppEdu-d8Dv4wLx9Q" actual="_6T1M8-2LEd-bD_PIt3VXeg"/>
-            <parameterSubstitution xmi:id="_JczdkO2UEd-IcOEPKToVpA" formal="_unvT7NppEdu-d8Dv4wLx9Q" actual="_6T1M9e2LEd-bD_PIt3VXeg"/>
-            <parameterSubstitution xmi:id="_KBA94O2UEd-IcOEPKToVpA" formal="_unvT7tppEdu-d8Dv4wLx9Q" actual="_6T1M9-2LEd-bD_PIt3VXeg"/>
-            <parameterSubstitution xmi:id="_KBA94e2UEd-IcOEPKToVpA" formal="_unvT8NppEdu-d8Dv4wLx9Q" actual="_6T1M-e2LEd-bD_PIt3VXeg"/>
-            <parameterSubstitution xmi:id="_KX9eQO2UEd-IcOEPKToVpA" formal="_unvT8tppEdu-d8Dv4wLx9Q" actual="_6T1M--2LEd-bD_PIt3VXeg"/>
-            <parameterSubstitution xmi:id="_KX9eQe2UEd-IcOEPKToVpA" formal="_unvT9NppEdu-d8Dv4wLx9Q" actual="_6T1M_e2LEd-bD_PIt3VXeg"/>
-            <parameterSubstitution xmi:id="_KX9eQu2UEd-IcOEPKToVpA" formal="_unvT9tppEdu-d8Dv4wLx9Q" actual="_6T1M_-2LEd-bD_PIt3VXeg"/>
-            <parameterSubstitution xmi:id="_LWF6cO2UEd-IcOEPKToVpA" formal="_unvT-NppEdu-d8Dv4wLx9Q" actual="_6T1NAe2LEd-bD_PIt3VXeg"/>
-            <parameterSubstitution xmi:id="_LWF6ce2UEd-IcOEPKToVpA" formal="_unvT-tppEdu-d8Dv4wLx9Q" actual="_6T1NA-2LEd-bD_PIt3VXeg"/>
-            <parameterSubstitution xmi:id="_LWF6cu2UEd-IcOEPKToVpA" formal="_unvT_NppEdu-d8Dv4wLx9Q" actual="_6T1NBe2LEd-bD_PIt3VXeg"/>
           </templateBinding>
         </nestedClassifier>
       </packagedElement>
@@ -2399,7 +2384,7 @@
   <Ecore:EOperation xmi:id="_3YlfoO2SEd-IcOEPKToVpA" base_Operation="_6T1NFu2LEd-bD_PIt3VXeg"/>
   <Ecore:EGenericType xmi:id="_5OdcIO2SEd-IcOEPKToVpA" base_Class="_6T1NhO2LEd-bD_PIt3VXeg"/>
   <Ecore:EGenericType xmi:id="_yR-8wO2TEd-IcOEPKToVpA"/>
-  <Ecore:EGenericType xmi:id="_JucVQO2WEd-IcOEPKToVpA" base_Interface="_FXDeQO2WEd-IcOEPKToVpA"/>
+  <Ecore:EGenericType xmi:id="_JucVQO2WEd-IcOEPKToVpA"/>
   <Ecore:ETypeParameter xmi:id="_6QcugO2bEd-IcOEPKToVpA" base_TemplateParameter="_tvbxwX69Ed-dfIaVcwZYqg"/>
   <Ecore:ETypeParameter xmi:id="_7IeisO2bEd-IcOEPKToVpA" base_TemplateParameter="_tvbxw369Ed-dfIaVcwZYqg"/>
 </xmi:XMI>

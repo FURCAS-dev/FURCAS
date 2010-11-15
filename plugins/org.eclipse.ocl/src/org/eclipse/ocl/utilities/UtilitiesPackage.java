@@ -204,7 +204,7 @@ public interface UtilitiesPackage
 	 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getPredefinedType()
 	 * @generated
 	 */
-	int PREDEFINED_TYPE = 7;
+	int PREDEFINED_TYPE = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.utilities.TypedASTNode <em>Typed AST Node</em>}' class.
@@ -430,7 +430,17 @@ public interface UtilitiesPackage
 	 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getVisitorWithHiddenOpposite()
 	 * @generated
 	 */
-	int VISITOR_WITH_HIDDEN_OPPOSITE = 8;
+	int VISITOR_WITH_HIDDEN_OPPOSITE = 7;
+
+	/**
+	 * The number of structural features of the '<em>Visitor With Hidden Opposite</em>' class.
+	 * <!-- begin-user-doc -->
+	 * @since 3.1
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VISITOR_WITH_HIDDEN_OPPOSITE_FEATURE_COUNT = 0;
 
 	/**
 	 * The number of structural features of the '<em>Predefined Type</em>' class.
@@ -442,16 +452,6 @@ public interface UtilitiesPackage
 	 * @ordered
 	 */
 	int PREDEFINED_TYPE_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of structural features of the '<em>Visitor With Hidden Opposite</em>' class.
-	 * <!-- begin-user-doc -->
-	 * @since 3.1
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VISITOR_WITH_HIDDEN_OPPOSITE_FEATURE_COUNT = VISITOR_FEATURE_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.utilities.ASTNode <em>AST Node</em>}'.
@@ -765,7 +765,8 @@ public interface UtilitiesPackage
 		 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getVisitorWithHiddenOpposite()
 		 * @generated
 		 */
-		EClass VISITOR_WITH_HIDDEN_OPPOSITE = eINSTANCE.getVisitorWithHiddenOpposite();
+		EClass VISITOR_WITH_HIDDEN_OPPOSITE = eINSTANCE
+			.getVisitorWithHiddenOpposite();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.utilities.TypedASTNode <em>Typed AST Node</em>}' class.

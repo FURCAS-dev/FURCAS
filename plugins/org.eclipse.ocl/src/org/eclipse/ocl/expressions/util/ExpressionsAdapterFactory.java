@@ -21,6 +21,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.expressions.*;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.ocl.expressions.CallExp;
@@ -299,14 +300,14 @@ public class ExpressionsAdapterFactory
 		}
 
 		@Override
-		public <C, PM> Adapter caseVariableExp(VariableExp<C, PM> object) {
-			return createVariableExpAdapter();
-		}
-
-		@Override
 		public <C, P> Adapter caseOppositePropertyCallExp(
 				OppositePropertyCallExp<C, P> object) {
 			return createOppositePropertyCallExpAdapter();
+		}
+
+		@Override
+		public <C, PM> Adapter caseVariableExp(VariableExp<C, PM> object) {
+			return createVariableExpAdapter();
 		}
 
 		@Override

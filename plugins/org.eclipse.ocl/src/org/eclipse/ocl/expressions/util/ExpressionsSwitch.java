@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.expressions.*;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.ocl.expressions.CallExp;
@@ -733,21 +734,6 @@ public class ExpressionsSwitch<T> {
 					result = defaultCase(theEObject);
 				return result;
 			}
-			case ExpressionsPackage.VARIABLE_EXP : {
-				VariableExp<?, ?> variableExp = (VariableExp<?, ?>) theEObject;
-				T result = caseVariableExp(variableExp);
-				if (result == null)
-					result = caseOCLExpression(variableExp);
-				if (result == null)
-					result = caseTypedElement(variableExp);
-				if (result == null)
-					result = caseVisitable(variableExp);
-				if (result == null)
-					result = caseASTNode(variableExp);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
 			case ExpressionsPackage.OPPOSITE_PROPERTY_CALL_EXP : {
 				OppositePropertyCallExp<?, ?> oppositePropertyCallExp = (OppositePropertyCallExp<?, ?>) theEObject;
 				T result = caseOppositePropertyCallExp(oppositePropertyCallExp);
@@ -767,6 +753,21 @@ public class ExpressionsSwitch<T> {
 					result = caseVisitable(oppositePropertyCallExp);
 				if (result == null)
 					result = caseASTNode(oppositePropertyCallExp);
+				if (result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+			case ExpressionsPackage.VARIABLE_EXP : {
+				VariableExp<?, ?> variableExp = (VariableExp<?, ?>) theEObject;
+				T result = caseVariableExp(variableExp);
+				if (result == null)
+					result = caseOCLExpression(variableExp);
+				if (result == null)
+					result = caseTypedElement(variableExp);
+				if (result == null)
+					result = caseVisitable(variableExp);
+				if (result == null)
+					result = caseASTNode(variableExp);
 				if (result == null)
 					result = defaultCase(theEObject);
 				return result;

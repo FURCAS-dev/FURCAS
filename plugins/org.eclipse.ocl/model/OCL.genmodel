@@ -647,16 +647,6 @@
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/UnspecifiedValueExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/UnspecifiedValueExp/C"/>
       </genClasses>
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/VariableExp">
-        <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/VariableExp/C"/>
-        <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/VariableExp/PM"/>
-        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-            ecoreFeature="ecore:EReference OCL.ecore#//expressions/VariableExp/referredVariable"/>
-        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/VariableExp/var_type">
-          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/VariableExp/var_type/diagnostics"/>
-          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/VariableExp/var_type/context"/>
-        </genOperations>
-      </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/OppositePropertyCallExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/OppositePropertyCallExp/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/OppositePropertyCallExp/P"/>
@@ -665,6 +655,16 @@
         <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/OppositePropertyCallExp/property_type">
           <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/OppositePropertyCallExp/property_type/diagnostics"/>
           <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/OppositePropertyCallExp/property_type/context"/>
+        </genOperations>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/VariableExp">
+        <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/VariableExp/C"/>
+        <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/VariableExp/PM"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            ecoreFeature="ecore:EReference OCL.ecore#//expressions/VariableExp/referredVariable"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/VariableExp/var_type">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/VariableExp/var_type/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/VariableExp/var_type/context"/>
         </genOperations>
       </genClasses>
     </nestedGenPackages>

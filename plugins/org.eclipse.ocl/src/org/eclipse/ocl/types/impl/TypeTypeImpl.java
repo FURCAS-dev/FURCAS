@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.types.TypesPackage;
+import org.eclipse.ocl.types.operations.TypeTypeOperations;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 
 /**
@@ -110,8 +111,8 @@ public class TypeTypeImpl<C, O>
 			Environment<?, ?, O, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = Environment.Registry.INSTANCE
 				.getEnvironmentFor(this);
 
-			operations = new BasicEList<O>(OCLStandardLibraryUtil
-				.createTypeTypeOperations(env));
+			operations = new BasicEList<O>(
+				OCLStandardLibraryUtil.createTypeTypeOperations(env));
 		}
 
 		return operations;

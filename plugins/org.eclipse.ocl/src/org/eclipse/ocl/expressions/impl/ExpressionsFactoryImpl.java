@@ -455,9 +455,9 @@ public class ExpressionsFactoryImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @since 3.1
 	 */
 	public <C, P> OppositePropertyCallExp<C, P> createOppositePropertyCallExp() {
 		OppositePropertyCallExpImpl<C, P> oppositePropertyCallExp = new OppositePropertyCallExpImpl<C, P>();

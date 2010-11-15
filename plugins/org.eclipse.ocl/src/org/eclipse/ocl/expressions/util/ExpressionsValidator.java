@@ -23,6 +23,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.ocl.expressions.*;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.ocl.expressions.CallExp;
@@ -401,7 +402,7 @@ public class ExpressionsValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int VARIABLE_EXP__VAR_TYPE = 39;
+	public static final int VARIABLE_EXP__VAR_TYPE = 40;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Check Property Type' of 'Opposite Property Call Exp'.
@@ -410,7 +411,7 @@ public class ExpressionsValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int OPPOSITE_PROPERTY_CALL_EXP__PROPERTY_TYPE = 40;
+	public static final int OPPOSITE_PROPERTY_CALL_EXP__PROPERTY_TYPE = 39;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -558,12 +559,12 @@ public class ExpressionsValidator
 			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP :
 				return validateUnspecifiedValueExp(
 					(UnspecifiedValueExp<?>) value, diagnostics, context);
-			case ExpressionsPackage.VARIABLE_EXP :
-				return validateVariableExp((VariableExp<?, ?>) value,
-					diagnostics, context);
 			case ExpressionsPackage.OPPOSITE_PROPERTY_CALL_EXP :
 				return validateOppositePropertyCallExp(
 					(OppositePropertyCallExp<?, ?>) value, diagnostics, context);
+			case ExpressionsPackage.VARIABLE_EXP :
+				return validateVariableExp((VariableExp<?, ?>) value,
+					diagnostics, context);
 			case ExpressionsPackage.COLLECTION_KIND :
 				return validateCollectionKind((CollectionKind) value,
 					diagnostics, context);
