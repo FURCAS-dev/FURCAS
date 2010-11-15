@@ -131,7 +131,7 @@ public class PropertyCallTracebackStep extends AbstractTracebackStep<PropertyCal
             break;
         case HIDDEN_OPPOSITE:
             Collection<EObject> opposite = getOppositeEndFinder().navigateOppositePropertyWithBackwardScope(
-                    sourceExpression.getReferredProperty(), source.getAnnotatedObject());
+                    (EReference) sourceExpression.getReferredProperty(), source.getAnnotatedObject());
             if (opposite != null && !opposite.isEmpty()) {
                 Set<OperationCallExpKeyedSet> resultSets = new HashSet<OperationCallExpKeyedSet>();
                 for (EObject eo : opposite) {

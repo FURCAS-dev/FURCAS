@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 
 import com.sap.emf.ocl.util.OclHelper;
 
@@ -433,12 +432,12 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     protected static boolean haveIntersectingSubclassTree(EClass a, EClass b) {
         boolean result = a==null || b==null || a.equals(b);
         if (!result) {
-            Collection<EClass> targetSubtypesIncludingTargetType = new HashSet<EClass>(DefaultOppositeEndFinder.getInstance().getAllSubclasses(a));
+            Collection<EClass> targetSubtypesIncludingTargetType = new HashSet<EClass>(AllSubclassesFinder.getInstance().getAllSubclasses(a));
             targetSubtypesIncludingTargetType.add(a);
             if (targetSubtypesIncludingTargetType.contains(b)) {
                 result = true;
             } else {
-                Collection<EClass> sourceSubtypesIncludingSourceType = new HashSet<EClass>(DefaultOppositeEndFinder.getInstance().getAllSubclasses(b));
+                Collection<EClass> sourceSubtypesIncludingSourceType = new HashSet<EClass>(AllSubclassesFinder.getInstance().getAllSubclasses(b));
                 sourceSubtypesIncludingSourceType.add(b);
                 Collection<EClass> smaller;
                 Collection<EClass> larger;

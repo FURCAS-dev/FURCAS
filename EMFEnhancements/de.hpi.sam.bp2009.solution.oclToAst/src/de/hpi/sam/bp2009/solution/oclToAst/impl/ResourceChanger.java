@@ -318,13 +318,13 @@ class ResourceChanger
      */
     @Override
     protected EPackage handleOppositePropertyCallExp(OppositePropertyCallExp<EClassifier, EStructuralFeature> callExp,
-            EPackage sourceResult, List<EPackage> qualifierResults) {
+            EPackage sourceResult) {
         EClassifier newType = handle(callExp.getType());
         if (newType != null) {
             orgToCopy.put(callExp.getType(), newType);
             callExp.setType(newType);
         }
-        return super.handleOppositePropertyCallExp(callExp, sourceResult, qualifierResults);
+        return super.handleOppositePropertyCallExp(callExp, sourceResult);
 
     }
 

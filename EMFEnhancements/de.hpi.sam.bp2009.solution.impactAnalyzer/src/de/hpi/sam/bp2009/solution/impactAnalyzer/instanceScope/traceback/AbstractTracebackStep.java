@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.CollectionType;
 import org.eclipse.ocl.ecore.EcorePackage;
@@ -358,7 +359,8 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
         if (container != null && container instanceof Variable && ((Variable) container).getInitExpression() == e) {
             EObject letCandidate = container.eContainer();
             if (letCandidate instanceof LetExp && ((LetExp) letCandidate).getIn() == e) {
-                Collection<EObject> variableExps = oppositeEndFinder.navigateOppositePropertyWithBackwardScope(EcorePackage.eINSTANCE.getVariableExp().getEStructuralFeature(
+                Collection<EObject> variableExps = oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
+                        (EReference) EcorePackage.eINSTANCE.getVariableExp().getEStructuralFeature(
                         EcorePackage.VARIABLE_EXP__REFERRED_VARIABLE), container);
                 for (EObject ve : variableExps) {
                     VariableExp variableExp = (VariableExp) ve;
