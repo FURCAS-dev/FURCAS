@@ -180,28 +180,13 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
 	 * Visits the opposite property-call source. No qualifiers are visited as
 	 * these calls are not expected for UML but only for Ecore. Returns the
 	 * result of
-	 * {@link #handleOppositePropertyCallExp(OppositePropertyCallExp, Object, List)}.
+	 * {@link #handleOppositePropertyCallExp(OppositePropertyCallExp, Object)}.
 	 * 
 	 * @since 3.1
 	 */
 	public T visitOppositePropertyCallExp(OppositePropertyCallExp<C, P> callExp) {
-        // source is null when the property call expression is an
-        //    association class navigation qualifier
         T sourceResult = safeVisit(callExp.getSource());
-        
-        List<T> qualifierResults;
-        List<OCLExpression<C>> qualifiers = callExp.getQualifier();
-        
-        if (qualifiers.isEmpty()) {
-            qualifierResults = Collections.emptyList();
-        } else {
-            qualifierResults = new java.util.ArrayList<T>(qualifiers.size());
-            for (OCLExpression<C> qual : qualifiers) {
-                qualifierResults.add(safeVisit(qual));
-            }
-        }
-        
-        return handleOppositePropertyCallExp(callExp, sourceResult, qualifierResults);
+        return handleOppositePropertyCallExp(callExp, sourceResult);
 	}
     
     /**
@@ -211,18 +196,15 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      * opposite property call does not have a source and, therefore, the
      * <code>sourceResult</tt> will be <code>null</code> in that case.
      * 
-     * @param callExp the property call expression, if there is a source
+     * @param callExp the opposite property call expression
      * @param sourceResult the result of visiting the expression's source
-     * @param qualifierResults the results of visiting the expression's
-     *     qualifiers, or an empty list if there are no qualifiers
-     * 
      * @return the accumulated {@link #result}, by default
      * 
      * @see #visitOppositePropertyCallExp(OppositePropertyCallExp)
      * @since 3.1
      */
     protected T handleOppositePropertyCallExp(OppositePropertyCallExp<C, P> callExp,
-            T sourceResult, List<T> qualifierResults) {
+            T sourceResult) {
         return result;
     }
     
