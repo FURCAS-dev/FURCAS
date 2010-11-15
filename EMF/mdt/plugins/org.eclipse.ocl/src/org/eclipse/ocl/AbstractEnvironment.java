@@ -886,9 +886,11 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	@SuppressWarnings("unchecked")
     private P safeTryLookupOppositeProperty(C owner, String name) {
 	    P result = null;
-	    
 	    try {
-	        result = tryLookupOppositeProperty(owner, name);
+	        result = lookupOppositeProperty(owner, name);
+			if ((result == null) && AbstractOCLAnalyzer.isEscaped(name)) {
+			    result = lookupOppositeProperty(owner, AbstractOCLAnalyzer.unescape(name));
+			}
         } catch (LookupException e) {
             if (!e.getAmbiguousMatches().isEmpty()) {
                 result = (P) e.getAmbiguousMatches().get(0);

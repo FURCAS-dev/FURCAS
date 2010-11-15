@@ -424,6 +424,11 @@ public class ExtensibilityTest
 				EClassifier classifier) {
 			return delegate.getHiddenOppositeProperties(classifier);
 		}
+
+		public Variable<EClassifier, EParameter> lookupImplicitSourceForOppositeProperty(
+				String name) {
+			return delegate.lookupImplicitSourceForOppositeProperty(name);
+		}
 	}
 
 	class WrapperEnvironmentFactory implements EnvironmentFactory<
