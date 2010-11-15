@@ -444,9 +444,9 @@ public class UtilitiesPackageImpl
 		createEReference(expressionInOCLEClass,
 			EXPRESSION_IN_OCL__GENERATED_TYPE);
 
-		visitorExtensionEClass = createEClass(VISITOR_EXTENSION);
-
 		predefinedTypeEClass = createEClass(PREDEFINED_TYPE);
+
+		visitorExtensionEClass = createEClass(VISITOR_EXTENSION);
 	}
 
 	/**
@@ -515,6 +515,8 @@ public class UtilitiesPackageImpl
 			expressionInOCLEClass, "C"); //$NON-NLS-1$
 		ETypeParameter expressionInOCLEClass_PM = addETypeParameter(
 			expressionInOCLEClass, "PM"); //$NON-NLS-1$
+		ETypeParameter predefinedTypeEClass_O = addETypeParameter(
+			predefinedTypeEClass, "O"); //$NON-NLS-1$
 		ETypeParameter visitorExtensionEClass_T = addETypeParameter(
 			visitorExtensionEClass, "T"); //$NON-NLS-1$
 		ETypeParameter visitorExtensionEClass_C = addETypeParameter(
@@ -528,8 +530,6 @@ public class UtilitiesPackageImpl
 		addETypeParameter(visitorExtensionEClass, "COA"); //$NON-NLS-1$
 		addETypeParameter(visitorExtensionEClass, "SSA"); //$NON-NLS-1$
 		addETypeParameter(visitorExtensionEClass, "CT"); //$NON-NLS-1$
-		ETypeParameter predefinedTypeEClass_O = addETypeParameter(
-			predefinedTypeEClass, "O"); //$NON-NLS-1$
 
 		// Set bounds for type parameters
 
@@ -968,6 +968,19 @@ public class UtilitiesPackageImpl
 			"generatedType", null, 0, -1, ExpressionInOCL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(
+			predefinedTypeEClass,
+			PredefinedType.class,
+			"PredefinedType", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		addEOperation(predefinedTypeEClass, ecorePackage.getEString(),
+			"getName", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		op = addEOperation(predefinedTypeEClass, null,
+			"oclOperations", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		g1 = createEGenericType(predefinedTypeEClass_O);
+		initEOperation(op, g1);
+
+		initEClass(
 			visitorExtensionEClass,
 			VisitorExtension.class,
 			"VisitorExtension", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -982,19 +995,6 @@ public class UtilitiesPackageImpl
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "callExp", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(visitorExtensionEClass_T);
-		initEOperation(op, g1);
-
-		initEClass(
-			predefinedTypeEClass,
-			PredefinedType.class,
-			"PredefinedType", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		addEOperation(predefinedTypeEClass, ecorePackage.getEString(),
-			"getName", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-		op = addEOperation(predefinedTypeEClass, null,
-			"oclOperations", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		g1 = createEGenericType(predefinedTypeEClass_O);
 		initEOperation(op, g1);
 
 		// Create resource

@@ -25,6 +25,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.utilities.*;
 import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.CallingASTNode;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
@@ -131,14 +132,14 @@ public class UtilitiesAdapterFactory
 		}
 
 		@Override
-		public <T, C, O, P, EL, PM, S, COA, SSA, CT> Adapter caseVisitorExtension(
-				VisitorExtension<T, C, O, P, EL, PM, S, COA, SSA, CT> object) {
-			return createVisitorExtensionAdapter();
+		public <O> Adapter casePredefinedType(PredefinedType<O> object) {
+			return createPredefinedTypeAdapter();
 		}
 
 		@Override
-		public <O> Adapter casePredefinedType(PredefinedType<O> object) {
-			return createPredefinedTypeAdapter();
+		public <T, C, O, P, EL, PM, S, COA, SSA, CT> Adapter caseVisitorExtension(
+				VisitorExtension<T, C, O, P, EL, PM, S, COA, SSA, CT> object) {
+			return createVisitorExtensionAdapter();
 		}
 
 		@Override
