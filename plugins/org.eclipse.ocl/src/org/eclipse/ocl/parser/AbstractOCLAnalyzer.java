@@ -2645,11 +2645,13 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			if (source != null) {
 				result.setSource(source);
 			} else {
-				Variable<C, PM> implicitSource = env
-					.lookupImplicitSourceForProperty(simpleName);
-				VariableExp<C, PM> src = createVariableExp(env, simpleNameCS,
-					implicitSource);
-				result.setSource(src);
+				if (env instanceof EnvironmentWithHiddenOpposites<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
+					Variable<C, PM> implicitSource = ((EnvironmentWithHiddenOpposites<?, C, ?, ?, ?, PM, ?, ?, ?, ?, ?, ?>) env)
+						.lookupImplicitSourceForOppositeProperty(simpleName);
+					VariableExp<C, PM> src = createVariableExp(env,
+						simpleNameCS, implicitSource);
+					result.setSource(src);
+				}
 			}
 
 			initPropertyPositions(result, simpleNameCS);

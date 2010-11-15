@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
+import org.eclipse.ocl.expressions.Variable;
 
 
 /**
@@ -40,6 +41,18 @@ extends Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>{
 	 */ 	
 	P lookupOppositeProperty(C owner, String name) throws LookupException;
 	
+	/**
+	 * Return the most appropriate matching variable to use as the implicit
+	 * source of a call to the specified property.  Variables are returned based
+	 * on inner-most scope first.
+	 * 
+	 * @param name the property name
+	 * 
+	 * @return the matching variable, or <code>null</code> if no appropriate
+     *     variable can be found whose type defines a property of this name
+	 */
+	public Variable<C, PM> lookupImplicitSourceForOppositeProperty(String name);
+
 	/**
 	 * Determines a property's (hidden) opposite's type, assuming that there is not real opposite
 	 * but that the opposite's type implicitly defaults to the property's owning class.
