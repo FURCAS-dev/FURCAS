@@ -7,6 +7,7 @@ import static com.sap.furcas.test.testutils.StringListHelper.list;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -1081,7 +1082,7 @@ public class TestPropertyTypeHandler {
 
         argsList.add(new ForcedLowerPArgStub(4));
         args = new PropertyTypeHandler.PropertyArgs(argsList);
-        assertEquals(4, args.forcedLower.getValue());
+        assertSame(4, args.forcedLower.getValue());
 
         argsList = new ArrayList<PropertyArg>();
         args = new PropertyTypeHandler.PropertyArgs(argsList);
@@ -1202,12 +1203,12 @@ public class TestPropertyTypeHandler {
         }
 
         @Override
-        public int getValue() {
+        public Integer getValue() {
             return this.value;
         }
 
         @Override
-        public void setValue(int value) {
+        public void setValue(Integer value) {
             // TODO Auto-generated method stub
 
         }
