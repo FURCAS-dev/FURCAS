@@ -175,12 +175,15 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
         
         return handlePropertyCallExp(callExp, sourceResult, qualifierResults);
 	}
-    
-    /**
-     * Visits the opposite property-call source and then its qualifiers (if any).
-     * Returns the result of {@link #handleOppositePropertyCallExp(OppositePropertyCallExp, Object, List)}.
-     * @since 3.1
-     */
+
+	/**
+	 * Visits the opposite property-call source. No qualifiers are visited as
+	 * these calls are not expected for UML but only for Ecore. Returns the
+	 * result of
+	 * {@link #handleOppositePropertyCallExp(OppositePropertyCallExp, Object, List)}.
+	 * 
+	 * @since 3.1
+	 */
 	public T visitOppositePropertyCallExp(OppositePropertyCallExp<C, P> callExp) {
         // source is null when the property call expression is an
         //    association class navigation qualifier
