@@ -2527,7 +2527,7 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getCollectionKind()
 	 * @generated
 	 */
-	int COLLECTION_KIND = 36;
+	int COLLECTION_KIND = 35;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.OppositePropertyCallExpImpl <em>Opposite Property Call Exp</em>}' class.
@@ -2538,7 +2538,7 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getOppositePropertyCallExp()
 	 * @generated
 	 */
-	int OPPOSITE_PROPERTY_CALL_EXP = 35;
+	int OPPOSITE_PROPERTY_CALL_EXP = 36;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
