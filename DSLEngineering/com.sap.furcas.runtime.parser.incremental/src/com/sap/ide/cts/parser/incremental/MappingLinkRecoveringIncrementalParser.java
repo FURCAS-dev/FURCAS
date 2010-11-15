@@ -10,6 +10,7 @@ import java.util.Set;
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
@@ -235,7 +236,7 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
 
         private TextBlockDefinition getTbDef(Template t) {
             Collection<EObject> tbDefs = oppositeEndFinder.
-            	navigateOppositePropertyWithBackwardScope(templateTypeRef, t);
+            	navigateOppositePropertyWithBackwardScope((EReference) templateTypeRef, t);
             if (!tbDefs.isEmpty()) {
                 if (tbDefs.size() == 1) {
                     return (TextBlockDefinition) tbDefs.iterator().next();
