@@ -81,7 +81,7 @@ public class OppositePropertyNavigationStep extends AbstractNavigationStep {
 	if (property instanceof EReference) {
 	    // EcoreHelper.getInstance().reverseNavigate(fromObject.getAnnotatedObject(),
 	    // (EReference) property, scope, result);
-	    Object navigationResult = oppositeEndFinder.navigateOppositePropertyWithBackwardScope(property,
+	    Object navigationResult = oppositeEndFinder.navigateOppositePropertyWithBackwardScope((EReference) property,
 		    fromObject.getAnnotatedObject());
 	    if (navigationResult instanceof Collection<?>) {
 		@SuppressWarnings("unchecked")

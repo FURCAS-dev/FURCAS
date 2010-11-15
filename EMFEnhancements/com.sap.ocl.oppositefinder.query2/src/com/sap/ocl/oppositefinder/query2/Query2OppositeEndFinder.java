@@ -90,7 +90,7 @@ public class Query2OppositeEndFinder implements OppositeEndFinder {
     }
     
     @Override
-    public Collection<EObject> navigateOppositePropertyWithForwardScope(EStructuralFeature property, EObject target)
+    public Collection<EObject> navigateOppositePropertyWithForwardScope(EReference property, EObject target)
             throws IllegalArgumentException {
         if (target instanceof EObject) {
             EObject etarget = (EObject) target;
@@ -109,7 +109,7 @@ public class Query2OppositeEndFinder implements OppositeEndFinder {
     }
 
     @Override
-    public Collection<EObject> navigateOppositePropertyWithBackwardScope(EStructuralFeature property, EObject target) {
+    public Collection<EObject> navigateOppositePropertyWithBackwardScope(EReference property, EObject target) {
         if (target instanceof EObject) {
             EObject etarget = (EObject) target;
             Collection<EObject> result = null;

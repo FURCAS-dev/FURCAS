@@ -693,7 +693,7 @@ public class PartialEvaluationVisitorImpl
                 localResult = navigate(property, derivation, context);
             } else {
             */
-                localResult = ((EvaluationEnvironmentWithHiddenOpposites<EStructuralFeature>) getEvaluationEnvironment()).navigateOppositeProperty(property, /* qualifiers */ null, context);
+                localResult = ((EvaluationEnvironmentWithHiddenOpposites<EStructuralFeature>) getEvaluationEnvironment()).navigateOppositeProperty(property, context);
                 if ((pc.getType() instanceof CollectionType<?, ?>) && !(localResult instanceof Collection<?>)) {
                     // this was an XSD "unspecified multiplicity". Now that we know what
                     // the multiplicity is, we can coerce it to a collection value

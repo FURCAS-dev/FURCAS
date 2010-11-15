@@ -19,6 +19,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
@@ -53,12 +54,12 @@ public class AllInstanceCallCountingOppositeEndFinder implements OppositeEndFind
     }
 
     @Override
-    public Collection<EObject> navigateOppositePropertyWithForwardScope(EStructuralFeature property, EObject target) {
+    public Collection<EObject> navigateOppositePropertyWithForwardScope(EReference property, EObject target) {
 	return delegate.navigateOppositePropertyWithForwardScope(property, target);
     }
 
     @Override
-    public Collection<EObject> navigateOppositePropertyWithBackwardScope(EStructuralFeature property, EObject target) {
+    public Collection<EObject> navigateOppositePropertyWithBackwardScope(EReference property, EObject target) {
 	return delegate.navigateOppositePropertyWithBackwardScope(property, target);
     }
 
