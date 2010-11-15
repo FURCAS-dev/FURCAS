@@ -9375,7 +9375,6 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Referred Opposite Property</b></em>' reference.
 	 * <!-- begin-user-doc -->
-	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -10599,7 +10598,8 @@ public interface EcorePackage
 		 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getOppositePropertyCallExp()
 		 * @generated
 		 */
-		EClass OPPOSITE_PROPERTY_CALL_EXP = eINSTANCE.getOppositePropertyCallExp();
+		EClass OPPOSITE_PROPERTY_CALL_EXP = eINSTANCE
+			.getOppositePropertyCallExp();
 
 	}
 

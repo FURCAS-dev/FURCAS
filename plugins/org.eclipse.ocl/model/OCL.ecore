@@ -713,7 +713,7 @@
         <eGenericType eTypeParameter="#//utilities/ExpressionInOCL/C"/>
       </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="VisitorWithHiddenOpposite" abstract="true"
+    <eClassifiers xsi:type="ecore:EClass" name="VisitorExtension" abstract="true"
         interface="true">
       <eTypeParameters name="T"/>
       <eTypeParameters name="C"/>
@@ -726,11 +726,11 @@
       <eTypeParameters name="SSA"/>
       <eTypeParameters name="CT"/>
       <eOperations name="visitOppositePropertyCallExp">
-        <eGenericType eTypeParameter="#//utilities/VisitorWithHiddenOpposite/T"/>
+        <eGenericType eTypeParameter="#//utilities/VisitorExtension/T"/>
         <eParameters name="callExp" lowerBound="1">
           <eGenericType eClassifier="#//expressions/OppositePropertyCallExp">
-            <eTypeArguments eTypeParameter="#//utilities/VisitorWithHiddenOpposite/C"/>
-            <eTypeArguments eTypeParameter="#//utilities/VisitorWithHiddenOpposite/P"/>
+            <eTypeArguments eTypeParameter="#//utilities/VisitorExtension/C"/>
+            <eTypeArguments eTypeParameter="#//utilities/VisitorExtension/P"/>
           </eGenericType>
         </eParameters>
       </eOperations>
@@ -1873,9 +1873,9 @@
     <eClassifiers xsi:type="ecore:EClass" name="OppositePropertyCallExp">
       <eTypeParameters name="C"/>
       <eTypeParameters name="P"/>
-      <eOperations name="property_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eOperations name="opposite_property_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="type = referredProperty.opposite.type"/>
+          <details key="documentation" value="type = referredOppositeProperty.opposite.type"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

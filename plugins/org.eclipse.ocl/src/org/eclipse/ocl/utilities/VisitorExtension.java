@@ -19,10 +19,10 @@ import org.eclipse.ocl.expressions.OppositePropertyCallExp;
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.ocl.utilities.UtilitiesPackage#getVisitorWithHiddenOpposite()
+ * @see org.eclipse.ocl.utilities.UtilitiesPackage#getVisitorExtension()
  * @model interface="true" abstract="true"
  */
-public interface VisitorWithHiddenOpposite<T, C, O, P, EL, PM, S, COA, SSA, CT> {
+public interface VisitorExtension<T, C, O, P, EL, PM, S, COA, SSA, CT> {
 
 	/**
 	 * <!-- begin-user-doc -->

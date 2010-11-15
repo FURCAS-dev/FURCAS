@@ -1387,10 +1387,10 @@
         <ownedEnd xmi:id="_un1aztppEdu-d8Dv4wLx9Q" type="_un1avdppEdu-d8Dv4wLx9Q" association="_un1azdppEdu-d8Dv4wLx9Q"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_WFCZAH69Ed-dfIaVcwZYqg" name="OppositePropertyCallExp">
-        <ownedRule xmi:id="_upQVsH69Ed-dfIaVcwZYqg" name="property_type">
+        <ownedRule xmi:id="_upQVsH69Ed-dfIaVcwZYqg" name="opposite_property_type">
           <specification xmi:type="uml:OpaqueExpression" xmi:id="_upQVsX69Ed-dfIaVcwZYqg">
             <language>OCL</language>
-            <body>type = referredProperty.opposite.type</body>
+            <body>type = referredOppositeProperty.opposite.type</body>
           </specification>
         </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_tvbxwH69Ed-dfIaVcwZYqg" parameter="_tvbxwX69Ed-dfIaVcwZYqg _tvbxw369Ed-dfIaVcwZYqg">
@@ -1942,7 +1942,7 @@
       <packagedElement xmi:type="uml:Association" xmi:id="_H0w1YNLnEd6hmvYFRJXZTA" memberEnd="_ykFGANLmEd6hmvYFRJXZTA _RPJFINLnEd6hmvYFRJXZTA">
         <ownedEnd xmi:id="_RPJFINLnEd6hmvYFRJXZTA" type="_unvU2NppEdu-d8Dv4wLx9Q" association="_H0w1YNLnEd6hmvYFRJXZTA"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Interface" xmi:id="_6T1M8O2LEd-bD_PIt3VXeg" name="VisitorWithHiddenOpposite">
+      <packagedElement xmi:type="uml:Interface" xmi:id="_6T1M8O2LEd-bD_PIt3VXeg" name="VisitorExtension">
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_6T1M8e2LEd-bD_PIt3VXeg" parameter="_6T1M8u2LEd-bD_PIt3VXeg _6T1M9O2LEd-bD_PIt3VXeg _6T1M9u2LEd-bD_PIt3VXeg _6T1M-O2LEd-bD_PIt3VXeg _6T1M-u2LEd-bD_PIt3VXeg _6T1M_O2LEd-bD_PIt3VXeg _6T1M_u2LEd-bD_PIt3VXeg _6T1NAO2LEd-bD_PIt3VXeg _6T1NAu2LEd-bD_PIt3VXeg _6T1NBO2LEd-bD_PIt3VXeg">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_6T1M8u2LEd-bD_PIt3VXeg" parameteredElement="_6T1M8-2LEd-bD_PIt3VXeg">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_6T1M8-2LEd-bD_PIt3VXeg" name="T" templateParameter="_6T1M8u2LEd-bD_PIt3VXeg"/>

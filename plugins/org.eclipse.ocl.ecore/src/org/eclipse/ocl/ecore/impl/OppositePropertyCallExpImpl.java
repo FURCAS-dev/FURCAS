@@ -13,8 +13,6 @@ package org.eclipse.ocl.ecore.impl;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -22,16 +20,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
-import org.eclipse.ocl.expressions.OCLExpression;
-import org.eclipse.ocl.expressions.util.ExpressionsValidator;
-import org.eclipse.ocl.util.OCLUtil;
-import org.eclipse.ocl.util.TypeUtil;
+import org.eclipse.ocl.expressions.operations.OppositePropertyCallExpOperations;
 import org.eclipse.ocl.utilities.Visitor;
-import org.eclipse.ocl.utilities.VisitorWithHiddenOpposite;
+import org.eclipse.ocl.utilities.VisitorExtension;
 
 /**
  * <!-- begin-user-doc -->
@@ -131,43 +125,12 @@ public class OppositePropertyCallExpImpl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public boolean checkPropertyType(DiagnosticChain diagnostics,
+	public boolean checkOppositePropertyType(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		boolean result = true;
-		Environment<Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object> env = OCLUtil
-			.getValidationEnvironment(this, context);
-
-		if (env != null) {
-			EStructuralFeature property = this.getReferredOppositeProperty();
-			OCLExpression<EClassifier> source = this.getSource();
-			EClassifier type = this.getType();
-
-			if ((property != null) && (source != null)) {
-				EClass refType = (EClass) property.eContainer();
-
-				if (!TypeUtil.exactTypeMatch(env, refType, type)) {
-					result = false;
-				}
-			}
-		}
-
-		if (!result) {
-			if (diagnostics != null) {
-				// TODO: Specific message
-				diagnostics
-					.add(new BasicDiagnostic(
-						Diagnostic.ERROR,
-						ExpressionsValidator.DIAGNOSTIC_SOURCE,
-						ExpressionsValidator.PROPERTY_CALL_EXP__PROPERTY_TYPE,
-						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
-							.getString(
-								"_UI_GenericInvariant_diagnostic", new Object[]{"checkPropertyType", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(this, context)}), //$NON-NLS-1$ //$NON-NLS-2$
-						new Object[]{this}));
-			}
-		}
-		return result;
+		return OppositePropertyCallExpOperations.checkOppositePropertyType(this, diagnostics,
+			context);
 	}
 
 	/**
@@ -272,8 +235,8 @@ public class OppositePropertyCallExpImpl
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		if (v instanceof VisitorWithHiddenOpposite<?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
-			return ((VisitorWithHiddenOpposite<T, EClassifier, ?, EStructuralFeature, ?, ?, ?, ?, ?, ?>) v)
+		if (v instanceof VisitorExtension<?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
+			return ((VisitorExtension<T, EClassifier, ?, EStructuralFeature, ?, ?, ?, ?, ?, ?>) v)
 				.visitOppositePropertyCallExp(this);
 		} else {
 			return null;

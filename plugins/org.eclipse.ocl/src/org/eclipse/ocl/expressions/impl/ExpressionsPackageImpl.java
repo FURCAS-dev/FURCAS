@@ -2566,7 +2566,7 @@ public class ExpressionsPackageImpl
 
 		op = addEOperation(oppositePropertyCallExpEClass,
 			ecorePackage.getEBoolean(),
-			"checkPropertyType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+			"checkOppositePropertyType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(),
 			"diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(ecorePackage.getEMap());

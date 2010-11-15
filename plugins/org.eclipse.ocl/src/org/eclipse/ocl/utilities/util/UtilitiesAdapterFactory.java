@@ -35,7 +35,7 @@ import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 import org.eclipse.ocl.utilities.Visitable;
 import org.eclipse.ocl.utilities.Visitor;
-import org.eclipse.ocl.utilities.VisitorWithHiddenOpposite;
+import org.eclipse.ocl.utilities.VisitorExtension;
 
 /**
  * <!-- begin-user-doc -->
@@ -132,9 +132,9 @@ public class UtilitiesAdapterFactory
 		}
 
 		@Override
-		public <T, C, O, P, EL, PM, S, COA, SSA, CT> Adapter caseVisitorWithHiddenOpposite(
-				VisitorWithHiddenOpposite<T, C, O, P, EL, PM, S, COA, SSA, CT> object) {
-			return createVisitorWithHiddenOppositeAdapter();
+		public <T, C, O, P, EL, PM, S, COA, SSA, CT> Adapter caseVisitorExtension(
+				VisitorExtension<T, C, O, P, EL, PM, S, COA, SSA, CT> object) {
+			return createVisitorExtensionAdapter();
 		}
 
 		@Override
@@ -200,21 +200,6 @@ public class UtilitiesAdapterFactory
 	 * @generated
 	 */
 	public Adapter createPredefinedTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.utilities.VisitorWithHiddenOpposite <em>Visitor With Hidden Opposite</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * @since 3.1
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.utilities.VisitorWithHiddenOpposite
-	 * @generated
-	 */
-	public Adapter createVisitorWithHiddenOppositeAdapter() {
 		return null;
 	}
 
@@ -285,6 +270,20 @@ public class UtilitiesAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressionInOCLAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.utilities.VisitorExtension <em>Visitor Extension</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.utilities.VisitorExtension
+	 * @generated
+	 */
+	public Adapter createVisitorExtensionAdapter() {
 		return null;
 	}
 

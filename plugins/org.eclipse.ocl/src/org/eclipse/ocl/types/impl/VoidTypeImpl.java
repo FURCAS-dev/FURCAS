@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.types.TypesPackage;
 import org.eclipse.ocl.types.VoidType;
-import org.eclipse.ocl.types.operations.VoidTypeOperations;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 
 /**

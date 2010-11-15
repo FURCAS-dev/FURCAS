@@ -274,19 +274,19 @@
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
             createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//utilities/ExpressionInOCL/generatedType"/>
       </genClasses>
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//utilities/VisitorWithHiddenOpposite">
-        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorWithHiddenOpposite/T"/>
-        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorWithHiddenOpposite/C"/>
-        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorWithHiddenOpposite/O"/>
-        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorWithHiddenOpposite/P"/>
-        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorWithHiddenOpposite/EL"/>
-        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorWithHiddenOpposite/PM"/>
-        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorWithHiddenOpposite/S"/>
-        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorWithHiddenOpposite/COA"/>
-        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorWithHiddenOpposite/SSA"/>
-        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorWithHiddenOpposite/CT"/>
-        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/VisitorWithHiddenOpposite/visitOppositePropertyCallExp">
-          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/VisitorWithHiddenOpposite/visitOppositePropertyCallExp/callExp"/>
+      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCL.ecore#//utilities/VisitorExtension">
+        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorExtension/T"/>
+        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorExtension/C"/>
+        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorExtension/O"/>
+        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorExtension/P"/>
+        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorExtension/EL"/>
+        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorExtension/PM"/>
+        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorExtension/S"/>
+        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorExtension/COA"/>
+        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorExtension/SSA"/>
+        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorExtension/CT"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/VisitorExtension/visitOppositePropertyCallExp">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/VisitorExtension/visitOppositePropertyCallExp/callExp"/>
         </genOperations>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//utilities/PredefinedType">
@@ -652,9 +652,9 @@
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/OppositePropertyCallExp/P"/>
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
             propertySortChoices="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/OppositePropertyCallExp/referredOppositeProperty"/>
-        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/OppositePropertyCallExp/property_type">
-          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/OppositePropertyCallExp/property_type/diagnostics"/>
-          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/OppositePropertyCallExp/property_type/context"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/OppositePropertyCallExp/opposite_property_type">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/OppositePropertyCallExp/opposite_property_type/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/OppositePropertyCallExp/opposite_property_type/context"/>
         </genOperations>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/VariableExp">

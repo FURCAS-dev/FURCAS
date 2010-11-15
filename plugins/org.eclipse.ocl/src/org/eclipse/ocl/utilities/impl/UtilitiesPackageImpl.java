@@ -38,7 +38,8 @@ import org.eclipse.ocl.utilities.UtilitiesFactory;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 import org.eclipse.ocl.utilities.Visitable;
 import org.eclipse.ocl.utilities.Visitor;
-import org.eclipse.ocl.utilities.VisitorWithHiddenOpposite;
+import org.eclipse.ocl.utilities.VisitorExtension;
+import org.eclipse.ocl.utilities.VisitorExtension;
 
 /**
  * <!-- begin-user-doc -->
@@ -76,13 +77,6 @@ public class UtilitiesPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass visitorWithHiddenOppositeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass typedASTNodeEClass = null;
 
 	/**
@@ -112,6 +106,13 @@ public class UtilitiesPackageImpl
 	 * @generated
 	 */
 	private EClass expressionInOCLEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass visitorExtensionEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -261,16 +262,6 @@ public class UtilitiesPackageImpl
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * @since 3.1
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getVisitorWithHiddenOpposite() {
-		return visitorWithHiddenOppositeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -388,6 +379,15 @@ public class UtilitiesPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getVisitorExtension() {
+		return visitorExtensionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public UtilitiesFactory getUtilitiesFactory() {
 		return (UtilitiesFactory) getEFactoryInstance();
 	}
@@ -445,7 +445,7 @@ public class UtilitiesPackageImpl
 		createEReference(expressionInOCLEClass,
 			EXPRESSION_IN_OCL__GENERATED_TYPE);
 
-		visitorWithHiddenOppositeEClass = createEClass(VISITOR_WITH_HIDDEN_OPPOSITE);
+		visitorExtensionEClass = createEClass(VISITOR_EXTENSION);
 
 		predefinedTypeEClass = createEClass(PREDEFINED_TYPE);
 	}
@@ -516,19 +516,19 @@ public class UtilitiesPackageImpl
 			expressionInOCLEClass, "C"); //$NON-NLS-1$
 		ETypeParameter expressionInOCLEClass_PM = addETypeParameter(
 			expressionInOCLEClass, "PM"); //$NON-NLS-1$
-		ETypeParameter visitorWithHiddenOppositeEClass_T = addETypeParameter(
-			visitorWithHiddenOppositeEClass, "T"); //$NON-NLS-1$
-		ETypeParameter visitorWithHiddenOppositeEClass_C = addETypeParameter(
-			visitorWithHiddenOppositeEClass, "C"); //$NON-NLS-1$
-		addETypeParameter(visitorWithHiddenOppositeEClass, "O"); //$NON-NLS-1$
-		ETypeParameter visitorWithHiddenOppositeEClass_P = addETypeParameter(
-			visitorWithHiddenOppositeEClass, "P"); //$NON-NLS-1$
-		addETypeParameter(visitorWithHiddenOppositeEClass, "EL"); //$NON-NLS-1$
-		addETypeParameter(visitorWithHiddenOppositeEClass, "PM"); //$NON-NLS-1$
-		addETypeParameter(visitorWithHiddenOppositeEClass, "S"); //$NON-NLS-1$
-		addETypeParameter(visitorWithHiddenOppositeEClass, "COA"); //$NON-NLS-1$
-		addETypeParameter(visitorWithHiddenOppositeEClass, "SSA"); //$NON-NLS-1$
-		addETypeParameter(visitorWithHiddenOppositeEClass, "CT"); //$NON-NLS-1$
+		ETypeParameter visitorExtensionEClass_T = addETypeParameter(
+			visitorExtensionEClass, "T"); //$NON-NLS-1$
+		ETypeParameter visitorExtensionEClass_C = addETypeParameter(
+			visitorExtensionEClass, "C"); //$NON-NLS-1$
+		addETypeParameter(visitorExtensionEClass, "O"); //$NON-NLS-1$
+		ETypeParameter visitorExtensionEClass_P = addETypeParameter(
+			visitorExtensionEClass, "P"); //$NON-NLS-1$
+		addETypeParameter(visitorExtensionEClass, "EL"); //$NON-NLS-1$
+		addETypeParameter(visitorExtensionEClass, "PM"); //$NON-NLS-1$
+		addETypeParameter(visitorExtensionEClass, "S"); //$NON-NLS-1$
+		addETypeParameter(visitorExtensionEClass, "COA"); //$NON-NLS-1$
+		addETypeParameter(visitorExtensionEClass, "SSA"); //$NON-NLS-1$
+		addETypeParameter(visitorExtensionEClass, "CT"); //$NON-NLS-1$
 		ETypeParameter predefinedTypeEClass_O = addETypeParameter(
 			predefinedTypeEClass, "O"); //$NON-NLS-1$
 
@@ -969,20 +969,20 @@ public class UtilitiesPackageImpl
 			"generatedType", null, 0, -1, ExpressionInOCL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(
-			visitorWithHiddenOppositeEClass,
-			VisitorWithHiddenOpposite.class,
-			"VisitorWithHiddenOpposite", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+			visitorExtensionEClass,
+			VisitorExtension.class,
+			"VisitorExtension", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		op = addEOperation(visitorWithHiddenOppositeEClass, null,
+		op = addEOperation(visitorExtensionEClass, null,
 			"visitOppositePropertyCallExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(theExpressionsPackage
 			.getOppositePropertyCallExp());
-		g2 = createEGenericType(visitorWithHiddenOppositeEClass_C);
+		g2 = createEGenericType(visitorExtensionEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(visitorWithHiddenOppositeEClass_P);
+		g2 = createEGenericType(visitorExtensionEClass_P);
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "callExp", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		g1 = createEGenericType(visitorWithHiddenOppositeEClass_T);
+		g1 = createEGenericType(visitorExtensionEClass_T);
 		initEOperation(op, g1);
 
 		initEClass(

@@ -3440,7 +3440,7 @@ public class EcoreValidator
 				oppositePropertyCallExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= expressionsValidator
-				.validateOppositePropertyCallExp_checkPropertyType(
+				.validateOppositePropertyCallExp_checkOppositePropertyType(
 					oppositePropertyCallExp, diagnostics, context);
 		return result;
 	}

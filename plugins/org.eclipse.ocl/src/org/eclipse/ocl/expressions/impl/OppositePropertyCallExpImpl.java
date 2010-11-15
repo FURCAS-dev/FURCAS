@@ -122,10 +122,10 @@ public class OppositePropertyCallExpImpl<C, P>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean checkPropertyType(DiagnosticChain diagnostics,
+	public boolean checkOppositePropertyType(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return OppositePropertyCallExpOperations.checkPropertyType(this,
-			diagnostics, context);
+		return OppositePropertyCallExpOperations.checkOppositePropertyType(
+			this, diagnostics, context);
 	}
 
 	/**

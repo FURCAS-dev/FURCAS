@@ -68,7 +68,7 @@ import org.eclipse.ocl.expressions.VariableExp;
  * @author Christian W. Damus (cdamus)
  */
 public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
-		implements Visitor<T, C, O, P, EL, PM, S, COA, SSA, CT>, VisitorWithHiddenOpposite<T, C, O, P, EL, PM, S, COA, SSA, CT> {
+		implements Visitor<T, C, O, P, EL, PM, S, COA, SSA, CT>, VisitorExtension<T, C, O, P, EL, PM, S, COA, SSA, CT> {
     
     /**
      * Accumulator for the result of the AST visitation.

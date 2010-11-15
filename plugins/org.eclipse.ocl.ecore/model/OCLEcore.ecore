@@ -397,6 +397,12 @@
         <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EParameter"/>
       </eGenericSuperTypes>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="OppositePropertyCallExp" eSuperTypes="#//ecore/NavigationCallExp"/>
+    <eClassifiers xsi:type="ecore:EClass" name="OppositePropertyCallExp">
+      <eGenericSuperTypes eClassifier="#//ecore/NavigationCallExp"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//expressions/OppositePropertyCallExp">
+        <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
+        <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EStructuralFeature"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>
