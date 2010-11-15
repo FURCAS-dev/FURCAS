@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
@@ -179,7 +180,7 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 			// check if there was already a corresponding tbdef within the
 			// mapping definition
 			Collection<EObject> tbDefs = oppositeEndFinder.
-				navigateOppositePropertyWithBackwardScope(templateTypeRef, template);
+				navigateOppositePropertyWithBackwardScope((EReference) templateTypeRef, template);
 			if (!tbDefs.isEmpty()) {
 				if (tbDefs.size() == 1) {
 					tbDef = (TextBlockDefinition) tbDefs.iterator().next();
