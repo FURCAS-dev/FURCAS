@@ -17,6 +17,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
@@ -98,8 +99,8 @@ public class EMFModelAdapterDelegate {
         return String.valueOf(refObject.eGet(refObject.eClass().getEStructuralFeature(propertyName)));
     }
 
-    public boolean instanceOf(EObject refObject, EObject metaType) {
-        return EcoreHelper.isInstanceOf(refObject, metaType, true);
+    public boolean instanceOf(EObject refObject, EClassifier metaType) {
+        return EcoreHelper.isInstanceOf(refObject, metaType);
     }
 
     /**
@@ -270,7 +271,7 @@ public class EMFModelAdapterDelegate {
             result = contextObject;
         } else {
             // need to investigate contextObject more.
-            EObject referenceType = getMetaType(targetType);
+            EClassifier referenceType = getMetaType(targetType);
 
             List<EObject> contents = null;
             // look into immediate contents of context and look for appropriate
