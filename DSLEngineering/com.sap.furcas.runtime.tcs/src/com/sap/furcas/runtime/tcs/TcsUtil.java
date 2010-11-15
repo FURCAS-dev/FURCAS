@@ -276,7 +276,7 @@ public class TcsUtil {
                     // property
                     addAllIfNotNull(
                             results,
-                            getPossibleFirstAtomicSequenceElements(main.getMetaReference(), main.getMode(), classTemplateMap,
+                            getPossibleFirstAtomicSequenceElements((EClass) main.getMetaReference(), main.getMode(), classTemplateMap,
                                     new HashSet<Template>(), syntax, getResourceSetFromEObject(main)));
 
                     // also add prefix operators
@@ -424,7 +424,7 @@ public class TcsUtil {
 
         ClassTemplate main = getMainClassTemplate(syntax);
         if (main.isIsAbstract()) {
-            return getPossibleFirstAtomicSequenceElements(main.getMetaReference(), main.getMode(), classTemplateMap,
+            return getPossibleFirstAtomicSequenceElements((EClass) main.getMetaReference(), main.getMode(), classTemplateMap,
                     new HashSet<Template>(), syntax, getResourceSetFromEObject(main));
 
         } else {
@@ -1229,7 +1229,7 @@ public class TcsUtil {
 
     public static List<String> getQualifiedName(Template t) {
         List<String> qualifiedName;
-        EClass ref = t.getMetaReference();
+        EClassifier ref = t.getMetaReference();
         if (ref == null) { // syntaxes may merely define name of
             // metamodel class rather than have a
             // reference

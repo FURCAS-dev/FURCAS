@@ -22,11 +22,11 @@ public class PriorityStub extends LocatedElementStub implements Priority {
     public EList<Operator> operators = new BasicEList<Operator>();
     
     @Override
-    public int getValue() {
+    public Integer getValue() {
         return value;
     }
     @Override
-    public void setValue(int value) {
+    public void setValue(Integer value) {
         this.value = value;
     }
     @Override

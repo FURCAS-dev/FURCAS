@@ -42,7 +42,7 @@ public class OperatorStub extends LocatedElementStub implements Operator {
      * @see TCS.Operator#getArity()
      */
     @Override
-    public int getArity() {
+    public Integer getArity() {
         return arity ;
     }
     /* (non-Javadoc)
@@ -78,7 +78,7 @@ public class OperatorStub extends LocatedElementStub implements Operator {
      * @see TCS.Operator#setArity(int)
      */
     @Override
-    public void setArity(int value) {
+    public void setArity(Integer value) {
         // TODO Auto-generated method stub
         
     }
