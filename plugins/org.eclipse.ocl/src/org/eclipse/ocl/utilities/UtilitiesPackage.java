@@ -424,6 +424,7 @@ public interface UtilitiesPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.utilities.VisitorExtension <em>Visitor Extension</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.utilities.VisitorExtension
 	 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getVisitorExtension()
@@ -445,6 +446,7 @@ public interface UtilitiesPackage
 	/**
 	 * The number of structural features of the '<em>Visitor Extension</em>' class.
 	 * <!-- begin-user-doc -->
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -656,6 +658,7 @@ public interface UtilitiesPackage
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.utilities.VisitorExtension <em>Visitor Extension</em>}'.
 	 * <!-- begin-user-doc -->
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Visitor Extension</em>'.
 	 * @see org.eclipse.ocl.utilities.VisitorExtension
@@ -870,6 +873,7 @@ public interface UtilitiesPackage
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.utilities.VisitorExtension <em>Visitor Extension</em>}' class.
 		 * <!-- begin-user-doc -->
+		 * @since 3.1
 		 * <!-- end-user-doc -->
 		 * @see org.eclipse.ocl.utilities.VisitorExtension
 		 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getVisitorExtension()
