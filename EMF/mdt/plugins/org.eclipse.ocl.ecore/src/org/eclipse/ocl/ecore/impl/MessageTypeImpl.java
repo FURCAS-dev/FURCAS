@@ -294,8 +294,8 @@ public class MessageTypeImpl
 				}
 
 				for (ETypedElement next : typedElements) {
-					features.add(uml.createProperty(next.getName(),
-						TypeUtil.resolveType(env, uml.getOCLType(next))));
+					features.add(uml.createProperty(next.getName(), TypeUtil
+						.resolveType(env, uml.getOCLType(next))));
 				}
 			}
 		}

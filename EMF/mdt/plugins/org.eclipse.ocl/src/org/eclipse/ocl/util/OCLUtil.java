@@ -109,8 +109,7 @@ public final class OCLUtil {
 				result = (T) getBasicEnvironment(env);
 			} else if (adapterType == ProblemHandler.class) {
 				result = (T) getAdapter(env, BasicEnvironment.class).getProblemHandler();
-			} else if (adapterType == Environment.Lookup.class ||
-					adapterType == Environment.Lookup.class) {
+			} else if (adapterType == Environment.Lookup.class) {
 			    final Environment<Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object> _env =
 			        (Environment<Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object>) env;
 			    
@@ -140,7 +139,7 @@ public final class OCLUtil {
                         return _env.lookupProperty(owner, name);
                     }
 
-					public Object tryLookupAssociationClassReference(Object owner,
+                    public Object tryLookupAssociationClassReference(Object owner,
                             String name)
                         throws LookupException {
                         

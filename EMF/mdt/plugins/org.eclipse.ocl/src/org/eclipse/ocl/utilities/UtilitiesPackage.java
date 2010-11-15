@@ -204,7 +204,7 @@ public interface UtilitiesPackage
 	 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getPredefinedType()
 	 * @generated
 	 */
-	int PREDEFINED_TYPE = 8;
+	int PREDEFINED_TYPE = 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.utilities.TypedASTNode <em>Typed AST Node</em>}' class.
@@ -424,21 +424,13 @@ public interface UtilitiesPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.utilities.VisitorExtension <em>Visitor Extension</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.utilities.VisitorExtension
 	 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getVisitorExtension()
 	 * @generated
 	 */
-	int VISITOR_EXTENSION = 7;
-
-	/**
-	 * The number of structural features of the '<em>Visitor Extension</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VISITOR_EXTENSION_FEATURE_COUNT = 0;
+	int VISITOR_EXTENSION = 8;
 
 	/**
 	 * The number of structural features of the '<em>Predefined Type</em>' class.
@@ -450,6 +442,16 @@ public interface UtilitiesPackage
 	 * @ordered
 	 */
 	int PREDEFINED_TYPE_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of structural features of the '<em>Visitor Extension</em>' class.
+	 * <!-- begin-user-doc -->
+	 * @since 3.1
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VISITOR_EXTENSION_FEATURE_COUNT = 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.utilities.ASTNode <em>AST Node</em>}'.
@@ -656,6 +658,7 @@ public interface UtilitiesPackage
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.utilities.VisitorExtension <em>Visitor Extension</em>}'.
 	 * <!-- begin-user-doc -->
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Visitor Extension</em>'.
 	 * @see org.eclipse.ocl.utilities.VisitorExtension
@@ -870,6 +873,7 @@ public interface UtilitiesPackage
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.utilities.VisitorExtension <em>Visitor Extension</em>}' class.
 		 * <!-- begin-user-doc -->
+		 * @since 3.1
 		 * <!-- end-user-doc -->
 		 * @see org.eclipse.ocl.utilities.VisitorExtension
 		 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getVisitorExtension()

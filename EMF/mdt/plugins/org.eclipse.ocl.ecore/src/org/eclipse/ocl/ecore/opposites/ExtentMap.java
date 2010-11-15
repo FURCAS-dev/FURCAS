@@ -21,6 +21,8 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * Uses {@link OppositeEndFinder#getAllInstancesSeenBy(EClass, org.eclipse.emf.common.notify.Notifier)} to perform
  * an extent lookup.
+ * 
+ * @since 3.1
  */
 public class ExtentMap implements Map<EClass, Set<EObject>> {
     private OppositeEndFinder oppositeEndFinder;

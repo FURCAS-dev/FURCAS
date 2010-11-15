@@ -80,8 +80,8 @@ public class CollectionRangeOperations
 
 			if ((type != null) && (first.getType() != null)
 				&& (last.getType() != null)) {
-				C partsType = TypeUtil.commonSuperType(null, env,
-					first.getType(), last.getType());
+				C partsType = TypeUtil.commonSuperType(null, env, first
+					.getType(), last.getType());
 
 				result = (partsType != null)
 					&& TypeUtil.exactTypeMatch(env, partsType, type);

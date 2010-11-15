@@ -9375,6 +9375,7 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Referred Opposite Property</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered

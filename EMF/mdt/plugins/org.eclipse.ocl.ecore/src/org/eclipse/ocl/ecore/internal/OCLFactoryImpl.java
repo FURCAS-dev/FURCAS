@@ -72,7 +72,7 @@ import org.eclipse.ocl.utilities.UMLReflection;
  * @author Christian W. Damus (cdamus)
  */
 @SuppressWarnings("unchecked")
-public class OCLFactoryImpl implements OCLFactoryWithHiddenOpposite {
+public class OCLFactoryImpl implements OCLFactory, OCLFactoryWithHiddenOpposite {
     public static OCLFactory INSTANCE = new OCLFactoryImpl();
     
     private OCLFactoryImpl() {

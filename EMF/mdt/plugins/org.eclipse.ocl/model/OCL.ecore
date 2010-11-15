@@ -713,6 +713,13 @@
         <eGenericType eTypeParameter="#//utilities/ExpressionInOCL/C"/>
       </eStructuralFeatures>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PredefinedType" abstract="true" interface="true">
+      <eTypeParameters name="O"/>
+      <eOperations name="getName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eOperations name="oclOperations" upperBound="-1">
+        <eGenericType eTypeParameter="#//utilities/PredefinedType/O"/>
+      </eOperations>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="VisitorExtension" abstract="true"
         interface="true">
       <eTypeParameters name="T"/>
@@ -733,13 +740,6 @@
             <eTypeArguments eTypeParameter="#//utilities/VisitorExtension/P"/>
           </eGenericType>
         </eParameters>
-      </eOperations>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="PredefinedType" abstract="true" interface="true">
-      <eTypeParameters name="O"/>
-      <eOperations name="getName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eOperations name="oclOperations" upperBound="-1">
-        <eGenericType eTypeParameter="#//utilities/PredefinedType/O"/>
       </eOperations>
     </eClassifiers>
   </eSubpackages>
@@ -1870,36 +1870,6 @@
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//utilities/TypedASTNode"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="OppositePropertyCallExp">
-      <eTypeParameters name="C"/>
-      <eTypeParameters name="P"/>
-      <eOperations name="opposite_property_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="type = referredOppositeProperty.opposite.type"/>
-        </eAnnotations>
-        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
-          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-            <details key="documentation" value="The chain of diagnostics to which problems are to be appended."/>
-          </eAnnotations>
-        </eParameters>
-        <eParameters name="context">
-          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-            <details key="documentation" value="The cache of context-specific information."/>
-          </eAnnotations>
-          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-            <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-            <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="referredOppositeProperty">
-        <eGenericType eTypeParameter="#//expressions/OppositePropertyCallExp/P"/>
-      </eStructuralFeatures>
-      <eGenericSuperTypes eClassifier="#//expressions/NavigationCallExp">
-        <eTypeArguments eTypeParameter="#//expressions/OppositePropertyCallExp/C"/>
-        <eTypeArguments eTypeParameter="#//expressions/OppositePropertyCallExp/P"/>
-      </eGenericSuperTypes>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="VariableExp">
       <eTypeParameters name="C"/>
       <eTypeParameters name="PM"/>
@@ -1930,6 +1900,36 @@
       </eStructuralFeatures>
       <eGenericSuperTypes eClassifier="#//expressions/OCLExpression">
         <eTypeArguments eTypeParameter="#//expressions/VariableExp/C"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OppositePropertyCallExp">
+      <eTypeParameters name="C"/>
+      <eTypeParameters name="P"/>
+      <eOperations name="opposite_property_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="type = referredOppositeProperty.opposite.type"/>
+        </eAnnotations>
+        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The chain of diagnostics to which problems are to be appended."/>
+          </eAnnotations>
+        </eParameters>
+        <eParameters name="context">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The cache of context-specific information."/>
+          </eAnnotations>
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+            <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="referredOppositeProperty">
+        <eGenericType eTypeParameter="#//expressions/OppositePropertyCallExp/P"/>
+      </eStructuralFeatures>
+      <eGenericSuperTypes eClassifier="#//expressions/NavigationCallExp">
+        <eTypeArguments eTypeParameter="#//expressions/OppositePropertyCallExp/C"/>
+        <eTypeArguments eTypeParameter="#//expressions/OppositePropertyCallExp/P"/>
       </eGenericSuperTypes>
     </eClassifiers>
   </eSubpackages>

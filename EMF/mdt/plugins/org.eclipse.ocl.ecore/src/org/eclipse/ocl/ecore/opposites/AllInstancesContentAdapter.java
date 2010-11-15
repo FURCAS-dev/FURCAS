@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * for fast lookup, e.g., of an <code>allInstances()</code> expression value in the given scope.
  * 
  * @author Axel Uhl
- * @since 3.0
+ * @since 3.1
  *
  */
 public class AllInstancesContentAdapter extends EContentAdapter {

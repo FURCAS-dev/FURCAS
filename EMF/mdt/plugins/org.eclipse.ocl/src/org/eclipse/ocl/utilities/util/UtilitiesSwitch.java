@@ -25,7 +25,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.utilities.*;
 import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.CallingASTNode;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
@@ -165,16 +164,16 @@ public class UtilitiesSwitch<T1> {
 					result = defaultCase(theEObject);
 				return result;
 			}
-			case UtilitiesPackage.VISITOR_EXTENSION : {
-				VisitorExtension<?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitorExtension = (VisitorExtension<?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) theEObject;
-				T1 result = caseVisitorExtension(visitorExtension);
+			case UtilitiesPackage.PREDEFINED_TYPE : {
+				PredefinedType<?> predefinedType = (PredefinedType<?>) theEObject;
+				T1 result = casePredefinedType(predefinedType);
 				if (result == null)
 					result = defaultCase(theEObject);
 				return result;
 			}
-			case UtilitiesPackage.PREDEFINED_TYPE : {
-				PredefinedType<?> predefinedType = (PredefinedType<?>) theEObject;
-				T1 result = casePredefinedType(predefinedType);
+			case UtilitiesPackage.VISITOR_EXTENSION : {
+				VisitorExtension<?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitorExtension = (VisitorExtension<?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) theEObject;
+				T1 result = caseVisitorExtension(visitorExtension);
 				if (result == null)
 					result = defaultCase(theEObject);
 				return result;
@@ -310,6 +309,7 @@ public class UtilitiesSwitch<T1> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Visitor Extension</em>'.
