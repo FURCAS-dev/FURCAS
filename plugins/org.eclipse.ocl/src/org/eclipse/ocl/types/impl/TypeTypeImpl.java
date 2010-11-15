@@ -110,8 +110,8 @@ public class TypeTypeImpl<C, O>
 			Environment<?, ?, O, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = Environment.Registry.INSTANCE
 				.getEnvironmentFor(this);
 
-			operations = new BasicEList<O>(
-				OCLStandardLibraryUtil.createTypeTypeOperations(env));
+			operations = new BasicEList<O>(OCLStandardLibraryUtil
+					.createTypeTypeOperations(env));
 		}
 
 		return operations;

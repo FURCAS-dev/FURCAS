@@ -299,14 +299,14 @@ public class ExpressionsAdapterFactory
 		}
 
 		@Override
-		public <C, P> Adapter caseOppositePropertyCallExp(
-				OppositePropertyCallExp<C, P> object) {
-			return createOppositePropertyCallExpAdapter();
+		public <C, PM> Adapter caseVariableExp(VariableExp<C, PM> object) {
+			return createVariableExpAdapter();
 		}
 
 		@Override
-		public <C, PM> Adapter caseVariableExp(VariableExp<C, PM> object) {
-			return createVariableExpAdapter();
+		public <C, P> Adapter caseOppositePropertyCallExp(
+				OppositePropertyCallExp<C, P> object) {
+			return createOppositePropertyCallExpAdapter();
 		}
 
 		@Override

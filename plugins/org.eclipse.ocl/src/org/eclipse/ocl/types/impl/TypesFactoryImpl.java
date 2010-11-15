@@ -349,8 +349,8 @@ public class TypesFactoryImpl
 			EList<P> properties = result.oclProperties();
 
 			for (TypedElement<C> part : parts) {
-				properties.add(uml.createProperty(part.getName(),
-					part.getType()));
+				properties.add(uml.createProperty(part.getName(), part
+					.getType()));
 			}
 		}
 
