@@ -84,11 +84,6 @@ public class DefaultOppositeEndFinder
 	private Map<EClass, Map<String, Set<EReference>>> oppositeCache;
 
 	/**
-	 * Caches the subclasses of all classes held by the Ecore package registry
-	 */
-	private Map<EClass, Set<EClass>> subclasses;
-
-	/**
 	 * remembers which packages from the {@link #registry} have already been
 	 * cached in {@link #oppositeCache}.
 	 */
@@ -110,7 +105,6 @@ public class DefaultOppositeEndFinder
 	public DefaultOppositeEndFinder(EPackage.Registry registry) {
 		this.registry = registry;
 		cachedPackages = new HashSet<EPackage>();
-		subclasses = new HashMap<EClass, Set<EClass>>();
 		oppositeCache = new HashMap<EClass, Map<String, Set<EReference>>>();
 	}
 
@@ -196,7 +190,6 @@ public class DefaultOppositeEndFinder
 	private void cachePackage(EPackage ePackage) {
 		for (EClassifier c : ePackage.getEClassifiers()) {
 			if (c instanceof EClass) {
-				cacheSubclassRelations((EClass) c);
 				EClass eClass = (EClass) c;
 				for (EReference ref : eClass.getEReferences()) {
 					EAnnotation ann = ref
@@ -210,24 +203,6 @@ public class DefaultOppositeEndFinder
 					}
 				}
 			}
-		}
-	}
-
-	private void cacheSubclassRelations(EClass c) {
-		for (EClass sup : c.getESuperTypes()) {
-			cacheSubclassForSuperclass(c, sup);
-		}
-	}
-
-	private void cacheSubclassForSuperclass(EClass sub, EClass sup) {
-		Set<EClass> subclassesOfSup = subclasses.get(sup);
-		if (subclassesOfSup == null) {
-			subclassesOfSup = new HashSet<EClass>();
-			subclasses.put(sup, subclassesOfSup);
-		}
-		subclassesOfSup.add(sub);
-		for (EClass supsup : sup.getESuperTypes()) {
-			cacheSubclassForSuperclass(sub, supsup);
 		}
 	}
 
@@ -314,17 +289,6 @@ public class DefaultOppositeEndFinder
 			.getCrossReferenceAdapter(target);
 		if (result == null && target.eContainer() != null) {
 			result = getCrossReferenceAdapter(target.eContainer());
-		}
-		return result;
-	}
-
-	public Collection<EClass> getAllSubclasses(EClass c) {
-		updateOppositeCache();
-		Collection<EClass> result = subclasses.get(c);
-		if (result == null) {
-			result = Collections.emptySet();
-		} else {
-			result = Collections.unmodifiableCollection(result);
 		}
 		return result;
 	}
