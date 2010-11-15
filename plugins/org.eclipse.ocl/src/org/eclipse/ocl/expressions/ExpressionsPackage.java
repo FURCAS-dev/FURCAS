@@ -2515,7 +2515,7 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getVariableExp()
 	 * @generated
 	 */
-	int VARIABLE_EXP = 35;
+	int VARIABLE_EXP = 34;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.CollectionKind <em>Collection Kind</em>}' enum.
@@ -2538,7 +2538,51 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getOppositePropertyCallExp()
 	 * @generated
 	 */
-	int OPPOSITE_PROPERTY_CALL_EXP = 34;
+	int OPPOSITE_PROPERTY_CALL_EXP = 35;
+
+	/**
+	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_EXP__START_POSITION = OCL_EXPRESSION__START_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>End Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_EXP__END_POSITION = OCL_EXPRESSION__END_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>Referred Variable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_EXP__REFERRED_VARIABLE = OCL_EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Variable Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -2639,50 +2683,6 @@ public interface ExpressionsPackage
 	 * @ordered
 	 */
 	int OPPOSITE_PROPERTY_CALL_EXP_FEATURE_COUNT = NAVIGATION_CALL_EXP_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_EXP__START_POSITION = OCL_EXPRESSION__START_POSITION;
-
-	/**
-	 * The feature id for the '<em><b>End Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_EXP__END_POSITION = OCL_EXPRESSION__END_POSITION;
-
-	/**
-	 * The feature id for the '<em><b>Referred Variable</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_EXP__REFERRED_VARIABLE = OCL_EXPRESSION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Variable Exp</em>' class.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.expressions.AssociationClassCallExp <em>Association Class Call Exp</em>}'.

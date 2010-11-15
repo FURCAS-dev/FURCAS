@@ -81,8 +81,7 @@ public class EcoreEnvironment
         EClass, EObject> {
 	
 	/**
-	 * The namespace URI of the Ecore representation of the OCL Standard
-	 * Library.
+	 * The namespace URI of the Ecore representation of the OCL Standard Library.
 	 * 
 	 * @since 1.3
 	 */
@@ -706,7 +705,7 @@ public class EcoreEnvironment
 		}
 		
 		return (constraint != null)
-			&& UMLReflection.POSTCONDITION.equals(constraint.getStereotype());
+			    && UMLReflection.POSTCONDITION.equals(constraint.getStereotype());
 	}
 
 	/**

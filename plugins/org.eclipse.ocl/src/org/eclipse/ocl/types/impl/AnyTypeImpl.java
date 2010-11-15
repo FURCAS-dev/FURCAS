@@ -79,8 +79,8 @@ public class AnyTypeImpl<O>
 			Environment<?, ?, O, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = Environment.Registry.INSTANCE
 				.getEnvironmentFor(this);
 
-			operations = new BasicEList<O>(
-				OCLStandardLibraryUtil.createAnyTypeOperations(env));
+			operations = new BasicEList<O>(OCLStandardLibraryUtil
+					.createAnyTypeOperations(env));
 		}
 
 		return operations;

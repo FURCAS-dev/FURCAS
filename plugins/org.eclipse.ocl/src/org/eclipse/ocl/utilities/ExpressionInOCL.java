@@ -140,7 +140,7 @@ public interface ExpressionInOCL<C, PM>
 
 	/**
 	 * Returns the value of the '<em><b>Generated Type</b></em>' containment reference list.
-	 * The list contents are of type {@link C}.
+	 * The list contents are of type C.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Generated Type</em>' containment reference list isn't clear,
