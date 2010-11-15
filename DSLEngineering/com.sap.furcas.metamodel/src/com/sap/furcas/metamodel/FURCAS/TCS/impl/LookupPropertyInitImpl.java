@@ -6,10 +6,10 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
+import org.eclipse.emf.ecore.EClass;
+
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
-
-import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class LookupPropertyInitImpl extends PropertyInitImpl implements LookupPropertyInit {
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         protected LookupPropertyInitImpl() {
-		super();
-	}
+        super();
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected EClass eStaticClass() {
-		return TCSPackage.Literals.LOOKUP_PROPERTY_INIT;
-	}
+        return TCSPackage.Literals.LOOKUP_PROPERTY_INIT;
+    }
 
 } //LookupPropertyInitImpl
