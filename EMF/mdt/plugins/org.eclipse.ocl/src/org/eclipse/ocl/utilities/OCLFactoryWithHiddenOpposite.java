@@ -20,7 +20,7 @@ import org.eclipse.ocl.expressions.OppositePropertyCallExp;
  * @author Axel Uhl
  * @since 3.1
  */
-public interface OCLFactoryWithHiddenOpposite extends OCLFactory {
+public interface OCLFactoryWithHiddenOpposite {
 	/**
 	 * Returns a new object of class '<em>Opposite Property Call Exp</em>'.
 	 * <!-- begin-user-doc -->

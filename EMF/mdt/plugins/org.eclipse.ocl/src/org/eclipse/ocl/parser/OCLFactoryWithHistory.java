@@ -70,7 +70,7 @@ import org.eclipse.ocl.utilities.TypedElement;
  * 
  * @since 1.2
  */
-class OCLFactoryWithHistory implements OCLFactoryWithHiddenOpposite {
+class OCLFactoryWithHistory implements OCLFactory, OCLFactoryWithHiddenOpposite {
 
     private final OCLFactory delegate;
     private List<Object> history = new java.util.ArrayList<Object>();

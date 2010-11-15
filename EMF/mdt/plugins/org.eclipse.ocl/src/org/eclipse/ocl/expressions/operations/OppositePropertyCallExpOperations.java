@@ -74,7 +74,8 @@ public class OppositePropertyCallExpOperations
 			C type = oppositePropertyCallExp.getType();
 
 			if ((property != null) && (source != null)) {
-				UMLReflection<?, C, ?, P, ?, ?, ?, ?, ?, ?> uml = env.getUMLReflection();
+				UMLReflection<?, C, ?, P, ?, ?, ?, ?, ?, ?> uml = env
+					.getUMLReflection();
 				C refType = uml.getOwningClassifier(property);
 
 				if (!TypeUtil.exactTypeMatch(env, refType, type)) {

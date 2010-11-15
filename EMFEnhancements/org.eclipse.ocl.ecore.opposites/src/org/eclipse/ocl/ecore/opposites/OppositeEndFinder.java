@@ -33,7 +33,7 @@ import org.eclipse.ocl.ecore.EcoreEnvironment;
  * declaring the name for the otherwise non-existing opposite.
  * 
  * @author Axel Uhl
- * @since 3.0
+ * @since 3.1
  * 
  */
 public interface OppositeEndFinder {
