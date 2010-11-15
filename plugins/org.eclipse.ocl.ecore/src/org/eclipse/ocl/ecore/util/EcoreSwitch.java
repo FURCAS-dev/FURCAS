@@ -2359,12 +2359,12 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Opposite Property Call Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
-	 * @since 3.1
 	 */
 	public T caseOppositePropertyCallExp(OppositePropertyCallExp object) {
 		return null;
@@ -3449,12 +3449,12 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Opposite Property Call Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
-	 * @since 3.1
 	 */
 	public <C, P> T caseExpressions_OppositePropertyCallExp(
 			org.eclipse.ocl.expressions.OppositePropertyCallExp<C, P> object) {

@@ -235,12 +235,12 @@ public class UtilitiesSwitch<T1> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Visitor With Hidden Opposite</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
-	 * @since 3.1
 	 */
 	public <T, C, O, P, EL, PM, S, COA, SSA, CT> T1 caseVisitorWithHiddenOpposite(
 			VisitorWithHiddenOpposite<T, C, O, P, EL, PM, S, COA, SSA, CT> object) {

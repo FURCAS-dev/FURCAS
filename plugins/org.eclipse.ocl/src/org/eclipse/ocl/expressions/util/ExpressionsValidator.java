@@ -406,9 +406,9 @@ public class ExpressionsValidator
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Check Property Type' of 'Opposite Property Call Exp'.
 	 * <!-- begin-user-doc -->
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @since 3.1
 	 */
 	public static final int OPPOSITE_PROPERTY_CALL_EXP__PROPERTY_TYPE = 40;
 
@@ -2052,9 +2052,9 @@ public class ExpressionsValidator
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @since 3.1
 	 */
 	public boolean validateOppositePropertyCallExp(
 			OppositePropertyCallExp<?, ?> oppositePropertyCallExp,
@@ -2094,9 +2094,9 @@ public class ExpressionsValidator
 	/**
 	 * Validates the checkPropertyType constraint of '<em>Opposite Property Call Exp</em>'.
 	 * <!-- begin-user-doc -->
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @since 3.1
 	 */
 	public boolean validateOppositePropertyCallExp_checkPropertyType(
 			OppositePropertyCallExp<?, ?> oppositePropertyCallExp,

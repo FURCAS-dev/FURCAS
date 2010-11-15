@@ -261,9 +261,9 @@ public class UtilitiesPackageImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @since 3.1
 	 */
 	public EClass getVisitorWithHiddenOpposite() {
 		return visitorWithHiddenOppositeEClass;

@@ -18,6 +18,7 @@ import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 /**
  * <!-- begin-user-doc -->
  * A static utility class that provides operations related to '<em><b>Opposite Property Call Exp</b></em>' model objects.
+ * @since 3.1
  * <!-- end-user-doc -->
  *
  * <p>
@@ -28,7 +29,6 @@ import org.eclipse.ocl.expressions.OppositePropertyCallExp;
  * </p>
  *
  * @generated
- * @since 3.1
  */
 public class OppositePropertyCallExpOperations
 		extends OCLExpressionOperations {

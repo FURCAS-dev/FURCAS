@@ -424,11 +424,11 @@ public interface UtilitiesPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.utilities.VisitorWithHiddenOpposite <em>Visitor With Hidden Opposite</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.utilities.VisitorWithHiddenOpposite
 	 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getVisitorWithHiddenOpposite()
 	 * @generated
-	 * @since 3.1
 	 */
 	int VISITOR_WITH_HIDDEN_OPPOSITE = 8;
 
@@ -446,10 +446,10 @@ public interface UtilitiesPackage
 	/**
 	 * The number of structural features of the '<em>Visitor With Hidden Opposite</em>' class.
 	 * <!-- begin-user-doc -->
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @since 3.1
 	 */
 	int VISITOR_WITH_HIDDEN_OPPOSITE_FEATURE_COUNT = VISITOR_FEATURE_COUNT + 0;
 
@@ -530,11 +530,11 @@ public interface UtilitiesPackage
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.utilities.VisitorWithHiddenOpposite <em>Visitor With Hidden Opposite</em>}'.
 	 * <!-- begin-user-doc -->
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Visitor With Hidden Opposite</em>'.
 	 * @see org.eclipse.ocl.utilities.VisitorWithHiddenOpposite
 	 * @generated
-	 * @since 3.1
 	 */
 	EClass getVisitorWithHiddenOpposite();
 
@@ -759,11 +759,11 @@ public interface UtilitiesPackage
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.utilities.VisitorWithHiddenOpposite <em>Visitor With Hidden Opposite</em>}' class.
 		 * <!-- begin-user-doc -->
+		 * @since 3.1
 		 * <!-- end-user-doc -->
 		 * @see org.eclipse.ocl.utilities.VisitorWithHiddenOpposite
 		 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getVisitorWithHiddenOpposite()
 		 * @generated
-		 * @since 3.1
 		 */
 		EClass VISITOR_WITH_HIDDEN_OPPOSITE = eINSTANCE.getVisitorWithHiddenOpposite();
 

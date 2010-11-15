@@ -1114,9 +1114,9 @@ public class EcoreItemProviderAdapterFactory extends EcoreAdapterFactory
 	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.ecore.OppositePropertyCallExp} instances.
 	 * <!-- begin-user-doc -->
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @since 3.1
 	 */
 	protected OppositePropertyCallExpItemProvider oppositePropertyCallExpItemProvider;
 

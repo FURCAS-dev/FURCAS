@@ -1553,11 +1553,11 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.ecore.OppositePropertyCallExp
 	 * @generated
-	 * @since 3.1
 	 */
 	public Adapter createOppositePropertyCallExpAdapter() {
 		return null;
@@ -2484,11 +2484,11 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.OppositePropertyCallExp
 	 * @generated
-	 * @since 3.1
 	 */
 	public Adapter createExpressions_OppositePropertyCallExpAdapter() {
 		return null;

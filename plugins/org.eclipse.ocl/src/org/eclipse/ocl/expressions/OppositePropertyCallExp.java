@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Opposite Property Call Exp</b></em>'.
+ * @since 3.1
  * <!-- end-user-doc -->
  *
  * <p>
@@ -29,7 +30,6 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * @see org.eclipse.ocl.expressions.ExpressionsPackage#getOppositePropertyCallExp()
  * @model
  * @generated
- * @since 3.1
  */
 public interface OppositePropertyCallExp<C, P>
 		extends NavigationCallExp<C, P> {
