@@ -1958,19 +1958,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		if (isUndefined(context)) {
             return getInvalid();
         }
-		List<Object> qualifiers;
-		if (pc.getQualifier().isEmpty()) {
-			qualifiers = Collections.emptyList();
-		} else {
-			// handle qualified association navigation
-			qualifiers = new java.util.ArrayList<Object>();
-			
-			for (OCLExpression<C> q : pc.getQualifier()) {
-				qualifiers.add(q.accept(getVisitor()));
-			}
-		}
 		Object result = ((EvaluationEnvironmentWithHiddenOpposites<P>) getEvaluationEnvironment())
-			.navigateOppositeProperty(property, qualifiers, context);
+			.navigateOppositeProperty(property, context);
 		if ((pc.getType() instanceof CollectionType<?, ?>)
 			&& !(result instanceof Collection<?>)) {
 			// this was an XSD "unspecified multiplicity".  Now that we know what
