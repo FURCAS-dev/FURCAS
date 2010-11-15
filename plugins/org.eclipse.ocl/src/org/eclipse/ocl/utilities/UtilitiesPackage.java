@@ -204,7 +204,7 @@ public interface UtilitiesPackage
 	 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getPredefinedType()
 	 * @generated
 	 */
-	int PREDEFINED_TYPE = 7;
+	int PREDEFINED_TYPE = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.utilities.TypedASTNode <em>Typed AST Node</em>}' class.
@@ -422,15 +422,23 @@ public interface UtilitiesPackage
 	int EXPRESSION_IN_OCL_FEATURE_COUNT = VISITABLE_FEATURE_COUNT + 5;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.utilities.VisitorWithHiddenOpposite <em>Visitor With Hidden Opposite</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.utilities.VisitorExtension <em>Visitor Extension</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.utilities.VisitorWithHiddenOpposite
-	 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getVisitorWithHiddenOpposite()
+	 * @see org.eclipse.ocl.utilities.VisitorExtension
+	 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getVisitorExtension()
 	 * @generated
-	 * @since 3.1
 	 */
-	int VISITOR_WITH_HIDDEN_OPPOSITE = 8;
+	int VISITOR_EXTENSION = 7;
+
+	/**
+	 * The number of structural features of the '<em>Visitor Extension</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VISITOR_EXTENSION_FEATURE_COUNT = 0;
 
 	/**
 	 * The number of structural features of the '<em>Predefined Type</em>' class.
@@ -442,16 +450,6 @@ public interface UtilitiesPackage
 	 * @ordered
 	 */
 	int PREDEFINED_TYPE_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of structural features of the '<em>Visitor With Hidden Opposite</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @since 3.1
-	 */
-	int VISITOR_WITH_HIDDEN_OPPOSITE_FEATURE_COUNT = VISITOR_FEATURE_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.utilities.ASTNode <em>AST Node</em>}'.
@@ -526,17 +524,6 @@ public interface UtilitiesPackage
 	 * @generated
 	 */
 	EClass getPredefinedType();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.utilities.VisitorWithHiddenOpposite <em>Visitor With Hidden Opposite</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Visitor With Hidden Opposite</em>'.
-	 * @see org.eclipse.ocl.utilities.VisitorWithHiddenOpposite
-	 * @generated
-	 * @since 3.1
-	 */
-	EClass getVisitorWithHiddenOpposite();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.utilities.TypedASTNode <em>Typed AST Node</em>}'.
@@ -667,6 +654,16 @@ public interface UtilitiesPackage
 	EReference getExpressionInOCL_GeneratedType();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.utilities.VisitorExtension <em>Visitor Extension</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Visitor Extension</em>'.
+	 * @see org.eclipse.ocl.utilities.VisitorExtension
+	 * @generated
+	 */
+	EClass getVisitorExtension();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -755,17 +752,6 @@ public interface UtilitiesPackage
 		 * @generated
 		 */
 		EClass PREDEFINED_TYPE = eINSTANCE.getPredefinedType();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.utilities.VisitorWithHiddenOpposite <em>Visitor With Hidden Opposite</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.utilities.VisitorWithHiddenOpposite
-		 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getVisitorWithHiddenOpposite()
-		 * @generated
-		 * @since 3.1
-		 */
-		EClass VISITOR_WITH_HIDDEN_OPPOSITE = eINSTANCE.getVisitorWithHiddenOpposite();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.utilities.TypedASTNode <em>Typed AST Node</em>}' class.
@@ -880,6 +866,16 @@ public interface UtilitiesPackage
 		 */
 		EReference EXPRESSION_IN_OCL__GENERATED_TYPE = eINSTANCE
 			.getExpressionInOCL_GeneratedType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.utilities.VisitorExtension <em>Visitor Extension</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.utilities.VisitorExtension
+		 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getVisitorExtension()
+		 * @generated
+		 */
+		EClass VISITOR_EXTENSION = eINSTANCE.getVisitorExtension();
 
 	}
 

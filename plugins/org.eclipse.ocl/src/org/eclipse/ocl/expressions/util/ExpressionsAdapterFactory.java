@@ -299,14 +299,14 @@ public class ExpressionsAdapterFactory
 		}
 
 		@Override
-		public <C, PM> Adapter caseVariableExp(VariableExp<C, PM> object) {
-			return createVariableExpAdapter();
-		}
-
-		@Override
 		public <C, P> Adapter caseOppositePropertyCallExp(
 				OppositePropertyCallExp<C, P> object) {
 			return createOppositePropertyCallExpAdapter();
+		}
+
+		@Override
+		public <C, PM> Adapter caseVariableExp(VariableExp<C, PM> object) {
+			return createVariableExpAdapter();
 		}
 
 		@Override
@@ -848,11 +848,11 @@ public class ExpressionsAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.OppositePropertyCallExp
 	 * @generated
-	 * @since 3.1
 	 */
 	public Adapter createOppositePropertyCallExpAdapter() {
 		return null;

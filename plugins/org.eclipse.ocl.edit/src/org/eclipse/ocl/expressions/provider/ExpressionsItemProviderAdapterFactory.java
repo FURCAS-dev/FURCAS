@@ -698,9 +698,9 @@ public class ExpressionsItemProviderAdapterFactory extends
 	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.expressions.OppositePropertyCallExp} instances.
 	 * <!-- begin-user-doc -->
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @since 3.1
 	 */
 	protected OppositePropertyCallExpItemProvider oppositePropertyCallExpItemProvider;
 

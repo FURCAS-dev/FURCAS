@@ -12,9 +12,9 @@ package org.eclipse.ocl.ecore.opposites;
 
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.WeakHashMap;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -35,7 +35,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *
  */
 public class AllInstancesContentAdapter extends EContentAdapter {
-    private Map<EClass, Set<EObject>> allInstances = new HashMap<EClass, Set<EObject>>();
+    private Map<EClass, WeakHashMap<EObject, Object>> allInstances = new HashMap<EClass, WeakHashMap<EObject, Object>>();
     
     /**
      * Looks up an adapter of type {@link AllInstancesContentAdapter} in the adapter list of
@@ -99,12 +99,12 @@ public class AllInstancesContentAdapter extends EContentAdapter {
     }
 
     private void put(EClass c, EObject target) {
-        Set<EObject> set = allInstances.get(c);
+        WeakHashMap<EObject, Object> set = allInstances.get(c);
         if (set == null) {
-            set = new HashSet<EObject>();
+            set = new WeakHashMap<EObject, Object>();
             allInstances.put(c, set);
         }
-        set.add(target);
+        set.put(target, null);
     }
 
     @Override
@@ -117,9 +117,9 @@ public class AllInstancesContentAdapter extends EContentAdapter {
     }
 
     private void remove(EClass c, EObject target) {
-        Set<EObject> set = allInstances.get(c);
+        WeakHashMap<EObject, Object> set = allInstances.get(c);
         if (set != null) {
-            if (set.remove(target)) {
+            if (set.remove(target) != null) {
                 if (set.isEmpty()) {
                     allInstances.remove(c);
                 }
@@ -128,9 +128,12 @@ public class AllInstancesContentAdapter extends EContentAdapter {
     }
     
     public Set<EObject> allInstances(EClass c) {
-        Set<EObject> result = allInstances.get(c);
-        if (result == null) {
+        WeakHashMap<EObject, Object> map = allInstances.get(c);
+        Set<EObject> result;
+        if (map == null) {
             result = Collections.emptySet();
+        } else {
+        	result = map.keySet();
         }
         return result;
     }

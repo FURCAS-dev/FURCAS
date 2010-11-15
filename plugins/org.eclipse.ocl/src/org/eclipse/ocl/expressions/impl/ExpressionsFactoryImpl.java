@@ -151,10 +151,10 @@ public class ExpressionsFactoryImpl
 				return createTypeExp();
 			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP :
 				return createUnspecifiedValueExp();
-			case ExpressionsPackage.VARIABLE_EXP :
-				return createVariableExp();
 			case ExpressionsPackage.OPPOSITE_PROPERTY_CALL_EXP :
 				return createOppositePropertyCallExp();
+			case ExpressionsPackage.VARIABLE_EXP :
+				return createVariableExp();
 			default :
 				throw new IllegalArgumentException(
 					"The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -455,9 +455,9 @@ public class ExpressionsFactoryImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @since 3.1
 	 */
 	public <C, P> OppositePropertyCallExp<C, P> createOppositePropertyCallExp() {
 		OppositePropertyCallExpImpl<C, P> oppositePropertyCallExp = new OppositePropertyCallExpImpl<C, P>();

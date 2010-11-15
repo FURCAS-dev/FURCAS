@@ -155,8 +155,8 @@ public class TupleLiteralPartOperations {
 								.toString();
 						}
 						message = OCLMessages.bind(
-							OCLMessages.TuplePartType_ERROR_, tupleLiteralPart
-								.getName(), tupleLiteral);
+							OCLMessages.TuplePartType_ERROR_,
+							tupleLiteralPart.getName(), tupleLiteral);
 					}
 				}
 			}

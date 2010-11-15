@@ -396,21 +396,20 @@ public class ExpressionsValidator
 	public static final int TUPLE_LITERAL_PART__VALUE_TYPE = 38;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Check Opposite Property Type' of 'Opposite Property Call Exp'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int OPPOSITE_PROPERTY_CALL_EXP__OPPOSITE_PROPERTY_TYPE = 39;
+
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Check Var Type' of 'Variable Exp'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int VARIABLE_EXP__VAR_TYPE = 39;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Check Property Type' of 'Opposite Property Call Exp'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @since 3.1
-	 */
-	public static final int OPPOSITE_PROPERTY_CALL_EXP__PROPERTY_TYPE = 40;
+	public static final int VARIABLE_EXP__VAR_TYPE = 40;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -558,12 +557,12 @@ public class ExpressionsValidator
 			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP :
 				return validateUnspecifiedValueExp(
 					(UnspecifiedValueExp<?>) value, diagnostics, context);
-			case ExpressionsPackage.VARIABLE_EXP :
-				return validateVariableExp((VariableExp<?, ?>) value,
-					diagnostics, context);
 			case ExpressionsPackage.OPPOSITE_PROPERTY_CALL_EXP :
 				return validateOppositePropertyCallExp(
 					(OppositePropertyCallExp<?, ?>) value, diagnostics, context);
+			case ExpressionsPackage.VARIABLE_EXP :
+				return validateVariableExp((VariableExp<?, ?>) value,
+					diagnostics, context);
 			case ExpressionsPackage.COLLECTION_KIND :
 				return validateCollectionKind((CollectionKind) value,
 					diagnostics, context);
@@ -2052,9 +2051,9 @@ public class ExpressionsValidator
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @since 3.1
 	 */
 	public boolean validateOppositePropertyCallExp(
 			OppositePropertyCallExp<?, ?> oppositePropertyCallExp,
@@ -2086,22 +2085,22 @@ public class ExpressionsValidator
 			result &= validate_EveryMapEntryUnique(oppositePropertyCallExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateOppositePropertyCallExp_checkPropertyType(
+			result &= validateOppositePropertyCallExp_checkOppositePropertyType(
 				oppositePropertyCallExp, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the checkPropertyType constraint of '<em>Opposite Property Call Exp</em>'.
+	 * Validates the checkOppositePropertyType constraint of '<em>Opposite Property Call Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @since 3.1
 	 */
-	public boolean validateOppositePropertyCallExp_checkPropertyType(
+	public boolean validateOppositePropertyCallExp_checkOppositePropertyType(
 			OppositePropertyCallExp<?, ?> oppositePropertyCallExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return oppositePropertyCallExp.checkPropertyType(diagnostics, context);
+		return oppositePropertyCallExp.checkOppositePropertyType(diagnostics,
+			context);
 	}
 
 	/**

@@ -2645,11 +2645,13 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			if (source != null) {
 				result.setSource(source);
 			} else {
-				Variable<C, PM> implicitSource = env
-					.lookupImplicitSourceForProperty(simpleName);
-				VariableExp<C, PM> src = createVariableExp(env, simpleNameCS,
-					implicitSource);
-				result.setSource(src);
+				if (env instanceof EnvironmentWithHiddenOpposites<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
+					Variable<C, PM> implicitSource = ((EnvironmentWithHiddenOpposites<?, C, ?, ?, ?, PM, ?, ?, ?, ?, ?, ?>) env)
+						.lookupImplicitSourceForOppositeProperty(simpleName);
+					VariableExp<C, PM> src = createVariableExp(env,
+						simpleNameCS, implicitSource);
+					result.setSource(src);
+				}
 			}
 
 			initPropertyPositions(result, simpleNameCS);
@@ -4924,14 +4926,14 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			C owner, String name) {
 		try {
-			EnvironmentWithHiddenOpposites.Lookup<PK, C, O, P> lookup = OCLUtil.getAdapter(env,
-				EnvironmentWithHiddenOpposites.Lookup.class);
-			P property = lookup.tryLookupOppositeProperty(owner, name);
-
+			P property = null;
+			if (env instanceof EnvironmentWithHiddenOpposites<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
+				property = ((EnvironmentWithHiddenOpposites<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>) env)
+					.lookupOppositeProperty(owner, name);
+			}
 			if (cstNode != null) {
 				cstNode.setAst(property);
 			}
-
 			return property;
 		} catch (LookupException e) {
 			ERROR(cstNode, null, e.getMessage());

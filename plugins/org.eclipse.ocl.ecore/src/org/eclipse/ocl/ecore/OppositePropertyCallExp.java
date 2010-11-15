@@ -16,13 +16,13 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Opposite Property Call Exp</b></em>'.
+ * @since 3.1
  * <!-- end-user-doc -->
  *
  *
  * @see org.eclipse.ocl.ecore.EcorePackage#getOppositePropertyCallExp()
  * @model
  * @generated
- * @since 3.1
  */
 public interface OppositePropertyCallExp
 		extends

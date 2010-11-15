@@ -655,9 +655,9 @@ public class EcoreFactoryImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @since 3.1
 	 */
 	public OppositePropertyCallExp createOppositePropertyCallExp() {
 		OppositePropertyCallExpImpl oppositePropertyCallExp = new OppositePropertyCallExpImpl();

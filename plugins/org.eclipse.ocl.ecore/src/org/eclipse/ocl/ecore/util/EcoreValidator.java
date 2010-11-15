@@ -3390,9 +3390,9 @@ public class EcoreValidator
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @since 3.1
 	 */
 	public boolean validateOppositePropertyCallExp(
 			OppositePropertyCallExp oppositePropertyCallExp,
@@ -3440,7 +3440,7 @@ public class EcoreValidator
 				oppositePropertyCallExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= expressionsValidator
-				.validateOppositePropertyCallExp_checkPropertyType(
+				.validateOppositePropertyCallExp_checkOppositePropertyType(
 					oppositePropertyCallExp, diagnostics, context);
 		return result;
 	}

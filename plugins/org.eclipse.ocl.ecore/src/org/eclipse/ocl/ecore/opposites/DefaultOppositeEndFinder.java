@@ -17,7 +17,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.logging.Logger;
 
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -33,6 +32,8 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
+import org.eclipse.ocl.ecore.internal.OCLEcorePlugin;
+import org.eclipse.ocl.ecore.internal.OCLStatusCodes;
 import org.eclipse.ocl.util.CollectionUtil;
 
 /**
@@ -63,8 +64,6 @@ import org.eclipse.ocl.util.CollectionUtil;
 public class DefaultOppositeEndFinder
 		implements OppositeEndFinder {
 
-	Logger logger = Logger.getLogger(DefaultOppositeEndFinder.class.getName());
-
 	private final EPackage.Registry registry;
 
 	/**
@@ -82,11 +81,6 @@ public class DefaultOppositeEndFinder
 	 * finder to identify ambiguities.
 	 */
 	private Map<EClass, Map<String, Set<EReference>>> oppositeCache;
-
-	/**
-	 * Caches the subclasses of all classes held by the Ecore package registry
-	 */
-	private Map<EClass, Set<EClass>> subclasses;
 
 	/**
 	 * remembers which packages from the {@link #registry} have already been
@@ -110,7 +104,6 @@ public class DefaultOppositeEndFinder
 	public DefaultOppositeEndFinder(EPackage.Registry registry) {
 		this.registry = registry;
 		cachedPackages = new HashSet<EPackage>();
-		subclasses = new HashMap<EClass, Set<EClass>>();
 		oppositeCache = new HashMap<EClass, Map<String, Set<EReference>>>();
 	}
 
@@ -171,9 +164,7 @@ public class DefaultOppositeEndFinder
 	}
 
 	private void updateOppositeCache() {
-		Set<String> registryKeys = new HashSet<String>(registry.keySet()); // avoid
-																			// concurrent
-																			// modifications
+		Set<String> registryKeys = new HashSet<String>(registry.keySet()); // avoid concurrent modifications
 		for (String packageUri : registryKeys) {
 			try {
 				EPackage ePackage = registry.getEPackage(packageUri);
@@ -182,13 +173,13 @@ public class DefaultOppositeEndFinder
 					cachePackage(ePackage);
 				}
 			} catch (Exception e) {
-				// problem resolving the packageUri into an EPackage; could be
-				// that the package class
-				// doesn't exist in generated form; ignore those for now
-				// (although it should somehow
-				// be possible to instantiate this package dynamically TODO
-				logger
-					.warning("couldn't resolve Ecore package with URI " + packageUri + ": " + e.getMessage()); //$NON-NLS-1$ //$NON-NLS-2$
+				// TODO problem resolving the packageUri into an EPackage; could be
+				// that the package class doesn't exist in generated form;
+				// ignore those for now (although it should somehow be possible
+				// to instantiate this package dynamically)
+				OCLEcorePlugin.warning(OCLStatusCodes.IGNORED_EXCEPTION_WARNING,
+					"couldn't resolve Ecore package with URI " + packageUri + ": " + e.getMessage(), //$NON-NLS-1$ //$NON-NLS-2$
+					e);
 			}
 		}
 	}
@@ -196,7 +187,6 @@ public class DefaultOppositeEndFinder
 	private void cachePackage(EPackage ePackage) {
 		for (EClassifier c : ePackage.getEClassifiers()) {
 			if (c instanceof EClass) {
-				cacheSubclassRelations((EClass) c);
 				EClass eClass = (EClass) c;
 				for (EReference ref : eClass.getEReferences()) {
 					EAnnotation ann = ref
@@ -210,24 +200,6 @@ public class DefaultOppositeEndFinder
 					}
 				}
 			}
-		}
-	}
-
-	private void cacheSubclassRelations(EClass c) {
-		for (EClass sup : c.getESuperTypes()) {
-			cacheSubclassForSuperclass(c, sup);
-		}
-	}
-
-	private void cacheSubclassForSuperclass(EClass sub, EClass sup) {
-		Set<EClass> subclassesOfSup = subclasses.get(sup);
-		if (subclassesOfSup == null) {
-			subclassesOfSup = new HashSet<EClass>();
-			subclasses.put(sup, subclassesOfSup);
-		}
-		subclassesOfSup.add(sub);
-		for (EClass supsup : sup.getESuperTypes()) {
-			cacheSubclassForSuperclass(sub, supsup);
 		}
 	}
 
@@ -297,8 +269,8 @@ public class DefaultOppositeEndFinder
 					}
 				}
 			} else {
-				logger
-					.warning("Trying to reverse-navigate reference of " + target //$NON-NLS-1$
+				OCLEcorePlugin.warning(OCLStatusCodes.IGNORED_EXCEPTION_WARNING,
+					"Trying to reverse-navigate reference of " + target //$NON-NLS-1$
 						+ " without ECrossReferenceAdapter attached"); //$NON-NLS-1$
 			}
 		}
@@ -314,17 +286,6 @@ public class DefaultOppositeEndFinder
 			.getCrossReferenceAdapter(target);
 		if (result == null && target.eContainer() != null) {
 			result = getCrossReferenceAdapter(target.eContainer());
-		}
-		return result;
-	}
-
-	public Collection<EClass> getAllSubclasses(EClass c) {
-		updateOppositeCache();
-		Collection<EClass> result = subclasses.get(c);
-		if (result == null) {
-			result = Collections.emptySet();
-		} else {
-			result = Collections.unmodifiableCollection(result);
 		}
 		return result;
 	}

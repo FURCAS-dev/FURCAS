@@ -25,6 +25,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.utilities.*;
 import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.CallingASTNode;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
@@ -34,7 +35,7 @@ import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 import org.eclipse.ocl.utilities.Visitable;
 import org.eclipse.ocl.utilities.Visitor;
-import org.eclipse.ocl.utilities.VisitorWithHiddenOpposite;
+import org.eclipse.ocl.utilities.VisitorExtension;
 
 /**
  * <!-- begin-user-doc -->
@@ -131,14 +132,14 @@ public class UtilitiesAdapterFactory
 		}
 
 		@Override
-		public <O> Adapter casePredefinedType(PredefinedType<O> object) {
-			return createPredefinedTypeAdapter();
+		public <T, C, O, P, EL, PM, S, COA, SSA, CT> Adapter caseVisitorExtension(
+				VisitorExtension<T, C, O, P, EL, PM, S, COA, SSA, CT> object) {
+			return createVisitorExtensionAdapter();
 		}
 
 		@Override
-		public <T, C, O, P, EL, PM, S, COA, SSA, CT> Adapter caseVisitorWithHiddenOpposite(
-				VisitorWithHiddenOpposite<T, C, O, P, EL, PM, S, COA, SSA, CT> object) {
-			return createVisitorWithHiddenOppositeAdapter();
+		public <O> Adapter casePredefinedType(PredefinedType<O> object) {
+			return createPredefinedTypeAdapter();
 		}
 
 		@Override
@@ -199,21 +200,6 @@ public class UtilitiesAdapterFactory
 	 * @generated
 	 */
 	public Adapter createPredefinedTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.utilities.VisitorWithHiddenOpposite <em>Visitor With Hidden Opposite</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.utilities.VisitorWithHiddenOpposite
-	 * @generated
-	 * @since 3.1
-	 */
-	public Adapter createVisitorWithHiddenOppositeAdapter() {
 		return null;
 	}
 
@@ -284,6 +270,20 @@ public class UtilitiesAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressionInOCLAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.utilities.VisitorExtension <em>Visitor Extension</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.utilities.VisitorExtension
+	 * @generated
+	 */
+	public Adapter createVisitorExtensionAdapter() {
 		return null;
 	}
 

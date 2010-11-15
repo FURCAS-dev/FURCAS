@@ -117,8 +117,8 @@ public class MessageTypeImpl<C, O, P>
 			Environment<?, ?, O, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = Environment.Registry.INSTANCE
 				.getEnvironmentFor(this);
 
-			operations = new BasicEList<O>(OCLStandardLibraryUtil
-				.createMessageTypeOperations(env));
+			operations = new BasicEList<O>(
+				OCLStandardLibraryUtil.createMessageTypeOperations(env));
 		}
 
 		return operations;
@@ -261,18 +261,18 @@ public class MessageTypeImpl<C, O, P>
 
 			EList<?> typedElements;
 			if (getReferredOperation() != null) {
-				typedElements = new BasicEList<Object>(uml
-					.getParameters(getReferredOperation()));
+				typedElements = new BasicEList<Object>(
+					uml.getParameters(getReferredOperation()));
 			} else if (getReferredSignal() != null) {
-				typedElements = new BasicEList<Object>(uml
-					.getAttributes(getReferredSignal()));
+				typedElements = new BasicEList<Object>(
+					uml.getAttributes(getReferredSignal()));
 			} else {
 				typedElements = ECollections.EMPTY_ELIST;
 			}
 
 			for (Object next : typedElements) {
-				properties.add(uml.createProperty(uml.getName(next), TypeUtil
-					.resolveType(env, uml.getOCLType(next))));
+				properties.add(uml.createProperty(uml.getName(next),
+					TypeUtil.resolveType(env, uml.getOCLType(next))));
 			}
 		}
 

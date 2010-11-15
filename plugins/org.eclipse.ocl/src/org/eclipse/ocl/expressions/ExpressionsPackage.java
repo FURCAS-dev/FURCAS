@@ -2515,7 +2515,130 @@ public interface ExpressionsPackage
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getVariableExp()
 	 * @generated
 	 */
-	int VARIABLE_EXP = 34;
+	int VARIABLE_EXP = 35;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.expressions.CollectionKind <em>Collection Kind</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.expressions.CollectionKind
+	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getCollectionKind()
+	 * @generated
+	 */
+	int COLLECTION_KIND = 36;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.OppositePropertyCallExpImpl <em>Opposite Property Call Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * @since 3.1
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.expressions.impl.OppositePropertyCallExpImpl
+	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getOppositePropertyCallExp()
+	 * @generated
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP = 34;
+
+	/**
+	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.1
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__START_POSITION = NAVIGATION_CALL_EXP__START_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>End Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.1
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__END_POSITION = NAVIGATION_CALL_EXP__END_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>Property Start Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.1
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__PROPERTY_START_POSITION = NAVIGATION_CALL_EXP__PROPERTY_START_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>Property End Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.1
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__PROPERTY_END_POSITION = NAVIGATION_CALL_EXP__PROPERTY_END_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * @since 3.1
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__SOURCE = NAVIGATION_CALL_EXP__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Marked Pre</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.1
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__MARKED_PRE = NAVIGATION_CALL_EXP__MARKED_PRE;
+
+	/**
+	 * The feature id for the '<em><b>Qualifier</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * @since 3.1
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__QUALIFIER = NAVIGATION_CALL_EXP__QUALIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Navigation Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * @since 3.1
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__NAVIGATION_SOURCE = NAVIGATION_CALL_EXP__NAVIGATION_SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Referred Opposite Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * @since 3.1
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY = NAVIGATION_CALL_EXP_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Opposite Property Call Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * @since 3.1
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP_FEATURE_COUNT = NAVIGATION_CALL_EXP_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -2560,129 +2683,6 @@ public interface ExpressionsPackage
 	 * @ordered
 	 */
 	int VARIABLE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.expressions.CollectionKind <em>Collection Kind</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.expressions.CollectionKind
-	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getCollectionKind()
-	 * @generated
-	 */
-	int COLLECTION_KIND = 35;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.OppositePropertyCallExpImpl <em>Opposite Property Call Exp</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.expressions.impl.OppositePropertyCallExpImpl
-	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getOppositePropertyCallExp()
-	 * @generated
-	 * @since 3.1
-	 */
-	int OPPOSITE_PROPERTY_CALL_EXP = 36;
-
-	/**
-	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @since 3.1
-	 */
-	int OPPOSITE_PROPERTY_CALL_EXP__START_POSITION = NAVIGATION_CALL_EXP__START_POSITION;
-
-	/**
-	 * The feature id for the '<em><b>End Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @since 3.1
-	 */
-	int OPPOSITE_PROPERTY_CALL_EXP__END_POSITION = NAVIGATION_CALL_EXP__END_POSITION;
-
-	/**
-	 * The feature id for the '<em><b>Property Start Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @since 3.1
-	 */
-	int OPPOSITE_PROPERTY_CALL_EXP__PROPERTY_START_POSITION = NAVIGATION_CALL_EXP__PROPERTY_START_POSITION;
-
-	/**
-	 * The feature id for the '<em><b>Property End Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @since 3.1
-	 */
-	int OPPOSITE_PROPERTY_CALL_EXP__PROPERTY_END_POSITION = NAVIGATION_CALL_EXP__PROPERTY_END_POSITION;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @since 3.1
-	 */
-	int OPPOSITE_PROPERTY_CALL_EXP__SOURCE = NAVIGATION_CALL_EXP__SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Marked Pre</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @since 3.1
-	 */
-	int OPPOSITE_PROPERTY_CALL_EXP__MARKED_PRE = NAVIGATION_CALL_EXP__MARKED_PRE;
-
-	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @since 3.1
-	 */
-	int OPPOSITE_PROPERTY_CALL_EXP__QUALIFIER = NAVIGATION_CALL_EXP__QUALIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Navigation Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @since 3.1
-	 */
-	int OPPOSITE_PROPERTY_CALL_EXP__NAVIGATION_SOURCE = NAVIGATION_CALL_EXP__NAVIGATION_SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Referred Opposite Property</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @since 3.1
-	 */
-	int OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY = NAVIGATION_CALL_EXP_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Opposite Property Call Exp</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @since 3.1
-	 */
-	int OPPOSITE_PROPERTY_CALL_EXP_FEATURE_COUNT = NAVIGATION_CALL_EXP_FEATURE_COUNT + 1;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.expressions.AssociationClassCallExp <em>Association Class Call Exp</em>}'.
@@ -3499,23 +3499,23 @@ public interface ExpressionsPackage
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.expressions.OppositePropertyCallExp <em>Opposite Property Call Exp</em>}'.
 	 * <!-- begin-user-doc -->
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Opposite Property Call Exp</em>'.
 	 * @see org.eclipse.ocl.expressions.OppositePropertyCallExp
 	 * @generated
-	 * @since 3.1
 	 */
 	EClass getOppositePropertyCallExp();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.ocl.expressions.OppositePropertyCallExp#getReferredOppositeProperty <em>Referred Opposite Property</em>}'.
 	 * <!-- begin-user-doc -->
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Referred Opposite Property</em>'.
 	 * @see org.eclipse.ocl.expressions.OppositePropertyCallExp#getReferredOppositeProperty()
 	 * @see #getOppositePropertyCallExp()
 	 * @generated
-	 * @since 3.1
 	 */
 	EReference getOppositePropertyCallExp_ReferredOppositeProperty();
 
@@ -4276,20 +4276,21 @@ public interface ExpressionsPackage
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.expressions.impl.OppositePropertyCallExpImpl <em>Opposite Property Call Exp</em>}' class.
 		 * <!-- begin-user-doc -->
+		 * @since 3.1
 		 * <!-- end-user-doc -->
 		 * @see org.eclipse.ocl.expressions.impl.OppositePropertyCallExpImpl
 		 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getOppositePropertyCallExp()
 		 * @generated
-		 * @since 3.1
 		 */
-		EClass OPPOSITE_PROPERTY_CALL_EXP = eINSTANCE.getOppositePropertyCallExp();
+		EClass OPPOSITE_PROPERTY_CALL_EXP = eINSTANCE
+			.getOppositePropertyCallExp();
 
 		/**
 		 * The meta object literal for the '<em><b>Referred Opposite Property</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
+		 * @since 3.1
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @since 3.1
 		 */
 		EReference OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY = eINSTANCE
 			.getOppositePropertyCallExp_ReferredOppositeProperty();
