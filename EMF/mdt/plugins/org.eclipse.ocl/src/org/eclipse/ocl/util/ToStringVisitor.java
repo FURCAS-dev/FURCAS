@@ -252,8 +252,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	 */
     @Override
     protected String handleOppositePropertyCallExp(
-    		OppositePropertyCallExp<C, P> callExp, String sourceResult,
-    		List<String> qualifierResults) {
+    		OppositePropertyCallExp<C, P> callExp, String sourceResult) {
     	P property = callExp.getReferredOppositeProperty();
 
         if (sourceResult == null) {
@@ -264,20 +263,6 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 		
 		StringBuffer result = new StringBuffer(
 			maybeAtPre(callExp, sourceResult + ".oppositeOf(" + getName(property) + ")"));//$NON-NLS-1$ //$NON-NLS-2$
-		
-		if (!qualifierResults.isEmpty()) {
-			result.append('[');
-			
-			for (Iterator<String> iter = qualifierResults.iterator(); iter.hasNext();) {
-				result.append(iter.next());
-				
-				if (iter.hasNext()) {
-					result.append(", "); //$NON-NLS-1$
-				}
-			}
-			
-			result.append(']');
-		}
 		
 		return result.toString();
     }

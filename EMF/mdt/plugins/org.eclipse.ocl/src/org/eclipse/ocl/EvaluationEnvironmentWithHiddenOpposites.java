@@ -10,11 +10,10 @@
  *******************************************************************************/
 package org.eclipse.ocl;
 
-import java.util.List;
 
 
 /**
- * Introduces the {@link #navigateOppositeProperty(P, List, Object)} method to
+ * Introduces the {@link #navigateOppositeProperty(P, Object)} method to
  * {@link AbstractEvaluationEnvironment} which implements this interface.
  * 
  * @author Axel Uhl
@@ -27,8 +26,6 @@ public interface EvaluationEnvironmentWithHiddenOpposites<P> {
      * according to the particular metamodel semantics.
      * 
      * @param property the property to navigate in reverse direction
-     * @param qualifiers the association-end qualifier values, or an empty list
-     *     if none
      * @param source the source element from where to start navigating / querying
      * @return the property value
      * 
@@ -36,7 +33,7 @@ public interface EvaluationEnvironmentWithHiddenOpposites<P> {
      *     element or by this environment
      * @since 3.0
      */
-    Object navigateOppositeProperty(P property, List<?> qualifiers, Object source)
+    Object navigateOppositeProperty(P property, Object source)
     	throws IllegalArgumentException;
 
 }

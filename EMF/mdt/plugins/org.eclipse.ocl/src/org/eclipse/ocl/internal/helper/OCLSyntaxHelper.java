@@ -89,7 +89,8 @@ import org.eclipse.ocl.util.UnicodeSupport;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.utilities.UMLReflection;
-import org.eclipse.ocl.utilities.VisitorWithHiddenOpposite;
+import org.eclipse.ocl.utilities.Visitor;
+import org.eclipse.ocl.utilities.VisitorExtension;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -327,7 +328,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	}
 
 	private class ASTVisitor
-		implements VisitorWithHiddenOpposite<List<Choice>, C, O, P, EL, PM, S, COA, SSA, CT> {
+		implements Visitor<List<Choice>, C, O, P, EL, PM, S, COA, SSA, CT>, VisitorExtension<List<Choice>, C, O, P, EL, PM, S, COA, SSA, CT> {
 
 		private final int completionPosition;
 		private final String text;

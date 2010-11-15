@@ -504,7 +504,7 @@ public class EcoreEvaluationEnvironment
 	 * @since 3.1
 	 */
 	public Object navigateOppositeProperty(EStructuralFeature property,
-			List<?> qualifiers, Object source)
+			Object source)
 			throws IllegalArgumentException {
 		return navigateOppositeProperty((EReference) property, source);
 	}

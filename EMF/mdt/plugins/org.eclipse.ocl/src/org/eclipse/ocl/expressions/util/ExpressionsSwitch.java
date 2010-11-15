@@ -733,21 +733,6 @@ public class ExpressionsSwitch<T> {
 					result = defaultCase(theEObject);
 				return result;
 			}
-			case ExpressionsPackage.VARIABLE_EXP : {
-				VariableExp<?, ?> variableExp = (VariableExp<?, ?>) theEObject;
-				T result = caseVariableExp(variableExp);
-				if (result == null)
-					result = caseOCLExpression(variableExp);
-				if (result == null)
-					result = caseTypedElement(variableExp);
-				if (result == null)
-					result = caseVisitable(variableExp);
-				if (result == null)
-					result = caseASTNode(variableExp);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
 			case ExpressionsPackage.OPPOSITE_PROPERTY_CALL_EXP : {
 				OppositePropertyCallExp<?, ?> oppositePropertyCallExp = (OppositePropertyCallExp<?, ?>) theEObject;
 				T result = caseOppositePropertyCallExp(oppositePropertyCallExp);
@@ -767,6 +752,21 @@ public class ExpressionsSwitch<T> {
 					result = caseVisitable(oppositePropertyCallExp);
 				if (result == null)
 					result = caseASTNode(oppositePropertyCallExp);
+				if (result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+			case ExpressionsPackage.VARIABLE_EXP : {
+				VariableExp<?, ?> variableExp = (VariableExp<?, ?>) theEObject;
+				T result = caseVariableExp(variableExp);
+				if (result == null)
+					result = caseOCLExpression(variableExp);
+				if (result == null)
+					result = caseTypedElement(variableExp);
+				if (result == null)
+					result = caseVisitable(variableExp);
+				if (result == null)
+					result = caseASTNode(variableExp);
 				if (result == null)
 					result = defaultCase(theEObject);
 				return result;
@@ -1308,12 +1308,12 @@ public class ExpressionsSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 3.1
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Opposite Property Call Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
-	 * @since 3.1
 	 */
 	public <C, P> T caseOppositePropertyCallExp(
 			OppositePropertyCallExp<C, P> object) {

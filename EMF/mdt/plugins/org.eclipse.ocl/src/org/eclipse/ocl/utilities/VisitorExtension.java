@@ -15,15 +15,14 @@ import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Visitor With Hidden Opposite</b></em>'.
+ * @since 3.1
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.ocl.utilities.UtilitiesPackage#getVisitorWithHiddenOpposite()
+ * @see org.eclipse.ocl.utilities.UtilitiesPackage#getVisitorExtension()
  * @model interface="true" abstract="true"
- * @since 3.1
  */
-public interface VisitorWithHiddenOpposite<T, C, O, P, EL, PM, S, COA, SSA, CT>
-		extends Visitor<T, C, O, P, EL, PM, S, COA, SSA, CT> {
+public interface VisitorExtension<T, C, O, P, EL, PM, S, COA, SSA, CT> {
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -30,9 +30,9 @@ import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 /**
  * This is the item provider adapter for a {@link org.eclipse.ocl.expressions.OppositePropertyCallExp} object.
  * <!-- begin-user-doc -->
+ * @since 3.1
  * <!-- end-user-doc -->
  * @generated
- * @since 3.1
  */
 public class OppositePropertyCallExpItemProvider extends
 		NavigationCallExpItemProvider implements IEditingDomainItemProvider,

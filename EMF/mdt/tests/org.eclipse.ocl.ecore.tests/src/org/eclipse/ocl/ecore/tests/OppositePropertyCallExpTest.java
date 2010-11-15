@@ -47,6 +47,22 @@ public class OppositePropertyCallExpTest
 	}
 
 	/**
+	 * Test parsing an expression that contains an OppositePropertyCallExp with
+	 * implicit "self"
+	 */
+	public void test_parseSimpleContainerOppositePropertyCallExpWithImplicitSelf() {
+		OCLExpression<EClassifier> expr = parseConstraint(
+			"package ocltest context Stem " +
+			"inv: stemOfApple->notEmpty() " +
+			"endpackage");
+		assertTrue(expr instanceof OperationCallExp);
+		OCLExpression<EClassifier> source = ((OperationCallExp) expr).getSource();
+		assertTrue(source instanceof OppositePropertyCallExp);
+		OppositePropertyCallExp opce = (OppositePropertyCallExp) source;
+		assertEquals(apple_stem, opce.getReferredOppositeProperty());
+	}
+
+	/**
 	 * Test evaluating an expression that contains an OppositePropertyCallExp
 	 */
 	@SuppressWarnings("unchecked")

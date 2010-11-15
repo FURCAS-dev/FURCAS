@@ -25,6 +25,7 @@ import org.eclipse.ocl.expressions.operations.OppositePropertyCallExpOperations;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Opposite Property Call Exp</b></em>'.
+ * @since 3.1
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -34,7 +35,6 @@ import org.eclipse.ocl.expressions.operations.OppositePropertyCallExpOperations;
  * </p>
  *
  * @generated
- * @since 3.1
  */
 public class OppositePropertyCallExpImpl<C, P>
 		extends NavigationCallExpImpl<C, P>
@@ -122,10 +122,10 @@ public class OppositePropertyCallExpImpl<C, P>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean checkPropertyType(DiagnosticChain diagnostics,
+	public boolean checkOppositePropertyType(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return OppositePropertyCallExpOperations.checkPropertyType(this,
-			diagnostics, context);
+		return OppositePropertyCallExpOperations.checkOppositePropertyType(
+			this, diagnostics, context);
 	}
 
 	/**

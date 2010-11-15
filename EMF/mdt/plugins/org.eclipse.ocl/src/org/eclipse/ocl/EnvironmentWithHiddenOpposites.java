@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
+import org.eclipse.ocl.expressions.Variable;
 
 
 /**
@@ -41,6 +42,18 @@ extends Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>{
 	P lookupOppositeProperty(C owner, String name) throws LookupException;
 	
 	/**
+	 * Return the most appropriate matching variable to use as the implicit
+	 * source of a call to the specified property.  Variables are returned based
+	 * on inner-most scope first.
+	 * 
+	 * @param name the property name
+	 * 
+	 * @return the matching variable, or <code>null</code> if no appropriate
+     *     variable can be found whose type defines a property of this name
+	 */
+	public Variable<C, PM> lookupImplicitSourceForOppositeProperty(String name);
+
+	/**
 	 * Determines a property's (hidden) opposite's type, assuming that there is not real opposite
 	 * but that the opposite's type implicitly defaults to the property's owning class.
 	 */
@@ -63,22 +76,4 @@ extends Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>{
 	 */
 	Map<String, P> getHiddenOppositeProperties(C classifier);
 	
-    interface Lookup<PK, C, O, P> extends Environment.Lookup<PK, C, O, P> {
-        /**
-         * Finds a hidden opposite property defined or inherited by the specified classifier.
-         * Such an opposite is expected to be defined as a comment/annotation on the forward-directed
-         * property/reference.
-         * 
-         * @param owner the owner of the "hidden" property that we are looking for, or
-         *     <code>null</code> to find an implicit owner type (in iteration
-         *     expressions). Note, that for such hidden properties the property that
-         *     may be found is owned by the class at the other end. 
-         * @param name the property name
-         * 
-         * @return the forward property, or <code>null</code> if it could not be found. If a property
-         * is found, note that its name is not (at best coincidentally) equal to <code>name</code>.
-         * @throws LookupException if lookup fails due to an error such as an ambiguity
-         */     
-        P tryLookupOppositeProperty(C owner, String name) throws LookupException;
-    }
 }
