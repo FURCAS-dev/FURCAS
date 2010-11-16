@@ -15,6 +15,107 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.ocl.ecore.EcorePackage;
 
 import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
+import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
+import com.sap.furcas.metamodel.FURCAS.TCS.AndExp;
+import com.sap.furcas.metamodel.FURCAS.TCS.AsPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.Associativity;
+import com.sap.furcas.metamodel.FURCAS.TCS.AtomExp;
+import com.sap.furcas.metamodel.FURCAS.TCS.AutoCreateKind;
+import com.sap.furcas.metamodel.FURCAS.TCS.AutoCreatePArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.Block;
+import com.sap.furcas.metamodel.FURCAS.TCS.BlockArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.BooleanPropertyExp;
+import com.sap.furcas.metamodel.FURCAS.TCS.ClassPattern;
+import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.ContextTags;
+import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.CreateAsPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.CreateInPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.CustomSeparator;
+import com.sap.furcas.metamodel.FURCAS.TCS.DisambiguatePArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.EndNLBArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.EndOfLineRule;
+import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralMapping;
+import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralVal;
+import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.EqualsExp;
+import com.sap.furcas.metamodel.FURCAS.TCS.Expression;
+import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.FunctionCall;
+import com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.HexadecimalMapping;
+import com.sap.furcas.metamodel.FURCAS.TCS.ImportContextPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.IndentIncrBArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
+import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
+import com.sap.furcas.metamodel.FURCAS.TCS.InstanceOfExp;
+import com.sap.furcas.metamodel.FURCAS.TCS.IntegerVal;
+import com.sap.furcas.metamodel.FURCAS.TCS.InvertPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.IsDefinedExp;
+import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
+import com.sap.furcas.metamodel.FURCAS.TCS.Literal;
+import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
+import com.sap.furcas.metamodel.FURCAS.TCS.LocatedElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.LookInPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.Mapping;
+import com.sap.furcas.metamodel.FURCAS.TCS.ModePArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.MultiLineRule;
+import com.sap.furcas.metamodel.FURCAS.TCS.NamedElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.NbNLBArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.NegativeIntegerVal;
+import com.sap.furcas.metamodel.FURCAS.TCS.OclPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.OclPropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.OctalMapping;
+import com.sap.furcas.metamodel.FURCAS.TCS.OneExp;
+import com.sap.furcas.metamodel.FURCAS.TCS.Operator;
+import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
+import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.OrPattern;
+import com.sap.furcas.metamodel.FURCAS.TCS.PartialPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic;
+import com.sap.furcas.metamodel.FURCAS.TCS.PrimitivePropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
+import com.sap.furcas.metamodel.FURCAS.TCS.Property;
+import com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.PropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
+import com.sap.furcas.metamodel.FURCAS.TCS.PropertyVal;
+import com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.RefersToKeyPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.Rule;
+import com.sap.furcas.metamodel.FURCAS.TCS.RulePattern;
+import com.sap.furcas.metamodel.FURCAS.TCS.ScopeArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.ScopeKind;
+import com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceInAlternative;
+import com.sap.furcas.metamodel.FURCAS.TCS.SimpleMapping;
+import com.sap.furcas.metamodel.FURCAS.TCS.SimplePattern;
+import com.sap.furcas.metamodel.FURCAS.TCS.SpaceKind;
+import com.sap.furcas.metamodel.FURCAS.TCS.StartNLBArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.StartNbNLBArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.StringPattern;
+import com.sap.furcas.metamodel.FURCAS.TCS.StringVal;
+import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSFactory;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.TCS.TemplateModifiers;
+import com.sap.furcas.metamodel.FURCAS.TCS.Token;
+import com.sap.furcas.metamodel.FURCAS.TCS.Value;
+import com.sap.furcas.metamodel.FURCAS.TCS.WildcardMapping;
+import com.sap.furcas.metamodel.FURCAS.TCS.Word;
+import com.sap.furcas.metamodel.FURCAS.TCS.WordRule;
 import com.sap.furcas.metamodel.FURCAS.TCS.*;
 import com.sap.furcas.metamodel.FURCAS.impl.FURCASPackageImpl;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionPackage;
@@ -609,13 +710,6 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        private EClass invertPArgEClass = null;
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
         private EClass foreachPredicatePropertyInitEClass = null;
 
         /**
@@ -1159,11 +1253,10 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-	public EAttribute getPrimitiveTemplate_IsDefault() {
+    public EAttribute getPrimitiveTemplate_Default() {
         return (EAttribute)primitiveTemplateEClass.getEStructuralFeatures().get(1);
     }
 
@@ -1519,11 +1612,10 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-	public EAttribute getOperator_IsPostfix() {
+    public EAttribute getOperator_Postfix() {
         return (EAttribute)operatorEClass.getEStructuralFeatures().get(0);
     }
 
@@ -2124,11 +2216,29 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
         /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getNbNLBArg_Value() {
+        return (EAttribute)nbNLBArgEClass.getEStructuralFeatures().get(0);
+    }
+
+        /**
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
         public EClass getIndentIncrBArg() {
         return indentIncrBArgEClass;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getIndentIncrBArg_Value() {
+        return (EAttribute)indentIncrBArgEClass.getEStructuralFeatures().get(0);
     }
 
         /**
@@ -2142,6 +2252,15 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
         /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getStartNLBArg_Value() {
+        return (EAttribute)startNLBArgEClass.getEStructuralFeatures().get(0);
+    }
+
+        /**
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -2151,11 +2270,29 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
         /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getStartNbNLBArg_Value() {
+        return (EAttribute)startNbNLBArgEClass.getEStructuralFeatures().get(0);
+    }
+
+        /**
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
         public EClass getEndNLBArg() {
         return endNLBArgEClass;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getEndNLBArg_Value() {
+        return (EAttribute)endNLBArgEClass.getEStructuralFeatures().get(0);
     }
 
         /**
@@ -2556,6 +2693,24 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
         /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getSimpleMapping_Key() {
+        return (EAttribute)simpleMappingEClass.getEStructuralFeatures().get(0);
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getSimpleMapping_Value() {
+        return (EAttribute)simpleMappingEClass.getEStructuralFeatures().get(1);
+    }
+
+        /**
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -2678,6 +2833,15 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      */
         public EClass getQueryPArg() {
         return queryPArgEClass;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getQueryPArg_Query() {
+        return (EAttribute)queryPArgEClass.getEStructuralFeatures().get(0);
     }
 
         /**
@@ -2880,6 +3044,15 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
         /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getPropertyInit_Default() {
+        return (EAttribute)propertyInitEClass.getEStructuralFeatures().get(2);
+    }
+
+        /**
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -2912,15 +3085,6 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      */
         public EAttribute getScopeArg_Scope() {
         return (EAttribute)scopeArgEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        public EClass getInvertPArg() {
-        return invertPArgEClass;
     }
 
         /**
@@ -3245,7 +3409,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
         primitiveTemplateEClass = createEClass(PRIMITIVE_TEMPLATE);
         createEAttribute(primitiveTemplateEClass, PRIMITIVE_TEMPLATE__TEMPLATE_NAME);
-        createEAttribute(primitiveTemplateEClass, PRIMITIVE_TEMPLATE__IS_DEFAULT);
+        createEAttribute(primitiveTemplateEClass, PRIMITIVE_TEMPLATE__DEFAULT);
         createEAttribute(primitiveTemplateEClass, PRIMITIVE_TEMPLATE__TOKEN_NAME);
         createEAttribute(primitiveTemplateEClass, PRIMITIVE_TEMPLATE__VALUE);
         createEAttribute(primitiveTemplateEClass, PRIMITIVE_TEMPLATE__SERIALIZER);
@@ -3290,7 +3454,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         createEReference(priorityEClass, PRIORITY__OPERATORS);
 
         operatorEClass = createEClass(OPERATOR);
-        createEAttribute(operatorEClass, OPERATOR__IS_POSTFIX);
+        createEAttribute(operatorEClass, OPERATOR__POSTFIX);
         createEAttribute(operatorEClass, OPERATOR__ARITY);
         createEReference(operatorEClass, OPERATOR__LITERAL);
         createEReference(operatorEClass, OPERATOR__PRIORITY);
@@ -3378,14 +3542,19 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         createEReference(blockArgEClass, BLOCK_ARG__BLOCK);
 
         nbNLBArgEClass = createEClass(NB_NLB_ARG);
+        createEAttribute(nbNLBArgEClass, NB_NLB_ARG__VALUE);
 
         indentIncrBArgEClass = createEClass(INDENT_INCR_BARG);
+        createEAttribute(indentIncrBArgEClass, INDENT_INCR_BARG__VALUE);
 
         startNLBArgEClass = createEClass(START_NLB_ARG);
+        createEAttribute(startNLBArgEClass, START_NLB_ARG__VALUE);
 
         startNbNLBArgEClass = createEClass(START_NB_NLB_ARG);
+        createEAttribute(startNbNLBArgEClass, START_NB_NLB_ARG__VALUE);
 
         endNLBArgEClass = createEClass(END_NLB_ARG);
+        createEAttribute(endNLBArgEClass, END_NLB_ARG__VALUE);
 
         expressionEClass = createEClass(EXPRESSION);
         createEReference(expressionEClass, EXPRESSION__CONDITIONAL_ELEMENT);
@@ -3450,6 +3619,8 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         mappingEClass = createEClass(MAPPING);
 
         simpleMappingEClass = createEClass(SIMPLE_MAPPING);
+        createEAttribute(simpleMappingEClass, SIMPLE_MAPPING__KEY);
+        createEAttribute(simpleMappingEClass, SIMPLE_MAPPING__VALUE);
 
         wildcardMappingEClass = createEClass(WILDCARD_MAPPING);
 
@@ -3473,6 +3644,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         createEReference(injectorActionsBlockEClass, INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS);
 
         queryPArgEClass = createEClass(QUERY_PARG);
+        createEAttribute(queryPArgEClass, QUERY_PARG__QUERY);
 
         filterPArgEClass = createEClass(FILTER_PARG);
         createEAttribute(filterPArgEClass, FILTER_PARG__FILTER);
@@ -3502,14 +3674,13 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         propertyInitEClass = createEClass(PROPERTY_INIT);
         createEReference(propertyInitEClass, PROPERTY_INIT__PROPERTY_REFERENCE);
         createEAttribute(propertyInitEClass, PROPERTY_INIT__VALUE);
+        createEAttribute(propertyInitEClass, PROPERTY_INIT__DEFAULT);
 
         oclPropertyInitEClass = createEClass(OCL_PROPERTY_INIT);
         createEReference(oclPropertyInitEClass, OCL_PROPERTY_INIT__OCL_EXPRESSION);
 
         scopeArgEClass = createEClass(SCOPE_ARG);
         createEAttribute(scopeArgEClass, SCOPE_ARG__SCOPE);
-
-        invertPArgEClass = createEClass(INVERT_PARG);
 
         foreachPredicatePropertyInitEClass = createEClass(FOREACH_PREDICATE_PROPERTY_INIT);
         createEReference(foreachPredicatePropertyInitEClass, FOREACH_PREDICATE_PROPERTY_INIT__PREDICATE_SEMANTIC);
@@ -3656,13 +3827,12 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         qualifiedNamedElementEClass.getESuperTypes().add(this.getLocatedElement());
         forcedUpperPArgEClass.getESuperTypes().add(this.getPropertyArg());
         injectorActionsBlockEClass.getESuperTypes().add(this.getSequenceElement());
-        queryPArgEClass.getESuperTypes().add(this.getOclPArg());
-        filterPArgEClass.getESuperTypes().add(this.getOclPArg());
+        queryPArgEClass.getESuperTypes().add(this.getPropertyArg());
+        filterPArgEClass.getESuperTypes().add(this.getPropertyArg());
         oclPArgEClass.getESuperTypes().add(this.getPropertyArg());
         contextTemplateEClass.getESuperTypes().add(this.getTemplate());
         propertyInitEClass.getESuperTypes().add(this.getInjectorAction());
         oclPropertyInitEClass.getESuperTypes().add(this.getPropertyInit());
-        invertPArgEClass.getESuperTypes().add(this.getOclPArg());
         foreachPredicatePropertyInitEClass.getESuperTypes().add(this.getPropertyInit());
         sequenceInAlternativeEClass.getESuperTypes().add(this.getSequence());
         partialPArgEClass.getESuperTypes().add(this.getPropertyArg());
@@ -3717,7 +3887,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
         initEClass(primitiveTemplateEClass, PrimitiveTemplate.class, "PrimitiveTemplate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getPrimitiveTemplate_TemplateName(), ecorePackage.getEString(), "templateName", null, 1, 1, PrimitiveTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEAttribute(getPrimitiveTemplate_IsDefault(), ecorePackage.getEBoolean(), "isDefault", null, 1, 1, PrimitiveTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEAttribute(getPrimitiveTemplate_Default(), ecorePackage.getEBoolean(), "default", null, 1, 1, PrimitiveTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getPrimitiveTemplate_TokenName(), ecorePackage.getEString(), "tokenName", null, 1, 1, PrimitiveTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getPrimitiveTemplate_Value(), ecorePackage.getEString(), "value", null, 1, 1, PrimitiveTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getPrimitiveTemplate_Serializer(), ecorePackage.getEString(), "serializer", null, 1, 1, PrimitiveTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -3762,7 +3932,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEReference(getPriority_Operators(), this.getOperator(), this.getOperator_Priority(), "operators", null, 0, -1, Priority.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(operatorEClass, Operator.class, "Operator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getOperator_IsPostfix(), ecorePackage.getEBoolean(), "isPostfix", null, 1, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEAttribute(getOperator_Postfix(), ecorePackage.getEBoolean(), "postfix", null, 1, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getOperator_Arity(), ecorePackage.getEIntegerObject(), "arity", null, 1, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEReference(getOperator_Literal(), this.getLiteral(), this.getLiteral_Operators(), "literal", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEReference(getOperator_Priority(), this.getPriority(), this.getPriority_Operators(), "priority", null, 1, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -3815,7 +3985,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEReference(getPropertyArg_Property(), this.getProperty(), this.getProperty_PropertyArgs(), "property", null, 1, 1, PropertyArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(refersToPArgEClass, RefersToPArg.class, "RefersToPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getRefersToPArg_PropertyName(), theEcorePackage_1.getEString(), "propertyName", null, 0, 1, RefersToPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getRefersToPArg_PropertyName(), theEcorePackage_1.getEString(), "propertyName", null, 1, 1, RefersToPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(lookInPArgEClass, LookInPArg.class, "LookInPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getLookInPArg_PropertyName(), theEcorePackage_1.getEString(), "propertyName", null, 0, -1, LookInPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3829,35 +3999,40 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEReference(getSeparatorPArg_SeparatorSequence(), this.getSequence(), this.getSequence_SeparatorContainer(), "separatorSequence", null, 1, 1, SeparatorPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(autoCreatePArgEClass, AutoCreatePArg.class, "AutoCreatePArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getAutoCreatePArg_Value(), this.getAutoCreateKind(), "value", null, 0, 1, AutoCreatePArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getAutoCreatePArg_Value(), this.getAutoCreateKind(), "value", null, 1, 1, AutoCreatePArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(importContextPArgEClass, ImportContextPArg.class, "ImportContextPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(forcedLowerPArgEClass, ForcedLowerPArg.class, "ForcedLowerPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getForcedLowerPArg_Value(), ecorePackage.getEIntegerObject(), "value", "0", 0, 1, ForcedLowerPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getForcedLowerPArg_Value(), ecorePackage.getEIntegerObject(), "value", "0", 1, 1, ForcedLowerPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(createAsPArgEClass, CreateAsPArg.class, "CreateAsPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getCreateAsPArg_Name(), theEcorePackage_1.getEString(), "name", null, 0, -1, CreateAsPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(asPArgEClass, AsPArg.class, "AsPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getAsPArg_Template(), this.getTemplate(), null, "template", null, 0, 1, AsPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getAsPArg_Value(), theEcorePackage_1.getEString(), "value", null, 0, 1, AsPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getAsPArg_Template(), this.getTemplate(), null, "template", null, 1, 1, AsPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getAsPArg_Value(), theEcorePackage_1.getEString(), "value", null, 1, 1, AsPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(modePArgEClass, ModePArg.class, "ModePArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getModePArg_Mode(), theEcorePackage_1.getEString(), "mode", null, 0, 1, ModePArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getModePArg_Mode(), theEcorePackage_1.getEString(), "mode", null, 1, 1, ModePArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(blockArgEClass, BlockArg.class, "BlockArg", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getBlockArg_Block(), this.getBlock(), this.getBlock_BlockArgs(), "block", null, 1, 1, BlockArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(nbNLBArgEClass, NbNLBArg.class, "NbNLBArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getNbNLBArg_Value(), ecorePackage.getEIntegerObject(), "value", null, 0, 1, NbNLBArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(indentIncrBArgEClass, IndentIncrBArg.class, "IndentIncrBArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getIndentIncrBArg_Value(), ecorePackage.getEIntegerObject(), "value", null, 0, 1, IndentIncrBArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(startNLBArgEClass, StartNLBArg.class, "StartNLBArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getStartNLBArg_Value(), ecorePackage.getEBoolean(), "value", null, 0, 1, StartNLBArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(startNbNLBArgEClass, StartNbNLBArg.class, "StartNbNLBArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getStartNbNLBArg_Value(), ecorePackage.getEIntegerObject(), "value", null, 0, 1, StartNbNLBArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(endNLBArgEClass, EndNLBArg.class, "EndNLBArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getEndNLBArg_Value(), ecorePackage.getEBoolean(), "value", null, 0, 1, EndNLBArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(expressionEClass, Expression.class, "Expression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getExpression_ConditionalElement(), this.getConditionalElement(), this.getConditionalElement_Condition(), "conditionalElement", null, 1, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -3922,6 +4097,8 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEClass(mappingEClass, Mapping.class, "Mapping", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(simpleMappingEClass, SimpleMapping.class, "SimpleMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getSimpleMapping_Key(), ecorePackage.getEString(), "key", null, 0, 1, SimpleMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getSimpleMapping_Value(), ecorePackage.getEString(), "value", null, 0, 1, SimpleMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(wildcardMappingEClass, WildcardMapping.class, "WildcardMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -3945,10 +4122,11 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEReference(getInjectorActionsBlock_InjectorActions(), this.getInjectorAction(), null, "injectorActions", null, 0, -1, InjectorActionsBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(queryPArgEClass, QueryPArg.class, "QueryPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getQueryPArg_Query(), ecorePackage.getEString(), "query", null, 1, 1, QueryPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(filterPArgEClass, FilterPArg.class, "FilterPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getFilterPArg_Filter(), theEcorePackage_1.getEString(), "filter", null, 0, 1, FilterPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getFilterPArg_Invert(), theEcorePackage_1.getEString(), "invert", null, 0, 1, FilterPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getFilterPArg_Filter(), theEcorePackage_1.getEString(), "filter", null, 1, 1, FilterPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getFilterPArg_Invert(), theEcorePackage_1.getEString(), "invert", null, 1, 1, FilterPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(oclPArgEClass, OclPArg.class, "OclPArg", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getOclPArg_QueryExpression(), theEcorePackage.getOCLExpression(), null, "queryExpression", null, 0, 1, OclPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3974,14 +4152,13 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEClass(propertyInitEClass, PropertyInit.class, "PropertyInit", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getPropertyInit_PropertyReference(), this.getPropertyReference(), null, "propertyReference", null, 0, 1, PropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getPropertyInit_Value(), theEcorePackage_1.getEString(), "value", null, 0, 1, PropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getPropertyInit_Default(), ecorePackage.getEBoolean(), "default", null, 0, 1, PropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(oclPropertyInitEClass, OclPropertyInit.class, "OclPropertyInit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getOclPropertyInit_OclExpression(), theEcorePackage.getOCLExpression(), null, "oclExpression", null, 0, 1, OclPropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(scopeArgEClass, ScopeArg.class, "ScopeArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getScopeArg_Scope(), this.getScopeKind(), "scope", null, 1, 1, ScopeArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(invertPArgEClass, InvertPArg.class, "InvertPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(foreachPredicatePropertyInitEClass, ForeachPredicatePropertyInit.class, "ForeachPredicatePropertyInit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getForeachPredicatePropertyInit_PredicateSemantic(), this.getPredicateSemantic(), null, "predicateSemantic", null, 0, -1, ForeachPredicatePropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

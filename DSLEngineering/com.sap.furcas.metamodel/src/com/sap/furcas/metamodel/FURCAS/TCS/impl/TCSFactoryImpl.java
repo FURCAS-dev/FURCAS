@@ -6,6 +6,7 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.*;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -209,7 +210,6 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
             case TCSPackage.CONTEXT_TAGS: return createContextTags();
             case TCSPackage.OCL_PROPERTY_INIT: return createOclPropertyInit();
             case TCSPackage.SCOPE_ARG: return createScopeArg();
-            case TCSPackage.INVERT_PARG: return createInvertPArg();
             case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT: return createForeachPredicatePropertyInit();
             case TCSPackage.PREDICATE_SEMANTIC: return createPredicateSemantic();
             case TCSPackage.SEQUENCE_IN_ALTERNATIVE: return createSequenceInAlternative();
@@ -930,16 +930,6 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
         public ScopeArg createScopeArg() {
         ScopeArgImpl scopeArg = new ScopeArgImpl();
         return scopeArg;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        public InvertPArg createInvertPArg() {
-        InvertPArgImpl invertPArg = new InvertPArgImpl();
-        return invertPArg;
     }
 
         /**

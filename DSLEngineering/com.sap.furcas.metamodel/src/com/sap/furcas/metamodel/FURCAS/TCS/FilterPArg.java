@@ -24,7 +24,7 @@ package com.sap.furcas.metamodel.FURCAS.TCS;
  * @model
  * @generated
  */
-public interface FilterPArg extends OclPArg {
+public interface FilterPArg extends PropertyArg {
         /**
      * Returns the value of the '<em><b>Filter</b></em>' attribute.
      * <!-- begin-user-doc -->
@@ -36,7 +36,7 @@ public interface FilterPArg extends OclPArg {
      * @return the value of the '<em>Filter</em>' attribute.
      * @see #setFilter(String)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getFilterPArg_Filter()
-     * @model
+     * @model required="true"
      * @generated
      */
         String getFilter();
@@ -62,7 +62,7 @@ public interface FilterPArg extends OclPArg {
      * @return the value of the '<em>Invert</em>' attribute.
      * @see #setInvert(String)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getFilterPArg_Invert()
-     * @model
+     * @model required="true"
      * @generated
      */
         String getInvert();

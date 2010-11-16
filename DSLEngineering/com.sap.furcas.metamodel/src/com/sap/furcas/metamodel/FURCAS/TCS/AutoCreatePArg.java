@@ -37,7 +37,7 @@ public interface AutoCreatePArg extends PropertyArg {
      * @see com.sap.furcas.metamodel.FURCAS.TCS.AutoCreateKind
      * @see #setValue(AutoCreateKind)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getAutoCreatePArg_Value()
-     * @model
+     * @model required="true"
      * @generated
      */
         AutoCreateKind getValue();

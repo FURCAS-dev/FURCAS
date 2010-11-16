@@ -27,7 +27,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  *
  * @generated
  */
-public class FilterPArgImpl extends OclPArgImpl implements FilterPArg {
+public class FilterPArgImpl extends PropertyArgImpl implements FilterPArg {
         /**
      * The default value of the '{@link #getFilter() <em>Filter</em>}' attribute.
      * <!-- begin-user-doc -->

@@ -620,15 +620,6 @@ public interface TCSFactory extends EFactory {
         ScopeArg createScopeArg();
 
         /**
-     * Returns a new object of class '<em>Invert PArg</em>'.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @return a new object of class '<em>Invert PArg</em>'.
-     * @generated
-     */
-        InvertPArg createInvertPArg();
-
-        /**
      * Returns a new object of class '<em>Foreach Predicate Property Init</em>'.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->

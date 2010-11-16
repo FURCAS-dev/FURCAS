@@ -21,7 +21,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.PrimitiveTemplateImpl#getTemplateName <em>Template Name</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.PrimitiveTemplateImpl#isIsDefault <em>Is Default</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.PrimitiveTemplateImpl#isDefault <em>Default</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.PrimitiveTemplateImpl#getTokenName <em>Token Name</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.PrimitiveTemplateImpl#getValue <em>Value</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.PrimitiveTemplateImpl#getSerializer <em>Serializer</em>}</li>
@@ -53,24 +53,24 @@ public class PrimitiveTemplateImpl extends TemplateImpl implements PrimitiveTemp
         protected String templateName = TEMPLATE_NAME_EDEFAULT;
 
         /**
-     * The default value of the '{@link #isIsDefault() <em>Is Default</em>}' attribute.
+     * The default value of the '{@link #isDefault() <em>Default</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @see #isIsDefault()
+     * <!-- end-user-doc -->
+     * @see #isDefault()
      * @generated
      * @ordered
      */
-        protected static final boolean IS_DEFAULT_EDEFAULT = false;
+    protected static final boolean DEFAULT_EDEFAULT = false;
 
         /**
-     * The cached value of the '{@link #isIsDefault() <em>Is Default</em>}' attribute.
+     * The cached value of the '{@link #isDefault() <em>Default</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @see #isIsDefault()
+     * <!-- end-user-doc -->
+     * @see #isDefault()
      * @generated
      * @ordered
      */
-        protected boolean isDefault = IS_DEFAULT_EDEFAULT;
+    protected boolean default_ = DEFAULT_EDEFAULT;
 
         /**
      * The default value of the '{@link #getTokenName() <em>Token Name</em>}' attribute.
@@ -194,23 +194,23 @@ public class PrimitiveTemplateImpl extends TemplateImpl implements PrimitiveTemp
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public boolean isIsDefault() {
-        return isDefault;
+    public boolean isDefault() {
+        return default_;
     }
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setIsDefault(boolean newIsDefault) {
-        boolean oldIsDefault = isDefault;
-        isDefault = newIsDefault;
+    public void setDefault(boolean newDefault) {
+        boolean oldDefault = default_;
+        default_ = newDefault;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.PRIMITIVE_TEMPLATE__IS_DEFAULT, oldIsDefault, isDefault));
+            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.PRIMITIVE_TEMPLATE__DEFAULT, oldDefault, default_));
     }
 
         /**
@@ -307,8 +307,8 @@ public class PrimitiveTemplateImpl extends TemplateImpl implements PrimitiveTemp
         switch (featureID) {
             case TCSPackage.PRIMITIVE_TEMPLATE__TEMPLATE_NAME:
                 return getTemplateName();
-            case TCSPackage.PRIMITIVE_TEMPLATE__IS_DEFAULT:
-                return isIsDefault();
+            case TCSPackage.PRIMITIVE_TEMPLATE__DEFAULT:
+                return isDefault();
             case TCSPackage.PRIMITIVE_TEMPLATE__TOKEN_NAME:
                 return getTokenName();
             case TCSPackage.PRIMITIVE_TEMPLATE__VALUE:
@@ -332,8 +332,8 @@ public class PrimitiveTemplateImpl extends TemplateImpl implements PrimitiveTemp
             case TCSPackage.PRIMITIVE_TEMPLATE__TEMPLATE_NAME:
                 setTemplateName((String)newValue);
                 return;
-            case TCSPackage.PRIMITIVE_TEMPLATE__IS_DEFAULT:
-                setIsDefault((Boolean)newValue);
+            case TCSPackage.PRIMITIVE_TEMPLATE__DEFAULT:
+                setDefault((Boolean)newValue);
                 return;
             case TCSPackage.PRIMITIVE_TEMPLATE__TOKEN_NAME:
                 setTokenName((String)newValue);
@@ -362,8 +362,8 @@ public class PrimitiveTemplateImpl extends TemplateImpl implements PrimitiveTemp
             case TCSPackage.PRIMITIVE_TEMPLATE__TEMPLATE_NAME:
                 setTemplateName(TEMPLATE_NAME_EDEFAULT);
                 return;
-            case TCSPackage.PRIMITIVE_TEMPLATE__IS_DEFAULT:
-                setIsDefault(IS_DEFAULT_EDEFAULT);
+            case TCSPackage.PRIMITIVE_TEMPLATE__DEFAULT:
+                setDefault(DEFAULT_EDEFAULT);
                 return;
             case TCSPackage.PRIMITIVE_TEMPLATE__TOKEN_NAME:
                 setTokenName(TOKEN_NAME_EDEFAULT);
@@ -391,8 +391,8 @@ public class PrimitiveTemplateImpl extends TemplateImpl implements PrimitiveTemp
         switch (featureID) {
             case TCSPackage.PRIMITIVE_TEMPLATE__TEMPLATE_NAME:
                 return TEMPLATE_NAME_EDEFAULT == null ? templateName != null : !TEMPLATE_NAME_EDEFAULT.equals(templateName);
-            case TCSPackage.PRIMITIVE_TEMPLATE__IS_DEFAULT:
-                return isDefault != IS_DEFAULT_EDEFAULT;
+            case TCSPackage.PRIMITIVE_TEMPLATE__DEFAULT:
+                return default_ != DEFAULT_EDEFAULT;
             case TCSPackage.PRIMITIVE_TEMPLATE__TOKEN_NAME:
                 return TOKEN_NAME_EDEFAULT == null ? tokenName != null : !TOKEN_NAME_EDEFAULT.equals(tokenName);
             case TCSPackage.PRIMITIVE_TEMPLATE__VALUE:
@@ -417,8 +417,8 @@ public class PrimitiveTemplateImpl extends TemplateImpl implements PrimitiveTemp
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (templateName: ");
         result.append(templateName);
-        result.append(", isDefault: ");
-        result.append(isDefault);
+        result.append(", default: ");
+        result.append(default_);
         result.append(", tokenName: ");
         result.append(tokenName);
         result.append(", value: ");

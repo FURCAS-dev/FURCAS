@@ -6,6 +6,7 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.util;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.*;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
@@ -490,10 +491,6 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseScopeArg(ScopeArg object) {
                 return createScopeArgAdapter();
-            }
-            @Override
-            public Adapter caseInvertPArg(InvertPArg object) {
-                return createInvertPArgAdapter();
             }
             @Override
             public Adapter caseForeachPredicatePropertyInit(ForeachPredicatePropertyInit object) {
@@ -1704,20 +1701,6 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
         public Adapter createScopeArgAdapter() {
-        return null;
-    }
-
-        /**
-     * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.InvertPArg <em>Invert PArg</em>}'.
-     * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.InvertPArg
-     * @generated
-     */
-        public Adapter createInvertPArgAdapter() {
         return null;
     }
 

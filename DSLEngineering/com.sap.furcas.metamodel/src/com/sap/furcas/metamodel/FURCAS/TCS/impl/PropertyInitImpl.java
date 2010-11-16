@@ -24,6 +24,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * <ul>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.PropertyInitImpl#getPropertyReference <em>Property Reference</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.PropertyInitImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.PropertyInitImpl#isDefault <em>Default</em>}</li>
  * </ul>
  * </p>
  *
@@ -59,6 +60,26 @@ public abstract class PropertyInitImpl extends InjectorActionImpl implements Pro
      * @ordered
      */
         protected String value = VALUE_EDEFAULT;
+
+        /**
+     * The default value of the '{@link #isDefault() <em>Default</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isDefault()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean DEFAULT_EDEFAULT = false;
+
+        /**
+     * The cached value of the '{@link #isDefault() <em>Default</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isDefault()
+     * @generated
+     * @ordered
+     */
+    protected boolean default_ = DEFAULT_EDEFAULT;
 
         /**
      * <!-- begin-user-doc -->
@@ -140,6 +161,27 @@ public abstract class PropertyInitImpl extends InjectorActionImpl implements Pro
 
         /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isDefault() {
+        return default_;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setDefault(boolean newDefault) {
+        boolean oldDefault = default_;
+        default_ = newDefault;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.PROPERTY_INIT__DEFAULT, oldDefault, default_));
+    }
+
+        /**
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -151,6 +193,8 @@ public abstract class PropertyInitImpl extends InjectorActionImpl implements Pro
                 return basicGetPropertyReference();
             case TCSPackage.PROPERTY_INIT__VALUE:
                 return getValue();
+            case TCSPackage.PROPERTY_INIT__DEFAULT:
+                return isDefault();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -168,6 +212,9 @@ public abstract class PropertyInitImpl extends InjectorActionImpl implements Pro
                 return;
             case TCSPackage.PROPERTY_INIT__VALUE:
                 setValue((String)newValue);
+                return;
+            case TCSPackage.PROPERTY_INIT__DEFAULT:
+                setDefault((Boolean)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -187,6 +234,9 @@ public abstract class PropertyInitImpl extends InjectorActionImpl implements Pro
             case TCSPackage.PROPERTY_INIT__VALUE:
                 setValue(VALUE_EDEFAULT);
                 return;
+            case TCSPackage.PROPERTY_INIT__DEFAULT:
+                setDefault(DEFAULT_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -203,6 +253,8 @@ public abstract class PropertyInitImpl extends InjectorActionImpl implements Pro
                 return propertyReference != null;
             case TCSPackage.PROPERTY_INIT__VALUE:
                 return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+            case TCSPackage.PROPERTY_INIT__DEFAULT:
+                return default_ != DEFAULT_EDEFAULT;
         }
         return super.eIsSet(featureID);
     }
@@ -219,6 +271,8 @@ public abstract class PropertyInitImpl extends InjectorActionImpl implements Pro
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (value: ");
         result.append(value);
+        result.append(", default: ");
+        result.append(default_);
         result.append(')');
         return result.toString();
     }

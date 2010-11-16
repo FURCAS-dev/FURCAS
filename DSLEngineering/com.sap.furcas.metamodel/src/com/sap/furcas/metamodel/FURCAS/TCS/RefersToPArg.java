@@ -35,7 +35,7 @@ public interface RefersToPArg extends PropertyArg {
      * @return the value of the '<em>Property Name</em>' attribute.
      * @see #setPropertyName(String)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getRefersToPArg_PropertyName()
-     * @model
+     * @model required="true"
      * @generated
      */
         String getPropertyName();

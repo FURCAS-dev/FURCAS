@@ -20,55 +20,55 @@ import junit.textui.TestRunner;
 public class IndentIncrBArgTest extends BlockArgTest {
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public static void main(String[] args) {
-		TestRunner.run(IndentIncrBArgTest.class);
-	}
+        TestRunner.run(IndentIncrBArgTest.class);
+    }
 
         /**
-	 * Constructs a new Indent Incr BArg test case with the given name.
-	 * <!-- begin-user-doc -->
+     * Constructs a new Indent Incr BArg test case with the given name.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public IndentIncrBArgTest(String name) {
-		super(name);
-	}
+        super(name);
+    }
 
         /**
-	 * Returns the fixture for this Indent Incr BArg test case.
-	 * <!-- begin-user-doc -->
+     * Returns the fixture for this Indent Incr BArg test case.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected IndentIncrBArg getFixture() {
-		return (IndentIncrBArg)fixture;
-	}
+        return (IndentIncrBArg)fixture;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#setUp()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#setUp()
+     * @generated
+     */
         @Override
         protected void setUp() throws Exception {
-		setFixture(TCSFactory.eINSTANCE.createIndentIncrBArg());
-	}
+        setFixture(TCSFactory.eINSTANCE.createIndentIncrBArg());
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#tearDown()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#tearDown()
+     * @generated
+     */
         @Override
         protected void tearDown() throws Exception {
-		setFixture(null);
-	}
+        setFixture(null);
+    }
 
 } //IndentIncrBArgTest
