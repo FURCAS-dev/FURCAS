@@ -16,7 +16,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.Operator#isIsPostfix <em>Is Postfix</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.Operator#isPostfix <em>Postfix</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.Operator#getArity <em>Arity</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.Operator#getLiteral <em>Literal</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.Operator#getPriority <em>Priority</em>}</li>
@@ -30,30 +30,30 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Operator extends NamedElement {
         /**
-     * Returns the value of the '<em><b>Is Postfix</b></em>' attribute.
+     * Returns the value of the '<em><b>Postfix</b></em>' attribute.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Is Postfix</em>' attribute isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
-     * @return the value of the '<em>Is Postfix</em>' attribute.
-     * @see #setIsPostfix(boolean)
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getOperator_IsPostfix()
+     * <p>
+     * If the meaning of the '<em>Postfix</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Postfix</em>' attribute.
+     * @see #setPostfix(boolean)
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getOperator_Postfix()
      * @model unique="false" required="true" ordered="false"
      * @generated
      */
-        boolean isIsPostfix();
+    boolean isPostfix();
 
-        /**
-     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.Operator#isIsPostfix <em>Is Postfix</em>}' attribute.
+    /**
+     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.Operator#isPostfix <em>Postfix</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Is Postfix</em>' attribute.
-     * @see #isIsPostfix()
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Postfix</em>' attribute.
+     * @see #isPostfix()
      * @generated
      */
-        void setIsPostfix(boolean value);
+    void setPostfix(boolean value);
 
         /**
      * Returns the value of the '<em><b>Arity</b></em>' attribute.

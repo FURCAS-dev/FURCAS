@@ -20,55 +20,55 @@ import junit.textui.TestRunner;
 public class PrimitivePropertyInitTest extends PropertyInitTest {
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public static void main(String[] args) {
-		TestRunner.run(PrimitivePropertyInitTest.class);
-	}
+        TestRunner.run(PrimitivePropertyInitTest.class);
+    }
 
         /**
-	 * Constructs a new Primitive Property Init test case with the given name.
-	 * <!-- begin-user-doc -->
+     * Constructs a new Primitive Property Init test case with the given name.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public PrimitivePropertyInitTest(String name) {
-		super(name);
-	}
+        super(name);
+    }
 
         /**
-	 * Returns the fixture for this Primitive Property Init test case.
-	 * <!-- begin-user-doc -->
+     * Returns the fixture for this Primitive Property Init test case.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected PrimitivePropertyInit getFixture() {
-		return (PrimitivePropertyInit)fixture;
-	}
+        return (PrimitivePropertyInit)fixture;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#setUp()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#setUp()
+     * @generated
+     */
         @Override
         protected void setUp() throws Exception {
-		setFixture(TCSFactory.eINSTANCE.createPrimitivePropertyInit());
-	}
+        setFixture(TCSFactory.eINSTANCE.createPrimitivePropertyInit());
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#tearDown()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#tearDown()
+     * @generated
+     */
         @Override
         protected void tearDown() throws Exception {
-		setFixture(null);
-	}
+        setFixture(null);
+    }
 
 } //PrimitivePropertyInitTest

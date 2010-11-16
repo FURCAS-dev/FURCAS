@@ -6,6 +6,7 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.util;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.*;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
@@ -755,7 +756,6 @@ public class TCSSwitch<T> {
             case TCSPackage.QUERY_PARG: {
                 QueryPArg queryPArg = (QueryPArg)theEObject;
                 T result = caseQueryPArg(queryPArg);
-                if (result == null) result = caseOclPArg(queryPArg);
                 if (result == null) result = casePropertyArg(queryPArg);
                 if (result == null) result = caseLocatedElement(queryPArg);
                 if (result == null) result = defaultCase(theEObject);
@@ -764,7 +764,6 @@ public class TCSSwitch<T> {
             case TCSPackage.FILTER_PARG: {
                 FilterPArg filterPArg = (FilterPArg)theEObject;
                 T result = caseFilterPArg(filterPArg);
-                if (result == null) result = caseOclPArg(filterPArg);
                 if (result == null) result = casePropertyArg(filterPArg);
                 if (result == null) result = caseLocatedElement(filterPArg);
                 if (result == null) result = defaultCase(theEObject);
@@ -823,15 +822,6 @@ public class TCSSwitch<T> {
             case TCSPackage.SCOPE_ARG: {
                 ScopeArg scopeArg = (ScopeArg)theEObject;
                 T result = caseScopeArg(scopeArg);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case TCSPackage.INVERT_PARG: {
-                InvertPArg invertPArg = (InvertPArg)theEObject;
-                T result = caseInvertPArg(invertPArg);
-                if (result == null) result = caseOclPArg(invertPArg);
-                if (result == null) result = casePropertyArg(invertPArg);
-                if (result == null) result = caseLocatedElement(invertPArg);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -2152,21 +2142,6 @@ public class TCSSwitch<T> {
      * @generated
      */
         public T caseScopeArg(ScopeArg object) {
-        return null;
-    }
-
-        /**
-     * Returns the result of interpreting the object as an instance of '<em>Invert PArg</em>'.
-     * <!-- begin-user-doc -->
-         * This implementation returns null;
-         * returning a non-null result will terminate the switch.
-         * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Invert PArg</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-        public T caseInvertPArg(InvertPArg object) {
         return null;
     }
 

@@ -36,7 +36,7 @@ public interface ForcedLowerPArg extends PropertyArg {
      * @return the value of the '<em>Value</em>' attribute.
      * @see #setValue(Integer)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getForcedLowerPArg_Value()
-     * @model default="0"
+     * @model default="0" required="true"
      * @generated
      */
         Integer getValue();

@@ -16,7 +16,7 @@ package com.sap.furcas.metamodel.FURCAS.TCS;
  * The following features are supported:
  * <ul>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate#getTemplateName <em>Template Name</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate#isIsDefault <em>Is Default</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate#isDefault <em>Default</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate#getTokenName <em>Token Name</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate#getValue <em>Value</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate#getSerializer <em>Serializer</em>}</li>
@@ -56,30 +56,30 @@ public interface PrimitiveTemplate extends Template {
         void setTemplateName(String value);
 
         /**
-     * Returns the value of the '<em><b>Is Default</b></em>' attribute.
+     * Returns the value of the '<em><b>Default</b></em>' attribute.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Is Default</em>' attribute isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
-     * @return the value of the '<em>Is Default</em>' attribute.
-     * @see #setIsDefault(boolean)
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getPrimitiveTemplate_IsDefault()
+     * <p>
+     * If the meaning of the '<em>Default</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Default</em>' attribute.
+     * @see #setDefault(boolean)
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getPrimitiveTemplate_Default()
      * @model unique="false" required="true" ordered="false"
      * @generated
      */
-        boolean isIsDefault();
+    boolean isDefault();
 
         /**
-     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate#isIsDefault <em>Is Default</em>}' attribute.
+     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate#isDefault <em>Default</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Is Default</em>' attribute.
-     * @see #isIsDefault()
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Default</em>' attribute.
+     * @see #isDefault()
      * @generated
      */
-        void setIsDefault(boolean value);
+    void setDefault(boolean value);
 
         /**
      * Returns the value of the '<em><b>Token Name</b></em>' attribute.

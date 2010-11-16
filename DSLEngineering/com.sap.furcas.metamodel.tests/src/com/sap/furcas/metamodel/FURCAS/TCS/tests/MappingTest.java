@@ -17,24 +17,24 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Mapping;
 public abstract class MappingTest extends LocatedElementTest {
 
         /**
-	 * Constructs a new Mapping test case with the given name.
-	 * <!-- begin-user-doc -->
+     * Constructs a new Mapping test case with the given name.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public MappingTest(String name) {
-		super(name);
-	}
+        super(name);
+    }
 
         /**
-	 * Returns the fixture for this Mapping test case.
-	 * <!-- begin-user-doc -->
+     * Returns the fixture for this Mapping test case.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected Mapping getFixture() {
-		return (Mapping)fixture;
-	}
+        return (Mapping)fixture;
+    }
 
 } //MappingTest

@@ -36,7 +36,7 @@ public interface AsPArg extends PropertyArg {
      * @return the value of the '<em>Template</em>' reference.
      * @see #setTemplate(Template)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getAsPArg_Template()
-     * @model
+     * @model required="true"
      * @generated
      */
         Template getTemplate();
@@ -62,7 +62,7 @@ public interface AsPArg extends PropertyArg {
      * @return the value of the '<em>Value</em>' attribute.
      * @see #setValue(String)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getAsPArg_Value()
-     * @model
+     * @model required="true"
      * @generated
      */
         String getValue();

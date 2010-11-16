@@ -31,7 +31,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.OperatorImpl#isIsPostfix <em>Is Postfix</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.OperatorImpl#isPostfix <em>Postfix</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.OperatorImpl#getArity <em>Arity</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.OperatorImpl#getLiteral <em>Literal</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.OperatorImpl#getPriority <em>Priority</em>}</li>
@@ -43,24 +43,24 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  */
 public class OperatorImpl extends NamedElementImpl implements Operator {
         /**
-     * The default value of the '{@link #isIsPostfix() <em>Is Postfix</em>}' attribute.
+     * The default value of the '{@link #isPostfix() <em>Postfix</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @see #isIsPostfix()
+     * <!-- end-user-doc -->
+     * @see #isPostfix()
      * @generated
      * @ordered
      */
-        protected static final boolean IS_POSTFIX_EDEFAULT = false;
+    protected static final boolean POSTFIX_EDEFAULT = false;
 
-        /**
-     * The cached value of the '{@link #isIsPostfix() <em>Is Postfix</em>}' attribute.
+    /**
+     * The cached value of the '{@link #isPostfix() <em>Postfix</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @see #isIsPostfix()
+     * <!-- end-user-doc -->
+     * @see #isPostfix()
      * @generated
      * @ordered
      */
-        protected boolean isPostfix = IS_POSTFIX_EDEFAULT;
+    protected boolean postfix = POSTFIX_EDEFAULT;
 
         /**
      * The default value of the '{@link #getArity() <em>Arity</em>}' attribute.
@@ -123,23 +123,23 @@ public class OperatorImpl extends NamedElementImpl implements Operator {
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public boolean isIsPostfix() {
-        return isPostfix;
+    public boolean isPostfix() {
+        return postfix;
     }
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setIsPostfix(boolean newIsPostfix) {
-        boolean oldIsPostfix = isPostfix;
-        isPostfix = newIsPostfix;
+    public void setPostfix(boolean newPostfix) {
+        boolean oldPostfix = postfix;
+        postfix = newPostfix;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.OPERATOR__IS_POSTFIX, oldIsPostfix, isPostfix));
+            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.OPERATOR__POSTFIX, oldPostfix, postfix));
     }
 
         /**
@@ -339,8 +339,8 @@ public class OperatorImpl extends NamedElementImpl implements Operator {
         @Override
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case TCSPackage.OPERATOR__IS_POSTFIX:
-                return isIsPostfix();
+            case TCSPackage.OPERATOR__POSTFIX:
+                return isPostfix();
             case TCSPackage.OPERATOR__ARITY:
                 return getArity();
             case TCSPackage.OPERATOR__LITERAL:
@@ -363,8 +363,8 @@ public class OperatorImpl extends NamedElementImpl implements Operator {
         @Override
         public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case TCSPackage.OPERATOR__IS_POSTFIX:
-                setIsPostfix((Boolean)newValue);
+            case TCSPackage.OPERATOR__POSTFIX:
+                setPostfix((Boolean)newValue);
                 return;
             case TCSPackage.OPERATOR__ARITY:
                 setArity((Integer)newValue);
@@ -391,8 +391,8 @@ public class OperatorImpl extends NamedElementImpl implements Operator {
         @Override
         public void eUnset(int featureID) {
         switch (featureID) {
-            case TCSPackage.OPERATOR__IS_POSTFIX:
-                setIsPostfix(IS_POSTFIX_EDEFAULT);
+            case TCSPackage.OPERATOR__POSTFIX:
+                setPostfix(POSTFIX_EDEFAULT);
                 return;
             case TCSPackage.OPERATOR__ARITY:
                 setArity(ARITY_EDEFAULT);
@@ -418,8 +418,8 @@ public class OperatorImpl extends NamedElementImpl implements Operator {
         @Override
         public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case TCSPackage.OPERATOR__IS_POSTFIX:
-                return isPostfix != IS_POSTFIX_EDEFAULT;
+            case TCSPackage.OPERATOR__POSTFIX:
+                return postfix != POSTFIX_EDEFAULT;
             case TCSPackage.OPERATOR__ARITY:
                 return ARITY_EDEFAULT == null ? arity != null : !ARITY_EDEFAULT.equals(arity);
             case TCSPackage.OPERATOR__LITERAL:
@@ -442,8 +442,8 @@ public class OperatorImpl extends NamedElementImpl implements Operator {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (isPostfix: ");
-        result.append(isPostfix);
+        result.append(" (postfix: ");
+        result.append(postfix);
         result.append(", arity: ");
         result.append(arity);
         result.append(')');

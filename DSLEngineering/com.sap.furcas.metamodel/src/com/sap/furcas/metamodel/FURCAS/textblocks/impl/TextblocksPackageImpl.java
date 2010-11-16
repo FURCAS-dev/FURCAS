@@ -5,7 +5,7 @@
  * $Id$
  */
 package com.sap.furcas.metamodel.FURCAS.textblocks.impl;
-
+ 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -38,7 +38,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
  * @generated
- */
+ */ 
 public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPackage {
         /**
      * <!-- begin-user-doc -->
@@ -149,7 +149,9 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
      * @generated
      */
         public static TextblocksPackage init() {
-        if (isInited) return (TextblocksPackage)EPackage.Registry.INSTANCE.getEPackage(TextblocksPackage.eNS_URI);
+        if (isInited) {
+            return (TextblocksPackage)EPackage.Registry.INSTANCE.getEPackage(TextblocksPackage.eNS_URI);
+        }
 
         // Obtain or create and register package
         TextblocksPackageImpl theTextblocksPackage = (TextblocksPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof TextblocksPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new TextblocksPackageImpl());
@@ -640,7 +642,9 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
      * @generated
      */
         public void createPackageContents() {
-        if (isCreated) return;
+        if (isCreated) {
+            return;
+        }
         isCreated = true;
 
         // Create classes and their features
@@ -714,7 +718,9 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
      * @generated
      */
         public void initializePackageContents() {
-        if (isInitialized) return;
+        if (isInitialized) {
+            return;
+        }
         isInitialized = true;
 
         // Initialize package

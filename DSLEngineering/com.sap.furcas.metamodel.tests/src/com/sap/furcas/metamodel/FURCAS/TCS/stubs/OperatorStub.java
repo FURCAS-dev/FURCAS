@@ -3,6 +3,8 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.stubs;
 
+import junit.framework.Assert;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
@@ -20,7 +22,7 @@ public class OperatorStub extends LocatedElementStub implements Operator {
     public int arity = 2;
     public EList<OperatorTemplate> templatesList = new BasicEList<OperatorTemplate>();
     public Literal literal;
-	public boolean isPostFix;
+    public boolean isPostFix;
     
     /* (non-Javadoc)
      * @see TCS.NamedElement#getName()
@@ -36,8 +38,6 @@ public class OperatorStub extends LocatedElementStub implements Operator {
     public void setName(String value) {
         name = value;   
     }
-    
-
     /* (non-Javadoc)
      * @see TCS.Operator#getArity()
      */
@@ -57,7 +57,7 @@ public class OperatorStub extends LocatedElementStub implements Operator {
      */
     @Override
     public Priority getPriority() {
-        // TODO Auto-generated method stub
+        Assert.fail("not implemented.");
         return null;
     }
     /* (non-Javadoc)
@@ -71,7 +71,7 @@ public class OperatorStub extends LocatedElementStub implements Operator {
      * @see TCS.Operator#isIsPostfix()
      */
     @Override
-    public boolean isIsPostfix() {
+    public boolean isPostfix() {
         return isPostFix;
     }
     /* (non-Javadoc)
@@ -85,17 +85,13 @@ public class OperatorStub extends LocatedElementStub implements Operator {
     /* (non-Javadoc)
      * @see TCS.Operator#setIsPostfix(boolean)
      */
-    @Override
-    public void setIsPostfix(boolean value) {
-        // TODO Auto-generated method stub
-        
-    }
+
     /* (non-Javadoc)
      * @see TCS.Operator#setLiteral(TCS.Literal)
      */
     @Override
     public void setLiteral(Literal value) {
-        // TODO Auto-generated method stub
+        Assert.fail("not implemented.");
         
     }
     /* (non-Javadoc)
@@ -103,8 +99,11 @@ public class OperatorStub extends LocatedElementStub implements Operator {
      */
     @Override
     public void setPriority(Priority value) {
-        // TODO Auto-generated method stub
-        
+        Assert.fail("not implemented.");
+    }
+    @Override
+    public void setPostfix(boolean value) {
+        Assert.fail("not implemented.");
     }
 
     

@@ -35,7 +35,7 @@ public interface ModePArg extends PropertyArg {
      * @return the value of the '<em>Mode</em>' attribute.
      * @see #setMode(String)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getModePArg_Mode()
-     * @model
+     * @model required="true"
      * @generated
      */
         String getMode();

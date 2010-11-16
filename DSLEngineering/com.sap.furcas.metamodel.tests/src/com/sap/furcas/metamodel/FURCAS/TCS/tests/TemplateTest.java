@@ -17,24 +17,24 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 public abstract class TemplateTest extends QualifiedNamedElementTest {
 
         /**
-	 * Constructs a new Template test case with the given name.
-	 * <!-- begin-user-doc -->
+     * Constructs a new Template test case with the given name.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public TemplateTest(String name) {
-		super(name);
-	}
+        super(name);
+    }
 
         /**
-	 * Returns the fixture for this Template test case.
-	 * <!-- begin-user-doc -->
+     * Returns the fixture for this Template test case.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected Template getFixture() {
-		return (Template)fixture;
-	}
+        return (Template)fixture;
+    }
 
 } //TemplateTest
