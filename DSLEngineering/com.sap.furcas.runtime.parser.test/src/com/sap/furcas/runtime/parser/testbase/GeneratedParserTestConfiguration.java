@@ -2,7 +2,6 @@ package com.sap.furcas.runtime.parser.testbase;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
@@ -11,12 +10,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
-import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
 import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
 import com.sap.furcas.parsergenerator.GrammarGenerationTargetConfiguration;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.test.testutils.ScopeHelper;
 
 /**
  * This class serves as a configuration for the {@link GeneratedParserBasedTest}.
@@ -84,19 +82,20 @@ public class GeneratedParserTestConfiguration {
     }
     
     private static Set<URI> createReferenceScope() {
-        Set<URI> referenceScope = Collections.emptySet();
-        return referenceScope;
+        return ScopeHelper.createEcoreReferenceScope();
     }
     
     private static ResourceSet createResourceSet(File... metamodels) throws MetaModelLookupException {
         ResourceSet resourceSet =  loadResourceSet(metamodels);
-        resourceSet.getPackageRegistry().put(FURCASPackage.eNS_URI, FURCASPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put(FURCASPackage.eNAME, FURCASPackage.eINSTANCE);
+//        resourceSet.getPackageRegistry().put(FURCASPackage.eNS_URI, FURCASPackage.eINSTANCE);
+//        resourceSet.getPackageRegistry().put(FURCASPackage.eNAME, FURCASPackage.eINSTANCE);
         return resourceSet;
     }
     
     private static ResourceSet loadResourceSet(File... fileArr) throws MetaModelLookupException {
-        ResourceSet resourceSet = new ResourceSetImpl();
+        ScopeHelper.createEcoreReferenceScope();
+        
+        ResourceSet resourceSet = ScopeHelper.createResourceSet();
         for (File file : fileArr) {
             loadResourceFromUri(resourceSet, file.toURI().normalize().toString());
         }

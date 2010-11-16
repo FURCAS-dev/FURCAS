@@ -380,7 +380,7 @@ public class TcsUtil {
         for (Priority prio : operatorList.getPriorities()) {
             if (prio.getAssociativity() == Associativity.LEFT) {
                 for (Operator op : prio.getOperators()) {
-                    if (op.getArity() == 1 && !op.isIsPostfix()) {
+                    if (op.getArity() == 1 && !op.isPostfix()) {
                         if (!operatorToLiteralRefMap.containsKey(op)) {
                             cacheOperatorLiteral(operatorList, op);
 
@@ -1538,7 +1538,7 @@ public class TcsUtil {
             StringBuffer query = new StringBuffer(arg.getQuery());
             FilterPArg filterPArg = getFilterPArg(se);
             if (filterPArg != null) {
-                query.append(filterPArg.getQuery());
+                query.append(filterPArg.getFilter());
             }
             return query.toString();
         }

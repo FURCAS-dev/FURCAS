@@ -4145,7 +4145,7 @@ public class TCSParser extends ObservableInjectingParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "isDefault", java.lang.Boolean.TRUE);
+                      setProperty(ret, "default", java.lang.Boolean.TRUE);
                     }
                     if ( state.backtracking==0 ) {
                       _exitAlt();
@@ -4160,7 +4160,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _enterAlt(1);
                     }
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "isDefault", java.lang.Boolean.FALSE);
+                      setProperty(ret, "default", java.lang.Boolean.FALSE);
                     }
                     if ( state.backtracking==0 ) {
                       _exitAlt();
@@ -4463,7 +4463,7 @@ public class TCSParser extends ObservableInjectingParser {
 			return ret2;
 		    }
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "textBlockDefinition", temp);
+//                      setProperty(ret, "textBlockDefinition", temp);
                     }
 
                     }
@@ -4849,7 +4849,7 @@ public class TCSParser extends ObservableInjectingParser {
 			return ret2;
 		    }
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "textBlockDefinition", temp);
+//                      setProperty(ret, "textBlockDefinition", temp);
                     }
 
                     }
@@ -6627,7 +6627,7 @@ public class TCSParser extends ObservableInjectingParser {
 			return ret2;
 		    }
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "textBlockDefinition", temp);
+//                      setProperty(ret, "textBlockDefinition", temp);
                     }
 
                     }
@@ -7729,7 +7729,7 @@ public class TCSParser extends ObservableInjectingParser {
 			return ret2;
 		    }
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "textBlockDefinition", temp);
+//                      setProperty(ret, "textBlockDefinition", temp);
                     }
 
                     }
@@ -8724,9 +8724,9 @@ public class TCSParser extends ObservableInjectingParser {
 			return ret2;
 		    }
                     if ( state.backtracking==0 ) {
-                      setOclRef(ret, "strucfeature", "name", temp, "OCL:let c:ecore::EClass = #context.oclAsType(FURCAS::TCS::Template).metaReference in"+
+                      setOclRef(ret, "strucfeature", "name", temp, "OCL:let c:ecore::EClass = #context.oclAsType(FURCAS::TCS::Template).metaReference.oclAsType(ecore::EClass) in"+
                               "                                                let result:ecore::EStructuralFeature = c.getEStructuralFeature(?) in"+
-                              "                                                if not (result.oclIsInvalid()) then"+
+                              "                                                if (not result.oclIsInvalid()) then"+
 //                              "                                                        if(result.oclIsTypeOf(ecore::EAttribute) or"+
 //                              "                                                                        result.oclIsTypeOf(ecore::EReference)"+
 //                              "                                                                        ) then"+
@@ -10647,7 +10647,7 @@ public class TCSParser extends ObservableInjectingParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "isDefault", java.lang.Boolean.TRUE);
+                      setProperty(ret, "default", java.lang.Boolean.TRUE);
                     }
                     if ( state.backtracking==0 ) {
                       _exitAlt();
@@ -10677,7 +10677,7 @@ public class TCSParser extends ObservableInjectingParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "isDefault", java.lang.Boolean.FALSE);
+                      setProperty(ret, "default", java.lang.Boolean.FALSE);
                     }
                     if ( state.backtracking==0 ) {
                       _exitAlt();
@@ -10825,7 +10825,7 @@ public class TCSParser extends ObservableInjectingParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "isDefault", java.lang.Boolean.TRUE);
+                      setProperty(ret, "default", java.lang.Boolean.TRUE);
                     }
                     if ( state.backtracking==0 ) {
                       _exitAlt();
@@ -10855,7 +10855,7 @@ public class TCSParser extends ObservableInjectingParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "isDefault", java.lang.Boolean.FALSE);
+                      setProperty(ret, "default", java.lang.Boolean.FALSE);
                     }
                     if ( state.backtracking==0 ) {
                       _exitAlt();
@@ -11030,7 +11030,7 @@ public class TCSParser extends ObservableInjectingParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "isDefault", java.lang.Boolean.TRUE);
+                      setProperty(ret, "default", java.lang.Boolean.TRUE);
                     }
                     if ( state.backtracking==0 ) {
                       _exitAlt();
@@ -11060,7 +11060,7 @@ public class TCSParser extends ObservableInjectingParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "isDefault", java.lang.Boolean.FALSE);
+                      setProperty(ret, "default", java.lang.Boolean.FALSE);
                     }
                     if ( state.backtracking==0 ) {
                       _exitAlt();
@@ -11751,7 +11751,7 @@ public class TCSParser extends ObservableInjectingParser {
 			return ret2;
 		    }
                     if ( state.backtracking==0 ) {
-                      setOclRef(ret, "as", null, temp, "OCL:self.foreachParent.injectorActionsBlockReference.parentTemplate.concreteSyntax.templates->select(t | "+"                                                                        if(t.oclIsTypeOf(FURCAS::TCS::ClassTemplate)) then "+"                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference.name = ?"+"                                                                                and(t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference).eAllSuperTypes"+"                                                                                        ->prepend(t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference)"+"                                                                                        ->includes(self.foreachParent.propertyReference.strucfeature.eType)"+"                                                                                and ("+"                                                                                        if(not self.mode.oclIsUndefined()) then"+"                                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).mode = self.mode"+"                                                                                        else"+"                                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).mode = self.foreachParent.mode"+"                                                                                        endif"+"                                                                                )                                                                       "+"                                                                        else"+"                                                                                if(t.oclIsTypeOf(FURCAS::TCS::PrimitiveTemplate)) then"+"                                                                                        t.oclAsType(FURCAS::TCS::PrimitiveTemplate).templateName = ?"+"                                                                                else"+"                                                                                        false"+"                                                                                endif"+"                                                                        endif)"+"                                                                ");
+                      setOclRef(ret, "as", null, temp, "OCL:self.foreachParent.injectorActionsBlockReference.parentTemplate.concreteSyntax.templates->select(t | "+"                                                                        if(t.oclIsTypeOf(FURCAS::TCS::ClassTemplate)) then "+"                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference.name = ?"+"                                                                                and(t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference.oclAsType(ecore::EClass)).eAllSuperTypes"+"                                                                                        ->prepend(t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference.oclAsType(ecore::EClass))"+"                                                                                        ->includes(self.foreachParent.propertyReference.strucfeature.eType)"+"                                                                                and ("+"                                                                                        if(not self.mode.oclIsUndefined()) then"+"                                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).mode = self.mode"+"                                                                                        else"+"                                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).mode = self.foreachParent.mode"+"                                                                                        endif"+"                                                                                )                                                                       "+"                                                                        else"+"                                                                                if(t.oclIsTypeOf(FURCAS::TCS::PrimitiveTemplate)) then"+"                                                                                        t.oclAsType(FURCAS::TCS::PrimitiveTemplate).templateName = ?"+"                                                                                else"+"                                                                                        false"+"                                                                                endif"+"                                                                        endif)"+"                                                                ");
                     }
 
                     }
@@ -12629,7 +12629,7 @@ public class TCSParser extends ObservableInjectingParser {
 		return ret2;
 	    }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "template", null, temp, "OCL:self.property.parentTemplate.concreteSyntax.templates->select(t | "+"                                                                        if(t.oclIsTypeOf(FURCAS::TCS::ClassTemplate)) then "+"                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference.name = ? "+"                                                                                and(self.property.propertyReference.strucfeature.eType.oclAsType(ecore::EClass).eAllSuperTypes"+"                                                                                        ->prepend(self.property.propertyReference.strucfeature.eType.oclAsType(ecore::EClass))"+"                                                                                        ->includes(t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference))"+"                                                                                and ("+"                                                                                        if (not self.property.propertyArgs->select("+"                                                                                                        arg | arg.oclIsTypeOf(FURCAS::TCS::ModePArg))->isEmpty()"+"                                                                                                ) "+"                                                                                        then"+"                                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).mode = "+"                                                                                                        self.property.propertyArgs->select("+"                                                                                                                arg | arg.oclIsTypeOf(FURCAS::TCS::ModePArg))"+"                                                                                                                        .oclAsType(FURCAS::TCS::ModePArg)->asSequence()->at(1)"+"                                                                                                        .mode"+"                                                                                        else"+"                                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).mode.oclIsUndefined()"+"                                                                                        endif"+"                                                                                )"+"                                                                        else"+"                                                                                if(t.oclIsTypeOf(FURCAS::TCS::PrimitiveTemplate)) then"+"                                                                                        t.oclAsType(FURCAS::TCS::PrimitiveTemplate).templateName = ? "+"                                                                                else"+"                                                                                        false"+"                                                                                endif"+"                                                                        endif)"+"                                                                ");
+              setOclRef(ret, "template", null, temp, "OCL:self.property.parentTemplate.concreteSyntax.templates->select(t | "+"                                                                        if(t.oclIsTypeOf(FURCAS::TCS::ClassTemplate)) then "+"                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference.name = ? "+"                                                                                and(self.property.propertyReference.strucfeature.eType.oclAsType(ecore::EClass).eAllSuperTypes"+"                                                                                        ->prepend(self.property.propertyReference.strucfeature.eType.oclAsType(ecore::EClass))"+"                                                                                        ->includes(t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference.oclAsType(ecore::EClass)))"+"                                                                                and ("+"                                                                                        if (not self.property.propertyArgs->select("+"                                                                                                        arg | arg.oclIsTypeOf(FURCAS::TCS::ModePArg))->isEmpty()"+"                                                                                                ) "+"                                                                                        then"+"                                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).mode = "+"                                                                                                        self.property.propertyArgs->select("+"                                                                                                                arg | arg.oclIsTypeOf(FURCAS::TCS::ModePArg))"+"                                                                                                                        .oclAsType(FURCAS::TCS::ModePArg)->asSequence()->at(1)"+"                                                                                                        .mode"+"                                                                                        else"+"                                                                                                t.oclAsType(FURCAS::TCS::ClassTemplate).mode.oclIsUndefined()"+"                                                                                        endif"+"                                                                                )"+"                                                                        else"+"                                                                                if(t.oclIsTypeOf(FURCAS::TCS::PrimitiveTemplate)) then"+"                                                                                        t.oclAsType(FURCAS::TCS::PrimitiveTemplate).templateName = ? "+"                                                                                else"+"                                                                                        false"+"                                                                                endif"+"                                                                        endif)"+"                                                                ");
             }
 
             }
@@ -15685,7 +15685,7 @@ public class TCSParser extends ObservableInjectingParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "isPostfix", java.lang.Boolean.TRUE);
+                      setProperty(ret, "postfix", java.lang.Boolean.TRUE);
                     }
                     if ( state.backtracking==0 ) {
                       _exitAlt();
@@ -15700,7 +15700,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _enterAlt(1);
                     }
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "isPostfix", java.lang.Boolean.FALSE);
+                      setProperty(ret, "postfix", java.lang.Boolean.FALSE);
                     }
                     if ( state.backtracking==0 ) {
                       _exitAlt();
@@ -17372,7 +17372,7 @@ public class TCSParser extends ObservableInjectingParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "isOmitted", java.lang.Boolean.TRUE);
+                      setProperty(ret, "omitted", java.lang.Boolean.TRUE);
                     }
                     if ( state.backtracking==0 ) {
                       _exitAlt();
@@ -17387,7 +17387,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _enterAlt(1);
                     }
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "isOmitted", java.lang.Boolean.FALSE);
+                      setProperty(ret, "omitted", java.lang.Boolean.FALSE);
                     }
                     if ( state.backtracking==0 ) {
                       _exitAlt();
