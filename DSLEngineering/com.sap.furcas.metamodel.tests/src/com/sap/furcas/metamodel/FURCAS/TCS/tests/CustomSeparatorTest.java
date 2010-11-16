@@ -20,55 +20,55 @@ import junit.textui.TestRunner;
 public class CustomSeparatorTest extends SequenceElementTest {
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public static void main(String[] args) {
-		TestRunner.run(CustomSeparatorTest.class);
-	}
+        TestRunner.run(CustomSeparatorTest.class);
+    }
 
         /**
-	 * Constructs a new Custom Separator test case with the given name.
-	 * <!-- begin-user-doc -->
+     * Constructs a new Custom Separator test case with the given name.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public CustomSeparatorTest(String name) {
-		super(name);
-	}
+        super(name);
+    }
 
         /**
-	 * Returns the fixture for this Custom Separator test case.
-	 * <!-- begin-user-doc -->
+     * Returns the fixture for this Custom Separator test case.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected CustomSeparator getFixture() {
-		return (CustomSeparator)fixture;
-	}
+        return (CustomSeparator)fixture;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#setUp()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#setUp()
+     * @generated
+     */
         @Override
         protected void setUp() throws Exception {
-		setFixture(TCSFactory.eINSTANCE.createCustomSeparator());
-	}
+        setFixture(TCSFactory.eINSTANCE.createCustomSeparator());
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#tearDown()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#tearDown()
+     * @generated
+     */
         @Override
         protected void tearDown() throws Exception {
-		setFixture(null);
-	}
+        setFixture(null);
+    }
 
 } //CustomSeparatorTest

@@ -34,7 +34,7 @@ public class TestMoinAdapterWithTCSMeta {
     public void setup() {
         EPackage rootPkg = FURCASPackage.eINSTANCE;
         assertNotNull(rootPkg);
-        adapter = new EMFModelAdapterTestAdapter(rootPkg, ScopeHelper.createResourceSet(), ScopeHelper.createReferenceScope());
+        adapter = new EMFModelAdapterTestAdapter(rootPkg, ScopeHelper.createResourceSet(), ScopeHelper.createFURCASReferenceScope());
     }
         
     @Test

@@ -38,7 +38,7 @@ public abstract class AbstractTCSInjectionTest {
 
     protected static void parseInputStream(InputStream in) throws InvalidParserImplementationException, IOException, UnknownProductionRuleException {
         ResourceSet resourceSet = ScopeHelper.createResourceSet();
-        Set<URI> referenceScope = ScopeHelper.createReferenceScope();
+        Set<URI> referenceScope = ScopeHelper.createEcoreReferenceScope();
 
         modelParsingResult = TCSSpecificEMFModelInjector.parseSyntaxDefinition(in, resourceSet, referenceScope,/* observer */null);
     }

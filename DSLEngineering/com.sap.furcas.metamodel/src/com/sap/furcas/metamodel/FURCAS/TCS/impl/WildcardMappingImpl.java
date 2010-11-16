@@ -6,10 +6,10 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
+import org.eclipse.emf.ecore.EClass;
+
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.WildcardMapping;
-
-import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class WildcardMappingImpl extends MappingImpl implements WildcardMapping {
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         protected WildcardMappingImpl() {
-		super();
-	}
+        super();
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected EClass eStaticClass() {
-		return TCSPackage.Literals.WILDCARD_MAPPING;
-	}
+        return TCSPackage.Literals.WILDCARD_MAPPING;
+    }
 
 } //WildcardMappingImpl

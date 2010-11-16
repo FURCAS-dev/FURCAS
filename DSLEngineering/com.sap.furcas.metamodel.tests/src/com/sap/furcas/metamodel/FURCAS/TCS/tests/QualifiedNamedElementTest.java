@@ -20,55 +20,55 @@ import junit.textui.TestRunner;
 public class QualifiedNamedElementTest extends LocatedElementTest {
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public static void main(String[] args) {
-		TestRunner.run(QualifiedNamedElementTest.class);
-	}
+        TestRunner.run(QualifiedNamedElementTest.class);
+    }
 
         /**
-	 * Constructs a new Qualified Named Element test case with the given name.
-	 * <!-- begin-user-doc -->
+     * Constructs a new Qualified Named Element test case with the given name.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public QualifiedNamedElementTest(String name) {
-		super(name);
-	}
+        super(name);
+    }
 
         /**
-	 * Returns the fixture for this Qualified Named Element test case.
-	 * <!-- begin-user-doc -->
+     * Returns the fixture for this Qualified Named Element test case.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected QualifiedNamedElement getFixture() {
-		return (QualifiedNamedElement)fixture;
-	}
+        return (QualifiedNamedElement)fixture;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#setUp()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#setUp()
+     * @generated
+     */
         @Override
         protected void setUp() throws Exception {
-		setFixture(TCSFactory.eINSTANCE.createQualifiedNamedElement());
-	}
+        setFixture(TCSFactory.eINSTANCE.createQualifiedNamedElement());
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#tearDown()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#tearDown()
+     * @generated
+     */
         @Override
         protected void tearDown() throws Exception {
-		setFixture(null);
-	}
+        setFixture(null);
+    }
 
 } //QualifiedNamedElementTest

@@ -70,4 +70,14 @@ public class PrimitivePropertyInitStub extends LocatedElementStub implements
 	public void setInjectorActionsBlock(InjectorActionsBlock value) {
 		Assert.fail("not implemented.");
 	}
+
+    @Override
+    public boolean isDefault() {
+        return isDefault;
+    }
+
+    @Override
+    public void setDefault(boolean value) {
+        Assert.fail("not implemented.");
+    }
 }

@@ -5,6 +5,7 @@ import static com.sap.furcas.test.testutils.StringListHelper.list;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ public class TestQueryBasedEcoreMetaModelLookUp {
 
     @Before
     public void setup() throws Exception {
-        lookup = new QueryBasedEcoreMetaModelLookUp(ScopeHelper.createResourceSet(), ScopeHelper.createReferenceScope());
+        lookup = new QueryBasedEcoreMetaModelLookUp(ScopeHelper.createResourceSet(), ScopeHelper.createFURCASReferenceScope());
     }
 
     @Test
@@ -66,9 +67,9 @@ public class TestQueryBasedEcoreMetaModelLookUp {
     @Test
     public void testGetPrimitiveClasses() throws Exception {
         // failure here indicates that the PRI for PrimitiveTypes has not been included in query
-        assertNotNull(lookup.resolveReference(list("PrimitiveTypes", "String")));
-        assertNotNull(lookup.resolveReference(list("PrimitiveTypes", "Integer")));
-        assertNotNull(lookup.resolveReference(list("PrimitiveTypes", "Boolean")));
+        assertNotNull(lookup.resolveReference(list("ecore", "EString")));
+        assertNotNull(lookup.resolveReference(list("ecore", "EIntegerObject")));
+        assertNotNull(lookup.resolveReference(list("ecore", "EBoolean")));
     }
 
     @Test
@@ -126,7 +127,7 @@ public class TestQueryBasedEcoreMetaModelLookUp {
     public void testGetTypeClass() throws Exception {
         assertEquals(refM("FURCAS", "TCS", "Template"), lookup.getFeatureClassReference(refM("FURCAS", "TCS", "ConcreteSyntax"), "templates"));
         assertEquals(refM("FURCAS", "TCS", "Sequence"), lookup.getFeatureClassReference(refM("FURCAS", "TCS", "ClassTemplate"), "templateSequence"));
-        assertEquals(refM("PrimitiveTypes", "String"), lookup.getFeatureClassReference(refM("FURCAS", "TCS", "ConcreteSyntax"), "lexer"));
+        assertEquals(refM("ecore", "EString"), lookup.getFeatureClassReference(refM("FURCAS", "TCS", "ConcreteSyntax"), "lexer"));
     }
 
     @Test
@@ -134,8 +135,7 @@ public class TestQueryBasedEcoreMetaModelLookUp {
         List<String> literals = lookup.getEnumLiterals(refM("FURCAS", "TCS", "Associativity"));
         assertNotNull(literals);
         assertEquals(2, literals.size());
-        assertEquals("right", literals.get(0));
-        assertEquals("left", literals.get(1));
-
+        assertTrue(literals.contains("right"));
+        assertTrue(literals.contains("left"));
     }
 }

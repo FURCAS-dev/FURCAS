@@ -20,55 +20,55 @@ import junit.textui.TestRunner;
 public class StartNLBArgTest extends BlockArgTest {
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public static void main(String[] args) {
-		TestRunner.run(StartNLBArgTest.class);
-	}
+        TestRunner.run(StartNLBArgTest.class);
+    }
 
         /**
-	 * Constructs a new Start NLB Arg test case with the given name.
-	 * <!-- begin-user-doc -->
+     * Constructs a new Start NLB Arg test case with the given name.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public StartNLBArgTest(String name) {
-		super(name);
-	}
+        super(name);
+    }
 
         /**
-	 * Returns the fixture for this Start NLB Arg test case.
-	 * <!-- begin-user-doc -->
+     * Returns the fixture for this Start NLB Arg test case.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected StartNLBArg getFixture() {
-		return (StartNLBArg)fixture;
-	}
+        return (StartNLBArg)fixture;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#setUp()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#setUp()
+     * @generated
+     */
         @Override
         protected void setUp() throws Exception {
-		setFixture(TCSFactory.eINSTANCE.createStartNLBArg());
-	}
+        setFixture(TCSFactory.eINSTANCE.createStartNLBArg());
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#tearDown()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#tearDown()
+     * @generated
+     */
         @Override
         protected void tearDown() throws Exception {
-		setFixture(null);
-	}
+        setFixture(null);
+    }
 
 } //StartNLBArgTest

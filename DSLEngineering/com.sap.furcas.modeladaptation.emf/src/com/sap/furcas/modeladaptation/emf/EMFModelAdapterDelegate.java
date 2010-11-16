@@ -17,6 +17,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
@@ -79,27 +80,23 @@ public class EMFModelAdapterDelegate {
         return enumLiteral;
     }
 
-    public Object get(EObject refObject, String propertyName) {
-        Object value = null;
+    public Object get(EObject refObject, String propertyName) throws ModelAdapterException {
+        EClass eClass = refObject.eClass();
 
-        EClass mofClass = refObject.eClass();
-
-        EStructuralFeature strucFeat = mofClass.getEStructuralFeature(propertyName);
-        if (strucFeat != null) {
-            value = refObject.eGet(strucFeat);
-        } else {
-            // TODO look for hidden opposite
-
-        } // end if is attribute else try reference
-        return value;
+        // TODO look for hidden opposite
+        EStructuralFeature feat = (EStructuralFeature) EcoreHelper.lookupElementExtended(eClass, propertyName);
+        if (feat == null) {
+            throw new ModelAdapterException("No such feature \"" + propertyName + "\" defined for  " + eClass);
+        }
+        return  refObject.eGet(feat);
     }
 
     public String getString(EObject refObject, String propertyName) {
         return String.valueOf(refObject.eGet(refObject.eClass().getEStructuralFeature(propertyName)));
     }
 
-    public boolean instanceOf(EObject refObject, EObject metaType) {
-        return EcoreHelper.isInstanceOf(refObject, metaType, true);
+    public boolean instanceOf(EObject refObject, EClassifier metaType) {
+        return EcoreHelper.isInstanceOf(refObject, metaType);
     }
 
     /**
@@ -119,37 +116,36 @@ public class EMFModelAdapterDelegate {
             } else {
                 value = jmiHelperDelegate.actualCreateFromMock(mock);
             }
-
             mock2ModelElementMap.put(mock, value);
         }
 
-        EClass mofClass = refAObject.eClass();
-
-        EStructuralFeature feat = (EStructuralFeature) EcoreHelper.lookupElementExtended(mofClass, propertyName);
-        if (feat != null) {
-            if (feat.getUpperBound() == 1) {
+        EClass eClass = refAObject.eClass();
+        EStructuralFeature feat = (EStructuralFeature) EcoreHelper.lookupElementExtended(eClass, propertyName);
+        if (feat == null) {
+            throw new ModelAdapterException("No such feature \"" + propertyName + "\" defined for  " + refAObject.eClass());
+        }
+        if (feat.getUpperBound() == 1) {
+            if (value instanceof Collection) {
+                value = ((Collection<? extends Object>) value).iterator().next();
+                // TODO Issue warning if collection.size > 1?
+            }
+            // only set if value really changed
+            Object originalValue = refAObject.eGet(feat);
+            if ((value == null && originalValue != null) || (value != null && originalValue == null)
+                    || !originalValue.equals(value)) {
+                refAObject.eSet(feat, value);
+            }
+        } else {
+            Collection<Object> multiProperty = (Collection<Object>) refAObject.eGet(feat);
+            if (feat.getUpperBound() < 0 || multiProperty.size() < feat.getUpperBound()) {
                 if (value instanceof Collection) {
-                    value = ((Collection<? extends Object>) value).iterator().next();
-                    //TODO Issue warning if collection.size > 1?
-                }
-                // only set if value really changed
-                Object originalValue = refAObject.eGet(feat);
-                if ((value == null && originalValue != null) || (value != null && originalValue == null)
-                        || !originalValue.equals(value)) {
-                    refAObject.eSet(feat, value);
+                    multiProperty.addAll((Collection<? extends Object>) value);
+                } else {
+                    multiProperty.add(value);
                 }
             } else {
-                Collection<Object> multiProperty = (Collection<Object>) refAObject.eGet(feat);
-                if (feat.getUpperBound() < 0 || multiProperty.size() < feat.getUpperBound()) {
-                    if (value instanceof Collection) {
-                        multiProperty.addAll((Collection<? extends Object>) value);
-                    } else {
-                        multiProperty.add(value);
-                    }
-                } else {
-                    throw new ModelAdapterException("Cannot add value, property " + propertyName
-                            + " has an upper multiplicity of " + feat.getUpperBound());
-                }
+                throw new ModelAdapterException("Cannot add value, property " + propertyName + " has an upper multiplicity of "
+                        + feat.getUpperBound());
             }
         }
     }
@@ -176,7 +172,9 @@ public class EMFModelAdapterDelegate {
         // property may either be an attribute or a reference. First checking
         // EAttribute, if not then check reference.
         EStructuralFeature feat = (EStructuralFeature) EcoreHelper.lookupElementExtended(mofClass, propertyName);
-        if (feat != null) {
+        if (feat == null) {
+            throw new ModelAdapterException("No such feature \"" + propertyName + "\" defined for  " + refAObject.eClass());
+        }
             if (feat.getUpperBound() == 1) {
                 refAObject.eSet(feat, value);
             } else {
@@ -212,30 +210,30 @@ public class EMFModelAdapterDelegate {
                     }
                 }
             }
-        }
     }
 
     @SuppressWarnings("unchecked")
     public void unset(EObject refAObject, String propertyName, Object value) throws ModelAdapterException {
-        EClass mofClass = refAObject.eClass();
+        EClass eClass = refAObject.eClass();
 
-        EStructuralFeature feat = (EStructuralFeature) EcoreHelper.lookupElementExtended(mofClass, propertyName);
-        if (feat != null) {
-            if (feat.getUpperBound() == 1) {
-                refAObject.eSet(feat, null);
-            } else {
-                if (!feat.isOrdered()) {
-                    Collection<Object> multiProperty = (Collection<Object>) refAObject.eGet(feat);
-                    if (feat.getUpperBound() < 0 || multiProperty.size() < feat.getUpperBound()) {
-                        if (value instanceof Collection) {
-                            multiProperty.removeAll((Collection<? extends Object>) value);
-                        } else {
-                            multiProperty.remove(value);
-                        }
+        EStructuralFeature feat = (EStructuralFeature) EcoreHelper.lookupElementExtended(eClass, propertyName);
+        if (feat == null) {
+            throw new ModelAdapterException("No such feature \"" + propertyName + "\" defined for  " + refAObject.eClass());
+        }
+        if (feat.getUpperBound() == 1) {
+            refAObject.eSet(feat, null);
+        } else {
+            if (!feat.isOrdered()) {
+                Collection<Object> multiProperty = (Collection<Object>) refAObject.eGet(feat);
+                if (feat.getUpperBound() < 0 || multiProperty.size() < feat.getUpperBound()) {
+                    if (value instanceof Collection) {
+                        multiProperty.removeAll((Collection<? extends Object>) value);
                     } else {
-                        throw new ModelAdapterException("Cannot add value, property " + propertyName
-                                + " has an upper multiplicity of " + feat.getUpperBound());
+                        multiProperty.remove(value);
                     }
+                } else {
+                    throw new ModelAdapterException("Cannot add value, property " + propertyName
+                            + " has an upper multiplicity of " + feat.getUpperBound());
                 }
             }
         }
@@ -270,7 +268,7 @@ public class EMFModelAdapterDelegate {
             result = contextObject;
         } else {
             // need to investigate contextObject more.
-            EObject referenceType = getMetaType(targetType);
+            EClassifier referenceType = getMetaType(targetType);
 
             List<EObject> contents = null;
             // look into immediate contents of context and look for appropriate
@@ -296,8 +294,7 @@ public class EMFModelAdapterDelegate {
 
             for (EObject loopCandidateModelElement : contents) {
                 if (instanceOf(loopCandidateModelElement, referenceType)) {
-                    Object candidateFeatureValue = loopCandidateModelElement.eGet(loopCandidateModelElement.eClass()
-                            .getEStructuralFeature(targetKeyName));
+                    Object candidateFeatureValue = loopCandidateModelElement.eGet((EStructuralFeature) EcoreHelper.lookupElementExtended(loopCandidateModelElement.eClass(), targetKeyName));
 
                     if (candidateFeatureValue != null && candidateFeatureValue.equals(targetKeyValue)) {
                         if (result == null) {

@@ -3,6 +3,7 @@ package com.sap.furcas.parsergenerator.tcs.injection;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
 
 import java.util.Iterator;
 import java.util.List;
@@ -84,19 +85,19 @@ public class TestATLSample extends AbstractTCSInjectionTest {
 
         Priority prio0 = prioList.get(0);
         assertNotNull(prio0);
-        assertEquals(0, prio0.getValue());
+        assertSame(0, prio0.getValue());
         assertEquals(Associativity.LEFT, prio0.getAssociativity());
         assertEquals(2, prio0.getOperators().size());
-        assertEquals(2, prio0.getOperators().get(0).getArity());
-        assertEquals(2, prio0.getOperators().get(1).getArity());
+        assertSame(2, prio0.getOperators().get(0).getArity());
+        assertSame(2, prio0.getOperators().get(1).getArity());
 
         Priority prio1 = prioList.get(1);
         assertNotNull(prio1);
-        assertEquals(1, prio1.getValue());
+        assertSame(1, prio1.getValue());
         assertEquals(Associativity.LEFT, prio1.getAssociativity());
         assertEquals(2, prio1.getOperators().size());
-        assertEquals(1, prio1.getOperators().get(0).getArity());
-        assertEquals(1, prio1.getOperators().get(1).getArity());
+        assertSame(1, prio1.getOperators().get(0).getArity());
+        assertSame(1, prio1.getOperators().get(1).getArity());
 
     }
 

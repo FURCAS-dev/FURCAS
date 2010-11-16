@@ -6,15 +6,13 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.util;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
-
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.resource.Resource;
-
 import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
+
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 /**
  * This class contains helper methods to serialize and deserialize XML documents
@@ -25,30 +23,30 @@ import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 public class TCSXMLProcessor extends XMLProcessor {
 
         /**
-	 * Public constructor to instantiate the helper.
-	 * <!-- begin-user-doc -->
+     * Public constructor to instantiate the helper.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public TCSXMLProcessor() {
-		super((EPackage.Registry.INSTANCE));
-		TCSPackage.eINSTANCE.eClass();
-	}
+        super((EPackage.Registry.INSTANCE));
+        TCSPackage.eINSTANCE.eClass();
+    }
         
         /**
-	 * Register for "*" and "xml" file extensions the TCSResourceFactoryImpl factory.
-	 * <!-- begin-user-doc -->
+     * Register for "*" and "xml" file extensions the TCSResourceFactoryImpl factory.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected Map<String, Resource.Factory> getRegistrations() {
-		if (registrations == null) {
-			super.getRegistrations();
-			registrations.put(XML_EXTENSION, new TCSResourceFactoryImpl());
-			registrations.put(STAR_EXTENSION, new TCSResourceFactoryImpl());
-		}
-		return registrations;
-	}
+        if (registrations == null) {
+            super.getRegistrations();
+            registrations.put(XML_EXTENSION, new TCSResourceFactoryImpl());
+            registrations.put(STAR_EXTENSION, new TCSResourceFactoryImpl());
+        }
+        return registrations;
+    }
 
 } //TCSXMLProcessor
