@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
-
 public class AllInstanceCallCountingOppositeEndFinder implements OppositeEndFinder{
     private int allInstancesCalled = 0;
     private int findOppositeEndsCalled = 0;
