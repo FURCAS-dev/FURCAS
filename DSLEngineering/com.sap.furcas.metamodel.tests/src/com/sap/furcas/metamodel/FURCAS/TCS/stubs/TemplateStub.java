@@ -5,6 +5,7 @@ package com.sap.furcas.metamodel.FURCAS.TCS.stubs;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
@@ -98,7 +99,7 @@ public class TemplateStub extends LocatedElementStub implements Template {
      * @see tcs.QualifiedNamedElement#setMetaReference(com.sap.tc.moin.repository.mmi.reflect.RefObject)
      */
     @Override
-    public void setMetaReference(EClass newValue) {
+    public void setMetaReference(EClassifier newValue) {
         // TODO Auto-generated method stub
     }
 

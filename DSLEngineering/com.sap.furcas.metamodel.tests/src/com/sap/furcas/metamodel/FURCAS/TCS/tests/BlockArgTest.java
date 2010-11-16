@@ -17,24 +17,24 @@ import com.sap.furcas.metamodel.FURCAS.TCS.BlockArg;
 public abstract class BlockArgTest extends LocatedElementTest {
 
         /**
-	 * Constructs a new Block Arg test case with the given name.
-	 * <!-- begin-user-doc -->
+     * Constructs a new Block Arg test case with the given name.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public BlockArgTest(String name) {
-		super(name);
-	}
+        super(name);
+    }
 
         /**
-	 * Returns the fixture for this Block Arg test case.
-	 * <!-- begin-user-doc -->
+     * Returns the fixture for this Block Arg test case.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected BlockArg getFixture() {
-		return (BlockArg)fixture;
-	}
+        return (BlockArg)fixture;
+    }
 
 } //BlockArgTest

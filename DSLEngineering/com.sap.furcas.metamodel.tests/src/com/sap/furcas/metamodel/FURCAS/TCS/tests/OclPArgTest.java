@@ -17,24 +17,24 @@ import com.sap.furcas.metamodel.FURCAS.TCS.OclPArg;
 public abstract class OclPArgTest extends PropertyArgTest {
 
         /**
-	 * Constructs a new Ocl PArg test case with the given name.
-	 * <!-- begin-user-doc -->
+     * Constructs a new Ocl PArg test case with the given name.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public OclPArgTest(String name) {
-		super(name);
-	}
+        super(name);
+    }
 
         /**
-	 * Returns the fixture for this Ocl PArg test case.
-	 * <!-- begin-user-doc -->
+     * Returns the fixture for this Ocl PArg test case.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected OclPArg getFixture() {
-		return (OclPArg)fixture;
-	}
+        return (OclPArg)fixture;
+    }
 
 } //OclPArgTest

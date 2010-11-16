@@ -20,55 +20,55 @@ import junit.textui.TestRunner;
 public class OmittedTokenTest extends AbstractTokenTest {
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public static void main(String[] args) {
-		TestRunner.run(OmittedTokenTest.class);
-	}
+        TestRunner.run(OmittedTokenTest.class);
+    }
 
         /**
-	 * Constructs a new Omitted Token test case with the given name.
-	 * <!-- begin-user-doc -->
+     * Constructs a new Omitted Token test case with the given name.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public OmittedTokenTest(String name) {
-		super(name);
-	}
+        super(name);
+    }
 
         /**
-	 * Returns the fixture for this Omitted Token test case.
-	 * <!-- begin-user-doc -->
+     * Returns the fixture for this Omitted Token test case.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected OmittedToken getFixture() {
-		return (OmittedToken)fixture;
-	}
+        return (OmittedToken)fixture;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#setUp()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#setUp()
+     * @generated
+     */
         @Override
         protected void setUp() throws Exception {
-		setFixture(TextblocksFactory.eINSTANCE.createOmittedToken());
-	}
+        setFixture(TextblocksFactory.eINSTANCE.createOmittedToken());
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#tearDown()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#tearDown()
+     * @generated
+     */
         @Override
         protected void tearDown() throws Exception {
-		setFixture(null);
-	}
+        setFixture(null);
+    }
 
 } //OmittedTokenTest

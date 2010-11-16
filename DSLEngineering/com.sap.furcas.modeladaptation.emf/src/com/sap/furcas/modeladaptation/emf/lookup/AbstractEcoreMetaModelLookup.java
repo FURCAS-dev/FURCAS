@@ -175,7 +175,8 @@ public abstract class AbstractEcoreMetaModelLookup implements IMetaModelLookup<E
         EStructuralFeature returnFeature = null;
         EClassifier typeClass = getClassifier(reference);
         if (typeClass != null && typeClass instanceof EClass) {
-            returnFeature = ((EClass) typeClass).getEStructuralFeature(featureName);
+            
+            returnFeature = (EStructuralFeature) EcoreHelper.lookupElementExtended(typeClass, featureName);
         }
         return returnFeature;
     }

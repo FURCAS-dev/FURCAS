@@ -6,12 +6,11 @@
  */
 package com.sap.furcas.metamodel.FURCAS.impl;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+
 import com.sap.furcas.metamodel.FURCAS.EmptyDummyClassToWorkaroundGeneratorBug;
 import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
-
-import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,22 +23,22 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  */
 public class EmptyDummyClassToWorkaroundGeneratorBugImpl extends EObjectImpl implements EmptyDummyClassToWorkaroundGeneratorBug {
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         protected EmptyDummyClassToWorkaroundGeneratorBugImpl() {
-		super();
-	}
+        super();
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected EClass eStaticClass() {
-		return FURCASPackage.Literals.EMPTY_DUMMY_CLASS_TO_WORKAROUND_GENERATOR_BUG;
-	}
+        return FURCASPackage.Literals.EMPTY_DUMMY_CLASS_TO_WORKAROUND_GENERATOR_BUG;
+    }
 
 } //EmptyDummyClassToWorkaroundGeneratorBugImpl

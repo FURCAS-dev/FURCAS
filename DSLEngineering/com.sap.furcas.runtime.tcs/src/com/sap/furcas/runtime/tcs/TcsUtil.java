@@ -27,9 +27,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.query2.QueryContext;
-import org.eclipse.emf.query2.QueryProcessor;
-import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
@@ -76,6 +73,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.TCS.Token;
 import com.sap.furcas.modeladaptation.emf.AdapterJMIHelper;
 import com.sap.furcas.modeladaptation.emf.EMFModelAdapterDelegate;
+import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
@@ -276,7 +274,7 @@ public class TcsUtil {
                     // property
                     addAllIfNotNull(
                             results,
-                            getPossibleFirstAtomicSequenceElements(main.getMetaReference(), main.getMode(), classTemplateMap,
+                            getPossibleFirstAtomicSequenceElements((EClass) main.getMetaReference(), main.getMode(), classTemplateMap,
                                     new HashSet<Template>(), syntax, getResourceSetFromEObject(main)));
 
                     // also add prefix operators
@@ -382,7 +380,7 @@ public class TcsUtil {
         for (Priority prio : operatorList.getPriorities()) {
             if (prio.getAssociativity() == Associativity.LEFT) {
                 for (Operator op : prio.getOperators()) {
-                    if (op.getArity() == 1 && !op.isIsPostfix()) {
+                    if (op.getArity() == 1 && !op.isPostfix()) {
                         if (!operatorToLiteralRefMap.containsKey(op)) {
                             cacheOperatorLiteral(operatorList, op);
 
@@ -424,7 +422,7 @@ public class TcsUtil {
 
         ClassTemplate main = getMainClassTemplate(syntax);
         if (main.isIsAbstract()) {
-            return getPossibleFirstAtomicSequenceElements(main.getMetaReference(), main.getMode(), classTemplateMap,
+            return getPossibleFirstAtomicSequenceElements((EClass) main.getMetaReference(), main.getMode(), classTemplateMap,
                     new HashSet<Template>(), syntax, getResourceSetFromEObject(main));
 
         } else {
@@ -1117,15 +1115,11 @@ public class TcsUtil {
     }
 
     public static ResultSet queryConn(ResourceSet resourceSet, String query) {
-        QueryProcessor queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(getIndex(resourceSet));
-
-        QueryContext context = EcoreHelper.getQueryContext(resourceSet);
-        return queryProcessor.execute(query, context);
-    }
-
-    private static org.eclipse.emf.query.index.Index getIndex(ResourceSet resourceSet) {
-        // TODO Auto-generated method stub
-        return null;
+        try {
+            return EcoreHelper.executeQuery(query, EcoreHelper.getQueryContext(resourceSet));
+        } catch (MetaModelLookupException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static ResultSet querySameConn(EObject r, String query) {
@@ -1229,7 +1223,7 @@ public class TcsUtil {
 
     public static List<String> getQualifiedName(Template t) {
         List<String> qualifiedName;
-        EClass ref = t.getMetaReference();
+        EClassifier ref = t.getMetaReference();
         if (ref == null) { // syntaxes may merely define name of
             // metamodel class rather than have a
             // reference
@@ -1544,7 +1538,7 @@ public class TcsUtil {
             StringBuffer query = new StringBuffer(arg.getQuery());
             FilterPArg filterPArg = getFilterPArg(se);
             if (filterPArg != null) {
-                query.append(filterPArg.getQuery());
+                query.append(filterPArg.getFilter());
             }
             return query.toString();
         }

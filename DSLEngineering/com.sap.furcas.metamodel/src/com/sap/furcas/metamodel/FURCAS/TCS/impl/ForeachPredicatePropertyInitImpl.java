@@ -6,24 +6,20 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
-import com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic;
-import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,185 +37,185 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ForeachPredicatePropertyInitImpl extends PropertyInitImpl implements ForeachPredicatePropertyInit {
         /**
-	 * The cached value of the '{@link #getPredicateSemantic() <em>Predicate Semantic</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getPredicateSemantic() <em>Predicate Semantic</em>}' containment reference list.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see #getPredicateSemantic()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getPredicateSemantic()
+     * @generated
+     * @ordered
+     */
         protected EList<PredicateSemantic> predicateSemantic;
 
         /**
-	 * The default value of the '{@link #getMode() <em>Mode</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getMode() <em>Mode</em>}' attribute.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see #getMode()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getMode()
+     * @generated
+     * @ordered
+     */
         protected static final String MODE_EDEFAULT = null;
 
         /**
-	 * The cached value of the '{@link #getMode() <em>Mode</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getMode() <em>Mode</em>}' attribute.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see #getMode()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getMode()
+     * @generated
+     * @ordered
+     */
         protected String mode = MODE_EDEFAULT;
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         protected ForeachPredicatePropertyInitImpl() {
-		super();
-	}
+        super();
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected EClass eStaticClass() {
-		return TCSPackage.Literals.FOREACH_PREDICATE_PROPERTY_INIT;
-	}
+        return TCSPackage.Literals.FOREACH_PREDICATE_PROPERTY_INIT;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public EList<PredicateSemantic> getPredicateSemantic() {
-		if (predicateSemantic == null) {
-			predicateSemantic = new EObjectContainmentEList<PredicateSemantic>(PredicateSemantic.class, this, TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__PREDICATE_SEMANTIC);
-		}
-		return predicateSemantic;
-	}
+        if (predicateSemantic == null) {
+            predicateSemantic = new EObjectContainmentEList<PredicateSemantic>(PredicateSemantic.class, this, TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__PREDICATE_SEMANTIC);
+        }
+        return predicateSemantic;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public String getMode() {
-		return mode;
-	}
+        return mode;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public void setMode(String newMode) {
-		String oldMode = mode;
-		mode = newMode;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__MODE, oldMode, mode));
-	}
+        String oldMode = mode;
+        mode = newMode;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__MODE, oldMode, mode));
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__PREDICATE_SEMANTIC:
-				return ((InternalEList<?>)getPredicateSemantic()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__PREDICATE_SEMANTIC:
+                return ((InternalEList<?>)getPredicateSemantic()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__PREDICATE_SEMANTIC:
-				return getPredicateSemantic();
-			case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__MODE:
-				return getMode();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__PREDICATE_SEMANTIC:
+                return getPredicateSemantic();
+            case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__MODE:
+                return getMode();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @SuppressWarnings("unchecked")
         @Override
         public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__PREDICATE_SEMANTIC:
-				getPredicateSemantic().clear();
-				getPredicateSemantic().addAll((Collection<? extends PredicateSemantic>)newValue);
-				return;
-			case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__MODE:
-				setMode((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__PREDICATE_SEMANTIC:
+                getPredicateSemantic().clear();
+                getPredicateSemantic().addAll((Collection<? extends PredicateSemantic>)newValue);
+                return;
+            case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__MODE:
+                setMode((String)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         public void eUnset(int featureID) {
-		switch (featureID) {
-			case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__PREDICATE_SEMANTIC:
-				getPredicateSemantic().clear();
-				return;
-			case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__MODE:
-				setMode(MODE_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__PREDICATE_SEMANTIC:
+                getPredicateSemantic().clear();
+                return;
+            case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__MODE:
+                setMode(MODE_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__PREDICATE_SEMANTIC:
-				return predicateSemantic != null && !predicateSemantic.isEmpty();
-			case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__MODE:
-				return MODE_EDEFAULT == null ? mode != null : !MODE_EDEFAULT.equals(mode);
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__PREDICATE_SEMANTIC:
+                return predicateSemantic != null && !predicateSemantic.isEmpty();
+            case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__MODE:
+                return MODE_EDEFAULT == null ? mode != null : !MODE_EDEFAULT.equals(mode);
+        }
+        return super.eIsSet(featureID);
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (mode: ");
-		result.append(mode);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (mode: ");
+        result.append(mode);
+        result.append(')');
+        return result.toString();
+    }
 
 } //ForeachPredicatePropertyInitImpl

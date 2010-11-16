@@ -37,7 +37,7 @@ public class PrimitiveTemplateStub extends TemplateStub implements PrimitiveTemp
     }
 
     @Override
-    public boolean isIsDefault() {
+    public boolean isDefault() {
         // TODO Auto-generated method stub
         return false;
     }
@@ -48,7 +48,7 @@ public class PrimitiveTemplateStub extends TemplateStub implements PrimitiveTemp
     }
 
     @Override
-    public void setIsDefault(boolean value) {
+    public void setDefault(boolean value) {
         // TODO Auto-generated method stub
         
     }

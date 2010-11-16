@@ -118,10 +118,8 @@ public class OperatorHandler {
         // else the TCS definition is invalid.
 
         // add one rule per priority in list
-        for (Iterator<Priority> iterator = prios.iterator(); iterator.hasNext();) {
+        for (Priority priority : prios) {
             VarStringBuffer rulebody = new VarStringBuffer();
-            Priority priority = iterator.next();
-
             String calledRule = null;
             if (priority.getValue() > 0) {
                 calledRule = prefix + "priority_" + (priority.getValue() - 1);
@@ -211,7 +209,7 @@ public class OperatorHandler {
             if (unaryOperators.size() > 0) {
             	List<Operator> nonPostFixUnaryOperators = new ArrayList<Operator>(operators.size());
             	for (Operator operator : unaryOperators) {
-					if(!operator.isIsPostfix()) {
+					if(!operator.isPostfix()) {
 						nonPostFixUnaryOperators.add(operator);
 					}
 				}
@@ -230,7 +228,7 @@ public class OperatorHandler {
             if (unaryOperators.size() > 0) {
             	List<Operator> postFixUnaryOperators = new ArrayList<Operator>(operators.size());
             	for (Operator operator : unaryOperators) {
-					if(operator.isIsPostfix()) {
+					if(operator.isPostfix()) {
 						postFixUnaryOperators.add(operator);
 					}
 				}
@@ -263,8 +261,7 @@ public class OperatorHandler {
      */
     private void splitOperators(Collection<Operator> operators,
             List<Operator> unaryOperators, List<Operator> binaryOperators) {
-        for (Iterator<Operator> iterator = operators.iterator(); iterator.hasNext();) {
-            Operator operator = iterator.next();
+        for (Operator operator : operators) {
             if (operator.getArity() == 1) {
                 unaryOperators.add(operator);
             } else if (operator.getArity() == 2) {
@@ -274,7 +271,7 @@ public class OperatorHandler {
                         + operator.getName() + " has arity "
                         + operator.getArity(), operator);
             }
-            if (operator.isIsPostfix() && operator.getArity() > 1) {
+            if (operator.isPostfix() && operator.getArity() > 1) {
                 errorBucket.addError("Postfix notation for arity > 1 not implemented yet.", operator);
             }
         }
@@ -297,11 +294,7 @@ public class OperatorHandler {
             VarStringBuffer rulebody = new VarStringBuffer();
             boolean hasAddedOperator = false; // used to decide about parentheses, none if nothing is added
 
-            for (Iterator<Operator> iterator = operators.iterator(); iterator.hasNext();) {
-                Operator operator = iterator.next();
-
-         
-                
+            for (Operator operator : operators) {
                 // don't create anything if operator has no operator Template (non critical case? Maybe warning would be good.)
                 Collection<OperatorTemplate> opTemplateList //= (Collection<OperatorTemplate>) operator.refGetValue("templates");
                                 = operator.getTemplates();
@@ -356,7 +349,7 @@ public class OperatorHandler {
                 }
                 
                 rulebody.append('('); // b2  required to separate operators, if many
-                rulebody.append(ObservationDirectivesHelper.getEnterOperatorSequenceNotification(operator.getLiteral().getValue(), arity, operator.isIsPostfix()));
+                rulebody.append(ObservationDirectivesHelper.getEnterOperatorSequenceNotification(operator.getLiteral().getValue(), arity, operator.isPostfix()));
                 
                 if (arity == 2 || isLeftAssociative) { // don't add here if unary and right associative
                 	//FIXME: have a seperate notification for operators? Or is OperatorSequence enough?
@@ -408,7 +401,7 @@ public class OperatorHandler {
                             rulebody.append("(ret=", namingHelper
                                     .getRuleName(opTemplate),
                                     "[opName, ret, firstToken]");
-                            // auch für sem prädikat am ende erzeugen
+                            // auch fï¿½r sem prï¿½dikat am ende erzeugen
                             String storeRightTo = getRightSideStorageName(opTemplate);
                             if (storeRightTo != null) { // is this ever
                                                         // possible?
@@ -434,7 +427,7 @@ public class OperatorHandler {
                             rulebody.append("("
                                     + opTemplate.getDisambiguateV3() + ")=>");
                         }
-                        if (operator.isIsPostfix()) {
+                        if (operator.isPostfix()) {
                             rulebody.append("(ret=", namingHelper
                                     .getRuleName(opTemplate),
                                     "[opName, ret, firstToken]");
@@ -451,7 +444,7 @@ public class OperatorHandler {
                             rulebody.append(ObservationDirectivesHelper
                                     .getExitSequenceElementNotification());
                         }
-                    	 if(operator.isIsPostfix()) {
+                    	 if(operator.isPostfix()) {
                     		 rulebody.append("(ret=", namingHelper.getRuleName(opTemplate), "[opName, ret, firstToken]");
                     	 } else {
                     		 rulebody.append("(ret=", namingHelper.getRuleName(opTemplate), "[opName, null, firstToken]");
@@ -461,7 +454,7 @@ public class OperatorHandler {
                             appendOperatorLiteralBit(rulebody, literal);
                             rulebody.append(ObservationDirectivesHelper.getExitSequenceElementNotification());
                         }
-                        if ( ! operator.isIsPostfix()) {
+                        if ( ! operator.isPostfix()) {
                             rulebody.append("right=", associativityCalledRule);				    
                             rulebody.append(" {setProperty(ret, \"", getSourceStorageName(opTemplate), "\", right);\n");
                         } else {

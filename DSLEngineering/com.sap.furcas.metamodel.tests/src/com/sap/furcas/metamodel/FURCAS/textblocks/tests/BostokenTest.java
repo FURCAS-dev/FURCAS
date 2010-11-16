@@ -20,55 +20,55 @@ import junit.textui.TestRunner;
 public class BostokenTest extends AbstractTokenTest {
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public static void main(String[] args) {
-		TestRunner.run(BostokenTest.class);
-	}
+        TestRunner.run(BostokenTest.class);
+    }
 
         /**
-	 * Constructs a new Bostoken test case with the given name.
-	 * <!-- begin-user-doc -->
+     * Constructs a new Bostoken test case with the given name.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public BostokenTest(String name) {
-		super(name);
-	}
+        super(name);
+    }
 
         /**
-	 * Returns the fixture for this Bostoken test case.
-	 * <!-- begin-user-doc -->
+     * Returns the fixture for this Bostoken test case.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected Bostoken getFixture() {
-		return (Bostoken)fixture;
-	}
+        return (Bostoken)fixture;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#setUp()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#setUp()
+     * @generated
+     */
         @Override
         protected void setUp() throws Exception {
-		setFixture(TextblocksFactory.eINSTANCE.createBostoken());
-	}
+        setFixture(TextblocksFactory.eINSTANCE.createBostoken());
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#tearDown()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#tearDown()
+     * @generated
+     */
         @Override
         protected void tearDown() throws Exception {
-		setFixture(null);
-	}
+        setFixture(null);
+    }
 
 } //BostokenTest

@@ -85,9 +85,8 @@ public class OperatorTemplateHandler<Type extends Object> {
 		
 		Collection<Operator> ops = template.getOperators();
 		boolean allOperatorsPostFix = true;
-		for (Iterator<Operator> iterator = ops.iterator(); iterator.hasNext();) {
-			Operator operator = iterator.next();
-            if (!operator.isIsPostfix()) {
+		for (Operator operator : ops) {
+			if (!operator.isPostfix()) {
                 allOperatorsPostFix = false;
             }
 		}

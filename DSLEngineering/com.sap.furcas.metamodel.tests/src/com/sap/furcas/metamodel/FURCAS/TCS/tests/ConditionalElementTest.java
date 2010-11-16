@@ -20,55 +20,55 @@ import junit.textui.TestRunner;
 public class ConditionalElementTest extends SequenceElementTest {
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public static void main(String[] args) {
-		TestRunner.run(ConditionalElementTest.class);
-	}
+        TestRunner.run(ConditionalElementTest.class);
+    }
 
         /**
-	 * Constructs a new Conditional Element test case with the given name.
-	 * <!-- begin-user-doc -->
+     * Constructs a new Conditional Element test case with the given name.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public ConditionalElementTest(String name) {
-		super(name);
-	}
+        super(name);
+    }
 
         /**
-	 * Returns the fixture for this Conditional Element test case.
-	 * <!-- begin-user-doc -->
+     * Returns the fixture for this Conditional Element test case.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected ConditionalElement getFixture() {
-		return (ConditionalElement)fixture;
-	}
+        return (ConditionalElement)fixture;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#setUp()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#setUp()
+     * @generated
+     */
         @Override
         protected void setUp() throws Exception {
-		setFixture(TCSFactory.eINSTANCE.createConditionalElement());
-	}
+        setFixture(TCSFactory.eINSTANCE.createConditionalElement());
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#tearDown()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#tearDown()
+     * @generated
+     */
         @Override
         protected void tearDown() throws Exception {
-		setFixture(null);
-	}
+        setFixture(null);
+    }
 
 } //ConditionalElementTest

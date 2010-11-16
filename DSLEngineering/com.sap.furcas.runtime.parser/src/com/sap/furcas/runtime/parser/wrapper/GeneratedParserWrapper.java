@@ -224,8 +224,10 @@ public class GeneratedParserWrapper {
         } catch(java.lang.reflect.InvocationTargetException ite) {
             if (ite.getCause() != null && ite.getCause() instanceof IncompatibleClassChangeError) {
                 // was once caused by having DSLParsing.jar deployed in 2 plugins at the same time 
+                ite.printStackTrace();
                 throw new RuntimeException("Tip: Check classes are only once on the classpath.", ite);
             } else {
+                ite.printStackTrace();
                 throw new RuntimeException("invoking method "+ productionRule + "() on parser class " + parserClass + " caused an exception.", ite);
             }
         } catch (IllegalAccessException e) {
