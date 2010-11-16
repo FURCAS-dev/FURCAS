@@ -39,7 +39,9 @@
     <module>com.sap.furcas.runtime.common.test</module>
     <module>com.sap.furcas.runtime.parser</module>
     <module>com.sap.furcas.runtime.parser.incremental</module>
+<!--
     <module>com.sap.furcas.runtime.parser.incremental.test</module>
+-->
     <module>com.sap.furcas.runtime.parser.test</module>
     <module>com.sap.furcas.runtime.referenceresolving</module>
     <module>com.sap.furcas.runtime.referenceresolving.tests</module>

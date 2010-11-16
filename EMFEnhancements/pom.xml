@@ -17,8 +17,6 @@
   <modules>
     <module>com.sap.emf.importer.moin.rose</module>
     <module>com.sap.emf.ocl.attributegrammar</module>
-    <module>com.sap.emf.ocl.hiddenopposites</module>
-    <module>com.sap.emf.ocl.hiddenopposites.tests</module>
     <module>com.sap.emf.ocl.impactanalysis.example</module>
     <module>com.sap.emf.ocl.impactanalysis.example.edit</module>
     <module>com.sap.emf.ocl.impactanalysis.example.editor</module>
@@ -37,7 +35,6 @@
     <module>de.hpi.sam.bp2009.solution.impactAnalyzer.debug</module>
     <module>de.hpi.sam.bp2009.solution.impactAnalyzer.editor</module>
     <module>de.hpi.sam.bp2009.solution.impactAnalyzer.tests</module>
-    <module>de.hpi.sam.bp2009.solution.impactAnalyzerWithHiddenOpposites</module>
     <module>de.hpi.sam.bp2009.solution.oclToAst</module>
     <module>de.hpi.sam.bp2009.solution.oclToAst.tests</module>
     <module>de.hpi.sam.bp2009.solution.oclToMqlMapping</module>
@@ -47,7 +44,7 @@
     <module>de.hpi.sam.bp2009.solution.scopeProvider.tests</module>
     <module>de.hpi.sam.bp2009.solution.testutils</module>
     <module>de.hpi.sam.petriNet</module>
-    <module>org.eclipse.emf.ecore.opposites</module>
+    <module>org.eclipse.ocl.ecore.opposites</module>
   </modules>
 
 </project>

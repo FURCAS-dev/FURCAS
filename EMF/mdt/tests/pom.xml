@@ -4,19 +4,18 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.sap.dsl</groupId>
-  <artifactId>mdt</artifactId>
+  <artifactId>mdt.tests</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <parent>
+    <artifactId>mdt</artifactId>
     <groupId>com.sap.dsl</groupId>
-    <artifactId>emf</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
   <modules>
-    <module>plugins</module>
-    <module>tests</module>
+    <module>org.eclipse.ocl.tests</module>
   </modules>
 
 </project>
