@@ -66,7 +66,7 @@ public class CreateProject extends WorkspaceModifyOperation {
 
         List<String> nonSrcFolders = new ArrayList<String>();
         nonSrcFolders.add("resources");
-        // nonSrcFolders.add("mappings");
+        nonSrcFolders.add("mappings");
 
         List<String> extraclasspath = new ArrayList<String>(Arrays.asList(EXTRA_CLASSPATH));
 

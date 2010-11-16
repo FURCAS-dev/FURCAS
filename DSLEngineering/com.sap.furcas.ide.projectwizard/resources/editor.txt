@@ -1,4 +1,4 @@
-package ProjectName.editor; 
+package $ProjectName$.editor; 
 
 import textblocks.TextBlock; 
 

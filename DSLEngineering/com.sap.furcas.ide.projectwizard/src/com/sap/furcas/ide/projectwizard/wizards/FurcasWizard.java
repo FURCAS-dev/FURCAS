@@ -56,7 +56,8 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 import org.eclipse.ui.progress.UIJob;
 
-/*This Wizard creates a pair of projects for the Furcas DSL project. It generates the necessary folder,
+/*
+ * This Wizard creates a pair of projects for the Furcas DSL project. It generates the necessary folder,
  * packages, files and first lines of code that help to quickly be able to create the DSL.
  */
 public class FurcasWizard extends Wizard implements INewWizard {
@@ -324,12 +325,12 @@ public class FurcasWizard extends Wizard implements INewWizard {
     }
 
     /*
-     * This method generates a modelfile in the project folder and opens the load ressources dialog. Afterwords it also generates
-     * the MetaModelspecific files and coding in the project.
+     * This method opens the load ressources dialog.
      */
 
     protected void loadmm() {
-        // TODO see above
+//        ExtendedLoadResourceAction lR = new ExtendedLoadResourceAction();
+//        lR.run();
     }
 
     public void createMMProject(IProgressMonitor monitor) {
