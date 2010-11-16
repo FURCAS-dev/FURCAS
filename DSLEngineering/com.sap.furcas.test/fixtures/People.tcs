@@ -29,10 +29,9 @@ syntax People {
 		: ->name "(" ->persons{separator=","} ")"
 		  (isDefined(->representative) ? "representative:" 
 		  	->representative{
-		  			refersTo=name,
-		  			query="OCL:#context(nationTag).capital.persons",
-		  			filter="->select(p | p.name = ?)",
-		  			invert="self.name"
+		  			filter = "->select(p | p.name = ?)", invert = "self.name",
+		  			refersTo = name,
+		  			query = "OCL:#context(nationTag).capital.persons"
 		  		})
 		;
 		
@@ -42,7 +41,7 @@ syntax People {
 			
 			-- language does not allow for person to be anywhere
 			-- in other nation than its container (which does not need to be a bug)  
-			"@" ->currentlyIn{refersTo=name, lookIn='#context(nationTag).cities'} 
+			"@" ->currentlyIn{refersTo = name, lookIn = '#context(nationTag).cities'} 
 			(isDefined(->parents) ? 
 				"("
 					"mother:" ->parents{refersTo=name, forcedLower=1, forcedUpper=1}

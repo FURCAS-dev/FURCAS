@@ -49,6 +49,6 @@ public class OCLQueryPropertyUpdater extends AbstractOCLBasedModelUpdater {
         if (qarg == null) {
             throw new RuntimeException("Didn't find a query argument in rule for property "+propertyInit.getPropertyReference().getStrucfeature());
         }
-        return qarg.getQuery() + (filter != null ? filter.getQuery() : "");
+        return qarg.getQuery() + (filter != null ? filter.getFilter() : "");
     }
 }

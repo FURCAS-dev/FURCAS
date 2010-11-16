@@ -84,11 +84,11 @@ public class EMFModelAdapterDelegate {
         EClass eClass = refObject.eClass();
 
         // TODO look for hidden opposite
-        EStructuralFeature strucFeat = eClass.getEStructuralFeature(propertyName);
-        if (strucFeat == null) {
+        EStructuralFeature feat = (EStructuralFeature) EcoreHelper.lookupElementExtended(eClass, propertyName);
+        if (feat == null) {
             throw new ModelAdapterException("No such feature \"" + propertyName + "\" defined for  " + eClass);
         }
-        return  refObject.eGet(strucFeat);
+        return  refObject.eGet(feat);
     }
 
     public String getString(EObject refObject, String propertyName) {
@@ -120,7 +120,7 @@ public class EMFModelAdapterDelegate {
         }
 
         EClass eClass = refAObject.eClass();
-        EStructuralFeature feat = eClass.getEStructuralFeature(propertyName);
+        EStructuralFeature feat = (EStructuralFeature) EcoreHelper.lookupElementExtended(eClass, propertyName);
         if (feat == null) {
             throw new ModelAdapterException("No such feature \"" + propertyName + "\" defined for  " + refAObject.eClass());
         }
@@ -172,7 +172,9 @@ public class EMFModelAdapterDelegate {
         // property may either be an attribute or a reference. First checking
         // EAttribute, if not then check reference.
         EStructuralFeature feat = (EStructuralFeature) EcoreHelper.lookupElementExtended(mofClass, propertyName);
-        if (feat != null) {
+        if (feat == null) {
+            throw new ModelAdapterException("No such feature \"" + propertyName + "\" defined for  " + refAObject.eClass());
+        }
             if (feat.getUpperBound() == 1) {
                 refAObject.eSet(feat, value);
             } else {
@@ -208,14 +210,13 @@ public class EMFModelAdapterDelegate {
                     }
                 }
             }
-        }
     }
 
     @SuppressWarnings("unchecked")
     public void unset(EObject refAObject, String propertyName, Object value) throws ModelAdapterException {
         EClass eClass = refAObject.eClass();
 
-        EStructuralFeature feat = eClass.getEStructuralFeature(propertyName);
+        EStructuralFeature feat = (EStructuralFeature) EcoreHelper.lookupElementExtended(eClass, propertyName);
         if (feat == null) {
             throw new ModelAdapterException("No such feature \"" + propertyName + "\" defined for  " + refAObject.eClass());
         }
@@ -293,8 +294,7 @@ public class EMFModelAdapterDelegate {
 
             for (EObject loopCandidateModelElement : contents) {
                 if (instanceOf(loopCandidateModelElement, referenceType)) {
-                    Object candidateFeatureValue = loopCandidateModelElement.eGet(loopCandidateModelElement.eClass()
-                            .getEStructuralFeature(targetKeyName));
+                    Object candidateFeatureValue = loopCandidateModelElement.eGet((EStructuralFeature) EcoreHelper.lookupElementExtended(loopCandidateModelElement.eClass(), targetKeyName));
 
                     if (candidateFeatureValue != null && candidateFeatureValue.equals(targetKeyValue)) {
                         if (result == null) {

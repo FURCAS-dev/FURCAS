@@ -17,7 +17,6 @@ import java.util.List;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.ecore.OCLExpression;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -1373,18 +1372,6 @@ public class TestPropertyTypeHandler {
          */
         @Override
 		public void setQuery(String value) {
-
-        }
-
-        @Override
-        public OCLExpression getQueryExpression() {
-            // TODO Auto-generated method stub
-            return null;
-        }
-
-        @Override
-        public void setQueryExpression(OCLExpression value) {
-            // TODO Auto-generated method stub
 
         }
 
