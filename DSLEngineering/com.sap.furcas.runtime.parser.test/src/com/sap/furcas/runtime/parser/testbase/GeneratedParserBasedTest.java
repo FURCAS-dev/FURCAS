@@ -46,13 +46,13 @@ public class GeneratedParserBasedTest {
     public static ParserFacade generateParserForLanguage(TCSSyntaxContainerBean syntaxBean,
             GeneratedParserTestConfiguration testConfig, ClassLookup classLookup) throws GrammarGenerationException,
             ParserGeneratorInvocationException, InvalidParserImplementationException {
-        try{
-        generateGrammar(testConfig, syntaxBean);
-        generateParser(testConfig);
-        compileParser(testConfig);
+        try {
+            generateGrammar(testConfig, syntaxBean);
+            generateParser(testConfig);
+            compileParser(testConfig);
 
-        return loadParserFacade(testConfig, classLookup);
-        }finally{
+            return loadParserFacade(testConfig, classLookup);
+        } finally {
             cleanUp(testConfig);
         }
     }
@@ -160,13 +160,9 @@ public class GeneratedParserBasedTest {
     private static void cleanUp(GeneratedParserTestConfiguration testConfig) {
         File genDir = new File(testConfig.getRelativePathToGeneratedFiles());
         assertTrue(genDir.getAbsolutePath() + " is not a directory", genDir.isDirectory());
-        File[] files = genDir.listFiles();
         
-        String lexerName = testConfig.getClassNameOfCompiledLexer().replace(testConfig.getPackageName()+".", "");
-        String parserName = testConfig.getClassNameOfCompiledParser().replace(testConfig.getPackageName()+".", "");
-        
-        for (File file : files) {
-            if (file.getName().startsWith(lexerName) | file.getName().startsWith(parserName) | file.getName().equals(testConfig.getLanguageName()+".tokens") ) { 
+        for (File file : genDir.listFiles()) {
+            if (file.getName().startsWith(testConfig.getLexerName()) | file.getName().startsWith(testConfig.getParserName()) | file.getName().equals(testConfig.getLanguageName()+".tokens") ) { 
                // keeping grammars for lookup
                file.delete();
             }
