@@ -148,29 +148,15 @@ public class MMLoadPage extends WizardPage {
         button3.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
-                IFile[] result = WorkspaceResourceDialog.openFileSelection(getShell(), "Choose Metamodel",
+                IFile[] files = WorkspaceResourceDialog.openFileSelection(getShell(), "Choose Metamodel",
                         "Select the desired Metamodel an click OK.", true, null, null);
-                if (result != null) {
-                    List<?> nsURIs = Arrays.asList(result);
-                    ResourceSet resourceSet = new ResourceSetImpl();
-                    resourceSet.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap());
-                    StringBuffer uris = new StringBuffer();
-                    for (int i = 0, length = result.length; i < length; i++) {
-                        String locationas = result[i].getLocation().toString();
-                        URI location = URI.createFileURI(locationas);
-                        Resource resource = resourceSet.getResource(location, true);
-                        EcoreUtil.resolveAll(resource);
+                if (files.length > 0) {
+                    StringBuffer text = new StringBuffer();
+                    for (int i = 0; i < files.length; ++i) {
+                        text.append(URI.createPlatformResourceURI(files[i].getFullPath().toString(), true));
+                        text.append("  ");
                     }
-                    for (Resource resource : resourceSet.getResources()) {
-                        for (EPackage ePackage : getAllPackages(resource)) {
-                            if (nsURIs.contains(ePackage.getNsURI())) {
-                                uris.append(resource.getURI());
-                                uris.append("  ");
-                                break;
-                            }
-                        }
-                    }
-                    uriField.setText((uriField.getText() + "  " + uris.toString()).trim());
+                    uriField.setText(text.toString());
                 }
             }
         });
@@ -197,6 +183,7 @@ public class MMLoadPage extends WizardPage {
 
     protected void dialogChanged() {
         String text = uriField.getText();
+        text=text.trim();
         if (!text.endsWith(".ecore")) {
             wrongType.setText("The File you choose must be a .ecore file.");
             setPageComplete(false);
@@ -204,6 +191,8 @@ public class MMLoadPage extends WizardPage {
             wrongType.setText("");
             setPageComplete(true);
         }
+        if (!uriField.getText().matches(text))
+            uriField.setText(text);
 
     }
 
