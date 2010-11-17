@@ -138,20 +138,24 @@ public class GeneratedParserTestConfiguration {
         return languageName;
     }
     
-    public String getPackageName(){
-        return packageName;
-    }
-    
     public String getRelativePathToGeneratedFiles(){
         return generationDir;
     }
     
+    public String getParserName(){
+        return languageName + "Parser";
+    }
+    
+    public String getLexerName(){
+        return languageName + "Lexer";
+    }
+    
     public String getClassNameOfCompiledLexer() {
-        return packageName + "." + languageName + "Lexer";
+        return packageName + "." + getLexerName();
     }
     
     public String getClassNameOfCompiledParser() {
-        return packageName + "." + languageName + "Parser";
+        return packageName + "." + getParserName();
     }
     
     public File getSyntaxDefinitionFile(){
