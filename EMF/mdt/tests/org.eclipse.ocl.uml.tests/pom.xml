@@ -2,22 +2,13 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-
-  <groupId>com.sap.dsl</groupId>
-  <artifactId>mdt.plugins</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
-
   <parent>
+    <artifactId>mdt.tests</artifactId>
     <groupId>com.sap.dsl</groupId>
-    <artifactId>mdt</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-
-  <modules>
-    <module>org.eclipse.ocl</module>
-    <module>org.eclipse.ocl.uml</module>
-    <module>org.eclipse.ocl.ecore</module>
-  </modules>
-
+  <groupId>com.sap.dsl</groupId>
+  <artifactId>org.eclipse.ocl.uml.tests</artifactId>
+  <version>3.0.0-SNAPSHOT</version>
+  <packaging>eclipse-test-plugin</packaging>
 </project>
