@@ -134,6 +134,18 @@ public class GeneratedParserTestConfiguration {
         return generationDir + languageName + "Lexer.java";
     }
     
+    public String getLanguageName(){
+        return languageName;
+    }
+    
+    public String getPackageName(){
+        return packageName;
+    }
+    
+    public String getRelativePathToGeneratedFiles(){
+        return generationDir;
+    }
+    
     public String getClassNameOfCompiledLexer() {
         return packageName + "." + languageName + "Lexer";
     }
