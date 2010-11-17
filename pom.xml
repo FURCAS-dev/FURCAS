@@ -33,6 +33,15 @@
         <version>0.10.0</version>
         <extensions>true</extensions>
       </plugin>
+ <plugin>
+  <groupId>org.sonatype.tycho</groupId>
+  <artifactId>target-platform-configuration</artifactId>
+  <version>0.10.0</version>
+  <configuration>
+    <resolver>p2</resolver>
+  </configuration>
+</plugin>
+
     </plugins>
   </build>
 </project>
