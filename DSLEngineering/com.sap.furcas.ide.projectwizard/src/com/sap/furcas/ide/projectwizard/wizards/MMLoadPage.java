@@ -1,10 +1,32 @@
 package com.sap.furcas.ide.projectwizard.wizards;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.ecore.presentation.EcoreActionBarContributor.ExtendedLoadResourceAction.RegisteredPackageDialog;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -14,16 +36,18 @@ import org.eclipse.swt.widgets.Text;
 
 /* 
  * This wizardpage is displayed when the user chooses to import some kind of existing MetaModel into his
- * Metamodelproject. Until now it just tells you how to do it manually. TODO 
+ * Metamodelproject. TODO 
  * */
 public class MMLoadPage extends WizardPage {
     public FurcasWizard wizard;
+    public Text uriField;
+    public Label wrongType;
 
     protected MMLoadPage(String pageName, FurcasWizard wiz) {
         super(pageName);
         wizard = wiz;
         setTitle("Uh oh");
-        setDescription("Not fully implemented yet.");
+        setDescription("Not fully implemented yet. No effect until now. Please add the desired metamodel manually.");
     }
 
     @Override
@@ -34,81 +58,177 @@ public class MMLoadPage extends WizardPage {
         layout.numColumns = 4;
         Label label = new Label(container, SWT.NULL);
         label.setText("Resource URIs:");
-        
-        
+
         Button button1 = new Button(container, SWT.PUSH);
         button1.setText("Browse Registered Packages...");
-        button1.addMouseListener(new MouseListener() {
+        button1.addSelectionListener(new SelectionAdapter() {
             @Override
-            public void mouseDoubleClick(MouseEvent e) {
+            public void widgetSelected(SelectionEvent event) {
+                RegisteredPackageDialog registeredPackageDialog = new RegisteredPackageDialog(getShell());
+                registeredPackageDialog.open();
+                Object[] result = registeredPackageDialog.getResult();
+                if (result != null) {
+                    List<?> nsURIs = Arrays.asList(result);
+                    if (registeredPackageDialog.isDevelopmentTimeVersion()) {
+                        ResourceSet resourceSet = new ResourceSetImpl();
+                        resourceSet.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap());
+                        StringBuffer uris = new StringBuffer();
+                        Map<String, URI> ePackageNsURItoGenModelLocationMap = EcorePlugin.getEPackageNsURIToGenModelLocationMap();
+                        for (int i = 0, length = result.length; i < length; i++) {
+                            URI location = ePackageNsURItoGenModelLocationMap.get(result[i]);
+                            Resource resource = resourceSet.getResource(location, true);
+                            EcoreUtil.resolveAll(resource);
+                        }
+                        for (Resource resource : resourceSet.getResources()) {
+                            for (EPackage ePackage : getAllPackages(resource)) {
+                                if (nsURIs.contains(ePackage.getNsURI())) {
+                                    uris.append(resource.getURI());
+                                    uris.append("  ");
+                                    break;
+                                }
+                            }
+                        }
+                        uriField.setText((uriField.getText() + "  " + uris.toString()).trim());
+                    } else {
+                        StringBuffer uris = new StringBuffer();
+                        for (int i = 0, length = result.length; i < length; i++) {
+                            uris.append(result[i]);
+                            uris.append("  ");
+                        }
+                        uriField.setText((uriField.getText() + "  " + uris.toString()).trim());
+                    }
+                }
             }
-
-            @Override
-            public void mouseDown(MouseEvent e) {
-                browseRegistered();
-            }
-
-            @Override
-            public void mouseUp(MouseEvent e) {
-            }
-
         });
-        
-        
+
         Button button2 = new Button(container, SWT.PUSH);
         button2.setText("Browse File System...");
-        button1.addMouseListener(new MouseListener() {
+        button2.addSelectionListener(new SelectionAdapter() {
             @Override
-            public void mouseDoubleClick(MouseEvent e) {
+            public void widgetSelected(SelectionEvent event) {
+                RegisteredPackageDialog registeredPackageDialog = new RegisteredPackageDialog(getShell());
+                registeredPackageDialog.open();
+                Object[] result = registeredPackageDialog.getResult();
+                if (result != null) {
+                    List<?> nsURIs = Arrays.asList(result);
+                    if (registeredPackageDialog.isDevelopmentTimeVersion()) {
+                        ResourceSet resourceSet = new ResourceSetImpl();
+                        resourceSet.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap());
+                        StringBuffer uris = new StringBuffer();
+                        Map<String, URI> ePackageNsURItoGenModelLocationMap = EcorePlugin.getEPackageNsURIToGenModelLocationMap();
+                        for (int i = 0, length = result.length; i < length; i++) {
+                            URI location = ePackageNsURItoGenModelLocationMap.get(result[i]);
+                            Resource resource = resourceSet.getResource(location, true);
+                            EcoreUtil.resolveAll(resource);
+                        }
+                        for (Resource resource : resourceSet.getResources()) {
+                            for (EPackage ePackage : getAllPackages(resource)) {
+                                if (nsURIs.contains(ePackage.getNsURI())) {
+                                    uris.append(resource.getURI());
+                                    uris.append("  ");
+                                    break;
+                                }
+                            }
+                        }
+                        uriField.setText((uriField.getText() + "  " + uris.toString()).trim());
+                    } else {
+                        StringBuffer uris = new StringBuffer();
+                        for (int i = 0, length = result.length; i < length; i++) {
+                            uris.append(result[i]);
+                            uris.append("  ");
+                        }
+                        uriField.setText((uriField.getText() + "  " + uris.toString()).trim());
+                    }
+                }
             }
-
-            @Override
-            public void mouseDown(MouseEvent e) {
-                browseRegistered();
-            }
-
-            @Override
-            public void mouseUp(MouseEvent e) {
-            }
-
         });
 
         Button button3 = new Button(container, SWT.PUSH);
         button3.setText("Browse Workspace...");
-        button1.addMouseListener(new MouseListener() {
+        button3.addSelectionListener(new SelectionAdapter() {
             @Override
-            public void mouseDoubleClick(MouseEvent e) {
+            public void widgetSelected(SelectionEvent event) {
+                IFile[] result = WorkspaceResourceDialog.openFileSelection(getShell(), "Choose Metamodel",
+                        "Select the desired Metamodel an click OK.", true, null, null);
+                if (result != null) {
+                    List<?> nsURIs = Arrays.asList(result);
+                    ResourceSet resourceSet = new ResourceSetImpl();
+                    resourceSet.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap());
+                    StringBuffer uris = new StringBuffer();
+                    for (int i = 0, length = result.length; i < length; i++) {
+                        String locationas = result[i].getLocation().toString();
+                        URI location = URI.createFileURI(locationas);
+                        Resource resource = resourceSet.getResource(location, true);
+                        EcoreUtil.resolveAll(resource);
+                    }
+                    for (Resource resource : resourceSet.getResources()) {
+                        for (EPackage ePackage : getAllPackages(resource)) {
+                            if (nsURIs.contains(ePackage.getNsURI())) {
+                                uris.append(resource.getURI());
+                                uris.append("  ");
+                                break;
+                            }
+                        }
+                    }
+                    uriField.setText((uriField.getText() + "  " + uris.toString()).trim());
+                }
             }
-
-            @Override
-            public void mouseDown(MouseEvent e) {
-                browseRegistered();
-            }
-
-            @Override
-            public void mouseUp(MouseEvent e) {
-            }
-
         });
         GridData gd = new GridData();
         gd.horizontalAlignment = GridData.FILL;
         gd.horizontalSpan = 4;
-        Text text = new Text(container, SWT.NULL | SWT.BORDER);
-        text.setLayoutData(gd);
+        uriField = new Text(container, SWT.NULL | SWT.BORDER);
+        uriField.setLayoutData(gd);
+        uriField.addModifyListener(new ModifyListener() {
+            public void modifyText(ModifyEvent e) {
+                dialogChanged();
+            }
+        });
+        gd = new GridData();
+        gd.horizontalAlignment = GridData.FILL;
+        gd.horizontalSpan = 4;
+        gd.grabExcessHorizontalSpace = true;
+        wrongType = new Label(container, SWT.NULL);
+        wrongType.setLayoutData(gd);
         setErrorMessage(null);
-        setPageComplete(true);
         setControl(container);
 
     }
 
-    protected void browseRegistered() {
-        // TODO Auto-generated method stub
+    protected void dialogChanged() {
+        String text = uriField.getText();
+        if (!text.endsWith(".ecore")) {
+            wrongType.setText("The File you choose must be a .ecore file.");
+            setPageComplete(false);
+        } else {
+            wrongType.setText("");
+            setPageComplete(true);
+        }
 
     }
 
     @Override
     public IWizardPage getNextPage() {
         return null;
+    }
+
+    protected Collection<EPackage> getAllPackages(Resource resource) {
+        List<EPackage> result = new ArrayList<EPackage>();
+        for (TreeIterator<?> j = new EcoreUtil.ContentTreeIterator<Object>(resource.getContents()) {
+            private static final long serialVersionUID = 1L;
+
+            @Override
+            protected Iterator<? extends EObject> getEObjectChildren(EObject eObject) {
+                return eObject instanceof EPackage ? ((EPackage) eObject).getESubpackages().iterator() : Collections
+                        .<EObject> emptyList().iterator();
+            }
+        }; j.hasNext();) {
+            Object content = j.next();
+            if (content instanceof EPackage) {
+                result.add((EPackage) content);
+            }
+        }
+        return result;
     }
 
 }
