@@ -10,11 +10,9 @@ Require-Bundle: org.eclipse.ui,
  com.sap.furcas.runtime.parser.incremental,
  org.eclipse.ui.editors,
  org.eclipse.jface.text,
- com.sap.mi.textual.parsing,
  org.eclipse.core.resources,
  com.sap.mi.textual.parsing.textblocks,
  com.sap.ide.treeprovider,
- com.sap.mi.textual.common,
  com.sap.ap.cts.refactoring;bundle-version="1.0.0",
  de.hpi.sam.bp2009.ngpm;bundle-version="1.0.0",
  com.sap.furcas.metamodel,
@@ -22,3 +20,4 @@ Require-Bundle: org.eclipse.ui,
 Bundle-ActivationPolicy: lazy
 Export-Package: $ProjectName$.editor
 Bundle-Activator: $ProjectName$.editor.Activator
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

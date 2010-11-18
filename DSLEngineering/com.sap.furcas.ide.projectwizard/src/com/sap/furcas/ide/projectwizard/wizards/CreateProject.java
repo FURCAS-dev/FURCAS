@@ -49,7 +49,7 @@ public class CreateProject extends WorkspaceModifyOperation {
 
         IProject project = createProject(monitor);
         if (project != null) {
-            /* ProjectMetaRefConfFactory.configure(project, conf);  TODO */
+            /* ProjectMetaRefConfFactory.configure(project, conf); TODO */
         }
     }
 
@@ -71,7 +71,7 @@ public class CreateProject extends WorkspaceModifyOperation {
         List<String> extraclasspath = new ArrayList<String>(Arrays.asList(EXTRA_CLASSPATH));
 
         IProject dslProject = WizardProjectHelper.createPlugInProject(pi.getProjectName(), srcfolders, nonSrcFolders,
-                Collections.<IProject> emptyList(), exportedPackages, extraclasspath, monitor, this.shell, null);
+                Collections.<IProject> emptyList(), exportedPackages, extraclasspath, monitor, this.shell, null, false);
 
         if (dslProject == null) {
             return null;

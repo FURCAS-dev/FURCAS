@@ -4,7 +4,7 @@ import textblocks.TextBlock;
 
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor; 
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
-import ProjectName.parser.$CapLangname$ParserFactory;
+import $ProjectName$.parser.$CapLangname$ParserFactory;
 
 public class $CapLangName$Editor extends AbstractGrammarBasedEditor { 
 

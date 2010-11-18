@@ -2,41 +2,19 @@ package com.sap.furcas.ide.projectwizard.wizards;
 
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IProjectDescription;
-import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.CommonPlugin;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.ENamedElement;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.presentation.EcoreEditorPlugin;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -113,30 +91,8 @@ public class FurcasWizard extends Wizard implements INewWizard {
     }
 
 
-    protected Collection<String> getInitialObjectNames() {
-        if (initialObjectNames == null) {
-            initialObjectNames = new ArrayList<String>();
-            for (EClassifier eClassifier : ecorePackage.getEClassifiers()) {
-                if (eClassifier instanceof EClass) {
-                    EClass eClass = (EClass) eClassifier;
-                    if (!eClass.isAbstract()) {
-                        initialObjectNames.add(eClass.getName());
-                    }
-                }
-            }
-            Collections.sort(initialObjectNames, CommonPlugin.INSTANCE.getComparator());
-        }
-        return initialObjectNames;
-    }
 
-    protected EObject createInitialModel() {
-        EClass eClass = (EClass) ecorePackage.getEClassifier("EPackage");
-        EObject rootObject = ecoreFactory.create(eClass);
-        if (rootObject instanceof ENamedElement) {
-            ((ENamedElement) rootObject).setName("");
-        }
-        return rootObject;
-    }
+
 
     /* This method is called, when pressing the finish button in the wizard. It calls the doFinish method.
      */
@@ -190,7 +146,6 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 try {
                     new CreateProject(pi, getShell()).run(monitor);
                     if (createmm || lpe) {
-                        createMMProject(monitor);
                         doAdditional();//TODO see method below
                     }
                     if (lpe) {
@@ -218,33 +173,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 @Override
                 protected void execute(IProgressMonitor progressMonitor) {
                     try {
-                        // Create a resource set
-                        //
-                        ResourceSet resourceSet = new ResourceSetImpl();
-                        resourceSet.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap());
-
-                        // Get the URI of the model file.
-                        //
-                        String mmprojectpath = page.getProjectInfo().getProjectName() + ".metamodel/"
-                                + page.getProjectInfo().getLanguageName() + ".ecore";
-                        URI fileURI = URI.createPlatformResourceURI(mmprojectpath, true);
-
-                        // Create a resource for this file. Don't specify a content type, as it could be Ecore or EMOF.
-                        //
-                        Resource resource = resourceSet.createResource(fileURI);
-
-                        // Add the initial model object to the contents.
-                        //
-                        EObject rootObject = createInitialModel();
-                        if (rootObject != null) {
-                            resource.getContents().add(rootObject);
-                        }
-
-                        // Save the contents of the resource to the file system.
-                        //
-                        Map<Object, Object> options = new HashMap<Object, Object>();
-                        options.put(XMLResource.OPTION_ENCODING, "UTF-8");
-                        resource.save(options);
+                        CreateMMProject.create(getFurcasWizard(), page, getShell());                       
                     } catch (Exception exception) {
                         EcoreEditorPlugin.INSTANCE.log(exception);
                     } finally {
@@ -303,7 +232,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
      * @generated
      */
     public IFile getModelFile() {
-        Path path = new Path(page.getProjectInfo().getProjectName() + ".metamodel/" + page.getProjectInfo().getLanguageName()
+        Path path = new Path(page.getProjectInfo().getProjectName() + ".metamodel/model/" + page.getProjectInfo().getLanguageName()
                 + ".ecore");
 
         return ResourcesPlugin.getWorkspace().getRoot().getFile(path);
@@ -333,7 +262,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
 //        lR.run();
     }
 
-    public void createMMProject(IProgressMonitor monitor) {
+/*    public void createMMProject(IProgressMonitor monitor) {
         ProjectInfo info = page.getProjectInfo();
         String projectname = info.getProjectName() + ".metamodel";
         IProjectDescription description;
@@ -357,6 +286,6 @@ public class FurcasWizard extends Wizard implements INewWizard {
             e.printStackTrace();
         }
 
-    }
+    }*/
 
 }
