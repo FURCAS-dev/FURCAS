@@ -16,6 +16,8 @@
 
   <modules>
     <module>org.eclipse.ocl.tests</module>
+    <module>org.eclipse.ocl.uml.tests</module>
+    <module>org.eclipse.ocl.ecore.tests</module>
   </modules>
 
 </project>

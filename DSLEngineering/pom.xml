@@ -31,6 +31,7 @@
     <module>com.sap.furcas.metamodel.editor</module>
     <module>com.sap.furcas.metamodel.tests</module>
     <module>com.sap.furcas.modeladaptation.emf</module>
+    <module>com.sap.furcas.modeladaptation.emf.test</module>	
     <module>com.sap.furcas.parser.tcs</module>
     <module>com.sap.furcas.parsergenerator</module>
     <module>com.sap.furcas.parsergenerator.emf</module>
@@ -39,9 +40,7 @@
     <module>com.sap.furcas.runtime.common.test</module>
     <module>com.sap.furcas.runtime.parser</module>
     <module>com.sap.furcas.runtime.parser.incremental</module>
-<!--
     <module>com.sap.furcas.runtime.parser.incremental.test</module>
--->
     <module>com.sap.furcas.runtime.parser.test</module>
     <module>com.sap.furcas.runtime.referenceresolving</module>
     <module>com.sap.furcas.runtime.referenceresolving.tests</module>
