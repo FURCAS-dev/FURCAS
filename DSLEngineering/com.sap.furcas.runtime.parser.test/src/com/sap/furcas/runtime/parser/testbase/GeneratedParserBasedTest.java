@@ -29,7 +29,7 @@ import com.sun.tools.javac.Main;
  * @author Stephan Erb (d049157)
  * 
  */
-public class GeneratedParserBasedTest {
+public abstract class GeneratedParserBasedTest {
     
     
 
