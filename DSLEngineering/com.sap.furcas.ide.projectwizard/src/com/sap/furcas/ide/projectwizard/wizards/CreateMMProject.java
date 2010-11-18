@@ -7,9 +7,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
+import org.eclipse.emf.codegen.ecore.genmodel.presentation.GeneratorUIUtil;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.ENamedElement;
@@ -30,7 +36,10 @@ public class CreateMMProject {
     protected static FurcasWizardLanguagePage lpage;
     protected static EcorePackage ecorePackage = EcorePackage.eINSTANCE;
     protected static EcoreFactory ecoreFactory = ecorePackage.getEcoreFactory();
+    protected static EPackage eP;
+    protected static IFile file;
 
+    @SuppressWarnings("deprecation")
     public static void create(FurcasWizard wizard, FurcasWizardLanguagePage page, Shell shell) {
         lpage = page;
         IProgressMonitor progressMonitor = new NullProgressMonitor();
@@ -64,9 +73,12 @@ public class CreateMMProject {
         EObject rootObject = createInitialModel();
         if (rootObject != null) {
             if (rootObject instanceof EPackage) {
-                EPackage eP = (EPackage) rootObject;
-                eP.setNsPrefix(lpage.getProjectInfo().getProjectName()+".metamodel");
+                eP = (EPackage) rootObject;
+                eP.setNsPrefix(lpage.getProjectInfo().getProjectName() + ".metamodel");
                 eP.setNsURI(lpage.getProjectInfo().getNsURI());
+                EClass eC = ecoreFactory.createEClass();
+                eC.setName("ReplaceMe");
+                eP.getEClassifiers().add(eC);
                 resource.getContents().add(eP);
             } else
                 resource.getContents().add(rootObject);
@@ -81,6 +93,23 @@ public class CreateMMProject {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        IWorkspace workspace = ResourcesPlugin.getWorkspace();
+        IProject project = workspace.getRoot().getProject(page.getProjectInfo().getProjectName() + ".metamodel");
+        try {
+            file = WizardProjectHelper.createGenmodel(progressMonitor, project, page.getProjectInfo());
+        } catch (CoreException e) {
+            e.printStackTrace();
+        }
+        URI newURI = URI.createPlatformResourceURI(file.getProject().getName() + "/" + file.getProjectRelativePath().toString(),
+                true);
+        Resource resource2 = resourceSet.createResource(newURI);      
+        List<URI> uris = new ArrayList<URI>();
+        uris.add(resource2.getURI());
+        List<GenModel> gms = GeneratorUIUtil.loadGenModels(progressMonitor, uris, shell);
+        if(gms.get(0).canGenerate()){
+            gms.get(0).generate(progressMonitor);
+        }
+            
 
     }
 
