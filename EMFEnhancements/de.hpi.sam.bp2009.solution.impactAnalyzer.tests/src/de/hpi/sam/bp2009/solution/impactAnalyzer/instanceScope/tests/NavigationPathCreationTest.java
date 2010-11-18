@@ -26,6 +26,7 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
@@ -37,6 +38,8 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesis
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OCLFactoryImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.PathCache;
 
+//TODO: let Maven-profiles decide
+@Ignore("too slow")
 public class NavigationPathCreationTest extends TestCase {
     private Collection<OCLExpressionWithContext> classTcsExpressionList = null;
     private Collection<OCLExpressionWithContext> metamodelExpressionList = null;
