@@ -2,13 +2,6 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-  
-	<parent>
-		<groupId>com.sap.ldi</groupId>
-		<artifactId>ldi.tycho-parent</artifactId>
-		<version>1.0.2</version>
-	</parent>
-	
   <groupId>com.sap.dsl</groupId>
   <artifactId>root</artifactId>
   <version>0.0.1-SNAPSHOT</version>
@@ -20,7 +13,7 @@
     <module>EMFEnhancements</module>
     <module>ngpm</module>
   </modules>
-<!--
+
   <build>
     <plugins>
       <plugin>
@@ -30,10 +23,7 @@
         <configuration>
           <argLine>-Xmx1024m</argLine>
           <useUIHarness>true</useUIHarness>
-          <testFailureIgnore>true</testFailureIgnore>
-			<excludes> 
-				<exclude>**/NavigationPathCreationTest.java</exclude>
-			</excludes>      
+          <testFailureIgnore>true</testFailureIgnore>   
         </configuration>
 		
       </plugin>
@@ -54,7 +44,7 @@
 
     </plugins>
   </build>
--->
+
 	<profiles>
 		<profile>
 			<id>exclude-long-run-test</id>
