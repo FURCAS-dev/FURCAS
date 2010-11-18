@@ -35,6 +35,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 
+import com.sap.furcas.ide.projectwizard.wizards.ProjectInfo;
 import com.sap.furcas.ide.projectwizard.wizards.SourceCodeFactory;
 
 public class WizardProjectHelper {
@@ -131,7 +132,7 @@ public class WizardProjectHelper {
                 createManifest(projectName, progressMonitor, project);
                 createBuildProps(progressMonitor, project, srcFolders, extraClasspathEntries);
             } else {
-                
+
             }
         } catch (Exception exception) {
             System.out.println("Error while creating the project.");
@@ -174,6 +175,13 @@ public class WizardProjectHelper {
         IFolder metaInf = project.getFolder("META-INF");
         metaInf.create(false, true, new SubProgressMonitor(progressMonitor, 1));
         createFile("MANIFEST.MF", metaInf, scf.createManifest(projectName), progressMonitor);
+    }
+
+    public static IFile createGenmodel(final IProgressMonitor progressMonitor, IProject project, ProjectInfo pi)
+            throws CoreException {
+        SourceCodeFactory scf = new SourceCodeFactory();
+        IFolder folder = project.getFolder("model");
+        return createFile(pi.getLanguageName()+".genmodel", folder, scf.createGenmodelCode(pi), progressMonitor);
     }
 
     /**

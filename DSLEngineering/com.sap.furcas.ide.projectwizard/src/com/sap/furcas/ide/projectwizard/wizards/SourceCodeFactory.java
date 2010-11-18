@@ -96,6 +96,23 @@ public class SourceCodeFactory {
 
         return tcsTemp.toString();
     }
+    
+    public String createGenmodelCode(ProjectInfo pi) {
+        String capLangName = CreateProject.capitalizeFirstChar(pi.getLanguageName());
+        StringTemplate tcsTemp = null;
+        String templateString = null;
+        try {
+            templateString = readFile("genmodel.txt");
+            tcsTemp = new StringTemplate(templateString);
+            tcsTemp.setAttribute("CapLangName", capLangName);
+            tcsTemp.setAttribute("LangName", pi.getLanguageName());
+            tcsTemp.setAttribute("ProjectName", pi.getProjectName());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return tcsTemp.toString();
+    }
 
     protected String createMapperCode(ProjectInfo pi) {
         String capLangName = CreateProject.capitalizeFirstChar(pi.getLanguageName());
@@ -171,6 +188,7 @@ public class SourceCodeFactory {
             templateString = readFile("tcs.txt");
             tcsTemp = new StringTemplate(templateString);
             tcsTemp.setAttribute("dslname", pi.getLanguageName());
+            tcsTemp.setAttribute("FirstClass", "ReplacerMe"); //TODO
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
