@@ -56,4 +56,5 @@ public class ProjectInfo {
         return getProjectName().replaceAll("\\.", "/");
     }
 
+
 }

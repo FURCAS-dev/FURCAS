@@ -1,15 +1,22 @@
 package com.sap.furcas.ide.projectwizard.wizards;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
 
 /* This is the second page of the wizard. It lets you choose, wether you want to create a pure fresh MetaModel
  * or import an existing one into your new Metamodel.*/
@@ -17,13 +24,20 @@ import org.eclipse.swt.widgets.Composite;
 public class FurcasWizardMMSelectionPage extends WizardPage {
     Button selectmm1;
     Button selectmm2;
+    Label classNameLabel;
+    Label nsURILabel;
+    Text nsURIText;
+    Text classNameText;
     private MMLoadPage page3;
     FurcasWizard wiz;
+    ProjectInfo pi;
+    String className;
 
-    public FurcasWizardMMSelectionPage(ISelection selection, FurcasWizard w) {
+    public FurcasWizardMMSelectionPage(ISelection selection, FurcasWizard w, ProjectInfo projectInfo) {
         super("Metamodel");
         page3 = null;
         wiz = w;
+        pi = projectInfo;
         setTitle("Metamodelselection");
         setDescription("Choose an existing Metamodel or create a new one");
         setPageComplete(false);
@@ -53,6 +67,10 @@ public class FurcasWizardMMSelectionPage extends WizardPage {
                 }
                 getNextPage();
                 setPageComplete(true);
+                classNameLabel.setText("Name the first class of the metamodel:");
+                nsURILabel.setText("nsURI of the metamodel:");
+                classNameText.setVisible(true);
+                nsURIText.setVisible(true);
             }
 
             public void mouseUp(MouseEvent e) {
@@ -74,14 +92,57 @@ public class FurcasWizardMMSelectionPage extends WizardPage {
                 }
                 getNextPage();
                 setPageComplete(true);
+                classNameLabel.setVisible(false);
+                nsURILabel.setVisible(false);
+                classNameText.setVisible(false);
+                nsURIText.setVisible(false);
             }
 
             public void mouseUp(MouseEvent e) {
             }
         });
+        gd = new GridData(GridData.FILL_HORIZONTAL);
+        classNameLabel = new Label(container, SWT.NULL);
+        classNameLabel.setLayoutData(gd);
+        gd = new GridData(GridData.FILL_HORIZONTAL);
+        classNameText = new Text(container, SWT.BORDER | SWT.SINGLE);
+        classNameText.setLayoutData(gd);
+        classNameText.setVisible(false);
+        classNameText.addModifyListener(new ModifyListener() {
+            public void modifyText(ModifyEvent e) {
+                dialogChanged();
+            }
+        });
+
+        nsURILabel = new Label(container, SWT.NULL);
+        gd = new GridData(GridData.FILL_HORIZONTAL);
+        nsURILabel.setLayoutData(gd);
+
+        nsURIText = new Text(container, SWT.BORDER | SWT.SINGLE);
+        gd = new GridData(GridData.FILL_HORIZONTAL);
+        nsURIText.setLayoutData(gd);
+        nsURIText.addModifyListener(new ModifyListener() {
+            public void modifyText(ModifyEvent e) {
+                dialogChanged();
+            }
+        });
+        nsURIText.setVisible(false);
 
         setErrorMessage(null);
         setControl(container);
+
+    }
+
+    protected void dialogChanged() {
+        pi.setNsURI(nsURIText.getText());
+        className = classNameText.getText();
+        try {
+            new URI(pi.getNsURI());
+        } catch (URISyntaxException e) {
+            setErrorMessage("The namespace URI is no valid URI (example: 'http://www.example-org/my/dsl')");
+            return;
+        }
+        setErrorMessage(null);
 
     }
 
@@ -115,5 +176,8 @@ public class FurcasWizardMMSelectionPage extends WizardPage {
         return null;
     }
 
-}
+    public String getClassName() {
+        return className;
+    }
 
+}

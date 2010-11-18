@@ -101,6 +101,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
     public boolean performFinish() {
 
         final ProjectInfo pi = page.getProjectInfo();
+        final String className = page2.getClassName();
 
         if (page.valid) {
 
@@ -108,7 +109,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 @Override
                 public void run(IProgressMonitor monitor) throws InvocationTargetException {
 
-                    doFinish(pi, monitor);
+                    doFinish(pi, monitor, className);
 
                     monitor.done();
                 }
@@ -138,15 +139,15 @@ public class FurcasWizard extends Wizard implements INewWizard {
      * After all the method generateSpecific() generates all the MetaModel related files and coding into
      * the Language Project.
      * */
-    void doFinish(final ProjectInfo pi, IProgressMonitor monitor) {
+    void doFinish(final ProjectInfo pi, IProgressMonitor monitor, final String className) {
         new UIJob("creating FURCAS projects...") {
             @Override
             public IStatus runInUIThread(IProgressMonitor monitor) {
 
                 try {
-                    new CreateProject(pi, getShell()).run(monitor);
+                    new CreateProject(pi, getShell(), className).run(monitor);
                     if (createmm || lpe) {
-                        doAdditional();//TODO see method below
+                        doAdditional(className);//TODO see method below
                     }
                     if (lpe) {
                         loadmm();//TODO see method below
@@ -163,7 +164,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
         }.schedule();
     }
 
-    public void doAdditional() {
+    public void doAdditional(final String className) {
         IWorkbenchPage wpage = null;
         try {
 
@@ -173,7 +174,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 @Override
                 protected void execute(IProgressMonitor progressMonitor) {
                     try {
-                        CreateMMProject.create(getFurcasWizard(), page, getShell());                       
+                        CreateMMProject.create(getFurcasWizard(), page, getShell(), className);                       
                     } catch (Exception exception) {
                         EcoreEditorPlugin.INSTANCE.log(exception);
                     } finally {
@@ -221,7 +222,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
         createmm = false;
         page = new FurcasWizardLanguagePage(selection);
         addPage(page);
-        page2 = new FurcasWizardMMSelectionPage(selection, this);
+        page2 = new FurcasWizardMMSelectionPage(selection, this, page.getProjectInfo());
         addPage(page2);
 
     }

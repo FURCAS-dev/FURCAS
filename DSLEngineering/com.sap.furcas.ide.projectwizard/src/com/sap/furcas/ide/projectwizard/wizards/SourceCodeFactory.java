@@ -181,14 +181,15 @@ public class SourceCodeFactory {
         return tcsTemp.toString();
     }
 
-    protected String createSampleTCS(ProjectInfo pi) {
+    protected String createSampleTCS(ProjectInfo pi, String className) {
         StringTemplate tcsTemp = null;
         String templateString = null;
         try {
             templateString = readFile("tcs.txt");
             tcsTemp = new StringTemplate(templateString);
             tcsTemp.setAttribute("dslname", pi.getLanguageName());
-            tcsTemp.setAttribute("FirstClass", "ReplacerMe"); //TODO
+            tcsTemp.setAttribute("FirstClass", className);
+            tcsTemp.setAttribute("Dollar", "$");
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

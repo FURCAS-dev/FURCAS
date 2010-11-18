@@ -3,8 +3,8 @@ syntax $dslname$ {
 -- place templates here (at least one main template)
 
  	 template $FirstClass$ main
-	 	:"$FirstClass$"
-  	        ;
+                 :"$FirstClass$"
+                 ;
 
         primitiveTemplate identifier for PrimitiveTypes::String default using NAME:
                 value = "unescapeString(%token%)";
@@ -185,13 +185,13 @@ NL
                 |       '\\r'
                 |       '\\n'
                 )
-        {newline();$channel=HIDDEN;}
+        {newline();$Dollar$channel=HIDDEN;}
         ;
 
 WS
         :       (       ' '
                 |       '\\t'
-                ){$channel=HIDDEN;}
+                ){$Dollar$channel=HIDDEN;}
         ;
 
 %protected
