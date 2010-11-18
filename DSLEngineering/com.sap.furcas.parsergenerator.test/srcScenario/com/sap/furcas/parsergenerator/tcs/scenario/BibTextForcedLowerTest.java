@@ -23,6 +23,8 @@ public class BibTextForcedLowerTest extends GeneratedParserBasedTest {
 
     private static ParsingHelper parsingHelper;
 
+
+
     @BeforeClass
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);

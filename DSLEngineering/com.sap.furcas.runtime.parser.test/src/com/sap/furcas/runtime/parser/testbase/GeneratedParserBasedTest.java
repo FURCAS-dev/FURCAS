@@ -1,6 +1,7 @@
 package com.sap.furcas.runtime.parser.testbase;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.ByteArrayOutputStream;
@@ -29,6 +30,8 @@ import com.sun.tools.javac.Main;
  * 
  */
 public class GeneratedParserBasedTest {
+    
+    
 
     public static TCSSyntaxContainerBean parseSyntax(GeneratedParserTestConfiguration testConfig)
             throws ParserGeneratorInvocationException, ParserInvokationException {
@@ -39,18 +42,23 @@ public class GeneratedParserBasedTest {
         return syntaxBean;
 
     }
-    
+
     public static ParserFacade generateParserForLanguage(TCSSyntaxContainerBean syntaxBean,
             GeneratedParserTestConfiguration testConfig, ClassLookup classLookup) throws GrammarGenerationException,
             ParserGeneratorInvocationException, InvalidParserImplementationException {
-        generateGrammar(testConfig, syntaxBean);
-        generateParser(testConfig);
-        compileParser(testConfig);
+        try {
+            generateGrammar(testConfig, syntaxBean);
+            generateParser(testConfig);
+            compileParser(testConfig);
 
-        return loadParserFacade(testConfig, classLookup);
+            return loadParserFacade(testConfig, classLookup);
+        } finally {
+            cleanUp(testConfig);
+        }
     }
 
-    protected final static void generateGrammar(GeneratedParserTestConfiguration testConfig, TCSSyntaxContainerBean syntaxBean) throws GrammarGenerationException {
+    protected final static void generateGrammar(GeneratedParserTestConfiguration testConfig, TCSSyntaxContainerBean syntaxBean)
+            throws GrammarGenerationException {
         SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
         try {
             TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
@@ -93,7 +101,7 @@ public class GeneratedParserBasedTest {
                     System.getProperty("antlr.lib.dir") + File.pathSeparator + "../com.sap.furcas.runtime.parser/bin"
                             + File.pathSeparator + "../com.sap.furcas.runtime.common/bin" + File.pathSeparator
                             + "../com.sap.furcas.parsergenerator.emf/bin" + File.pathSeparator
-                            + "../com.sap.furcas.runtime.tcs/bin"}); 
+                            + "../com.sap.furcas.runtime.tcs/bin" });
             if (success != 0) {
                 fail("Parser compilation failed with code '" + success + "'. Messages: \n" + errByteStream.toString());
             }
@@ -149,21 +157,17 @@ public class GeneratedParserBasedTest {
         }
     }
 
-    // FIXME: do cleanup somewhere...
-    // @AfterClass
-    // public static void teardown() {
-    // if (generationHelper != null) {
-    // // delete generated Files
-    // File genDir = generationHelper.getGenerationDir();
-    // assertTrue(genDir.getAbsolutePath() + " is not a directory", genDir.isDirectory());
-    // File[] files = genDir.listFiles();
-    // for (File file : files) {
-    // if (file.getName().endsWith(".class")) { // keeping grammars for
-    // // lookup
-    // file.delete();
-    // }
-    // }
-    // }
-    // }
+    private static void cleanUp(GeneratedParserTestConfiguration testConfig) {
+        File genDir = new File(testConfig.getRelativePathToGeneratedFiles());
+        assertTrue(genDir.getAbsolutePath() + " is not a directory", genDir.isDirectory());
+        
+        for (File file : genDir.listFiles()) {
+            if (file.getName().startsWith(testConfig.getLexerName()) | file.getName().startsWith(testConfig.getParserName()) | file.getName().equals(testConfig.getLanguageName()+".tokens") ) { 
+               // keeping grammars for lookup
+               file.delete();
+            }
+            
+        }
+    }
 
 }
