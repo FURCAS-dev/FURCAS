@@ -1,5 +1,6 @@
 package com.sap.furcas.ide.projectwizard.wizards;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -31,12 +32,13 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 /* 
  * This wizardpage is displayed when the user chooses to import some kind of existing MetaModel into his
- * Metamodelproject. TODO 
+ * Metamodelproject.
  * */
 public class MMLoadPage extends WizardPage {
     public FurcasWizard wizard;
@@ -106,39 +108,27 @@ public class MMLoadPage extends WizardPage {
         button2.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
-                RegisteredPackageDialog registeredPackageDialog = new RegisteredPackageDialog(getShell());
-                registeredPackageDialog.open();
-                Object[] result = registeredPackageDialog.getResult();
-                if (result != null) {
-                    List<?> nsURIs = Arrays.asList(result);
-                    if (registeredPackageDialog.isDevelopmentTimeVersion()) {
-                        ResourceSet resourceSet = new ResourceSetImpl();
-                        resourceSet.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap());
-                        StringBuffer uris = new StringBuffer();
-                        Map<String, URI> ePackageNsURItoGenModelLocationMap = EcorePlugin.getEPackageNsURIToGenModelLocationMap();
-                        for (int i = 0, length = result.length; i < length; i++) {
-                            URI location = ePackageNsURItoGenModelLocationMap.get(result[i]);
-                            Resource resource = resourceSet.getResource(location, true);
-                            EcoreUtil.resolveAll(resource);
-                        }
-                        for (Resource resource : resourceSet.getResources()) {
-                            for (EPackage ePackage : getAllPackages(resource)) {
-                                if (nsURIs.contains(ePackage.getNsURI())) {
-                                    uris.append(resource.getURI());
-                                    uris.append("  ");
-                                    break;
-                                }
-                            }
-                        }
-                        uriField.setText((uriField.getText() + "  " + uris.toString()).trim());
-                    } else {
-                        StringBuffer uris = new StringBuffer();
-                        for (int i = 0, length = result.length; i < length; i++) {
-                            uris.append(result[i]);
-                            uris.append("  ");
-                        }
-                        uriField.setText((uriField.getText() + "  " + uris.toString()).trim());
-                    }
+                // TODO Register the chosen .ecore file, maybe not here but in one of the next steps
+                FileDialog fileDialog = new FileDialog(getShell(), SWT.OPEN | SWT.MULTI);
+                fileDialog.setText("Import");
+                fileDialog.setFilterPath("C:/");
+                String[] filterExt = { "*.ecore" };
+                fileDialog.setFilterExtensions(filterExt);
+                fileDialog.open();
+                String filterPath = fileDialog.getFilterPath();
+                String[] fileNames = fileDialog.getFileNames();
+                StringBuffer uris = new StringBuffer();
+
+                for (int i = 0, len = fileNames.length; i < len; i++) {
+                    uris.append(URI.createFileURI(filterPath + File.separator + fileNames[i]).toString());
+                    uris.append("  ");
+                }
+                uriField.setText((uriField.getText() + "  " + uris.toString()).trim());
+
+                String fileName = fileDialog.getFileName();
+                if (fileName != null) {
+                    uriField.setText(URI.createFileURI(filterPath + File.separator + fileName).toString());
+
                 }
             }
         });
@@ -183,9 +173,9 @@ public class MMLoadPage extends WizardPage {
 
     protected void dialogChanged() {
         String text = uriField.getText();
-        text=text.trim();
+        text = text.trim();
         if (!text.endsWith(".ecore")) {
-            wrongType.setText("The File you choose must be a .ecore file.");
+            wrongType.setText("The File you choose must be a .ecore file. Whitespaces before and after URIs will be deleted.");
             setPageComplete(false);
         } else {
             wrongType.setText("");

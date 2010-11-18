@@ -41,7 +41,8 @@ public class WizardProjectHelper {
 
     public static IProject createPlugInProject(final String projectName, final List<String> srcFolders,
             final List<String> nonSrcFolders, final List<IProject> referencedProjects, final List<String> exportedPackages,
-            final List<String> extraClasspathEntries, final IProgressMonitor progressMonitor, final Shell theShell, String nature) {
+            final List<String> extraClasspathEntries, final IProgressMonitor progressMonitor, final Shell theShell,
+            String nature, final boolean metamodel) {
         IProject project = null;
         try {
             progressMonitor.beginTask("", 10);
@@ -80,7 +81,8 @@ public class WizardProjectHelper {
                 }
             }
 
-            projectDescription.setNatureIds(new String[] { JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature", "com.sap.furcas.ide.dslproject.syntaxGenerationNature"});
+            projectDescription.setNatureIds(new String[] { JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature",
+                    "com.sap.furcas.ide.dslproject.syntaxGenerationNature" });
 
             ICommand java = projectDescription.newCommand();
             java.setBuilderName(JavaCore.BUILDER_ID);
@@ -125,8 +127,12 @@ public class WizardProjectHelper {
                     new SubProgressMonitor(progressMonitor, 1));
 
             javaProject.setOutputLocation(new Path("/" + projectName + "/bin"), new SubProgressMonitor(progressMonitor, 1));
-            createManifest(projectName, progressMonitor, project);
-            createBuildProps(progressMonitor, project, srcFolders, extraClasspathEntries);
+            if (!metamodel) {
+                createManifest(projectName, progressMonitor, project);
+                createBuildProps(progressMonitor, project, srcFolders, extraClasspathEntries);
+            } else {
+                
+            }
         } catch (Exception exception) {
             System.out.println("Error while creating the project.");
         } finally {

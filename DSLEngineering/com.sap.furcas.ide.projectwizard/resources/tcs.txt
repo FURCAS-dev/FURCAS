@@ -2,147 +2,239 @@ syntax $dslname$ {
 
 -- place templates here (at least one main template)
 
- 	 primitiveTemplate identifier for String default using NAME:
- 	   value = "%token%";
-        
- 	 primitiveTemplate integerSymbol for Integer default using INT:
-   	     value = "Integer.valueOf(%token%)";
-	
- 	 template ReplaceMe main:
-  	;
+ 	 template $FirstClass$ main
+	 	:"$FirstClass$"
+  	        ;
+
+        primitiveTemplate identifier for PrimitiveTypes::String default using NAME:
+                value = "unescapeString(%token%)";
+
+        primitiveTemplate identifierOrKeyword for PrimitiveTypes::String using NAME orKeyword:
+                value = "unescapeString(%token%)";
+
+        primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:
+                value = "unescapeString(%token%)",
+                serializer="'\\\"' + %value%.toCString() + '\\\"'";
+
+        primitiveTemplate integerSymbol for PrimitiveTypes::Integer default using INT:
+                value = "Integer.valueOf(%token%)";
+                
+        primitiveTemplate longSymbol for PrimitiveTypes::Long default using INT:
+                value = "Long.valueOf(%token%)";
+                
+        primitiveTemplate integerAsStringSymbol for PrimitiveTypes::String default using INT:
+                value = "%token%";
+
+        primitiveTemplate floatAsStringSymbol for PrimitiveTypes::String default using FLOAT:
+                value = "%token%";
+                
+        primitiveTemplate booleanSymbol for PrimitiveTypes::String using BOOL:
+                value = "%token%";      
+                
+        primitiveTemplate binarySymbol for PrimitiveTypes::String using BINARY:
+                value = "%token%";
+                
+        primitiveTemplate dateSymbol for PrimitiveTypes::String using DATE:
+                value = "%token%";
 -- place keywords here (optional, seldom used)
 
--- place symbols here (optional)
-	 	
-	symbols {
-		lbracket	= "[";
-		rbracket	= "]";
-		lcurl		= "{";
-		rcurl		= "}";
-		langle      = "<";
-		rangle      = ">";
-		lparen		= "(";
-		rparen		= ")";
-		excl		= "!";
-		equals		= "=";
-		equalsEquals= "==";
-		assign		= ":=";
-		dot			= ".";
-		ddot		= "..";
-		arrow		= "->";
-		pipe		= "|";
-		colon		= ":";
-		dcolon		= "::";
-		semicolon	= ";";
-		including	= "including";
-		excluding	= "excluding";
-		includingat	= "includingAt";
-		excludingat	= "excludingAt";
-		iterate		= "iterate";
-		lcurl_lbrack = "{[";
-		lbrack_lcurl = "[{";
-		rcurl_rbrack = "}]";
-		rbrack_rcurl = "]}";
-		star		= "*";
-	}
-	
--- place operatorLists here (optional)
-	
-	operators Expressions {
-		priority 0 {
-			dotOp		= ".", 2;
-			dcolonOp	= "::", 2;
-			lparen		= "(", 2;
-			arrowOp     = "->", 2;
-			lbracketOp  = "[", 2;
-		}
-		priority 1 {
-			equalsOp	  = "==", 2;
-			equivalenceOp = "<=>", 2;
-		}
-		priority 2 {
-			questionmark = "?", 2;
-		}
-	}
-	
-	operators TypeDefinitions {
-		priority 0 {
-			postfix starOp	= star, 1;
-			-- postfix upperOp	= INT, 1;
-		}
-		priority 1 {
-			bracketOp	= lbracket, 2;
-			braceOp		= lcurl, 2;
-			-- lowerOp		= INT, 2;
-		}
-	}
-	
+        function printMultiplicity(Multiplicity)
+                :
+                        [[
+                        disambiguate("integerSymbol DDOT STAR | integerSymbol DDOT integerSymbol")
+                        lowerMultiplicity ".." (upperMultiplicity = -1 ? "*" : upperMultiplicity) {{ unique = 'false', ordered = 'false' }}
+                        |
+                        disambiguate("LBRACKET integerSymbol DDOT")
+                        "["
+                        lowerMultiplicity ".." (upperMultiplicity = -1 ? "*" : upperMultiplicity) {{ unique='false', ordered='true' }}
+                        "]"
+                        |
+                        disambiguate("LCURL integerSymbol DDOT")
+                        "{"
+                        lowerMultiplicity ".." (upperMultiplicity = -1 ? "*" : upperMultiplicity) {{ unique = 'true', ordered = 'false' }}
+                        "}"
+                        |
+                        disambiguate("LBRACK_LCURL integerSymbol DDOT")
+                        "[{"
+                        lowerMultiplicity ".." (upperMultiplicity = -1 ? "*" : upperMultiplicity) {{ unique = 'true', ordered = 'true' }} 
+                        "}]"
+                        |
+                        disambiguate("LCURL_LBRACK integerSymbol DDOT")
+                        "{["
+                        lowerMultiplicity ".." (upperMultiplicity = -1 ? "*" : upperMultiplicity) {{ unique = 'true', ordered = 'true' }} 
+                        "]}"
+                        | -- Do we really want to support this? How would a C developer read "String* x"?
+                        disambiguate("STAR | integerSymbol ~DDOT")
+                        (upperMultiplicity = -1 ? "*" : upperMultiplicity) {{ lowerMultiplicity = '0', unique = 'false', ordered = 'false' }}
+                        |
+                        disambiguate("LBRACKET integerSymbol RBRACKET | LBRACKET STAR RBRACKET")
+                        "["
+                        (upperMultiplicity = -1 ? "*" : upperMultiplicity) {{ lowerMultiplicity = '0', unique='false', ordered='false' }}
+                        "]"
+                        |
+                        disambiguate("LBRACKET RBRACKET")
+                        "["
+                        {{upperMultiplicity = '-1', lowerMultiplicity = '0', unique='false', ordered='true' }}
+                        "]"
+                        |
+                        disambiguate("LCURL STAR RCURL | LCURL integerSymbol RCURL")
+                        "{"
+                        (upperMultiplicity = -1 ? "*" : upperMultiplicity) {{ lowerMultiplicity = '0', unique = 'true', ordered = 'false' }}
+                        "}"
+                        |
+                        disambiguate("LCURL RCURL")
+                        "{"
+                        {{upperMultiplicity = '-1', lowerMultiplicity = '0', unique = 'true', ordered = 'false' }}
+                        "}"
+                        |
+                        disambiguate("LBRACK_LCURL STAR RCURL_RBRACK | LBRACK_LCURL integerSymbol RCURL_RBRACK")
+                        "[{"
+                        (upperMultiplicity = -1 ? "*" : upperMultiplicity) {{ lowerMultiplicity = '0', unique = 'true', ordered = 'true' }} 
+                        "}]"
+                        |
+                        disambiguate("LCURL_LBRACK STAR RBRACK_RCURL | LCURL_LBRACK integerSymbol RBRACK_RCURL")
+                        "{["
+                        (upperMultiplicity = -1 ? "*" : upperMultiplicity) {{ lowerMultiplicity = '0', unique = 'true', ordered = 'true' }} 
+                        "]}"
+                        |
+                        disambiguate("LCURL_LBRACK RBRACK_RCURL")
+                        "{["
+                        {{ lowerMultiplicity = '0', upperMultiplicity='-1', unique = 'true', ordered = 'true' }} 
+                        "]}"
+                        |
+                        disambiguate("LBRACK_LCURL RCURL_RBRACK")
+                        "[{"
+                        {{ lowerMultiplicity = '0', upperMultiplicity='-1', unique = 'true', ordered = 'true' }} 
+                        "}]"
+                        |
+                        {{ lowerMultiplicity = '0', upperMultiplicity = '1', ordered = 'false', unique = 'false' }}
+                        ]]
+                ;
 
--- place tokens here (optional, except for COMMENT)
-	token COMMENT	: endOfLine(start = "//");
-	
-
--- place lexer here (optional)	
-	lexer = "
-	%options testLiterals = false;
+                
+        symbols {
+                lbracket        = "[";
+                rbracket        = "]";
+                lcurl           = "{";
+                rcurl           = "}";
+                langle      = "<";
+                rangle      = ">";
+                lparen          = "(";
+                rparen          = ")";
+                excl            = "!";
+                equals          = "=";
+                equalsEquals= "==";
+                assign          = ":=";
+                dot                     = ".";
+                ddot            = "..";
+                arrow           = "->";
+                pipe            = "|";
+                colon           = ":";
+                dcolon          = "::";
+                semicolon       = ";";
+                including       = "including";
+                excluding       = "excluding";
+                includingat     = "includingAt";
+                excludingat     = "excludingAt";
+                iterate         = "iterate";
+                lcurl_lbrack = "{[";
+                lbrack_lcurl = "[{";
+                rcurl_rbrack = "}]";
+                rbrack_rcurl = "]}";
+                star            = "*";
+        }
+        
+        operators Expressions {
+                priority 0 {
+                        dotOp           = ".", 2;
+                        dcolonOp        = "::", 2;
+                        lparen          = "(", 2;
+                        arrowOp     = "->", 2;
+                        lbracketOp  = "[", 2;
+                }
+                priority 1 {
+                        equalsOp          = "==", 2;
+                        equivalenceOp = "<=>", 2;
+                }
+                priority 2 {
+                        questionmark = "?", 2;
+                }
+        }
+        
+        operators TypeDefinitions {
+                priority 0 {
+                        postfix starTypeOp      = star, 1;
+                        -- postfix upperOp      = INT, 1;
+                }
+                priority 1 {
+                        lbracketTypeOp  = lbracket, 2;
+                        lcurlTypeOp             = lcurl, 2;
+                        -- lowerOp              = INT, 2;
+                }
+        }
+        
+        omitted token COMMENT   : endOfLine(start = "//");
+        omitted token MULTI_LINE_COMMENT        : multiLine(start = "/*", end = "*/");
+lexer = "
+%options testLiterals = false;
 
 
 NL
-	:	(	'\\r' '\\n'
-		|	'\\n' '\\r'	//Improbable
-		|	'\\r'
-		|	'\\n'
-		)
-	{newline();$channel=HIDDEN;}
-	;
+        :       (       '\\r' '\\n'
+                |       '\\n' '\\r'     //Improbable
+                |       '\\r'
+                |       '\\n'
+                )
+        {newline();$channel=HIDDEN;}
+        ;
 
 WS
-	:	(	' '
-		|	'\\t'
-		){$channel=HIDDEN;}
-	;
+        :       (       ' '
+                |       '\\t'
+                ){$channel=HIDDEN;}
+        ;
 
 %protected
 DIGIT
-	:	'0'..'9'
-	;
+        :       '0'..'9'
+        ;
 
 %protected
 ALPHA
-	:	'a'..'z'
-	|	'A'..'Z'
-	|	'_'
-	//For Unicode compatibility (from 0000 to 00ff)
-	|	'\\u00C0' .. '\\u00D6'
-	|	'\\u00D8' .. '\\u00F6'
-	|	'\\u00F8' .. '\\u00FF'
-	;
+        :       'a'..'z'
+        |       'A'..'Z'
+        |       '_'
+        //For Unicode compatibility (from 0000 to 00ff)
+        |       '\\u00C0' .. '\\u00D6'
+        |       '\\u00D8' .. '\\u00F6'
+        |       '\\u00F8' .. '\\u00FF'
+        ;
 
 %protected
 SNAME
-	:	(ALPHA) (ALPHA | DIGIT)*
+        :       (ALPHA) (ALPHA | DIGIT)*
 ;
 
-BOOL	:	'true' | 'false'	;
+BOOL    :       'true' | 'false'        ;
 
-OBJECT	:	'o:'	;
+OBJECT  :       'o:'    ;
 
 NAME
-	:	(
-			SNAME
-		|	'\\''!
-			(	
-		//	ESC	|
-			'\\n' {newline();}
-			|	~('\\\\'|'\\\''|'\\n')
-			)*
-			'\\''!
-		)
-	;
+        :       (
+                        SNAME
+                |       '\\''!
+                        (       
+                //      ESC     |
+                        '\\n' {newline();}
+                        |       ~('\\\\'|'\\\''|'\\n')
+                        )*
+                        '\\''!
+                )
+        ;
 
 BINARY
-	:	'0x'((DIGIT | 'a'..'f' | 'A'..'F') (DIGIT | 'a'..'f' | 'A'..'F'))+
-	;
+        :       '0x'((DIGIT | 'a'..'f' | 'A'..'F') (DIGIT | 'a'..'f' | 'A'..'F'))+
+        ;
 
 protected
 INT
@@ -151,24 +243,24 @@ INT
 
 %protected
 FLOAT
-	:	DIGIT+ '.' DIGIT*
-	;
+        :       DIGIT+ '.' DIGIT*
+        ;
   
 RANGE_OR_INT
     :   ( INT '..' ) => INT  { _type = INT; }
-    |	( INT '.' NAME ) => INT { _type = INT; }
-    |   ( INT '.' ~('.'	|	'a'..'z'
-					   	|	'A'..'Z'
-					   	|	'_'
-						//For Unicode compatibility (from 0000 to 00ff)
-						|	'\\u00C0' .. '\\u00D6'
-						|	'\\u00D8' .. '\\u00F6'
-						|	'\\u00F8' .. '\\u00FF') )  => FLOAT { _type = FLOAT; }
+    |   ( INT '.' NAME ) => INT { _type = INT; }
+    |   ( INT '.' ~('.' |       'a'..'z'
+                                                |       'A'..'Z'
+                                                |       '_'
+                                                //For Unicode compatibility (from 0000 to 00ff)
+                                                |       '\\u00C0' .. '\\u00D6'
+                                                |       '\\u00D8' .. '\\u00F6'
+                                                |       '\\u00F8' .. '\\u00FF') )  => FLOAT { _type = FLOAT; }
     |   INT                  { _type = INT; }
     ;
 
 
-DATE	:	DIGIT DIGIT DIGIT DIGIT '-' DIGIT DIGIT '-' DIGIT DIGIT ((' '|'T') DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT
+DATE    :       DIGIT DIGIT DIGIT DIGIT '-' DIGIT DIGIT '-' DIGIT DIGIT ((' '|'T') DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT
             (
               ( (',' | '.') DIGIT ) => ((',' | '.') (DIGIT)+)
               |
@@ -176,14 +268,14 @@ DATE	:	DIGIT DIGIT DIGIT DIGIT '-' DIGIT DIGIT '-' DIGIT DIGIT ((' '|'T') DIGIT 
             ('Z' | (('+'|'-') DIGIT DIGIT DIGIT DIGIT)?) )? ;
 
 STRING
-	:	'\"'!
-		(	
-		//ESC	|		
-			'\\n' {newline();}
-		|	~('\\\\'|'\"'|'\\n')
-		)*
-		'\"'!
-	;
+        :       '\"'!
+                (       
+                //ESC   |               
+                        '\\n' {newline();}
+                |       ~('\\\\'|'\"'|'\\n')
+                )*
+                '\"'!
+        ;
 
-	"; 
+        "; 
 }
