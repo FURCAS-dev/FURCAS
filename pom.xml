@@ -20,7 +20,7 @@
     <module>EMFEnhancements</module>
     <module>ngpm</module>
   </modules>
-
+<!--
   <build>
     <plugins>
       <plugin>
@@ -54,4 +54,52 @@
 
     </plugins>
   </build>
+-->
+	<profiles>
+		<profile>
+			<id>exclude-long-run-test</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.sonatype.tycho</groupId>
+							<artifactId>maven-osgi-test-plugin</artifactId>
+							<version>0.10.0</version>
+							<configuration>
+								<argLine>-Xmx1024m</argLine>
+								<useUIHarness>true</useUIHarness>
+								<testFailureIgnore>true</testFailureIgnore>
+								<excludes> 
+									<exclude>**/NavigationPathCreationTest.java</exclude><!--Exclude long-run Test-->
+								</excludes>      
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+		<profile>
+			<id>complete</id>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.sonatype.tycho</groupId>
+							<artifactId>maven-osgi-test-plugin</artifactId>
+							<version>0.10.0</version>
+							<configuration>
+								<argLine>-Xmx1024m</argLine>
+								<useUIHarness>true</useUIHarness>
+								<testFailureIgnore>true</testFailureIgnore>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		
+		</profile>
+	</profiles>
 </project>
