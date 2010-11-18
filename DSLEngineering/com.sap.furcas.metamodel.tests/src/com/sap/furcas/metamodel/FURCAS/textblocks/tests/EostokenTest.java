@@ -20,55 +20,55 @@ import junit.textui.TestRunner;
 public class EostokenTest extends AbstractTokenTest {
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public static void main(String[] args) {
-		TestRunner.run(EostokenTest.class);
-	}
+        TestRunner.run(EostokenTest.class);
+    }
 
         /**
-	 * Constructs a new Eostoken test case with the given name.
-	 * <!-- begin-user-doc -->
+     * Constructs a new Eostoken test case with the given name.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public EostokenTest(String name) {
-		super(name);
-	}
+        super(name);
+    }
 
         /**
-	 * Returns the fixture for this Eostoken test case.
-	 * <!-- begin-user-doc -->
+     * Returns the fixture for this Eostoken test case.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected Eostoken getFixture() {
-		return (Eostoken)fixture;
-	}
+        return (Eostoken)fixture;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#setUp()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#setUp()
+     * @generated
+     */
         @Override
         protected void setUp() throws Exception {
-		setFixture(TextblocksFactory.eINSTANCE.createEostoken());
-	}
+        setFixture(TextblocksFactory.eINSTANCE.createEostoken());
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#tearDown()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#tearDown()
+     * @generated
+     */
         @Override
         protected void tearDown() throws Exception {
-		setFixture(null);
-	}
+        setFixture(null);
+    }
 
 } //EostokenTest

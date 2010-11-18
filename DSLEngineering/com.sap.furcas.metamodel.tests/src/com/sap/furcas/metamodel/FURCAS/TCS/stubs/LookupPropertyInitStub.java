@@ -69,4 +69,15 @@ public class LookupPropertyInitStub extends LocatedElementStub implements Lookup
 	Assert.fail("not implemented.");
     }
 
+    @Override
+    public boolean isDefault() {
+        Assert.fail("not implemented.");
+        return false;
+    }
+
+    @Override
+    public void setDefault(boolean value) {
+        Assert.fail("not implemented.");
+    }
+
 }

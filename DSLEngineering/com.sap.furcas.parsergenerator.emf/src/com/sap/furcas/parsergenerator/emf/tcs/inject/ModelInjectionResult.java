@@ -38,8 +38,8 @@ public class ModelInjectionResult {
     public ConcreteSyntax getSyntax() {
 	ConcreteSyntax syntax = null;
 	Set<Object> set = handler.getElementsByType("FURCAS::TCS::ConcreteSyntax");
-	if (set != null) {
-	    if (set.size() != 1) {
+	if (set != null && !set.isEmpty()) {
+	    if (set.size() > 1) {
 		System.out.println("Warning: More than one syntax in ModelInjectionResult (" + set.size() + " present)");
 	    }
 	    syntax = (ConcreteSyntax) set.iterator().next();

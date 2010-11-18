@@ -7,6 +7,7 @@ import static com.sap.furcas.test.testutils.StringListHelper.list;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -16,7 +17,6 @@ import java.util.List;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.ecore.OCLExpression;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -1081,7 +1081,7 @@ public class TestPropertyTypeHandler {
 
         argsList.add(new ForcedLowerPArgStub(4));
         args = new PropertyTypeHandler.PropertyArgs(argsList);
-        assertEquals(4, args.forcedLower.getValue());
+        assertSame(4, args.forcedLower.getValue());
 
         argsList = new ArrayList<PropertyArg>();
         args = new PropertyTypeHandler.PropertyArgs(argsList);
@@ -1202,12 +1202,12 @@ public class TestPropertyTypeHandler {
         }
 
         @Override
-        public int getValue() {
+        public Integer getValue() {
             return this.value;
         }
 
         @Override
-        public void setValue(int value) {
+        public void setValue(Integer value) {
             // TODO Auto-generated method stub
 
         }
@@ -1372,18 +1372,6 @@ public class TestPropertyTypeHandler {
          */
         @Override
 		public void setQuery(String value) {
-
-        }
-
-        @Override
-        public OCLExpression getQueryExpression() {
-            // TODO Auto-generated method stub
-            return null;
-        }
-
-        @Override
-        public void setQueryExpression(OCLExpression value) {
-            // TODO Auto-generated method stub
 
         }
 

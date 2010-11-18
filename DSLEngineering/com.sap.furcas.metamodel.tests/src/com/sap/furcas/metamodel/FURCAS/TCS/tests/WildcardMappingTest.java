@@ -20,55 +20,55 @@ import junit.textui.TestRunner;
 public class WildcardMappingTest extends MappingTest {
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public static void main(String[] args) {
-		TestRunner.run(WildcardMappingTest.class);
-	}
+        TestRunner.run(WildcardMappingTest.class);
+    }
 
         /**
-	 * Constructs a new Wildcard Mapping test case with the given name.
-	 * <!-- begin-user-doc -->
+     * Constructs a new Wildcard Mapping test case with the given name.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public WildcardMappingTest(String name) {
-		super(name);
-	}
+        super(name);
+    }
 
         /**
-	 * Returns the fixture for this Wildcard Mapping test case.
-	 * <!-- begin-user-doc -->
+     * Returns the fixture for this Wildcard Mapping test case.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected WildcardMapping getFixture() {
-		return (WildcardMapping)fixture;
-	}
+        return (WildcardMapping)fixture;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#setUp()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#setUp()
+     * @generated
+     */
         @Override
         protected void setUp() throws Exception {
-		setFixture(TCSFactory.eINSTANCE.createWildcardMapping());
-	}
+        setFixture(TCSFactory.eINSTANCE.createWildcardMapping());
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#tearDown()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#tearDown()
+     * @generated
+     */
         @Override
         protected void tearDown() throws Exception {
-		setFixture(null);
-	}
+        setFixture(null);
+    }
 
 } //WildcardMappingTest

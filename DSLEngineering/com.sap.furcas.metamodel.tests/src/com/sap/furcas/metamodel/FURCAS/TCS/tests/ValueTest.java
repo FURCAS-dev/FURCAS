@@ -17,24 +17,24 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Value;
 public abstract class ValueTest extends LocatedElementTest {
 
         /**
-	 * Constructs a new Value test case with the given name.
-	 * <!-- begin-user-doc -->
+     * Constructs a new Value test case with the given name.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public ValueTest(String name) {
-		super(name);
-	}
+        super(name);
+    }
 
         /**
-	 * Returns the fixture for this Value test case.
-	 * <!-- begin-user-doc -->
+     * Returns the fixture for this Value test case.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected Value getFixture() {
-		return (Value)fixture;
-	}
+        return (Value)fixture;
+    }
 
 } //ValueTest

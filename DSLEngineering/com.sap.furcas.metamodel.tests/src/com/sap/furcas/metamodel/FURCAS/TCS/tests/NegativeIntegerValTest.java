@@ -20,55 +20,55 @@ import junit.textui.TestRunner;
 public class NegativeIntegerValTest extends ValueTest {
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public static void main(String[] args) {
-		TestRunner.run(NegativeIntegerValTest.class);
-	}
+        TestRunner.run(NegativeIntegerValTest.class);
+    }
 
         /**
-	 * Constructs a new Negative Integer Val test case with the given name.
-	 * <!-- begin-user-doc -->
+     * Constructs a new Negative Integer Val test case with the given name.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public NegativeIntegerValTest(String name) {
-		super(name);
-	}
+        super(name);
+    }
 
         /**
-	 * Returns the fixture for this Negative Integer Val test case.
-	 * <!-- begin-user-doc -->
+     * Returns the fixture for this Negative Integer Val test case.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected NegativeIntegerVal getFixture() {
-		return (NegativeIntegerVal)fixture;
-	}
+        return (NegativeIntegerVal)fixture;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#setUp()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#setUp()
+     * @generated
+     */
         @Override
         protected void setUp() throws Exception {
-		setFixture(TCSFactory.eINSTANCE.createNegativeIntegerVal());
-	}
+        setFixture(TCSFactory.eINSTANCE.createNegativeIntegerVal());
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#tearDown()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#tearDown()
+     * @generated
+     */
         @Override
         protected void tearDown() throws Exception {
-		setFixture(null);
-	}
+        setFixture(null);
+    }
 
 } //NegativeIntegerValTest

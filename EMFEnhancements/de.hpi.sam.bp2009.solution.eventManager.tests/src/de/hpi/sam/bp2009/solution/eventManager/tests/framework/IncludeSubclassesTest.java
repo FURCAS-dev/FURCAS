@@ -19,9 +19,9 @@ import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.tests.FilterSynthesisTest;
+import de.hpi.sam.bp2009.solution.testutils.BaseDepartmentTest;
 
-public class IncludeSubclassesTest extends FilterSynthesisTest {
+public class IncludeSubclassesTest extends BaseDepartmentTest {
     private EventManager m;
 
     class App extends AdapterImpl{
