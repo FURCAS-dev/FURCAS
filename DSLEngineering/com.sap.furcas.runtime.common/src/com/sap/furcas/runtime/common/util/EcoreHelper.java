@@ -3,6 +3,7 @@ package com.sap.furcas.runtime.common.util;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -61,64 +62,65 @@ public class EcoreHelper {
 		return null;
 	}
 
-	/**
-	 * Constructs a query context that contains all of <tt>rs</tt>'s resources and all
-	 * metamodel resources
-	 */
-	public static QueryContext getQueryContext(final ResourceSet rs) {
-	    return new QueryContext() {
-	            @Override
-				public URI[] getResourceScope() {
-	                    final List<URI> result = new ArrayList<URI>();
-	                    IndexFactory.getInstance().executeQueryCommand(new QueryCommand() {
-	                            @Override
-								public void execute(QueryExecutor queryExecutor) {
-	                                    ResourceQuery<ResourceDescriptor> resourceQuery = IndexQueryFactory.createResourceQuery();
-	                                    for (ResourceDescriptor desc : queryExecutor.execute(resourceQuery)) {
-	                                            result.add(desc.getURI());
-	                                    }
-	                                    for (Resource r:rs.getResources()) {
-	                                        result.add(r.getURI());
-	                                    }
-	                            }
-	                    });
-	                    return result.toArray(new URI[0]);
-	            }
+    /**
+     * Constructs a query context that contains only the given <tt>resources</tt>.
+     */
+    public static QueryContext getQueryContext(final ResourceSet resourceSet) {
+        return getQueryContext(resourceSet, new HashSet<URI>());
+    }
 	
-	            @Override
-				public ResourceSet getResourceSet() {
-	                    return rs;
-	            }
-	    };
-	}
+    /**
+     * Constructs a query context that contains only the given <tt>resources</tt>.
+     */
+    public static QueryContext getQueryContext(final ResourceSet resourceSet, final Set<URI> referenceScope) {
+        return new QueryContext() {
+            @Override
+            public URI[] getResourceScope() {
+                Collection<URI> result = new HashSet<URI>(referenceScope);
+                for (Resource resource : resourceSet.getResources()) {
+                    result.add(resource.getURI());
+                }
+                return result.toArray(new URI[result.size()]);
+            }
+
+            @Override
+            public ResourceSet getResourceSet() {
+                return resourceSet;
+            }
+        };
+    }
+
+
+    /**
+     * Constructs a query context that contains all of <tt>rs</tt>'s resources and all metamodel resources
+     */
+    public static QueryContext getFullModelUniverseQueryContext(final ResourceSet rs) {
+        return new QueryContext() {
+            @Override
+            public URI[] getResourceScope() {
+                final List<URI> result = new ArrayList<URI>();
+                IndexFactory.getInstance().executeQueryCommand(new QueryCommand() {
+                    @Override
+                    public void execute(QueryExecutor queryExecutor) {
+                        ResourceQuery<ResourceDescriptor> resourceQuery = IndexQueryFactory.createResourceQuery();
+                        for (ResourceDescriptor desc : queryExecutor.execute(resourceQuery)) {
+                            result.add(desc.getURI());
+                        }
+                        for (Resource r : rs.getResources()) {
+                            result.add(r.getURI());
+                        }
+                    }
+                });
+                return result.toArray(new URI[0]);
+            }
+
+            @Override
+            public ResourceSet getResourceSet() {
+                return rs;
+            }
+        };
+    }
 	
-	/**
-	 * Constructs a query context that contains all all resources given as <tt>resources</tt>.
-	 */
-	public static QueryContext getQueryContext(final ResourceSet rs, final Set<URI> resources) {
-	    return new QueryContext() {
-	            @Override
-				public URI[] getResourceScope() {
-	                    final List<URI> result = new ArrayList<URI>();
-	                    IndexFactory.getInstance().executeQueryCommand(new QueryCommand() {
-	                            @Override
-								public void execute(QueryExecutor queryExecutor) {
-	                                    ResourceQuery<ResourceDescriptor> resourceQuery = IndexQueryFactory.createResourceQuery();
-	                                    for (ResourceDescriptor desc : queryExecutor.execute(resourceQuery)) {
-	                                            result.add(desc.getURI());
-	                                    }
-	                                   result.addAll(resources);
-	                            }
-	                    });
-	                    return result.toArray(new URI[0]);
-	            }
-	
-	            @Override
-				public ResourceSet getResourceSet() {
-	                    return rs;
-	            }
-	    };
-	}
 
 	public static EPackage getOutermostPackage(EObject element) {
 		EObject parent = EcoreUtil.getRootContainer(element);
@@ -128,58 +130,22 @@ public class EcoreHelper {
 			return null;
 		}
 	}
-
-	/**
-	 * @param query
-	 * @param resourceSet 
-	 * @return
-	 * @throws MetaModelLookupException 
-	 */
-	public static ResultSet executeQuery(String query, ResourceSet resourceSet,  Set<URI> resourceURIs) throws MetaModelLookupException {
-	    try {
-	        QueryProcessor processor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
-
-	        ResultSet resultSet = processor.execute(query, EcoreHelper.getQueryContext(resourceSet, resourceURIs));
-	        return resultSet;
-	    } catch (RuntimeException rte) {
-	        throw new MetaModelLookupException("Exception while making query: " + query + "\n Message :" + rte.getMessage(), rte);
-	    }
-	}
 	
 	/**
 	 * @param query
-	 * @param resourceSet 
 	 * @return
 	 * @throws MetaModelLookupException 
 	 */
-	public static ResultSet executeQuery(String query, ResourceSet resourceSet, QueryContext context) throws MetaModelLookupException {
+	public static ResultSet executeQuery(String query, QueryContext context) throws MetaModelLookupException {
 	    try {
 	        QueryProcessor processor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
-
 	        ResultSet resultSet = processor.execute(query, context);
 	        return resultSet;
 	    } catch (RuntimeException rte) {
 	        throw new MetaModelLookupException("Exception while making query: " + query + "\n Message :" + rte.getMessage(), rte);
 	    }
 	}
-	
-	/**
-	 * @param query
-	 * @param resourceSet 
-	 * @return
-	 * @throws MetaModelLookupException 
-	 */
-	public static ResultSet executeQuery(String query, ResourceSet resourceSet) throws MetaModelLookupException {
-	    try {
-	        QueryProcessor processor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
-
-	        ResultSet resultSet = processor.execute(query, EcoreHelper.getQueryContext(resourceSet));
-	        return resultSet;
-	    } catch (RuntimeException rte) {
-	        throw new MetaModelLookupException("Exception while making query: " + query + "\n Message :" + rte.getMessage(), rte);
-	    }
-	}
-	
+		
 	public static List<String> getQualifiedName(EClassifier element) {
 		if(element instanceof EModelElement) {
 			List<String> names = new ArrayList<String>();
@@ -195,15 +161,8 @@ public class EcoreHelper {
 		return null;
 	}
 
-	public static EClass getEObjectElement(ResourceSet resourceSet) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public static boolean isInstanceOf(EObject refObject, EObject metaType,
-			boolean b) {
-		// TODO Auto-generated method stub
-		return false;
+	public static boolean isInstanceOf(EObject object, EClassifier metaType) {
+		return metaType.isInstance(object);
 	}
 
 	public static EModelElement findElementByQualifiedName(List<String> qname,
@@ -228,12 +187,6 @@ public class EcoreHelper {
 	public static boolean isAlive(EObject object) {
 		//TODO how to check whether an object is alive or not in EMF?
 		return true;
-	}
-
-	public static Collection<EReference> getCompositeReferences(EClass eClass,
-			EClass eClass2) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

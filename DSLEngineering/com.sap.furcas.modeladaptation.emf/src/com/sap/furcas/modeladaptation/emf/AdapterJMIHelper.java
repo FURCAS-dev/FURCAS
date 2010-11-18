@@ -96,7 +96,6 @@ public class AdapterJMIHelper {
     private final Helper oclHelper;
 
     
-    
     public AdapterJMIHelper(EPackage rootPackage, ResourceSet resourceSet, Collection<URI> explicitReferenceScope) {
         this.rootPackage = rootPackage;
         this.resourceSet = resourceSet;
@@ -106,20 +105,12 @@ public class AdapterJMIHelper {
 
         queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
 
+        transientResource = resourceSet.createResource(URI.createURI(rootPackage.getNsURI() + "/transientParsingResource"));
+        
         referenceScope = new HashSet<URI>(explicitReferenceScope);
-        referenceScope.add(EcoreUtil.getURI(rootPackage.eClass()));
-
-        transientResource = resourceSet.createResource(URI.createURI(rootPackage.getNsURI()
-                + "/transientParsingResource"));
         referenceScope.add(transientResource.getURI());
-
-        // TODO: still needed in EMF?
-        // packagesForLookup = new ArrayList<EPackage>();
-        // // TODO check how this works in Ecore packagesForLookup.addAll(MoinHelper.getImportedEPackages(root));
-        // packagesForLookup.add(rootPackage);
-        // for (EPackage pack : packagesForLookup) {
-        // referenceScope.add(rootPackage.eClass().eResource().getURI());
-        // }
+        referenceScope.add(URI.createURI(rootPackage.getNsURI()));
+        referenceScope.add(URI.createURI(rootPackage.eClass().getEPackage().getNsURI()));
     }
 
     public EObject findEObjectOfType(List<String> targetType, String targetKeyName, Object targetKeyValue)
@@ -133,8 +124,7 @@ public class AdapterJMIHelper {
         WhereClause clause = new WhereString(targetKeyName, Operation.EQUAL, String.valueOf(targetKeyValue));
         WhereEntry we = new LocalWhereEntry(MQL_ALIAS_INSTANCE, clause);
         Query mq = new Query(new SelectEntry[] { se }, new FromEntry[] { fe }, new WhereEntry[] { we });
-        Set<URI> partScope = referenceScope;
-        QueryContext scopeProvider = EcoreHelper.getQueryContext(resourceSet, partScope);
+        QueryContext scopeProvider = EcoreHelper.getQueryContext(resourceSet, referenceScope);
         ResultSet mrs = queryProcessor.execute(mq, scopeProvider); // ,
         // QueryProcessor.getInclusivePartitionScopeProvider(
         // ));
@@ -165,8 +155,7 @@ public class AdapterJMIHelper {
         SelectEntry se = new SelectAlias(MQL_ALIAS_INSTANCE);
         FromEntry fe = new FromType(MQL_ALIAS_INSTANCE, qName, true);
         Query mq = new Query(new SelectEntry[] { se }, new FromEntry[] { fe });
-        Set<URI> partScope = referenceScope;
-        QueryContext scopeProvider = EcoreHelper.getQueryContext(resourceSet, partScope);
+        QueryContext scopeProvider = EcoreHelper.getQueryContext(resourceSet, referenceScope);
         ResultSet mrs = queryProcessor.execute(mq, scopeProvider); // ,
 
         Set<EObject> eObjects = new HashSet<EObject>();
@@ -271,18 +260,14 @@ public class AdapterJMIHelper {
     // }
 
     public EClass getEClass(List<String> qualifiedNameList) throws ModelAdapterException {
-
         String unqualifiedName = qualifiedNameList.get(qualifiedNameList.size() - 1);
-
         URI uriEClass = EcoreUtil.getURI(EcorePackage.eINSTANCE.getEClass());
 
         String query = "select instance \n" + "from [" + uriEClass + "] as instance \n" + "where instance.name = '"
                 + unqualifiedName + "'\n";
-
         ResultSet resultSet = executeQuery(query);
 
         List<EClass> result = new ArrayList<EClass>(resultSet.getSize());
-
         if (resultSet.getSize() == 0) {
             throw new ModelAdapterException("Could not resolve any EClass for " + unqualifiedName);
         }
@@ -309,7 +294,7 @@ public class AdapterJMIHelper {
                     + result.size() + " instances");
         }
     }
-
+    
     /**
      * @param query
      * @return

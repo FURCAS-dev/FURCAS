@@ -1,10 +1,6 @@
-/**
- * 
- */
 package com.sap.furcas.modeladaptation.emf.lookup;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -17,50 +13,41 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.query.index.ui.IndexFactory;
 import org.eclipse.emf.query2.QueryContext;
+import org.eclipse.emf.query2.QueryProcessor;
+import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
 
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
 
+
 public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup {
 
     private final ResourceSet resourceSet;
     private final Set<URI> referenceScope;
-
-    public QueryBasedEcoreMetaModelLookUp(ResourceSet resourceSet) {
-        this.resourceSet = resourceSet;
-        this.referenceScope = new HashSet<URI>();
-        for (Resource resource : resourceSet.getResources()) {
-            referenceScope.add(resource.getURI());
-        }
-    }
+    
+    private final QueryProcessor queryProcessor;
 
     public QueryBasedEcoreMetaModelLookUp(ResourceSet resourceSet, Set<URI> referenceScope) {
         this.resourceSet = resourceSet;
         this.referenceScope = referenceScope;
+        
+        queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
     }
-
-    /**
-     * Constructs a query context that contains only the given <tt>resources</tt>.
-     */
-    public QueryContext getQueryContext() {
-        return new QueryContext() {
-            @Override
-            public URI[] getResourceScope() {
-                Collection<URI> result = new HashSet<URI>(referenceScope);
-                for (Resource resource: resourceSet.getResources()) {
-                    result.add(resource.getURI());
-                }
-                return result.toArray(new URI[result.size()]);
-            }
-
-            @Override
-            public ResourceSet getResourceSet() {
-                return resourceSet;
-            }
-        };
+    
+    public QueryBasedEcoreMetaModelLookUp(ResourceSet resourceSet) {
+        this(resourceSet, getResourceSetAsScope(resourceSet));
+    }
+    
+    private static Set<URI> getResourceSetAsScope(ResourceSet resourceSet) {
+        Set<URI> referenceScope = new HashSet<URI>();
+        for (Resource resource : resourceSet.getResources()) {
+            referenceScope.add(resource.getURI());
+        }
+        return referenceScope;
     }
 
     @Override
@@ -119,15 +106,11 @@ public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup
     @Override
     protected List<EClassifier> getClassifiers(String name) throws MetaModelLookupException {
         URI uriEClassifier = EcoreUtil.getURI(EcorePackage.eINSTANCE.getEClassifier());
-        String query = "select instance \n" + "from [" + uriEClassifier + "] as instance \n" + "where instance.name = '" + name
-                + "'";
+        String query = "select instance \n" + "from [" + uriEClassifier + "] as instance \n" + "where instance.name = '" + name + "'";
 
-        List<EClassifier> result = null;
+        ResultSet resultSet = executeQuery(query);
 
-        ResultSet resultSet = EcoreHelper.executeQuery(query, resourceSet, getQueryContext());
-
-        result = new ArrayList<EClassifier>(resultSet.getSize());
-
+        List<EClassifier> result = new ArrayList<EClassifier>(resultSet.getSize());
         for (int i = 0; i < resultSet.getSize(); i++) {
             URI mri = resultSet.getUri(i, "instance");
             EObject object = resourceSet.getEObject(mri, true);
@@ -157,7 +140,7 @@ public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup
 
         List<ResolvedNameAndReferenceBean<EObject>> result = null;
 
-        ResultSet resultSet = EcoreHelper.executeQuery(query, resourceSet, getQueryContext());
+        ResultSet resultSet = executeQuery(query);
         result = new ArrayList<ResolvedNameAndReferenceBean<EObject>>(resultSet.getSize());
 
         for (int i = 0; i < resultSet.getSize(); i++) {
@@ -210,6 +193,22 @@ public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup
 //            return Collections.singletonList("Failed to check OCL: " + query + " for errors on elements: " + template + ","
 //                    + context);
 //        }
+    }
+    
+    /**
+     * @param query
+     * @return
+     * @throws MetaModelLookupException
+     */
+    private ResultSet executeQuery(String query) {
+        try {
+            QueryContext scopeProvider = EcoreHelper.getQueryContext(resourceSet, referenceScope);
+            ResultSet resultSet = queryProcessor.execute(query, scopeProvider);
+            return resultSet;
+        } catch (RuntimeException rte) {
+            rte.printStackTrace();
+            throw rte;
+        }
     }
 
 }

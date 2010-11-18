@@ -132,7 +132,7 @@ public class SyntaxLookup {
 	        // TODO compare references instead of names?
 	        if (metaModelTypeOfPropertyReference.getNames().equals(candidateQualifiedName)) {
 	            returnTemplate = candidatePrimTemp;
-	            if (candidatePrimTemp.isIsDefault()) {
+	            if (candidatePrimTemp.isDefault()) {
 	                break;
 	            }
 

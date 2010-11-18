@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -42,9 +41,9 @@ import com.sap.furcas.runtime.parser.textblocks.ITextBlocksTokenStream;
 import com.sap.furcas.runtime.parser.textblocks.ParsingTextblocksActivator;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 
-
 /**
  * This class handles the connection between the parser and the textblocks
+ * the connection between the parser and the textblocks
  * model.
  * 
  * IMPORTANT NOTE: The current assumption is that the smallest unit of re-use is
@@ -207,8 +206,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                 // TODO query fully qualified name!
                 ResultSet result;
 				
-				result = EcoreHelper.executeQuery(queryClass, resourceSet,
-					         metamodelContainerQueryScope);
+				result = EcoreHelper.executeQuery(queryClass, metamodelContainerQueryScope);
                 URI[] eObjects = result.getUris("class");
                 EClassifier clazz = null;
                 if (eObjects.length > 1) {
@@ -234,8 +232,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                     Set<URI> templateAndMMUris = new HashSet<URI>(this.queryScope);
                     templateAndMMUris.addAll(mappingDefinitionPartitions);
                     QueryContext templateAndMMContext = EcoreHelper.getQueryContext(resourceSet, templateAndMMUris);
-                    result = EcoreHelper.executeQuery(query, resourceSet,
-						templateAndMMContext);
+                    result = EcoreHelper.executeQuery(query, templateAndMMContext);
                     eObjects = result.getUris("template");
                     if (eObjects.length > 1) {
                         // throw new
@@ -254,8 +251,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                                 + "\" as class "
                                 + " where template.metaReference = class";
     
-                        result = EcoreHelper.executeQuery(query, resourceSet,
-        						templateAndMMContext);
+                        result = EcoreHelper.executeQuery(query, templateAndMMContext);
                         eObjects = result.getUris("template");
     
                         if (eObjects.length > 1) {
@@ -653,8 +649,8 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 				(EReference) EcoreHelper.lookupElementExtended(element.eClass(), "correspondingModelElements"),
 				EcoreHelper.getQueryContext(resourceSet), resourceSet, false, IndexFactory.getInstance());
 
-		for (Iterator<EObject> iterator = nodes.iterator(); iterator.hasNext();) {
-		    DocumentNode node = (DocumentNode) iterator.next();
+		for (EObject eObject : nodes) {
+		    DocumentNode node = (DocumentNode) eObject;
 		    int candidateOffset = TbUtil.getAbsoluteOffset(node);
 
 		    if (referenceToken != null && ((candidateOffset > referenceToken.getStartIndex() ) || (candidateOffset+node.getLength() < referenceToken.getStopIndex()))) {

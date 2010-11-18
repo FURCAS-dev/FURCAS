@@ -20,55 +20,55 @@ import junit.textui.TestRunner;
 public class ClassPatternTest extends SimplePatternTest {
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public static void main(String[] args) {
-		TestRunner.run(ClassPatternTest.class);
-	}
+        TestRunner.run(ClassPatternTest.class);
+    }
 
         /**
-	 * Constructs a new Class Pattern test case with the given name.
-	 * <!-- begin-user-doc -->
+     * Constructs a new Class Pattern test case with the given name.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public ClassPatternTest(String name) {
-		super(name);
-	}
+        super(name);
+    }
 
         /**
-	 * Returns the fixture for this Class Pattern test case.
-	 * <!-- begin-user-doc -->
+     * Returns the fixture for this Class Pattern test case.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected ClassPattern getFixture() {
-		return (ClassPattern)fixture;
-	}
+        return (ClassPattern)fixture;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#setUp()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#setUp()
+     * @generated
+     */
         @Override
         protected void setUp() throws Exception {
-		setFixture(TCSFactory.eINSTANCE.createClassPattern());
-	}
+        setFixture(TCSFactory.eINSTANCE.createClassPattern());
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#tearDown()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#tearDown()
+     * @generated
+     */
         @Override
         protected void tearDown() throws Exception {
-		setFixture(null);
-	}
+        setFixture(null);
+    }
 
 } //ClassPatternTest

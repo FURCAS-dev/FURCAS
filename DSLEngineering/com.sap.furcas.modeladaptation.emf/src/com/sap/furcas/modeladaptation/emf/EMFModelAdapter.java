@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -167,12 +168,12 @@ public class EMFModelAdapter implements IBareModelAdapter {
         if (!(modelElement instanceof EObject)) {
             throw new IllegalArgumentException("Unknown Model Element type " + modelElement.getClass());
         }
-        if (!(metaType instanceof EObject)) {
+        if (!(metaType instanceof EClassifier)) {
             throw new IllegalArgumentException("Unknown meta type " + metaType.getClass());
         }
 
         try {
-            return delegate.instanceOf((EObject) modelElement, (EObject) metaType);
+            return delegate.instanceOf((EObject) modelElement, (EClassifier) metaType);
         } catch (RuntimeException re) {
             throw new RuntimeException("Exception while checking " + modelElement + " instanceOf " + metaType, re);
         }

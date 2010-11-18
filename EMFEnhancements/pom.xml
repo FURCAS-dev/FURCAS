@@ -44,7 +44,6 @@
     <module>de.hpi.sam.bp2009.solution.scopeProvider.tests</module>
     <module>de.hpi.sam.bp2009.solution.testutils</module>
     <module>de.hpi.sam.petriNet</module>
-    <module>org.eclipse.ocl.ecore.opposites</module>
   </modules>
 
 </project>

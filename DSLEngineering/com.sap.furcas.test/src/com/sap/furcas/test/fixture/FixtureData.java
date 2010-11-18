@@ -56,7 +56,6 @@ public class FixtureData {
     public static final File PROBLEM_TCS = new File("../com.sap.furcas.test/fixtures/Problem.tcs");
     public static final File SPL_TCS = new File("../com.sap.furcas.test/fixtures/SPL.tcs");
     public static final File SQLDDL_TCS = new File("../com.sap.furcas.test/fixtures/SQLDDL.tcs");
-    public static final File TCS_TCS = new File("../com.sap.furcas.test/fixtures/TCS.tcs");
     public static final File TCS_MQL_TEST_TCS = new File("../com.sap.furcas.test/fixtures/TCSMQLTest.tcs");
     public static final File TCS_OBSOLETE_TCS = new File("../com.sap.furcas.test/fixtures/TCSObsolete.tcs");
     public static final File XPATH_TCS = new File("../com.sap.furcas.test/fixtures/XPath.tcs");

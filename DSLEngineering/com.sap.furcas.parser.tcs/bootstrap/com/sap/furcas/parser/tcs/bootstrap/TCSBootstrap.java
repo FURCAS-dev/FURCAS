@@ -39,6 +39,7 @@ public class TCSBootstrap {
      */
     private static TCSSyntaxContainerBean syntaxBean;
     
+    
     @BeforeClass
     public static void setup() throws ParserGeneratorInvocationException {
         sourceConfiguration = new GrammarGenerationSourceConfiguration(createResourceSet(), createReferenceScope());
@@ -46,11 +47,21 @@ public class TCSBootstrap {
         generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
     }
     
+    @Test
+    public void phase1_step0_deleteOldBootstrapFiles() {
+        File dir = new File(GENERATIONDIR + PACKAGE);
+        for (File file : dir.listFiles()) {
+            if (file.isFile() && file.getName().startsWith("TCS")) {
+                file.delete();
+            }
+        }
+    }
+    
     /**
      * Step 1: Parse the TCS.tcs syntax definition
      */
     @Test
-    public void step1_ParseSyntaxDefintion() {        
+    public void phase1_step1_parseSyntaxDefintion() {
         SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
         try {
             syntaxBean = generator.parseSyntax(sourceConfiguration, new File(SYNTAXDEFINITION));
@@ -66,7 +77,7 @@ public class TCSBootstrap {
      * Step 2: Walk the syntax and generate a corresponding ANTLR grammar
      */
     @Test
-    public void step2_GenerateGrammar() {
+    public void phase1_step2_generateGrammar() {
         SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
         try {
             generator.generateGrammarFromSyntax(syntaxBean, sourceConfiguration, targetConfiguration, errorHandler);
@@ -81,7 +92,7 @@ public class TCSBootstrap {
      * Step 3: Use ANTLR to generate a TCSParser.java and TCSLexer.java from the grammar.
      */
     @Test
-    public void step3_GenerateParser() {
+    public void phase1_step3_generateParser() {
         SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
         generator.generateParserFromGrammar(targetConfiguration, errorHandler);
         assertFalse("Must have completed without (critical) errors", errorHandler.hasFailedWithError());

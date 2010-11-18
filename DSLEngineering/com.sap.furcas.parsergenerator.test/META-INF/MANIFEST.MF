@@ -23,6 +23,7 @@ Export-Package: com.sap.furcas.parsergenerator.tcs.injection;uses:="com.sap.furc
 Require-Bundle: org.junit;bundle-version="4.8.1",
  com.sap.furcas.test,
  com.sap.furcas.metamodel.tests,
- com.sap.furcas.runtime.parser.test
+ com.sap.furcas.runtime.parser.test,
+ com.sap.furcas.parser.tcs
 Bundle-ClassPath: .,
  generationTemp/

@@ -20,55 +20,55 @@ import junit.textui.TestRunner;
 public class LexedTokenTest extends AbstractTokenTest {
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public static void main(String[] args) {
-		TestRunner.run(LexedTokenTest.class);
-	}
+        TestRunner.run(LexedTokenTest.class);
+    }
 
         /**
-	 * Constructs a new Lexed Token test case with the given name.
-	 * <!-- begin-user-doc -->
+     * Constructs a new Lexed Token test case with the given name.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public LexedTokenTest(String name) {
-		super(name);
-	}
+        super(name);
+    }
 
         /**
-	 * Returns the fixture for this Lexed Token test case.
-	 * <!-- begin-user-doc -->
+     * Returns the fixture for this Lexed Token test case.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected LexedToken getFixture() {
-		return (LexedToken)fixture;
-	}
+        return (LexedToken)fixture;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#setUp()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#setUp()
+     * @generated
+     */
         @Override
         protected void setUp() throws Exception {
-		setFixture(TextblocksFactory.eINSTANCE.createLexedToken());
-	}
+        setFixture(TextblocksFactory.eINSTANCE.createLexedToken());
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#tearDown()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#tearDown()
+     * @generated
+     */
         @Override
         protected void tearDown() throws Exception {
-		setFixture(null);
-	}
+        setFixture(null);
+    }
 
 } //LexedTokenTest
