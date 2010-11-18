@@ -25,7 +25,11 @@
           <argLine>-Xmx1024m</argLine>
           <useUIHarness>true</useUIHarness>
           <testFailureIgnore>true</testFailureIgnore>
+			<excludes> 
+				<exclude>**/NavigationPathCreationTest.java</exclude>
+			</excludes>      
         </configuration>
+		
       </plugin>
       <plugin>
         <groupId>org.sonatype.tycho</groupId>
