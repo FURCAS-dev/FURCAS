@@ -1,8 +1,5 @@
 package com.sap.furcas.ide.projectwizard.wizards;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -25,8 +22,6 @@ public class FurcasWizardLanguagePage extends WizardPage {
     private Text languageNameText;
 
     private Text fileExtensionText;
-
-    private Text nsURIText;
 
     public boolean valid = true;
 
@@ -84,17 +79,7 @@ public class FurcasWizardLanguagePage extends WizardPage {
                 dialogChanged();
             }
         });
-        label = new Label(container, SWT.NULL);
-        label.setText("nsURI:");
-
-        nsURIText = new Text(container, SWT.BORDER | SWT.SINGLE);
-        gd = new GridData(GridData.FILL_HORIZONTAL);
-        nsURIText.setLayoutData(gd);
-        nsURIText.addModifyListener(new ModifyListener() {
-            public void modifyText(ModifyEvent e) {
-                dialogChanged();
-            }
-        });
+        
 
         initialize();
         dialogChanged();
@@ -105,7 +90,6 @@ public class FurcasWizardLanguagePage extends WizardPage {
         projectText.setText("my.dsl");
         languageNameText.setText("mydsl");
         fileExtensionText.setText("dsl");
-        nsURIText.setText("http://www.example.org/my/dsl");
 
     }
 
@@ -113,7 +97,6 @@ public class FurcasWizardLanguagePage extends WizardPage {
         projectInfo.setProjectName(projectText.getText());
         projectInfo.setLanguageName(languageNameText.getText());
         projectInfo.setFileExtension(fileExtensionText.getText());
-        projectInfo.setNsURI(nsURIText.getText());
 
         if (!projectInfo.getProjectName().matches("\\w+[\\w\\.]*\\w+")) {
             valid = false;
@@ -128,13 +111,6 @@ public class FurcasWizardLanguagePage extends WizardPage {
         if (!projectInfo.getFileExtension().matches("\\w{2,6}")) {
             valid = false;
             setErrorMessage("A file extension consists of 2 to 6 characters (example: dsl)");
-            return;
-        }
-        try {
-            new URI(projectInfo.getNsURI());
-        } catch (URISyntaxException e) {
-            valid = false;
-            setErrorMessage("The namespace URI is no valid URI (example: 'http://www.example-org/my/dsl')");
             return;
         }
         setErrorMessage(null);

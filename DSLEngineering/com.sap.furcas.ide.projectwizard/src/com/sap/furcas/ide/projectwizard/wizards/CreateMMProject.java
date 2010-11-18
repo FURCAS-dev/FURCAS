@@ -40,7 +40,7 @@ public class CreateMMProject {
     protected static IFile file;
 
     @SuppressWarnings("deprecation")
-    public static void create(FurcasWizard wizard, FurcasWizardLanguagePage page, Shell shell) {
+    public static void create(FurcasWizard wizard, FurcasWizardLanguagePage page, Shell shell, String className) {
         lpage = page;
         IProgressMonitor progressMonitor = new NullProgressMonitor();
         String projectName = page.getProjectInfo().getProjectName() + ".metamodel";
@@ -77,7 +77,7 @@ public class CreateMMProject {
                 eP.setNsPrefix(lpage.getProjectInfo().getProjectName() + ".metamodel");
                 eP.setNsURI(lpage.getProjectInfo().getNsURI());
                 EClass eC = ecoreFactory.createEClass();
-                eC.setName("ReplaceMe");
+                eC.setName(className);
                 eP.getEClassifiers().add(eC);
                 resource.getContents().add(eP);
             } else

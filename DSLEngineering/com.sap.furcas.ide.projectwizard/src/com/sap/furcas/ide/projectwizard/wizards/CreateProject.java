@@ -35,11 +35,13 @@ public class CreateProject extends WorkspaceModifyOperation {
     ProjectInfo pi;
     Shell shell;
     FurcasWizard wizard;
+    String className;
     static SourceCodeFactory scf;
 
-    public CreateProject(ProjectInfo pi, Shell shell) {
+    public CreateProject(ProjectInfo pi, Shell shell, String className) {
         this.pi = pi;
         this.shell = shell;
+        this.className = className;
         scf = new SourceCodeFactory();
 
     }
@@ -108,7 +110,7 @@ public class CreateProject extends WorkspaceModifyOperation {
         WizardProjectHelper.createFile("generate.properties", sourceTargetRootFolder, props, monitor);
 
         // create a sample TCS file and store it in folder "generated"
-        String templateString = scf.createSampleTCS(pi);
+        String templateString = scf.createSampleTCS(pi, className);
         IFile grammar = WizardProjectHelper.createFile(pi.getTCSFileName(), genSrcFolder, templateString, monitor);
 
         monitor.setTaskName("Opening file for editing...");
