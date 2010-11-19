@@ -26,3 +26,4 @@ Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer,
  de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzerWithHiddenOpposites,de.hpi.sam.bp2009.solution.impactAnalyzer.debug,de.hpi.sam.bp2009.solution.impactAnalyzer.tests",
  de.hpi.sam.bp2009.solution.impactAnalyzer.util;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzerWithHiddenOpposites,de.hpi.sam.bp2009.solution.impactAnalyzer.debug"
 Bundle-Activator: de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerPlugin
+Import-Package: de.hpi.sam.bp2009.solution.oclToAst

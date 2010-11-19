@@ -21,6 +21,7 @@ import java.util.Set;
 import java.util.Stack;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -45,10 +46,12 @@ import org.eclipse.ocl.ecore.TupleType;
 import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
+import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.ecore.impl.TypeExpImpl;
 import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.utilities.AbstractVisitor;
 import org.eclipse.ocl.utilities.PredefinedType;
+import org.eclipse.ocl.utilities.UMLReflection;
 
 import com.sap.emf.ocl.util.OclHelper;
 
@@ -56,6 +59,8 @@ import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
+import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
+import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
 /**
  * Collects the relevant events for a single {@link OCLExpression} recursively. The analyzer can be parameterized during
@@ -92,6 +97,7 @@ implements OperationBodyToCallMapper {
     private final Map<OCLExpression, Set<Variable>> selfVariablesUsedInBody = new HashMap<OCLExpression, Set<Variable>>();
     private final Map<OCLExpression, Set<Variable>> parameterVariablesUsedInBody = new HashMap<OCLExpression, Set<Variable>>();
     private final OCL ocl;
+    private final Map<EStructuralFeature, OCLExpression> derivedProperties = new HashMap<EStructuralFeature, OCLExpression>();
  
     /**
      * @param expression The {@link OCLExpression} the filter should be created for. 
@@ -121,6 +127,15 @@ implements OperationBodyToCallMapper {
             // no filters to add to the result
             return result;
         }
+        if (property.isDerived()){
+        	EAnnotationOCLParser p = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
+        	p.convertOclAnnotation(property);
+        	EAnnotation anno = property.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+        	int annotationIndex = anno.getDetails().indexOfKey(UMLReflection.DERIVATION);
+        	Constraint derivationExp = (Constraint) anno.getContents().get(annotationIndex);
+        	derivedProperties.put(property, (OCLExpression) derivationExp.getSpecification().getBodyExpression());
+        }
+        
         if (property instanceof EAttribute){
             filters.add(EventManagerFactory.eINSTANCE.createFilterForEAttribute( cls, (EAttribute) property));
             EAttribute refAttr = (EAttribute)property;
