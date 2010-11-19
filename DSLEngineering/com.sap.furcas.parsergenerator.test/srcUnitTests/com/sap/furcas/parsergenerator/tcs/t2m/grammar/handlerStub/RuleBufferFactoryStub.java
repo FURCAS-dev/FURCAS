@@ -13,6 +13,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.stubs.SequenceElementStub;
 import com.sap.furcas.metamodel.FURCAS.TCS.stubs.SequenceStub;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyBufferFactory;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.SemanticErrorBucket;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 
 /**
@@ -20,14 +21,15 @@ import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
  */
 public class RuleBufferFactoryStub extends RuleBodyBufferFactory {
 
-    /**
-     * @param writer
-     * @param lookup
-     * @param syntax
-     * @param keywordSet
-     */
     public RuleBufferFactoryStub() {
-        super(null, null, null, null, null, null, null, null);
+        super(new AlternativeHandlerStub(),
+                new BlockTypeHandlerStub(),
+                new ConditionalElementHandlerStub(),
+                new SyntaxLookupStub(),
+                new PropertyHandlerStub(),
+                new TemplateNamingHelperStub<Object>(),
+                null,
+                new SemanticErrorBucket()); 
     }
     public List<Alternative> elements = new ArrayList<Alternative>();
     public List<RuleBodyStringBuffer> buffers = new ArrayList<RuleBodyStringBuffer>();
