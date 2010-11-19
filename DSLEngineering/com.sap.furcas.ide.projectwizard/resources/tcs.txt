@@ -1,4 +1,4 @@
-syntax $dslname$ {
+syntax $LangName$ {
 
 -- place templates here (at least one main template)
 

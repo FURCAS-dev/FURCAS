@@ -15,7 +15,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
-import org.eclipse.emf.codegen.ecore.genmodel.impl.GenModelImpl;
 import org.eclipse.emf.codegen.ecore.genmodel.presentation.GeneratorUIUtil;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -43,7 +42,7 @@ public class CreateMMProject {
     protected static IProgressMonitor progressMonitor;;
     protected static String className;
 
-    public static void create(FurcasWizard wizard, FurcasWizardLanguagePage page, Shell sh, String cName, boolean lpe) {
+    public static void create(FurcasWizard wizard, FurcasWizardLanguagePage page, Shell sh, String cName) {
         lpage = page;
         progressMonitor = new NullProgressMonitor();
         String projectName = page.getProjectInfo().getProjectName() + ".metamodel";
@@ -58,69 +57,10 @@ public class CreateMMProject {
         WizardProjectHelper.createPlugInProject(projectName, srcFolders, nonSrcFolders, Collections.<IProject> emptyList(), null,
                 null, progressMonitor, shell, null, true);
 
-        if (!lpe)
-            createNewModel();
-        else
-            createFromExisting();
+        createNewModel();
 
     }
 
-    protected static void createFromExisting() {
-        ResourceSet resourceSet = new ResourceSetImpl();
-        resourceSet.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap());
-        String URIPath = lpage.getProjectInfo().getURIPath();
-        Resource resource = resourceSet.createResource(URI.createURI(URIPath));
-        Map<Object, Object> options = new HashMap<Object, Object>();
-        options.put(XMLResource.OPTION_ENCODING, "UTF-8");
-        try {
-            resource.load(options);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        EObject object = resource.getContents().get(0);
-        if (!(object instanceof EPackage)){
-            return;
-        }
-            
-        eP = (EPackage) object;
-        String newpath = lpage.getProjectInfo().getProjectName() + ".metamodel/model/"
-                + resource.getURI().lastSegment();
-        URI newURI = URI.createPlatformResourceURI(newpath, true);
-
-        Resource newResource = resourceSet.createResource(newURI);
-        newResource.getContents().add(object);
-        try {
-            newResource.save(options);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        
-        Resource genResource = resourceSet.createResource(URI.createURI(URIPath).trimFileExtension().appendFileExtension("genmodel"));
-        try {
-            genResource.load(options);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        EObject genObject = genResource.getContents().get(0);
-        if (!(genObject instanceof GenModelImpl)){
-            return;
-        }
-            
-        GenModelImpl gMI = (GenModelImpl) genObject;
-        String genPath = lpage.getProjectInfo().getProjectName() + ".metamodel/model/"
-                + genResource.getURI().lastSegment();
-        URI genURI = URI.createPlatformResourceURI(genPath, true);
-        gMI.setModelDirectory(lpage.getProjectInfo().getProjectName() + ".metamodel/model/");
-        Resource newGenResource = resourceSet.createResource(genURI);
-        newGenResource.getContents().add(gMI);
-        try {
-            newGenResource.save(options);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        genModelGen(genURI);
-        
-    }
 
     protected static EObject createInitialModel() {
         EClass eClass = (EClass) ecorePackage.getEClassifier("EPackage");
@@ -153,7 +93,7 @@ public class CreateMMProject {
         if (rootObject != null) {
             if (rootObject instanceof EPackage) {
                 eP = (EPackage) rootObject;
-                eP.setNsPrefix(lpage.getProjectInfo().getProjectName() + ".metamodel");
+                eP.setNsPrefix(lpage.getProjectInfo().getLanguageName());
                 eP.setNsURI(lpage.getProjectInfo().getNsURI());
                 EClass eC = ecoreFactory.createEClass();
                 eC.setName(className);
@@ -183,9 +123,9 @@ public class CreateMMProject {
                 true);
         genModelGen(newURI);
     }
-    
+
     @SuppressWarnings("deprecation")
-    protected static void genModelGen(URI uri){
+    protected static void genModelGen(URI uri) {
         List<URI> uris = new ArrayList<URI>();
         uris.add(uri);
         List<GenModel> gms = GeneratorUIUtil.loadGenModels(progressMonitor, uris, shell);

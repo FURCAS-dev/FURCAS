@@ -5,7 +5,7 @@ import generated.$CapLangName$Parser;
 
 public class $CapLangName$ParserFactory extends AbstractParserFactory<$CapLangName$Parser, $CapLangName$Lexer> {
 
-    private static final String LANGUAGE_ID = "$CapLangName$";
+    private static final String LANGUAGE_ID = "$LangName$";
 
     @Override
     public Class<$CapLangName$Lexer> getLexerClass() {
