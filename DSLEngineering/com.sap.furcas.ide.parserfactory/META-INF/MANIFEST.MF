@@ -1,17 +1,18 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Moin Plug-in
-Bundle-SymbolicName: com.sap.ide.cts.moin
+Bundle-SymbolicName: com.sap.furcas.ide.parserfactory
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SAP
-Require-Bundle: org.eclipse.emf,
+Require-Bundle: com.sap.furcas.runtime.common,
+ com.sap.furcas.runtime.tcs,
+ org.eclipse.emf,
  org.antlr,
  org.eclipse.emf.ecore,
  com.sap.furcas.runtime.parser,
  com.sap.mi.textual.parsing.textblocks,
  com.sap.furcas.runtime.parser.incremental,
  com.sap.furcas.parsergenerator.emf,
- com.sap.tc.moin.textual.runtime.emf;bundle-version="1.0.0",
- com.sap.furcas.runtime.common;bundle-version="1.0.0"
+ com.sap.furcas.modeladaptation.emf
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: com.sap.ide.cts.moin.parserfactory
+Export-Package: com.sap.furcas.ide.parserfactory
