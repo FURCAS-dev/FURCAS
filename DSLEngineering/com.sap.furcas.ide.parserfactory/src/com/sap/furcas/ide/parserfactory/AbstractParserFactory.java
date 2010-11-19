@@ -1,4 +1,4 @@
-package com.sap.ide.cts.moin.parserfactory;
+package com.sap.furcas.ide.parserfactory;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -16,18 +16,19 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import com.sap.furcas.parsergenerator.emf.RuleNameFinder;
-import com.sap.furcas.parsing.textblocks.ITextBlocksTokenStream;
-import com.sap.furcas.parsing.textblocks.TextBlocksAwareModelAdapter;
-import com.sap.furcas.parsing.textblocks.observer.ParserTextBlocksHandler;
+import com.sap.furcas.modeladaptation.emf.EMFModelAdapter;
 import com.sap.furcas.runtime.common.interfaces.IRuleName;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.InjectionOptionsBean;
 import com.sap.furcas.runtime.parser.antlr3.ITokenFactory;
 import com.sap.furcas.runtime.parser.impl.ModelInjector;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.parser.textblocks.ITextBlocksTokenStream;
+import com.sap.furcas.runtime.parser.textblocks.TextBlocksAwareModelAdapter;
+import com.sap.furcas.runtime.parser.textblocks.observer.ParserTextBlocksHandler;
+import com.sap.furcas.runtime.tcs.RuleNameFinder;
+import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRParserFactory;
-import com.sap.tc.moin.textual.emfadapter.adapter.MOINModelAdapter;
 
 
 public abstract class AbstractParserFactory<P extends ObservableInjectingParser, L extends Lexer>
@@ -52,10 +53,10 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
 		return createParser(input, connection, null, null);
 	}
 
-	@Override
+    @Override
 	public P createParser(TokenStream input, ResourceSet connection,
-		Set<URI> additionalPRIScope, Set<URI> additionalCRIScope) {
-		Set<URI> priScope = new HashSet<URI>();
+		Collection<URI> additionalPRIScope, Collection<URI> additionalCRIScope) {
+		Collection<URI> priScope = new HashSet<URI>();
 		Collection<URI> parserScope = getParserLookupScope(connection);
 		if (parserScope != null) {
 			for (URI pri : parserScope) {
@@ -80,9 +81,10 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
 			}
 
 			EPackage metamodelPackage = getMetamodelPackage(connection);
+			Set<URI> scope = new HashSet<URI>(priScope);
+			scope.addAll(additionalCRIScope);
 			TextBlocksAwareModelAdapter ma = new TextBlocksAwareModelAdapter(
-				new MOINModelAdapter(metamodelPackage, connection, priScope,
-					additionalCRIScope));
+				new EMFModelAdapter(metamodelPackage, connection, scope));
 			ModelInjector mi = new ModelInjector(parser.getTokenNames());
 			InjectionOptionsBean injectionOptionsBean = new InjectionOptionsBean();
 			injectionOptionsBean.setLocationsPropertyNameInModel(false, null);
@@ -105,7 +107,7 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
 	}
 
 	@Override
-	public Collection<URI> getParserLookupScope(ResourceSet connection) {
+	public Set<URI> getParserLookupScope(ResourceSet connection) {
 		return null;
 	}
 
