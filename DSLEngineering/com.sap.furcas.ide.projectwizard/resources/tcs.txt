@@ -2,7 +2,7 @@ syntax $dslname$ {
 
 -- place templates here (at least one main template)
 
- 	 template $FirstClass$ main
+        template $FirstClass$ main
                  :"$FirstClass$"
                  ;
 

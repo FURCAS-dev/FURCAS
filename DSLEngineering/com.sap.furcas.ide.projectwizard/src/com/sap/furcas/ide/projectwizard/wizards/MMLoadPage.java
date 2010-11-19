@@ -44,9 +44,11 @@ public class MMLoadPage extends WizardPage {
     public FurcasWizard wizard;
     public Text uriField;
     public Label wrongType;
+    ProjectInfo pi;
 
-    protected MMLoadPage(String pageName, FurcasWizard wiz) {
+    protected MMLoadPage(String pageName, FurcasWizard wiz, ProjectInfo pi) {
         super(pageName);
+        this.pi = pi;
         wizard = wiz;
         setTitle("Uh oh");
         setDescription("Not fully implemented yet. No effect until now. Please add the desired metamodel manually.");
@@ -109,7 +111,7 @@ public class MMLoadPage extends WizardPage {
             @Override
             public void widgetSelected(SelectionEvent event) {
                 // TODO Register the chosen .ecore file, maybe not here but in one of the next steps
-                FileDialog fileDialog = new FileDialog(getShell(), SWT.OPEN | SWT.MULTI);
+                FileDialog fileDialog = new FileDialog(getShell(), SWT.OPEN);
                 fileDialog.setText("Import");
                 fileDialog.setFilterPath("C:/");
                 String[] filterExt = { "*.ecore" };
@@ -183,7 +185,7 @@ public class MMLoadPage extends WizardPage {
         }
         if (!uriField.getText().matches(text))
             uriField.setText(text);
-
+        pi.setURIPath(uriField.getText());
     }
 
     @Override
@@ -208,6 +210,10 @@ public class MMLoadPage extends WizardPage {
             }
         }
         return result;
+    }
+
+    protected String getURIPath() {
+        return uriField.getText();
     }
 
 }

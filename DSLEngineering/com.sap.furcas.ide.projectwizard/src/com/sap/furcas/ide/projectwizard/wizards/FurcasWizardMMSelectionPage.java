@@ -71,6 +71,8 @@ public class FurcasWizardMMSelectionPage extends WizardPage {
                 nsURILabel.setText("nsURI of the metamodel:");
                 classNameText.setVisible(true);
                 nsURIText.setVisible(true);
+                classNameLabel.setVisible(true);
+                nsURILabel.setVisible(true);
             }
 
             public void mouseUp(MouseEvent e) {
@@ -107,6 +109,8 @@ public class FurcasWizardMMSelectionPage extends WizardPage {
         gd = new GridData(GridData.FILL_HORIZONTAL);
         classNameText = new Text(container, SWT.BORDER | SWT.SINGLE);
         classNameText.setLayoutData(gd);
+        classNameText.setText("ExampleClass");
+        className = classNameText.getText();
         classNameText.setVisible(false);
         classNameText.addModifyListener(new ModifyListener() {
             public void modifyText(ModifyEvent e) {
@@ -121,6 +125,8 @@ public class FurcasWizardMMSelectionPage extends WizardPage {
         nsURIText = new Text(container, SWT.BORDER | SWT.SINGLE);
         gd = new GridData(GridData.FILL_HORIZONTAL);
         nsURIText.setLayoutData(gd);
+        nsURIText.setText("mydsl/metamodel/example");
+        pi.setNsURI(nsURIText.getText());
         nsURIText.addModifyListener(new ModifyListener() {
             public void modifyText(ModifyEvent e) {
                 dialogChanged();
@@ -136,6 +142,14 @@ public class FurcasWizardMMSelectionPage extends WizardPage {
     protected void dialogChanged() {
         pi.setNsURI(nsURIText.getText());
         className = classNameText.getText();
+        if (!isAlpha(className)) {
+            setErrorMessage("The classname can only contain upper and lowercase letters");
+            return;
+        }
+        if (!isUpper(className.charAt(0))) {
+            setErrorMessage("The classname should start with an uppercase letter");
+            return;
+        }
         try {
             new URI(pi.getNsURI());
         } catch (URISyntaxException e) {
@@ -159,7 +173,7 @@ public class FurcasWizardMMSelectionPage extends WizardPage {
     public IWizardPage getNextPage() {
         if (getSel() == 2) {
             if (page3 == null) {
-                page3 = new MMLoadPage("LoadPage", wiz);
+                page3 = new MMLoadPage("LoadPage", wiz, pi);
                 wiz.addPage(page3);
                 page3.setPageComplete(false);
                 this.setPageComplete(true);
@@ -178,6 +192,25 @@ public class FurcasWizardMMSelectionPage extends WizardPage {
 
     public String getClassName() {
         return className;
+    }
+
+    private boolean isAlpha(final String s) {
+        final char[] chars = s.toCharArray();
+        for (int x = 0; x < chars.length; x++) {
+            final char c = chars[x];
+            if ((c >= 'a') && (c <= 'z'))
+                continue; // lowercase
+            if ((c >= 'A') && (c <= 'Z'))
+                continue; // uppercase
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isUpper(final char c) {
+        if ((c >= 'A') && (c <= 'Z'))
+            return true;
+        return false;
     }
 
 }

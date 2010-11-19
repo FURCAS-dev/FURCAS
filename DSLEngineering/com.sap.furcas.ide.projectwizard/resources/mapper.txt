@@ -1,9 +1,6 @@
-/**
- * 
- */
 package $ProjectName$.editor;
 
-import generated.ClassLexer;
+import generated.$CapLangName$Lexer;
 
 import org.antlr.runtime.Token;
 import org.eclipse.jface.text.TextAttribute;
@@ -16,9 +13,9 @@ import com.sap.ide.cts.editor.ITokenMapper;
 public class $CapLangName$Mapper implements ITokenMapper {
     public Object mapColor(Token t) {
 	switch (t.getType()) {
-	case ClassLexer.COMMENT:
+	case $CapLangName$Lexer.COMMENT:
 	    return new TextAttribute(new Color(null, new RGB(63, 127, 95)), null, SWT.ITALIC);
-	case ClassLexer.NAME:
+	case $CapLangName$Lexer.NAME:
 	    return new TextAttribute(new Color(null, new RGB(0, 0, 0)), null, SWT.NONE);
 	default:
 	    return new TextAttribute(new Color(null, new RGB(200, 0, 180)), null, SWT.BOLD);
