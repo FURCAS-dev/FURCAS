@@ -9,7 +9,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +17,6 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.AsPArg;
@@ -811,65 +809,6 @@ public class TestPropertyTypeHandler {
                 buf.getResult());
     }
 
-    @Ignore
-    @Test
-    public void testAddElementMQLQuery() throws MetaModelLookupException, SyntaxElementException {
-        SyntaxLookupStub syntaxLookupStub = getSyntaxStubWithPrimitiveTemplateStubs();
-        MetaLookupStub metaLookupStub = new MetaLookupStub();
-        TemplateNamingHelperStub namingStub = new TemplateNamingHelperStub();
-
-        // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
-
-        // result buffer
-        RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
-
-        PropertyStub prop = getMockProperty("PropertyName", "ParentClass", "FeatureTypeName", metaLookupStub, false, false);
-
-        RefersToPargStub referTo = new RefersToPargStub();
-        referTo.propertyName = "ArgPropertyName";
-        prop.args.add(referTo);
-
-        MQLQueryPargStub queryArg = new MQLQueryPargStub();
-        queryArg.query = "my mql query test";
-        prop.args.add(queryArg);
-
-        propHandler.addElement(prop, buf);
-
-        assertEquals(
-                "( temp=FeatureTypeName {setMQLRef(ret, \"PropertyName\", \"ArgPropertyName\", temp, \"my mql query test\");})",
-                buf.getResult());
-    }
-
-    @Ignore
-    @Test
-    public void testAddElementMQLQueryWithAsType() throws MetaModelLookupException, SyntaxElementException {
-        SyntaxLookupStub syntaxLookupStub = getSyntaxStubWithPrimitiveTemplateStubs();
-        MetaLookupStub metaLookupStub = new MetaLookupStub();
-        TemplateNamingHelperStub namingStub = new TemplateNamingHelperStub();
-
-        // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
-
-        // result buffer
-        RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
-
-        PropertyStub prop = getMockProperty("PropertyName", "ParentClass", "FeatureTypeName", metaLookupStub, false, false);
-
-        AsPargStub as = new AsPargStub();
-        as.value = "FeatureTypeName";
-        prop.args.add(as);
-
-        MQLQueryPargStub queryArg = new MQLQueryPargStub();
-        queryArg.query = "my mql query test";
-        prop.args.add(queryArg);
-
-        propHandler.addElement(prop, buf);
-
-        assertEquals("( temp=FeatureTypeName {setMQLRef(ret, \"PropertyName\", null, temp, \"my mql query test\");})",
-                buf.getResult());
-    }
-
     @Test
     public void testAddElementRefersToInstanceOf() throws MetaModelLookupException, SyntaxElementException {
         SyntaxLookupStub syntaxLookupStub = getSyntaxStubWithTemplateStubs();
@@ -1124,12 +1063,6 @@ public class TestPropertyTypeHandler {
         argsList.add(new CreateInPArgStub());
         args = new PropertyTypeHandler.PropertyArgs(argsList);
         assertNotNull(args.createInPArg);
-    }
-
-    @Test
-    @Ignore
-    public void testAddQualified() throws MetaModelLookupException, SyntaxElementException {
-        fail("TODO");
     }
 
     /**
