@@ -13,7 +13,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 /**
  *
  */
-public class TestSourceTextBlockCreator {
+public abstract class TestSourceTextBlockCreator {
 
 	// copied from CtsDocument
 	public static TextBlock initialiseTextBlocksFromModel(
