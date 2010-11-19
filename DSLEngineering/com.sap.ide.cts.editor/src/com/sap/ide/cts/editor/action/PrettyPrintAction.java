@@ -10,6 +10,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 
+import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
@@ -21,7 +22,6 @@ import com.sap.ide.cts.dialogs.PrettyPrinterInfoDialog;
 import com.sap.ide.cts.editor.EditorUtil;
 import com.sap.ide.cts.editor.prettyprint.textblocks.IncrementalTextBlockPrettyPrinter;
 import com.sap.ide.cts.editor.prettyprint.textblocks.TextBlockTCSExtractorStream;
-import com.sap.ide.cts.moin.parserfactory.AbstractParserFactory;
 
 
 /**
