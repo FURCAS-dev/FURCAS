@@ -53,165 +53,167 @@ public class SourceCodeFactory {
      * a StringTeamplate. The keywords in the Strings are then replaced by the data entered in the wizard. */
 
     public String createManifest(String projectname) {
-        StringTemplate tcsTemp = null;
+        StringTemplate template = null;
         String templateString = null;
         try {
             templateString = readFile("manifest.txt");
-            tcsTemp = new StringTemplate(templateString);
-            tcsTemp.setAttribute("ProjectName", projectname);
+            template = new StringTemplate(templateString);
+            setTemplateAtts(template, projectname);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
-        return tcsTemp.toString();
+        return template.toString();
     }
 
+
     public String createBuildProbCode() {
-        StringTemplate tcsTemp = null;
+        StringTemplate template = null;
         String templateString = null;
         try {
             templateString = readFile("buildprob.txt");
-            tcsTemp = new StringTemplate(templateString);
-            // add StringTemplate Attributes here
+            template = new StringTemplate(templateString);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return tcsTemp.toString();
+        return template.toString();
     }
 
     protected String createEditorCode(ProjectInfo pi) {
-        String capLangName = CreateProject.capitalizeFirstChar(pi.getLanguageName());
-        StringTemplate tcsTemp = null;
+        StringTemplate template = null;
         String templateString = null;
         try {
             templateString = readFile("editor.txt");
-            tcsTemp = new StringTemplate(templateString);
-            tcsTemp.setAttribute("CapLangName", capLangName);
-            tcsTemp.setAttribute("ProjectName", pi.getProjectName());
+            template = new StringTemplate(templateString);
+            setTemplateAtts(template, pi, "wayne");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return tcsTemp.toString();
+        return template.toString();
     }
     
     public String createGenmodelCode(ProjectInfo pi) {
-        String capLangName = CreateProject.capitalizeFirstChar(pi.getLanguageName());
-        StringTemplate tcsTemp = null;
+        StringTemplate template = null;
         String templateString = null;
         try {
             templateString = readFile("genmodel.txt");
-            tcsTemp = new StringTemplate(templateString);
-            tcsTemp.setAttribute("CapLangName", capLangName);
-            tcsTemp.setAttribute("LangName", pi.getLanguageName());
-            tcsTemp.setAttribute("ProjectName", pi.getProjectName());
+            template = new StringTemplate(templateString);
+            setTemplateAtts(template, pi, "wayne");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return tcsTemp.toString();
+        return template.toString();
     }
 
     protected String createMapperCode(ProjectInfo pi) {
-        String capLangName = CreateProject.capitalizeFirstChar(pi.getLanguageName());
-        StringTemplate tcsTemp = null;
+        StringTemplate template = null;
         String templateString = null;
         try {
             templateString = readFile("mapper.txt");
-            tcsTemp = new StringTemplate(templateString);
-            tcsTemp.setAttribute("CapLangName", capLangName);
-            tcsTemp.setAttribute("ProjectName", pi.getProjectName());
+            template = new StringTemplate(templateString);
+            setTemplateAtts(template, pi, "wayne");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return tcsTemp.toString();
+        return template.toString();
     }
 
     protected String createActivator(ProjectInfo pi) {
-        StringTemplate tcsTemp = null;
+        StringTemplate template = null;
         String templateString = null;
         try {
             templateString = readFile("activator.txt");
-            tcsTemp = new StringTemplate(templateString);
-            tcsTemp.setAttribute("ProjectName", pi.getProjectName());
+            template = new StringTemplate(templateString);
+            setTemplateAtts(template, pi, "wayne");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return tcsTemp.toString();
+        return template.toString();
     }
 
     protected String createPluginXML(ProjectInfo pi) {
-        String capLangName = CreateProject.capitalizeFirstChar(pi.getLanguageName());
-        StringTemplate tcsTemp = null;
+        StringTemplate template = null;
         String templateString = null;
         try {
             templateString = readFile("pluginxml.txt");
-            tcsTemp = new StringTemplate(templateString);
-            tcsTemp.setAttribute("CapLangName", capLangName);
-            tcsTemp.setAttribute("ProjectName", pi.getProjectName());
+            template = new StringTemplate(templateString);
+            setTemplateAtts(template, pi, "wayne");
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
-        return tcsTemp.toString();
+        return template.toString();
     }
 
     protected String createdPropertiesCode(ProjectInfo pi) {
-        StringTemplate tcsTemp = null;
+        StringTemplate template = null;
         String templateString = null;
         try {
             templateString = readFile("genprops.txt");
-            tcsTemp = new StringTemplate(templateString);
-            tcsTemp.setAttribute("ProjectName", pi.getProjectName());
-            tcsTemp.setAttribute("LangName", pi.getLanguageName());
-            tcsTemp.setAttribute("URI", pi.getNsURI());
-            tcsTemp.setAttribute("Ext", pi.getFileExtension());
-            tcsTemp.setAttribute("Path", pi.getBasePath());
-            tcsTemp.setAttribute("TCSPath", pi.getBasePath() + "/" + pi.getLanguageName() + ".tcs");
+            template = new StringTemplate(templateString);
+            setTemplateAtts(template, pi, "wayne");
+            
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
-        return tcsTemp.toString();
+        return template.toString();
     }
 
     protected String createSampleTCS(ProjectInfo pi, String className) {
-        StringTemplate tcsTemp = null;
+        StringTemplate template = null;
         String templateString = null;
         try {
             templateString = readFile("tcs.txt");
-            tcsTemp = new StringTemplate(templateString);
-            tcsTemp.setAttribute("dslname", pi.getLanguageName());
-            tcsTemp.setAttribute("FirstClass", className);
-            tcsTemp.setAttribute("Dollar", "$");
+            template = new StringTemplate(templateString);
+            setTemplateAtts(template, pi, className);
+            
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
-        return tcsTemp.toString();
+        return template.toString();
     }
 
-    protected String createParserFactory(ProjectInfo pi) {
-        String capLangName = CreateProject.capitalizeFirstChar(pi.getLanguageName());
-        StringTemplate tcsTemp = null;
+    protected String createParserFactory(ProjectInfo pi) {        
+        StringTemplate template = null;
         String templateString = null;
         try {
             templateString = readFile("parserfactory.txt");
-            tcsTemp = new StringTemplate(templateString);
-            tcsTemp.setAttribute("CapLangName", capLangName);
-            tcsTemp.setAttribute("ProjectName", pi.getProjectName());
+            template = new StringTemplate(templateString);
+            setTemplateAtts(template, pi, "wayne");
+            
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
-        return tcsTemp.toString();
+        return template.toString();
+    }
+    private void setTemplateAtts(StringTemplate template, ProjectInfo pi, String className) {
+        String capLangName = CreateProject.capitalizeFirstChar(pi.getLanguageName());
+        template.setAttribute("LangName", pi.getLanguageName());
+        template.setAttribute("FirstClass", className);
+        template.setAttribute("Dollar", "$");
+        template.setAttribute("CapLangName", capLangName);
+        template.setAttribute("ProjectName", pi.getProjectName());
+        template.setAttribute("URI", pi.getNsURI());
+        template.setAttribute("Ext", pi.getFileExtension());
+        template.setAttribute("Path", pi.getBasePath());
+        template.setAttribute("TCSPath", pi.getBasePath() + "/" + pi.getLanguageName() + ".tcs");
+    }
+    
+    private void setTemplateAtts(StringTemplate template, String projectname) {
+        template.setAttribute("ProjectName", projectname);
+        
     }
 }

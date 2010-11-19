@@ -145,11 +145,8 @@ public class FurcasWizard extends Wizard implements INewWizard {
             public IStatus runInUIThread(IProgressMonitor monitor) {
                 try {
                     new CreateProject(pi, getShell(), className).run(monitor);
-                    if (createmm || lpe) {
-                        doAdditional(className, lpe);//TODO see method below
-                    }
-                    if (lpe) {
-                        loadmm();//TODO see method below
+                    if (!lpe) {
+                        doAdditional(className);
                     }
                     generateSpecific();
 
@@ -163,7 +160,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
         }.schedule();
     }
 
-    public void doAdditional(final String className, final boolean lpe) {
+    public void doAdditional(final String className) {
         IWorkbenchPage wpage = null;
         try {
 
@@ -173,7 +170,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 @Override
                 protected void execute(IProgressMonitor progressMonitor) {
                     try {
-                        CreateMMProject.create(getFurcasWizard(), page, getShell(), className, lpe);                       
+                        CreateMMProject.create(getFurcasWizard(), page, getShell(), className);                       
                     } catch (Exception exception) {
                         EcoreEditorPlugin.INSTANCE.log(exception);
                     } finally {
@@ -253,12 +250,5 @@ public class FurcasWizard extends Wizard implements INewWizard {
         // TODO see above
     }
 
-    /*
-     * This method does all the required steps to import an existing .ecore file into the metamodelproject.
-     */
-
-    protected void loadmm() {
-        
-    }
 
 }
