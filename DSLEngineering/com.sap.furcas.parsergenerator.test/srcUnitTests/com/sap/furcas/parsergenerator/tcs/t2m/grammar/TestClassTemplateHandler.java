@@ -4,7 +4,6 @@
 package com.sap.furcas.parsergenerator.tcs.t2m.grammar;
 
 import static com.sap.furcas.parsergenerator.testutils.RuleComparisonHelper.tokens;
-import static org.easymock.EasyMock.createMock;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -771,14 +770,11 @@ public class TestClassTemplateHandler {
     @Test
     public void testAddElementSemanticDisambiguate() throws Exception {
     	SyntaxLookupStub syntaxLookupStub = new SyntaxLookupStub() {
-
 			@Override
 			public Collection<Template> getTCSTemplate(
 					ResolvedNameAndReferenceBean<?> refBean, String mode) {
-				// TODO Auto-generated method stub
 				return Collections.singleton(subtemplates.get(refBean.getNames().get(0)));
 			}
-    		
     	};
         MetaLookupStub metaLookupStub = new MetaLookupStub();
         OperatorHandlerStub operatorHandlerStub = new OperatorHandlerStub();
@@ -809,7 +805,7 @@ public class TestClassTemplateHandler {
         subtemplate.semDisambiguate = "false";
         syntaxLookupStub.addSubtemplate("subtype2", subtemplate);
         
-        RuleBodyBufferFactory ruleBodyBufferFactory = createMock(RuleBodyBufferFactory.class);
+        RuleBodyBufferFactory ruleBodyBufferFactory = new RuleBufferFactoryStub();
         classhandler.addTemplate(template, ruleBodyBufferFactory);
         
         assertTrue(writerStub.rules.size() == 1);
