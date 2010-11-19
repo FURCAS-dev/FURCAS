@@ -143,11 +143,10 @@ public class FurcasWizard extends Wizard implements INewWizard {
         new UIJob("creating FURCAS projects...") {
             @Override
             public IStatus runInUIThread(IProgressMonitor monitor) {
-
                 try {
                     new CreateProject(pi, getShell(), className).run(monitor);
                     if (createmm || lpe) {
-                        doAdditional(className);//TODO see method below
+                        doAdditional(className, lpe);//TODO see method below
                     }
                     if (lpe) {
                         loadmm();//TODO see method below
@@ -164,7 +163,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
         }.schedule();
     }
 
-    public void doAdditional(final String className) {
+    public void doAdditional(final String className, final boolean lpe) {
         IWorkbenchPage wpage = null;
         try {
 
@@ -174,7 +173,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 @Override
                 protected void execute(IProgressMonitor progressMonitor) {
                     try {
-                        CreateMMProject.create(getFurcasWizard(), page, getShell(), className);                       
+                        CreateMMProject.create(getFurcasWizard(), page, getShell(), className, lpe);                       
                     } catch (Exception exception) {
                         EcoreEditorPlugin.INSTANCE.log(exception);
                     } finally {
@@ -255,38 +254,11 @@ public class FurcasWizard extends Wizard implements INewWizard {
     }
 
     /*
-     * This method opens the load ressources dialog.
+     * This method does all the required steps to import an existing .ecore file into the metamodelproject.
      */
 
     protected void loadmm() {
-//        ExtendedLoadResourceAction lR = new ExtendedLoadResourceAction();
-//        lR.run();
+        
     }
-
-/*    public void createMMProject(IProgressMonitor monitor) {
-        ProjectInfo info = page.getProjectInfo();
-        String projectname = info.getProjectName() + ".metamodel";
-        IProjectDescription description;
-        try {
-            IProgressMonitor progressMonitor = new NullProgressMonitor();
-
-            IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-            IProject project = root.getProject(projectname);
-            project.create(progressMonitor);
-            project.open(progressMonitor);
-            description = project.getDescription();
-            String[] natures = description.getNatureIds();
-            String[] newNatures = new String[natures.length + 1];
-            System.arraycopy(natures, 0, newNatures, 0, natures.length);
-            newNatures[natures.length] = JavaCore.NATURE_ID;
-            description.setNatureIds(newNatures);
-            project.setDescription(description, progressMonitor);
-            @SuppressWarnings("unused")
-            IJavaProject javaProject = JavaCore.create(project);
-        } catch (CoreException e) {
-            e.printStackTrace();
-        }
-
-    }*/
 
 }

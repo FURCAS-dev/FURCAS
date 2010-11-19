@@ -1,20 +1,20 @@
 package $ProjectName$.parser;
 
-import generated.Lexer;
-import generated.Parser;
+import generated.$CapLangName$Lexer;
+import generated.$CapLangName$Parser;
 
-public class ParserFactory extends AbstractRunletParserFactory<Parser, Lexer> {
+public class $CapLangName$ParserFactory extends AbstractParserFactory<$CapLangName$Parser, $CapLangName$Lexer> {
 
     private static final String LANGUAGE_ID = "$CapLangName$";
 
     @Override
-    public Class<Lexer> getLexerClass() {
-	return Lexer.class;
+    public Class<$CapLangName$Lexer> getLexerClass() {
+	return $CapLangName$Lexer.class;
     }
 
     @Override
-    public Class<Parser> getParserClass() {
-	return Parser.class;
+    public Class<$CapLangName$Parser> getParserClass() {
+	return $CapLangName$Parser.class;
     }
 
     @Override
@@ -28,4 +28,3 @@ public class ParserFactory extends AbstractRunletParserFactory<Parser, Lexer> {
 		return null;
 	}
 }
-

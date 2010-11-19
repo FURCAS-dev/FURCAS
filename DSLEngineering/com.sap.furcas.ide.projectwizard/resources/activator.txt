@@ -1,4 +1,4 @@
-package ProjectName.editor; 
+package $ProjectName$.editor; 
 
 import org.eclipse.ui.plugin.AbstractUIPlugin; 
 import org.osgi.framework.BundleContext; 
@@ -6,7 +6,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin { 
 
 	// The plug-in ID 
-	public static final String PLUGIN_ID = "ProjectName"; 
+	public static final String PLUGIN_ID = "$CapLangName$"; 
 
 	// The shared instance 
 	private static Activator plugin; 

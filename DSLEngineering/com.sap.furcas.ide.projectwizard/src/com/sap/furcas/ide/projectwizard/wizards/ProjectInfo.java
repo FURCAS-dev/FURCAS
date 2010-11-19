@@ -6,6 +6,7 @@ public class ProjectInfo {
     private String languageName;
     private String fileExtension;
     private String nsURI;
+    private String URIPath;
     private boolean createGeneratorProject = false;
 
     public boolean isCreateGeneratorProject() {
@@ -18,6 +19,14 @@ public class ProjectInfo {
 
     public String getFileExtension() {
         return fileExtension;
+    }
+    
+    public String getURIPath(){
+        return URIPath;
+    }
+    
+    public void setURIPath(String s){
+        URIPath = s;
     }
 
     public void setFileExtension(String fileExtension) {
