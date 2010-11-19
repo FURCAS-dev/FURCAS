@@ -4,7 +4,7 @@ import generated.AlternativeBibtexLexer;
 import generated.AlternativeBibtexParser;
 import bibtex.BibtexPackage;
 
-import com.sap.ide.cts.moin.parserfactory.AbstractParserFactory;
+import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 
