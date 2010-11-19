@@ -98,7 +98,7 @@ public class GeneratedParserBasedTest {
                     testConfig.getRelativePathToGeneratedLexerClass(),
                     testConfig.getRelativePathToGeneratedParserClass(),
                     "-cp",
-                    System.getProperty("antlr.lib.dir") + File.pathSeparator + "../com.sap.furcas.runtime.parser/bin"
+                    "../org/antlr/bin" + File.pathSeparator + "../com.sap.furcas.runtime.parser/bin"
                             + File.pathSeparator + "../com.sap.furcas.runtime.common/bin" + File.pathSeparator
                             + "../com.sap.furcas.parsergenerator.emf/bin" + File.pathSeparator
                             + "../com.sap.furcas.runtime.tcs/bin" });
