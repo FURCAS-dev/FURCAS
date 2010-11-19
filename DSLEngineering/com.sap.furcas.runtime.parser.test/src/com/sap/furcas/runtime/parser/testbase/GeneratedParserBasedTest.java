@@ -30,8 +30,6 @@ import com.sun.tools.javac.Main;
  * 
  */
 public class GeneratedParserBasedTest {
-    
-    
 
     public static TCSSyntaxContainerBean parseSyntax(GeneratedParserTestConfiguration testConfig)
             throws ParserGeneratorInvocationException, ParserInvokationException {
@@ -98,7 +96,7 @@ public class GeneratedParserBasedTest {
                     testConfig.getRelativePathToGeneratedLexerClass(),
                     testConfig.getRelativePathToGeneratedParserClass(),
                     "-cp",
-                    "../org/antlr/bin" + File.pathSeparator + "../com.sap.furcas.runtime.parser/bin"
+                    "../org.antlr/bin" + File.pathSeparator + "../com.sap.furcas.runtime.parser/bin"
                             + File.pathSeparator + "../com.sap.furcas.runtime.common/bin" + File.pathSeparator
                             + "../com.sap.furcas.parsergenerator.emf/bin" + File.pathSeparator
                             + "../com.sap.furcas.runtime.tcs/bin" });
