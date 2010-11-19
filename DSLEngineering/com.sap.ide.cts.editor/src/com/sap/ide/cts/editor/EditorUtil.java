@@ -17,8 +17,8 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.progress.IProgressService;
 
+import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
-import com.sap.ide.cts.moin.parserfactory.AbstractParserFactory;
 
 
 public class EditorUtil {
