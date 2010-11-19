@@ -3,6 +3,8 @@
  */
 package com.sap.furcas.modeladaptation.emf.lookup;
 
+import org.junit.Test;
+
 
 /**
  * Tests the abstract AbstractMoinLookup class by creating a stub subclass and testing that.
@@ -10,6 +12,12 @@ package com.sap.furcas.modeladaptation.emf.lookup;
  */
 public class TestAbstractEcoreMetaModelLookup {
 
+	@Test
+	public void testSomething() {
+		// Please do not remove
+		// Maven needs at least one Test in this bundle
+	}
+	
 //    @Test
 //    public void testGetFeatureClassnameNull() throws Exception {
 //        MoinLookUpSubTypeStub lookup = new MoinLookUpSubTypeStub();
