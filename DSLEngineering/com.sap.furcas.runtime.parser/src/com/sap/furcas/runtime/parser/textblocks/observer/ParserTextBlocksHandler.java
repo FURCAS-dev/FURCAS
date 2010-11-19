@@ -81,7 +81,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 
 	private final QueryContext metamodelContainerQueryScope;
 
-	private final Set<URI> mappingDefinitionPartitions;
+	private final Collection<URI> mappingDefinitionPartitions;
 
 	private final Set<URI> queryScope;
 
@@ -99,8 +99,8 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	 */
 	public ParserTextBlocksHandler(ITextBlocksTokenStream input,
 			ResourceSet moinConnection, URI metamodelCri,
-			Set<URI> mappingDefinitionPartitions,
-			Set<URI> additionalScope, Set<URI> additionalCRIScope) {
+			Collection<URI> mappingDefinitionPartitions,
+			Collection<URI> additionalScope, Collection<URI> additionalCRIScope) {
 		this.resourceSet = moinConnection;
 		this.mappingDefinitionPartitions = mappingDefinitionPartitions;
 		this.queryScope = new HashSet<URI>();

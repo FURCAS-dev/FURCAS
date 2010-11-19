@@ -3,7 +3,7 @@ package com.sap.tc.moin.tcs.mof.editor;
 import generated.MofPackageLexer;
 import generated.MofPackageParser;
 
-import com.sap.ide.cts.moin.parserfactory.AbstractParserFactory;
+import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.tc.moin.MoinPackage;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
