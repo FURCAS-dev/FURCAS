@@ -10,7 +10,6 @@ import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
-import com.sap.furcas.runtime.parser.testbase.StubModelAdapter;
 import com.sap.furcas.test.fixture.FixtureData;
 
 /**
@@ -35,9 +34,7 @@ public class LOTOSTest extends GeneratedParserBasedTest {
 
     @Test
     public void testSample1() throws Exception {
-
-        StubModelAdapter stubModelHandler = parsingHelper.parseFile("LOTOSSample.sam", DSLSAMPLEDIR, 0);
-
+        parsingHelper.parseFile("LOTOSSample.sam", DSLSAMPLEDIR, 0);
     }
 
 }

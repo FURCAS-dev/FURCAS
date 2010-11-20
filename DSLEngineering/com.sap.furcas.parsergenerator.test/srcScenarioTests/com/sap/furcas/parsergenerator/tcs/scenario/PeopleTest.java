@@ -14,7 +14,6 @@ import org.junit.Test;
 
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.parser.ParserFacade;
-import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
@@ -57,7 +56,7 @@ public class PeopleTest extends GeneratedParserBasedTest {
                 "		)\n" + "		spouse: \"Ute Meier\"" + "	 ),\n" + "    Koeln(\n" + "	   \"Ute Meier\" @ Koeln\n" +
                 // "	   \"Michael Meier\" @ Berlin\n" +
                 "	 )\n" + "  ]\n" + "  capital: Berlin\n" + "}\n";
-        StubModelAdapter stubModelHandler = parseString(world1, LANGUAGE, 0);
+        StubModelAdapter stubModelHandler = parseString(world1, 0);
 
         Set<StubModelElement> nations = stubModelHandler.getElementsbyType("People::Nation");
         Set<StubModelElement> persons = stubModelHandler.getElementsbyType("People::Person");
@@ -145,7 +144,7 @@ public class PeopleTest extends GeneratedParserBasedTest {
 
         String world1 = "heaven {\n" + "  Germany [ \n" + "    Karlsruhe (\n" + "      \"John Doe\" @ Berlin\n" + "    )\n"
                 + "  ]\n" + "  capital: Karlsruhe\n" + "}\n" + "--This is a comment\n" + "defs: \"John Doe\"*\n";
-        StubModelAdapter stubModelHandler = parseString(world1, LANGUAGE, 0);
+        StubModelAdapter stubModelHandler = parseString(world1, 0);
 
         Set<StubModelElement> worlds = stubModelHandler.getElementsbyType("People::World");
         Set<StubModelElement> nations = stubModelHandler.getElementsbyType("People::Nation");
@@ -178,8 +177,8 @@ public class PeopleTest extends GeneratedParserBasedTest {
     }
 
     // Override ModelAdapter to allow setting of inverse references when setting nation.cities: also set city.nation
-    protected StubModelAdapter parseString(String sample, String language, int expectedErrors) throws IOException,
-            UnknownProductionRuleException, InvalidParserImplementationException {
+    protected StubModelAdapter parseString(String sample, int expectedErrors) throws IOException,
+            UnknownProductionRuleException {
         StubModelAdapter stubModelHandler = new StubModelAdapter() {
 
             @Override

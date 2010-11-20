@@ -15,7 +15,7 @@ import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
 /**
  * Reasonably simple stub for naming.
  */
-public class TemplateNamingHelperStub<Type extends Object> extends TemplateNamingHelper<Type> {
+public class TemplateNamingHelperStub<Type> extends TemplateNamingHelper<Type> {
 
     /**
      * @param lookup

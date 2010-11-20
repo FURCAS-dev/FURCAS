@@ -42,7 +42,7 @@ public class MultiPackageTest extends GeneratedParserBasedTest {
     public void testSample1() throws Exception {
 
         StubModelAdapter stubModelHandler = parsingHelper.parseFile("ExpressionSample01.sam", DSLSAMPLEDIR, 0);
-        Set values = stubModelHandler.getElementsbyType("expression::rightPackage::ExpressionList");
+        Set<?> values = stubModelHandler.getElementsbyType("expression::rightPackage::ExpressionList");
         assertNotNull(values);
         assertEquals(1, values.size());
 

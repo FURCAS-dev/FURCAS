@@ -86,16 +86,16 @@ public class GrammarGenerationTest {
 
         String grammar = out.toString();
         assertTrue(grammar.indexOf("grammar Expression;") > -1);
-        assertTrue(grammar.indexOf("package generated;") > -1);
+        assertTrue(grammar.indexOf("package generated;") > -1); 
         assertTrue(grammar.indexOf("import com.sap.furcas.runtime.parser.ANTLR3LocationToken") > -1);
         assertTrue(grammar.indexOf("main returns[Object ret2]") > -1);
         assertTrue(grammar.indexOf("public com.sap.furcas.runtime.parser.IModelInjector ei = null;") > -1);
 
         assertTrue(grammar
-                .indexOf("priority_0 returns[Object ret2] @init{java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1);}") > -1);
+                .indexOf("priority_0 returns[Object ret2] @init{java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1); Object semRef=null;}") > -1);
 
         assertTrue(grammar
-                .indexOf("priority_0 returns[Object ret2] @init{java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1);}") > -1);
+                .indexOf("priority_0 returns[Object ret2] @init{java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1); Object semRef=null;}") > -1);
         assertTrue(grammar.indexOf("primary_expression_expression returns[Object ret2]") > -1);
         assertTrue(grammar.indexOf("(LPAREN ret=expression_expression RPAREN))") > -1);
 
