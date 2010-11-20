@@ -145,7 +145,7 @@ public class EAnnotationOCLParserTest extends TestCase {
         //change the annotation string value to proof usage of already parsed ast.
         Entry<String, String> value = CompanyPackage.eINSTANCE.getDepartment().getEOperations().get(0).getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI).getDetails().get(0);
         String v = String.copyValueOf(value.getValue().toCharArray());
-        value.setValue("null");
+        value.setValue(null);
         int result = dep.calcExpenses();
         assertEquals("Expected budget: 1100, got: " + result , 1100, result);
         value.setValue(v);
@@ -156,7 +156,7 @@ public class EAnnotationOCLParserTest extends TestCase {
         //change the annotation string value to proof usage of already parsed ast.
         Entry<String, String> val = dep.eClass().getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI).getDetails().get(0);
         String content = String.copyValueOf(val.getValue().toCharArray());
-        val.setValue("null");
+        val.setValue(null);
         expr = ValidationBehavior.INSTANCE.getInvariant(dep.eClass(), "NotBossFreelance", ocl);
         //expected Expression: 
         // not (self.boss.oclIsTypeOf(Freelance))
