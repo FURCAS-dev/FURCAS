@@ -570,26 +570,12 @@ public class EcoreEnvironment
 					}
 				}
 			} else {
-				String expr = EcoreUtil.getAnnotation(typedFeature, OCLDelegateDomain.OCL_DELEGATE_URI, InvocationBehavior.BODY_CONSTRAINT_KEY);
-				if (expr == null) {
-					return null;
-				}
-				try {
-					Helper helper = OCL.newInstance().createOCLHelper();
-					if (feature instanceof EOperation) {
-						EOperation op = (EOperation) feature;
-						helper.setOperationContext((EClassifier) ((EOperation) feature).eContainer(), op);
-					} else if (feature instanceof EStructuralFeature) {
-						helper.setContext((EClassifier) ((EStructuralFeature) feature).eContainer());
-					}
-					result = helper.createBodyCondition(expr);
-					ann.getContents().add(result);
-				} catch (ParserException e) {
-					throw new OCLDelegateException(e.getLocalizedMessage(), e);
+				Constraint rst = parseAndCacheConstraint(feature, typedFeature, ann);
+				if (UMLReflection.DEFINITION.equals(rst.getStereotype())) {
+					result = rst;
 				}
 			}
     	}
-    	
     	return result;
 	}
 	
@@ -604,21 +590,42 @@ public class EcoreEnvironment
 		}
 		ETypedElement typedFeature = feature;
 		EAnnotation ann = typedFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
-		if (ann == null) {
-			// expects getOperationBody(...) to store the AST in the OCL annotation's contents
-			InvocationBehavior.INSTANCE.getOperationBody(OCL.newInstance(), feature);
-			ann = typedFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
-		}
-		if ((ann != null) && !ann.getContents().isEmpty()) {
-			for (EObject o : ann.getContents()) {
-				if ((o instanceof Constraint)&& UMLReflection.BODY.equals(((Constraint) o).getStereotype())) {
-					result = (Constraint) o;
-					break;
+		if (ann != null) {
+			if (!ann.getContents().isEmpty()) {
+				for (EObject o : ann.getContents()) {
+					if ((o instanceof Constraint)&& UMLReflection.BODY.equals(((Constraint) o).getStereotype())) {
+						result = (Constraint) o;
+						break;
+					}
 				}
+			} else {
+				result = parseAndCacheConstraint(feature, typedFeature, ann);
 			}
 		}
 		return result;
 	}	
+
+	private Constraint parseAndCacheConstraint(Object feature, ETypedElement typedFeature, EAnnotation ann){
+		Constraint result = null;
+		String expr = EcoreUtil.getAnnotation(typedFeature, OCLDelegateDomain.OCL_DELEGATE_URI, InvocationBehavior.BODY_CONSTRAINT_KEY);
+		if (expr == null) {
+			return null;
+		}
+		try {
+			Helper helper = OCL.newInstance().createOCLHelper();
+			if (feature instanceof EOperation) {
+				EOperation op = (EOperation) feature;
+				helper.setOperationContext((EClassifier) ((EOperation) feature).eContainer(), op);
+			} else if (feature instanceof EStructuralFeature) {
+				helper.setContext((EClassifier) ((EStructuralFeature) feature).eContainer());
+			}
+			result = helper.createBodyCondition(expr);
+			ann.getContents().add(result);
+		} catch (ParserException e) {
+			throw new OCLDelegateException(e.getLocalizedMessage(), e);
+		}
+		return result;
+	}
 
 	/**
 	 * Looks in the EMF registry for a package with the specified qualified
