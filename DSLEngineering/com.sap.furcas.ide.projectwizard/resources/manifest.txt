@@ -16,7 +16,8 @@ Require-Bundle: org.eclipse.ui,
  com.sap.ap.cts.refactoring;bundle-version="1.0.0",
  de.hpi.sam.bp2009.ngpm;bundle-version="1.0.0",
  com.sap.furcas.metamodel,
- org.antlr;bundle-version="3.1.1"
+ org.antlr;bundle-version="3.1.1",
+ com.sap.furcas.ide.parserfactory;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Export-Package: $ProjectName$.editor
 Bundle-Activator: $ProjectName$.editor.Activator
