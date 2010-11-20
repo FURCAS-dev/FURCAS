@@ -181,12 +181,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
                 }else if (UMLReflection.INITIAL.equals(typ)){
                     expr = helper.createInitialValueExpression(e);
                 }else if (UMLReflection.BODY.equals(typ)){
-                    //necessary because of class cast exceptions while validating hidden opposites
-                    helper.setValidating(false);
                     expr = helper.createConstraint(ConstraintKind.BODYCONDITION, e);
-                    if (op != null){
-                        helper.getEnvironment().setBodyCondition(op, expr);
-                    }
                 }else if (UMLReflection.POSTCONDITION.equals(typ)){
                     expr = helper.createPostcondition(e);
                 }else if (UMLReflection.PRECONDITION.equals(typ)){
