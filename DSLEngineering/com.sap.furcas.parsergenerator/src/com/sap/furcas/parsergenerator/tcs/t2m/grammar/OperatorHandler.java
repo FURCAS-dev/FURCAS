@@ -153,8 +153,7 @@ public class OperatorHandler {
             .append("ret2=ret;\n }");
 
 
-            String initString = "java.lang.String opName=null;\norg.antlr.runtime.Token firstToken=input.LT(1);" +
-    			"\nObject semRef=null;";
+            String initString = "java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1); Object semRef=null;";
 
 
             ClassProductionRule rule = ClassProductionRule.getClassTemplateProductionRule(prefix + "priority_" + priority.getValue(), "Object ret2", initString, rulebody.toString(), false, true);
@@ -304,11 +303,9 @@ public class OperatorHandler {
                     errorBucket.addWarning("Operator not used by any template.", operator);
                     continue;
                 }
-                
                 if (hasAddedOperator) {
                     rulebody.append("\n| ");
                 }
-                
                 hasAddedOperator = true;
 
                 Literal literal = operator.getLiteral();
@@ -330,12 +327,15 @@ public class OperatorHandler {
                     	//add synpred to cope with recursion and the empty alternative
                         literalValue = literal.getName().toUpperCase();
                     }
-                	rulebody.append("((", literalValue, ")(");
+                	rulebody.append("(", literalValue);
                         boolean first = true;
+                        boolean addedAtLeastOne = false;
                         List<String> synpreds = new ArrayList<String>(opTemplateList.size());
                         for (OperatorTemplate operatorTemplate : opTemplateList) {
                             
                             if(operatorTemplate.getDisambiguateV3() != null && !synpreds.contains(operatorTemplate.getDisambiguateV3())) {
+                                rulebody.append("(");
+                                addedAtLeastOne = true;
                                 synpreds.add(operatorTemplate.getDisambiguateV3());
                                 if(!first) {
                                     rulebody.append("|");
@@ -345,7 +345,10 @@ public class OperatorHandler {
                                 rulebody.append("(", operatorTemplate.getDisambiguateV3(), ")");
                             }   
                         }
-                        rulebody.append("))=>");
+                        if (addedAtLeastOne) {
+                            rulebody.append(")");
+                        }
+                        rulebody.append(")=>");
                 }
                 
                 rulebody.append('('); // b2  required to separate operators, if many
@@ -426,23 +429,6 @@ public class OperatorHandler {
                             // add disambiguation rule
                             rulebody.append("("
                                     + opTemplate.getDisambiguateV3() + ")=>");
-                        }
-                        if (operator.isPostfix()) {
-                            rulebody.append("(ret=", namingHelper
-                                    .getRuleName(opTemplate),
-                                    "[opName, ret, firstToken]");
-                        } else {
-                            rulebody.append("(ret=", namingHelper
-                                    .getRuleName(opTemplate),
-                                    "[opName, null, firstToken]");
-                        }
-                        if (!isLeftAssociative) { // add here if unary and right
-                                                  // associative
-                            rulebody.append(ObservationDirectivesHelper
-                                    .getEnterSequenceElementNotification(null));
-                            appendOperatorLiteralBit(rulebody, literal);
-                            rulebody.append(ObservationDirectivesHelper
-                                    .getExitSequenceElementNotification());
                         }
                     	 if(operator.isPostfix()) {
                     		 rulebody.append("(ret=", namingHelper.getRuleName(opTemplate), "[opName, ret, firstToken]");

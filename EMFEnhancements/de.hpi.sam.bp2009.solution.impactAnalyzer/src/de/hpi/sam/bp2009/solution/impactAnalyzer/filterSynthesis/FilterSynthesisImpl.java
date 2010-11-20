@@ -45,6 +45,7 @@ import org.eclipse.ocl.ecore.TupleType;
 import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
+import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.eclipse.ocl.ecore.impl.TypeExpImpl;
 import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.utilities.AbstractVisitor;
@@ -92,6 +93,7 @@ implements OperationBodyToCallMapper {
     private final Map<OCLExpression, Set<Variable>> selfVariablesUsedInBody = new HashMap<OCLExpression, Set<Variable>>();
     private final Map<OCLExpression, Set<Variable>> parameterVariablesUsedInBody = new HashMap<OCLExpression, Set<Variable>>();
     private final OCL ocl;
+    private final Map<OCLExpression, Set<PropertyCallExp>> derivedProperties = new HashMap<OCLExpression, Set<PropertyCallExp>>();
  
     /**
      * @param expression The {@link OCLExpression} the filter should be created for. 
@@ -121,6 +123,18 @@ implements OperationBodyToCallMapper {
             // no filters to add to the result
             return result;
         }
+        if (property.isDerived()){
+            OCLExpression body = SettingBehavior.INSTANCE.getFeatureBody(ocl, property);
+            Set<PropertyCallExp> callsForProperty = derivedProperties.get(body);
+            if (callsForProperty == null) {
+                callsForProperty = new HashSet<PropertyCallExp>();
+                derivedProperties.put(body, callsForProperty);
+                // TODO do same stack handling for self-variable analysis as done for OperationCallExp
+                walk(body);
+            }
+            callsForProperty.add((PropertyCallExp) propCallExp);
+        }
+        
         if (property instanceof EAttribute){
             filters.add(EventManagerFactory.eINSTANCE.createFilterForEAttribute( cls, (EAttribute) property));
             EAttribute refAttr = (EAttribute)property;
@@ -194,6 +208,7 @@ implements OperationBodyToCallMapper {
     @Override
     public EPackage visitVariableExp(VariableExp<EClassifier, EParameter> var) {
         EOperation operation = null;
+        // TODO do same thing also for derived properties, influencing the self variable
         if (!visitedOperationBodyStack.isEmpty()) {
             OCLExpression body = visitedOperationBodyStack.peek();
             operation = visitedOperationBodies.get(body).iterator().next().getReferredOperation();

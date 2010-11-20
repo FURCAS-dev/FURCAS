@@ -30,8 +30,6 @@ import com.sun.tools.javac.Main;
  * 
  */
 public class GeneratedParserBasedTest {
-    
-    
 
     public static TCSSyntaxContainerBean parseSyntax(GeneratedParserTestConfiguration testConfig)
             throws ParserGeneratorInvocationException, ParserInvokationException {
