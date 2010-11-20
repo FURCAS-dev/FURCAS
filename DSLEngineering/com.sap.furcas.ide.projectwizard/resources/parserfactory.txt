@@ -3,6 +3,8 @@ package $ProjectName$.parser;
 import generated.$CapLangName$Lexer;
 import generated.$CapLangName$Parser;
 
+import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
+
 public class $CapLangName$ParserFactory extends AbstractParserFactory<$CapLangName$Parser, $CapLangName$Lexer> {
 
     private static final String LANGUAGE_ID = "$LangName$";
