@@ -38,11 +38,9 @@ public class ExpressionBugTest extends GeneratedParserBasedTest {
 
     @Test
     public void testSampleDirect() throws Exception {
-
         StubModelAdapter handler = parsingHelper.parseString("2+2", 0);
-        Set list = handler.getElementsbyType("expression::ValueExpression");
-        for (Object object : list) {
-            StubModelElement element = (StubModelElement) object;
+        Set<StubModelElement> list = handler.getElementsbyType("expression::ValueExpression");
+        for (StubModelElement element : list) {
             assertEquals(new Integer(2), element.get("value"));
         }
 

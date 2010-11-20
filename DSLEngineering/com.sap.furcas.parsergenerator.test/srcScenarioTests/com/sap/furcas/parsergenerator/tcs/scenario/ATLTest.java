@@ -18,7 +18,6 @@ import com.sap.furcas.test.testutils.StringListHelper;
 /**
  * Simple Test for the custom Expression language
  */
-@Ignore("Already broken in the moin codebase")
 public class ATLTest extends GeneratedParserBasedTest {
 
     private static final String LANGUAGE = "ATL";
@@ -37,6 +36,7 @@ public class ATLTest extends GeneratedParserBasedTest {
     }
 
     @Test
+    @Ignore("Already broken in the moin codebase. Was not even included in the test suite.")
     public void testSample1() throws Exception {
         StubModelAdapter stubModelHandler = getATLMetaConfiguredStubAdapter();
         parsingHelper.parseFile("ATLSample.sam", DSLSAMPLEDIR, 0, stubModelHandler);

@@ -37,9 +37,7 @@ public class DisambiguateTest extends GeneratedParserBasedTest {
 
     @Test
     public void testSample1() throws Exception {
-
         StubModelAdapter stubModelHandler = parsingHelper.parseFile("DisambiguateSample.sam", DSLSAMPLEDIR, 0);
-
     }
 
 }

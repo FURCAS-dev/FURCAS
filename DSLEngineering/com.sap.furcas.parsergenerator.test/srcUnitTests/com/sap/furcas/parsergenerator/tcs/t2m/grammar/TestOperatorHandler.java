@@ -12,7 +12,6 @@ import java.util.List;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Associativity;
@@ -25,11 +24,9 @@ import com.sap.furcas.metamodel.FURCAS.TCS.stubs.OperatorStub;
 import com.sap.furcas.metamodel.FURCAS.TCS.stubs.OperatorTemplateStub;
 import com.sap.furcas.metamodel.FURCAS.TCS.stubs.PriorityStub;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.ANTLR3WriterStub;
-import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.SyntaxLookupStub;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.TemplateNamingHelperStub;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.AbstractAntlr3Rule;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.ClassProductionRule;
-import com.sap.furcas.runtime.tcs.SyntaxLookup;
 import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
 
 /**
@@ -42,7 +39,6 @@ import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
  * : classTemplate ( (Operator) OperatorTemplate ) *
  * so that the second bit can be repeated several times.
  */
-@Ignore("Already broken in the moin codebase")
 public class TestOperatorHandler {
 
     @BeforeClass
@@ -54,9 +50,8 @@ public class TestOperatorHandler {
     public void testAddElement() throws Exception {
         // This test is not a real world scenario, no syntax should define an operatorList without operators
         // This test though might reveal bugs on a very basic level, so it is included.
-        SyntaxLookup syntaxLookupStub = new SyntaxLookupStub();
         ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
-        TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
+        TemplateNamingHelper<?> namingStub = new TemplateNamingHelperStub<Object>();
         // Class under test
         OperatorHandler ophandler = new OperatorHandler(writerStub, namingStub, null);
 
@@ -73,22 +68,21 @@ public class TestOperatorHandler {
         assertEquals(1, writerStub.rules.size());
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
 
-        String expected = "priority_0 returns[Object ret2] @init{java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1);} " + 
+        String expected = "priority_0 returns[Object ret2] @init{java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1); Object semRef=null;} " + 
         "  :   (ret=primary_testclasstemplate) " + 
         "{ " + 
         "this.setLocationAndComment(ret, firstToken); " +
         "ret2=ret; " + 
         " } ; " +
         "catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);}";
-
+        
         assertEqualTokens(expected, result.toString());
     }
 
     @Test
     public void testAddElementOnePriorityOneOperator() throws Exception {   
-        SyntaxLookup syntaxLookupStub = new SyntaxLookupStub();
         ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
-        TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
+        TemplateNamingHelper<?> namingStub = new TemplateNamingHelperStub<Object>();
         // Class under test
         OperatorHandler ophandler = new OperatorHandler(writerStub, namingStub, null);
 
@@ -103,7 +97,7 @@ public class TestOperatorHandler {
         assertEquals(1, writerStub.rules.size());
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
 
-        String expected = "priority_0 returns[Object ret2] @init{java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1);}\r\n" + 
+        String expected = "priority_0 returns[Object ret2] @init{java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1); Object semRef=null;}\r\n" + 
         		"  :   ( ( ret=primary_testclasstemplate((TESTOP)=>(TESTOP {opName = \"TestOp\";}((ret=template[opName, ret, firstToken]))))*)) " + 
         		"{ " + 
         		"this.setLocationAndComment(ret, firstToken); " +
@@ -116,9 +110,8 @@ public class TestOperatorHandler {
     
     @Test
     public void testAddElementOneOperatorDisambiguated() throws Exception {   
-        SyntaxLookup syntaxLookupStub = new SyntaxLookupStub();
         ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
-        TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
+        TemplateNamingHelper<?> namingStub = new TemplateNamingHelperStub<Object>();
         // Class under test
         OperatorHandler ophandler = new OperatorHandler(writerStub, namingStub, null);
 
@@ -136,8 +129,8 @@ public class TestOperatorHandler {
         assertEquals(1, writerStub.rules.size());
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
 
-        String expected = "priority_0 returns[Object ret2] @init{java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1);}\r\n" + 
-                "  :   ( ( ret=primary_testclasstemplate((TESTOP)=>(TESTOP {opName = \"TestOp\";}((DISAMBIGUATE)=>(ret=template[opName, ret, firstToken]))))*)) " + 
+        String expected = "priority_0 returns[Object ret2] @init{java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1); Object semRef=null;}\r\n" + 
+                "  :   ( ( ret=primary_testclasstemplate((TESTOP((DISAMBIGUATE)))=>(TESTOP {opName = \"TestOp\";}((DISAMBIGUATE)=>(ret=template[opName, ret, firstToken]))))*)) " + 
                 "{ " + 
                 "this.setLocationAndComment(ret, firstToken); " +
                 "ret2=ret; " + 
@@ -151,9 +144,8 @@ public class TestOperatorHandler {
     
     @Test
     public void testAddElementOnePriorityTwoOperators() throws Exception {   
-        SyntaxLookup syntaxLookupStub = new SyntaxLookupStub();
         ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
-        TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
+        TemplateNamingHelper<?> namingStub = new TemplateNamingHelperStub<Object>();
         // Class under test
         OperatorHandler ophandler = new OperatorHandler(writerStub, namingStub, null);
 
@@ -168,7 +160,7 @@ public class TestOperatorHandler {
         assertEquals(1, writerStub.rules.size());
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
 
-        String expected = "priority_0 returns[Object ret2] @init{java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1);} " + 
+        String expected = "priority_0 returns[Object ret2] @init{java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1); Object semRef=null;} " + 
         		"  :   ( ( ret=primary_testclasstemplate((TESTOP)=>(TESTOP {opName = \"TestOp\";}((ret=template[opName, ret, firstToken]))) " + 
         		"| (OTHERTESTOP)=>(OTHERTESTOP {opName = \"OtherTestOp\";}((ret=template[opName, ret, firstToken]))))*)) " + 
         		"{ " + 
@@ -182,9 +174,8 @@ public class TestOperatorHandler {
     
     @Test
     public void testAddElementThreePriorityTwoOperators() throws Exception {   
-        SyntaxLookup syntaxLookupStub = new SyntaxLookupStub();
         ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
-        TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
+        TemplateNamingHelper<?> namingStub = new TemplateNamingHelperStub<Object>();
         // Class under test
         OperatorHandler ophandler = new OperatorHandler(writerStub, namingStub, null);
 
@@ -200,7 +191,7 @@ public class TestOperatorHandler {
        
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
 
-        String expected = "priority_0 returns[Object ret2] @init{java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1);} " + 
+        String expected = "priority_0 returns[Object ret2] @init{java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1); Object semRef=null;} " + 
                 "  :   ( ( ret=primary_testclasstemplate((TESTOP)=>(TESTOP {opName = \"TestOp\";}((ret=template[opName, ret, firstToken]))) " + 
                 "| (OTHERTESTOP)=>(OTHERTESTOP {opName = \"OtherTestOp\";}((ret=template[opName, ret, firstToken]))))*)) " + 
                 "{ " + 
@@ -215,7 +206,7 @@ public class TestOperatorHandler {
         // test next priority as well
         result = (ClassProductionRule) writerStub.rules.get(1);
 
-        expected = "priority_1 returns[Object ret2] @init{java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1);} " + 
+        expected = "priority_1 returns[Object ret2] @init{java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1); Object semRef=null;} " + 
                 "  :   ( ( ret=priority_0((TESTOP222)=>(TESTOP222 {opName = \"TestOp222\";}((ret=template[opName, ret, firstToken]))) " + 
                 "| (OTHERTESTOP222)=>(OTHERTESTOP222 {opName = \"OtherTestOp222\";}((ret=template[opName, ret, firstToken]))))*)) " + 
                 "{ " + 
@@ -230,9 +221,8 @@ public class TestOperatorHandler {
     public void testAddElementUnary() throws Exception {
         // This test is not a real world scenario, no syntax should define an operatorList without operators
         // This test though might reveal bugs on a very basic level, so it is included.
-        SyntaxLookup syntaxLookupStub = new SyntaxLookupStub();
         ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
-        TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
+        TemplateNamingHelper<?> namingStub = new TemplateNamingHelperStub<Object>();
         // Class under test
         OperatorHandler ophandler = new OperatorHandler(writerStub, namingStub, null);
 
@@ -265,7 +255,7 @@ public class TestOperatorHandler {
         assertEquals(1, writerStub.rules.size());
          AbstractAntlr3Rule result = writerStub.rules.get(0);
 
-        String expected = "priority_0 returns[Object ret2] @init{java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1);} " + 
+        String expected = "priority_0 returns[Object ret2] @init{java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1); Object semRef=null;} " + 
         		"  : " + 
         		"   (((NAME)=>(NAME {opName = \"value\";}((ret=optemplate[opName, null, firstToken]right=primary_testclasstemplate {setProperty(ret, \"null\", right); " + 
         		"this.setLocationAndComment(ret, firstToken); " + 
@@ -285,9 +275,8 @@ public class TestOperatorHandler {
     public void testAddElementUnaryRightAssociative() throws Exception {
         // This test is not a real world scenario, no syntax should define an operatorList without operators
         // This test though might reveal bugs on a very basic level, so it is included.
-        SyntaxLookup syntaxLookupStub = new SyntaxLookupStub();
         ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
-        TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
+        TemplateNamingHelper<?> namingStub = new TemplateNamingHelperStub<Object>();
         // Class under test
         OperatorHandler ophandler = new OperatorHandler(writerStub, namingStub, null);
 
@@ -321,7 +310,7 @@ public class TestOperatorHandler {
         assertEquals(1, writerStub.rules.size());
          AbstractAntlr3Rule result = writerStub.rules.get(0);
 
-        String expected = "priority_0 returns[Object ret2] @init{java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1);} " + 
+        String expected = "priority_0 returns[Object ret2] @init{java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1); Object semRef=null;} " + 
         		"  : " + 
         		"   (((((ret=optemplate[opName, null, firstToken]NAME {opName = \"value\";}right=priority_0 {setProperty(ret, \"null\", right); " + 
         		"this.setLocationAndComment(ret, firstToken); " + 
@@ -342,9 +331,8 @@ public class TestOperatorHandler {
     public void testAddElementUnaryPostfix() throws Exception {
         // This test is not a real world scenario, no syntax should define an operatorList without operators
         // This test though might reveal bugs on a very basic level, so it is included.
-        SyntaxLookup syntaxLookupStub = new SyntaxLookupStub();
         ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
-        TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
+        TemplateNamingHelper<?> namingStub = new TemplateNamingHelperStub<Object>();
         // Class under test
         OperatorHandler ophandler = new OperatorHandler(writerStub, namingStub, null);
 
@@ -378,7 +366,7 @@ public class TestOperatorHandler {
         assertEquals(1, writerStub.rules.size());
          AbstractAntlr3Rule result = writerStub.rules.get(0);
 
-        String expected = "priority_0 returns[Object ret2] @init{java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1);} " + 
+        String expected = "priority_0 returns[Object ret2] @init{java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1); Object semRef=null;} " + 
         		"  : " +
         		" ( ( ret=primary_testclasstemplate )(" + 
         		" ((NAME)=>(NAME {opName = \"value\";}((ret=optemplate[opName, ret, firstToken]{this.setLocationAndComment(ret, firstToken); })))) " + 
