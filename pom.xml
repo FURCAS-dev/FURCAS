@@ -38,7 +38,7 @@
 				<version>0.10.0</version>
 				<configuration>
 					<argLine>-Xmx1024m</argLine>
-					<!--<useUIHarness>true</useUIHarness>-->
+					<useUIHarness>true</useUIHarness>
 					<testFailureIgnore>true</testFailureIgnore>
 				</configuration>
 			</plugin>
