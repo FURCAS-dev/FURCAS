@@ -2425,6 +2425,8 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		if (astNode == null) {
 			astNode = simpleVariableName(simpleNameCS, env, source, simpleName);
 		}
+		// FIXME simplePropertyName and simpleOppositePropertyName each ascend the superclass hierarchy but this needs to happen interleaved
+		// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=251621#c58
 		if (astNode == null) {
 			astNode = simplePropertyName(simpleNameCS, env, source,
 				sourceElementType, simpleName);
