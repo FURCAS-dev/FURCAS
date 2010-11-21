@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.18 2010/04/23 04:50:15 ewillink Exp $
+ * $Id: CollectionsTest.java,v 1.19 2010/11/19 06:21:30 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -899,6 +899,23 @@ public class CollectionsTest
 			for (int i = -10; i <= -1; i++) {
 				assertTrue(result.contains(new Integer(i)));
 			}
+			assertTrue(result.contains(new Integer(1)));
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
+		}
+	}
+
+
+	/**
+	 * Tests that the a singleton collection range is iterable.
+	 */
+	public void test_collectionRange_330489() {
+		helper.setContext(EcorePackage.Literals.EINT);
+
+		try {
+			Collection<?> result = (Collection<?>) evaluate(helper,
+				new Integer(1), "Sequence{1 .. 1}");
+			assertEquals(1, result.size());
 			assertTrue(result.contains(new Integer(1)));
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());

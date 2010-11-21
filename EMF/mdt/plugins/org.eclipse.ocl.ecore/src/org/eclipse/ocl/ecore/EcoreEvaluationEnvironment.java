@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
@@ -409,9 +410,9 @@ public class EcoreEvaluationEnvironment
      * {@link OppositeEndFinder#getAllInstancesSeenBy(EClass, org.eclipse.emf.common.notify.Notifier)}.
      */
     public Map<EClass, Set<EObject>> createExtentMap(Object object) {
-        EObject context = null;
-        if (object instanceof EObject) {
-            context = (EObject) object;
+        Notifier context = null;
+        if (object instanceof Notifier) {
+            context = (Notifier) object;
         }
         return new ExtentMap(context, oppositeEndFinder);
     }

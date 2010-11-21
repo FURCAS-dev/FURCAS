@@ -14,6 +14,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
@@ -26,16 +27,18 @@ import org.eclipse.emf.ecore.EObject;
  */
 public class ExtentMap implements Map<EClass, Set<EObject>> {
     private OppositeEndFinder oppositeEndFinder;
-    private EObject context;
+    private Notifier context;
 
-    public ExtentMap(EObject context, OppositeEndFinder oppositeEndFinder) {
+    public ExtentMap(Notifier context, OppositeEndFinder oppositeEndFinder) {
         this.context = context;
         this.oppositeEndFinder = oppositeEndFinder;
     }
 
     /**
-     * Lazily computes the extent of the specified class <code>key</code> based on a forward lookup on the
-     * {@link OppositeEndFinder} passed to this map during construction.
+     * Computes the extent of the specified class <code>key</code> based on a forward lookup on the
+     * {@link OppositeEndFinder} passed to this map during construction. The collection returned is backed
+     * by the underlying map, meaning that additions to <code>cls</code>'s extent add to the collection
+     * returned, and removals from the extent remove from the collection.
      * 
      * @param key
      *            a class in the model
