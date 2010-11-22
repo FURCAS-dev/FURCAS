@@ -75,7 +75,7 @@ public class TestFileBasedEcoreMetaModelLookup {
     }
 
     @Test
-    @Ignore("Not working")
+    @Ignore("Ignored to make Maven build work")
     public void testFeatureClassNameWithBibText() throws Exception {
         FileBasedEcoreMetaModelLookUp lookup = new FileBasedEcoreMetaModelLookUp(FixtureData.BIBTEXT_METAMODEL, FixtureData.BIBTEXT1_METAMODEL);
         assertEquals(refE("BibText", "Author"), lookup.getFeatureClassReference(refE("BibText", "Article"), "author"));

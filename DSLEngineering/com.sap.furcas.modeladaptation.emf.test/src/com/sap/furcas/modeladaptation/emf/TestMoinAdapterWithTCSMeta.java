@@ -181,7 +181,7 @@ public class TestMoinAdapterWithTCSMeta {
     }
     
     @Test
-    @Ignore("Not working")
+    @Ignore("Ignored to make Maven build work")
     public void testTCSSetGetAssoBackEnd() throws Exception {
         Object syntax = adapter.createElement("FURCAS::TCS::ConcreteSyntax");
         Object keyword = adapter.createElement("FURCAS::TCS::Keyword");
@@ -288,7 +288,7 @@ public class TestMoinAdapterWithTCSMeta {
     }
     
     @Test
-    @Ignore("Not working")
+    @Ignore("Ignored to make Maven build work")
     public void testTCSSetReferenceBadClass() throws Exception {
         Object syntax = adapter.createElement("FURCAS::TCS::ConcreteSyntax");
         Object primTemplate = adapter.createElement("FURCAS::TCS::PrimitiveTemplate");
@@ -317,7 +317,7 @@ public class TestMoinAdapterWithTCSMeta {
     }
 
     @Test
-    @Ignore("Not working")
+    @Ignore("Ignored to make Maven build work")
     public void testTCSSetReferenceBadKeyFeature() throws Exception {
         Object syntax = adapter.createElement("FURCAS::TCS::ConcreteSyntax");
         Object primTemplate = adapter.createElement("FURCAS::TCS::PrimitiveTemplate");
