@@ -2425,14 +2425,8 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		if (astNode == null) {
 			astNode = simpleVariableName(simpleNameCS, env, source, simpleName);
 		}
-		// FIXME simplePropertyName and simpleOppositePropertyName each ascend the superclass hierarchy but this needs to happen interleaved
-		// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=251621#c58
 		if (astNode == null) {
 			astNode = simplePropertyName(simpleNameCS, env, source,
-				sourceElementType, simpleName);
-		}
-		if (astNode == null) {
-			astNode = simpleOppositePropertyName(simpleNameCS, env, source,
 				sourceElementType, simpleName);
 		}
 		if (astNode == null) {
@@ -2574,31 +2568,13 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		NavigationCallExp<C, P> result = null;
 
 		P property = lookupProperty(simpleNameCS, env, owner, simpleName);
-		P hiddenOppositeProperty = lookupOppositeProperty(simpleNameCS, env, owner, simpleName);
 		if (property != null) {
-			if (hiddenOppositeProperty != null) {
-				C propertyOwner = uml.getOwningClassifier(property);
-				C hiddenOppositePropertyOwner = TypeUtil.getPropertyType(env, uml.getOwningClassifier(hiddenOppositeProperty), hiddenOppositeProperty);
-				if (uml.getAllSupertypes(propertyOwner).contains(hiddenOppositePropertyOwner)) {
-					result = createPropertyCallExp(simpleNameCS, env, source, owner,
-						simpleName, property);
-				} else if (uml.getAllSupertypes(hiddenOppositePropertyOwner).contains(propertyOwner)) {
-					result = createOppositePropertyCallExp(simpleNameCS, env, source, owner,
-						simpleName, hiddenOppositeProperty);
-				} else {
-					// TODO raise an ambiguity error
-					ERROR(simpleNameCS, "simpleNameCS", OCLMessages.bind( //$NON-NLS-1$
-						OCLMessages.AmbiguiousPropertyInheritance_ERROR_,
-						uml.getName(hiddenOppositeProperty), uml.getName(property)));
-				}
+			if (uml.getOwningClassifier(property) == null) {
+				result = createOppositePropertyCallExp(simpleNameCS, env,
+					source, owner, simpleName, uml.getOpposite(property));
 			} else {
-				result = createPropertyCallExp(simpleNameCS, env, source, owner,
-					simpleName, property);
-			}
-		} else {
-			if (hiddenOppositeProperty != null) {
-				result = createOppositePropertyCallExp(simpleNameCS, env, source, owner,
-					simpleName, hiddenOppositeProperty);
+				result = createPropertyCallExp(simpleNameCS, env, source,
+					owner, simpleName, property);
 			}
 		}
 		return result;
@@ -2627,49 +2603,6 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		}
 
 		initPropertyPositions(result, simpleNameCS);
-		return result;
-	}
-
-	/**
-	 * Attempts to parse a <tt>simpleNameCS</tt> as an opposite property call expression.
-	 * An opposite property call expression can be used in the EMOF case where there is no
-	 * real opposite property / reference for backward navigation. The opposite property call
-	 * then references the forward property while its meaning is to backward-navigate by a
-	 * query with a well-defined scope.
-	 * 
-	 * @param simpleNameCS
-	 *            the simple name
-	 * @param env
-	 *            the current environment
-	 * @param source
-	 *            the navigation source expression, or <code>null</code> if the
-	 *            source is implicit
-	 * @param owner
-	 *            the owner of the property to be navigated, or
-	 *            <code>null</code> if the source is implicit
-	 * @param simpleName
-	 *            the simple name, as a string
-	 * @return the parsed opposite property call, or <code>null</code> if the simple name
-	 *         does not resolve to an available property that shall be navigated in reverse
-	 * 
-	 * @see #simpleNameCS(SimpleNameCS, Environment, OCLExpression)
-	 * @since 3.1
-	 */
-	protected OppositePropertyCallExp<C, P> simpleOppositePropertyName(
-			SimpleNameCS simpleNameCS,
-			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
-			OCLExpression<C> source, C owner, String simpleName) {
-		if (simpleName == null) {
-			return null;
-		}
-		OppositePropertyCallExp<C, P> result = null;
-
-		P property = lookupOppositeProperty(simpleNameCS, env, owner, simpleName);
-		if (property != null) {
-			result = createOppositePropertyCallExp(simpleNameCS, env, source,
-				owner, simpleName, property);
-		}
-
 		return result;
 	}
 

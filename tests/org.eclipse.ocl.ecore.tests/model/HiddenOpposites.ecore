@@ -15,4 +15,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="sup1" eType="#//Sub"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Sub" eSuperTypes="#//Sup1 #//Sup2"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Unrelated">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="forward" eType="#//Sup2">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+        <details key="Property.oppositeRoleName" value="hidden"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hidden" eType="#//Sup1"/>
+  </eClassifiers>
 </ecore:EPackage>
