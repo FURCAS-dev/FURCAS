@@ -237,6 +237,14 @@ public class UMLReflectionImpl
         return result;
     }
     
+    public EStructuralFeature getOpposite(EStructuralFeature property) {
+    	if (property instanceof EReference) {
+    		return ((EReference) property).getEOpposite();
+    	} else {
+    		return null;
+    	}
+    }
+    
     public EStructuralFeature createProperty(String name, EClassifier resultType) {
         
         EStructuralFeature result;
