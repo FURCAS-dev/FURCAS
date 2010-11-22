@@ -2564,37 +2564,69 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 * 
 	 * @since 1.3
 	 */
-	protected PropertyCallExp<C, P> simplePropertyName(
+	protected NavigationCallExp<C, P> simplePropertyName(
 			SimpleNameCS simpleNameCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			OCLExpression<C> source, C owner, String simpleName) {
 		if (simpleName == null) {
 			return null;
 		}
-		PropertyCallExp<C, P> result = null;
+		NavigationCallExp<C, P> result = null;
 
 		P property = lookupProperty(simpleNameCS, env, owner, simpleName);
+		P hiddenOppositeProperty = lookupOppositeProperty(simpleNameCS, env, owner, simpleName);
 		if (property != null) {
-			TRACE("variableExpCS", "Property: " + simpleName);//$NON-NLS-2$//$NON-NLS-1$
-
-			result = oclFactory.createPropertyCallExp();
-			initASTMapping(env, result, simpleNameCS, null);
-			result.setReferredProperty(property);
-			result.setType(getPropertyType(simpleNameCS, env, owner, property));
-
-			if (source != null) {
-				result.setSource(source);
+			if (hiddenOppositeProperty != null) {
+				C propertyOwner = uml.getOwningClassifier(property);
+				C hiddenOppositePropertyOwner = TypeUtil.getPropertyType(env, uml.getOwningClassifier(hiddenOppositeProperty), hiddenOppositeProperty);
+				if (uml.getAllSupertypes(propertyOwner).contains(hiddenOppositePropertyOwner)) {
+					result = createPropertyCallExp(simpleNameCS, env, source, owner,
+						simpleName, property);
+				} else if (uml.getAllSupertypes(hiddenOppositePropertyOwner).contains(propertyOwner)) {
+					result = createOppositePropertyCallExp(simpleNameCS, env, source, owner,
+						simpleName, hiddenOppositeProperty);
+				} else {
+					// TODO raise an ambiguity error
+					ERROR(simpleNameCS, "simpleNameCS", OCLMessages.bind( //$NON-NLS-1$
+						OCLMessages.AmbiguiousPropertyInheritance_ERROR_,
+						uml.getName(hiddenOppositeProperty), uml.getName(property)));
+				}
 			} else {
-				Variable<C, PM> implicitSource = env
-					.lookupImplicitSourceForProperty(simpleName);
-				VariableExp<C, PM> src = createVariableExp(env, simpleNameCS,
-					implicitSource);
-				result.setSource(src);
+				result = createPropertyCallExp(simpleNameCS, env, source, owner,
+					simpleName, property);
 			}
+		} else {
+			if (hiddenOppositeProperty != null) {
+				result = createOppositePropertyCallExp(simpleNameCS, env, source, owner,
+					simpleName, hiddenOppositeProperty);
+			}
+		}
+		return result;
+	}
 
-			initPropertyPositions(result, simpleNameCS);
+	private PropertyCallExp<C, P> createPropertyCallExp(
+			SimpleNameCS simpleNameCS,
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			OCLExpression<C> source, C owner, String simpleName, P property) {
+		PropertyCallExp<C, P> result;
+		TRACE("variableExpCS", "Property: " + simpleName);//$NON-NLS-2$//$NON-NLS-1$
+
+		result = oclFactory.createPropertyCallExp();
+		initASTMapping(env, result, simpleNameCS, null);
+		result.setReferredProperty(property);
+		result.setType(getPropertyType(simpleNameCS, env, owner, property));
+
+		if (source != null) {
+			result.setSource(source);
+		} else {
+			Variable<C, PM> implicitSource = env
+				.lookupImplicitSourceForProperty(simpleName);
+			VariableExp<C, PM> src = createVariableExp(env, simpleNameCS,
+				implicitSource);
+			result.setSource(src);
 		}
 
+		initPropertyPositions(result, simpleNameCS);
 		return result;
 	}
 
@@ -2634,31 +2666,41 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 		P property = lookupOppositeProperty(simpleNameCS, env, owner, simpleName);
 		if (property != null) {
-			TRACE("variableExpCS", "Property: " + simpleName);//$NON-NLS-2$//$NON-NLS-1$
-
-			// The following cast is permissible because opposite property calls can only occur in
-			// environments that have factories implementing OCLFactoryWithHiddenOpposite, e.g.,
-			// the OCLFactory implementation for OCLEcore.
-			result = ((OCLFactoryWithHiddenOpposite) oclFactory).createOppositePropertyCallExp();
-			initASTMapping(env, result, simpleNameCS, null);
-			result.setReferredOppositeProperty(property);
-			result.setType(getOppositePropertyType(simpleNameCS, env, owner, property));
-
-			if (source != null) {
-				result.setSource(source);
-			} else {
-				if (env instanceof EnvironmentWithHiddenOpposites<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
-					Variable<C, PM> implicitSource = ((EnvironmentWithHiddenOpposites<?, C, ?, ?, ?, PM, ?, ?, ?, ?, ?, ?>) env)
-						.lookupImplicitSourceForOppositeProperty(simpleName);
-					VariableExp<C, PM> src = createVariableExp(env,
-						simpleNameCS, implicitSource);
-					result.setSource(src);
-				}
-			}
-
-			initPropertyPositions(result, simpleNameCS);
+			result = createOppositePropertyCallExp(simpleNameCS, env, source,
+				owner, simpleName, property);
 		}
 
+		return result;
+	}
+
+	private OppositePropertyCallExp<C, P> createOppositePropertyCallExp(
+			SimpleNameCS simpleNameCS,
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			OCLExpression<C> source, C owner, String simpleName, P property) {
+		OppositePropertyCallExp<C, P> result;
+		TRACE("variableExpCS", "Opposite Property: " + simpleName);//$NON-NLS-2$//$NON-NLS-1$
+
+		// The following cast is permissible because opposite property calls can only occur in
+		// environments that have factories implementing OCLFactoryWithHiddenOpposite, e.g.,
+		// the OCLFactory implementation for OCLEcore.
+		result = ((OCLFactoryWithHiddenOpposite) oclFactory).createOppositePropertyCallExp();
+		initASTMapping(env, result, simpleNameCS, null);
+		result.setReferredOppositeProperty(property);
+		result.setType(getOppositePropertyType(simpleNameCS, env, owner, property));
+
+		if (source != null) {
+			result.setSource(source);
+		} else {
+			if (env instanceof EnvironmentWithHiddenOpposites<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
+				Variable<C, PM> implicitSource = ((EnvironmentWithHiddenOpposites<?, C, ?, ?, ?, PM, ?, ?, ?, ?, ?, ?>) env)
+					.lookupImplicitSourceForOppositeProperty(simpleName);
+				VariableExp<C, PM> src = createVariableExp(env,
+					simpleNameCS, implicitSource);
+				result.setSource(src);
+			}
+		}
+
+		initPropertyPositions(result, simpleNameCS);
 		return result;
 	}
 

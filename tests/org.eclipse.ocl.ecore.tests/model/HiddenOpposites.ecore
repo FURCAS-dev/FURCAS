@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="OclHideenOppositesTest"
+    nsURI="http:///org/eclipse/emf/ocl/engine/tests/OclHiddenOppositesTest.ecore"
+    nsPrefix="oclhiddenoppositestest">
+  <eClassifiers xsi:type="ecore:EClass" name="Sup1">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sup2" eType="#//Sub">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+        <details key="Property.oppositeRoleName" value="sup1"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Sup2">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sup1" eType="#//Sub"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Sub" eSuperTypes="#//Sup1 #//Sup2"/>
+</ecore:EPackage>
