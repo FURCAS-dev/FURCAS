@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.10 2009/11/28 18:16:15 ewillink Exp $
+ * $Id: CollectionsTest.java,v 1.11 2010/11/19 06:21:35 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -722,6 +722,23 @@ public class CollectionsTest
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
+
+	/**
+	 * Tests that the a singleton collection range is iterable.
+	 */
+	public void test_collectionRange_330489() {
+		helper.setContext(getUMLInteger());
+
+		try {
+			Collection<?> result = (Collection<?>) evaluate(helper,
+				new Integer(1), "Sequence{1 .. 1}");
+			assertEquals(1, result.size());
+			assertTrue(result.contains(new Integer(1)));
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
+		}
+	}
+
 
     /**
      * Tests the support for tuples whose parts are collections that are not
