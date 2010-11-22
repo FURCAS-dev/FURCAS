@@ -18,22 +18,24 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
+import util.ProjectInfo;
+
 /* This is the second page of the wizard. It lets you choose, wether you want to create a pure fresh MetaModel
  * or import an existing one into your new Metamodel.*/
 
-public class FurcasWizardMMSelectionPage extends WizardPage {
+public class SelectionPage extends WizardPage {
     Button selectmm1;
     Button selectmm2;
     Label classNameLabel;
     Label nsURILabel;
     Text nsURIText;
     Text classNameText;
-    private MMLoadPage page3;
+    private LoadPage page3;
     FurcasWizard wiz;
     ProjectInfo pi;
     String className;
 
-    public FurcasWizardMMSelectionPage(ISelection selection, FurcasWizard w, ProjectInfo projectInfo) {
+    public SelectionPage(ISelection selection, FurcasWizard w, ProjectInfo projectInfo) {
         super("Metamodel");
         page3 = null;
         wiz = w;
@@ -125,7 +127,7 @@ public class FurcasWizardMMSelectionPage extends WizardPage {
         nsURIText = new Text(container, SWT.BORDER | SWT.SINGLE);
         gd = new GridData(GridData.FILL_HORIZONTAL);
         nsURIText.setLayoutData(gd);
-        nsURIText.setText("mydsl/metamodel/example");
+        nsURIText.setText("http://mydsl/metamodel/");
         pi.setNsURI(nsURIText.getText());
         nsURIText.addModifyListener(new ModifyListener() {
             public void modifyText(ModifyEvent e) {
@@ -173,21 +175,19 @@ public class FurcasWizardMMSelectionPage extends WizardPage {
     public IWizardPage getNextPage() {
         if (getSel() == 2) {
             if (page3 == null) {
-                page3 = new MMLoadPage("LoadPage", wiz, pi);
+                page3 = new LoadPage("LoadPage", wiz, pi);
                 wiz.addPage(page3);
                 page3.setPageComplete(false);
                 this.setPageComplete(true);
-                wiz.enableLoadPage();
-            }
-            if (wiz.createmm) {
-                wiz.createmm = false;
+                pi.setLoadMetamodel(true);
             }
             return page3;
-        } else if (getSel() == 1)
+        } else if (getSel() == 1) {
+            pi.setLoadMetamodel(false);
             pi.setNsURI(nsURIText.getText());
             if (page3 != null)
                 page3.setPageComplete(true);
-        wiz.addMMP();
+        }
         return null;
     }
 

@@ -1,4 +1,4 @@
-package com.sap.furcas.ide.projectwizard.wizards;
+package util;
 
 /* This class saves all the information entered on the first page of the wizard.*/
 public class ProjectInfo {
@@ -7,15 +7,12 @@ public class ProjectInfo {
     private String fileExtension;
     private String nsURI;
     private String URIPath;
-    private boolean createGeneratorProject = false;
+    private String className;
+    private String mmProject;
+    private boolean loadMetamodel = false;
+    private boolean fromWorkspace = false;
 
-    public boolean isCreateGeneratorProject() {
-        return createGeneratorProject;
-    }
 
-    public void setCreateGeneratorProject(boolean createGeneratorProject) {
-        this.createGeneratorProject = createGeneratorProject;
-    }
 
     public String getFileExtension() {
         return fileExtension;
@@ -64,6 +61,39 @@ public class ProjectInfo {
     public String getBasePath() {
         return getProjectName().replaceAll("\\.", "/");
     }
+
+    public void setLoadMetamodel(boolean loadMetamodel) {
+        this.loadMetamodel = loadMetamodel;
+    }
+
+    public boolean isLoadMetamodel() {
+        return loadMetamodel;
+    }
+
+    public void setFromWorkspace(boolean fromWorkspace) {
+        this.fromWorkspace = fromWorkspace;
+    }
+
+    public boolean isFromWorkspace() {
+        return fromWorkspace;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setMmProject(String mmProject) {
+        this.mmProject = mmProject;
+    }
+
+    public String getMmProject() {
+        return mmProject;
+    }
+
 
 
 }

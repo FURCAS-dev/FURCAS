@@ -2,7 +2,7 @@
  * Works together with the classes CreateProject and SourceCodeFactory in the wizards package.
  * */
 
-package com.sap.furcas.ide.projectwizard;
+package util;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -35,12 +35,9 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 
-import com.sap.furcas.ide.projectwizard.wizards.ProjectInfo;
-import com.sap.furcas.ide.projectwizard.wizards.SourceCodeFactory;
-
 public class WizardProjectHelper {
 
-    public static IProject createPlugInProject(final String projectName, final List<String> srcFolders,
+    public static IProject createPlugInProject(final ProjectInfo pi, final String projectName, final List<String> srcFolders,
             final List<String> nonSrcFolders, final List<IProject> referencedProjects, final List<String> exportedPackages,
             final List<String> extraClasspathEntries, final IProgressMonitor progressMonitor, final Shell theShell,
             String nature, final boolean metamodel) {
@@ -129,10 +126,8 @@ public class WizardProjectHelper {
 
             javaProject.setOutputLocation(new Path("/" + projectName + "/bin"), new SubProgressMonitor(progressMonitor, 1));
             if (!metamodel) {
-                createManifest(projectName, progressMonitor, project);
+                createManifest(progressMonitor, project, pi);
                 createBuildProps(progressMonitor, project, srcFolders, extraClasspathEntries);
-            } else {
-
             }
         } catch (Exception exception) {
             System.out.println("Error while creating the project.");
@@ -168,20 +163,20 @@ public class WizardProjectHelper {
         createFile("build.properties", project, scf.createBuildProbCode(), progressMonitor);
     }
 
-    private static void createManifest(final String projectName, final IProgressMonitor progressMonitor, IProject project)
-            throws CoreException {
+    private static void createManifest(final IProgressMonitor progressMonitor, IProject project,
+            ProjectInfo pi) throws CoreException {
         SourceCodeFactory scf = new SourceCodeFactory();
 
         IFolder metaInf = project.getFolder("META-INF");
         metaInf.create(false, true, new SubProgressMonitor(progressMonitor, 1));
-        createFile("MANIFEST.MF", metaInf, scf.createManifest(projectName), progressMonitor);
+        createFile("MANIFEST.MF", metaInf, scf.createManifest(pi), progressMonitor);
     }
 
     public static IFile createGenmodel(final IProgressMonitor progressMonitor, IProject project, ProjectInfo pi)
             throws CoreException {
         SourceCodeFactory scf = new SourceCodeFactory();
         IFolder folder = project.getFolder("model");
-        return createFile(pi.getLanguageName()+".genmodel", folder, scf.createGenmodelCode(pi), progressMonitor);
+        return createFile(pi.getLanguageName() + ".genmodel", folder, scf.createGenmodelCode(pi), progressMonitor);
     }
 
     /**

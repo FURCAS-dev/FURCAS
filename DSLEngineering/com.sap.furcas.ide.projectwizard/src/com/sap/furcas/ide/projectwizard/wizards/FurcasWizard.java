@@ -34,15 +34,17 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 import org.eclipse.ui.progress.UIJob;
 
+import util.CreateMMProject;
+import util.CreateProject;
+import util.ProjectInfo;
+
 /*
  * This Wizard creates a pair of projects for the Furcas DSL project. It generates the necessary folder,
  * packages, files and first lines of code that help to quickly be able to create the DSL.
  */
 public class FurcasWizard extends Wizard implements INewWizard {
-    protected FurcasWizardLanguagePage page;
-    protected FurcasWizardMMSelectionPage page2;
-    public boolean createmm;
-    public boolean lpe;
+    protected LanguagePage page;
+    protected SelectionPage page2;
 
     public Wizard getWiz() {
         return this;
@@ -56,8 +58,6 @@ public class FurcasWizard extends Wizard implements INewWizard {
         super();
         setNeedsProgressMonitor(true);
         setWindowTitle("Furcas DSL Engineering Project Creator");
-        lpe = false;
-        createmm = false;
     }
 
     /* The following variables are used for the creation of a fresh .ecore model file. */
@@ -145,7 +145,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
             public IStatus runInUIThread(IProgressMonitor monitor) {
                 try {
                     new CreateProject(pi, getShell(), className).run(monitor);
-                    if (!lpe) {
+                    if (!pi.isLoadMetamodel()) {
                         doAdditional(className);
                     }
                     generateSpecific();
@@ -215,10 +215,9 @@ public class FurcasWizard extends Wizard implements INewWizard {
 
     @Override
     public void addPages() {
-        createmm = false;
-        page = new FurcasWizardLanguagePage(selection);
+        page = new LanguagePage(selection);
         addPage(page);
-        page2 = new FurcasWizardMMSelectionPage(selection, this, page.getProjectInfo());
+        page2 = new SelectionPage(selection, this, page.getProjectInfo());
         addPage(page2);
 
     }
@@ -233,14 +232,6 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 + ".ecore");
 
         return ResourcesPlugin.getWorkspace().getRoot().getFile(path);
-    }
-
-    public void addMMP() {
-        createmm = true;
-    }
-
-    public void enableLoadPage() {
-        lpe = true;
     }
 
     /*

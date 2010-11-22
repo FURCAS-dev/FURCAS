@@ -1,4 +1,4 @@
-package com.sap.furcas.ide.projectwizard.wizards;
+package util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,25 +10,29 @@ import java.io.Writer;
 
 import org.antlr.stringtemplate.StringTemplate;
 
+import com.sap.furcas.ide.projectwizard.wizards.FurcasWizard;
+
+
 /**
  * 
- * Encapsulates all methods providing source code needed in the process of creating a new DSL with the {@link FurcasWizard}.
- * All information needed for the generic source code generation is retrieved from the associated {@link ProjectInfo}.
- * It uses the method readFile() to read the files in the resources folder. StringTemplate is now used to
- * replace certain variables in the code by the values entered in the wizard.
+ * Encapsulates all methods providing source code needed in the process of creating a new DSL with the {@link FurcasWizard}. All
+ * information needed for the generic source code generation is retrieved from the associated {@link ProjectInfo}. It uses the
+ * method readFile() to read the files in the resources folder. StringTemplate is now used to replace certain variables in the
+ * code by the values entered in the wizard.
  * 
  * @author C5126086 Martin Kuester and D054528 Frederik Petersen
  * 
  */
 public class SourceCodeFactory {
 
-    /*Reads a file from the resources folder into the returned string.*/
+    /* Reads a file from the resources folder into the returned string. */
     private String readFile(String filename) throws IOException {
         String path = "/resources/" + filename;
         InputStream iS = getClass().getResourceAsStream(path);
         return convertStreamToString(iS);
     }
-    /*Converts the InputStream into a string.*/
+
+    /* Converts the InputStream into a string. */
     private String convertStreamToString(InputStream is) throws IOException {
         if (is != null) {
             Writer writer = new StringWriter();
@@ -48,17 +52,19 @@ public class SourceCodeFactory {
             return "";
         }
     }
-    
-    /* All the following methods, import the contents of the sample text files in the resources folder into
-     * a StringTeamplate. The keywords in the Strings are then replaced by the data entered in the wizard. */
 
-    public String createManifest(String projectname) {
+    /*
+     * All the following methods, import the contents of the sample text files in the resources folder into a StringTeamplate. The
+     * keywords in the Strings are then replaced by the data entered in the wizard.
+     */
+
+    protected String createManifest(ProjectInfo pi) {
         StringTemplate template = null;
         String templateString = null;
         try {
             templateString = readFile("manifest.txt");
             template = new StringTemplate(templateString);
-            setTemplateAtts(template, projectname);
+            setTemplateAtts(template, pi);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -67,8 +73,7 @@ public class SourceCodeFactory {
         return template.toString();
     }
 
-
-    public String createBuildProbCode() {
+    protected String createBuildProbCode() {
         StringTemplate template = null;
         String templateString = null;
         try {
@@ -94,7 +99,7 @@ public class SourceCodeFactory {
 
         return template.toString();
     }
-    
+
     public String createGenmodelCode(ProjectInfo pi) {
         StringTemplate template = null;
         String templateString = null;
@@ -159,7 +164,7 @@ public class SourceCodeFactory {
             templateString = readFile("genprops.txt");
             template = new StringTemplate(templateString);
             setTemplateAtts(template, pi, "wayne");
-            
+
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -175,7 +180,7 @@ public class SourceCodeFactory {
             templateString = readFile("tcs.txt");
             template = new StringTemplate(templateString);
             setTemplateAtts(template, pi, className);
-            
+
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -184,14 +189,14 @@ public class SourceCodeFactory {
         return template.toString();
     }
 
-    protected String createParserFactory(ProjectInfo pi) {        
+    protected String createParserFactory(ProjectInfo pi) {
         StringTemplate template = null;
         String templateString = null;
         try {
             templateString = readFile("parserfactory.txt");
             template = new StringTemplate(templateString);
             setTemplateAtts(template, pi, "wayne");
-            
+
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -199,6 +204,7 @@ public class SourceCodeFactory {
 
         return template.toString();
     }
+
     private void setTemplateAtts(StringTemplate template, ProjectInfo pi, String className) {
         String capLangName = CreateProject.capitalizeFirstChar(pi.getLanguageName());
         template.setAttribute("LangName", pi.getLanguageName());
@@ -209,14 +215,22 @@ public class SourceCodeFactory {
         template.setAttribute("URI", pi.getNsURI());
         template.setAttribute("Ext", pi.getFileExtension());
         template.setAttribute("Path", pi.getBasePath());
-        template.setAttribute("TCSPath",  "generated/generated/" + pi.getLanguageName() + ".tcs");
+        template.setAttribute("TCSPath", "generated/generated/" + pi.getLanguageName() + ".tcs");
     }
-    
-    private void setTemplateAtts(StringTemplate template, String projectname) {
 
-        String mmRef = ",\n "+projectname+".metamodel;bundle-version=\"1.0.0\"";
-        template.setAttribute("ProjectName", projectname);
-        template.setAttribute("MMRef", mmRef);
+    private void setTemplateAtts(StringTemplate template, ProjectInfo pi) {
+
+        String mmRef = ",\n " + pi.getProjectName() + ".metamodel;bundle-version=\"1.0.0\"";
+        String wsRef = ",\n " + pi.getMmProject();
+        template.setAttribute("ProjectName", pi.getProjectName());
+        if (pi.isLoadMetamodel()){
+            if (pi.isFromWorkspace())
+                template.setAttribute("MMRef", wsRef);                                
+        }
+        else
+            template.setAttribute("MMRef", mmRef);
+            
         
+
     }
 }

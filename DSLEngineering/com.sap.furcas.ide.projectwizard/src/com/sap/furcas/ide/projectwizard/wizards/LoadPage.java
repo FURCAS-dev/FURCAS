@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -34,17 +35,19 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
+import util.ProjectInfo;
+
 /* 
  * This wizardpage is displayed when the user chooses to import some kind of existing MetaModel into his
  * Metamodelproject.
  * */
-public class MMLoadPage extends WizardPage {
+public class LoadPage extends WizardPage {
     public FurcasWizard wizard;
     public Text uriField;
     public Label wrongType;
     ProjectInfo pi;
 
-    protected MMLoadPage(String pageName, FurcasWizard wiz, ProjectInfo pi) {
+    protected LoadPage(String pageName, FurcasWizard wiz, ProjectInfo pi) {
         super(pageName);
         this.pi = pi;
         wizard = wiz;
@@ -66,11 +69,14 @@ public class MMLoadPage extends WizardPage {
         button1.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
+                pi.setFromWorkspace(false);
                 RegisteredPackageDialog registeredPackageDialog = new RegisteredPackageDialog(getShell());
                 registeredPackageDialog.open();
                 Object[] result = registeredPackageDialog.getResult();
                 if (result != null) {
                     List<?> nsURIs = Arrays.asList(result);
+                    String nsURI = nsURIs.get(0).toString();
+                    pi.setNsURI(nsURI);
                     if (registeredPackageDialog.isDevelopmentTimeVersion()) {
                         ResourceSet resourceSet = new ResourceSetImpl();
                         resourceSet.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap());
@@ -108,9 +114,12 @@ public class MMLoadPage extends WizardPage {
         button3.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
+                pi.setFromWorkspace(true);
                 IFile[] files = WorkspaceResourceDialog.openFileSelection(getShell(), "Choose Metamodel",
-                        "Select the desired Metamodel an click OK.", true, null, null);
+                        "Select the desired Metamodel an click OK.", false, null, null);
                 if (files.length > 0) {
+                    IProject mMproject = files[0].getProject();
+                    pi.setMmProject(mMproject.getName());
                     StringBuffer text = new StringBuffer();
                     for (int i = 0; i < files.length; ++i) {
                         text.append(URI.createPlatformResourceURI(files[i].getFullPath().toString(), true));
@@ -154,7 +163,6 @@ public class MMLoadPage extends WizardPage {
         if (!uriField.getText().matches(text))
             uriField.setText(text);
         pi.setURIPath(uriField.getText());
-        pi.setNsURI(pi.getURIPath());
     }
 
     @Override

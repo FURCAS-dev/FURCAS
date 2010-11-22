@@ -1,4 +1,4 @@
-package com.sap.furcas.ide.projectwizard.wizards;
+package util;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,10 +30,13 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.swt.widgets.Shell;
 
-import com.sap.furcas.ide.projectwizard.WizardProjectHelper;
+import com.sap.furcas.ide.projectwizard.wizards.FurcasWizard;
+import com.sap.furcas.ide.projectwizard.wizards.LanguagePage;
+
+
 
 public class CreateMMProject {
-    protected static FurcasWizardLanguagePage lpage;
+    protected static LanguagePage lpage;
     protected static EcorePackage ecorePackage = EcorePackage.eINSTANCE;
     protected static EcoreFactory ecoreFactory = ecorePackage.getEcoreFactory();
     protected static EPackage eP;
@@ -42,7 +45,7 @@ public class CreateMMProject {
     protected static IProgressMonitor progressMonitor;;
     protected static String className;
 
-    public static void create(FurcasWizard wizard, FurcasWizardLanguagePage page, Shell sh, String cName) {
+    public static void create(FurcasWizard wizard, LanguagePage page, Shell sh, String cName) {
         lpage = page;
         progressMonitor = new NullProgressMonitor();
         String projectName = page.getProjectInfo().getProjectName() + ".metamodel";
@@ -54,7 +57,7 @@ public class CreateMMProject {
         className = cName;
 
         // Create the project for the metamodel
-        WizardProjectHelper.createPlugInProject(projectName, srcFolders, nonSrcFolders, Collections.<IProject> emptyList(), null,
+        WizardProjectHelper.createPlugInProject(lpage.getProjectInfo(), projectName, srcFolders, nonSrcFolders, Collections.<IProject> emptyList(), null,
                 null, progressMonitor, shell, null, true);
 
         createNewModel();
