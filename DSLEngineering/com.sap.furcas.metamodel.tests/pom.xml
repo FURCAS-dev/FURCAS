@@ -10,5 +10,5 @@
   <groupId>com.sap.dsl</groupId>
   <artifactId>com.sap.furcas.metamodel.tests</artifactId>
   <version>1.0.0</version>
-  <packaging>eclipse-test-plugin</packaging>
+  <packaging>eclipse-plugin</packaging>
 </project>
