@@ -154,6 +154,7 @@ public class MMLoadPage extends WizardPage {
         if (!uriField.getText().matches(text))
             uriField.setText(text);
         pi.setURIPath(uriField.getText());
+        pi.setNsURI(pi.getURIPath());
     }
 
     @Override

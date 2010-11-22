@@ -209,11 +209,14 @@ public class SourceCodeFactory {
         template.setAttribute("URI", pi.getNsURI());
         template.setAttribute("Ext", pi.getFileExtension());
         template.setAttribute("Path", pi.getBasePath());
-        template.setAttribute("TCSPath", pi.getBasePath() + "/" + pi.getLanguageName() + ".tcs");
+        template.setAttribute("TCSPath",  "generated/generated/" + pi.getLanguageName() + ".tcs");
     }
     
     private void setTemplateAtts(StringTemplate template, String projectname) {
+
+        String mmRef = ",\n "+projectname+".metamodel;bundle-version=\"1.0.0\"";
         template.setAttribute("ProjectName", projectname);
+        template.setAttribute("MMRef", mmRef);
         
     }
 }

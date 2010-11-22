@@ -4,4 +4,4 @@ debug.grammar=true
 language.name=$LangName$
 language.nsURI=$URI$
 language.fileextension=$Ext$
-basepath=$BasePath$
+basepath=$ProjectName$
