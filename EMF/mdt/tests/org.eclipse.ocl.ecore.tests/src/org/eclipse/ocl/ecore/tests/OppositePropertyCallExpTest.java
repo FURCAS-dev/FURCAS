@@ -12,11 +12,18 @@ package org.eclipse.ocl.ecore.tests;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
+import org.eclipse.ocl.ecore.IteratorExp;
+import org.eclipse.ocl.ecore.LetExp;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.OCLExpression;
@@ -30,6 +37,17 @@ import org.eclipse.ocl.expressions.OCLExpression;
 @SuppressWarnings("nls")
 public class OppositePropertyCallExpTest
 		extends AbstractTestSuite {
+
+	protected EPackage hiddenOppositesPackage;
+	protected EFactory hiddenOppositesFactory;
+	protected EClass sup1;
+	protected EReference sup1_sup2;
+	protected EClass sup2;
+	protected EClass sub;
+	protected EReference sup2_sup1;
+	protected EClass unrelated;
+	protected EReference unrelated_hidden;
+	protected EReference unrelated_forward;
 
 	/**
 	 * Test parsing an expression that contains an OppositePropertyCallExp
@@ -156,6 +174,50 @@ public class OppositePropertyCallExpTest
 	
 	/**
 	 * Test evaluating an expression that contains an OppositePropertyCallExp using
+	 * a "hidden opposite" of a containment reference inherited from a superclass
+	 */
+	public void test_parseMoreSpecificInheritedOppositePropertyCallExpInsteadMoreGeneralPropertyCallExp() {
+		initHiddenOppositesTestPackage();
+		helper.setContext(sub);
+		try {
+			String expr = "self.sup1";
+			OCLExpression<EClassifier> ast = helper.createQuery(expr);
+			assertTrue(ast instanceof OppositePropertyCallExp);
+			OppositePropertyCallExp opce = (OppositePropertyCallExp) ast;
+			assertTrue(opce.getReferredOppositeProperty() == sup1_sup2);
+		} catch (Exception e) {
+			fail("Parse failed: " + e.getLocalizedMessage());
+		}
+	}
+	
+	/**
+	 * Implicit source expressions, e.g., an iterator variable, must take preference over
+	 * implicit source expressions defined by enclosing scopes. This must also hold for a hidden
+	 * opposite being resolved on the inner implicit scope before a regular property is resolved
+	 * for the outer implicit scope. 
+	 */
+	public void test_parseOppositePropertyCallExpOnNestedImplicitSource() {
+		initHiddenOppositesTestPackage();
+		helper.setContext(unrelated);
+		try {
+			String expr = "let s:Set(Sup2) = Set{} in s->exists(hidden = null)";
+			OCLExpression<EClassifier> ast = helper.createQuery(expr);
+			assertTrue(ast instanceof LetExp);
+			OCLExpression<EClassifier> iterator = ((LetExp) ast).getIn();
+			assertTrue(iterator instanceof IteratorExp);
+			OCLExpression<EClassifier> body = ((IteratorExp) iterator).getBody();
+			assertTrue(body instanceof OperationCallExp); // .=(null)
+			OperationCallExp opCallExp = (OperationCallExp) body;
+			OCLExpression<EClassifier> opce = opCallExp.getSource();
+			assertTrue(opce instanceof OppositePropertyCallExp);
+			assertTrue(((OppositePropertyCallExp) opce).getReferredOppositeProperty() == unrelated_forward);
+		} catch (Exception e) {
+			fail("Parse failed: " + e.getLocalizedMessage());
+		}
+	}
+	
+	/**
+	 * Test evaluating an expression that contains an OppositePropertyCallExp using
 	 * a "hidden opposite" of a non-containment reference inherited from a superclass
 	 */
 	@SuppressWarnings("unchecked")
@@ -186,4 +248,19 @@ public class OppositePropertyCallExpTest
 		}
 	}
 	
+	private void initHiddenOppositesTestPackage() {
+		URI uri = getTestModelURI("/model/HiddenOpposites.ecore");
+		Resource res = resourceSet.getResource(uri, true);
+		hiddenOppositesPackage = (EPackage) res.getContents().get(0);
+		resourceSet.getPackageRegistry().put(hiddenOppositesPackage.getNsURI(), hiddenOppositesPackage);
+		hiddenOppositesFactory = hiddenOppositesPackage.getEFactoryInstance();
+		sup1 = (EClass) hiddenOppositesPackage.getEClassifier("Sup1");
+		sup1_sup2 = (EReference) sup1.getEStructuralFeature("sup2");
+		sup2 = (EClass) hiddenOppositesPackage.getEClassifier("Sup2");
+		sup2_sup1 = (EReference) sup2.getEStructuralFeature("sup1");
+		sub = (EClass) hiddenOppositesPackage.getEClassifier("Sub");
+		unrelated = (EClass) hiddenOppositesPackage.getEClassifier("Unrelated");
+		unrelated_forward = (EReference) unrelated.getEStructuralFeature("forward");
+		unrelated_hidden = (EReference) unrelated.getEStructuralFeature("hidden");
+	}
 }
