@@ -6,35 +6,35 @@ syntax $LangName$ {
                  :"$FirstClass$"
                  ;
 
-        primitiveTemplate identifier for PrimitiveTypes::String default using NAME:
+        primitiveTemplate identifier for ecore::String default using NAME:
                 value = "unescapeString(%token%)";
 
-        primitiveTemplate identifierOrKeyword for PrimitiveTypes::String using NAME orKeyword:
+        primitiveTemplate identifierOrKeyword for ecore::String using NAME orKeyword:
                 value = "unescapeString(%token%)";
 
-        primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:
+        primitiveTemplate stringSymbol for ecore::String using STRING:
                 value = "unescapeString(%token%)",
                 serializer="'\\\"' + %value%.toCString() + '\\\"'";
 
-        primitiveTemplate integerSymbol for PrimitiveTypes::Integer default using INT:
+        primitiveTemplate integerSymbol for ecore::Integer default using INT:
                 value = "Integer.valueOf(%token%)";
                 
-        primitiveTemplate longSymbol for PrimitiveTypes::Long default using INT:
+        primitiveTemplate longSymbol for ecore::Long default using INT:
                 value = "Long.valueOf(%token%)";
                 
-        primitiveTemplate integerAsStringSymbol for PrimitiveTypes::String default using INT:
+        primitiveTemplate integerAsStringSymbol for ecore::String default using INT:
                 value = "%token%";
 
-        primitiveTemplate floatAsStringSymbol for PrimitiveTypes::String default using FLOAT:
+        primitiveTemplate floatAsStringSymbol for ecore::String default using FLOAT:
                 value = "%token%";
                 
-        primitiveTemplate booleanSymbol for PrimitiveTypes::String using BOOL:
+        primitiveTemplate booleanSymbol for ecore::String using BOOL:
                 value = "%token%";      
                 
-        primitiveTemplate binarySymbol for PrimitiveTypes::String using BINARY:
+        primitiveTemplate binarySymbol for ecore::String using BINARY:
                 value = "%token%";
                 
-        primitiveTemplate dateSymbol for PrimitiveTypes::String using DATE:
+        primitiveTemplate dateSymbol for ecore::String using DATE:
                 value = "%token%";
 -- place keywords here (optional, seldom used)
 

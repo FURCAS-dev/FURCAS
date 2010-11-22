@@ -1,6 +1,5 @@
 package com.sap.furcas.ide.projectwizard.wizards;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -32,7 +31,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
@@ -59,7 +57,7 @@ public class MMLoadPage extends WizardPage {
         Composite container = new Composite(parent, SWT.NULL);
         GridLayout layout = new GridLayout();
         container.setLayout(layout);
-        layout.numColumns = 4;
+        layout.numColumns = 3;
         Label label = new Label(container, SWT.NULL);
         label.setText("Resource URIs:");
 
@@ -101,36 +99,6 @@ public class MMLoadPage extends WizardPage {
                         }
                         uriField.setText((uriField.getText() + "  " + uris.toString()).trim());
                     }
-                }
-            }
-        });
-
-        Button button2 = new Button(container, SWT.PUSH);
-        button2.setText("Browse File System...");
-        button2.addSelectionListener(new SelectionAdapter() {
-            @Override
-            public void widgetSelected(SelectionEvent event) {
-                // TODO Register the chosen .ecore file, maybe not here but in one of the next steps
-                FileDialog fileDialog = new FileDialog(getShell(), SWT.OPEN);
-                fileDialog.setText("Import");
-                fileDialog.setFilterPath("C:/");
-                String[] filterExt = { "*.ecore" };
-                fileDialog.setFilterExtensions(filterExt);
-                fileDialog.open();
-                String filterPath = fileDialog.getFilterPath();
-                String[] fileNames = fileDialog.getFileNames();
-                StringBuffer uris = new StringBuffer();
-
-                for (int i = 0, len = fileNames.length; i < len; i++) {
-                    uris.append(URI.createFileURI(filterPath + File.separator + fileNames[i]).toString());
-                    uris.append("  ");
-                }
-                uriField.setText((uriField.getText() + "  " + uris.toString()).trim());
-
-                String fileName = fileDialog.getFileName();
-                if (fileName != null) {
-                    uriField.setText(URI.createFileURI(filterPath + File.separator + fileName).toString());
-
                 }
             }
         });
