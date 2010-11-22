@@ -184,6 +184,7 @@ public class FurcasWizardMMSelectionPage extends WizardPage {
             }
             return page3;
         } else if (getSel() == 1)
+            pi.setNsURI(nsURIText.getText());
             if (page3 != null)
                 page3.setPageComplete(true);
         wiz.addMMP();
