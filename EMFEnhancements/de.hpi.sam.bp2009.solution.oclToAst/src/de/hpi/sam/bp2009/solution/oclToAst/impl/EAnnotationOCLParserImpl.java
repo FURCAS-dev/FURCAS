@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -160,6 +161,10 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
                 EAttribute at = (EAttribute) modelElement;
                 helper.setAttributeContext(at.getEContainingClass(), at);      
                 break;
+            case EcorePackage.EREFERENCE:
+            	EReference ref = (EReference) modelElement;
+            	helper.setAttributeContext(ref.getEContainingClass(), ref);
+            	break;
             case EcorePackage.EOPERATION:
                 op = (EOperation)modelElement;
                 helper.setOperationContext(op.getEContainingClass(), op);  
