@@ -11,12 +11,14 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
+import util.ProjectInfo;
+
 /* 
  * This is the first page of the wizard used to collect all the necessary information needed for the
  * creation of a new Furcas DSL project.
  * */
 
-public class FurcasWizardLanguagePage extends WizardPage {
+public class LanguagePage extends WizardPage {
     private Text projectText;
 
     private Text languageNameText;
@@ -31,7 +33,7 @@ public class FurcasWizardLanguagePage extends WizardPage {
         return projectInfo;
     }
 
-    public FurcasWizardLanguagePage(ISelection selection) {
+    public LanguagePage(ISelection selection) {
         super("wizardPage");
         setTitle("Furcas Project Wizard");
         setDescription("This wizard creates a pair of projects for your DSL.");

@@ -1,4 +1,4 @@
-package com.sap.furcas.ide.projectwizard.wizards;
+package util;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -16,7 +16,9 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.wizards.newresource.BasicNewResourceWizard;
 
-import com.sap.furcas.ide.projectwizard.WizardProjectHelper;
+import com.sap.furcas.ide.projectwizard.wizards.FurcasWizard;
+
+
 
 /* 
  * This class is called by the doFinish() method of the Wizard. It creates the Language Project and the necessary
@@ -72,7 +74,7 @@ public class CreateProject extends WorkspaceModifyOperation {
 
         List<String> extraclasspath = new ArrayList<String>(Arrays.asList(EXTRA_CLASSPATH));
 
-        IProject dslProject = WizardProjectHelper.createPlugInProject(pi.getProjectName(), srcfolders, nonSrcFolders,
+        IProject dslProject = WizardProjectHelper.createPlugInProject(pi, pi.getProjectName(), srcfolders, nonSrcFolders,
                 Collections.<IProject> emptyList(), exportedPackages, extraclasspath, monitor, this.shell, null, false);
 
         if (dslProject == null) {
@@ -190,7 +192,7 @@ public class CreateProject extends WorkspaceModifyOperation {
         return editorFolder;
     }
 
-    protected static String capitalizeFirstChar(String s) {
+    public static String capitalizeFirstChar(String s) {
         return ("" + s.charAt(0)).toUpperCase() + s.substring(1);
     }
 
