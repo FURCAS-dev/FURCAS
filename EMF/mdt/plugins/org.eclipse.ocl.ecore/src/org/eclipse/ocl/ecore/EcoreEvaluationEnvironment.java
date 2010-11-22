@@ -27,7 +27,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
@@ -46,13 +45,13 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.ocl.AbstractEvaluationEnvironment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.EvaluationEnvironmentWithHiddenOpposites;
+import org.eclipse.ocl.LazyExtentMap;
 import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.ecore.internal.OCLEcorePlugin;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.internal.OCLStatusCodes;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
-import org.eclipse.ocl.ecore.opposites.ExtentMap;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
@@ -404,18 +403,21 @@ public class EcoreEvaluationEnvironment
 	}
 
 	
-    /**
-     * In the case of the "hidden opposites" OCL environment, an instance of the {@link ExtentMap} class is used. Is bases its
-     * <code>allInstances</code> computations on the {@link OppositeEndFinder} passed to the constructor of this object. See
-     * {@link OppositeEndFinder#getAllInstancesSeenBy(EClass, org.eclipse.emf.common.notify.Notifier)}.
-     */
-    public Map<EClass, Set<EObject>> createExtentMap(Object object) {
-        Notifier context = null;
-        if (object instanceof Notifier) {
-            context = (Notifier) object;
-        }
-        return new ExtentMap(context, oppositeEndFinder);
-    }
+	// implements the inherited specification
+	public Map<EClass, Set<EObject>> createExtentMap(Object object) {
+		if (object instanceof EObject) {
+			return new LazyExtentMap<EClass, EObject>((EObject) object) {
+
+				// implements the inherited specification
+				@Override
+				protected boolean isInstance(EClass cls, EObject element) {
+					return cls.isInstance(element);
+				}
+			};
+		}
+
+		return Collections.emptyMap();
+	}
 
     // implements the inherited specification
 	public boolean isKindOf(Object object, EClassifier classifier) {
