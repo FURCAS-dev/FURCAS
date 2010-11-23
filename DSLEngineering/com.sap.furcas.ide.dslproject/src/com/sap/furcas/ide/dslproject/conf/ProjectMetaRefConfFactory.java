@@ -21,6 +21,8 @@ public class ProjectMetaRefConfFactory {
 	/** The Constant OPEN_MOF14_METAMODEL_CONF. */
 	private static final String OPEN_MOF14_METAMODEL_CONF = "openMof14Metamodel";
 
+    private static final String ECORE_METAMODEL_CONF = "ecoreMetamodel";
+
 	/**
 	 * Gets the config.
 	 * 
@@ -36,8 +38,8 @@ public class ProjectMetaRefConfFactory {
 			return DeployedMetaProjectConf.getConfigurationFromProject(project);
 		} else if(OPEN_MOF14_METAMODEL_CONF.equals(value)) {
 			return OpenMOF14MetaProjectConf.getConfigurationFromProject(project);
-//	      } else if(ECORE_METAMODEL_CONF.equals(value)) {
-//	            return EcoreMetaProjectConf.getConfigurationFromProject(project);
+	      } else if(ECORE_METAMODEL_CONF.equals(value)) {
+	            return EcoreMetaProjectConf.getConfigurationFromProject(project);
 		} else if (value == null || value.trim().equals("")) {
 			return null;
 		} else {
@@ -58,8 +60,8 @@ public class ProjectMetaRefConfFactory {
 			ProjectPropertiesStorageHelper.setProperty(project, Constants.PROJECT_METAREF_PROPERTY, DEPLOYED_METAMODEL_CONF);
 		} else if (conf instanceof OpenMOF14MetaProjectConf) {
 		    ProjectPropertiesStorageHelper.setProperty(project, Constants.PROJECT_METAREF_PROPERTY, OPEN_MOF14_METAMODEL_CONF);
-//		} else if (conf instanceof EcoreMetaProjectConf) {
-//		    ProjectPropertiesStorageHelper.setProperty(project, Constants.PROJECT_METAREF_PROPERTY, ECORE_METAMODEL_CONF);
+		} else if (conf instanceof EcoreMetaProjectConf) {
+		    ProjectPropertiesStorageHelper.setProperty(project, Constants.PROJECT_METAREF_PROPERTY, ECORE_METAMODEL_CONF);
 		} else {
 		    throw new CoreException(EclipseExceptionHelper.getErrorStatus( "Unknown IProjectMetaRefConf implementation: " + conf.getClass().getName(), Activator.PLUGIN_ID));
 		}
