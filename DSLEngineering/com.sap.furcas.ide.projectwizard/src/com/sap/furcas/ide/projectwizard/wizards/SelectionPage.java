@@ -33,7 +33,6 @@ public class SelectionPage extends WizardPage {
     private LoadPage page3;
     FurcasWizard wiz;
     ProjectInfo pi;
-    String className;
 
     public SelectionPage(ISelection selection, FurcasWizard w, ProjectInfo projectInfo) {
         super("Metamodel");
@@ -112,7 +111,7 @@ public class SelectionPage extends WizardPage {
         classNameText = new Text(container, SWT.BORDER | SWT.SINGLE);
         classNameText.setLayoutData(gd);
         classNameText.setText("ExampleClass");
-        className = classNameText.getText();
+        pi.setClassName(classNameText.getText());
         classNameText.setVisible(false);
         classNameText.addModifyListener(new ModifyListener() {
             public void modifyText(ModifyEvent e) {
@@ -143,12 +142,12 @@ public class SelectionPage extends WizardPage {
 
     protected void dialogChanged() {
         pi.setNsURI(nsURIText.getText());
-        className = classNameText.getText();
-        if (!isAlpha(className)) {
+        pi.setClassName(classNameText.getText());
+        if (!isAlpha(pi.getClassName())) {
             setErrorMessage("The classname can only contain upper and lowercase letters");
             return;
         }
-        if (!isUpper(className.charAt(0))) {
+        if (!isUpper(pi.getClassName().charAt(0))) {
             setErrorMessage("The classname should start with an uppercase letter");
             return;
         }
@@ -189,10 +188,6 @@ public class SelectionPage extends WizardPage {
                 page3.setPageComplete(true);
         }
         return null;
-    }
-
-    public String getClassName() {
-        return className;
     }
 
     private boolean isAlpha(final String s) {

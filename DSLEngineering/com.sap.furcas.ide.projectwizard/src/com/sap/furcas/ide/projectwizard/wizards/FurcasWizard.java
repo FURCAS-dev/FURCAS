@@ -101,7 +101,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
     public boolean performFinish() {
 
         final ProjectInfo pi = page.getProjectInfo();
-        final String className = page2.getClassName();
+        final String className = pi.getClassName();
 
         if (page.valid) {
 
