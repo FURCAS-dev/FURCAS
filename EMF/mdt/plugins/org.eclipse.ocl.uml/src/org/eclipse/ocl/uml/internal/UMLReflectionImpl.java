@@ -317,6 +317,10 @@ public class UMLReflectionImpl
         return OCLUMLUtil.getAllOperations(classifier);
     }
     
+    public Property getOpposite(Property property) {
+    	return property.getOtherEnd();
+    }
+    
     public Property createProperty(String name, Classifier resultType) {
         Property result = UMLFactory.eINSTANCE.createProperty();
         
