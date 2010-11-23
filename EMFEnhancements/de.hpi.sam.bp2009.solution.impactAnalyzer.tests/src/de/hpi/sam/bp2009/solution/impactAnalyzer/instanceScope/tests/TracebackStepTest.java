@@ -32,7 +32,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActiv
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OCLFactoryImpl;
 import de.hpi.sam.bp2009.solution.testutils.BaseDepartmentTest;
 
-public class TracebackStepTests extends BaseDepartmentTest {
+public class TracebackStepTest extends BaseDepartmentTest {
     private EPackage cp;
     private ResourceSetImpl rs;
     private boolean oldTracebackStepISAActive;
