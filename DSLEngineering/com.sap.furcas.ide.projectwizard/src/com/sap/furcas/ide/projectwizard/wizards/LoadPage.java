@@ -11,6 +11,7 @@ import java.util.Map;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -57,7 +58,7 @@ public class LoadPage extends WizardPage {
 
     @Override
     public void createControl(Composite parent) {
-        Composite container = new Composite(parent, SWT.NULL);
+        final Composite container = new Composite(parent, SWT.NULL);
         GridLayout layout = new GridLayout();
         container.setLayout(layout);
         layout.numColumns = 3;
@@ -69,6 +70,7 @@ public class LoadPage extends WizardPage {
         button1.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
+                EPackage eP = null;
                 pi.setFromWorkspace(false);
                 RegisteredPackageDialog registeredPackageDialog = new RegisteredPackageDialog(getShell());
                 registeredPackageDialog.open();
@@ -90,6 +92,7 @@ public class LoadPage extends WizardPage {
                         for (Resource resource : resourceSet.getResources()) {
                             for (EPackage ePackage : getAllPackages(resource)) {
                                 if (nsURIs.contains(ePackage.getNsURI())) {
+                                    eP = ePackage;
                                     uris.append(resource.getURI());
                                     uris.append("  ");
                                     break;
@@ -100,13 +103,16 @@ public class LoadPage extends WizardPage {
                     } else {
                         StringBuffer uris = new StringBuffer();
                         for (int i = 0, length = result.length; i < length; i++) {
+                            eP = (EPackage) result[i];
                             uris.append(result[i]);
                             uris.append("  ");
                         }
                         uriField.setText((uriField.getText() + "  " + uris.toString()).trim());
                     }
                 }
+                buildClassChooser(eP, container);
             }
+            
         });
 
         Button button3 = new Button(container, SWT.PUSH);
@@ -148,6 +154,22 @@ public class LoadPage extends WizardPage {
         setErrorMessage(null);
         setControl(container);
 
+    }
+
+    protected void buildClassChooser(EPackage eP, Composite container) {
+        EList<EPackage> ePs = eP.getESubpackages();
+        String[] items = new String[ePs.size()];
+        for (int i = 0; i < ePs.size(); i ++)
+            items[i] = ePs.get(i).eClass().getName();
+            
+        org.eclipse.swt.widgets.List list = new org.eclipse.swt.widgets.List(container, SWT.BORDER);
+        GridData gd = new GridData();
+        gd.horizontalAlignment = GridData.FILL;
+        gd.horizontalSpan = 4;
+        gd.grabExcessHorizontalSpace = true;
+        list.setLayoutData(gd);
+        list.setItems(items);
+        
     }
 
     protected void dialogChanged() {
