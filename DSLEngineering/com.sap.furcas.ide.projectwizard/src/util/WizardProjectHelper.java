@@ -78,9 +78,12 @@ public class WizardProjectHelper {
                     classpathEntries.add(referencedProjectClasspathEntry);
                 }
             }
-
+            if (!metamodel) {
             projectDescription.setNatureIds(new String[] { JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature",
                     "com.sap.furcas.ide.dslproject.syntaxGenerationNature" });
+            }
+            else
+                projectDescription.setNatureIds(new String[] { JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature"});
 
             ICommand java = projectDescription.newCommand();
             java.setBuilderName(JavaCore.BUILDER_ID);
@@ -91,10 +94,15 @@ public class WizardProjectHelper {
             ICommand schema = projectDescription.newCommand();
             schema.setBuilderName("org.eclipse.pde.SchemaBuilder");
 
+            if (!metamodel) {
             ICommand furcas = projectDescription.newCommand();
             furcas.setBuilderName("com.sap.furcas.ide.dslproject.syntaxBuilder");
 
             projectDescription.setBuildSpec(new ICommand[] { java, manifest, schema, furcas });
+            }
+            else {
+                projectDescription.setBuildSpec(new ICommand[] { java, manifest, schema});
+            }
 
             project.open(new SubProgressMonitor(progressMonitor, 1));
             project.setDescription(projectDescription, new SubProgressMonitor(progressMonitor, 1));

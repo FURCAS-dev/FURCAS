@@ -16,6 +16,8 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.wizards.newresource.BasicNewResourceWizard;
 
+import com.sap.furcas.ide.dslproject.conf.EcoreMetaProjectConf;
+import com.sap.furcas.ide.dslproject.conf.ProjectMetaRefConfFactory;
 import com.sap.furcas.ide.projectwizard.wizards.FurcasWizard;
 
 
@@ -44,6 +46,7 @@ public class CreateProject extends WorkspaceModifyOperation {
         this.pi = pi;
         this.shell = shell;
         this.className = className;
+        
         scf = new SourceCodeFactory();
 
     }
@@ -53,7 +56,9 @@ public class CreateProject extends WorkspaceModifyOperation {
 
         IProject project = createProject(monitor);
         if (project != null) {
-            /* ProjectMetaRefConfFactory.configure(project, conf); TODO */
+            EcoreMetaProjectConf conf;
+            conf = new EcoreMetaProjectConf(project);
+            ProjectMetaRefConfFactory.configure(project, conf); 
         }
     }
 
