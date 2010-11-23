@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.opposites.ExtentMap;
 import org.eclipse.ocl.expressions.OCLExpression;
 
 /**
@@ -85,6 +86,7 @@ public class EvaluationTest
 	 */
 	public void test_allInstancesWithRemovingResource() throws ParserException {
 		ResourceSet rs = new ResourceSetImpl();
+		ocl.setExtentMap(new ExtentMap(rs));
 		Resource rOld = new ResourceImpl();
 		rs.getResources().add(rOld);
 		EObject oldApple = fruitFactory.create(apple);
@@ -103,6 +105,7 @@ public class EvaluationTest
 		rs.getResources().remove(rNew);
 		Collection<?> allApplesWithResourceRemovedAgain = (Collection<?>) ocl.evaluate(rs, ai);
 		assertFalse(allApplesWithResourceRemovedAgain.contains(newApple));
+		ocl.setExtentMap(null);
 	}
    
 	/**

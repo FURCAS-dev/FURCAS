@@ -19,6 +19,7 @@
  */
 package org.eclipse.ocl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
@@ -1098,16 +1099,44 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
         throws LookupException {
         
         P result = lookupProperty(owner, name);
-        
-        if (result == null) {
-            // looks up non-navigable named ends as well as unnamed ends.  Hence
-            // the possibility of ambiguity
-            result = lookupNonNavigableEnd(owner, name);
-            
-            if ((result == null) && AbstractOCLAnalyzer.isEscaped(name)) {
-                result = lookupNonNavigableEnd(owner, AbstractOCLAnalyzer.unescape(name));
-            }
-        }
+        // look up non-navigable/unnamed ends in any case because they may be located in
+		// a specialization of result's owner, hence take precedence over
+		// result:
+		P nonNavigableEnd = lookupNonNavigableEnd(owner, name);
+		if ((nonNavigableEnd == null) && AbstractOCLAnalyzer.isEscaped(name)) {
+			nonNavigableEnd = lookupNonNavigableEnd(owner,
+				AbstractOCLAnalyzer.unescape(name));
+		}
+		if (result == null) {
+			result = nonNavigableEnd;
+		} else {
+			// don't consider unnanmed opposite ends if a named "real" end has already been found
+			if (nonNavigableEnd != null && getUMLReflection().getName(nonNavigableEnd) != null) {
+				P nonNavigableEndOpposite = getUMLReflection().getOpposite(nonNavigableEnd);
+				// check for ambiguity; note that nonNavigableEnd may be a temporary property
+				// which doesn't have a container set; type therefore needs to be determined
+				// through opposite
+				C nonNavigableEndOwner = TypeUtil.getPropertyType(this, null, nonNavigableEndOpposite);
+				if (getUMLReflection().getAllSupertypes(nonNavigableEndOwner).contains(getUMLReflection().getOwningClassifier(result))) {
+					result = nonNavigableEnd;
+				} else if (!getUMLReflection().getAllSupertypes(getUMLReflection().getOwningClassifier(result)).contains(
+					TypeUtil.getPropertyType(this, null, getUMLReflection().getOpposite(nonNavigableEnd)))) {
+	                ProblemHandler.Severity sev = getValue(ProblemOption.AMBIGUOUS_ASSOCIATION_ENDS);
+	                // will have to report the problem
+	                String message = OCLMessages.bind(OCLMessages.Ambig_AssocEnd_,
+	                    name, getUMLReflection().getName(owner));
+	                if (sev.getDiagnosticSeverity() >= Diagnostic.ERROR) {
+	                	List<P> ambiguousMatches = new ArrayList<P>();
+	                	ambiguousMatches.add(result);
+	                	ambiguousMatches.add(nonNavigableEnd);
+	                    throw new AmbiguousLookupException(message, ambiguousMatches);
+	                } else {
+	                    getProblemHandler().analyzerProblem(sev, message,
+	                        "lookupNonNavigableProperty", -1, -1); //$NON-NLS-1$
+	                }
+				}
+			}
+		}
 
         return result;
     }
