@@ -27,7 +27,7 @@ import company.CompanyFactory;
 import company.CompanyPackage;
 import company.Department;
 
-public class SimpleTests extends TestCase {
+public class SimpleTest extends TestCase {
     private ResourceSet resourceSet;
     private Resource resource;
     private TriggerManager triggerManager;
