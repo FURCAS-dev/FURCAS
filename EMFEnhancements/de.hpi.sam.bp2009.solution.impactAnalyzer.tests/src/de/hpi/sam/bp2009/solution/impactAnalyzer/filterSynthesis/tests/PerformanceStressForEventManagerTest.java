@@ -54,7 +54,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLEx
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OCLFactoryImpl;
 
 
-public class PerformanceStressTestForEventManager extends TestCase {
+public class PerformanceStressForEventManagerTest extends TestCase {
     private static final String FILTERSUBSCRIPTION = "filtersubscription";
     private static final String FILTERCREATION = "filtercreation";
     private static final String NOTIFY_REFERENCE_INIT_EXPRESSION_478 = "Notify_Reference_InitExpression_478";
