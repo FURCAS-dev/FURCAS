@@ -7,6 +7,5 @@
 	<classpathentry kind="src" path="srcUnitTests"/>
 	<classpathentry kind="src" path="srcScenarioTests"/>
 	<classpathentry kind="src" path="srcBootstrapTests"/>
-	<classpathentry kind="src" path="srcTCSFeatureTests"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
