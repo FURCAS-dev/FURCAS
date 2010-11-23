@@ -402,7 +402,6 @@ public class EcoreEvaluationEnvironment
 		return result;
 	}
 
-	
 	// implements the inherited specification
 	public Map<EClass, Set<EObject>> createExtentMap(Object object) {
 		if (object instanceof EObject) {
