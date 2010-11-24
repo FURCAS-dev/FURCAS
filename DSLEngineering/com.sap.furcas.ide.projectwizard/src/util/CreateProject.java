@@ -16,8 +16,6 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.wizards.newresource.BasicNewResourceWizard;
 
-import com.sap.furcas.ide.dslproject.conf.EcoreMetaProjectConf;
-import com.sap.furcas.ide.dslproject.conf.ProjectMetaRefConfFactory;
 import com.sap.furcas.ide.projectwizard.wizards.FurcasWizard;
 
 
@@ -39,13 +37,12 @@ public class CreateProject extends WorkspaceModifyOperation {
     ProjectInfo pi;
     Shell shell;
     FurcasWizard wizard;
-    String className;
+    public IProject iP;
     static SourceCodeFactory scf;
 
-    public CreateProject(ProjectInfo pi, Shell shell, String className) {
+    public CreateProject(ProjectInfo pi, Shell shell) {
         this.pi = pi;
         this.shell = shell;
-        this.className = className;
         
         scf = new SourceCodeFactory();
 
@@ -55,11 +52,7 @@ public class CreateProject extends WorkspaceModifyOperation {
         monitor.beginTask("Creating project " + pi.getProjectName(), 2);
 
         IProject project = createProject(monitor);
-        if (project != null) {
-            EcoreMetaProjectConf conf;
-            conf = new EcoreMetaProjectConf(project);
-            ProjectMetaRefConfFactory.configure(project, conf); 
-        }
+        iP = project;
     }
 
     private IProject createProject(IProgressMonitor monitor) {
@@ -117,7 +110,7 @@ public class CreateProject extends WorkspaceModifyOperation {
         WizardProjectHelper.createFile("generate.properties", sourceTargetRootFolder, props, monitor);
 
         // create a sample TCS file and store it in folder "generated"
-        String templateString = scf.createSampleTCS(pi, className);
+        String templateString = scf.createSampleTCS(pi);
         IFile grammar = WizardProjectHelper.createFile(pi.getTCSFileName(), genSrcFolder, templateString, monitor);
 
         monitor.setTaskName("Opening file for editing...");

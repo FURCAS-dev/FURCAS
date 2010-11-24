@@ -173,13 +173,13 @@ public class SourceCodeFactory {
         return template.toString();
     }
 
-    protected String createSampleTCS(ProjectInfo pi, String className) {
+    protected String createSampleTCS(ProjectInfo pi) {
         StringTemplate template = null;
         String templateString = null;
         try {
             templateString = readFile("tcs.txt");
             template = new StringTemplate(templateString);
-            setTemplateAtts(template, pi, className);
+            setTemplateAtts(template, pi);
 
         } catch (IOException e) {
             // TODO Auto-generated catch block
@@ -208,7 +208,7 @@ public class SourceCodeFactory {
     private void setTemplateAtts(StringTemplate template, ProjectInfo pi, String className) {
         String capLangName = CreateProject.capitalizeFirstChar(pi.getLanguageName());
         template.setAttribute("LangName", pi.getLanguageName());
-        template.setAttribute("FirstClass", className);
+        template.setAttribute("FirstClass", pi.getClassName());
         template.setAttribute("Dollar", "$");
         template.setAttribute("CapLangName", capLangName);
         template.setAttribute("ProjectName", pi.getProjectName());
