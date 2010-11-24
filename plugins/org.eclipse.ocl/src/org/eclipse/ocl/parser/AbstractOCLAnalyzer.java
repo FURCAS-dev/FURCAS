@@ -2537,7 +2537,6 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		return result;
 	}
 	
-	
 	/**
 	 * Attempts to parse a <tt>simpleNameCS</tt> as a property call expression.
 	 * 
