@@ -103,7 +103,6 @@ public class FurcasWizard extends Wizard implements INewWizard {
     public boolean performFinish() {
 
         final ProjectInfo pi = page.getProjectInfo();
-        final String className = pi.getClassName();
 
         if (page.valid) {
 
@@ -111,7 +110,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 @Override
                 public void run(IProgressMonitor monitor) throws InvocationTargetException {
 
-                    doFinish(pi, monitor, className);
+                    doFinish(pi, monitor);
 
                     monitor.done();
                 }
@@ -139,7 +138,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
      * doAdditional() creates the new .ecore file. loadmm() leads to loading an existing Metamodel into the new one. After all the
      * method generateSpecific() generates all the MetaModel related files and coding into the Language Project.
      */
-    void doFinish(final ProjectInfo pi, IProgressMonitor monitor, final String className) {
+    void doFinish(final ProjectInfo pi, IProgressMonitor monitor) {
         new UIJob("creating FURCAS projects...") {
             @Override
             public IStatus runInUIThread(IProgressMonitor monitor) {
@@ -148,7 +147,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
                     cP.run(monitor);
                     IProject project = cP.iP;
                     if (!pi.isLoadMetamodel()) {
-                        doAdditional(className);
+                        doAdditional(pi);
                     }
                     generateSpecific(project, pi.getNsURI());
 
@@ -162,7 +161,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
         }.schedule();
     }
 
-    public void doAdditional(final String className) {
+    public void doAdditional(final ProjectInfo pi) {
         IWorkbenchPage wpage = null;
         try {
 
@@ -172,7 +171,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 @Override
                 protected void execute(IProgressMonitor progressMonitor) {
                     try {
-                        CreateMMProject.create(getFurcasWizard(), page, getShell(), className);
+                        CreateMMProject.create(getFurcasWizard(), page, getShell());
                     } catch (Exception exception) {
                         EcoreEditorPlugin.INSTANCE.log(exception);
                     } finally {
@@ -250,5 +249,6 @@ public class FurcasWizard extends Wizard implements INewWizard {
             }
         }
     }
+    
 
 }

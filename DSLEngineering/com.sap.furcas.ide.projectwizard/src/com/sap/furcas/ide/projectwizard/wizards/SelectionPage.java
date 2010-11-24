@@ -69,6 +69,7 @@ public class SelectionPage extends WizardPage {
                 }
                 getNextPage();
                 setPageComplete(true);
+                wiz.getContainer().updateButtons();                
                 classNameLabel.setText("Name the first class of the metamodel:");
                 nsURILabel.setText("nsURI of the metamodel:");
                 classNameText.setVisible(true);
@@ -96,6 +97,7 @@ public class SelectionPage extends WizardPage {
                 }
                 getNextPage();
                 setPageComplete(true);
+                wiz.getContainer().updateButtons(); 
                 classNameLabel.setVisible(false);
                 nsURILabel.setVisible(false);
                 classNameText.setVisible(false);
@@ -177,16 +179,21 @@ public class SelectionPage extends WizardPage {
             if (page3 == null) {
                 page3 = new LoadPage("LoadPage", wiz, pi);
                 wiz.addPage(page3);
-                page3.setPageComplete(false);
                 this.setPageComplete(true);
                 pi.setLoadMetamodel(true);
             }
+            page3.setPageComplete(false);
+            page3.getNextPage().setPageComplete(false);
             return page3;
         } else if (getSel() == 1) {
             pi.setLoadMetamodel(false);
             pi.setNsURI(nsURIText.getText());
-            if (page3 != null)
+            pi.setClassName(classNameText.getText());
+            if (page3 != null){
                 page3.setPageComplete(true);
+                if (page3.getNextPage() != null)
+                    page3.getNextPage().setPageComplete(true);
+            }
         }
         return null;
     }
