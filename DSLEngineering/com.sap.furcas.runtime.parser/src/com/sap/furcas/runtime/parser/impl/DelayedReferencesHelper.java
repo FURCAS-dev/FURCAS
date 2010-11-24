@@ -105,7 +105,7 @@ public class DelayedReferencesHelper {
 
         if (reference.getType() == DelayedReference.TYPE_SEMANTIC_PREDICATE) {
             return setDelayedReferenceWithPredicate(reference, modelAdapter, contextManager, contextElement, parser);
-        }else if (reference.getType() == DelayedReference.SEMANTIC_DISAMBIGUATE) {
+        } else if (reference.getType() == DelayedReference.SEMANTIC_DISAMBIGUATE) {
 			return setDelayedReferenceWithSemanticDisambiguate(reference,
 				modelAdapter, contextManager, contextElement, parser);
 		}
