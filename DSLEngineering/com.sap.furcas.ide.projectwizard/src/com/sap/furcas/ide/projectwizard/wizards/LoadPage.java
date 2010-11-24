@@ -1,9 +1,11 @@
 package com.sap.furcas.ide.projectwizard.wizards;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +24,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.jface.wizard.IWizardPage;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -38,7 +40,6 @@ import org.eclipse.swt.widgets.Text;
 
 import com.sap.furcas.ide.projectwizard.util.ProjectInfo;
 
-
 /* 
  * This wizardpage is displayed when the user chooses to import some kind of existing MetaModel into his
  * Metamodelproject.
@@ -48,6 +49,8 @@ public class LoadPage extends WizardPage {
     public Text uriField;
     public Label wrongType;
     ProjectInfo pi;
+    public EPackage eP;
+    ClassChooserPage cCP;
 
     protected LoadPage(String pageName, FurcasWizard wiz, ProjectInfo pi) {
         super(pageName);
@@ -71,7 +74,6 @@ public class LoadPage extends WizardPage {
         button1.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
-                EPackage eP = null;
                 pi.setFromWorkspace(false);
                 RegisteredPackageDialog registeredPackageDialog = new RegisteredPackageDialog(getShell());
                 registeredPackageDialog.open();
@@ -104,16 +106,15 @@ public class LoadPage extends WizardPage {
                     } else {
                         StringBuffer uris = new StringBuffer();
                         for (int i = 0, length = result.length; i < length; i++) {
-                            eP = (EPackage) result[i];
                             uris.append(result[i]);
                             uris.append("  ");
                         }
+                        eP = (EPackage) result[0];
                         uriField.setText((uriField.getText() + "  " + uris.toString()).trim());
                     }
                 }
-                buildClassChooser(eP, container);
             }
-            
+
         });
 
         Button button3 = new Button(container, SWT.PUSH);
@@ -127,6 +128,7 @@ public class LoadPage extends WizardPage {
                 if (files.length > 0) {
                     IProject mMproject = files[0].getProject();
                     pi.setMmProject(mMproject.getName());
+                    eP = fileToEPack(files[0]);
                     StringBuffer text = new StringBuffer();
                     for (int i = 0; i < files.length; ++i) {
                         text.append(URI.createPlatformResourceURI(files[i].getFullPath().toString(), true));
@@ -148,49 +150,71 @@ public class LoadPage extends WizardPage {
         });
         gd = new GridData();
         gd.horizontalAlignment = GridData.FILL;
+        gd.verticalAlignment = GridData.FILL;
         gd.horizontalSpan = 4;
+        gd.verticalSpan = 2;
         gd.grabExcessHorizontalSpace = true;
-        wrongType = new Label(container, SWT.NULL);
+        wrongType = new Label(container, SWT.WRAP);
+        wrongType.setText("The File you choose must be a .ecore file. \nWhitespaces before and after URIs will be deleted.");
         wrongType.setLayoutData(gd);
+        wrongType.setVisible(false);
         setErrorMessage(null);
         setControl(container);
 
     }
 
-    protected void buildClassChooser(EPackage eP, Composite container) {
-        EList<EPackage> ePs = eP.getESubpackages();
-        String[] items = new String[ePs.size()];
-        for (int i = 0; i < ePs.size(); i ++)
-            items[i] = ePs.get(i).eClass().getName();
-            
-        org.eclipse.swt.widgets.List list = new org.eclipse.swt.widgets.List(container, SWT.BORDER);
-        GridData gd = new GridData();
-        gd.horizontalAlignment = GridData.FILL;
-        gd.horizontalSpan = 4;
-        gd.grabExcessHorizontalSpace = true;
-        list.setLayoutData(gd);
-        list.setItems(items);
-        
+    protected EPackage fileToEPack(IFile iFile) {
+        ResourceSet resSet = new ResourceSetImpl();
+        resSet.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap());
+        URI fileURI = URI.createPlatformResourceURI("/" + iFile.getProject().getName() + "/" + iFile.getProjectRelativePath().toString(), true);
+        Resource resource = resSet.createResource(fileURI);
+        Map<Object, Object> options = new HashMap<Object, Object>();
+        options.put(XMLResource.OPTION_ENCODING, "UTF-8");
+        try {
+            resource.load(options);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        EList<EObject> sd = resource.getContents();
+        for (EObject object : sd){
+            if(object instanceof EPackage){
+                EPackage ePack = (EPackage) object;
+                pi.setNsURI(ePack.getNsURI());
+                return ePack;
+            }
+        }
+        return null;
     }
 
     protected void dialogChanged() {
         String text = uriField.getText();
         text = text.trim();
         if (!text.endsWith(".ecore")) {
-            wrongType.setText("The File you choose must be a .ecore file. Whitespaces before and after URIs will be deleted.");
+            wrongType.setVisible(true);
             setPageComplete(false);
         } else {
-            wrongType.setText("");
+            wrongType.setVisible(false);
             setPageComplete(true);
+            getNextPage();
         }
         if (!uriField.getText().matches(text))
             uriField.setText(text);
         pi.setURIPath(uriField.getText());
+        wizard.getWiz().getContainer().updateButtons();
     }
 
     @Override
-    public IWizardPage getNextPage() {
-        return null;
+    public ClassChooserPage getNextPage() {
+        if (cCP == null) {
+            cCP = new ClassChooserPage("cCP",wizard.page.getProjectInfo());
+            cCP.setPageComplete(false);
+            wizard.addPage(cCP);
+        }
+        if (cCP.geteP() == null)
+            cCP.seteP(eP);
+        
+        
+        return cCP;
     }
 
     protected Collection<EPackage> getAllPackages(Resource resource) {

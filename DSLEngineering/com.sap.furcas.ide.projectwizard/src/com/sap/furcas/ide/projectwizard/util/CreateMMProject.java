@@ -42,10 +42,9 @@ public class CreateMMProject {
     protected static EPackage eP;
     protected static IFile file;
     protected static Shell shell;
-    protected static IProgressMonitor progressMonitor;;
-    protected static String className;
+    protected static IProgressMonitor progressMonitor;
 
-    public static void create(FurcasWizard wizard, LanguagePage page, Shell sh, String cName) {
+    public static void create(FurcasWizard wizard, LanguagePage page, Shell sh) {
         lpage = page;
         progressMonitor = new NullProgressMonitor();
         String projectName = page.getProjectInfo().getProjectName() + ".metamodel";
@@ -54,7 +53,6 @@ public class CreateMMProject {
         List<String> nonSrcFolders = new ArrayList<String>();
         nonSrcFolders.add("model");
         shell = sh;
-        className = cName;
 
         // Create the project for the metamodel
         WizardProjectHelper.createPlugInProject(lpage.getProjectInfo(), projectName, srcFolders, nonSrcFolders, Collections.<IProject> emptyList(), null,
@@ -99,7 +97,7 @@ public class CreateMMProject {
                 eP.setNsPrefix(lpage.getProjectInfo().getLanguageName());
                 eP.setNsURI(lpage.getProjectInfo().getNsURI());
                 EClass eC = ecoreFactory.createEClass();
-                eC.setName(className);
+                eC.setName(lpage.getProjectInfo().getClassName());
                 eP.getEClassifiers().add(eC);
                 resource.getContents().add(eP);
             } else
