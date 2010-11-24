@@ -2,7 +2,7 @@
  * Works together with the classes CreateProject and SourceCodeFactory in the wizards package.
  * */
 
-package util;
+package com.sap.furcas.ide.projectwizard.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package util;
+package com.sap.furcas.ide.projectwizard.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -92,7 +92,7 @@ public class SourceCodeFactory {
         try {
             templateString = readFile("editor.txt");
             template = new StringTemplate(templateString);
-            setTemplateAtts(template, pi, "wayne");
+            setTemplateAtts(template, pi);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -106,7 +106,7 @@ public class SourceCodeFactory {
         try {
             templateString = readFile("genmodel.txt");
             template = new StringTemplate(templateString);
-            setTemplateAtts(template, pi, "wayne");
+            setTemplateAtts(template, pi);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -120,7 +120,7 @@ public class SourceCodeFactory {
         try {
             templateString = readFile("mapper.txt");
             template = new StringTemplate(templateString);
-            setTemplateAtts(template, pi, "wayne");
+            setTemplateAtts(template, pi);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -134,7 +134,7 @@ public class SourceCodeFactory {
         try {
             templateString = readFile("activator.txt");
             template = new StringTemplate(templateString);
-            setTemplateAtts(template, pi, "wayne");
+            setTemplateAtts(template, pi);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -148,7 +148,7 @@ public class SourceCodeFactory {
         try {
             templateString = readFile("pluginxml.txt");
             template = new StringTemplate(templateString);
-            setTemplateAtts(template, pi, "wayne");
+            setTemplateAtts(template, pi);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -163,7 +163,7 @@ public class SourceCodeFactory {
         try {
             templateString = readFile("genprops.txt");
             template = new StringTemplate(templateString);
-            setTemplateAtts(template, pi, "wayne");
+            setTemplateAtts(template, pi);
 
         } catch (IOException e) {
             // TODO Auto-generated catch block
@@ -195,7 +195,7 @@ public class SourceCodeFactory {
         try {
             templateString = readFile("parserfactory.txt");
             template = new StringTemplate(templateString);
-            setTemplateAtts(template, pi, "wayne");
+            setTemplateAtts(template, pi);
 
         } catch (IOException e) {
             // TODO Auto-generated catch block
@@ -205,7 +205,9 @@ public class SourceCodeFactory {
         return template.toString();
     }
 
-    private void setTemplateAtts(StringTemplate template, ProjectInfo pi, String className) {
+    private void setTemplateAtts(StringTemplate template, ProjectInfo pi) {
+        String mmRef = ",\n " + pi.getProjectName() + ".metamodel;bundle-version=\"1.0.0\"";
+        String wsRef = ",\n " + pi.getMmProject();
         String capLangName = CreateProject.capitalizeFirstChar(pi.getLanguageName());
         template.setAttribute("LangName", pi.getLanguageName());
         template.setAttribute("FirstClass", pi.getClassName());
@@ -216,21 +218,12 @@ public class SourceCodeFactory {
         template.setAttribute("Ext", pi.getFileExtension());
         template.setAttribute("Path", pi.getBasePath());
         template.setAttribute("TCSPath", "generated/generated/" + pi.getLanguageName() + ".tcs");
-    }
-
-    private void setTemplateAtts(StringTemplate template, ProjectInfo pi) {
-
-        String mmRef = ",\n " + pi.getProjectName() + ".metamodel;bundle-version=\"1.0.0\"";
-        String wsRef = ",\n " + pi.getMmProject();
-        template.setAttribute("ProjectName", pi.getProjectName());
         if (pi.isLoadMetamodel()){
             if (pi.isFromWorkspace())
                 template.setAttribute("MMRef", wsRef);                                
         }
         else
             template.setAttribute("MMRef", mmRef);
-            
-        
-
     }
+
 }

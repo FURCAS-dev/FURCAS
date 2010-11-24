@@ -36,7 +36,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-import util.ProjectInfo;
+import com.sap.furcas.ide.projectwizard.util.ProjectInfo;
+
 
 /* 
  * This wizardpage is displayed when the user chooses to import some kind of existing MetaModel into his

@@ -18,7 +18,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-import util.ProjectInfo;
+import com.sap.furcas.ide.projectwizard.util.ProjectInfo;
+
 
 /* This is the second page of the wizard. It lets you choose, wether you want to create a pure fresh MetaModel
  * or import an existing one into your new Metamodel.*/
@@ -126,7 +127,7 @@ public class SelectionPage extends WizardPage {
         nsURIText = new Text(container, SWT.BORDER | SWT.SINGLE);
         gd = new GridData(GridData.FILL_HORIZONTAL);
         nsURIText.setLayoutData(gd);
-        nsURIText.setText("http://mydsl/metamodel/");
+        nsURIText.setText("http://www.mydsl.com/metamodel/");
         pi.setNsURI(nsURIText.getText());
         nsURIText.addModifyListener(new ModifyListener() {
             public void modifyText(ModifyEvent e) {

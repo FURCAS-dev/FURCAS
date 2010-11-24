@@ -38,10 +38,10 @@ import org.eclipse.ui.progress.UIJob;
 
 import com.sap.furcas.ide.dslproject.conf.EcoreMetaProjectConf;
 import com.sap.furcas.ide.dslproject.conf.ProjectMetaRefConfFactory;
+import com.sap.furcas.ide.projectwizard.util.CreateMMProject;
+import com.sap.furcas.ide.projectwizard.util.CreateProject;
+import com.sap.furcas.ide.projectwizard.util.ProjectInfo;
 
-import util.CreateMMProject;
-import util.CreateProject;
-import util.ProjectInfo;
 
 /*
  * This Wizard creates a pair of projects for the Furcas DSL project. It generates the necessary folder,
@@ -150,7 +150,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
                     if (!pi.isLoadMetamodel()) {
                         doAdditional(className);
                     }
-                    generateSpecific(project);
+                    generateSpecific(project, pi.getNsURI());
 
                 } catch (InvocationTargetException e) {
                 } catch (InterruptedException e) {
@@ -238,10 +238,10 @@ public class FurcasWizard extends Wizard implements INewWizard {
     /*
      * This method provides the generation of the MetaModelspecific files and coding in the dsl project.
      */
-    protected void generateSpecific(IProject project) {
+    protected void generateSpecific(IProject project, String nsURI) {
         if (project != null) {
             EcoreMetaProjectConf conf;
-            conf = new EcoreMetaProjectConf(project);
+            conf = new EcoreMetaProjectConf(project, nsURI);
             try {
                 ProjectMetaRefConfFactory.configure(project, conf);
             } catch (CoreException e) {

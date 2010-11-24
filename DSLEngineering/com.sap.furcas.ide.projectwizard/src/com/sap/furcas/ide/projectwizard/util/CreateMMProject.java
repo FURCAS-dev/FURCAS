@@ -1,4 +1,4 @@
-package util;
+package com.sap.furcas.ide.projectwizard.util;
 
 import java.io.IOException;
 import java.util.ArrayList;
