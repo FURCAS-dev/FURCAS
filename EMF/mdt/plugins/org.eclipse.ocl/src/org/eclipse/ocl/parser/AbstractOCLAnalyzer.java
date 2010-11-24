@@ -154,6 +154,7 @@ import org.eclipse.ocl.utilities.OCLFactoryWithHiddenOpposite;
 import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.ocl.utilities.UMLReflection;
+import org.eclipse.ocl.utilities.UMLReflectionWithOpposite;
 
 /**
  * The <code>AbstractOCLAnalyzer</code> supports semantic analysis of a CST
@@ -2426,7 +2427,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			astNode = simpleVariableName(simpleNameCS, env, source, simpleName);
 		}
 		if (astNode == null) {
-			astNode = simplePropertyName(simpleNameCS, env, source,
+			astNode = simplePropertyNameIncludingHiddenOpposites(simpleNameCS, env, source,
 				sourceElementType, simpleName);
 		}
 		if (astNode == null) {
@@ -2535,7 +2536,8 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 		return result;
 	}
-
+	
+	
 	/**
 	 * Attempts to parse a <tt>simpleNameCS</tt> as a property call expression.
 	 * 
@@ -2558,7 +2560,39 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 * 
 	 * @since 1.3
 	 */
-	protected NavigationCallExp<C, P> simplePropertyName(
+	protected PropertyCallExp<C, P> simplePropertyName(
+			SimpleNameCS simpleNameCS,
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			OCLExpression<C> source, C owner, String simpleName) {
+		NavigationCallExp<C, P> result = simplePropertyNameIncludingHiddenOpposites(simpleNameCS, env, source, owner, simpleName);
+		if (result instanceof PropertyCallExp<?, ?>) {
+			return (PropertyCallExp<C, P>) result;
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Attempts to parse a <tt>simpleNameCS</tt> as a property call expression.
+	 * 
+	 * @param simpleNameCS
+	 *            the simple name
+	 * @param env
+	 *            the current environment
+	 * @param source
+	 *            the navigation source expression, or <code>null</code> if the
+	 *            source is implicit
+	 * @param owner
+	 *            the owner of the property to be navigated, or
+	 *            <code>null</code> if the source is implicit
+	 * @param simpleName
+	 *            the simple name, as a string
+	 * @return the parsed property call, or <code>null</code> if the simple name
+	 *         does not resolve to an available property
+	 * 
+	 * @see #simpleNameCS(SimpleNameCS, Environment, OCLExpression)
+	 */
+	private NavigationCallExp<C, P> simplePropertyNameIncludingHiddenOpposites(
 			SimpleNameCS simpleNameCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			OCLExpression<C> source, C owner, String simpleName) {
@@ -2570,8 +2604,17 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		P property = lookupProperty(simpleNameCS, env, owner, simpleName);
 		if (property != null) {
 			if (uml.getOwningClassifier(property) == null) {
-				result = createOppositePropertyCallExp(simpleNameCS, env,
-					source, owner, simpleName, uml.getOpposite(property));
+				// marks a temporary property that encodes a "hidden" opposite
+				if (uml instanceof UMLReflectionWithOpposite<?>) {
+					@SuppressWarnings("unchecked")
+					UMLReflectionWithOpposite<P> umlWithOpposite = ((UMLReflectionWithOpposite<P>) uml);
+					result = createOppositePropertyCallExp(simpleNameCS, env,
+						source, owner, simpleName, umlWithOpposite.getOpposite(property));
+				} else {
+					String message = OCLMessages.bind(
+						OCLMessages.CantFindOppositeWithUMLReflection_ERROR_, simpleName);
+					ERROR(simpleNameCS, "variableExpCS", message);//$NON-NLS-1$
+				}
 			} else {
 				result = createPropertyCallExp(simpleNameCS, env, source,
 					owner, simpleName, property);
