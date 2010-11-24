@@ -731,6 +731,7 @@ public class EcoreEnvironment
 	 * 
 	 * The temporary reference is not a valid reference for at least two reasons: its container
 	 * is not set and its opposite does not name it as its opposite.
+	 * @since 3.1
 	 */
 	@Override
 	protected void findNonNavigableAssociationEnds(EClassifier classifier,
