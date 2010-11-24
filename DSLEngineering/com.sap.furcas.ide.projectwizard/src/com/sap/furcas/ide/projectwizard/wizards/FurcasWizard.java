@@ -7,7 +7,9 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
@@ -33,6 +35,9 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 import org.eclipse.ui.progress.UIJob;
+
+import com.sap.furcas.ide.dslproject.conf.EcoreMetaProjectConf;
+import com.sap.furcas.ide.dslproject.conf.ProjectMetaRefConfFactory;
 
 import util.CreateMMProject;
 import util.CreateProject;
@@ -90,11 +95,8 @@ public class FurcasWizard extends Wizard implements INewWizard {
         setDefaultPageImageDescriptor(getDefaultImageDescriptor());
     }
 
-
-
-
-
-    /* This method is called, when pressing the finish button in the wizard. It calls the doFinish method.
+    /*
+     * This method is called, when pressing the finish button in the wizard. It calls the doFinish method.
      */
 
     @Override
@@ -130,25 +132,25 @@ public class FurcasWizard extends Wizard implements INewWizard {
         }
     }
 
-    /* 
-     * This method actually does all the work, after the Finish button is pressed. First it creates a new
-     * instance of the CreateProject class and calls its run() method. This leads to the creation of the 
-     * Language Project with all its generated files, packages, folders and code.
-     * Afterwards createMMProject() creates another project for the MetaModel and doAdditional() creates the
-     * new .ecore file. loadmm() leads to loading an existing Metamodel into the new one.
-     * After all the method generateSpecific() generates all the MetaModel related files and coding into
-     * the Language Project.
-     * */
+    /*
+     * This method actually does all the work, after the Finish button is pressed. First it creates a new instance of the
+     * CreateProject class and calls its run() method. This leads to the creation of the Language Project with all its generated
+     * files, packages, folders and code. Afterwards createMMProject() creates another project for the MetaModel and
+     * doAdditional() creates the new .ecore file. loadmm() leads to loading an existing Metamodel into the new one. After all the
+     * method generateSpecific() generates all the MetaModel related files and coding into the Language Project.
+     */
     void doFinish(final ProjectInfo pi, IProgressMonitor monitor, final String className) {
         new UIJob("creating FURCAS projects...") {
             @Override
             public IStatus runInUIThread(IProgressMonitor monitor) {
                 try {
-                    new CreateProject(pi, getShell(), className).run(monitor);
+                    CreateProject cP = new CreateProject(pi, getShell());
+                    cP.run(monitor);
+                    IProject project = cP.iP;
                     if (!pi.isLoadMetamodel()) {
                         doAdditional(className);
                     }
-                    generateSpecific();
+                    generateSpecific(project);
 
                 } catch (InvocationTargetException e) {
                 } catch (InterruptedException e) {
@@ -170,7 +172,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 @Override
                 protected void execute(IProgressMonitor progressMonitor) {
                     try {
-                        CreateMMProject.create(getFurcasWizard(), page, getShell(), className);                       
+                        CreateMMProject.create(getFurcasWizard(), page, getShell(), className);
                     } catch (Exception exception) {
                         EcoreEditorPlugin.INSTANCE.log(exception);
                     } finally {
@@ -212,7 +214,6 @@ public class FurcasWizard extends Wizard implements INewWizard {
         }
     }
 
-
     @Override
     public void addPages() {
         page = new LanguagePage(selection);
@@ -228,8 +229,8 @@ public class FurcasWizard extends Wizard implements INewWizard {
      * @generated
      */
     public IFile getModelFile() {
-        Path path = new Path(page.getProjectInfo().getProjectName() + ".metamodel/model/" + page.getProjectInfo().getLanguageName()
-                + ".ecore");
+        Path path = new Path(page.getProjectInfo().getProjectName() + ".metamodel/model/"
+                + page.getProjectInfo().getLanguageName() + ".ecore");
 
         return ResourcesPlugin.getWorkspace().getRoot().getFile(path);
     }
@@ -237,9 +238,17 @@ public class FurcasWizard extends Wizard implements INewWizard {
     /*
      * This method provides the generation of the MetaModelspecific files and coding in the dsl project.
      */
-    protected void generateSpecific() {
-        // TODO see above
+    protected void generateSpecific(IProject project) {
+        if (project != null) {
+            EcoreMetaProjectConf conf;
+            conf = new EcoreMetaProjectConf(project);
+            try {
+                ProjectMetaRefConfFactory.configure(project, conf);
+            } catch (CoreException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
     }
-
 
 }
