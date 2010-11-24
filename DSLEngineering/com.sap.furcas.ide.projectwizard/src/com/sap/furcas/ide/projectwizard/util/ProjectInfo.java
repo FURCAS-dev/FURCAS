@@ -1,4 +1,4 @@
-package util;
+package com.sap.furcas.ide.projectwizard.util;
 
 /* This class saves all the information entered on the first page of the wizard.*/
 public class ProjectInfo {

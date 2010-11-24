@@ -11,7 +11,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-import util.ProjectInfo;
+import com.sap.furcas.ide.projectwizard.util.ProjectInfo;
+
 
 /* 
  * This is the first page of the wizard used to collect all the necessary information needed for the
