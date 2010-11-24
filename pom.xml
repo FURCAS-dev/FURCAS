@@ -17,6 +17,7 @@
 
 	
 	<build>
+                <outputDirectory>bin</outputDirectory>
 		<plugins>
 			<plugin>
 				<groupId>org.sonatype.tycho</groupId>
@@ -38,7 +39,6 @@
 				<version>0.10.0</version>
 				<configuration>
 					<argLine>-Xmx1024m</argLine>
-					<useUIHarness>true</useUIHarness>
 					<testFailureIgnore>true</testFailureIgnore>
 				</configuration>
 			</plugin>
@@ -60,7 +60,6 @@
 							<version>0.10.0</version>
 							<configuration>
 								<argLine>-Xmx1024m</argLine>
-								<useUIHarness>true</useUIHarness>
 								<testFailureIgnore>true</testFailureIgnore>
 								<excludes> 
 									<exclude>**/NavigationPathCreationTest.java</exclude>
@@ -81,7 +80,6 @@
 							<version>0.10.0</version>
 							<configuration>
 								<argLine>-Xmx1024m</argLine>
-								<useUIHarness>true</useUIHarness>
 								<testFailureIgnore>true</testFailureIgnore>
 							</configuration>
 						</plugin>
