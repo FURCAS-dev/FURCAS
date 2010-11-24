@@ -292,11 +292,6 @@ public interface UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> {
     List<O> getOperations(C classifier);
     
     /**
-     * Obtains the opposite property.
-     */
-    P getOpposite(P property);
-    
-    /**
      * Creates a new <tt>Property</tt>.
      * A type must be provided.  This method is used in parsing the
      * definition of additional properties, and in the construction of the OCL

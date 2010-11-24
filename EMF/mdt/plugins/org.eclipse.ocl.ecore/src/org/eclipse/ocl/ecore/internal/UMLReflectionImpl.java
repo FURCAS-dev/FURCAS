@@ -56,6 +56,7 @@ import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.TypedElement;
+import org.eclipse.ocl.utilities.UMLReflectionWithOpposite;
 
 /**
  * Implementation of the UML reflection service for the Ecore environment.
@@ -64,7 +65,8 @@ import org.eclipse.ocl.utilities.TypedElement;
  */
 public class UMLReflectionImpl
     implements
-    org.eclipse.ocl.utilities.UMLReflection<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> {
+    org.eclipse.ocl.utilities.UMLReflection<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint>,
+	UMLReflectionWithOpposite<EStructuralFeature> {
 
     /** Shared instance of the stateless reflection service. */
     public static final UMLReflectionImpl INSTANCE = new UMLReflectionImpl();
