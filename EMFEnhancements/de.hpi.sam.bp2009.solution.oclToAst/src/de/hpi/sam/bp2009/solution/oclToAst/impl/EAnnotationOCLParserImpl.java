@@ -16,6 +16,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
@@ -59,31 +61,31 @@ import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderIm
  * as environment factory, using a {@link ProjectDependencyQueryContextProvider} as query context provider.
  */
 public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
-    private ResourceChanger rc= new ResourceChanger();
+    private ResourceChanger rc = new ResourceChanger();
 
     private List<ErrorMessage> messages = new ArrayList<ErrorMessage>();
     private ResourceSet resourceSet = new ResourceSetImpl();
     private EPackage.Registry registry = EPackage.Registry.INSTANCE;
 
     /**
-     * Loads the resource specified by the given uri with the default {@link EcoreResourceFactoryImpl}, parse all matching EAnnotations and saves the resource
-     * It will be created only one resource set for all loaded resources
+     * Loads the resource specified by the given uri with the default {@link EcoreResourceFactoryImpl}, parse all matching
+     * EAnnotations and saves the resource. It will be created only one resource set for all loaded resources
+     * 
      * @param fileUri
      */
     @Override
-    public  void convertAnnotations(URI fileUri) {
+    public void convertAnnotations(URI fileUri) {
         /*
-         * Load the resource using the URI
-         * Factory get inferred by the ResourceFactoryRegistry
+         * Load the resource using the URI. Factory get inferred by the ResourceFactoryRegistry
          */
-        Resource r =null;
+        Resource r = null;
         try {
             r = resourceSet.getResource(fileUri, true);
             EcoreHelper.getInstance().addResourceToDefaultIndex(IndexFactory.getInstance(), r);
             r.load(null);
         } catch (Exception e) {
             e.printStackTrace();
-            getAllOccurredErrorMessages().add(new ErrorMessageImpl(e, "Error during Resource load."+fileUri, r));
+            getAllOccurredErrorMessages().add(new ErrorMessageImpl(e, "Error during Resource load." + fileUri, r));
             return;
         }
         Collection<EPackage> saltPackages = new HashSet<EPackage>();
@@ -91,154 +93,168 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
          * collect all EPackages inScope
          */
         ProjectBasedScopeProviderImpl scopi = new ProjectBasedScopeProviderImpl(r);
-        for(EObject o: scopi.getForwardScopeAsEObjects()){
-            if(o instanceof EPackage){
+        for (EObject o : scopi.getForwardScopeAsEObjects()) {
+            if (o instanceof EPackage) {
                 saltPackages.add((EPackage) o);
-                }
+            }
         }
-        for(EObject o: scopi.getBackwardScopeAsEObjects()){
-            if(o instanceof EPackage){
+        for (EObject o : scopi.getBackwardScopeAsEObjects()) {
+            if (o instanceof EPackage) {
                 saltPackages.add((EPackage) o);
-                }
+            }
         }
-        this.setRegistry(new OclAstRegistry(EPackage.Registry.INSTANCE, saltPackages ));
+        this.setRegistry(new OclAstRegistry(EPackage.Registry.INSTANCE, saltPackages));
         /*
          * enable lookups from the resource set
          */
         resourceSet.setPackageRegistry(this.getRegistry());
-        
-        for(EObject sPkg: r.getContents()){
-          if (sPkg instanceof EPackage) {
-            handlePackage(fileUri, (EPackage) sPkg);
-          }
+
+        for (EObject sPkg : r.getContents()) {
+            if (sPkg instanceof EPackage) {
+                handlePackage(fileUri, (EPackage) sPkg);
+            }
         }
     }
 
-    private void handlePackage(URI fileUri, EObject sPkg)
-    {       /*
-        * change the current resource to the ecore from the loaded packages
-        */
-       Resource rs = sPkg.eResource();
-       if(((EPackage)sPkg).getEAnnotation(OCL_TYPES)!=null){
-         ((EPackage)sPkg).getEAnnotation(OCL_TYPES).getContents().clear();
-       }
-       System.out.println("Converting package "+((EPackage) sPkg).getName()+" with nsURI "+((EPackage) sPkg).getNsURI());
-       traversalConvertOclAnnotations((EPackage)sPkg);
-       try {
-           rs.save(null);
-       } catch (IOException e) {
-         getAllOccurredErrorMessages().add(new ErrorMessageImpl(e, "Error during Resource save.", sPkg));
-       }
+    private void handlePackage(URI fileUri, EObject sPkg) { 
+        /*
+         * change the current resource to the ecore from the loaded packages
+         */
+        Resource rs = sPkg.eResource();
+        if (((EPackage) sPkg).getEAnnotation(OCL_TYPES) != null) {
+            ((EPackage) sPkg).getEAnnotation(OCL_TYPES).getContents().clear();
+        }
+        System.out.println("Converting package " + ((EPackage) sPkg).getName() + " with nsURI " + ((EPackage) sPkg).getNsURI());
+        traversalConvertOclAnnotations((EPackage) sPkg);
+        try {
+            rs.save(null);
+        } catch (IOException e) {
+            getAllOccurredErrorMessages().add(new ErrorMessageImpl(e, "Error during Resource save.", sPkg));
+        }
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser#convertOclAnnotation(org.eclipse.emf.ecore.EModelElement)
      */
     public void convertOclAnnotation(EModelElement modelElement) {
         EAnnotation anno = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
         if (anno == null)
             return;
-        anno.getContents().clear();          
+        anno.getContents().clear();
         for (Entry<String, String> detail : anno.getDetails()) {
-            String e = detail.getValue();
-            if (e == null)
-                return;
-            // TODO can the following lines be pulled out of the loop? This may speed things up a little
-            OCL ocl = OCL.newInstance(new EcoreEnvironmentFactory(this.getRegistry(),
-                    new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider())));
-            Helper helper = ocl.createOCLHelper();
-            EOperation op = null;
-            /*
-             * set correct context
-             */
-            switch (modelElement.eClass().getClassifierID()) {
-            case EcorePackage.ECLASSIFIER:
-            case EcorePackage.ECLASS:
-            case EcorePackage.EDATA_TYPE:
-                helper.setContext((EClassifier) modelElement);
-                break;
-            case EcorePackage.EATTRIBUTE:
-                EAttribute at = (EAttribute) modelElement;
-                helper.setAttributeContext(at.getEContainingClass(), at);      
-                break;
-            case EcorePackage.EREFERENCE:
-            	EReference ref = (EReference) modelElement;
-            	helper.setAttributeContext(ref.getEContainingClass(), ref);
-            	break;
-            case EcorePackage.EOPERATION:
-                op = (EOperation)modelElement;
-                helper.setOperationContext(op.getEContainingClass(), op);  
-                break;
-            default:
-                helper.setInstanceContext(modelElement);
-                break;
-            }
-            Constraint expr = null;
-            try { 
-                String typ = detail.getKey();
-                if(UMLReflection.DERIVATION.equals(typ)){
-                    expr = helper.createDerivedValueExpression(e);
-                }else if (UMLReflection.INITIAL.equals(typ)){
-                    expr = helper.createInitialValueExpression(e);
-                }else if (UMLReflection.BODY.equals(typ)){
-                    expr = helper.createConstraint(ConstraintKind.BODYCONDITION, e);
-                }else if (UMLReflection.POSTCONDITION.equals(typ)){
-                    expr = helper.createPostcondition(e);
-                }else if (UMLReflection.PRECONDITION.equals(typ)){
-                    expr = helper.createPrecondition(e);            
-                }else if (UMLReflection.DEFINITION.equals(typ)){
-                    expr = helper.createConstraint(ConstraintKind.DEFINITION, e);
-                }else /*as default value, an invariant is expected*/{                    
-                    expr = helper.createInvariant(e);
-                    expr.setName(typ);
-                }
-            } catch (ParserException e1) {
-                // TODO use Eclipse logging!
-                parserExceptionHandling(modelElement, e, e1);
-            }
-
+            String expr = detail.getValue();
+            String typ = detail.getKey();
             if (expr == null)
                 return;
 
-            anno.getContents().add(expr);
+            OCL ocl = OCL.newInstance(new EcoreEnvironmentFactory(this.getRegistry(), new Query2OppositeEndFinder(
+                    new ProjectDependencyQueryContextProvider())));
+            Helper helper = ocl.createOCLHelper();
+
+            setCorrectContext(helper, modelElement);
+            Constraint constraint = createConstraint(modelElement, expr, typ, helper);
+
+            if (constraint == null)
+                return;
+
+            anno.getContents().add(constraint);
 
             /*
              * Iterate the AST, search for OCL specific types, and add them to the resource of the EAnnotation
              */
-            expr.getSpecification().getBodyExpression().accept(rc);
+            constraint.getSpecification().getBodyExpression().accept(rc);
             EPackage p = getRootPackage(modelElement);
-            if(p != null){
-                addOclTypesAnnotationToPackage(rc.getSet(), p);                         
-            }else{
-                getAllOccurredErrorMessages().add(new ErrorMessageImpl(new IllegalArgumentException(), "No Package as root element available", modelElement));
+            if (p != null) {
+                addOclTypesAnnotationToPackage(rc.getSet(), p);
+            } else {
+                getAllOccurredErrorMessages()
+                        .add(new ErrorMessageImpl(new IllegalArgumentException(), "No Package as root element available",
+                                modelElement));
             }
         }
     }
 
+    private Constraint createConstraint(EModelElement modelElement, String expr, String typ, Helper helper) {
+        Constraint constraint = null;
+        try {
+            if (UMLReflection.DERIVATION.equals(typ)) {
+                constraint = helper.createDerivedValueExpression(expr);
+            } else if (UMLReflection.INITIAL.equals(typ)) {
+                constraint = helper.createInitialValueExpression(expr);
+            } else if (UMLReflection.BODY.equals(typ)) {
+                constraint = helper.createBodyCondition(expr);
+            } else if (UMLReflection.POSTCONDITION.equals(typ)) {
+                constraint = helper.createPostcondition(expr);
+            } else if (UMLReflection.PRECONDITION.equals(typ)) {
+                constraint = helper.createPrecondition(expr);
+            } else if (UMLReflection.DEFINITION.equals(typ)) {
+                constraint = helper.createConstraint(ConstraintKind.DEFINITION, expr);
+            } else /* as default value, an invariant is expected */{
+                constraint = helper.createInvariant(expr);
+                constraint.setName(typ);
+            }
+        } catch (ParserException e1) {
+            parserExceptionHandling(modelElement, expr, e1);
+        }
+        return constraint;
+    }
+
+    private void setCorrectContext(Helper helper, EModelElement modelElement) {
+
+        switch (modelElement.eClass().getClassifierID()) {
+        case EcorePackage.ECLASSIFIER:
+        case EcorePackage.ECLASS:
+        case EcorePackage.EDATA_TYPE:
+            helper.setContext((EClassifier) modelElement);
+            break;
+        case EcorePackage.EATTRIBUTE:
+            EAttribute at = (EAttribute) modelElement;
+            helper.setAttributeContext(at.getEContainingClass(), at);
+            break;
+        case EcorePackage.EREFERENCE:
+            EReference ref = (EReference) modelElement;
+            helper.setAttributeContext(ref.getEContainingClass(), ref);
+            break;
+        case EcorePackage.EOPERATION:
+            EOperation op = (EOperation) modelElement;
+            helper.setOperationContext(op.getEContainingClass(), op);
+            break;
+        default:
+            helper.setInstanceContext(modelElement);
+            break;
+        }
+    }
+
     private void parserExceptionHandling(EModelElement modelElement, String e, ParserException e1) {
-        System.err.println("On element "+getQualifiedName(modelElement)+" "+modelElement+":\n" + e + "\n" + e1.getMessage());
+        String errorMessage = "Ocl expression parsing failed on element " + getQualifiedName(modelElement) + " "
+                + modelElement.toString() + ":\n for ocl expression:\n" + e + "\n with parser error: \n" + e1.getMessage() + "\n";
         if (e1.getDiagnostic() != null) {
             for (Diagnostic c : e1.getDiagnostic().getChildren()) {
-                System.err.println(c.getMessage());
+                errorMessage += c.getMessage() + "\n";
             }
         }
+        Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+        logger.log(Level.SEVERE, errorMessage);
         getAllOccurredErrorMessages().add(new ErrorMessageImpl(e1, "Error during Query parsing", e));
     }
 
     private String getQualifiedName(EObject modelElement) {
         StringBuilder result = new StringBuilder();
         if (modelElement instanceof ENamedElement) {
-          result.append(((ENamedElement) modelElement).getName());
-          if (modelElement.eContainer() != null) {
-            result.insert(0, '.');
-            result.insert(0, getQualifiedName(modelElement.eContainer()));
-          }
+            result.append(((ENamedElement) modelElement).getName());
+            if (modelElement.eContainer() != null) {
+                result.insert(0, '.');
+                result.insert(0, getQualifiedName(modelElement.eContainer()));
+            }
         }
         return result.toString();
     }
 
-
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser#getAllOccurredErrorMessages()
      */
     @Override
@@ -246,18 +262,21 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
         return messages;
     }
 
-    /* (non-Javadoc)
-     * @see de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser#traversalConvertOclAnnotations(org.eclipse.emf.ecore.EPackage)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser#traversalConvertOclAnnotations(org.eclipse.emf.ecore.EPackage)
      */
     @Override
     public void traversalConvertOclAnnotations(EPackage pkg) {
-//      // to convert annotations with 'old' uri into annotations with new uri
-//      EAnnotation anno = pkg.getEAnnotation("http://www.eclipse.org/emf/2002/Ecore");
-//      if (anno != null){
-//          for (Entry<String, String>  entry: anno.getDetails()){
-//              entry.setValue(OCLDelegateDomain.OCL_DELEGATE_URI);
-//          }
-//      }
+        // // to convert annotations with 'old' uri into annotations with new uri
+        // EAnnotation anno = pkg.getEAnnotation("http://www.eclipse.org/emf/2002/Ecore");
+        // if (anno != null){
+        // for (Entry<String, String> entry: anno.getDetails()){
+        // entry.setValue(OCLDelegateDomain.OCL_DELEGATE_URI);
+        // }
+        // }
         for (EClassifier cls : pkg.getEClassifiers()) {
             convertOclAnnotation(cls);
             if (cls instanceof EClass) {
@@ -275,17 +294,21 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
 
     /**
      * Adds all given oclTypes to the oclTypes annotation of the given package
-     * @param collection all types to add
-     * @param p the package to get the annotation
+     * 
+     * @param collection
+     *            all types to add
+     * @param p
+     *            the package to get the annotation
      */
     private void addOclTypesAnnotationToPackage(Collection<EObject> col, EPackage p) {
         Collection<EObject> collection = new HashSet<EObject>(col);
         EAnnotation annotation = p.getEAnnotation(OCL_TYPES);
-        if(annotation ==null){
+        if (annotation == null) {
             annotation = EcoreFactory.eINSTANCE.createEAnnotation();
             annotation.setSource(OCL_TYPES);
-        }else{
-//          EcoreUtil.remove(annotation);
+        } else {
+            // to remove all OCL_Types annotations from model
+            // EcoreUtil.remove(annotation);
             collection.addAll(annotation.getContents());
             annotation.getContents().clear();
         }
@@ -293,36 +316,36 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
 
         p.getEAnnotations().add(annotation);
         /*
-         * after resolving, all names of BagTypes are set
-         * due to a bug in the BagTypeImpl this is necessary
+         * after resolving, all names of BagTypes are set due to a bug in the BagTypeImpl this is necessary
          */
-        for(EObject o: collection){
+        for (EObject o : collection) {
             EcoreUtil.getURI(o);
         }
     }
+
     /**
      * Calculates the root pacakge for a given element
-     * @param modelElement get the root pacakge for this
+     * 
+     * @param modelElement
+     *            get the root pacakge for this
      * @return the root package
      */
     private EPackage getRootPackage(EModelElement modelElement) {
         EPackage p = null;
         EObject current = modelElement;
-        while(current!=null){
-            if(current instanceof EPackage){
-                p=(EPackage) current;
+        while (current != null) {
+            if (current instanceof EPackage) {
+                p = (EPackage) current;
                 break;
             }
-            current=current.eContainer();
+            current = current.eContainer();
         }
         return p;
     }
 
-
     private void setRegistry(EPackage.Registry registry) {
         this.registry = registry;
     }
-
 
     private EPackage.Registry getRegistry() {
         return registry;
