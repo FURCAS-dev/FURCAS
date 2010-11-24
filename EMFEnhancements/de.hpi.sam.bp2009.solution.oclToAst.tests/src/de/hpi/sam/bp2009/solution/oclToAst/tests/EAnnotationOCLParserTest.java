@@ -33,6 +33,7 @@ import org.eclipse.ocl.ecore.IntegerLiteralExp;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.eclipse.ocl.ecore.delegate.ValidationBehavior;
@@ -119,7 +120,8 @@ public class EAnnotationOCLParserTest extends TestCase {
         anno.getDetails().put("someKey", "self.noTokens>4");
         placeC.getEAnnotations().add(anno);
 
-        getFixture().convertOclAnnotation(placeC);        
+        getFixture().convertOclAnnotation(placeC);
+//        ValidationBehavior.INSTANCE.getInvariant(placeC, "someKey", OCL.newInstance());
         assertTrue(placeC.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI).getContents().get(0) instanceof Constraint);
         assertTrue(((Constraint)placeC.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI).getContents().get(0)).getSpecification().getBodyExpression() instanceof OperationCallExp);
     }
