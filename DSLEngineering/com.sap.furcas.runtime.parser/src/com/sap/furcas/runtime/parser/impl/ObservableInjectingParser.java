@@ -711,9 +711,9 @@ unResolvedDelayedReferenceList.remove(delayedReference);
 				injector.getErrorList().clear();
 				// if in the resolving part some new references are created they
 				// must be evaluated as well
-				for (DelayedReference delayedReference : unResolvedDelayedReferenceList) {
-delayedReferenceList.add(delayedReference);
-}
+                for (DelayedReference delayedReference : unResolvedDelayedReferenceList) {
+                    delayedReferenceList.add(delayedReference);
+                }
 				unResolvedDelayedReferenceList.clear();
 				resolvedNewReference = false;
 				for (Iterator<DelayedReference> iterator = delayedReferenceList
