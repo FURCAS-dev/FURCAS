@@ -101,19 +101,19 @@
         <filter id="403767336">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.utilities.UtilitiesPackage"/>
-                <message_argument value="VISITOR_WITH_HIDDEN_OPPOSITE"/>
+                <message_argument value="VISITOR_EXTENSION"/>
             </message_arguments>
         </filter>
         <filter id="403767336">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.utilities.UtilitiesPackage"/>
-                <message_argument value="VISITOR_WITH_HIDDEN_OPPOSITE_FEATURE_COUNT"/>
+                <message_argument value="VISITOR_EXTENSION_FEATURE_COUNT"/>
             </message_arguments>
         </filter>
         <filter id="403804204">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.utilities.UtilitiesPackage"/>
-                <message_argument value="getVisitorWithHiddenOpposite()"/>
+                <message_argument value="getVisitorExtension()"/>
             </message_arguments>
         </filter>
     </resource>
