@@ -18,3 +18,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: generationTemp/,
  .
+Import-Package: org.eclipse.core.resources

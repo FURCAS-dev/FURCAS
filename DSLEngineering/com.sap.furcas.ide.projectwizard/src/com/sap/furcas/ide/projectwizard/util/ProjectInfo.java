@@ -2,13 +2,13 @@ package com.sap.furcas.ide.projectwizard.util;
 
 /* This class saves all the information entered on the first page of the wizard.*/
 public class ProjectInfo {
-    private String projectName;
-    private String languageName;
-    private String fileExtension;
-    private String nsURI;
-    private String URIPath;
-    private String className;
-    private String mmProject;
+    private String projectName = "";
+    private String languageName = "";
+    private String fileExtension = "";
+    private String nsURI = "";
+    private String URIPath = "";
+    private String className = "";
+    private String mmProject = "";
     private boolean loadMetamodel = false;
     private boolean fromWorkspace = false;
 

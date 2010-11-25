@@ -21,3 +21,4 @@ Import-Package: com.sap.furcas.ide.dslproject.conf,
  org.eclipse.emf.ecore,
  org.eclipse.emf.edit.ui.provider,
  org.eclipse.jdt.core
+Export-Package: com.sap.furcas.ide.projectwizard.util
