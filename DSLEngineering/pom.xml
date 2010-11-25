@@ -15,9 +15,9 @@
   </parent>
 
   <modules>
-    <!--
     <module>FURCAS</module>
     <module>FURCAS-Update-Site</module>
+    <!--
     <module>bibtex.editor</module>
     <module>bibtex.metamodel</module>
     <module>bibtex.test</module>
