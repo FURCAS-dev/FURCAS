@@ -1,6 +1,10 @@
 package com.sap.furcas.ide.projectwizard.util;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -33,7 +37,7 @@ public class SourceCodeFactory {
     }
 
     /* Converts the InputStream into a string. */
-    private String convertStreamToString(InputStream is) throws IOException {
+    public String convertStreamToString(InputStream is) throws IOException {
         if (is != null) {
             Writer writer = new StringWriter();
 
@@ -52,6 +56,21 @@ public class SourceCodeFactory {
             return "";
         }
     }
+    
+    public void writeToFile(InputStream is, File file) {
+        try {
+                DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
+                int c;
+                while((c = is.read()) != -1) {
+                        out.writeByte(c);
+                }
+                is.close();
+                out.close();
+        }
+        catch(IOException e) {
+                System.err.println("Error Writing/Reading Streams.");
+        }
+}
 
     /*
      * All the following methods, import the contents of the sample text files in the resources folder into a StringTeamplate. The
@@ -173,7 +192,7 @@ public class SourceCodeFactory {
         return template.toString();
     }
 
-    protected String createSampleTCS(ProjectInfo pi) {
+    public String createSampleTCS(ProjectInfo pi) {
         StringTemplate template = null;
         String templateString = null;
         try {
