@@ -3,7 +3,6 @@ package com.sap.furcas.parsergenerator.tcs.injection;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
 
 import java.util.Iterator;
 import java.util.List;
@@ -67,7 +66,7 @@ public class TestATLSample extends AbstractTCSInjectionTest {
     }
 
     /**
-     * tetst against bugs in operator List parsing
+     * test against bugs in operator List parsing
      */
     @Test
     public void testOperatorList() {
@@ -85,22 +84,22 @@ public class TestATLSample extends AbstractTCSInjectionTest {
 
         Priority prio0 = prioList.get(0);
         assertNotNull(prio0);
-        assertSame(0, prio0.getValue());
+        assertEquals(new Integer(0), prio0.getValue());
         assertEquals(Associativity.LEFT, prio0.getAssociativity());
         assertEquals(2, prio0.getOperators().size());
-        assertSame(2, prio0.getOperators().get(0).getArity());
-        assertSame(2, prio0.getOperators().get(1).getArity());
+        assertEquals(new Integer(2), prio0.getOperators().get(0).getArity());
+        assertEquals(new Integer(2), prio0.getOperators().get(1).getArity());
 
         Priority prio1 = prioList.get(1);
         assertNotNull(prio1);
-        assertSame(1, prio1.getValue());
+        assertEquals(new Integer(1), prio1.getValue());
         assertEquals(Associativity.LEFT, prio1.getAssociativity());
         assertEquals(2, prio1.getOperators().size());
-        assertSame(1, prio1.getOperators().get(0).getArity());
-        assertSame(1, prio1.getOperators().get(1).getArity());
+        assertEquals(new Integer(1), prio1.getOperators().get(0).getArity());
+        assertEquals(new Integer(1), prio1.getOperators().get(1).getArity());
 
     }
-
+    
     /**
      * Expects: <TCS:Keyword location="26:5-26:14" literalRefs="/0/@templates.3/@templateSequence/@elements.0" value="article"/>
      * <TCS:Keyword location="36:5-36:13" literalRefs="/0/@templates.5/@templateSequence/@elements.0" value="author"/>

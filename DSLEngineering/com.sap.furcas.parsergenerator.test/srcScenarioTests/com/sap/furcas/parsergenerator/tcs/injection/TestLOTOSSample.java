@@ -2,7 +2,6 @@ package com.sap.furcas.parsergenerator.tcs.injection;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
 
 import java.util.Iterator;
 import java.util.List;
@@ -84,17 +83,17 @@ public class TestLOTOSSample extends AbstractTCSInjectionTest {
 
         Priority prio0 = prioList.get(0);
         assertNotNull(prio0);
-        assertSame(0, prio0.getValue());
+        assertEquals(new Integer(0), prio0.getValue());
         assertEquals(Associativity.RIGHT, prio0.getAssociativity());
         assertEquals(1, prio0.getOperators().size());
-        assertSame(1, prio0.getOperators().get(0).getArity());
+        assertEquals(new Integer(1), prio0.getOperators().get(0).getArity());
 
         Priority prio1 = prioList.get(1);
         assertNotNull(prio1);
-        assertSame(1, prio1.getValue());
+        assertEquals(new Integer(1), prio1.getValue());
         assertEquals(Associativity.LEFT, prio1.getAssociativity());
         assertEquals(1, prio1.getOperators().size());
-        assertSame(1, prio1.getOperators().get(0).getArity());
+        assertEquals(new Integer(1), prio1.getOperators().get(0).getArity());
 
     }
 
