@@ -1,19 +1,19 @@
 package com.sap.furcas.ide.projectwizard.wizards;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecoretools.tabbedproperties.sections.widgets.SearchableTree;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.List;
-import org.eclipse.swt.widgets.Listener;
 
+import com.sap.furcas.ide.projectwizard.util.MNComposedAdapterFactory;
 import com.sap.furcas.ide.projectwizard.util.ProjectInfo;
 
 /* 
@@ -23,7 +23,7 @@ import com.sap.furcas.ide.projectwizard.util.ProjectInfo;
 public class ClassChooserPage extends WizardPage {
 
     private EPackage eP;
-    
+
     public EPackage geteP() {
         return eP;
     }
@@ -57,45 +57,31 @@ public class ClassChooserPage extends WizardPage {
         gridData.grabExcessHorizontalSpace = true;
         gridData.verticalAlignment = SWT.FILL;
         gridData.grabExcessVerticalSpace = true;
-        list = new List(container, SWT.BORDER | SWT.V_SCROLL);
-        list.setItems(getClasses());
-        setupList();
-        list.setLayoutData(gridData);
-        list.addListener(SWT.Selection, new Listener() {
-            public void handleEvent(Event e) {
-              String[] selection = list.getSelection();
-              pi.setClassName(selection[0]);
-              setPageComplete(true);
-            }
-          });
+        SearchableTree searchTree = new SearchableTree(container, SWT.SINGLE);
+        ComposedAdapterFactory adapterFactory = MNComposedAdapterFactory.getAdapterFactory();
+        searchTree.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
+        searchTree.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+        searchTree.setInput(eP);
+        searchTree.setLayoutData(gridData);
+
+        /*
+         * list = new List(container, SWT.BORDER | SWT.V_SCROLL); list.setItems(getClasses()); setupList();
+         * list.setLayoutData(gridData); list.addListener(SWT.Selection, new Listener() { public void handleEvent(Event e) {
+         * String[] selection = list.getSelection(); pi.setClassName(selection[0]); setPageComplete(true); } });
+         */
         setControl(container);
         setPageComplete(false);
     }
 
-    private void setupList() {
-        String[] items;
-        Integer removed = 0;
-        items = list.getItems();
-        for (int i = 0; i < items.length; i++) {
-            if (items[i].matches(" ")) {
-                list.remove(i - removed);
-                removed++;
-            }
-        }
-
-    }
-
-    private String[] getClasses() {
-        EList<EObject> ePs = eP.eContents();
-        String[] items = new String[ePs.size()];
-        for (int i = 0; i < ePs.size(); i++) {
-            if (ePs.get(i) instanceof EClass) {
-                EClass eC = (EClass) ePs.get(i);
-                items[i] = eC.getName();
-            } else
-                items[i] = " ";
-        }
-        return items;
-    }
+    /*
+     * private void setupList() { String[] items; Integer removed = 0; items = list.getItems(); for (int i = 0; i < items.length;
+     * i++) { if (items[i].matches(" ")) { list.remove(i - removed); removed++; } }
+     * 
+     * }
+     * 
+     * private String[] getClasses() { EList<EObject> ePs = eP.eContents(); String[] items = new String[ePs.size()]; for (int i =
+     * 0; i < ePs.size(); i++) { if (ePs.get(i) instanceof EClass) { EClass eC = (EClass) ePs.get(i); items[i] = eC.getName(); }
+     * else items[i] = " "; } return items; }
+     */
 
 }
