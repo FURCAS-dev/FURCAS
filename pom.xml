@@ -17,7 +17,9 @@
 
 	
 	<build>
-                <outputDirectory>bin</outputDirectory>
+		<directory>bin</directory>
+		<outputDirectory>bin</outputDirectory>
+		<testOutputDirectory>bin</testOutputDirectory>
 		<plugins>
 			<plugin>
 				<groupId>org.sonatype.tycho</groupId>
