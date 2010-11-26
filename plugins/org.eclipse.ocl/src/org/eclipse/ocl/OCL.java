@@ -265,13 +265,30 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 			OCLBacktrackingParser parser = new OCLBacktrackingParser(lexer);
 			parser.setDefaultRepairCount(parserRepairCount);
 			lexer.lexer(parser.getIPrsStream());
-			analyzer = new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-				parser);
+			analyzer = createOCLAnalyzer(parser);
 		} else {
-			analyzer = new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-				rootEnvironment, input);
+			analyzer = createOCLAnalyzer(rootEnvironment, input);
 		}
 		return analyzer;
+	}
+
+	/**
+	 * @param rootEnvironment TODO
+	 * @since 3.1
+	 */
+	protected OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCLAnalyzer(
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> rootEnvironment, String input) {
+		return new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
+			rootEnvironment, input);
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	protected OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCLAnalyzer(
+			OCLBacktrackingParser parser) {
+		return new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
+			parser);
 	}
 
 	/**

@@ -44,7 +44,7 @@ import org.eclipse.ocl.utilities.UMLReflection;
  * @author Yasser Lulu
  * @author Christian W. Damus (cdamus)
  */
-class OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+public class OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		implements OCLHelper<C, O, P, CT> {
 	
 	private final EnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
@@ -65,7 +65,7 @@ class OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * 
 	 * @param ocl the OCL environment
 	 */
-	OCLHelperImpl(OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> ocl) {
+	protected OCLHelperImpl(OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> ocl) {
         this.ocl = ocl;
         
         uml = ocl.getEnvironment().getUMLReflection();
@@ -172,7 +172,7 @@ class OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
             // be sure to pass the original expression along to get the right
             //    position information when parse fails
             try {
-                return HelperUtil.parseQuery(
+                return createHelperUtil().parseQuery(
                     this, expression, validating, ocl.isParseTracingEnabled());
             } catch (RuntimeException e) {
                 propagate(e, "createQuery"); //$NON-NLS-1$
@@ -200,7 +200,7 @@ class OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
         case DERIVATION:
             return createDerivedValueExpression(expression);
         case DEFINITION:
-            return HelperUtil.parseDefExpression(
+            return createHelperUtil().parseDefExpression(
                 this, expression, validating, ocl.isParseTracingEnabled());
         default:
             return createInvariant(expression);
@@ -212,7 +212,7 @@ class OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			// be sure to pass the original expression along to get the right
 			//    position information when parse fails
 			try {
-				return HelperUtil.parseInvariant(
+				return createHelperUtil().parseInvariant(
                     this, expression, validating, ocl.isParseTracingEnabled());
 			} catch (RuntimeException e) {
 				propagate(e, "createInvariant"); //$NON-NLS-1$
@@ -227,7 +227,7 @@ class OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			// be sure to pass the original expression along to get the right
 			//    position information when parse fails
 			try {
-				return HelperUtil.parsePrecondition(
+				return createHelperUtil().parsePrecondition(
                     this, expression, validating, ocl.isParseTracingEnabled());
 			} catch (RuntimeException e) {
 				propagate(e, "createPrecondition"); //$NON-NLS-1$
@@ -242,7 +242,7 @@ class OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			// be sure to pass the original expression along to get the right
 			//    position information when parse fails
 			try {
-				return HelperUtil.parsePostcondition(
+				return createHelperUtil().parsePostcondition(
                     this, expression, validating, ocl.isParseTracingEnabled());
 			} catch (RuntimeException e) {
 				propagate(e, "createPostcondition"); //$NON-NLS-1$
@@ -257,7 +257,7 @@ class OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			// be sure to pass the original expression along to get the right
 			//    position information when parse fails
 			try {
-				return HelperUtil.parseBodyCondition(
+				return createHelperUtil().parseBodyCondition(
                     this, expression, validating, ocl.isParseTracingEnabled());
 			} catch (RuntimeException e) {
 				propagate(e, "createBodyCondition"); //$NON-NLS-1$
@@ -267,12 +267,16 @@ class OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		return createNullCondition(env.getOCLStandardLibrary().getOclVoid());
 	}
 	
+	protected HelperUtil<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createHelperUtil() {
+		return new HelperUtil<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>();
+	}
+	
 	public CT createInitialValueExpression(String expression) throws ParserException {
 		if (removeOCLComments(expression).length() > 0) {
 			// be sure to pass the original expression along to get the right
 			//    position information when parse fails
 			try {
-				return HelperUtil.parseInitialValueExpression(
+				return createHelperUtil().parseInitialValueExpression(
                     this, expression, validating, ocl.isParseTracingEnabled());
 			} catch (RuntimeException e) {
 				propagate(e, "createInitialValueExpression"); //$NON-NLS-1$
@@ -287,7 +291,7 @@ class OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			// be sure to pass the original expression along to get the right
 			//    position information when parse fails
 			try {
-				return HelperUtil.parseDerivedValueExpression(
+				return createHelperUtil().parseDerivedValueExpression(
                     this, expression, validating, ocl.isParseTracingEnabled());
 			} catch (RuntimeException e) {
 				propagate(e, "createDerivedValueExpression"); //$NON-NLS-1$
@@ -334,7 +338,7 @@ class OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	}
 	
 	EObject define(String defExpression) throws ParserException {
-		CT constraint = HelperUtil.parseDefExpression(
+		CT constraint = createHelperUtil().parseDefExpression(
             this, defExpression, validating, ocl.isParseTracingEnabled());
 		
 		List<? extends EObject> constrainedElement = uml.getConstrainedElements(constraint);
@@ -414,10 +418,14 @@ class OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	protected OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	createSyntaxHelper() {
 		if (syntaxHelper == null) {
-			syntaxHelper = new OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-					getEnvironment());
+			syntaxHelper = createOCLSyntaxHelperInternal();
 		}
 		return syntaxHelper;
+	}
+
+	protected OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCLSyntaxHelperInternal() {
+		return new OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
+				getEnvironment());
 	}
 	
 	public Diagnostic getProblems() {

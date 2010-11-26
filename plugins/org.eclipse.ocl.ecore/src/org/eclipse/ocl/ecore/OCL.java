@@ -31,8 +31,11 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.internal.helper.HelperUtil;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.ecore.parser.OCLAnalyzer;
 import org.eclipse.ocl.helper.OCLHelper;
+import org.eclipse.ocl.parser.backtracking.OCLBacktrackingParser;
 
 /**
  * Convenient subclass of the <code>OCL</code> fa&ccedil;ade that binds the
@@ -193,6 +196,23 @@ public class OCL extends org.eclipse.ocl.OCL<
 	}
     
 	/**
+	 * @since 3.1
+	 */
+	protected OCLAnalyzer createOCLAnalyzer(Environment<EPackage, EClassifier, EOperation, EStructuralFeature,
+			EEnumLiteral, EParameter, EObject,
+			CallOperationAction, SendSignalAction, Constraint,
+			EClass, EObject> rootEnvironment, String input) {
+		return new OCLAnalyzer(rootEnvironment, input);
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	protected OCLAnalyzer createOCLAnalyzer(OCLBacktrackingParser parser) {
+		return new OCLAnalyzer(parser);
+	}
+
+	/**
 	 * {@inheritDoc}
 	 * <p>
 	 * The return type is narrowed to the Ecore binding for the generic
@@ -201,7 +221,7 @@ public class OCL extends org.eclipse.ocl.OCL<
 	 */
     @Override
     public Helper createOCLHelper() {
-       return new OCLHelperImpl(super.createOCLHelper());
+       return new OCLHelperImpl(HelperUtil.createOCLHelper(this));
     }
     
 	/**

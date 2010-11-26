@@ -100,7 +100,7 @@ import org.eclipse.osgi.util.NLS;
  * @author Yasser Lulu 
  * @author Christian W. Damus (cdamus)
  */
-final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
+public class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 
 	// codes indicating the token before the cursor when completion invoked
 	private static final int NONE = -1;
@@ -150,7 +150,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	private OCLStandardLibrary<C> stdlib;
     private UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> uml;
 
-	OCLSyntaxHelper(Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
+	protected OCLSyntaxHelper(Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
 		environment = env;
 		stdlib = env.getOCLStandardLibrary();
         uml = env.getUMLReflection();
@@ -879,7 +879,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 */
 	private List<IToken> tokenize(String text) {
 		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer =
-			new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(environment, text);
+			createOCLAnalyzer(environment, text);
 		return tokenize(analyzer);
 	}
 	
@@ -968,8 +968,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 				// look backwards past the path name to see whether there is an
 				//   "oclIsInState(" before it
 				OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer =
-					new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-							environment, txt);
+					createOCLAnalyzer(environment, txt);
 				IPrsStream parser = analyzer.getAbstractParser().getIPrsStream();		
 				List<IToken> tokens = tokenize(analyzer);
 				
@@ -1033,8 +1032,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 				disposeAll(expression);
 			} else {
 				OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parser =
-					new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-							environment, txt);
+					createOCLAnalyzer(environment, txt);
 				
 				// see whether we can complete a partial name
 				List<IToken> tokens = tokenize(parser);
@@ -1164,8 +1162,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	    
         String newTxt = txt.substring(start, end);
         OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer =
-            new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-            		env, newTxt);
+            createOCLAnalyzer(env, newTxt);
         
         PackageDeclarationCS packageContext = null;
         OCLExpressionCS cst = null;
@@ -1230,8 +1227,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
                     start = token.getStartOffset();
                     newTxt = preamble + txt.substring(start, end);
                     
-                    analyzer = new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-                    		env, newTxt);
+                    analyzer = createOCLAnalyzer(env, newTxt);
                     
                     // offset the parser left by the length of our preamble text
                     // and right by the number of characters on the left side
@@ -1265,6 +1261,13 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
         }
         
         return null;
+	}
+
+	protected OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCLAnalyzer(
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			String newTxt) {
+		return new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
+				env, newTxt);
 	}
 	
 	/**
@@ -1376,8 +1379,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 			String variables) throws ParserException {
 		int beginIndex = 0;
 		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> mainAnalyzer =
-			new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-					env, variables);
+			createOCLAnalyzer(env, variables);
 		
 		if (!parseVariableDeclaration(env, mainAnalyzer)) {
 			IPrsStream parser = mainAnalyzer.getAbstractParser().getIPrsStream();		
@@ -1390,15 +1392,13 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 				if ((token.getKind() == OCLParsersym.TK_COMMA)
 						|| (token.getKind() == OCLParsersym.TK_SEMICOLON)) {
 					newTxt = variables.substring(beginIndex, token.getStartOffset());
-					analyzer = new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-							env, newTxt);
+					analyzer = createOCLAnalyzer(env, newTxt);
 					if (parseVariableDeclaration(env, analyzer)) {
 						beginIndex = token.getEndOffset() + 1;
 		
 						// try to the end of the expression
 						newTxt = variables.substring(beginIndex);
-						analyzer = new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-								env, newTxt);
+						analyzer = createOCLAnalyzer(env, newTxt);
 						if (parseVariableDeclaration(env, analyzer)) {
 							break;
             			}
@@ -1414,8 +1414,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 			String variables) throws ParserException {
 		
 		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer =
-			new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-					env, variables);
+			createOCLAnalyzer(env, variables);
 		
 		parseVariableDeclaration(env, analyzer);
 	}
