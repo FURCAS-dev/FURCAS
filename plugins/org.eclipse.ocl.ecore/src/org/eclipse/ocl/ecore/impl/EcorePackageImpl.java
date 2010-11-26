@@ -1090,6 +1090,17 @@ public class EcorePackageImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.1
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOppositePropertyCallExp_ReferredOppositeProperty() {
+		return (EReference) oppositePropertyCallExpEClass
+			.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -1230,6 +1241,8 @@ public class EcorePackageImpl
 		variableExpEClass = createEClass(VARIABLE_EXP);
 
 		oppositePropertyCallExpEClass = createEClass(OPPOSITE_PROPERTY_CALL_EXP);
+		createEReference(oppositePropertyCallExpEClass,
+			OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY);
 	}
 
 	/**
@@ -1644,15 +1657,8 @@ public class EcorePackageImpl
 		g2 = createEGenericType(theEcorePackage_1.getEParameter());
 		g1.getETypeArguments().add(g2);
 		variableExpEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getNavigationCallExp());
-		oppositePropertyCallExpEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theExpressionsPackage
-			.getOppositePropertyCallExp());
-		g2 = createEGenericType(theEcorePackage_1.getEClassifier());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theEcorePackage_1.getEStructuralFeature());
-		g1.getETypeArguments().add(g2);
-		oppositePropertyCallExpEClass.getEGenericSuperTypes().add(g1);
+		oppositePropertyCallExpEClass.getESuperTypes().add(
+			this.getNavigationCallExp());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(anyTypeEClass, AnyType.class,
@@ -1937,6 +1943,11 @@ public class EcorePackageImpl
 			oppositePropertyCallExpEClass,
 			OppositePropertyCallExp.class,
 			"OppositePropertyCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(
+			getOppositePropertyCallExp_ReferredOppositeProperty(),
+			theEcorePackage_1.getEReference(),
+			null,
+			"referredOppositeProperty", null, 1, 1, OppositePropertyCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);

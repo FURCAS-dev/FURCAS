@@ -102,8 +102,8 @@ public class TupleTypeItemProvider extends EClassItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/TupleType")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/TupleType")); //$NON-NLS-1$
 	}
 
 	/**
@@ -142,8 +142,8 @@ public class TupleTypeItemProvider extends EClassItemProvider implements
 
 		switch (notification.getFeatureID(TupleType.class)) {
 		case org.eclipse.ocl.ecore.EcorePackage.TUPLE_TYPE__SERIALIZABLE:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

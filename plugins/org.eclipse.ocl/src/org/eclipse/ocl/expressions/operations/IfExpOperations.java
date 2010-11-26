@@ -142,8 +142,8 @@ public class IfExpOperations
 						|| !TypeUtil.exactTypeMatch(env, type, thenelsetype)) {
 						result = false;
 						message = OCLMessages.bind(
-							OCLMessages.TypeConformanceIfExp_ERROR_, ifExp
-							.toString());
+							OCLMessages.TypeConformanceIfExp_ERROR_,
+							ifExp.toString());
 					}
 				}
 			}

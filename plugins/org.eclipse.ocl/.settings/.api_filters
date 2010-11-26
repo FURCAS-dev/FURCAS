@@ -88,15 +88,6 @@
             </message_arguments>
         </filter>
     </resource>
-    <resource path="src/org/eclipse/ocl/expressions/util/ExpressionsValidator.java" type="org.eclipse.ocl.expressions.util.ExpressionsValidator">
-        <filter id="388194388">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.expressions.util.ExpressionsValidator"/>
-                <message_argument value="DIAGNOSTIC_CODE_COUNT"/>
-                <message_argument value="39"/>
-            </message_arguments>
-        </filter>
-    </resource>
     <resource path="src/org/eclipse/ocl/utilities/UtilitiesPackage.java" type="org.eclipse.ocl.utilities.UtilitiesPackage">
         <filter id="403767336">
             <message_arguments>

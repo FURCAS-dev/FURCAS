@@ -97,8 +97,10 @@ public class AssociationClassCallExpItemProvider extends
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/AssociationClassCallExp")); //$NON-NLS-1$
+		return overlayImage(
+				object,
+				getResourceLocator().getImage(
+						"full/obj16/AssociationClassCallExp")); //$NON-NLS-1$
 	}
 
 	/**

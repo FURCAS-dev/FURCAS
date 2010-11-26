@@ -8,14 +8,25 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl;
+package org.eclipse.ocl.ecore;
 
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
+import org.eclipse.ocl.AbstractEnvironment;
+import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.LookupException;
 import org.eclipse.ocl.expressions.Variable;
 
 
@@ -26,8 +37,12 @@ import org.eclipse.ocl.expressions.Variable;
  * @author Axel Uhl
  * @since 3.1
  */
-public interface EnvironmentWithHiddenOpposites<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-extends Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>{
+public interface EnvironmentWithHiddenOpposites
+extends Environment<
+EPackage, EClassifier, EOperation, EStructuralFeature,
+EEnumLiteral, EParameter, EObject,
+CallOperationAction, SendSignalAction, Constraint,
+EClass, EObject>{
 	/**
 	 * Finds a property defined or inherited by the specified classifier, based
 	 * on a hidden opposite's name which is specified in an annotation on the property.
@@ -39,7 +54,7 @@ extends Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>{
 	 * 
 	 * @return the opposite property, or <code>null</code> if it could not be found
 	 */ 	
-	P lookupOppositeProperty(C owner, String name) throws LookupException;
+	EStructuralFeature lookupOppositeProperty(EClassifier owner, String name) throws LookupException;
 	
 	/**
 	 * Return the most appropriate matching variable to use as the implicit
@@ -51,13 +66,13 @@ extends Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>{
 	 * @return the matching variable, or <code>null</code> if no appropriate
      *     variable can be found whose type defines a property of this name
 	 */
-	public Variable<C, PM> lookupImplicitSourceForOppositeProperty(String name);
+	public Variable<EClassifier, EParameter> lookupImplicitSourceForOppositeProperty(String name);
 
 	/**
 	 * Determines a property's (hidden) opposite's type, assuming that there is not real opposite
 	 * but that the opposite's type implicitly defaults to the property's owning class.
 	 */
-	C getOppositePropertyType(C owner, P property);
+	EClassifier getOppositePropertyType(EClassifier owner, EStructuralFeature property);
 	
 	/**
 	 * Finds all {@link EReference}s whose {@link ETypedElement#getEType() type}
@@ -74,6 +89,6 @@ extends Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>{
 	 *         <code>classifier</code> together with their corresponding forward
 	 *         references
 	 */
-	Map<String, P> getHiddenOppositeProperties(C classifier);
+	Map<String, EStructuralFeature> getHiddenOppositeProperties(EClassifier classifier);
 	
 }

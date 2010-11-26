@@ -154,8 +154,8 @@ public class OCLExpressionItemProvider extends ItemProviderAdapter implements
 		switch (notification.getFeatureID(OCLExpression.class)) {
 		case ExpressionsPackage.OCL_EXPRESSION__START_POSITION:
 		case ExpressionsPackage.OCL_EXPRESSION__END_POSITION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

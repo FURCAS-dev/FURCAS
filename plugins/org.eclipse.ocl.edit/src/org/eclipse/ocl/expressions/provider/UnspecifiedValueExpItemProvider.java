@@ -121,8 +121,8 @@ public class UnspecifiedValueExpItemProvider extends OCLExpressionItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/UnspecifiedValueExp")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/UnspecifiedValueExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -161,8 +161,8 @@ public class UnspecifiedValueExpItemProvider extends OCLExpressionItemProvider
 		switch (notification.getFeatureID(UnspecifiedValueExp.class)) {
 		case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
 		case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

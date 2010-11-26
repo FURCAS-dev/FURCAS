@@ -96,8 +96,8 @@ public class VariableExpItemProvider extends OCLExpressionItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/VariableExp")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/VariableExp")); //$NON-NLS-1$
 	}
 
 	/**

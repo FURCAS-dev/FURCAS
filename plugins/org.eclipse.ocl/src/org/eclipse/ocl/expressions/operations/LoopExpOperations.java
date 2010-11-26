@@ -120,8 +120,8 @@ public class LoopExpOperations
 			if (loopiter.getInitExpression() != null) {
 				result = false;
 				message = OCLMessages.bind(
-					OCLMessages.IterateExpLoopVarInit_ERROR_, loopExp
-					.toString());
+					OCLMessages.IterateExpLoopVarInit_ERROR_,
+					loopExp.toString());
 				break;
 			}
 		}

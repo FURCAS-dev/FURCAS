@@ -53,7 +53,10 @@ public class OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		extends
 		AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 
-	private OCLFactoryWithHistory history;
+	/**
+	 * @since 3.1
+	 */
+	protected OCLFactoryWithHistory history;
 
 	/**
 	 * Construct an OCL semantic analyzer that will use a given parser to

@@ -154,8 +154,8 @@ public class CollectionRangeItemProvider extends
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/CollectionRange")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/CollectionRange")); //$NON-NLS-1$
 	}
 
 	/**
@@ -193,8 +193,8 @@ public class CollectionRangeItemProvider extends
 		switch (notification.getFeatureID(CollectionRange.class)) {
 		case ExpressionsPackage.COLLECTION_RANGE__FIRST:
 		case ExpressionsPackage.COLLECTION_RANGE__LAST:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -303,10 +303,6 @@ public class CollectionRangeItemProvider extends
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
-
-		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
 				ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
 
@@ -395,10 +391,6 @@ public class CollectionRangeItemProvider extends
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
-
-		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
 	}
 
 	/**
