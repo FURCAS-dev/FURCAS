@@ -942,7 +942,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         // TODO implement a derived Property Notifier and apply it here to generate an impact via some sort of follow up notification.
         noti = NotificationHelper.createReferenceAddNotification(this.dep1, this.departmentEmployeeOfTheMonth, this.e1);
         instances = computeAffectedInstances(this.getLimitEmployeesOfTheMonthAST(), noti);
-        compareInstances(instances, new EObject[] {});
+        compareInstances(instances, new EObject[] {/*this.div*/});
 
     }
     
@@ -956,6 +956,18 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         assertTrue(noti == null);
         
         System.out.println("--------------------------------------------------\n");
+    }
+    
+    @Test void testNestedDerivation(){
+        Notification noti;
+        Collection<EObject> instances;
+        
+        // Make e1 the employee of the month of div by making him the employee of the month of dep1.
+        // That should influence the derived property Department.employeesOfTheMonth but this feature isn't implemented by default.
+        // TODO implement a derived Property Notifier and apply it here to generate an impact via some sort of follow up notification.
+        noti = NotificationHelper.createReferenceAddNotification(this.dep1, this.departmentEmployeeOfTheMonth, this.e1);
+        instances = computeAffectedInstances(this.getNestedDerivationAST(), noti);
+        compareInstances(instances, new EObject[] {/*this.div*/});       
     }
 
 

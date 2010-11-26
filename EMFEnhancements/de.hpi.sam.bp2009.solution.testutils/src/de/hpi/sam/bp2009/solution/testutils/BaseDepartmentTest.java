@@ -122,8 +122,8 @@ public class BaseDepartmentTest extends TestCase {
     /**
      * different employees must have different names
      */
-    public final String uniqueNames = "context Employee \n" + "inv UniqueNames: \n"
-            + "  Employee.allInstances()->forAll(e | \n" + "  e <> self implies e.name <> self.name)";
+    public final String uniqueNames = "context Employee \n" + "inv UniqueNames: \n" + "  Employee.allInstances()->forAll(e | \n"
+            + "  e <> self implies e.name <> self.name)";
 
     /**
      * the assignment of a freelance must be between 5 and 30
@@ -154,13 +154,27 @@ public class BaseDepartmentTest extends TestCase {
      */
     public final String nastyConstraint = "context Division \n" + "inv nasty: \n" + "self.department->collect(d| \n"
             + "d.employee->including(d.boss)).salary->sum() < budget";
-    
+
     /**
-     * A division is allowed a maximum number of employees of the month equal to its number of departments.
-     * If a department has no employee of the month, another on can have two.
+     * A division is allowed a maximum number of employees of the month equal to its number of departments. If a department has no
+     * employee of the month, another one can have two.
      */
-    public final String limitEmployeesOfTheMonth = "context Division \n" + "inv limitEmployeesOfTheMonth: \n" + "self.employeesOfTheMonth->size() <= self.department->size()";
-    
+    public final String limitEmployeesOfTheMonth = "context Division \n" + "inv limitEmployeesOfTheMonth: \n"
+            + "self.employeesOfTheMonth->size() <= self.department->size()";
+
+    /**
+     * This constraint is semantically identical to limitEmployeesOfTheMonth but uses a nested derivation (
+     * numberEmployeesOfTheMonth is a derived attribute that uses a derived reference in its derivation expression ).
+     */
+    public final String nestedDerivation = "context Division \n" + "inv nestedDerivation: \n"
+            + "self.numberEmployeesOfTheMonth <= self.department->size()";
+
+    /**
+     * The delta of the number of employees of the month of all divisions of a company must not be greater than 5 (semantically
+     * questionable, but uses the same derived property twice, which is what we need to test if the collecting of them works).
+     */
+    public final String eotmDeltaMax = "context Company \n" + "inv eotmDeltaMax: \n" + "self.eotmDelta <= 5";
+
     /**
      * Only directors are allowed to have a secretary
      */
@@ -187,12 +201,11 @@ public class BaseDepartmentTest extends TestCase {
      */
     public final String expensesRestriction = "context Department inv BudgetRestriction: \n"
             + "self.calcExpenses() <= self.budget";
-    
+
     /**
      * A simple allInstances() expression to test instance creation/deletion filters
      */
-    public final String simpleAllInstances = "context Employee inv InstanceCount: \n"
-            + "Employee.allInstances()->size() = 17";
+    public final String simpleAllInstances = "context Employee inv InstanceCount: \n" + "Employee.allInstances()->size() = 17";
 
     // /**
     // * defines how to calculate expenses: The sum of the employee's salary plus
@@ -214,11 +227,11 @@ public class BaseDepartmentTest extends TestCase {
             + "let t:Tuple(b:Tuple(p1:Employee, s1:Integer), j:Tuple(p2:Employee, s2:Integer))=" + "Tuple{b=bt, j=jt} in \n"
             + "t.b.p1 <> t.j.p2 implies t.b.s1 > t.j.s2 + 100";
 
-    public final String employeeInSameDepartmentAsIntern = "context Employee \n"
-            + "inv employeeInSameDepartmentAsIntern: \n" + "self.employer = self.intern.employer";
+    public final String employeeInSameDepartmentAsIntern = "context Employee \n" + "inv employeeInSameDepartmentAsIntern: \n"
+            + "self.employer = self.intern.employer";
 
     public final String checkForBob = "context Employee inv checkForBob: Employee.allInstances()->select(e:Employee | e.name = 'Bob')->asOrderedSet()->first().oclAsType(Employee).name = 'Bob'";
-    
+
     public final String sumBudgetLimit = "context company::Department inv: self.sumBudget() < 10000";
 
     /*
@@ -241,9 +254,13 @@ public class BaseDepartmentTest extends TestCase {
     public ExpressionInOCL expensesRestrictionAST = null;
 
     public ExpressionInOCL nastyConstraintAST = null;
-    
+
     public ExpressionInOCL limitEmployeesOfTheMonthAST = null;
 
+    public ExpressionInOCL nestedDerivationAST = null;
+    
+    public ExpressionInOCL eotmDeltaMaxAST = null;
+    
     public ExpressionInOCL divisionBossSecretaryAST = null;
 
     public ExpressionInOCL secretaryOlderThanBossAST = null;
@@ -259,12 +276,14 @@ public class BaseDepartmentTest extends TestCase {
     public ExpressionInOCL checkForBobAST = null;
 
     public ExpressionInOCL simpleAllInstancesAST = null;
-    
+
     public ExpressionInOCL sumBudgetLimitAST = null;
-    
+
     /*
      * for easy access to the model
      */
+    protected EClass companyClass = null;
+    
     protected EClass division = null;
 
     protected EAttribute divisionBudget = null;
@@ -286,7 +305,7 @@ public class BaseDepartmentTest extends TestCase {
     protected EAttribute employeeSalary = null;
 
     protected EReference employeeSecretary = null;
-    
+
     protected EAttribute employeeIsSecretary = null;
 
     protected EClass freelance = null;
@@ -296,10 +315,14 @@ public class BaseDepartmentTest extends TestCase {
     protected EAttribute freelanceAssignment = null;
 
     protected EReference departmentRef = null;
-    
+
     protected EReference departmentEmployeeOfTheMonth = null;
-    
+
     protected EReference divisionEmployeesOfTheMonth = null;
+
+    protected EAttribute numberEmployeesOfTheMonth = null;
+    
+    protected EAttribute eotmDelta = null;
 
     protected EReference bossRef = null;
 
@@ -314,14 +337,15 @@ public class BaseDepartmentTest extends TestCase {
     protected EReference internRef = null;
 
     /**
-     * Declare a public String field 
+     * Declare a public String field
+     * 
      * @param stringFieldName
      * @return
      */
     protected ExpressionInOCL getAST(String stringFieldName) {
         try {
             Field stringField = getClass().getField(stringFieldName);
-            Field astField = getClass().getField(stringFieldName+"AST");
+            Field astField = getClass().getField(stringFieldName + "AST");
             ExpressionInOCL result = (ExpressionInOCL) astField.get(this);
             if (result == null) {
                 result = (ExpressionInOCL) parse((String) stringField.get(this), this.comp).iterator().next().getSpecification();
@@ -336,7 +360,7 @@ public class BaseDepartmentTest extends TestCase {
     protected ExpressionInOCL getNotBossFreelanceAST() {
         return getAST("notBossFreelance");
     }
-    
+
     protected ExpressionInOCL getOldEmployeeAST() {
         return getAST("oldEmployee");
     }
@@ -356,7 +380,7 @@ public class BaseDepartmentTest extends TestCase {
     protected ExpressionInOCL getBossIsOldestAST() {
         return getAST("bossIsOldest");
     }
-    
+
     protected ExpressionInOCL getSumBudgetLimitAST() {
         return getAST("sumBudgetLimit");
     }
@@ -376,7 +400,15 @@ public class BaseDepartmentTest extends TestCase {
     protected ExpressionInOCL getLimitEmployeesOfTheMonthAST() {
         return getAST("limitEmployeesOfTheMonth");
     }
+
+    protected ExpressionInOCL getNestedDerivationAST() {
+        return getAST("nestedDerivation");
+    }
     
+    protected ExpressionInOCL getEotmDeltaMaxAST() {
+        return getAST("eotmDeltaMax");
+    }
+
     protected ExpressionInOCL getDivisionBossSecretaryAST() {
         return getAST("divisionBossSecretary");
     }
@@ -460,6 +492,7 @@ public class BaseDepartmentTest extends TestCase {
      */
     private void buildModel() {
         this.comp = company.CompanyPackage.eINSTANCE;
+        this.companyClass = this.comp.getCompany();
         this.division = this.comp.getDivision();
         this.divisionBudget = (EAttribute) this.division.getEStructuralFeature("budget");
         this.department = this.comp.getDepartment();
@@ -471,6 +504,8 @@ public class BaseDepartmentTest extends TestCase {
         this.departmentRef = (EReference) this.division.getEStructuralFeature("department");
         this.departmentEmployeeOfTheMonth = (EReference) this.department.getEStructuralFeature("employeeOfTheMonth");
         this.divisionEmployeesOfTheMonth = (EReference) this.division.getEStructuralFeature("employeesOfTheMonth");
+        this.numberEmployeesOfTheMonth = (EAttribute) this.division.getEStructuralFeature("numberEmployeesOfTheMonth");
+        this.eotmDelta = (EAttribute) this.companyClass.getEStructuralFeature("eotmDelta");
         this.employee = this.comp.getEmployee();
         this.employeeName = (EAttribute) this.employee.getEStructuralFeature("name");
         this.employeeAge = (EAttribute) this.employee.getEStructuralFeature("age");
@@ -594,6 +629,7 @@ public class BaseDepartmentTest extends TestCase {
         this.aDepartment = null;
         this.aDivision = null;
         this.aFreelance = null;
+        this.companyClass = null;
         this.division = null;
         this.divisionBudget = null;
         this.department = null;
@@ -611,6 +647,8 @@ public class BaseDepartmentTest extends TestCase {
         this.departmentRef = null;
         this.departmentEmployeeOfTheMonth = null;
         this.divisionEmployeesOfTheMonth = null;
+        this.numberEmployeesOfTheMonth = null;
+        this.eotmDelta = null;
         this.bossRef = null;
         this.managedRef = null;
         this.employerRef = null;

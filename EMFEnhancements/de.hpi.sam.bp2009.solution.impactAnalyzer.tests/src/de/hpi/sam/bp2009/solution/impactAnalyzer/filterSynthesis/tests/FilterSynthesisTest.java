@@ -471,18 +471,70 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         assertNotNull(listener); // ensure it's not garbage-collected
     }
 
+    /**
+     * Tests if the {@link FilterSynthesisImpl} collects derived properties when walking an expression that contains a
+     * {@link PropertyCallExp} referring to a derived property.
+     */
     @Test
     public void testDerivedPropertyCollection() {
         OCL ocl = OCLFactory.INSTANCE.createOCL(DefaultOppositeEndFinder.getInstance());
-        FilterSynthesisImpl filtersyn = new FilterSynthesisImpl((OCLExpression) this.getLimitEmployeesOfTheMonthAST().getBodyExpression(),
-                false, ocl);
+        FilterSynthesisImpl filtersyn = new FilterSynthesisImpl((OCLExpression) this.getLimitEmployeesOfTheMonthAST()
+                .getBodyExpression(), false, ocl);
         Map<OCLExpression, Set<PropertyCallExp>> derivedProperties = filtersyn.getDerivedProperties();
         OCLExpression derivationExp = SettingBehavior.INSTANCE.getFeatureBody(ocl, divisionEmployeesOfTheMonth);
         Set<PropertyCallExp> derivationCalls = derivedProperties.get(derivationExp);
-        
+
         assertTrue(derivedProperties.size() == 1);
         assertTrue(derivedProperties.containsKey(derivationExp));
         assertTrue(derivationCalls.size() == 1);
+    }
+
+    /**
+     * Tests the nested scenario of {@link FilterSynthesisTest#testDerivedPropertyCollection()}. The derivation expression of the
+     * accessed property now contains another {@link PropertyCallExp} referencing a derived property.
+     */
+    @Test
+    public void testNestedDerivations() {
+        OCL ocl = OCLFactory.INSTANCE.createOCL(DefaultOppositeEndFinder.getInstance());
+        FilterSynthesisImpl filtersyn = new FilterSynthesisImpl(
+                (OCLExpression) this.getNestedDerivationAST().getBodyExpression(), false, ocl);
+        Map<OCLExpression, Set<PropertyCallExp>> derivedProperties = filtersyn.getDerivedProperties();
+        OCLExpression derivationExp1 = SettingBehavior.INSTANCE.getFeatureBody(ocl, divisionEmployeesOfTheMonth);
+        OCLExpression derivationExp2 = SettingBehavior.INSTANCE.getFeatureBody(ocl, numberEmployeesOfTheMonth);
+        Set<PropertyCallExp> derivationCalls1 = derivedProperties.get(derivationExp1);
+        Set<PropertyCallExp> derivationCalls2 = derivedProperties.get(derivationExp2);
+
+        assertTrue(derivedProperties.size() == 2);
+        assertTrue(derivedProperties.containsKey(derivationExp1));
+        assertTrue(derivedProperties.containsKey(derivationExp2));
+        assertTrue(derivationCalls1.size() == 1);
+        assertTrue(derivationCalls2.size() == 1);
+    }
+
+    /**
+     * Tests the multi usage scenario of {@link FilterSynthesisTest#testDerivedPropertyCollection()}. Multiple
+     * {@link PropertyCallExp}s are referencing the same derived property.
+     */
+    @Test
+    public void testMultipleDerivationUsage() {
+        OCL ocl = OCLFactory.INSTANCE.createOCL(DefaultOppositeEndFinder.getInstance());
+        FilterSynthesisImpl filtersyn = new FilterSynthesisImpl(
+                (OCLExpression) this.getEotmDeltaMaxAST().getBodyExpression(), false, ocl);
+        Map<OCLExpression, Set<PropertyCallExp>> derivedProperties = filtersyn.getDerivedProperties();
+        OCLExpression derivationExp1 = SettingBehavior.INSTANCE.getFeatureBody(ocl, divisionEmployeesOfTheMonth);
+        OCLExpression derivationExp2 = SettingBehavior.INSTANCE.getFeatureBody(ocl, numberEmployeesOfTheMonth);
+        OCLExpression derivationExp3 = SettingBehavior.INSTANCE.getFeatureBody(ocl, eotmDelta);
+        Set<PropertyCallExp> derivationCalls1 = derivedProperties.get(derivationExp1);
+        Set<PropertyCallExp> derivationCalls2 = derivedProperties.get(derivationExp2);
+        Set<PropertyCallExp> derivationCalls3 = derivedProperties.get(derivationExp3);
+        
+        assertTrue(derivedProperties.size() == 3);
+        assertTrue(derivedProperties.containsKey(derivationExp1));
+        assertTrue(derivedProperties.containsKey(derivationExp2));
+        assertTrue(derivedProperties.containsKey(derivationExp3));
+        assertTrue(derivationCalls1.size() == 1);
+        assertTrue(derivationCalls2.size() == 4);
+        assertTrue(derivationCalls3.size() == 1);
     }
 
     private void assertAllClassesOfClassFiltersInPackage(EventFilter f, CompanyPackage comp) {
