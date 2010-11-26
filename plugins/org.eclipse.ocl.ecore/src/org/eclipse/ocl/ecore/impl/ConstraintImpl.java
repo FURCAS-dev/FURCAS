@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EcorePackage;
-import org.eclipse.ocl.util.ToStringVisitor;
+import org.eclipse.ocl.ecore.util.ToStringVisitor;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 
 /**

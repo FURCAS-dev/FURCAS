@@ -33,7 +33,7 @@ import org.eclipse.ocl.ecore.TupleLiteralPart;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.operations.TupleLiteralPartOperations;
-import org.eclipse.ocl.util.ToStringVisitor;
+import org.eclipse.ocl.ecore.util.ToStringVisitor;
 import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.TypedASTNode;
 import org.eclipse.ocl.utilities.TypedElement;
