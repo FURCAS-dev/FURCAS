@@ -190,7 +190,7 @@ public class PeopleTest extends GeneratedParserBasedTest {
             }
 
             @Override
-            public Object setOclReference(Object modelElement, String propertyName, Object keyValue, String mqlQuery,
+            public Object setReferenceWithOCLQuery(Object modelElement, String propertyName, Object keyValue, String mqlQuery,
                     Object contextObject, Object currentForeachElement) {
                 Object result = null;
                 if (propertyName.equals("representative")) {

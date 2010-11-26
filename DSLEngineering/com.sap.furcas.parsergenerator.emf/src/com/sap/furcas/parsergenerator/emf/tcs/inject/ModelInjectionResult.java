@@ -12,6 +12,7 @@ import java.util.Set;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
+import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
 
 /**
@@ -36,20 +37,30 @@ public class ModelInjectionResult {
     }
 
     public ConcreteSyntax getSyntax() {
-	ConcreteSyntax syntax = null;
-	Set<Object> set = handler.getElementsByType("FURCAS::TCS::ConcreteSyntax");
-	if (set != null && !set.isEmpty()) {
-	    if (set.size() > 1) {
-		System.out.println("Warning: More than one syntax in ModelInjectionResult (" + set.size() + " present)");
-	    }
-	    syntax = (ConcreteSyntax) set.iterator().next();
-	}
-	return syntax;
+        ConcreteSyntax syntax = null;
+        Set<Object> set;
+        try {
+            set = handler.getElementsByType("FURCAS::TCS::ConcreteSyntax");
+            if (set != null && !set.isEmpty()) {
+                if (set.size() > 1) {
+                    System.out.println("Warning: More than one syntax in ModelInjectionResult (" + set.size() + " present)");
+                }
+                syntax = (ConcreteSyntax) set.iterator().next();
+            }
+        } catch (ModelAdapterException e) {
+            throw new RuntimeException(e);
+        }
+        return syntax;
     }
 
     @SuppressWarnings("unchecked")
     public Set<Keyword> getKeywords() {
-	Set<?> set = handler.getElementsByType("FURCAS::TCS::Keyword");
+	Set<?> set;
+    try {
+        set = handler.getElementsByType("FURCAS::TCS::Keyword");
+    } catch (ModelAdapterException e) {
+        throw new RuntimeException(e);
+    }
 	return (Set<Keyword>) set;
     }
 

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.sap.furcas.modeladaptation.emf;
+package com.sap.furcas.modeladaptation.emf.adaptation;
 
 import java.util.Iterator;
 import java.util.List;
