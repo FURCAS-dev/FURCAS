@@ -27,6 +27,7 @@ import com.sap.furcas.ide.projectwizard.util.ProjectInfo;
 public class ClassChooserPage extends WizardPage {
 
     private EPackage eP;
+    private SearchableTree searchTree;
 
     public EPackage geteP() {
         return eP;
@@ -61,12 +62,12 @@ public class ClassChooserPage extends WizardPage {
         gridData.grabExcessHorizontalSpace = true;
         gridData.verticalAlignment = SWT.FILL;
         gridData.grabExcessVerticalSpace = true;
-        SearchableTree searchTree = new SearchableTree(container, SWT.SINGLE);
+        searchTree = new SearchableTree(container, SWT.SINGLE);
         ComposedAdapterFactory adapterFactory = MNComposedAdapterFactory.getAdapterFactory();
         searchTree.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
         searchTree.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
-        searchTree.setInput(eP.getESuperPackage());
         searchTree.setLayoutData(gridData);
+        setTreeInput(eP);
         searchTree.getTreeViewer().addSelectionChangedListener(new ISelectionChangedListener() {
 
             public void selectionChanged(SelectionChangedEvent event) {
@@ -89,5 +90,13 @@ public class ClassChooserPage extends WizardPage {
 
         setControl(container);
         setPageComplete(false);
+    }
+
+    public void setTreeInput(Object object) {
+        EPackage ePack = (EPackage) object;
+        if (ePack.getESuperPackage() == null)
+            searchTree.setInput(ePack);
+        else
+            searchTree.setInput(ePack.getESuperPackage());
     }
 }
