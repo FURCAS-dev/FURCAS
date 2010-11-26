@@ -1,4 +1,4 @@
-package com.sap.mi.textual.parsing.textblocks.observer;
+package com.sap.furcas.runtime.parser.textblocks.observer;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -9,23 +9,13 @@ import java.util.Collection;
 
 import org.junit.Test;
 
-<<<<<<< HEAD
-import com.sap.furcas.metamodel.TCS.Template;
-import com.sap.furcas.metamodel.textblockdefinition.TextblockDefinition;
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.parsing.textblocks.observer.TextBlockComparer;
-import com.sap.furcas.parsing.textblocks.observer.TextBlockProxy;
-import com.sap.furcas.parsing.textblocks.observer.TextBlockTraversationContext;
-=======
-import tcs.Template;
-import textblockdefinition.TextBlockDefinition;
-import textblocks.AbstractToken;
-import textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.runtime.parser.textblocks.TextBlockFactory;
+import com.sap.furcas.runtime.textblocks.testbase.TextBlockTest;
 
-import com.sap.furcas.textual.textblocks.testutils.TextBlockTest;
->>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
-import com.sap.mi.textual.parsing.textblocks.TextBlockFactory;
 
 public class TestTextBlockComparer extends TextBlockTest {
     
@@ -149,7 +139,6 @@ public class TestTextBlockComparer extends TextBlockTest {
         assertEquals(tok, traverser.getTokensToBeRelocated().get(0));
     }
     
-    
     @Test 
     public void testTraverserSetterMany() throws Exception {
         TextBlockFactory factory = getFactory();
@@ -211,10 +200,6 @@ public class TestTextBlockComparer extends TextBlockTest {
         assertEquals(block, traverser.getCurrent());
         
     }
-    
-    
-    
-    
     	/**
 	 * util method to create a factory
 	 * 
@@ -234,8 +219,7 @@ public class TestTextBlockComparer extends TextBlockTest {
 			}
 
 			@Override
-			public TextblockDefinition getTbDef(Template template) {
-				// TODO Auto-generated method stub
+			public TextBlockDefinition getTbDef(Template template) {
 				return null;
 			}
 		};
