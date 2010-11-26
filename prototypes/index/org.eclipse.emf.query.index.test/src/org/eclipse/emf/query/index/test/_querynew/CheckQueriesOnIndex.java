@@ -1,13 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2009 SAP AG and others.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *     SAP AG - initial API and implementation
- *******************************************************************************/
 package org.eclipse.emf.query.index.test._querynew;
 
 import static org.eclipse.emf.query.index.test._querynew.Query.eobject;
@@ -18,21 +8,21 @@ import static org.eclipse.emf.query.index.test._querynew.Query.resource;
 import static org.eclipse.emf.query.index.test._querynew.Query.resources;
 import static org.eclipse.emf.query.index.test._querynew.Query.select;
 
-/**
- * @author Martin Strenge, SAP AG
- * @author Bernd Kolb, SAP AG
- * 
- */
-public class TestQuery {
+import org.eclipse.emf.query.index.test._querynew.Query.EObjectClass;
+import org.eclipse.emf.query.index.test._querynew.Query.SimpleResourceClasses;
+
+public class CheckQueriesOnIndex {
 
 	public void test() {
-		select(resources("*").containing(eobject("f*").ofType("uri")));
+		SimpleResourceClasses resources = resources("*");
+		EObjectClass ofTypeURI = eobject("f*").ofType("uri");
+		select(resources.containing(ofTypeURI));
 
 		// select(resources("*").containing(eobject("f*").ofType("uri").in(resources().containing(eobject("*")))));
 
 		select(resource("uri"));
 
-		select(eobject("f*").ofType("uri"));
+		select(ofTypeURI);
 
 		select(eobjects().ofType("uri").in(resource("res")));
 
