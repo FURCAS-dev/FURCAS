@@ -1,21 +1,13 @@
-package com.sap.mi.textual.parsing.textblocks.observer;
+package com.sap.furcas.runtime.parser.textblocks.observer;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-<<<<<<< HEAD
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.parsing.textblocks.observer.TokenRelocationUtil;
-import com.sap.mi.textual.parsing.textblocks.TextBlockTest;
-=======
-import textblocks.TextBlock;
-
-import com.sap.furcas.textual.textblocks.testutils.TextBlockTest;
->>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.runtime.textblocks.testbase.TextBlockTest;
 
 public class TestTokenRelocationUtilRelocateAfterRemoval extends TextBlockTest {
-    
     
     @Test
     public void testUpdateLocationNoSubNodes() throws Exception {
@@ -45,7 +37,7 @@ public class TestTokenRelocationUtilRelocateAfterRemoval extends TextBlockTest {
         
         setupFourNodeFixtureAbsolute(root, first, middle, last);
         
-        root.getSubBlocks().remove(first);
+        root.getSubNodes().remove(first);
         
         TokenRelocationUtil.updateTextBlockLocationAfterRemoval(root);
         
@@ -62,8 +54,8 @@ public class TestTokenRelocationUtilRelocateAfterRemoval extends TextBlockTest {
         
         setupFourNodeFixtureAbsolute(root, first, middle, last);
         
-        root.getSubBlocks().remove(first);
-        root.getSubBlocks().remove(last);
+        root.getSubNodes().remove(first);
+        root.getSubNodes().remove(last);
         
         TokenRelocationUtil.updateTextBlockLocationAfterRemoval(root);
         
@@ -80,7 +72,7 @@ public class TestTokenRelocationUtilRelocateAfterRemoval extends TextBlockTest {
         
         setupFourNodeFixtureAbsolute(root, first, middle, last);
         
-        root.getSubBlocks().remove(middle); // inconsistent case, but not relevant to method
+        root.getSubNodes().remove(middle); // inconsistent case, but not relevant to method
         
         TokenRelocationUtil.updateTextBlockLocationAfterRemoval(root);
         
@@ -97,8 +89,8 @@ public class TestTokenRelocationUtilRelocateAfterRemoval extends TextBlockTest {
         
         setupFourNodeFixtureAbsolute(root, first, middle, last);
         
-        root.getSubBlocks().remove(first);
-        root.getSubBlocks().remove(middle);
+        root.getSubNodes().remove(first);
+        root.getSubNodes().remove(middle);
         
         TokenRelocationUtil.updateTextBlockLocationAfterRemoval(root);
         
@@ -115,8 +107,8 @@ public class TestTokenRelocationUtilRelocateAfterRemoval extends TextBlockTest {
         
         setupFourNodeFixtureAbsolute(root, first, middle, last);
         
-        root.getSubBlocks().remove(middle);
-        root.getSubBlocks().remove(last);
+        root.getSubNodes().remove(middle);
+        root.getSubNodes().remove(last);
         
         TokenRelocationUtil.updateTextBlockLocationAfterRemoval(root);
         
@@ -133,7 +125,7 @@ public class TestTokenRelocationUtilRelocateAfterRemoval extends TextBlockTest {
         
         setupFourNodeFixtureAbsolute(root, first, middle, last);
         
-        root.getSubBlocks().remove(last);
+        root.getSubNodes().remove(last);
         
         TokenRelocationUtil.updateTextBlockLocationAfterRemoval(root);
         
@@ -160,7 +152,7 @@ public class TestTokenRelocationUtilRelocateAfterRemoval extends TextBlockTest {
         root.setOffsetRelative(true);
         root.setOffset(5); // root offset must be same as first subnode absolute offset
         
-        root.getSubBlocks().remove(last);
+        root.getSubNodes().remove(last);
         
         TokenRelocationUtil.updateTextBlockLocationAfterRemoval(root);
         
@@ -185,7 +177,7 @@ public class TestTokenRelocationUtilRelocateAfterRemoval extends TextBlockTest {
         root.setOffsetRelative(true);
         root.setOffset(5); // root offset must be same as first subnode absolute offset
         
-        root.getSubBlocks().remove(first);
+        root.getSubNodes().remove(first);
         
         TokenRelocationUtil.updateTextBlockLocationAfterRemoval(root);
         
@@ -210,7 +202,7 @@ public class TestTokenRelocationUtilRelocateAfterRemoval extends TextBlockTest {
         rootroot.setOffset(5);
         root.setOffsetRelative(true);
         
-        root.getSubBlocks().remove(last);
+        root.getSubNodes().remove(last);
         
         TokenRelocationUtil.updateTextBlockLocationAfterRemoval(root);
     }
@@ -226,7 +218,7 @@ public class TestTokenRelocationUtilRelocateAfterRemoval extends TextBlockTest {
         
         first.setOffsetRelative(true);
         first.setOffset(0);
-        root.getSubBlocks().remove(last);
+        root.getSubNodes().remove(last);
         
         TokenRelocationUtil.updateTextBlockLocationAfterRemoval(root);
         
@@ -271,7 +263,7 @@ public class TestTokenRelocationUtilRelocateAfterRemoval extends TextBlockTest {
         last.setOffsetRelative(true);
         last.setOffset(40);
         
-        root.getSubBlocks().remove(first);
+        root.getSubNodes().remove(first);
         
         TokenRelocationUtil.updateTextBlockLocationAfterRemoval(root);
         

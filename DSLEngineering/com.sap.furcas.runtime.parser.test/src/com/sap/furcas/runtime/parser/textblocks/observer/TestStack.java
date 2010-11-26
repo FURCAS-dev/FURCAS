@@ -1,11 +1,9 @@
-package com.sap.mi.textual.parsing.textblocks.observer;
+package com.sap.furcas.runtime.parser.textblocks.observer;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-
-import com.sap.furcas.parsing.textblocks.observer.Stack;
 
 public class TestStack  {
     

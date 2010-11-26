@@ -8,11 +8,13 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.junit;bundle-version="4.8.1",
  org.antlr,
  com.sap.furcas.test,
- com.sap.furcas.metamodel.tests,
+ com.sap.furcas.runtime.textblocks,
+ com.sap.furcas.runtime.textblocks.test,
  com.sap.furcas.runtime.common,
  com.sap.furcas.runtime.parser,
  com.sap.furcas.utils,
- com.sap.furcas.parser.tcs
+ com.sap.furcas.parser.tcs,
+ com.sap.furcas.metamodel.tests
 Export-Package: com.sap.furcas.runtime.parser.testbase
 Bundle-ClassPath: lib/tools.jar,
  .
