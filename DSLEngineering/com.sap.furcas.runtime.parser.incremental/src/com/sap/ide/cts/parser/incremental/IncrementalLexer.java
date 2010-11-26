@@ -465,7 +465,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 		// first create a new version of the tree
 		// TODO: this should be enhanced by only creating new versions of
 		// changed regions and re-using the old untouched rest.
-		boolean moinLoggingWasEnabled = false;
+//		boolean moinLoggingWasEnabled = false;
 //		if (ParsingTextblocksActivator.getDefault() != null) {
 //			moinLoggingWasEnabled = ParsingTextblocksActivator.getDefault()
 //					.isMoinLoggingEnabled(root.get___Connection());

@@ -163,8 +163,10 @@ public class TbUtil {
 		// }
 		// copiedNode.getOtherVersions().clear();
 		for (EObject original : copiedElements.keySet()) {
+			DocumentNode copiedNode = (DocumentNode) copiedElements.get(original);
+			copiedNode.getOtherVersions().clear();
 			referenceVersions((DocumentNode) original, 
-					(DocumentNode) copiedElements.get(original));
+					copiedNode);
 		}
 		
 		// per default assign to the same partition
