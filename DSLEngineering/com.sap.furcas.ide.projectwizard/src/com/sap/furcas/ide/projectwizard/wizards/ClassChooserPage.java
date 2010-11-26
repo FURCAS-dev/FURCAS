@@ -61,7 +61,7 @@ public class ClassChooserPage extends WizardPage {
         ComposedAdapterFactory adapterFactory = MNComposedAdapterFactory.getAdapterFactory();
         searchTree.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
         searchTree.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
-        searchTree.setInput(eP);
+        searchTree.setInput(eP.getESuperPackage());
         searchTree.setLayoutData(gridData);
 
         /*

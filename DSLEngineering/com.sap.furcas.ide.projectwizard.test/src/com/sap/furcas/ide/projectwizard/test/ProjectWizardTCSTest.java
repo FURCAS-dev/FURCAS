@@ -21,8 +21,8 @@ import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
  */
 public class ProjectWizardTCSTest extends GeneratedParserBasedTest {
 
-    private static final String LANGUAGE = "mydsl";
-    private static final File[] METAMODELS = { new File("../com.sap.furcas.ide.projectwizard.test.metamodel/model/mydsl.ecore") };
+    private static final String LANGUAGE = "Mydsl";
+    private static final File[] METAMODELS = { new File("../com.sap.furcas.ide.projectwizard.test.metamodel/model/Mydsl.ecore") };
 
     private static ParsingHelper parsingHelper;
 
@@ -42,16 +42,16 @@ public class ProjectWizardTCSTest extends GeneratedParserBasedTest {
     @Test
     public void testForcedLower() throws Exception {
         // Expect no errors
-        String sample = "ExampleClass = \"HelloWorld\".";
+        String sample = "ExampleClass";
         parsingHelper.parseString(sample, 0);
 
     }
 
     public static File getTCS() {
-        File TCS = new File("../com.sap.furcas.ide.projectwizard.test/generationTemp/generated/mydsl.tcs");
+        File TCS = new File("../com.sap.furcas.ide.projectwizard.test/generationTemp/generated/Mydsl.tcs");
         SourceCodeFactory scf = new SourceCodeFactory();
         ProjectInfo pi = new ProjectInfo();
-        pi.setLanguageName("mydsl");
+        pi.setLanguageName("Mydsl");
         pi.setClassName("ExampleClass");
         String newContent = scf.createSampleTCS(pi);
         try {

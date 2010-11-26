@@ -67,7 +67,7 @@ public class CreateMMProject {
         EClass eClass = (EClass) ecorePackage.getEClassifier("EPackage");
         EObject rootObject = ecoreFactory.create(eClass);
         if (rootObject instanceof ENamedElement) {
-            ((ENamedElement) rootObject).setName(lpage.getProjectInfo().getLanguageName());
+            ((ENamedElement) rootObject).setName(CreateProject.capitalizeFirstChar(lpage.getProjectInfo().getLanguageName()));
         }
         return rootObject;
     }
@@ -81,7 +81,7 @@ public class CreateMMProject {
         // Get the URI of the model file.
         //
         String mmprojectpath = lpage.getProjectInfo().getProjectName() + ".metamodel/model/"
-                + lpage.getProjectInfo().getLanguageName() + ".ecore";
+                + CreateProject.capitalizeFirstChar(lpage.getProjectInfo().getLanguageName()) + ".ecore";
         URI fileURI = URI.createPlatformResourceURI(mmprojectpath, true);
 
         // Create a resource for this file. Don't specify a content type, as it could be Ecore or EMOF.

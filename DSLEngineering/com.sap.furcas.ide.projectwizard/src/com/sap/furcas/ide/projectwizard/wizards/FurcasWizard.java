@@ -229,7 +229,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
      */
     public IFile getModelFile() {
         Path path = new Path(page.getProjectInfo().getProjectName() + ".metamodel/model/"
-                + page.getProjectInfo().getLanguageName() + ".ecore");
+                + CreateProject.capitalizeFirstChar(page.getProjectInfo().getLanguageName()) + ".ecore");
 
         return ResourcesPlugin.getWorkspace().getRoot().getFile(path);
     }

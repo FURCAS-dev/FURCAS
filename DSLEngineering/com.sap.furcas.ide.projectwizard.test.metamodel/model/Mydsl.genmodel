@@ -4,7 +4,7 @@
     modelPluginID="my.dsl.metamodel" modelName="Mydsl" importerID="org.eclipse.emf.importer.ecore"
     complianceLevel="6.0" copyrightFields="false">
   <foreignModel>mydsl.ecore</foreignModel>
-  <genPackages prefix="Mydsl" disposableProviderFactory="true" ecorePackage="mydsl.ecore#/">
-    <genClasses ecoreClass="mydsl.ecore#//ReplaceMe"/>
+  <genPackages prefix="Mydsl" disposableProviderFactory="true" ecorePackage="Mydsl.ecore#/">
+    <genClasses ecoreClass="Mydsl.ecore#//"/>
   </genPackages>
 </genmodel:GenModel>

@@ -79,11 +79,10 @@ public class WizardProjectHelper {
                 }
             }
             if (!metamodel) {
-            projectDescription.setNatureIds(new String[] { JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature",
-                    "com.sap.furcas.ide.dslproject.syntaxGenerationNature" });
-            }
-            else
-                projectDescription.setNatureIds(new String[] { JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature"});
+                projectDescription.setNatureIds(new String[] { "com.sap.furcas.ide.dslproject.syntaxGenerationNature",
+                        JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature" });
+            } else
+                projectDescription.setNatureIds(new String[] { JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature" });
 
             ICommand java = projectDescription.newCommand();
             java.setBuilderName(JavaCore.BUILDER_ID);
@@ -95,13 +94,12 @@ public class WizardProjectHelper {
             schema.setBuilderName("org.eclipse.pde.SchemaBuilder");
 
             if (!metamodel) {
-            ICommand furcas = projectDescription.newCommand();
-            furcas.setBuilderName("com.sap.furcas.ide.dslproject.syntaxBuilder");
+                ICommand furcas = projectDescription.newCommand();
+                furcas.setBuilderName("com.sap.furcas.ide.dslproject.syntaxBuilder");
 
-            projectDescription.setBuildSpec(new ICommand[] { java, manifest, schema, furcas });
-            }
-            else {
-                projectDescription.setBuildSpec(new ICommand[] { java, manifest, schema});
+                projectDescription.setBuildSpec(new ICommand[] { furcas, java, manifest, schema });
+            } else {
+                projectDescription.setBuildSpec(new ICommand[] { java, manifest, schema });
             }
 
             project.open(new SubProgressMonitor(progressMonitor, 1));
@@ -171,8 +169,8 @@ public class WizardProjectHelper {
         createFile("build.properties", project, scf.createBuildProbCode(), progressMonitor);
     }
 
-    private static void createManifest(final IProgressMonitor progressMonitor, IProject project,
-            ProjectInfo pi) throws CoreException {
+    private static void createManifest(final IProgressMonitor progressMonitor, IProject project, ProjectInfo pi)
+            throws CoreException {
         SourceCodeFactory scf = new SourceCodeFactory();
 
         IFolder metaInf = project.getFolder("META-INF");
@@ -184,7 +182,7 @@ public class WizardProjectHelper {
             throws CoreException {
         SourceCodeFactory scf = new SourceCodeFactory();
         IFolder folder = project.getFolder("model");
-        return createFile(pi.getLanguageName() + ".genmodel", folder, scf.createGenmodelCode(pi), progressMonitor);
+        return createFile(CreateProject.capitalizeFirstChar(pi.getLanguageName()) + ".genmodel", folder, scf.createGenmodelCode(pi), progressMonitor);
     }
 
     /**

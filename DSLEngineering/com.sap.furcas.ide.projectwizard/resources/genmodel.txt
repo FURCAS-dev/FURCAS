@@ -4,7 +4,7 @@
     modelPluginID="$ProjectName$.metamodel" modelName="$CapLangName$" importerID="org.eclipse.emf.importer.ecore"
     complianceLevel="6.0" copyrightFields="false">
   <foreignModel>$LangName$.ecore</foreignModel>
-  <genPackages prefix="$CapLangName$" disposableProviderFactory="true" ecorePackage="$LangName$.ecore#/">
-    <genClasses ecoreClass="$LangName$.ecore#//ReplaceMe"/>
+  <genPackages prefix="$CapLangName$" disposableProviderFactory="true" ecorePackage="$CapLangName$.ecore#/">
+    <genClasses ecoreClass="$CapLangName$.ecore#//$ClassName$"/>
   </genPackages>
 </genmodel:GenModel>
