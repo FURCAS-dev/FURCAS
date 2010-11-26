@@ -1,10 +1,14 @@
 package com.sap.furcas.ide.projectwizard.wizards;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecoretools.tabbedproperties.sections.widgets.SearchableTree;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -63,25 +67,27 @@ public class ClassChooserPage extends WizardPage {
         searchTree.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
         searchTree.setInput(eP.getESuperPackage());
         searchTree.setLayoutData(gridData);
+        searchTree.getTreeViewer().addSelectionChangedListener(new ISelectionChangedListener() {
 
-        /*
-         * list = new List(container, SWT.BORDER | SWT.V_SCROLL); list.setItems(getClasses()); setupList();
-         * list.setLayoutData(gridData); list.addListener(SWT.Selection, new Listener() { public void handleEvent(Event e) {
-         * String[] selection = list.getSelection(); pi.setClassName(selection[0]); setPageComplete(true); } });
-         */
+            public void selectionChanged(SelectionChangedEvent event) {
+                if (event.getSelection().isEmpty()) {
+                    setPageComplete(false);
+                } else if (event.getSelection() instanceof IStructuredSelection) {
+                    {
+                        IStructuredSelection selection = (IStructuredSelection) event.getSelection();
+                        Object object = selection.getFirstElement();
+                        if (object instanceof EClass) {
+                            EClass eC = (EClass) object;
+                            pi.setClassName(eC.getName());
+                            setPageComplete(true);
+                        } else
+                            setPageComplete(false);
+                    }
+                }
+            }
+        });
+
         setControl(container);
         setPageComplete(false);
     }
-
-    /*
-     * private void setupList() { String[] items; Integer removed = 0; items = list.getItems(); for (int i = 0; i < items.length;
-     * i++) { if (items[i].matches(" ")) { list.remove(i - removed); removed++; } }
-     * 
-     * }
-     * 
-     * private String[] getClasses() { EList<EObject> ePs = eP.eContents(); String[] items = new String[ePs.size()]; for (int i =
-     * 0; i < ePs.size(); i++) { if (ePs.get(i) instanceof EClass) { EClass eC = (EClass) ePs.get(i); items[i] = eC.getName(); }
-     * else items[i] = " "; } return items; }
-     */
-
 }
