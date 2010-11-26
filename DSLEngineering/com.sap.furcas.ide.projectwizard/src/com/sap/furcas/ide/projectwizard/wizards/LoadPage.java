@@ -85,7 +85,6 @@ public class LoadPage extends WizardPage {
                     if (registeredPackageDialog.isDevelopmentTimeVersion()) {
                         ResourceSet resourceSet = new ResourceSetImpl();
                         resourceSet.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap());
-                        StringBuffer uris = new StringBuffer();
                         Map<String, URI> ePackageNsURItoGenModelLocationMap = EcorePlugin.getEPackageNsURIToGenModelLocationMap();
                         for (int i = 0, length = result.length; i < length; i++) {
                             URI location = ePackageNsURItoGenModelLocationMap.get(result[i]);
@@ -96,21 +95,14 @@ public class LoadPage extends WizardPage {
                             for (EPackage ePackage : getAllPackages(resource)) {
                                 if (nsURIs.contains(ePackage.getNsURI())) {
                                     eP = ePackage;
-                                    uris.append(resource.getURI());
-                                    uris.append("  ");
+                                    uriField.setText(resource.getURI().toString());
                                     break;
                                 }
                             }
                         }
-                        uriField.setText((uriField.getText() + "  " + uris.toString()).trim());
                     } else {
-                        StringBuffer uris = new StringBuffer();
-                        for (int i = 0, length = result.length; i < length; i++) {
-                            uris.append(result[i]);
-                            uris.append("  ");
-                        }
                         eP = (EPackage) result[0];
-                        uriField.setText((uriField.getText() + "  " + uris.toString()).trim());
+                        uriField.setText(result[0].toString());
                     }
                 }
             }
@@ -129,12 +121,7 @@ public class LoadPage extends WizardPage {
                     IProject mMproject = files[0].getProject();
                     pi.setMmProject(mMproject.getName());
                     eP = fileToEPack(files[0]);
-                    StringBuffer text = new StringBuffer();
-                    for (int i = 0; i < files.length; ++i) {
-                        text.append(URI.createPlatformResourceURI(files[i].getFullPath().toString(), true));
-                        text.append("  ");
-                    }
-                    uriField.setText(text.toString());
+                    uriField.setText(URI.createPlatformResourceURI(files[0].getFullPath().toString(), true).toString());
                 }
             }
         });
@@ -201,6 +188,9 @@ public class LoadPage extends WizardPage {
             uriField.setText(text);
         pi.setURIPath(uriField.getText());
         wizard.getWiz().getContainer().updateButtons();
+        if (getNextPage() != null){
+            getNextPage().setTreeInput(eP);
+        }
     }
 
     @Override
