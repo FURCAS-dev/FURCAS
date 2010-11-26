@@ -41,7 +41,6 @@ import org.eclipse.emf.converter.util.ConverterUtil;
 import com.sap.emf.importer.moin.rose.builder.RoseUtil;
 import com.sap.emf.importer.moin.rose.builder.UnitTreeNode;
 
-
 /**
  * @since 2.1.0
  */
