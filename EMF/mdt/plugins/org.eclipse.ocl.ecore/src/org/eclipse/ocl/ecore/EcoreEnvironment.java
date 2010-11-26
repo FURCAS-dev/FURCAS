@@ -18,6 +18,7 @@
 
 package org.eclipse.ocl.ecore;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -33,6 +34,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
@@ -763,6 +765,34 @@ public class EcoreEnvironment
 			List<EStructuralFeature> ends) {
 		if (oppositeEndFinder != null) {
 			oppositeEndFinder.findOppositeEnds(classifier, name, ends);
+		}
+	}
+
+	/**
+	 * If a "hidden" opposite is found (because a forward reference has a "Property.oppositeRoleName"
+	 * annotation specifying a name for the opposite role), this method adds a temporary
+	 * {@link EReference} to the <code>ends</code> list which has no container set and as its
+	 * opposite uses the forward reference. The name of this temporary reference is set to
+	 * <code>name</code> which equals the value of the "Property.oppositeRoleName" annotation
+	 * on the forward reference.<p>
+	 * 
+	 * The temporary reference is not a valid reference for at least two reasons: its container
+	 * is not set and its opposite does not name it as its opposite.
+	 * @since 3.1
+	 */
+	@Override
+	protected void findNonNavigableAssociationEnds(EClassifier classifier,
+			String name, List<EStructuralFeature> ends) {
+		List<EStructuralFeature> hiddenOpposites = new ArrayList<EStructuralFeature>();
+		if (oppositeEndFinder != null) {
+			oppositeEndFinder.findOppositeEnds(classifier, name, hiddenOpposites);
+		}
+		for (EStructuralFeature forwardRef : hiddenOpposites) {
+			EReference temporaryOppositeRef = EcoreFactory.eINSTANCE.createEReference();
+			temporaryOppositeRef.setEOpposite((EReference) forwardRef);
+			temporaryOppositeRef.setName(name);
+			temporaryOppositeRef.setEType((EClassifier) forwardRef.eContainer());
+			ends.add(temporaryOppositeRef);
 		}
 	}
 
