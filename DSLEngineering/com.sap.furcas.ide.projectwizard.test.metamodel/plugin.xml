@@ -13,8 +13,8 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://www.mydsl.com/metamodel/"
-            class="mydsl.MydslPackage"
-            genModel="model/mydsl.genmodel"/>
+            class="Mydsl.MydslPackage"
+            genModel="model/Mydsl.genmodel"/>
    </extension>
 
 </plugin>

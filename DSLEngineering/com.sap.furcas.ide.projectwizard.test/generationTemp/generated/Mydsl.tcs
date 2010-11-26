@@ -1,9 +1,9 @@
-syntax $CapLangName$ {
+syntax Mydsl {
 
 -- place templates here (at least one main template)
 
-        template $FirstClass$ main
-                 :"$FirstClass$"
+        template ExampleClass main
+                 :"ExampleClass"
                  ;
 
         primitiveTemplate identifier for ecore::EString default using NAME:

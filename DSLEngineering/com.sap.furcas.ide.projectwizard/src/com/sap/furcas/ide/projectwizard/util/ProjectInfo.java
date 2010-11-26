@@ -55,7 +55,8 @@ public class ProjectInfo {
     }
 
     public String getTCSFileName() {
-        return getLanguageName().replaceAll("\\s", "_") + ".tcs"; // +"xtxt";
+        String tcsFile = getLanguageName().replaceAll("\\s", "_") + ".tcs";
+        return CreateProject.capitalizeFirstChar(tcsFile);
     }
 
     public String getBasePath() {

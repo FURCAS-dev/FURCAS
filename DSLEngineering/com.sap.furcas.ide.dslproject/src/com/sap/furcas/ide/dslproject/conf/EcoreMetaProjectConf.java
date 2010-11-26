@@ -6,10 +6,8 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.operation.IRunnableWithProgress;
-import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.progress.IProgressService;
@@ -124,8 +122,9 @@ public final class EcoreMetaProjectConf implements IProjectMetaRefConf {
                 }
                 HashSet<URI> newPRIs = null;
                 newPRIs = new HashSet<URI>();
-                EPackage ePackage = EcorePackage.eINSTANCE;
-                newPRIs.add(URI.createURI(ePackage.getNsURI()));
+                //TODO look if needed
+/*                EPackage ePackage = EcorePackage.eINSTANCE;
+                newPRIs.add(URI.createURI(ePackage.getNsURI()));*/
                 newPRIs.add(URI.createURI(nsURI));
                 return new ReferenceScopeBean(connection, newPRIs);
     }
