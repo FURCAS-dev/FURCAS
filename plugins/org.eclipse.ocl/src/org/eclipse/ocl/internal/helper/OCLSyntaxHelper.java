@@ -26,7 +26,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import lpg.runtime.IPrsStream;
@@ -36,7 +35,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.Environment;
-import org.eclipse.ocl.EnvironmentWithHiddenOpposites;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.cst.ClassifierContextDeclCS;
@@ -75,7 +73,6 @@ import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ChoiceKind;
 import org.eclipse.ocl.helper.ConstraintKind;
-import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
 import org.eclipse.ocl.parser.OCLAnalyzer;
@@ -91,7 +88,6 @@ import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.utilities.UMLReflection;
 import org.eclipse.ocl.utilities.Visitor;
 import org.eclipse.ocl.utilities.VisitorExtension;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * Engine for computation of possible syntax completions at a point in the
@@ -508,7 +504,7 @@ public class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 * @param eClass the eclass to get features from 
 	 * @return List oclchoices list for structural features
 	 */
-	private List<Choice> getPropertyChoices(C eClass) {
+	protected List<Choice> getPropertyChoices(C eClass) {
 		List<Choice> result = new ArrayList<Choice>();
 		Set<P> properties = new HashSet<P>(TypeUtil.getAttributes(environment, eClass));
 		
@@ -538,16 +534,6 @@ public class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
     					result.add(choice);
     				}
 			    }
-			}
-		}
-		if (environment instanceof EnvironmentWithHiddenOpposites<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
-			for (Entry<String, P> hiddenOppositeNameAndForwardProperty : ((EnvironmentWithHiddenOpposites<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>) environment)
-				.getHiddenOppositeProperties(eClass).entrySet()) {
-				result.add(new ChoiceImpl(hiddenOppositeNameAndForwardProperty
-					.getKey(), NLS.bind(OCLMessages.HiddenOppositeOf,
-					getDescription(hiddenOppositeNameAndForwardProperty
-						.getValue())), ChoiceKind.PROPERTY,
-					hiddenOppositeNameAndForwardProperty.getValue()));
 			}
 		}
 		return result;
@@ -745,6 +731,10 @@ public class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		
 		return result;
 	}
+	
+	protected Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> getEnvironment() {
+		return environment;
+	}
 
 	/**
 	 * builds and returns a list of Choice that represent the directly
@@ -912,7 +902,7 @@ public class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 * @param namedElement a named element presented to the user as a choice
 	 * @return the most appropriate description for the element
 	 */
-	private String getDescription(Object namedElement) {
+	protected String getDescription(Object namedElement) {
 		return uml.getDescription(namedElement);
 	}
 

@@ -43,7 +43,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.AbstractEnvironment;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
-import org.eclipse.ocl.EnvironmentWithHiddenOpposites;
 import org.eclipse.ocl.TypeResolver;
 import org.eclipse.ocl.ecore.internal.EcoreForeignMethods;
 import org.eclipse.ocl.ecore.internal.OCLFactoryImpl;
@@ -76,11 +75,7 @@ public class EcoreEnvironment
 		EEnumLiteral, EParameter,
 		EObject, CallOperationAction, SendSignalAction, Constraint,
 		EClass, EObject>
-    implements EnvironmentWithHiddenOpposites<
-        EPackage, EClassifier, EOperation, EStructuralFeature,
-        EEnumLiteral, EParameter,
-        EObject, CallOperationAction, SendSignalAction, Constraint,
-        EClass, EObject> {
+    implements EnvironmentWithHiddenOpposites {
 	
 	/**
 	 * The namespace URI of the Ecore representation of the OCL Standard Library.

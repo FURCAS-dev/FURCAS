@@ -9,12 +9,12 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.Environment;
-import org.eclipse.ocl.EnvironmentWithHiddenOpposites;
 import org.eclipse.ocl.LookupException;
 import org.eclipse.ocl.cst.CSTNode;
 import org.eclipse.ocl.cst.SimpleNameCS;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.EnvironmentWithHiddenOpposites;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.util.TypeUtil;
 import org.eclipse.ocl.expressions.NavigationCallExp;
@@ -188,8 +188,8 @@ public class OCLAnalyzer
 		if (source != null) {
 			result.setSource(source);
 		} else {
-			if (env instanceof EnvironmentWithHiddenOpposites<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
-				Variable<EClassifier, EParameter> implicitSource = ((EnvironmentWithHiddenOpposites<?, EClassifier, ?, ?, ?, EParameter, ?, ?, ?, ?, ?, ?>) env)
+			if (env instanceof EnvironmentWithHiddenOpposites) {
+				Variable<EClassifier, EParameter> implicitSource = ((EnvironmentWithHiddenOpposites) env)
 					.lookupImplicitSourceForOppositeProperty(simpleName);
 				VariableExp<EClassifier, EParameter> src = createVariableExp(env,
 					simpleNameCS, implicitSource);
@@ -244,11 +244,8 @@ public class OCLAnalyzer
 			EClassifier owner, String name) {
 		try {
 			EStructuralFeature property = null;
-			if (env instanceof EnvironmentWithHiddenOpposites<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
-				property = ((EnvironmentWithHiddenOpposites<EPackage, EClassifier, EOperation, EStructuralFeature,
-						EEnumLiteral, EParameter, EObject,
-						CallOperationAction, SendSignalAction, Constraint,
-						EClass, EObject>) env)
+			if (env instanceof EnvironmentWithHiddenOpposites) {
+				property = ((EnvironmentWithHiddenOpposites) env)
 					.lookupOppositeProperty(owner, name);
 			}
 			if (cstNode != null) {

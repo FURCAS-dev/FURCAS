@@ -30,7 +30,7 @@ import org.eclipse.ocl.util.ObjectUtil;
  * 
  * @author Yasser Lulu 
  */
-class ChoiceImpl implements Choice {
+public class ChoiceImpl implements Choice {
 
 	private String name;
 
@@ -49,7 +49,7 @@ class ChoiceImpl implements Choice {
 	 * @param kind the kind of choice that I am
 	 * @param element the element that I choose
 	 */
-	ChoiceImpl(String name, String description, ChoiceKind kind, Object element) {
+	public ChoiceImpl(String name, String description, ChoiceKind kind, Object element) {
 		this.name = name;
 		this.description = description;
 		this.kind = kind;

@@ -1,7 +1,18 @@
 package org.eclipse.ocl.ecore.util;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.Environment;
-import org.eclipse.ocl.EnvironmentWithHiddenOpposites;
+import org.eclipse.ocl.ecore.CallOperationAction;
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.EnvironmentWithHiddenOpposites;
+import org.eclipse.ocl.ecore.SendSignalAction;
 
 
 /**
@@ -21,11 +32,14 @@ public class TypeUtil {
      *    class case
 	 * @since 3.1
 	 */
-	public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-	C getOppositePropertyType(
-			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
-			C owner,
-			P property) {
-       return ((EnvironmentWithHiddenOpposites<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>) env).getOppositePropertyType(owner, property);
+	public static EClassifier getOppositePropertyType(
+			Environment<
+			EPackage, EClassifier, EOperation, EStructuralFeature,
+			EEnumLiteral, EParameter, EObject,
+			CallOperationAction, SendSignalAction, Constraint,
+			EClass, EObject> env,
+			EClassifier owner,
+			EStructuralFeature property) {
+       return ((EnvironmentWithHiddenOpposites) env).getOppositePropertyType(owner, property);
 	}
 }

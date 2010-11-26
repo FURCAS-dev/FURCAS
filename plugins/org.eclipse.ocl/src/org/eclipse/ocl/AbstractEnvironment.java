@@ -78,7 +78,7 @@ import org.eclipse.ocl.utilities.UMLReflectionWithOpposite;
 public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	extends AbstractBasicEnvironment
 	implements Environment.Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>,
-	    EnvironmentWithHiddenOpposites.Lookup<PK, C, O, P> {
+	    Environment.Lookup<PK, C, O, P> {
     
 	/* Used to generate implicit iterator variables */
 	private int generatorInt = 0;
