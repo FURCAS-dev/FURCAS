@@ -43,6 +43,7 @@ import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.UMLReflection;
+import org.eclipse.ocl.utilities.UMLReflectionWithOpposite;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.BehavioredClassifier;
 import org.eclipse.uml2.uml.CallOperationAction;
@@ -78,7 +79,8 @@ import org.eclipse.uml2.uml.UMLFactory;
  */
 public class UMLReflectionImpl
     implements
-    UMLReflection<Package, Classifier, Operation, Property, EnumerationLiteral, Parameter, State, CallOperationAction, SendSignalAction, Constraint> {
+    UMLReflection<Package, Classifier, Operation, Property, EnumerationLiteral, Parameter, State, CallOperationAction, SendSignalAction, Constraint>,
+    UMLReflectionWithOpposite<Property> {
 
 	private static Set<String> ECORE_INTEGER_TYPES = new java.util.HashSet<String>(
 		Arrays.asList(EcorePackage.Literals.EINT.getName(),
@@ -315,6 +317,10 @@ public class UMLReflectionImpl
     
     public List<Operation> getOperations(Classifier classifier) {
         return OCLUMLUtil.getAllOperations(classifier);
+    }
+    
+    public Property getOpposite(Property property) {
+    	return property.getOtherEnd();
     }
     
     public Property createProperty(String name, Classifier resultType) {

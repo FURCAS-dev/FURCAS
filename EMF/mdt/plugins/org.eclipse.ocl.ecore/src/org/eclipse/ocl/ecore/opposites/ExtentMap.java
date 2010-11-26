@@ -17,11 +17,26 @@ import java.util.Set;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.ecore.OCL;
 
 
 /**
  * Uses {@link OppositeEndFinder#getAllInstancesSeenBy(EClass, org.eclipse.emf.common.notify.Notifier)} to perform
- * an extent lookup.
+ * an extent lookup that is consistent with the visibility rules implemented by the {@link OppositeEndFinder}
+ * for hidden opposites lookup and traversal.<p>
+ * 
+ * Usage:<p>
+ * 
+ * <pre>
+ *   {@link OCL}.{@link OCL#setExtentMap(Map) setExtentMap}<code>(new ExtentMap(context, oppositeEndFinder))</code>
+ * </pre>
+ * 
+ * in case there is a specific {@link OppositeEndFinder} to be used. In order to use the {@link DefaultOppositeEndFinder},
+ * use
+ * 
+ * <pre>
+ *   {@link OCL}.{@link OCL#setExtentMap(Map) setExtentMap}<code>(new ExtentMap(context))</code>
+ * </pre>
  * 
  * @since 3.1
  */
@@ -32,6 +47,16 @@ public class ExtentMap implements Map<EClass, Set<EObject>> {
     public ExtentMap(Notifier context, OppositeEndFinder oppositeEndFinder) {
         this.context = context;
         this.oppositeEndFinder = oppositeEndFinder;
+    }
+    
+    /**
+     * Uses a {@link DefaultOppositeEndFinder}
+     * 
+     * @param context the {@link EObject}, {@link Resource} or {@link ResourceSet} relative to which
+     * the visibility rules are evaluated.
+     */
+    public ExtentMap(Notifier context) {
+    	this(context, DefaultOppositeEndFinder.getInstance());
     }
 
     /**

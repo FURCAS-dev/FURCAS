@@ -70,8 +70,8 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
     public void setupInitialModel() throws IOException, UnknownProductionRuleException {
         String sample = "article{" + "  Testing, \"John Doe\"," + "  year = \"2002\"" + "}" + "author = \"John Doe\"."
         + "author = \"Jane Doll\".";
-        Set<URI> referenceScope = Collections.emptySet();
         EPackage ePackage = findPackage("BibText");
+        Set<URI> referenceScope = Collections.singleton(ePackage.eResource().getURI());
     	EMFModelAdapter handler = new EMFModelAdapter(ePackage, new ResourceSetImpl(), referenceScope);
     	DefaultTextAwareModelAdapter handlerWrapper = new DefaultTextAwareModelAdapter(handler);
 

@@ -452,7 +452,7 @@ public class TestIncrementalLexer extends TextBlockTest {
 		subBlock.setVersion(Version.REFERENCE);
 		subBlock.setOffset(4);
 		subBlock.setLength(8);
-		root.getSubNodes().add(subBlock);
+		root.getSubNodes().add(root.getSubNodes().size() - 2, subBlock);
 
 		LexedToken tok2 = createToken("tok2");
 		tok2.setOffsetRelative(true);

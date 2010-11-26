@@ -154,6 +154,7 @@ import org.eclipse.ocl.utilities.OCLFactoryWithHiddenOpposite;
 import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.ocl.utilities.UMLReflection;
+import org.eclipse.ocl.utilities.UMLReflectionWithOpposite;
 
 /**
  * The <code>AbstractOCLAnalyzer</code> supports semantic analysis of a CST
@@ -2426,11 +2427,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			astNode = simpleVariableName(simpleNameCS, env, source, simpleName);
 		}
 		if (astNode == null) {
-			astNode = simplePropertyName(simpleNameCS, env, source,
-				sourceElementType, simpleName);
-		}
-		if (astNode == null) {
-			astNode = simpleOppositePropertyName(simpleNameCS, env, source,
+			astNode = simplePropertyNameIncludingHiddenOpposites(simpleNameCS, env, source,
 				sourceElementType, simpleName);
 		}
 		if (astNode == null) {
@@ -2539,7 +2536,8 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 		return result;
 	}
-
+	
+	
 	/**
 	 * Attempts to parse a <tt>simpleNameCS</tt> as a property call expression.
 	 * 
@@ -2566,42 +2564,16 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			SimpleNameCS simpleNameCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			OCLExpression<C> source, C owner, String simpleName) {
-		if (simpleName == null) {
+		NavigationCallExp<C, P> result = simplePropertyNameIncludingHiddenOpposites(simpleNameCS, env, source, owner, simpleName);
+		if (result instanceof PropertyCallExp<?, ?>) {
+			return (PropertyCallExp<C, P>) result;
+		} else {
 			return null;
 		}
-		PropertyCallExp<C, P> result = null;
-
-		P property = lookupProperty(simpleNameCS, env, owner, simpleName);
-		if (property != null) {
-			TRACE("variableExpCS", "Property: " + simpleName);//$NON-NLS-2$//$NON-NLS-1$
-
-			result = oclFactory.createPropertyCallExp();
-			initASTMapping(env, result, simpleNameCS, null);
-			result.setReferredProperty(property);
-			result.setType(getPropertyType(simpleNameCS, env, owner, property));
-
-			if (source != null) {
-				result.setSource(source);
-			} else {
-				Variable<C, PM> implicitSource = env
-					.lookupImplicitSourceForProperty(simpleName);
-				VariableExp<C, PM> src = createVariableExp(env, simpleNameCS,
-					implicitSource);
-				result.setSource(src);
-			}
-
-			initPropertyPositions(result, simpleNameCS);
-		}
-
-		return result;
 	}
-
+	
 	/**
-	 * Attempts to parse a <tt>simpleNameCS</tt> as an opposite property call expression.
-	 * An opposite property call expression can be used in the EMOF case where there is no
-	 * real opposite property / reference for backward navigation. The opposite property call
-	 * then references the forward property while its meaning is to backward-navigate by a
-	 * query with a well-defined scope.
+	 * Attempts to parse a <tt>simpleNameCS</tt> as a property call expression.
 	 * 
 	 * @param simpleNameCS
 	 *            the simple name
@@ -2615,48 +2587,96 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 *            <code>null</code> if the source is implicit
 	 * @param simpleName
 	 *            the simple name, as a string
-	 * @return the parsed opposite property call, or <code>null</code> if the simple name
-	 *         does not resolve to an available property that shall be navigated in reverse
+	 * @return the parsed property call, or <code>null</code> if the simple name
+	 *         does not resolve to an available property
 	 * 
 	 * @see #simpleNameCS(SimpleNameCS, Environment, OCLExpression)
-	 * @since 3.1
 	 */
-	protected OppositePropertyCallExp<C, P> simpleOppositePropertyName(
+	private NavigationCallExp<C, P> simplePropertyNameIncludingHiddenOpposites(
 			SimpleNameCS simpleNameCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			OCLExpression<C> source, C owner, String simpleName) {
 		if (simpleName == null) {
 			return null;
 		}
-		OppositePropertyCallExp<C, P> result = null;
+		NavigationCallExp<C, P> result = null;
 
-		P property = lookupOppositeProperty(simpleNameCS, env, owner, simpleName);
+		P property = lookupProperty(simpleNameCS, env, owner, simpleName);
 		if (property != null) {
-			TRACE("variableExpCS", "Property: " + simpleName);//$NON-NLS-2$//$NON-NLS-1$
-
-			// The following cast is permissible because opposite property calls can only occur in
-			// environments that have factories implementing OCLFactoryWithHiddenOpposite, e.g.,
-			// the OCLFactory implementation for OCLEcore.
-			result = ((OCLFactoryWithHiddenOpposite) oclFactory).createOppositePropertyCallExp();
-			initASTMapping(env, result, simpleNameCS, null);
-			result.setReferredOppositeProperty(property);
-			result.setType(getOppositePropertyType(simpleNameCS, env, owner, property));
-
-			if (source != null) {
-				result.setSource(source);
-			} else {
-				if (env instanceof EnvironmentWithHiddenOpposites<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
-					Variable<C, PM> implicitSource = ((EnvironmentWithHiddenOpposites<?, C, ?, ?, ?, PM, ?, ?, ?, ?, ?, ?>) env)
-						.lookupImplicitSourceForOppositeProperty(simpleName);
-					VariableExp<C, PM> src = createVariableExp(env,
-						simpleNameCS, implicitSource);
-					result.setSource(src);
+			if (uml.getOwningClassifier(property) == null) {
+				// marks a temporary property that encodes a "hidden" opposite
+				if (uml instanceof UMLReflectionWithOpposite<?>) {
+					@SuppressWarnings("unchecked")
+					UMLReflectionWithOpposite<P> umlWithOpposite = ((UMLReflectionWithOpposite<P>) uml);
+					result = createOppositePropertyCallExp(simpleNameCS, env,
+						source, owner, simpleName, umlWithOpposite.getOpposite(property));
+				} else {
+					String message = OCLMessages.bind(
+						OCLMessages.CantFindOppositeWithUMLReflection_ERROR_, simpleName);
+					ERROR(simpleNameCS, "variableExpCS", message);//$NON-NLS-1$
 				}
+			} else {
+				result = createPropertyCallExp(simpleNameCS, env, source,
+					owner, simpleName, property);
 			}
+		}
+		return result;
+	}
 
-			initPropertyPositions(result, simpleNameCS);
+	private PropertyCallExp<C, P> createPropertyCallExp(
+			SimpleNameCS simpleNameCS,
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			OCLExpression<C> source, C owner, String simpleName, P property) {
+		PropertyCallExp<C, P> result;
+		TRACE("variableExpCS", "Property: " + simpleName);//$NON-NLS-2$//$NON-NLS-1$
+
+		result = oclFactory.createPropertyCallExp();
+		initASTMapping(env, result, simpleNameCS, null);
+		result.setReferredProperty(property);
+		result.setType(getPropertyType(simpleNameCS, env, owner, property));
+
+		if (source != null) {
+			result.setSource(source);
+		} else {
+			Variable<C, PM> implicitSource = env
+				.lookupImplicitSourceForProperty(simpleName);
+			VariableExp<C, PM> src = createVariableExp(env, simpleNameCS,
+				implicitSource);
+			result.setSource(src);
 		}
 
+		initPropertyPositions(result, simpleNameCS);
+		return result;
+	}
+
+	private OppositePropertyCallExp<C, P> createOppositePropertyCallExp(
+			SimpleNameCS simpleNameCS,
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			OCLExpression<C> source, C owner, String simpleName, P property) {
+		OppositePropertyCallExp<C, P> result;
+		TRACE("variableExpCS", "Opposite Property: " + simpleName);//$NON-NLS-2$//$NON-NLS-1$
+
+		// The following cast is permissible because opposite property calls can only occur in
+		// environments that have factories implementing OCLFactoryWithHiddenOpposite, e.g.,
+		// the OCLFactory implementation for OCLEcore.
+		result = ((OCLFactoryWithHiddenOpposite) oclFactory).createOppositePropertyCallExp();
+		initASTMapping(env, result, simpleNameCS, null);
+		result.setReferredOppositeProperty(property);
+		result.setType(getOppositePropertyType(simpleNameCS, env, owner, property));
+
+		if (source != null) {
+			result.setSource(source);
+		} else {
+			if (env instanceof EnvironmentWithHiddenOpposites<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
+				Variable<C, PM> implicitSource = ((EnvironmentWithHiddenOpposites<?, C, ?, ?, ?, PM, ?, ?, ?, ?, ?, ?>) env)
+					.lookupImplicitSourceForOppositeProperty(simpleName);
+				VariableExp<C, PM> src = createVariableExp(env,
+					simpleNameCS, implicitSource);
+				result.setSource(src);
+			}
+		}
+
+		initPropertyPositions(result, simpleNameCS);
 		return result;
 	}
 
