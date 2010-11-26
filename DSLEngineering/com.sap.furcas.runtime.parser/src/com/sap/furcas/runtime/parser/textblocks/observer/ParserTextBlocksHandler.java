@@ -646,7 +646,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 		TextBlock tb = null;
 		Collection<EObject> nodes = org.eclipse.emf.query2.EcoreHelper.getInstance()
 			.reverseNavigate(element, 
-				(EReference) EcoreHelper.lookupElementExtended(element.eClass(), "correspondingModelElements"),
+				(EReference) element.eClass().getEStructuralFeature("correspondingModelElements"),
 				EcoreHelper.getQueryContext(resourceSet), resourceSet, false, IndexFactory.getInstance());
 
 		for (EObject eObject : nodes) {

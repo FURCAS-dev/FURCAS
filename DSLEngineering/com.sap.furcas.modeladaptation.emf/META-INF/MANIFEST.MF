@@ -17,7 +17,7 @@ Require-Bundle: org.eclipse.emf.ecore,
 Bundle-ClassPath: 
  adapter.jar
 Export-Package: 
- com.sap.furcas.modeladaptation.emf;
+ com.sap.furcas.modeladaptation.emf.adaptation;
   uses:="com.sap.tc.moin.repository,
    javax.jmi.reflect,
    com.sap.mi.textual.grammar,

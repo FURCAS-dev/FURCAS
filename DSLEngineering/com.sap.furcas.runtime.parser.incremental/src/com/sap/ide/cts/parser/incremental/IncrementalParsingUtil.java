@@ -254,7 +254,7 @@ public class IncrementalParsingUtil {
 	for (EObject element : parentBlock.getCorrespondingModelElements()) {
 	    for (EClassifier classifier : metaClasses) {
 		if (classifier.isInstance(element)) {
-			EModelElement result = EcoreHelper.lookupElementExtended(element.eClass(), propertyName);
+			EModelElement result = element.eClass().getEStructuralFeature(propertyName);
 			if(result != null) {
 				return element;
 		    } else if(oppositeEndFinder.getAllOppositeEnds(classifier).containsKey(propertyName)) {
