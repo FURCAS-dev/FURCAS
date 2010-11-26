@@ -6,6 +6,7 @@
  */
 package company.impl;
 
+import company.Company;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -66,6 +67,13 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
      * @generated
      */
     private EClass studentEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass companyEClass = null;
 
     /**
      * Creates an instance of the model <b>Package</b>, registered with
@@ -381,8 +389,53 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getDivision_NumberEmployeesOfTheMonth() {
+        return (EAttribute)divisionEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDivision_Company() {
+        return (EReference)divisionEClass.getEStructuralFeatures().get(6);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getStudent() {
         return studentEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getCompany() {
+        return companyEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getCompany_Division() {
+        return (EReference)companyEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCompany_EotmDelta() {
+        return (EAttribute)companyEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -442,8 +495,14 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
         createEReference(divisionEClass, DIVISION__DIRECTOR);
         createEAttribute(divisionEClass, DIVISION__BUDGET);
         createEReference(divisionEClass, DIVISION__EMPLOYEES_OF_THE_MONTH);
+        createEAttribute(divisionEClass, DIVISION__NUMBER_EMPLOYEES_OF_THE_MONTH);
+        createEReference(divisionEClass, DIVISION__COMPANY);
 
         studentEClass = createEClass(STUDENT);
+
+        companyEClass = createEClass(COMPANY);
+        createEReference(companyEClass, COMPANY__DIVISION);
+        createEAttribute(companyEClass, COMPANY__EOTM_DELTA);
     }
 
     /**
@@ -514,8 +573,14 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
         initEReference(getDivision_Director(), this.getEmployee(), this.getEmployee_Directed(), "director", null, 0, 1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getDivision_Budget(), thePrimitivetypesPackage.getInteger(), "budget", null, 0, 1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDivision_EmployeesOfTheMonth(), this.getEmployee(), null, "employeesOfTheMonth", null, 0, -1, Division.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEAttribute(getDivision_NumberEmployeesOfTheMonth(), thePrimitivetypesPackage.getInteger(), "numberEmployeesOfTheMonth", "", 0, 1, Division.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+        initEReference(getDivision_Company(), this.getCompany(), this.getCompany_Division(), "company", null, 0, 1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(studentEClass, Student.class, "Student", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+        initEClass(companyEClass, Company.class, "Company", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getCompany_Division(), this.getDivision(), this.getDivision_Company(), "division", null, 0, 1, Company.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCompany_EotmDelta(), thePrimitivetypesPackage.getInteger(), "eotmDelta", null, 0, 1, Company.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);
@@ -567,14 +632,20 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
           (divisionEClass, 
            source, 
            new String[] {
-             "constraints", "nasty limitEmployeesOfTheMonth"
-           });					
+             "constraints", "nasty limitEmployeesOfTheMonth nestedDerivation"
+           });						
         addAnnotation
           (studentEClass, 
            source, 
            new String[] {
              "constraints", "StudentAndFreelancesAge"
-           });
+           });			
+        addAnnotation
+          (companyEClass, 
+           source, 
+           new String[] {
+             "constraints", "eotmDeltaMax"
+           });	
     }
 
     /**
@@ -634,7 +705,8 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
            source, 
            new String[] {
              "nasty", "self.department->collect(d| \r\nd.employee->including(d.boss)).salary->sum() < budget",
-             "limitEmployeesOfTheMonth", "self.employeesOfTheMonth->size() <= self.department->size()"
+             "limitEmployeesOfTheMonth", "self.employeesOfTheMonth->size() <= self.department->size()",
+             "nestedDerivation", "self.numberEmployeesOfTheMonth <= self.department->size()"
            });				
         addAnnotation
           (getDivision_EmployeesOfTheMonth(), 
@@ -643,11 +715,29 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
              "derivation", "self.department.employeeOfTheMonth"
            });		
         addAnnotation
+          (getDivision_NumberEmployeesOfTheMonth(), 
+           source, 
+           new String[] {
+             "derivation", "self.employeesOfTheMonth->size()"
+           });		
+        addAnnotation
           (studentEClass, 
            source, 
            new String[] {
              "StudentAndFreelancesAge", "self.age < 40"
-           });	
+           });			
+        addAnnotation
+          (companyEClass, 
+           source, 
+           new String[] {
+             "eotmDeltaMax", "self.eotmDelta <= 5"
+           });			
+        addAnnotation
+          (getCompany_EotmDelta(), 
+           source, 
+           new String[] {
+             "derivation", "let maxEOTMDivision:Division=self.division->sortedBy(i | i.numberEmployeesOfTheMonth)->last() in let minEOTMDivision:Division=self.division->sortedBy(i | i.numberEmployeesOfTheMonth)->first() in maxEOTMDivision.numberEmployeesOfTheMonth - minEOTMDivision.numberEmployeesOfTheMonth"
+           });
     }
 
 /**
@@ -675,7 +765,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
            source, 
            new String[] {
              "Property.oppositeRoleName", "department2division"
-           });			
+           });							
     }
 
 } //CompanyPackageImpl
