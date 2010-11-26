@@ -37,6 +37,7 @@ import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
+import org.eclipse.ocl.utilities.Visitor;
 
 /**
  * Utility class in support of the implementation of the {@link OCLHelper}
@@ -433,20 +434,21 @@ public class HelperUtil<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		checkForErrors(helper);
 	}
 	
-	private static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-	void validate(
+	private void validate(
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			OCLExpression<C> expression) throws ParserException {
-		
-		expression.accept(ValidationVisitor.getInstance(env));
+		expression.accept(getValidationVisitor(env));
 	}
 	
-	private static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-	void validate(
+	private void validate(
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			CT constraint) throws ParserException {
-		
-		ValidationVisitor.getInstance(env).visitConstraint(constraint);
+		getValidationVisitor(env).visitConstraint(constraint);
+	}
+
+	protected Visitor<Boolean, C, O, P, EL, PM, S, COA, SSA, CT> getValidationVisitor(
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
+		return ValidationVisitor.getInstance(env);
 	}
 	
 	private static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>

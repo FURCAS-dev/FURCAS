@@ -34,8 +34,10 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.internal.helper.HelperUtil;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.ecore.parser.OCLAnalyzer;
+import org.eclipse.ocl.ecore.parser.ValidationVisitor;
 import org.eclipse.ocl.helper.OCLHelper;
 import org.eclipse.ocl.parser.backtracking.OCLBacktrackingParser;
+import org.eclipse.ocl.utilities.Visitor;
 
 /**
  * Convenient subclass of the <code>OCL</code> fa&ccedil;ade that binds the
@@ -53,6 +55,15 @@ public class OCL extends org.eclipse.ocl.OCL<
 			EEnumLiteral, EParameter, EObject,
 			CallOperationAction, SendSignalAction, Constraint,
 			EClass, EObject> {
+
+	@Override
+	protected Visitor<Boolean, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> getValidationVisitor(Environment<
+		EPackage, EClassifier, EOperation, EStructuralFeature,
+		EEnumLiteral, EParameter, EObject,
+		CallOperationAction, SendSignalAction, Constraint,
+		EClass, EObject>  env) {
+		return ValidationVisitor.getInstance(env);
+	}
 
 	/**
 	 * Initialize registries to support OCL and Ecore usage. This method is

@@ -183,12 +183,12 @@ public class CallExpItemProvider extends OCLExpressionItemProvider implements
 		switch (notification.getFeatureID(CallExp.class)) {
 		case ExpressionsPackage.CALL_EXP__PROPERTY_START_POSITION:
 		case ExpressionsPackage.CALL_EXP__PROPERTY_END_POSITION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		case ExpressionsPackage.CALL_EXP__SOURCE:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -295,10 +295,6 @@ public class CallExpItemProvider extends OCLExpressionItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.CALL_EXP__SOURCE,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
-
-		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.CALL_EXP__SOURCE,
-				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
 	}
 
 }

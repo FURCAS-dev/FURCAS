@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.LookupException;
@@ -15,17 +16,19 @@ import org.eclipse.ocl.cst.SimpleNameCS;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EnvironmentWithHiddenOpposites;
+import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.SendSignalAction;
-import org.eclipse.ocl.ecore.util.TypeUtil;
+import org.eclipse.ocl.ecore.internal.OCLFactoryImpl;
+import org.eclipse.ocl.ecore.utilities.OCLFactoryWithHiddenOpposite;
+import org.eclipse.ocl.ecore.utilities.TypeUtil;
 import org.eclipse.ocl.expressions.NavigationCallExp;
 import org.eclipse.ocl.expressions.OCLExpression;
-import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.parser.AbstractOCLParser;
-import org.eclipse.ocl.utilities.OCLFactoryWithHiddenOpposite;
+import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.UMLReflectionWithOpposite;
 
 
@@ -167,14 +170,24 @@ public class OCLAnalyzer
 		return result;
 	}
 
-	private OppositePropertyCallExp<EClassifier, EStructuralFeature> createOppositePropertyCallExp(
+	@Override
+	protected OCLFactory createOCLFactory(
+			Environment<EPackage, EClassifier, EOperation, EStructuralFeature,
+			EEnumLiteral, EParameter, EObject,
+			CallOperationAction, SendSignalAction, Constraint,
+			EClass, EObject> env) {
+		history = new OCLFactoryWithHistory(env.getOCLFactory());
+		return history;
+	}
+
+	private OppositePropertyCallExp createOppositePropertyCallExp(
 			SimpleNameCS simpleNameCS,
 			Environment<EPackage, EClassifier, EOperation, EStructuralFeature,
 			EEnumLiteral, EParameter, EObject,
 			CallOperationAction, SendSignalAction, Constraint,
 			EClass, EObject> env,
 			OCLExpression<EClassifier> source, EClassifier owner, String simpleName, EStructuralFeature property) {
-		org.eclipse.ocl.expressions.OppositePropertyCallExp<EClassifier, EStructuralFeature> result;
+		OppositePropertyCallExp result;
 		TRACE("variableExpCS", "Opposite Property: " + simpleName);//$NON-NLS-2$//$NON-NLS-1$
 
 		// The following cast is permissible because opposite property calls can only occur in
@@ -182,7 +195,7 @@ public class OCLAnalyzer
 		// the OCLFactory implementation for OCLEcore.
 		result = ((OCLFactoryWithHiddenOpposite) oclFactory).createOppositePropertyCallExp();
 		initASTMapping(env, result, simpleNameCS, null);
-		result.setReferredOppositeProperty(property);
+		result.setReferredOppositeProperty((EReference) property);
 		result.setType(getOppositePropertyType(simpleNameCS, env, owner, property));
 
 		if (source != null) {

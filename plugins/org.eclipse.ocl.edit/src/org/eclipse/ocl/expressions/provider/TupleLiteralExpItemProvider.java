@@ -110,8 +110,8 @@ public class TupleLiteralExpItemProvider extends LiteralExpItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/TupleLiteralExp")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/TupleLiteralExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -149,8 +149,8 @@ public class TupleLiteralExpItemProvider extends LiteralExpItemProvider
 
 		switch (notification.getFeatureID(TupleLiteralExp.class)) {
 		case ExpressionsPackage.TUPLE_LITERAL_EXP__PART:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);

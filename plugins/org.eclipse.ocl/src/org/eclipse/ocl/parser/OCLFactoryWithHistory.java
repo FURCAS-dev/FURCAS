@@ -35,7 +35,6 @@ import org.eclipse.ocl.expressions.LetExp;
 import org.eclipse.ocl.expressions.MessageExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.RealLiteralExp;
 import org.eclipse.ocl.expressions.StateExp;
@@ -57,7 +56,6 @@ import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.utilities.OCLFactory;
-import org.eclipse.ocl.utilities.OCLFactoryWithHiddenOpposite;
 import org.eclipse.ocl.utilities.TypedElement;
 
 /**
@@ -68,17 +66,17 @@ import org.eclipse.ocl.utilities.TypedElement;
  * 
  * @author Christian W. Damus (cdamus)
  * 
- * @since 1.2
+ * @since 3.1
  */
-class OCLFactoryWithHistory implements OCLFactory, OCLFactoryWithHiddenOpposite {
+public class OCLFactoryWithHistory implements OCLFactory {
 
-    private final OCLFactory delegate;
+    protected final OCLFactory delegate;
     private List<Object> history = new java.util.ArrayList<Object>();
     private Set<TypedElement<?>> errorNodes = new java.util.HashSet<TypedElement<?>>();
     
     private boolean disposable;
     
-    OCLFactoryWithHistory(OCLFactory delegate) {
+    protected OCLFactoryWithHistory(OCLFactory delegate) {
         this.delegate = delegate;
     }
 
@@ -101,7 +99,7 @@ class OCLFactoryWithHistory implements OCLFactory, OCLFactoryWithHiddenOpposite 
         disposable = true;
     }
     
-    <T> T record(T object) {
+    protected <T> T record(T object) {
         history.add(object);
         return object;
     }
@@ -197,14 +195,6 @@ class OCLFactoryWithHistory implements OCLFactory, OCLFactoryWithHiddenOpposite 
 
     public <C, P> PropertyCallExp<C, P> createPropertyCallExp() {
         return record(delegate.<C, P>createPropertyCallExp());
-    }
-
-    public <C, P> OppositePropertyCallExp<C, P> createOppositePropertyCallExp() {
-    	if (delegate instanceof OCLFactoryWithHiddenOpposite) {
-    		return record(((OCLFactoryWithHiddenOpposite) delegate).<C, P>createOppositePropertyCallExp());
-    	} else {
-    		return null;
-    	}
     }
 
     public <C> RealLiteralExp<C> createRealLiteralExp() {

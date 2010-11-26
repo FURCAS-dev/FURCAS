@@ -87,8 +87,8 @@ public class IterateExpOperations
 			if (!TypeUtil.exactTypeMatch(env, type, vd.getType())) {
 				result = false;
 				message = OCLMessages.bind(
-					OCLMessages.TypeConformanceIterateExp_ERROR_, iterateExp
-					.toString());
+					OCLMessages.TypeConformanceIterateExp_ERROR_,
+					iterateExp.toString());
 			}
 		}
 

@@ -113,8 +113,8 @@ public class IterateExpItemProvider extends LoopExpItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/IterateExp")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/IterateExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -153,8 +153,8 @@ public class IterateExpItemProvider extends LoopExpItemProvider implements
 
 		switch (notification.getFeatureID(IterateExp.class)) {
 		case EcorePackage.ITERATE_EXP__RESULT:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);

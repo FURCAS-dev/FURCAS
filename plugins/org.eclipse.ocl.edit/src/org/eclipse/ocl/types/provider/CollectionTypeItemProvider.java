@@ -209,8 +209,8 @@ public class CollectionTypeItemProvider extends ItemProviderAdapter implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/CollectionType")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/CollectionType")); //$NON-NLS-1$
 	}
 
 	/**
@@ -252,8 +252,8 @@ public class CollectionTypeItemProvider extends ItemProviderAdapter implements
 		case TypesPackage.COLLECTION_TYPE__TYPE_START_POSITION:
 		case TypesPackage.COLLECTION_TYPE__TYPE_END_POSITION:
 		case TypesPackage.COLLECTION_TYPE__KIND:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

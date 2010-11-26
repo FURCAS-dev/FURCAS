@@ -8,9 +8,9 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.utilities;
+package org.eclipse.ocl.ecore.utilities;
 
-import org.eclipse.ocl.expressions.OppositePropertyCallExp;
+import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,7 +22,7 @@ import org.eclipse.ocl.expressions.OppositePropertyCallExp;
  * @see org.eclipse.ocl.utilities.UtilitiesPackage#getVisitorExtension()
  * @model interface="true" abstract="true"
  */
-public interface VisitorExtension<T, C, O, P, EL, PM, S, COA, SSA, CT> {
+public interface VisitorExtension<T> {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -30,6 +30,6 @@ public interface VisitorExtension<T, C, O, P, EL, PM, S, COA, SSA, CT> {
 	 * @model callExpRequired="true"
 	 * @generated
 	 */
-	T visitOppositePropertyCallExp(OppositePropertyCallExp<C, P> callExp);
+	T visitOppositePropertyCallExp(OppositePropertyCallExp callExp);
 
 } // VisitorWithHiddenOpposite

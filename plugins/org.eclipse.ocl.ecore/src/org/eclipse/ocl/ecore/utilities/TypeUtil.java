@@ -1,4 +1,4 @@
-package org.eclipse.ocl.ecore.util;
+package org.eclipse.ocl.ecore.utilities;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;

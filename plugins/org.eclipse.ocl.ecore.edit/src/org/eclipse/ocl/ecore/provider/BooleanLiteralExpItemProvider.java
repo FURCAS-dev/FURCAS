@@ -101,8 +101,8 @@ public class BooleanLiteralExpItemProvider extends
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/BooleanLiteralExp")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/BooleanLiteralExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -141,8 +141,8 @@ public class BooleanLiteralExpItemProvider extends
 
 		switch (notification.getFeatureID(BooleanLiteralExp.class)) {
 		case EcorePackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

@@ -58,7 +58,6 @@ import org.eclipse.ocl.expressions.MessageExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.RealLiteralExp;
 import org.eclipse.ocl.expressions.StateExp;
@@ -87,7 +86,6 @@ import org.eclipse.ocl.utilities.ExpressionInOCL;
 import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.utilities.UMLReflection;
 import org.eclipse.ocl.utilities.Visitor;
-import org.eclipse.ocl.utilities.VisitorExtension;
 
 /**
  * Engine for computation of possible syntax completions at a point in the
@@ -323,8 +321,8 @@ public class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		return result.toString();
 	}
 
-	private class ASTVisitor
-		implements Visitor<List<Choice>, C, O, P, EL, PM, S, COA, SSA, CT>, VisitorExtension<List<Choice>, C, O, P, EL, PM, S, COA, SSA, CT> {
+	protected class ASTVisitor
+		implements Visitor<List<Choice>, C, O, P, EL, PM, S, COA, SSA, CT> {
 
 		private final int completionPosition;
 		private final String text;
@@ -338,10 +336,14 @@ public class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		 * @param position the completion position
 		 * @param constraintType the type of constraint that we are completing
 		 */
-		ASTVisitor(String text, int position, ConstraintKind constraintType) {
+		protected ASTVisitor(String text, int position, ConstraintKind constraintType) {
 			this.text = text;
 			completionPosition = position;
 			this.constraintType = constraintType;
+		}
+		
+		protected ConstraintKind getConstraintType() {
+			return constraintType;
 		}
 		
 		public List<Choice> visitOperationCallExp(OperationCallExp<C, O> exp) {
@@ -369,10 +371,6 @@ public class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 
 		public List<Choice> visitPropertyCallExp(PropertyCallExp<C, P> propertycallexp) {
 			return getChoices(propertycallexp, constraintType);
-		}
-
-		public List<Choice> visitOppositePropertyCallExp(OppositePropertyCallExp<C, P> oppositepropertycallexp) {
-			return getChoices(oppositepropertycallexp, constraintType);
 		}
 
 		public List<Choice> visitAssociationClassCallExp(AssociationClassCallExp<C, P> exp) {
@@ -569,7 +567,7 @@ public class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 * @return syntax help choices for user (list of {@link Choice}s;
 	 *     could be empty
 	 */
-	private List<Choice> getChoices(OCLExpression<C> expression, ConstraintKind constraintType) {
+	protected List<Choice> getChoices(OCLExpression<C> expression, ConstraintKind constraintType) {
 		return getChoices(expression.getType(), constraintType);
 	}
 	
@@ -929,14 +927,14 @@ public class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 				int position = txt.lastIndexOf(HelperUtil.DOT); // known BMP code point
 				
 				expression = getOCLExpression(environment, position, txt, constraintType);
-				result = expression.accept(new ASTVisitor(txt, position, constraintType));
+				result = expression.accept(createASTVisitor(constraintType, txt, position));
                 disposeAll(expression);
 			} else if (txt.endsWith(HelperUtil.ARROW)) {
 				syntaxHelpStringSuffix = ARROW;
 				int position = txt.lastIndexOf(HelperUtil.ARROW); // known BMP code points
 				
 				expression = getOCLExpression(environment, position, txt, constraintType);
-                result = expression.accept(new ASTVisitor(txt, position, constraintType));
+                result = expression.accept(createASTVisitor(constraintType, txt, position));
                 disposeAll(expression);
 			} else if (txt.endsWith(HelperUtil.CARET)) { // known BMP code points
 				syntaxHelpStringSuffix = CARET;
@@ -948,7 +946,7 @@ public class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 				}
 				
 				expression = getOCLExpression(environment, position, txt, constraintType);
-                result = expression.accept(new ASTVisitor(txt, position, constraintType));
+                result = expression.accept(createASTVisitor(constraintType, txt, position));
                 disposeAll(expression);
 			} else if (txt.endsWith(HelperUtil.DOUBLE_COLON)) {
 				syntaxHelpStringSuffix = NONE;
@@ -1082,6 +1080,11 @@ public class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		}
 		
 		return result;
+	}
+
+	protected ASTVisitor createASTVisitor(ConstraintKind constraintType,
+			String txt, int position) {
+		return new ASTVisitor(txt, position, constraintType);
 	}
 
 	protected boolean isOclIsInState(IToken token) {

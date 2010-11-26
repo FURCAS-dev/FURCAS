@@ -14,7 +14,9 @@ import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.parser.OCLAnalyzer;
+import org.eclipse.ocl.ecore.parser.ValidationVisitor;
 import org.eclipse.ocl.helper.OCLHelper;
+import org.eclipse.ocl.utilities.Visitor;
 
 public class HelperUtil
 		extends
@@ -23,6 +25,12 @@ public class HelperUtil
 		CallOperationAction, SendSignalAction, Constraint,
 		EClass, EObject> {
 	
+	@Override
+	protected Visitor<Boolean, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> getValidationVisitor(
+			Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env) {
+		return ValidationVisitor.getInstance(env);
+	}
+
 	/** Not publicly visible */
 	protected HelperUtil() {
 	}

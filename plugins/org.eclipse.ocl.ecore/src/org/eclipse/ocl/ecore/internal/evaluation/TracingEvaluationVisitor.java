@@ -11,9 +11,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.SendSignalAction;
-import org.eclipse.ocl.expressions.OppositePropertyCallExp;
-import org.eclipse.ocl.utilities.VisitorExtension;
+import org.eclipse.ocl.ecore.utilities.VisitorExtension;
 
 
 public class TracingEvaluationVisitor
@@ -23,10 +23,7 @@ public class TracingEvaluationVisitor
 		EEnumLiteral, EParameter, EObject,
 		CallOperationAction, SendSignalAction, Constraint,
 		EClass, EObject>
-		implements VisitorExtension<Object, 
-		EClassifier, EOperation, EStructuralFeature,
-		EEnumLiteral, EParameter, EObject,
-		CallOperationAction, SendSignalAction, Constraint> {
+		implements VisitorExtension<Object> {
 
 	public TracingEvaluationVisitor(EvaluationVisitor<
 			EPackage, EClassifier, EOperation, EStructuralFeature,
@@ -41,12 +38,9 @@ public class TracingEvaluationVisitor
      * @since 3.1
      */
     @SuppressWarnings("unchecked")
-	public Object visitOppositePropertyCallExp(OppositePropertyCallExp<EClassifier, EStructuralFeature> callExp) {
+	public Object visitOppositePropertyCallExp(OppositePropertyCallExp callExp) {
     	if (getDelegate() instanceof VisitorExtension) {
-    		return ((VisitorExtension<Object, 
-    				EClassifier, EOperation, EStructuralFeature,
-    				EEnumLiteral, EParameter, EObject,
-    				CallOperationAction, SendSignalAction, Constraint>) getDelegate()).visitOppositePropertyCallExp(callExp);
+    		return ((VisitorExtension<Object>) getDelegate()).visitOppositePropertyCallExp(callExp);
     	} else {
     		return null;
     	}

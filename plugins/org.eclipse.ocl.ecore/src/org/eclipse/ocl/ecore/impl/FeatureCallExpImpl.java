@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.FeatureCallExp;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
-import org.eclipse.ocl.ecore.util.ToStringVisitor;
+import org.eclipse.ocl.ecore.utilities.ToStringVisitor;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**

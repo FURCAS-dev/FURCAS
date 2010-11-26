@@ -99,8 +99,8 @@ public class CallOperationActionItemProvider extends ItemProviderAdapter
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/CallOperationAction")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/CallOperationAction")); //$NON-NLS-1$
 	}
 
 	/**

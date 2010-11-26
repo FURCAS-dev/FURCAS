@@ -156,8 +156,8 @@ public class OCLExpressionItemProvider extends ETypedElementItemProvider
 		switch (notification.getFeatureID(OCLExpression.class)) {
 		case EcorePackage.OCL_EXPRESSION__START_POSITION:
 		case EcorePackage.OCL_EXPRESSION__END_POSITION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

@@ -1,4 +1,4 @@
-package org.eclipse.ocl.ecore.util;
+package org.eclipse.ocl.ecore.utilities;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnumLiteral;
@@ -9,10 +9,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.SendSignalAction;
-import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.utilities.TypedElement;
-import org.eclipse.ocl.utilities.VisitorExtension;
 
 
 /**
@@ -24,10 +23,7 @@ public class ToStringVisitor
 		EClassifier, EOperation, EStructuralFeature,
 		EEnumLiteral, EParameter, EObject,
 		CallOperationAction, SendSignalAction, Constraint>
-		implements VisitorExtension<
-		String, EClassifier, EOperation, EStructuralFeature,
-		EEnumLiteral, EParameter, EObject,
-		CallOperationAction, SendSignalAction, Constraint> {
+		implements VisitorExtension<String> {
     protected ToStringVisitor(
 			Environment<?, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, ?, ?> env) {
 		super(env);
@@ -51,7 +47,7 @@ public class ToStringVisitor
 	 * @since 3.1
 	 */
     protected String handleOppositePropertyCallExp(
-    		OppositePropertyCallExp<EClassifier, EStructuralFeature> callExp, String sourceResult) {
+    		OppositePropertyCallExp callExp, String sourceResult) {
     	EStructuralFeature property = callExp.getReferredOppositeProperty();
 
         if (sourceResult == null) {
@@ -67,7 +63,7 @@ public class ToStringVisitor
     }
 
 	public String visitOppositePropertyCallExp(
-			OppositePropertyCallExp<EClassifier, EStructuralFeature> callExp) {
+			OppositePropertyCallExp callExp) {
         String sourceResult = safeVisit(callExp.getSource());
         return handleOppositePropertyCallExp(callExp, sourceResult);
 	}

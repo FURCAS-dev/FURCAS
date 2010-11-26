@@ -20,7 +20,7 @@ package org.eclipse.ocl.ecore.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.LiteralExp;
-import org.eclipse.ocl.ecore.util.ToStringVisitor;
+import org.eclipse.ocl.ecore.utilities.ToStringVisitor;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**

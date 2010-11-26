@@ -15,12 +15,11 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.EvaluationEnvironmentWithHiddenOpposites;
+import org.eclipse.ocl.ecore.utilities.VisitorExtension;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.OCLExpression;
-import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.util.CollectionUtil;
-import org.eclipse.ocl.utilities.VisitorExtension;
 
 
 /**
@@ -32,10 +31,7 @@ public class EvaluationVisitorImpl
 		EPackage, EClassifier, EOperation, EStructuralFeature,
 		EEnumLiteral, EParameter, EObject,
 		CallOperationAction, SendSignalAction, Constraint,
-		EClass, EObject> implements VisitorExtension<
-		Object, EClassifier, EOperation, EStructuralFeature,
-		EEnumLiteral, EParameter, EObject,
-		CallOperationAction, SendSignalAction, Constraint>{
+		EClass, EObject> implements VisitorExtension<Object> {
 
 	public EvaluationVisitorImpl(
 			Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env,
@@ -52,7 +48,7 @@ public class EvaluationVisitorImpl
 	 * on that object.
 	 */
 	@SuppressWarnings("unchecked")
-    public Object visitOppositePropertyCallExp(OppositePropertyCallExp<EClassifier, EStructuralFeature> pc) {
+    public Object visitOppositePropertyCallExp(OppositePropertyCallExp pc) {
 		EStructuralFeature property = pc.getReferredOppositeProperty();
 		OCLExpression<EClassifier> source = pc.getSource();
 		// evaluate source

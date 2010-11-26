@@ -1,4 +1,4 @@
-package org.eclipse.ocl.ecore.util;
+package org.eclipse.ocl.ecore.utilities;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnumLiteral;
@@ -8,9 +8,8 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.SendSignalAction;
-import org.eclipse.ocl.expressions.OppositePropertyCallExp;
-import org.eclipse.ocl.utilities.VisitorExtension;
 
 
 /**
@@ -25,10 +24,7 @@ public class AbstractVisitor<T>
 		T, EClassifier, EOperation, EStructuralFeature,
 		EEnumLiteral, EParameter, EObject,
 		CallOperationAction, SendSignalAction, Constraint>
-		implements VisitorExtension<
-		T, EClassifier, EOperation, EStructuralFeature,
-		EEnumLiteral, EParameter, EObject,
-		CallOperationAction, SendSignalAction, Constraint> {
+		implements VisitorExtension<T> {
 	/**
 	 * Visits the opposite property-call source. No qualifiers are visited as
 	 * these calls are not expected for UML but only for Ecore. Returns the
@@ -37,7 +33,7 @@ public class AbstractVisitor<T>
 	 * 
 	 * @since 3.1
 	 */
-	public T visitOppositePropertyCallExp(OppositePropertyCallExp<EClassifier, EStructuralFeature> callExp) {
+	public T visitOppositePropertyCallExp(OppositePropertyCallExp callExp) {
         T sourceResult = safeVisit(callExp.getSource());
         return handleOppositePropertyCallExp(callExp, sourceResult);
 	}
@@ -56,7 +52,7 @@ public class AbstractVisitor<T>
      * @see #visitOppositePropertyCallExp(OppositePropertyCallExp)
      * @since 3.1
      */
-    protected T handleOppositePropertyCallExp(OppositePropertyCallExp<EClassifier, EStructuralFeature> callExp,
+    protected T handleOppositePropertyCallExp(OppositePropertyCallExp callExp,
             T sourceResult) {
         return result;
     }

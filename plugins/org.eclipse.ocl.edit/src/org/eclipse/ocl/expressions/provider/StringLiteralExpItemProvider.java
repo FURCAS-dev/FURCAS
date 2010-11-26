@@ -99,8 +99,8 @@ public class StringLiteralExpItemProvider extends
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/StringLiteralExp")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/StringLiteralExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -138,8 +138,8 @@ public class StringLiteralExpItemProvider extends
 
 		switch (notification.getFeatureID(StringLiteralExp.class)) {
 		case ExpressionsPackage.STRING_LITERAL_EXP__STRING_SYMBOL:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

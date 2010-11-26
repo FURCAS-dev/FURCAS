@@ -15,9 +15,12 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EnvironmentWithHiddenOpposites;
+import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.SendSignalAction;
+import org.eclipse.ocl.ecore.utilities.VisitorExtension;
 import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ChoiceKind;
+import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.internal.helper.ChoiceImpl;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.parser.OCLAnalyzer;
@@ -30,6 +33,25 @@ public class OCLSyntaxHelper
 		EEnumLiteral, EParameter, EObject,
 		CallOperationAction, SendSignalAction, Constraint,
 		EClass, EObject> {
+	
+	protected class ASTVisitor
+			extends
+			org.eclipse.ocl.internal.helper.OCLSyntaxHelper<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>.ASTVisitor
+			implements VisitorExtension<List<Choice>>{
+		ASTVisitor(String text, int position, ConstraintKind constraintType) {
+			super(text, position, constraintType);
+		}
+		
+		public List<Choice> visitOppositePropertyCallExp(OppositePropertyCallExp oppositepropertycallexp) {
+			return getChoices(oppositepropertycallexp, getConstraintType());
+		}
+	}
+
+	@Override
+	protected ASTVisitor createASTVisitor(ConstraintKind constraintType,
+			String txt, int position) {
+		return new ASTVisitor(txt, position, constraintType);
+	}
 
 	OCLSyntaxHelper(
 			Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env) {

@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.impl.ETypedElementImpl;
 import org.eclipse.ocl.ecore.CollectionLiteralPart;
 import org.eclipse.ocl.ecore.EcorePackage;
-import org.eclipse.ocl.ecore.util.ToStringVisitor;
+import org.eclipse.ocl.ecore.utilities.ToStringVisitor;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**

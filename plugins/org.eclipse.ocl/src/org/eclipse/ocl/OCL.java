@@ -42,6 +42,7 @@ import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
+import org.eclipse.ocl.utilities.Visitor;
 
 /**
  * <p>
@@ -382,7 +383,7 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 			ph.beginValidation();
 		}
 
-		expression.accept(ValidationVisitor.getInstance(rootEnvironment));
+		expression.accept(getValidationVisitor(rootEnvironment));
 
 		if (ph != null) {
 			ph.endValidation();
@@ -416,7 +417,7 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 			ph.beginValidation();
 		}
 
-		ValidationVisitor.getInstance(rootEnvironment).visitConstraint(
+		getValidationVisitor(rootEnvironment).visitConstraint(
 			constraint);
 
 		if (ph != null) {
@@ -429,6 +430,13 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 				throw new SemanticException(e.getDiagnostic());
 			}
 		}
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	protected Visitor<Boolean, C, O, P, EL, PM, S, COA, SSA, CT> getValidationVisitor(Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>  env) {
+		return ValidationVisitor.getInstance(env);
 	}
 
 	/**

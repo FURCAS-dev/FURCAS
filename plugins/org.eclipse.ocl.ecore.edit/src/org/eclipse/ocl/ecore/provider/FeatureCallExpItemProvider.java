@@ -128,8 +128,8 @@ public class FeatureCallExpItemProvider extends CallExpItemProvider implements
 
 		switch (notification.getFeatureID(FeatureCallExp.class)) {
 		case EcorePackage.FEATURE_CALL_EXP__MARKED_PRE:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

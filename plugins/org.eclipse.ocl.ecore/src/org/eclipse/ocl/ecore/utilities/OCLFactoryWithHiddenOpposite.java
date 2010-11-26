@@ -8,9 +8,11 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.utilities;
+package org.eclipse.ocl.ecore.utilities;
 
-import org.eclipse.ocl.expressions.OppositePropertyCallExp;
+import org.eclipse.ocl.ecore.OppositePropertyCallExp;
+import org.eclipse.ocl.utilities.OCLFactory;
+
 
 /**
  * Adds the {@link #createOppositePropertyCallExp()} method to {@link OCLFactory} so that
@@ -29,5 +31,5 @@ public interface OCLFactoryWithHiddenOpposite {
 	 * @return a new object of class '<em>Opposite Property Call Exp</em>'.
 	 * @generated
 	 */
-	<C, P> OppositePropertyCallExp<C, P> createOppositePropertyCallExp();
+	OppositePropertyCallExp createOppositePropertyCallExp();
 }
