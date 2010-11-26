@@ -177,9 +177,9 @@ public class OppositePropertyCallExpTest
 	 * Test evaluating an expression that contains an OppositePropertyCallExp using
 	 * a "hidden opposite" of a containment reference inherited from a superclass
 	 */
-	@Ignore("Ignored to make Maven build work")
+//	@Ignore("Ignored to make Maven build work")
 	// also renamed because JUnit 3.x doesn't know annotations 
-	public void ignoredtest_parseMoreSpecificInheritedOppositePropertyCallExpInsteadMoreGeneralPropertyCallExp() {
+	public void test_parseMoreSpecificInheritedOppositePropertyCallExpInsteadMoreGeneralPropertyCallExp() {
 		initHiddenOppositesTestPackage();
 		helper.setContext(sub);
 		try {
@@ -199,9 +199,9 @@ public class OppositePropertyCallExpTest
 	 * opposite being resolved on the inner implicit scope before a regular property is resolved
 	 * for the outer implicit scope. 
 	 */
-	@Ignore("Ignored to make Maven build work")
+//	@Ignore("Ignored to make Maven build work")
 	// also renamed because JUnit 3.x doesn't know annotations 
-	public void ignoredtest_parseOppositePropertyCallExpOnNestedImplicitSource() {
+	public void test_parseOppositePropertyCallExpOnNestedImplicitSource() {
 		initHiddenOppositesTestPackage();
 		helper.setContext(unrelated);
 		try {
