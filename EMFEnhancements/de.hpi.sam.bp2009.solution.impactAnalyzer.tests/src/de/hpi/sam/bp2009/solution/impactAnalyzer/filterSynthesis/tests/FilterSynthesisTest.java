@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -21,7 +22,11 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.ExpressionInOCL;
+import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.PropertyCallExp;
+import org.eclipse.ocl.ecore.delegate.SettingBehavior;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,7 +45,9 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.LogicalOperationFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.StructuralFeatureFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OCLFactoryImpl;
 import de.hpi.sam.bp2009.solution.testutils.BaseDepartmentTest;
 
@@ -49,6 +56,7 @@ import de.hpi.sam.bp2009.solution.testutils.BaseDepartmentTest;
  */
 public class FilterSynthesisTest extends BaseDepartmentTest {
     protected final Set<ExpressionInOCL> stmts = new HashSet<ExpressionInOCL>();
+
     @Override
     @Before
     public void setUp() {
@@ -82,8 +90,7 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
      */
     @Test
     public void testAttributeValueChangedEventAge() {
-        Notification noti = NotificationHelper.createAttributeChangeNotification(this.aEmployee, this.employeeAge, 23,
-                42);
+        Notification noti = NotificationHelper.createAttributeChangeNotification(this.aEmployee, this.employeeAge, 23, 42);
 
         HashSet<ExpressionInOCL> affectedStmts = filterStatementsForNotification(noti);
         Set<ExpressionInOCL> expectedStmts = new HashSet<ExpressionInOCL>();
@@ -102,8 +109,8 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
      */
     @Test
     public void testAttributeValueChangedEventAssignment() {
-        Notification noti = NotificationHelper.createAttributeChangeNotification(this.aFreelance, this.freelanceAssignment,
-                23, 42);
+        Notification noti = NotificationHelper.createAttributeChangeNotification(this.aFreelance, this.freelanceAssignment, 23,
+                42);
 
         HashSet<ExpressionInOCL> affectedStmts = filterStatementsForNotification(noti);
         Set<ExpressionInOCL> expectedStmts = new HashSet<ExpressionInOCL>();
@@ -132,8 +139,7 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
      */
     @Test
     public void testAttributeValueChangedEventSalary() {
-        Notification noti = NotificationHelper.createAttributeChangeNotification(this.aEmployee, this.employeeSalary, 
-                1234, 1234);
+        Notification noti = NotificationHelper.createAttributeChangeNotification(this.aEmployee, this.employeeSalary, 1234, 1234);
 
         HashSet<ExpressionInOCL> affectedStmts = filterStatementsForNotification(noti);
         Set<ExpressionInOCL> expectedStmts = new HashSet<ExpressionInOCL>();
@@ -150,8 +156,8 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
      */
     @Test
     public void testAttributeValueChangedEventBudget() {
-        Notification noti = NotificationHelper.createAttributeChangeNotification(this.aDepartment, this.departmentBudget,
-                1234, 1234);
+        Notification noti = NotificationHelper.createAttributeChangeNotification(this.aDepartment, this.departmentBudget, 1234,
+                1234);
 
         HashSet<ExpressionInOCL> affectedStmts = filterStatementsForNotification(noti);
         Set<ExpressionInOCL> expectedStmts = new HashSet<ExpressionInOCL>();
@@ -165,8 +171,8 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
      */
     @Test
     public void testAttributeValueChangedEventEmployeeBudget() {
-        Notification noti = NotificationHelper.createAttributeChangeNotification(this.aDepartment, this.departmentBudget,
-                1234, 4000);
+        Notification noti = NotificationHelper.createAttributeChangeNotification(this.aDepartment, this.departmentBudget, 1234,
+                4000);
 
         HashSet<ExpressionInOCL> affectedStmts = filterStatementsForNotification(noti);
         Set<ExpressionInOCL> expectedStmts = new HashSet<ExpressionInOCL>();
@@ -419,13 +425,15 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
 
     @Test
     public void testFilterConsistencyClassBased() {
-        for(ExpressionInOCL exp : this.stmts){
-            EventFilter f = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer((OCLExpression) exp.getBodyExpression(), (EClass) exp.getContextVariable().getType(), /* notifyOnNewContextElements */ true, new OCLFactoryImpl()).createFilterForExpression();
+        for (ExpressionInOCL exp : this.stmts) {
+            EventFilter f = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer((OCLExpression) exp.getBodyExpression(),
+                    (EClass) exp.getContextVariable().getType(), /* notifyOnNewContextElements */true, new OCLFactoryImpl())
+                    .createFilterForExpression();
             assertAllReferencesInPackage(f, this.comp);
             assertAllClassesOfClassFiltersInPackage(f, this.comp);
         }
     }
-    
+
     @Test
     public void testInsertEventForSubtreeInsertion() {
         rs.getResources().iterator().next().getContents().add(aDivision);
@@ -437,21 +445,22 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
             }
         };
         EventManager eventManager = EventManagerFactory.eINSTANCE.getEventManagerFor(rs);
-        EventFilter filter = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer((OCLExpression) getSimpleAllInstancesAST().getBodyExpression(),
-                CompanyPackage.eINSTANCE.getEmployee(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl())
-                .createFilterForExpression();
+        EventFilter filter = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(
+                (OCLExpression) getSimpleAllInstancesAST().getBodyExpression(), CompanyPackage.eINSTANCE.getEmployee(), /* notifyOnNewContextElements */
+                false, new OCLFactoryImpl()).createFilterForExpression();
         eventManager.subscribe(filter, listener);
-        
+
         // now construct subtree that contains an Employee subclass's instance:
         Department parentDepartment = CompanyFactory.eINSTANCE.createDepartment();
         parentDepartment.setName("Parent department");
         Department subDepartment = CompanyFactory.eINSTANCE.createDepartment();
         subDepartment.setName("Subdepartment");
         parentDepartment.getSubDepartment().add(subDepartment);
-        
+
         Student student = CompanyFactory.eINSTANCE.createStudent();
         student.setName("The New Student");
-        subDepartment.getEmployee().add(student); // this shouldn't trigger the listener because container is not yet in ResourceSet
+        subDepartment.getEmployee().add(student); // this shouldn't trigger the listener because container is not yet in
+                                                  // ResourceSet
         // not add department to a container object which is contained in the ResourceSet
         this.aDivision.getDepartment().add(parentDepartment);
         assertEquals(1, notifications.size());
@@ -462,32 +471,50 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         assertNotNull(listener); // ensure it's not garbage-collected
     }
 
+    @Test
+    public void testDerivedPropertyCollection() {
+        OCL ocl = OCLFactory.INSTANCE.createOCL(DefaultOppositeEndFinder.getInstance());
+        FilterSynthesisImpl filtersyn = new FilterSynthesisImpl((OCLExpression) this.getLimitEmployeesOfTheMonthAST().getBodyExpression(),
+                false, ocl);
+        Map<OCLExpression, Set<PropertyCallExp>> derivedProperties = filtersyn.getDerivedProperties();
+        OCLExpression derivationExp = SettingBehavior.INSTANCE.getFeatureBody(ocl, divisionEmployeesOfTheMonth);
+        Set<PropertyCallExp> derivationCalls = derivedProperties.get(derivationExp);
+        
+        assertTrue(derivedProperties.size() == 1);
+        assertTrue(derivedProperties.containsKey(derivationExp));
+        assertTrue(derivationCalls.size() == 1);
+    }
+
     private void assertAllClassesOfClassFiltersInPackage(EventFilter f, CompanyPackage comp) {
-        if(f instanceof LogicalOperationFilter){
-            for(EventFilter o: ((LogicalOperationFilter)f).getOperands()){
+        if (f instanceof LogicalOperationFilter) {
+            for (EventFilter o : ((LogicalOperationFilter) f).getOperands()) {
                 assertAllClassesOfClassFiltersInPackage(o, comp);
             }
-        }else if(f instanceof ClassFilter){
+        } else if (f instanceof ClassFilter) {
             EClass wantedClass = ((ClassFilter) f).getWantedClass();
-            assertTrue("ClassFilter :::"+f+" has a NULL class", wantedClass!=null);
-            assertTrue("ClassFilter :::"+f+" has a class which has no Package ::"+wantedClass, wantedClass.getEPackage()!=null);
-            assertTrue("ClassFilter :::"+f+"contains an unexpected Class ::"+wantedClass,wantedClass.getEPackage().equals(comp));
+            assertTrue("ClassFilter :::" + f + " has a NULL class", wantedClass != null);
+            assertTrue("ClassFilter :::" + f + " has a class which has no Package ::" + wantedClass,
+                    wantedClass.getEPackage() != null);
+            assertTrue("ClassFilter :::" + f + "contains an unexpected Class ::" + wantedClass,
+                    wantedClass.getEPackage().equals(comp));
         }
     }
 
     private void assertAllReferencesInPackage(EventFilter f, CompanyPackage comp) {
-        if(f instanceof LogicalOperationFilter){
-            for(EventFilter o: ((LogicalOperationFilter)f).getOperands()){
-               assertAllReferencesInPackage(o, comp);
+        if (f instanceof LogicalOperationFilter) {
+            for (EventFilter o : ((LogicalOperationFilter) f).getOperands()) {
+                assertAllReferencesInPackage(o, comp);
             }
-        }else if(f instanceof AssociationFilter){
-            assertTrue("AssociationFilter :::"+f+" has a NULL reference", ((StructuralFeatureFilter) f).getFeature()!=null);
+        } else if (f instanceof AssociationFilter) {
+            assertTrue("AssociationFilter :::" + f + " has a NULL reference", ((StructuralFeatureFilter) f).getFeature() != null);
             EClass wantedClass = ((StructuralFeatureFilter) f).getFeature().getEContainingClass();
-            assertTrue("AssociationFilter :::"+f+" has a reference which is not contained in a class", wantedClass!=null);
-            assertTrue("AssociationFilter :::"+f+" has a reference which is contained in a class which has no Package ::"+wantedClass, wantedClass.getEPackage()!=null);
-            assertTrue("AssociationFilter :::"+f+"has a reference which is contained in a class which is unexpected ::" + wantedClass, wantedClass.getEPackage().equals(comp));
+            assertTrue("AssociationFilter :::" + f + " has a reference which is not contained in a class", wantedClass != null);
+            assertTrue("AssociationFilter :::" + f + " has a reference which is contained in a class which has no Package ::"
+                    + wantedClass, wantedClass.getEPackage() != null);
+            assertTrue("AssociationFilter :::" + f + "has a reference which is contained in a class which is unexpected ::"
+                    + wantedClass, wantedClass.getEPackage().equals(comp));
         }
-        
+
     }
 
     /**
@@ -504,13 +531,16 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         HashSet<ExpressionInOCL> affectedStmts = new HashSet<ExpressionInOCL>();
         for (Iterator<ExpressionInOCL> i = statements.iterator(); i.hasNext();) {
             ExpressionInOCL exp = i.next();
-            EventFilter filter = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer((OCLExpression) exp.getBodyExpression(), (EClass) exp.getContextVariable().getType(), /* notifyOnNewContextElements */ true, new OCLFactoryImpl()).createFilterForExpression();
+            EventFilter filter = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer((OCLExpression) exp.getBodyExpression(),
+                    (EClass) exp.getContextVariable().getType(), /* notifyOnNewContextElements */true, new OCLFactoryImpl())
+                    .createFilterForExpression();
             if (filter.matchesFor(noti)) {
                 affectedStmts.add(exp);
             }
         }
         return affectedStmts;
     }
+
     /**
      * @param iaResult
      * @param expectedAffectedStmts
@@ -533,26 +563,26 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
     private void printDifferences(Set<ExpressionInOCL> iaResult, Set<ExpressionInOCL> expectedAffectedStmts) {
         HashSet<ExpressionInOCL> toMuch = new HashSet<ExpressionInOCL>(iaResult);
         toMuch.removeAll(expectedAffectedStmts);
-        
+
         HashSet<ExpressionInOCL> toLess = new HashSet<ExpressionInOCL>(expectedAffectedStmts);
         toLess.removeAll(iaResult);
-        
-       System.err.println("Got more as expected:"+toMuch.size());
-       print(toMuch);
-       System.err.println("Got less as expected:"+ toLess.size());
-       print(toLess);
-       
+
+        System.err.println("Got more as expected:" + toMuch.size());
+        print(toMuch);
+        System.err.println("Got less as expected:" + toLess.size());
+        print(toLess);
+
     }
 
     private void print(HashSet<ExpressionInOCL> toMuch) {
-        for(ExpressionInOCL o: toMuch){
+        for (ExpressionInOCL o : toMuch) {
             System.out.println();
             try {
-                System.out.print(o.getContextVariable().getType().getName()  +" : ");
+                System.out.print(o.getContextVariable().getType().getName() + " : ");
             } catch (Exception e) {
             }
             System.out.print(o.getBodyExpression());
         }
-        
+
     }
 }
