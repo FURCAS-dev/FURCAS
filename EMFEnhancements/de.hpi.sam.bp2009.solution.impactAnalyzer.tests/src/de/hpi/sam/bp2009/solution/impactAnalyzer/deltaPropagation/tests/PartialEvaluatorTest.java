@@ -59,7 +59,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluat
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OCLFactoryImpl;
-import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
 public class PartialEvaluatorTest extends TestCase {
     private PartialEvaluator evaluator;
@@ -558,7 +557,6 @@ public class PartialEvaluatorTest extends TestCase {
         subsub.setBudget(300);
         sub.getSubDepartment().add(subsub);
 
-        OclToAstFactory.eINSTANCE.createEAnnotationOCLParser().traversalConvertOclAnnotations(CompanyPackage.eINSTANCE);
         evaluator.getHelper().setContext(CompanyPackage.eINSTANCE.getDepartment()); 
         EOperation op = CompanyPackage.eINSTANCE.getDepartment().getEOperations().get(1);
         OCLExpression sumBudgetBody = InvocationBehavior.INSTANCE.getOperationBody(evaluator.getOcl(), op);
