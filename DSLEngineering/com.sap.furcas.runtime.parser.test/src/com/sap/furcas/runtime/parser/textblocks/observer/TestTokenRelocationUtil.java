@@ -1,4 +1,4 @@
-package com.sap.mi.textual.parsing.textblocks.observer;
+package com.sap.furcas.runtime.parser.textblocks.observer;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -8,31 +8,20 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
-<<<<<<< HEAD
-import com.sap.furcas.metamodel.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.textblocks.Eostoken;
-import com.sap.furcas.metamodel.textblocks.LexedToken;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.parsing.textblocks.observer.TokenRelocationUtil;
-import com.sap.mi.textual.parsing.textblocks.TextBlockTest;
-=======
-import textblocks.AbstractToken;
-import textblocks.Eostoken;
-import textblocks.LexedToken;
-import textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.runtime.textblocks.testbase.TextBlockTest;
 
-import com.sap.furcas.textual.textblocks.testutils.TextBlockTest;
->>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 /**
  * tests several methods of that util class
  */
 public class TestTokenRelocationUtil extends TextBlockTest {
-
-
-    
     
     // should never happen, therefore nullPointer is acceptable
     @Test (expected = NullPointerException.class)
@@ -46,7 +35,6 @@ public class TestTokenRelocationUtil extends TextBlockTest {
         TextBlock root = modelFactory.createTextBlock();
         TokenRelocationUtil.moveTokens(null, root);
     }
-    
 
     @Test
     public void testMoveTokensNullBlock() throws Exception {
@@ -351,8 +339,6 @@ public class TestTokenRelocationUtil extends TextBlockTest {
         
     }
     
-  
-    
     @Test
     public void testMoveTokensMoveSome() throws Exception {
         // default case
@@ -384,10 +370,6 @@ public class TestTokenRelocationUtil extends TextBlockTest {
         assertEquals(17, source.getLength());
     }
     
-    
-    
-   
-    
     @Test
     public void testMoveTokensSetAbsolute() throws Exception {
         // default case
@@ -415,9 +397,6 @@ public class TestTokenRelocationUtil extends TextBlockTest {
         assertFalse(token.isOffsetRelative());
     }
     
-    
-    
-    
     @Test (expected = NullPointerException.class) // fine since this should never happen
     public void testMakeRelativeNull() throws Exception {
         TokenRelocationUtil.makeSubNodesRelative(null);
@@ -439,21 +418,25 @@ public class TestTokenRelocationUtil extends TextBlockTest {
         LexedToken token = modelFactory.createLexedToken();
         token.setParent(root);
         token.setOffset(10);
+        token.setLength(10);
         token.setOffsetRelative(false);
         
         TextBlock block = modelFactory.createTextBlock();
         block.setParent(root);
         block.setOffset(20);
+        block.setLength(10);
         block.setOffsetRelative(false);
         
         LexedToken token3 = modelFactory.createLexedToken();
         token3.setParent(root);
         token3.setOffset(30);
+        token3.setLength(10);
         token3.setOffsetRelative(false);
         
         Eostoken eos = modelFactory.createEostoken();
         eos.setParent(root);
         eos.setOffset(40);
+        eos.setLength(10);
         token3.setOffsetRelative(false);
         
         TokenRelocationUtil.makeSubNodesRelative(root);
@@ -472,6 +455,7 @@ public class TestTokenRelocationUtil extends TextBlockTest {
     }
     
     
+    @Ignore("Algorithm has changed. Does not check for negatives arguments any longer")
     @Test (expected = IllegalArgumentException.class)
     public void testMakeRelativeIllegal() throws Exception {
         TextBlock root = modelFactory.createTextBlock();
