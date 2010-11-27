@@ -1,23 +1,15 @@
-package com.sap.mi.textual.parsing.textblocks.observer;
+package com.sap.furcas.runtime.parser.textblocks.observer;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-<<<<<<< HEAD
-import com.sap.furcas.metamodel.textblocks.Eostoken;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.parsing.textblocks.observer.TokenRelocationUtil;
-import com.sap.mi.textual.parsing.textblocks.TextBlockTest;
-=======
-import textblocks.Eostoken;
-import textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.runtime.textblocks.testbase.TextBlockTest;
 
-import com.sap.furcas.textual.textblocks.testutils.TextBlockTest;
->>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 public class TestTokenRelocationUtilRelocateUsingSubNodes extends TextBlockTest {
-    
     
     @Test
     public void testUpdateLocationNoSubNodes() throws Exception {
