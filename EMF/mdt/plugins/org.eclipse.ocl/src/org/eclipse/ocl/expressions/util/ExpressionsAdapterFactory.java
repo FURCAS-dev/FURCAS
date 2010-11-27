@@ -45,7 +45,6 @@ import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.NumericLiteralExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PrimitiveLiteralExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.RealLiteralExp;
@@ -301,12 +300,6 @@ public class ExpressionsAdapterFactory
 		@Override
 		public <C, PM> Adapter caseVariableExp(VariableExp<C, PM> object) {
 			return createVariableExpAdapter();
-		}
-
-		@Override
-		public <C, P> Adapter caseOppositePropertyCallExp(
-				OppositePropertyCallExp<C, P> object) {
-			return createOppositePropertyCallExpAdapter();
 		}
 
 		@Override
@@ -840,21 +833,6 @@ public class ExpressionsAdapterFactory
 	 * @generated
 	 */
 	public Adapter createVariableExpAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.expressions.OppositePropertyCallExp <em>Opposite Property Call Exp</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * @since 3.1
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.expressions.OppositePropertyCallExp
-	 * @generated
-	 */
-	public Adapter createOppositePropertyCallExpAdapter() {
 		return null;
 	}
 

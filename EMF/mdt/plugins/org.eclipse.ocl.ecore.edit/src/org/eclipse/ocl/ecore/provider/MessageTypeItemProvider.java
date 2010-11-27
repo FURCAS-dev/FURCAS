@@ -124,8 +124,8 @@ public class MessageTypeItemProvider extends EClassItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/MessageType")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/MessageType")); //$NON-NLS-1$
 	}
 
 	/**
@@ -164,8 +164,8 @@ public class MessageTypeItemProvider extends EClassItemProvider implements
 
 		switch (notification.getFeatureID(MessageType.class)) {
 		case EcorePackage.MESSAGE_TYPE__REFERRED_SIGNAL:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

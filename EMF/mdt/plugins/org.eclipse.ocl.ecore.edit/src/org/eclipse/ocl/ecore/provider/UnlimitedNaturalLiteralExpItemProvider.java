@@ -122,8 +122,10 @@ public class UnlimitedNaturalLiteralExpItemProvider extends
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/UnlimitedNaturalLiteralExp")); //$NON-NLS-1$
+		return overlayImage(
+				object,
+				getResourceLocator().getImage(
+						"full/obj16/UnlimitedNaturalLiteralExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -163,8 +165,8 @@ public class UnlimitedNaturalLiteralExpItemProvider extends
 		switch (notification.getFeatureID(UnlimitedNaturalLiteralExp.class)) {
 		case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL:
 		case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

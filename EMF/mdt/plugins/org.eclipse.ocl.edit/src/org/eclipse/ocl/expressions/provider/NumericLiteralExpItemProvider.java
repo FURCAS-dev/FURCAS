@@ -74,8 +74,8 @@ public class NumericLiteralExpItemProvider extends
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/NumericLiteralExp")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/NumericLiteralExp")); //$NON-NLS-1$
 	}
 
 	/**

@@ -15,5 +15,27 @@
                 <message_argument value="OPPOSITE_PROPERTY_CALL_EXP"/>
             </message_arguments>
         </filter>
+        <filter id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.ecore.EcorePackage.Literals"/>
+                <message_argument value="OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/ocl/ecore/OCL.java" type="org.eclipse.ocl.ecore.OCL">
+        <filter id="643842064">
+            <message_arguments>
+                <message_argument value="OCLAnalyzer"/>
+                <message_argument value="OCL"/>
+                <message_argument value="createOCLAnalyzer(Environment&lt;EPackage,EClassifier,EOperation,EStructuralFeature,EEnumLiteral,EParameter,EObject,CallOperationAction,SendSignalAction,Constraint,EClass,EObject&gt;, String)"/>
+            </message_arguments>
+        </filter>
+        <filter id="643842064">
+            <message_arguments>
+                <message_argument value="OCLAnalyzer"/>
+                <message_argument value="OCL"/>
+                <message_argument value="createOCLAnalyzer(OCLBacktrackingParser)"/>
+            </message_arguments>
+        </filter>
     </resource>
 </component>

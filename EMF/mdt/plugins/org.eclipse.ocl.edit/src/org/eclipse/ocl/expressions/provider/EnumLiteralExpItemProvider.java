@@ -95,8 +95,8 @@ public class EnumLiteralExpItemProvider extends LiteralExpItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/EnumLiteralExp")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/EnumLiteralExp")); //$NON-NLS-1$
 	}
 
 	/**

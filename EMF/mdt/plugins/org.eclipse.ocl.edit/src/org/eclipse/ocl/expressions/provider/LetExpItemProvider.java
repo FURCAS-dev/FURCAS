@@ -131,8 +131,8 @@ public class LetExpItemProvider extends OCLExpressionItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/LetExp")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/LetExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -171,8 +171,8 @@ public class LetExpItemProvider extends OCLExpressionItemProvider implements
 		switch (notification.getFeatureID(LetExp.class)) {
 		case ExpressionsPackage.LET_EXP__IN:
 		case ExpressionsPackage.LET_EXP__VARIABLE:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -279,10 +279,6 @@ public class LetExpItemProvider extends OCLExpressionItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.LET_EXP__IN,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
-
-		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.LET_EXP__IN,
-				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.LET_EXP__VARIABLE,

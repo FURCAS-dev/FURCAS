@@ -111,8 +111,8 @@ public class LoopExpItemProvider extends CallExpItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/LoopExp")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/LoopExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -151,8 +151,8 @@ public class LoopExpItemProvider extends CallExpItemProvider implements
 		switch (notification.getFeatureID(LoopExp.class)) {
 		case ExpressionsPackage.LOOP_EXP__BODY:
 		case ExpressionsPackage.LOOP_EXP__ITERATOR:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -259,10 +259,6 @@ public class LoopExpItemProvider extends CallExpItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.LOOP_EXP__BODY,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
-
-		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.LOOP_EXP__BODY,
-				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.LOOP_EXP__ITERATOR,

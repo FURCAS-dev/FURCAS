@@ -98,8 +98,8 @@ public class RealLiteralExpItemProvider extends NumericLiteralExpItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/RealLiteralExp")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/RealLiteralExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -137,8 +137,8 @@ public class RealLiteralExpItemProvider extends NumericLiteralExpItemProvider
 
 		switch (notification.getFeatureID(RealLiteralExp.class)) {
 		case ExpressionsPackage.REAL_LITERAL_EXP__REAL_SYMBOL:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

@@ -103,8 +103,10 @@ public class TemplateParameterTypeItemProvider extends ItemProviderAdapter
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/TemplateParameterType")); //$NON-NLS-1$
+		return overlayImage(
+				object,
+				getResourceLocator().getImage(
+						"full/obj16/TemplateParameterType")); //$NON-NLS-1$
 	}
 
 	/**
@@ -143,8 +145,8 @@ public class TemplateParameterTypeItemProvider extends ItemProviderAdapter
 
 		switch (notification.getFeatureID(TemplateParameterType.class)) {
 		case TypesPackage.TEMPLATE_PARAMETER_TYPE__SPECIFICATION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

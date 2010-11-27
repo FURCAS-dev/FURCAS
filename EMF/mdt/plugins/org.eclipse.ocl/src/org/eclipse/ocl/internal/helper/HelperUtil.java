@@ -37,6 +37,7 @@ import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
+import org.eclipse.ocl.utilities.Visitor;
 
 /**
  * Utility class in support of the implementation of the {@link OCLHelper}
@@ -45,7 +46,7 @@ import org.eclipse.ocl.utilities.ExpressionInOCL;
  * @author Yasser Lulu 
  * @author Christian W. Damus (cdamus)
  */
-public class HelperUtil {
+public class HelperUtil<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 
 	static final int NONE = -1;
 
@@ -72,7 +73,7 @@ public class HelperUtil {
 	static final String HTTP = "http://"; //$NON-NLS-1$	
 
 	/** Not instantiable by clients. */
-	private HelperUtil() {
+	protected HelperUtil() {
 		super();
 	}
 
@@ -149,7 +150,6 @@ public class HelperUtil {
 		return logicalLine;
 	}
 	
-	static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	OCLExpression<C> parseQuery(
 			OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> helper,
 			String expression,
@@ -191,7 +191,6 @@ public class HelperUtil {
 		return result;
 	}
 
-	static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	CT parseInvariant(
 			OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> helper,
 			String expression,
@@ -217,7 +216,6 @@ public class HelperUtil {
 		return result;
 	}
 
-	static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	CT parsePrecondition(
 			OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> helper,
 			String expression,
@@ -243,7 +241,6 @@ public class HelperUtil {
 		return result;
 	}
 	
-	static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	CT parsePostcondition(
 			OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> helper,
 			String expression,
@@ -269,7 +266,6 @@ public class HelperUtil {
 		return result;
 	}
 	
-	static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	CT parseBodyCondition(
 			OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> helper,
 			String expression,
@@ -295,7 +291,6 @@ public class HelperUtil {
 		return result;
 	}
 	
-	static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	CT parseInitialValueExpression(
 			OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> helper,
 			String expression,
@@ -321,7 +316,6 @@ public class HelperUtil {
 		return result;
 	}
 	
-	static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	CT parseDerivedValueExpression(
 			OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> helper,
 			String expression,
@@ -347,7 +341,6 @@ public class HelperUtil {
 		return result;
 	}
 	
-	static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	CT parseDefExpression(
 			OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> helper,
 			String defExpression,
@@ -390,8 +383,7 @@ public class HelperUtil {
      * 
 	 * @return the analyzer
 	 */
-	private static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-	OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+	private OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	createAnalyzer(
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			String prefix,	String text,
@@ -407,8 +399,7 @@ public class HelperUtil {
 		}
 		
 		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-		result = new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-				env, (prefix + '\n' + text));
+		result = createOCLAnalyzer(env, prefix, text);
 		
 		// offset the character position by the length of the extra text
 		result.setCharacterOffset(-(prefix.length() + 1)); // one for the newline
@@ -416,6 +407,13 @@ public class HelperUtil {
 		result.setTraceFlag(trace);
 		
 		return result;
+	}
+
+	protected OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCLAnalyzer(
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			String prefix, String text) {
+		return new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
+				env, (prefix + '\n' + text));
 	}
 
 	/**
@@ -436,20 +434,21 @@ public class HelperUtil {
 		checkForErrors(helper);
 	}
 	
-	private static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-	void validate(
+	private void validate(
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			OCLExpression<C> expression) throws ParserException {
-		
-		expression.accept(ValidationVisitor.getInstance(env));
+		expression.accept(getValidationVisitor(env));
 	}
 	
-	private static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-	void validate(
+	private void validate(
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			CT constraint) throws ParserException {
-		
-		ValidationVisitor.getInstance(env).visitConstraint(constraint);
+		getValidationVisitor(env).visitConstraint(constraint);
+	}
+
+	protected Visitor<Boolean, C, O, P, EL, PM, S, COA, SSA, CT> getValidationVisitor(
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
+		return ValidationVisitor.getInstance(env);
 	}
 	
 	private static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>

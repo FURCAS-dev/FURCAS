@@ -41,7 +41,6 @@ import org.eclipse.ocl.expressions.LetExp;
 import org.eclipse.ocl.expressions.MessageExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.RealLiteralExp;
 import org.eclipse.ocl.expressions.StateExp;
@@ -153,8 +152,6 @@ public class ExpressionsFactoryImpl
 				return createUnspecifiedValueExp();
 			case ExpressionsPackage.VARIABLE_EXP :
 				return createVariableExp();
-			case ExpressionsPackage.OPPOSITE_PROPERTY_CALL_EXP :
-				return createOppositePropertyCallExp();
 			default :
 				throw new IllegalArgumentException(
 					"The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -451,17 +448,6 @@ public class ExpressionsFactoryImpl
 	public <C, PM> VariableExp<C, PM> createVariableExp() {
 		VariableExpImpl<C, PM> variableExp = new VariableExpImpl<C, PM>();
 		return variableExp;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * @since 3.1
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public <C, P> OppositePropertyCallExp<C, P> createOppositePropertyCallExp() {
-		OppositePropertyCallExpImpl<C, P> oppositePropertyCallExp = new OppositePropertyCallExpImpl<C, P>();
-		return oppositePropertyCallExp;
 	}
 
 	/**

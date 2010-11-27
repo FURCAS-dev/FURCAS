@@ -157,8 +157,9 @@ public class CollectionLiteralExpItemProvider extends LiteralExpItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/CollectionLiteralExp")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator()
+						.getImage("full/obj16/CollectionLiteralExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -198,12 +199,12 @@ public class CollectionLiteralExpItemProvider extends LiteralExpItemProvider
 		switch (notification.getFeatureID(CollectionLiteralExp.class)) {
 		case EcorePackage.COLLECTION_LITERAL_EXP__KIND:
 		case EcorePackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		case EcorePackage.COLLECTION_LITERAL_EXP__PART:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);

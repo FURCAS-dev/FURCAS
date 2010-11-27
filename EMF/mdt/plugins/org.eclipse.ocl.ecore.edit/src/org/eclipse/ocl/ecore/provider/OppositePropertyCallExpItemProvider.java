@@ -24,6 +24,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 
 import org.eclipse.ocl.expressions.ExpressionsPackage;
@@ -80,7 +81,7 @@ public class OppositePropertyCallExpItemProvider extends
 						getString("_UI_OppositePropertyCallExp_referredOppositeProperty_feature"), //$NON-NLS-1$
 						getString(
 								"_UI_PropertyDescriptor_description", "_UI_OppositePropertyCallExp_referredOppositeProperty_feature", "_UI_OppositePropertyCallExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						ExpressionsPackage.Literals.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY,
+						EcorePackage.Literals.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY,
 						true, false, true, null, null, null));
 	}
 
@@ -92,8 +93,10 @@ public class OppositePropertyCallExpItemProvider extends
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/OppositePropertyCallExp")); //$NON-NLS-1$
+		return overlayImage(
+				object,
+				getResourceLocator().getImage(
+						"full/obj16/OppositePropertyCallExp")); //$NON-NLS-1$
 	}
 
 	/**

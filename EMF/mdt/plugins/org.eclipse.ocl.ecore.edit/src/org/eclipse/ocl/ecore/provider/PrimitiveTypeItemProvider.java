@@ -79,8 +79,8 @@ public class PrimitiveTypeItemProvider extends EDataTypeItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/PrimitiveType")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/PrimitiveType")); //$NON-NLS-1$
 	}
 
 	/**
