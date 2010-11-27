@@ -577,12 +577,17 @@ public class EcoreEnvironment
 					return null;
 				}
 				try {
+					Helper helper = OCL.newInstance().createOCLHelper();
 					if (feature instanceof EStructuralFeature) {
-						Helper helper = OCL.newInstance().createOCLHelper();
 						helper.setContext((EClassifier) ((EStructuralFeature) feature).eContainer());
-						result = helper.createConstraint(ConstraintKind.DEFINITION, expr);
-						ann.getContents().add(result);
+					} else if (feature instanceof EOperation) {
+						EOperation op = (EOperation) feature;
+						helper.setOperationContext((EClassifier) op.eContainer(), op);
+					} else {
+						return result;
 					}
+					result = helper.createConstraint(ConstraintKind.DEFINITION, expr);
+					ann.getContents().add(result);
 				} catch (ParserException e) {
 					throw new OCLDelegateException(e.getLocalizedMessage(), e);
 				}
