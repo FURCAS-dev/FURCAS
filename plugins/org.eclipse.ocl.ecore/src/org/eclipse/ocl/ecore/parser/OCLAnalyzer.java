@@ -18,7 +18,6 @@ import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EnvironmentWithHiddenOpposites;
 import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.SendSignalAction;
-import org.eclipse.ocl.ecore.internal.OCLFactoryImpl;
 import org.eclipse.ocl.ecore.utilities.OCLFactoryWithHiddenOpposite;
 import org.eclipse.ocl.ecore.utilities.TypeUtil;
 import org.eclipse.ocl.expressions.NavigationCallExp;
