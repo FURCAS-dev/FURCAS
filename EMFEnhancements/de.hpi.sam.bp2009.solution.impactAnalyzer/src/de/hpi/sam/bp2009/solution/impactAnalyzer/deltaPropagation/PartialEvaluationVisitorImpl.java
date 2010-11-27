@@ -32,10 +32,11 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.EvaluationEnvironmentWithHiddenOpposites;
 import org.eclipse.ocl.EvaluationHaltedException;
-import org.eclipse.ocl.EvaluationVisitorImpl;
 import org.eclipse.ocl.ecore.CallExp;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.EvaluationVisitorImpl;
+import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
@@ -52,7 +53,6 @@ import org.eclipse.ocl.expressions.MessageExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.RealLiteralExp;
 import org.eclipse.ocl.expressions.StateExp;
@@ -89,7 +89,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerPlugin;
  */
 public class PartialEvaluationVisitorImpl
         extends
-        EvaluationVisitorImpl<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> {
+        EvaluationVisitorImpl {
     private org.eclipse.ocl.ecore.OCLExpression sourceExpression;
     private Object valueOfSourceExpression;
 
@@ -665,7 +665,7 @@ public class PartialEvaluationVisitorImpl
 
     @SuppressWarnings("unchecked")
     @Override
-    public Object visitOppositePropertyCallExp(OppositePropertyCallExp<EClassifier, EStructuralFeature> pc) {
+    public Object visitOppositePropertyCallExp(OppositePropertyCallExp pc) {
         if (pc == getSourceExpression()) {
             setSourceExpression(null);
             return getValueOfSourceExpression();
