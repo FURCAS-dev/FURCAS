@@ -22,12 +22,14 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link company.Division#getDirector <em>Director</em>}</li>
  *   <li>{@link company.Division#getBudget <em>Budget</em>}</li>
  *   <li>{@link company.Division#getEmployeesOfTheMonth <em>Employees Of The Month</em>}</li>
+ *   <li>{@link company.Division#getNumberEmployeesOfTheMonth <em>Number Employees Of The Month</em>}</li>
+ *   <li>{@link company.Division#getCompany <em>Company</em>}</li>
  * </ul>
  * </p>
  *
  * @see company.CompanyPackage#getDivision()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL nasty='self.department->collect(d| \r\nd.employee->including(d.boss)).salary->sum() < budget' limitEmployeesOfTheMonth='self.employeesOfTheMonth->size() <= self.department->size()'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='nasty limitEmployeesOfTheMonth'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL nasty='self.department->collect(d| \r\nd.employee->including(d.boss)).salary->sum() < budget' limitEmployeesOfTheMonth='self.employeesOfTheMonth->size() <= self.department->size()' nestedDerivation='self.numberEmployeesOfTheMonth <= self.department->size()'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='nasty limitEmployeesOfTheMonth nestedDerivation'"
  * @generated
  */
 public interface Division extends EObject {
@@ -144,5 +146,50 @@ public interface Division extends EObject {
      * @generated
      */
     EList<Employee> getEmployeesOfTheMonth();
+
+    /**
+     * Returns the value of the '<em><b>Number Employees Of The Month</b></em>' attribute.
+     * The default value is <code>""</code>.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Number Employees Of The Month</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Number Employees Of The Month</em>' attribute.
+     * @see company.CompanyPackage#getDivision_NumberEmployeesOfTheMonth()
+     * @model default="" dataType="primitivetypes.Integer" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL derivation='self.employeesOfTheMonth->size()'"
+     * @generated
+     */
+    int getNumberEmployeesOfTheMonth();
+
+    /**
+     * Returns the value of the '<em><b>Company</b></em>' reference.
+     * It is bidirectional and its opposite is '{@link company.Company#getDivision <em>Division</em>}'.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Company</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Company</em>' reference.
+     * @see #setCompany(Company)
+     * @see company.CompanyPackage#getDivision_Company()
+     * @see company.Company#getDivision
+     * @model opposite="division"
+     * @generated
+     */
+    Company getCompany();
+
+    /**
+     * Sets the value of the '{@link company.Division#getCompany <em>Company</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Company</em>' reference.
+     * @see #getCompany()
+     * @generated
+     */
+    void setCompany(Company value);
 
 } // Division

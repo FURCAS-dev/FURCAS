@@ -92,6 +92,10 @@ public class CompanyAdapterFactory extends AdapterFactoryImpl {
                 return createStudentAdapter();
             }
             @Override
+            public Adapter caseCompany(Company object) {
+                return createCompanyAdapter();
+            }
+            @Override
             public Adapter defaultCase(EObject object) {
                 return createEObjectAdapter();
             }
@@ -178,6 +182,20 @@ public class CompanyAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createStudentAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link company.Company <em>Company</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see company.Company
+     * @generated
+     */
+    public Adapter createCompanyAdapter() {
         return null;
     }
 

@@ -65,6 +65,7 @@ public class CompanyFactoryImpl extends EFactoryImpl implements CompanyFactory {
             case CompanyPackage.FREELANCE: return createFreelance();
             case CompanyPackage.DIVISION: return createDivision();
             case CompanyPackage.STUDENT: return createStudent();
+            case CompanyPackage.COMPANY: return createCompany();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -118,6 +119,16 @@ public class CompanyFactoryImpl extends EFactoryImpl implements CompanyFactory {
     public Student createStudent() {
         StudentImpl student = new StudentImpl();
         return student;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Company createCompany() {
+        CompanyImpl company = new CompanyImpl();
+        return company;
     }
 
     /**
