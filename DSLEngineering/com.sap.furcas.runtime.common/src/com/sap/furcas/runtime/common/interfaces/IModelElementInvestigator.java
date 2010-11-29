@@ -12,7 +12,6 @@ import java.util.List;
 
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 
-
 /**
  * provides methods to investigate modelElements, abstracts from specific metamodel implementations.
  */
@@ -31,21 +30,18 @@ public interface IModelElementInvestigator {
      */
     Object get(Object modelElement, String propertyName) throws ModelAdapterException;
 
+    /**
+     * Checks that instance is an instance of the Type.
+     * 
+     * @param instance the instance
+     * @param typeName the type name
+     * 
+     * @return true, if successful
+     * 
+     * @throws ModelAdapterException the model handler exception
+     */
+    boolean instanceOf(Object instance, Object metaType) throws ModelAdapterException;
 
-	/**
-	 * Checks that instance is an instance of the Type.
-	 * 
-	 * @param instance the instance
-	 * @param typeName the type name
-	 * 
-	 * @return true, if successful
-	 * 
-	 * @throws ModelAdapterException the model handler exception
-	 */
-	boolean instanceOf(Object instance, Object metaType) throws ModelAdapterException;
+    Object getMetaType(List<String> typeName) throws ModelAdapterException;
 
-	Object getMetaType(List<String> typeName) throws ModelAdapterException;
-	
-  
- 
 }

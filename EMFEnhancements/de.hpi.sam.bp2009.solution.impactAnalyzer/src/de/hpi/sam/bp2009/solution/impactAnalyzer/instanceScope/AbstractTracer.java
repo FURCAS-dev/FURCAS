@@ -268,6 +268,7 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
                 result.addAll(operationBodyToCallMapper.getSelfVariablesUsedInBody(e));
                 result.addAll(operationBodyToCallMapper.getParameterVariablesUsedInBody(e));
             }
+            // TODO perform check for body of derived property
         }
         return result;
     }

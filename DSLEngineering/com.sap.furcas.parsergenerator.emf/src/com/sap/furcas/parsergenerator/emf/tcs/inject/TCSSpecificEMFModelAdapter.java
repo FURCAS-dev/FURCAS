@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
-import com.sap.furcas.modeladaptation.emf.EMFModelAdapter;
+import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.runtime.common.exceptions.DeferredActionResolvingException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.ReferenceSettingException;
@@ -134,9 +134,9 @@ public class TCSSpecificEMFModelAdapter implements IBareModelAdapter {
      * java.lang.String, java.lang.Object)
      */
     @Override
-    public Object setReference(Object sourceModelElement, String referencePropertyName, List<String> targetType,
+    public Object setReferenceWithLookup(Object sourceModelElement, String referencePropertyName, List<String> targetType,
             String targetKeyName, Object targetKeyValue) throws ModelAdapterException, ReferenceSettingException {
-        Object reference = adapter.setReference(sourceModelElement, referencePropertyName, targetType, targetKeyName,
+        Object reference = adapter.setReferenceWithLookup(sourceModelElement, referencePropertyName, targetType, targetKeyName,
                 targetKeyValue);
         return reference;
     }
@@ -144,14 +144,10 @@ public class TCSSpecificEMFModelAdapter implements IBareModelAdapter {
     /**
      * @param string
      * @return
+     * @throws ModelAdapterException 
      */
-    public Set<Object> getElementsByType(String string) {
-        Object[] array = adapter.getElementsOfType(string);
-        Set<Object> set = null;
-        if (array != null) {
-            set = new HashSet<Object>(Arrays.asList(array));
-        }
-        return set;
+    public Set<Object> getElementsByType(String string) throws ModelAdapterException {
+        return new HashSet<Object>(adapter.getElementsOfType(Arrays.asList(string.split("::"))));
     }
 
     /*
@@ -160,16 +156,15 @@ public class TCSSpecificEMFModelAdapter implements IBareModelAdapter {
      * @see com.sap.mi.textual.grammar.IModelAdapter#setOclReference(java.lang.Object , java.lang.String, java.lang.String)
      */
     @Override
-    public Object setOclReference(Object modelElement, String propertyName, Object keyValue, String oclQuery,
+    public Object setReferenceWithOCLQuery(Object modelElement, String propertyName, Object keyValue, String oclQuery,
             Object contextObject, Object currentForeachElement) throws ModelAdapterException {
-        Object result = adapter.setOclReference(modelElement, propertyName, keyValue, oclQuery, contextObject,
+        Object result = adapter.setReferenceWithOCLQuery(modelElement, propertyName, keyValue, oclQuery, contextObject,
                 currentForeachElement);
         return result;
     }
 
     @Override
-    public Collection<?> getPredicateOclReference(Object modelElement, String propertyName, Object keyValue, String oclQuery,
-            Object contextElement) throws ModelAdapterException {
+    public Collection<?> evaluateOCLQuery(Object modelElement, Object keyValue, String oclQuery, Object contextElement) throws ModelAdapterException {
         throw new NotImplementedException();
     }
 
@@ -190,9 +185,9 @@ public class TCSSpecificEMFModelAdapter implements IBareModelAdapter {
      * java.lang.String, java.lang.Object, java.lang.Object)
      */
     @Override
-    public Object setWithinContextObject(Object modelElement, String propertyName, List<String> valueTypeName, String keyName,
+    public Object setReferenceWithContextLookup(Object modelElement, String propertyName, List<String> valueTypeName, String keyName,
             Object keyValue, Object contextObject) throws ModelAdapterException, ReferenceSettingException {
-        return adapter.setWithinContextObject(modelElement, propertyName, valueTypeName, keyName, keyValue, contextObject);
+        return adapter.setReferenceWithContextLookup(modelElement, propertyName, valueTypeName, keyName, keyValue, contextObject);
     }
 
     /*

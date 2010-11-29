@@ -94,8 +94,8 @@ implements OperationBodyToCallMapper {
     private final Map<OCLExpression, Set<Variable>> parameterVariablesUsedInBody = new HashMap<OCLExpression, Set<Variable>>();
     private final OCL ocl;
     private final Map<OCLExpression, Set<PropertyCallExp>> derivedProperties = new HashMap<OCLExpression, Set<PropertyCallExp>>();
- 
-    /**
+
+	/**
      * @param expression The {@link OCLExpression} the filter should be created for. 
      * @param notifyNewContextElements
      *            The analyzer can be parameterized during construction such that it either registers for creation
@@ -392,4 +392,7 @@ implements OperationBodyToCallMapper {
         return handleOppositePropertyCallExp(callExp, sourceResult);
     }
     
+    public Map<OCLExpression, Set<PropertyCallExp>> getDerivedProperties() {
+		return derivedProperties;
+	}
 } //FilterSynthesisImpl

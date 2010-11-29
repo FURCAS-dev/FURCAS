@@ -75,7 +75,7 @@ public class TestStubModelAdapter {
         handler.set(object2, "id", "1234");
         Object object3 = handler.createElement(list("Other"));
         handler.set(object3, "id", "4444");
-        handler.setReference(object, "reference", StringListHelper.list("Other"), "id", "1234");
+        handler.setReferenceWithLookup(object, "reference", StringListHelper.list("Other"), "id", "1234");
         assertEquals(object2, handler.get(object, "reference"));
     }
 

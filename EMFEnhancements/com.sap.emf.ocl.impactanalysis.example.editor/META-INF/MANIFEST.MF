@@ -23,6 +23,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.query2,
  org.eclipse.ocl.ecore,
  de.hpi.sam.bp2009.solution.queryContextScopeProvider,
- de.hpi.sam.bp2009.solution.oclToAst,
  de.hpi.sam.bp2009.solution.impactAnalyzer.editor
 Bundle-ActivationPolicy: lazy

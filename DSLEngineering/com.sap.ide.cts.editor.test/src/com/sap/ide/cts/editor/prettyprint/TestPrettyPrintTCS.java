@@ -1,6 +1,8 @@
 package com.sap.ide.cts.editor.prettyprint;
 
 
+import generated.TCSLexer;
+
 import javax.naming.NameNotFoundException;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -17,7 +19,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
 import com.sap.furcas.metamodel.FURCAS.TCS.SpaceKind;
 import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
-import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.ide.cts.editor.prettyprint.imported.SyntaxAndModelMismatchException;
 import com.sap.mi.tcs.parser.TcsParserFactory;
@@ -53,8 +54,8 @@ public class TestPrettyPrintTCS extends CtsPrettyPrinterTestBase {
 
 		EClass sclass = (EClass) s.refMetaObject();
 
-		EAttribute attr = (EAttribute) EcoreHelper.lookupElementExtended(sclass,"name");
-		t.setMetaReference((EClass) attr.getEType());
+		EAttribute attr = (EAttribute) sclass.getEStructuralFeature("name");
+		t.setMetaReference(attr.getEType());
 
 		s.getTemplates().add(t);
 
