@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -33,34 +32,6 @@ import org.eclipse.emf.query2.ResultSet;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 
 public class EcoreHelper {
-
-	public static EModelElement lookupElementExtended(EClassifier classifier, String name) {
-		for (EObject elem : classifier.eContents()) {
-			if(elem instanceof ENamedElement) {
-				if( name.equals(((ENamedElement) elem).getName()) ) {
-					return (EModelElement) elem;
-				}
-			}
-		}
-		if(classifier instanceof EClass) {
-			for (EClass superType : ((EClass) classifier).getEAllSuperTypes()) {
-				for (EObject elem : superType.eContents()) {
-					if(elem instanceof ENamedElement) {
-						if( name.equals(((ENamedElement) elem).getName()) ) {
-							return (EModelElement) elem;
-						}
-					}
-				}
-			}
-		}
-		return null;
-	}
-
-	public static Set<EReference> getUnexposedReferences(EObject classifier,
-			boolean b) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
     /**
      * Constructs a query context that contains only the given <tt>resources</tt>.
@@ -89,7 +60,6 @@ public class EcoreHelper {
             }
         };
     }
-
 
     /**
      * Constructs a query context that contains all of <tt>rs</tt>'s resources and all metamodel resources
@@ -131,11 +101,7 @@ public class EcoreHelper {
 		}
 	}
 	
-	/**
-	 * @param query
-	 * @return
-	 * @throws MetaModelLookupException 
-	 */
+
 	public static ResultSet executeQuery(String query, QueryContext context) throws MetaModelLookupException {
 	    try {
 	        QueryProcessor processor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
@@ -161,32 +127,65 @@ public class EcoreHelper {
 		return null;
 	}
 
-	public static boolean isInstanceOf(EObject object, EClassifier metaType) {
-		return metaType.isInstance(object);
-	}
-
-	public static EModelElement findElementByQualifiedName(List<String> qname,
-			EPackage pack) {
-		EModelElement result = pack;
-		if(result != null) {
-			for (int i = 0; i < qname.size(); i++) {
-				String name = qname.get(i);
-				EList<EObject> contents = result.eContents();
-				for (EObject eObj : contents) {
-					if(eObj instanceof ENamedElement &&
-							((ENamedElement) eObj).getName().equals(name)) {
-						result = (EModelElement) eObj;
-						continue;
-					}
-				}
-			}
-		}
-		return result;
-	}
+    /**
+     * Returns the classifier within the package with the given name.
+     * 
+     * This method can also be used to search for sub-parts of the qualified name. For example,
+     * if the full qualified name is Pack::SubPack1::SubPack2::MyClassifier" one can also search for 
+     * "SubPack2::MyClassifier" or just "MyClassifier".
+     * 
+     */
+    public static EClassifier findClassifierByName(List<String> qualifiedClassifierName, EPackage pack) {
+        Iterator<EObject> iter = EcoreUtil.getAllContents(pack, /*resolve*/ false);
+        String outmostNamePart = qualifiedClassifierName.get(0);
+        // check if it is a full qualified name
+        if (outmostNamePart.equals(pack.getName())) {
+            return findClassifierByFullQualifiedName(qualifiedClassifierName, pack);
+        }
+        // handle non-fully qualified name
+        while (iter.hasNext()) {
+            Object containedObject = iter.next();
+            if (!(containedObject instanceof ENamedElement)) {
+                continue;
+            }
+            if (!(outmostNamePart.equals(((ENamedElement) containedObject).getName()))) {
+                continue;
+            }
+            if (containedObject instanceof EPackage) {
+                return findClassifierByFullQualifiedName(qualifiedClassifierName, (EPackage) containedObject);
+            } else if (containedObject instanceof EClassifier) {
+                return (EClassifier) containedObject;
+            } else {
+                return null;
+            }
+        }
+        return null;
+    }
+    
+    /**
+     * Returns the the classifier within the package which specified by a full qualified name
+     * such as Pack::SubPack1::SubPack2::MyClassifier"
+     */
+    public static EClassifier findClassifierByFullQualifiedName(List<String> qualifiedClassifierName, EPackage pack) {
+        for (String namePart : qualifiedClassifierName) {
+            if (namePart.equals(pack.getName())) {
+                continue;
+            }
+            pack.getEClassifier(namePart);
+            EList<EPackage> eSubpackages = pack.getESubpackages();
+            for (EPackage ePackage : eSubpackages) {
+                if (ePackage.getName().equals(namePart)) {
+                    pack = ePackage;
+                    continue;
+                }
+            }
+        }
+        return pack.getEClassifier(qualifiedClassifierName.get(qualifiedClassifierName.size() - 1));
+    }
 
 	public static boolean isAlive(EObject object) {
 		//TODO how to check whether an object is alive or not in EMF?
-		return true;
+		throw new RuntimeException("Not yet implemented");
 	}
 
 }

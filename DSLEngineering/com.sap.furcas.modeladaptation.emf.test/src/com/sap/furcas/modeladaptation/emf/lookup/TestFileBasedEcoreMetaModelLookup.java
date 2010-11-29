@@ -15,9 +15,9 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.junit.Test;
 
-import com.sap.furcas.modeladaptation.emf.lookup.FileBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.furcas.test.fixture.FixtureData;
+import com.sap.furcas.test.testutils.ResolutionBeanHelper;
 
 /**
  * Tests the Ecore based lookup class that is used for testing, prerequisite for scenario tests (!).
@@ -71,6 +71,7 @@ public class TestFileBasedEcoreMetaModelLookup {
         assertTrue(lookup.getMultiplicity(refE("BibText", "BibTextEntry"), "attributes").isMultiple());
         assertEquals(5, lookup.getMultiplicity(refE("BibText", "BibTextEntry"), "attributes").getUpperBound());
 
+        assertNull(lookup.getMultiplicity(ResolutionBeanHelper.refE("blabla"), "xyz"));
     }
 
     @Test
@@ -82,7 +83,9 @@ public class TestFileBasedEcoreMetaModelLookup {
         assertEquals(refE("BibText", "Article"), lookup.getFeatureClassReference(refE("BibText", "Author"), "articles"));
         assertEquals(refE("BibText", "BibTextEntry"), lookup.getFeatureClassReference(refE("BibText", "BibTextFile"), "entries"));
         assertEquals(refE("PrimitiveTypes", "String"), lookup.getFeatureClassReference(refE("BibText", "BibTextEntry"), "key"));
-
+        assertEquals(refE("BibText", "BibTextEntry"), lookup.getFeatureClassReference(ResolutionBeanHelper.refE("BibText", "BibTextFile"), "entries"));
+        assertEquals(refE("BibText", "Author"), lookup.getFeatureClassReference(ResolutionBeanHelper.refE("BibText", "Article"), "author"));
+        
         assertNull(lookup.getFeatureClassReference(refE("BibTextEntry"), ""));
         assertNull(lookup.getFeatureClassReference(refE("BibTextEntry"), "key2"));
         assertNull(lookup.getFeatureClassReference(refE("BibTextEntry"), "ke"));
@@ -172,5 +175,22 @@ public class TestFileBasedEcoreMetaModelLookup {
         assertEquals(2, result.size());
         assertTrue(result.contains(refE("expression", "rightPackage", "ExpressionList")));
         assertTrue(result.contains(refE("expression", "wrongPackage", "ExpressionList")));
+    }
+    
+    @Test
+    public void testGetClassesWithBibText() throws Exception {
+        FileBasedEcoreMetaModelLookUp lookup = new FileBasedEcoreMetaModelLookUp(FixtureData.BIBTEXT_METAMODEL, FixtureData.BIBTEXT1_METAMODEL);
+        assertNotNull(lookup.resolveReference(list("BibText", "BibTextFile")));
+        assertNotNull(lookup.resolveReference(list("BibText", "BibTextEntry")));
+        assertNotNull(lookup.resolveReference(list("BibText", "Article")));
+        assertNotNull(lookup.resolveReference(list("BibText", "Author")));
+        assertNotNull(lookup.resolveReference(list("BibText", "Attribute")));
+        assertNotNull(lookup.resolveReference(list("BibText", "Year")));
+        assertNotNull(lookup.resolveReference(list("BibText", "LocatedElement")));
+
+        assertNull(lookup.resolveReference(list("BibText", "Classifier")));
+        assertNull(lookup.resolveReference(list("BibText", "XYZ")));
+        assertNull(lookup.resolveReference(list("BibText", "Year123")));
+        assertNull(lookup.resolveReference(list("")));
     }
 }

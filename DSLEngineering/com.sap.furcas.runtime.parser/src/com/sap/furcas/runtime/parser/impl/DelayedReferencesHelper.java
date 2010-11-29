@@ -127,10 +127,8 @@ public class DelayedReferencesHelper {
                 reportProblem("You must specify an OCL query.", reference.getToken());
                 return false;
             }
-            Collection<?> result = evaluateForeachOcl((EObject) reference.getModelElement(), reference, modelAdapter,
-                    contextElement);
-            // if there is no result it will be null
-            if (result == null) {
+            Collection<?> result = evaluateForeachOcl((EObject) reference.getModelElement(), reference, modelAdapter, contextElement);
+            if (result.isEmpty()) {
                 // we need to delete all elements created for this foreach
                 if (reference.getTextBlock() != null) {
                     for (ForEachContext fec : new ArrayList<ForEachContext>(
@@ -272,8 +270,8 @@ public class DelayedReferencesHelper {
             Object contextElement) throws ModelAdapterException {
         String flattenOCL = appendFlattenToOclQuery(reference.getOclQuery());
         // evaluate the predicate by OCL, return value is a list of objects
-        Collection<?> result = modelAdapter.getPredicateOclReference(sourceElement, reference.getPropertyName(),
-                reference.getKeyValue(), flattenOCL, contextElement);
+        Collection<?> result = modelAdapter.evaluateOCLQuery(sourceElement, reference.getKeyValue(),
+                flattenOCL, contextElement);
         return result;
     }
     
@@ -315,13 +313,14 @@ public class DelayedReferencesHelper {
     			try {
     				parser.getTokenStream().seek(reference.getFirstToken().getTokenIndex());
     				Object parseReturn;
-    			    if(reference.isSemanticDisambiguatedOperatorRule())
-    			    	parseReturn = methodToCall.invoke(parser,
+    			    if(reference.isSemanticDisambiguatedOperatorRule()) {
+                        parseReturn = methodToCall.invoke(parser,
     			    			reference.getPropertyName(),
     			    			reference.getOpTemplateLefthand(),
     			    			reference.getFirstToken());
-    			    else
-    			    	parseReturn = methodToCall.invoke(parser);
+                    } else {
+                        parseReturn = methodToCall.invoke(parser);
+                    }
     			    // add the parsed part to the object
     			    parser.setResolveProxies(originalResolveProxiesValue);
     			    reference.setRealValue(injector.createOrResolve(parseReturn, null, null));
@@ -506,8 +505,8 @@ public class DelayedReferencesHelper {
             Object contextElement) throws ModelAdapterException {
         for (PredicateSemantic nextPred : reference.getPredicateActionList()) {
             if (nextPred.getWhen() != null) {
-                Collection<?> resultBool = modelAdapter.getPredicateOclReference(reference.getModelElement(),
-                        reference.getPropertyName(), reference.getKeyValue(), nextPred.getWhen(), contextElement);
+                Collection<?> resultBool = modelAdapter.evaluateOCLQuery(reference.getModelElement(),
+                        reference.getKeyValue(), nextPred.getWhen(), contextElement);
                 if (resultBool.size() == 1) {
                     Iterator<?> resIt = resultBool.iterator();
                     Object nextBool = resIt.next();
@@ -638,7 +637,7 @@ public class DelayedReferencesHelper {
                     reference.setModelElement(proxy.getRealObject());
                 }
             }
-            Object result = modelAdapter.setOclReference(reference.getModelElement(), reference.getPropertyName(),
+            Object result = modelAdapter.setReferenceWithOCLQuery(reference.getModelElement(), reference.getPropertyName(),
                     reference.getKeyValue(), reference.getOclQuery(), contextElement, reference.getCurrentForeachElement());
             if (result == null) {
                 String message = "Referenced ModelElement for query '" + reference.getOclQuery()
@@ -772,7 +771,7 @@ public class DelayedReferencesHelper {
                             // the context of the parsed file
                             // this means only the modelAdapter may be able to
                             // set the reference
-                            Object result = modelAdapter.setWithinContextObject(sourceElement, reference.getPropertyName(),
+                            Object result = modelAdapter.setReferenceWithContextLookup(sourceElement, reference.getPropertyName(),
                                     reference.getValueTypeName(), reference.getKeyName(), reference.getKeyValue(),
                                     navigatedObject);
                             if (result != null) {
@@ -856,7 +855,7 @@ public class DelayedReferencesHelper {
             throws ModelAdapterException, ReferenceSettingException {
 
         // attempt to let adapter resolve reference outside parsing context
-        Object result = modelAdapter.setReference(reference.getModelElement(), reference.getPropertyName(),
+        Object result = modelAdapter.setReferenceWithLookup(reference.getModelElement(), reference.getPropertyName(),
                 reference.getValueTypeName(), reference.getKeyName(), reference.getKeyValue());
         return result;
     }
@@ -882,16 +881,18 @@ public class DelayedReferencesHelper {
 											beginRef + 1) + 1);
 					String replacedBy;
 					// TODO support other types than string
-					if (isBasicType(reference.getSemanticObject()))
-						replacedBy = "'"
+					if (isBasicType(reference.getSemanticObject())) {
+                        replacedBy = "'"
 								+ reference.getSemanticObject().toString()
 								+ "'";
-					else
-						replacedBy = "?";
+                    } else {
+                        replacedBy = "?";
+                    }
 					String replacedOCL = nextRuleData.getOcl().replaceAll(
 							Pattern.quote(semReference), replacedBy);
-					if (replacedOCL.contains("#source"))
-						replacedOCL = replacedOCL.replace("#source", "self");
+					if (replacedOCL.contains("#source")) {
+                        replacedOCL = replacedOCL.replace("#source", "self");
+                    }
 					flattenOCL = appendFlattenToOclQuery(replacedOCL);
 				}
 
@@ -900,19 +901,20 @@ public class DelayedReferencesHelper {
 				Object currentContextElement;
 				if (nextRuleData.getOcl().contains("#source")
 						&& reference.isSemanticDisambiguatedOperatorRule()) {
-					if (reference.getOpTemplateLefthand() instanceof ModelElementProxy)
-						currentContextElement = ((ModelElementProxy) reference
+					if (reference.getOpTemplateLefthand() instanceof ModelElementProxy) {
+                        currentContextElement = ((ModelElementProxy) reference
 								.getOpTemplateLefthand()).getRealObject();
-					else
-						currentContextElement = reference
+                    } else {
+                        currentContextElement = reference
 								.getOpTemplateLefthand();
-				} else
-					currentContextElement = contextElement;
-				Collection<?> result = modelAdapter.getPredicateOclReference(
-						currentContextElement, null, null, flattenOCL,
-						currentContextElement);
+                    }
+				} else {
+                    currentContextElement = contextElement;
+                }
+				Collection<?> result = modelAdapter.evaluateOCLQuery(
+						currentContextElement, null, flattenOCL, currentContextElement);
 				// if there is no result it will be null
-				if (result == null) {
+				if (result.isEmpty()) {
 					resultFound = false;
 				} else {
 					Iterator<?> resultIt = result.iterator();
@@ -981,8 +983,9 @@ public class DelayedReferencesHelper {
 
 	// TODO support the other basic types as well
 	private boolean isBasicType(Object ref) {
-		if (ref instanceof String)
-			return true;
+		if (ref instanceof String) {
+            return true;
+        }
 		return false;
 	}
     // /**
@@ -1035,7 +1038,7 @@ public class DelayedReferencesHelper {
         Object candidate = null;
 
         if (reference.getType() == DelayedReference.CONTEXT_LOOKUP) {
-            candidate = modelAdapter.setOclReference(contextElement, reference.getPropertyName(), reference.getKeyValue(),
+            candidate = modelAdapter.setReferenceWithOCLQuery(contextElement, reference.getPropertyName(), reference.getKeyValue(),
                     reference.getOclQuery().replaceAll("self.", "#context"), reference.getTextBlock(),
                     reference.getCurrentForeachElement());
         } else {

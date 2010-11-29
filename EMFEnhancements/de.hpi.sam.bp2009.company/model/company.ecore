@@ -95,9 +95,10 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
       <details key="nasty" value="self.department->collect(d| &#xD;&#xA;d.employee->including(d.boss)).salary->sum() &lt; budget"/>
       <details key="limitEmployeesOfTheMonth" value="self.employeesOfTheMonth->size() &lt;= self.department->size()"/>
+      <details key="nestedDerivation" value="self.numberEmployeesOfTheMonth &lt;= self.department->size()"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="nasty limitEmployeesOfTheMonth"/>
+      <details key="constraints" value="nasty limitEmployeesOfTheMonth nestedDerivation"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType primitivetypes.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="department" upperBound="-1"
@@ -116,6 +117,15 @@
         <details key="derivation" value="self.department.employeeOfTheMonth"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberEmployeesOfTheMonth"
+        ordered="false" eType="ecore:EDataType primitivetypes.ecore#//Integer" changeable="false"
+        volatile="true" transient="true" defaultValueLiteral="" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="derivation" value="self.employeesOfTheMonth->size()"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="company" eType="#//Company"
+        eOpposite="#//Company/division"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Student" eSuperTypes="#//Employee">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
@@ -124,5 +134,21 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="StudentAndFreelancesAge"/>
     </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Company">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+      <details key="eotmDeltaMax" value="self.eotmDelta &lt;= 5"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="eotmDeltaMax"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="division" eType="#//Division"
+        eOpposite="#//Division/company"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="eotmDelta" eType="ecore:EDataType primitivetypes.ecore#//Integer"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="derivation" value="let maxEOTMDivision:Division=self.division->sortedBy(i | i.numberEmployeesOfTheMonth)->last() in let minEOTMDivision:Division=self.division->sortedBy(i | i.numberEmployeesOfTheMonth)->first() in maxEOTMDivision.numberEmployeesOfTheMonth - minEOTMDivision.numberEmployeesOfTheMonth"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
 </ecore:EPackage>

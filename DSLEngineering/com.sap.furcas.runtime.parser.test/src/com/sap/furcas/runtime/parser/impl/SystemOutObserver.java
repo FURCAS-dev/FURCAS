@@ -9,7 +9,6 @@ import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
 
 import com.sap.furcas.runtime.parser.IParsingObserver;
-import com.sap.furcas.runtime.parser.impl.DelayedReference;
 
 /**
  *

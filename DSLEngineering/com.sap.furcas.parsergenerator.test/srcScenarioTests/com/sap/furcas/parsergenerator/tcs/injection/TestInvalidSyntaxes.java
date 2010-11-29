@@ -9,10 +9,7 @@ import org.junit.Test;
 
 import com.sap.furcas.runtime.parser.ParsingError;
 
-;
-
-
-public class TestInvalidSyntaxes  extends AbstractTCSInjectionTest {
+public class TestInvalidSyntaxes extends AbstractTCSInjectionTest {
 
     @Test
     public void testInvalidKeywordSyntax() throws Exception {
@@ -47,7 +44,7 @@ public class TestInvalidSyntaxes  extends AbstractTCSInjectionTest {
     @Test
     public void testBadKeyword() throws Exception {
         String invalidSample = "syntax !§${"
-            +"template Attribute abstract;"
+            +"template ->Attribute abstract;"
             +"}";
         parseInputStream(new ByteArrayInputStream(invalidSample.getBytes()));
 

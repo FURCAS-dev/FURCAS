@@ -6,6 +6,7 @@
  */
 package company.impl;
 
+import company.Company;
 import company.CompanyPackage;
 import company.Department;
 import company.Division;
@@ -37,6 +38,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link company.impl.DivisionImpl#getDirector <em>Director</em>}</li>
  *   <li>{@link company.impl.DivisionImpl#getBudget <em>Budget</em>}</li>
  *   <li>{@link company.impl.DivisionImpl#getEmployeesOfTheMonth <em>Employees Of The Month</em>}</li>
+ *   <li>{@link company.impl.DivisionImpl#getNumberEmployeesOfTheMonth <em>Number Employees Of The Month</em>}</li>
+ *   <li>{@link company.impl.DivisionImpl#getCompany <em>Company</em>}</li>
  * </ul>
  * </p>
  *
@@ -112,6 +115,26 @@ public class DivisionImpl extends EObjectImpl implements Division {
      * @ordered
      */
     protected EStructuralFeature.Internal.SettingDelegate EMPLOYEES_OF_THE_MONTH__ESETTING_DELEGATE = ((EStructuralFeature.Internal)CompanyPackage.Literals.DIVISION__EMPLOYEES_OF_THE_MONTH).getSettingDelegate();
+
+    /**
+     * The cached setting delegate for the '{@link #getNumberEmployeesOfTheMonth() <em>Number Employees Of The Month</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getNumberEmployeesOfTheMonth()
+     * @generated
+     * @ordered
+     */
+    protected EStructuralFeature.Internal.SettingDelegate NUMBER_EMPLOYEES_OF_THE_MONTH__ESETTING_DELEGATE = ((EStructuralFeature.Internal)CompanyPackage.Literals.DIVISION__NUMBER_EMPLOYEES_OF_THE_MONTH).getSettingDelegate();
+
+    /**
+     * The cached value of the '{@link #getCompany() <em>Company</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getCompany()
+     * @generated
+     * @ordered
+     */
+    protected Company company;
 
     /**
      * <!-- begin-user-doc -->
@@ -241,6 +264,75 @@ public class DivisionImpl extends EObjectImpl implements Division {
 
                 /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public int getNumberEmployeesOfTheMonth() {
+        return (Integer)NUMBER_EMPLOYEES_OF_THE_MONTH__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+    }
+
+                /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Company getCompany() {
+        if (company != null && company.eIsProxy()) {
+            InternalEObject oldCompany = (InternalEObject)company;
+            company = (Company)eResolveProxy(oldCompany);
+            if (company != oldCompany) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CompanyPackage.DIVISION__COMPANY, oldCompany, company));
+            }
+        }
+        return company;
+    }
+
+                /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Company basicGetCompany() {
+        return company;
+    }
+
+                /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetCompany(Company newCompany, NotificationChain msgs) {
+        Company oldCompany = company;
+        company = newCompany;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompanyPackage.DIVISION__COMPANY, oldCompany, newCompany);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+                /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setCompany(Company newCompany) {
+        if (newCompany != company) {
+            NotificationChain msgs = null;
+            if (company != null)
+                msgs = ((InternalEObject)company).eInverseRemove(this, CompanyPackage.COMPANY__DIVISION, Company.class, msgs);
+            if (newCompany != null)
+                msgs = ((InternalEObject)newCompany).eInverseAdd(this, CompanyPackage.COMPANY__DIVISION, Company.class, msgs);
+            msgs = basicSetCompany(newCompany, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CompanyPackage.DIVISION__COMPANY, newCompany, newCompany));
+    }
+
+                /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -251,6 +343,10 @@ public class DivisionImpl extends EObjectImpl implements Division {
                 if (director != null)
                     msgs = ((InternalEObject)director).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompanyPackage.DIVISION__DIRECTOR, null, msgs);
                 return basicSetDirector((Employee)otherEnd, msgs);
+            case CompanyPackage.DIVISION__COMPANY:
+                if (company != null)
+                    msgs = ((InternalEObject)company).eInverseRemove(this, CompanyPackage.COMPANY__DIVISION, Company.class, msgs);
+                return basicSetCompany((Company)otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -267,6 +363,8 @@ public class DivisionImpl extends EObjectImpl implements Division {
                 return ((InternalEList<?>)getDepartment()).basicRemove(otherEnd, msgs);
             case CompanyPackage.DIVISION__DIRECTOR:
                 return basicSetDirector(null, msgs);
+            case CompanyPackage.DIVISION__COMPANY:
+                return basicSetCompany(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -289,6 +387,11 @@ public class DivisionImpl extends EObjectImpl implements Division {
                 return getBudget();
             case CompanyPackage.DIVISION__EMPLOYEES_OF_THE_MONTH:
                 return getEmployeesOfTheMonth();
+            case CompanyPackage.DIVISION__NUMBER_EMPLOYEES_OF_THE_MONTH:
+                return getNumberEmployeesOfTheMonth();
+            case CompanyPackage.DIVISION__COMPANY:
+                if (resolve) return getCompany();
+                return basicGetCompany();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -315,6 +418,9 @@ public class DivisionImpl extends EObjectImpl implements Division {
             case CompanyPackage.DIVISION__BUDGET:
                 setBudget((Integer)newValue);
                 return;
+            case CompanyPackage.DIVISION__COMPANY:
+                setCompany((Company)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -339,6 +445,9 @@ public class DivisionImpl extends EObjectImpl implements Division {
             case CompanyPackage.DIVISION__BUDGET:
                 setBudget(BUDGET_EDEFAULT);
                 return;
+            case CompanyPackage.DIVISION__COMPANY:
+                setCompany((Company)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -361,6 +470,10 @@ public class DivisionImpl extends EObjectImpl implements Division {
                 return budget != BUDGET_EDEFAULT;
             case CompanyPackage.DIVISION__EMPLOYEES_OF_THE_MONTH:
                 return EMPLOYEES_OF_THE_MONTH__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+            case CompanyPackage.DIVISION__NUMBER_EMPLOYEES_OF_THE_MONTH:
+                return NUMBER_EMPLOYEES_OF_THE_MONTH__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+            case CompanyPackage.DIVISION__COMPANY:
+                return company != null;
         }
         return super.eIsSet(featureID);
     }
