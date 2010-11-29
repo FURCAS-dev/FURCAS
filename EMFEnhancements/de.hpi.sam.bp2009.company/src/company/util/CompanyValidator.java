@@ -100,6 +100,8 @@ public class CompanyValidator extends EObjectValidator {
                 return validateDivision((Division)value, diagnostics, context);
             case CompanyPackage.STUDENT:
                 return validateStudent((Student)value, diagnostics, context);
+            case CompanyPackage.COMPANY:
+                return validateCompany((Company)value, diagnostics, context);
             default:
                 return true;
         }
@@ -713,6 +715,7 @@ public class CompanyValidator extends EObjectValidator {
         if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(division, diagnostics, context);
         if (result || diagnostics != null) result &= validateDivision_nasty(division, diagnostics, context);
         if (result || diagnostics != null) result &= validateDivision_limitEmployeesOfTheMonth(division, diagnostics, context);
+        if (result || diagnostics != null) result &= validateDivision_nestedDerivation(division, diagnostics, context);
         return result;
     }
 
@@ -776,6 +779,35 @@ public class CompanyValidator extends EObjectValidator {
     }
 
     /**
+     * The cached validation expression for the nestedDerivation constraint of '<em>Division</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected static final String DIVISION__NESTED_DERIVATION__EEXPRESSION = "self.numberEmployeesOfTheMonth <= self.department->size()";
+
+    /**
+     * Validates the nestedDerivation constraint of '<em>Division</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validateDivision_nestedDerivation(Division division, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return
+            validate
+                (CompanyPackage.Literals.DIVISION,
+                 division,
+                 diagnostics,
+                 context,
+                 "http://www.eclipse.org/emf/2002/Ecore/OCL",
+                 "nestedDerivation",
+                 DIVISION__NESTED_DERIVATION__EEXPRESSION,
+                 Diagnostic.ERROR,
+                 DIAGNOSTIC_SOURCE,
+                 0);
+    }
+
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -824,6 +856,54 @@ public class CompanyValidator extends EObjectValidator {
                  "http://www.eclipse.org/emf/2002/Ecore/OCL",
                  "StudentAndFreelancesAge",
                  STUDENT__STUDENT_AND_FREELANCES_AGE__EEXPRESSION,
+                 Diagnostic.ERROR,
+                 DIAGNOSTIC_SOURCE,
+                 0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validateCompany(Company company, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(company, diagnostics, context)) return false;
+        boolean result = validate_EveryMultiplicityConforms(company, diagnostics, context);
+        if (result || diagnostics != null) result &= validate_EveryDataValueConforms(company, diagnostics, context);
+        if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(company, diagnostics, context);
+        if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(company, diagnostics, context);
+        if (result || diagnostics != null) result &= validate_EveryProxyResolves(company, diagnostics, context);
+        if (result || diagnostics != null) result &= validate_UniqueID(company, diagnostics, context);
+        if (result || diagnostics != null) result &= validate_EveryKeyUnique(company, diagnostics, context);
+        if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(company, diagnostics, context);
+        if (result || diagnostics != null) result &= validateCompany_eotmDeltaMax(company, diagnostics, context);
+        return result;
+    }
+
+    /**
+     * The cached validation expression for the eotmDeltaMax constraint of '<em>Company</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected static final String COMPANY__EOTM_DELTA_MAX__EEXPRESSION = "self.eotmDelta <= 5";
+
+    /**
+     * Validates the eotmDeltaMax constraint of '<em>Company</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validateCompany_eotmDeltaMax(Company company, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return
+            validate
+                (CompanyPackage.Literals.COMPANY,
+                 company,
+                 diagnostics,
+                 context,
+                 "http://www.eclipse.org/emf/2002/Ecore/OCL",
+                 "eotmDeltaMax",
+                 COMPANY__EOTM_DELTA_MAX__EEXPRESSION,
                  Diagnostic.ERROR,
                  DIAGNOSTIC_SOURCE,
                  0);

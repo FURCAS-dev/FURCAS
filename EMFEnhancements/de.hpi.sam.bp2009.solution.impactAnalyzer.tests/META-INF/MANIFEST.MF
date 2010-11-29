@@ -9,7 +9,6 @@ Require-Bundle: org.eclipse.emf.ecore,
  de.hpi.sam.bp2009.company,
  de.hpi.sam.bp2009.ngpm,
  org.junit4,
- de.hpi.sam.bp2009.solution.oclToAst,
  de.hpi.sam.bp2009.solution.testutils,
  de.hpi.sam.bp2009.solution.impactAnalyzer
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

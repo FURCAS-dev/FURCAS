@@ -398,13 +398,31 @@ public interface CompanyPackage extends EPackage {
     int DIVISION__EMPLOYEES_OF_THE_MONTH = 4;
 
     /**
+     * The feature id for the '<em><b>Number Employees Of The Month</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DIVISION__NUMBER_EMPLOYEES_OF_THE_MONTH = 5;
+
+    /**
+     * The feature id for the '<em><b>Company</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DIVISION__COMPANY = 6;
+
+    /**
      * The number of structural features of the '<em>Division</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DIVISION_FEATURE_COUNT = 5;
+    int DIVISION_FEATURE_COUNT = 7;
 
     /**
      * The meta object id for the '{@link company.impl.StudentImpl <em>Student</em>}' class.
@@ -496,6 +514,44 @@ public interface CompanyPackage extends EPackage {
      * @ordered
      */
     int STUDENT_FEATURE_COUNT = EMPLOYEE_FEATURE_COUNT + 0;
+
+
+    /**
+     * The meta object id for the '{@link company.impl.CompanyImpl <em>Company</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see company.impl.CompanyImpl
+     * @see company.impl.CompanyPackageImpl#getCompany()
+     * @generated
+     */
+    int COMPANY = 5;
+
+    /**
+     * The feature id for the '<em><b>Division</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMPANY__DIVISION = 0;
+
+    /**
+     * The feature id for the '<em><b>Eotm Delta</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMPANY__EOTM_DELTA = 1;
+
+    /**
+     * The number of structural features of the '<em>Company</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMPANY_FEATURE_COUNT = 2;
 
 
     /**
@@ -781,6 +837,28 @@ public interface CompanyPackage extends EPackage {
     EReference getDivision_EmployeesOfTheMonth();
 
     /**
+     * Returns the meta object for the attribute '{@link company.Division#getNumberEmployeesOfTheMonth <em>Number Employees Of The Month</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Number Employees Of The Month</em>'.
+     * @see company.Division#getNumberEmployeesOfTheMonth()
+     * @see #getDivision()
+     * @generated
+     */
+    EAttribute getDivision_NumberEmployeesOfTheMonth();
+
+    /**
+     * Returns the meta object for the reference '{@link company.Division#getCompany <em>Company</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Company</em>'.
+     * @see company.Division#getCompany()
+     * @see #getDivision()
+     * @generated
+     */
+    EReference getDivision_Company();
+
+    /**
      * Returns the meta object for class '{@link company.Student <em>Student</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -789,6 +867,38 @@ public interface CompanyPackage extends EPackage {
      * @generated
      */
     EClass getStudent();
+
+    /**
+     * Returns the meta object for class '{@link company.Company <em>Company</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Company</em>'.
+     * @see company.Company
+     * @generated
+     */
+    EClass getCompany();
+
+    /**
+     * Returns the meta object for the reference '{@link company.Company#getDivision <em>Division</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Division</em>'.
+     * @see company.Company#getDivision()
+     * @see #getCompany()
+     * @generated
+     */
+    EReference getCompany_Division();
+
+    /**
+     * Returns the meta object for the attribute '{@link company.Company#getEotmDelta <em>Eotm Delta</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Eotm Delta</em>'.
+     * @see company.Company#getEotmDelta()
+     * @see #getCompany()
+     * @generated
+     */
+    EAttribute getCompany_EotmDelta();
 
     /**
      * Returns the factory that creates the instances of the model.
@@ -1029,6 +1139,22 @@ public interface CompanyPackage extends EPackage {
         EReference DIVISION__EMPLOYEES_OF_THE_MONTH = eINSTANCE.getDivision_EmployeesOfTheMonth();
 
         /**
+         * The meta object literal for the '<em><b>Number Employees Of The Month</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DIVISION__NUMBER_EMPLOYEES_OF_THE_MONTH = eINSTANCE.getDivision_NumberEmployeesOfTheMonth();
+
+        /**
+         * The meta object literal for the '<em><b>Company</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DIVISION__COMPANY = eINSTANCE.getDivision_Company();
+
+        /**
          * The meta object literal for the '{@link company.impl.StudentImpl <em>Student</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1037,6 +1163,32 @@ public interface CompanyPackage extends EPackage {
          * @generated
          */
         EClass STUDENT = eINSTANCE.getStudent();
+
+        /**
+         * The meta object literal for the '{@link company.impl.CompanyImpl <em>Company</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see company.impl.CompanyImpl
+         * @see company.impl.CompanyPackageImpl#getCompany()
+         * @generated
+         */
+        EClass COMPANY = eINSTANCE.getCompany();
+
+        /**
+         * The meta object literal for the '<em><b>Division</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference COMPANY__DIVISION = eINSTANCE.getCompany_Division();
+
+        /**
+         * The meta object literal for the '<em><b>Eotm Delta</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute COMPANY__EOTM_DELTA = eINSTANCE.getCompany_EotmDelta();
 
     }
 

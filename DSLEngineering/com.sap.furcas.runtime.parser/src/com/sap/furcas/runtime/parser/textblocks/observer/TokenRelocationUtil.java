@@ -199,8 +199,7 @@ public class TokenRelocationUtil {
      * @param targetBlock may be null, then tokens will get detached from their current parent
      * @param isNewBlock 
      */
-    public static boolean moveTokens(List<AbstractToken> tokensToRelocate,
-            TextBlock targetBlock) {
+    public static boolean moveTokens(List<AbstractToken> tokensToRelocate, TextBlock targetBlock) {
         boolean tokensMoved = false;
         if (tokensToRelocate.size() > 0) {
 //          relocate all tokens from their current to their new parent, then empty tokensToRelocate
@@ -276,8 +275,8 @@ public class TokenRelocationUtil {
     }
 
 
-	/**
-     * inserts token into target block at the correct position, does not update parents location info (and is therefor not generic enough to reuse.
+    /**
+     * inserts token into target block at the correct position, does not update parents location info (and is therefore not generic enough to reuse.
      * Also does not check that no overlap with existing tokens or block happens. all tokens involved are assumed not to overlap, 
      * and existing tokens are assumed to be sorted (smallest offset to highest).
      * @param targetBlock
@@ -293,18 +292,18 @@ public class TokenRelocationUtil {
         
         if (targetBlock != null) {
          
-            List<AbstractToken> subTokens = targetBlock.getTokens();
-            Iterator<AbstractToken> iterator = subTokens.iterator();
+            List<DocumentNode> subNodes = targetBlock.getSubNodes();
+            Iterator<DocumentNode> iterator = subNodes.iterator();
             
             while (iterator.hasNext()) {
-                AbstractToken abstractToken = iterator.next();
-                int existingOffset = getAbsoluteOffset(abstractToken);
+                DocumentNode subNode = iterator.next();
+                int existingOffset = getAbsoluteOffset(subNode);
                 if (existingOffset > targetAbsoluteLocation) {
                     break;
                 }
                 insertIndex++;
             }
-            subTokens.add(insertIndex, relocationCandidate);
+            subNodes.add(insertIndex, relocationCandidate);
         }
         return insertIndex;
     }
@@ -381,9 +380,7 @@ public class TokenRelocationUtil {
                 int originalOffset = textBlock.getOffset();
                 textBlock.setOffset(originalOffset+newFirstNodeoffset);
                 List<? extends DocumentNode> subnodes = getSubNodes(textBlock);
-                for (Iterator<? extends DocumentNode> iterator = subnodes.iterator(); iterator
-                .hasNext();) {
-                    DocumentNode documentNode = iterator.next();
+                for (DocumentNode documentNode : subnodes) {
                     if (documentNode.isOffsetRelative()) {
                         int nodeOriginalOffset = documentNode.getOffset();
                         documentNode.setOffset(nodeOriginalOffset - newFirstNodeoffset);
@@ -399,9 +396,7 @@ public class TokenRelocationUtil {
             if (difference > 0) {
                 textBlock.setOffset(newFirstNodeoffset);
                 List<? extends DocumentNode> subnodes = getSubNodes(textBlock);
-                for (Iterator<? extends DocumentNode> iterator = subnodes.iterator(); iterator
-                .hasNext();) {
-                    DocumentNode documentNode = iterator.next();
+                for (DocumentNode documentNode : subnodes) {
                     if (documentNode.isOffsetRelative()) {
                         int nodeOriginalOffset = documentNode.getOffset();
                         documentNode.setOffset(nodeOriginalOffset - difference);
@@ -490,11 +485,10 @@ public class TokenRelocationUtil {
         }
         textBlock.setLength(newlength);
 
-        
-//        textBlock.setStartRow(firstSubNode.getStartRow());
-//        textBlock.setStartColumn(firstSubNode.getStartColumn());
-//        textBlock.setEndRow(lastSubNode.getEndRow());
-//        textBlock.setEndColumn(lastSubNode.getEndColumn());        
+        textBlock.setStartRow(firstSubNode.getStartRow());
+        textBlock.setStartColumn(firstSubNode.getStartColumn());
+        textBlock.setEndRow(lastSubNode.getEndRow());
+        textBlock.setEndColumn(lastSubNode.getEndColumn());        
     }
 
 	public static void makeOffsetAbsolute(DocumentNode node) {
@@ -504,8 +498,7 @@ public class TokenRelocationUtil {
 		}
 	}
 
-	private static int getNewLength(TextBlock textBlock,
-			DocumentNode lastSubNode) {
+	private static int getNewLength(TextBlock textBlock, DocumentNode lastSubNode) {
 		int lastEnd;
 		int tbOffset;
 		if(lastSubNode.isOffsetRelative() && textBlock.isOffsetRelative()) {
@@ -555,13 +548,12 @@ public class TokenRelocationUtil {
         // finally update all offsets by making them relative to the new block
         int lastOffset = 0;
         int lastLength = 0;
-        for (Iterator<? extends DocumentNode> iterator = subNodes.iterator(); iterator.hasNext();) {
-            DocumentNode documentNode  = iterator.next(); 
-            if (! documentNode.isOffsetRelative() ) {
+        for (DocumentNode documentNode : subNodes) {
+            if (!documentNode.isOffsetRelative() ) {
                 //int newOffSet = documentNode.getOffset() - getAbsoluteOffset(textBlock);
                 int newOffSet = lastOffset + lastLength;
                 if (newOffSet < 0) {
-                    if (! ( documentNode instanceof Eostoken) ) {
+                    if (! (documentNode instanceof Eostoken)) {
                         throw new IllegalArgumentException("BUG: Attempt to set negative Offset: " + newOffSet);
                     } else {
                         continue;
