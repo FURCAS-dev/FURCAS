@@ -10,6 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
@@ -31,7 +32,7 @@ import org.eclipse.emf.ecore.resource.Resource;
  * Stub only intended for testing. Only methods used by AbstractListbasedMetaLookup are being stubbed. 
  * Stubbed methods must be tested in MofStubtest.
  */
-public class EcoreAnyStub implements EClass, EReference, EEnum, EPackage {
+public class EcoreAnyStub implements EClass, EReference, EEnum, EPackage, EEnumLiteral {
 
     /**
      * 
@@ -39,18 +40,21 @@ public class EcoreAnyStub implements EClass, EReference, EEnum, EPackage {
     private static final long serialVersionUID = -3430564725833903776L;
     
     public String name;
-//    public EModelElement lookupElementExtended;
-//    public String lookupElementExtendedKey;
+    public EStructuralFeature lookupElementExtended;
+    public String lookupElementExtendedKey;
 //    public EList<EModelElement> contents = new BasicEList<EModelElement>();
     public EClassifier type;
-//    //public List<GeneralizableElement> supertypes;
+    public EList<EClass> supertypes;
 ////    public MultiplicityType multiplicityType;
-//    public int lower = 1;
-//    public int upper = -1;
+    public int lower = 1;
+    public int upper = -1;
 //    //public EObject createdInstance;
 ////    public RefClass refClass;
 //    public Object propertyValue;
 //    public EClass metaObject;
+    public EList<EEnumLiteral> enumLiterals;
+    public String enumLiteralString;
+    public boolean hasParent = true;
     
  
     public EcoreAnyStub() {
@@ -92,7 +96,7 @@ public class EcoreAnyStub implements EClass, EReference, EEnum, EPackage {
 
     @Override
     public EObject eContainer() {
-	return null;
+        return getEPackage();
     }
 
     @Override
@@ -121,7 +125,6 @@ public class EcoreAnyStub implements EClass, EReference, EEnum, EPackage {
 
     @Override
     public boolean eIsProxy() {
-	fail("stub method not implemented");
 	return false;
     }
 
@@ -216,8 +219,7 @@ public class EcoreAnyStub implements EClass, EReference, EEnum, EPackage {
 
     @Override
     public int getLowerBound() {
-	fail("stub method not implemented");
-	return 0;
+	return lower;
     }
 
     @Override
@@ -228,8 +230,7 @@ public class EcoreAnyStub implements EClass, EReference, EEnum, EPackage {
 
     @Override
     public int getUpperBound() {
-	fail("stub method not implemented");
-	return 0;
+	return upper;
     }
 
     @Override
@@ -252,8 +253,7 @@ public class EcoreAnyStub implements EClass, EReference, EEnum, EPackage {
 
     @Override
     public EClassifier getEType() {
-	fail("stub method not implemented");
-	return null;
+	return type;
     }
 
     @Override
@@ -360,8 +360,7 @@ public class EcoreAnyStub implements EClass, EReference, EEnum, EPackage {
 
     @Override
     public EList<EEnumLiteral> getELiterals() {
-	fail("stub method not implemented");
-	return null;
+	return enumLiterals;
     }
 
     @Override
@@ -558,14 +557,12 @@ public class EcoreAnyStub implements EClass, EReference, EEnum, EPackage {
 
     @Override
     public EList<EClass> getESuperTypes() {
-	fail("stub method not implemented");
-	return null;
+        return supertypes;
     }
 
     @Override
     public EList<EClass> getEAllSuperTypes() {
-	fail("stub method not implemented");
-	return null;
+        return supertypes;
     }
 
     @Override
@@ -660,8 +657,11 @@ public class EcoreAnyStub implements EClass, EReference, EEnum, EPackage {
 
     @Override
     public EStructuralFeature getEStructuralFeature(String featureName) {
-	fail("stub method not implemented");
-	return null;
+	if (featureName.equals(lookupElementExtendedKey)) {
+	    return lookupElementExtended;
+	} else {
+	    return null;
+	}
     }
 
     @Override
@@ -738,8 +738,14 @@ public class EcoreAnyStub implements EClass, EReference, EEnum, EPackage {
 
     @Override
     public EPackage getEPackage() {
-	fail("stub method not implemented");
-	return null;
+        if (hasParent) {
+            EcoreAnyStub pack = new EcoreAnyStub();
+            pack.setName("package");
+            pack.hasParent = false;
+            return pack;
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -758,6 +764,44 @@ public class EcoreAnyStub implements EClass, EReference, EEnum, EPackage {
     public int getClassifierID() {
 	fail("stub method not implemented");
 	return 0;
+    }
+
+    @Override
+    public int getValue() {
+        fail("stub method not implemented");
+        return 0;
+    }
+
+    @Override
+    public void setValue(int value) {
+        fail("stub method not implemented");
+    }
+
+    @Override
+    public Enumerator getInstance() {
+        fail("stub method not implemented");
+        return null;
+    }
+
+    @Override
+    public void setInstance(Enumerator value) {
+        fail("stub method not implemented");
+    }
+
+    @Override
+    public String getLiteral() {
+        return enumLiteralString;
+    }
+
+    @Override
+    public void setLiteral(String value) {
+        fail("stub method not implemented");
+    }
+
+    @Override
+    public EEnum getEEnum() {
+        fail("stub method not implemented");
+        return null;
     }
 
     

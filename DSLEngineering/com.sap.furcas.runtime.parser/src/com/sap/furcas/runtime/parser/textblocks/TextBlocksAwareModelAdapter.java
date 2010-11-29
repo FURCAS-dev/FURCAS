@@ -178,32 +178,32 @@ public class TextBlocksAwareModelAdapter extends DefaultTextAwareModelAdapter {
      * @see com.sap.mi.textual.grammar.IModelAdapter#setMQLReference(java.lang.Object, java.lang.String, java.lang.Object, java.lang.String, java.lang.Object)
      */
     @Override
-    public Object setOclReference(Object modelElement, String propertyName,
+    public Object setReferenceWithOCLQuery(Object modelElement, String propertyName,
             Object keyValue, String oclQuery, Object contextElement, Object currentForeachElement)
             throws ModelAdapterException, ReferenceSettingException {
-        return modelAdapter.setOclReference(modelElement, propertyName, keyValue, oclQuery, contextElement, currentForeachElement);
+        return modelAdapter.setReferenceWithOCLQuery(modelElement, propertyName, keyValue, oclQuery, contextElement, currentForeachElement);
     }
 
     /* (non-Javadoc)
      * @see com.sap.mi.textual.grammar.IModelAdapter#setReference(java.lang.Object, java.lang.String, java.util.List, java.lang.String, java.lang.Object)
      */
     @Override
-    public Object setReference(Object sourceModelElement,
+    public Object setReferenceWithLookup(Object sourceModelElement,
             String referencePropertyName, List<String> targetType,
             String targetKeyName, Object targetKeyValue)
             throws ModelAdapterException, ReferenceSettingException {
-        return modelAdapter.setReference(sourceModelElement, referencePropertyName, targetType, targetKeyName, targetKeyValue);
+        return modelAdapter.setReferenceWithLookup(sourceModelElement, referencePropertyName, targetType, targetKeyName, targetKeyValue);
     }
 
     /* (non-Javadoc)
      * @see com.sap.mi.textual.grammar.IModelAdapter#setWithinContextObject(java.lang.Object, java.lang.String, java.util.List, java.lang.String, java.lang.Object, java.lang.Object)
      */
     @Override
-    public Object setWithinContextObject(Object modelElement,
+    public Object setReferenceWithContextLookup(Object modelElement,
             String propertyName, List<String> valueTypeName, String keyName,
             Object keyValue, Object contextObject)
             throws ModelAdapterException, ReferenceSettingException {
-        return modelAdapter.setWithinContextObject(modelElement, propertyName, valueTypeName, keyName, keyValue, contextObject);
+        return modelAdapter.setReferenceWithContextLookup(modelElement, propertyName, valueTypeName, keyName, keyValue, contextObject);
     }
 
     /* (non-Javadoc)

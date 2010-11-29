@@ -72,6 +72,9 @@ public class TestQueryBasedEcoreMetaModelLookUp {
         assertNotNull(lookup.resolveReference(list("ecore", "EString")));
         assertNotNull(lookup.resolveReference(list("ecore", "EIntegerObject")));
         assertNotNull(lookup.resolveReference(list("ecore", "EBoolean")));
+        assertNotNull(lookup.resolveReference(list("ecore", "ELongObject")));
+        assertNotNull(lookup.resolveReference(list("ecore", "EInt")));
+        assertNotNull(lookup.resolveReference(list("ecore", "ELong")));
     }
 
     @Test
@@ -103,12 +106,12 @@ public class TestQueryBasedEcoreMetaModelLookUp {
     public void testGetDirectSubTypes() throws Exception {
         List<ResolvedNameAndReferenceBean<EObject>> subTypes = new ArrayList<ResolvedNameAndReferenceBean<EObject>>();
         subTypes.add(refM("FURCAS", "TCS", "FunctionTemplate"));
-        subTypes.add(refM("FURCAS", "TCS", "ClassTemplate"));
         subTypes.add(refM("FURCAS", "TCS", "PrimitiveTemplate"));
-        subTypes.add(refM("FURCAS", "TCS", "OperatorTemplate"));
+        subTypes.add(refM("FURCAS", "TCS", "ContextTemplate"));
         subTypes.add(refM("FURCAS", "TCS", "EnumerationTemplate"));
-        assertEquals(subTypes, lookup.getDirectSubTypes(refM("FURCAS", "TCS", "Template")));
-
+        List<ResolvedNameAndReferenceBean<EObject>> caluclatedSubTypes = lookup.getDirectSubTypes(refM("FURCAS", "TCS", "Template"));
+        assertTrue(caluclatedSubTypes.containsAll(subTypes));
+        assertTrue(subTypes.containsAll(caluclatedSubTypes));
     }
 
     @Test

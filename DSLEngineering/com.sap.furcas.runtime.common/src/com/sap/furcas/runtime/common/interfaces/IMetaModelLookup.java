@@ -13,8 +13,6 @@ import java.util.List;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.exceptions.NameResolutionFailedException;
 
-
-
 /**
  * Metamodel independent interface to perform Syntax definition validation.
  * Allows to i.e. validate that a class of a given name exists in a given metamodel.
@@ -24,9 +22,7 @@ import com.sap.furcas.runtime.common.exceptions.NameResolutionFailedException;
  */
 public interface IMetaModelLookup<Type> {
 
-
-
-	/**
+    /**
      * Gets the multiplicity.
      * 
      * @param typename
@@ -41,38 +37,41 @@ public interface IMetaModelLookup<Type> {
      *             if classname does not resolve to a type in the metamodel, or
      *             other inconsistency
      */
-	MultiplicityBean getMultiplicity(ResolvedNameAndReferenceBean<Type> reference, String featureName) throws MetaModelLookupException;
-	
-	/**
-	 * returns the classname of the feature.
-	 * 
-	 * @param reference the typename
-	 * @param featureName the feature name
-	 * 
-	 * @return the feature class name
-	 * 
-	 * @throws MetaModelLookupException if classname does not resolve to a type in the metamodel, or other inconsistency
-	 */
-	ResolvedNameAndReferenceBean<Type> getFeatureClassReference(ResolvedNameAndReferenceBean<Type> reference, String featureName) throws MetaModelLookupException;
+    MultiplicityBean getMultiplicity(ResolvedNameAndReferenceBean<Type> reference, String featureName)
+            throws MetaModelLookupException;
 
-	/**
-	 * returns classnames of classes inheriting from the given class.
-	 * 
-	 * @param typeName the type name
-	 * 
-	 * @return the direct sub types
-	 * 
-	 * @throws MetaModelLookupException if classname does not resolve to a type in the metamodel, or other inconsistency
-	 */
-	List<ResolvedNameAndReferenceBean<Type>> getDirectSubTypes(ResolvedNameAndReferenceBean<Type> typeName) throws MetaModelLookupException, NameResolutionFailedException;
-	
-	
-	boolean isAbstract(ResolvedNameAndReferenceBean<Type> typeName) throws MetaModelLookupException, NameResolutionFailedException;
-	
-	/**
-	 * closes connection to metamodel repositories if any.
-	 */
-	void close();
+    /**
+     * returns the classname of the feature.
+     * 
+     * @param reference the typename
+     * @param featureName the feature name
+     * 
+     * @return the feature class name
+     * 
+     * @throws MetaModelLookupException if classname does not resolve to a type in the metamodel, or other inconsistency
+     */
+    ResolvedNameAndReferenceBean<Type> getFeatureClassReference(ResolvedNameAndReferenceBean<Type> reference, String featureName)
+            throws MetaModelLookupException;
+
+    /**
+     * returns classnames of classes inheriting from the given class.
+     * 
+     * @param typeName the type name
+     * 
+     * @return the direct sub types
+     * 
+     * @throws MetaModelLookupException if classname does not resolve to a type in the metamodel, or other inconsistency
+     */
+    List<ResolvedNameAndReferenceBean<Type>> getDirectSubTypes(ResolvedNameAndReferenceBean<Type> typeName)
+            throws MetaModelLookupException, NameResolutionFailedException;
+
+    boolean isAbstract(ResolvedNameAndReferenceBean<Type> typeName) throws MetaModelLookupException,
+            NameResolutionFailedException;
+
+    /**
+     * closes connection to metamodel repositories if any.
+     */
+    void close();
 
     /**
      * looks up name and returns all qualified names for this type.
@@ -88,7 +87,7 @@ public interface IMetaModelLookup<Type> {
      * @return
      * @throws MetaModelLookupException
      */
-	List<String> getEnumLiterals(ResolvedNameAndReferenceBean<Type> enumeration) throws MetaModelLookupException;
+    List<String> getEnumLiterals(ResolvedNameAndReferenceBean<Type> enumeration) throws MetaModelLookupException;
 
     /**
      * returns true if both lists are qualifiers for Metamodel Elements, and the first being the same or a subtype of the latter. 
@@ -96,9 +95,9 @@ public interface IMetaModelLookup<Type> {
      * @param realMetaModelTypeOfProperty
      * @throws MetaModelLookupException 
      */
-    boolean isSubTypeOf(ResolvedNameAndReferenceBean<Type> subType,
-            ResolvedNameAndReferenceBean<Type> superType) throws MetaModelLookupException;
-    
+    boolean isSubTypeOf(ResolvedNameAndReferenceBean<Type> subType, ResolvedNameAndReferenceBean<Type> superType)
+            throws MetaModelLookupException;
+
     /**
      * returns a resolved bean or null if none can be found or an Exception if it is ambiguous.
      * @param names
@@ -106,7 +105,7 @@ public interface IMetaModelLookup<Type> {
      * @throws MetaModelLookupException
      */
     public ResolvedNameAndReferenceBean<Type> resolveReference(List<String> names) throws MetaModelLookupException;
-    
+
     /**
      * Factory method to create reference beans from references. Cannot fail, except when null is passed in.
      * @param names
@@ -123,6 +122,5 @@ public interface IMetaModelLookup<Type> {
      * @param context
      * @return a list of error messages.
      */
-    List<String> validateOclQuery(Object template, String query,
-	    Object context);
+    List<String> validateOclQuery(Object template, String query, Object context);
 }

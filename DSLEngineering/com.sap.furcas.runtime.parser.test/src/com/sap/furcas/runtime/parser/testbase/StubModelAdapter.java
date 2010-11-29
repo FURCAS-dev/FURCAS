@@ -138,7 +138,7 @@ public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
      * java.lang.String, java.lang.Object)
      */
     @Override
-    public Object setReference(Object sourceModelElement, String referencePropertyName, List<String> targetTypeList,
+    public Object setReferenceWithLookup(Object sourceModelElement, String referencePropertyName, List<String> targetTypeList,
             String targetKeyName, Object targetKeyValue) throws ModelAdapterException {
         Object val = null;
         String targetType = QualifiedNamesHelper.getQualifiedString(targetTypeList);
@@ -193,7 +193,7 @@ public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
      * @see com.sap.mi.textual.grammar.IModelAdapter#setMQLReference(java.lang.Object , java.lang.String, java.lang.String)
      */
     @Override
-    public Object setOclReference(Object modelElement, String propertyName, Object keyValue, String oclQuery,
+    public Object setReferenceWithOCLQuery(Object modelElement, String propertyName, Object keyValue, String oclQuery,
             Object contextObject, Object currentForeachElement) {
         this.oclQuery = oclQuery;
         ((StubModelElement) modelElement).set(propertyName, queryResult);
@@ -207,7 +207,7 @@ public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
      * java.lang.String, java.lang.Object, java.lang.Object)
      */
     @Override
-    public Object setWithinContextObject(Object modelElement, String propertyName, List<String> valueTypeName, String keyName,
+    public Object setReferenceWithContextLookup(Object modelElement, String propertyName, List<String> valueTypeName, String keyName,
             Object keyValue, Object contextObject) throws ModelAdapterException, ReferenceSettingException {
         Object val = null;
         String targetType = QualifiedNamesHelper.getQualifiedString(valueTypeName);
@@ -249,8 +249,7 @@ public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
     }
 
     @Override
-    public Collection<?> getPredicateOclReference(Object modelElement, String propertyName, Object keyValue, @SuppressWarnings("hiding") String oclQuery,
-            Object contextElement) {
+    public Collection<?> evaluateOCLQuery(Object modelElement, Object keyValue, @SuppressWarnings("hiding") String oclQuery, Object contextElement) {
         fail("not implemented yet");
         return null;
     }

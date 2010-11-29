@@ -11,7 +11,9 @@ Require-Bundle: org.antlr;bundle-version="3.1.1",
  org.eclipse.emf.query.index;visibility:=reexport,
  org.eclipse.emf.query.index.ui;visibility:=reexport,
  com.sap.emf.ocl.prepared,
- com.sap.furcas.metamodel;visibility:=reexport
+ com.sap.furcas.metamodel;visibility:=reexport,
+ com.sap.ocl.oppositefinder.query2,
+ de.hpi.sam.bp2009.solution.queryContextScopeProvider
 Export-Package: com.sap.furcas.parsergenerator,
  com.sap.furcas.runtime.common.exceptions,
  com.sap.furcas.runtime.common.implementation;uses:="com.sap.furcas.textual.common.interfaces",

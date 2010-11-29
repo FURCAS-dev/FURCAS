@@ -12,15 +12,16 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 
+/**
+ * Implementation of {@link IMetaModelLookup} allowing clients to inspect ecore metamodel
+ * files. 
+ * 
+ * @author Stephan Erb (d049157)
+ */
 public class FileBasedEcoreMetaModelLookUp extends QueryBasedEcoreMetaModelLookUp {
 
-    /**
-     * 
-     * @param rootEcoreFile
-     * @param dataTypeEcoreFile
-     * @throws IOException
-     */
     public FileBasedEcoreMetaModelLookUp(File... fileArr) throws MetaModelLookupException {
         super(loadResourceSet(fileArr));
     }
@@ -28,7 +29,6 @@ public class FileBasedEcoreMetaModelLookUp extends QueryBasedEcoreMetaModelLookU
     private static ResourceSet loadResourceSet(File... fileArr) throws MetaModelLookupException {
         ResourceSet resourceSet = new ResourceSetImpl();
         
-        // In this case DataTypes are usually in a separate file, need to load that one as well
         for (File file : fileArr) {
             java.net.URI uri = file.toURI();
             java.net.URI normUri = uri.normalize();
@@ -46,8 +46,6 @@ public class FileBasedEcoreMetaModelLookUp extends QueryBasedEcoreMetaModelLookU
         } catch (IOException e) {
             throw new MetaModelLookupException("Unable to parse ecore xmi for file uri " + uri + " : " + e.getMessage(), e);
         }
-        // Load Datatypes
-
         EList<EObject> list = resource.getContents();
         for (EObject object : list) {
             if (object instanceof EPackage) {
