@@ -111,7 +111,7 @@ public class MessageExpOperations
 				result = false;
 				message = OCLMessages.bind(
 					OCLMessages.MessageArgumentCount_ERROR_, uml
-					.getName(messageExp.getType()));
+						.getName(messageExp.getType()));
 			} else {
 				// check type conformance against parameters
 				Iterator<?> paramsIter = parameters.iterator();
@@ -125,7 +125,7 @@ public class MessageExpOperations
 						result = false;
 						message = OCLMessages.bind(
 							OCLMessages.MessageArgConformance_ERROR_, uml
-							.getName(param), arg.toString());
+								.getName(param), arg.toString());
 						break;
 					}
 				}
@@ -186,7 +186,7 @@ public class MessageExpOperations
 				result = false;
 				message = OCLMessages.bind(
 					OCLMessages.MessageArgumentCount_ERROR_, uml
-					.getName(messageExp.getType()));
+						.getName(messageExp.getType()));
 			} else {
 				// check type conformance against attributes
 				Iterator<?> attrsIter = attributes.iterator();
@@ -200,7 +200,7 @@ public class MessageExpOperations
 						result = false;
 						message = OCLMessages.bind(
 							OCLMessages.MessageArgConformance_ERROR_, uml
-							.getName(attr), arg.toString());
+								.getName(attr), arg.toString());
 						break;
 					}
 				}
