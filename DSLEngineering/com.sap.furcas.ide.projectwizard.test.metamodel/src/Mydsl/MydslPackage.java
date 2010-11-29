@@ -27,78 +27,78 @@ import org.eclipse.emf.ecore.EPackage;
 public interface MydslPackage extends EPackage
 {
   /**
-   * The package name.
-   * <!-- begin-user-doc -->
+     * The package name.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   String eNAME = "Mydsl";
 
   /**
-   * The package namespace URI.
-   * <!-- begin-user-doc -->
+     * The package namespace URI.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   String eNS_URI = "http://www.mydsl.com/metamodel/";
 
   /**
-   * The package namespace name.
-   * <!-- begin-user-doc -->
+     * The package namespace name.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   String eNS_PREFIX = "mydsl";
 
   /**
-   * The singleton instance of the package.
-   * <!-- begin-user-doc -->
+     * The singleton instance of the package.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   MydslPackage eINSTANCE = Mydsl.impl.MydslPackageImpl.init();
 
   /**
-   * The meta object id for the '{@link Mydsl.impl.ExampleClassImpl <em>Example Class</em>}' class.
-   * <!-- begin-user-doc -->
+     * The meta object id for the '{@link Mydsl.impl.ExampleClassImpl <em>Example Class</em>}' class.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see Mydsl.impl.ExampleClassImpl
-   * @see Mydsl.impl.MydslPackageImpl#getExampleClass()
-   * @generated
-   */
+     * @see Mydsl.impl.ExampleClassImpl
+     * @see Mydsl.impl.MydslPackageImpl#getExampleClass()
+     * @generated
+     */
   int EXAMPLE_CLASS = 0;
 
   /**
-   * The number of structural features of the '<em>Example Class</em>' class.
-   * <!-- begin-user-doc -->
+     * The number of structural features of the '<em>Example Class</em>' class.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
+     * @generated
+     * @ordered
+     */
   int EXAMPLE_CLASS_FEATURE_COUNT = 0;
 
 
   /**
-   * Returns the meta object for class '{@link Mydsl.ExampleClass <em>Example Class</em>}'.
-   * <!-- begin-user-doc -->
+     * Returns the meta object for class '{@link Mydsl.ExampleClass <em>Example Class</em>}'.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Example Class</em>'.
-   * @see Mydsl.ExampleClass
-   * @generated
-   */
+     * @return the meta object for class '<em>Example Class</em>'.
+     * @see Mydsl.ExampleClass
+     * @generated
+     */
   EClass getExampleClass();
 
   /**
-   * Returns the factory that creates the instances of the model.
-   * <!-- begin-user-doc -->
+     * Returns the factory that creates the instances of the model.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the factory that creates the instances of the model.
-   * @generated
-   */
+     * @return the factory that creates the instances of the model.
+     * @generated
+     */
   MydslFactory getMydslFactory();
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * Defines literals for the meta objects that represent
    * <ul>
    *   <li>each class,</li>
@@ -107,18 +107,18 @@ public interface MydslPackage extends EPackage
    *   <li>and each data type</li>
    * </ul>
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   interface Literals
   {
     /**
-     * The meta object literal for the '{@link Mydsl.impl.ExampleClassImpl <em>Example Class</em>}' class.
-     * <!-- begin-user-doc -->
+         * The meta object literal for the '{@link Mydsl.impl.ExampleClassImpl <em>Example Class</em>}' class.
+         * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see Mydsl.impl.ExampleClassImpl
-     * @see Mydsl.impl.MydslPackageImpl#getExampleClass()
-     * @generated
-     */
+         * @see Mydsl.impl.ExampleClassImpl
+         * @see Mydsl.impl.MydslPackageImpl#getExampleClass()
+         * @generated
+         */
     EClass EXAMPLE_CLASS = eINSTANCE.getExampleClass();
 
   }
