@@ -111,8 +111,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 		if(additionalScope != null) {
 			this.queryScope.addAll(additionalScope);
 		}
-		this.metamodelContainerQueryScope = EcoreHelper.getQueryContext(moinConnection,
-						this.queryScope);
+		this.metamodelContainerQueryScope = EcoreHelper.getQueryContext(moinConnection, this.queryScope);
 		this.input = input;
 		this.traverser = new TextBlockTraverser();
 	}

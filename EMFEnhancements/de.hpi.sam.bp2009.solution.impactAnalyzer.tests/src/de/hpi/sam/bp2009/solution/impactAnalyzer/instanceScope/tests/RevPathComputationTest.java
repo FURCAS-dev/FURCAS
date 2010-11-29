@@ -947,7 +947,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
     }
     
     @Test
-    public void testDerivedPropertyHandlingDirect(){
+    public void testDerivedPropertyHandlingDirect() {
         Notification noti;
         
         // Make e1 the employee of the month of div by directly manipulating the derived property.
@@ -958,7 +958,8 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         System.out.println("--------------------------------------------------\n");
     }
     
-    @Test void testNestedDerivation(){
+    @Test
+    public void testNestedDerivation() {
         Notification noti;
         Collection<EObject> instances;
         
@@ -969,8 +970,6 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         instances = computeAffectedInstances(this.getNestedDerivationAST(), noti);
         compareInstances(instances, new EObject[] {/*this.div*/});       
     }
-
-
 
     // @Test
     // public void testDepartmentAlwaysInDivision(){
