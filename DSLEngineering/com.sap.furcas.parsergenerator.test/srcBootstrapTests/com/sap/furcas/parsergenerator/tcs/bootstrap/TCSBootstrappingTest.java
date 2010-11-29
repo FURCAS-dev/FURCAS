@@ -7,7 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
-import com.sap.furcas.modeladaptation.emf.EMFModelAdapter;
+import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.parser.tcs.TCSSyntaxDefinition;
 import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
@@ -37,7 +37,7 @@ public class TCSBootstrappingTest extends GeneratedParserBasedTest {
 
     private static final String LANGUAGE = "TCS";
     private static final File TCS = TCSSyntaxDefinition.TCS_TCS;
-    private static final File[] METAMODELS = { }; // keep empty. The FURCAS metamodel is added per subclassing.
+    private static final File[] METAMODELS = { }; // keep empty. The FURCAS metamodel is added by the testConfig
 
     private static ParsingHelper parsingHelper;
     private static IModelAdapter modelAdapter;
@@ -59,7 +59,7 @@ public class TCSBootstrappingTest extends GeneratedParserBasedTest {
 
     @Test
     public void testParseTCSTCSWithoutErrors() throws Exception {
-        parsingHelper.parseStream(/* errors */0, new FileInputStream(TCS), modelAdapter);
+        parsingHelper.parseStream(/* expected errors */ 0, new FileInputStream(TCS), modelAdapter);
     }
 
 }

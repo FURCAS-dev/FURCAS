@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -24,7 +23,6 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
-import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.parser.impl.DelayedReference;
 import com.sap.furcas.runtime.parser.impl.ModelElementProxy;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
@@ -228,13 +226,8 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 					if (ref.getLookIn() != null) {
 						// a lookIn means that the result was added to the
 						// parent textblock.
-						EModelElement me;
 						boolean propertyIsAssocEnd = false;
-						me = EcoreHelper.lookupElementExtended(
-								modelElement.eClass(),
-								ref.getPropertyName());
-						if (me instanceof EStructuralFeature) {
-							EStructuralFeature feature = (EStructuralFeature) me;
+							EStructuralFeature feature = modelElement.eClass().getEStructuralFeature(ref.getPropertyName());
 							for (EObject actualValue : refToken
 									.getParent()
 									.getReferencedElements()) {
@@ -251,7 +244,6 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 									// instead of trying this here
 								}
 							}
-						}
 						if (propertyIsAssocEnd) {
 						//TODO check for hiddenOpposite?
 						// try to find the association end and check there

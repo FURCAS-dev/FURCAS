@@ -71,13 +71,13 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.TCS.Token;
-import com.sap.furcas.modeladaptation.emf.AdapterJMIHelper;
-import com.sap.furcas.modeladaptation.emf.EMFModelAdapterDelegate;
+import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
+import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 
 /**
  * Utility class for the TcsPackage.
@@ -1692,11 +1692,9 @@ public class TcsUtil {
             String keyValue) throws ModelAdapterException {
         if (oclQuery != null) {
 
-            ResourceSet resourceSet = getResourceSetFromEObject(element);
-            Collection<URI> referenceScope = Collections.emptyList();
-            AdapterJMIHelper oclHelper = new AdapterJMIHelper(EcoreHelper.getOutermostPackage(element), resourceSet, referenceScope);
+            TCSSpecificOCLEvaluator oclHelper = new TCSSpecificOCLEvaluator();
 
-            return oclHelper.findElementWithOCLQuery(element, keyValue, oclQuery, contextObject, foreachObject);
+            return oclHelper.findElementsWithOCLQuery(element, keyValue, oclQuery, contextObject, foreachObject);
         }
 
         return null;
@@ -1720,8 +1718,8 @@ public class TcsUtil {
 
     public static String getContextTag(String oclQuery) {
         // strip OCL query prefix
-        if (oclQuery.startsWith(EMFModelAdapterDelegate.OCL_QUERY_PREFIX)) {
-            oclQuery = oclQuery.substring(EMFModelAdapterDelegate.OCL_QUERY_PREFIX.length());
+        if (oclQuery.startsWith(EMFModelAdapter.OCL_QUERY_PREFIX)) {
+            oclQuery = oclQuery.substring(EMFModelAdapter.OCL_QUERY_PREFIX.length());
         }
 
         final Pattern contextPattern = Pattern.compile("#context(\\((\\w*)(\\)))?");
