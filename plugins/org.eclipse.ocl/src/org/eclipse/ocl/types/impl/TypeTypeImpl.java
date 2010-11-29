@@ -111,7 +111,7 @@ public class TypeTypeImpl<C, O>
 				.getEnvironmentFor(this);
 
 			operations = new BasicEList<O>(OCLStandardLibraryUtil
-					.createTypeTypeOperations(env));
+				.createTypeTypeOperations(env));
 		}
 
 		return operations;
