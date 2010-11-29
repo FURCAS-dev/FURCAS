@@ -1946,6 +1946,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * result. For example, in "self.foo", "self" is the source and would be
 	 * evaluated first, then the value of the property "foo" would be accessed
 	 * on that object.
+	 * @since 3.1
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
