@@ -8,7 +8,9 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl;
+package org.eclipse.ocl.ecore;
+
+import org.eclipse.ocl.AbstractEvaluationEnvironment;
 
 
 
