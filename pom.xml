@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.sap.dsl</groupId>
-  <artifactId>root</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
-	
+	<groupId>com.sap.dsl</groupId>
+	<artifactId>root</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
 	<modules>
 		<module>DSLEngineering</module>
 		<module>EMF</module>
@@ -15,7 +16,6 @@
 		<module>ngpm</module>
 	</modules>
 
-	
 	<build>
 		<directory>bin</directory>
 		<outputDirectory>bin</outputDirectory>
@@ -42,54 +42,14 @@
 				<configuration>
 					<argLine>-Xmx1024m</argLine>
 					<testFailureIgnore>true</testFailureIgnore>
+					<excludes>
+						<exclude>**/TestableEMFModelAdapter.java</exclude>
+						<exclude>**/NavigationPathCreationTest.java</exclude>
+						<exclude>**/*$*</exclude> <!-- Exclude inner classes -->
+					</excludes>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-	
-<!--
-	<profiles>
-		<profile>
-			<id>exclude-long-run-test</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<build>
-					<plugins>
-						<plugin>
-							<groupId>org.sonatype.tycho</groupId>
-							<artifactId>maven-osgi-test-plugin</artifactId>
-							<version>0.10.0</version>
-							<configuration>
-								<argLine>-Xmx1024m</argLine>
-								<testFailureIgnore>true</testFailureIgnore>
-								<excludes> 
-									<exclude>**/NavigationPathCreationTest.java</exclude>
-								</excludes>      
-							</configuration>
-						</plugin>
-					</plugins>
-			</build>
-		</profile>
-		<profile>
-			<id>complete</id>
-			<build>
-				<pluginManagement>
-					<plugins>
-						<plugin>
-							<groupId>org.sonatype.tycho</groupId>
-							<artifactId>maven-osgi-test-plugin</artifactId>
-							<version>0.10.0</version>
-							<configuration>
-								<argLine>-Xmx1024m</argLine>
-								<testFailureIgnore>true</testFailureIgnore>
-							</configuration>
-						</plugin>
-					</plugins>
-				</pluginManagement>
-			</build>
-		
-		</profile>
-	</profiles>
--->
+
 </project>
