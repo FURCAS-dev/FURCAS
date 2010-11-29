@@ -95,10 +95,10 @@ public class ClassChooserPage extends WizardPage {
     public void setTreeInput(Object object) {
         EPackage ePack = (EPackage) object;
         if (searchTree != null) {
-            if (ePack.getESuperPackage() == null)
+/*            if (ePack.getESuperPackage() == null)*/
                 searchTree.setInput(ePack);
-            else
-                searchTree.setInput(ePack.getESuperPackage());
+/*            else
+                searchTree.setInput(ePack.getESuperPackage());*/
         }
     }
 }
