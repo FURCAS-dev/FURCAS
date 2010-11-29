@@ -89,7 +89,7 @@ public class EnumLiteralExpOperations
 				result = false;
 				message = OCLMessages.bind(
 					OCLMessages.IllegalEnumLiteral_ERROR_, enumLiteralExp
-					.toString());
+						.toString());
 			}
 		}
 
