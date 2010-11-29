@@ -7,7 +7,6 @@ import java.util.Map;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -16,10 +15,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.jface.operation.IRunnableWithProgress;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.progress.IProgressService;
 
 import com.sap.furcas.ide.dslproject.Activator;
 import com.sap.furcas.ide.dslproject.Constants;
@@ -100,8 +95,10 @@ public final class EcoreMetaProjectConf implements IProjectMetaRefConf {
      */
     @Override
     public ReferenceScopeBean getMetaLookUpForProject() {
-        ResourceSet connection = null;
-        if (modelPath != "") {
+        HashSet<URI> newPRIs = null;
+        newPRIs = new HashSet<URI>();
+        ResourceSet connection = BuildHelper.getResourceSetForProject(referencedProject);
+        if (!modelPath.matches("")) {
             connection = new ResourceSetImpl();
             String uri = URI.createFileURI(modelPath).toString();
             Resource resource = connection.createResource(URI.createFileURI(modelPath));
@@ -110,7 +107,7 @@ public final class EcoreMetaProjectConf implements IProjectMetaRefConf {
             try {
                 resource.load(options);
             } catch (IOException e) {
-                //TODO
+                // TODO
             }
             EList<EObject> list = resource.getContents();
             for (EObject object : list) {
@@ -119,37 +116,8 @@ public final class EcoreMetaProjectConf implements IProjectMetaRefConf {
                     EPackage.Registry.INSTANCE.put(uri, new_package);
                 }
             }
-        }
-        if (connection == null) {
-            if (Display.getCurrent() != null) {
-                // this means we are in the UI thread
-                final ResourceSet[] conn = new ResourceSet[1];
-                IRunnableWithProgress operation = new IRunnableWithProgress() {
-                    @Override
-                    public void run(IProgressMonitor monitor) throws InterruptedException {
-                        // non UI thread
-                        try {
-                            referencedProject.open(/* progress monitor */null);
-                        } catch (CoreException e) {
-                            throw new RuntimeException(e);
-                        }
-                        conn[0] = BuildHelper.getResourceSetForProject(referencedProject);
-                    }
-                };
-                IProgressService ps = PlatformUI.getWorkbench().getProgressService();
-                try {
-                    ps.busyCursorWhile(operation);
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                connection = conn[0];
-            } else {
-                BuildHelper.getResourceSetForProject(referencedProject);
-            }
-        }
-        HashSet<URI> newPRIs = null;
-        newPRIs = new HashSet<URI>();
-        if (modelPath.matches(""))
+
+        } else
             newPRIs.add(URI.createURI(nsURI));
         newPRIs.add(URI.createURI(FURCASPackage.eINSTANCE.eClass().getEPackage().getNsURI()));
         return new ReferenceScopeBean(connection, newPRIs);

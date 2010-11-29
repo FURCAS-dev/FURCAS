@@ -76,6 +76,8 @@ public class SelectionPage extends WizardPage {
                 nsURIText.setVisible(true);
                 classNameLabel.setVisible(true);
                 nsURILabel.setVisible(true);
+                pi.setModelPath("new");
+                pi.setFromWorkspace(true);
             }
 
             public void mouseUp(MouseEvent e) {
@@ -186,6 +188,7 @@ public class SelectionPage extends WizardPage {
             page3.getNextPage().setPageComplete(false);
             return page3;
         } else if (getSel() == 1) {
+            pi.setFromWorkspace(true);
             pi.setLoadMetamodel(false);
             pi.setNsURI(nsURIText.getText());
             pi.setClassName(classNameText.getText());

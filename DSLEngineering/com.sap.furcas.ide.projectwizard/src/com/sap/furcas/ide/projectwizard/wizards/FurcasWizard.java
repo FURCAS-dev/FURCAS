@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -241,8 +242,15 @@ public class FurcasWizard extends Wizard implements INewWizard {
             EcoreMetaProjectConf conf;
             if (!pi.isFromWorkspace())
                 conf = new EcoreMetaProjectConf(project, "", pi.getNsURI());
-            else
+            else if (pi.getModelPath().matches("new")) {
+                String capLangName = CreateProject.capitalizeFirstChar(pi.getLanguageName());
+                IWorkspaceRoot root = project.getWorkspace().getRoot();
+                String newPath = root.getLocation().toString()+ "/" + pi.getProjectName() + 
+                ".metamodel/model/"+capLangName+".ecore";
+                conf = new EcoreMetaProjectConf(project, newPath, pi.getNsURI());
+            } else
                 conf = new EcoreMetaProjectConf(project, pi.getModelPath(), pi.getNsURI());
+            ;
             try {
                 ProjectMetaRefConfFactory.configure(project, conf);
             } catch (CoreException e) {
