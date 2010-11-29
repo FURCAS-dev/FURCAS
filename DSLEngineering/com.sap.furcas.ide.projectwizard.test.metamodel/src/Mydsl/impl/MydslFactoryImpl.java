@@ -25,86 +25,82 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 public class MydslFactoryImpl extends EFactoryImpl implements MydslFactory
 {
   /**
-   * Creates the default factory implementation.
-   * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public static MydslFactory init()
   {
-    try
-    {
-      MydslFactory theMydslFactory = (MydslFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.mydsl.com/metamodel/"); 
-      if (theMydslFactory != null)
-      {
-        return theMydslFactory;
-      }
+        try {
+            MydslFactory theMydslFactory = (MydslFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.mydsl.com/metamodel/"); 
+            if (theMydslFactory != null) {
+                return theMydslFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new MydslFactoryImpl();
     }
-    catch (Exception exception)
-    {
-      EcorePlugin.INSTANCE.log(exception);
-    }
-    return new MydslFactoryImpl();
-  }
 
   /**
-   * Creates an instance of the factory.
-   * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public MydslFactoryImpl()
   {
-    super();
-  }
+        super();
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public EObject create(EClass eClass)
   {
-    switch (eClass.getClassifierID())
-    {
-      case MydslPackage.EXAMPLE_CLASS: return createExampleClass();
-      default:
-        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        switch (eClass.getClassifierID()) {
+            case MydslPackage.EXAMPLE_CLASS: return createExampleClass();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
     }
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public ExampleClass createExampleClass()
   {
-    ExampleClassImpl exampleClass = new ExampleClassImpl();
-    return exampleClass;
-  }
+        ExampleClassImpl exampleClass = new ExampleClassImpl();
+        return exampleClass;
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public MydslPackage getMydslPackage()
   {
-    return (MydslPackage)getEPackage();
-  }
+        return (MydslPackage)getEPackage();
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @deprecated
-   * @generated
-   */
+     * @deprecated
+     * @generated
+     */
   @Deprecated
   public static MydslPackage getPackage()
   {
-    return MydslPackage.eINSTANCE;
-  }
+        return MydslPackage.eINSTANCE;
+    }
 
 } //MydslFactoryImpl

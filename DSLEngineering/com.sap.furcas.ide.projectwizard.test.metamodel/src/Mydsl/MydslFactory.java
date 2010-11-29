@@ -19,29 +19,29 @@ import org.eclipse.emf.ecore.EFactory;
 public interface MydslFactory extends EFactory
 {
   /**
-   * The singleton instance of the factory.
-   * <!-- begin-user-doc -->
+     * The singleton instance of the factory.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   MydslFactory eINSTANCE = Mydsl.impl.MydslFactoryImpl.init();
 
   /**
-   * Returns a new object of class '<em>Example Class</em>'.
-   * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Example Class</em>'.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Example Class</em>'.
-   * @generated
-   */
+     * @return a new object of class '<em>Example Class</em>'.
+     * @generated
+     */
   ExampleClass createExampleClass();
 
   /**
-   * Returns the package supported by this factory.
-   * <!-- begin-user-doc -->
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the package supported by this factory.
-   * @generated
-   */
+     * @return the package supported by this factory.
+     * @generated
+     */
   MydslPackage getMydslPackage();
 
 } //MydslFactory

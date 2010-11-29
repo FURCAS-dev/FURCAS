@@ -24,153 +24,153 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 public class MydslPackageImpl extends EPackageImpl implements MydslPackage
 {
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   private EClass exampleClassEClass = null;
 
   /**
-   * Creates an instance of the model <b>Package</b>, registered with
-   * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
-   * package URI value.
-   * <p>Note: the correct way to create the package is via the static
-   * factory method {@link #init init()}, which also performs
-   * initialization of the package, or returns the registered package,
-   * if one already exists.
-   * <!-- begin-user-doc -->
+     * Creates an instance of the model <b>Package</b>, registered with
+     * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+     * package URI value.
+     * <p>Note: the correct way to create the package is via the static
+     * factory method {@link #init init()}, which also performs
+     * initialization of the package, or returns the registered package,
+     * if one already exists.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.eclipse.emf.ecore.EPackage.Registry
-   * @see Mydsl.MydslPackage#eNS_URI
-   * @see #init()
-   * @generated
-   */
+     * @see org.eclipse.emf.ecore.EPackage.Registry
+     * @see Mydsl.MydslPackage#eNS_URI
+     * @see #init()
+     * @generated
+     */
   private MydslPackageImpl()
   {
-    super(eNS_URI, MydslFactory.eINSTANCE);
-  }
+        super(eNS_URI, MydslFactory.eINSTANCE);
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   private static boolean isInited = false;
 
   /**
-   * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-   * 
-   * <p>This method is used to initialize {@link MydslPackage#eINSTANCE} when that field is accessed.
-   * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-   * <!-- begin-user-doc -->
+     * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+     * 
+     * <p>This method is used to initialize {@link MydslPackage#eINSTANCE} when that field is accessed.
+     * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #eNS_URI
-   * @see #createPackageContents()
-   * @see #initializePackageContents()
-   * @generated
-   */
+     * @see #eNS_URI
+     * @see #createPackageContents()
+     * @see #initializePackageContents()
+     * @generated
+     */
   public static MydslPackage init()
   {
-    if (isInited) return (MydslPackage)EPackage.Registry.INSTANCE.getEPackage(MydslPackage.eNS_URI);
+        if (isInited) return (MydslPackage)EPackage.Registry.INSTANCE.getEPackage(MydslPackage.eNS_URI);
 
-    // Obtain or create and register package
-    MydslPackageImpl theMydslPackage = (MydslPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof MydslPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new MydslPackageImpl());
+        // Obtain or create and register package
+        MydslPackageImpl theMydslPackage = (MydslPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof MydslPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new MydslPackageImpl());
 
-    isInited = true;
+        isInited = true;
 
-    // Create package meta-data objects
-    theMydslPackage.createPackageContents();
+        // Create package meta-data objects
+        theMydslPackage.createPackageContents();
 
-    // Initialize created meta-data
-    theMydslPackage.initializePackageContents();
+        // Initialize created meta-data
+        theMydslPackage.initializePackageContents();
 
-    // Mark meta-data to indicate it can't be changed
-    theMydslPackage.freeze();
+        // Mark meta-data to indicate it can't be changed
+        theMydslPackage.freeze();
 
   
-    // Update the registry and return the package
-    EPackage.Registry.INSTANCE.put(MydslPackage.eNS_URI, theMydslPackage);
-    return theMydslPackage;
-  }
+        // Update the registry and return the package
+        EPackage.Registry.INSTANCE.put(MydslPackage.eNS_URI, theMydslPackage);
+        return theMydslPackage;
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public EClass getExampleClass()
   {
-    return exampleClassEClass;
-  }
+        return exampleClassEClass;
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public MydslFactory getMydslFactory()
   {
-    return (MydslFactory)getEFactoryInstance();
-  }
+        return (MydslFactory)getEFactoryInstance();
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   private boolean isCreated = false;
 
   /**
-   * Creates the meta-model objects for the package.  This method is
-   * guarded to have no affect on any invocation but its first.
-   * <!-- begin-user-doc -->
+     * Creates the meta-model objects for the package.  This method is
+     * guarded to have no affect on any invocation but its first.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public void createPackageContents()
   {
-    if (isCreated) return;
-    isCreated = true;
+        if (isCreated) return;
+        isCreated = true;
 
-    // Create classes and their features
-    exampleClassEClass = createEClass(EXAMPLE_CLASS);
-  }
+        // Create classes and their features
+        exampleClassEClass = createEClass(EXAMPLE_CLASS);
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   private boolean isInitialized = false;
 
   /**
-   * Complete the initialization of the package and its meta-model.  This
-   * method is guarded to have no affect on any invocation but its first.
-   * <!-- begin-user-doc -->
+     * Complete the initialization of the package and its meta-model.  This
+     * method is guarded to have no affect on any invocation but its first.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public void initializePackageContents()
   {
-    if (isInitialized) return;
-    isInitialized = true;
+        if (isInitialized) return;
+        isInitialized = true;
 
-    // Initialize package
-    setName(eNAME);
-    setNsPrefix(eNS_PREFIX);
-    setNsURI(eNS_URI);
+        // Initialize package
+        setName(eNAME);
+        setNsPrefix(eNS_PREFIX);
+        setNsURI(eNS_URI);
 
-    // Create type parameters
+        // Create type parameters
 
-    // Set bounds for type parameters
+        // Set bounds for type parameters
 
-    // Add supertypes to classes
+        // Add supertypes to classes
 
-    // Initialize classes and features; add operations and parameters
-    initEClass(exampleClassEClass, ExampleClass.class, "ExampleClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        // Initialize classes and features; add operations and parameters
+        initEClass(exampleClassEClass, ExampleClass.class, "ExampleClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    // Create resource
-    createResource(eNS_URI);
-  }
+        // Create resource
+        createResource(eNS_URI);
+    }
 
 } //MydslPackageImpl

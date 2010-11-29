@@ -25,24 +25,24 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 public class ExampleClassImpl extends EObjectImpl implements ExampleClass
 {
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   protected ExampleClassImpl()
   {
-    super();
-  }
+        super();
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   protected EClass eStaticClass()
   {
-    return MydslPackage.Literals.EXAMPLE_CLASS;
-  }
+        return MydslPackage.Literals.EXAMPLE_CLASS;
+    }
 
 } //ExampleClassImpl
