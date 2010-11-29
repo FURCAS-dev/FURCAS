@@ -40,7 +40,7 @@ public interface MydslPackage extends EPackage
    * <!-- end-user-doc -->
      * @generated
      */
-  String eNS_URI = "http://www.mydsl.com/metamodel/";
+  String eNS_URI = "http://www.furcas.org/projectwizard/example/mydsl";
 
   /**
      * The package namespace name.

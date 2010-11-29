@@ -42,7 +42,6 @@ import com.sap.furcas.ide.projectwizard.util.CreateMMProject;
 import com.sap.furcas.ide.projectwizard.util.CreateProject;
 import com.sap.furcas.ide.projectwizard.util.ProjectInfo;
 
-
 /*
  * This Wizard creates a pair of projects for the Furcas DSL project. It generates the necessary folder,
  * packages, files and first lines of code that help to quickly be able to create the DSL.
@@ -149,7 +148,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
                     if (!pi.isLoadMetamodel()) {
                         doAdditional(pi);
                     }
-                    generateSpecific(project, pi.getNsURI());
+                    generateSpecific(project, pi);
 
                 } catch (InvocationTargetException e) {
                 } catch (InterruptedException e) {
@@ -237,18 +236,21 @@ public class FurcasWizard extends Wizard implements INewWizard {
     /*
      * This method provides the generation of the MetaModelspecific files and coding in the dsl project.
      */
-    protected void generateSpecific(IProject project, String nsURI) {
+    protected void generateSpecific(IProject project, ProjectInfo pi) {
         if (project != null) {
             EcoreMetaProjectConf conf;
-            conf = new EcoreMetaProjectConf(project, nsURI);
+            if (!pi.isFromWorkspace())
+                conf = new EcoreMetaProjectConf(project, "", pi.getNsURI());
+            else
+                conf = new EcoreMetaProjectConf(project, pi.getModelPath(), pi.getNsURI());
             try {
                 ProjectMetaRefConfFactory.configure(project, conf);
             } catch (CoreException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
+
         }
     }
-    
 
 }
