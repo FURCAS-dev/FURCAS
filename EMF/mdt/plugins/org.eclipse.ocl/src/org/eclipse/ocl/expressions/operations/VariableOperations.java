@@ -141,7 +141,7 @@ public class VariableOperations {
 					result = false;
 					message = OCLMessages.bind(
 						OCLMessages.TypeConformanceInit_ERROR_, variable
-						.getName());
+							.getName());
 				}
 			}
 		}

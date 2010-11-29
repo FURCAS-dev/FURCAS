@@ -1830,7 +1830,8 @@ public class ExpressionsPackageImpl
 			"simpleRange", null, 0, 1, CollectionLiteralExp.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		op = addEOperation(collectionLiteralExpEClass, ecorePackage
-			.getEBoolean(), "checkNoCollectionInstances", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+			.getEBoolean(),
+			"checkNoCollectionInstances", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(),
 			"diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(ecorePackage.getEMap());
