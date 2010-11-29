@@ -252,8 +252,8 @@ public class CollectionLiteralExpOperations
 					}
 
 					if ((partsType == null)
-						|| !TypeUtil.exactTypeMatch(env, partsType,
-							ctype.getElementType())) {
+						|| !TypeUtil.exactTypeMatch(env, partsType, ctype
+							.getElementType())) {
 						result = false;
 						message = OCLMessages
 							.bind(

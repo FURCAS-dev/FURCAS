@@ -2518,18 +2518,6 @@ public interface ExpressionsPackage
 	int VARIABLE_EXP = 34;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.expressions.CollectionKind <em>Collection Kind</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.expressions.CollectionKind
-	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getCollectionKind()
-	 * @generated
-	 */
-	int COLLECTION_KIND = 35;
-
-	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -2572,6 +2560,18 @@ public interface ExpressionsPackage
 	 * @ordered
 	 */
 	int VARIABLE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.expressions.CollectionKind <em>Collection Kind</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.expressions.CollectionKind
+	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getCollectionKind()
+	 * @generated
+	 */
+	int COLLECTION_KIND = 35;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.expressions.AssociationClassCallExp <em>Association Class Call Exp</em>}'.

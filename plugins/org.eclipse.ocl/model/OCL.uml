@@ -2302,14 +2302,4 @@
   <Ecore:EParameter xmi:id="_SCfO4N1nEduZ74nG8yJaxg" base_Parameter="_FcnTgN1nEduZ74nG8yJaxg"/>
   <Ecore_1:EClass xmi:id="_1lMzkNXZEd6ci-srLwOkAQ" base_Class="_-PCtwNLlEd6hmvYFRJXZTA"/>
   <Ecore:EReference xmi:id="_82aXYNXZEd6ci-srLwOkAQ" base_Property="_ykFGANLmEd6hmvYFRJXZTA"/>
-  <Ecore:EClass xmi:id="_tKR4kO2SEd-IcOEPKToVpA"/>
-  <Ecore:EReference xmi:id="_wdk1UO2SEd-IcOEPKToVpA"/>
-  <Ecore:EGenericType xmi:id="_x1fqgO2SEd-IcOEPKToVpA"/>
-  <Ecore:EClass xmi:id="_1lslsO2SEd-IcOEPKToVpA"/>
-  <Ecore:EOperation xmi:id="_3YlfoO2SEd-IcOEPKToVpA"/>
-  <Ecore:EGenericType xmi:id="_5OdcIO2SEd-IcOEPKToVpA"/>
-  <Ecore:EGenericType xmi:id="_yR-8wO2TEd-IcOEPKToVpA"/>
-  <Ecore:EGenericType xmi:id="_JucVQO2WEd-IcOEPKToVpA"/>
-  <Ecore:ETypeParameter xmi:id="_6QcugO2bEd-IcOEPKToVpA"/>
-  <Ecore:ETypeParameter xmi:id="_7IeisO2bEd-IcOEPKToVpA"/>
 </xmi:XMI>
