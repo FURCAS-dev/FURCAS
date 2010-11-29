@@ -120,6 +120,7 @@ public class LoadPage extends WizardPage {
                 if (files.length > 0) {
                     IProject mMproject = files[0].getProject();
                     pi.setMmProject(mMproject.getName());
+                    pi.setModelPath(mMproject.getWorkspace().getRoot().getLocation().toString() + files[0].getFullPath().toString());
                     eP = fileToEPack(files[0]);
                     uriField.setText(URI.createPlatformResourceURI(files[0].getFullPath().toString(), true).toString());
                 }

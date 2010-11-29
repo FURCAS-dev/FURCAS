@@ -9,8 +9,10 @@ public class ProjectInfo {
     private String URIPath = "";
     private String className = "";
     private String mmProject = "";
+    private String modelPath = "";
     private boolean loadMetamodel = false;
     private boolean fromWorkspace = false;
+
 
 
 
@@ -93,6 +95,14 @@ public class ProjectInfo {
 
     public String getMmProject() {
         return mmProject;
+    }
+
+    public void setModelPath(String modelPath) {
+        this.modelPath = modelPath;
+    }
+
+    public String getModelPath() {
+        return modelPath;
     }
 
 

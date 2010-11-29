@@ -33,7 +33,7 @@ public class MydslFactoryImpl extends EFactoryImpl implements MydslFactory
   public static MydslFactory init()
   {
         try {
-            MydslFactory theMydslFactory = (MydslFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.mydsl.com/metamodel/"); 
+            MydslFactory theMydslFactory = (MydslFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.furcas.org/projectwizard/example/mydsl"); 
             if (theMydslFactory != null) {
                 return theMydslFactory;
             }
