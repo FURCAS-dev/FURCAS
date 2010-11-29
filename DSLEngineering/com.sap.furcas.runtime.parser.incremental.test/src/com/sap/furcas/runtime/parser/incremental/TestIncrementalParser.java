@@ -1,15 +1,142 @@
 package com.sap.furcas.runtime.parser.incremental;
 
-import com.sap.furcas.runtime.textblocks.testbase.TextBlockTest;
+import static org.junit.Assert.assertNotNull;
 
+import java.io.File;
 
-public class TestIncrementalParser extends TextBlockTest {
+import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
-//	public void testContextReconstruction() {
-//		// TODO write testCase for reconsrtuction of context while
-//		// parsing incrementally
-//	}
-//
+import Bibtex.util.BibtexAdapterFactory;
+
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
+import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
+import com.sap.furcas.runtime.parser.ParserFacade;
+import com.sap.furcas.runtime.parser.testbase.ClassLookup;
+import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
+import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
+import com.sap.furcas.runtime.textblocks.testutils.EMFTextBlocksModelElementFactory;
+import com.sap.furcas.runtime.textblocks.testutils.TestSourceTextBlockCreator;
+import com.sap.furcas.runtime.textblocks.testutils.TextBlocksModelElementFactory;
+import com.sap.furcas.test.fixture.FixtureData;
+import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
+
+public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
+	private static final String LANGUAGE = "BibtexWithPropertyInits";
+	private static final File TCS = new File(
+			"fixtures/BibtexWithPropertyInits.tcs");
+
+	private static final File[] METAMODELS = { FixtureData.BIBTEXT_METAMODEL,
+			FixtureData.BIBTEXT1_METAMODEL };
+
+	private static ParserFacade facade;
+	private static ResourceSet resourceSet;
+	private static ConcreteSyntax syntax;
+	private static IncrementalParserFacade incrementalParserFacade;
+
+	@BeforeClass
+	public static void setupParser() throws Exception {
+		GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(
+				LANGUAGE, TCS, METAMODELS);
+		resourceSet = testConfig.getSourceConfiguration().getResourceSet();
+		TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
+		syntax = syntaxBean.getSyntax();
+		facade = generateParserForLanguage(syntaxBean, testConfig,
+				new ClassLookup() {
+
+					@Override
+					public Class<?> loadClass(String className)
+							throws ClassNotFoundException {
+						return Class.forName(className);
+					}
+
+				});
+//		EPackage pack = findPackage(LANGUAGE);
+//		IModelAdapter adapter = new TextBlocksAwareModelAdapter(
+//				new EMFModelAdapter(pack, resourceSet, testConfig
+//						.getSourceConfiguration().getReferenceScope()));
+		generateParserFactoryForLanguage(LANGUAGE, LANGUAGE, testConfig
+				.getTargetConfiguration().getParserTargetPackageName());
+		EditingDomain editingDomain = new AdapterFactoryEditingDomain(new BibtexAdapterFactory(), new BasicCommandStack());
+		OppositeEndFinder oppositeEndFinder = DefaultOppositeEndFinder.getInstance();
+		incrementalParserFacade = getIncrementalFacade(LANGUAGE,
+				resourceSet, editingDomain , oppositeEndFinder, testConfig
+						.getSourceConfiguration().getReferenceScope());
+	}
+	
+	private IncrementalParserFacade getParserFacade() {
+		return incrementalParserFacade;
+	}
+
+	/**
+	 * Finds an EPackage in the {@link #resourceSet} by the <code>name</code>
+	 * specified
+	 */
+	private static EPackage findPackage(String name) {
+		for (Resource r : resourceSet.getResources()) {
+			for (EObject c : r.getContents()) {
+				if (c instanceof EPackage
+						&& ((EPackage) c).getName().equals(name)) {
+					return (EPackage) c;
+				}
+			}
+		}
+		return null;
+	}
+
+	protected TextBlocksModelElementFactory modelFactory;
+
+    @Before
+    public void setModelFactory() {
+	modelFactory = new EMFTextBlocksModelElementFactory();
+    }
+
+    /**
+     * @param content
+     * @return
+     */
+    protected LexedToken createToken(String content) {
+	LexedToken contentToken = modelFactory.createLexedToken();
+	contentToken.setValue(content);
+	contentToken.setLength(content.length());
+	contentToken.setEndColumn(content.length());
+	contentToken.setType(0);
+	contentToken.setVersion(Version.REFERENCE);
+	return contentToken;
+    }	
+	@Test
+	public void testIncrementalParserSetup() {
+		IncrementalParserFacade facade = getParserFacade();
+		
+
+		AbstractToken content = createToken("");
+		TextBlock root = TestSourceTextBlockCreator
+				.initialiseTextBlocksWithContentToken(modelFactory, content);
+
+		TextBlocksModel tbModel = new TextBlocksModel(root, null);
+		tbModel.replace(0, 0, "@article { test, bla }");
+
+		TextBlock currentVersionTb = facade.parseIncrementally(root);
+		Object syntaxObject = currentVersionTb.getCorrespondingModelElements()
+				.iterator().next();
+		// assert no exception
+		assertNotNull(syntaxObject);
+	}
+
 //	/**
 //	 * Tests whether an simple addition to a textblock is correctly mapped to an
 //	 * insertion in the model without re-creating the parent element.
@@ -18,7 +145,7 @@ public class TestIncrementalParser extends TextBlockTest {
 //	 */
 //	@Test
 //	public void testParseBibTextAddNewSubBlock() throws Exception {
-//		//create TCS mapping on connection
+//		// create TCS mapping on connection
 //		TcsTestHelper.createTcsSyntaxMappingOnConnection(new ResourceSetImpl());
 //
 //		IncrementalParserFacade facade = getParserFacade();
@@ -46,9 +173,8 @@ public class TestIncrementalParser extends TextBlockTest {
 //		TbChangeUtil.cleanUp(currentVersionTb);
 //		// add a new template
 //		tbModel = new TextBlocksModel(currentVersionTb, null);
-//		tbModel
-//				.replace(26, 0,
-//						"primitiveTemplate identifier2 for ->String using NAME:value = \"%token%\";");
+//		tbModel.replace(26, 0,
+//				"primitiveTemplate identifier2 for ->String using NAME:value = \"%token%\";");
 //		TextBlock currentVersionTbNew = facade
 //				.parseIncrementally(currentVersionTb);
 //		// textBlock shouldn't have changed
@@ -62,9 +188,11 @@ public class TestIncrementalParser extends TextBlockTest {
 //		// check if primitive template was added
 //		Template newTemplate = syntaxObject2.getTemplates().get(0);
 //		assertEquals(true, newTemplate instanceof PrimitiveTemplate);
-//		assertEquals("identifier2", ((PrimitiveTemplate) newTemplate)
-//				.getTemplateName());
+//		assertEquals("identifier2",
+//				((PrimitiveTemplate) newTemplate).getTemplateName());
 //	}
+//
+//
 //
 //	/**
 //	 * Tests whether a reference where the reference by value was replaced is
@@ -74,9 +202,9 @@ public class TestIncrementalParser extends TextBlockTest {
 //	 */
 //	@Test
 //	public void testParseBibTextReplaceReference() throws Exception {
-//		//create TCS mapping on connection
+//		// create TCS mapping on connection
 //		TcsTestHelper.createTcsSyntaxMappingOnConnection(connection);
-//		
+//
 //		IncrementalParserFacade facade = getParserFacade();
 //		File syntaxDefFile = new File("scenarioTestResource/Bibtext.tcs");
 //
@@ -122,35 +250,6 @@ public class TestIncrementalParser extends TextBlockTest {
 //		Block b = (Block) article2.getTemplateSequence().getElements().get(2);
 //		LiteralRef lit = (LiteralRef) b.getBlockSequence().getElements().get(3);
 //		assertEquals("{", lit.getReferredLiteral().getValue());
-//	}
-//
-//	/**
-//	 * @return
-//	 */
-//	private IncrementalParserFacade getParserFacade() {
-//		TCSPackage tcsPackage = connection
-//				.getPackage(TCSPackage.PACKAGE_DESCRIPTOR);
-//		Collection<URI> priList = new ArrayList<URI>();
-//		Moin moin = MOINTCSMetaConnectionProvider.getBuildMoin();
-//		URI pri1 = moin
-//				.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/PrimitiveTypes.moinmm");
-//		URI pri2 = moin
-//				.createPri("PF.MetaModelDataArea:DCs/demo.sap.com/tcsmeta/_comp/moin/meta/Metamodel.moinmm");
-//		URI pri3 = moin
-//				.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/Model.moinmm");
-//		URI pri4 = moin
-//				.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/MOIN.moinmm");
-//		priList.add(pri1);
-//		priList.add(pri2);
-//		priList.add(pri3);
-//		priList.add(pri4);
-//
-//		IModelAdapter adapter = new TextBlocksAwareModelAdapter(
-//				new MOINModelAdapter(tcsPackage, connection, priList, null));
-//		IncrementalParserFacade facade = new IncrementalParserFacade(
-//				new TcsParserFactory(), adapter, connection, null);
-//
-//		return facade;
 //	}
 //
 //	private String getTcsFileContent(File syntaxDefFile) {
