@@ -19,8 +19,12 @@
    </license>
 
    <url>
-      <update label="FURCAS" url="http://www.furcas.org/update-site"/>
+      <update label="FURCAS" url="http://wdfd00224335a.dhcp.wdf.sap.corp/site/"/>
    </url>
+
+   <requires>
+      <import feature="EMFEnhancements-Feature" version="1.0.0.qualifier"/>
+   </requires>
 
    <plugin
          id="com.sap.emf.ocl.trigger"
