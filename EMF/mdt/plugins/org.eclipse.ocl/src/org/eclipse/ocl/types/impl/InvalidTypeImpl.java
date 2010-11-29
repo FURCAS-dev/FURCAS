@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.types.InvalidType;
 import org.eclipse.ocl.types.TypesPackage;
-import org.eclipse.ocl.types.operations.InvalidTypeOperations;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 
 /**
@@ -80,8 +79,8 @@ public class InvalidTypeImpl<O>
 			Environment<?, ?, O, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = Environment.Registry.INSTANCE
 				.getEnvironmentFor(this);
 
-			operations = new BasicEList<O>(
-				OCLStandardLibraryUtil.createAnyTypeOperations(env));
+			operations = new BasicEList<O>(OCLStandardLibraryUtil
+				.createAnyTypeOperations(env));
 		}
 
 		return operations;

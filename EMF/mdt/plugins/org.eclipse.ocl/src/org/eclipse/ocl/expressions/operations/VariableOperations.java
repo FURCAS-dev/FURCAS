@@ -140,8 +140,8 @@ public class VariableOperations {
 				if (!TypeUtil.compatibleTypeMatch(env, init.getType(), type)) {
 					result = false;
 					message = OCLMessages.bind(
-						OCLMessages.TypeConformanceInit_ERROR_,
-						variable.getName());
+						OCLMessages.TypeConformanceInit_ERROR_, variable
+							.getName());
 				}
 			}
 		}

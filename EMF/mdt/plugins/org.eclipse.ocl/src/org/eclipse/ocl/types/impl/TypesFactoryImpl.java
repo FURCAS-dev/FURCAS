@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.ocl.types.*;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.types.AnyType;
@@ -350,8 +349,8 @@ public class TypesFactoryImpl
 			EList<P> properties = result.oclProperties();
 
 			for (TypedElement<C> part : parts) {
-				properties.add(uml.createProperty(part.getName(),
-					part.getType()));
+				properties.add(uml.createProperty(part.getName(), part
+					.getType()));
 			}
 		}
 
