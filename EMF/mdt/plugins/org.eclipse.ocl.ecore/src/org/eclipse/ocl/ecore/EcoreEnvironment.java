@@ -60,6 +60,7 @@ import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl;
+import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.types.TypesPackage;
 import org.eclipse.ocl.utilities.OCLFactory;
@@ -572,26 +573,27 @@ public class EcoreEnvironment
 					}
 				}
 			} else {
-				String expr = EcoreUtil.getAnnotation(typedFeature, OCLDelegateDomain.OCL_DELEGATE_URI, InvocationBehavior.BODY_CONSTRAINT_KEY);
+				String expr = ann.getDetails().get(UMLReflection.DEFINITION);
 				if (expr == null) {
 					return null;
 				}
 				try {
 					Helper helper = OCL.newInstance().createOCLHelper();
-					if (feature instanceof EOperation) {
-						EOperation op = (EOperation) feature;
-						helper.setOperationContext((EClassifier) ((EOperation) feature).eContainer(), op);
-					} else if (feature instanceof EStructuralFeature) {
+					if (feature instanceof EStructuralFeature) {
 						helper.setContext((EClassifier) ((EStructuralFeature) feature).eContainer());
+					} else if (feature instanceof EOperation) {
+						EOperation op = (EOperation) feature;
+						helper.setOperationContext((EClassifier) op.eContainer(), op);
+					} else {
+						return result;
 					}
-					result = helper.createBodyCondition(expr);
+					result = helper.createConstraint(ConstraintKind.DEFINITION, expr);
 					ann.getContents().add(result);
 				} catch (ParserException e) {
 					throw new OCLDelegateException(e.getLocalizedMessage(), e);
 				}
 			}
     	}
-    	
     	return result;
 	}
 	
@@ -606,16 +608,26 @@ public class EcoreEnvironment
 		}
 		ETypedElement typedFeature = feature;
 		EAnnotation ann = typedFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
-		if (ann == null) {
-			// expects getOperationBody(...) to store the AST in the OCL annotation's contents
-			InvocationBehavior.INSTANCE.getOperationBody(OCL.newInstance(), feature);
-			ann = typedFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
-		}
-		if ((ann != null) && !ann.getContents().isEmpty()) {
-			for (EObject o : ann.getContents()) {
-				if ((o instanceof Constraint)&& UMLReflection.BODY.equals(((Constraint) o).getStereotype())) {
-					result = (Constraint) o;
-					break;
+		if (ann != null) {
+			if (!ann.getContents().isEmpty()) {
+				for (EObject o : ann.getContents()) {
+					if ((o instanceof Constraint)&& UMLReflection.BODY.equals(((Constraint) o).getStereotype())) {
+						result = (Constraint) o;
+						break;
+					}
+				}
+			} else {
+				String expr = ann.getDetails().get(InvocationBehavior.BODY_CONSTRAINT_KEY);
+				if (expr == null) {
+					return null;
+				}				
+				try {
+					Helper helper = OCL.newInstance().createOCLHelper();
+					helper.setOperationContext((EClassifier) feature.eContainer(), feature);
+					result = helper.createBodyCondition(expr);
+					ann.getContents().add(result);
+				} catch (ParserException e) {
+					throw new OCLDelegateException(e.getLocalizedMessage(), e);
 				}
 			}
 		}
