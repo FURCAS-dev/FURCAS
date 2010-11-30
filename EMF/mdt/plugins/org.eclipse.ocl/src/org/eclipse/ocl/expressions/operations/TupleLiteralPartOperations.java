@@ -156,7 +156,7 @@ public class TupleLiteralPartOperations {
 						}
 						message = OCLMessages.bind(
 							OCLMessages.TuplePartType_ERROR_, tupleLiteralPart
-							.getName(), tupleLiteral);
+								.getName(), tupleLiteral);
 					}
 				}
 			}

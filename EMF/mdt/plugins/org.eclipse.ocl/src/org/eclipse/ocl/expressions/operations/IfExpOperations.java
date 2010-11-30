@@ -143,7 +143,7 @@ public class IfExpOperations
 						result = false;
 						message = OCLMessages.bind(
 							OCLMessages.TypeConformanceIfExp_ERROR_, ifExp
-							.toString());
+								.toString());
 					}
 				}
 			}
