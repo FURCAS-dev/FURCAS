@@ -12,7 +12,7 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://www.mydsl.com/metamodel/"
+            uri="http://www.furcas.org/projectwizard/example/mydsl"
             class="Mydsl.MydslPackage"
             genModel="model/Mydsl.genmodel"/>
    </extension>
