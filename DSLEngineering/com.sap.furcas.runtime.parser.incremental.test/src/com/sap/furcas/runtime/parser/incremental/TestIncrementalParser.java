@@ -1,10 +1,18 @@
 package com.sap.furcas.runtime.parser.incremental;
 
+import org.junit.Test;
+
 import com.sap.furcas.runtime.textblocks.testbase.TextBlockTest;
 
 
 public class TestIncrementalParser extends TextBlockTest {
 
+	@Test
+	public void testSomething() {
+		// Please do not remove
+		// Maven needs at least one test in this TestCase
+	}	
+	
 //	public void testContextReconstruction() {
 //		// TODO write testCase for reconsrtuction of context while
 //		// parsing incrementally

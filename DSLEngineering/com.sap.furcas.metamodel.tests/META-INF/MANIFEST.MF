@@ -8,11 +8,7 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: com.sap.furcas.emf.stubs,
- com.sap.furcas.metamodel.FURCAS.TCS.stubs,
- com.sap.furcas.metamodel.FURCAS.TCS.tests,
- com.sap.furcas.metamodel.FURCAS.tests,
- com.sap.furcas.metamodel.FURCAS.textblockdefinition.tests,
- com.sap.furcas.metamodel.FURCAS.textblocks.tests
+ com.sap.furcas.metamodel.FURCAS.TCS.stubs
 Require-Bundle: org.eclipse.core.runtime,
  com.sap.furcas.metamodel;visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,

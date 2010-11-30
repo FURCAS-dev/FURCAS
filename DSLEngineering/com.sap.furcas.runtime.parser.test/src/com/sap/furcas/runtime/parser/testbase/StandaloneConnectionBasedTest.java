@@ -7,7 +7,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.junit.After;
 import org.junit.BeforeClass;
 
-public class StandaloneConnectionBasedTest {
+public abstract class StandaloneConnectionBasedTest {
 
 	protected static ResourceSet connection = null;
 
