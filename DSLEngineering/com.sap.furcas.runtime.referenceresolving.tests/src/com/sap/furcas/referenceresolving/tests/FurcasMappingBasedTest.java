@@ -113,7 +113,7 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
     }
     
     @Test
-    @Ignore("failing test case as preparation of impact analysis requirements")
+    // @Ignore("failing test case as preparation of impact analysis requirements")
     public void testChangeAuthorName() {
     	johnDoe.eSet(authorClass.getEStructuralFeature("name"), "John Dough");
         assertEquals("Where John Dough wrote it", article.eGet(articleClass.getEStructuralFeature("location")));
