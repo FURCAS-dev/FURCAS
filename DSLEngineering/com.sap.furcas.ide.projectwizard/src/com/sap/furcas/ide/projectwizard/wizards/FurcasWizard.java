@@ -261,6 +261,8 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 e.printStackTrace();
             }
             try {
+                /*Builds, refreshs, cleans the project to make sure, that all files will be found 
+                and generated*/
                 project.build(IncrementalProjectBuilder.FULL_BUILD, new NullProgressMonitor());
                 IFolder folder = project.getFolder("generated").getFolder("generated");
                 folder.refreshLocal(1, new NullProgressMonitor());
