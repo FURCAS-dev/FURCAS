@@ -81,7 +81,7 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
         EClass bibTexFileClass = bibTexFile.eClass();
         assertEquals("BibTextFile", bibTexFileClass.getName());
         @SuppressWarnings("unchecked")
-		Collection<EObject> entries = (Collection<EObject>) bibTexFile.eGet(bibTexFileClass.getEStructuralFeature("entries"));
+        Collection<EObject> entries = (Collection<EObject>) bibTexFile.eGet(bibTexFileClass.getEStructuralFeature("entries"));
         assertEquals(3, entries.size());
         johnDoe = null;
         article = null;
@@ -113,7 +113,7 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
     }
     
     @Test
-    // @Ignore("failing test case as preparation of impact analysis requirements")
+    @Ignore("failing test case as preparation of impact analysis requirements")
     public void testChangeAuthorName() {
     	johnDoe.eSet(authorClass.getEStructuralFeature("name"), "John Dough");
         assertEquals("Where John Dough wrote it", article.eGet(articleClass.getEStructuralFeature("location")));
