@@ -23,9 +23,11 @@ public class $CapLangName$Editor extends AbstractGrammarBasedEditor {
 		return newRoot; 
 	}
 
+
+	//TODO !!! Only works for new metamodelproject
 	public ResourceSet getWorkingConnection() {
 		ResourceSet resSet = new ResourceSetImpl();
-		URI uri = URI.createPlatformResourceURI("/my.dsl.metamodel/model/mydsl.ecore", true);
+		URI uri = URI.createPlatformResourceURI("/my.dsl.metamodel/model/mydsl.ecore", true); 
 		resSet.createResource(uri);
 		return resSet;
 	} 

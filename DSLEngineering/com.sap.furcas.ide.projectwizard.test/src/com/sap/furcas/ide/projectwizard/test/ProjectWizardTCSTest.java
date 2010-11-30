@@ -43,7 +43,8 @@ public class ProjectWizardTCSTest extends GeneratedParserBasedTest {
     public void testForcedLower() throws Exception {
         // Expect no errors
         String sample = "ExampleClass";
-        parsingHelper.parseString(sample, 0);
+        
+        /*StubModelAdapter result = */parsingHelper.parseString(sample, 0);
 
     }
 

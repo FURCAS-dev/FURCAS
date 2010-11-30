@@ -11,7 +11,7 @@ import generated.$CapLangName$Parser;
 
 import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 
-public class MydslParserFactory extends AbstractParserFactory<$CapLangName$Parser, $CapLangName$Lexer> {
+public class $CapLangName$ParserFactory extends AbstractParserFactory<$CapLangName$Parser, $CapLangName$Lexer> {
 
     private static final String LANGUAGE_ID = "$CapLangName$";
 
