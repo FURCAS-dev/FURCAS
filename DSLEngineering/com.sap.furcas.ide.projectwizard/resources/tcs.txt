@@ -35,36 +35,24 @@ syntax $CapLangName$ {
                 value = "%token%";
 -- place keywords here (optional, seldom used)
 
+
+-- place symbols here
                 
         symbols {
                 lbracket        = "[";
                 rbracket        = "]";
                 lcurl           = "{";
                 rcurl           = "}";
-                langle      = "<";
-                rangle      = ">";
+                langle          = "<";
+                rangle          = ">";
                 lparen          = "(";
                 rparen          = ")";
                 excl            = "!";
                 equals          = "=";
-                equalsEquals= "==";
-                assign          = ":=";
-                dot                     = ".";
-                ddot            = "..";
-                arrow           = "->";
+                dot             = ".";
                 pipe            = "|";
                 colon           = ":";
-                dcolon          = "::";
                 semicolon       = ";";
-                including       = "including";
-                excluding       = "excluding";
-                includingat     = "includingAt";
-                excludingat     = "excludingAt";
-                iterate         = "iterate";
-                lcurl_lbrack = "{[";
-                lbrack_lcurl = "[{";
-                rcurl_rbrack = "}]";
-                rbrack_rcurl = "]}";
                 star            = "*";
         }
         
