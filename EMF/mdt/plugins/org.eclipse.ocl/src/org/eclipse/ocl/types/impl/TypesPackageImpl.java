@@ -667,7 +667,8 @@ public class TypesPackageImpl
 			"kind", null, 1, 1, CollectionType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		EOperation op = addEOperation(collectionTypeEClass, ecorePackage
-			.getEBoolean(), "checkCollectionTypeName", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+			.getEBoolean(),
+			"checkCollectionTypeName", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(),
 			"diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(ecorePackage.getEMap());
