@@ -7,12 +7,15 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EcoreFactory;
@@ -253,6 +256,16 @@ public class FurcasWizard extends Wizard implements INewWizard {
             ;
             try {
                 ProjectMetaRefConfFactory.configure(project, conf);
+            } catch (CoreException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            try {
+                project.build(IncrementalProjectBuilder.FULL_BUILD, new NullProgressMonitor());
+                IFolder folder = project.getFolder("generated").getFolder("generated");
+                folder.refreshLocal(1, new NullProgressMonitor());
+                project.build(IncrementalProjectBuilder.CLEAN_BUILD, new NullProgressMonitor());
+                project.build(IncrementalProjectBuilder.FULL_BUILD, new NullProgressMonitor());
             } catch (CoreException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
