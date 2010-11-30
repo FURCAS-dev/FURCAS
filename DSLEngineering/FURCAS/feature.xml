@@ -19,146 +19,161 @@
    </license>
 
    <url>
-      <update label="FURCAS" url="http://www.furcas.org/update-site"/>
+      <update label="FURCAS" url="http://wdfd00224335a.dhcp.wdf.sap.corp/site/"/>
    </url>
 
    <requires>
-      <import feature="MOIN" version="1.0.0" match="greaterOrEqual"/>
+      <import feature="EMFEnhancements-Feature" version="1.0.0.qualifier"/>
    </requires>
 
    <plugin
-         id="com.sap.ide.cts.editor"
+         id="com.sap.emf.ocl.trigger"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="com.sap.ide.cts.moin"
+         id="com.sap.furcas.ide.projectwizard"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="com.sap.ide.cts.parser"
+         id="com.sap.furcas.metamodel"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="com.sap.mi.textual"
+         id="com.sap.furcas.metamodel.edit"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="com.sap.mi.textual.common"
+         id="com.sap.furcas.metamodel.editor"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="com.sap.mi.textual.epi"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="com.sap.mi.textual.grammar.parser"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="com.sap.mi.textual.moinlookup"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="com.sap.mi.textual.parsing"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="com.sap.mi.textual.parsing.textblocks"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="com.sap.mi.textual.syntaxmodel.moinadapter"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="com.sap.mi.textual.tcs.editor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="com.sap.mi.textual.tcs.util"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="com.sap.tcsmeta.mm.eclipse"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="tcsmetamodel"
+         id="com.sap.furcas.modeladaptation.emf"
          download-size="0"
          install-size="0"
          version="0.0.0"/>
 
    <plugin
-         id="com.sap.ide.treeprovider"
+         id="com.sap.furcas.parser.tcs"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="com.sap.tc.moin.globalmodellistener"
+         id="com.sap.furcas.parsergenerator"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="com.sap.tc.moin.tcs.mof.editor"
+         id="com.sap.furcas.parsergenerator.emf"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="com.sap.tc.moin.textual.runtime.moin"
+         id="com.sap.furcas.runtime.common"
          download-size="0"
          install-size="0"
-         version="0.0.0"/>
+         version="0.0.0"
+         unpack="false"/>
 
    <plugin
-         id="com.sap.ide.cts.product"
+         id="com.sap.furcas.runtime.parser"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.sap.furcas.runtime.parser.incremental"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.sap.furcas.runtime.referenceresolving"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.sap.furcas.runtime.tcs"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.sap.furcas.runtime.textblocks"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.sap.furcas.utils"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.antlr"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.query2"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.query"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.query.index"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.query.index.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.query.ocl"
          download-size="0"
          install-size="0"
          version="0.0.0"

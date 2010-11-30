@@ -14,7 +14,7 @@ import com.sap.furcas.runtime.textblocks.testutils.TextBlocksModelElementFactory
  * @author D052602
  * 
  */
-public class TextBlockTest {
+public abstract class TextBlockTest {
 
     protected TextBlocksModelElementFactory modelFactory;
 
