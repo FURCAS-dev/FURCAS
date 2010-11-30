@@ -88,7 +88,7 @@ public class IterateExpOperations
 				result = false;
 				message = OCLMessages.bind(
 					OCLMessages.TypeConformanceIterateExp_ERROR_, iterateExp
-					.toString());
+						.toString());
 			}
 		}
 
@@ -167,8 +167,8 @@ public class IterateExpOperations
 		if ((vd != null) && (vd.getInitExpression() == null)) {
 			result = false;
 			message = OCLMessages
-				.bind(OCLMessages.MissingInitIterateExp_ERROR_,
-					iterateExp.toString());
+				.bind(OCLMessages.MissingInitIterateExp_ERROR_, iterateExp
+					.toString());
 		}
 
 		if (!result) {

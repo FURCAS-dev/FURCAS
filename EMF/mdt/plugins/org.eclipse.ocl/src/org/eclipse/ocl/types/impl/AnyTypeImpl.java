@@ -80,7 +80,7 @@ public class AnyTypeImpl<O>
 				.getEnvironmentFor(this);
 
 			operations = new BasicEList<O>(OCLStandardLibraryUtil
-					.createAnyTypeOperations(env));
+				.createAnyTypeOperations(env));
 		}
 
 		return operations;
