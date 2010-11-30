@@ -1940,7 +1940,6 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	}
 
 	/**
-	 * @since 3.1
 	 * Callback for an AssociationClassCallExp visit. Evaluates the source of the
 	 * expression and then reflectively gets the value of the reference on the
 	 * result. For example, in "self.foo", "self" is the source and would be
