@@ -80,8 +80,6 @@ public class LoadPage extends WizardPage {
                 Object[] result = registeredPackageDialog.getResult();
                 if (result != null) {
                     List<?> nsURIs = Arrays.asList(result);
-                    String nsURI = nsURIs.get(0).toString();
-                    pi.setNsURI(nsURI);
                     if (registeredPackageDialog.isDevelopmentTimeVersion()) {
                         ResourceSet resourceSet = new ResourceSetImpl();
                         resourceSet.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap());
@@ -94,15 +92,38 @@ public class LoadPage extends WizardPage {
                         for (Resource resource : resourceSet.getResources()) {
                             for (EPackage ePackage : getAllPackages(resource)) {
                                 if (nsURIs.contains(ePackage.getNsURI())) {
-                                    eP = ePackage;
+                                        if (ePackage.getESuperPackage() == null)
+                                            eP = ePackage;
+                                        else
+                                            eP = ePackage.getESuperPackage();
+                                    pi.setNsURI(eP.getNsURI());
                                     uriField.setText(resource.getURI().toString());
                                     break;
                                 }
                             }
                         }
                     } else {
-                        eP = (EPackage) result[0];
-                        uriField.setText(result[0].toString());
+                        ResourceSet resourceSet = new ResourceSetImpl();
+                        resourceSet.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap());
+                        Map<String, URI> ePackageNsURItoGenModelLocationMap = EcorePlugin.getEPackageNsURIToGenModelLocationMap();
+                        for (int i = 0, length = result.length; i < length; i++) {
+                            URI location = ePackageNsURItoGenModelLocationMap.get(result[i]);
+                            Resource resource = resourceSet.getResource(location, true);
+                            EcoreUtil.resolveAll(resource);
+                        }
+                        for (Resource resource : resourceSet.getResources()) {
+                            for (EPackage ePackage : getAllPackages(resource)) {
+                                if (nsURIs.contains(ePackage.getNsURI())) {
+                                        if (ePackage.getESuperPackage() == null)
+                                            eP = ePackage;
+                                        else
+                                            eP = ePackage.getESuperPackage();
+                                    pi.setNsURI(eP.getNsURI());
+                                    uriField.setText(resource.getURI().toString());
+                                    break;
+                                }
+                            }
+                        }
                     }
                 }
             }
