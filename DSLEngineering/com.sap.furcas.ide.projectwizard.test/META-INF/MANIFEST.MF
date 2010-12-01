@@ -13,7 +13,8 @@ Require-Bundle: org.eclipse.ui,
  com.sap.furcas.test;bundle-version="1.0.0",
  com.sap.furcas.runtime.parser;bundle-version="1.0.0",
  org.junit;bundle-version="4.8.1",
- org.antlr;bundle-version="3.1.1"
+ org.antlr;bundle-version="3.1.1",
+ com.sap.furcas.parsergenerator;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: generationTemp/,
