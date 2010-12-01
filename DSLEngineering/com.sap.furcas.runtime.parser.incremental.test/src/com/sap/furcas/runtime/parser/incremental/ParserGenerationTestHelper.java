@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.antlr.Tool;
 import org.antlr.runtime.Lexer;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
@@ -70,14 +71,14 @@ public class ParserGenerationTestHelper {
 		this.ignoreExistCheck = ignoreExistCheck;
 	}
 
-	public ParserGenerationTestHelper(String soureRoot,
+	public ParserGenerationTestHelper(String sourceRoot,
 			List<String> packagePath, boolean ignoreExistCheck) {
-		if (soureRoot == null || packagePath == null) {
-			throw new IllegalArgumentException(soureRoot + ", " + packagePath);
+		if (sourceRoot == null || packagePath == null) {
+			throw new IllegalArgumentException(sourceRoot + ", " + packagePath);
 		}
 		this.ignoreExistCheck = ignoreExistCheck;
 
-		generationSourceRoot = soureRoot;
+		generationSourceRoot = sourceRoot;
 
 		if (packagePath.size() > 0) {
 			generationPackage = packagePath.get(0);
@@ -146,8 +147,18 @@ public class ParserGenerationTestHelper {
 
 		// also generate matching ParserFactory
 		try {
-			PrintStream out = new PrintStream(new FileOutputStream(new File(
-					generationDirectory + languageName + "ParserFactory.java")));
+			File parserFactoryFile = new File(generationDirectory
+					+ languageName + "ParserFactory.java");
+			if (!parserFactoryFile.exists()) {
+				try {
+					parserFactoryFile.getParentFile().mkdirs();
+					parserFactoryFile.createNewFile();
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+				}
+			}
+			PrintStream out = new PrintStream(new FileOutputStream(
+					parserFactoryFile));
 
 			out.println("package " + generationPackage + ";");
 
@@ -156,11 +167,9 @@ public class ParserGenerationTestHelper {
 			out.println("import " + generationPackage + "." + parserClassName
 					+ ";");
 
-			out
-					.println("import com.sap.ide.cts.moin.parserfactory.AbstractParserFactory;");
-			out.println("import com.sap.tc.moin.repository.Connection;");
-			out
-					.println("import com.sap.tc.moin.repository.mmi.reflect.RefPackage;");
+			out.println("import com.sap.furcas.ide.parserfactory.AbstractParserFactory;");
+			out.println("import org.eclipse.emf.ecore.resource.ResourceSet;");
+			out.println("import org.eclipse.emf.ecore.EPackage;");
 
 			out.println("public class " + languageName
 					+ "ParserFactory extends AbstractParserFactory<"
@@ -170,16 +179,13 @@ public class ParserGenerationTestHelper {
 					+ languageName + "\"; ");
 
 			out.println("	@Override");
-			out
-					.println("    public Integer[] getOmittedTokensForFormatting() {");
-			out
-					.println("	return new Integer[]{"+parserClassName+".WS, "+parserClassName+".NL};");
+			out.println("    public Integer[] getOmittedTokensForFormatting() {");
+			out.println("	return new Integer[]{" + parserClassName + ".WS, "
+					+ parserClassName + ".NL};");
 			out.println("    }");
 			out.println("	@Override");
-			out
-					.println("    public String[] getHiddenChannelTokenNames() {");
-			out
-					.println("	return new String[] { \"WS\", \"NL\", \"COMMENT\" };");
+			out.println("    public String[] getHiddenChannelTokenNames() {");
+			out.println("	return new String[] { \"WS\", \"NL\", \"COMMENT\" };");
 			out.println("    }");
 
 			out.println("	@Override ");
@@ -200,11 +206,9 @@ public class ParserGenerationTestHelper {
 			out.println("	}");
 
 			out.println("	@Override");
-			out.println("	public " + completeMetamodelPackageName
-					+ " getMetamodelPackage(Connection connection) {");
-			out.println("	    " + completeMetamodelPackageName
-					+ " pck = connection.getPackage("
-					+ completeMetamodelPackageName + ".PACKAGE_DESCRIPTOR);");
+			out.println("	public EPackage"
+					+ " getMetamodelPackage(ResourceSet connection) {");
+			out.println("	    EPackage pck = EPackage.Registry.INSTANCE.getEPackage(\"" + completeMetamodelPackageName + "\");");
 			out.println("		return pck;");
 			out.println("	} ");
 
@@ -220,19 +224,21 @@ public class ParserGenerationTestHelper {
 
 	}
 
-	public int compileParser(String languageName) {
-		// compile generated Java
-		int success = Main.compile(new String[] {
-				generationDirectory + languageName + "Lexer.java",
-				generationDirectory + languageName + "Parser.java",
-				"-cp",
-				System.getProperty("antlr.lib.dir") + File.pathSeparator
-						+ "../com.sap.mi.textual.parsing/bin" + File.pathSeparator
-						+ "../com.sap.mi.textual.common/bin" + File.pathSeparator
-						+ "../com.sap.mi.textual.moinlookup/bin" });
-
-		return success;
-	}
+//	public int compileParser(String languageName) {
+//		// compile generated Java
+//		int success = Main.compile(new String[] {
+//				generationDirectory + languageName + "Lexer.java",
+//				generationDirectory + languageName + "Parser.java",
+//				"-cp",
+//				System.getProperty("antlr.lib.dir") + File.pathSeparator
+//						+ "../com.sap.mi.textual.parsing/bin"
+//						+ File.pathSeparator
+//						+ "../com.sap.mi.textual.common/bin"
+//						+ File.pathSeparator
+//						+ "../com.sap.mi.textual.moinlookup/bin" });
+//
+//		return success;
+//	}
 
 	public int compileParserFactory(String languageName,
 			String metamodelProjectName) {
@@ -241,24 +247,37 @@ public class ParserGenerationTestHelper {
 		int success = Main.compile(new String[] {
 				generationDirectory + languageName + "ParserFactory.java",
 				"-cp",
-				generationSourceRoot + File.pathSeparator + "../" + metamodelProjectName
-						+ "/bin" + File.pathSeparator
-						+ getSourceRoot(AbstractParserFactory.class) + File.pathSeparator
-						+ getSourceRoot(ResourceSet.class) + File.pathSeparator
-						+ getSourceRoot(ANTLRParserFactory.class) + File.pathSeparator
-						+ getSourceRoot(ITokenFactory.class) + File.pathSeparator
-						+ getSourceRoot(RuleNameFinder.class) + File.pathSeparator
-						+ getSourceRoot(IModelElementProxy.class) + File.pathSeparator
-						+ getSourceRoot(Lexer.class)});
+				generationSourceRoot + File.separator + ".." + File.separator + File.pathSeparator +
+				generationSourceRoot + File.pathSeparator + "../"
+						+ metamodelProjectName + "/bin" + File.pathSeparator
+						+ getSourceRoot(AbstractParserFactory.class)
+						+ File.pathSeparator + getSourceRoot(ResourceSet.class)
+						+ File.pathSeparator + getSourceRoot(Notifier.class)
+						+ File.pathSeparator
+						+ getSourceRoot(ANTLRParserFactory.class)
+						+ File.pathSeparator
+						+ getSourceRoot(ITokenFactory.class)
+						+ File.pathSeparator
+						+ getSourceRoot(RuleNameFinder.class)
+						+ File.pathSeparator
+						+ getSourceRoot(IModelElementProxy.class)
+						+ File.pathSeparator + getSourceRoot(Lexer.class) });
 
 		return success;
 	}
 
 	public String getSourceRoot(Class<?> c) {
 		try {
-		    return new File(URLDecoder.decode(c.getProtectionDomain().getCodeSource().getLocation().getPath(), "UTF-8")).getCanonicalPath();
+			String classContainerPath = URLDecoder.decode(c.getProtectionDomain()
+					.getCodeSource().getLocation().getPath(), "UTF-8");
+			if(!classContainerPath.endsWith(".jar")) {
+				classContainerPath += "bin/";
+			}
+					
+			return new File(classContainerPath) 
+					.getCanonicalPath();
 		} catch (IOException e) {
-		    throw new RuntimeException(e);
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -280,11 +299,11 @@ public class ParserGenerationTestHelper {
 		File genDir = new File(generationDirectory);
 		try {
 			@SuppressWarnings("unchecked")
-			Class<? extends Lexer> lexerclass = (Class<? extends Lexer>) Class.forName(generationPackage + "."
-					+ languageName + "Lexer");
+			Class<? extends Lexer> lexerclass = (Class<? extends Lexer>) Class
+					.forName(generationPackage + "." + languageName + "Lexer");
 			@SuppressWarnings("unchecked")
-			Class<? extends ObservableInjectingParser> parserclass = (Class<? extends ObservableInjectingParser>) Class.forName(generationPackage + "."
-					+ languageName + "Parser");
+			Class<? extends ObservableInjectingParser> parserclass = (Class<? extends ObservableInjectingParser>) Class
+					.forName(generationPackage + "." + languageName + "Parser");
 
 			ParserFacade facade = new ParserFacade(parserclass, lexerclass);
 			return facade;
@@ -320,7 +339,6 @@ public class ParserGenerationTestHelper {
 					cnfe);
 		}
 	}
-
 
 	/**
 	 * @return the defaultInstance

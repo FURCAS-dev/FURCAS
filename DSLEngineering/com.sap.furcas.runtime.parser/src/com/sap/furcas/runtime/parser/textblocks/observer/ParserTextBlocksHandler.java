@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query.index.ui.IndexFactory;
@@ -25,6 +26,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
@@ -198,8 +200,9 @@ public class ParserTextBlocksHandler implements IParsingObserver {
             try {
             if (template == null) {
                 String queryClass = "select class \n"
-                        + "from \"sap.com/tc/moin/mof_1.4\"#"
-                        + "Model::Classifier as class \n" + "where class.name = '"
+                        + "from "
+                        + "[" + EcoreUtil.getURI(EcorePackage.eINSTANCE.getEClass()) + "] "
+                        + "as class \n" + "where class.name = '"
                         + createdElement.get(createdElement.size() - 1) + "'";
                 // get clazz by name
                 // TODO query fully qualified name!
@@ -217,11 +220,12 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                 }
                 if (clazz != null) {
                     String query = "select template \n"
-                            + "from \"demo.sap.com/tcsmeta\"#"
-                            + "FURCAS::TCS::ClassTemplate as template, \n"
-                            + "\""
-                            + EcoreUtil.getID(clazz)
-                            + "\" as class "
+                            + "from "
+                            + "[" + EcoreUtil.getURI(TCSPackage.eINSTANCE.getClassTemplate()) + "] "
+                            + "as template, \n"
+                            + "[" + EcoreUtil.getURI(EcorePackage.eINSTANCE.getEClass()) + "] "
+                            + " as class in elements { "
+                            + "[" + EcoreUtil.getURI(clazz) + "] } "
                             + " where template.metaReference = class where template.mode = ";
                     if (mode != null) {
                         query += "'" + mode + "'";
@@ -244,10 +248,12 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                     if (template == null) {
                         // maybe operatorTemplate?
                         query = "select template \n"
-                                + "from \"demo.sap.com/tcsmeta\"#"
-                                + "FURCAS::TCS::OperatorTemplate as template, \n" + "\""
-                                + EcoreUtil.getID(clazz)
-                                + "\" as class "
+                                + "from "
+                                + "[" + EcoreUtil.getURI(TCSPackage.eINSTANCE.getOperatorTemplate()) + "] "
+                                + "as template, \n"
+                                + "[" + EcoreUtil.getURI(EcorePackage.eINSTANCE.getEClass()) + "] "
+                                + " as class in elements { "
+                                + "[" + EcoreUtil.getURI(clazz) + "] } "
                                 + " where template.metaReference = class";
     
                         result = EcoreHelper.executeQuery(query, templateAndMMContext);

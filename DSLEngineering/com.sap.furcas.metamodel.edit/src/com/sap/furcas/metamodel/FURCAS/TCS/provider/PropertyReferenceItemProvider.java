@@ -46,141 +46,165 @@ public class PropertyReferenceItemProvider
                 IItemLabelProvider,
                 IItemPropertySource {
         /**
-     * This constructs an instance from a factory and a notifier.
-     * <!-- begin-user-doc -->
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public PropertyReferenceItemProvider(AdapterFactory adapterFactory) {
-        super(adapterFactory);
-    }
+		super(adapterFactory);
+	}
 
         /**
-     * This returns the property descriptors for the adapted class.
-     * <!-- begin-user-doc -->
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-        if (itemPropertyDescriptors == null) {
-            super.getPropertyDescriptors(object);
+		if (itemPropertyDescriptors == null) {
+			super.getPropertyDescriptors(object);
 
-            addStrucfeaturePropertyDescriptor(object);
-            addNamePropertyDescriptor(object);
-        }
-        return itemPropertyDescriptors;
-    }
+			addStrucfeaturePropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
+			addIsOppositeEndPropertyDescriptor(object);
+		}
+		return itemPropertyDescriptors;
+	}
 
         /**
-     * This adds a property descriptor for the Strucfeature feature.
-     * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Strucfeature feature.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected void addStrucfeaturePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_PropertyReference_strucfeature_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_PropertyReference_strucfeature_feature", "_UI_PropertyReference_type"),
-                 TCSPackage.Literals.PROPERTY_REFERENCE__STRUCFEATURE,
-                 true,
-                 false,
-                 true,
-                 null,
-                 null,
-                 null));
-    }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PropertyReference_strucfeature_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PropertyReference_strucfeature_feature", "_UI_PropertyReference_type"),
+				 TCSPackage.Literals.PROPERTY_REFERENCE__STRUCFEATURE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
 
         /**
-     * This adds a property descriptor for the Name feature.
-     * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected void addNamePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_PropertyReference_name_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_PropertyReference_name_feature", "_UI_PropertyReference_type"),
-                 TCSPackage.Literals.PROPERTY_REFERENCE__NAME,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-    }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PropertyReference_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PropertyReference_name_feature", "_UI_PropertyReference_type"),
+				 TCSPackage.Literals.PROPERTY_REFERENCE__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
 
         /**
-     * This returns PropertyReference.gif.
-     * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Is Opposite End feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIsOppositeEndPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PropertyReference_isOppositeEnd_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PropertyReference_isOppositeEnd_feature", "_UI_PropertyReference_type"),
+				 TCSPackage.Literals.PROPERTY_REFERENCE__IS_OPPOSITE_END,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+								/**
+	 * This returns PropertyReference.gif.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/PropertyReference"));
-    }
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/PropertyReference"));
+	}
 
         /**
-     * This returns the label text for the adapted class.
-     * <!-- begin-user-doc -->
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public String getText(Object object) {
-        String label = ((PropertyReference)object).getName();
-        return label == null || label.length() == 0 ?
-            getString("_UI_PropertyReference_type") :
-            getString("_UI_PropertyReference_type") + " " + label;
-    }
+		String label = ((PropertyReference)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_PropertyReference_type") :
+			getString("_UI_PropertyReference_type") + " " + label;
+	}
 
         /**
-     * This handles model notifications by calling {@link #updateChildren} to update any cached
-     * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-     * <!-- begin-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public void notifyChanged(Notification notification) {
-        updateChildren(notification);
+		updateChildren(notification);
 
-        switch (notification.getFeatureID(PropertyReference.class)) {
-            case TCSPackage.PROPERTY_REFERENCE__NAME:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
-        }
-        super.notifyChanged(notification);
-    }
+		switch (notification.getFeatureID(PropertyReference.class)) {
+			case TCSPackage.PROPERTY_REFERENCE__NAME:
+			case TCSPackage.PROPERTY_REFERENCE__IS_OPPOSITE_END:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
+		super.notifyChanged(notification);
+	}
 
         /**
-     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-     * that can be created under this object.
-     * <!-- begin-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-        super.collectNewChildDescriptors(newChildDescriptors, object);
-    }
+		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
 
         /**
-     * Return the resource locator for this item provider's resources.
-     * <!-- begin-user-doc -->
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public ResourceLocator getResourceLocator() {
-        return FURCASEditPlugin.INSTANCE;
-    }
+		return FURCASEditPlugin.INSTANCE;
+	}
 
 }

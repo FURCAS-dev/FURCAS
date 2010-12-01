@@ -8,7 +8,11 @@
         defaultValueLiteral=""/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultTemplate" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
         defaultValueLiteral=""/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parseRule" eType="ecore:EClass TCS.ecore#//Template"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parseRule" eType="ecore:EClass TCS.ecore#//Template">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+        <details key="Property.oppositeRoleName" value="textBlockDefinition"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//TextBlockDefinition"
         eOpposite="#//TextBlockDefinition/subDefinitions"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subDefinitions" upperBound="-1"

@@ -201,7 +201,7 @@ public class EMFModelAdapterDelegate {
             value = getOrCreateRealObjectForMock((StructureTypeMockObject) value);
         }
 
-        EStructuralFeature feat = getFeatureByName(modelElement.eClass(), propertyName, /*includeHiddenOppositeEnds*/ false);
+        EStructuralFeature feat = getFeatureByName(modelElement.eClass(), propertyName, /*includeHiddenOppositeEnds*/ true);
         if (feat.getUpperBound() == 1) {
             if (value instanceof Collection) {
                 if (((Collection<?>) value).size() != 1) {
