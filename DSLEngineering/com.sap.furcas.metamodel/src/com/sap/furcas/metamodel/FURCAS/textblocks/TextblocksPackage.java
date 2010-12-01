@@ -442,13 +442,22 @@ public interface TextblocksPackage extends EPackage {
 	int TEXT_BLOCK__COMPLETE = DOCUMENT_NODE_FEATURE_COUNT + 6;
 
 								/**
+     * The feature id for the '<em><b>Additional Templates</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TEXT_BLOCK__ADDITIONAL_TEMPLATES = DOCUMENT_NODE_FEATURE_COUNT + 7;
+
+                                /**
      * The number of structural features of the '<em>Text Block</em>' class.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int TEXT_BLOCK_FEATURE_COUNT = DOCUMENT_NODE_FEATURE_COUNT + 7;
+        int TEXT_BLOCK_FEATURE_COUNT = DOCUMENT_NODE_FEATURE_COUNT + 8;
 
         /**
      * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.AbstractTokenImpl <em>Abstract Token</em>}' class.
@@ -1861,6 +1870,17 @@ public interface TextblocksPackage extends EPackage {
 	EAttribute getTextBlock_Complete();
 
 								/**
+     * Returns the meta object for the reference list '{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getAdditionalTemplates <em>Additional Templates</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference list '<em>Additional Templates</em>'.
+     * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getAdditionalTemplates()
+     * @see #getTextBlock()
+     * @generated
+     */
+    EReference getTextBlock_AdditionalTemplates();
+
+                                /**
      * Returns the meta object for class '{@link com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken <em>Abstract Token</em>}'.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -2325,6 +2345,14 @@ public interface TextblocksPackage extends EPackage {
 		EAttribute TEXT_BLOCK__COMPLETE = eINSTANCE.getTextBlock_Complete();
 
 																/**
+         * The meta object literal for the '<em><b>Additional Templates</b></em>' reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference TEXT_BLOCK__ADDITIONAL_TEMPLATES = eINSTANCE.getTextBlock_AdditionalTemplates();
+
+                                                                /**
          * The meta object literal for the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.AbstractTokenImpl <em>Abstract Token</em>}' class.
          * <!-- begin-user-doc -->
                  * <!-- end-user-doc -->
