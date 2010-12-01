@@ -28,6 +28,7 @@ public class FixtureData {
     public static final File XPATH_METAMODEL = new File("../com.sap.furcas.test/fixtures/metamodels/XPath.ecore");
     public static final File XPATH1_METAMODEL = new File("../com.sap.furcas.test/fixtures/metamodels/XPath1.ecore");
     public static final File XPATH_REDUCED_METAMODEL = new File("../com.sap.furcas.test/fixtures/metamodels/XPathReduced.ecore");
+    public static final File MINI_JAVA_METAMODEL = new File("../com.sap.furcas.test/fixtures/metamodels/MiniJava.ecore");
     
     
     public static final File ATL_TCS = new File("../com.sap.furcas.test/fixtures/ATL.tcs");
@@ -59,6 +60,6 @@ public class FixtureData {
     public static final File TCS_OBSOLETE_TCS = new File("../com.sap.furcas.test/fixtures/TCSObsolete.tcs");
     public static final File XPATH_TCS = new File("../com.sap.furcas.test/fixtures/XPath.tcs");
     public static final File XPATH_REDUCED_TCS = new File("../com.sap.furcas.test/fixtures/XPathReduced.tcs");
-    
+    public static final File MINI_JAVA_TCS = new File("../com.sap.furcas.test/fixtures/MiniJava.tcs");
 
 }
