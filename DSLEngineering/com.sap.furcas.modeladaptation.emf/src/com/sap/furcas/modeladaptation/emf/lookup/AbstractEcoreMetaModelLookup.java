@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import com.sap.furcas.modeladaptation.emf.adaptation.MessageUtil;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.MultiplicityBean;
@@ -72,8 +73,7 @@ public abstract class AbstractEcoreMetaModelLookup implements IMetaModelLookup<E
             EStructuralFeature feat = getEStructuralFeature(reference, featureName);
             if (feat != null) {
                 EClassifier eType = feat.getEType();
-
-                if (eType.eIsProxy()) {
+                if (eType != null && eType.eIsProxy()) {
                     EClassifier resolved = (EClassifier) EcoreUtil.resolve(eType, feat);
                     if (resolved == eType) {
                         throw new MetaModelLookupException("Could not resolve proxy for classifier: " + eType);
@@ -82,8 +82,8 @@ public abstract class AbstractEcoreMetaModelLookup implements IMetaModelLookup<E
                 } else {
                     resultType = eType;
                 }
-                if (resultType == null) { // Ecore lookup inconsistency
-                    throw new MetaModelLookupException("Feature Class name is null for " + reference + "." + featureName);
+                if (resultType == null) {
+                    throw new MetaModelLookupException("Inconsistent metamodel: No type specified for for " + MessageUtil.asModelName(reference.getNames())+ "." + featureName);
                 }
             }
         }
