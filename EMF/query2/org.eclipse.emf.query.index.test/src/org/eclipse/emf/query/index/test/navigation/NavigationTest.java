@@ -52,7 +52,7 @@ public class NavigationTest extends Assert {
 	private Resource cont;
 
 	public Options getOptions() {
-		return new Options("C:/tmp/", Options.DISABLED, Options.DISABLED);
+		return new Options(System.getProperty("java.io.tmpdir"), Options.DISABLED, Options.DISABLED);
 	}
 
 	@Test
