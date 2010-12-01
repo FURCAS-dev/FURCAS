@@ -16,7 +16,5 @@ Require-Bundle: org.junit;bundle-version="4.8.1",
  com.sap.furcas.parser.tcs
 Export-Package: com.sap.furcas.runtime.parser.testbase,
  com.sun.tools.javac
- com.sap.furcas.parser.tcs,
- com.sap.furcas.metamodel.tests
 Bundle-ClassPath: lib/tools.jar,
  .

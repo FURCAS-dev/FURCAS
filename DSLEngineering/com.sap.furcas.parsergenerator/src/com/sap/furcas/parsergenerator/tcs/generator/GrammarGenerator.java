@@ -138,6 +138,7 @@ public class GrammarGenerator {
         if (grammarFile.exists()) {
             grammarFile.delete();
         }
+        grammarFile.getParentFile().mkdirs();
         grammarFile.createNewFile();
 
         FileOutputStream outputStream = new FileOutputStream(grammarFile);

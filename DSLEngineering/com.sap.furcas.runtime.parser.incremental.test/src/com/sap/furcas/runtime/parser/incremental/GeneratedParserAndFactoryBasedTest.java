@@ -15,7 +15,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
-import com.sap.furcas.modeladaptation.emf.EMFModelAdapter;
+import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
@@ -27,7 +27,7 @@ import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 public class GeneratedParserAndFactoryBasedTest extends
 		GeneratedParserBasedTest {
 
-	private static ParserGenerationTestHelper generationHelper;
+	protected static ParserGenerationTestHelper generationHelper;
 
 	public static void generateParserFactoryForLanguage(String language,
 			String completeMetamodelPackageName, String metamodelProjectName)

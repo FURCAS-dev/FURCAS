@@ -18,6 +18,7 @@ public class PropertyReferenceStub extends LocatedElementStub implements
 
     public String name;
     public EStructuralFeature strucFeature = new EcoreAnyStub();
+	public boolean isOppositeEnd = false;
     
     @Override
     public String getName() {
@@ -44,6 +45,16 @@ public class PropertyReferenceStub extends LocatedElementStub implements
     public void setStrucfeature(EStructuralFeature value) {
         Assert.fail("not implemented.");
     }
+
+	@Override
+	public boolean isIsOppositeEnd() {
+		return isOppositeEnd ;
+	}
+
+	@Override
+	public void setIsOppositeEnd(boolean value) {
+		Assert.fail("not implemented.");
+	}
 
 
 }

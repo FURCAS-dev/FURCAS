@@ -20,7 +20,9 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.MultiplicityBean;
@@ -35,7 +37,20 @@ import com.sap.furcas.runtime.common.util.EcoreHelper;
  */
 public abstract class AbstractEcoreMetaModelLookup implements IMetaModelLookup<EObject> {
 
-    /**
+	private final OppositeEndFinder oppositeEndFinder;
+
+	/**
+	 * Constructor requiring {@link OppositeEndFinder} that is used to lookup opposite ends
+	 * that can also be referenced from within {@link Template Templates}.
+	 * 
+	 * @param oppositeEndFinder The {@link OppositeEndFinder} used to find opposite ends within
+	 * the target metamodel.
+	 */
+    public AbstractEcoreMetaModelLookup(OppositeEndFinder oppositeEndFinder) {
+		this.oppositeEndFinder = oppositeEndFinder;
+	}
+
+	/**
      * Look up the type by its name
      */
     protected final EClassifier findClassifier(ResolvedNameAndReferenceBean<EObject> reference) throws MetaModelLookupException {
@@ -70,6 +85,10 @@ public abstract class AbstractEcoreMetaModelLookup implements IMetaModelLookup<E
         EClassifier resultType = null;
         if (reference != null) {
             EStructuralFeature feat = getEStructuralFeature(reference, featureName);
+            if(feat == null) {
+            	//could be hidden opposite
+            	feat = getHiddenOpposite(reference, featureName);
+            }
             if (feat != null) {
                 EClassifier eType = feat.getEType();
 
@@ -91,7 +110,20 @@ public abstract class AbstractEcoreMetaModelLookup implements IMetaModelLookup<E
 
     }
 
-    private EStructuralFeature getEStructuralFeature(ResolvedNameAndReferenceBean<EObject> reference, String featureName) throws MetaModelLookupException {
+    private EStructuralFeature getHiddenOpposite(
+			ResolvedNameAndReferenceBean<EObject> reference, String featureName) throws MetaModelLookupException {
+    	List<EStructuralFeature> ends = new ArrayList<EStructuralFeature>();
+    	oppositeEndFinder.findOppositeEnds((EClassifier) reference.getReference(), featureName, ends);
+    	if(ends.size() > 1) {
+    		throw new MetaModelLookupException("More than one oppositeEnd found for: " + reference.getNames() + ":" + featureName);
+    	} else if(ends.size() == 0) {
+    		return null;
+    	} else {
+    		return ends.iterator().next();
+    	}
+	}
+
+	private EStructuralFeature getEStructuralFeature(ResolvedNameAndReferenceBean<EObject> reference, String featureName) throws MetaModelLookupException {
         EStructuralFeature returnFeature = null;
         
         EClassifier typeClass = findClassifier(reference);
