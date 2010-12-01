@@ -17,7 +17,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
  * @author D052602
  * 
  */
-public class FixtureWithGapsProvidingTextBlockTest extends TextBlockTest {
+public abstract class FixtureWithGapsProvidingTextBlockTest extends TextBlockTest {
 
     protected Resource resource = TextblocksTestHelper.createTransientResource();
     

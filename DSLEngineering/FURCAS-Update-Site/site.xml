@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description name="www.furcas.org" url="www.furcas.org/update-site/">
+      The FURCAS update site
+   </description>
+   <feature url="features/FURCAS_1.0.1.qualifier.jar" id="FURCAS" version="1.0.1.qualifier">
+      <category name="furcas"/>
+   </feature>
+   <feature url="features/EMFEnhancements-Feature_1.0.0.qualifier.jar" id="EMFEnhancements-Feature" version="1.0.0.qualifier">
+      <category name="furcas"/>
+   </feature>
+   <category-def name="furcas" label="FURCAS Textual Modelling">
+      <description>
+         Something
+      </description>
+   </category-def>
+</site>

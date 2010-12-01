@@ -7,10 +7,13 @@ import com.sap.emf.ocl.trigger.impl.TriggerManagerFactoryImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.ActivationOption;
 
 /**
- * Used to create a {@link TriggerManager}.
+ * Used to create a {@link TriggerManager}. The resulting {@link TriggerManager}
+ * initially doesn't observe any {@link ResourceSet}. Use
+ * {@link TriggerManager#addToObservedResourceSets(org.eclipse.emf.ecore.resource.ResourceSet)}
+ * to start observing a {@link ResourceSet}.
  * 
  * @author Axel Uhl (D043530)
- *
+ * 
  */
 public interface TriggerManagerFactory {
     static TriggerManagerFactory INSTANCE = new TriggerManagerFactoryImpl();

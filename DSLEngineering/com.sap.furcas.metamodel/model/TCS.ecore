@@ -396,9 +396,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InjectorActionsBlock" eSuperTypes="#//SequenceElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="propertyInits" upperBound="-1"
-        eType="#//InjectorAction" containment="true" eOpposite="#//InjectorAction/injectorActionsBlock"/>
+        eType="#//InjectorAction" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="injectorActions" upperBound="-1"
-        eType="#//InjectorAction"/>
+        eType="#//InjectorAction" containment="true" eOpposite="#//InjectorAction/injectorActionsBlock"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QueryPArg" eSuperTypes="#//PropertyArg">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="query" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -438,7 +438,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InjectorAction" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="injectorActionsBlock" eType="#//InjectorActionsBlock"
-        eOpposite="#//InjectorActionsBlock/propertyInits"/>
+        eOpposite="#//InjectorActionsBlock/injectorActions"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyInit" abstract="true" eSuperTypes="#//InjectorAction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="propertyReference" eType="#//PropertyReference"/>

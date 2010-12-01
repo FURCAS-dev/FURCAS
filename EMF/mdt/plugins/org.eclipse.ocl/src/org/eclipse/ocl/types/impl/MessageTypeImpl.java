@@ -118,7 +118,7 @@ public class MessageTypeImpl<C, O, P>
 				.getEnvironmentFor(this);
 
 			operations = new BasicEList<O>(OCLStandardLibraryUtil
-					.createMessageTypeOperations(env));
+				.createMessageTypeOperations(env));
 		}
 
 		return operations;
@@ -262,10 +262,10 @@ public class MessageTypeImpl<C, O, P>
 			EList<?> typedElements;
 			if (getReferredOperation() != null) {
 				typedElements = new BasicEList<Object>(uml
-						.getParameters(getReferredOperation()));
+					.getParameters(getReferredOperation()));
 			} else if (getReferredSignal() != null) {
 				typedElements = new BasicEList<Object>(uml
-						.getAttributes(getReferredSignal()));
+					.getAttributes(getReferredSignal()));
 			} else {
 				typedElements = ECollections.EMPTY_ELIST;
 			}

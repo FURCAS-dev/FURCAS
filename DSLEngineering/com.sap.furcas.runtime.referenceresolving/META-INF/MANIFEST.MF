@@ -6,8 +6,9 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SAP
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: com.sap.emf.ocl.trigger,
- org.eclipse.equinox.common,
+ org.eclipse.equinox.common;visibility:=reexport,
  org.eclipse.ocl.ecore;bundle-version="3.0.0",
+ com.sap.furcas.runtime.textblocks,
  com.sap.furcas.runtime.tcs,
  com.sap.furcas.metamodel,
  org.eclipse.emf.query2,
@@ -18,3 +19,4 @@ Require-Bundle: com.sap.emf.ocl.trigger,
  de.hpi.sam.bp2009.solution.impactAnalyzer,
  com.sap.furcas.runtime.parser
 Bundle-Activator: com.sap.furcas.runtime.referenceresolving.SyntaxRegistry
+Export-Package: com.sap.furcas.runtime.referenceresolving

@@ -1,47 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.sap.dsl</groupId>
-  <artifactId>root</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  
-  <modules>
-    <module>DSLEngineering</module>
-    <module>EMF</module>
-    <module>EMFEnhancements</module>
-    <module>ngpm</module>
-  </modules>
+	<groupId>com.sap.dsl</groupId>
+	<artifactId>root</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.sonatype.tycho</groupId>
-        <artifactId>maven-osgi-test-plugin</artifactId>
-        <version>0.10.0</version>
-        <configuration>
-          <argLine>-Xmx1024m</argLine>
-          <useUIHarness>true</useUIHarness>
-          <testFailureIgnore>true</testFailureIgnore>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.sonatype.tycho</groupId>
-        <artifactId>tycho-maven-plugin</artifactId>
-        <version>0.10.0</version>
-        <extensions>true</extensions>
-      </plugin>
- <plugin>
-  <groupId>org.sonatype.tycho</groupId>
-  <artifactId>target-platform-configuration</artifactId>
-  <version>0.10.0</version>
-  <configuration>
-    <resolver>p2</resolver>
-  </configuration>
-</plugin>
+	<modules>
+		<module>DSLEngineering</module>
+		<module>EMF</module>
+		<module>EMFEnhancements</module>
+		<module>ngpm</module>
+	</modules>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
 
-    </plugins>
-  </build>
+	<build>
+		<directory>bin</directory>
+		<outputDirectory>bin</outputDirectory>
+		<testOutputDirectory>bin</testOutputDirectory>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<inherited>true</inherited>
+					<groupId>org.sonatype.tycho</groupId>
+					<artifactId>maven-osgi-test-plugin</artifactId>
+					<version>0.10.0</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<groupId>org.sonatype.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>0.10.0</version>
+				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+				<groupId>org.sonatype.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>0.10.0</version>
+				<configuration>
+					<!-- <target> -->
+					<!-- <artifact> -->
+					<!-- <groupId>${project.groupId}</groupId> -->
+					<!-- <artifactId>FURCAS</artifactId> -->
+					<!-- <version>1.0.1-SNAPSHOT</version> -->
+					<!-- <classifier>test</classifier> -->
+					<!-- </artifact> -->
+					<!-- </target> -->
+					<resolver>p2</resolver>
+					<environments>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>macosx</os>
+							<ws>cocoa</ws>
+							<arch>x86_64</arch>
+						</environment>
+					</environments>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.sonatype.tycho</groupId>
+				<artifactId>maven-osgi-test-plugin</artifactId>
+				<configuration>
+					<argLine>-Xmx1024m</argLine>
+					<testFailureIgnore>true</testFailureIgnore>
+					<excludes>
+						<exclude>**/NavigationPathCreationTest.java</exclude>
+						<exclude>**/*$*</exclude> <!-- Exclude inner classes -->
+					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.sonatype.tycho</groupId>
+				<artifactId>maven-osgi-compiler-plugin</artifactId>
+				<version>0.10.0</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<repositories>
+		<repository>
+			<!-- <id>nexus</id> -->
+			<layout>p2</layout>
+			<!-- <url>http://nexus:8081/nexus/content/repositories/build.milestones.unzip/org/eclipse/download/eclipse/org.eclipse.platform/3.6.1/org.eclipse.platform-3.6.1.zip-unzip/</url> -->
+			<!-- <url>http://nexus:8081/nexus/content/repositories/build.milestones.unzip/</url> -->
+			<!-- </repository> -->
+			<!-- <repository> -->
+			<id>eclipse</id>
+			<!-- <url>http://nexus:8081/nexus/content/repositories/3rd-party.milestones.maven-central.proxy/</url> -->
+			<url>http://download.eclipse.org/releases/helios/</url>
+		</repository>
+	</repositories>
+
 </project>

@@ -11,7 +11,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.edit.ui,
  de.hpi.sam.bp2009.solution.eventManager,
  de.hpi.sam.bp2009.solution.impactAnalyzer,
- de.hpi.sam.bp2009.solution.oclToAst,
  com.sap.ocl.oppositefinder.query2,
  de.hpi.sam.bp2009.solution.queryContextScopeProvider
 Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer.editor

@@ -121,7 +121,7 @@ public class LoopExpOperations
 				result = false;
 				message = OCLMessages.bind(
 					OCLMessages.IterateExpLoopVarInit_ERROR_, loopExp
-					.toString());
+						.toString());
 				break;
 			}
 		}
