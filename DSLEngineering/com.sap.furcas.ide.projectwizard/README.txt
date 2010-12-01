@@ -4,6 +4,8 @@
 This readme file is for those who are trying to understand/change/extend the Furcas Project Wizard. The focus will mainly be on classes and other files in "DSLEngineering/com.sap.furcas.ide.projectwizard". Make sure to go with the newest version of the Furcas repository when developing. Make sure to read the
 commentary in the classes as it will often explain methods and classes more detailed than this README.
 
+!!!! See the JAVADOC (found in the projects 'html' folder) as it explains a lot too. !!!!
+
 I.    How does this wizard work?
 II.   Changing the templates used to generate the Language project
 III.  Understanding the connection between the metamodel and the language project

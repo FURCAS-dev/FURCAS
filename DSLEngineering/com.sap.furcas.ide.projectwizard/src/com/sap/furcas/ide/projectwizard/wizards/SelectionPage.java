@@ -3,7 +3,6 @@ package com.sap.furcas.ide.projectwizard.wizards;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -20,22 +19,69 @@ import org.eclipse.swt.widgets.Text;
 
 import com.sap.furcas.ide.projectwizard.util.ProjectInfo;
 
-
-/* This is the second page of the wizard. It lets you choose, wether you want to create a pure fresh MetaModel
- * or import an existing one into your new Metamodel.*/
-
+/**
+ * This is the second page of the wizard. It lets you choose, wether you want to create a pure fresh MetaModel or import an
+ * existing one into your new Metamodel.
+ * 
+ * @author Frederik Petersen (D054528)
+ * 
+ */
 public class SelectionPage extends WizardPage {
+
+    /**
+     * The radio button that is selected for creating a fresh metamodel project.
+     */
     Button selectmm1;
+
+    /**
+     * The radio button that is selected for importing an existing metamodel.
+     */
     Button selectmm2;
+
+    /**
+     * Label in front of the className textfield. Sometimes invisible.
+     */
     Label classNameLabel;
+
+    /**
+     * Label in front of the nsURI textfield. Sometimes invisible.
+     */
     Label nsURILabel;
+
+    /**
+     * nsURI textfield. Sometimes invisible.
+     */
     Text nsURIText;
+
+    /**
+     * classname textfield. Sometimes invisible.
+     */
     Text classNameText;
+
+    /**
+     * The next page.
+     */
     private LoadPage page3;
+
+    /**
+     * The FurcasWizard.
+     */
     FurcasWizard wiz;
+
+    /**
+     * Keeps track of the user input.
+     */
     ProjectInfo pi;
 
-    public SelectionPage(ISelection selection, FurcasWizard w, ProjectInfo projectInfo) {
+    /**
+     * Sets some variables like title etc.
+     * 
+     * @param w
+     *            Furcas Wizard
+     * @param projectInfo
+     *            user input
+     */
+    public SelectionPage(FurcasWizard w, ProjectInfo projectInfo) {
         super("Metamodel");
         page3 = null;
         wiz = w;
@@ -45,6 +91,11 @@ public class SelectionPage extends WizardPage {
         setPageComplete(false);
     }
 
+    /**
+     * Create the URI of this page. There are two radio buttons letting the user choose between loading or creating
+     * a metamodel. If the user chooses to create a new Metamodelproject two labels and two textfields come up
+     * asking the user for the namespace URI and the name of the first class of the metamodel.
+     */
     @Override
     public void createControl(Composite parent) {
         Composite container = new Composite(parent, SWT.NULL);
@@ -54,6 +105,7 @@ public class SelectionPage extends WizardPage {
         layout.verticalSpacing = 9;
 
         // First option
+        //
         selectmm1 = new Button(container, SWT.RADIO);
         GridData gd = new GridData(GridData.FILL_HORIZONTAL);
         selectmm1.setText("Create new METAMODEL-project");
@@ -69,7 +121,7 @@ public class SelectionPage extends WizardPage {
                 }
                 getNextPage();
                 setPageComplete(true);
-                wiz.getContainer().updateButtons();                
+                wiz.getContainer().updateButtons();
                 classNameLabel.setText("Name the first class of the metamodel:");
                 nsURILabel.setText("nsURI of the metamodel:");
                 classNameText.setVisible(true);
@@ -83,7 +135,8 @@ public class SelectionPage extends WizardPage {
             public void mouseUp(MouseEvent e) {
             }
         });
-        // second option
+        // Second option
+        //
         selectmm2 = new Button(container, SWT.RADIO);
         GridData gd2 = new GridData(GridData.FILL_HORIZONTAL);
         selectmm2.setText("Use existing METAMODEL");
@@ -99,7 +152,7 @@ public class SelectionPage extends WizardPage {
                 }
                 getNextPage();
                 setPageComplete(true);
-                wiz.getContainer().updateButtons(); 
+                wiz.getContainer().updateButtons();
                 classNameLabel.setVisible(false);
                 nsURILabel.setVisible(false);
                 classNameText.setVisible(false);
@@ -145,6 +198,9 @@ public class SelectionPage extends WizardPage {
 
     }
 
+    /**
+     * If the text in the textfields changes this method checks for errors.
+     */
     protected void dialogChanged() {
         pi.setNsURI(nsURIText.getText());
         pi.setClassName(classNameText.getText());
@@ -166,6 +222,10 @@ public class SelectionPage extends WizardPage {
 
     }
 
+    /**
+     * 
+     * @return 1 if first radio button is selected, 2 if second radio button is selected
+     */
     public Integer getSel() {
         Integer sel = 0;
         if (selectmm1.getSelection() == true)
@@ -175,6 +235,11 @@ public class SelectionPage extends WizardPage {
         return sel;
     }
 
+    /**
+     * This method handles the page creation from here on and assigns some user input variables.
+     * 
+     * @return the next page (LoadPage) or null
+     */
     @Override
     public IWizardPage getNextPage() {
         if (getSel() == 2) {
@@ -192,7 +257,7 @@ public class SelectionPage extends WizardPage {
             pi.setLoadMetamodel(false);
             pi.setNsURI(nsURIText.getText());
             pi.setClassName(classNameText.getText());
-            if (page3 != null){
+            if (page3 != null) {
                 page3.setPageComplete(true);
                 if (page3.getNextPage() != null)
                     page3.getNextPage().setPageComplete(true);
@@ -201,6 +266,11 @@ public class SelectionPage extends WizardPage {
         return null;
     }
 
+    /**
+     * Checks if the String s contains only letters.
+     * @param s The string that is to be checked
+     * @return true if the string contains only letters. false if not.
+     */
     private boolean isAlpha(final String s) {
         final char[] chars = s.toCharArray();
         for (int x = 0; x < chars.length; x++) {
@@ -214,6 +284,11 @@ public class SelectionPage extends WizardPage {
         return true;
     }
 
+    /**
+     * Checks if the char c is an upper case character.
+     * @param c The character that is to be checked.
+     * @return true if it is an upper case character, false if not.
+     */
     private boolean isUpper(final char c) {
         if ((c >= 'A') && (c <= 'Z'))
             return true;

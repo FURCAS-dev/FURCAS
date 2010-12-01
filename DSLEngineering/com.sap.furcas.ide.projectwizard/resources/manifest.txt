@@ -20,7 +20,7 @@ Require-Bundle: org.eclipse.ui,
  com.sap.furcas.runtime.tcs;bundle-version="1.0.0",
  com.sap.furcas.ide.parserfactory;bundle-version="1.0.0",
  com.sap.furcas.runtime.common;bundle-version="1.0.0",
- com.sap.furcas.runtime.parser;bundle-version="1.0.0"$MMRef$
+ com.sap.furcas.runtime.parser;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Export-Package: $ProjectName$.editor
 Bundle-Activator: $ProjectName$.editor.Activator

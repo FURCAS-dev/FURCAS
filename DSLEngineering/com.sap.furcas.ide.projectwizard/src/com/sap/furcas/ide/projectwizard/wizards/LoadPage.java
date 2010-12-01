@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -40,26 +41,60 @@ import org.eclipse.swt.widgets.Text;
 
 import com.sap.furcas.ide.projectwizard.util.ProjectInfo;
 
-/* 
- * This wizardpage is displayed when the user chooses to import some kind of existing MetaModel into his
- * Metamodelproject.
- * */
+/**
+ * This wizardpage is displayed when the user chooses to import some kind of existing MetaModel into his Metamodelproject.
+ * 
+ * @author Frederik Petersen (D054528)
+ * 
+ */
 public class LoadPage extends WizardPage {
+    /**
+     * The FurcasWizard instance.
+     */
     public FurcasWizard wizard;
+    /**
+     * The uri Textfield. It has no other use than displaying the URI to the chosen metamodel.
+     */
     public Text uriField;
+    /**
+     * This label displayes an error Message if a wrong filetype is chosen.
+     */
     public Label wrongType;
+    /**
+     * Keeps track of the user input.
+     */
     ProjectInfo pi;
+    /**
+     * Keeps track of the chosen metamodel
+     */
     public EPackage eP;
+    /**
+     * This is the next page.
+     */
     ClassChooserPage cCP;
 
+    /**
+     * Sets the title and calls the super constructor etc.
+     * 
+     * @param pageName
+     *            Name of the page
+     * @param wiz
+     *            The Furcas Wizard
+     * @param pi
+     *            The user input
+     */
     protected LoadPage(String pageName, FurcasWizard wiz, ProjectInfo pi) {
         super(pageName);
         this.pi = pi;
         wizard = wiz;
-        setTitle("Uh oh");
-        setDescription("Not fully implemented yet. No effect until now. Please add the desired metamodel manually.");
+        setTitle("Metamodel Load Page");
+        setDescription("You can either choose an existing Metamodel from workspace or from registeres resources.");
     }
 
+    /**
+     * Creates the UI of this page. It consists of 2 buttons, a textfield and a label (for filetype errors).
+     * Also adds listeners to the buttons that call dialogs upon clicking on them.
+     */
     @Override
     public void createControl(Composite parent) {
         final Composite container = new Composite(parent, SWT.NULL);
@@ -75,8 +110,11 @@ public class LoadPage extends WizardPage {
             @Override
             public void widgetSelected(SelectionEvent event) {
                 pi.setFromWorkspace(false);
+                // Call the dialog that shows the registered EPackages
+                // 
                 RegisteredPackageDialog registeredPackageDialog = new RegisteredPackageDialog(getShell());
                 registeredPackageDialog.open();
+                // save the result
                 Object[] result = registeredPackageDialog.getResult();
                 if (result != null) {
                     List<?> nsURIs = Arrays.asList(result);
@@ -92,10 +130,14 @@ public class LoadPage extends WizardPage {
                         for (Resource resource : resourceSet.getResources()) {
                             for (EPackage ePackage : getAllPackages(resource)) {
                                 if (nsURIs.contains(ePackage.getNsURI())) {
-                                        if (ePackage.getESuperPackage() == null)
-                                            eP = ePackage;
-                                        else
-                                            eP = ePackage.getESuperPackage();
+                                    // Save the EPackage to global var eP
+                                    // 
+                                    if (ePackage.getESuperPackage() == null)
+                                        eP = ePackage;
+                                    else
+                                        eP = ePackage.getESuperPackage();
+                                    // Set the namespace URI in the ProjectInfo to metamodels nsURI
+                                    //
                                     pi.setNsURI(eP.getNsURI());
                                     uriField.setText(resource.getURI().toString());
                                     break;
@@ -114,10 +156,14 @@ public class LoadPage extends WizardPage {
                         for (Resource resource : resourceSet.getResources()) {
                             for (EPackage ePackage : getAllPackages(resource)) {
                                 if (nsURIs.contains(ePackage.getNsURI())) {
-                                        if (ePackage.getESuperPackage() == null)
-                                            eP = ePackage;
-                                        else
-                                            eP = ePackage.getESuperPackage();
+                                    // Save the EPackage to global var eP
+                                    //
+                                    if (ePackage.getESuperPackage() == null)
+                                        eP = ePackage;
+                                    else
+                                        eP = ePackage.getESuperPackage();
+                                    // Set the namespace URI in the ProjectInfo to metamodels nsURI
+                                    //
                                     pi.setNsURI(eP.getNsURI());
                                     uriField.setText(resource.getURI().toString());
                                     break;
@@ -136,13 +182,17 @@ public class LoadPage extends WizardPage {
             @Override
             public void widgetSelected(SelectionEvent event) {
                 pi.setFromWorkspace(true);
+                // Open a dialog showing the workspace tree allowing one to select a .ecore file from there
+                //
                 IFile[] files = WorkspaceResourceDialog.openFileSelection(getShell(), "Choose Metamodel",
                         "Select the desired Metamodel an click OK.", false, null, null);
                 if (files.length > 0) {
                     IProject mMproject = files[0].getProject();
-                    pi.setMmProject(mMproject.getName());
-                    pi.setModelPath(mMproject.getWorkspace().getRoot().getLocation().toString() + files[0].getFullPath().toString());
+                    // Set the appropriate values in ProjectInfo and eP
+                    pi.setModelPath(mMproject.getWorkspace().getRoot().getLocation().toString()
+                            + files[0].getFullPath().toString());
                     eP = fileToEPack(files[0]);
+                    pi.setNsURI(eP.getNsURI());
                     uriField.setText(URI.createPlatformResourceURI(files[0].getFullPath().toString(), true).toString());
                 }
             }
@@ -172,10 +222,16 @@ public class LoadPage extends WizardPage {
 
     }
 
+    /**
+     * Convert a file to the EPackage containing a metamodel.
+     * @param iFile The file that is to be converted to the Epackage.
+     * @return The EPackage containing the metamodel loaded from the file.
+     */
     protected EPackage fileToEPack(IFile iFile) {
         ResourceSet resSet = new ResourceSetImpl();
         resSet.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap());
-        URI fileURI = URI.createPlatformResourceURI("/" + iFile.getProject().getName() + "/" + iFile.getProjectRelativePath().toString(), true);
+        URI fileURI = URI.createPlatformResourceURI("/" + iFile.getProject().getName() + "/"
+                + iFile.getProjectRelativePath().toString(), true);
         Resource resource = resSet.createResource(fileURI);
         Map<Object, Object> options = new HashMap<Object, Object>();
         options.put(XMLResource.OPTION_ENCODING, "UTF-8");
@@ -185,8 +241,8 @@ public class LoadPage extends WizardPage {
             e.printStackTrace();
         }
         EList<EObject> sd = resource.getContents();
-        for (EObject object : sd){
-            if(object instanceof EPackage){
+        for (EObject object : sd) {
+            if (object instanceof EPackage) {
                 EPackage ePack = (EPackage) object;
                 pi.setNsURI(ePack.getNsURI());
                 return ePack;
@@ -195,6 +251,9 @@ public class LoadPage extends WizardPage {
         return null;
     }
 
+    /**
+     * Gets called when the URI textfield changes to check the input for mistakes and trim it.
+     */
     protected void dialogChanged() {
         String text = uriField.getText();
         text = text.trim();
@@ -208,27 +267,34 @@ public class LoadPage extends WizardPage {
         }
         if (!uriField.getText().matches(text))
             uriField.setText(text);
-        pi.setURIPath(uriField.getText());
-        wizard.getWiz().getContainer().updateButtons();
-        if (getNextPage() != null){
+        Wizard supWizard = (Wizard) wizard;
+        supWizard.getContainer().updateButtons();
+        if (getNextPage() != null) {
             getNextPage().setTreeInput(eP);
         }
     }
 
+    /**
+     * @return the next page (an instance of the ClassChooserPage)
+     */
     @Override
     public ClassChooserPage getNextPage() {
         if (cCP == null) {
-            cCP = new ClassChooserPage("cCP",wizard.page.getProjectInfo());
+            cCP = new ClassChooserPage("cCP", wizard.page.getProjectInfo());
             cCP.setPageComplete(false);
             wizard.addPage(cCP);
         }
         if (cCP.geteP() == null)
             cCP.seteP(eP);
-        
-        
+
         return cCP;
     }
 
+    /**
+     * Get all packages of a resource.
+     * @param resource The resource containing the EPackages
+     * @return A collection of the EPackages the resource contains.
+     */
     protected Collection<EPackage> getAllPackages(Resource resource) {
         List<EPackage> result = new ArrayList<EPackage>();
         for (TreeIterator<?> j = new EcoreUtil.ContentTreeIterator<Object>(resource.getContents()) {
@@ -247,9 +313,4 @@ public class LoadPage extends WizardPage {
         }
         return result;
     }
-
-    protected String getURIPath() {
-        return uriField.getText();
-    }
-
 }

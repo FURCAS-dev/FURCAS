@@ -2,8 +2,6 @@ package com.sap.furcas.ide.projectwizard.util;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
@@ -18,36 +16,58 @@ import org.eclipse.ui.wizards.newresource.BasicNewResourceWizard;
 
 import com.sap.furcas.ide.projectwizard.wizards.FurcasWizard;
 
-
-
-/* 
- * This class is called by the doFinish() method of the Wizard. It creates the Language Project and the necessary
- * files etc with the help of the classes SourceCodeFactory and WizardProjectHelper.
+/**
+ * This class is called by the doFinish() method of the Wizard. It creates the Language Project and the necessary files etc with
+ * the help of the classes {@link}SourceCodeFactory and {@link}WizardProjectHelper.
  * 
- * */
+ * @author Frederik Petersen (D054528)
+ * 
+ */
 public class CreateProject extends WorkspaceModifyOperation {
+    /**
+     * The source folder of the new project.
+     */
     protected static final String ORIGINAL_FILE_LOCATION_ROOT = "src";
-
-    private static final String[] EXTRA_CLASSPATH = {/*
-                                                      * "platform:/plugin/com.sap.mi.textual.parsing/lib/antlr-3.1.1.jar",
-                                                      * "platform:/plugin/com.sap.mi.textual.parsing/lib/antlr-2.7.7.jar",
-                                                      * "platform:/plugin/com.sap.mi.textual.parsing/lib/stringtemplate.jar"
-                                                      */
-    };
+    /**
+     * Used to access the user input.
+     */
     ProjectInfo pi;
+    /**
+     * Represents the wizards window.
+     */
     Shell shell;
+    /**
+     * Used to access methods or variables of the wizard.
+     */
     FurcasWizard wizard;
+    /**
+     * Reference to the generated project.
+     */
     public IProject iP;
+    /**
+     * Instance of the {@link}SourceCodeFactory used to built files from text templates.
+     */
     static SourceCodeFactory scf;
 
+    /**
+     * Give the user input to the instance.
+     * 
+     * @param pi
+     *            The user input.
+     * @param shell
+     *            The window containing the wizard.
+     */
     public CreateProject(ProjectInfo pi, Shell shell) {
         this.pi = pi;
         this.shell = shell;
-        
+
         scf = new SourceCodeFactory();
 
     }
 
+    /**
+     * Starts the process of project creation.
+     */
     protected void execute(IProgressMonitor monitor) throws CoreException, InvocationTargetException, InterruptedException {
         monitor.beginTask("Creating project " + pi.getProjectName(), 2);
 
@@ -55,6 +75,14 @@ public class CreateProject extends WorkspaceModifyOperation {
         iP = project;
     }
 
+    /**
+     * This class does all the needed steps to set the variables for the {@link}WizardProjectHelper and the calling of it's
+     * methods. Afterwords all other furcas specific files are built.
+     * 
+     * @param monitor
+     *            The progress monitor for the process of file creation
+     * @return The generated project.
+     */
     private IProject createProject(IProgressMonitor monitor) {
 
         List<String> srcfolders = new ArrayList<String>();
@@ -70,16 +98,17 @@ public class CreateProject extends WorkspaceModifyOperation {
         nonSrcFolders.add("resources");
         nonSrcFolders.add("mappings");
 
-        List<String> extraclasspath = new ArrayList<String>(Arrays.asList(EXTRA_CLASSPATH));
-
-        IProject dslProject = WizardProjectHelper.createPlugInProject(pi, pi.getProjectName(), srcfolders, nonSrcFolders,
-                Collections.<IProject> emptyList(), exportedPackages, extraclasspath, monitor, this.shell, null, false);
+        // Create the project
+        //
+        IProject dslProject = WizardProjectHelper.createPlugInProject(pi, srcfolders, nonSrcFolders, exportedPackages, monitor,
+                this.shell, false);
 
         if (dslProject == null) {
             return null;
         }
         monitor.worked(1);
 
+        // Make sure the src and generated folder exist and save them to variables.
         //
         IFolder sourceTargetRootFolder = dslProject.getFolder(ORIGINAL_FILE_LOCATION_ROOT);
         assert (sourceTargetRootFolder.exists());
@@ -87,10 +116,12 @@ public class CreateProject extends WorkspaceModifyOperation {
         IFolder genRootFolder = dslProject.getFolder('/' + "generated");
         assert (genRootFolder.exists());
 
-        // set up the "plugin.xml" and store in root directory
+        // Set up the "plugin.xml" and store in root directory
+        //
         WizardProjectHelper.createFile("plugin.xml", dslProject, scf.createPluginXML(pi), monitor);
 
-        // create package folder "generated" with contents
+        // Create package folder "generated" with contents
+        //
         IFolder genSrcFolder = null;
         try {
             genSrcFolder = createGeneratedFolder(genRootFolder, monitor, "");
@@ -98,21 +129,27 @@ public class CreateProject extends WorkspaceModifyOperation {
             System.out.println("Fehlerquelle I");
         }
 
-        // create package folders under "src"
+        // Create package folders under "src"
+        //
         try {
             createSource(pi, sourceTargetRootFolder, dslProject, monitor);
         } catch (CoreException e) {
             System.out.println("Fehlerquelle II");
         }
 
-        // contents of the generate.properties file
+        // Contents of the generate.properties file
+        //
         String props = scf.createdPropertiesCode(pi);
         WizardProjectHelper.createFile("generate.properties", sourceTargetRootFolder, props, monitor);
 
-        // create a sample TCS file and store it in folder "generated"
+        // Create a sample TCS file and store it in folder "generated"
+        //
         String templateString = scf.createSampleTCS(pi);
         IFile grammar = WizardProjectHelper.createFile(pi.getTCSFileName(), genSrcFolder, templateString, monitor);
 
+        // Opening the file for editing. Note that the wizard later on opens the .ecore file if the user
+        // chose to build a new metamodel project, so you won't see the effect of this coding in that case.
+        //
         monitor.setTaskName("Opening file for editing...");
         BasicNewResourceWizard.selectAndReveal(grammar, PlatformUI.getWorkbench().getActiveWorkbenchWindow());
         monitor.worked(1);
@@ -120,6 +157,20 @@ public class CreateProject extends WorkspaceModifyOperation {
         return dslProject;
     }
 
+    /**
+     * Generates the source folder.
+     * 
+     * @param pi
+     *            The user input.
+     * @param srcDir
+     *            The folder where the source package is to be created.
+     * @param dslProject
+     *            The project where it's created.
+     * @param monitor
+     *            The progressmonitor for the process of creation.
+     * @return The source Folder.
+     * @throws CoreException
+     */
     private static IFolder createSource(ProjectInfo pi, IFolder srcDir, IProject dslProject, IProgressMonitor monitor)
             throws CoreException {
 
@@ -140,15 +191,41 @@ public class CreateProject extends WorkspaceModifyOperation {
         return srcDir;
     }
 
+    /**
+     * Generates the "generated" folder.
+     * 
+     * @param srcDir
+     *            The folder in which to look for the generated folder.
+     * @param monitor
+     *            The progress monitor for generating the folder.
+     * @param basePath
+     *            The basePath of the project.
+     * @return The generated folder.
+     * @throws CoreException
+     */
     private static IFolder createGeneratedFolder(IFolder srcDir, IProgressMonitor monitor, String basePath) throws CoreException {
-        String treeFolderPath = basePath + "/generated";
-        IFolder treeFolder = srcDir.getFolder(treeFolderPath);
-        if (!treeFolder.exists()) {
-            treeFolder.create(false, true, monitor);
+        String generatedFolderPath = basePath + "/generated";
+        IFolder generatedFolder = srcDir.getFolder(generatedFolderPath);
+        if (!generatedFolder.exists()) {
+            generatedFolder.create(false, true, monitor);
         }
-        return treeFolder;
+        return generatedFolder;
     }
 
+    /**
+     * Generates the tree folder
+     * 
+     * @param srcDir
+     *            Where to look for the folder.
+     * @param monitor
+     *            The progress monitor.
+     * @param basePath
+     *            The project's basepath
+     * @param pi
+     *            The user input
+     * @return The Tree Folder.
+     * @throws CoreException
+     */
     private static IFolder createTreeFolder(IFolder srcDir, IProgressMonitor monitor, String basePath, ProjectInfo pi)
             throws CoreException {
         String treeFolderPath = basePath + "/tree";
@@ -159,6 +236,20 @@ public class CreateProject extends WorkspaceModifyOperation {
         return treeFolder;
     }
 
+    /**
+     * Generates the Parserfolder and the ParserFactory.java file
+     * 
+     * @param srcDir
+     *            Where to look for the folder.
+     * @param monitor
+     *            The progress monitor.
+     * @param basePath
+     *            The project's basepath
+     * @param pi
+     *            The user input
+     * @return The Parser Folder.
+     * @throws CoreException
+     */
     private static IFolder createParserFolder(IFolder srcDir, IProgressMonitor monitor, String basePath, ProjectInfo pi)
             throws CoreException {
         String parserFolderPath = basePath + "/parser";
@@ -173,6 +264,20 @@ public class CreateProject extends WorkspaceModifyOperation {
         return parserFolder;
     }
 
+    /**
+     * Generates the Parserfolder and the Activator.java, Editor.java, Mapper.java files
+     * 
+     * @param srcDir
+     *            Where to look for the folder.
+     * @param monitor
+     *            The progress monitor.
+     * @param basePath
+     *            The project's basepath
+     * @param pi
+     *            The user input
+     * @return The Editor folder.
+     * @throws CoreException
+     */
     private static IFolder createEditorFolder(IFolder srcDir, IProgressMonitor monitor, String basePath, ProjectInfo pi)
             throws CoreException {
         String editorFolderPath = basePath + "/editor";
@@ -190,6 +295,13 @@ public class CreateProject extends WorkspaceModifyOperation {
         return editorFolder;
     }
 
+    /**
+     * Makes the first char of a string an upper case letter.
+     * 
+     * @param s
+     *            The string where the first letter will be set to upper case.
+     * @return The string with an upper case letter in first place.
+     */
     public static String capitalizeFirstChar(String s) {
         return ("" + s.charAt(0)).toUpperCase() + s.substring(1);
     }

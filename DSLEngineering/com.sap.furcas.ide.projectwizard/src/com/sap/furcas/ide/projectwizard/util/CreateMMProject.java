@@ -2,7 +2,6 @@ package com.sap.furcas.ide.projectwizard.util;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,28 +30,23 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.swt.widgets.Shell;
 
 import com.sap.furcas.ide.projectwizard.wizards.FurcasWizard;
-import com.sap.furcas.ide.projectwizard.wizards.LanguagePage;
-
 
 /**
- * This class is able to generate a java project with a fresh .ecore metamodel. The metamodel
- * already contains a class. The name of this class is chosen by the user of the wizard. It also
- * creates a .genmodel file for the metamodel and generates the model code for it. So in the end
- * there should be a complete metamodel project with successfully building java classes.
- * This class is only called when the user choosen to connect his language project to a 
- * new metamodel!
- * <p> 
- * The class gets help from the class {@link WizardProjectHelper}, which generates the fundamental
- * parts of the project.
+ * This class is able to generate a java project with a fresh .ecore metamodel. The metamodel already contains a class. The name
+ * of this class is chosen by the user of the wizard. It also creates a .genmodel file for the metamodel and generates the model
+ * code for it. So in the end there should be a complete metamodel project with successfully building java classes. This class is
+ * only called when the user choosen to connect his language project to a new metamodel!
+ * <p>
+ * The class gets help from the class {@link WizardProjectHelper}, which generates the fundamental parts of the project.
  * 
- * @author Frederik Petersen D054528
- *
+ * @author Frederik Petersen (D054528)
+ * 
  */
 public class CreateMMProject {
     /**
-     * Is used to get the ProjectInfo.
+     * Is used to get user input, shell etc.
      */
-    protected static LanguagePage lpage;
+    protected static FurcasWizard wizard;
     /**
      * The singleton instance of the EcorePackage. It's used in the process of creating a new EPackage.
      */
@@ -62,42 +56,48 @@ public class CreateMMProject {
      */
     protected static EcoreFactory ecoreFactory = ecorePackage.getEcoreFactory();
     /**
-     * Global variable referencing the EPackage of the new Metamodel.
+     * This shell represents the wizard window.
      */
-    protected static EPackage eP;
-    protected static IFile file;
     protected static Shell shell;
+    /**
+     * The progressmonitor used for all the different creation processes in this class.
+     */
     protected static IProgressMonitor progressMonitor;
 
-    public static void create(FurcasWizard wizard, LanguagePage page, Shell sh) {
-        lpage = page;
+    /**
+     * This class is called in the <code>doAdditional()</code> method of the {@link}FurcasWizard to start the generation of the
+     * metamodel project.
+     * 
+     * @param wiz
+     *            See global variable <code>wizard</code> for information
+     */
+    public static void create(FurcasWizard wiz) {
+        // Set all the important variables for generating the Project
+        //
+        wizard = wiz;
         progressMonitor = new NullProgressMonitor();
-        String projectName = page.getProjectInfo().getProjectName() + ".metamodel";
+        ProjectInfo pi = wizard.getPage().getProjectInfo();
         List<String> srcFolders = new ArrayList<String>();
         srcFolders.add("src");
         List<String> nonSrcFolders = new ArrayList<String>();
         nonSrcFolders.add("model");
-        shell = sh;
+        shell = wizard.getShell();
 
         // Create the project for the metamodel
-        WizardProjectHelper.createPlugInProject(lpage.getProjectInfo(), projectName, srcFolders, nonSrcFolders, Collections.<IProject> emptyList(), null,
-                null, progressMonitor, shell, null, true);
+        //
+        WizardProjectHelper.createPlugInProject(pi, srcFolders, nonSrcFolders, null, progressMonitor, shell, true);
 
+        // Create the ecore file
+        //
         createNewModel();
 
     }
 
-
-    protected static EObject createInitialModel() {
-        EClass eClass = (EClass) ecorePackage.getEClassifier("EPackage");
-        EObject rootObject = ecoreFactory.create(eClass);
-        if (rootObject instanceof ENamedElement) {
-            ((ENamedElement) rootObject).setName(CreateProject.capitalizeFirstChar(lpage.getProjectInfo().getLanguageName()));
-        }
-        return rootObject;
-    }
-
+    /**
+     * Creates the metamodels .ecore and .genmodel files. It also creates the first class in the metamodel.
+     */
     protected static void createNewModel() {
+        ProjectInfo pi = wizard.getPage().getProjectInfo();
         // Create a resource set
         //
         ResourceSet resourceSet = new ResourceSetImpl();
@@ -105,24 +105,26 @@ public class CreateMMProject {
 
         // Get the URI of the model file.
         //
-        String mmprojectpath = lpage.getProjectInfo().getProjectName() + ".metamodel/model/"
-                + CreateProject.capitalizeFirstChar(lpage.getProjectInfo().getLanguageName()) + ".ecore";
+        String mmprojectpath = pi.getProjectName() + ".metamodel/model/"
+                + CreateProject.capitalizeFirstChar(pi.getLanguageName()) + ".ecore";
         URI fileURI = URI.createPlatformResourceURI(mmprojectpath, true);
 
-        // Create a resource for this file. Don't specify a content type, as it could be Ecore or EMOF.
+        // Create a resource for this file.
         //
         Resource resource = resourceSet.createResource(fileURI);
 
         // Add the initial model object to the contents.
+        // And create the first class with the user chosen name.
         //
         EObject rootObject = createInitialModel();
         if (rootObject != null) {
             if (rootObject instanceof EPackage) {
+                EPackage eP;
                 eP = (EPackage) rootObject;
-                eP.setNsPrefix(lpage.getProjectInfo().getLanguageName());
-                eP.setNsURI(lpage.getProjectInfo().getNsURI());
+                eP.setNsPrefix(pi.getLanguageName());
+                eP.setNsURI(pi.getNsURI());
                 EClass eC = ecoreFactory.createEClass();
-                eC.setName(lpage.getProjectInfo().getClassName());
+                eC.setName(pi.getClassName());
                 eP.getEClassifiers().add(eC);
                 resource.getContents().add(eP);
             } else
@@ -138,24 +140,55 @@ public class CreateMMProject {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        // Create the .genmodel file
+        //
+        IFile file = null;
         IWorkspace workspace = ResourcesPlugin.getWorkspace();
-        IProject project = workspace.getRoot().getProject(lpage.getProjectInfo().getProjectName() + ".metamodel");
+        IProject project = workspace.getRoot().getProject(pi.getProjectName() + ".metamodel");
         try {
-            file = WizardProjectHelper.createGenmodel(progressMonitor, project, lpage.getProjectInfo());
+            file = WizardProjectHelper.createGenmodel(progressMonitor, project, pi);
         } catch (CoreException e) {
             e.printStackTrace();
         }
         URI newURI = URI.createPlatformResourceURI(file.getProject().getName() + "/" + file.getProjectRelativePath().toString(),
                 true);
+        // Generate the model code. (e.g. the java classes and the plugin.xml)
+        //
         genModelGen(newURI);
     }
 
+    /**
+     * Creates the initial model.
+     * 
+     * @return The model as a EObject.
+     */
+    protected static EObject createInitialModel() {
+        EClass eClass = (EClass) ecorePackage.getEClassifier("EPackage");
+        EObject rootObject = ecoreFactory.create(eClass);
+        if (rootObject instanceof ENamedElement) {
+            ((ENamedElement) rootObject).setName(CreateProject.capitalizeFirstChar(wizard.getPage().getProjectInfo()
+                    .getLanguageName()));
+        }
+        return rootObject;
+    }
+
+    /**
+     * Generates the model code for the model. As one would be clicking Generate->Generate Model code in the UI, when .genmodel is
+     * loaded in workspace.
+     * 
+     * @param uri
+     *            nsURI of the model.
+     */
     @SuppressWarnings("deprecation")
     protected static void genModelGen(URI uri) {
+        // Method can easily be converted to a method that generates modelcode for several models.
+        //
         List<URI> uris = new ArrayList<URI>();
         uris.add(uri);
         List<GenModel> gms = GeneratorUIUtil.loadGenModels(progressMonitor, uris, shell);
         if (gms.get(0).canGenerate()) {
+            // The actual process of generating.
+            //
             gms.get(0).generate(progressMonitor);
         }
     }

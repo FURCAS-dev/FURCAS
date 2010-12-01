@@ -16,12 +16,11 @@ import org.antlr.stringtemplate.StringTemplate;
 
 import com.sap.furcas.ide.projectwizard.wizards.FurcasWizard;
 
-
 /**
  * 
  * Encapsulates all methods providing source code needed in the process of creating a new DSL with the {@link FurcasWizard}. All
  * information needed for the generic source code generation is retrieved from the associated {@link ProjectInfo}. It uses the
- * method readFile() to read the files in the resources folder. StringTemplate is now used to replace certain variables in the
+ * method <code>readFile()</code> to read the files in the resources folder. StringTemplate is now used to replace certain variables in the
  * code by the values entered in the wizard.
  * 
  * @author C5126086 Martin Kuester and D054528 Frederik Petersen
@@ -29,14 +28,28 @@ import com.sap.furcas.ide.projectwizard.wizards.FurcasWizard;
  */
 public class SourceCodeFactory {
 
-    /* Reads a file from the resources folder into the returned string. */
+    /**
+     * Reads a file from the resources folder into the returned string.
+     * 
+     * @param filename
+     *            The name of the file located in the resource folder (e.g. tcs.txt).
+     * @return The content of the file as a String.
+     * @throws IOException
+     */
     private String readFile(String filename) throws IOException {
         String path = "/resources/" + filename;
         InputStream iS = getClass().getResourceAsStream(path);
         return convertStreamToString(iS);
     }
 
-    /* Converts the InputStream into a string. */
+    /**
+     * Converts the InputStream into a string.
+     * 
+     * @param is
+     *            InputStream of the resource.
+     * @return The content of the Stream in form of a String.
+     * @throws IOException
+     */
     public String convertStreamToString(InputStream is) throws IOException {
         if (is != null) {
             Writer writer = new StringWriter();
@@ -56,27 +69,36 @@ public class SourceCodeFactory {
             return "";
         }
     }
-    
+
+    /**
+     * Writes an input stream to a file
+     * 
+     * @param is
+     *            The input stream which is written into the file.
+     * @param file
+     *            The file where the input stream will be written into.
+     */
     public void writeToFile(InputStream is, File file) {
         try {
-                DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
-                int c;
-                while((c = is.read()) != -1) {
-                        out.writeByte(c);
-                }
-                is.close();
-                out.close();
+            DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
+            int c;
+            while ((c = is.read()) != -1) {
+                out.writeByte(c);
+            }
+            is.close();
+            out.close();
+        } catch (IOException e) {
+            System.err.println("Error Writing/Reading Streams.");
         }
-        catch(IOException e) {
-                System.err.println("Error Writing/Reading Streams.");
-        }
-}
+    }
 
-    /*
-     * All the following methods, import the contents of the sample text files in the resources folder into a StringTeamplate. The
-     * keywords in the Strings are then replaced by the data entered in the wizard.
+    /**
+     * Creates a manifest file from the resources/manifest.txt file
+     * 
+     * @param pi
+     *            User input
+     * @return The content of the manifest file.
      */
-
     protected String createManifest(ProjectInfo pi) {
         StringTemplate template = null;
         String templateString = null;
@@ -85,13 +107,19 @@ public class SourceCodeFactory {
             template = new StringTemplate(templateString);
             setTemplateAtts(template, pi);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
         return template.toString();
     }
 
+    /**
+     * Creates a build.properties file from the resources/buildprob.txt file
+     * 
+     * @param pi
+     *            User input
+     * @return The content of the build.properties file.
+     */
     protected String createBuildProbCode() {
         StringTemplate template = null;
         String templateString = null;
@@ -105,6 +133,13 @@ public class SourceCodeFactory {
         return template.toString();
     }
 
+    /**
+     * Creates an editor class from the resources/editor.txt file
+     * 
+     * @param pi
+     *            User input
+     * @return The content of the editor class.
+     */
     protected String createEditorCode(ProjectInfo pi) {
         StringTemplate template = null;
         String templateString = null;
@@ -119,6 +154,13 @@ public class SourceCodeFactory {
         return template.toString();
     }
 
+    /**
+     * Creates a .genmodel file from the resources/genmodel.txt file
+     * 
+     * @param pi
+     *            User input
+     * @return The content of the .genmodel file.
+     */
     public String createGenmodelCode(ProjectInfo pi) {
         StringTemplate template = null;
         String templateString = null;
@@ -132,7 +174,14 @@ public class SourceCodeFactory {
 
         return template.toString();
     }
-
+      
+    /**
+     * Creates a mapper class from the resources/mapper.txt file
+     * 
+     * @param pi
+     *            User input
+     * @return The content of the mapper class.
+     */
     protected String createMapperCode(ProjectInfo pi) {
         StringTemplate template = null;
         String templateString = null;
@@ -147,6 +196,13 @@ public class SourceCodeFactory {
         return template.toString();
     }
 
+    /**
+     * Creates an activator class from the resources/activator.txt file
+     * 
+     * @param pi
+     *            User input
+     * @return The content of the activator class.
+     */
     protected String createActivator(ProjectInfo pi) {
         StringTemplate template = null;
         String templateString = null;
@@ -161,6 +217,13 @@ public class SourceCodeFactory {
         return template.toString();
     }
 
+    /**
+     * Creates a plugin.xml file from the resources/pluginxml.txt file
+     * 
+     * @param pi
+     *            User input
+     * @return The content of the plugin.xml file.
+     */
     protected String createPluginXML(ProjectInfo pi) {
         StringTemplate template = null;
         String templateString = null;
@@ -169,13 +232,19 @@ public class SourceCodeFactory {
             template = new StringTemplate(templateString);
             setTemplateAtts(template, pi);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
         return template.toString();
     }
 
+    /**
+     * Creates a generated.properties file from the resources/genprops.txt file
+     * 
+     * @param pi
+     *            User input
+     * @return The content of the generated.properties file.
+     */
     protected String createdPropertiesCode(ProjectInfo pi) {
         StringTemplate template = null;
         String templateString = null;
@@ -185,13 +254,19 @@ public class SourceCodeFactory {
             setTemplateAtts(template, pi);
 
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
         return template.toString();
     }
 
+    /**
+     * Creates a .tcs file from the resources/tcs.txt file
+     * 
+     * @param pi
+     *            User input
+     * @return The content of the .tcs file.
+     */
     public String createSampleTCS(ProjectInfo pi) {
         StringTemplate template = null;
         String templateString = null;
@@ -201,13 +276,19 @@ public class SourceCodeFactory {
             setTemplateAtts(template, pi);
 
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
         return template.toString();
     }
 
+    /**
+     * Creates an parserfactory class from the resources/parserfactory.txt file
+     * 
+     * @param pi
+     *            User input
+     * @return The content of the parserfactory class.
+     */
     protected String createParserFactory(ProjectInfo pi) {
         StringTemplate template = null;
         String templateString = null;
@@ -217,16 +298,23 @@ public class SourceCodeFactory {
             setTemplateAtts(template, pi);
 
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
         return template.toString();
     }
 
+    
+    /**
+     * Sets the attributes for the StringTemplate. <p>
+     * Example: If you want to replace the variable $example$ in the text file with the String "Hello World":<p>
+     * 
+     * <code>String hello = "Hello World";</code><br>
+     * <code>template.setAttribute("example", hello);</code>
+     * @param template The StringTemplate
+     * @param pi The user input
+     */
     private void setTemplateAtts(StringTemplate template, ProjectInfo pi) {
-        String mmRef = ",\n " + pi.getProjectName() + ".metamodel;bundle-version=\"1.0.0\"";
-        String wsRef = ",\n " + pi.getMmProject();
         String capLangName = CreateProject.capitalizeFirstChar(pi.getLanguageName());
         template.setAttribute("LangName", pi.getLanguageName());
         template.setAttribute("FirstClass", pi.getClassName());
@@ -237,12 +325,6 @@ public class SourceCodeFactory {
         template.setAttribute("Ext", pi.getFileExtension());
         template.setAttribute("Path", pi.getBasePath());
         template.setAttribute("TCSPath", "generated/generated/" + pi.getLanguageName() + ".tcs");
-        if (pi.isLoadMetamodel()){
-            if (pi.isFromWorkspace())
-                template.setAttribute("MMRef", wsRef);                                
-        }
-        else
-            template.setAttribute("MMRef", mmRef);
     }
 
 }
