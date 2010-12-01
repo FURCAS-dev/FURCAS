@@ -398,7 +398,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="propertyInits" upperBound="-1"
         eType="#//InjectorAction" containment="true" eOpposite="#//InjectorAction/injectorActionsBlock"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="injectorActions" upperBound="-1"
-        eType="#//InjectorAction"/>
+        eType="#//InjectorAction" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QueryPArg" eSuperTypes="#//PropertyArg">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="query" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -421,8 +421,6 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isOppositeEnd" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ContextTemplate" eSuperTypes="#//Template">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isContext" ordered="false"

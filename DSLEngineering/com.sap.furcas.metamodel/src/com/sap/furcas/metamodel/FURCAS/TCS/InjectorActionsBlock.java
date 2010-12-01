@@ -45,7 +45,7 @@ public interface InjectorActionsBlock extends SequenceElement {
         EList<InjectorAction> getPropertyInits();
 
         /**
-     * Returns the value of the '<em><b>Injector Actions</b></em>' reference list.
+     * Returns the value of the '<em><b>Injector Actions</b></em>' containment reference list.
      * The list contents are of type {@link com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction}.
      * <!-- begin-user-doc -->
          * <p>
@@ -53,9 +53,9 @@ public interface InjectorActionsBlock extends SequenceElement {
          * there really should be more of a description here...
          * </p>
          * <!-- end-user-doc -->
-     * @return the value of the '<em>Injector Actions</em>' reference list.
+     * @return the value of the '<em>Injector Actions</em>' containment reference list.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getInjectorActionsBlock_InjectorActions()
-     * @model
+     * @model containment="true"
      * @generated
      */
         EList<InjectorAction> getInjectorActions();
