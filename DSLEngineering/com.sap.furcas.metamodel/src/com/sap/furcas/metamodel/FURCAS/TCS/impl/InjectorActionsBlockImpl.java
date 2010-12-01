@@ -12,6 +12,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -46,7 +47,7 @@ public class InjectorActionsBlockImpl extends SequenceElementImpl implements Inj
         protected EList<InjectorAction> propertyInits;
 
         /**
-     * The cached value of the '{@link #getInjectorActions() <em>Injector Actions</em>}' reference list.
+     * The cached value of the '{@link #getInjectorActions() <em>Injector Actions</em>}' containment reference list.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @see #getInjectorActions()
@@ -81,7 +82,7 @@ public class InjectorActionsBlockImpl extends SequenceElementImpl implements Inj
      */
         public EList<InjectorAction> getPropertyInits() {
         if (propertyInits == null) {
-            propertyInits = new EObjectContainmentWithInverseEList<InjectorAction>(InjectorAction.class, this, TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS, TCSPackage.INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK);
+            propertyInits = new EObjectContainmentEList<InjectorAction>(InjectorAction.class, this, TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS);
         }
         return propertyInits;
     }
@@ -93,7 +94,7 @@ public class InjectorActionsBlockImpl extends SequenceElementImpl implements Inj
      */
         public EList<InjectorAction> getInjectorActions() {
         if (injectorActions == null) {
-            injectorActions = new EObjectResolvingEList<InjectorAction>(InjectorAction.class, this, TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS);
+            injectorActions = new EObjectContainmentWithInverseEList<InjectorAction>(InjectorAction.class, this, TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS, TCSPackage.INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK);
         }
         return injectorActions;
     }
@@ -107,8 +108,8 @@ public class InjectorActionsBlockImpl extends SequenceElementImpl implements Inj
         @Override
         public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getPropertyInits()).basicAdd(otherEnd, msgs);
+            case TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getInjectorActions()).basicAdd(otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -123,6 +124,8 @@ public class InjectorActionsBlockImpl extends SequenceElementImpl implements Inj
         switch (featureID) {
             case TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS:
                 return ((InternalEList<?>)getPropertyInits()).basicRemove(otherEnd, msgs);
+            case TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS:
+                return ((InternalEList<?>)getInjectorActions()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
