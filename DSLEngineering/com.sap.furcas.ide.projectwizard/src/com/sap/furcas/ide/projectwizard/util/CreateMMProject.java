@@ -34,11 +34,36 @@ import com.sap.furcas.ide.projectwizard.wizards.FurcasWizard;
 import com.sap.furcas.ide.projectwizard.wizards.LanguagePage;
 
 
-
+/**
+ * This class is able to generate a java project with a fresh .ecore metamodel. The metamodel
+ * already contains a class. The name of this class is chosen by the user of the wizard. It also
+ * creates a .genmodel file for the metamodel and generates the model code for it. So in the end
+ * there should be a complete metamodel project with successfully building java classes.
+ * This class is only called when the user choosen to connect his language project to a 
+ * new metamodel!
+ * <p> 
+ * The class gets help from the class {@link WizardProjectHelper}, which generates the fundamental
+ * parts of the project.
+ * 
+ * @author Frederik Petersen D054528
+ *
+ */
 public class CreateMMProject {
+    /**
+     * Is used to get the ProjectInfo.
+     */
     protected static LanguagePage lpage;
+    /**
+     * The singleton instance of the EcorePackage. It's used in the process of creating a new EPackage.
+     */
     protected static EcorePackage ecorePackage = EcorePackage.eINSTANCE;
+    /**
+     * The EcoreFactory of the singleton instance of the EcorePackage.
+     */
     protected static EcoreFactory ecoreFactory = ecorePackage.getEcoreFactory();
+    /**
+     * Global variable referencing the EPackage of the new Metamodel.
+     */
     protected static EPackage eP;
     protected static IFile file;
     protected static Shell shell;
