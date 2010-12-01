@@ -6,7 +6,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SAP
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: com.sap.emf.ocl.trigger,
- org.eclipse.equinox.common,
+ org.eclipse.equinox.common;visibility:=reexport,
  org.eclipse.ocl.ecore;bundle-version="3.0.0",
  com.sap.furcas.runtime.tcs,
  com.sap.furcas.metamodel,
