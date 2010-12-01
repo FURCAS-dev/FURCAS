@@ -36,21 +36,21 @@
   </rm:searchPath>
   <rm:searchPath name="xtext">
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
-      <rm:uri format="{0}/modeling/tmf/updates/milestones">
+      <rm:uri format="{0}/modeling/tmf/updates/releases">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
   </rm:searchPath>
   <rm:searchPath name="mwe">
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
-      <rm:uri format="{0}/modeling/emft/mwe/updates/milestones">
+      <rm:uri format="{0}/modeling/emft/mwe/updates">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
   </rm:searchPath>
   <rm:searchPath name="xpand">
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
-      <rm:uri format="{0}/modeling/m2t/xpand/updates/milestones">
+      <rm:uri format="{0}/modeling/m2t/xpand/updates/releases">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
