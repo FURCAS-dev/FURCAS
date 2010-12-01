@@ -3,6 +3,7 @@ package com.sap.furcas.runtime.referenceresolving;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.emf.ocl.trigger.AbstractOCLBasedModelUpdater;
@@ -21,10 +22,16 @@ public class SimplePropertyInitUpdater extends AbstractOCLBasedModelUpdater {
     public SimplePropertyInitUpdater(LookupPropertyInit injectorAction, OppositeEndFinder oppositeEndFinder)
             throws ParserException {
         super(injectorAction.getPropertyReference().getStrucfeature(), oppositeEndFinder, new ExpressionWithContext(
-                OCL.newInstance(oppositeEndFinder).createOCLHelper()
+                createOCLHelper(injectorAction, oppositeEndFinder)
                         .createQuery(ContextAndForeachHelper.prepareOclQuery(injectorAction.getValue())),
                 (EClass) ContextAndForeachHelper.getParsingContext(injectorAction.getValue(),
                         ((InjectorActionsBlock) injectorAction.eContainer()).getParentTemplate())),
                         /* notifyNewContextElements */ true);
+    }
+    
+    private static Helper createOCLHelper(LookupPropertyInit propInit, OppositeEndFinder oppositeEndFinder) {
+        Helper result = OCL.newInstance(oppositeEndFinder).createOCLHelper();
+        result.setContext(propInit.getInjectorActionsBlock().getParentTemplate().getMetaReference());
+        return result;
     }
 }

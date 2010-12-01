@@ -4118,8 +4118,8 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEAttribute(getForcedUpperPArg_Value(), ecorePackage.getEIntegerObject(), "value", "0", 1, 1, ForcedUpperPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(injectorActionsBlockEClass, InjectorActionsBlock.class, "InjectorActionsBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getInjectorActionsBlock_PropertyInits(), this.getInjectorAction(), this.getInjectorAction_InjectorActionsBlock(), "propertyInits", null, 0, -1, InjectorActionsBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getInjectorActionsBlock_InjectorActions(), this.getInjectorAction(), null, "injectorActions", null, 0, -1, InjectorActionsBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getInjectorActionsBlock_PropertyInits(), this.getInjectorAction(), null, "propertyInits", null, 0, -1, InjectorActionsBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getInjectorActionsBlock_InjectorActions(), this.getInjectorAction(), this.getInjectorAction_InjectorActionsBlock(), "injectorActions", null, 0, -1, InjectorActionsBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(queryPArgEClass, QueryPArg.class, "QueryPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getQueryPArg_Query(), ecorePackage.getEString(), "query", null, 1, 1, QueryPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4147,7 +4147,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEAttribute(getContextTags_Tags(), ecorePackage.getEString(), "tags", null, 0, -1, ContextTags.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(injectorActionEClass, InjectorAction.class, "InjectorAction", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getInjectorAction_InjectorActionsBlock(), this.getInjectorActionsBlock(), this.getInjectorActionsBlock_PropertyInits(), "injectorActionsBlock", null, 0, 1, InjectorAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getInjectorAction_InjectorActionsBlock(), this.getInjectorActionsBlock(), this.getInjectorActionsBlock_InjectorActions(), "injectorActionsBlock", null, 0, 1, InjectorAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(propertyInitEClass, PropertyInit.class, "PropertyInit", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getPropertyInit_PropertyReference(), this.getPropertyReference(), null, "propertyReference", null, 0, 1, PropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
