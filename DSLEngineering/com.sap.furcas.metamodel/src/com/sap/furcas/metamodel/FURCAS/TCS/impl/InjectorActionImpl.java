@@ -84,7 +84,7 @@ public abstract class InjectorActionImpl extends EObjectImpl implements Injector
             if (eInternalContainer() != null)
                 msgs = eBasicRemoveFromContainer(msgs);
             if (newInjectorActionsBlock != null)
-                msgs = ((InternalEObject)newInjectorActionsBlock).eInverseAdd(this, TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS, InjectorActionsBlock.class, msgs);
+                msgs = ((InternalEObject)newInjectorActionsBlock).eInverseAdd(this, TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS, InjectorActionsBlock.class, msgs);
             msgs = basicSetInjectorActionsBlock(newInjectorActionsBlock, msgs);
             if (msgs != null) msgs.dispatch();
         }
@@ -131,7 +131,7 @@ public abstract class InjectorActionImpl extends EObjectImpl implements Injector
         public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
         switch (eContainerFeatureID()) {
             case TCSPackage.INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK:
-                return eInternalContainer().eInverseRemove(this, TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS, InjectorActionsBlock.class, msgs);
+                return eInternalContainer().eInverseRemove(this, TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS, InjectorActionsBlock.class, msgs);
         }
         return super.eBasicRemoveFromContainerFeature(msgs);
     }

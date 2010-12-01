@@ -82,7 +82,7 @@ public class InjectorActionsBlockImpl extends SequenceElementImpl implements Inj
      */
         public EList<InjectorAction> getPropertyInits() {
         if (propertyInits == null) {
-            propertyInits = new EObjectContainmentWithInverseEList<InjectorAction>(InjectorAction.class, this, TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS, TCSPackage.INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK);
+            propertyInits = new EObjectContainmentEList<InjectorAction>(InjectorAction.class, this, TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS);
         }
         return propertyInits;
     }
@@ -94,7 +94,7 @@ public class InjectorActionsBlockImpl extends SequenceElementImpl implements Inj
      */
         public EList<InjectorAction> getInjectorActions() {
         if (injectorActions == null) {
-            injectorActions = new EObjectContainmentEList<InjectorAction>(InjectorAction.class, this, TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS);
+            injectorActions = new EObjectContainmentWithInverseEList<InjectorAction>(InjectorAction.class, this, TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS, TCSPackage.INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK);
         }
         return injectorActions;
     }
@@ -108,8 +108,8 @@ public class InjectorActionsBlockImpl extends SequenceElementImpl implements Inj
         @Override
         public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getPropertyInits()).basicAdd(otherEnd, msgs);
+            case TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getInjectorActions()).basicAdd(otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
