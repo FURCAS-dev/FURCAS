@@ -34,19 +34,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 public interface ScopeProvider {
 
     /**
-     * Returns the value of the '<em><b>Forward Scope as EObjects</b></em>' attribute list. The list contents are of type
-     * {@link EObject}. <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Forward Scope as EObjects</em>' attribute list isn't clear, there really should be more of a
-     * description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * 
-     * @return the value of the '<em>Forward Scope as EObjects</em>' attribute list.
-     */
-    Collection<EObject> getForwardScopeAsEObjects();
-
-    /**
      * Returns the value of the '<em><b>Forward Scope as URI</b></em>' attribute list. The list contents are of type {@link URI}.
      * <!-- begin-user-doc -->
      * <p>
