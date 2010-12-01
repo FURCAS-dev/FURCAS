@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface InjectorAction extends EObject {
         /**
      * Returns the value of the '<em><b>Injector Actions Block</b></em>' container reference.
-     * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock#getPropertyInits <em>Property Inits</em>}'.
+     * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock#getInjectorActions <em>Injector Actions</em>}'.
      * <!-- begin-user-doc -->
          * <p>
          * If the meaning of the '<em>Injector Actions Block</em>' container reference isn't clear,
@@ -37,8 +37,8 @@ public interface InjectorAction extends EObject {
      * @return the value of the '<em>Injector Actions Block</em>' container reference.
      * @see #setInjectorActionsBlock(InjectorActionsBlock)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getInjectorAction_InjectorActionsBlock()
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock#getPropertyInits
-     * @model opposite="propertyInits" transient="false"
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock#getInjectorActions
+     * @model opposite="injectorActions" transient="false"
      * @generated
      */
         InjectorActionsBlock getInjectorActionsBlock();

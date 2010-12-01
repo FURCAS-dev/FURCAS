@@ -12,6 +12,8 @@ Require-Bundle: org.junit;bundle-version="4.8.1",
  com.sap.furcas.runtime.parser.test,
  com.sap.furcas.runtime.parser,
  org.antlr;bundle-version="3.1.1",
- com.sap.furcas.parsergenerator
+ com.sap.furcas.parsergenerator,
+ com.sap.furcas.runtime.referenceresolving,
+ com.sap.emf.ocl.trigger
 Bundle-ClassPath: generationTemp/,
  .

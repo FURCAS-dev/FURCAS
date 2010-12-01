@@ -258,6 +258,7 @@ public class ContextAndForeachHelper {
         return result;
     }
     
+    private static final String OCL_PREFIX = "OCL:";
     /**
      * Replaces occurrences of <code>#context</code> (see {@link #contextPattern}) and <code>#foreach</code>
      * (see {@link #foreachPattern}) by <code>self</code> (see {@link Environment#SELF_VARIABLE_NAME}).
@@ -265,6 +266,9 @@ public class ContextAndForeachHelper {
     public static String prepareOclQuery(String queryToExecute) {
         String result = queryToExecute;
         if (queryToExecute != null) {
+            if (queryToExecute.startsWith(OCL_PREFIX)) {
+                result = result.substring(OCL_PREFIX.length());
+            }
             if (usesContext(result)) {
                 if (result.indexOf(Environment.SELF_VARIABLE_NAME) > -1) {
                     throw new RuntimeException("OCL Query cannot contain #context and self at the same time.");
