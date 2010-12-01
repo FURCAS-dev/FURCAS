@@ -20,12 +20,5 @@
             </cs:actorProperties>
             <cs:products alias="output" base="${buckminster.output}/promoter/"/>
         </cs:public>
-        <cs:public name="publish.build" actor="ant">
-            <cs:actorProperties>
-                <cs:property key="buildFile" value="promoter.ant"/>
-                <cs:property key="targets" value="publish.build"/>
-            </cs:actorProperties>
-            <cs:products alias="output" base="${buckminster.output}/promoter/"/>
-        </cs:public>
     </cs:actions>
 </cs:cspec>
