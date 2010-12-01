@@ -1,9 +1,17 @@
 package com.sap.furcas.runtime.parser.incremental;
 
+import org.junit.Test;
+
 import com.sap.furcas.runtime.textblocks.testbase.FixtureProvidingTextBlockTest;
 
 public class TestLexerParserInteraction extends FixtureProvidingTextBlockTest {
 
+	@Test
+	public void testSomething() {
+		// Please do not remove
+		// Maven needs at least one test in this TestCase
+	}
+	
 //	@Test
 //	public void testTokenRelocationWithParser() {
 //		//create TCS mapping on connection
