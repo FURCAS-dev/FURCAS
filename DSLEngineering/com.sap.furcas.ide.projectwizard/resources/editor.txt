@@ -7,7 +7,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import com.sap.furcas.metamodel.FURCAS.textblocks.*; 
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor; 
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
-import my.dsl.parser.$CapLangName$ParserFactory;
+import $ProjectName$.parser.$CapLangName$ParserFactory;
 
 public class $CapLangName$Editor extends AbstractGrammarBasedEditor { 
 
