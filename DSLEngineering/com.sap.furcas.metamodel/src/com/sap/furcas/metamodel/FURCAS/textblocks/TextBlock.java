@@ -27,6 +27,7 @@ import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getForEachContext <em>For Each Context</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getCachedString <em>Cached String</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#isComplete <em>Complete</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getAdditionalTemplates <em>Additional Templates</em>}</li>
  * </ul>
  * </p>
  *
@@ -201,9 +202,13 @@ public interface TextBlock extends DocumentNode {
         EList<AbstractToken> getTokens();
 
         /**
+     * Returns the value of the '<em><b>Additional Templates</b></em>' reference list.
+     * The list contents are of type {@link com.sap.furcas.metamodel.FURCAS.TCS.Template}.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @model kind="operation"
+     * @return the value of the '<em>Additional Templates</em>' reference list.
+     * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getTextBlock_AdditionalTemplates()
+     * @model
      * @generated
      */
         EList<Template> getAdditionalTemplates();
