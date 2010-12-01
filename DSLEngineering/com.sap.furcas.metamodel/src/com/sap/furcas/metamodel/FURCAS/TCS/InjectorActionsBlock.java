@@ -29,7 +29,6 @@ public interface InjectorActionsBlock extends SequenceElement {
         /**
      * Returns the value of the '<em><b>Property Inits</b></em>' containment reference list.
      * The list contents are of type {@link com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction}.
-     * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction#getInjectorActionsBlock <em>Injector Actions Block</em>}'.
      * <!-- begin-user-doc -->
          * <p>
          * If the meaning of the '<em>Property Inits</em>' containment reference list isn't clear,
@@ -38,24 +37,25 @@ public interface InjectorActionsBlock extends SequenceElement {
          * <!-- end-user-doc -->
      * @return the value of the '<em>Property Inits</em>' containment reference list.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getInjectorActionsBlock_PropertyInits()
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction#getInjectorActionsBlock
-     * @model opposite="injectorActionsBlock" containment="true"
+     * @model containment="true"
      * @generated
      */
         EList<InjectorAction> getPropertyInits();
 
         /**
-     * Returns the value of the '<em><b>Injector Actions</b></em>' reference list.
+     * Returns the value of the '<em><b>Injector Actions</b></em>' containment reference list.
      * The list contents are of type {@link com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction}.
+     * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction#getInjectorActionsBlock <em>Injector Actions Block</em>}'.
      * <!-- begin-user-doc -->
          * <p>
          * If the meaning of the '<em>Injector Actions</em>' reference list isn't clear,
          * there really should be more of a description here...
          * </p>
          * <!-- end-user-doc -->
-     * @return the value of the '<em>Injector Actions</em>' reference list.
+     * @return the value of the '<em>Injector Actions</em>' containment reference list.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getInjectorActionsBlock_InjectorActions()
-     * @model
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction#getInjectorActionsBlock
+     * @model opposite="injectorActionsBlock" containment="true"
      * @generated
      */
         EList<InjectorAction> getInjectorActions();
