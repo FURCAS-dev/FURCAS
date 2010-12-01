@@ -2,9 +2,6 @@ package com.sap.furcas.ide.projectwizard.wizards;
 
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -18,8 +15,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.presentation.EcoreEditorPlugin;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -46,42 +41,67 @@ import com.sap.furcas.ide.projectwizard.util.CreateMMProject;
 import com.sap.furcas.ide.projectwizard.util.CreateProject;
 import com.sap.furcas.ide.projectwizard.util.ProjectInfo;
 
-/*
- * This Wizard creates a pair of projects for the Furcas DSL project. It generates the necessary folder,
- * packages, files and first lines of code that help to quickly be able to create the DSL.
+/**
+ * This Wizard creates a pair of projects for the Furcas DSL project. It generates the necessary folder, packages, files and first
+ * lines of code that help to quickly be able to create the DSL.
+ * 
+ * @author Frederik Petersen (D054528)
+ * 
  */
 public class FurcasWizard extends Wizard implements INewWizard {
+    /**
+     * The first page of the wizard.
+     */
     protected LanguagePage page;
-    protected SelectionPage page2;
 
-    public Wizard getWiz() {
-        return this;
+    /**
+     * @return The first page of the wizard.
+     */
+    public LanguagePage getPage() {
+        return page;
     }
 
+    /**
+     * The second page of the wizard.
+     */
+    protected SelectionPage page2;
+
+    /**
+     * @return The second page of the wizard.
+     */
+    public SelectionPage getPage2() {
+        return page2;
+    }
+
+    /**
+     * @return The FurcasWizard instance.
+     */
     public FurcasWizard getFurcasWizard() {
         return this;
     }
 
+    /**
+     * Sets the Window title, calls the super constructor.
+     */
     public FurcasWizard() {
         super();
         setNeedsProgressMonitor(true);
         setWindowTitle("Furcas DSL Engineering Project Creator");
     }
 
-    /* The following variables are used for the creation of a fresh .ecore model file. */
-    public static final List<String> FILE_EXTENSIONS = Collections.unmodifiableList(Arrays.asList(EcoreEditorPlugin.INSTANCE
-            .getString("_UI_EcoreEditorFilenameExtensions").split("\\s*,\\s*")));
-    public static final String FORMATTED_FILE_EXTENSIONS = EcoreEditorPlugin.INSTANCE.getString(
-            "_UI_EcoreEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
-    protected EcorePackage ecorePackage = EcorePackage.eINSTANCE;
-    protected EcoreFactory ecoreFactory = ecorePackage.getEcoreFactory();
-    protected IStructuredSelection selection;
+    /**
+     * User's workbench.
+     */
     protected IWorkbench workbench;
-    protected List<String> initialObjectNames;
+    /**
+     * Wizard's classLoader
+     */
     private ClassLoader cL;
 
-    /*
+    /**
      * This method loads the image stored in the icons folder. It is displayed in the upper right corner of the wizard.
+     * 
+     * @return The image descriptor of the image. (The furcas logo)
      */
     protected ImageDescriptor getDefaultImageDescriptor() {
         cL = this.getClass().getClassLoader();
@@ -91,55 +111,49 @@ public class FurcasWizard extends Wizard implements INewWizard {
         return iD;
     }
 
-    public void init(IWorkbench workbench, IStructuredSelection selection) {
-        this.workbench = workbench;
-        this.selection = selection;
-        setWindowTitle(EcoreEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
-        setDefaultPageImageDescriptor(getDefaultImageDescriptor());
-    }
-
-    /*
+    /**
      * This method is called, when pressing the finish button in the wizard. It calls the doFinish method.
      */
-
     @Override
     public boolean performFinish() {
 
         final ProjectInfo pi = page.getProjectInfo();
 
-        if (page.valid) {
+        IRunnableWithProgress op = new IRunnableWithProgress() {
+            @Override
+            public void run(IProgressMonitor monitor) throws InvocationTargetException {
 
-            IRunnableWithProgress op = new IRunnableWithProgress() {
-                @Override
-                public void run(IProgressMonitor monitor) throws InvocationTargetException {
+                doFinish(pi, monitor);
 
-                    doFinish(pi, monitor);
-
-                    monitor.done();
-                }
-            };
-
-            try {
-                getContainer().run(true, false, op);
-            } catch (InterruptedException e) {
-                return false;
-            } catch (InvocationTargetException e) {
-                Throwable realException = e.getTargetException();
-                MessageDialog.openError(getShell(), "Error", realException.getMessage());
-                return false;
+                monitor.done();
             }
-            return true;
-        } else {
+        };
+
+        try {
+            getContainer().run(true, false, op);
+        } catch (InterruptedException e) {
+            return false;
+        } catch (InvocationTargetException e) {
+            Throwable realException = e.getTargetException();
+            MessageDialog.openError(getShell(), "Error", realException.getMessage());
             return false;
         }
+        return true;
+
     }
 
-    /*
-     * This method actually does all the work, after the Finish button is pressed. First it creates a new instance of the
-     * CreateProject class and calls its run() method. This leads to the creation of the Language Project with all its generated
-     * files, packages, folders and code. Afterwards createMMProject() creates another project for the MetaModel and
-     * doAdditional() creates the new .ecore file. loadmm() leads to loading an existing Metamodel into the new one. After all the
-     * method generateSpecific() generates all the MetaModel related files and coding into the Language Project.
+    /**
+     * This method actually does all the work, after the Finish button is pressed. First it creates a new instance of the {@link}
+     * CreateProject class and calls its <code>run()</code> method. This leads to the creation of the Language Project with all
+     * its generated files, packages, folders and code. Afterwards {@link}createMMProject() creates another project for the
+     * MetaModel and doAdditional() creates the new .ecore file. loadmm() leads to loading an existing Metamodel into the new one.
+     * But those steps only happen if the user wants to create a fresh Metamodel project. Afterwords the method
+     * <code>generateSpecific()</code> generates all the MetaModel related files and coding into the Language Project.
+     * 
+     * @param pi
+     *            The user input.
+     * @param monitor
+     *            The progress monitor.
      */
     void doFinish(final ProjectInfo pi, IProgressMonitor monitor) {
         new UIJob("creating FURCAS projects...") {
@@ -164,6 +178,13 @@ public class FurcasWizard extends Wizard implements INewWizard {
         }.schedule();
     }
 
+    /**
+     * This method is only called if the user chooses to create a new Metamodel Project. It uses the <code>create()</code> method
+     * of {@link}CreateMMProject to generate the project. And it then opens the file in the editor.
+     * 
+     * @param pi
+     *            The user input.
+     */
     public void doAdditional(final ProjectInfo pi) {
         IWorkbenchPage wpage = null;
         try {
@@ -174,7 +195,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 @Override
                 protected void execute(IProgressMonitor progressMonitor) {
                     try {
-                        CreateMMProject.create(getFurcasWizard(), page, getShell());
+                        CreateMMProject.create(getFurcasWizard());
                     } catch (Exception exception) {
                         EcoreEditorPlugin.INSTANCE.log(exception);
                     } finally {
@@ -185,6 +206,8 @@ public class FurcasWizard extends Wizard implements INewWizard {
 
             getContainer().run(false, false, operation);
 
+            // Select the new .ecore file.
+            //
             final IFile modelFile = getModelFile();
 
             IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
@@ -199,7 +222,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 });
             }
 
-            // Open an editor on the new file.
+            // Open an editor on the file.
             //
             try {
                 IEditorDescriptor defaultEditor = workbench.getEditorRegistry().getDefaultEditor(
@@ -216,19 +239,20 @@ public class FurcasWizard extends Wizard implements INewWizard {
         }
     }
 
+    /**
+     * Adds the first two pages to the wizard (as they're always part of the wizard irrespective of the user input.
+     */
     @Override
     public void addPages() {
-        page = new LanguagePage(selection);
+        page = new LanguagePage();
         addPage(page);
-        page2 = new SelectionPage(selection, this, page.getProjectInfo());
+        page2 = new SelectionPage(this, page.getProjectInfo());
         addPage(page2);
 
     }
 
     /**
-     * Get the file. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
+     * Get the model file.
      */
     public IFile getModelFile() {
         Path path = new Path(page.getProjectInfo().getProjectName() + ".metamodel/model/"
@@ -237,43 +261,79 @@ public class FurcasWizard extends Wizard implements INewWizard {
         return ResourcesPlugin.getWorkspace().getRoot().getFile(path);
     }
 
-    /*
-     * This method provides the generation of the MetaModelspecific files and coding in the dsl project.
+    /**
+     * This method provides the generation of the MetaModelspecific files and coding in the dsl project. Since these are the last
+     * lines of code called by the wizard it also builds, refreshs and cleans the project for the purpose of generating all files
+     * at once, as some generators don't see previously generated files if the project is not rebuild/refreshed/cleaned.
+     * 
+     * @param project
+     *            The language project
+     * @param pi
+     *            The user input
      */
     protected void generateSpecific(IProject project, ProjectInfo pi) {
         if (project != null) {
             EcoreMetaProjectConf conf;
             if (!pi.isFromWorkspace())
+                // instantiates the configuration take a look at EcoreMetaProjectConf for more details
+                // uses the new PRI list in the ReferenceScope to load the referenced metamodel from registered packages
+                //
                 conf = new EcoreMetaProjectConf(project, "", pi.getNsURI());
             else if (pi.getModelPath().matches("new")) {
                 String capLangName = CreateProject.capitalizeFirstChar(pi.getLanguageName());
                 IWorkspaceRoot root = project.getWorkspace().getRoot();
-                String newPath = root.getLocation().toString()+ "/" + pi.getProjectName() + 
-                ".metamodel/model/"+capLangName+".ecore";
+                String newPath = root.getLocation().toString() + "/" + pi.getProjectName() + ".metamodel/model/" + capLangName
+                        + ".ecore";
+
+                // instantiates the configuration take a look at EcoreMetaProjectConf for more details
+                // uses the ResourceSet in the ReferenceScope to load the freshly created .ecore file
+                //
                 conf = new EcoreMetaProjectConf(project, newPath, pi.getNsURI());
             } else
+                // instantiates the configuration take a look at EcoreMetaProjectConf for more details
+                // uses the ResourceSet in the ReferenceScope to load the referenced metamodel in the workspace
+                //
                 conf = new EcoreMetaProjectConf(project, pi.getModelPath(), pi.getNsURI());
             ;
             try {
                 ProjectMetaRefConfFactory.configure(project, conf);
             } catch (CoreException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             try {
-                /*Builds, refreshs, cleans the project to make sure, that all files will be found 
-                and generated*/
+                // Builds, refreshs, cleans the project to make sure, that all files will be found and generated
+                //
                 project.build(IncrementalProjectBuilder.FULL_BUILD, new NullProgressMonitor());
                 IFolder folder = project.getFolder("generated").getFolder("generated");
                 folder.refreshLocal(1, new NullProgressMonitor());
                 project.build(IncrementalProjectBuilder.CLEAN_BUILD, new NullProgressMonitor());
                 project.build(IncrementalProjectBuilder.FULL_BUILD, new NullProgressMonitor());
             } catch (CoreException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 
         }
+    }
+
+    /**
+     * Initializes this creation wizard using the passed workbench and object selection.
+     * <p>
+     * This method is called after the no argument constructor and before other methods are called.
+     * </p>
+     * <p>
+     * Selection will always be empty in FurcasWizard and has no effect here.
+     * </p>
+     * 
+     * @param workbench
+     *            the current workbench
+     * @param selection
+     *            the current object selection -- no effect
+     */
+    @Override
+    public void init(IWorkbench workbench, IStructuredSelection selection) {
+        this.workbench = workbench;
+        setWindowTitle(EcoreEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
+        setDefaultPageImageDescriptor(getDefaultImageDescriptor());
     }
 
 }

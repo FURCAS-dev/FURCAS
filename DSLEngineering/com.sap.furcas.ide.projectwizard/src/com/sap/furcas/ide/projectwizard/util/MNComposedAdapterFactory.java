@@ -7,6 +7,12 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 
+/**
+ * Used for displaying the model tree on the {@link}ClassChooserPage.
+ * 
+ * @author Frederik Petersen (D054528)
+ *
+ */
 public class MNComposedAdapterFactory
 {
     private static ComposedAdapterFactory mnCompAdapterFactory;
