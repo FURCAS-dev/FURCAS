@@ -21,11 +21,12 @@ public class AbstractOCLBasedModelUpdater extends AbstractTriggerable implements
     }
 
     /**
-     * This default implementation re-evaluates the {@link #triggerExpression} on each element reported as
-     * affected and sets the {@link #getPropertyToUpdate() property} to update by this updater to the evaluation result.
+     * This default implementation re-evaluates the {@link #triggerExpression} on each element reported as affected and
+     * sets the {@link #getPropertyToUpdate() property} to update by this updater to the evaluation result.
      */
     @Override
-    public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects, OppositeEndFinder oppositeEndFinder) {
+    public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects,
+            OppositeEndFinder oppositeEndFinder) {
         OCL ocl = OCL.newInstance(oppositeEndFinder);
         for (EObject eo : affectedContextObjects) {
             Object newValue = ocl.evaluate(eo, expression);
