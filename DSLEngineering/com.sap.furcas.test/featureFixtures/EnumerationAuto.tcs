@@ -1,0 +1,16 @@
+syntax EnumerationFeature { 
+
+  enumerationTemplate MyEnum auto;
+  		
+  
+  template EnumExpression main
+  	:
+  		attr
+  	;
+
+
+	token COMMENT	: endOfLine(start = "--");
+
+
+}
+  
