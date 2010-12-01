@@ -1,0 +1,19 @@
+syntax EnumerationFeature { 
+
+  enumerationTemplate MyEnum
+  	: #FOO = "foobar",
+  	  #BAR = "BAR"
+  	;
+  		
+  
+  template EnumExpression main
+  	:
+  		attr
+  	;
+
+
+	token COMMENT	: endOfLine(start = "--");
+
+
+}
+  
