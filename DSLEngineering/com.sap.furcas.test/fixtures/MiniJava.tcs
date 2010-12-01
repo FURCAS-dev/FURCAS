@@ -1,0 +1,170 @@
+/**
+ * A simple Java like language.
+ * 
+ * Important differences:
+ *   * Instead of per-class imports only complete packages can be imported.
+ *   * There are no primitive types. String, Interger et al have to modeled
+ *     using ordinary classes
+ */       
+syntax MiniJava {
+
+        primitiveTemplate identifier for EString default using NAME:
+                value = "unescapeString(%token%)";
+                
+        primitiveTemplate packageName for EString using PACKAGE_NAME:
+                value = "%token%";
+
+
+        
+        template CompilationUnit main:
+                "package" package{autoCreate=ifmissing} ";"
+                imports{separator = ";"}
+                classes
+        ;
+                
+        template Package :
+        	name{as=packageName}
+        ;
+        
+        template PackageImport :
+                "import" package {refersTo=name, query="OCL:Package.allInstances()", filter="->select(name = ?)", invert="name"}
+        ;
+        
+        template ClassDeclaration :
+                visibility "class" name "{"
+                        members
+                "}"
+        ;
+        
+        template TypedElement abstract;
+        template NamedElement abstract;
+        template MemberDeclaration abstract;
+        
+        template FieldDeclaration :
+                visibility  
+                type {refersTo=name, query="OCL:self.parentClass.compilationUnit.imports.package.classes", filter="->select(name = ?)", invert="name"}
+                name
+        ;
+        
+        template MethodDeclaration :
+                visibility  
+                [[ "void" | type {refersTo=name, query="OCL:self.parentClass.compilationUnit.imports.package.classes", filter="->select(name = ?)", invert="name"} ]]
+                name "(" parameters{separator=","} ")"
+                "{"
+                        body
+                "}"
+        ;
+        
+        template Parameter :
+                type {refersTo=name, query="OCL:self.parentClass.translationUnit.imports.package.classes", filter="->select(name = ?)", invert="name"}
+                name
+        ;
+        
+        template Statement :
+                "do" [[ "foo" | "bar" ]] ";" -- we just have this nonsense syntax for now...
+        ;
+        
+        enumerationTemplate Visibility auto :
+                #private           = "private",
+                #protected         = "protected",
+                #public            = "public"
+        ;
+
+        symbols {
+                lsquare         = "[";
+                rsquare         = "]"   : rightSpace;
+                excl            = "!";
+                coma            = ","   : leftNone, rightSpace;
+                lparen          = "(";
+                rparen          = ")"   : leftNone, rightSpace;
+                lcurly          = "{"   : leftSpace;
+                rcurly          = "}"   : leftNone, rightSpace;
+                semi            = ";"   : leftNone, rightSpace;
+        }
+
+               
+        omitted token COMMENT                : endOfLine(start = "//");
+        omitted token MULTI_LINE_COMMENT     : multiLine(start = "/*", end = "*/");
+        
+lexer = "
+%options testLiterals = false;
+
+
+NL
+        :       (       '\\r' '\\n'
+                |       '\\n' '\\r'     //Improbable
+                |       '\\r'
+                |       '\\n'
+                )
+        {newline();$channel=HIDDEN;}
+        ;
+
+WS
+        :       (       ' '
+                |       '\\t'
+                ){$channel=HIDDEN;}
+        ;
+
+%protected
+DIGIT
+        :       '0'..'9'
+        ;
+
+%protected
+ALPHA
+        :       'a'..'z'
+        |       'A'..'Z'
+        |       '_'
+        //For Unicode compatibility (from 0000 to 00ff)
+        |       '\\u00C0' .. '\\u00D6'
+        |       '\\u00D8' .. '\\u00F6'
+        |       '\\u00F8' .. '\\u00FF'
+        ;
+
+%protected
+SNAME
+        :       (ALPHA) (ALPHA | DIGIT)*
+;
+
+BOOL    :       'true' | 'false'        ;
+
+NAME
+        :       (
+                        SNAME
+                |       '\\''!
+                        (       
+                //      ESC     |
+                        '\\n' {newline();}
+                        |       ~('\\\\'|'\\\''|'\\n')
+                        )*
+                        '\\''!
+                )
+        ;
+
+PACKAGE_NAME :
+        SNAME ('.' SNAME)*
+	;
+
+protected
+INT
+ : (DIGIT)+
+ ;
+
+%protected
+FLOAT
+        :       DIGIT+ '.' DIGIT*
+        ;
+
+STRING
+        :       '\"'!
+                (       
+                //ESC   |               
+                        '\\n' {newline();}
+                |       ~('\\\\'|'\"'|'\\n')
+                )*
+                '\"'!
+        ;
+
+        "; 
+
+}
