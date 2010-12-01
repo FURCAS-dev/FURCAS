@@ -46,6 +46,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextBlockImpl#getForEachContext <em>For Each Context</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextBlockImpl#getCachedString <em>Cached String</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextBlockImpl#isComplete <em>Complete</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextBlockImpl#getAdditionalTemplates <em>Additional Templates</em>}</li>
  * </ul>
  * </p>
  *
@@ -143,6 +144,16 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
 	protected boolean complete = COMPLETE_EDEFAULT;
 
 								/**
+     * The cached value of the '{@link #getAdditionalTemplates() <em>Additional Templates</em>}' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getAdditionalTemplates()
+     * @generated
+     * @ordered
+     */
+    protected EList<Template> additionalTemplates;
+
+                                /**
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
@@ -343,9 +354,10 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      * @generated
      */
         public EList<Template> getAdditionalTemplates() {
-        // TODO: implement this method
-        // Ensure that you remove @generated or mark it @generated NOT
-        throw new UnsupportedOperationException();
+        if (additionalTemplates == null) {
+            additionalTemplates = new EObjectResolvingEList<Template>(Template.class, this, TextblocksPackage.TEXT_BLOCK__ADDITIONAL_TEMPLATES);
+        }
+        return additionalTemplates;
     }
 
         /**
@@ -402,6 +414,8 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
                 return getCachedString();
             case TextblocksPackage.TEXT_BLOCK__COMPLETE:
                 return isComplete();
+            case TextblocksPackage.TEXT_BLOCK__ADDITIONAL_TEMPLATES:
+                return getAdditionalTemplates();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -440,6 +454,10 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
             case TextblocksPackage.TEXT_BLOCK__COMPLETE:
                 setComplete((Boolean)newValue);
                 return;
+            case TextblocksPackage.TEXT_BLOCK__ADDITIONAL_TEMPLATES:
+                getAdditionalTemplates().clear();
+                getAdditionalTemplates().addAll((Collection<? extends Template>)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -473,6 +491,9 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
             case TextblocksPackage.TEXT_BLOCK__COMPLETE:
                 setComplete(COMPLETE_EDEFAULT);
                 return;
+            case TextblocksPackage.TEXT_BLOCK__ADDITIONAL_TEMPLATES:
+                getAdditionalTemplates().clear();
+                return;
         }
         super.eUnset(featureID);
     }
@@ -499,6 +520,8 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
                 return CACHED_STRING_EDEFAULT == null ? cachedString != null : !CACHED_STRING_EDEFAULT.equals(cachedString);
             case TextblocksPackage.TEXT_BLOCK__COMPLETE:
                 return complete != COMPLETE_EDEFAULT;
+            case TextblocksPackage.TEXT_BLOCK__ADDITIONAL_TEMPLATES:
+                return additionalTemplates != null && !additionalTemplates.isEmpty();
         }
         return super.eIsSet(featureID);
     }

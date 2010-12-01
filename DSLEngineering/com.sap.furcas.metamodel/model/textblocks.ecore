@@ -24,7 +24,6 @@
         <details key="body" value="self.subNodes->select(n | n.oclIsKindOf(AbstractToken)).oclAsType(AbstractToken)->asOrderedSet()"/>
       </eAnnotations>
     </eOperations>
-    <eOperations name="getAdditionalTemplates" upperBound="-1" eType="ecore:EClass TCS.ecore#//Template"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass textblockdefinition.ecore#//TextBlockDefinition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subNodes" upperBound="-1"
         eType="#//DocumentNode" containment="true" eOpposite="#//DocumentNode/parent"/>
@@ -38,6 +37,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="complete" lowerBound="1"
         eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
         defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="additionalTemplates" upperBound="-1"
+        eType="ecore:EClass TCS.ecore#//Template"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractToken" eSuperTypes="#//DocumentNode">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
