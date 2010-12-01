@@ -16,6 +16,7 @@
 
   <modules>
     <module>org.eclipse.ocl</module>
+    <module>org.eclipse.ocl.uml</module>
     <module>org.eclipse.ocl.ecore</module>
   </modules>
 

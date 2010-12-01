@@ -149,9 +149,7 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
      * @generated
      */
         public static TextblocksPackage init() {
-        if (isInited) {
-            return (TextblocksPackage)EPackage.Registry.INSTANCE.getEPackage(TextblocksPackage.eNS_URI);
-        }
+        if (isInited) return (TextblocksPackage)EPackage.Registry.INSTANCE.getEPackage(TextblocksPackage.eNS_URI);
 
         // Obtain or create and register package
         TextblocksPackageImpl theTextblocksPackage = (TextblocksPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof TextblocksPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new TextblocksPackageImpl());
@@ -268,6 +266,15 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
     }
 
 								/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getTextBlock_AdditionalTemplates() {
+        return (EReference)textBlockEClass.getEStructuralFeatures().get(7);
+    }
+
+                                /**
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
@@ -642,9 +649,7 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
      * @generated
      */
         public void createPackageContents() {
-        if (isCreated) {
-            return;
-        }
+        if (isCreated) return;
         isCreated = true;
 
         // Create classes and their features
@@ -656,6 +661,7 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
         createEReference(textBlockEClass, TEXT_BLOCK__FOR_EACH_CONTEXT);
         createEAttribute(textBlockEClass, TEXT_BLOCK__CACHED_STRING);
         createEAttribute(textBlockEClass, TEXT_BLOCK__COMPLETE);
+        createEReference(textBlockEClass, TEXT_BLOCK__ADDITIONAL_TEMPLATES);
 
         abstractTokenEClass = createEClass(ABSTRACT_TOKEN);
         createEAttribute(abstractTokenEClass, ABSTRACT_TOKEN__VALUE);
@@ -718,9 +724,7 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
      * @generated
      */
         public void initializePackageContents() {
-        if (isInitialized) {
-            return;
-        }
+        if (isInitialized) return;
         isInitialized = true;
 
         // Initialize package
@@ -755,12 +759,11 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
         initEReference(getTextBlock_ForEachContext(), this.getForEachContext(), null, "forEachContext", null, 0, -1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getTextBlock_CachedString(), theEcorePackage_1.getEString(), "cachedString", null, 0, 1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getTextBlock_Complete(), theEcorePackage_1.getEBoolean(), "complete", "false", 1, 1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTextBlock_AdditionalTemplates(), theTCSPackage.getTemplate(), null, "additionalTemplates", null, 0, -1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         addEOperation(textBlockEClass, this.getTextBlock(), "getSubBlocks", 0, -1, IS_UNIQUE, IS_ORDERED);
 
         addEOperation(textBlockEClass, this.getAbstractToken(), "getTokens", 0, -1, IS_UNIQUE, IS_ORDERED);
-
-        addEOperation(textBlockEClass, theTCSPackage.getTemplate(), "getAdditionalTemplates", 0, -1, IS_UNIQUE, IS_ORDERED);
 
         initEClass(abstractTokenEClass, AbstractToken.class, "AbstractToken", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getAbstractToken_Value(), ecorePackage.getEString(), "value", null, 0, 1, AbstractToken.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
