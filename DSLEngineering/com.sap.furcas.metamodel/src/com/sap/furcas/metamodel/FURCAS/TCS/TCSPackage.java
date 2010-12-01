@@ -5707,7 +5707,7 @@ public interface TCSPackage extends EPackage {
         int INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS = SEQUENCE_ELEMENT_FEATURE_COUNT + 0;
 
         /**
-     * The feature id for the '<em><b>Injector Actions</b></em>' reference list.
+     * The feature id for the '<em><b>Injector Actions</b></em>' containment reference list.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
@@ -9071,10 +9071,10 @@ public interface TCSPackage extends EPackage {
         EReference getInjectorActionsBlock_PropertyInits();
 
         /**
-     * Returns the meta object for the reference list '{@link com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock#getInjectorActions <em>Injector Actions</em>}'.
+     * Returns the meta object for the containment reference list '{@link com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock#getInjectorActions <em>Injector Actions</em>}'.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @return the meta object for the reference list '<em>Injector Actions</em>'.
+     * @return the meta object for the containment reference list '<em>Injector Actions</em>'.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock#getInjectorActions()
      * @see #getInjectorActionsBlock()
      * @generated
@@ -11473,7 +11473,7 @@ public interface TCSPackage extends EPackage {
                 EReference INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS = eINSTANCE.getInjectorActionsBlock_PropertyInits();
 
                 /**
-         * The meta object literal for the '<em><b>Injector Actions</b></em>' reference list feature.
+         * The meta object literal for the '<em><b>Injector Actions</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
                  * <!-- end-user-doc -->
          * @generated
