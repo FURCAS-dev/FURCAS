@@ -187,6 +187,9 @@ public class EMFModelAdapterDelegate {
         } catch (ModelAdapterException e) {
             // look for hidden opposite
             EStructuralFeature hiddenOpposite = getHiddenOppositeFeatureByName(modelElement.eClass(), propertyName);
+            if (hiddenOpposite == null) {
+                throw new ModelAdapterException("No such feature \"" + propertyName + "\" defined for  " + modelElement.eClass());
+            }
             return oppositeEndFinder.navigateOppositePropertyWithBackwardScope((EReference) hiddenOpposite, modelElement);
         }
     }
