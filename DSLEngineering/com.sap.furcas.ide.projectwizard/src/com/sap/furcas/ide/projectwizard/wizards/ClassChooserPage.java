@@ -143,6 +143,6 @@ public class ClassChooserPage extends WizardPage {
                 else
                     searchTree.setInput(ePack.getESuperPackage());
             }
-        }       
+        }
     }
 }

@@ -20,8 +20,8 @@ import com.sap.furcas.ide.projectwizard.wizards.FurcasWizard;
  * 
  * Encapsulates all methods providing source code needed in the process of creating a new DSL with the {@link FurcasWizard}. All
  * information needed for the generic source code generation is retrieved from the associated {@link ProjectInfo}. It uses the
- * method <code>readFile()</code> to read the files in the resources folder. StringTemplate is now used to replace certain variables in the
- * code by the values entered in the wizard.
+ * method <code>readFile()</code> to read the files in the resources folder. StringTemplate is now used to replace certain
+ * variables in the code by the values entered in the wizard.
  * 
  * @author C5126086 Martin Kuester and D054528 Frederik Petersen
  * 
@@ -174,7 +174,7 @@ public class SourceCodeFactory {
 
         return template.toString();
     }
-      
+
     /**
      * Creates a mapper class from the resources/mapper.txt file
      * 
@@ -304,15 +304,19 @@ public class SourceCodeFactory {
         return template.toString();
     }
 
-    
     /**
-     * Sets the attributes for the StringTemplate. <p>
-     * Example: If you want to replace the variable $example$ in the text file with the String "Hello World":<p>
+     * Sets the attributes for the StringTemplate.
+     * <p>
+     * Example: If you want to replace the variable $example$ in the text file with the String "Hello World":
+     * <p>
      * 
      * <code>String hello = "Hello World";</code><br>
      * <code>template.setAttribute("example", hello);</code>
-     * @param template The StringTemplate
-     * @param pi The user input
+     * 
+     * @param template
+     *            The StringTemplate
+     * @param pi
+     *            The user input
      */
     private void setTemplateAtts(StringTemplate template, ProjectInfo pi) {
         String capLangName = CreateProject.capitalizeFirstChar(pi.getLanguageName());

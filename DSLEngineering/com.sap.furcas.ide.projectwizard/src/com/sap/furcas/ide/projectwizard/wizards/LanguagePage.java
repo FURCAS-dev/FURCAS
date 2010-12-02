@@ -38,7 +38,7 @@ public class LanguagePage extends WizardPage {
      * The textfield for the file extension.
      */
     private Text fileExtensionText;
-    
+
     /**
      * The instance of {@link}ProjectInfo that keeps track of the user input. Found everywhere in the wizard.
      */
@@ -124,9 +124,8 @@ public class LanguagePage extends WizardPage {
     }
 
     /**
-     * This method is called when the content of one of the textfields changes. It sets the fitting variables in
-     * the ProjectInfo instance and checks the user input for errors. If the user has entered appropriate input
-     * the finish button will be enabled.
+     * This method is called when the content of one of the textfields changes. It sets the fitting variables in the ProjectInfo
+     * instance and checks the user input for errors. If the user has entered appropriate input the finish button will be enabled.
      */
     void dialogChanged() {
         projectInfo.setProjectName(projectText.getText());

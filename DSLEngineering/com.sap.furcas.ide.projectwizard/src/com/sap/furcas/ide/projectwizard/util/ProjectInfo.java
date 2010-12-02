@@ -12,42 +12,42 @@ public class ProjectInfo {
      * The name of the language project as entered on the {@link}LanguagePage.
      */
     private String projectName = "";
-    
+
     /**
      * The name of the language as entered on the {@link}LanguagePage.
      */
     private String languageName = "";
-    
+
     /**
      * The languages file extension as entered on the {@link}LanguagePage.
      */
     private String fileExtension = "";
-    
+
     /**
      * The nsURI of the metamodel as entered on the {@link}SelectionPage if new Metamodel project creation is chosen.
      */
     private String nsURI = "";
-    
+
     /**
      * Stores the name of the first class that is used for the main template in the language. When new Metamodel project creation
      * is chosen it will be assigned on the {@link}SelectionPage. If not it will be assigned on the {@link}ClassChooserPage.
      */
     private String className = "";
-    
+
     /**
      * Is not directly entered by the user but gets assgigned on the {@link}LoadPage. It stores the Path to a referenced metamodel
      * if needed.
      */
     private String modelPath = "";
-    
+
     /**
      * Will be true if an existing metamodel will be loaded and false if a new Metamodel project will be created.
      */
     private boolean loadMetamodel = false;
-    
+
     /**
-     * Will be true if loading an existing metamodel from workspace OR if loading the metamodel from a
-     * freshly created metamodel project. Will be false if loading from registered packages.
+     * Will be true if loading an existing metamodel from workspace OR if loading the metamodel from a freshly created metamodel
+     * project. Will be false if loading from registered packages.
      */
     private boolean fromWorkspace = false;
 
@@ -61,6 +61,7 @@ public class ProjectInfo {
 
     /**
      * Sets the file extension.
+     * 
      * @param fileExtension
      */
     public void setFileExtension(String fileExtension) {
@@ -77,6 +78,7 @@ public class ProjectInfo {
 
     /**
      * Sets the language name.
+     * 
      * @param languageName
      */
     public void setLanguageName(String languageName) {
@@ -93,6 +95,7 @@ public class ProjectInfo {
 
     /**
      * Sets the namespace URI.
+     * 
      * @param nsURI
      */
     public void setNsURI(String nsURI) {
@@ -109,6 +112,7 @@ public class ProjectInfo {
 
     /**
      * Sets the project name.
+     * 
      * @param projectName
      */
     public void setProjectName(String projectName) {
@@ -134,6 +138,7 @@ public class ProjectInfo {
 
     /**
      * Sets the boolean <code>loadMetamodel</code>
+     * 
      * @param loadMetamodel
      */
     public void setLoadMetamodel(boolean loadMetamodel) {
@@ -150,6 +155,7 @@ public class ProjectInfo {
 
     /**
      * Sets the boolean <code>fromWorkspace</code>
+     * 
      * @param fromWorkspace
      */
     public void setFromWorkspace(boolean fromWorkspace) {
@@ -166,6 +172,7 @@ public class ProjectInfo {
 
     /**
      * Sets the class name.
+     * 
      * @param className
      */
     public void setClassName(String className) {
@@ -182,6 +189,7 @@ public class ProjectInfo {
 
     /**
      * Sets the model path.
+     * 
      * @param modelPath
      */
     public void setModelPath(String modelPath) {
