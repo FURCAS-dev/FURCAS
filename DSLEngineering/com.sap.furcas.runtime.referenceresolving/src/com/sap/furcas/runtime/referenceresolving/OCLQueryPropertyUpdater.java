@@ -5,7 +5,6 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
-import com.sap.emf.ocl.trigger.AbstractOCLBasedModelUpdater;
 import com.sap.emf.ocl.trigger.ExpressionWithContext;
 import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
@@ -30,7 +29,7 @@ import com.sap.furcas.runtime.tcs.TcsUtil;
  * @author Axel Uhl (D043530)
  * 
  */
-public class OCLQueryPropertyUpdater extends AbstractOCLBasedModelUpdater {
+public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater {
 
     protected OCLQueryPropertyUpdater(Property propertyInit, OppositeEndFinder oppositeEndFinder) throws ParserException {
         super(propertyInit.getPropertyReference().getStrucfeature(), oppositeEndFinder, new ExpressionWithContext(
