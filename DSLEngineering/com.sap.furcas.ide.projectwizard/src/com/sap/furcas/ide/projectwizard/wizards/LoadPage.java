@@ -239,9 +239,8 @@ public class LoadPage extends WizardPage {
         gd.verticalSpan = 2;
         gd.grabExcessHorizontalSpace = true;
         wrongType = new Label(container, SWT.WRAP);
-        wrongType.setText("The File you choose must be a .ecore file. \nWhitespaces before and after URIs will be deleted.");
+        wrongType.setText("You will only be able to choose .ecore files.");
         wrongType.setLayoutData(gd);
-        wrongType.setVisible(false);
         setErrorMessage(null);
         setControl(container);
 
@@ -285,10 +284,8 @@ public class LoadPage extends WizardPage {
         String text = uriField.getText();
         text = text.trim();
         if (!text.endsWith(".ecore")) {
-            wrongType.setVisible(true);
             setPageComplete(false);
         } else {
-            wrongType.setVisible(false);
             setPageComplete(true);
             getNextPage();
         }
