@@ -119,7 +119,7 @@ public class EcoreHelper {
      * @param rs used to resolve the element URIs resulting from the query
      */
     public void reverseNavigate(EObject from, EReference forwardReference, QueryContext scope, ResourceSet rs, Collection<EObject> result, Index index) {
-        if (forwardReference.isContainment()) {
+        if (forwardReference.isContainment()) { // TODO this can be written much shorter using feature IDs
             EObject container = from.eContainer();
             if (container != null) {
                 if ((forwardReference.isMany() && ((Collection<?>) container.eGet(forwardReference)).contains(from))

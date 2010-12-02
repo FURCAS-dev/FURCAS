@@ -55,7 +55,7 @@ implements ProjectBasedQueryContextScopeProvider {
         super(resourceSets);
     }
     
-    public ProjectBasedQueryContextScopeProviderImpl(Notifier notifier) {
+    public ProjectBasedQueryContextScopeProviderImpl(Notifier... notifier) {
         super(notifier);
     }
     
