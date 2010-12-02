@@ -42,8 +42,7 @@
 	<target name="setup.publisher">
 		<property environment="env." />
 
-		<fail message="WORKSPACE not present in the evironment, can't continue" unless="env.WORKSPACE" />
-		<fail message="PROMOTED_URL not present in the evironment, can't continue" unless="env.PROMOTED_URL" />
+		<fail message="WORKSPACE not present in the environment, can't continue" unless="env.WORKSPACE" />
 
 		<!-- default publisher root -->
 		<property name="publisher.root" location="${env.WORKSPACE}/publishroot" />
@@ -53,12 +52,12 @@
 
 		<copy tofile="${publisher.root}/publisher.ant" file="${ant.file}" />
 
-		<property name="promoter.properties.file.url" value="${env.PROMOTED_URL}/artifact/${promoter.properties.file.name}" />
+		<property name="promoter.properties.file" value="${env.WORKSPACE}/${promoter.properties.file.name}" />
 
 		<!-- load the promoter properties using the PROMOTED_URL supplied by Hudson -->
-		<property prefix="saved." url="${promoter.properties.file.url}" />
+		<property prefix="saved." file="${promoter.properties.file}" />
 
-		<fail message="hudson.build.id not defined in ${promoter.properties.file.url}, can't continue">
+		<fail message="hudson.build.id not defined in ${promoter.properties.file}, can't continue">
 			<condition>
 				<not>
 					<and>
@@ -69,7 +68,7 @@
 			</condition>
 		</fail>
 
-		<property name="build.root" location="${env.WORKSPACE}/../builds/${saved.hudson.build.id}" />
+		<property name="build.root" location="/opt/public/jobs/${env.JOB_NAME}/builds/${saved.hudson.build.id}" />
 
 		<echoproperties destfile="${publisher.root}/${publisher.properties.file.name}">
 			<propertyset>
