@@ -117,7 +117,10 @@ public class Query2OppositeEndFinder implements OppositeEndFinder {
                 QueryContext queryContext = queryContextProvider.getBackwardScopeQueryContext(etarget);
                 ResourceSet rs = etarget.eResource().getResourceSet();
                 if (rs == null) {
-                    rs = new ResourceSetImpl();
+                    rs = queryContext.getResourceSet();
+                    if (rs == null) {
+                        rs = new ResourceSetImpl();
+                    }
                 }
                 result = EcoreHelper.getInstance().reverseNavigate(etarget, (EReference) property, queryContext, rs, IndexFactory.getInstance());
             }
