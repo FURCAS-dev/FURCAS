@@ -6,7 +6,6 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
-import com.sap.emf.ocl.trigger.AbstractOCLBasedModelUpdater;
 import com.sap.emf.ocl.trigger.ExpressionWithContext;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit;
@@ -18,7 +17,7 @@ import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
  * @author Axel Uhl (D043530)
  * 
  */
-public class SimplePropertyInitUpdater extends AbstractOCLBasedModelUpdater {
+public class SimplePropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdater {
     public SimplePropertyInitUpdater(LookupPropertyInit injectorAction, OppositeEndFinder oppositeEndFinder)
             throws ParserException {
         super(injectorAction.getPropertyReference().getStrucfeature(), oppositeEndFinder, new ExpressionWithContext(
