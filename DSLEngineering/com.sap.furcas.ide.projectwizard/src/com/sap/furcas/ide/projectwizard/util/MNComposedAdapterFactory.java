@@ -1,4 +1,5 @@
 package com.sap.furcas.ide.projectwizard.util;
+
 import java.util.ArrayList;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -11,21 +12,18 @@ import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory
  * Used for displaying the model tree on the {@link}ClassChooserPage.
  * 
  * @author Frederik Petersen (D054528)
- *
+ * 
  */
-public class MNComposedAdapterFactory
-{
+public class MNComposedAdapterFactory {
     private static ComposedAdapterFactory mnCompAdapterFactory;
 
-    public final static ComposedAdapterFactory getAdapterFactory()
-    {
+    public final static ComposedAdapterFactory getAdapterFactory() {
         if (mnCompAdapterFactory == null)
             mnCompAdapterFactory = new ComposedAdapterFactory(createFactoryList());
         return mnCompAdapterFactory;
     }
 
-    public final static ArrayList<AdapterFactory> createFactoryList()
-    {
+    public final static ArrayList<AdapterFactory> createFactoryList() {
         ArrayList<AdapterFactory> factories = new ArrayList<AdapterFactory>();
         factories.add(new ResourceItemProviderAdapterFactory());
         factories.add(new EcoreItemProviderAdapterFactory());
@@ -33,4 +31,3 @@ public class MNComposedAdapterFactory
         return factories;
     }
 }
-

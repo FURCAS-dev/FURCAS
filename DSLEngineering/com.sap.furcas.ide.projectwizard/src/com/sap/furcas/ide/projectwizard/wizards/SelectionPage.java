@@ -92,9 +92,9 @@ public class SelectionPage extends WizardPage {
     }
 
     /**
-     * Create the URI of this page. There are two radio buttons letting the user choose between loading or creating
-     * a metamodel. If the user chooses to create a new Metamodelproject two labels and two textfields come up
-     * asking the user for the namespace URI and the name of the first class of the metamodel.
+     * Create the URI of this page. There are two radio buttons letting the user choose between loading or creating a metamodel.
+     * If the user chooses to create a new Metamodelproject two labels and two textfields come up asking the user for the
+     * namespace URI and the name of the first class of the metamodel.
      */
     @Override
     public void createControl(Composite parent) {
@@ -268,7 +268,9 @@ public class SelectionPage extends WizardPage {
 
     /**
      * Checks if the String s contains only letters.
-     * @param s The string that is to be checked
+     * 
+     * @param s
+     *            The string that is to be checked
      * @return true if the string contains only letters. false if not.
      */
     private boolean isAlpha(final String s) {
@@ -286,7 +288,9 @@ public class SelectionPage extends WizardPage {
 
     /**
      * Checks if the char c is an upper case character.
-     * @param c The character that is to be checked.
+     * 
+     * @param c
+     *            The character that is to be checked.
      * @return true if it is an upper case character, false if not.
      */
     private boolean isUpper(final char c) {

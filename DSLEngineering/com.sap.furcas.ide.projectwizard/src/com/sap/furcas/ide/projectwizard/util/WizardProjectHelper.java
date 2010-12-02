@@ -274,7 +274,9 @@ public class WizardProjectHelper {
 
     /**
      * Assert that c exists. If it doesn't exist. It will be created.
-     * @param c The container whose existence is checked.
+     * 
+     * @param c
+     *            The container whose existence is checked.
      */
     private static void assertExist(IContainer c) {
         if (!c.exists()) {
@@ -294,8 +296,11 @@ public class WizardProjectHelper {
 
     /**
      * Opens a file for editing in the Shell.
-     * @param s The shell where to open it.
-     * @param file The file to open.
+     * 
+     * @param s
+     *            The shell where to open it.
+     * @param file
+     *            The file to open.
      */
     public static void openFileToEdit(Shell s, final IFile file) {
         s.getDisplay().asyncExec(new Runnable() {

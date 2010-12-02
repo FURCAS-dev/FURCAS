@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.emf.common.util.EList;
@@ -25,6 +26,8 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -92,8 +95,8 @@ public class LoadPage extends WizardPage {
     }
 
     /**
-     * Creates the UI of this page. It consists of 2 buttons, a textfield and a label (for filetype errors).
-     * Also adds listeners to the buttons that call dialogs upon clicking on them.
+     * Creates the UI of this page. It consists of 2 buttons, a textfield and a label (for filetype errors). Also adds listeners
+     * to the buttons that call dialogs upon clicking on them.
      */
     @Override
     public void createControl(Composite parent) {
@@ -111,7 +114,7 @@ public class LoadPage extends WizardPage {
             public void widgetSelected(SelectionEvent event) {
                 pi.setFromWorkspace(false);
                 // Call the dialog that shows the registered EPackages
-                // 
+                //
                 RegisteredPackageDialog registeredPackageDialog = new RegisteredPackageDialog(getShell());
                 registeredPackageDialog.open();
                 // save the result
@@ -131,7 +134,7 @@ public class LoadPage extends WizardPage {
                             for (EPackage ePackage : getAllPackages(resource)) {
                                 if (nsURIs.contains(ePackage.getNsURI())) {
                                     // Save the EPackage to global var eP
-                                    // 
+                                    //
                                     if (ePackage.getESuperPackage() == null)
                                         eP = ePackage;
                                     else
@@ -181,11 +184,32 @@ public class LoadPage extends WizardPage {
         button3.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
+                // This filter filters out all non .ecore files.
+                //
+                class EcoreFilter extends ViewerFilter {
+
+                    @Override
+                    public boolean select(Viewer viewer, Object parentElement, Object element) {
+                        if (element instanceof IFolder || element instanceof IProject)
+                            return true;
+                        if (element instanceof IFile){
+                            IFile file = (IFile) element;
+                            if (file.getFileExtension().matches("ecore"))
+                                return true;
+                        }
+                            
+                        return false;
+                    }
+
+                }
                 pi.setFromWorkspace(true);
+                List<ViewerFilter> filters = new ArrayList<ViewerFilter>();
+                EcoreFilter filter = new EcoreFilter();
+                filters.add(filter);
                 // Open a dialog showing the workspace tree allowing one to select a .ecore file from there
                 //
                 IFile[] files = WorkspaceResourceDialog.openFileSelection(getShell(), "Choose Metamodel",
-                        "Select the desired Metamodel an click OK.", false, null, null);
+                        "Select the desired Metamodel an click OK.", false, null, filters);
                 if (files.length > 0) {
                     IProject mMproject = files[0].getProject();
                     // Set the appropriate values in ProjectInfo and eP
@@ -202,6 +226,7 @@ public class LoadPage extends WizardPage {
         gd.horizontalSpan = 4;
         uriField = new Text(container, SWT.NULL | SWT.BORDER);
         uriField.setLayoutData(gd);
+        uriField.setEditable(false);
         uriField.addModifyListener(new ModifyListener() {
             public void modifyText(ModifyEvent e) {
                 dialogChanged();
@@ -224,7 +249,9 @@ public class LoadPage extends WizardPage {
 
     /**
      * Convert a file to the EPackage containing a metamodel.
-     * @param iFile The file that is to be converted to the Epackage.
+     * 
+     * @param iFile
+     *            The file that is to be converted to the Epackage.
      * @return The EPackage containing the metamodel loaded from the file.
      */
     protected EPackage fileToEPack(IFile iFile) {
@@ -292,7 +319,9 @@ public class LoadPage extends WizardPage {
 
     /**
      * Get all packages of a resource.
-     * @param resource The resource containing the EPackages
+     * 
+     * @param resource
+     *            The resource containing the EPackages
      * @return A collection of the EPackages the resource contains.
      */
     protected Collection<EPackage> getAllPackages(Resource resource) {

@@ -132,6 +132,8 @@ public class FurcasWizard extends Wizard implements INewWizard {
         try {
             getContainer().run(true, false, op);
         } catch (InterruptedException e) {
+            Throwable realException = e.getCause();
+            MessageDialog.openError(getShell(), "Error", realException.getMessage());
             return false;
         } catch (InvocationTargetException e) {
             Throwable realException = e.getTargetException();
