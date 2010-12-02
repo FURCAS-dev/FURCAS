@@ -100,8 +100,6 @@ public class EMFModelAdapterDelegate {
         Set<URI> referenceScopeIncludingCreatedElements = new HashSet<URI>(referenceScope);
         referenceScopeIncludingCreatedElements.add(transientResource.getURI());
         modelLookup = new EcoreModelElementFinder(resourceSet, referenceScopeIncludingCreatedElements, metamodelLookup);
-        
-        // TODO: use the given resourceSet/reference scope instead of the project dependent query context.
         QueryContextProvider queryContext = new ProjectDependencyQueryContextProvider(getAdditionalScopeSeeds(
                 resourceSet, referenceScope));
         this.oclEvaluator = new TCSSpecificOCLEvaluator(queryContext);

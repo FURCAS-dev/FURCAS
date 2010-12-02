@@ -22,7 +22,6 @@ import java.util.Collection;
 
 import org.eclipse.emf.ecore.EObject;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
@@ -162,7 +161,7 @@ public class TestEMFModelAdapter {
      * Imagine the TCS bootstrap, where we describe the concrete syntax of templates
      * using templates.
      */
-    @Ignore("Does not work at the moment. Will invest the time when the feature is actually needed")
+    // @Ignore("Does not work at the moment. Will invest the time when the feature is actually needed")
     @Test
     public void testTCSGetHiddenOpposite() throws ModelAdapterException {
         Object metaClass = adapter.getMetaType("FURCAS::TCS::ClassTemplate");
