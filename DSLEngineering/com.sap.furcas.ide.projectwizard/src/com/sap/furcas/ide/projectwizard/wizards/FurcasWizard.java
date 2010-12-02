@@ -116,7 +116,6 @@ public class FurcasWizard extends Wizard implements INewWizard {
      */
     @Override
     public boolean performFinish() {
-
         final ProjectInfo pi = page.getProjectInfo();
 
         IRunnableWithProgress op = new IRunnableWithProgress() {
@@ -139,7 +138,12 @@ public class FurcasWizard extends Wizard implements INewWizard {
             Throwable realException = e.getTargetException();
             MessageDialog.openError(getShell(), "Error", realException.getMessage());
             return false;
+        } catch (Exception e) {
+            Throwable realException = e.getCause();
+            MessageDialog.openError(getShell(), "Error", realException.getMessage());
+            return false;
         }
+
         return true;
 
     }
@@ -171,7 +175,11 @@ public class FurcasWizard extends Wizard implements INewWizard {
                     generateSpecific(project, pi, monitor);
 
                 } catch (InvocationTargetException e) {
+                    Throwable realException = e.getTargetException();
+                    MessageDialog.openError(getShell(), "Error", realException.getMessage());
                 } catch (InterruptedException e) {
+                    Throwable realException = e.getCause();
+                    MessageDialog.openError(getShell(), "Error", realException.getMessage());
                 }
 
                 return Status.OK_STATUS;
@@ -198,8 +206,9 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 protected void execute(IProgressMonitor progressMonitor) {
                     try {
                         CreateMMProject.create(getFurcasWizard(), progressMonitor);
-                    } catch (Exception exception) {
-                        EcoreEditorPlugin.INSTANCE.log(exception);
+                    } catch (Exception e) {
+                        Throwable realException = e.getCause();
+                        MessageDialog.openError(getShell(), "Error", realException.getMessage());
                     } finally {
                         progressMonitor.done();
                     }
@@ -301,6 +310,8 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 ProjectMetaRefConfFactory.configure(project, conf);
             } catch (CoreException e) {
                 e.printStackTrace();
+                Throwable realException = e.getCause();
+                MessageDialog.openError(getShell(), "Error", realException.getMessage());
             }
             try {
                 // Builds, refreshs, cleans the project to make sure, that all files will be found and generated
