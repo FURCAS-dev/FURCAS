@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -363,10 +364,24 @@ public class ProjectBasedScopeProviderTest extends TestCase {
         result.addAll(iteratorToCollection(c2.r1.getAllContents()));
         result.addAll(iteratorToCollection(c2.r2.getAllContents()));
     
-        Collection<EObject> scope = getFixture().getForwardScopeAsEObjects();
+        Collection<EObject> scope = scopeAsEObjects(getFixture().getForwardScopeAsResources());
         assertEquals(result.size(), scope.size());
     }
 
+    private Collection<EObject> scopeAsEObjects(Collection<Resource> resources) {
+        Collection<EObject> result = new HashSet<EObject>();
+        for (Resource resource : resources) {
+            if (!resource.isLoaded())
+                try {
+                    resource.load(null);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            result.addAll(iteratorToCollection(resource.getAllContents()));
+        }
+        return result;
+    }
+    
     /**
      * Tests the '{@link de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getForwardScopeAsEObjects()
      * <em>Get Forward Scope As EObjects</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -381,7 +396,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
         ArrayList<EObject> result = new ArrayList<EObject>();
         result.addAll(iteratorToCollection(c2.r1.getAllContents()));
         result.addAll(iteratorToCollection(c2.r2.getAllContents()));
-        Collection<EObject> scope = getFixture().getForwardScopeAsEObjects();
+        Collection<EObject> scope = scopeAsEObjects(getFixture().getForwardScopeAsResources());
         assertEquals(result.size(), scope.size());
     }
 
@@ -489,7 +504,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
         result.addAll(iteratorToCollection(c1.r2.getAllContents()));
         result.addAll(iteratorToCollection(c2.r1.getAllContents()));
         result.addAll(iteratorToCollection(c2.r2.getAllContents()));
-        Collection<EObject> scope = getFixture().getBackwardScopeAsEObjects();
+        Collection<EObject> scope = scopeAsEObjects(getFixture().getBackwardScopeAsResources());
         assertEquals(result.size(), scope.size());
     }
 
@@ -507,7 +522,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
         ArrayList<EObject> result = new ArrayList<EObject>();
         result.addAll(iteratorToCollection(c1.r1.getAllContents()));
         result.addAll(iteratorToCollection(c1.r2.getAllContents()));
-        Collection<EObject> scope = getFixture().getBackwardScopeAsEObjects();
+        Collection<EObject> scope = scopeAsEObjects(getFixture().getBackwardScopeAsResources());
         assertEquals(result.size(), scope.size());
     }
 

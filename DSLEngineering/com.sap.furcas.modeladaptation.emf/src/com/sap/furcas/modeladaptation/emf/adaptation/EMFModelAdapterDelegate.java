@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -33,6 +34,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -72,7 +74,14 @@ public class EMFModelAdapterDelegate {
 
     private final Query2OppositeEndFinder oppositeEndFinder;
 
-    
+    /**
+     * @param rootPackage metamodel root package used for metamodel lookups
+     * @param resourceSet
+     *            the {@link #createTransientParsingResource(ResourceSet) transient resource} will be created in this
+     *            resource set. New elements, in turn, end up in that resource and therefore in this
+     *            <code>resourceSet</code>.
+     * @param referenceScope
+     */
     public EMFModelAdapterDelegate(EPackage rootPackage, ResourceSet resourceSet, Set<URI> referenceScope) {
         this.rootPackage = rootPackage;
 
@@ -91,13 +100,22 @@ public class EMFModelAdapterDelegate {
         Set<URI> referenceScopeIncludingCreatedElements = new HashSet<URI>(referenceScope);
         referenceScopeIncludingCreatedElements.add(transientResource.getURI());
         modelLookup = new EcoreModelElementFinder(resourceSet, referenceScopeIncludingCreatedElements, metamodelLookup);
-        
-        // TODO: use the given resourceSet/reference scope instead of the project dependent query context.
-        QueryContextProvider queryContext = new ProjectDependencyQueryContextProvider();
+        QueryContextProvider queryContext = new ProjectDependencyQueryContextProvider(getAdditionalScopeSeeds(
+                resourceSet, referenceScope));
         this.oclEvaluator = new TCSSpecificOCLEvaluator(queryContext);
         this.oppositeEndFinder = new Query2OppositeEndFinder(queryContext);
     }
     
+    private Notifier[] getAdditionalScopeSeeds(ResourceSet resourceSet, Set<URI> referenceScope) {
+        Notifier[] result = new Notifier[referenceScope.size()+1];
+        int i=0;
+        for (URI uri : referenceScope) {
+            result[i++] = resourceSet.getResource(uri, /* loadOnDemand */ false);
+        }
+        result[i] = resourceSet;
+        return result;
+    }
+
     /**
      * Create a resource to holds all element created by this ModelAdapter. Otherwise query2 cannot find them.
      */
@@ -161,8 +179,17 @@ public class EMFModelAdapterDelegate {
     }
 
     public Object get(EObject modelElement, String propertyName) throws ModelAdapterException {
-        EStructuralFeature feat = getFeatureByName(modelElement.eClass(), propertyName, /*includeHiddenOppositeEnds*/ true);
-        return  modelElement.eGet(feat);
+        try {
+            EStructuralFeature feature = getFeatureByName(modelElement.eClass(), propertyName);
+            return modelElement.eGet(feature);
+        } catch (ModelAdapterException e) {
+            // look for hidden opposite
+            EStructuralFeature hiddenOpposite = getHiddenOppositeFeatureByName(modelElement.eClass(), propertyName);
+            if (hiddenOpposite == null) {
+                throw new ModelAdapterException("No such feature \"" + propertyName + "\" defined for  " + modelElement.eClass());
+            }
+            return oppositeEndFinder.navigateOppositePropertyWithBackwardScope((EReference) hiddenOpposite, modelElement);
+        }
     }
     
     @SuppressWarnings("unchecked")
@@ -171,7 +198,7 @@ public class EMFModelAdapterDelegate {
             value = getOrCreateRealObjectForMock((StructureTypeMockObject) value);
         }
 
-        EStructuralFeature feat = getFeatureByName(modelElement.eClass(), propertyName, /*includeHiddenOppositeEnds*/ false);
+        EStructuralFeature feat = getFeatureByName(modelElement.eClass(), propertyName);
         if (feat.getUpperBound() == 1 || !feat.isOrdered()) {
             // single value or unordered means we don't care about the index
             set(modelElement, propertyName, value);
@@ -201,7 +228,7 @@ public class EMFModelAdapterDelegate {
             value = getOrCreateRealObjectForMock((StructureTypeMockObject) value);
         }
 
-        EStructuralFeature feat = getFeatureByName(modelElement.eClass(), propertyName, /*includeHiddenOppositeEnds*/ false);
+        EStructuralFeature feat = getFeatureByName(modelElement.eClass(), propertyName);
         if (feat.getUpperBound() == 1) {
             if (value instanceof Collection) {
                 if (((Collection<?>) value).size() != 1) {
@@ -235,7 +262,7 @@ public class EMFModelAdapterDelegate {
 
     @SuppressWarnings("unchecked")
     public void unset(EObject modelElement, String propertyName, Object value) throws ModelAdapterException {
-        EStructuralFeature feat = getFeatureByName(modelElement.eClass(), propertyName, /*includeHiddenOppositeEnds*/false);
+        EStructuralFeature feat = getFeatureByName(modelElement.eClass(), propertyName);
         if (feat.getUpperBound() == 1) {
             modelElement.eUnset(feat);
         } else {
@@ -313,7 +340,7 @@ public class EMFModelAdapterDelegate {
             for (EObject loopCandidateModelElement : contents) {
                 if (instanceOf(loopCandidateModelElement, referenceType)) {
                     Object candidateFeatureValue = loopCandidateModelElement.eGet(
-                            getFeatureByName(loopCandidateModelElement.eClass(), targetKeyName, /*includeHiddenOppositeEnds*/ false));
+                            getFeatureByName(loopCandidateModelElement.eClass(), targetKeyName));
 
                     if (candidateFeatureValue != null && candidateFeatureValue.equals(targetKeyValue)) {
                         if (result == null) {
@@ -399,22 +426,20 @@ public class EMFModelAdapterDelegate {
         return modelLookup.findEObjectsOfTypeWithProperties(typeName, partitionableReferenceValuedAttributesMap, singleValuedAttributesMap);
     }
     
-    private EStructuralFeature getFeatureByName(EClass eClass, String propertyName, boolean includeHiddenOppositeEnds) throws ModelAdapterException {
+    private EStructuralFeature getFeatureByName(EClass eClass, String propertyName) throws ModelAdapterException {
         EStructuralFeature feature = eClass.getEStructuralFeature(propertyName);
-        if (feature == null && includeHiddenOppositeEnds) {
-            feature = getHiddenOppositeFeatureByName(eClass, propertyName);
-        }
         if (feature == null) {
             throw new ModelAdapterException("No such feature \"" + propertyName + "\" defined for  " + eClass);
         }
         return feature;
     }
 
-    private EStructuralFeature getHiddenOppositeFeatureByName(EClass eClass, String propertyName) throws ModelAdapterException {
+    private EReference getHiddenOppositeFeatureByName(EClass eClass, String propertyName) throws ModelAdapterException {
         ArrayList<EStructuralFeature> hiddenOppositeEnds = new ArrayList<EStructuralFeature>();
-        oppositeEndFinder.findOppositeEnds(eClass, propertyName, hiddenOppositeEnds);
+        // no need to fiddle with query2-based opposite end finder; we're only searching metamodels here
+        DefaultOppositeEndFinder.getInstance().findOppositeEnds(eClass, propertyName, hiddenOppositeEnds);
         if (hiddenOppositeEnds.size() == 1) {
-            return hiddenOppositeEnds.iterator().next();
+            return (EReference) hiddenOppositeEnds.iterator().next();
         } else if (hiddenOppositeEnds.size() > 1) {
             throw new ModelAdapterException("Ambigous hidden opposite ends named " + propertyName + " for " + eClass);
         } else {

@@ -52,12 +52,10 @@ import de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider;
  * <li>{@link ProjectBasedScopeProvider#getForwardScopeAsProjects() <em>Forward Scope as Projects</em>}</li>
  * <li>{@link ProjectBasedScopeProvider#getForwardScopeAsResources() <em>Forward Scope as Resources</em>}</li>
  * <li>{@link ProjectBasedScopeProvider#getForwardScopeAsURIs() <em>Forward Scope as URIs</em>}</li>
- * <li>{@link ProjectBasedScopeProvider#getForwardScopeAsEObjects() <em>Forward Scope as EObjects</em>}</li>
  * 
  * <li>{@link ProjectBasedScopeProvider#getBackwardScopeAsProjects() <em>Backward Scope as Projects</em>}</li>
  * <li>{@link ProjectBasedScopeProvider#getBackwardScopeAsResources() <em>Backward Scope as Resources</em>}</li>
  * <li>{@link ProjectBasedScopeProvider#getBackwardScopeAsURIs() <em>Backward Scope as URIs</em>}</li>
- * <li>{@link ProjectBasedScopeProvider#getBackwardScopeAsEObjects() <em>Backward Scope as EObjects</em>}</li>
  * </ul>
  * </p>
  * 
@@ -88,15 +86,18 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         setupForResourceSets(Arrays.asList(resourceSets));
     }
     
-    public ProjectBasedScopeProviderImpl(Notifier notifier) {
-        if (notifier instanceof EObject) {
-            setupForEObjects(Arrays.asList((EObject) notifier));
-        } else if (notifier instanceof Resource) {
-            setupForResources(Arrays.asList((Resource) notifier));
-        } else if (notifier instanceof ResourceSet) {
-            setupForResourceSets(Arrays.asList((ResourceSet) notifier));
-        } else {
-            throw new RuntimeException("Expected Resource, ResourceSet or EObject but got "+notifier.getClass().getName());
+    public ProjectBasedScopeProviderImpl(Notifier... notifiers) {
+        for (Notifier notifier : notifiers) {
+            if (notifier instanceof EObject) {
+                setupForEObjects(Arrays.asList((EObject) notifier));
+            } else if (notifier instanceof Resource) {
+                setupForResources(Arrays.asList((Resource) notifier));
+            } else if (notifier instanceof ResourceSet) {
+                setupForResourceSets(Arrays.asList((ResourceSet) notifier));
+            } else {
+                throw new RuntimeException("Expected Resource, ResourceSet or EObject but got "
+                        + notifier.getClass().getName());
+            }
         }
     }
     
@@ -104,6 +105,10 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         return initialProjects;
     }
 
+    /**
+     * Returns a cloned list of the in-memory resources seen by this scope provider. Being a clone,
+     * it is possible though pointless to modify the collection returned.
+     */
     public Collection<Resource> getInMemoryResources() {
         Collection<Resource> result = new BasicEList<Resource>();
         if (inMemoryResourceList == null) {
@@ -276,14 +281,17 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
                 for (IFile file : root.findFilesForLocationURI(netUri)) {
                     project = file.getProject();
                 }
-                for (IContainer c : result)
-                    if (c instanceof IProject)
+                for (IContainer c : result) {
+                    if (c instanceof IProject) {
                         project = (IProject) c;
-                if(project==null)
+                    }
+                }
+                if (project==null) {
                     System.err.println("Scope Provider could not resolve project for resource " + uri +", because resource not in the workspace.");
+                }
             }
-        }else{
-        	workSpaceClosedWarning();
+        }else {
+            workSpaceClosedWarning();
         }
         return project;
     }

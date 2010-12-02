@@ -1,0 +1,25 @@
+package com.sap.furcas.example.java.simple;
+
+/** 
+ * A very simple Mini Java test class that does not reference
+ * any other types. It just uses "void".
+ *
+ * @author Stephan Erb
+ */
+public class MyMiniJavaTestClass {
+
+	public void doNothing() {
+		// nothing
+	}
+	
+	public void doMyFoo() {
+		do foo;
+	}
+	
+	public void doMyFooBar() {
+		do foo;
+		do bar;
+	}
+
+}
+
