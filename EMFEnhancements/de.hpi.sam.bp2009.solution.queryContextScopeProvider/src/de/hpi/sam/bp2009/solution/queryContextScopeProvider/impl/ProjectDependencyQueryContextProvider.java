@@ -17,18 +17,48 @@ import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider
 import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextScopeProvider;
 
 public class ProjectDependencyQueryContextProvider implements QueryContextProvider {
+    private final Notifier[] additionalScopeSeeds;
+    
+    /**
+     * Using this constructor, only the immediate project context determined from the <code>context</code> parameters of
+     * {@link #getForwardScopeQueryContext(Notifier)} and {@link #getBackwardScopeQueryContext(Notifier)} will be used
+     * for scope detection.
+     */
+    public ProjectDependencyQueryContextProvider() {
+        additionalScopeSeeds = null;
+    }
+
+    /**
+     * The <code>notifiers</code> will be used as additional scope seed in
+     * {@link #getForwardScopeQueryContext(Notifier)} and {@link #getBackwardScopeQueryContext(Notifier)}.
+     */
+    public ProjectDependencyQueryContextProvider(Notifier... additionalScopeSeeds) {
+        this.additionalScopeSeeds = additionalScopeSeeds;
+    }
+    
     @Override
     public QueryContext getForwardScopeQueryContext(Notifier context) {
-        QueryContextScopeProvider sp = new ProjectBasedQueryContextScopeProviderImpl(context);
+        QueryContextScopeProvider sp = new ProjectBasedQueryContextScopeProviderImpl(getExtendedContext(context));
         QueryContext queryContext = sp.getForwardScopeAsQueryContext();
         return queryContext;
     }
 
+    private Notifier[] getExtendedContext(Notifier context) {
+        if (additionalScopeSeeds == null || additionalScopeSeeds.length == 0) {
+            return new Notifier[] { context };
+        } else {
+            Notifier[] result = new Notifier[additionalScopeSeeds.length+1];
+            System.arraycopy(additionalScopeSeeds, 0, result, 0, additionalScopeSeeds.length);
+            result[result.length-1] = context;
+            return result;
+        }
+    }
+
     @Override
     public QueryContext getBackwardScopeQueryContext(Notifier context) {
-        QueryContextScopeProvider sp = new ProjectBasedQueryContextScopeProviderImpl(context);
+        QueryContextScopeProvider sp = new ProjectBasedQueryContextScopeProviderImpl(getExtendedContext(context));
         QueryContext queryContext = sp.getBackwardScopeAsQueryContext();
         return queryContext;
     }
-
+    
 }
