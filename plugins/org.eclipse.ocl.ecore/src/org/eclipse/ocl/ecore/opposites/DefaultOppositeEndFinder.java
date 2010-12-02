@@ -279,7 +279,7 @@ public class DefaultOppositeEndFinder
 
 	/**
 	 * Search for an {@link ECrossReferenceAdapter} up <code>target</code>'s
-	 * containmeht hierarchy
+	 * containment hierarchy
 	 */
 	private ECrossReferenceAdapter getCrossReferenceAdapter(EObject target) {
 		ECrossReferenceAdapter result = ECrossReferenceAdapter
