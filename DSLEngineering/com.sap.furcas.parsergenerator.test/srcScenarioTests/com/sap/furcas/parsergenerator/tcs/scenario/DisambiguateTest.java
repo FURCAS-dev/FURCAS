@@ -12,7 +12,7 @@ import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
 import com.sap.furcas.runtime.parser.testbase.StubModelAdapter;
-import com.sap.furcas.test.fixture.FixtureData;
+import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 /**
  * Simple Test for the custom Disambiguate language
@@ -21,8 +21,8 @@ import com.sap.furcas.test.fixture.FixtureData;
 public class DisambiguateTest extends GeneratedParserBasedTest {
 
     private static final String LANGUAGE = "Disambiguate";
-    private static final File TCS = FixtureData.DISAMBIGUATE_TCS;
-    private static final File[] METAMODELS = { FixtureData.DISAMBIGUATE_METAMODEL };
+    private static final File TCS = ScenarioFixtureData.DISAMBIGUATE_TCS;
+    private static final File[] METAMODELS = { ScenarioFixtureData.DISAMBIGUATE_METAMODEL };
     private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
 
     private static ParsingHelper parsingHelper;

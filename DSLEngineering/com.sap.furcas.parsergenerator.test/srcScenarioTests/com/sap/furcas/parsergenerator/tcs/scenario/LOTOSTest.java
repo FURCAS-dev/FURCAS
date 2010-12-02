@@ -10,7 +10,7 @@ import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
-import com.sap.furcas.test.fixture.FixtureData;
+import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 /**
  * Simple Test for the custom Expression language
@@ -18,8 +18,8 @@ import com.sap.furcas.test.fixture.FixtureData;
 public class LOTOSTest extends GeneratedParserBasedTest {
 
     private static final String LANGUAGE = "LOTOS";
-    private static final File TCS = FixtureData.LOTOS_TCS;
-    private static final File[] METAMODELS = { FixtureData.LOTOS_METAMODEL };
+    private static final File TCS = ScenarioFixtureData.LOTOS_TCS;
+    private static final File[] METAMODELS = { ScenarioFixtureData.LOTOS_METAMODEL };
     private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
 
     private static ParsingHelper parsingHelper;

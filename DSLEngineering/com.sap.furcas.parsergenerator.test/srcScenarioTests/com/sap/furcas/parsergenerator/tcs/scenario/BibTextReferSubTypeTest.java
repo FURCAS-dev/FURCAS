@@ -10,7 +10,7 @@ import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
-import com.sap.furcas.test.fixture.FixtureData;
+import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 
 
@@ -21,8 +21,8 @@ public class BibTextReferSubTypeTest extends GeneratedParserBasedTest {
 
 
     private static final String LANGUAGE = "BibtextReferSubType";
-    private static final File TCS = FixtureData.BIBTEXT_REFER_SUBTYPE_TCS;
-    private static final File[] METAMODELS = { FixtureData.BIBTEXT_REFER_SUBTYPE_METAMODEL,  FixtureData.BIBTEXT1_METAMODEL };
+    private static final File TCS = ScenarioFixtureData.BIBTEXT_REFER_SUBTYPE_TCS;
+    private static final File[] METAMODELS = { ScenarioFixtureData.BIBTEXT_REFER_SUBTYPE_METAMODEL,  ScenarioFixtureData.BIBTEXT1_METAMODEL };
     
     private static ParsingHelper parsingHelper;
 
