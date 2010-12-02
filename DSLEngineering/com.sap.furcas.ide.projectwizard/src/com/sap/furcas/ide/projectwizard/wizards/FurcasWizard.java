@@ -166,7 +166,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
                     if (!pi.isLoadMetamodel()) {
                         doAdditional(pi);
                     }
-                    generateSpecific(project, pi);
+                    generateSpecific(project, pi, monitor);
 
                 } catch (InvocationTargetException e) {
                 } catch (InterruptedException e) {
@@ -195,7 +195,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 @Override
                 protected void execute(IProgressMonitor progressMonitor) {
                     try {
-                        CreateMMProject.create(getFurcasWizard());
+                        CreateMMProject.create(getFurcasWizard(), progressMonitor);
                     } catch (Exception exception) {
                         EcoreEditorPlugin.INSTANCE.log(exception);
                     } finally {
@@ -271,7 +271,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
      * @param pi
      *            The user input
      */
-    protected void generateSpecific(IProject project, ProjectInfo pi) {
+    protected void generateSpecific(IProject project, ProjectInfo pi, IProgressMonitor monitor) {
         if (project != null) {
             EcoreMetaProjectConf conf;
             if (!pi.isFromWorkspace())
@@ -303,11 +303,12 @@ public class FurcasWizard extends Wizard implements INewWizard {
             try {
                 // Builds, refreshs, cleans the project to make sure, that all files will be found and generated
                 //
-                project.build(IncrementalProjectBuilder.FULL_BUILD, new NullProgressMonitor());
+                monitor.subTask("Refreshing, Rebuilding, Cleaning the project");
+                project.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
                 IFolder folder = project.getFolder("generated").getFolder("generated");
                 folder.refreshLocal(1, new NullProgressMonitor());
-                project.build(IncrementalProjectBuilder.CLEAN_BUILD, new NullProgressMonitor());
-                project.build(IncrementalProjectBuilder.FULL_BUILD, new NullProgressMonitor());
+                project.build(IncrementalProjectBuilder.CLEAN_BUILD, monitor);
+                project.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
             } catch (CoreException e) {
                 e.printStackTrace();
             }

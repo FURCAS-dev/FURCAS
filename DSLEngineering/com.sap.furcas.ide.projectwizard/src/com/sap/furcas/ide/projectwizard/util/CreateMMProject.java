@@ -12,7 +12,6 @@ import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.presentation.GeneratorUIUtil;
 import org.eclipse.emf.common.util.URI;
@@ -71,11 +70,11 @@ public class CreateMMProject {
      * @param wiz
      *            See global variable <code>wizard</code> for information
      */
-    public static void create(FurcasWizard wiz) {
+    public static void create(FurcasWizard wiz, IProgressMonitor monitor) {
         // Set all the important variables for generating the Project
         //
         wizard = wiz;
-        progressMonitor = new NullProgressMonitor();
+        progressMonitor = monitor;
         ProjectInfo pi = wizard.getPage().getProjectInfo();
         List<String> srcFolders = new ArrayList<String>();
         srcFolders.add("src");
