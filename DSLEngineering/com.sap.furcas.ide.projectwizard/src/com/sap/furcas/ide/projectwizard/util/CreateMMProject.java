@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.swt.widgets.Shell;
 
+import com.sap.furcas.ide.projectwizard.Activator;
 import com.sap.furcas.ide.projectwizard.wizards.FurcasWizard;
 
 /**
@@ -84,7 +85,11 @@ public class CreateMMProject {
 
         // Create the project for the metamodel
         //
-        WizardProjectHelper.createPlugInProject(pi, srcFolders, nonSrcFolders, null, progressMonitor, shell, true);
+        try {
+            WizardProjectHelper.createPlugInProject(pi, srcFolders, nonSrcFolders, null, progressMonitor, shell, true);
+        } catch (Exception e) {
+            Activator.logger.logError("CreateMmProject failed to create the Metamodel project.", e);
+        }
 
         // Create the ecore file
         //
