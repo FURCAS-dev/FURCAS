@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -64,6 +64,7 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
         resourceSet = testConfig.getSourceConfiguration().getResourceSet();
+        resourceSet.eAdapters().add(new ECrossReferenceAdapter());
         TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
         syntax = syntaxBean.getSyntax();
         syntaxRegistry = SyntaxRegistry.getInstance();
@@ -78,8 +79,8 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
         + "author = \"Jane Doll\".";
         EPackage ePackage = findPackage("BibText");
         Set<URI> referenceScope = Collections.singleton(ePackage.eResource().getURI());
-    	EMFModelAdapter handler = new EMFModelAdapter(ePackage, new ResourceSetImpl(), referenceScope);
-    	DefaultTextAwareModelAdapter handlerWrapper = new DefaultTextAwareModelAdapter(handler);
+    	EMFModelAdapter modelAdapter = new EMFModelAdapter(ePackage, resourceSet, referenceScope);
+    	DefaultTextAwareModelAdapter handlerWrapper = new DefaultTextAwareModelAdapter(modelAdapter);
 
         ModelParsingResult parsingResult = parsingHelper.parseString(sample, handlerWrapper);
         EObject bibTexFile = (EObject) parsingResult.getParsedModelElement();
