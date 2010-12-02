@@ -67,7 +67,7 @@ public class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBasedModelUpd
         return result;
     }
 
-    private Collection<TextBlock> getTextBlocksInChosenAlternativeForInjectorAction(InjectorAction injectorAction) {
+    protected Collection<TextBlock> getTextBlocksInChosenAlternativeForInjectorAction(InjectorAction injectorAction) {
         Collection<TextBlock> result = new ArrayList<TextBlock>();
         if (injectorAction != null) {
             InjectorActionsBlock injectorActionsBlock = injectorAction.getInjectorActionsBlock();
