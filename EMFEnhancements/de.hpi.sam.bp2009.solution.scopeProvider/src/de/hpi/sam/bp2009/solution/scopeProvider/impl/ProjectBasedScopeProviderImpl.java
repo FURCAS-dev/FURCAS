@@ -52,12 +52,10 @@ import de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider;
  * <li>{@link ProjectBasedScopeProvider#getForwardScopeAsProjects() <em>Forward Scope as Projects</em>}</li>
  * <li>{@link ProjectBasedScopeProvider#getForwardScopeAsResources() <em>Forward Scope as Resources</em>}</li>
  * <li>{@link ProjectBasedScopeProvider#getForwardScopeAsURIs() <em>Forward Scope as URIs</em>}</li>
- * <li>{@link ProjectBasedScopeProvider#getForwardScopeAsEObjects() <em>Forward Scope as EObjects</em>}</li>
  * 
  * <li>{@link ProjectBasedScopeProvider#getBackwardScopeAsProjects() <em>Backward Scope as Projects</em>}</li>
  * <li>{@link ProjectBasedScopeProvider#getBackwardScopeAsResources() <em>Backward Scope as Resources</em>}</li>
  * <li>{@link ProjectBasedScopeProvider#getBackwardScopeAsURIs() <em>Backward Scope as URIs</em>}</li>
- * <li>{@link ProjectBasedScopeProvider#getBackwardScopeAsEObjects() <em>Backward Scope as EObjects</em>}</li>
  * </ul>
  * </p>
  * 
@@ -157,6 +155,10 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
 
     public Collection<URI> getForwardScopeAsURIs() {
         return scopeAsUris(getForwardScopeAsProjects());
+    }
+
+    public Collection<EObject> getForwardScopeAsEObjects() {
+        return scopeAsEObjects(getForwardScopeAsResources());
     }
 
     public Collection<IProject> getBackwardScopeAsProjects() {

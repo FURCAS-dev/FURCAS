@@ -504,7 +504,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
         result.addAll(iteratorToCollection(c1.r2.getAllContents()));
         result.addAll(iteratorToCollection(c2.r1.getAllContents()));
         result.addAll(iteratorToCollection(c2.r2.getAllContents()));
-        Collection<EObject> scope = getFixture().getBackwardScopeAsEObjects();
+        Collection<EObject> scope = scopeAsEObjects(getFixture().getBackwardScopeAsResources());
         assertEquals(result.size(), scope.size());
     }
 
@@ -522,7 +522,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
         ArrayList<EObject> result = new ArrayList<EObject>();
         result.addAll(iteratorToCollection(c1.r1.getAllContents()));
         result.addAll(iteratorToCollection(c1.r2.getAllContents()));
-        Collection<EObject> scope = getFixture().getBackwardScopeAsEObjects();
+        Collection<EObject> scope = scopeAsEObjects(getFixture().getBackwardScopeAsResources());
         assertEquals(result.size(), scope.size());
     }
 
