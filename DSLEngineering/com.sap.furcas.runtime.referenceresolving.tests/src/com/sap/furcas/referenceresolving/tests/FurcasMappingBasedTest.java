@@ -33,7 +33,7 @@ import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
 import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
-import com.sap.furcas.test.fixture.FixtureData;
+import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 /**
  * Base class for test cases that use a FURCAS mapping specification (".tcs" file) and based on this
@@ -48,7 +48,7 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
     private static final String LANGUAGE = "BibtexWithPropertyInits";
     private static final File TCS = new File("fixtures/BibtexWithPropertyInits.tcs");
 
-    private static final File[] METAMODELS = { FixtureData.BIBTEXT_METAMODEL, FixtureData.BIBTEXT1_METAMODEL };
+    private static final File[] METAMODELS = { ScenarioFixtureData.BIBTEXT_METAMODEL, ScenarioFixtureData.BIBTEXT1_METAMODEL };
     
     private static ParsingHelper parsingHelper;
 	private static ResourceSet resourceSet;

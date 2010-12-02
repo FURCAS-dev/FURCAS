@@ -16,7 +16,7 @@ import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
 import com.sap.furcas.runtime.parser.testbase.StubModelAdapter;
 import com.sap.furcas.runtime.parser.testbase.StubModelElement;
-import com.sap.furcas.test.fixture.FixtureData;
+import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 /**
  * Simple Test for the custom BibText language, using a syntax variant with function templates
@@ -24,8 +24,8 @@ import com.sap.furcas.test.fixture.FixtureData;
 public class BibTextWithFunctionTest extends GeneratedParserBasedTest {
 
     private static final String LANGUAGE = "BibtextWithFunction";
-    private static final File TCS = FixtureData.BIBTEXT_WITH_FUNCTION_TCS;
-    private static final File[] METAMODELS = { FixtureData.BIBTEXT_METAMODEL, FixtureData.BIBTEXT1_METAMODEL };
+    private static final File TCS = ScenarioFixtureData.BIBTEXT_WITH_FUNCTION_TCS;
+    private static final File[] METAMODELS = { ScenarioFixtureData.BIBTEXT_METAMODEL, ScenarioFixtureData.BIBTEXT1_METAMODEL };
 
     private static ParsingHelper parsingHelper;
 

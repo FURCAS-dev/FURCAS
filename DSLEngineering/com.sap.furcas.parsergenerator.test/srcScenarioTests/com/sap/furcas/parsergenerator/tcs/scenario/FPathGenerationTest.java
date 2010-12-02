@@ -15,7 +15,7 @@ import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
 import com.sap.furcas.runtime.parser.testbase.StubModelAdapter;
 import com.sap.furcas.runtime.parser.testbase.StubModelElement;
-import com.sap.furcas.test.fixture.FixtureData;
+import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 /**
  * Currently fails because Enums are not implemented yet
@@ -23,8 +23,8 @@ import com.sap.furcas.test.fixture.FixtureData;
 public class FPathGenerationTest extends GeneratedParserBasedTest {
 
     private static final String LANGUAGE = "FPath";
-    private static final File TCS = FixtureData.FPATH_TCS;
-    private static final File[] METAMODELS = { FixtureData.FPATH1_METAMODEL, FixtureData.FPATH_METAMODEL };
+    private static final File TCS = ScenarioFixtureData.FPATH_TCS;
+    private static final File[] METAMODELS = { ScenarioFixtureData.FPATH1_METAMODEL, ScenarioFixtureData.FPATH_METAMODEL };
 
     private static ParsingHelper parsingHelper;
 
