@@ -15,7 +15,7 @@ import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
 import com.sap.furcas.runtime.parser.testbase.StubModelAdapter;
-import com.sap.furcas.test.fixture.FixtureData;
+import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 /**
  * Simple Test for the custom BibText language
@@ -23,8 +23,8 @@ import com.sap.furcas.test.fixture.FixtureData;
 public class LexerMemberTest extends GeneratedParserBasedTest {
 
     private static final String LANGUAGE = "LexerMember";
-    private static final File TCS = FixtureData.LEXER_MEMBER_TCS;
-    private static final File[] METAMODELS = { FixtureData.BIBTEXT_METAMODEL, FixtureData.BIBTEXT1_METAMODEL };
+    private static final File TCS = ScenarioFixtureData.LEXER_MEMBER_TCS;
+    private static final File[] METAMODELS = { ScenarioFixtureData.BIBTEXT_METAMODEL, ScenarioFixtureData.BIBTEXT1_METAMODEL };
 
     private static ParsingHelper parsingHelper;
 

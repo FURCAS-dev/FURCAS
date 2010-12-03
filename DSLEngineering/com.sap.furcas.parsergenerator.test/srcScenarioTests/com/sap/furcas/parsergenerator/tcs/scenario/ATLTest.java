@@ -12,7 +12,7 @@ import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
 import com.sap.furcas.runtime.parser.testbase.StubModelAdapter;
-import com.sap.furcas.test.fixture.FixtureData;
+import com.sap.furcas.test.fixture.ScenarioFixtureData;
 import com.sap.furcas.test.testutils.StringListHelper;
 
 /**
@@ -21,8 +21,8 @@ import com.sap.furcas.test.testutils.StringListHelper;
 public class ATLTest extends GeneratedParserBasedTest {
 
     private static final String LANGUAGE = "ATL";
-    private static final File TCS = FixtureData.ATL_TCS;
-    private static final File[] METAMODELS = { FixtureData.ATL_METAMODEL };
+    private static final File TCS = ScenarioFixtureData.ATL_TCS;
+    private static final File[] METAMODELS = { ScenarioFixtureData.ATL_METAMODEL };
     private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
     
     private static ParsingHelper parsingHelper;

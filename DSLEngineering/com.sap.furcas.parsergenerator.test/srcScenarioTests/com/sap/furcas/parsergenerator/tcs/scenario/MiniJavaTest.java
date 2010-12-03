@@ -18,7 +18,7 @@ import com.sap.furcas.runtime.parser.impl.DefaultTextAwareModelAdapter;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
-import com.sap.furcas.test.fixture.FixtureData;
+import com.sap.furcas.test.fixture.ScenarioFixtureData;
 import com.sap.furcas.test.testutils.ScopeHelper;
 
 /**
@@ -29,8 +29,8 @@ import com.sap.furcas.test.testutils.ScopeHelper;
 public class MiniJavaTest extends GeneratedParserBasedTest {
 
     private static final String LANGUAGE = "MiniJava";
-    private static final File TCS = FixtureData.MINI_JAVA_TCS;
-    private static final File[] METAMODELS = { FixtureData.MINI_JAVA_METAMODEL};
+    private static final File TCS = ScenarioFixtureData.MINI_JAVA_TCS;
+    private static final File[] METAMODELS = { ScenarioFixtureData.MINI_JAVA_METAMODEL};
     private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
     
     private static ParsingHelper parsingHelper;

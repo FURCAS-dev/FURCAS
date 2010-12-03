@@ -249,7 +249,7 @@ public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
     }
 
     @Override
-    public Collection<?> evaluateOCLQuery(Object modelElement, Object keyValue, @SuppressWarnings("hiding") String oclQuery, Object contextElement) {
+    public Collection<?> evaluateOCLQuery(Object modelElement, Object keyValue, String oclQuery, Object contextElement) {
         fail("not implemented yet");
         return null;
     }

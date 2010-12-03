@@ -10,7 +10,6 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
-import com.sap.emf.ocl.trigger.AbstractOCLBasedModelUpdater;
 import com.sap.emf.ocl.trigger.ExpressionWithContext;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
@@ -43,7 +42,7 @@ import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
  * @author Axel Uhl (D043530)
  * 
  */
-public class ForeachPropertyInitUpdater extends AbstractOCLBasedModelUpdater {
+public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdater {
     private final Collection<OCLExpression> triggerExpressionsWithoutContext;
 
     public ForeachPropertyInitUpdater(ForeachPredicatePropertyInit injectorAction, OppositeEndFinder oppositeEndFinder)

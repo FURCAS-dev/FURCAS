@@ -10,7 +10,7 @@ import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
-import com.sap.furcas.test.fixture.FixtureData;
+import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 /**
  * Tests currently fail for unknown reason, maybe tcs syntax is corrupt
@@ -18,8 +18,8 @@ import com.sap.furcas.test.fixture.FixtureData;
 public class XPathRedGenerationTest extends GeneratedParserBasedTest {
 
     private static final String LANGUAGE = "XPathReduced";
-    private static final File TCS = FixtureData.XPATH_REDUCED_TCS;
-    private static final File[] METAMODELS = { FixtureData.XPATH_REDUCED_METAMODEL, FixtureData.XPATH_METAMODEL };
+    private static final File TCS = ScenarioFixtureData.XPATH_REDUCED_TCS;
+    private static final File[] METAMODELS = { ScenarioFixtureData.XPATH_REDUCED_METAMODEL, ScenarioFixtureData.XPATH_METAMODEL };
 
     private static ParsingHelper parsingHelper;
 
