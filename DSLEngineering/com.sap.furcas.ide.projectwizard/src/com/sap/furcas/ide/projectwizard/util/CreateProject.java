@@ -71,7 +71,13 @@ public class CreateProject extends WorkspaceModifyOperation {
     protected void execute(IProgressMonitor monitor) throws CoreException, InvocationTargetException, InterruptedException {
         monitor.beginTask("Creating project " + pi.getProjectName(), 2);
 
-        IProject project = createProject(monitor);
+        IProject project;
+        try {
+            project = createProject(monitor);
+        } catch (CodeGenerationException e) {
+            // TODO Auto-generated catch block
+            throw new InterruptedException(e.getMessage());
+        }
         this.project = project;
     }
 
@@ -82,8 +88,9 @@ public class CreateProject extends WorkspaceModifyOperation {
      * @param monitor
      *            The progress monitor for the process of file creation
      * @return The generated project.
+     * @throws CodeGenerationException
      */
-    private IProject createProject(IProgressMonitor monitor) {
+    private IProject createProject(IProgressMonitor monitor) throws CodeGenerationException {
 
         List<String> srcfolders = new ArrayList<String>();
         srcfolders.add("src");
@@ -98,7 +105,6 @@ public class CreateProject extends WorkspaceModifyOperation {
         nonSrcFolders.add("resources");
         nonSrcFolders.add("mappings");
 
-
         IProject dslProject = WizardProjectHelper.createPlugInProject(pi, srcfolders, nonSrcFolders, exportedPackages, monitor,
                 this.shell, false);
 
@@ -106,7 +112,6 @@ public class CreateProject extends WorkspaceModifyOperation {
             return null;
         }
         monitor.worked(1);
-
 
         IFolder sourceTargetRootFolder = dslProject.getFolder(ORIGINAL_FILE_LOCATION_ROOT);
         assert (sourceTargetRootFolder.exists());
@@ -120,20 +125,17 @@ public class CreateProject extends WorkspaceModifyOperation {
         try {
             genSrcFolder = createGeneratedFolder(genRootFolder, monitor, "");
         } catch (CoreException e) {
-            System.out.println("Fehlerquelle I");
+            throw new CodeGenerationException("Failed to generate folder '/generated'", (e.getCause()));
         }
-
 
         try {
             createSource(pi, sourceTargetRootFolder, dslProject, monitor);
         } catch (CoreException e) {
-            System.out.println("Fehlerquelle II");
+            throw new CodeGenerationException("Failed to generate source folder '/src'");
         }
-
 
         String props = codeFactory.createdPropertiesCode(pi);
         WizardProjectHelper.createFile("generate.properties", sourceTargetRootFolder, props, monitor);
-
 
         String templateString = codeFactory.createSampleTCS(pi);
         IFile grammar = WizardProjectHelper.createFile(pi.getTCSFileName(), genSrcFolder, templateString, monitor);
