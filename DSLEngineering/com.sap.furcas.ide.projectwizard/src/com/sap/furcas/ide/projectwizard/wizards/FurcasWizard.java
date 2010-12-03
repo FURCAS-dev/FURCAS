@@ -174,7 +174,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
      * @param monitor
      *            The progress monitor.
      */
-    void doFinish(final ProjectInfo pi, IProgressMonitor monitor) {
+    public void doFinish(final ProjectInfo pi, IProgressMonitor monitor) {
         new UIJob("creating FURCAS projects...") {
             @Override
             public IStatus runInUIThread(IProgressMonitor monitor) {
@@ -216,7 +216,6 @@ public class FurcasWizard extends Wizard implements INewWizard {
                     }
                 if (hadError)
                     deleteJunk(pi, monitor);
-                    
 
                 return Status.OK_STATUS;
             }
@@ -225,13 +224,12 @@ public class FurcasWizard extends Wizard implements INewWizard {
     }
 
     /**
-     * This method gets called when an error occured making sure that unneccessary projects in workspace
-     * get cleaned up.
+     * This method gets called when an error occured making sure that unneccessary projects in workspace get cleaned up.
      */
     protected void deleteJunk(ProjectInfo pi, IProgressMonitor monitor) {
-        if (!pi.isLoadMetamodel()){
+        if (!pi.isLoadMetamodel()) {
             IWorkspace workspace = ResourcesPlugin.getWorkspace();
-            IProject metamodelProject = workspace.getRoot().getProject(pi.getProjectName()+".metamodel");
+            IProject metamodelProject = workspace.getRoot().getProject(pi.getProjectName() + ".metamodel");
             try {
                 metamodelProject.delete(true, new SubProgressMonitor(monitor, 1));
             } catch (CoreException e) {
@@ -241,11 +239,11 @@ public class FurcasWizard extends Wizard implements INewWizard {
         IWorkspace workspace = ResourcesPlugin.getWorkspace();
         IProject languageProject = workspace.getRoot().getProject(pi.getProjectName());
         try {
-           languageProject.delete(true, new SubProgressMonitor(monitor, 1));
+            languageProject.delete(true, new SubProgressMonitor(monitor, 1));
         } catch (CoreException e) {
             // Nothing happens as there is no project to delete.
         }
-        
+
     }
 
     /**
@@ -269,7 +267,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
             protected void execute(IProgressMonitor progressMonitor) {
 
                 try {
-                    CreateMMProject.create(getFurcasWizard(), progressMonitor);
+                    CreateMMProject.create(getFurcasWizard(), progressMonitor, pi);
                 } catch (CodeGenerationException e) {
                     getFurcasWizard().setHadError(true);
                     MessageDialog.openError(getShell(), "Error", e.getMessage());
@@ -410,5 +408,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
         setWindowTitle(EcoreEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
         setDefaultPageImageDescriptor(getDefaultImageDescriptor());
     }
+
+    
 
 }
