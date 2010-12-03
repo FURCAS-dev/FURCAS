@@ -194,8 +194,9 @@ public class PropertyTypeHandler<Type extends Object> {
 								.buildRuleName(metaModelTypeOfProperty);
 						String modeArg = args.modePArg != null ? args.modePArg
 								.getMode() : null;
-						if (syntaxLookup.getTCSTemplate(
-								metaModelTypeOfProperty, modeArg) == null) {
+						Collection<Template> tcsTemplate = syntaxLookup.getTCSTemplate(
+								        metaModelTypeOfProperty, modeArg);
+						if (tcsTemplate == null || tcsTemplate.isEmpty()) {
 							errorBucket.addError(
 									"Syntax does not define a rule for "
 											+ metaModelTypeOfProperty

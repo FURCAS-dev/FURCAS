@@ -31,6 +31,8 @@
         eType="#//Token" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lexer" ordered="false"
         unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="imports" upperBound="-1"
+        eType="#//ImportDeclaration" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Template" abstract="true" eSuperTypes="#//QualifiedNamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="concreteSyntax" ordered="false"
@@ -42,6 +44,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="semDisambiguate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="textBlockDefinition" eType="ecore:EClass textblockdefinition.ecore#//TextBlockDefinition"
         containment="true" eOpposite="textblockdefinition.ecore#//TextBlockDefinition/parseRule"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="templateVisibility" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionTemplate" eSuperTypes="#//Template">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="functionName" ordered="false"
@@ -494,4 +497,16 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EIntegerObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LookupPropertyInit" eSuperTypes="#//PropertyInit"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ImportDeclaration" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="concreteSyntax" lowerBound="1"
+        eType="#//ConcreteSyntax"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPartImport" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConcreteSyntaxImport" eSuperTypes="#//ImportDeclaration">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TemplateImport" eSuperTypes="#//ImportDeclaration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="template" lowerBound="1"
+        eType="#//Template"/>
+  </eClassifiers>
 </ecore:EPackage>

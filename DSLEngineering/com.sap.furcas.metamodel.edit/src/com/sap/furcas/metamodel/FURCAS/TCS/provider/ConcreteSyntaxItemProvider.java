@@ -42,222 +42,234 @@ public class ConcreteSyntaxItemProvider
                 IItemLabelProvider,
                 IItemPropertySource {
         /**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
+     * This constructs an instance from a factory and a notifier.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public ConcreteSyntaxItemProvider(AdapterFactory adapterFactory) {
-		super(adapterFactory);
-	}
+        super(adapterFactory);
+    }
 
         /**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
+     * This returns the property descriptors for the adapted class.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
+        if (itemPropertyDescriptors == null) {
+            super.getPropertyDescriptors(object);
 
-			addKPropertyDescriptor(object);
-			addLexerPropertyDescriptor(object);
-		}
-		return itemPropertyDescriptors;
-	}
+            addKPropertyDescriptor(object);
+            addLexerPropertyDescriptor(object);
+        }
+        return itemPropertyDescriptors;
+    }
 
         /**
-	 * This adds a property descriptor for the K feature.
-	 * <!-- begin-user-doc -->
+     * This adds a property descriptor for the K feature.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         protected void addKPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ConcreteSyntax_k_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ConcreteSyntax_k_feature", "_UI_ConcreteSyntax_type"),
-				 TCSPackage.Literals.CONCRETE_SYNTAX__K,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_ConcreteSyntax_k_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_ConcreteSyntax_k_feature", "_UI_ConcreteSyntax_type"),
+                 TCSPackage.Literals.CONCRETE_SYNTAX__K,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
 
         /**
-	 * This adds a property descriptor for the Lexer feature.
-	 * <!-- begin-user-doc -->
+     * This adds a property descriptor for the Lexer feature.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         protected void addLexerPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ConcreteSyntax_lexer_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ConcreteSyntax_lexer_feature", "_UI_ConcreteSyntax_type"),
-				 TCSPackage.Literals.CONCRETE_SYNTAX__LEXER,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_ConcreteSyntax_lexer_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_ConcreteSyntax_lexer_feature", "_UI_ConcreteSyntax_type"),
+                 TCSPackage.Literals.CONCRETE_SYNTAX__LEXER,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
 
         /**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
+     * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+     * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+     * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(TCSPackage.Literals.CONCRETE_SYNTAX__TEMPLATES);
-			childrenFeatures.add(TCSPackage.Literals.CONCRETE_SYNTAX__KEYWORDS);
-			childrenFeatures.add(TCSPackage.Literals.CONCRETE_SYNTAX__SYMBOLS);
-			childrenFeatures.add(TCSPackage.Literals.CONCRETE_SYNTAX__OPERATOR_LISTS);
-			childrenFeatures.add(TCSPackage.Literals.CONCRETE_SYNTAX__TOKENS);
-		}
-		return childrenFeatures;
-	}
+        if (childrenFeatures == null) {
+            super.getChildrenFeatures(object);
+            childrenFeatures.add(TCSPackage.Literals.CONCRETE_SYNTAX__TEMPLATES);
+            childrenFeatures.add(TCSPackage.Literals.CONCRETE_SYNTAX__KEYWORDS);
+            childrenFeatures.add(TCSPackage.Literals.CONCRETE_SYNTAX__SYMBOLS);
+            childrenFeatures.add(TCSPackage.Literals.CONCRETE_SYNTAX__OPERATOR_LISTS);
+            childrenFeatures.add(TCSPackage.Literals.CONCRETE_SYNTAX__TOKENS);
+            childrenFeatures.add(TCSPackage.Literals.CONCRETE_SYNTAX__IMPORTS);
+        }
+        return childrenFeatures;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
+        // Check the type of the specified child object and return the proper feature to use for
+        // adding (see {@link AddCommand}) it as a child.
 
-		return super.getChildFeature(object, child);
-	}
+        return super.getChildFeature(object, child);
+    }
 
         /**
-	 * This returns ConcreteSyntax.gif.
-	 * <!-- begin-user-doc -->
+     * This returns ConcreteSyntax.gif.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ConcreteSyntax"));
-	}
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/ConcreteSyntax"));
+    }
 
         /**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
+     * This returns the label text for the adapted class.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         public String getText(Object object) {
-		String label = ((ConcreteSyntax)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ConcreteSyntax_type") :
-			getString("_UI_ConcreteSyntax_type") + " " + label;
-	}
+        String label = ((ConcreteSyntax)object).getName();
+        return label == null || label.length() == 0 ?
+            getString("_UI_ConcreteSyntax_type") :
+            getString("_UI_ConcreteSyntax_type") + " " + label;
+    }
 
         /**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
+     * This handles model notifications by calling {@link #updateChildren} to update any cached
+     * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+        updateChildren(notification);
 
-		switch (notification.getFeatureID(ConcreteSyntax.class)) {
-			case TCSPackage.CONCRETE_SYNTAX__K:
-			case TCSPackage.CONCRETE_SYNTAX__LEXER:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case TCSPackage.CONCRETE_SYNTAX__TEMPLATES:
-			case TCSPackage.CONCRETE_SYNTAX__KEYWORDS:
-			case TCSPackage.CONCRETE_SYNTAX__SYMBOLS:
-			case TCSPackage.CONCRETE_SYNTAX__OPERATOR_LISTS:
-			case TCSPackage.CONCRETE_SYNTAX__TOKENS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
-		}
-		super.notifyChanged(notification);
-	}
+        switch (notification.getFeatureID(ConcreteSyntax.class)) {
+            case TCSPackage.CONCRETE_SYNTAX__K:
+            case TCSPackage.CONCRETE_SYNTAX__LEXER:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+            case TCSPackage.CONCRETE_SYNTAX__TEMPLATES:
+            case TCSPackage.CONCRETE_SYNTAX__KEYWORDS:
+            case TCSPackage.CONCRETE_SYNTAX__SYMBOLS:
+            case TCSPackage.CONCRETE_SYNTAX__OPERATOR_LISTS:
+            case TCSPackage.CONCRETE_SYNTAX__TOKENS:
+            case TCSPackage.CONCRETE_SYNTAX__IMPORTS:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+                return;
+        }
+        super.notifyChanged(notification);
+    }
 
         /**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
+     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+     * that can be created under this object.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-		super.collectNewChildDescriptors(newChildDescriptors, object);
+        super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(TCSPackage.Literals.CONCRETE_SYNTAX__TEMPLATES,
-				 TCSFactory.eINSTANCE.createFunctionTemplate()));
+        newChildDescriptors.add
+            (createChildParameter
+                (TCSPackage.Literals.CONCRETE_SYNTAX__TEMPLATES,
+                 TCSFactory.eINSTANCE.createFunctionTemplate()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(TCSPackage.Literals.CONCRETE_SYNTAX__TEMPLATES,
-				 TCSFactory.eINSTANCE.createContextTemplate()));
+        newChildDescriptors.add
+            (createChildParameter
+                (TCSPackage.Literals.CONCRETE_SYNTAX__TEMPLATES,
+                 TCSFactory.eINSTANCE.createContextTemplate()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(TCSPackage.Literals.CONCRETE_SYNTAX__TEMPLATES,
-				 TCSFactory.eINSTANCE.createClassTemplate()));
+        newChildDescriptors.add
+            (createChildParameter
+                (TCSPackage.Literals.CONCRETE_SYNTAX__TEMPLATES,
+                 TCSFactory.eINSTANCE.createClassTemplate()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(TCSPackage.Literals.CONCRETE_SYNTAX__TEMPLATES,
-				 TCSFactory.eINSTANCE.createPrimitiveTemplate()));
+        newChildDescriptors.add
+            (createChildParameter
+                (TCSPackage.Literals.CONCRETE_SYNTAX__TEMPLATES,
+                 TCSFactory.eINSTANCE.createPrimitiveTemplate()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(TCSPackage.Literals.CONCRETE_SYNTAX__TEMPLATES,
-				 TCSFactory.eINSTANCE.createOperatorTemplate()));
+        newChildDescriptors.add
+            (createChildParameter
+                (TCSPackage.Literals.CONCRETE_SYNTAX__TEMPLATES,
+                 TCSFactory.eINSTANCE.createOperatorTemplate()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(TCSPackage.Literals.CONCRETE_SYNTAX__TEMPLATES,
-				 TCSFactory.eINSTANCE.createEnumerationTemplate()));
+        newChildDescriptors.add
+            (createChildParameter
+                (TCSPackage.Literals.CONCRETE_SYNTAX__TEMPLATES,
+                 TCSFactory.eINSTANCE.createEnumerationTemplate()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(TCSPackage.Literals.CONCRETE_SYNTAX__KEYWORDS,
-				 TCSFactory.eINSTANCE.createKeyword()));
+        newChildDescriptors.add
+            (createChildParameter
+                (TCSPackage.Literals.CONCRETE_SYNTAX__KEYWORDS,
+                 TCSFactory.eINSTANCE.createKeyword()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(TCSPackage.Literals.CONCRETE_SYNTAX__SYMBOLS,
-				 TCSFactory.eINSTANCE.createSymbol()));
+        newChildDescriptors.add
+            (createChildParameter
+                (TCSPackage.Literals.CONCRETE_SYNTAX__SYMBOLS,
+                 TCSFactory.eINSTANCE.createSymbol()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(TCSPackage.Literals.CONCRETE_SYNTAX__OPERATOR_LISTS,
-				 TCSFactory.eINSTANCE.createOperatorList()));
+        newChildDescriptors.add
+            (createChildParameter
+                (TCSPackage.Literals.CONCRETE_SYNTAX__OPERATOR_LISTS,
+                 TCSFactory.eINSTANCE.createOperatorList()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(TCSPackage.Literals.CONCRETE_SYNTAX__TOKENS,
-				 TCSFactory.eINSTANCE.createToken()));
-	}
+        newChildDescriptors.add
+            (createChildParameter
+                (TCSPackage.Literals.CONCRETE_SYNTAX__TOKENS,
+                 TCSFactory.eINSTANCE.createToken()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (TCSPackage.Literals.CONCRETE_SYNTAX__IMPORTS,
+                 TCSFactory.eINSTANCE.createConcreteSyntaxImport()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (TCSPackage.Literals.CONCRETE_SYNTAX__IMPORTS,
+                 TCSFactory.eINSTANCE.createTemplateImport()));
+    }
 
 }

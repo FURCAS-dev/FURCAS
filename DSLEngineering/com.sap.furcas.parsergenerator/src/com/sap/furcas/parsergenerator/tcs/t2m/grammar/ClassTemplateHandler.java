@@ -107,6 +107,7 @@ public class ClassTemplateHandler<Type extends Object> {
      *            the template
      * @param ruleBodyBufferFactory
      *            the rule body buffer factory
+     * @param isInMainSyntax 
      * 
      * @throws SyntaxParsingException
      *             the syntax parsing exception
@@ -115,7 +116,7 @@ public class ClassTemplateHandler<Type extends Object> {
      * @throws SyntaxElementException 
      */
     public void addTemplate(ClassTemplate template,
-            RuleBodyBufferFactory ruleBodyBufferFactory)
+            RuleBodyBufferFactory ruleBodyBufferFactory, boolean isInMainSyntax)
     throws MetaModelLookupException, SyntaxElementException {
 
         if (template.getPrefixSequence() != null) {
@@ -146,7 +147,7 @@ public class ClassTemplateHandler<Type extends Object> {
         }
         if (templateRulename != null) {
 
-            if (template.isIsMain() ) {
+            if (template.isIsMain() && isInMainSyntax) {
                 // adds the ANTLR rule main : ... ;
                 addMainRule(template, templateRulename);
             }

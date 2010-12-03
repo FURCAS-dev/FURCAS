@@ -72,7 +72,7 @@ public class TestClassTemplateHandler {
         template.names = StringListHelper.list("test", "class");
         RuleBodyBufferFactory ruleBodyBufferFactory = new RuleBufferFactoryStub();
         
-        classhandler.addTemplate(template, ruleBodyBufferFactory);
+        classhandler.addTemplate(template, ruleBodyBufferFactory, false);
         
         assertEquals(1, writerStub.rules.size());
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
@@ -113,7 +113,7 @@ public class TestClassTemplateHandler {
         template.referenceOnly = true;
         RuleBodyBufferFactory ruleBodyBufferFactory = new RuleBufferFactoryStub();
         
-        classhandler.addTemplate(template, ruleBodyBufferFactory);
+        classhandler.addTemplate(template, ruleBodyBufferFactory, false);
         
         assertEquals(1, writerStub.rules.size());
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
@@ -155,7 +155,7 @@ public class TestClassTemplateHandler {
         template.mode = "testmode";
         RuleBodyBufferFactory ruleBodyBufferFactory = new RuleBufferFactoryStub();
         
-        classhandler.addTemplate(template, ruleBodyBufferFactory);
+        classhandler.addTemplate(template, ruleBodyBufferFactory, false);
         
         assertEquals(1, writerStub.rules.size());
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
@@ -206,7 +206,7 @@ public class TestClassTemplateHandler {
         syntaxLookupStub.typeTemplate = subtemplate; // to be returned as template for both subtype1 and subtype2
         
         RuleBodyBufferFactory ruleBodyBufferFactory = new RuleBufferFactoryStub();
-        classhandler.addTemplate(template, ruleBodyBufferFactory);
+        classhandler.addTemplate(template, ruleBodyBufferFactory, false);
         
         assertTrue(writerStub.rules.size() == 1);
         // this is a white Box test, so casting is allowed
@@ -249,7 +249,7 @@ public class TestClassTemplateHandler {
         template.isContext = true;
         RuleBodyBufferFactory ruleBodyBufferFactory = new RuleBufferFactoryStub();
         
-        classhandler.addTemplate(template, ruleBodyBufferFactory);
+        classhandler.addTemplate(template, ruleBodyBufferFactory, false);
         
         assertEquals(1, writerStub.rules.size());
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
@@ -295,7 +295,7 @@ public class TestClassTemplateHandler {
         template.contextTags.tags.add("testTag");
         RuleBodyBufferFactory ruleBodyBufferFactory = new RuleBufferFactoryStub();
         
-        classhandler.addTemplate(template, ruleBodyBufferFactory);
+        classhandler.addTemplate(template, ruleBodyBufferFactory, false);
         
         assertEquals(1, writerStub.rules.size());
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
@@ -342,7 +342,7 @@ public class TestClassTemplateHandler {
         template.contextTags.tags.add("testTag2");
         RuleBodyBufferFactory ruleBodyBufferFactory = new RuleBufferFactoryStub();
         
-        classhandler.addTemplate(template, ruleBodyBufferFactory);
+        classhandler.addTemplate(template, ruleBodyBufferFactory, false);
         
         assertEquals(1, writerStub.rules.size());
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
@@ -387,7 +387,7 @@ public class TestClassTemplateHandler {
         template.isAddToContext = true;
         RuleBodyBufferFactory ruleBodyBufferFactory = new RuleBufferFactoryStub();
         
-        classhandler.addTemplate(template, ruleBodyBufferFactory);
+        classhandler.addTemplate(template, ruleBodyBufferFactory, false);
         
         assertEquals(1, writerStub.rules.size());
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
@@ -433,7 +433,7 @@ public class TestClassTemplateHandler {
         template.isContext = true;
         RuleBodyBufferFactory ruleBodyBufferFactory = new RuleBufferFactoryStub();
         
-        classhandler.addTemplate(template, ruleBodyBufferFactory);
+        classhandler.addTemplate(template, ruleBodyBufferFactory, false);
         
         assertEquals(1, writerStub.rules.size());
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
@@ -483,7 +483,7 @@ public class TestClassTemplateHandler {
         sequenceStub.representation = "sequence";
         template.sequence = sequenceStub ;
         RuleBodyBufferFactory ruleBodyBufferFactory = new RuleBufferFactoryStub();
-        classhandler.addTemplate(template, ruleBodyBufferFactory);
+        classhandler.addTemplate(template, ruleBodyBufferFactory, false);
 
         assertEquals(1, writerStub.rules.size());
         ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
@@ -530,7 +530,7 @@ public class TestClassTemplateHandler {
         template.isMain = true;
 
         RuleBodyBufferFactory ruleBodyBufferFactory = new RuleBufferFactoryStub();
-        classhandler.addTemplate(template, ruleBodyBufferFactory);
+        classhandler.addTemplate(template, ruleBodyBufferFactory,template.isMain);
 
         assertEquals(2, writerStub.rules.size());
         
@@ -573,7 +573,7 @@ public class TestClassTemplateHandler {
         template.isMulti = true;
         
         RuleBodyBufferFactory ruleBodyBufferFactory = new RuleBufferFactoryStub();
-        classhandler.addTemplate(template, ruleBodyBufferFactory);
+        classhandler.addTemplate(template, ruleBodyBufferFactory,template.isMain);
         
         assertEquals(2, writerStub.rules.size());
 
@@ -625,7 +625,7 @@ public class TestClassTemplateHandler {
         syntaxLookupStub.typeTemplate = subtemplate; // to be returned as template for subtype1 and subtype2
         
         RuleBodyBufferFactory ruleBodyBufferFactory = new RuleBufferFactoryStub();
-        classhandler.addTemplate(template, ruleBodyBufferFactory);
+        classhandler.addTemplate(template, ruleBodyBufferFactory, false);
         
         assertEquals(2, writerStub.rules.size());
         // this is a white Box test, so casting is allowed
@@ -696,7 +696,7 @@ public class TestClassTemplateHandler {
         syntaxLookupStub.typeTemplate = subtemplate; // to be returned as template for subtype1 and subtype2
         
         RuleBodyBufferFactory ruleBodyBufferFactory = new RuleBufferFactoryStub();
-        classhandler.addTemplate(template, ruleBodyBufferFactory);
+        classhandler.addTemplate(template, ruleBodyBufferFactory, false);
         
         assertTrue(writerStub.rules.size() == 1);
         // this is a white Box test, so casting is allowed
@@ -747,7 +747,7 @@ public class TestClassTemplateHandler {
         syntaxLookupStub.typeTemplate = subtemplate; // to be returned as template for subtype1 and subtype2
         
         RuleBodyBufferFactory ruleBodyBufferFactory = new RuleBufferFactoryStub();
-        classhandler.addTemplate(template, ruleBodyBufferFactory);
+        classhandler.addTemplate(template, ruleBodyBufferFactory, false);
         
         assertTrue(writerStub.rules.size() == 1);
         // this is a white Box test, so casting is allowed
@@ -806,7 +806,7 @@ public class TestClassTemplateHandler {
         syntaxLookupStub.addSubtemplate("subtype2", subtemplate);
         
         RuleBodyBufferFactory ruleBodyBufferFactory = new RuleBufferFactoryStub();
-        classhandler.addTemplate(template, ruleBodyBufferFactory);
+        classhandler.addTemplate(template, ruleBodyBufferFactory, false);
         
         assertTrue(writerStub.rules.size() == 1);
         // this is a white Box test, so casting is allowed
@@ -870,7 +870,7 @@ public class TestClassTemplateHandler {
         syntaxLookupStub.typeTemplate = subtemplate; // to be returned as template for subtype1 and subtype2
         
         RuleBodyBufferFactory ruleBodyBufferFactory = new RuleBufferFactoryStub();
-        classhandler.addTemplate(template, ruleBodyBufferFactory);
+        classhandler.addTemplate(template, ruleBodyBufferFactory, false);
         
         assertTrue(writerStub.rules.size() == 1);
         // this is a white Box test, so casting is allowed
@@ -922,7 +922,7 @@ public class TestClassTemplateHandler {
         syntaxLookupStub.typeTemplate = subtemplate; // to be returned as template for subtype1 and subtype2
         
         RuleBodyBufferFactory ruleBodyBufferFactory = new RuleBufferFactoryStub();
-        classhandler.addTemplate(template, ruleBodyBufferFactory);
+        classhandler.addTemplate(template, ruleBodyBufferFactory, false);
         
         assertTrue(writerStub.rules.size() == 1);
         // this is a white Box test, so casting is allowed
@@ -979,7 +979,7 @@ public class TestClassTemplateHandler {
         syntaxLookupStub.typeTemplate = subtemplate; // to be returned as template for subtype1 and subtype2
         
         RuleBodyBufferFactory ruleBodyBufferFactory = new RuleBufferFactoryStub();
-        classhandler.addTemplate(template, ruleBodyBufferFactory);
+        classhandler.addTemplate(template, ruleBodyBufferFactory, false);
         
         assertTrue(writerStub.rules.size() == 2);
       
@@ -1058,7 +1058,7 @@ public class TestClassTemplateHandler {
         syntaxLookupStub.typeTemplate = subtemplate; // to be returned as template for subtype1 and subtype2
         
         RuleBodyBufferFactory ruleBodyBufferFactory = new RuleBufferFactoryStub();
-        classhandler.addTemplate(template, ruleBodyBufferFactory);
+        classhandler.addTemplate(template, ruleBodyBufferFactory, false);
         
         assertTrue(writerStub.rules.size() == 2);
       
@@ -1138,7 +1138,7 @@ public class TestClassTemplateHandler {
         syntaxLookupStub.typeTemplate = subtemplate; // to be returned as template for subtype1 and subtype2
         
         RuleBodyBufferFactory ruleBodyBufferFactory = new RuleBufferFactoryStub();
-        classhandler.addTemplate(template, ruleBodyBufferFactory);
+        classhandler.addTemplate(template, ruleBodyBufferFactory, false);
         
         assertTrue(writerStub.rules.size() == 2);
       
@@ -1208,7 +1208,7 @@ public class TestClassTemplateHandler {
         metaLookupStub.subTypes = ResolutionBeanHelper.multiSimpleList();
         
         RuleBodyBufferFactory ruleBodyBufferFactory = new RuleBufferFactoryStub();
-        classhandler.addTemplate(template, ruleBodyBufferFactory);
+        classhandler.addTemplate(template, ruleBodyBufferFactory, false);
         
         assertTrue(writerStub.rules.size() == 1);
         // this is a white Box test, so casting is allowed
@@ -1266,7 +1266,7 @@ public class TestClassTemplateHandler {
         syntaxLookupStub.primaries = new ArrayList<ClassTemplate>(Collections.singletonList((ClassTemplate)subTemplate));
         
         RuleBodyBufferFactory ruleBodyBufferFactory = new RuleBufferFactoryStub();
-        classhandler.addTemplate(template, ruleBodyBufferFactory);
+        classhandler.addTemplate(template, ruleBodyBufferFactory, false);
         
         assertTrue(writerStub.rules.size() == 2); // contains 2 rules, one for priority_0, one for primary_class
         
@@ -1341,7 +1341,7 @@ public class TestClassTemplateHandler {
         syntaxLookupStub.primaries = new ArrayList<ClassTemplate>(Collections.singletonList((ClassTemplate)subTemplate));
         
         RuleBodyBufferFactory ruleBodyBufferFactory = new RuleBufferFactoryStub();
-        classhandler.addTemplate(template, ruleBodyBufferFactory);
+        classhandler.addTemplate(template, ruleBodyBufferFactory, false);
         
         assertTrue(writerStub.rules.size() == 2); // contains 2 rules, one for priority_0, one for primary_class
         

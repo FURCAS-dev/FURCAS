@@ -2,7 +2,6 @@ package com.sap.furcas.runtime.tcs;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -10,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -45,6 +45,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Associativity;
 import com.sap.furcas.metamodel.FURCAS.TCS.Block;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntaxImport;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.CustomSeparator;
 import com.sap.furcas.metamodel.FURCAS.TCS.EndOfLineRule;
@@ -55,6 +56,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.FunctionCall;
 import com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.ImportDeclaration;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
@@ -81,6 +83,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.TCS.TemplateImport;
 import com.sap.furcas.metamodel.FURCAS.TCS.Token;
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
@@ -108,6 +111,8 @@ import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
  */
 public class TcsUtil {
 
+    private static Logger log = Logger.getLogger(TcsUtil.class.getName());
+    
     private static final URI TRANSIENT_PARTITION_NAME = URI.createURI("TcsUtilTransientPartition");
 	private static final String MQL_ALIAS_INSTANCE = "cs";
 
@@ -308,7 +313,16 @@ public class TcsUtil {
             ConcreteSyntax syntax) {
         List<OperatorTemplate> result = new ArrayList<OperatorTemplate>();
         Collection<EClass> subTypes = getAllSubtypes(type);
-        for (Template t : syntax.getTemplates()) {
+        List<Template> syntax_templates = new ArrayList<Template>();
+        List<Template> templates = new ArrayList<Template>();
+        templates.addAll(syntax_templates);
+
+        // to add the imported templates
+        if (syntax.getImports() != null && syntax.getImports().size() > 0) {
+            templates.addAll(addImportedTemplates(syntax, syntax_templates));
+        }
+
+        for (Template t : templates) {
             if (t instanceof OperatorTemplate) {
                 OperatorTemplate ot = (OperatorTemplate) t;
                 for (EClass subType : subTypes) {
@@ -345,7 +359,8 @@ public class TcsUtil {
         return subTypes;
     }
 
-    private static OperatorList getOperatorList(ClassTemplate ct, ConcreteSyntax syntax) {
+    private static OperatorList getOperatorList(ClassTemplate ct,
+            ConcreteSyntax syntax) {
         OperatorList mainClassOpList = ct.getOperatorList();
         if (mainClassOpList != null) {
             return mainClassOpList;
@@ -353,7 +368,15 @@ public class TcsUtil {
 
         // no operator list name specified, query operator lists of syntax
         // instead
-        for (OperatorList opList : syntax.getOperatorLists()) {
+        // to add the imported templates
+        List<OperatorList> listOfOperatorList = new ArrayList<OperatorList>(syntax.getOperatorLists());
+        if (syntax.getImports() != null && syntax.getImports().size() > 0) {
+            List<OperatorList> importedOperatorList = importedOperatorList(syntax);
+            if (importedOperatorList != null) {
+                listOfOperatorList.addAll(importedOperatorList);
+            }
+        }
+        for (OperatorList opList : listOfOperatorList) {
             if (opList.getName() == null) {
                 return opList;
             }
@@ -880,6 +903,26 @@ public class TcsUtil {
                 return s;
             }
         }
+        
+        if (syntax.getImports() != null && syntax.getImports().size() > 0) {
+            for (ImportDeclaration importedsyntaxe : syntax.getImports()) {
+                if (importedsyntaxe instanceof ConcreteSyntaxImport) {
+                    for (Keyword k1 : importedsyntaxe.getConcreteSyntax()
+                            .getKeywords()) {
+                        if (k1.getValue().equals(literalName)) {
+                            return k1;
+                        }
+                    }
+                    for (Symbol s1 : importedsyntaxe.getConcreteSyntax()
+                            .getSymbols()) {
+                        if (s1.getValue().equals(literalName)) {
+                            return s1;
+                        }
+                    }
+                }
+
+            }
+        }
 
         return null;
     }
@@ -1230,7 +1273,14 @@ public class TcsUtil {
         Assert.isLegal(syntax != null);
 
         Map<List<String>, Map<String, ClassTemplate>> classTemplateMap = new HashMap<List<String>, Map<String, ClassTemplate>>();
-        List<Template> templates = syntax.getTemplates();
+        List<Template> syntax_templates = syntax.getTemplates();
+        List<Template> templates = new ArrayList<Template>();
+        templates.addAll(syntax_templates);
+
+        // to add the imported templates
+        if (syntax.getImports() != null && syntax.getImports().size() > 0) {
+            templates.addAll(addImportedTemplates(syntax, syntax_templates));
+        }
 
         for (Template t : templates) {
             if (t instanceof ClassTemplate) {
@@ -1244,6 +1294,76 @@ public class TcsUtil {
 
         return classTemplateMap;
     }
+    
+    public static List<Template> addImportedTemplates(ConcreteSyntax syntax,
+           List<Template> templates) {
+       List<Template> CS_imported_template = new ArrayList<Template>();
+       List<Template> listOfTemplates = new ArrayList<Template>();
+       // List<Template> CS_Template_list = new ArrayList<Template>();
+       List<String> templatesNames = new ArrayList<String>();
+
+       listOfTemplates.addAll(templates);
+       for (ImportDeclaration importDeclaration : syntax.getImports()) {
+           if (importDeclaration instanceof ConcreteSyntaxImport) {
+               for (Template template1 : (importDeclaration
+                       .getConcreteSyntax()).getTemplates()) {
+                   CS_imported_template.add(template1);
+                   templatesNames.add(template1.getMetaReference().getName());
+               }
+           } else if (importDeclaration instanceof TemplateImport) {
+               if (!templatesNames
+                       .contains((((TemplateImport) importDeclaration)
+                               .getTemplate()).getMetaReference().getName())) {
+                   CS_imported_template
+                           .add(((TemplateImport) importDeclaration)
+                                   .getTemplate());
+                   templatesNames
+                           .add((((TemplateImport) importDeclaration)
+                                   .getTemplate()).getMetaReference()
+                                   .getName());
+               }
+           }
+       }
+
+       for (Template template : templates) {
+           if (templatesNames.contains(template.getMetaReference().getName())) {
+               log.warning("the template " + template +
+            " already exist in the main syntax ..");
+           } else {
+               listOfTemplates.add(template);
+           }
+       }
+
+       return listOfTemplates;
+   }
+
+    public static List<OperatorList> importedOperatorList(ConcreteSyntax syntax) {
+       List<OperatorList> imported_operatorList = new ArrayList<OperatorList>();
+       List<OperatorList> operatorListOfMainSyntax = syntax.getOperatorLists();
+       List<String> nameOfOperatorListOfMainSyntax = new ArrayList<String>();
+       // to get the name of the operatorLists in the main syntax
+       for (OperatorList opList : operatorListOfMainSyntax) {
+           nameOfOperatorListOfMainSyntax.add(opList.getName());
+       }
+       if (syntax.getImports() != null && syntax.getImports().size() > 0) {
+           for (ImportDeclaration importDeclaration : syntax.getImports()) {
+               if (importDeclaration instanceof ConcreteSyntaxImport) {
+                   for (OperatorList operatorList : (importDeclaration
+                           .getConcreteSyntax()).getOperatorLists()) {
+                       if (!nameOfOperatorListOfMainSyntax
+                               .contains(operatorList.getName())) {
+                           imported_operatorList.add(operatorList);
+                       } else {
+                           log.warning("the operatorList " + operatorList +
+                        " already exist in the main syntax ..");
+                       }
+                   }
+               }
+           }
+       }
+       return imported_operatorList;
+   }
+
 
     public static List<String> getQualifiedName(Template t) {
         List<String> qualifiedName;
@@ -1273,7 +1393,13 @@ public class TcsUtil {
         Assert.isLegal(syntax != null);
 
         Map<List<String>, OperatorTemplate> operatorTemplateMap = new HashMap<List<String>, OperatorTemplate>();
-        List<Template> templates = syntax.getTemplates();
+        List<Template> templates = new ArrayList<Template>(syntax.getTemplates());
+        
+       // add the imported templates
+       if (syntax.getImports() != null && syntax.getImports().size() > 0) {
+           templates.addAll(addImportedTemplates(syntax, templates));
+       }
+
 
         for (Template t : templates) {
             if (t instanceof OperatorTemplate) {
@@ -1491,9 +1617,15 @@ public class TcsUtil {
         // TODO if too slow, also build map like for class and operator
         // templates
 
+        List<Template> templates = new ArrayList<Template>();
         List<EnumLiteralMapping> results = new ArrayList<EnumLiteralMapping>();
+        templates = syntax.getTemplates();
 
-        for (Template t : syntax.getTemplates()) {
+        if (syntax.getImports() != null && syntax.getImports().size() > 0) {
+            templates.addAll(addImportedTemplates(syntax, templates));
+        }
+
+        for (Template t : templates) {
             if (t instanceof EnumerationTemplate) {
                 if (getQualifiedName(t).equals(getQualifiedName(type))) {
                     // match
@@ -1507,14 +1639,29 @@ public class TcsUtil {
         return results;
     }
 
-    public static Set<URI> getSyntaxePartitions(ResourceSet connection, String languageId) {
+    public static Set<URI> getSyntaxePartitions(ResourceSet connection,
+            String languageId) {
         ConcreteSyntax cs = getSyntaxByName(connection, languageId);
+        Set<URI> listOfURIs = new HashSet<URI>();
         if (cs == null) {
-            throw new RuntimeException("Concrete syntax with id '" + languageId + "' not found.");
+            throw new RuntimeException("Concrete syntax with id '" + languageId
+                    + "' not found.");
         }
-        // TODO for language composition return also all partitions of
-        // dependencies
-        return Collections.singleton(((EObject) cs).eResource().getURI());
+        listOfURIs.add(((EObject) cs).eResource().getURI());
+        if (cs.getImports() != null && cs.getImports().size() > 0) {
+            for (ImportDeclaration importDeclaration : cs.getImports()) {
+                if (importDeclaration instanceof ConcreteSyntaxImport) {
+                    listOfURIs.add(importDeclaration.getConcreteSyntax()
+                            .eResource().getURI());
+                } else if (importDeclaration instanceof TemplateImport) {
+                    listOfURIs.add(((TemplateImport) importDeclaration)
+                            .getTemplate().getConcreteSyntax().eResource()
+                            .getURI());
+                }
+            }
+        }
+
+        return listOfURIs;
     }
 
     public static ClassTemplate resolveClassTemplate(List<String> qualifiedName, String mode,
@@ -1673,6 +1820,9 @@ public class TcsUtil {
         return null;
     }
 
+    //TODO @Christian:can a syntax have two different comment token!!!!
+    //!!!!!
+    //!!!!!
     public static Token getCommentToken(ConcreteSyntax syntax) {
         if (syntax != null) {
             for (Token tok : syntax.getTokens()) {

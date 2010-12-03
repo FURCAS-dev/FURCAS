@@ -10,6 +10,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.FURCAS.TCS.ImportDeclaration;
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
 import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
@@ -30,6 +31,11 @@ public class ConcreteSyntaxStub extends LocatedElementStub implements ConcreteSy
     public String lexer;
     public int syntaxK = 1;
     public EList<Token> tokens = new BasicEList<Token>();
+    public EList<ImportDeclaration> importDeclarations = new BasicEList<ImportDeclaration>();
+    //public List<InterfaceDeclaration> interfaceDeclarations = new ArrayList<InterfaceDeclaration>();
+    public EList<Template> importedTemplates = new BasicEList<Template>();
+    public EList<ConcreteSyntax> importedConcreteSyntaxs =  new BasicEList<ConcreteSyntax>();
+    //private Collection<RequiredInterface> requiredElement;
 
     /* (non-Javadoc)
      * @see TCS.ConcreteSyntax#getK()
@@ -140,5 +146,9 @@ public class ConcreteSyntaxStub extends LocatedElementStub implements ConcreteSy
 	return TCSPackage.eINSTANCE.getConcreteSyntax();
     }
 
-
+    @Override
+    public EList<ImportDeclaration> getImports() {
+        fail("not implemented yet");
+        return importDeclarations;
+    }
 }

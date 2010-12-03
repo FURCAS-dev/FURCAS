@@ -8,11 +8,13 @@
  *******************************************************************************/
 package com.sap.furcas.parsergenerator;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.parser.TextLocation;
 
 
@@ -28,6 +30,13 @@ public class TCSSyntaxContainerBean {
 	
 	/** The syntax. */
 	private ConcreteSyntax syntax;
+	
+        /** The imported syntaxes */
+        private ArrayList<ConcreteSyntax> importedConcreteSyntaxes;
+    
+        /** The imported templates */
+        private ArrayList<Template> importedTemplates;
+	
 	
 	private Map<Object, TextLocation> elementToLocationMap;
 	
@@ -66,6 +75,46 @@ public class TCSSyntaxContainerBean {
 	public void setSyntax(ConcreteSyntax syntax) {
 		this.syntax = syntax;
 	}
+
+        /**
+         * Gets the imported syntaxes.
+         * 
+         * @return the list of imported syntaxes
+         */
+        public ArrayList<ConcreteSyntax> getImportedConcreteSyntaxes() {
+            return importedConcreteSyntaxes;
+        }
+    
+        /**
+         * Sets the imported syntaxes.
+         * 
+         * @param List
+         *            of imported syntaxes
+         */
+        public void setImportedConcreteSyntaxes(
+                ArrayList<ConcreteSyntax> importedConcreteSyntaxes) {
+            this.importedConcreteSyntaxes = importedConcreteSyntaxes;
+        }
+    
+        /**
+         * Gets the imported templates.
+         * 
+         * @return the list of imported templates
+         */
+        public ArrayList<Template> getImportedTemplates() {
+            return importedTemplates;
+        }
+    
+        /**
+         * Sets the imported templates.
+         * 
+         * @param List
+         *            of imported templates.
+         */
+        public void setImportedTemplates(ArrayList<Template> importedTemplates) {
+            this.importedTemplates = importedTemplates;
+        }
+	
 
     public Map<Object, TextLocation> getElementToLocationMap() {
         return elementToLocationMap;

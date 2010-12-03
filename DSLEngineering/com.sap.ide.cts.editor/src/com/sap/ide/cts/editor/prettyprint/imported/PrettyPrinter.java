@@ -246,7 +246,17 @@ public class PrettyPrinter {
     private void initializeTemplateDataStructures(ConcreteSyntax syntax) {
 	classTemplateMap = TcsUtil.createClassTemplateMap(syntax);
 
-	for (Template t : syntax.getTemplates()) {
+	List<Template> syntax_templates = syntax.getTemplates();
+        List<Template> templates = new ArrayList<Template>();
+        templates.addAll(syntax_templates);
+
+        // to add the imported templates
+        if (syntax.getImports() != null && syntax.getImports().size() > 0) {
+            templates.addAll(TcsUtil.addImportedTemplates(syntax,
+                    syntax_templates));
+        }
+
+        for (Template t : templates) {
 	    List<String> name = TcsUtil.getQualifiedName(t);
 	    if (t instanceof EnumerationTemplate) {
 		EnumerationTemplate et = (EnumerationTemplate) t;

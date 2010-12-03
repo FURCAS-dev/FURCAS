@@ -68,7 +68,10 @@ syntax TCS {
 
         -- the root element of any syntax definition
         template TCS::ConcreteSyntax main context
-                :       "syntax" name (isDefined(k) ?  "(" "k" "=" k ")") "{" [
+                : --(isDefined(requiredElements) ? requiredElements )
+                 (isDefined(imports) ? imports )     
+                -- (isDefined(interfaceDeclarations) ? interfaceDeclarations ) 
+                 "syntax" name (isDefined(k) ?  "(" "k" "=" k ")") "{" [
                                 templates
                                 (isDefined(keywords) ? "keywords" "{" [ keywords ] "}")
                                 (isDefined(symbols) ? "symbols" "{" [ symbols ] "}")
@@ -79,7 +82,6 @@ syntax TCS {
                 ;
 
 
-        
         -- utility for all qualified meta references
         function reference(TCS::QualifiedNamedElement)
                 : (isDefined(metaReference) 
@@ -95,7 +97,8 @@ syntax TCS {
         template TCS::ContextTemplate abstract;
 
         template TCS::PrimitiveTemplate
-                :       "primitiveTemplate" templateName "for" $reference
+                :       (isDefined(templateVisibility) ? "public" )
+                        "primitiveTemplate" templateName "for" $reference
                                 (default ? "default")
                                 "using" tokenName
                                 (orKeyword ? "orKeyword")
@@ -110,7 +113,8 @@ syntax TCS {
                 ;
 
         template TCS::EnumerationTemplate context addToContext
-                :       "enumerationTemplate" $reference (automatic ? "auto")
+                :       (isDefined(templateVisibility) ? "public" )
+                	"enumerationTemplate" $reference (automatic ? "auto")
                         (isDefined(mappings) ?
                                         [ ":" [
                                                 mappings{separator = ","}
@@ -127,7 +131,8 @@ syntax TCS {
                 ;
 
         template TCS::ClassTemplate context addToContext
-                :       "template" $reference
+                :   (isDefined(templateVisibility) ? "public" )    
+                	"template" $reference
                         (isReferenceOnly 
                           ? "referenceOnly" -- Reference Templates do not have other classTemplate attributes 
                           : 
@@ -150,7 +155,8 @@ syntax TCS {
                 ;
 
         template TCS::OperatorTemplate context addToContext
-                :       "operatorTemplate" $reference "("
+                :       (isDefined(templateVisibility) ? "public" )
+                		"operatorTemplate" $reference "("
                                 "operators" "=" operators{refersTo = name}
                                 "," "source" "=" storeLeftSideTo
                                 (isDefined(storeOperatorTo) ? "," "storeOpTo" "=" storeOperatorTo)
@@ -168,7 +174,8 @@ syntax TCS {
                 ;
 
         template TCS::FunctionTemplate context addToContext
-                :       "function" functionName "(" $reference ")"
+                :       (isDefined(templateVisibility) ? "public" )
+                		"function" functionName "(" $reference ")"
                                 [ ":"
                                         [ functionSequence ] {startNL = false}
                                 ";" ]
@@ -178,6 +185,51 @@ syntax TCS {
                 : "(" tags{separator= ","} ")"
                 ;
 -- @end Templates
+
+--@the import concept 
+		template ImportDeclaration abstract;
+				 
+		template ConcreteSyntaxImport 
+				: (isPartImport ? "partial") "to_import" concreteSyntax { refersTo = name, 
+				query = "OCL:ConcreteSyntax.allInstances()->select(cs | cs.name = ? )"} ";" 
+				;
+		
+                template TemplateImport
+                        : (isPartImport ? "partial") "to_import" concreteSyntax { refersTo = name,
+                        query = "OCL:ConcreteSyntax.allInstances()->select(cs | cs.name = ?)"}
+                        template { as = identifierOrKeyword, query = "OCL:self.concreteSyntax.templates
+                                        ->select(t | t.metaReference.name = ? and if t.oclIsTypeOf(TCS::ClassTemplate)
+                                        then t.oclAsType(TCS::ClassTemplate).mode = self.mode else true  endif)"}
+                         (isDefined(mode) ?  "#" mode ) ";" 
+                         ;
+
+--@ end of the import concept
+
+--@the interface concept
+
+--		template InterfaceDefinition abstract;
+		
+--		template Interface
+--				: "required" 
+--                template { as = identifierOrKeyword, query = "OCL:  let templates = providingSyntax.templates 
+--				in templates ->select(t |  t.metaReference.name = ? 
+--				and if t.oclIsTypeOf(TCS::ClassTemplate)
+--                then t.oclAsType(TCS::ClassTemplate).mode = self.mode else true  endif )"}
+--                (isDefined(mode) ?  "#" mode ) ";" 
+				
+--		template ProvidedInterface
+--				:"provided" template { as = identifierOrKeyword, query = "OCL:self.concreteSyntax.templates
+--               ->select(t | t.metaReference.name = ? and if t.oclIsTypeOf(TCS::ClassTemplate)
+--                then t.oclAsType(TCS::ClassTemplate).mode = self.mode else true  endif)"}
+--                 (isDefined(mode) ?  "#" mode ) ";" 
+--                 ;
+
+
+
+
+--@the end of interface concept
+
+
 
         template TCS::Sequence
                 :       [ elements ]

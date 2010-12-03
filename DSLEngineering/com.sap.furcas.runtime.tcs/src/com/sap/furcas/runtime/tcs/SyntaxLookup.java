@@ -16,6 +16,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -47,8 +48,17 @@ public class SyntaxLookup {
 	/** The syntax. */
 	private final ConcreteSyntax syntax;
 	
+	/** the list of imported syntaxes */
+	private final List<ConcreteSyntax> importedSyntaxes;
+	
+	/** the list of imported templates */
+	private final List<Template> importedTemplates;
+	
 	/** The keyword set. */
 	private Set<Keyword> keywordSet;
+	
+	/** The Symbol set. */
+	private final List<Symbol> symbolList = new ArrayList<Symbol>();
 
     private final MetaModelElementResolutionHelper<?> resolutionHelper;
 
@@ -57,52 +67,133 @@ public class SyntaxLookup {
     private final Map<QualifiedNamedElement, List<String>> qualifiednamesCache = new HashMap<QualifiedNamedElement, List<String>>();
 
 //    private AlternativeSequence alternativeSequenceAssoc;
+    
+    private static Logger log = Logger.getLogger(SyntaxLookup.class.getName());
 
 	/**
-	 * Instantiates a new syntax lookup.
-	 * 
-	 * @param syntax the syntax
-	 * @param keywordSet the keyword set
-	 * @param resolutionHelper 
-	 * @param keywordSet 
+     * Instantiates a new syntax lookup.
+     * 
+    * @param syntax
+    *            the syntax
+    * @param importedSyntaxes
+    *            the imported syntaxes
+    * @param importedTemplates
+    *            the imported templates
+    * @param keywordSet 
+    *            the keyword set
+    * @param resolutionHelper
+    * 
 	 */
-	public SyntaxLookup(ConcreteSyntax syntax, Set<Keyword> keywordSet, MetaModelElementResolutionHelper<?> resolutionHelper) {
-		super();
-		this.syntax = syntax;
-		this.keywordSet = keywordSet;
-		if (this.keywordSet == null) {
-		    this.keywordSet = new HashSet<Keyword>();
-		}
-		if (syntax != null) {
-		    this.keywordSet.addAll(syntax.getKeywords()); // declared vs. used keywords
-//		    if(syntax.eContainer() != null) {
-//		    	this.alternativeSequenceAssoc = ((TcsPackage)syntax.refImmediatePackage()).getAlternativeSequence();
-//		    }
-		    
-		}
-		this.resolutionHelper = resolutionHelper;
+      public SyntaxLookup(ConcreteSyntax syntax,
+                       List<ConcreteSyntax> importedSyntaxes,
+                       List<Template> importedTemplates, Set<Keyword> keywordSet,
+                       MetaModelElementResolutionHelper<?> resolutionHelper) {
+                    super();
+                    this.syntax = syntax;
+                   this.importedSyntaxes = importedSyntaxes;
+                   this.importedTemplates = importedTemplates;
+                    this.keywordSet = keywordSet;
+                    if (this.keywordSet == null) {
+                        this.keywordSet = new HashSet<Keyword>();
+                    }
+                    if (syntax != null) {
+                       this.keywordSet.addAll(syntax.getKeywords()); // declared vs. used
+                                                                       // keywords
+                       symbolList.addAll(syntax.getSymbols());
+//                       if (syntax.refImmediatePackage() != null) {
+//                           this.alternativeSequenceAssoc = ((TcsPackage) syntax
+//                                   .refImmediatePackage()).getAlternativeSequence();
+//                       }
+                   }
+                   // to add the keyword of the imported syntaxes to the main keywordSet.
+                   // the symbols of the imported syntaxes are supposed to be the same as
+                   // the symbols of the concrete syntaxes of imported templates
+                   if (importedSyntaxes != null && importedSyntaxes.size() > 0) {
+                       for (ConcreteSyntax imported_syntax : importedSyntaxes) {
+                           if (imported_syntax != null) {
+                               // TODO test if the keyword already exist
+                               for (Keyword keyword : imported_syntax.getKeywords()) {
+                                   if (keywordSet != null) {
+                                       if (keywordSet.contains(keyword)) {
+                                           log.warning("the keyword " +
+                                                    keyword +
+                                                    " already exists in the main mapping ..");
+                                       } else {
+                                           keywordSet.add(keyword);
+                        }
+                                   }
+                               }
+                               this.keywordSet.addAll(imported_syntax.getKeywords());
+                               for (Symbol imported_symbol : imported_syntax.getSymbols()) {
+                        
+                                   if (symbolList.contains(imported_symbol)) {
+                                       log.warning("the symbol " + imported_symbol +
+                                                " already exists in the main mapping ..");
+                                   } else {
+                                       symbolList.add(imported_symbol);
+                                   }
+                               }
+                           }
+                    }
+                }
+             
+                   this.resolutionHelper = resolutionHelper;
+             
+                   // initialize list of primitive templates for getDefault Primitive....
+                   initializePrimitiveTemplatesList(syntax, importedSyntaxes,
+                           importedTemplates);
+               }
 
-		// initialize list of primitive templates for getDefault Primitive....
-		initializePrimitiveTemplatesList(syntax);
-	}
 
 
-
-    private void initializePrimitiveTemplatesList(ConcreteSyntax syntax) {
+    private void initializePrimitiveTemplatesList(ConcreteSyntax syntax,
+            List<ConcreteSyntax> importedSyntaxes,
+            List<Template> importedTemplates) {
         primitiveTemplates = new ArrayList<PrimitiveTemplate>();
-		if (syntax != null) {
-		    Collection<Template> templates = syntax.getTemplates();
-		    if (templates != null ) {
-		        for (Template template : templates) {
-		            if (template instanceof PrimitiveTemplate) {
-		                primitiveTemplates.add((PrimitiveTemplate) template);
-		            }
-		        }
-		    }
-		}
+
+        if (syntax != null) {
+            Collection<Template> templates = syntax.getTemplates();
+            if (templates != null) {
+                for (Iterator<Template> iterator = templates.iterator(); iterator
+                        .hasNext();) {
+                    for (Template template : templates) {
+                        if (template instanceof PrimitiveTemplate) {
+                            primitiveTemplates
+                                    .add((PrimitiveTemplate) template);
+                        }
+                    }
+                }
+            }
+        }
+        if (importedSyntaxes != null && importedSyntaxes.size() > 0) {
+            for (ConcreteSyntax concreteSyntax : importedSyntaxes) {
+                if (concreteSyntax != null) {
+                    Collection<Template> templates = concreteSyntax
+                            .getTemplates();
+                    if (templates != null) {
+                        for (Iterator<Template> iterator = templates.iterator(); iterator
+                                .hasNext();) {
+                            Template template = iterator.next();
+                            if (template instanceof PrimitiveTemplate) {
+                                primitiveTemplates
+                                        .add((PrimitiveTemplate) template);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (importedTemplates != null && importedTemplates.size() > 0) {
+            for (Template template : importedTemplates) {
+                if (template != null) {
+                    if (template instanceof PrimitiveTemplate) {
+                        primitiveTemplates.add((PrimitiveTemplate) template);
+                    }
+                }
+            }
+        }
     }
-	
-	
 
 	public Set<Keyword> getAllKeywords () {
 	    return keywordSet;
@@ -150,10 +241,10 @@ public class SyntaxLookup {
  	 */
 	public String getSymbolRule(String literal) {
 		String symbolRule = null;
-		Collection<Symbol> list = syntax.getSymbols();
-		if (list != null) {
-		    Symbol symbol;
-		    for (Iterator<Symbol> iterator = list.iterator(); iterator.hasNext();) {
+		if (symbolList.size() > 0) {
+            Symbol symbol;
+           for (Iterator<Symbol> iterator = symbolList.iterator(); iterator
+                   .hasNext();) {
 		        symbol = iterator.next();
 		        if (literal.equals(symbol.getValue())) {
 		            symbolRule = ' ' + symbol.getName().toUpperCase() + ' ';
@@ -179,11 +270,42 @@ public class SyntaxLookup {
 	 */
 	public Collection<Template> getTCSTemplate(ResolvedNameAndReferenceBean<?> resolvedName, String mode) throws SyntaxElementException {
 	    Collection<Template> returnTemplate = new ArrayList<Template>(1);
-		// loop over all templates and return the first with the same name.
-		Collection<Template> templates = syntax.getTemplates();
 
-		if (templates != null ) {
-		    for (Template template : templates) {
+		Collection<Template> templates = new ArrayList<Template>();
+		       templates.addAll(syntax.getTemplates());
+		       if (importedSyntaxes != null && importedSyntaxes.size() > 0) {
+		           for (ConcreteSyntax imported_syntax : importedSyntaxes) {
+		               // check if the template already exists
+		               for (Template imported_template : imported_syntax
+		                       .getTemplates()) {
+		                   if (templates.contains(imported_template)) {
+		                       log.warning("The template "  + imported_template +
+		                                " already exists in the mapping");
+		                   } else {
+		                       templates.addAll(imported_syntax.getTemplates());
+		                   }
+		               }
+		           }
+		       }
+		
+		       // add the imported templates
+		       if (importedTemplates != null && importedTemplates.size() > 0) {
+		           for (Template template : importedTemplates) {
+		               if (templates.contains(template)) {
+		                   log.warning("The template " + template +
+		                            " already exists in the mapping");
+		               } else {
+		                   templates.add(template);
+		               }
+		           }
+		       }
+		                
+		       // loop over all templates and return the first with the same name.
+		       if (templates != null) {
+		           for (Iterator<Template> iterator = templates.iterator(); iterator
+		                   .hasNext();) {
+		               Template template = iterator.next();
+		    
 		        if (template instanceof FunctionTemplate) {
 		            continue;
 		        }
@@ -289,9 +411,22 @@ public class SyntaxLookup {
 	 * 
 	 * @return the anonymous operator list
 	 */
-	public OperatorList getAnonymousOperatorList() {
+    public OperatorList getAnonymousOperatorList() {
 	    OperatorList returnOpList = null;
 	    Collection<OperatorList> opListList = syntax.getOperatorLists();
+	    if (importedSyntaxes != null && importedSyntaxes.size() > 0) {
+           for (ConcreteSyntax imported_syntax : importedSyntaxes) {
+               for (OperatorList operatorList : imported_syntax
+                       .getOperatorLists()) {
+                   if (opListList.contains(operatorList)) {
+                       log.warning("The operatorList " + operatorList +
+                                " already exists in the main syntax");
+                   } else {
+                       opListList.add(operatorList);
+                   }
+               }
+           }
+       }
 	    if (opListList != null) {
 	        for (OperatorList opList : opListList) {
 	            if (opList.getName() == null || opList.getName().equals("")) {

@@ -23,8 +23,13 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntaxImport;
+import com.sap.furcas.metamodel.FURCAS.TCS.ImportDeclaration;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.TCS.TemplateImport;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
@@ -94,6 +99,12 @@ public class IncrementalParser extends IncrementalRecognizer {
 
 	private final OppositeEndFinder oppositeEndFinder;
 	
+	private ConcreteSyntax concreteSyntax;
+	
+	private final List<ConcreteSyntax> imported_concreteSyntaxs = new ArrayList<ConcreteSyntax>();
+	
+	private final List<Template> imported_templates = new ArrayList<Template>();
+	
 	public IncrementalParser(EditingDomain editingDomain,
 		ParserFactory<?, ?> parserFactory,
 		IncrementalLexer incrementalLexer,
@@ -120,7 +131,8 @@ public class IncrementalParser extends IncrementalRecognizer {
         	this.reuseStrategy = reuseStrategy;
         	this.reuseStrategy.setReferenceHandler(getReferenceHandler());
         	this.reuseStrategy.setTextBlockFactory(tbFactory);
-        	
+        	concreteSyntax = TcsUtil.getSyntaxByName(editingDomain.getResourceSet(),
+        	                       parserFactory.getLanguageId());
 	}
 	
 	public TextBlock incrementalParse(TextBlock root) {
@@ -149,6 +161,9 @@ public class IncrementalParser extends IncrementalRecognizer {
 		// if there is a change
 		if (!isEOS(findNextRegion(root))) {
 
+		    concreteSyntax = TcsUtil.getSyntaxByName(getEditingDomain().getResourceSet(),
+		                        parserFactory.getLanguageId());
+		    
 			syntaxPartitions = TcsUtil.getSyntaxePartitions(getEditingDomain().getResourceSet(),
 					parserFactory.getLanguageId());
 			ParserTextBlocksHandler parserTextBlocksHandler = new ParserTextBlocksHandler(
@@ -725,11 +740,35 @@ public class IncrementalParser extends IncrementalRecognizer {
 	}
 
 	private SyntaxLookup getSyntaxLookup() {
-		if (syntaxLookup == null) {
-			syntaxLookup = new SyntaxLookup(TcsUtil.getSyntaxByName(getEditingDomain().getResourceSet(),
-					parserFactory.getLanguageId()), null, getResolutionHelper());
-		}
-		return syntaxLookup;
+	         // ConcreteSyntax concreteSyntax =
+	           // (ConcreteSyntax)TcsUtil.getSyntaxByName(connection,
+	           // parserFactory.getLanguageId());
+	           Collection<ImportDeclaration> importDeclarationList = concreteSyntax
+	                   .getImports();
+	           if (importDeclarationList.size() > 0) {
+	               for (ImportDeclaration importDeclaration : importDeclarationList) {
+	                   if (importDeclaration instanceof ConcreteSyntaxImport) {
+	                       imported_concreteSyntaxs
+	                               .add(((ConcreteSyntaxImport) importDeclaration)
+	                                       .getConcreteSyntax());
+	                   } else if (importDeclaration instanceof TemplateImport) {
+	                       imported_templates.add(((TemplateImport) importDeclaration)
+	                               .getTemplate());
+	                   }
+	               }
+	               if (syntaxLookup == null) {
+	                   syntaxLookup = new SyntaxLookup(concreteSyntax,
+	                           imported_concreteSyntaxs, imported_templates, null,
+	                           getResolutionHelper());
+	               }
+	           } else {
+	            if (syntaxLookup == null) {
+	                   syntaxLookup = new SyntaxLookup(concreteSyntax, null, null,
+	                           null, getResolutionHelper());
+	               }
+	            }
+	    
+	            return syntaxLookup;
 	}
 
 	private TemplateNamingHelper<EObject> getNamingHelper() {

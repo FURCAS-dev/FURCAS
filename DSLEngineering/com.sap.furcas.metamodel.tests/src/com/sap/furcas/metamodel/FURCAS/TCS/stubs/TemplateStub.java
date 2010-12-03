@@ -18,19 +18,22 @@ public class TemplateStub extends LocatedElementStub implements Template {
 
     public EList<String> names;
     public String disambiguateV3;
-	public String semDisambiguate;    
+    public String semDisambiguate;
     public EClass metaReference;
-	public TextBlockDefinition textBlockDefinition;
-    
+    public TextBlockDefinition textBlockDefinition;
+    private String visibilty;
+
     public TemplateStub() {
-        
-    }
-    
-    public TemplateStub(EList<String> names) {
-       this.names = names; 
+
     }
 
-    /* (non-Javadoc)
+    public TemplateStub(EList<String> names) {
+        this.names = names;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
      * @see TCS.Template#getConcreteSyntax()
      */
     public ConcreteSyntax getConcretesyntax() {
@@ -38,7 +41,9 @@ public class TemplateStub extends LocatedElementStub implements Template {
         return null;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see TCS.Template#getDisambiguate()
      */
     @Override
@@ -47,7 +52,9 @@ public class TemplateStub extends LocatedElementStub implements Template {
         return null;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see TCS.Template#getDisambiguateV3()
      */
     @Override
@@ -55,7 +62,9 @@ public class TemplateStub extends LocatedElementStub implements Template {
         return disambiguateV3;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see TCS.Template#setConcreteSyntax(TCS.ConcreteSyntax)
      */
     public void setConcretesyntax(ConcreteSyntax value) {
@@ -63,7 +72,9 @@ public class TemplateStub extends LocatedElementStub implements Template {
 
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see TCS.Template#setDisambiguate(java.lang.String)
      */
     @Override
@@ -72,16 +83,20 @@ public class TemplateStub extends LocatedElementStub implements Template {
 
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see TCS.Template#setDisambiguateV3(java.lang.String)
      */
     @Override
     public void setDisambiguateV3(String value) {
-       disambiguateV3 = value;
+        disambiguateV3 = value;
 
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see TCS.QualifiedNamedElement#getNames()
      */
     @Override
@@ -89,7 +104,9 @@ public class TemplateStub extends LocatedElementStub implements Template {
         return names;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see tcs.QualifiedNamedElement#getMetaReference()
      */
     @Override
@@ -97,8 +114,12 @@ public class TemplateStub extends LocatedElementStub implements Template {
         return metaReference;
     }
 
-    /* (non-Javadoc)
-     * @see tcs.QualifiedNamedElement#setMetaReference(com.sap.tc.moin.repository.mmi.reflect.RefObject)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * tcs.QualifiedNamedElement#setMetaReference(com.sap.tc.moin.repository
+     * .mmi.reflect.RefObject)
      */
     @Override
     public void setMetaReference(EClassifier newValue) {
@@ -107,39 +128,51 @@ public class TemplateStub extends LocatedElementStub implements Template {
 
     @Override
     public ConcreteSyntax getConcreteSyntax() {
-	// TODO Auto-generated method stub
-	return null;
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override
     public void setConcreteSyntax(ConcreteSyntax value) {
-	// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
     }
 
-//    @Override
-//    public Collection<Template> getCalledTemplates() throws JmiException {
-//    	// TODO Auto-generated method stub
-//    	return null;
-//    }
-    
+    // @Override
+    // public Collection<Template> getCalledTemplates() throws JmiException {
+    // // TODO Auto-generated method stub
+    // return null;
+    // }
+
     @Override
-	public String getSemDisambiguate() {
-		return semDisambiguate;
-	}
+    public String getSemDisambiguate() {
+        return semDisambiguate;
+    }
 
-	@Override
-	public void setSemDisambiguate(String newValue) {
-		semDisambiguate = newValue;
-	}
+    @Override
+    public void setSemDisambiguate(String newValue) {
+        semDisambiguate = newValue;
+    }
 
-	@Override
-	public TextBlockDefinition getTextBlockDefinition() {
-		return textBlockDefinition;
-	}
+    @Override
+    public TextBlockDefinition getTextBlockDefinition() {
+        return textBlockDefinition;
+    }
 
-	@Override
-	public void setTextBlockDefinition(TextBlockDefinition value) {
-		textBlockDefinition = value;
-	}
+    @Override
+    public void setTextBlockDefinition(TextBlockDefinition value) {
+        textBlockDefinition = value;
+    }
+
+    @Override
+    public String getTemplateVisibility() {
+        // TODO Auto-generated method stub
+        return visibilty;
+    }
+
+    @Override
+    public void setTemplateVisibility(String visibility1) {
+        this.visibilty = visibility1;
+
+    }
 
 }
