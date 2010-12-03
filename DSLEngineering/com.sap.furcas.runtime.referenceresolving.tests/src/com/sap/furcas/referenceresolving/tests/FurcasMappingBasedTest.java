@@ -15,12 +15,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
+import com.sap.emf.ocl.trigger.TriggerManager;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
@@ -31,7 +32,8 @@ import com.sap.furcas.runtime.parser.impl.DefaultTextAwareModelAdapter;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
-import com.sap.furcas.test.fixture.FixtureData;
+import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
+import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 /**
  * Base class for test cases that use a FURCAS mapping specification (".tcs" file) and based on this
@@ -46,11 +48,13 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
     private static final String LANGUAGE = "BibtexWithPropertyInits";
     private static final File TCS = new File("fixtures/BibtexWithPropertyInits.tcs");
 
-    private static final File[] METAMODELS = { FixtureData.BIBTEXT_METAMODEL, FixtureData.BIBTEXT1_METAMODEL };
+    private static final File[] METAMODELS = { ScenarioFixtureData.BIBTEXT_METAMODEL, ScenarioFixtureData.BIBTEXT1_METAMODEL };
     
     private static ParsingHelper parsingHelper;
 	private static ResourceSet resourceSet;
 	private static ConcreteSyntax syntax;
+    private static SyntaxRegistry syntaxRegistry;
+    private static TriggerManager triggerManager;
 	private EObject johnDoe;
 	private EObject article;
 	private EClass authorClass;
@@ -60,8 +64,11 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
         resourceSet = testConfig.getSourceConfiguration().getResourceSet();
+        resourceSet.eAdapters().add(new ECrossReferenceAdapter());
         TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
         syntax = syntaxBean.getSyntax();
+        syntaxRegistry = SyntaxRegistry.getInstance();
+        triggerManager = syntaxRegistry.getTriggerManagerForSyntax(syntax, DefaultOppositeEndFinder.getInstance(), /* progress monitor */ null);
         ParserFacade facade = generateParserForLanguage(syntaxBean, testConfig, new ClassLookupImpl());
         parsingHelper = new ParsingHelper(facade);
     }
@@ -72,8 +79,8 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
         + "author = \"Jane Doll\".";
         EPackage ePackage = findPackage("BibText");
         Set<URI> referenceScope = Collections.singleton(ePackage.eResource().getURI());
-    	EMFModelAdapter handler = new EMFModelAdapter(ePackage, new ResourceSetImpl(), referenceScope);
-    	DefaultTextAwareModelAdapter handlerWrapper = new DefaultTextAwareModelAdapter(handler);
+    	EMFModelAdapter modelAdapter = new EMFModelAdapter(ePackage, resourceSet, referenceScope);
+    	DefaultTextAwareModelAdapter handlerWrapper = new DefaultTextAwareModelAdapter(modelAdapter);
 
         ModelParsingResult parsingResult = parsingHelper.parseString(sample, handlerWrapper);
         EObject bibTexFile = (EObject) parsingResult.getParsedModelElement();
@@ -113,8 +120,9 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
     }
     
     @Test
-    @Ignore("failing test case as preparation of impact analysis requirements")
+    //@Ignore("failing test case as preparation of impact analysis requirements")
     public void testChangeAuthorName() {
+        triggerManager.addToObservedResourceSets(johnDoe.eResource().getResourceSet());
     	johnDoe.eSet(authorClass.getEStructuralFeature("name"), "John Dough");
         assertEquals("Where John Dough wrote it", article.eGet(articleClass.getEStructuralFeature("location")));
     }

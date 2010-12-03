@@ -69,6 +69,8 @@ public class EmfHelper {
 			if (rsImpl.getURIResourceMap() == null) {
 				rsImpl.setURIResourceMap(new HashMap<URI, Resource>());
 			}
+		} else if (this.rs == null) {
+		    this.rs = new ResourceSetImpl(); // allows at least for retrieving metamodel URIs
 		}
 		//		this.createDirtyIndex();
 		this.index = index;
@@ -120,8 +122,7 @@ public class EmfHelper {
 	}
 
 	public EObject getElement(URI uri) {
-
-		return this.rs.getEObject(uri, true);
+	    return this.rs.getEObject(uri, true);
 	}
 
 	public EReference getReference(URI uri) {

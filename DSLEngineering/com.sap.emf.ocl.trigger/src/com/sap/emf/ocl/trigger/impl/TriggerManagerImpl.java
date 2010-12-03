@@ -1,6 +1,7 @@
 package com.sap.emf.ocl.trigger.impl;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedList;
 
 import org.eclipse.emf.ecore.EPackage;
@@ -17,6 +18,7 @@ import com.sap.emf.ocl.trigger.Triggerable;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.ActivationOption;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
 
@@ -24,6 +26,7 @@ public class TriggerManagerImpl implements TriggerManager {
     private final EventManager eventManager;
     private final OppositeEndFinder oppositeEndFinder;
     private final ActivationOption impactAnalysisConfiguration;
+    private final Collection<AdapterForExpression> strongAdapterReferences;
     
     TriggerManagerImpl() {
         this(new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE));
@@ -41,11 +44,13 @@ public class TriggerManagerImpl implements TriggerManager {
         eventManager = EventManagerFactory.eINSTANCE.createEventManager();
         this.oppositeEndFinder = oppositeEndFinder;
         this.impactAnalysisConfiguration = impactAnalysisConfiguration;
+        this.strongAdapterReferences = new HashSet<AdapterForExpression>();
     }
 
     @Override
     public void register(Triggerable triggerable) {
         for (AdapterForExpression adapter : getAdapters(triggerable, oppositeEndFinder, impactAnalysisConfiguration)) {
+            strongAdapterReferences.add(adapter); // ensure the adapter won't get GC'ed
             EventFilter filter = adapter.getEventFilter();
             eventManager.subscribe(filter, adapter);
         }
@@ -53,7 +58,9 @@ public class TriggerManagerImpl implements TriggerManager {
 
     /**
      * Creates one adapter for each expression returned from {@link #getTriggerExpressionsWithContext()} and
-     * {@link #getTriggerExpressionsWithoutContext()}. For the former, the context element 
+     * {@link #getTriggerExpressionsWithoutContext()}. For the former, the context element is used during
+     * the creation of the {@link ImpactAnalyzer} which is useful for expressions where the type of "self"
+     * can't be determined, e.g., because "self" doesn't occur in the expression.
      */
     private Collection<AdapterForExpression> getAdapters(Triggerable triggerable, OppositeEndFinder oppositeEndFinder,
             ActivationOption impactAnalysisConfiguration) {

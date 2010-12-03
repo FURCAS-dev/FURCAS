@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.ocl.ecore.CollectionItem;
 import org.eclipse.ocl.ecore.CollectionLiteralExp;
 import org.eclipse.ocl.ecore.CollectionRange;
+import org.eclipse.ocl.ecore.CollectionType;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.IterateExp;
 import org.eclipse.ocl.ecore.LetExp;
@@ -71,7 +72,7 @@ public class VariableTracebackStep extends BranchingTracebackStep<VariableExp> {
         super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder(), operationBodyToCallMapper, unusedEvaluationRequestFactory, oclFactory);
         oppositeEndFinder = tracebackStepCache.getOppositeEndFinder();
         variable = (Variable) sourceExpression.getReferredVariable();
-        variableHasCollectionType = Collection.class.isAssignableFrom(variable.getType().getInstanceClass());
+        variableHasCollectionType = variable.getType() instanceof CollectionType;
         // enter step into cache already to let it be found during recursive lookups
         tracebackStepCache.put(sourceExpression, tupleLiteralNamesToLookFor, this);
         if (isSelf()) {
