@@ -7,5 +7,10 @@ Bundle-Vendor: SAP
 Fragment-Host: com.sap.furcas.runtime.parser.incremental
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.junit;bundle-version="4.8.1",
+ com.sap.furcas.runtime.parser.test;bundle-version="1.0.0",
  com.sap.furcas.test,
- com.sap.furcas.runtime.textblocks.test
+ com.sap.furcas.runtime.textblocks.test,
+ com.sap.furcas.ide.parserfactory,
+ bibtex.metamodel;bundle-version="1.0.0"
+Bundle-ClassPath: generationTemp/,
+ .

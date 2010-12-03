@@ -114,6 +114,7 @@ public class GeneratedParserTestConfiguration {
             if (object instanceof EPackage) {
                 EPackage new_package = (EPackage) object;
                 EPackage.Registry.INSTANCE.put(uri, new_package);
+                EPackage.Registry.INSTANCE.put(new_package.getNsURI(), new_package);
             }
         }
     }

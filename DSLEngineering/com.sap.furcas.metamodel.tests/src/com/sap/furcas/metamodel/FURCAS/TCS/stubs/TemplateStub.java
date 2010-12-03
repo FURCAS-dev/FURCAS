@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EClassifier;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
 
 /**
  *
@@ -19,6 +20,7 @@ public class TemplateStub extends LocatedElementStub implements Template {
     public String disambiguateV3;
 	public String semDisambiguate;    
     public EClass metaReference;
+	public TextBlockDefinition textBlockDefinition;
     
     public TemplateStub() {
         
@@ -128,6 +130,16 @@ public class TemplateStub extends LocatedElementStub implements Template {
 	@Override
 	public void setSemDisambiguate(String newValue) {
 		semDisambiguate = newValue;
+	}
+
+	@Override
+	public TextBlockDefinition getTextBlockDefinition() {
+		return textBlockDefinition;
+	}
+
+	@Override
+	public void setTextBlockDefinition(TextBlockDefinition value) {
+		textBlockDefinition = value;
 	}
 
 }
