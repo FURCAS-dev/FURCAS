@@ -154,22 +154,6 @@ public class QuickOclParseAndEvalTest extends TestCase
       }
   }
 
-  @Test
-  public void test1() {
-	  Object a = new Boolean(true);
-	  assertEquals(true, a);
-  }
-  @Test
-  public void test2() {
-	  Object a = new Object();
-	  assertSame(true, a);
-  }
-  @Test
-  public void test3() throws ParserException {
-	  Object a = new Object();
-	  assertNotNull(a);
-  }
-  
     /**
      * Ensure that "or" and "and" do shortcut evaluation for invalid arguments
      */
