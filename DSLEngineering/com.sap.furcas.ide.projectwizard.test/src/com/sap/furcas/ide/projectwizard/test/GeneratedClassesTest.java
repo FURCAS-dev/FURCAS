@@ -43,7 +43,14 @@ public class GeneratedClassesTest {
             }
         } finally {
             restoreOldSystemErr(systemErrOld);
+            cleanGenerationFolder();
         }
+    }
+
+    private void cleanGenerationFolder() {
+        File file = new File ("../com.sap.furcas.ide.projectwizard.test/generationTemp/generated/MydslMapper.java");
+        file.delete();
+        
     }
 
     private void generateClasses(SourceCodeFactory codeFactory, ProjectInfo pi) {
