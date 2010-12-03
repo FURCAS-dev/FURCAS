@@ -98,7 +98,7 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
 				ma.setTextBlocksStream((ITextBlocksTokenStream) input);
 				parser.setObserver(new ParserTextBlocksHandler(
 					(ITextBlocksTokenStream) input, connection,
-					getMetamodelUri(connection), TcsUtil.getSyntaxePartitions(
+					getMetamodelUri(connection), TcsUtil.getSyntaxPartitions(
 						connection, getLanguageId()), priScope,
 					additionalCRIScope));
 			}
