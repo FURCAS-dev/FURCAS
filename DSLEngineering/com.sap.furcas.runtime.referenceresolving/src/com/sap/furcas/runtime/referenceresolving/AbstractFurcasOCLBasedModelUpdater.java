@@ -41,11 +41,11 @@ public class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBasedModelUpd
         super(propertyToUpdate, oppositeEndFinder, triggerExpression, notifyOnNewContextElements);
     }
 
-    protected Collection<TextBlock> getTextBlocksUsingQueryElement(Template template) {
+    private Collection<TextBlock> getTextBlocksUsingQueryElement(Template template) {
         Collection<TextBlock> result = new HashSet<TextBlock>();
         Collection<EObject> candidates = getOppositeEndFinder().navigateOppositePropertyWithBackwardScope(
                 TextblockdefinitionPackage.eINSTANCE.getTextBlockDefinition_ParseRule(), template);
-        if (!candidates.isEmpty()) {
+        if (candidates != null && !candidates.isEmpty()) {
             TextBlockDefinition def = (TextBlockDefinition) candidates.iterator().next();
             Collection<EObject> textBlockCandidates = getOppositeEndFinder().navigateOppositePropertyWithBackwardScope(
                     TextblocksPackage.eINSTANCE.getTextBlock_Type(), def);
