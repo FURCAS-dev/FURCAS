@@ -92,26 +92,29 @@ public interface TextBlockDefinition extends EObject {
         void setDefaultTemplate(String value);
 
         /**
-	 * Returns the value of the '<em><b>Parse Rule</b></em>' reference.
+	 * Returns the value of the '<em><b>Parse Rule</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.FURCAS.TCS.Template#getTextBlockDefinition <em>Text Block Definition</em>}'.
 	 * <!-- begin-user-doc -->
          * <p>
          * If the meaning of the '<em>Parse Rule</em>' reference isn't clear,
          * there really should be more of a description here...
          * </p>
          * <!-- end-user-doc -->
-	 * @return the value of the '<em>Parse Rule</em>' reference.
+	 * @return the value of the '<em>Parse Rule</em>' container reference.
 	 * @see #setParseRule(Template)
 	 * @see com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionPackage#getTextBlockDefinition_ParseRule()
-	 * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='textBlockDefinition'"
+	 * @see com.sap.furcas.metamodel.FURCAS.TCS.Template#getTextBlockDefinition
+	 * @model opposite="textBlockDefinition" transient="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='textBlockDefinition'"
 	 * @generated
 	 */
         Template getParseRule();
 
         /**
-	 * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition#getParseRule <em>Parse Rule</em>}' reference.
+	 * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition#getParseRule <em>Parse Rule</em>}' container reference.
 	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Parse Rule</em>' reference.
+	 * @param value the new value of the '<em>Parse Rule</em>' container reference.
 	 * @see #getParseRule()
 	 * @generated
 	 */

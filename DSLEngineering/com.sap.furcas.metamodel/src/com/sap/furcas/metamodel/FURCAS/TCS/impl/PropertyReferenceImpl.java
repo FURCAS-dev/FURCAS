@@ -25,7 +25,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * <ul>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.PropertyReferenceImpl#getStrucfeature <em>Strucfeature</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.PropertyReferenceImpl#getName <em>Name</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.PropertyReferenceImpl#isIsOppositeEnd <em>Is Opposite End</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,26 +62,6 @@ public class PropertyReferenceImpl extends EObjectImpl implements PropertyRefere
         protected String name = NAME_EDEFAULT;
 
         /**
-	 * The default value of the '{@link #isIsOppositeEnd() <em>Is Opposite End</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsOppositeEnd()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean IS_OPPOSITE_END_EDEFAULT = false;
-
-								/**
-	 * The cached value of the '{@link #isIsOppositeEnd() <em>Is Opposite End</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsOppositeEnd()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean isOppositeEnd = IS_OPPOSITE_END_EDEFAULT;
-
-								/**
 	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
 	 * @generated
@@ -162,27 +141,6 @@ public class PropertyReferenceImpl extends EObjectImpl implements PropertyRefere
 
         /**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isIsOppositeEnd() {
-		return isOppositeEnd;
-	}
-
-								/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIsOppositeEnd(boolean newIsOppositeEnd) {
-		boolean oldIsOppositeEnd = isOppositeEnd;
-		isOppositeEnd = newIsOppositeEnd;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.PROPERTY_REFERENCE__IS_OPPOSITE_END, oldIsOppositeEnd, isOppositeEnd));
-	}
-
-								/**
-	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -194,8 +152,6 @@ public class PropertyReferenceImpl extends EObjectImpl implements PropertyRefere
 				return basicGetStrucfeature();
 			case TCSPackage.PROPERTY_REFERENCE__NAME:
 				return getName();
-			case TCSPackage.PROPERTY_REFERENCE__IS_OPPOSITE_END:
-				return isIsOppositeEnd();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -213,9 +169,6 @@ public class PropertyReferenceImpl extends EObjectImpl implements PropertyRefere
 				return;
 			case TCSPackage.PROPERTY_REFERENCE__NAME:
 				setName((String)newValue);
-				return;
-			case TCSPackage.PROPERTY_REFERENCE__IS_OPPOSITE_END:
-				setIsOppositeEnd((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -235,9 +188,6 @@ public class PropertyReferenceImpl extends EObjectImpl implements PropertyRefere
 			case TCSPackage.PROPERTY_REFERENCE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case TCSPackage.PROPERTY_REFERENCE__IS_OPPOSITE_END:
-				setIsOppositeEnd(IS_OPPOSITE_END_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -254,8 +204,6 @@ public class PropertyReferenceImpl extends EObjectImpl implements PropertyRefere
 				return strucfeature != null;
 			case TCSPackage.PROPERTY_REFERENCE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case TCSPackage.PROPERTY_REFERENCE__IS_OPPOSITE_END:
-				return isOppositeEnd != IS_OPPOSITE_END_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -272,8 +220,6 @@ public class PropertyReferenceImpl extends EObjectImpl implements PropertyRefere
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");
 		result.append(name);
-		result.append(", isOppositeEnd: ");
-		result.append(isOppositeEnd);
 		result.append(')');
 		return result.toString();
 	}

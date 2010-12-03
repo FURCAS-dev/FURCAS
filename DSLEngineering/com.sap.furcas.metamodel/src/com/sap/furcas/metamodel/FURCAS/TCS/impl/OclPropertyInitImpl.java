@@ -30,129 +30,129 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  */
 public class OclPropertyInitImpl extends PropertyInitImpl implements OclPropertyInit {
         /**
-     * The cached value of the '{@link #getOclExpression() <em>Ocl Expression</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getOclExpression() <em>Ocl Expression</em>}' reference.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @see #getOclExpression()
-     * @generated
-     * @ordered
-     */
+	 * @see #getOclExpression()
+	 * @generated
+	 * @ordered
+	 */
         protected OCLExpression oclExpression;
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected OclPropertyInitImpl() {
-        super();
-    }
+		super();
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         protected EClass eStaticClass() {
-        return TCSPackage.Literals.OCL_PROPERTY_INIT;
-    }
+		return TCSPackage.Literals.OCL_PROPERTY_INIT;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public OCLExpression getOclExpression() {
-        if (oclExpression != null && oclExpression.eIsProxy()) {
-            InternalEObject oldOclExpression = (InternalEObject)oclExpression;
-            oclExpression = (OCLExpression)eResolveProxy(oldOclExpression);
-            if (oclExpression != oldOclExpression) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.OCL_PROPERTY_INIT__OCL_EXPRESSION, oldOclExpression, oclExpression));
-            }
-        }
-        return oclExpression;
-    }
+		if (oclExpression != null && oclExpression.eIsProxy()) {
+			InternalEObject oldOclExpression = (InternalEObject)oclExpression;
+			oclExpression = (OCLExpression)eResolveProxy(oldOclExpression);
+			if (oclExpression != oldOclExpression) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.OCL_PROPERTY_INIT__OCL_EXPRESSION, oldOclExpression, oclExpression));
+			}
+		}
+		return oclExpression;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public OCLExpression basicGetOclExpression() {
-        return oclExpression;
-    }
+		return oclExpression;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public void setOclExpression(OCLExpression newOclExpression) {
-        OCLExpression oldOclExpression = oclExpression;
-        oclExpression = newOclExpression;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.OCL_PROPERTY_INIT__OCL_EXPRESSION, oldOclExpression, oclExpression));
-    }
+		OCLExpression oldOclExpression = oclExpression;
+		oclExpression = newOclExpression;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.OCL_PROPERTY_INIT__OCL_EXPRESSION, oldOclExpression, oclExpression));
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case TCSPackage.OCL_PROPERTY_INIT__OCL_EXPRESSION:
-                if (resolve) return getOclExpression();
-                return basicGetOclExpression();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case TCSPackage.OCL_PROPERTY_INIT__OCL_EXPRESSION:
+				if (resolve) return getOclExpression();
+				return basicGetOclExpression();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case TCSPackage.OCL_PROPERTY_INIT__OCL_EXPRESSION:
-                setOclExpression((OCLExpression)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case TCSPackage.OCL_PROPERTY_INIT__OCL_EXPRESSION:
+				setOclExpression((OCLExpression)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public void eUnset(int featureID) {
-        switch (featureID) {
-            case TCSPackage.OCL_PROPERTY_INIT__OCL_EXPRESSION:
-                setOclExpression((OCLExpression)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case TCSPackage.OCL_PROPERTY_INIT__OCL_EXPRESSION:
+				setOclExpression((OCLExpression)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case TCSPackage.OCL_PROPERTY_INIT__OCL_EXPRESSION:
-                return oclExpression != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case TCSPackage.OCL_PROPERTY_INIT__OCL_EXPRESSION:
+				return oclExpression != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //OclPropertyInitImpl

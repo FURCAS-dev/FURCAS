@@ -68,7 +68,6 @@ public class PropertyReferenceItemProvider
 
 			addStrucfeaturePropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
-			addIsOppositeEndPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -118,28 +117,6 @@ public class PropertyReferenceItemProvider
 	}
 
         /**
-	 * This adds a property descriptor for the Is Opposite End feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIsOppositeEndPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PropertyReference_isOppositeEnd_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PropertyReference_isOppositeEnd_feature", "_UI_PropertyReference_type"),
-				 TCSPackage.Literals.PROPERTY_REFERENCE__IS_OPPOSITE_END,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-								/**
 	 * This returns PropertyReference.gif.
 	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -177,7 +154,6 @@ public class PropertyReferenceItemProvider
 
 		switch (notification.getFeatureID(PropertyReference.class)) {
 			case TCSPackage.PROPERTY_REFERENCE__NAME:
-			case TCSPackage.PROPERTY_REFERENCE__IS_OPPOSITE_END:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
