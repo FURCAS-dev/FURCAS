@@ -9,7 +9,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
+
+import org.eclipse.core.runtime.Platform;
 import org.junit.Test;
+import org.osgi.framework.Bundle;
 
 import com.sap.furcas.ide.projectwizard.util.CodeGenerationException;
 import com.sap.furcas.ide.projectwizard.util.ProjectInfo;
@@ -26,20 +29,13 @@ public class GeneratedClassesTest {
         generateClasses(codeFactory, pi);
         ByteArrayOutputStream errByteStream = new ByteArrayOutputStream();
         PrintStream systemErrOld = redirectSystemErrTo(errByteStream);
+        String requiredBundles = getRequiredBundles();
         try {
-            int success = Main.compile(new String[] {
-                    "../com.sap.furcas.ide.projectwizard.test/generationTemp/generated/MydslMapper.java",
-                    "-cp",
-                    "../org.antlr/bin" + File.pathSeparator + 
-                    "/bin" + File.pathSeparator + 
-                    "../org.eclipse.jface/bin" + File.pathSeparator +
-                    "../org.eclipse.swt/bin" + File.pathSeparator +
-                    "../com.sap.furcas.runtime.parser/bin" + File.pathSeparator
-                            + "../com.sap.furcas.runtime.common/bin" + File.pathSeparator
-                            + "../com.sap.furcas.parsergenerator.emf/bin" + File.pathSeparator
-                            + "../com.sap.furcas.runtime.tcs/bin" });
+            int success = Main
+                    .compile(new String[] { "../com.sap.furcas.ide.projectwizard.test/generationTemp/generated/MydslMapper.java",
+                            "-cp", requiredBundles });
             if (success != 0) {
-                //fail("Parser compilation failed with code '" + success + "'. Messages: \n" + errByteStream.toString());
+                fail("Parser compilation failed with code '" + success + "'. Messages: \n" + errByteStream.toString());
             }
         } finally {
             restoreOldSystemErr(systemErrOld);
@@ -47,10 +43,20 @@ public class GeneratedClassesTest {
         }
     }
 
+    private String getRequiredBundles() {
+        StringBuffer requiredBundles = new StringBuffer("../org.antlr/bin" + File.pathSeparator + "../com.sap.ide.cts.editor");
+        String[] bundles = new String[] { "org.eclipse.jface.text", "org.eclipse.swt"};
+        for (int i = 0; i < bundles.length; i++) {
+            Bundle bundle = Platform.getBundle(bundles[i]);
+            requiredBundles.append(File.pathSeparator + bundle.getLocation());
+        }
+        return requiredBundles.toString();
+    }
+
     private void cleanGenerationFolder() {
-        File file = new File ("../com.sap.furcas.ide.projectwizard.test/generationTemp/generated/MydslMapper.java");
+        File file = new File("../com.sap.furcas.ide.projectwizard.test/generationTemp/generated/MydslMapper.java");
         file.delete();
-        
+
     }
 
     private void generateClasses(SourceCodeFactory codeFactory, ProjectInfo pi) {
@@ -76,7 +82,7 @@ public class GeneratedClassesTest {
             System.err.println(e.getMessage());
             e.printStackTrace();
         }
-        
+
     }
 
     private static void configureProjectInfo(ProjectInfo pi) {
@@ -91,8 +97,6 @@ public class GeneratedClassesTest {
 
     }
 
-  
-
     private static PrintStream redirectSystemErrTo(ByteArrayOutputStream errByteStream) {
         PrintStream originalSystemErr = System.err;
         System.setErr(new PrintStream(errByteStream));
@@ -102,6 +106,5 @@ public class GeneratedClassesTest {
     private static void restoreOldSystemErr(PrintStream systemErr) {
         System.setErr(systemErr);
     }
-
 
 }
