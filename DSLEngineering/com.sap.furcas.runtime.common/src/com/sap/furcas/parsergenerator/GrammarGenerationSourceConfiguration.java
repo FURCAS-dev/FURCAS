@@ -1,6 +1,5 @@
 package com.sap.furcas.parsergenerator;
 
-import java.io.File;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;

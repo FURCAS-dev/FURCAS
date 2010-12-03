@@ -17,7 +17,7 @@ import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
 import com.sap.furcas.runtime.parser.testbase.StubModelAdapter;
 import com.sap.furcas.runtime.parser.testbase.StubModelElement;
-import com.sap.furcas.test.fixture.FixtureData;
+import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 /**
  * Simple Test for the custom Problem language, which acts like a log file.
@@ -25,8 +25,8 @@ import com.sap.furcas.test.fixture.FixtureData;
 public class ProblemTest extends GeneratedParserBasedTest {
 
     private static final String LANGUAGE = "Problem";
-    private static final File TCS = FixtureData.PROBLEM_TCS;
-    private static final File[] METAMODELS = { FixtureData.PROBLEM_METAMODEL };
+    private static final File TCS = ScenarioFixtureData.PROBLEM_TCS;
+    private static final File[] METAMODELS = { ScenarioFixtureData.PROBLEM_METAMODEL };
 
     private static ParsingHelper parsingHelper;
 

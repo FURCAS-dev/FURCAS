@@ -1,6 +1,9 @@
-syntax EnumerationFeature { 
+syntax EnumerationFeatureMapped { 
 
-  enumerationTemplate MyEnum auto;
+  enumerationTemplate MyEnum
+  	: #FOO = "foobar",
+  	  #BAR = "BAR"
+  	;
   		
   
   template EnumExpression main

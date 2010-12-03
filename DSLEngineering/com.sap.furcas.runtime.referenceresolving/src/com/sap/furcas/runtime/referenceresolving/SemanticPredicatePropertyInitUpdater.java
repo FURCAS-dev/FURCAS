@@ -12,7 +12,6 @@ import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
-import com.sap.emf.ocl.trigger.AbstractOCLBasedModelUpdater;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 
@@ -23,7 +22,7 @@ import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
  * @author Axel Uhl (D043530)
  * 
  */
-public class SemanticPredicatePropertyInitUpdater extends AbstractOCLBasedModelUpdater {
+public class SemanticPredicatePropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdater {
     private final List<SemanticDisambRuleData> predicates;
     private final Template containingTemplate;
 
