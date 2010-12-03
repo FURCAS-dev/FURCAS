@@ -8,6 +8,7 @@ import java.io.InputStream;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.sap.furcas.ide.projectwizard.util.CodeGenerationException;
 import com.sap.furcas.ide.projectwizard.util.ProjectInfo;
 import com.sap.furcas.ide.projectwizard.util.SourceCodeFactory;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
@@ -54,15 +55,20 @@ public class ProjectWizardTCSTest extends GeneratedParserBasedTest {
         ProjectInfo pi = new ProjectInfo();
         pi.setLanguageName("Mydsl");
         pi.setClassName("ExampleClass");
-        String newContent = scf.createSampleTCS(pi);
+        String newContent;
         try {
+            newContent = scf.createSampleTCS(pi);
             InputStream newStream = new ByteArrayInputStream(newContent.getBytes("UTF-8"));
             scf.writeToFile(newStream, TCS);
             newStream.close();
+        } catch (CodeGenerationException e) {
+            System.err.println(e.getMessage());
+            e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
+            System.err.println(e.getMessage());
             e.printStackTrace();
         }
+        
         return TCS;
     }
 
