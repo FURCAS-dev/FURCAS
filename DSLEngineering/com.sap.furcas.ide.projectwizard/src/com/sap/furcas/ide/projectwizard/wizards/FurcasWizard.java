@@ -168,7 +168,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 try {
                     CreateProject cP = new CreateProject(pi, getShell());
                     cP.run(monitor);
-                    IProject project = cP.iP;
+                    IProject project = cP.project;
                     if (!pi.isLoadMetamodel()) {
                         doAdditional(pi);
                     }

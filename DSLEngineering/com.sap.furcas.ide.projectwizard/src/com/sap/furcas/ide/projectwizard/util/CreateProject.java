@@ -43,11 +43,11 @@ public class CreateProject extends WorkspaceModifyOperation {
     /**
      * Reference to the generated project.
      */
-    public IProject iP;
+    public IProject project;
     /**
      * Instance of the {@link}SourceCodeFactory used to built files from text templates.
      */
-    static SourceCodeFactory scf;
+    static SourceCodeFactory codeFactory;
 
     /**
      * Give the user input to the instance.
@@ -61,7 +61,7 @@ public class CreateProject extends WorkspaceModifyOperation {
         this.pi = pi;
         this.shell = shell;
 
-        scf = new SourceCodeFactory();
+        codeFactory = new SourceCodeFactory();
 
     }
 
@@ -72,7 +72,7 @@ public class CreateProject extends WorkspaceModifyOperation {
         monitor.beginTask("Creating project " + pi.getProjectName(), 2);
 
         IProject project = createProject(monitor);
-        iP = project;
+        this.project = project;
     }
 
     /**
@@ -98,8 +98,7 @@ public class CreateProject extends WorkspaceModifyOperation {
         nonSrcFolders.add("resources");
         nonSrcFolders.add("mappings");
 
-        // Create the project
-        //
+
         IProject dslProject = WizardProjectHelper.createPlugInProject(pi, srcfolders, nonSrcFolders, exportedPackages, monitor,
                 this.shell, false);
 
@@ -108,20 +107,15 @@ public class CreateProject extends WorkspaceModifyOperation {
         }
         monitor.worked(1);
 
-        // Make sure the src and generated folder exist and save them to variables.
-        //
+
         IFolder sourceTargetRootFolder = dslProject.getFolder(ORIGINAL_FILE_LOCATION_ROOT);
         assert (sourceTargetRootFolder.exists());
 
         IFolder genRootFolder = dslProject.getFolder('/' + "generated");
         assert (genRootFolder.exists());
 
-        // Set up the "plugin.xml" and store in root directory
-        //
-        WizardProjectHelper.createFile("plugin.xml", dslProject, scf.createPluginXML(pi), monitor);
+        WizardProjectHelper.createFile("plugin.xml", dslProject, codeFactory.createPluginXML(pi), monitor);
 
-        // Create package folder "generated" with contents
-        //
         IFolder genSrcFolder = null;
         try {
             genSrcFolder = createGeneratedFolder(genRootFolder, monitor, "");
@@ -129,22 +123,19 @@ public class CreateProject extends WorkspaceModifyOperation {
             System.out.println("Fehlerquelle I");
         }
 
-        // Create package folders under "src"
-        //
+
         try {
             createSource(pi, sourceTargetRootFolder, dslProject, monitor);
         } catch (CoreException e) {
             System.out.println("Fehlerquelle II");
         }
 
-        // Contents of the generate.properties file
-        //
-        String props = scf.createdPropertiesCode(pi);
+
+        String props = codeFactory.createdPropertiesCode(pi);
         WizardProjectHelper.createFile("generate.properties", sourceTargetRootFolder, props, monitor);
 
-        // Create a sample TCS file and store it in folder "generated"
-        //
-        String templateString = scf.createSampleTCS(pi);
+
+        String templateString = codeFactory.createSampleTCS(pi);
         IFile grammar = WizardProjectHelper.createFile(pi.getTCSFileName(), genSrcFolder, templateString, monitor);
 
         // Opening the file for editing. Note that the wizard later on opens the .ecore file if the user
@@ -259,7 +250,7 @@ public class CreateProject extends WorkspaceModifyOperation {
         }
 
         WizardProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "ParserFactory.java", parserFolder,
-                scf.createParserFactory(pi), monitor);
+                codeFactory.createParserFactory(pi), monitor);
 
         return parserFolder;
     }
@@ -286,11 +277,11 @@ public class CreateProject extends WorkspaceModifyOperation {
             editorFolder.create(false, true, monitor);
         }
 
-        WizardProjectHelper.createFile("Activator.java", editorFolder, scf.createActivator(pi), monitor);
+        WizardProjectHelper.createFile("Activator.java", editorFolder, codeFactory.createActivator(pi), monitor);
         WizardProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "Editor.java", editorFolder,
-                scf.createEditorCode(pi), monitor);
+                codeFactory.createEditorCode(pi), monitor);
         WizardProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "Mapper.java", editorFolder,
-                scf.createMapperCode(pi), monitor);
+                codeFactory.createMapperCode(pi), monitor);
 
         return editorFolder;
     }
