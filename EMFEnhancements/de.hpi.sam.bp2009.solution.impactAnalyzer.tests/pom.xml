@@ -19,7 +19,7 @@
 				<groupId>org.sonatype.tycho</groupId>
 				<artifactId>maven-osgi-test-plugin</artifactId>
 				<configuration>
-					<argLine>-Xmx1024m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=1044</argLine>
+					<argLine>-Xmx1024m -XX:+UseParallelGC</argLine>
 					<includes>
 						<include>**/*Test.java</include>
 						<include>**/Test*.java</include>
