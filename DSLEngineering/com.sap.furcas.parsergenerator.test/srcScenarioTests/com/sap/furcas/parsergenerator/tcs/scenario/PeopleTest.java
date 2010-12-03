@@ -20,7 +20,7 @@ import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
 import com.sap.furcas.runtime.parser.testbase.StubModelAdapter;
 import com.sap.furcas.runtime.parser.testbase.StubModelElement;
-import com.sap.furcas.test.fixture.FixtureData;
+import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 /**
  * Simple Test for the custom Expression language
@@ -28,8 +28,8 @@ import com.sap.furcas.test.fixture.FixtureData;
 public class PeopleTest extends GeneratedParserBasedTest {
 
     private static final String LANGUAGE = "People";
-    private static final File TCS = FixtureData.PEOPLE_TCS;
-    private static final File[] METAMODELS = { FixtureData.PEOPLE_METAMODEL };
+    private static final File TCS = ScenarioFixtureData.PEOPLE_TCS;
+    private static final File[] METAMODELS = { ScenarioFixtureData.PEOPLE_METAMODEL };
 
     private static ParsingHelper parsingHelper;
 

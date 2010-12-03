@@ -37,6 +37,9 @@ public class ImpactAnalyzerAllTests extends TestSuite {
             OptimizationActivation.getOption().setUnusedDetectionActive(false);
             OptimizationActivation.getOption().setOperationCallSelectionActive(false);
         }
+        if (System.getProperty("unusedCheckIA", "false").equalsIgnoreCase("true")) {
+            OptimizationActivation.getOption().setUnusedDetectionActive(true);
+        }
         suite.addTestSuite(OclIaTest.class);
         suite.addTestSuite(RevPathComputationTest.class);
         suite.addTestSuite(PartialEvaluatorTest.class);

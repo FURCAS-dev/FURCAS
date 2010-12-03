@@ -12,7 +12,7 @@ import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
 import com.sap.furcas.runtime.parser.testbase.StubModelAdapter;
-import com.sap.furcas.test.fixture.FixtureData;
+import com.sap.furcas.test.fixture.ScenarioFixtureData;
 import com.sap.furcas.test.testutils.StringListHelper;
 
 /**
@@ -22,8 +22,8 @@ import com.sap.furcas.test.testutils.StringListHelper;
 public class SPLTest extends GeneratedParserBasedTest {
 
     private static final String LANGUAGE = "SPL";
-    private static final File TCS = FixtureData.SPL_TCS;
-    private static final File[] METAMODELS = { FixtureData.SPL_METAMODEL };
+    private static final File TCS = ScenarioFixtureData.SPL_TCS;
+    private static final File[] METAMODELS = { ScenarioFixtureData.SPL_METAMODEL };
     private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
 
     private static ParsingHelper parsingHelper;
