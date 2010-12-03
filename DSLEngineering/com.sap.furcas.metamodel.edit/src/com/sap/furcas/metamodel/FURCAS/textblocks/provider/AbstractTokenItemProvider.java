@@ -42,204 +42,204 @@ public class AbstractTokenItemProvider
                 IItemLabelProvider,
                 IItemPropertySource {
         /**
-     * This constructs an instance from a factory and a notifier.
-     * <!-- begin-user-doc -->
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public AbstractTokenItemProvider(AdapterFactory adapterFactory) {
-        super(adapterFactory);
-    }
+		super(adapterFactory);
+	}
 
         /**
-     * This returns the property descriptors for the adapted class.
-     * <!-- begin-user-doc -->
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-        if (itemPropertyDescriptors == null) {
-            super.getPropertyDescriptors(object);
+		if (itemPropertyDescriptors == null) {
+			super.getPropertyDescriptors(object);
 
-            addValuePropertyDescriptor(object);
-            addLookaheadPropertyDescriptor(object);
-            addLookbackPropertyDescriptor(object);
-            addStatePropertyDescriptor(object);
-            addTypePropertyDescriptor(object);
-        }
-        return itemPropertyDescriptors;
-    }
+			addValuePropertyDescriptor(object);
+			addLookaheadPropertyDescriptor(object);
+			addLookbackPropertyDescriptor(object);
+			addStatePropertyDescriptor(object);
+			addTypePropertyDescriptor(object);
+		}
+		return itemPropertyDescriptors;
+	}
 
         /**
-     * This adds a property descriptor for the Value feature.
-     * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Value feature.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected void addValuePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_AbstractToken_value_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_AbstractToken_value_feature", "_UI_AbstractToken_type"),
-                 TextblocksPackage.Literals.ABSTRACT_TOKEN__VALUE,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-    }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractToken_value_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractToken_value_feature", "_UI_AbstractToken_type"),
+				 TextblocksPackage.Literals.ABSTRACT_TOKEN__VALUE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
 
         /**
-     * This adds a property descriptor for the Lookahead feature.
-     * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Lookahead feature.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected void addLookaheadPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_AbstractToken_lookahead_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_AbstractToken_lookahead_feature", "_UI_AbstractToken_type"),
-                 TextblocksPackage.Literals.ABSTRACT_TOKEN__LOOKAHEAD,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-                 null,
-                 null));
-    }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractToken_lookahead_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractToken_lookahead_feature", "_UI_AbstractToken_type"),
+				 TextblocksPackage.Literals.ABSTRACT_TOKEN__LOOKAHEAD,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
 
         /**
-     * This adds a property descriptor for the Lookback feature.
-     * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Lookback feature.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected void addLookbackPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_AbstractToken_lookback_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_AbstractToken_lookback_feature", "_UI_AbstractToken_type"),
-                 TextblocksPackage.Literals.ABSTRACT_TOKEN__LOOKBACK,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-                 null,
-                 null));
-    }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractToken_lookback_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractToken_lookback_feature", "_UI_AbstractToken_type"),
+				 TextblocksPackage.Literals.ABSTRACT_TOKEN__LOOKBACK,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
 
         /**
-     * This adds a property descriptor for the State feature.
-     * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the State feature.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected void addStatePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_AbstractToken_state_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_AbstractToken_state_feature", "_UI_AbstractToken_type"),
-                 TextblocksPackage.Literals.ABSTRACT_TOKEN__STATE,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-                 null,
-                 null));
-    }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractToken_state_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractToken_state_feature", "_UI_AbstractToken_type"),
+				 TextblocksPackage.Literals.ABSTRACT_TOKEN__STATE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
 
         /**
-     * This adds a property descriptor for the Type feature.
-     * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Type feature.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected void addTypePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_AbstractToken_type_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_AbstractToken_type_feature", "_UI_AbstractToken_type"),
-                 TextblocksPackage.Literals.ABSTRACT_TOKEN__TYPE,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-                 null,
-                 null));
-    }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractToken_type_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractToken_type_feature", "_UI_AbstractToken_type"),
+				 TextblocksPackage.Literals.ABSTRACT_TOKEN__TYPE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
 
         /**
-     * This returns AbstractToken.gif.
-     * <!-- begin-user-doc -->
+	 * This returns AbstractToken.gif.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/AbstractToken"));
-    }
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/AbstractToken"));
+	}
 
         /**
-     * This returns the label text for the adapted class.
-     * <!-- begin-user-doc -->
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public String getText(Object object) {
-        Version labelValue = ((AbstractToken)object).getVersion();
-        String label = labelValue == null ? null : labelValue.toString();
-        return label == null || label.length() == 0 ?
-            getString("_UI_AbstractToken_type") :
-            getString("_UI_AbstractToken_type") + " " + label;
-    }
+		Version labelValue = ((AbstractToken)object).getVersion();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0 ?
+			getString("_UI_AbstractToken_type") :
+			getString("_UI_AbstractToken_type") + " " + label;
+	}
 
         /**
-     * This handles model notifications by calling {@link #updateChildren} to update any cached
-     * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-     * <!-- begin-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public void notifyChanged(Notification notification) {
-        updateChildren(notification);
+		updateChildren(notification);
 
-        switch (notification.getFeatureID(AbstractToken.class)) {
-            case TextblocksPackage.ABSTRACT_TOKEN__VALUE:
-            case TextblocksPackage.ABSTRACT_TOKEN__LOOKAHEAD:
-            case TextblocksPackage.ABSTRACT_TOKEN__LOOKBACK:
-            case TextblocksPackage.ABSTRACT_TOKEN__STATE:
-            case TextblocksPackage.ABSTRACT_TOKEN__TYPE:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
-        }
-        super.notifyChanged(notification);
-    }
+		switch (notification.getFeatureID(AbstractToken.class)) {
+			case TextblocksPackage.ABSTRACT_TOKEN__VALUE:
+			case TextblocksPackage.ABSTRACT_TOKEN__LOOKAHEAD:
+			case TextblocksPackage.ABSTRACT_TOKEN__LOOKBACK:
+			case TextblocksPackage.ABSTRACT_TOKEN__STATE:
+			case TextblocksPackage.ABSTRACT_TOKEN__TYPE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
+		super.notifyChanged(notification);
+	}
 
         /**
-     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-     * that can be created under this object.
-     * <!-- begin-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-        super.collectNewChildDescriptors(newChildDescriptors, object);
-    }
+		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
 
 }

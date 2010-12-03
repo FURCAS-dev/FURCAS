@@ -34,118 +34,118 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  */
 public class OrPatternImpl extends LocatedElementImpl implements OrPattern {
         /**
-     * The cached value of the '{@link #getSimplePatterns() <em>Simple Patterns</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSimplePatterns() <em>Simple Patterns</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @see #getSimplePatterns()
-     * @generated
-     * @ordered
-     */
+	 * @see #getSimplePatterns()
+	 * @generated
+	 * @ordered
+	 */
         protected EList<SimplePattern> simplePatterns;
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected OrPatternImpl() {
-        super();
-    }
+		super();
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         protected EClass eStaticClass() {
-        return TCSPackage.Literals.OR_PATTERN;
-    }
+		return TCSPackage.Literals.OR_PATTERN;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public EList<SimplePattern> getSimplePatterns() {
-        if (simplePatterns == null) {
-            simplePatterns = new EObjectContainmentEList<SimplePattern>(SimplePattern.class, this, TCSPackage.OR_PATTERN__SIMPLE_PATTERNS);
-        }
-        return simplePatterns;
-    }
+		if (simplePatterns == null) {
+			simplePatterns = new EObjectContainmentEList<SimplePattern>(SimplePattern.class, this, TCSPackage.OR_PATTERN__SIMPLE_PATTERNS);
+		}
+		return simplePatterns;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case TCSPackage.OR_PATTERN__SIMPLE_PATTERNS:
-                return ((InternalEList<?>)getSimplePatterns()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case TCSPackage.OR_PATTERN__SIMPLE_PATTERNS:
+				return ((InternalEList<?>)getSimplePatterns()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case TCSPackage.OR_PATTERN__SIMPLE_PATTERNS:
-                return getSimplePatterns();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case TCSPackage.OR_PATTERN__SIMPLE_PATTERNS:
+				return getSimplePatterns();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @SuppressWarnings("unchecked")
         @Override
         public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case TCSPackage.OR_PATTERN__SIMPLE_PATTERNS:
-                getSimplePatterns().clear();
-                getSimplePatterns().addAll((Collection<? extends SimplePattern>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case TCSPackage.OR_PATTERN__SIMPLE_PATTERNS:
+				getSimplePatterns().clear();
+				getSimplePatterns().addAll((Collection<? extends SimplePattern>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public void eUnset(int featureID) {
-        switch (featureID) {
-            case TCSPackage.OR_PATTERN__SIMPLE_PATTERNS:
-                getSimplePatterns().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case TCSPackage.OR_PATTERN__SIMPLE_PATTERNS:
+				getSimplePatterns().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case TCSPackage.OR_PATTERN__SIMPLE_PATTERNS:
-                return simplePatterns != null && !simplePatterns.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case TCSPackage.OR_PATTERN__SIMPLE_PATTERNS:
+				return simplePatterns != null && !simplePatterns.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //OrPatternImpl

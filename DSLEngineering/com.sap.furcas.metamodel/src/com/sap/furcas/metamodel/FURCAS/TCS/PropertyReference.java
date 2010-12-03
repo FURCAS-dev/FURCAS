@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * <ul>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference#getStrucfeature <em>Strucfeature</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference#getName <em>Name</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference#isIsOppositeEnd <em>Is Opposite End</em>}</li>
  * </ul>
  * </p>
  *
@@ -79,32 +78,5 @@ public interface PropertyReference extends EObject {
 	 * @generated
 	 */
         void setName(String value);
-
-								/**
-	 * Returns the value of the '<em><b>Is Opposite End</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Is Opposite End</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Opposite End</em>' attribute.
-	 * @see #setIsOppositeEnd(boolean)
-	 * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getPropertyReference_IsOppositeEnd()
-	 * @model default="false" required="true"
-	 * @generated
-	 */
-	boolean isIsOppositeEnd();
-
-								/**
-	 * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference#isIsOppositeEnd <em>Is Opposite End</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Opposite End</em>' attribute.
-	 * @see #isIsOppositeEnd()
-	 * @generated
-	 */
-	void setIsOppositeEnd(boolean value);
 
 } // PropertyReference

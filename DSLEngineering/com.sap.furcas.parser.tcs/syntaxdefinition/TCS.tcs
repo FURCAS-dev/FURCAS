@@ -106,7 +106,7 @@ syntax TCS {
                                 )
                         ";"
                         --this is an oppositeEnd for TextBlockDefinition:parseRule
-                        --textBlockDefinition{forcedUpper=1}
+                        textBlockDefinition{forcedUpper=1}
                 ;
 
         template TCS::EnumerationTemplate context addToContext
@@ -119,7 +119,7 @@ syntax TCS {
                                         ";"
                         )
                         --this is an oppositeEnd for TextBlockDefinition:parseRule
-                        --textBlockDefinition{forcedUpper=1}
+                        textBlockDefinition{forcedUpper=1}
                 ;
 
         template TCS::EnumLiteralMapping
@@ -146,7 +146,7 @@ syntax TCS {
                           )
                         (isDefined(templateSequence) ? [ ":" [ templateSequence ] {startNL = false} ";" ] : ";")
                         --this is an oppositeEnd for TextBlockDefinition:parseRule
-                        --textBlockDefinition{forcedUpper=1}
+                        textBlockDefinition{forcedUpper=1}
                 ;
 
         template TCS::OperatorTemplate context addToContext
@@ -164,7 +164,7 @@ syntax TCS {
                         )
                         (isDefined(otSequence) ? [ ":" [ otSequence ] {startNL = false} ";" ] : ";")
                         --this is an oppositeEnd for TextBlockDefinition:parseRule
-                        --textBlockDefinition{forcedUpper=1}
+                        textBlockDefinition{forcedUpper=1}
                 ;
 
         template TCS::FunctionTemplate context addToContext
@@ -197,37 +197,16 @@ syntax TCS {
             :
             -- for reference, need to look in metareference modelElement of the template this property belongs to       
                   (isDefined(strucfeature) ? 
-                        
-                        [[
-                          "@" strucfeature{
-                                refersTo = name, 
-                                query = "OCL:let c:ecore::EClass = #context.oclAsType(FURCAS::TCS::Template).metaReference.oclAsType(ecore::EClass) in 
-                                                        let result:ecore::EStructuralFeature = c.eAllStructuralFeatures->select(f | 
-                                                                f.eAnnotations->exists(a | 
-                                                                        a.source = 'http://schema.omg.org/spec/MOF/2.0/emof.xml' and
-                                                                        a.details->contains(de | de.key = 'Property.oppositeRoleName'
-                                                                                and de.value = ?) ) ) in
-                                                        if( not result.oclIsInvalid() ) then
-                                                                Bag{result}
-                                                        else
-                                                                Bag{}
-                                                        endif",
-                                filter = "", invert = "f.eAnnotations->select(a | a.source = 'http://schema.omg.org/spec/MOF/2.0/emof.xml')
-                                                                .details->select(de | de.key = 'Property.oppositeRoleName').value",
-                                as = identifierOrKeyword}
-                                {{ isOppositeEnd = 'true' }}
-                          |
-                          strucfeature{
-                                refersTo = name, 
-                                query = "OCL:let c:ecore::EClass = #context.oclAsType(FURCAS::TCS::Template).metaReference.oclAsType(ecore::EClass) in
-                                		     let result:ecore::EStructuralFeature = c.getEStructuralFeature(?) in
-                                                 if (not result.oclIsInvalid()) then
-                                                         Bag{result}     
-                                                 else    
-                                                        Bag{}
-                                                 endif",
-                                filter = "", invert = "name", as = identifierOrKeyword}
-                        ]]
+                  strucfeature{
+                        refersTo = name, 
+                        query = "OCL:let c:ecore::EClass = #context.oclAsType(FURCAS::TCS::Template).metaReference.oclAsType(ecore::EClass) in
+                        		     let result:ecore::EStructuralFeature = c.getEStructuralFeature(?) in
+                                         if (not result.oclIsInvalid()) then
+                                                 Bag{result}     
+                                         else    
+                                                Bag{}
+                                         endif",
+                        filter = "", invert = "name", as = identifierOrKeyword}
                   : "->" name{as = identifierOrKeyword})
             ;
 

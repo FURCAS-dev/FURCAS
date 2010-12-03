@@ -13,7 +13,6 @@ import org.antlr.runtime.Token;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -31,6 +30,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.implementation.ResolvedModelElementProxy;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
@@ -651,7 +651,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 		TextBlock tb = null;
 		Collection<EObject> nodes = org.eclipse.emf.query2.EcoreHelper.getInstance()
 			.reverseNavigate(element, 
-				(EReference) element.eClass().getEStructuralFeature("correspondingModelElements"),
+				TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(),
 				EcoreHelper.getQueryContext(resourceSet), resourceSet, false, IndexFactory.getInstance());
 
 		for (EObject eObject : nodes) {

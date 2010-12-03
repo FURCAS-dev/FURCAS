@@ -36,18 +36,26 @@ public class ConsistencyChecksObserver implements IParsingObserver {
     public List<Object> elementsAddedToContext = new ArrayList<Object>();
     public List<DelayedReference> referencesCreated = new ArrayList<DelayedReference>();
     public int injectorActionsEnteredNotleft;
-    
-    /* (non-Javadoc)
-     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyEnterRule(java.util.List)
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * com.sap.mi.textual.grammar.impl.IParsingObserver#notifyEnterRule(java
+     * .util.List)
      */
     @Override
     public void notifyEnterRule(List<String> createdElement, String mode) {
         assertNotNull(createdElement);
         ruleContextStack.push(createdElement);
     }
-    
-    /* (non-Javadoc)
-     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyErrorInRule(org.antlr.runtime.RecognitionException)
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * com.sap.mi.textual.grammar.impl.IParsingObserver#notifyErrorInRule(org
+     * .antlr.runtime.RecognitionException)
      */
     @Override
     public void notifyErrorInRule(RecognitionException re) {
@@ -55,17 +63,20 @@ public class ConsistencyChecksObserver implements IParsingObserver {
         errorsInRule.add(re);
     }
 
-    /* (non-Javadoc)
-     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyEnterSequenceAlternative(int)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#
+     * notifyEnterSequenceAlternative(int)
      */
     @Override
     public void notifyEnterSequenceAlternative(int choice) {
         sequenceContextStack.push(choice);
     }
 
-
-
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyExitRule()
      */
     @Override
@@ -76,25 +87,36 @@ public class ConsistencyChecksObserver implements IParsingObserver {
         assertEquals(type, top);
     }
 
-    /* (non-Javadoc)
-     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyExitSequenceAlternative()
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#
+     * notifyExitSequenceAlternative()
      */
     @Override
     public void notifyExitSequenceAlternative() {
         sequenceContextStack.pop();
-        
+
     }
 
-    /* (non-Javadoc)
-     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyModelElementResolved(java.lang.Object)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * com.sap.mi.textual.grammar.impl.IParsingObserver#notifyModelElementResolved
+     * (java.lang.Object)
      */
     @Override
     public void notifyCommittedModelElementCreation(Object newModelElement) {
         elementsResolved.add(newModelElement);
     }
 
-    /* (non-Javadoc)
-     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyTokenConsume(org.antlr.runtime.Token)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * com.sap.mi.textual.grammar.impl.IParsingObserver#notifyTokenConsume(org
+     * .antlr.runtime.Token)
      */
     @Override
     public void notifyTokenConsume(Token token) {
@@ -103,8 +125,12 @@ public class ConsistencyChecksObserver implements IParsingObserver {
         }
     }
 
-    /* (non-Javadoc)
-     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyTokenConsumeWithError(org.antlr.runtime.Token)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * com.sap.mi.textual.grammar.impl.IParsingObserver#notifyTokenConsumeWithError
+     * (org.antlr.runtime.Token)
      */
     @Override
     public void notifyTokenConsumeWithError(Token token) {
@@ -114,83 +140,120 @@ public class ConsistencyChecksObserver implements IParsingObserver {
         errorTokensConsumed.add(token);
     }
 
-    /* (non-Javadoc)
-     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyModelElementResolvedOutOfContext(java.lang.Object, java.lang.Object, org.antlr.runtime.Token)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#
+     * notifyModelElementResolvedOutOfContext(java.lang.Object,
+     * java.lang.Object, org.antlr.runtime.Token)
      */
     @Override
     public void notifyModelElementResolvedOutOfContext(Object modelElement,
-            Object contextModelElement, Token referenceLocation, DelayedReference reference) {
+            Object contextModelElement, Token referenceLocation,
+            DelayedReference reference) {
         outOfContextResolved.add(modelElement);
-        
+
     }
 
-
-    /* (non-Javadoc)
-     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyEnterSequenceElement()
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * com.sap.mi.textual.grammar.impl.IParsingObserver#notifyEnterSequenceElement
+     * ()
      */
     @Override
     public void notifyEnterSequenceElement() {
         sequenceElementsEnteredNotLeft++;
     }
-    
-    /* (non-Javadoc)
-     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyEnterSequenceElement(String)
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * com.sap.mi.textual.grammar.impl.IParsingObserver#notifyEnterSequenceElement
+     * (String)
      */
     @Override
-	public void notifyEnterSequenceElement(String mri) {
-    	 sequenceElementsEnteredNotLeft++;
-	}
+    public void notifyEnterSequenceElement(String mri) {
+        sequenceElementsEnteredNotLeft++;
+    }
 
-    /* (non-Javadoc)
-     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyExitSequenceElement()
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * com.sap.mi.textual.grammar.impl.IParsingObserver#notifyExitSequenceElement
+     * ()
      */
     @Override
     public void notifyExitSequenceElement() {
         sequenceElementsEnteredNotLeft--;
     }
 
-    /* (non-Javadoc)
-     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyModelElementResolutionFailed()
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#
+     * notifyModelElementResolutionFailed()
      */
     @Override
     public void notifyCommitModelElementFailed() {
-       unresolvedElements++;
+        unresolvedElements++;
     }
 
-    /* (non-Javadoc)
-     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyEnterSeparatorSequence()
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * com.sap.mi.textual.grammar.impl.IParsingObserver#notifyEnterSeparatorSequence
+     * ()
      */
     @Override
     public void notifyEnterSeparatorSequence() {
         separatorSequenceEnteredNotLeft++;
     }
 
-    /* (non-Javadoc)
-     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyExitSeparatorSequence()
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * com.sap.mi.textual.grammar.impl.IParsingObserver#notifyExitSeparatorSequence
+     * ()
      */
     @Override
     public void notifyExitSeparatorSequence() {
         separatorSequenceEnteredNotLeft--;
     }
 
-    /* (non-Javadoc)
-     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyEnterOperatoredBrackettedSequence()
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#
+     * notifyEnterOperatoredBrackettedSequence()
      */
     @Override
     public void notifyEnterOperatoredBrackettedSequence() {
         operatoredSequenceEnteredNotLeft++;
     }
 
-    /* (non-Javadoc)
-     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyExitOperatoredBrackettedSequence()
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#
+     * notifyExitOperatoredBrackettedSequence()
      */
     @Override
     public void notifyExitOperatoredBrackettedSequence() {
         operatoredSequenceEnteredNotLeft--;
     }
 
-    /* (non-Javadoc)
-     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyEnterOperatorSequence(java.lang.String, int, boolean)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * com.sap.mi.textual.grammar.impl.IParsingObserver#notifyEnterOperatorSequence
+     * (java.lang.String, int, boolean)
      */
     @Override
     public void notifyEnterOperatorSequence(String operator, int arity,
@@ -198,8 +261,12 @@ public class ConsistencyChecksObserver implements IParsingObserver {
         operatorSequenceEnteredNotleft++;
     }
 
-    /* (non-Javadoc)
-     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyExitOperatorSequence()
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * com.sap.mi.textual.grammar.impl.IParsingObserver#notifyExitOperatorSequence
+     * ()
      */
     @Override
     public void notifyExitOperatorSequence() {
@@ -208,23 +275,23 @@ public class ConsistencyChecksObserver implements IParsingObserver {
 
     @Override
     public void notifyElementAddedToContext(Object element) {
-	elementsAddedToContext .add(element);
+        elementsAddedToContext.add(element);
     }
 
     @Override
     public void notifyDelayedReferenceCreated(DelayedReference ref) {
-	referencesCreated .add(ref);
+        referencesCreated.add(ref);
     }
 
     @Override
     public void notifyEnterInjectorAction() {
-	injectorActionsEnteredNotleft++;
-	
+        injectorActionsEnteredNotleft++;
+
     }
 
     @Override
     public void notifyExitInjectorAction() {
-	operatorSequenceEnteredNotleft--;
+        injectorActionsEnteredNotleft--;
     }
 
     @Override

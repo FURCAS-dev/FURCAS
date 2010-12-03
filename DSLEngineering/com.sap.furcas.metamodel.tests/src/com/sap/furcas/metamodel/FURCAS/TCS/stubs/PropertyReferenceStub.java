@@ -45,16 +45,4 @@ public class PropertyReferenceStub extends LocatedElementStub implements
     public void setStrucfeature(EStructuralFeature value) {
         Assert.fail("not implemented.");
     }
-
-	@Override
-	public boolean isIsOppositeEnd() {
-		return isOppositeEnd ;
-	}
-
-	@Override
-	public void setIsOppositeEnd(boolean value) {
-		Assert.fail("not implemented.");
-	}
-
-
 }

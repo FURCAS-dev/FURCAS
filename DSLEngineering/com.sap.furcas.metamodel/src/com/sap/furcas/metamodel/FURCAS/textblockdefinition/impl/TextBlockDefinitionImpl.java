@@ -6,6 +6,7 @@
  */
 package com.sap.furcas.metamodel.FURCAS.textblockdefinition.impl;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -83,16 +84,6 @@ public class TextBlockDefinitionImpl extends EObjectImpl implements TextBlockDef
 	 * @ordered
 	 */
         protected String defaultTemplate = DEFAULT_TEMPLATE_EDEFAULT;
-
-        /**
-	 * The cached value of the '{@link #getParseRule() <em>Parse Rule</em>}' reference.
-	 * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-	 * @see #getParseRule()
-	 * @generated
-	 * @ordered
-	 */
-        protected Template parseRule;
 
         /**
 	 * The cached value of the '{@link #getSubDefinitions() <em>Sub Definitions</em>}' containment reference list.
@@ -201,36 +192,39 @@ public class TextBlockDefinitionImpl extends EObjectImpl implements TextBlockDef
 	 * @generated
 	 */
         public Template getParseRule() {
-		if (parseRule != null && parseRule.eIsProxy()) {
-			InternalEObject oldParseRule = (InternalEObject)parseRule;
-			parseRule = (Template)eResolveProxy(oldParseRule);
-			if (parseRule != oldParseRule) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__PARSE_RULE, oldParseRule, parseRule));
-			}
-		}
-		return parseRule;
+		if (eContainerFeatureID() != TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__PARSE_RULE) return null;
+		return (Template)eContainer();
 	}
 
         /**
 	 * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-        public Template basicGetParseRule() {
-		return parseRule;
+	public NotificationChain basicSetParseRule(Template newParseRule, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newParseRule, TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__PARSE_RULE, msgs);
+		return msgs;
 	}
 
-        /**
+								/**
 	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
 	 * @generated
 	 */
         public void setParseRule(Template newParseRule) {
-		Template oldParseRule = parseRule;
-		parseRule = newParseRule;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__PARSE_RULE, oldParseRule, parseRule));
+		if (newParseRule != eInternalContainer() || (eContainerFeatureID() != TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__PARSE_RULE && newParseRule != null)) {
+			if (EcoreUtil.isAncestor(this, newParseRule))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newParseRule != null)
+				msgs = ((InternalEObject)newParseRule).eInverseAdd(this, TCSPackage.TEMPLATE__TEXT_BLOCK_DEFINITION, Template.class, msgs);
+			msgs = basicSetParseRule(newParseRule, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__PARSE_RULE, newParseRule, newParseRule));
 	}
 
         /**
@@ -354,6 +348,10 @@ public class TextBlockDefinitionImpl extends EObjectImpl implements TextBlockDef
         @Override
         public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__PARSE_RULE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetParseRule((Template)otherEnd, msgs);
 			case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__CONTEXT:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -372,6 +370,8 @@ public class TextBlockDefinitionImpl extends EObjectImpl implements TextBlockDef
         @Override
         public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__PARSE_RULE:
+				return basicSetParseRule(null, msgs);
 			case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__CONTEXT:
 				return basicSetContext(null, msgs);
 			case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__SUB_DEFINITIONS:
@@ -388,6 +388,8 @@ public class TextBlockDefinitionImpl extends EObjectImpl implements TextBlockDef
         @Override
         public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
+			case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__PARSE_RULE:
+				return eInternalContainer().eInverseRemove(this, TCSPackage.TEMPLATE__TEXT_BLOCK_DEFINITION, Template.class, msgs);
 			case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__CONTEXT:
 				return eInternalContainer().eInverseRemove(this, TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__SUB_DEFINITIONS, TextBlockDefinition.class, msgs);
 		}
@@ -407,8 +409,7 @@ public class TextBlockDefinitionImpl extends EObjectImpl implements TextBlockDef
 			case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__DEFAULT_TEMPLATE:
 				return getDefaultTemplate();
 			case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__PARSE_RULE:
-				if (resolve) return getParseRule();
-				return basicGetParseRule();
+				return getParseRule();
 			case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__CONTEXT:
 				return getContext();
 			case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__SUB_DEFINITIONS:
@@ -503,7 +504,7 @@ public class TextBlockDefinitionImpl extends EObjectImpl implements TextBlockDef
 			case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__DEFAULT_TEMPLATE:
 				return DEFAULT_TEMPLATE_EDEFAULT == null ? defaultTemplate != null : !DEFAULT_TEMPLATE_EDEFAULT.equals(defaultTemplate);
 			case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__PARSE_RULE:
-				return parseRule != null;
+				return getParseRule() != null;
 			case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__CONTEXT:
 				return getContext() != null;
 			case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__SUB_DEFINITIONS:

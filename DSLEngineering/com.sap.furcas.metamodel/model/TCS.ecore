@@ -40,6 +40,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="disambiguateV3" ordered="false"
         unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="semDisambiguate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="textBlockDefinition" eType="ecore:EClass textblockdefinition.ecore#//TextBlockDefinition"
+        containment="true" eOpposite="textblockdefinition.ecore#//TextBlockDefinition/parseRule"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionTemplate" eSuperTypes="#//Template">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="functionName" ordered="false"

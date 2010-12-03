@@ -89,7 +89,7 @@ public interface TextblockdefinitionPackage extends EPackage {
         int TEXT_BLOCK_DEFINITION__DEFAULT_TEMPLATE = 1;
 
         /**
-	 * The feature id for the '<em><b>Parse Rule</b></em>' reference.
+	 * The feature id for the '<em><b>Parse Rule</b></em>' container reference.
 	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
 	 * @generated
@@ -186,10 +186,10 @@ public interface TextblockdefinitionPackage extends EPackage {
         EAttribute getTextBlockDefinition_DefaultTemplate();
 
         /**
-	 * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition#getParseRule <em>Parse Rule</em>}'.
+	 * Returns the meta object for the container reference '{@link com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition#getParseRule <em>Parse Rule</em>}'.
 	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Parse Rule</em>'.
+	 * @return the meta object for the container reference '<em>Parse Rule</em>'.
 	 * @see com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition#getParseRule()
 	 * @see #getTextBlockDefinition()
 	 * @generated
@@ -299,7 +299,7 @@ public interface TextblockdefinitionPackage extends EPackage {
                 EAttribute TEXT_BLOCK_DEFINITION__DEFAULT_TEMPLATE = eINSTANCE.getTextBlockDefinition_DefaultTemplate();
 
                 /**
-		 * The meta object literal for the '<em><b>Parse Rule</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Parse Rule</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
                  * <!-- end-user-doc -->
 		 * @generated
