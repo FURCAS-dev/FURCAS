@@ -22,22 +22,22 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  */
 public class OneExpImpl extends AtomExpImpl implements OneExp {
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected OneExpImpl() {
-        super();
-    }
+		super();
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         protected EClass eStaticClass() {
-        return TCSPackage.Literals.ONE_EXP;
-    }
+		return TCSPackage.Literals.ONE_EXP;
+	}
 
 } //OneExpImpl

@@ -82,7 +82,9 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
 
 			EPackage metamodelPackage = getMetamodelPackage(connection);
 			Set<URI> scope = new HashSet<URI>(priScope);
-			scope.addAll(additionalCRIScope);
+			if(additionalCRIScope != null) {
+				scope.addAll(additionalCRIScope);
+			}
 			TextBlocksAwareModelAdapter ma = new TextBlocksAwareModelAdapter(
 				new EMFModelAdapter(metamodelPackage, connection, scope));
 			ModelInjector mi = new ModelInjector(parser.getTokenNames());
@@ -96,7 +98,7 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
 				ma.setTextBlocksStream((ITextBlocksTokenStream) input);
 				parser.setObserver(new ParserTextBlocksHandler(
 					(ITextBlocksTokenStream) input, connection,
-					getMetamodelUri(connection), TcsUtil.getSyntaxePartitions(
+					getMetamodelUri(connection), TcsUtil.getSyntaxPartitions(
 						connection, getLanguageId()), priScope,
 					additionalCRIScope));
 			}

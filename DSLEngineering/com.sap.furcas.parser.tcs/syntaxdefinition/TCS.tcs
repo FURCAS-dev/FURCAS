@@ -105,9 +105,8 @@ syntax TCS {
                                         "," "serializer" "=" serializer{as = stringSymbol}
                                 )
                         ";"
-/** TODO: property not specified in the metamodel
+                        --this is an oppositeEnd for TextBlockDefinition:parseRule
                         textBlockDefinition{forcedUpper=1}
-*/
                 ;
 
         template TCS::EnumerationTemplate context addToContext
@@ -119,9 +118,8 @@ syntax TCS {
                                 :
                                         ";"
                         )
-/** TODO: property not specified in the metamodel
+                        --this is an oppositeEnd for TextBlockDefinition:parseRule
                         textBlockDefinition{forcedUpper=1}
-*/
                 ;
 
         template TCS::EnumLiteralMapping
@@ -147,9 +145,8 @@ syntax TCS {
                                 (isDefined(prefixSequence) ? "prefix" [ ":" [ prefixSequence ] {startNL = false} ])
                           )
                         (isDefined(templateSequence) ? [ ":" [ templateSequence ] {startNL = false} ";" ] : ";")
-/** TODO: property not specified in the metamodel
+                        --this is an oppositeEnd for TextBlockDefinition:parseRule
                         textBlockDefinition{forcedUpper=1}
-*/
                 ;
 
         template TCS::OperatorTemplate context addToContext
@@ -166,9 +163,8 @@ syntax TCS {
                                 (isContext ? "context" (isDefined(contextTags) ? contextTags))
                         )
                         (isDefined(otSequence) ? [ ":" [ otSequence ] {startNL = false} ";" ] : ";")
-/** TODO: property not specified in the metamodel
+                        --this is an oppositeEnd for TextBlockDefinition:parseRule
                         textBlockDefinition{forcedUpper=1}
-*/
                 ;
 
         template TCS::FunctionTemplate context addToContext
@@ -201,16 +197,16 @@ syntax TCS {
             :
             -- for reference, need to look in metareference modelElement of the template this property belongs to       
                   (isDefined(strucfeature) ? 
-                        strucfeature{
-                                refersTo = name, 
-                                query = "OCL:let c:ecore::EClass = #context.oclAsType(FURCAS::TCS::Template).metaReference.oclAsType(ecore::EClass) in
-                                		     let result:ecore::EStructuralFeature = c.getEStructuralFeature(?) in
-                                                 if (not result.oclIsInvalid()) then
-                                                         Bag{result}     
-                                                 else    
-                                                         Bag{}
-                                                 endif",
-                                filter = "", invert = "name", as = identifierOrKeyword}
+                  strucfeature{
+                        refersTo = name, 
+                        query = "OCL:let c:ecore::EClass = #context.oclAsType(FURCAS::TCS::Template).metaReference.oclAsType(ecore::EClass) in
+                        		     let result:ecore::EStructuralFeature = c.getEStructuralFeature(?) in
+                                         if (not result.oclIsInvalid()) then
+                                                 Bag{result}     
+                                         else    
+                                                Bag{}
+                                         endif",
+                        filter = "", invert = "name", as = identifierOrKeyword}
                   : "->" name{as = identifierOrKeyword})
             ;
 

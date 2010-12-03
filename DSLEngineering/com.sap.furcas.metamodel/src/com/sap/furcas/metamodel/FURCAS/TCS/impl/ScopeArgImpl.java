@@ -30,137 +30,137 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  */
 public class ScopeArgImpl extends EObjectImpl implements ScopeArg {
         /**
-     * The default value of the '{@link #getScope() <em>Scope</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getScope() <em>Scope</em>}' attribute.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @see #getScope()
-     * @generated
-     * @ordered
-     */
+	 * @see #getScope()
+	 * @generated
+	 * @ordered
+	 */
         protected static final ScopeKind SCOPE_EDEFAULT = ScopeKind.INSTANCE_COMPLETE;
 
         /**
-     * The cached value of the '{@link #getScope() <em>Scope</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getScope() <em>Scope</em>}' attribute.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @see #getScope()
-     * @generated
-     * @ordered
-     */
+	 * @see #getScope()
+	 * @generated
+	 * @ordered
+	 */
         protected ScopeKind scope = SCOPE_EDEFAULT;
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected ScopeArgImpl() {
-        super();
-    }
+		super();
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         protected EClass eStaticClass() {
-        return TCSPackage.Literals.SCOPE_ARG;
-    }
+		return TCSPackage.Literals.SCOPE_ARG;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public ScopeKind getScope() {
-        return scope;
-    }
+		return scope;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public void setScope(ScopeKind newScope) {
-        ScopeKind oldScope = scope;
-        scope = newScope == null ? SCOPE_EDEFAULT : newScope;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.SCOPE_ARG__SCOPE, oldScope, scope));
-    }
+		ScopeKind oldScope = scope;
+		scope = newScope == null ? SCOPE_EDEFAULT : newScope;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.SCOPE_ARG__SCOPE, oldScope, scope));
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case TCSPackage.SCOPE_ARG__SCOPE:
-                return getScope();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case TCSPackage.SCOPE_ARG__SCOPE:
+				return getScope();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case TCSPackage.SCOPE_ARG__SCOPE:
-                setScope((ScopeKind)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case TCSPackage.SCOPE_ARG__SCOPE:
+				setScope((ScopeKind)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public void eUnset(int featureID) {
-        switch (featureID) {
-            case TCSPackage.SCOPE_ARG__SCOPE:
-                setScope(SCOPE_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case TCSPackage.SCOPE_ARG__SCOPE:
+				setScope(SCOPE_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case TCSPackage.SCOPE_ARG__SCOPE:
-                return scope != SCOPE_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case TCSPackage.SCOPE_ARG__SCOPE:
+				return scope != SCOPE_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (scope: ");
-        result.append(scope);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (scope: ");
+		result.append(scope);
+		result.append(')');
+		return result.toString();
+	}
 
 } //ScopeArgImpl

@@ -240,7 +240,7 @@ public class TextBlocksAwareModelAdapter extends DefaultTextAwareModelAdapter {
 
 	@Override
 	public Collection<URI> getPRIPartitions(ResourceSet conn, String languageId) {
-		return TcsUtil.getSyntaxePartitions(conn, languageId);
+		return TcsUtil.getSyntaxPartitions(conn, languageId);
 	}
     
 }

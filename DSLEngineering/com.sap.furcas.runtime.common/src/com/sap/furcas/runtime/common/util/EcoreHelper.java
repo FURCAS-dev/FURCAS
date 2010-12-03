@@ -24,6 +24,7 @@ import org.eclipse.emf.query.index.query.QueryExecutor;
 import org.eclipse.emf.query.index.query.ResourceQuery;
 import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
 import org.eclipse.emf.query.index.ui.IndexFactory;
+import org.eclipse.emf.query2.Query;
 import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.QueryProcessor;
 import org.eclipse.emf.query2.QueryProcessorFactory;
@@ -111,6 +112,16 @@ public class EcoreHelper {
 	        throw new MetaModelLookupException("Exception while making query: " + query + "\n Message :" + rte.getMessage(), rte);
 	    }
 	}
+	
+	public static ResultSet executeQuery(Query query, QueryContext context) throws MetaModelLookupException {
+	    try {
+	        QueryProcessor processor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
+	        ResultSet resultSet = processor.execute(query, context);
+	        return resultSet;
+	    } catch (RuntimeException rte) {
+	        throw new MetaModelLookupException("Exception while making query: " + query + "\n Message :" + rte.getMessage(), rte);
+	    }
+	}
 		
 	public static List<String> getQualifiedName(EClassifier element) {
 		if(element instanceof EModelElement) {
@@ -185,7 +196,7 @@ public class EcoreHelper {
 
 	public static boolean isAlive(EObject object) {
 		//TODO how to check whether an object is alive or not in EMF?
-		throw new RuntimeException("Not yet implemented");
+		return object.eResource() != null;
 	}
 
 }

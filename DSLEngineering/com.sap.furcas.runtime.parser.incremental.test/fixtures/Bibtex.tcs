@@ -1,0 +1,82 @@
+syntax Bibtex {
+
+	-- simple basic syntax containing articles and authors, used as Hello Word example
+
+	primitiveTemplate identifier for String default using NAME:
+		value = "unescapeString(%token%)";
+
+
+	
+	
+	template BibTextFile main context
+		: [entries] -- entries each in new line
+		;
+		
+	template BibTextEntry abstract;
+	
+	template Article
+		: "article" "{"
+		[
+		key "," author{refersTo=name} "," attributes{separator = ","}
+		]
+		"}"
+		{{ location = lookIn("OCL:'Where '.concat(self.author.name).concat(' wrote it')") }}
+		;
+	
+	template Attribute abstract;
+	
+	template Author addToContext
+		: "author" "=" name "."
+		;
+	
+	template Year
+		: "year" "=" value
+		;
+		
+
+-- BEGIN Special symbols
+-- Possible modifications:
+	symbols {
+--		lsquare		= "[";
+--		rsquare		= "]"	: rightSpace;
+--		excl		= "!";
+		coma		= ","	: leftNone, rightSpace;
+--		lparen		= "(";
+--		rparen		= ")"	: leftNone, rightSpace;
+		lcurly		= "{"	: leftSpace;
+		rcurly		= "}"	: leftNone, rightSpace;
+--		semi		= ";"	: leftNone, rightSpace;
+--		colon		= ":"	: leftSpace, rightSpace;
+--		pipe		= "|"	: leftSpace, rightSpace;
+--		sharp		= "#"	: leftSpace;
+--		qmark		= "?";
+--		coloncolon	= "::"	: leftNone, rightNone;
+
+		-- operator symbols
+--		point		= "."	: leftNone;
+--		rarrow		= ""	: leftNone;
+--		minus		= "-"	: leftSpace, rightSpace;
+--		star		= "*"	: leftSpace, rightSpace;
+--		slash		= "/"	: leftSpace, rightSpace;
+--		plus		= "+"	: leftSpace, rightSpace;
+--		eq			= "="	: leftSpace, rightSpace;
+--		gt			= ">"	: leftSpace, rightSpace;
+--		lt			= "<"	: leftSpace, rightSpace;
+--		ge			= ">="	: leftSpace, rightSpace;
+--		le			= "<="	: leftSpace, rightSpace;
+--		ne			= "<>"	: leftSpace, rightSpace;
+--		larrow		= "<-"	: leftSpace, rightSpace;
+	}
+-- END Special symbols
+
+-- BEGIN Operator table
+-- Defines all operators with their priority, arity, and associativity.
+-- All defined operators must be used in operator templates.
+
+-- Specify operator table(s) here if necessary.
+
+-- END Operator table
+
+token COMMENT	: endOfLine(start = "--");
+
+}

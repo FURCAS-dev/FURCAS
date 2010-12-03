@@ -91,7 +91,7 @@
 				<groupId>org.sonatype.tycho</groupId>
 				<artifactId>maven-osgi-test-plugin</artifactId>
 				<configuration>
-					<argLine>-Xmx1024m</argLine>
+					<argLine>-Xmx1024m -XX:+UseParallelGC</argLine>
 					<testFailureIgnore>true</testFailureIgnore>
 					<excludes>
 						<exclude>**/NavigationPathCreationTest.java</exclude>

@@ -27,7 +27,17 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.query2.FromEntry;
+import org.eclipse.emf.query2.FromType;
+import org.eclipse.emf.query2.LocalWhereEntry;
+import org.eclipse.emf.query2.Operation;
+import org.eclipse.emf.query2.Query;
 import org.eclipse.emf.query2.ResultSet;
+import org.eclipse.emf.query2.SelectAlias;
+import org.eclipse.emf.query2.SelectEntry;
+import org.eclipse.emf.query2.WhereEntry;
+import org.eclipse.emf.query2.WhereString;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
 import com.sap.furcas.metamodel.FURCAS.TCS.AsPArg;
@@ -69,6 +79,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.SimplePattern;
 import com.sap.furcas.metamodel.FURCAS.TCS.StringPattern;
 import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSFactory;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.TCS.Token;
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
@@ -98,6 +109,7 @@ import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 public class TcsUtil {
 
     private static final URI TRANSIENT_PARTITION_NAME = URI.createURI("TcsUtilTransientPartition");
+	private static final String MQL_ALIAS_INSTANCE = "cs";
 
     /**
      * clears the TcsUtil transient partition on this connection
@@ -1121,6 +1133,14 @@ public class TcsUtil {
             throw new RuntimeException(e);
         }
     }
+    
+    public static ResultSet queryConn(ResourceSet resourceSet, Query query) {
+        try {
+            return EcoreHelper.executeQuery(query, EcoreHelper.getQueryContext(resourceSet));
+        } catch (MetaModelLookupException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static ResultSet querySameConn(EObject r, String query) {
         ResourceSet conn = getResourceSetFromEObject(r);
@@ -1129,7 +1149,7 @@ public class TcsUtil {
 
     public static List<ConcreteSyntax> getSyntaxesInResourceSet(ResourceSet connection) {
 
-        String query = "select cs from FURCAS::TCS::ConcreteSyntax withoutsubtypes as cs";
+        String query = "select cs from " + EcoreUtil.getURI(TCSPackage.eINSTANCE.getConcreteSyntax()) + " withoutsubtypes as cs";
 
         ResultSet resultSet = queryConn(connection, query);
         URI[] resultElements = resultSet.getUris("cs");
@@ -1144,7 +1164,11 @@ public class TcsUtil {
     }
 
     public static List<ConcreteSyntax> getSyntaxesInResourceSetWithName(ResourceSet connection, String syntaxName) {
-        String query = "select cs from FURCAS::TCS::ConcreteSyntax withoutsubtypes as cs where cs.name = '" + syntaxName + "'";
+    	SelectEntry se = new SelectAlias(MQL_ALIAS_INSTANCE);
+        FromEntry fe = new FromType(MQL_ALIAS_INSTANCE, EcoreUtil.getURI(TCSPackage.eINSTANCE.getConcreteSyntax()), /*withoutSubtypes*/ false);
+        WhereString whereName = new WhereString("name", Operation.EQUAL, syntaxName);
+        LocalWhereEntry where = new LocalWhereEntry(MQL_ALIAS_INSTANCE, whereName);
+        Query query = new Query(new SelectEntry[] { se }, new FromEntry[] { fe }, new WhereEntry[] { where });
         ResultSet resultSet = queryConn(connection, query);
         URI[] resultElements = resultSet.getUris("cs");
 
@@ -1427,7 +1451,7 @@ public class TcsUtil {
         // TODO limit query to a single partition or use model information from
         // parsing handler instead?
 
-        String query = "select ofClass from " + joinNameList(getQualifiedName(type)) + " as ofClass";
+        String query = "select ofClass from " + EcoreUtil.getURI(type) + " as ofClass";
 
         ResultSet resultSet = queryConn(conn, query);
         URI[] resultElements = resultSet.getUris("ofClass");
@@ -1483,7 +1507,7 @@ public class TcsUtil {
         return results;
     }
 
-    public static Set<URI> getSyntaxePartitions(ResourceSet connection, String languageId) {
+    public static Set<URI> getSyntaxPartitions(ResourceSet connection, String languageId) {
         ConcreteSyntax cs = getSyntaxByName(connection, languageId);
         if (cs == null) {
             throw new RuntimeException("Concrete syntax with id '" + languageId + "' not found.");

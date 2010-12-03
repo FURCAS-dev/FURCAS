@@ -22,22 +22,22 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  */
 public class ClassPatternImpl extends SimplePatternImpl implements ClassPattern {
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected ClassPatternImpl() {
-        super();
-    }
+		super();
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         protected EClass eStaticClass() {
-        return TCSPackage.Literals.CLASS_PATTERN;
-    }
+		return TCSPackage.Literals.CLASS_PATTERN;
+	}
 
 } //ClassPatternImpl

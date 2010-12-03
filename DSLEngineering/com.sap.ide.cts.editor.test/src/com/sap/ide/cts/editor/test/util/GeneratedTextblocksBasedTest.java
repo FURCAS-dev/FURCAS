@@ -28,6 +28,7 @@ import textblocks.TextBlock;
 import textblocks.TextblocksPackage;
 import textblocks.VersionEnum;
 
+import com.sap.furcas.runtime.parser.testbase.GeneratedParserAndFactoryBasedTest;
 import com.sap.furcas.test.util.TcsTestHelper;
 import com.sap.furcas.textual.textblocks.TbChangeUtil;
 import com.sap.furcas.textual.textblocks.TbVersionUtil;
