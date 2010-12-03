@@ -10,7 +10,6 @@ Require-Bundle: com.sap.furcas.runtime.common,
  org.antlr,
  org.eclipse.emf.ecore,
  com.sap.furcas.runtime.parser,
- com.sap.mi.textual.parsing.textblocks,
  com.sap.furcas.runtime.parser.incremental,
  com.sap.furcas.parsergenerator.emf,
  com.sap.furcas.modeladaptation.emf

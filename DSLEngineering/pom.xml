@@ -19,12 +19,13 @@
     <module>FURCAS-Update-Site</module>
     <!--
     <module>bibtex.editor</module>
-    <module>bibtex.metamodel</module>
     <module>bibtex.test</module>
     -->
+    <module>bibtex.metamodel</module>
     <module>com.sap.emf.ocl.trigger</module>
     <module>com.sap.emf.ocl.trigger.tests</module>
     <module>com.sap.furcas.ide.dslproject</module>
+    <module>com.sap.furcas.ide.parserfactory</module>
     <module>com.sap.furcas.ide.projectwizard</module>
     <module>com.sap.furcas.ide.projectwizard.test</module>
     <module>com.sap.furcas.metamodel</module>

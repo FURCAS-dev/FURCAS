@@ -11,6 +11,7 @@ Require-Bundle: org.junit;bundle-version="4.8.1",
  com.sap.furcas.test,
  com.sap.furcas.runtime.textblocks.test,
  com.sap.furcas.ide.parserfactory,
+ com.sap.furcas.parsergenerator,
  bibtex.metamodel;bundle-version="1.0.0"
 Bundle-ClassPath: generationTemp/,
  .
