@@ -13,7 +13,8 @@
             icon="icons/furcasdeath.gif"
             category="com.sap.furcas.ide.projectwizard"
             class="com.sap.furcas.ide.projectwizard.wizards.FurcasWizard"
-            id="com.sap.furcas.ide.projectwizard.wizards.FurcasWizard">
+            id="com.sap.furcas.ide.projectwizard.wizards.FurcasWizard"
+            project="true">
       </wizard>
    </extension>
 
