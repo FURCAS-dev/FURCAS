@@ -60,10 +60,11 @@ public class WizardProjectHelper {
      *            States wether this is the metamodel project or not. This is used for including different natures and builders
      *            and a different project name.
      * @return The generated project.
+     * @throws CodeGenerationException
      */
     public static IProject createPlugInProject(final ProjectInfo pi, final List<String> srcFolders,
             final List<String> nonSrcFolders, final List<String> exportedPackages, final IProgressMonitor progressMonitor,
-            final Shell theShell, final boolean metamodel) {
+            final Shell theShell, final boolean metamodel) throws CodeGenerationException {
         IProject project = null;
         final String projectName;
         // Check if this is the creation of the metamodel project or not.
@@ -107,8 +108,13 @@ public class WizardProjectHelper {
             if (!metamodel) {
                 createManifestAndBuildProps(pi, progressMonitor, project);
             }
+        } catch (CodeGenerationException exception) {
+            throw exception;
         } catch (Exception exception) {
-            System.out.println("Error while creating the project.");
+            if (metamodel)
+                throw new CodeGenerationException("Error while creating the metamodel project.", exception.getCause());
+            else
+                throw new CodeGenerationException("Error while creating the language project.", exception.getCause());
         } finally {
             progressMonitor.done();
         }
@@ -125,11 +131,15 @@ public class WizardProjectHelper {
      * @throws CoreException
      */
     private static void createManifestAndBuildProps(final ProjectInfo pi, final IProgressMonitor progressMonitor, IProject project)
-            throws CoreException {
+            throws CodeGenerationException {
         SourceCodeFactory scf = new SourceCodeFactory();
         createFile("build.properties", project, scf.createBuildProbCode(), progressMonitor);
         IFolder metaInf = project.getFolder("META-INF");
-        metaInf.create(false, true, new SubProgressMonitor(progressMonitor, 1));
+        try {
+            metaInf.create(false, true, new SubProgressMonitor(progressMonitor, 1));
+        } catch (CoreException e) {
+            throw new CodeGenerationException("Failed to create folder 'META-INF'", e.getCause());
+        }
         createFile("MANIFEST.MF", metaInf, scf.createManifest(pi), progressMonitor);
     }
 
@@ -148,12 +158,16 @@ public class WizardProjectHelper {
      */
     private static void setClasspath(final List<String> srcFolders, final List<String> nonSrcFolders,
             final IProgressMonitor progressMonitor, IProject project, IJavaProject javaProject,
-            List<IClasspathEntry> classpathEntries) throws CoreException, JavaModelException {
+            List<IClasspathEntry> classpathEntries) throws CodeGenerationException {
         Collections.reverse(srcFolders);
         for (String src : srcFolders) {
             IFolder srcContainer = project.getFolder(src);
             if (!srcContainer.exists()) {
-                srcContainer.create(false, true, new SubProgressMonitor(progressMonitor, 1));
+                try {
+                    srcContainer.create(false, true, new SubProgressMonitor(progressMonitor, 1));
+                } catch (CoreException e) {
+                    throw new CodeGenerationException("Failed to create source folder 'src'", e.getCause());
+                }
             }
             IClasspathEntry srcClasspathEntry = JavaCore.newSourceEntry(srcContainer.getFullPath());
             classpathEntries.add(0, srcClasspathEntry);
@@ -163,7 +177,11 @@ public class WizardProjectHelper {
             for (String src : nonSrcFolders) {
                 IFolder srcContainer = project.getFolder(src);
                 if (!srcContainer.exists()) {
-                    srcContainer.create(false, true, new SubProgressMonitor(progressMonitor, 1));
+                    try {
+                        srcContainer.create(false, true, new SubProgressMonitor(progressMonitor, 1));
+                    } catch (CoreException e) {
+                        throw new CodeGenerationException("Failed to create source folder 'src'", e.getCause());
+                    }
                 }
             }
         }
@@ -171,8 +189,12 @@ public class WizardProjectHelper {
         classpathEntries.add(JavaCore.newContainerEntry(new Path("org.eclipse.jdt.launching.JRE_CONTAINER")));
         classpathEntries.add(JavaCore.newContainerEntry(new Path("org.eclipse.pde.core.requiredPlugins")));
 
-        javaProject.setRawClasspath(classpathEntries.toArray(new IClasspathEntry[classpathEntries.size()]),
-                new SubProgressMonitor(progressMonitor, 1));
+        try {
+            javaProject.setRawClasspath(classpathEntries.toArray(new IClasspathEntry[classpathEntries.size()]),
+                    new SubProgressMonitor(progressMonitor, 1));
+        } catch (JavaModelException e) {
+            throw new CodeGenerationException("Failed to set projects classpath", e.getCause());
+        }
     }
 
     /**
@@ -186,7 +208,7 @@ public class WizardProjectHelper {
      * @throws CoreException
      */
     private static void addBuilders(final IProgressMonitor progressMonitor, final boolean metamodel, IProject project,
-            IProjectDescription projectDescription) throws CoreException {
+            IProjectDescription projectDescription) throws CodeGenerationException {
         ICommand java = projectDescription.newCommand();
         java.setBuilderName(JavaCore.BUILDER_ID);
 
@@ -205,8 +227,13 @@ public class WizardProjectHelper {
             projectDescription.setBuildSpec(new ICommand[] { java, manifest, schema });
         }
 
-        project.open(new SubProgressMonitor(progressMonitor, 1));
-        project.setDescription(projectDescription, new SubProgressMonitor(progressMonitor, 1));
+        try {
+            project.open(new SubProgressMonitor(progressMonitor, 1));
+            project.setDescription(projectDescription, new SubProgressMonitor(progressMonitor, 1));
+        } catch (CoreException e) {
+            throw new CodeGenerationException("Failed to set projects builders", e.getCause());
+        }
+        
     }
 
     /**
@@ -220,7 +247,7 @@ public class WizardProjectHelper {
      * @throws CoreException
      */
     private static void deleteOldProject(final IProgressMonitor progressMonitor, final Shell theShell, IProject project,
-            final String projectName) throws CoreException {
+            final String projectName) throws CodeGenerationException {
         final boolean[] result = new boolean[1];
         PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
             @Override
@@ -231,7 +258,11 @@ public class WizardProjectHelper {
             }
         });
         if (result[0]) {
-            project.delete(true, true, new SubProgressMonitor(progressMonitor, 1));
+            try {
+                project.delete(true, true, new SubProgressMonitor(progressMonitor, 1));
+            } catch (CoreException e) {
+                throw new CodeGenerationException("Failed to delete existing project with same name", e.getCause());
+            }
         } else {
             return;
         }
@@ -249,8 +280,9 @@ public class WizardProjectHelper {
      * @param progressMonitor
      *            The Progress Monitor.
      * @return The file.
+     * @throws CodeGenerationException 
      */
-    public static IFile createFile(String name, IContainer container, String content, IProgressMonitor progressMonitor) {
+    public static IFile createFile(String name, IContainer container, String content, IProgressMonitor progressMonitor) throws CodeGenerationException {
         IFile file = container.getFile(new Path(name));
         assertExist(file.getParent());
         try {
@@ -262,7 +294,7 @@ public class WizardProjectHelper {
             }
             stream.close();
         } catch (Exception e) {
-            System.out.println("Failed to create file ");
+            throw new CodeGenerationException("Failed to create file '"+name+"'", e.getCause());
         }
         progressMonitor.worked(1);
 
@@ -282,7 +314,7 @@ public class WizardProjectHelper {
      * @throws CoreException
      */
     public static IFile createGenmodel(final IProgressMonitor progressMonitor, IProject project, ProjectInfo pi)
-            throws CoreException {
+            throws CodeGenerationException {
         SourceCodeFactory scf = new SourceCodeFactory();
         IFolder folder = project.getFolder("model");
         return createFile(CreateProject.capitalizeFirstChar(pi.getLanguageName()) + ".genmodel", folder,
@@ -299,8 +331,9 @@ public class WizardProjectHelper {
      * @param progressMonitor
      *            used to interact with and show the user the current operation status
      * @return
+     * @throws CodeGenerationException 
      */
-    public static IFile createFile(String name, IContainer container, URL contentUrl, IProgressMonitor progressMonitor) {
+    public static IFile createFile(String name, IContainer container, URL contentUrl, IProgressMonitor progressMonitor) throws CodeGenerationException {
 
         IFile file = container.getFile(new Path(name));
         InputStream inputStream = null;
@@ -313,11 +346,13 @@ public class WizardProjectHelper {
             }
             inputStream.close();
         } catch (Exception e) {
+            throw new CodeGenerationException("Failed to create File: '"+name+"'", e.getCause());
         } finally {
-            if (null != inputStream) {
+            if (inputStream != null) {
                 try {
                     inputStream.close();
                 } catch (IOException e) {
+                    throw new CodeGenerationException("Failed to close inputStream while creating file: '"+name+"'", e.getCause());
                 }
             }
         }
@@ -331,8 +366,9 @@ public class WizardProjectHelper {
      * 
      * @param c
      *            The container whose existence is checked.
+     * @throws CodeGenerationException 
      */
-    private static void assertExist(IContainer c) {
+    private static void assertExist(IContainer c) throws CodeGenerationException {
         if (!c.exists()) {
             if (!c.getParent().exists()) {
                 assertExist(c.getParent());
@@ -341,6 +377,7 @@ public class WizardProjectHelper {
                 try {
                     ((IFolder) c).create(false, true, new NullProgressMonitor());
                 } catch (CoreException e) {
+                    throw new CodeGenerationException("Failed to create container: "+c.getName(), e.getCause());
                 }
             }
 
@@ -364,6 +401,8 @@ public class WizardProjectHelper {
                 try {
                     IDE.openEditor(page, file, true);
                 } catch (PartInitException e) {
+                    Throwable realException = e.getCause();
+                    MessageDialog.openError(page.getWorkbenchWindow().getShell(), "Error", realException.getMessage());
                 }
             }
         });
