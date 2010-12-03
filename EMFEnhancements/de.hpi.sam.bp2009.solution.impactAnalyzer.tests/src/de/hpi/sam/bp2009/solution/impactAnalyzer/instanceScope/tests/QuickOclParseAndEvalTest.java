@@ -132,19 +132,26 @@ public class QuickOclParseAndEvalTest extends TestCase
   public void testParseAndEvaluateOclExpressionWithInvalidInOperationArgument() throws ParserException {
       EClass cl = CompanyPackage.eINSTANCE.getDepartment();
       EOperation op = EcoreFactory.eINSTANCE.createEOperation();
-      op.setName("myOp");
-      op.setEType(EcorePackage.eINSTANCE.getEBoolean());
-      EParameter param = EcoreFactory.eINSTANCE.createEParameter();
-      param.setName("humba");
-      param.setEType(org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getEClassifier());
-      op.getEParameters().add(param);
-      cl.getEOperations().add(op);
-      oclHelper.setOperationContext(cl, op);
-      oclHelper.createBodyCondition("humba.oclIsInvalid()");
-      oclHelper.setContext(cl);
-      OCLExpression expression4 = oclHelper.createQuery("self.myOp(invalid)");
-      Object result4 = ocl.evaluate(CompanyFactory.eINSTANCE.createDepartment(), expression4);
-      assertEquals(true, result4);
+		try {
+			op.setName("myOp");
+			op.setEType(EcorePackage.eINSTANCE.getEBoolean());
+			EParameter param = EcoreFactory.eINSTANCE.createEParameter();
+			param.setName("humba");
+			param.setEType(org.eclipse.emf.ecore.EcorePackage.eINSTANCE
+					.getEClassifier());
+			op.getEParameters().add(param);
+			cl.getEOperations().add(op);
+			oclHelper.setOperationContext(cl, op);
+			oclHelper.createBodyCondition("humba.oclIsInvalid()");
+			oclHelper.setContext(cl);
+			OCLExpression expression4 = oclHelper
+					.createQuery("self.myOp(invalid)");
+			Object result4 = ocl.evaluate(
+					CompanyFactory.eINSTANCE.createDepartment(), expression4);
+			assertEquals(true, result4);
+		} finally {
+    	  cl.getEOperations().remove(op);
+      }
   }
 
     /**

@@ -16,7 +16,6 @@ import java.util.Map;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.Parser;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
