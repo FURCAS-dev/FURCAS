@@ -4,8 +4,6 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-import com.sap.furcas.utils.exceptions.StatusLogger;
-
 /**
  * The activator class controls the plug-in life cycle
  */
@@ -19,9 +17,6 @@ public class Activator extends AbstractUIPlugin {
     //
     private static Activator plugin;
     
-    //The status logger
-    //
-    public static StatusLogger logger;
 
     /**
      * The constructor
@@ -37,7 +32,6 @@ public class Activator extends AbstractUIPlugin {
     public void start(BundleContext context) throws Exception {
         super.start(context);
         plugin = this;
-        logger = new StatusLogger(this, PLUGIN_ID);
     }
 
     /*

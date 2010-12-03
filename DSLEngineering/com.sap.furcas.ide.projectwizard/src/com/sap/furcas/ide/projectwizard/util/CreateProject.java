@@ -75,7 +75,6 @@ public class CreateProject extends WorkspaceModifyOperation {
         try {
             project = createProject(monitor);
         } catch (CodeGenerationException e) {
-            // TODO Auto-generated catch block
             throw new InterruptedException(e.getMessage());
         }
         this.project = project;
@@ -122,17 +121,9 @@ public class CreateProject extends WorkspaceModifyOperation {
         WizardProjectHelper.createFile("plugin.xml", dslProject, codeFactory.createPluginXML(pi), monitor);
 
         IFolder genSrcFolder = null;
-        try {
-            genSrcFolder = createGeneratedFolder(genRootFolder, monitor, "");
-        } catch (CoreException e) {
-            throw new CodeGenerationException("Failed to generate folder '/generated'", (e.getCause()));
-        }
+        genSrcFolder = createGeneratedFolder(genRootFolder, monitor, "");
 
-        try {
-            createSource(pi, sourceTargetRootFolder, dslProject, monitor);
-        } catch (CoreException e) {
-            throw new CodeGenerationException("Failed to generate source folder '/src'");
-        }
+        createSource(pi, sourceTargetRootFolder, dslProject, monitor);
 
         String props = codeFactory.createdPropertiesCode(pi);
         WizardProjectHelper.createFile("generate.properties", sourceTargetRootFolder, props, monitor);
@@ -163,9 +154,10 @@ public class CreateProject extends WorkspaceModifyOperation {
      *            The progressmonitor for the process of creation.
      * @return The source Folder.
      * @throws CoreException
+     * @throws CodeGenerationException
      */
     private static IFolder createSource(ProjectInfo pi, IFolder srcDir, IProject dslProject, IProgressMonitor monitor)
-            throws CoreException {
+            throws CodeGenerationException {
 
         String basePath = "";
         String[] split = pi.getProjectName().split("\\.");
@@ -173,7 +165,11 @@ public class CreateProject extends WorkspaceModifyOperation {
             basePath += '/' + split[i];
             IFolder f = srcDir.getFolder(basePath);
             if (!f.exists()) {
-                f.create(false, true, monitor);
+                try {
+                    f.create(false, true, monitor);
+                } catch (CoreException e) {
+                    throw new CodeGenerationException("Failed to create source: "+srcDir.getName(), e.getCause());
+                }
             }
         }
 
@@ -194,13 +190,19 @@ public class CreateProject extends WorkspaceModifyOperation {
      * @param basePath
      *            The basePath of the project.
      * @return The generated folder.
+     * @throws CodeGenerationException
      * @throws CoreException
      */
-    private static IFolder createGeneratedFolder(IFolder srcDir, IProgressMonitor monitor, String basePath) throws CoreException {
+    private static IFolder createGeneratedFolder(IFolder srcDir, IProgressMonitor monitor, String basePath)
+            throws CodeGenerationException {
         String generatedFolderPath = basePath + "/generated";
         IFolder generatedFolder = srcDir.getFolder(generatedFolderPath);
         if (!generatedFolder.exists()) {
-            generatedFolder.create(false, true, monitor);
+            try {
+                generatedFolder.create(false, true, monitor);
+            } catch (CoreException e) {
+                throw new CodeGenerationException("Failed to create folder '/generated'", e.getCause());
+            }
         }
         return generatedFolder;
     }
@@ -217,14 +219,19 @@ public class CreateProject extends WorkspaceModifyOperation {
      * @param pi
      *            The user input
      * @return The Tree Folder.
+     * @throws CodeGenerationException
      * @throws CoreException
      */
     private static IFolder createTreeFolder(IFolder srcDir, IProgressMonitor monitor, String basePath, ProjectInfo pi)
-            throws CoreException {
+            throws CodeGenerationException {
         String treeFolderPath = basePath + "/tree";
         IFolder treeFolder = srcDir.getFolder(treeFolderPath);
         if (!treeFolder.exists()) {
-            treeFolder.create(false, true, monitor);
+            try {
+                treeFolder.create(false, true, monitor);
+            } catch (CoreException e) {
+                throw new CodeGenerationException("Failed to create folder '/tree'", e.getCause());
+            }
         }
         return treeFolder;
     }
@@ -242,13 +249,18 @@ public class CreateProject extends WorkspaceModifyOperation {
      *            The user input
      * @return The Parser Folder.
      * @throws CoreException
+     * @throws CodeGenerationException
      */
     private static IFolder createParserFolder(IFolder srcDir, IProgressMonitor monitor, String basePath, ProjectInfo pi)
-            throws CoreException {
+            throws CodeGenerationException {
         String parserFolderPath = basePath + "/parser";
         IFolder parserFolder = srcDir.getFolder(parserFolderPath);
         if (!parserFolder.exists()) {
-            parserFolder.create(false, true, monitor);
+            try {
+                parserFolder.create(false, true, monitor);
+            } catch (CoreException e) {
+                throw new CodeGenerationException("Failed to create folder '/parser'", e.getCause());
+            }
         }
 
         WizardProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "ParserFactory.java", parserFolder,
@@ -270,21 +282,24 @@ public class CreateProject extends WorkspaceModifyOperation {
      *            The user input
      * @return The Editor folder.
      * @throws CoreException
+     * @throws CodeGenerationException
      */
     private static IFolder createEditorFolder(IFolder srcDir, IProgressMonitor monitor, String basePath, ProjectInfo pi)
-            throws CoreException {
+            throws CodeGenerationException {
         String editorFolderPath = basePath + "/editor";
         IFolder editorFolder = srcDir.getFolder(editorFolderPath);
         if (!editorFolder.exists()) {
-            editorFolder.create(false, true, monitor);
+            try {
+                editorFolder.create(false, true, monitor);
+            } catch (CoreException e) {
+                throw new CodeGenerationException("Failed to create folder '/editor'", e.getCause());
+            }
         }
-
         WizardProjectHelper.createFile("Activator.java", editorFolder, codeFactory.createActivator(pi), monitor);
         WizardProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "Editor.java", editorFolder,
                 codeFactory.createEditorCode(pi), monitor);
         WizardProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "Mapper.java", editorFolder,
                 codeFactory.createMapperCode(pi), monitor);
-
         return editorFolder;
     }
 

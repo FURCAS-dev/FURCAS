@@ -10,7 +10,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.presentation.GeneratorUIUtil;
@@ -28,7 +27,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.swt.widgets.Shell;
 
-import com.sap.furcas.ide.projectwizard.Activator;
 import com.sap.furcas.ide.projectwizard.wizards.FurcasWizard;
 
 /**
@@ -70,8 +68,9 @@ public class CreateMMProject {
      * 
      * @param wiz
      *            See global variable <code>wizard</code> for information
+     * @throws CodeGenerationException
      */
-    public static void create(FurcasWizard wiz, IProgressMonitor monitor) {
+    public static void create(FurcasWizard wiz, IProgressMonitor monitor) throws CodeGenerationException {
         // Set all the important variables for generating the Project
         //
         wizard = wiz;
@@ -83,11 +82,7 @@ public class CreateMMProject {
         nonSrcFolders.add("model");
         shell = wizard.getShell();
 
-        try {
-            WizardProjectHelper.createPlugInProject(pi, srcFolders, nonSrcFolders, null, progressMonitor, shell, true);
-        } catch (Exception e) {
-            Activator.logger.logError("CreateMmProject failed to create the Metamodel project.", e);
-        }
+        WizardProjectHelper.createPlugInProject(pi, srcFolders, nonSrcFolders, null, progressMonitor, shell, true);
 
         createNewModel();
 
@@ -95,8 +90,9 @@ public class CreateMMProject {
 
     /**
      * Creates the metamodels .ecore and .genmodel files. It also creates the first class in the metamodel.
+     * @throws CodeGenerationException 
      */
-    protected static void createNewModel() {
+    protected static void createNewModel() throws CodeGenerationException {
         ProjectInfo pi = wizard.getPage().getProjectInfo();
         ResourceSet resourceSet = new ResourceSetImpl();
         resourceSet.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap());
@@ -124,18 +120,12 @@ public class CreateMMProject {
         try {
             resource.save(options);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new CodeGenerationException("Error while saving resource for the new model", e.getCause());
         }
         // Create the .genmodel file
         //
-        IFile file = null;
-        IWorkspace workspace = ResourcesPlugin.getWorkspace();
-        IProject project = workspace.getRoot().getProject(pi.getProjectName() + ".metamodel");
-        try {
-            file = WizardProjectHelper.createGenmodel(progressMonitor, project, pi);
-        } catch (CoreException e) {
-            e.printStackTrace();
-        }
+        IFile file = createGenmodelFile(pi);
+
         URI newURI = URI.createPlatformResourceURI(file.getProject().getName() + "/" + file.getProjectRelativePath().toString(),
                 true);
         // Generate the model code. (e.g. the java classes and the plugin.xml)
@@ -144,25 +134,45 @@ public class CreateMMProject {
     }
 
     /**
-     * Add the initial model object to the contents.
-     * And create the first class with the user chosen name.
      * @param pi
-     * @param resource
-     * @param rootObject
+     * @return
+     * @throws CodeGenerationException
      */
-    private static void createModel(ProjectInfo pi, Resource resource, EObject rootObject) {
-        EPackage eP;
-        eP = (EPackage) rootObject;
-        eP.setNsPrefix(pi.getLanguageName());
-        eP.setNsURI(pi.getNsURI());
-        EClass eC = ecoreFactory.createEClass();
-        eC.setName(pi.getClassName());
-        eP.getEClassifiers().add(eC);
-        resource.getContents().add(eP);
+    private static IFile createGenmodelFile(ProjectInfo pi) throws CodeGenerationException {
+        IFile file = null;
+        IWorkspace workspace = ResourcesPlugin.getWorkspace();
+        IProject project = workspace.getRoot().getProject(pi.getProjectName() + ".metamodel");
+
+        file = WizardProjectHelper.createGenmodel(progressMonitor, project, pi);
+        return file;
     }
 
     /**
-     * @param pi The user input
+     * Add the initial model object to the contents. And create the first class with the user chosen name.
+     * 
+     * @param pi
+     * @param resource
+     * @param rootObject
+     * @throws CodeGenerationException 
+     */
+    private static void createModel(ProjectInfo pi, Resource resource, EObject rootObject) throws CodeGenerationException {
+        EPackage eP;
+        try{
+            eP = (EPackage) rootObject;
+            eP.setNsPrefix(pi.getLanguageName());
+            eP.setNsURI(pi.getNsURI());
+            EClass eC = ecoreFactory.createEClass();
+            eC.setName(pi.getClassName());
+            eP.getEClassifiers().add(eC);
+            resource.getContents().add(eP);
+        }catch (Exception exception) {
+            throw new CodeGenerationException("Failed to create the new Model!", exception.getCause());
+        }
+    }
+
+    /**
+     * @param pi
+     *            The user input
      * @return The URI of the model file
      */
     private static URI getModelURI(ProjectInfo pi) {
@@ -176,14 +186,16 @@ public class CreateMMProject {
      * Creates the initial model.
      * 
      * @return The model as a EObject.
+     * @throws CodeGenerationException 
      */
-    protected static EObject createInitialModel() {
+    protected static EObject createInitialModel() throws CodeGenerationException {
         EClass eClass = (EClass) ecorePackage.getEClassifier("EPackage");
         EObject rootObject = ecoreFactory.create(eClass);
         if (rootObject instanceof ENamedElement) {
             ((ENamedElement) rootObject).setName(CreateProject.capitalizeFirstChar(wizard.getPage().getProjectInfo()
                     .getLanguageName()));
         }
+        else throw new CodeGenerationException("Failed to create the new Model!");
         return rootObject;
     }
 
