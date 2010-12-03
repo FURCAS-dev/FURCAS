@@ -37,6 +37,7 @@ import org.eclipse.ui.progress.UIJob;
 
 import com.sap.furcas.ide.dslproject.conf.EcoreMetaProjectConf;
 import com.sap.furcas.ide.dslproject.conf.ProjectMetaRefConfFactory;
+import com.sap.furcas.ide.projectwizard.util.CodeGenerationException;
 import com.sap.furcas.ide.projectwizard.util.CreateMMProject;
 import com.sap.furcas.ide.projectwizard.util.CreateProject;
 import com.sap.furcas.ide.projectwizard.util.ProjectInfo;
@@ -130,18 +131,12 @@ public class FurcasWizard extends Wizard implements INewWizard {
 
         try {
             getContainer().run(true, false, op);
-        } catch (InterruptedException e) {
-            Throwable realException = e.getCause();
-            MessageDialog.openError(getShell(), "Error", realException.getMessage());
-            return false;
         } catch (InvocationTargetException e) {
-            Throwable realException = e.getTargetException();
-            MessageDialog.openError(getShell(), "Error", realException.getMessage());
-            return false;
-        } catch (Exception e) {
-            Throwable realException = e.getCause();
-            MessageDialog.openError(getShell(), "Error", realException.getMessage());
-            return false;
+            MessageDialog.openError(getShell(), "Error", "InvocationTargetException while in main process of creation"
+                    + e.getCause().getMessage());
+        } catch (InterruptedException e) {
+            MessageDialog.openError(getShell(), "Error", "InterruptedException while in main process of creation"
+                    + e.getCause().getMessage());
         }
 
         return true;
@@ -165,22 +160,35 @@ public class FurcasWizard extends Wizard implements INewWizard {
         new UIJob("creating FURCAS projects...") {
             @Override
             public IStatus runInUIThread(IProgressMonitor monitor) {
-                try {
+                
                     CreateProject cP = new CreateProject(pi, getShell());
-                    cP.run(monitor);
+                    try {
+                        cP.run(monitor);
+                    } catch (InvocationTargetException e) {
+                        MessageDialog.openError(getShell(), "Error", "InvocationTargetException while creating language project:"
+                                + e.getCause().getMessage());
+                    } catch (InterruptedException e) {
+                        MessageDialog.openError(getShell(), "Error", e.getCause().getMessage());
+                    }
                     IProject project = cP.project;
                     if (!pi.isLoadMetamodel()) {
-                        doAdditional(pi);
+                        try {
+                            doAdditional(pi);
+                        } catch (CodeGenerationException e) {
+                            MessageDialog.openError(getShell(), "Error", e.getMessage());
+                        } catch (InvocationTargetException e) {
+                            MessageDialog.openError(getShell(), "Error", "InvocationTargetException while creating metamodel project:"
+                                    + e.getCause().getMessage());
+                        } catch (InterruptedException e) {
+                            MessageDialog.openError(getShell(), "Error", e.getCause().getMessage());
+                        }
                     }
-                    generateSpecific(project, pi, monitor);
+                    try {
+                        generateSpecific(project, pi, monitor);
+                    } catch (CodeGenerationException e) {
+                        MessageDialog.openError(getShell(), "Error", e.getMessage());
+                    }
 
-                } catch (InvocationTargetException e) {
-                    Throwable realException = e.getTargetException();
-                    MessageDialog.openError(getShell(), "Error", realException.getMessage());
-                } catch (InterruptedException e) {
-                    Throwable realException = e.getCause();
-                    MessageDialog.openError(getShell(), "Error", realException.getMessage());
-                }
 
                 return Status.OK_STATUS;
             }
@@ -194,60 +202,58 @@ public class FurcasWizard extends Wizard implements INewWizard {
      * 
      * @param pi
      *            The user input.
+     * @throws CodeGenerationException
+     * @throws InterruptedException
+     * @throws InvocationTargetException
      */
-    public void doAdditional(final ProjectInfo pi) {
+    public void doAdditional(final ProjectInfo pi) throws CodeGenerationException, InvocationTargetException,
+            InterruptedException {
         IWorkbenchPage wpage = null;
-        try {
 
-            // Do the work within an operation.
-            //
-            WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
-                @Override
-                protected void execute(IProgressMonitor progressMonitor) {
-                    try {
-                        CreateMMProject.create(getFurcasWizard(), progressMonitor);
-                    } catch (Exception e) {
-                        Throwable realException = e.getCause();
-                        MessageDialog.openError(getShell(), "Error", realException.getMessage());
-                    } finally {
-                        progressMonitor.done();
-                    }
+        // Do the work within an operation.
+        //
+        WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
+            @Override
+            protected void execute(IProgressMonitor progressMonitor) {
+
+                try {
+                    CreateMMProject.create(getFurcasWizard(), progressMonitor);
+                } catch (CodeGenerationException e) {
+                    MessageDialog.openError(getShell(), "Error", e.getMessage());
                 }
-            };
 
-            getContainer().run(false, false, operation);
-
-            // Select the new .ecore file.
-            //
-            final IFile modelFile = getModelFile();
-
-            IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
-            wpage = workbenchWindow.getActivePage();
-            final IWorkbenchPart activePart = wpage.getActivePart();
-            if (activePart instanceof ISetSelectionTarget) {
-                final ISelection targetSelection = new StructuredSelection(modelFile);
-                getShell().getDisplay().asyncExec(new Runnable() {
-                    public void run() {
-                        ((ISetSelectionTarget) activePart).selectReveal(targetSelection);
-                    }
-                });
             }
+        };
 
-            // Open an editor on the file.
-            //
-            try {
-                IEditorDescriptor defaultEditor = workbench.getEditorRegistry().getDefaultEditor(
-                        modelFile.getFullPath().toString());
-                wpage.openEditor(new FileEditorInput(modelFile),
-                        defaultEditor == null ? "org.eclipse.emf.ecore.presentation.EcoreEditorID" : defaultEditor.getId());
-            } catch (PartInitException exception) {
-                MessageDialog.openError(workbenchWindow.getShell(),
-                        EcoreEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
-            }
+        getContainer().run(false, false, operation);
 
-        } catch (Exception exception) {
-            EcoreEditorPlugin.INSTANCE.log(exception);
+        // Select the new .ecore file.
+        //
+        final IFile modelFile = getModelFile();
+
+        IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
+        wpage = workbenchWindow.getActivePage();
+        final IWorkbenchPart activePart = wpage.getActivePart();
+        if (activePart instanceof ISetSelectionTarget) {
+            final ISelection targetSelection = new StructuredSelection(modelFile);
+            getShell().getDisplay().asyncExec(new Runnable() {
+                public void run() {
+                    ((ISetSelectionTarget) activePart).selectReveal(targetSelection);
+                }
+            });
         }
+
+        // Open an editor on the file.
+        //
+        try {
+            IEditorDescriptor defaultEditor = workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString());
+            wpage.openEditor(new FileEditorInput(modelFile),
+                    defaultEditor == null ? "org.eclipse.emf.ecore.presentation.EcoreEditorID" : defaultEditor.getId());
+        } catch (PartInitException exception) {
+            MessageDialog.openError(workbenchWindow.getShell(),
+                    EcoreEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
+        }
+
     }
 
     /**
@@ -281,8 +287,9 @@ public class FurcasWizard extends Wizard implements INewWizard {
      *            The language project
      * @param pi
      *            The user input
+     * @throws CodeGenerationException
      */
-    protected void generateSpecific(IProject project, ProjectInfo pi, IProgressMonitor monitor) {
+    protected void generateSpecific(IProject project, ProjectInfo pi, IProgressMonitor monitor) throws CodeGenerationException {
         if (project != null) {
             EcoreMetaProjectConf conf;
             if (!pi.isFromWorkspace())
@@ -306,24 +313,25 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 //
                 conf = new EcoreMetaProjectConf(project, pi.getModelPath(), pi.getNsURI());
             ;
+
             try {
                 ProjectMetaRefConfFactory.configure(project, conf);
             } catch (CoreException e) {
-                e.printStackTrace();
-                Throwable realException = e.getCause();
-                MessageDialog.openError(getShell(), "Error", realException.getMessage());
+                throw new CodeGenerationException("Failed configure the metamodel connection for the project", e.getCause());
             }
+
+            // Builds, refreshs, cleans the project to make sure, that all files will be found and generated
+            //
+            monitor.subTask("Refreshing, Rebuilding, Cleaning the project");
             try {
-                // Builds, refreshs, cleans the project to make sure, that all files will be found and generated
-                //
-                monitor.subTask("Refreshing, Rebuilding, Cleaning the project");
                 project.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
                 IFolder folder = project.getFolder("generated").getFolder("generated");
                 folder.refreshLocal(1, new NullProgressMonitor());
                 project.build(IncrementalProjectBuilder.CLEAN_BUILD, monitor);
                 project.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
+
             } catch (CoreException e) {
-                e.printStackTrace();
+                throw new CodeGenerationException("Failed to build, refresh or clean Workspace", e.getCause());
             }
 
         }
