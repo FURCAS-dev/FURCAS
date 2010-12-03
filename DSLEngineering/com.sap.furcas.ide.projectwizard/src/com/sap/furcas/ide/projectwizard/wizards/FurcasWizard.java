@@ -6,6 +6,7 @@ import java.net.URL;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -15,6 +16,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.emf.ecore.presentation.EcoreEditorPlugin;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -81,6 +83,23 @@ public class FurcasWizard extends Wizard implements INewWizard {
         return this;
     }
 
+    boolean hadError = false;
+
+    /**
+     * @return the hadError
+     */
+    public boolean isHadError() {
+        return hadError;
+    }
+
+    /**
+     * @param hadError
+     *            the hadError to set
+     */
+    public void setHadError(boolean hadError) {
+        this.hadError = hadError;
+    }
+
     /**
      * Sets the Window title, calls the super constructor.
      */
@@ -122,7 +141,6 @@ public class FurcasWizard extends Wizard implements INewWizard {
         IRunnableWithProgress op = new IRunnableWithProgress() {
             @Override
             public void run(IProgressMonitor monitor) throws InvocationTargetException {
-
                 doFinish(pi, monitor);
 
                 monitor.done();
@@ -132,11 +150,11 @@ public class FurcasWizard extends Wizard implements INewWizard {
         try {
             getContainer().run(true, false, op);
         } catch (InvocationTargetException e) {
-            MessageDialog.openError(getShell(), "Error", "InvocationTargetException while in main process of creation"
-                    + e.getCause().getMessage());
+            MessageDialog.openError(getShell(), "Error",
+                    "InvocationTargetException while in main process of creation" + e.getMessage());
         } catch (InterruptedException e) {
-            MessageDialog.openError(getShell(), "Error", "InterruptedException while in main process of creation"
-                    + e.getCause().getMessage());
+            MessageDialog.openError(getShell(), "Error",
+                    "InterruptedException while in main process of creation" + e.getMessage());
         }
 
         return true;
@@ -160,40 +178,74 @@ public class FurcasWizard extends Wizard implements INewWizard {
         new UIJob("creating FURCAS projects...") {
             @Override
             public IStatus runInUIThread(IProgressMonitor monitor) {
-                
-                    CreateProject cP = new CreateProject(pi, getShell());
+
+                CreateProject cP = new CreateProject(pi, getShell(), getFurcasWizard());
+                try {
+                    cP.run(monitor);
+                } catch (InvocationTargetException e) {
+                    hadError = true;
+                    MessageDialog.openError(getShell(), "Error",
+                            "InvocationTargetException while creating language project:" + e.getMessage());
+                } catch (InterruptedException e) {
+                    hadError = true;
+                    MessageDialog.openError(getShell(), "Error", e.getMessage());
+                }
+                IProject project = cP.project;
+
+                if (!pi.isLoadMetamodel() && !hadError) {
                     try {
-                        cP.run(monitor);
+                        doAdditional(pi);
+                    } catch (CodeGenerationException e) {
+                        hadError = true;
+                        MessageDialog.openError(getShell(), "Error", e.getMessage());
                     } catch (InvocationTargetException e) {
-                        MessageDialog.openError(getShell(), "Error", "InvocationTargetException while creating language project:"
-                                + e.getCause().getMessage());
+                        hadError = true;
+                        MessageDialog.openError(getShell(), "Error",
+                                "InvocationTargetException while creating metamodel project:" + e.getMessage());
                     } catch (InterruptedException e) {
-                        MessageDialog.openError(getShell(), "Error", e.getCause().getMessage());
+                        hadError = true;
+                        MessageDialog.openError(getShell(), "Error", e.getMessage());
                     }
-                    IProject project = cP.project;
-                    if (!pi.isLoadMetamodel()) {
-                        try {
-                            doAdditional(pi);
-                        } catch (CodeGenerationException e) {
-                            MessageDialog.openError(getShell(), "Error", e.getMessage());
-                        } catch (InvocationTargetException e) {
-                            MessageDialog.openError(getShell(), "Error", "InvocationTargetException while creating metamodel project:"
-                                    + e.getCause().getMessage());
-                        } catch (InterruptedException e) {
-                            MessageDialog.openError(getShell(), "Error", e.getCause().getMessage());
-                        }
-                    }
+                }
+                if (!hadError)
                     try {
                         generateSpecific(project, pi, monitor);
                     } catch (CodeGenerationException e) {
+                        hadError = true;
                         MessageDialog.openError(getShell(), "Error", e.getMessage());
                     }
-
+                if (hadError)
+                    deleteJunk(pi, monitor);
+                    
 
                 return Status.OK_STATUS;
             }
 
         }.schedule();
+    }
+
+    /**
+     * This method gets called when an error occured making sure that unneccessary projects in workspace
+     * get cleaned up.
+     */
+    protected void deleteJunk(ProjectInfo pi, IProgressMonitor monitor) {
+        if (!pi.isLoadMetamodel()){
+            IWorkspace workspace = ResourcesPlugin.getWorkspace();
+            IProject metamodelProject = workspace.getRoot().getProject(pi.getProjectName()+".metamodel");
+            try {
+                metamodelProject.delete(true, new SubProgressMonitor(monitor, 1));
+            } catch (CoreException e) {
+                // Nothing happens as there is no project to delete.
+            }
+        }
+        IWorkspace workspace = ResourcesPlugin.getWorkspace();
+        IProject languageProject = workspace.getRoot().getProject(pi.getProjectName());
+        try {
+           languageProject.delete(true, new SubProgressMonitor(monitor, 1));
+        } catch (CoreException e) {
+            // Nothing happens as there is no project to delete.
+        }
+        
     }
 
     /**
@@ -219,6 +271,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 try {
                     CreateMMProject.create(getFurcasWizard(), progressMonitor);
                 } catch (CodeGenerationException e) {
+                    getFurcasWizard().setHadError(true);
                     MessageDialog.openError(getShell(), "Error", e.getMessage());
                 }
 

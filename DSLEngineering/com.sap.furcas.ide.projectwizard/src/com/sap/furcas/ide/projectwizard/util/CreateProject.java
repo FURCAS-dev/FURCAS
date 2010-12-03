@@ -9,6 +9,7 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
@@ -57,9 +58,10 @@ public class CreateProject extends WorkspaceModifyOperation {
      * @param shell
      *            The window containing the wizard.
      */
-    public CreateProject(ProjectInfo pi, Shell shell) {
+    public CreateProject(ProjectInfo pi, Shell shell, FurcasWizard wizard) {
         this.pi = pi;
         this.shell = shell;
+        this.wizard = wizard;
 
         codeFactory = new SourceCodeFactory();
 
@@ -70,14 +72,13 @@ public class CreateProject extends WorkspaceModifyOperation {
      */
     protected void execute(IProgressMonitor monitor) throws CoreException, InvocationTargetException, InterruptedException {
         monitor.beginTask("Creating project " + pi.getProjectName(), 2);
-
-        IProject project;
         try {
             project = createProject(monitor);
         } catch (CodeGenerationException e) {
-            throw new InterruptedException(e.getMessage());
+            wizard.setHadError(true);
+            MessageDialog.openError(this.shell, "Error", e.getMessage());
+            
         }
-        this.project = project;
     }
 
     /**
