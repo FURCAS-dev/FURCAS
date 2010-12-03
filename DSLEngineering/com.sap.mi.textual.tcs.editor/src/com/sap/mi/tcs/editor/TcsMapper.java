@@ -10,8 +10,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.RGB;
 
+import com.sap.furcas.ide.editor.ITokenMapper;
 import com.sap.furcas.parser.tcs.stableversion.TCSLexer;
-import com.sap.ide.cts.editor.ITokenMapper;
 
 
 public class TcsMapper implements ITokenMapper {
