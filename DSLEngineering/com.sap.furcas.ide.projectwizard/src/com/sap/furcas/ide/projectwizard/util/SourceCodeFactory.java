@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 
 import org.antlr.stringtemplate.StringTemplate;
@@ -34,12 +35,14 @@ public class SourceCodeFactory {
      * @param filename
      *            The name of the file located in the resource folder (e.g. tcs.txt).
      * @return The content of the file as a String.
+     * @throws CodeGenerationException
      * @throws IOException
      */
-    private String readFile(String filename) throws IOException {
+    private String readFile(String filename) throws CodeGenerationException {
         String path = "/resources/" + filename;
         InputStream iS = getClass().getResourceAsStream(path);
         return convertStreamToString(iS);
+
     }
 
     /**
@@ -48,22 +51,33 @@ public class SourceCodeFactory {
      * @param is
      *            InputStream of the resource.
      * @return The content of the Stream in form of a String.
+     * @throws CodeGenerationException
      * @throws IOException
      */
-    public String convertStreamToString(InputStream is) throws IOException {
+    public String convertStreamToString(InputStream is) throws CodeGenerationException {
         if (is != null) {
             Writer writer = new StringWriter();
 
             char[] buffer = new char[1024];
+            Reader reader;
             try {
-                Reader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+                reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
                 int n;
                 while ((n = reader.read(buffer)) != -1) {
                     writer.write(buffer, 0, n);
                 }
+            } catch (UnsupportedEncodingException e) {
+                throw new CodeGenerationException("Error due to Unsupported Encoding while reading inputStream", e.getCause());
+            } catch (IOException e) {
+                throw new CodeGenerationException("Error while converting stream to string.", e.getCause());
             } finally {
-                is.close();
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    throw new CodeGenerationException("Error while closing InputStream", e.getCause());
+                }
             }
+
             return writer.toString();
         } else {
             return "";
@@ -98,17 +112,15 @@ public class SourceCodeFactory {
      * @param pi
      *            User input
      * @return The content of the manifest file.
+     * @throws CodeGenerationException
      */
-    protected String createManifest(ProjectInfo pi) {
+    protected String createManifest(ProjectInfo pi) throws CodeGenerationException {
         StringTemplate template = null;
         String templateString = null;
-        try {
-            templateString = readFile("manifest.txt");
-            template = new StringTemplate(templateString);
-            setTemplateAtts(template, pi);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        templateString = readFile("manifest.txt");
+        template = new StringTemplate(templateString);
+        setTemplateAtts(template, pi);
 
         return template.toString();
     }
@@ -119,16 +131,14 @@ public class SourceCodeFactory {
      * @param pi
      *            User input
      * @return The content of the build.properties file.
+     * @throws CodeGenerationException
      */
-    protected String createBuildProbCode() {
+    protected String createBuildProbCode() throws CodeGenerationException {
         StringTemplate template = null;
         String templateString = null;
-        try {
-            templateString = readFile("buildprob.txt");
-            template = new StringTemplate(templateString);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        templateString = readFile("buildprob.txt");
+        template = new StringTemplate(templateString);
 
         return template.toString();
     }
@@ -139,17 +149,15 @@ public class SourceCodeFactory {
      * @param pi
      *            User input
      * @return The content of the editor class.
+     * @throws CodeGenerationException
      */
-    protected String createEditorCode(ProjectInfo pi) {
+    protected String createEditorCode(ProjectInfo pi) throws CodeGenerationException {
         StringTemplate template = null;
         String templateString = null;
-        try {
-            templateString = readFile("editor.txt");
-            template = new StringTemplate(templateString);
-            setTemplateAtts(template, pi);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        templateString = readFile("editor.txt");
+        template = new StringTemplate(templateString);
+        setTemplateAtts(template, pi);
 
         return template.toString();
     }
@@ -160,17 +168,15 @@ public class SourceCodeFactory {
      * @param pi
      *            User input
      * @return The content of the .genmodel file.
+     * @throws CodeGenerationException
      */
-    public String createGenmodelCode(ProjectInfo pi) {
+    public String createGenmodelCode(ProjectInfo pi) throws CodeGenerationException {
         StringTemplate template = null;
         String templateString = null;
-        try {
-            templateString = readFile("genmodel.txt");
-            template = new StringTemplate(templateString);
-            setTemplateAtts(template, pi);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        templateString = readFile("genmodel.txt");
+        template = new StringTemplate(templateString);
+        setTemplateAtts(template, pi);
 
         return template.toString();
     }
@@ -181,17 +187,15 @@ public class SourceCodeFactory {
      * @param pi
      *            User input
      * @return The content of the mapper class.
+     * @throws CodeGenerationException
      */
-    protected String createMapperCode(ProjectInfo pi) {
+    protected String createMapperCode(ProjectInfo pi) throws CodeGenerationException {
         StringTemplate template = null;
         String templateString = null;
-        try {
-            templateString = readFile("mapper.txt");
-            template = new StringTemplate(templateString);
-            setTemplateAtts(template, pi);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        templateString = readFile("mapper.txt");
+        template = new StringTemplate(templateString);
+        setTemplateAtts(template, pi);
 
         return template.toString();
     }
@@ -202,17 +206,15 @@ public class SourceCodeFactory {
      * @param pi
      *            User input
      * @return The content of the activator class.
+     * @throws CodeGenerationException
      */
-    protected String createActivator(ProjectInfo pi) {
+    protected String createActivator(ProjectInfo pi) throws CodeGenerationException {
         StringTemplate template = null;
         String templateString = null;
-        try {
-            templateString = readFile("activator.txt");
-            template = new StringTemplate(templateString);
-            setTemplateAtts(template, pi);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        templateString = readFile("activator.txt");
+        template = new StringTemplate(templateString);
+        setTemplateAtts(template, pi);
 
         return template.toString();
     }
@@ -223,17 +225,15 @@ public class SourceCodeFactory {
      * @param pi
      *            User input
      * @return The content of the plugin.xml file.
+     * @throws CodeGenerationException
      */
-    protected String createPluginXML(ProjectInfo pi) {
+    protected String createPluginXML(ProjectInfo pi) throws CodeGenerationException {
         StringTemplate template = null;
         String templateString = null;
-        try {
-            templateString = readFile("pluginxml.txt");
-            template = new StringTemplate(templateString);
-            setTemplateAtts(template, pi);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        templateString = readFile("pluginxml.txt");
+        template = new StringTemplate(templateString);
+        setTemplateAtts(template, pi);
 
         return template.toString();
     }
@@ -244,18 +244,15 @@ public class SourceCodeFactory {
      * @param pi
      *            User input
      * @return The content of the generated.properties file.
+     * @throws CodeGenerationException
      */
-    protected String createdPropertiesCode(ProjectInfo pi) {
+    protected String createdPropertiesCode(ProjectInfo pi) throws CodeGenerationException {
         StringTemplate template = null;
         String templateString = null;
-        try {
-            templateString = readFile("genprops.txt");
-            template = new StringTemplate(templateString);
-            setTemplateAtts(template, pi);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        templateString = readFile("genprops.txt");
+        template = new StringTemplate(templateString);
+        setTemplateAtts(template, pi);
 
         return template.toString();
     }
@@ -266,18 +263,15 @@ public class SourceCodeFactory {
      * @param pi
      *            User input
      * @return The content of the .tcs file.
+     * @throws CodeGenerationException
      */
-    public String createSampleTCS(ProjectInfo pi) {
+    public String createSampleTCS(ProjectInfo pi) throws CodeGenerationException {
         StringTemplate template = null;
         String templateString = null;
-        try {
-            templateString = readFile("tcs.txt");
-            template = new StringTemplate(templateString);
-            setTemplateAtts(template, pi);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        templateString = readFile("tcs.txt");
+        template = new StringTemplate(templateString);
+        setTemplateAtts(template, pi);
 
         return template.toString();
     }
@@ -288,18 +282,14 @@ public class SourceCodeFactory {
      * @param pi
      *            User input
      * @return The content of the parserfactory class.
+     * @throws CodeGenerationException 
      */
-    protected String createParserFactory(ProjectInfo pi) {
+    protected String createParserFactory(ProjectInfo pi) throws CodeGenerationException {
         StringTemplate template = null;
         String templateString = null;
-        try {
-            templateString = readFile("parserfactory.txt");
-            template = new StringTemplate(templateString);
-            setTemplateAtts(template, pi);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        templateString = readFile("parserfactory.txt");
+        template = new StringTemplate(templateString);
+        setTemplateAtts(template, pi);
 
         return template.toString();
     }

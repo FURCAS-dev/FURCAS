@@ -42,6 +42,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
+import com.sap.furcas.ide.projectwizard.util.CodeGenerationException;
 import com.sap.furcas.ide.projectwizard.util.ProjectInfo;
 
 /**
@@ -215,7 +216,12 @@ public class LoadPage extends WizardPage {
                     // Set the appropriate values in ProjectInfo and eP
                     pi.setModelPath(mMproject.getWorkspace().getRoot().getLocation().toString()
                             + files[0].getFullPath().toString());
-                    eP = fileToEPack(files[0]);
+                    try {
+                        eP = fileToEPack(files[0]);
+                    } catch (CodeGenerationException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
                     pi.setNsURI(eP.getNsURI());
                     uriField.setText(URI.createPlatformResourceURI(files[0].getFullPath().toString(), true).toString());
                 }
@@ -252,8 +258,9 @@ public class LoadPage extends WizardPage {
      * @param iFile
      *            The file that is to be converted to the Epackage.
      * @return The EPackage containing the metamodel loaded from the file.
+     * @throws CodeGenerationException 
      */
-    protected EPackage fileToEPack(IFile iFile) {
+    protected EPackage fileToEPack(IFile iFile) throws CodeGenerationException {
         ResourceSet resSet = new ResourceSetImpl();
         resSet.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap());
         URI fileURI = URI.createPlatformResourceURI("/" + iFile.getProject().getName() + "/"
@@ -264,7 +271,7 @@ public class LoadPage extends WizardPage {
         try {
             resource.load(options);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new CodeGenerationException("Error while loading resource of File: "+iFile.getName(), e.getCause());
         }
         EList<EObject> sd = resource.getContents();
         for (EObject object : sd) {

@@ -73,51 +73,51 @@ public class WizardProjectHelper {
             projectName = pi.getProjectName() + ".metamodel";
         else
             projectName = pi.getProjectName();
-        try {
-            progressMonitor.beginTask("", 10);
-            progressMonitor.subTask("Creating project " + projectName);
-            IWorkspace workspace = ResourcesPlugin.getWorkspace();
-            project = workspace.getRoot().getProject(projectName);
 
-            if (project.exists()) {
-                deleteOldProject(progressMonitor, theShell, project, projectName);
-            }
+        progressMonitor.beginTask("", 10);
+        progressMonitor.subTask("Creating project " + projectName);
+        IWorkspace workspace = ResourcesPlugin.getWorkspace();
+        project = workspace.getRoot().getProject(projectName);
 
-            // Create the project
-            //
-            IJavaProject javaProject = JavaCore.create(project);
-            IProjectDescription projectDescription = ResourcesPlugin.getWorkspace().newProjectDescription(projectName);
-            projectDescription.setLocation(null);
-            project.create(projectDescription, new SubProgressMonitor(progressMonitor, 1));
-            List<IClasspathEntry> classpathEntries = new ArrayList<IClasspathEntry>();
-
-            // Add the required natures depending on wether this is a dsl project or a metamodelproject.
-            //
-            if (!metamodel) {
-                projectDescription.setNatureIds(new String[] { "com.sap.furcas.ide.dslproject.syntaxGenerationNature",
-                        JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature" });
-            } else
-                projectDescription.setNatureIds(new String[] { JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature" });
-
-            addBuilders(progressMonitor, metamodel, project, projectDescription);
-
-            setClasspath(srcFolders, nonSrcFolders, progressMonitor, project, javaProject, classpathEntries);
-
-            javaProject.setOutputLocation(new Path("/" + projectName + "/bin"), new SubProgressMonitor(progressMonitor, 1));
-
-            if (!metamodel) {
-                createManifestAndBuildProps(pi, progressMonitor, project);
-            }
-        } catch (CodeGenerationException exception) {
-            throw exception;
-        } catch (Exception exception) {
-            if (metamodel)
-                throw new CodeGenerationException("Error while creating the metamodel project.", exception.getCause());
-            else
-                throw new CodeGenerationException("Error while creating the language project.", exception.getCause());
-        } finally {
-            progressMonitor.done();
+        if (project.exists()) {
+            deleteOldProject(progressMonitor, theShell, project, projectName);
         }
+
+        // Create the project
+        //
+        IJavaProject javaProject = JavaCore.create(project);
+        IProjectDescription projectDescription = ResourcesPlugin.getWorkspace().newProjectDescription(projectName);
+        projectDescription.setLocation(null);
+        try {
+            project.create(projectDescription, new SubProgressMonitor(progressMonitor, 1));
+        } catch (CoreException e) {
+            throw new CodeGenerationException("Error while creating project: " + project.getName(), e.getCause());
+        }
+        List<IClasspathEntry> classpathEntries = new ArrayList<IClasspathEntry>();
+
+        // Add the required natures depending on wether this is a dsl project or a metamodelproject.
+        //
+        if (!metamodel) {
+            projectDescription.setNatureIds(new String[] { "com.sap.furcas.ide.dslproject.syntaxGenerationNature",
+                    JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature" });
+        } else
+            projectDescription.setNatureIds(new String[] { JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature" });
+
+        addBuilders(progressMonitor, metamodel, project, projectDescription);
+
+        setClasspath(srcFolders, nonSrcFolders, progressMonitor, project, javaProject, classpathEntries);
+
+        try {
+            javaProject.setOutputLocation(new Path("/" + projectName + "/bin"), new SubProgressMonitor(progressMonitor, 1));
+        } catch (JavaModelException e) {
+            throw new CodeGenerationException("Error while setting output location: "+"/" + projectName + "/bin", e.getCause());
+        }
+
+        if (!metamodel) {
+            createManifestAndBuildProps(pi, progressMonitor, project);
+        }
+
+        progressMonitor.done();
 
         return project;
     }
@@ -233,7 +233,7 @@ public class WizardProjectHelper {
         } catch (CoreException e) {
             throw new CodeGenerationException("Failed to set projects builders", e.getCause());
         }
-        
+
     }
 
     /**
@@ -280,9 +280,10 @@ public class WizardProjectHelper {
      * @param progressMonitor
      *            The Progress Monitor.
      * @return The file.
-     * @throws CodeGenerationException 
+     * @throws CodeGenerationException
      */
-    public static IFile createFile(String name, IContainer container, String content, IProgressMonitor progressMonitor) throws CodeGenerationException {
+    public static IFile createFile(String name, IContainer container, String content, IProgressMonitor progressMonitor)
+            throws CodeGenerationException {
         IFile file = container.getFile(new Path(name));
         assertExist(file.getParent());
         try {
@@ -294,7 +295,7 @@ public class WizardProjectHelper {
             }
             stream.close();
         } catch (Exception e) {
-            throw new CodeGenerationException("Failed to create file '"+name+"'", e.getCause());
+            throw new CodeGenerationException("Failed to create file '" + name + "'", e.getCause());
         }
         progressMonitor.worked(1);
 
@@ -331,9 +332,10 @@ public class WizardProjectHelper {
      * @param progressMonitor
      *            used to interact with and show the user the current operation status
      * @return
-     * @throws CodeGenerationException 
+     * @throws CodeGenerationException
      */
-    public static IFile createFile(String name, IContainer container, URL contentUrl, IProgressMonitor progressMonitor) throws CodeGenerationException {
+    public static IFile createFile(String name, IContainer container, URL contentUrl, IProgressMonitor progressMonitor)
+            throws CodeGenerationException {
 
         IFile file = container.getFile(new Path(name));
         InputStream inputStream = null;
@@ -346,13 +348,14 @@ public class WizardProjectHelper {
             }
             inputStream.close();
         } catch (Exception e) {
-            throw new CodeGenerationException("Failed to create File: '"+name+"'", e.getCause());
+            throw new CodeGenerationException("Failed to create File: '" + name + "'", e.getCause());
         } finally {
             if (inputStream != null) {
                 try {
                     inputStream.close();
                 } catch (IOException e) {
-                    throw new CodeGenerationException("Failed to close inputStream while creating file: '"+name+"'", e.getCause());
+                    throw new CodeGenerationException("Failed to close inputStream while creating file: '" + name + "'",
+                            e.getCause());
                 }
             }
         }
@@ -366,7 +369,7 @@ public class WizardProjectHelper {
      * 
      * @param c
      *            The container whose existence is checked.
-     * @throws CodeGenerationException 
+     * @throws CodeGenerationException
      */
     private static void assertExist(IContainer c) throws CodeGenerationException {
         if (!c.exists()) {
@@ -377,7 +380,7 @@ public class WizardProjectHelper {
                 try {
                     ((IFolder) c).create(false, true, new NullProgressMonitor());
                 } catch (CoreException e) {
-                    throw new CodeGenerationException("Failed to create container: "+c.getName(), e.getCause());
+                    throw new CodeGenerationException("Failed to create container: " + c.getName(), e.getCause());
                 }
             }
 
