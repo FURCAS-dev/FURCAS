@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.wizard.Wizard;
@@ -219,8 +220,7 @@ public class LoadPage extends WizardPage {
                     try {
                         eP = fileToEPack(files[0]);
                     } catch (CodeGenerationException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
+                        MessageDialog.openError(getShell(), "Error", e.getMessage());
                     }
                     pi.setNsURI(eP.getNsURI());
                     uriField.setText(URI.createPlatformResourceURI(files[0].getFullPath().toString(), true).toString());
