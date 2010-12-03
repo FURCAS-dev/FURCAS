@@ -22,7 +22,7 @@ import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
 public class ProjectWizardTCSTest extends GeneratedParserBasedTest {
 
     private static final String LANGUAGE = "Mydsl";
-    private static final File[] METAMODELS = { new File("../com.sap.furcas.ide.projectwizard.test.metamodel/model/Mydsl.ecore") };
+    private static final File[] METAMODELS = { new File("../com.sap.furcas.ide.projectwizard.test/model/Mydsl.ecore") };
 
     private static ParsingHelper parsingHelper;
 
