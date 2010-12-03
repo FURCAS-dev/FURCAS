@@ -18,6 +18,7 @@ public class ImpactAnalyzerNavigationStepsAndIAAnnotationsSuite extends TestSuit
 	public static Test suite() {
         System.setProperty("de.hpi.sam.bp2009.solution.impactAnalyzer.debug", "true");
         System.setProperty("navigationStepIA", "true");
+        System.setProperty("unusedCheckIA", "false");
         return ImpactAnalyzerAllTests.suite();
     }
 

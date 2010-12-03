@@ -19,6 +19,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.junit.Test;
 
 import com.sap.furcas.emf.stubs.EcoreAnyStub;
@@ -243,7 +245,11 @@ public class TestAbstractEcoreMetaModelLookup {
 
     private class TestableAbstractEcoreMetaModelLookup extends AbstractEcoreMetaModelLookup {
 
-        public EList<EClassifier> qualifiedClassifiers = new BasicEList<EClassifier>();
+        public TestableAbstractEcoreMetaModelLookup() {
+			super(new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE));
+		}
+
+		public EList<EClassifier> qualifiedClassifiers = new BasicEList<EClassifier>();
         public EClassifier classifier;
 
         @Override

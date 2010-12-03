@@ -40,9 +40,14 @@ public abstract class GeneratedParserBasedTest {
         return syntaxBean;
 
     }
-
     public static ParserFacade generateParserForLanguage(TCSSyntaxContainerBean syntaxBean,
             GeneratedParserTestConfiguration testConfig, ClassLookup classLookup) throws GrammarGenerationException,
+            ParserGeneratorInvocationException, InvalidParserImplementationException {
+    	return generateParserForLanguage(syntaxBean, testConfig, classLookup, true);
+	}	
+
+    public static ParserFacade generateParserForLanguage(TCSSyntaxContainerBean syntaxBean,
+            GeneratedParserTestConfiguration testConfig, ClassLookup classLookup, boolean doCleanUp) throws GrammarGenerationException,
             ParserGeneratorInvocationException, InvalidParserImplementationException {
         try {
             generateGrammar(testConfig, syntaxBean);
@@ -51,7 +56,9 @@ public abstract class GeneratedParserBasedTest {
 
             return loadParserFacade(testConfig, classLookup);
         } finally {
-            cleanUp(testConfig);
+        	if(doCleanUp) {
+        		cleanUp(testConfig);
+        	}
         }
     }
 
@@ -155,7 +162,7 @@ public abstract class GeneratedParserBasedTest {
         }
     }
 
-    private static void cleanUp(GeneratedParserTestConfiguration testConfig) {
+    protected static void cleanUp(GeneratedParserTestConfiguration testConfig) {
         File genDir = new File(testConfig.getRelativePathToGeneratedFiles());
         assertTrue(genDir.getAbsolutePath() + " is not a directory", genDir.isDirectory());
         

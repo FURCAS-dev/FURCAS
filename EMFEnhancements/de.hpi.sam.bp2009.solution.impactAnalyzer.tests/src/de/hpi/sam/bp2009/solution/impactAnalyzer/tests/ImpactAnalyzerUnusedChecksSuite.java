@@ -17,6 +17,8 @@ public class ImpactAnalyzerUnusedChecksSuite extends TestSuite {
 
 	public static Test suite() {
         System.setProperty("unusedCheckIA", "true");
+        System.setProperty("de.hpi.sam.bp2009.solution.impactAnalyzer.debug", "false");
+        System.setProperty("navigationStepIA", "false");                
         return ImpactAnalyzerAllTests.suite();
     }
 
