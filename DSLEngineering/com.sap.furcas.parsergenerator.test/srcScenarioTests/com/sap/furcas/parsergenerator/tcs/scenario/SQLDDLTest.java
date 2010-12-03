@@ -10,7 +10,7 @@ import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
-import com.sap.furcas.test.fixture.FixtureData;
+import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 /**
  * Simple Test for the custom Expression language
@@ -18,8 +18,8 @@ import com.sap.furcas.test.fixture.FixtureData;
 public class SQLDDLTest extends GeneratedParserBasedTest {
 
     private static final String LANGUAGE = "SQLDDL";
-    private static final File TCS = FixtureData.SQLDDL_TCS;
-    private static final File[] METAMODELS = { FixtureData.SQLDDL_METAMODEL };
+    private static final File TCS = ScenarioFixtureData.SQLDDL_TCS;
+    private static final File[] METAMODELS = { ScenarioFixtureData.SQLDDL_METAMODEL };
     private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
 
     private static ParsingHelper parsingHelper;

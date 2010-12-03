@@ -15,7 +15,7 @@ import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
 import com.sap.furcas.runtime.parser.testbase.StubModelAdapter;
 import com.sap.furcas.runtime.parser.testbase.StubModelElement;
-import com.sap.furcas.test.fixture.FixtureData;
+import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 /**
  * Simple Test for the custom Expression language
@@ -23,8 +23,8 @@ import com.sap.furcas.test.fixture.FixtureData;
 public class ExpressionTest extends GeneratedParserBasedTest {
 
     private static final String LANGUAGE = "Expression";
-    private static final File TCS = FixtureData.EXPRESSION_TCS;
-    private static final File[] METAMODELS = { FixtureData.EXPRESSION_METAMODEL };
+    private static final File TCS = ScenarioFixtureData.EXPRESSION_TCS;
+    private static final File[] METAMODELS = { ScenarioFixtureData.EXPRESSION_METAMODEL };
     private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
 
     private static ParsingHelper parsingHelper;

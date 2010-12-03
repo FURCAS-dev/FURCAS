@@ -10,7 +10,7 @@ import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
-import com.sap.furcas.test.fixture.FixtureData;
+import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 /**
  * Tests currently fail for unknown reason, maybe tcs syntax is corrupt
@@ -18,8 +18,8 @@ import com.sap.furcas.test.fixture.FixtureData;
 public class XPathGenerationTest extends GeneratedParserBasedTest {
 
     private static final String LANGUAGE = "XPath";
-    private static final File TCS = FixtureData.XPATH_TCS;
-    private static final File[] METAMODELS = { FixtureData.XPATH1_METAMODEL, FixtureData.XPATH_METAMODEL };
+    private static final File TCS = ScenarioFixtureData.XPATH_TCS;
+    private static final File[] METAMODELS = { ScenarioFixtureData.XPATH1_METAMODEL, ScenarioFixtureData.XPATH_METAMODEL };
     private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
     
     private static ParsingHelper parsingHelper;

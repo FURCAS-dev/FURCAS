@@ -10,7 +10,7 @@ import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
-import com.sap.furcas.test.fixture.FixtureData;
+import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 /**
  * Test using several (useless) layers of abstraction in the metamodel
@@ -18,8 +18,8 @@ import com.sap.furcas.test.fixture.FixtureData;
 public class ExpressionAbstractTest extends GeneratedParserBasedTest {
 
     private static final String LANGUAGE = "ExpressionAbstract";
-    private static final File TCS = FixtureData.EXPRESSION_ABSTRACT_TCS;
-    private static final File[] METAMODELS = { FixtureData.EXPRESSION_ABSTRACT_METAMODEL };
+    private static final File TCS = ScenarioFixtureData.EXPRESSION_ABSTRACT_TCS;
+    private static final File[] METAMODELS = { ScenarioFixtureData.EXPRESSION_ABSTRACT_METAMODEL };
 
     private static ParsingHelper parsingHelper;
 

@@ -11,7 +11,7 @@ import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
-import com.sap.furcas.test.fixture.FixtureData;
+import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 /**
  * Simple Test for the custom Expression language
@@ -19,8 +19,8 @@ import com.sap.furcas.test.fixture.FixtureData;
 public class OCLTest extends GeneratedParserBasedTest {
 
     private static final String LANGUAGE = "OCL";
-    private static final File TCS = FixtureData.OCL_TCS;
-    private static final File[] METAMODELS = { FixtureData.OCL_METAMODEL };
+    private static final File TCS = ScenarioFixtureData.OCL_TCS;
+    private static final File[] METAMODELS = { ScenarioFixtureData.OCL_METAMODEL };
 
     private static ParsingHelper parsingHelper;
 
