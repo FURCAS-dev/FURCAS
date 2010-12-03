@@ -60,7 +60,6 @@ public class ProjectInfo {
     }
 
     /**
-     * Sets the file extension.
      * 
      * @param fileExtension
      */
@@ -77,7 +76,6 @@ public class ProjectInfo {
     }
 
     /**
-     * Sets the language name.
      * 
      * @param languageName
      */
@@ -94,7 +92,6 @@ public class ProjectInfo {
     }
 
     /**
-     * Sets the namespace URI.
      * 
      * @param nsURI
      */
@@ -111,7 +108,6 @@ public class ProjectInfo {
     }
 
     /**
-     * Sets the project name.
      * 
      * @param projectName
      */
@@ -137,7 +133,6 @@ public class ProjectInfo {
     }
 
     /**
-     * Sets the boolean <code>loadMetamodel</code>
      * 
      * @param loadMetamodel
      */
@@ -154,7 +149,6 @@ public class ProjectInfo {
     }
 
     /**
-     * Sets the boolean <code>fromWorkspace</code>
      * 
      * @param fromWorkspace
      */
@@ -171,7 +165,6 @@ public class ProjectInfo {
     }
 
     /**
-     * Sets the class name.
      * 
      * @param className
      */
@@ -188,7 +181,6 @@ public class ProjectInfo {
     }
 
     /**
-     * Sets the model path.
      * 
      * @param modelPath
      */

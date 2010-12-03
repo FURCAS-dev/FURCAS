@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchPage;
@@ -77,23 +78,8 @@ public class WizardProjectHelper {
             IWorkspace workspace = ResourcesPlugin.getWorkspace();
             project = workspace.getRoot().getProject(projectName);
 
-            // Clean up any old project information.
-            //
             if (project.exists()) {
-                final boolean[] result = new boolean[1];
-                PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
-                    @Override
-                    public void run() {
-                        result[0] = MessageDialog.openQuestion(theShell, "Do you want to overwrite the project " + projectName,
-                                "Note that everything inside the project '" + projectName
-                                        + "' will be deleted if you confirm this dialog.");
-                    }
-                });
-                if (result[0]) {
-                    project.delete(true, true, new SubProgressMonitor(progressMonitor, 1));
-                } else {
-                    return null;
-                }
+                deleteOldProject(progressMonitor, theShell, project, projectName);
             }
 
             // Create the project
@@ -112,67 +98,14 @@ public class WizardProjectHelper {
             } else
                 projectDescription.setNatureIds(new String[] { JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature" });
 
-            // Add the required builders depending on wether this is a dsl project or a metamodelproject.
-            //
-            ICommand java = projectDescription.newCommand();
-            java.setBuilderName(JavaCore.BUILDER_ID);
+            addBuilders(progressMonitor, metamodel, project, projectDescription);
 
-            ICommand manifest = projectDescription.newCommand();
-            manifest.setBuilderName("org.eclipse.pde.ManifestBuilder");
-
-            ICommand schema = projectDescription.newCommand();
-            schema.setBuilderName("org.eclipse.pde.SchemaBuilder");
-
-            if (!metamodel) {
-                ICommand furcas = projectDescription.newCommand();
-                furcas.setBuilderName("com.sap.furcas.ide.dslproject.syntaxBuilder");
-
-                projectDescription.setBuildSpec(new ICommand[] { furcas, java, manifest, schema });
-            } else {
-                projectDescription.setBuildSpec(new ICommand[] { java, manifest, schema });
-            }
-
-            project.open(new SubProgressMonitor(progressMonitor, 1));
-            project.setDescription(projectDescription, new SubProgressMonitor(progressMonitor, 1));
-
-            // Set the classpath entries for the source folders
-            //
-            Collections.reverse(srcFolders);
-            for (String src : srcFolders) {
-                IFolder srcContainer = project.getFolder(src);
-                if (!srcContainer.exists()) {
-                    srcContainer.create(false, true, new SubProgressMonitor(progressMonitor, 1));
-                }
-                IClasspathEntry srcClasspathEntry = JavaCore.newSourceEntry(srcContainer.getFullPath());
-                classpathEntries.add(0, srcClasspathEntry);
-            }
-
-            if (nonSrcFolders != null) {
-                for (String src : nonSrcFolders) {
-                    IFolder srcContainer = project.getFolder(src);
-                    if (!srcContainer.exists()) {
-                        srcContainer.create(false, true, new SubProgressMonitor(progressMonitor, 1));
-                    }
-                }
-            }
-
-            classpathEntries.add(JavaCore.newContainerEntry(new Path("org.eclipse.jdt.launching.JRE_CONTAINER")));
-            classpathEntries.add(JavaCore.newContainerEntry(new Path("org.eclipse.pde.core.requiredPlugins")));
-
-            javaProject.setRawClasspath(classpathEntries.toArray(new IClasspathEntry[classpathEntries.size()]),
-                    new SubProgressMonitor(progressMonitor, 1));
+            setClasspath(srcFolders, nonSrcFolders, progressMonitor, project, javaProject, classpathEntries);
 
             javaProject.setOutputLocation(new Path("/" + projectName + "/bin"), new SubProgressMonitor(progressMonitor, 1));
 
-            // Create the manifest and build properties if it's not a metamodel project.
-            // If it's a metamodel project those files are created automatically.
-            //
             if (!metamodel) {
-                SourceCodeFactory scf = new SourceCodeFactory();
-                createFile("build.properties", project, scf.createBuildProbCode(), progressMonitor);
-                IFolder metaInf = project.getFolder("META-INF");
-                metaInf.create(false, true, new SubProgressMonitor(progressMonitor, 1));
-                createFile("MANIFEST.MF", metaInf, scf.createManifest(pi), progressMonitor);
+                createManifestAndBuildProps(pi, progressMonitor, project);
             }
         } catch (Exception exception) {
             System.out.println("Error while creating the project.");
@@ -181,6 +114,127 @@ public class WizardProjectHelper {
         }
 
         return project;
+    }
+
+    /**
+     * Create the manifest and build properties. If it's a metamodel project those files are created automatically.
+     * 
+     * @param pi
+     * @param progressMonitor
+     * @param project
+     * @throws CoreException
+     */
+    private static void createManifestAndBuildProps(final ProjectInfo pi, final IProgressMonitor progressMonitor, IProject project)
+            throws CoreException {
+        SourceCodeFactory scf = new SourceCodeFactory();
+        createFile("build.properties", project, scf.createBuildProbCode(), progressMonitor);
+        IFolder metaInf = project.getFolder("META-INF");
+        metaInf.create(false, true, new SubProgressMonitor(progressMonitor, 1));
+        createFile("MANIFEST.MF", metaInf, scf.createManifest(pi), progressMonitor);
+    }
+
+    /**
+     * 
+     * Set the classpath entries for the source folders
+     * 
+     * @param srcFolders
+     * @param nonSrcFolders
+     * @param progressMonitor
+     * @param project
+     * @param javaProject
+     * @param classpathEntries
+     * @throws CoreException
+     * @throws JavaModelException
+     */
+    private static void setClasspath(final List<String> srcFolders, final List<String> nonSrcFolders,
+            final IProgressMonitor progressMonitor, IProject project, IJavaProject javaProject,
+            List<IClasspathEntry> classpathEntries) throws CoreException, JavaModelException {
+        Collections.reverse(srcFolders);
+        for (String src : srcFolders) {
+            IFolder srcContainer = project.getFolder(src);
+            if (!srcContainer.exists()) {
+                srcContainer.create(false, true, new SubProgressMonitor(progressMonitor, 1));
+            }
+            IClasspathEntry srcClasspathEntry = JavaCore.newSourceEntry(srcContainer.getFullPath());
+            classpathEntries.add(0, srcClasspathEntry);
+        }
+
+        if (nonSrcFolders != null) {
+            for (String src : nonSrcFolders) {
+                IFolder srcContainer = project.getFolder(src);
+                if (!srcContainer.exists()) {
+                    srcContainer.create(false, true, new SubProgressMonitor(progressMonitor, 1));
+                }
+            }
+        }
+
+        classpathEntries.add(JavaCore.newContainerEntry(new Path("org.eclipse.jdt.launching.JRE_CONTAINER")));
+        classpathEntries.add(JavaCore.newContainerEntry(new Path("org.eclipse.pde.core.requiredPlugins")));
+
+        javaProject.setRawClasspath(classpathEntries.toArray(new IClasspathEntry[classpathEntries.size()]),
+                new SubProgressMonitor(progressMonitor, 1));
+    }
+
+    /**
+     * 
+     * Add the required builders depending on wether this is a dsl project or a metamodelproject.
+     * 
+     * @param progressMonitor
+     * @param metamodel
+     * @param project
+     * @param projectDescription
+     * @throws CoreException
+     */
+    private static void addBuilders(final IProgressMonitor progressMonitor, final boolean metamodel, IProject project,
+            IProjectDescription projectDescription) throws CoreException {
+        ICommand java = projectDescription.newCommand();
+        java.setBuilderName(JavaCore.BUILDER_ID);
+
+        ICommand manifest = projectDescription.newCommand();
+        manifest.setBuilderName("org.eclipse.pde.ManifestBuilder");
+
+        ICommand schema = projectDescription.newCommand();
+        schema.setBuilderName("org.eclipse.pde.SchemaBuilder");
+
+        if (!metamodel) {
+            ICommand furcas = projectDescription.newCommand();
+            furcas.setBuilderName("com.sap.furcas.ide.dslproject.syntaxBuilder");
+
+            projectDescription.setBuildSpec(new ICommand[] { furcas, java, manifest, schema });
+        } else {
+            projectDescription.setBuildSpec(new ICommand[] { java, manifest, schema });
+        }
+
+        project.open(new SubProgressMonitor(progressMonitor, 1));
+        project.setDescription(projectDescription, new SubProgressMonitor(progressMonitor, 1));
+    }
+
+    /**
+     * 
+     * Clean up any old project information.
+     * 
+     * @param progressMonitor
+     * @param theShell
+     * @param project
+     * @param projectName
+     * @throws CoreException
+     */
+    private static void deleteOldProject(final IProgressMonitor progressMonitor, final Shell theShell, IProject project,
+            final String projectName) throws CoreException {
+        final boolean[] result = new boolean[1];
+        PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
+            @Override
+            public void run() {
+                result[0] = MessageDialog.openQuestion(theShell, "Do you want to overwrite the project " + projectName,
+                        "Note that everything inside the project '" + projectName
+                                + "' will be deleted if you confirm this dialog.");
+            }
+        });
+        if (result[0]) {
+            project.delete(true, true, new SubProgressMonitor(progressMonitor, 1));
+        } else {
+            return;
+        }
     }
 
     /**

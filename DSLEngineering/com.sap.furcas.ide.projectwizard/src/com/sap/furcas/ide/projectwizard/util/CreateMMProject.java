@@ -83,16 +83,12 @@ public class CreateMMProject {
         nonSrcFolders.add("model");
         shell = wizard.getShell();
 
-        // Create the project for the metamodel
-        //
         try {
             WizardProjectHelper.createPlugInProject(pi, srcFolders, nonSrcFolders, null, progressMonitor, shell, true);
         } catch (Exception e) {
             Activator.logger.logError("CreateMmProject failed to create the Metamodel project.", e);
         }
 
-        // Create the ecore file
-        //
         createNewModel();
 
     }
@@ -102,19 +98,10 @@ public class CreateMMProject {
      */
     protected static void createNewModel() {
         ProjectInfo pi = wizard.getPage().getProjectInfo();
-        // Create a resource set
-        //
         ResourceSet resourceSet = new ResourceSetImpl();
         resourceSet.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap());
 
-        // Get the URI of the model file.
-        //
-        String mmprojectpath = pi.getProjectName() + ".metamodel/model/"
-                + CreateProject.capitalizeFirstChar(pi.getLanguageName()) + ".ecore";
-        URI fileURI = URI.createPlatformResourceURI(mmprojectpath, true);
-
-        // Create a resource for this file.
-        //
+        URI fileURI = getModelURI(pi);
         Resource resource = resourceSet.createResource(fileURI);
 
         // Add the initial model object to the contents.
@@ -123,15 +110,10 @@ public class CreateMMProject {
         EObject rootObject = createInitialModel();
         if (rootObject != null) {
             if (rootObject instanceof EPackage) {
-                EPackage eP;
-                eP = (EPackage) rootObject;
-                eP.setNsPrefix(pi.getLanguageName());
-                eP.setNsURI(pi.getNsURI());
-                EClass eC = ecoreFactory.createEClass();
-                eC.setName(pi.getClassName());
-                eP.getEClassifiers().add(eC);
-                resource.getContents().add(eP);
+                createModel(pi, resource, rootObject);
             } else
+                // Should never get here
+                //
                 resource.getContents().add(rootObject);
         }
 
@@ -159,6 +141,35 @@ public class CreateMMProject {
         // Generate the model code. (e.g. the java classes and the plugin.xml)
         //
         genModelGen(newURI);
+    }
+
+    /**
+     * Add the initial model object to the contents.
+     * And create the first class with the user chosen name.
+     * @param pi
+     * @param resource
+     * @param rootObject
+     */
+    private static void createModel(ProjectInfo pi, Resource resource, EObject rootObject) {
+        EPackage eP;
+        eP = (EPackage) rootObject;
+        eP.setNsPrefix(pi.getLanguageName());
+        eP.setNsURI(pi.getNsURI());
+        EClass eC = ecoreFactory.createEClass();
+        eC.setName(pi.getClassName());
+        eP.getEClassifiers().add(eC);
+        resource.getContents().add(eP);
+    }
+
+    /**
+     * @param pi The user input
+     * @return The URI of the model file
+     */
+    private static URI getModelURI(ProjectInfo pi) {
+        String mmprojectpath = pi.getProjectName() + ".metamodel/model/"
+                + CreateProject.capitalizeFirstChar(pi.getLanguageName()) + ".ecore";
+        URI fileURI = URI.createPlatformResourceURI(mmprojectpath, true);
+        return fileURI;
     }
 
     /**
