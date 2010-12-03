@@ -44,6 +44,7 @@ public class CreateProject extends WorkspaceModifyOperation {
 
     }
 
+    @Override
     protected void execute(IProgressMonitor monitor) throws CoreException, InvocationTargetException, InterruptedException {
         monitor.beginTask("Creating project " + pi.getProjectName(), 2);
 
@@ -123,8 +124,8 @@ public class CreateProject extends WorkspaceModifyOperation {
 
         String basePath = "";
         String[] split = pi.getProjectName().split("\\.");
-        for (int i = 0; i < split.length; i++) {
-            basePath += '/' + split[i];
+        for (String element : split) {
+            basePath += '/' + element;
             IFolder f = srcDir.getFolder(basePath);
             if (!f.exists()) {
                 f.create(false, true, monitor);
@@ -182,7 +183,7 @@ public class CreateProject extends WorkspaceModifyOperation {
         WizardProjectHelper.createFile("Activator.java", editorFolder, scf.createActivator(pi), monitor);
         WizardProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "Editor.java", editorFolder,
                 scf.createEditorCode(pi), monitor);
-        WizardProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "Mapper.java", editorFolder,
+        WizardProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "TokenMapper.java", editorFolder,
                 scf.createMapperCode(pi), monitor);
 
         return editorFolder;
