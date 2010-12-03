@@ -80,7 +80,7 @@ public class TestObservation {
         ConsistencyChecksObserver testObserver = new ConsistencyChecksObserver();
 
         // SystemOutObserver testObserver = new SystemOutObserver();
-        facade.parseProductionRule(in, modelHandler, "tcs_concretesyntax", null, testObserver);
+        facade.parseProductionRule(in, modelHandler, "furcas_tcs_concretesyntax", null, testObserver);
 
     }
 

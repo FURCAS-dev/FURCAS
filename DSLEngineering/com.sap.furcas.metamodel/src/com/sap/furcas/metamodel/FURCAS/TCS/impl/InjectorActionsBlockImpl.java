@@ -37,168 +37,168 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  */
 public class InjectorActionsBlockImpl extends SequenceElementImpl implements InjectorActionsBlock {
         /**
-     * The cached value of the '{@link #getPropertyInits() <em>Property Inits</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPropertyInits() <em>Property Inits</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @see #getPropertyInits()
-     * @generated
-     * @ordered
-     */
+	 * @see #getPropertyInits()
+	 * @generated
+	 * @ordered
+	 */
         protected EList<InjectorAction> propertyInits;
 
         /**
-     * The cached value of the '{@link #getInjectorActions() <em>Injector Actions</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getInjectorActions() <em>Injector Actions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @see #getInjectorActions()
-     * @generated
-     * @ordered
-     */
+	 * @see #getInjectorActions()
+	 * @generated
+	 * @ordered
+	 */
         protected EList<InjectorAction> injectorActions;
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected InjectorActionsBlockImpl() {
-        super();
-    }
+		super();
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         protected EClass eStaticClass() {
-        return TCSPackage.Literals.INJECTOR_ACTIONS_BLOCK;
-    }
+		return TCSPackage.Literals.INJECTOR_ACTIONS_BLOCK;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public EList<InjectorAction> getPropertyInits() {
-        if (propertyInits == null) {
-            propertyInits = new EObjectContainmentEList<InjectorAction>(InjectorAction.class, this, TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS);
-        }
-        return propertyInits;
-    }
+		if (propertyInits == null) {
+			propertyInits = new EObjectContainmentEList<InjectorAction>(InjectorAction.class, this, TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS);
+		}
+		return propertyInits;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public EList<InjectorAction> getInjectorActions() {
-        if (injectorActions == null) {
-            injectorActions = new EObjectContainmentWithInverseEList<InjectorAction>(InjectorAction.class, this, TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS, TCSPackage.INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK);
-        }
-        return injectorActions;
-    }
+		if (injectorActions == null) {
+			injectorActions = new EObjectContainmentWithInverseEList<InjectorAction>(InjectorAction.class, this, TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS, TCSPackage.INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK);
+		}
+		return injectorActions;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @SuppressWarnings("unchecked")
         @Override
         public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getInjectorActions()).basicAdd(otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getInjectorActions()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS:
-                return ((InternalEList<?>)getPropertyInits()).basicRemove(otherEnd, msgs);
-            case TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS:
-                return ((InternalEList<?>)getInjectorActions()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS:
+				return ((InternalEList<?>)getPropertyInits()).basicRemove(otherEnd, msgs);
+			case TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS:
+				return ((InternalEList<?>)getInjectorActions()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS:
-                return getPropertyInits();
-            case TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS:
-                return getInjectorActions();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS:
+				return getPropertyInits();
+			case TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS:
+				return getInjectorActions();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @SuppressWarnings("unchecked")
         @Override
         public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS:
-                getPropertyInits().clear();
-                getPropertyInits().addAll((Collection<? extends InjectorAction>)newValue);
-                return;
-            case TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS:
-                getInjectorActions().clear();
-                getInjectorActions().addAll((Collection<? extends InjectorAction>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS:
+				getPropertyInits().clear();
+				getPropertyInits().addAll((Collection<? extends InjectorAction>)newValue);
+				return;
+			case TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS:
+				getInjectorActions().clear();
+				getInjectorActions().addAll((Collection<? extends InjectorAction>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public void eUnset(int featureID) {
-        switch (featureID) {
-            case TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS:
-                getPropertyInits().clear();
-                return;
-            case TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS:
-                getInjectorActions().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS:
+				getPropertyInits().clear();
+				return;
+			case TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS:
+				getInjectorActions().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS:
-                return propertyInits != null && !propertyInits.isEmpty();
-            case TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS:
-                return injectorActions != null && !injectorActions.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS:
+				return propertyInits != null && !propertyInits.isEmpty();
+			case TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS:
+				return injectorActions != null && !injectorActions.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //InjectorActionsBlockImpl

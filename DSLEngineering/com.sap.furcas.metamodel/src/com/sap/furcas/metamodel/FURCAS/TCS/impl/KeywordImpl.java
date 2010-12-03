@@ -22,22 +22,22 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  */
 public class KeywordImpl extends LiteralImpl implements Keyword {
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected KeywordImpl() {
-        super();
-    }
+		super();
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         protected EClass eStaticClass() {
-        return TCSPackage.Literals.KEYWORD;
-    }
+		return TCSPackage.Literals.KEYWORD;
+	}
 
 } //KeywordImpl

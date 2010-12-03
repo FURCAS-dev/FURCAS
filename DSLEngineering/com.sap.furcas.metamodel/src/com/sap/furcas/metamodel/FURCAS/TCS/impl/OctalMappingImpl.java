@@ -22,22 +22,22 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  */
 public class OctalMappingImpl extends MappingImpl implements OctalMapping {
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected OctalMappingImpl() {
-        super();
-    }
+		super();
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         protected EClass eStaticClass() {
-        return TCSPackage.Literals.OCTAL_MAPPING;
-    }
+		return TCSPackage.Literals.OCTAL_MAPPING;
+	}
 
 } //OctalMappingImpl

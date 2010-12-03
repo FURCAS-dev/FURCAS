@@ -42,324 +42,324 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  */
 public class PriorityImpl extends LocatedElementImpl implements Priority {
         /**
-     * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @see #getValue()
-     * @generated
-     * @ordered
-     */
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
         protected static final Integer VALUE_EDEFAULT = null;
 
         /**
-     * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @see #getValue()
-     * @generated
-     * @ordered
-     */
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
         protected Integer value = VALUE_EDEFAULT;
 
         /**
-     * The default value of the '{@link #getAssociativity() <em>Associativity</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getAssociativity() <em>Associativity</em>}' attribute.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @see #getAssociativity()
-     * @generated
-     * @ordered
-     */
+	 * @see #getAssociativity()
+	 * @generated
+	 * @ordered
+	 */
         protected static final Associativity ASSOCIATIVITY_EDEFAULT = Associativity.LEFT;
 
         /**
-     * The cached value of the '{@link #getAssociativity() <em>Associativity</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getAssociativity() <em>Associativity</em>}' attribute.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @see #getAssociativity()
-     * @generated
-     * @ordered
-     */
+	 * @see #getAssociativity()
+	 * @generated
+	 * @ordered
+	 */
         protected Associativity associativity = ASSOCIATIVITY_EDEFAULT;
 
         /**
-     * The cached value of the '{@link #getOperators() <em>Operators</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getOperators() <em>Operators</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @see #getOperators()
-     * @generated
-     * @ordered
-     */
+	 * @see #getOperators()
+	 * @generated
+	 * @ordered
+	 */
         protected EList<Operator> operators;
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected PriorityImpl() {
-        super();
-    }
+		super();
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         protected EClass eStaticClass() {
-        return TCSPackage.Literals.PRIORITY;
-    }
+		return TCSPackage.Literals.PRIORITY;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public OperatorList getList() {
-        if (eContainerFeatureID() != TCSPackage.PRIORITY__LIST) return null;
-        return (OperatorList)eContainer();
-    }
+		if (eContainerFeatureID() != TCSPackage.PRIORITY__LIST) return null;
+		return (OperatorList)eContainer();
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public NotificationChain basicSetList(OperatorList newList, NotificationChain msgs) {
-        msgs = eBasicSetContainer((InternalEObject)newList, TCSPackage.PRIORITY__LIST, msgs);
-        return msgs;
-    }
+		msgs = eBasicSetContainer((InternalEObject)newList, TCSPackage.PRIORITY__LIST, msgs);
+		return msgs;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public void setList(OperatorList newList) {
-        if (newList != eInternalContainer() || (eContainerFeatureID() != TCSPackage.PRIORITY__LIST && newList != null)) {
-            if (EcoreUtil.isAncestor(this, newList))
-                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-            NotificationChain msgs = null;
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            if (newList != null)
-                msgs = ((InternalEObject)newList).eInverseAdd(this, TCSPackage.OPERATOR_LIST__PRIORITIES, OperatorList.class, msgs);
-            msgs = basicSetList(newList, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.PRIORITY__LIST, newList, newList));
-    }
+		if (newList != eInternalContainer() || (eContainerFeatureID() != TCSPackage.PRIORITY__LIST && newList != null)) {
+			if (EcoreUtil.isAncestor(this, newList))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newList != null)
+				msgs = ((InternalEObject)newList).eInverseAdd(this, TCSPackage.OPERATOR_LIST__PRIORITIES, OperatorList.class, msgs);
+			msgs = basicSetList(newList, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.PRIORITY__LIST, newList, newList));
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public Integer getValue() {
-        return value;
-    }
+		return value;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setValue(Integer newValue) {
-        Integer oldValue = value;
-        value = newValue;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.PRIORITY__VALUE, oldValue, value));
-    }
+		Integer oldValue = value;
+		value = newValue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.PRIORITY__VALUE, oldValue, value));
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public Associativity getAssociativity() {
-        return associativity;
-    }
+		return associativity;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public void setAssociativity(Associativity newAssociativity) {
-        Associativity oldAssociativity = associativity;
-        associativity = newAssociativity == null ? ASSOCIATIVITY_EDEFAULT : newAssociativity;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.PRIORITY__ASSOCIATIVITY, oldAssociativity, associativity));
-    }
+		Associativity oldAssociativity = associativity;
+		associativity = newAssociativity == null ? ASSOCIATIVITY_EDEFAULT : newAssociativity;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.PRIORITY__ASSOCIATIVITY, oldAssociativity, associativity));
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public EList<Operator> getOperators() {
-        if (operators == null) {
-            operators = new EObjectContainmentWithInverseEList<Operator>(Operator.class, this, TCSPackage.PRIORITY__OPERATORS, TCSPackage.OPERATOR__PRIORITY);
-        }
-        return operators;
-    }
+		if (operators == null) {
+			operators = new EObjectContainmentWithInverseEList<Operator>(Operator.class, this, TCSPackage.PRIORITY__OPERATORS, TCSPackage.OPERATOR__PRIORITY);
+		}
+		return operators;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @SuppressWarnings("unchecked")
         @Override
         public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case TCSPackage.PRIORITY__LIST:
-                if (eInternalContainer() != null)
-                    msgs = eBasicRemoveFromContainer(msgs);
-                return basicSetList((OperatorList)otherEnd, msgs);
-            case TCSPackage.PRIORITY__OPERATORS:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getOperators()).basicAdd(otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case TCSPackage.PRIORITY__LIST:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetList((OperatorList)otherEnd, msgs);
+			case TCSPackage.PRIORITY__OPERATORS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOperators()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case TCSPackage.PRIORITY__LIST:
-                return basicSetList(null, msgs);
-            case TCSPackage.PRIORITY__OPERATORS:
-                return ((InternalEList<?>)getOperators()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case TCSPackage.PRIORITY__LIST:
+				return basicSetList(null, msgs);
+			case TCSPackage.PRIORITY__OPERATORS:
+				return ((InternalEList<?>)getOperators()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID()) {
-            case TCSPackage.PRIORITY__LIST:
-                return eInternalContainer().eInverseRemove(this, TCSPackage.OPERATOR_LIST__PRIORITIES, OperatorList.class, msgs);
-        }
-        return super.eBasicRemoveFromContainerFeature(msgs);
-    }
+		switch (eContainerFeatureID()) {
+			case TCSPackage.PRIORITY__LIST:
+				return eInternalContainer().eInverseRemove(this, TCSPackage.OPERATOR_LIST__PRIORITIES, OperatorList.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case TCSPackage.PRIORITY__LIST:
-                return getList();
-            case TCSPackage.PRIORITY__VALUE:
-                return getValue();
-            case TCSPackage.PRIORITY__ASSOCIATIVITY:
-                return getAssociativity();
-            case TCSPackage.PRIORITY__OPERATORS:
-                return getOperators();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case TCSPackage.PRIORITY__LIST:
+				return getList();
+			case TCSPackage.PRIORITY__VALUE:
+				return getValue();
+			case TCSPackage.PRIORITY__ASSOCIATIVITY:
+				return getAssociativity();
+			case TCSPackage.PRIORITY__OPERATORS:
+				return getOperators();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @SuppressWarnings("unchecked")
         @Override
         public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case TCSPackage.PRIORITY__LIST:
-                setList((OperatorList)newValue);
-                return;
-            case TCSPackage.PRIORITY__VALUE:
-                setValue((Integer)newValue);
-                return;
-            case TCSPackage.PRIORITY__ASSOCIATIVITY:
-                setAssociativity((Associativity)newValue);
-                return;
-            case TCSPackage.PRIORITY__OPERATORS:
-                getOperators().clear();
-                getOperators().addAll((Collection<? extends Operator>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case TCSPackage.PRIORITY__LIST:
+				setList((OperatorList)newValue);
+				return;
+			case TCSPackage.PRIORITY__VALUE:
+				setValue((Integer)newValue);
+				return;
+			case TCSPackage.PRIORITY__ASSOCIATIVITY:
+				setAssociativity((Associativity)newValue);
+				return;
+			case TCSPackage.PRIORITY__OPERATORS:
+				getOperators().clear();
+				getOperators().addAll((Collection<? extends Operator>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public void eUnset(int featureID) {
-        switch (featureID) {
-            case TCSPackage.PRIORITY__LIST:
-                setList((OperatorList)null);
-                return;
-            case TCSPackage.PRIORITY__VALUE:
-                setValue(VALUE_EDEFAULT);
-                return;
-            case TCSPackage.PRIORITY__ASSOCIATIVITY:
-                setAssociativity(ASSOCIATIVITY_EDEFAULT);
-                return;
-            case TCSPackage.PRIORITY__OPERATORS:
-                getOperators().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case TCSPackage.PRIORITY__LIST:
+				setList((OperatorList)null);
+				return;
+			case TCSPackage.PRIORITY__VALUE:
+				setValue(VALUE_EDEFAULT);
+				return;
+			case TCSPackage.PRIORITY__ASSOCIATIVITY:
+				setAssociativity(ASSOCIATIVITY_EDEFAULT);
+				return;
+			case TCSPackage.PRIORITY__OPERATORS:
+				getOperators().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case TCSPackage.PRIORITY__LIST:
-                return getList() != null;
-            case TCSPackage.PRIORITY__VALUE:
-                return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
-            case TCSPackage.PRIORITY__ASSOCIATIVITY:
-                return associativity != ASSOCIATIVITY_EDEFAULT;
-            case TCSPackage.PRIORITY__OPERATORS:
-                return operators != null && !operators.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case TCSPackage.PRIORITY__LIST:
+				return getList() != null;
+			case TCSPackage.PRIORITY__VALUE:
+				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+			case TCSPackage.PRIORITY__ASSOCIATIVITY:
+				return associativity != ASSOCIATIVITY_EDEFAULT;
+			case TCSPackage.PRIORITY__OPERATORS:
+				return operators != null && !operators.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (value: ");
-        result.append(value);
-        result.append(", associativity: ");
-        result.append(associativity);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (value: ");
+		result.append(value);
+		result.append(", associativity: ");
+		result.append(associativity);
+		result.append(')');
+		return result.toString();
+	}
 
 } //PriorityImpl
