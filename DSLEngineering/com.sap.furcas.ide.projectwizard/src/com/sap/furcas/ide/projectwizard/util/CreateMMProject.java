@@ -41,6 +41,11 @@ import com.sap.furcas.ide.projectwizard.wizards.FurcasWizard;
  * 
  */
 public class CreateMMProject {
+
+    /**
+     * Keeps all the user input
+     */
+    protected static ProjectInfo pi;
     /**
      * Is used to get user input, shell etc.
      */
@@ -70,12 +75,12 @@ public class CreateMMProject {
      *            See global variable <code>wizard</code> for information
      * @throws CodeGenerationException
      */
-    public static void create(FurcasWizard wiz, IProgressMonitor monitor) throws CodeGenerationException {
+    public static void create(FurcasWizard wiz, IProgressMonitor monitor, ProjectInfo pInfo) throws CodeGenerationException {
         // Set all the important variables for generating the Project
         //
+        pi = pInfo;
         wizard = wiz;
         progressMonitor = monitor;
-        ProjectInfo pi = wizard.getPage().getProjectInfo();
         List<String> srcFolders = new ArrayList<String>();
         srcFolders.add("src");
         List<String> nonSrcFolders = new ArrayList<String>();
@@ -90,10 +95,10 @@ public class CreateMMProject {
 
     /**
      * Creates the metamodels .ecore and .genmodel files. It also creates the first class in the metamodel.
-     * @throws CodeGenerationException 
+     * 
+     * @throws CodeGenerationException
      */
     protected static void createNewModel() throws CodeGenerationException {
-        ProjectInfo pi = wizard.getPage().getProjectInfo();
         ResourceSet resourceSet = new ResourceSetImpl();
         resourceSet.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap());
 
@@ -153,11 +158,11 @@ public class CreateMMProject {
      * @param pi
      * @param resource
      * @param rootObject
-     * @throws CodeGenerationException 
+     * @throws CodeGenerationException
      */
     private static void createModel(ProjectInfo pi, Resource resource, EObject rootObject) throws CodeGenerationException {
         EPackage eP;
-        try{
+        try {
             eP = (EPackage) rootObject;
             eP.setNsPrefix(pi.getLanguageName());
             eP.setNsURI(pi.getNsURI());
@@ -165,7 +170,7 @@ public class CreateMMProject {
             eC.setName(pi.getClassName());
             eP.getEClassifiers().add(eC);
             resource.getContents().add(eP);
-        }catch (Exception exception) {
+        } catch (Exception exception) {
             throw new CodeGenerationException("Failed to create the new Model!", exception.getCause());
         }
     }
@@ -186,16 +191,15 @@ public class CreateMMProject {
      * Creates the initial model.
      * 
      * @return The model as a EObject.
-     * @throws CodeGenerationException 
+     * @throws CodeGenerationException
      */
     protected static EObject createInitialModel() throws CodeGenerationException {
         EClass eClass = (EClass) ecorePackage.getEClassifier("EPackage");
         EObject rootObject = ecoreFactory.create(eClass);
         if (rootObject instanceof ENamedElement) {
-            ((ENamedElement) rootObject).setName(CreateProject.capitalizeFirstChar(wizard.getPage().getProjectInfo()
-                    .getLanguageName()));
-        }
-        else throw new CodeGenerationException("Failed to create the new Model!");
+            ((ENamedElement) rootObject).setName(CreateProject.capitalizeFirstChar(pi.getLanguageName()));
+        } else
+            throw new CodeGenerationException("Failed to create the new Model!");
         return rootObject;
     }
 

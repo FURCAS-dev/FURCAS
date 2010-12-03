@@ -114,7 +114,7 @@ public class SourceCodeFactory {
      * @return The content of the manifest file.
      * @throws CodeGenerationException
      */
-    protected String createManifest(ProjectInfo pi) throws CodeGenerationException {
+    public String createManifest(ProjectInfo pi) throws CodeGenerationException {
         StringTemplate template = null;
         String templateString = null;
 
@@ -133,7 +133,7 @@ public class SourceCodeFactory {
      * @return The content of the build.properties file.
      * @throws CodeGenerationException
      */
-    protected String createBuildProbCode() throws CodeGenerationException {
+    public String createBuildProbCode() throws CodeGenerationException {
         StringTemplate template = null;
         String templateString = null;
 
@@ -151,7 +151,7 @@ public class SourceCodeFactory {
      * @return The content of the editor class.
      * @throws CodeGenerationException
      */
-    protected String createEditorCode(ProjectInfo pi) throws CodeGenerationException {
+    public String createEditorCode(ProjectInfo pi) throws CodeGenerationException {
         StringTemplate template = null;
         String templateString = null;
 
@@ -189,7 +189,7 @@ public class SourceCodeFactory {
      * @return The content of the mapper class.
      * @throws CodeGenerationException
      */
-    protected String createMapperCode(ProjectInfo pi) throws CodeGenerationException {
+    public String createMapperCode(ProjectInfo pi) throws CodeGenerationException {
         StringTemplate template = null;
         String templateString = null;
 
@@ -208,7 +208,7 @@ public class SourceCodeFactory {
      * @return The content of the activator class.
      * @throws CodeGenerationException
      */
-    protected String createActivator(ProjectInfo pi) throws CodeGenerationException {
+    public String createActivator(ProjectInfo pi) throws CodeGenerationException {
         StringTemplate template = null;
         String templateString = null;
 
@@ -227,7 +227,7 @@ public class SourceCodeFactory {
      * @return The content of the plugin.xml file.
      * @throws CodeGenerationException
      */
-    protected String createPluginXML(ProjectInfo pi) throws CodeGenerationException {
+    public String createPluginXML(ProjectInfo pi) throws CodeGenerationException {
         StringTemplate template = null;
         String templateString = null;
 
@@ -246,7 +246,7 @@ public class SourceCodeFactory {
      * @return The content of the generated.properties file.
      * @throws CodeGenerationException
      */
-    protected String createdPropertiesCode(ProjectInfo pi) throws CodeGenerationException {
+    public String createdPropertiesCode(ProjectInfo pi) throws CodeGenerationException {
         StringTemplate template = null;
         String templateString = null;
 
@@ -284,7 +284,7 @@ public class SourceCodeFactory {
      * @return The content of the parserfactory class.
      * @throws CodeGenerationException 
      */
-    protected String createParserFactory(ProjectInfo pi) throws CodeGenerationException {
+    public String createParserFactory(ProjectInfo pi) throws CodeGenerationException {
         StringTemplate template = null;
         String templateString = null;
         templateString = readFile("parserfactory.txt");
