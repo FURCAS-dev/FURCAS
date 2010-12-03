@@ -423,34 +423,7 @@ if (isRightOf(tb, workingCopy) && !tb.equals(workingCopy)) {
 	 */
 	public static void addToBlockAt(TextBlock parentBlock, int index,
 			DocumentNode element) {
-		// TODO change this upon metamodel change .. then there is only one refernce for 
-		//tokens and blocks together
-		List<TextBlock> subBlocks = parentBlock.getSubBlocks();
-		List<AbstractToken> tokens = parentBlock.getTokens();
-		if(index <= 0) {
-			if(element instanceof TextBlock) {
-				subBlocks.add(0, (TextBlock) element);
-			} else if(element instanceof AbstractToken){
-				tokens.add(0, (AbstractToken) element);
-			}
-		} else{
-			List<? extends DocumentNode> subNodes = TbNavigationUtil.getSubNodes(parentBlock);
-			DocumentNode elementBefore = subNodes.get(--index);
-			if(element instanceof TextBlock) {
-				while(index > 0 && !(elementBefore instanceof TextBlock)) {
-					elementBefore = subNodes.get(--index);
-				}
-				if(((TextBlock) element).getParent() != null) {
-				    ((TextBlock) element).setParent(null);
-				}
-				subBlocks.add(subBlocks.indexOf(elementBefore)+1, (TextBlock) element);
-			} else if(element instanceof AbstractToken){
-				while(index > 0 && !(elementBefore instanceof AbstractToken)) {
-					elementBefore = subNodes.get(--index);
-				}
-				tokens.add(tokens.indexOf(elementBefore)+1, (AbstractToken) element);
-			}
-		}
+		parentBlock.getSubNodes().add(index, element);
 	}
 
 }

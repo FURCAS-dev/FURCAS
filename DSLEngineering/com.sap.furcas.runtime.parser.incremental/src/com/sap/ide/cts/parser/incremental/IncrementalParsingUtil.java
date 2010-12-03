@@ -285,7 +285,7 @@ public class IncrementalParsingUtil {
 		;
 		boolean onOffsetRange = TbUtil.getAbsoluteOffset(TbNavigationUtil
 			.firstToken(candidate)) >= TbUtil.getAbsoluteOffset(firstToken(newVersion));
-		while (candidate != null && onOffsetRange && !parent.equals(candidate)) {
+		while (candidate != null && onOffsetRange && (parent != null) && !parent.equals(candidate)) {
 			result = candidate;
 			candidate = candidate.getParent();
 			onOffsetRange = TbUtil.getAbsoluteOffset(TbNavigationUtil

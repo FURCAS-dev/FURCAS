@@ -37,1996 +37,1996 @@ import com.sap.furcas.metamodel.FURCAS.TCS.util.TCSAdapterFactory;
  */
 public class TCSItemProviderAdapterFactory extends TCSAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
         /**
-     * This keeps track of the root adapter factory that delegates to this adapter factory.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the root adapter factory that delegates to this adapter factory.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected ComposedAdapterFactory parentAdapterFactory;
 
         /**
-     * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
-     * <!-- begin-user-doc -->
+	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected IChangeNotifier changeNotifier = new ChangeNotifier();
 
         /**
-     * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
-     * <!-- begin-user-doc -->
+	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
         /**
-     * This constructs an instance.
-     * <!-- begin-user-doc -->
+	 * This constructs an instance.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public TCSItemProviderAdapterFactory() {
-        supportedTypes.add(IEditingDomainItemProvider.class);
-        supportedTypes.add(IStructuredItemContentProvider.class);
-        supportedTypes.add(ITreeItemContentProvider.class);
-        supportedTypes.add(IItemLabelProvider.class);
-        supportedTypes.add(IItemPropertySource.class);
-    }
+		supportedTypes.add(IEditingDomainItemProvider.class);
+		supportedTypes.add(IStructuredItemContentProvider.class);
+		supportedTypes.add(ITreeItemContentProvider.class);
+		supportedTypes.add(IItemLabelProvider.class);
+		supportedTypes.add(IItemPropertySource.class);
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected ConcreteSyntaxItemProvider concreteSyntaxItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createConcreteSyntaxAdapter() {
-        if (concreteSyntaxItemProvider == null) {
-            concreteSyntaxItemProvider = new ConcreteSyntaxItemProvider(this);
-        }
+		if (concreteSyntaxItemProvider == null) {
+			concreteSyntaxItemProvider = new ConcreteSyntaxItemProvider(this);
+		}
 
-        return concreteSyntaxItemProvider;
-    }
+		return concreteSyntaxItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected FunctionTemplateItemProvider functionTemplateItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createFunctionTemplateAdapter() {
-        if (functionTemplateItemProvider == null) {
-            functionTemplateItemProvider = new FunctionTemplateItemProvider(this);
-        }
+		if (functionTemplateItemProvider == null) {
+			functionTemplateItemProvider = new FunctionTemplateItemProvider(this);
+		}
 
-        return functionTemplateItemProvider;
-    }
+		return functionTemplateItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected ClassTemplateItemProvider classTemplateItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createClassTemplateAdapter() {
-        if (classTemplateItemProvider == null) {
-            classTemplateItemProvider = new ClassTemplateItemProvider(this);
-        }
+		if (classTemplateItemProvider == null) {
+			classTemplateItemProvider = new ClassTemplateItemProvider(this);
+		}
 
-        return classTemplateItemProvider;
-    }
+		return classTemplateItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected PrimitiveTemplateItemProvider primitiveTemplateItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createPrimitiveTemplateAdapter() {
-        if (primitiveTemplateItemProvider == null) {
-            primitiveTemplateItemProvider = new PrimitiveTemplateItemProvider(this);
-        }
+		if (primitiveTemplateItemProvider == null) {
+			primitiveTemplateItemProvider = new PrimitiveTemplateItemProvider(this);
+		}
 
-        return primitiveTemplateItemProvider;
-    }
+		return primitiveTemplateItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected OperatorTemplateItemProvider operatorTemplateItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createOperatorTemplateAdapter() {
-        if (operatorTemplateItemProvider == null) {
-            operatorTemplateItemProvider = new OperatorTemplateItemProvider(this);
-        }
+		if (operatorTemplateItemProvider == null) {
+			operatorTemplateItemProvider = new OperatorTemplateItemProvider(this);
+		}
 
-        return operatorTemplateItemProvider;
-    }
+		return operatorTemplateItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected EnumerationTemplateItemProvider enumerationTemplateItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createEnumerationTemplateAdapter() {
-        if (enumerationTemplateItemProvider == null) {
-            enumerationTemplateItemProvider = new EnumerationTemplateItemProvider(this);
-        }
+		if (enumerationTemplateItemProvider == null) {
+			enumerationTemplateItemProvider = new EnumerationTemplateItemProvider(this);
+		}
 
-        return enumerationTemplateItemProvider;
-    }
+		return enumerationTemplateItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralMapping} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralMapping} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected EnumLiteralMappingItemProvider enumLiteralMappingItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralMapping}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralMapping}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createEnumLiteralMappingAdapter() {
-        if (enumLiteralMappingItemProvider == null) {
-            enumLiteralMappingItemProvider = new EnumLiteralMappingItemProvider(this);
-        }
+		if (enumLiteralMappingItemProvider == null) {
+			enumLiteralMappingItemProvider = new EnumLiteralMappingItemProvider(this);
+		}
 
-        return enumLiteralMappingItemProvider;
-    }
+		return enumLiteralMappingItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.Symbol} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.Symbol} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected SymbolItemProvider symbolItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.Symbol}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.Symbol}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createSymbolAdapter() {
-        if (symbolItemProvider == null) {
-            symbolItemProvider = new SymbolItemProvider(this);
-        }
+		if (symbolItemProvider == null) {
+			symbolItemProvider = new SymbolItemProvider(this);
+		}
 
-        return symbolItemProvider;
-    }
+		return symbolItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.Keyword} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.Keyword} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected KeywordItemProvider keywordItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.Keyword}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.Keyword}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createKeywordAdapter() {
-        if (keywordItemProvider == null) {
-            keywordItemProvider = new KeywordItemProvider(this);
-        }
+		if (keywordItemProvider == null) {
+			keywordItemProvider = new KeywordItemProvider(this);
+		}
 
-        return keywordItemProvider;
-    }
+		return keywordItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.OperatorList} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.OperatorList} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected OperatorListItemProvider operatorListItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.OperatorList}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.OperatorList}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createOperatorListAdapter() {
-        if (operatorListItemProvider == null) {
-            operatorListItemProvider = new OperatorListItemProvider(this);
-        }
+		if (operatorListItemProvider == null) {
+			operatorListItemProvider = new OperatorListItemProvider(this);
+		}
 
-        return operatorListItemProvider;
-    }
+		return operatorListItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.Priority} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.Priority} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected PriorityItemProvider priorityItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.Priority}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.Priority}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createPriorityAdapter() {
-        if (priorityItemProvider == null) {
-            priorityItemProvider = new PriorityItemProvider(this);
-        }
+		if (priorityItemProvider == null) {
+			priorityItemProvider = new PriorityItemProvider(this);
+		}
 
-        return priorityItemProvider;
-    }
+		return priorityItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.Operator} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.Operator} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected OperatorItemProvider operatorItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.Operator}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.Operator}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createOperatorAdapter() {
-        if (operatorItemProvider == null) {
-            operatorItemProvider = new OperatorItemProvider(this);
-        }
+		if (operatorItemProvider == null) {
+			operatorItemProvider = new OperatorItemProvider(this);
+		}
 
-        return operatorItemProvider;
-    }
+		return operatorItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.Sequence} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.Sequence} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected SequenceItemProvider sequenceItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.Sequence}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.Sequence}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createSequenceAdapter() {
-        if (sequenceItemProvider == null) {
-            sequenceItemProvider = new SequenceItemProvider(this);
-        }
+		if (sequenceItemProvider == null) {
+			sequenceItemProvider = new SequenceItemProvider(this);
+		}
 
-        return sequenceItemProvider;
-    }
+		return sequenceItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected LiteralRefItemProvider literalRefItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createLiteralRefAdapter() {
-        if (literalRefItemProvider == null) {
-            literalRefItemProvider = new LiteralRefItemProvider(this);
-        }
+		if (literalRefItemProvider == null) {
+			literalRefItemProvider = new LiteralRefItemProvider(this);
+		}
 
-        return literalRefItemProvider;
-    }
+		return literalRefItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.Property} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.Property} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected PropertyItemProvider propertyItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.Property}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.Property}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createPropertyAdapter() {
-        if (propertyItemProvider == null) {
-            propertyItemProvider = new PropertyItemProvider(this);
-        }
+		if (propertyItemProvider == null) {
+			propertyItemProvider = new PropertyItemProvider(this);
+		}
 
-        return propertyItemProvider;
-    }
+		return propertyItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.CustomSeparator} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.CustomSeparator} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected CustomSeparatorItemProvider customSeparatorItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.CustomSeparator}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.CustomSeparator}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createCustomSeparatorAdapter() {
-        if (customSeparatorItemProvider == null) {
-            customSeparatorItemProvider = new CustomSeparatorItemProvider(this);
-        }
+		if (customSeparatorItemProvider == null) {
+			customSeparatorItemProvider = new CustomSeparatorItemProvider(this);
+		}
 
-        return customSeparatorItemProvider;
-    }
+		return customSeparatorItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.Block} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.Block} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected BlockItemProvider blockItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.Block}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.Block}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createBlockAdapter() {
-        if (blockItemProvider == null) {
-            blockItemProvider = new BlockItemProvider(this);
-        }
+		if (blockItemProvider == null) {
+			blockItemProvider = new BlockItemProvider(this);
+		}
 
-        return blockItemProvider;
-    }
+		return blockItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected ConditionalElementItemProvider conditionalElementItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createConditionalElementAdapter() {
-        if (conditionalElementItemProvider == null) {
-            conditionalElementItemProvider = new ConditionalElementItemProvider(this);
-        }
+		if (conditionalElementItemProvider == null) {
+			conditionalElementItemProvider = new ConditionalElementItemProvider(this);
+		}
 
-        return conditionalElementItemProvider;
-    }
+		return conditionalElementItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.PrimitivePropertyInit} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.PrimitivePropertyInit} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected PrimitivePropertyInitItemProvider primitivePropertyInitItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.PrimitivePropertyInit}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.PrimitivePropertyInit}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createPrimitivePropertyInitAdapter() {
-        if (primitivePropertyInitItemProvider == null) {
-            primitivePropertyInitItemProvider = new PrimitivePropertyInitItemProvider(this);
-        }
+		if (primitivePropertyInitItemProvider == null) {
+			primitivePropertyInitItemProvider = new PrimitivePropertyInitItemProvider(this);
+		}
 
-        return primitivePropertyInitItemProvider;
-    }
+		return primitivePropertyInitItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.Alternative} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.Alternative} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected AlternativeItemProvider alternativeItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.Alternative}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.Alternative}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createAlternativeAdapter() {
-        if (alternativeItemProvider == null) {
-            alternativeItemProvider = new AlternativeItemProvider(this);
-        }
+		if (alternativeItemProvider == null) {
+			alternativeItemProvider = new AlternativeItemProvider(this);
+		}
 
-        return alternativeItemProvider;
-    }
+		return alternativeItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.FunctionCall} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.FunctionCall} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected FunctionCallItemProvider functionCallItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.FunctionCall}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.FunctionCall}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createFunctionCallAdapter() {
-        if (functionCallItemProvider == null) {
-            functionCallItemProvider = new FunctionCallItemProvider(this);
-        }
+		if (functionCallItemProvider == null) {
+			functionCallItemProvider = new FunctionCallItemProvider(this);
+		}
 
-        return functionCallItemProvider;
-    }
+		return functionCallItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected RefersToPArgItemProvider refersToPArgItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createRefersToPArgAdapter() {
-        if (refersToPArgItemProvider == null) {
-            refersToPArgItemProvider = new RefersToPArgItemProvider(this);
-        }
+		if (refersToPArgItemProvider == null) {
+			refersToPArgItemProvider = new RefersToPArgItemProvider(this);
+		}
 
-        return refersToPArgItemProvider;
-    }
+		return refersToPArgItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.LookInPArg} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.LookInPArg} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected LookInPArgItemProvider lookInPArgItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.LookInPArg}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.LookInPArg}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createLookInPArgAdapter() {
-        if (lookInPArgItemProvider == null) {
-            lookInPArgItemProvider = new LookInPArgItemProvider(this);
-        }
+		if (lookInPArgItemProvider == null) {
+			lookInPArgItemProvider = new LookInPArgItemProvider(this);
+		}
 
-        return lookInPArgItemProvider;
-    }
+		return lookInPArgItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.CreateInPArg} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.CreateInPArg} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected CreateInPArgItemProvider createInPArgItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.CreateInPArg}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.CreateInPArg}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createCreateInPArgAdapter() {
-        if (createInPArgItemProvider == null) {
-            createInPArgItemProvider = new CreateInPArgItemProvider(this);
-        }
+		if (createInPArgItemProvider == null) {
+			createInPArgItemProvider = new CreateInPArgItemProvider(this);
+		}
 
-        return createInPArgItemProvider;
-    }
+		return createInPArgItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.RefersToKeyPArg} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.RefersToKeyPArg} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected RefersToKeyPArgItemProvider refersToKeyPArgItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.RefersToKeyPArg}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.RefersToKeyPArg}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createRefersToKeyPArgAdapter() {
-        if (refersToKeyPArgItemProvider == null) {
-            refersToKeyPArgItemProvider = new RefersToKeyPArgItemProvider(this);
-        }
+		if (refersToKeyPArgItemProvider == null) {
+			refersToKeyPArgItemProvider = new RefersToKeyPArgItemProvider(this);
+		}
 
-        return refersToKeyPArgItemProvider;
-    }
+		return refersToKeyPArgItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected SeparatorPArgItemProvider separatorPArgItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createSeparatorPArgAdapter() {
-        if (separatorPArgItemProvider == null) {
-            separatorPArgItemProvider = new SeparatorPArgItemProvider(this);
-        }
+		if (separatorPArgItemProvider == null) {
+			separatorPArgItemProvider = new SeparatorPArgItemProvider(this);
+		}
 
-        return separatorPArgItemProvider;
-    }
+		return separatorPArgItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.AutoCreatePArg} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.AutoCreatePArg} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected AutoCreatePArgItemProvider autoCreatePArgItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.AutoCreatePArg}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.AutoCreatePArg}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createAutoCreatePArgAdapter() {
-        if (autoCreatePArgItemProvider == null) {
-            autoCreatePArgItemProvider = new AutoCreatePArgItemProvider(this);
-        }
+		if (autoCreatePArgItemProvider == null) {
+			autoCreatePArgItemProvider = new AutoCreatePArgItemProvider(this);
+		}
 
-        return autoCreatePArgItemProvider;
-    }
+		return autoCreatePArgItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.ImportContextPArg} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.ImportContextPArg} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected ImportContextPArgItemProvider importContextPArgItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.ImportContextPArg}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.ImportContextPArg}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createImportContextPArgAdapter() {
-        if (importContextPArgItemProvider == null) {
-            importContextPArgItemProvider = new ImportContextPArgItemProvider(this);
-        }
+		if (importContextPArgItemProvider == null) {
+			importContextPArgItemProvider = new ImportContextPArgItemProvider(this);
+		}
 
-        return importContextPArgItemProvider;
-    }
+		return importContextPArgItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected ForcedLowerPArgItemProvider forcedLowerPArgItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createForcedLowerPArgAdapter() {
-        if (forcedLowerPArgItemProvider == null) {
-            forcedLowerPArgItemProvider = new ForcedLowerPArgItemProvider(this);
-        }
+		if (forcedLowerPArgItemProvider == null) {
+			forcedLowerPArgItemProvider = new ForcedLowerPArgItemProvider(this);
+		}
 
-        return forcedLowerPArgItemProvider;
-    }
+		return forcedLowerPArgItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.CreateAsPArg} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.CreateAsPArg} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected CreateAsPArgItemProvider createAsPArgItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.CreateAsPArg}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.CreateAsPArg}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createCreateAsPArgAdapter() {
-        if (createAsPArgItemProvider == null) {
-            createAsPArgItemProvider = new CreateAsPArgItemProvider(this);
-        }
+		if (createAsPArgItemProvider == null) {
+			createAsPArgItemProvider = new CreateAsPArgItemProvider(this);
+		}
 
-        return createAsPArgItemProvider;
-    }
+		return createAsPArgItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.AsPArg} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.AsPArg} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected AsPArgItemProvider asPArgItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.AsPArg}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.AsPArg}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createAsPArgAdapter() {
-        if (asPArgItemProvider == null) {
-            asPArgItemProvider = new AsPArgItemProvider(this);
-        }
+		if (asPArgItemProvider == null) {
+			asPArgItemProvider = new AsPArgItemProvider(this);
+		}
 
-        return asPArgItemProvider;
-    }
+		return asPArgItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.ModePArg} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.ModePArg} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected ModePArgItemProvider modePArgItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.ModePArg}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.ModePArg}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createModePArgAdapter() {
-        if (modePArgItemProvider == null) {
-            modePArgItemProvider = new ModePArgItemProvider(this);
-        }
+		if (modePArgItemProvider == null) {
+			modePArgItemProvider = new ModePArgItemProvider(this);
+		}
 
-        return modePArgItemProvider;
-    }
+		return modePArgItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.NbNLBArg} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.NbNLBArg} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected NbNLBArgItemProvider nbNLBArgItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.NbNLBArg}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.NbNLBArg}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createNbNLBArgAdapter() {
-        if (nbNLBArgItemProvider == null) {
-            nbNLBArgItemProvider = new NbNLBArgItemProvider(this);
-        }
+		if (nbNLBArgItemProvider == null) {
+			nbNLBArgItemProvider = new NbNLBArgItemProvider(this);
+		}
 
-        return nbNLBArgItemProvider;
-    }
+		return nbNLBArgItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.IndentIncrBArg} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.IndentIncrBArg} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected IndentIncrBArgItemProvider indentIncrBArgItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.IndentIncrBArg}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.IndentIncrBArg}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createIndentIncrBArgAdapter() {
-        if (indentIncrBArgItemProvider == null) {
-            indentIncrBArgItemProvider = new IndentIncrBArgItemProvider(this);
-        }
+		if (indentIncrBArgItemProvider == null) {
+			indentIncrBArgItemProvider = new IndentIncrBArgItemProvider(this);
+		}
 
-        return indentIncrBArgItemProvider;
-    }
+		return indentIncrBArgItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.StartNLBArg} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.StartNLBArg} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected StartNLBArgItemProvider startNLBArgItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.StartNLBArg}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.StartNLBArg}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createStartNLBArgAdapter() {
-        if (startNLBArgItemProvider == null) {
-            startNLBArgItemProvider = new StartNLBArgItemProvider(this);
-        }
+		if (startNLBArgItemProvider == null) {
+			startNLBArgItemProvider = new StartNLBArgItemProvider(this);
+		}
 
-        return startNLBArgItemProvider;
-    }
+		return startNLBArgItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.StartNbNLBArg} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.StartNbNLBArg} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected StartNbNLBArgItemProvider startNbNLBArgItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.StartNbNLBArg}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.StartNbNLBArg}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createStartNbNLBArgAdapter() {
-        if (startNbNLBArgItemProvider == null) {
-            startNbNLBArgItemProvider = new StartNbNLBArgItemProvider(this);
-        }
+		if (startNbNLBArgItemProvider == null) {
+			startNbNLBArgItemProvider = new StartNbNLBArgItemProvider(this);
+		}
 
-        return startNbNLBArgItemProvider;
-    }
+		return startNbNLBArgItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.EndNLBArg} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.EndNLBArg} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected EndNLBArgItemProvider endNLBArgItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.EndNLBArg}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.EndNLBArg}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createEndNLBArgAdapter() {
-        if (endNLBArgItemProvider == null) {
-            endNLBArgItemProvider = new EndNLBArgItemProvider(this);
-        }
+		if (endNLBArgItemProvider == null) {
+			endNLBArgItemProvider = new EndNLBArgItemProvider(this);
+		}
 
-        return endNLBArgItemProvider;
-    }
+		return endNLBArgItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.AndExp} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.AndExp} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected AndExpItemProvider andExpItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.AndExp}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.AndExp}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createAndExpAdapter() {
-        if (andExpItemProvider == null) {
-            andExpItemProvider = new AndExpItemProvider(this);
-        }
+		if (andExpItemProvider == null) {
+			andExpItemProvider = new AndExpItemProvider(this);
+		}
 
-        return andExpItemProvider;
-    }
+		return andExpItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.EqualsExp} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.EqualsExp} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected EqualsExpItemProvider equalsExpItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.EqualsExp}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.EqualsExp}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createEqualsExpAdapter() {
-        if (equalsExpItemProvider == null) {
-            equalsExpItemProvider = new EqualsExpItemProvider(this);
-        }
+		if (equalsExpItemProvider == null) {
+			equalsExpItemProvider = new EqualsExpItemProvider(this);
+		}
 
-        return equalsExpItemProvider;
-    }
+		return equalsExpItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.BooleanPropertyExp} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.BooleanPropertyExp} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected BooleanPropertyExpItemProvider booleanPropertyExpItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.BooleanPropertyExp}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.BooleanPropertyExp}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createBooleanPropertyExpAdapter() {
-        if (booleanPropertyExpItemProvider == null) {
-            booleanPropertyExpItemProvider = new BooleanPropertyExpItemProvider(this);
-        }
+		if (booleanPropertyExpItemProvider == null) {
+			booleanPropertyExpItemProvider = new BooleanPropertyExpItemProvider(this);
+		}
 
-        return booleanPropertyExpItemProvider;
-    }
+		return booleanPropertyExpItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.IsDefinedExp} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.IsDefinedExp} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected IsDefinedExpItemProvider isDefinedExpItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.IsDefinedExp}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.IsDefinedExp}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createIsDefinedExpAdapter() {
-        if (isDefinedExpItemProvider == null) {
-            isDefinedExpItemProvider = new IsDefinedExpItemProvider(this);
-        }
+		if (isDefinedExpItemProvider == null) {
+			isDefinedExpItemProvider = new IsDefinedExpItemProvider(this);
+		}
 
-        return isDefinedExpItemProvider;
-    }
+		return isDefinedExpItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.OneExp} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.OneExp} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected OneExpItemProvider oneExpItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.OneExp}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.OneExp}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createOneExpAdapter() {
-        if (oneExpItemProvider == null) {
-            oneExpItemProvider = new OneExpItemProvider(this);
-        }
+		if (oneExpItemProvider == null) {
+			oneExpItemProvider = new OneExpItemProvider(this);
+		}
 
-        return oneExpItemProvider;
-    }
+		return oneExpItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.PropertyVal} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.PropertyVal} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected PropertyValItemProvider propertyValItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.PropertyVal}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.PropertyVal}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createPropertyValAdapter() {
-        if (propertyValItemProvider == null) {
-            propertyValItemProvider = new PropertyValItemProvider(this);
-        }
+		if (propertyValItemProvider == null) {
+			propertyValItemProvider = new PropertyValItemProvider(this);
+		}
 
-        return propertyValItemProvider;
-    }
+		return propertyValItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.Token} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.Token} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected TokenItemProvider tokenItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.Token}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.Token}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createTokenAdapter() {
-        if (tokenItemProvider == null) {
-            tokenItemProvider = new TokenItemProvider(this);
-        }
+		if (tokenItemProvider == null) {
+			tokenItemProvider = new TokenItemProvider(this);
+		}
 
-        return tokenItemProvider;
-    }
+		return tokenItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.OrPattern} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.OrPattern} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected OrPatternItemProvider orPatternItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.OrPattern}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.OrPattern}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createOrPatternAdapter() {
-        if (orPatternItemProvider == null) {
-            orPatternItemProvider = new OrPatternItemProvider(this);
-        }
+		if (orPatternItemProvider == null) {
+			orPatternItemProvider = new OrPatternItemProvider(this);
+		}
 
-        return orPatternItemProvider;
-    }
+		return orPatternItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.RulePattern} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.RulePattern} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected RulePatternItemProvider rulePatternItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.RulePattern}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.RulePattern}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createRulePatternAdapter() {
-        if (rulePatternItemProvider == null) {
-            rulePatternItemProvider = new RulePatternItemProvider(this);
-        }
+		if (rulePatternItemProvider == null) {
+			rulePatternItemProvider = new RulePatternItemProvider(this);
+		}
 
-        return rulePatternItemProvider;
-    }
+		return rulePatternItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.WordRule} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.WordRule} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected WordRuleItemProvider wordRuleItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.WordRule}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.WordRule}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createWordRuleAdapter() {
-        if (wordRuleItemProvider == null) {
-            wordRuleItemProvider = new WordRuleItemProvider(this);
-        }
+		if (wordRuleItemProvider == null) {
+			wordRuleItemProvider = new WordRuleItemProvider(this);
+		}
 
-        return wordRuleItemProvider;
-    }
+		return wordRuleItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.Word} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.Word} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected WordItemProvider wordItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.Word}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.Word}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createWordAdapter() {
-        if (wordItemProvider == null) {
-            wordItemProvider = new WordItemProvider(this);
-        }
+		if (wordItemProvider == null) {
+			wordItemProvider = new WordItemProvider(this);
+		}
 
-        return wordItemProvider;
-    }
+		return wordItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.EndOfLineRule} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.EndOfLineRule} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected EndOfLineRuleItemProvider endOfLineRuleItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.EndOfLineRule}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.EndOfLineRule}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createEndOfLineRuleAdapter() {
-        if (endOfLineRuleItemProvider == null) {
-            endOfLineRuleItemProvider = new EndOfLineRuleItemProvider(this);
-        }
+		if (endOfLineRuleItemProvider == null) {
+			endOfLineRuleItemProvider = new EndOfLineRuleItemProvider(this);
+		}
 
-        return endOfLineRuleItemProvider;
-    }
+		return endOfLineRuleItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.MultiLineRule} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.MultiLineRule} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected MultiLineRuleItemProvider multiLineRuleItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.MultiLineRule}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.MultiLineRule}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createMultiLineRuleAdapter() {
-        if (multiLineRuleItemProvider == null) {
-            multiLineRuleItemProvider = new MultiLineRuleItemProvider(this);
-        }
+		if (multiLineRuleItemProvider == null) {
+			multiLineRuleItemProvider = new MultiLineRuleItemProvider(this);
+		}
 
-        return multiLineRuleItemProvider;
-    }
+		return multiLineRuleItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.SimpleMapping} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.SimpleMapping} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected SimpleMappingItemProvider simpleMappingItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.SimpleMapping}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.SimpleMapping}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createSimpleMappingAdapter() {
-        if (simpleMappingItemProvider == null) {
-            simpleMappingItemProvider = new SimpleMappingItemProvider(this);
-        }
+		if (simpleMappingItemProvider == null) {
+			simpleMappingItemProvider = new SimpleMappingItemProvider(this);
+		}
 
-        return simpleMappingItemProvider;
-    }
+		return simpleMappingItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.WildcardMapping} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.WildcardMapping} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected WildcardMappingItemProvider wildcardMappingItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.WildcardMapping}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.WildcardMapping}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createWildcardMappingAdapter() {
-        if (wildcardMappingItemProvider == null) {
-            wildcardMappingItemProvider = new WildcardMappingItemProvider(this);
-        }
+		if (wildcardMappingItemProvider == null) {
+			wildcardMappingItemProvider = new WildcardMappingItemProvider(this);
+		}
 
-        return wildcardMappingItemProvider;
-    }
+		return wildcardMappingItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.OctalMapping} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.OctalMapping} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected OctalMappingItemProvider octalMappingItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.OctalMapping}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.OctalMapping}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createOctalMappingAdapter() {
-        if (octalMappingItemProvider == null) {
-            octalMappingItemProvider = new OctalMappingItemProvider(this);
-        }
+		if (octalMappingItemProvider == null) {
+			octalMappingItemProvider = new OctalMappingItemProvider(this);
+		}
 
-        return octalMappingItemProvider;
-    }
+		return octalMappingItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.HexadecimalMapping} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.HexadecimalMapping} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected HexadecimalMappingItemProvider hexadecimalMappingItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.HexadecimalMapping}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.HexadecimalMapping}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createHexadecimalMappingAdapter() {
-        if (hexadecimalMappingItemProvider == null) {
-            hexadecimalMappingItemProvider = new HexadecimalMappingItemProvider(this);
-        }
+		if (hexadecimalMappingItemProvider == null) {
+			hexadecimalMappingItemProvider = new HexadecimalMappingItemProvider(this);
+		}
 
-        return hexadecimalMappingItemProvider;
-    }
+		return hexadecimalMappingItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.StringPattern} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.StringPattern} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected StringPatternItemProvider stringPatternItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.StringPattern}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.StringPattern}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createStringPatternAdapter() {
-        if (stringPatternItemProvider == null) {
-            stringPatternItemProvider = new StringPatternItemProvider(this);
-        }
+		if (stringPatternItemProvider == null) {
+			stringPatternItemProvider = new StringPatternItemProvider(this);
+		}
 
-        return stringPatternItemProvider;
-    }
+		return stringPatternItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.ClassPattern} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.ClassPattern} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected ClassPatternItemProvider classPatternItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.ClassPattern}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.ClassPattern}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createClassPatternAdapter() {
-        if (classPatternItemProvider == null) {
-            classPatternItemProvider = new ClassPatternItemProvider(this);
-        }
+		if (classPatternItemProvider == null) {
+			classPatternItemProvider = new ClassPatternItemProvider(this);
+		}
 
-        return classPatternItemProvider;
-    }
+		return classPatternItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected QualifiedNamedElementItemProvider qualifiedNamedElementItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createQualifiedNamedElementAdapter() {
-        if (qualifiedNamedElementItemProvider == null) {
-            qualifiedNamedElementItemProvider = new QualifiedNamedElementItemProvider(this);
-        }
+		if (qualifiedNamedElementItemProvider == null) {
+			qualifiedNamedElementItemProvider = new QualifiedNamedElementItemProvider(this);
+		}
 
-        return qualifiedNamedElementItemProvider;
-    }
+		return qualifiedNamedElementItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected ForcedUpperPArgItemProvider forcedUpperPArgItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createForcedUpperPArgAdapter() {
-        if (forcedUpperPArgItemProvider == null) {
-            forcedUpperPArgItemProvider = new ForcedUpperPArgItemProvider(this);
-        }
+		if (forcedUpperPArgItemProvider == null) {
+			forcedUpperPArgItemProvider = new ForcedUpperPArgItemProvider(this);
+		}
 
-        return forcedUpperPArgItemProvider;
-    }
+		return forcedUpperPArgItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected InjectorActionsBlockItemProvider injectorActionsBlockItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createInjectorActionsBlockAdapter() {
-        if (injectorActionsBlockItemProvider == null) {
-            injectorActionsBlockItemProvider = new InjectorActionsBlockItemProvider(this);
-        }
+		if (injectorActionsBlockItemProvider == null) {
+			injectorActionsBlockItemProvider = new InjectorActionsBlockItemProvider(this);
+		}
 
-        return injectorActionsBlockItemProvider;
-    }
+		return injectorActionsBlockItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected QueryPArgItemProvider queryPArgItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createQueryPArgAdapter() {
-        if (queryPArgItemProvider == null) {
-            queryPArgItemProvider = new QueryPArgItemProvider(this);
-        }
+		if (queryPArgItemProvider == null) {
+			queryPArgItemProvider = new QueryPArgItemProvider(this);
+		}
 
-        return queryPArgItemProvider;
-    }
+		return queryPArgItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected FilterPArgItemProvider filterPArgItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createFilterPArgAdapter() {
-        if (filterPArgItemProvider == null) {
-            filterPArgItemProvider = new FilterPArgItemProvider(this);
-        }
+		if (filterPArgItemProvider == null) {
+			filterPArgItemProvider = new FilterPArgItemProvider(this);
+		}
 
-        return filterPArgItemProvider;
-    }
+		return filterPArgItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected PropertyReferenceItemProvider propertyReferenceItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createPropertyReferenceAdapter() {
-        if (propertyReferenceItemProvider == null) {
-            propertyReferenceItemProvider = new PropertyReferenceItemProvider(this);
-        }
+		if (propertyReferenceItemProvider == null) {
+			propertyReferenceItemProvider = new PropertyReferenceItemProvider(this);
+		}
 
-        return propertyReferenceItemProvider;
-    }
+		return propertyReferenceItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected ContextTemplateItemProvider contextTemplateItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createContextTemplateAdapter() {
-        if (contextTemplateItemProvider == null) {
-            contextTemplateItemProvider = new ContextTemplateItemProvider(this);
-        }
+		if (contextTemplateItemProvider == null) {
+			contextTemplateItemProvider = new ContextTemplateItemProvider(this);
+		}
 
-        return contextTemplateItemProvider;
-    }
+		return contextTemplateItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.ContextTags} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.ContextTags} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected ContextTagsItemProvider contextTagsItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.ContextTags}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.ContextTags}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createContextTagsAdapter() {
-        if (contextTagsItemProvider == null) {
-            contextTagsItemProvider = new ContextTagsItemProvider(this);
-        }
+		if (contextTagsItemProvider == null) {
+			contextTagsItemProvider = new ContextTagsItemProvider(this);
+		}
 
-        return contextTagsItemProvider;
-    }
+		return contextTagsItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.OclPropertyInit} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.OclPropertyInit} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected OclPropertyInitItemProvider oclPropertyInitItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.OclPropertyInit}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.OclPropertyInit}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createOclPropertyInitAdapter() {
-        if (oclPropertyInitItemProvider == null) {
-            oclPropertyInitItemProvider = new OclPropertyInitItemProvider(this);
-        }
+		if (oclPropertyInitItemProvider == null) {
+			oclPropertyInitItemProvider = new OclPropertyInitItemProvider(this);
+		}
 
-        return oclPropertyInitItemProvider;
-    }
+		return oclPropertyInitItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.ScopeArg} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.ScopeArg} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected ScopeArgItemProvider scopeArgItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.ScopeArg}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.ScopeArg}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createScopeArgAdapter() {
-        if (scopeArgItemProvider == null) {
-            scopeArgItemProvider = new ScopeArgItemProvider(this);
-        }
+		if (scopeArgItemProvider == null) {
+			scopeArgItemProvider = new ScopeArgItemProvider(this);
+		}
 
-        return scopeArgItemProvider;
-    }
+		return scopeArgItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected ForeachPredicatePropertyInitItemProvider foreachPredicatePropertyInitItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createForeachPredicatePropertyInitAdapter() {
-        if (foreachPredicatePropertyInitItemProvider == null) {
-            foreachPredicatePropertyInitItemProvider = new ForeachPredicatePropertyInitItemProvider(this);
-        }
+		if (foreachPredicatePropertyInitItemProvider == null) {
+			foreachPredicatePropertyInitItemProvider = new ForeachPredicatePropertyInitItemProvider(this);
+		}
 
-        return foreachPredicatePropertyInitItemProvider;
-    }
+		return foreachPredicatePropertyInitItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected PredicateSemanticItemProvider predicateSemanticItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createPredicateSemanticAdapter() {
-        if (predicateSemanticItemProvider == null) {
-            predicateSemanticItemProvider = new PredicateSemanticItemProvider(this);
-        }
+		if (predicateSemanticItemProvider == null) {
+			predicateSemanticItemProvider = new PredicateSemanticItemProvider(this);
+		}
 
-        return predicateSemanticItemProvider;
-    }
+		return predicateSemanticItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.SequenceInAlternative} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.SequenceInAlternative} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected SequenceInAlternativeItemProvider sequenceInAlternativeItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.SequenceInAlternative}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.SequenceInAlternative}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createSequenceInAlternativeAdapter() {
-        if (sequenceInAlternativeItemProvider == null) {
-            sequenceInAlternativeItemProvider = new SequenceInAlternativeItemProvider(this);
-        }
+		if (sequenceInAlternativeItemProvider == null) {
+			sequenceInAlternativeItemProvider = new SequenceInAlternativeItemProvider(this);
+		}
 
-        return sequenceInAlternativeItemProvider;
-    }
+		return sequenceInAlternativeItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.PartialPArg} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.PartialPArg} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected PartialPArgItemProvider partialPArgItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.PartialPArg}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.PartialPArg}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createPartialPArgAdapter() {
-        if (partialPArgItemProvider == null) {
-            partialPArgItemProvider = new PartialPArgItemProvider(this);
-        }
+		if (partialPArgItemProvider == null) {
+			partialPArgItemProvider = new PartialPArgItemProvider(this);
+		}
 
-        return partialPArgItemProvider;
-    }
+		return partialPArgItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.DisambiguatePArg} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.DisambiguatePArg} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected DisambiguatePArgItemProvider disambiguatePArgItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.DisambiguatePArg}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.DisambiguatePArg}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createDisambiguatePArgAdapter() {
-        if (disambiguatePArgItemProvider == null) {
-            disambiguatePArgItemProvider = new DisambiguatePArgItemProvider(this);
-        }
+		if (disambiguatePArgItemProvider == null) {
+			disambiguatePArgItemProvider = new DisambiguatePArgItemProvider(this);
+		}
 
-        return disambiguatePArgItemProvider;
-    }
+		return disambiguatePArgItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.InstanceOfExp} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.InstanceOfExp} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected InstanceOfExpItemProvider instanceOfExpItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.InstanceOfExp}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.InstanceOfExp}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createInstanceOfExpAdapter() {
-        if (instanceOfExpItemProvider == null) {
-            instanceOfExpItemProvider = new InstanceOfExpItemProvider(this);
-        }
+		if (instanceOfExpItemProvider == null) {
+			instanceOfExpItemProvider = new InstanceOfExpItemProvider(this);
+		}
 
-        return instanceOfExpItemProvider;
-    }
+		return instanceOfExpItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralVal} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralVal} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected EnumLiteralValItemProvider enumLiteralValItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralVal}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralVal}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createEnumLiteralValAdapter() {
-        if (enumLiteralValItemProvider == null) {
-            enumLiteralValItemProvider = new EnumLiteralValItemProvider(this);
-        }
+		if (enumLiteralValItemProvider == null) {
+			enumLiteralValItemProvider = new EnumLiteralValItemProvider(this);
+		}
 
-        return enumLiteralValItemProvider;
-    }
+		return enumLiteralValItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.StringVal} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.StringVal} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected StringValItemProvider stringValItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.StringVal}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.StringVal}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createStringValAdapter() {
-        if (stringValItemProvider == null) {
-            stringValItemProvider = new StringValItemProvider(this);
-        }
+		if (stringValItemProvider == null) {
+			stringValItemProvider = new StringValItemProvider(this);
+		}
 
-        return stringValItemProvider;
-    }
+		return stringValItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.IntegerVal} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.IntegerVal} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected IntegerValItemProvider integerValItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.IntegerVal}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.IntegerVal}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createIntegerValAdapter() {
-        if (integerValItemProvider == null) {
-            integerValItemProvider = new IntegerValItemProvider(this);
-        }
+		if (integerValItemProvider == null) {
+			integerValItemProvider = new IntegerValItemProvider(this);
+		}
 
-        return integerValItemProvider;
-    }
+		return integerValItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.NegativeIntegerVal} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.NegativeIntegerVal} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected NegativeIntegerValItemProvider negativeIntegerValItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.NegativeIntegerVal}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.NegativeIntegerVal}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createNegativeIntegerValAdapter() {
-        if (negativeIntegerValItemProvider == null) {
-            negativeIntegerValItemProvider = new NegativeIntegerValItemProvider(this);
-        }
+		if (negativeIntegerValItemProvider == null) {
+			negativeIntegerValItemProvider = new NegativeIntegerValItemProvider(this);
+		}
 
-        return negativeIntegerValItemProvider;
-    }
+		return negativeIntegerValItemProvider;
+	}
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit} instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected LookupPropertyInitItemProvider lookupPropertyInitItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter createLookupPropertyInitAdapter() {
-        if (lookupPropertyInitItemProvider == null) {
-            lookupPropertyInitItemProvider = new LookupPropertyInitItemProvider(this);
-        }
+		if (lookupPropertyInitItemProvider == null) {
+			lookupPropertyInitItemProvider = new LookupPropertyInitItemProvider(this);
+		}
 
-        return lookupPropertyInitItemProvider;
-    }
+		return lookupPropertyInitItemProvider;
+	}
 
         /**
-     * This returns the root adapter factory that contains this factory.
-     * <!-- begin-user-doc -->
+	 * This returns the root adapter factory that contains this factory.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public ComposeableAdapterFactory getRootAdapterFactory() {
-        return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
-    }
+		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+	}
 
         /**
-     * This sets the composed adapter factory that contains this factory.
-     * <!-- begin-user-doc -->
+	 * This sets the composed adapter factory that contains this factory.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
-        this.parentAdapterFactory = parentAdapterFactory;
-    }
+		this.parentAdapterFactory = parentAdapterFactory;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public boolean isFactoryForType(Object type) {
-        return supportedTypes.contains(type) || super.isFactoryForType(type);
-    }
+		return supportedTypes.contains(type) || super.isFactoryForType(type);
+	}
 
         /**
-     * This implementation substitutes the factory itself as the key for the adapter.
-     * <!-- begin-user-doc -->
+	 * This implementation substitutes the factory itself as the key for the adapter.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Adapter adapt(Notifier notifier, Object type) {
-        return super.adapt(notifier, this);
-    }
+		return super.adapt(notifier, this);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Object adapt(Object object, Object type) {
-        if (isFactoryForType(type)) {
-            Object adapter = super.adapt(object, type);
-            if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
-                return adapter;
-            }
-        }
+		if (isFactoryForType(type)) {
+			Object adapter = super.adapt(object, type);
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+				return adapter;
+			}
+		}
 
-        return null;
-    }
+		return null;
+	}
 
         /**
-     * This adds a listener.
-     * <!-- begin-user-doc -->
+	 * This adds a listener.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public void addListener(INotifyChangedListener notifyChangedListener) {
-        changeNotifier.addListener(notifyChangedListener);
-    }
+		changeNotifier.addListener(notifyChangedListener);
+	}
 
         /**
-     * This removes a listener.
-     * <!-- begin-user-doc -->
+	 * This removes a listener.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public void removeListener(INotifyChangedListener notifyChangedListener) {
-        changeNotifier.removeListener(notifyChangedListener);
-    }
+		changeNotifier.removeListener(notifyChangedListener);
+	}
 
         /**
-     * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
-     * <!-- begin-user-doc -->
+	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public void fireNotifyChanged(Notification notification) {
-        changeNotifier.fireNotifyChanged(notification);
+		changeNotifier.fireNotifyChanged(notification);
 
-        if (parentAdapterFactory != null) {
-            parentAdapterFactory.fireNotifyChanged(notification);
-        }
-    }
+		if (parentAdapterFactory != null) {
+			parentAdapterFactory.fireNotifyChanged(notification);
+		}
+	}
 
         /**
-     * This disposes all of the item providers created by this factory. 
-     * <!-- begin-user-doc -->
+	 * This disposes all of the item providers created by this factory. 
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public void dispose() {
-        if (concreteSyntaxItemProvider != null) concreteSyntaxItemProvider.dispose();
-        if (functionTemplateItemProvider != null) functionTemplateItemProvider.dispose();
-        if (classTemplateItemProvider != null) classTemplateItemProvider.dispose();
-        if (primitiveTemplateItemProvider != null) primitiveTemplateItemProvider.dispose();
-        if (operatorTemplateItemProvider != null) operatorTemplateItemProvider.dispose();
-        if (enumerationTemplateItemProvider != null) enumerationTemplateItemProvider.dispose();
-        if (enumLiteralMappingItemProvider != null) enumLiteralMappingItemProvider.dispose();
-        if (symbolItemProvider != null) symbolItemProvider.dispose();
-        if (keywordItemProvider != null) keywordItemProvider.dispose();
-        if (operatorListItemProvider != null) operatorListItemProvider.dispose();
-        if (priorityItemProvider != null) priorityItemProvider.dispose();
-        if (operatorItemProvider != null) operatorItemProvider.dispose();
-        if (sequenceItemProvider != null) sequenceItemProvider.dispose();
-        if (literalRefItemProvider != null) literalRefItemProvider.dispose();
-        if (propertyItemProvider != null) propertyItemProvider.dispose();
-        if (customSeparatorItemProvider != null) customSeparatorItemProvider.dispose();
-        if (blockItemProvider != null) blockItemProvider.dispose();
-        if (conditionalElementItemProvider != null) conditionalElementItemProvider.dispose();
-        if (primitivePropertyInitItemProvider != null) primitivePropertyInitItemProvider.dispose();
-        if (alternativeItemProvider != null) alternativeItemProvider.dispose();
-        if (functionCallItemProvider != null) functionCallItemProvider.dispose();
-        if (refersToPArgItemProvider != null) refersToPArgItemProvider.dispose();
-        if (lookInPArgItemProvider != null) lookInPArgItemProvider.dispose();
-        if (createInPArgItemProvider != null) createInPArgItemProvider.dispose();
-        if (refersToKeyPArgItemProvider != null) refersToKeyPArgItemProvider.dispose();
-        if (separatorPArgItemProvider != null) separatorPArgItemProvider.dispose();
-        if (autoCreatePArgItemProvider != null) autoCreatePArgItemProvider.dispose();
-        if (importContextPArgItemProvider != null) importContextPArgItemProvider.dispose();
-        if (forcedLowerPArgItemProvider != null) forcedLowerPArgItemProvider.dispose();
-        if (createAsPArgItemProvider != null) createAsPArgItemProvider.dispose();
-        if (asPArgItemProvider != null) asPArgItemProvider.dispose();
-        if (modePArgItemProvider != null) modePArgItemProvider.dispose();
-        if (nbNLBArgItemProvider != null) nbNLBArgItemProvider.dispose();
-        if (indentIncrBArgItemProvider != null) indentIncrBArgItemProvider.dispose();
-        if (startNLBArgItemProvider != null) startNLBArgItemProvider.dispose();
-        if (startNbNLBArgItemProvider != null) startNbNLBArgItemProvider.dispose();
-        if (endNLBArgItemProvider != null) endNLBArgItemProvider.dispose();
-        if (andExpItemProvider != null) andExpItemProvider.dispose();
-        if (equalsExpItemProvider != null) equalsExpItemProvider.dispose();
-        if (booleanPropertyExpItemProvider != null) booleanPropertyExpItemProvider.dispose();
-        if (isDefinedExpItemProvider != null) isDefinedExpItemProvider.dispose();
-        if (oneExpItemProvider != null) oneExpItemProvider.dispose();
-        if (propertyValItemProvider != null) propertyValItemProvider.dispose();
-        if (tokenItemProvider != null) tokenItemProvider.dispose();
-        if (orPatternItemProvider != null) orPatternItemProvider.dispose();
-        if (rulePatternItemProvider != null) rulePatternItemProvider.dispose();
-        if (wordRuleItemProvider != null) wordRuleItemProvider.dispose();
-        if (wordItemProvider != null) wordItemProvider.dispose();
-        if (endOfLineRuleItemProvider != null) endOfLineRuleItemProvider.dispose();
-        if (multiLineRuleItemProvider != null) multiLineRuleItemProvider.dispose();
-        if (simpleMappingItemProvider != null) simpleMappingItemProvider.dispose();
-        if (wildcardMappingItemProvider != null) wildcardMappingItemProvider.dispose();
-        if (octalMappingItemProvider != null) octalMappingItemProvider.dispose();
-        if (hexadecimalMappingItemProvider != null) hexadecimalMappingItemProvider.dispose();
-        if (stringPatternItemProvider != null) stringPatternItemProvider.dispose();
-        if (classPatternItemProvider != null) classPatternItemProvider.dispose();
-        if (qualifiedNamedElementItemProvider != null) qualifiedNamedElementItemProvider.dispose();
-        if (forcedUpperPArgItemProvider != null) forcedUpperPArgItemProvider.dispose();
-        if (injectorActionsBlockItemProvider != null) injectorActionsBlockItemProvider.dispose();
-        if (queryPArgItemProvider != null) queryPArgItemProvider.dispose();
-        if (filterPArgItemProvider != null) filterPArgItemProvider.dispose();
-        if (propertyReferenceItemProvider != null) propertyReferenceItemProvider.dispose();
-        if (contextTemplateItemProvider != null) contextTemplateItemProvider.dispose();
-        if (contextTagsItemProvider != null) contextTagsItemProvider.dispose();
-        if (oclPropertyInitItemProvider != null) oclPropertyInitItemProvider.dispose();
-        if (scopeArgItemProvider != null) scopeArgItemProvider.dispose();
-        if (foreachPredicatePropertyInitItemProvider != null) foreachPredicatePropertyInitItemProvider.dispose();
-        if (predicateSemanticItemProvider != null) predicateSemanticItemProvider.dispose();
-        if (sequenceInAlternativeItemProvider != null) sequenceInAlternativeItemProvider.dispose();
-        if (partialPArgItemProvider != null) partialPArgItemProvider.dispose();
-        if (disambiguatePArgItemProvider != null) disambiguatePArgItemProvider.dispose();
-        if (instanceOfExpItemProvider != null) instanceOfExpItemProvider.dispose();
-        if (enumLiteralValItemProvider != null) enumLiteralValItemProvider.dispose();
-        if (stringValItemProvider != null) stringValItemProvider.dispose();
-        if (integerValItemProvider != null) integerValItemProvider.dispose();
-        if (negativeIntegerValItemProvider != null) negativeIntegerValItemProvider.dispose();
-        if (lookupPropertyInitItemProvider != null) lookupPropertyInitItemProvider.dispose();
-    }
+		if (concreteSyntaxItemProvider != null) concreteSyntaxItemProvider.dispose();
+		if (functionTemplateItemProvider != null) functionTemplateItemProvider.dispose();
+		if (classTemplateItemProvider != null) classTemplateItemProvider.dispose();
+		if (primitiveTemplateItemProvider != null) primitiveTemplateItemProvider.dispose();
+		if (operatorTemplateItemProvider != null) operatorTemplateItemProvider.dispose();
+		if (enumerationTemplateItemProvider != null) enumerationTemplateItemProvider.dispose();
+		if (enumLiteralMappingItemProvider != null) enumLiteralMappingItemProvider.dispose();
+		if (symbolItemProvider != null) symbolItemProvider.dispose();
+		if (keywordItemProvider != null) keywordItemProvider.dispose();
+		if (operatorListItemProvider != null) operatorListItemProvider.dispose();
+		if (priorityItemProvider != null) priorityItemProvider.dispose();
+		if (operatorItemProvider != null) operatorItemProvider.dispose();
+		if (sequenceItemProvider != null) sequenceItemProvider.dispose();
+		if (literalRefItemProvider != null) literalRefItemProvider.dispose();
+		if (propertyItemProvider != null) propertyItemProvider.dispose();
+		if (customSeparatorItemProvider != null) customSeparatorItemProvider.dispose();
+		if (blockItemProvider != null) blockItemProvider.dispose();
+		if (conditionalElementItemProvider != null) conditionalElementItemProvider.dispose();
+		if (primitivePropertyInitItemProvider != null) primitivePropertyInitItemProvider.dispose();
+		if (alternativeItemProvider != null) alternativeItemProvider.dispose();
+		if (functionCallItemProvider != null) functionCallItemProvider.dispose();
+		if (refersToPArgItemProvider != null) refersToPArgItemProvider.dispose();
+		if (lookInPArgItemProvider != null) lookInPArgItemProvider.dispose();
+		if (createInPArgItemProvider != null) createInPArgItemProvider.dispose();
+		if (refersToKeyPArgItemProvider != null) refersToKeyPArgItemProvider.dispose();
+		if (separatorPArgItemProvider != null) separatorPArgItemProvider.dispose();
+		if (autoCreatePArgItemProvider != null) autoCreatePArgItemProvider.dispose();
+		if (importContextPArgItemProvider != null) importContextPArgItemProvider.dispose();
+		if (forcedLowerPArgItemProvider != null) forcedLowerPArgItemProvider.dispose();
+		if (createAsPArgItemProvider != null) createAsPArgItemProvider.dispose();
+		if (asPArgItemProvider != null) asPArgItemProvider.dispose();
+		if (modePArgItemProvider != null) modePArgItemProvider.dispose();
+		if (nbNLBArgItemProvider != null) nbNLBArgItemProvider.dispose();
+		if (indentIncrBArgItemProvider != null) indentIncrBArgItemProvider.dispose();
+		if (startNLBArgItemProvider != null) startNLBArgItemProvider.dispose();
+		if (startNbNLBArgItemProvider != null) startNbNLBArgItemProvider.dispose();
+		if (endNLBArgItemProvider != null) endNLBArgItemProvider.dispose();
+		if (andExpItemProvider != null) andExpItemProvider.dispose();
+		if (equalsExpItemProvider != null) equalsExpItemProvider.dispose();
+		if (booleanPropertyExpItemProvider != null) booleanPropertyExpItemProvider.dispose();
+		if (isDefinedExpItemProvider != null) isDefinedExpItemProvider.dispose();
+		if (oneExpItemProvider != null) oneExpItemProvider.dispose();
+		if (propertyValItemProvider != null) propertyValItemProvider.dispose();
+		if (tokenItemProvider != null) tokenItemProvider.dispose();
+		if (orPatternItemProvider != null) orPatternItemProvider.dispose();
+		if (rulePatternItemProvider != null) rulePatternItemProvider.dispose();
+		if (wordRuleItemProvider != null) wordRuleItemProvider.dispose();
+		if (wordItemProvider != null) wordItemProvider.dispose();
+		if (endOfLineRuleItemProvider != null) endOfLineRuleItemProvider.dispose();
+		if (multiLineRuleItemProvider != null) multiLineRuleItemProvider.dispose();
+		if (simpleMappingItemProvider != null) simpleMappingItemProvider.dispose();
+		if (wildcardMappingItemProvider != null) wildcardMappingItemProvider.dispose();
+		if (octalMappingItemProvider != null) octalMappingItemProvider.dispose();
+		if (hexadecimalMappingItemProvider != null) hexadecimalMappingItemProvider.dispose();
+		if (stringPatternItemProvider != null) stringPatternItemProvider.dispose();
+		if (classPatternItemProvider != null) classPatternItemProvider.dispose();
+		if (qualifiedNamedElementItemProvider != null) qualifiedNamedElementItemProvider.dispose();
+		if (forcedUpperPArgItemProvider != null) forcedUpperPArgItemProvider.dispose();
+		if (injectorActionsBlockItemProvider != null) injectorActionsBlockItemProvider.dispose();
+		if (queryPArgItemProvider != null) queryPArgItemProvider.dispose();
+		if (filterPArgItemProvider != null) filterPArgItemProvider.dispose();
+		if (propertyReferenceItemProvider != null) propertyReferenceItemProvider.dispose();
+		if (contextTemplateItemProvider != null) contextTemplateItemProvider.dispose();
+		if (contextTagsItemProvider != null) contextTagsItemProvider.dispose();
+		if (oclPropertyInitItemProvider != null) oclPropertyInitItemProvider.dispose();
+		if (scopeArgItemProvider != null) scopeArgItemProvider.dispose();
+		if (foreachPredicatePropertyInitItemProvider != null) foreachPredicatePropertyInitItemProvider.dispose();
+		if (predicateSemanticItemProvider != null) predicateSemanticItemProvider.dispose();
+		if (sequenceInAlternativeItemProvider != null) sequenceInAlternativeItemProvider.dispose();
+		if (partialPArgItemProvider != null) partialPArgItemProvider.dispose();
+		if (disambiguatePArgItemProvider != null) disambiguatePArgItemProvider.dispose();
+		if (instanceOfExpItemProvider != null) instanceOfExpItemProvider.dispose();
+		if (enumLiteralValItemProvider != null) enumLiteralValItemProvider.dispose();
+		if (stringValItemProvider != null) stringValItemProvider.dispose();
+		if (integerValItemProvider != null) integerValItemProvider.dispose();
+		if (negativeIntegerValItemProvider != null) negativeIntegerValItemProvider.dispose();
+		if (lookupPropertyInitItemProvider != null) lookupPropertyInitItemProvider.dispose();
+	}
 
 }

@@ -42,145 +42,145 @@ public class TokenItemProvider
                 IItemLabelProvider,
                 IItemPropertySource {
         /**
-     * This constructs an instance from a factory and a notifier.
-     * <!-- begin-user-doc -->
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public TokenItemProvider(AdapterFactory adapterFactory) {
-        super(adapterFactory);
-    }
+		super(adapterFactory);
+	}
 
         /**
-     * This returns the property descriptors for the adapted class.
-     * <!-- begin-user-doc -->
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-        if (itemPropertyDescriptors == null) {
-            super.getPropertyDescriptors(object);
+		if (itemPropertyDescriptors == null) {
+			super.getPropertyDescriptors(object);
 
-            addOmittedPropertyDescriptor(object);
-        }
-        return itemPropertyDescriptors;
-    }
+			addOmittedPropertyDescriptor(object);
+		}
+		return itemPropertyDescriptors;
+	}
 
         /**
-     * This adds a property descriptor for the Omitted feature.
-     * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Omitted feature.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected void addOmittedPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Token_omitted_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Token_omitted_feature", "_UI_Token_type"),
-                 TCSPackage.Literals.TOKEN__OMITTED,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-                 null,
-                 null));
-    }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Token_omitted_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Token_omitted_feature", "_UI_Token_type"),
+				 TCSPackage.Literals.TOKEN__OMITTED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
 
         /**
-     * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-     * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-     * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-     * <!-- begin-user-doc -->
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-        if (childrenFeatures == null) {
-            super.getChildrenFeatures(object);
-            childrenFeatures.add(TCSPackage.Literals.TOKEN__PATTERN);
-        }
-        return childrenFeatures;
-    }
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(TCSPackage.Literals.TOKEN__PATTERN);
+		}
+		return childrenFeatures;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         protected EStructuralFeature getChildFeature(Object object, Object child) {
-        // Check the type of the specified child object and return the proper feature to use for
-        // adding (see {@link AddCommand}) it as a child.
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
 
-        return super.getChildFeature(object, child);
-    }
+		return super.getChildFeature(object, child);
+	}
 
         /**
-     * This returns Token.gif.
-     * <!-- begin-user-doc -->
+	 * This returns Token.gif.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/Token"));
-    }
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Token"));
+	}
 
         /**
-     * This returns the label text for the adapted class.
-     * <!-- begin-user-doc -->
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public String getText(Object object) {
-        String label = ((Token)object).getName();
-        return label == null || label.length() == 0 ?
-            getString("_UI_Token_type") :
-            getString("_UI_Token_type") + " " + label;
-    }
+		String label = ((Token)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Token_type") :
+			getString("_UI_Token_type") + " " + label;
+	}
 
         /**
-     * This handles model notifications by calling {@link #updateChildren} to update any cached
-     * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-     * <!-- begin-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public void notifyChanged(Notification notification) {
-        updateChildren(notification);
+		updateChildren(notification);
 
-        switch (notification.getFeatureID(Token.class)) {
-            case TCSPackage.TOKEN__OMITTED:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
-            case TCSPackage.TOKEN__PATTERN:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-                return;
-        }
-        super.notifyChanged(notification);
-    }
+		switch (notification.getFeatureID(Token.class)) {
+			case TCSPackage.TOKEN__OMITTED:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case TCSPackage.TOKEN__PATTERN:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
+		}
+		super.notifyChanged(notification);
+	}
 
         /**
-     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-     * that can be created under this object.
-     * <!-- begin-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-        super.collectNewChildDescriptors(newChildDescriptors, object);
+		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-        newChildDescriptors.add
-            (createChildParameter
-                (TCSPackage.Literals.TOKEN__PATTERN,
-                 TCSFactory.eINSTANCE.createOrPattern()));
-    }
+		newChildDescriptors.add
+			(createChildParameter
+				(TCSPackage.Literals.TOKEN__PATTERN,
+				 TCSFactory.eINSTANCE.createOrPattern()));
+	}
 
 }

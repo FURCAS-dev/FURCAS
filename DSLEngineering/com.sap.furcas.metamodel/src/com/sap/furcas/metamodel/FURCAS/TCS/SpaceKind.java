@@ -23,244 +23,244 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum SpaceKind implements Enumerator {
         /**
-     * The '<em><b>Left Space</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Left Space</b></em>' literal object.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @see #LEFT_SPACE_VALUE
-     * @generated
-     * @ordered
-     */
+	 * @see #LEFT_SPACE_VALUE
+	 * @generated
+	 * @ordered
+	 */
         LEFT_SPACE(1, "leftSpace", "leftSpace"),
 
         /**
-     * The '<em><b>Left None</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Left None</b></em>' literal object.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @see #LEFT_NONE_VALUE
-     * @generated
-     * @ordered
-     */
+	 * @see #LEFT_NONE_VALUE
+	 * @generated
+	 * @ordered
+	 */
         LEFT_NONE(2, "leftNone", "leftNone"),
 
         /**
-     * The '<em><b>Right Space</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Right Space</b></em>' literal object.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @see #RIGHT_SPACE_VALUE
-     * @generated
-     * @ordered
-     */
+	 * @see #RIGHT_SPACE_VALUE
+	 * @generated
+	 * @ordered
+	 */
         RIGHT_SPACE(3, "rightSpace", "rightSpace"),
 
         /**
-     * The '<em><b>Right None</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Right None</b></em>' literal object.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @see #RIGHT_NONE_VALUE
-     * @generated
-     * @ordered
-     */
+	 * @see #RIGHT_NONE_VALUE
+	 * @generated
+	 * @ordered
+	 */
         RIGHT_NONE(4, "rightNone", "rightNone");
 
         /**
-     * The '<em><b>Left Space</b></em>' literal value.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Left Space</b></em>' literal value.
+	 * <!-- begin-user-doc -->
          * <p>
          * If the meaning of '<em><b>Left Space</b></em>' literal object isn't clear,
          * there really should be more of a description here...
          * </p>
          * <!-- end-user-doc -->
-     * @see #LEFT_SPACE
-     * @model name="leftSpace"
-     * @generated
-     * @ordered
-     */
+	 * @see #LEFT_SPACE
+	 * @model name="leftSpace"
+	 * @generated
+	 * @ordered
+	 */
         public static final int LEFT_SPACE_VALUE = 1;
 
         /**
-     * The '<em><b>Left None</b></em>' literal value.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Left None</b></em>' literal value.
+	 * <!-- begin-user-doc -->
          * <p>
          * If the meaning of '<em><b>Left None</b></em>' literal object isn't clear,
          * there really should be more of a description here...
          * </p>
          * <!-- end-user-doc -->
-     * @see #LEFT_NONE
-     * @model name="leftNone"
-     * @generated
-     * @ordered
-     */
+	 * @see #LEFT_NONE
+	 * @model name="leftNone"
+	 * @generated
+	 * @ordered
+	 */
         public static final int LEFT_NONE_VALUE = 2;
 
         /**
-     * The '<em><b>Right Space</b></em>' literal value.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Right Space</b></em>' literal value.
+	 * <!-- begin-user-doc -->
          * <p>
          * If the meaning of '<em><b>Right Space</b></em>' literal object isn't clear,
          * there really should be more of a description here...
          * </p>
          * <!-- end-user-doc -->
-     * @see #RIGHT_SPACE
-     * @model name="rightSpace"
-     * @generated
-     * @ordered
-     */
+	 * @see #RIGHT_SPACE
+	 * @model name="rightSpace"
+	 * @generated
+	 * @ordered
+	 */
         public static final int RIGHT_SPACE_VALUE = 3;
 
         /**
-     * The '<em><b>Right None</b></em>' literal value.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Right None</b></em>' literal value.
+	 * <!-- begin-user-doc -->
          * <p>
          * If the meaning of '<em><b>Right None</b></em>' literal object isn't clear,
          * there really should be more of a description here...
          * </p>
          * <!-- end-user-doc -->
-     * @see #RIGHT_NONE
-     * @model name="rightNone"
-     * @generated
-     * @ordered
-     */
+	 * @see #RIGHT_NONE
+	 * @model name="rightNone"
+	 * @generated
+	 * @ordered
+	 */
         public static final int RIGHT_NONE_VALUE = 4;
 
         /**
-     * An array of all the '<em><b>Space Kind</b></em>' enumerators.
-     * <!-- begin-user-doc -->
+	 * An array of all the '<em><b>Space Kind</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         private static final SpaceKind[] VALUES_ARRAY =
                 new SpaceKind[] {
-            LEFT_SPACE,
-            LEFT_NONE,
-            RIGHT_SPACE,
-            RIGHT_NONE,
-        };
+			LEFT_SPACE,
+			LEFT_NONE,
+			RIGHT_SPACE,
+			RIGHT_NONE,
+		};
 
         /**
-     * A public read-only list of all the '<em><b>Space Kind</b></em>' enumerators.
-     * <!-- begin-user-doc -->
+	 * A public read-only list of all the '<em><b>Space Kind</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public static final List<SpaceKind> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
         /**
-     * Returns the '<em><b>Space Kind</b></em>' literal with the specified literal value.
-     * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Space Kind</b></em>' literal with the specified literal value.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public static SpaceKind get(String literal) {
-        for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-            SpaceKind result = VALUES_ARRAY[i];
-            if (result.toString().equals(literal)) {
-                return result;
-            }
-        }
-        return null;
-    }
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			SpaceKind result = VALUES_ARRAY[i];
+			if (result.toString().equals(literal)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
         /**
-     * Returns the '<em><b>Space Kind</b></em>' literal with the specified name.
-     * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Space Kind</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public static SpaceKind getByName(String name) {
-        for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-            SpaceKind result = VALUES_ARRAY[i];
-            if (result.getName().equals(name)) {
-                return result;
-            }
-        }
-        return null;
-    }
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			SpaceKind result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
         /**
-     * Returns the '<em><b>Space Kind</b></em>' literal with the specified integer value.
-     * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Space Kind</b></em>' literal with the specified integer value.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public static SpaceKind get(int value) {
-        switch (value) {
-            case LEFT_SPACE_VALUE: return LEFT_SPACE;
-            case LEFT_NONE_VALUE: return LEFT_NONE;
-            case RIGHT_SPACE_VALUE: return RIGHT_SPACE;
-            case RIGHT_NONE_VALUE: return RIGHT_NONE;
-        }
-        return null;
-    }
+		switch (value) {
+			case LEFT_SPACE_VALUE: return LEFT_SPACE;
+			case LEFT_NONE_VALUE: return LEFT_NONE;
+			case RIGHT_SPACE_VALUE: return RIGHT_SPACE;
+			case RIGHT_NONE_VALUE: return RIGHT_NONE;
+		}
+		return null;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         private final int value;
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         private final String name;
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         private final String literal;
 
         /**
-     * Only this class can construct instances.
-     * <!-- begin-user-doc -->
+	 * Only this class can construct instances.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         private SpaceKind(int value, String name, String literal) {
-        this.value = value;
-        this.name = name;
-        this.literal = literal;
-    }
+		this.value = value;
+		this.name = name;
+		this.literal = literal;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public int getValue() {
-      return value;
-    }
+	  return value;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public String getName() {
-      return name;
-    }
+	  return name;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public String getLiteral() {
-      return literal;
-    }
+	  return literal;
+	}
 
         /**
-     * Returns the literal value of the enumerator, which is its string representation.
-     * <!-- begin-user-doc -->
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public String toString() {
-        return literal;
-    }
+		return literal;
+	}
         
 } //SpaceKind

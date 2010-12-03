@@ -37,185 +37,185 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  */
 public class EnumerationTemplateImpl extends TemplateImpl implements EnumerationTemplate {
         /**
-     * The default value of the '{@link #isAutomatic() <em>Automatic</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isAutomatic() <em>Automatic</em>}' attribute.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @see #isAutomatic()
-     * @generated
-     * @ordered
-     */
+	 * @see #isAutomatic()
+	 * @generated
+	 * @ordered
+	 */
         protected static final boolean AUTOMATIC_EDEFAULT = false;
 
         /**
-     * The cached value of the '{@link #isAutomatic() <em>Automatic</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isAutomatic() <em>Automatic</em>}' attribute.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @see #isAutomatic()
-     * @generated
-     * @ordered
-     */
+	 * @see #isAutomatic()
+	 * @generated
+	 * @ordered
+	 */
         protected boolean automatic = AUTOMATIC_EDEFAULT;
 
         /**
-     * The cached value of the '{@link #getMappings() <em>Mappings</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getMappings() <em>Mappings</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @see #getMappings()
-     * @generated
-     * @ordered
-     */
+	 * @see #getMappings()
+	 * @generated
+	 * @ordered
+	 */
         protected EList<EnumLiteralMapping> mappings;
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         protected EnumerationTemplateImpl() {
-        super();
-    }
+		super();
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         protected EClass eStaticClass() {
-        return TCSPackage.Literals.ENUMERATION_TEMPLATE;
-    }
+		return TCSPackage.Literals.ENUMERATION_TEMPLATE;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public boolean isAutomatic() {
-        return automatic;
-    }
+		return automatic;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public void setAutomatic(boolean newAutomatic) {
-        boolean oldAutomatic = automatic;
-        automatic = newAutomatic;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.ENUMERATION_TEMPLATE__AUTOMATIC, oldAutomatic, automatic));
-    }
+		boolean oldAutomatic = automatic;
+		automatic = newAutomatic;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.ENUMERATION_TEMPLATE__AUTOMATIC, oldAutomatic, automatic));
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         public EList<EnumLiteralMapping> getMappings() {
-        if (mappings == null) {
-            mappings = new EObjectContainmentEList<EnumLiteralMapping>(EnumLiteralMapping.class, this, TCSPackage.ENUMERATION_TEMPLATE__MAPPINGS);
-        }
-        return mappings;
-    }
+		if (mappings == null) {
+			mappings = new EObjectContainmentEList<EnumLiteralMapping>(EnumLiteralMapping.class, this, TCSPackage.ENUMERATION_TEMPLATE__MAPPINGS);
+		}
+		return mappings;
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case TCSPackage.ENUMERATION_TEMPLATE__MAPPINGS:
-                return ((InternalEList<?>)getMappings()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case TCSPackage.ENUMERATION_TEMPLATE__MAPPINGS:
+				return ((InternalEList<?>)getMappings()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case TCSPackage.ENUMERATION_TEMPLATE__AUTOMATIC:
-                return isAutomatic();
-            case TCSPackage.ENUMERATION_TEMPLATE__MAPPINGS:
-                return getMappings();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case TCSPackage.ENUMERATION_TEMPLATE__AUTOMATIC:
+				return isAutomatic();
+			case TCSPackage.ENUMERATION_TEMPLATE__MAPPINGS:
+				return getMappings();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @SuppressWarnings("unchecked")
         @Override
         public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case TCSPackage.ENUMERATION_TEMPLATE__AUTOMATIC:
-                setAutomatic((Boolean)newValue);
-                return;
-            case TCSPackage.ENUMERATION_TEMPLATE__MAPPINGS:
-                getMappings().clear();
-                getMappings().addAll((Collection<? extends EnumLiteralMapping>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case TCSPackage.ENUMERATION_TEMPLATE__AUTOMATIC:
+				setAutomatic((Boolean)newValue);
+				return;
+			case TCSPackage.ENUMERATION_TEMPLATE__MAPPINGS:
+				getMappings().clear();
+				getMappings().addAll((Collection<? extends EnumLiteralMapping>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public void eUnset(int featureID) {
-        switch (featureID) {
-            case TCSPackage.ENUMERATION_TEMPLATE__AUTOMATIC:
-                setAutomatic(AUTOMATIC_EDEFAULT);
-                return;
-            case TCSPackage.ENUMERATION_TEMPLATE__MAPPINGS:
-                getMappings().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case TCSPackage.ENUMERATION_TEMPLATE__AUTOMATIC:
+				setAutomatic(AUTOMATIC_EDEFAULT);
+				return;
+			case TCSPackage.ENUMERATION_TEMPLATE__MAPPINGS:
+				getMappings().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case TCSPackage.ENUMERATION_TEMPLATE__AUTOMATIC:
-                return automatic != AUTOMATIC_EDEFAULT;
-            case TCSPackage.ENUMERATION_TEMPLATE__MAPPINGS:
-                return mappings != null && !mappings.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case TCSPackage.ENUMERATION_TEMPLATE__AUTOMATIC:
+				return automatic != AUTOMATIC_EDEFAULT;
+			case TCSPackage.ENUMERATION_TEMPLATE__MAPPINGS:
+				return mappings != null && !mappings.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
         /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         @Override
         public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (automatic: ");
-        result.append(automatic);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (automatic: ");
+		result.append(automatic);
+		result.append(')');
+		return result.toString();
+	}
 
 } //EnumerationTemplateImpl
