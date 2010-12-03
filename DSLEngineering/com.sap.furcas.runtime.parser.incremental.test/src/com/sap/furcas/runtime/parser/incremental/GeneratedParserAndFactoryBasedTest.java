@@ -24,7 +24,7 @@ import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 
-public class GeneratedParserAndFactoryBasedTest extends
+public abstract class GeneratedParserAndFactoryBasedTest extends
 		GeneratedParserBasedTest {
 
 	protected static ParserGenerationTestHelper generationHelper;
