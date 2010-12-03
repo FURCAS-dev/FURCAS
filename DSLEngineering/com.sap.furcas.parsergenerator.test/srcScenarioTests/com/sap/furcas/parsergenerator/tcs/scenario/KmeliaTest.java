@@ -11,7 +11,7 @@ import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
 import com.sap.furcas.runtime.parser.testbase.StubModelAdapter;
-import com.sap.furcas.test.fixture.FixtureData;
+import com.sap.furcas.test.fixture.ScenarioFixtureData;
 import com.sap.furcas.test.testutils.StringListHelper;
 
 /**
@@ -20,8 +20,8 @@ import com.sap.furcas.test.testutils.StringListHelper;
 public class KmeliaTest extends GeneratedParserBasedTest {
 
     private static final String LANGUAGE = "Kmelia";
-    private static final File TCS = FixtureData.KMELIA_TCS;
-    private static final File[] METAMODELS = { FixtureData.KMELIA_METAMODEL };
+    private static final File TCS = ScenarioFixtureData.KMELIA_TCS;
+    private static final File[] METAMODELS = { ScenarioFixtureData.KMELIA_METAMODEL };
     private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
 
     private static ParsingHelper parsingHelper;
