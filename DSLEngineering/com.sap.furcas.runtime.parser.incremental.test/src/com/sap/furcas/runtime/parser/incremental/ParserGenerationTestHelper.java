@@ -7,24 +7,17 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintStream;
 import java.net.URLDecoder;
 import java.util.List;
 
-import org.antlr.Tool;
 import org.antlr.runtime.Lexer;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
-import com.sap.furcas.runtime.parser.IModelAdapter;
-import com.sap.furcas.runtime.parser.ModelParsingResult;
-import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.antlr3.ITokenFactory;
-import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
-import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.tcs.RuleNameFinder;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRParserFactory;
@@ -39,13 +32,10 @@ public class ParserGenerationTestHelper {
 	private static final String DEFAULT_PACKAGE = "generated2";
 	private static final String DEFAULT_GENERATIONDIR = DEFAULT_GENERATIONDIR_SOURCEROOT
 			+ "/" + DEFAULT_PACKAGE + "/";
-	private static final String DEFAULT_TCSPATH = "./scenarioTestResource";
 
 	private final String generationSourceRoot;
 	private String generationDirectory;
 	private String generationPackage;
-	private String tcsPath;
-	private boolean ignoreExistCheck = false;
 
 	private static ParserGenerationTestHelper defaultInstance = new ParserGenerationTestHelper();
 
@@ -57,18 +47,6 @@ public class ParserGenerationTestHelper {
 		generationSourceRoot = DEFAULT_GENERATIONDIR_SOURCEROOT;
 		generationDirectory = DEFAULT_GENERATIONDIR;
 		generationPackage = DEFAULT_PACKAGE;
-		tcsPath = DEFAULT_TCSPATH;
-	}
-
-	public ParserGenerationTestHelper(String tcsPath,
-			String generationSourceRoot, String generationPath,
-			String generationPackage, boolean ignoreExistCheck) {
-
-		this.generationSourceRoot = generationSourceRoot;
-		this.generationPackage = generationPackage;
-		this.generationDirectory = generationPath + "/";
-		this.tcsPath = tcsPath;
-		this.ignoreExistCheck = ignoreExistCheck;
 	}
 
 	public ParserGenerationTestHelper(String sourceRoot,
@@ -76,7 +54,6 @@ public class ParserGenerationTestHelper {
 		if (sourceRoot == null || packagePath == null) {
 			throw new IllegalArgumentException(sourceRoot + ", " + packagePath);
 		}
-		this.ignoreExistCheck = ignoreExistCheck;
 
 		generationSourceRoot = sourceRoot;
 
@@ -95,49 +72,6 @@ public class ParserGenerationTestHelper {
 				generationDirectory += packagePathPart + '/';
 			}
 		}
-	}
-
-	public File getGrammarFile(String language) {
-		return new File(generationDirectory + language + ".g");
-	}
-
-	public File getGenerationDir() {
-		return new File(generationDirectory);
-	}
-
-	public void generateParserClasses(String languageName) {
-
-		if (!ignoreExistCheck) {
-			boolean found = false;
-			// check classes don't exist
-			try {
-				String lexerClassName = languageName + "Lexer";
-				String parserClassName = languageName + "Parser";
-
-				Class.forName(generationPackage + "." + lexerClassName);
-				Class.forName(generationPackage + "." + parserClassName);
-				found = true;
-			} catch (ClassNotFoundException e) {
-				// thats fine
-			}
-
-			if (found) {
-				System.out
-						.println("Not generating parser and lexer classes for language "
-								+ languageName
-								+ " as parser and jexer already exist on the classpath in package "
-								+ generationPackage);
-				return;
-			}
-		}
-
-		// Execute ANTRL3 to generate Java from Grammar
-		String[] args = new String[1];
-		args[0] = generationDirectory + languageName + ".g";
-		// args[1] = "-o";
-		// args[2] = "ANTLR_Test.classpath";
-		Tool antlr = new Tool(args);
-		antlr.process();
 	}
 
 	public void generateParserFactoryClasses(String languageName,
@@ -179,11 +113,6 @@ public class ParserGenerationTestHelper {
 					+ languageName + "\"; ");
 
 			out.println("	@Override");
-			out.println("    public Integer[] getOmittedTokensForFormatting() {");
-			out.println("	return new Integer[]{" + parserClassName + ".WS, "
-					+ parserClassName + ".NL};");
-			out.println("    }");
-			out.println("	@Override");
 			out.println("    public String[] getHiddenChannelTokenNames() {");
 			out.println("	return new String[] { \"WS\", \"NL\", \"COMMENT\" };");
 			out.println("    }");
@@ -224,22 +153,6 @@ public class ParserGenerationTestHelper {
 
 	}
 
-//	public int compileParser(String languageName) {
-//		// compile generated Java
-//		int success = Main.compile(new String[] {
-//				generationDirectory + languageName + "Lexer.java",
-//				generationDirectory + languageName + "Parser.java",
-//				"-cp",
-//				System.getProperty("antlr.lib.dir") + File.pathSeparator
-//						+ "../com.sap.mi.textual.parsing/bin"
-//						+ File.pathSeparator
-//						+ "../com.sap.mi.textual.common/bin"
-//						+ File.pathSeparator
-//						+ "../com.sap.mi.textual.moinlookup/bin" });
-//
-//		return success;
-//	}
-
 	public int compileParserFactory(String languageName,
 			String metamodelProjectName) {
 		// compile generated Java
@@ -279,44 +192,6 @@ public class ParserGenerationTestHelper {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-	}
-
-	public ModelParsingResult parseStream(String languageName, InputStream in,
-			IModelAdapter modelAdapter) throws IOException,
-			UnknownProductionRuleException,
-			InvalidParserImplementationException {
-
-		ParserFacade facade = getFacade(languageName);
-
-		ModelParsingResult result = facade.parseProductionRule(in,
-				modelAdapter, null, null, null);
-		return result;
-	}
-
-	public ParserFacade getFacade(String languageName)
-			throws InvalidParserImplementationException {
-		// try loading compiled classes
-		File genDir = new File(generationDirectory);
-		try {
-			@SuppressWarnings("unchecked")
-			Class<? extends Lexer> lexerclass = (Class<? extends Lexer>) Class
-					.forName(generationPackage + "." + languageName + "Lexer");
-			@SuppressWarnings("unchecked")
-			Class<? extends ObservableInjectingParser> parserclass = (Class<? extends ObservableInjectingParser>) Class
-					.forName(generationPackage + "." + languageName + "Parser");
-
-			ParserFacade facade = new ParserFacade(parserclass, lexerclass);
-			return facade;
-
-		} catch (ClassNotFoundException cnfe) { // catching from Class.forName
-			throw new RuntimeException(
-					"Can't find generated classes at runtime in "
-							+ genDir.getAbsolutePath()
-							+ ", check you meant language " + languageName
-							+ " or maybe do an Eclipse refresh on project.",
-					cnfe);
-		}
-
 	}
 
 	@SuppressWarnings("unchecked")
