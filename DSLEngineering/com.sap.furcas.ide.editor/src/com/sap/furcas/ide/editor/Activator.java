@@ -1,14 +1,14 @@
-package ProjectName.editor; 
+package com.sap.furcas.ide.editor;
 
-import org.eclipse.ui.plugin.AbstractUIPlugin; 
-import org.osgi.framework.BundleContext; 
+import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.osgi.framework.BundleContext;
 
 /**
  * The activator class controls the plug-in life cycle
  */
 public class Activator extends AbstractUIPlugin {
 
-    public static final String PLUGIN_ID = "ProjectName"; //$NON-NLS-1$
+    public static final String PLUGIN_ID = "com.sap.furcas.ide.editor"; //$NON-NLS-1$
     private static Activator plugin;
 
     public Activator() {

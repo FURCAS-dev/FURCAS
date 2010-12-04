@@ -9,23 +9,18 @@ public class ParserFactory extends AbstractRunletParserFactory<Parser, Lexer> {
 
     @Override
     public Class<Lexer> getLexerClass() {
-	return Lexer.class;
+        return Lexer.class;
     }
 
     @Override
     public Class<Parser> getParserClass() {
-	return Parser.class;
+        return Parser.class;
     }
 
     @Override
     public String getLanguageId() {
-	return LANGUAGE_ID;
+        return LANGUAGE_ID;
     }
 
-	@Override
-	public Integer[] getOmittedTokensForFormatting() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
 

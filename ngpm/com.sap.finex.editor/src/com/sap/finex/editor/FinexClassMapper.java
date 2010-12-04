@@ -11,7 +11,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.RGB;
 
-import com.sap.ide.cts.editor.ITokenMapper;
+import com.sap.furcas.ide.editor.ITokenMapper;
 
 public class FinexClassMapper implements ITokenMapper {
     public Object mapColor(Token t) {

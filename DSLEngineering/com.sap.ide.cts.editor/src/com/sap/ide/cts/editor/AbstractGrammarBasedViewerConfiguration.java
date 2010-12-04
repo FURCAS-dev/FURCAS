@@ -30,6 +30,7 @@ import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.SourceViewerConfiguration;
 
+import com.sap.furcas.ide.editor.ITokenMapper;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 import com.sap.ide.cts.editor.autoedit.ClosingBraceAutoEditStrategy;
 import com.sap.ide.cts.editor.autoedit.CtsAutoEditStrategy;

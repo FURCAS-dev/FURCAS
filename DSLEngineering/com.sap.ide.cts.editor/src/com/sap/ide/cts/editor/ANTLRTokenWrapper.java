@@ -3,6 +3,8 @@ package com.sap.ide.cts.editor;
 import org.antlr.runtime.Token;
 import org.eclipse.jface.text.rules.IToken;
 
+import com.sap.furcas.ide.editor.ITokenMapper;
+
 public class ANTLRTokenWrapper implements IToken {
 
 	private Token token;
