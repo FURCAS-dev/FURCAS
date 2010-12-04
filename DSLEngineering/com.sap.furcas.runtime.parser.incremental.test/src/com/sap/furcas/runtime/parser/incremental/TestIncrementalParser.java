@@ -10,7 +10,6 @@ import java.util.List;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
@@ -109,22 +108,6 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
 
     private IncrementalParserFacade getParserFacade() {
         return incrementalParserFacade;
-    }
-
-    /**
-     * Finds an EPackage in the {@link #resourceSet} by the <code>name</code>
-     * specified
-     */
-    private static EPackage findPackage(String name) {
-        for (Resource r : resourceSet.getResources()) {
-            for (EObject c : r.getContents()) {
-                if (c instanceof EPackage
-                        && ((EPackage) c).getName().equals(name)) {
-                    return (EPackage) c;
-                }
-            }
-        }
-        return null;
     }
 
     protected TextBlocksModelElementFactory modelFactory;
