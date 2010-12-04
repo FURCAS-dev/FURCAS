@@ -102,7 +102,6 @@ public class CreateProject extends WorkspaceModifyOperation {
         // exportedPackages.add(pi.getBasePackage() + ".tree");
 
         List<String> nonSrcFolders = new ArrayList<String>();
-        nonSrcFolders.add("resources");
         nonSrcFolders.add("mappings");
 
         IProject dslProject = WizardProjectHelper.createPlugInProject(pi, srcfolders, nonSrcFolders, exportedPackages, monitor,
@@ -125,9 +124,6 @@ public class CreateProject extends WorkspaceModifyOperation {
         genSrcFolder = createGeneratedFolder(genRootFolder, monitor, "");
 
         createSource(pi, sourceTargetRootFolder, dslProject, monitor);
-
-        String props = codeFactory.createdPropertiesCode(pi);
-        WizardProjectHelper.createFile("generate.properties", sourceTargetRootFolder, props, monitor);
 
         String templateString = codeFactory.createSampleTCS(pi);
         IFile grammar = WizardProjectHelper.createFile(pi.getTCSFileName(), genSrcFolder, templateString, monitor);

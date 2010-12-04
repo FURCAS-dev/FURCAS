@@ -1,7 +1,0 @@
-core.project.name=$ProjectName$
-grammar=.$TCSPath$
-debug.grammar=true
-language.name=$CapLangName$
-language.nsURI=$URI$
-language.fileextension=$Ext$
-basepath=$ProjectName$

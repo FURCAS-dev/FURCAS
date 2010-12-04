@@ -238,24 +238,7 @@ public class SourceCodeFactory {
         return template.toString();
     }
 
-    /**
-     * Creates a generated.properties file from the resources/genprops.txt file
-     * 
-     * @param pi
-     *            User input
-     * @return The content of the generated.properties file.
-     * @throws CodeGenerationException
-     */
-    public String createdPropertiesCode(ProjectInfo pi) throws CodeGenerationException {
-        StringTemplate template = null;
-        String templateString = null;
 
-        templateString = readFile("genprops.txt");
-        template = new StringTemplate(templateString);
-        setTemplateAtts(template, pi);
-
-        return template.toString();
-    }
 
     /**
      * Creates a .tcs file from the resources/tcs.txt file
