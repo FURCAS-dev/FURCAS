@@ -1,12 +1,7 @@
 package $ProjectName$.editor; 
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
-
-import com.sap.furcas.ide.editor.AbstractGrammarBasedEditor; 
-import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
+import com.sap.furcas.ide.editor.AbstractGrammarBasedEditor;
 import $ProjectName$.parser.$CapLangName$ParserFactory;
 
 public class $CapLangName$Editor extends AbstractGrammarBasedEditor { 
