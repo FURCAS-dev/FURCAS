@@ -299,7 +299,7 @@ public class CreateProject extends WorkspaceModifyOperation {
         WizardProjectHelper.createFile("Activator.java", editorFolder, codeFactory.createActivator(pi), monitor);
         WizardProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "Editor.java", editorFolder,
                 codeFactory.createEditorCode(pi), monitor);
-        WizardProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "Mapper.java", editorFolder,
+        WizardProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "TokenMapper.java", editorFolder,
                 codeFactory.createMapperCode(pi), monitor);
         return editorFolder;
     }

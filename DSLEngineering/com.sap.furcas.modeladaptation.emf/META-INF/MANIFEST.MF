@@ -5,11 +5,11 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SAP
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.emf,
- org.eclipse.emf.query.index;bundle-version="1.0.0",
- org.eclipse.ocl.ecore;bundle-version="3.0.0",
+ org.eclipse.emf.query.index,
+ org.eclipse.ocl.ecore,
  org.eclipse.ui,
- org.eclipse.emf.query2;bundle-version="1.0.0",
- org.eclipse.emf.query.index.ui;bundle-version="1.0.0",
+ org.eclipse.emf.query2,
+ org.eclipse.emf.query.index.ui,
  org.eclipse.core.runtime,
  com.sap.furcas.runtime.common,
  com.sap.ocl.oppositefinder.query2,
@@ -17,10 +17,6 @@ Require-Bundle: org.eclipse.emf.ecore,
 Bundle-ClassPath: 
  adapter.jar
 Export-Package: 
- com.sap.furcas.modeladaptation.emf.adaptation;
-  uses:="com.sap.tc.moin.repository,
-   javax.jmi.reflect,
-   com.sap.mi.textual.grammar,
-   javax.jmi.model",
+ com.sap.furcas.modeladaptation.emf.adaptation,
  com.sap.furcas.modeladaptation.emf.lookup
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

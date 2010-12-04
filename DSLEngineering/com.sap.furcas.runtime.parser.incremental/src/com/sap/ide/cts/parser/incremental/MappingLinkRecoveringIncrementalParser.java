@@ -64,7 +64,7 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
         ParserTextBlocksHandler parserTextBlocksHandler = new ParserTextBlocksHandler(
                 tbtokenStream, getEditingDomain().getResourceSet(), parserFactory
                         .getMetamodelUri(getEditingDomain().getResourceSet()), TcsUtil
-                        .getSyntaxePartitions(getEditingDomain().getResourceSet(), parserFactory
+                        .getSyntaxPartitions(getEditingDomain().getResourceSet(), parserFactory
                                 .getLanguageId()), parserFactory
                         .getParserLookupScope(getEditingDomain().getResourceSet()), additionalCRIScope);
         // IParsingObserver originalObserver = batchParser.getObserver();

@@ -149,7 +149,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 		// if there is a change
 		if (!isEOS(findNextRegion(root))) {
 
-			syntaxPartitions = TcsUtil.getSyntaxePartitions(getEditingDomain().getResourceSet(),
+			syntaxPartitions = TcsUtil.getSyntaxPartitions(getEditingDomain().getResourceSet(),
 					parserFactory.getLanguageId());
 			ParserTextBlocksHandler parserTextBlocksHandler = new ParserTextBlocksHandler(
 					tbtokenStream, getEditingDomain().getResourceSet(), parserFactory

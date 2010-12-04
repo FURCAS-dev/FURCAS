@@ -23,18 +23,12 @@ public class $CapLangName$ParserFactory extends AbstractParserFactory<$CapLangNa
     @Override
     public Class<$CapLangName$Parser> getParserClass() {
 	return $CapLangName$Parser.class;
-    }
+	}
 
     @Override
     public String getLanguageId() {
-	return LANGUAGE_ID;
+        return LANGUAGE_ID;
     }
-
-	@Override
-	public Integer[] getOmittedTokensForFormatting() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public EPackage getMetamodelPackage(ResourceSet connection) {

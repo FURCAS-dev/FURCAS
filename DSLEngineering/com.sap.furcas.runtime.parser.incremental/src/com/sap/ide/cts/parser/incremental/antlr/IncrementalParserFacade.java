@@ -83,7 +83,7 @@ public class IncrementalParserFacade {
 
 		observer = new ParserTextBlocksHandler(tbTokenStream, editingDomain.getResourceSet(),
 				parserFactory.getMetamodelUri(editingDomain.getResourceSet()), TcsUtil
-						.getSyntaxePartitions(editingDomain.getResourceSet(), parserFactory
+						.getSyntaxPartitions(editingDomain.getResourceSet(), parserFactory
 								.getLanguageId()), parserFactory
 						.getParserLookupScope(editingDomain.getResourceSet()), additionalCRIScope);
 		domainParser.setObserver(observer);

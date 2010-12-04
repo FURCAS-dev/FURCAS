@@ -4,14 +4,26 @@ Bundle-Name: Incremental Parser Tests
 Bundle-SymbolicName: com.sap.furcas.runtime.parser.incremental.test
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SAP
-Fragment-Host: com.sap.furcas.runtime.parser.incremental
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.junit;bundle-version="4.8.1",
+ org.antlr,
  com.sap.furcas.runtime.parser.test;bundle-version="1.0.0",
  com.sap.furcas.test,
  com.sap.furcas.runtime.textblocks.test,
  com.sap.furcas.ide.parserfactory,
- com.sap.furcas.parsergenerator,
- bibtex.metamodel;bundle-version="1.0.0"
+ bibtex.metamodel;bundle-version="1.0.0",
+ org.eclipse.core.runtime,
+ org.eclipse.emf;bundle-version="2.6.0",
+ org.eclipse.emf.edit;bundle-version="2.6.0",
+ com.sap.furcas.metamodel,
+ com.sap.furcas.runtime.common,
+ com.sap.furcas.runtime.tcs,
+ com.sap.furcas.runtime.textblocks,
+ com.sap.furcas.runtime.parser,
+ com.sap.furcas.modeladaptation.emf,
+ com.sap.furcas.runtime.parser,
+ com.sap.furcas.runtime.parser.incremental,
+ com.sap.furcas.parsergenerator
 Bundle-ClassPath: generationTemp/,
  .
+Export-Package: com.sap.furcas.runtime.parser.incremental
