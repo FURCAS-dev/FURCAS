@@ -4,30 +4,16 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
-import com.sap.furcas.metamodel.FURCAS.textblocks.*; 
-import com.sap.ide.cts.editor.AbstractGrammarBasedEditor; 
+
+import com.sap.furcas.ide.editor.AbstractGrammarBasedEditor; 
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
 import $ProjectName$.parser.$CapLangName$ParserFactory;
 
 public class $CapLangName$Editor extends AbstractGrammarBasedEditor { 
 
 	public $CapLangName$Editor() { 
-		super(new $CapLangName$ParserFactory(), new $CapLangName$Mapper()); 
-	} 
 
-	@Override 
-	public TextBlock parse(TextBlock rootBlock) throws SemanticParserException { 
-		ResourceSet connection = getWorkingConnection();
-		initializeNewParser(connection);
-		TextBlock newRoot =  super.parse(rootBlock); 
-		return newRoot; 
-	}
-
-
-	//TODO!!!
-	public ResourceSet getWorkingConnection() {
-		ResourceSet resourceSet = null;
-		return resourceSet;
+		super(new $CapLangName$ParserFactory(), new $CapLangName$TokenMapper()); 
 	} 
 
 }

@@ -1507,7 +1507,7 @@ public class TcsUtil {
         return results;
     }
 
-    public static Set<URI> getSyntaxePartitions(ResourceSet connection, String languageId) {
+    public static Set<URI> getSyntaxPartitions(ResourceSet connection, String languageId) {
         ConcreteSyntax cs = getSyntaxByName(connection, languageId);
         if (cs == null) {
             throw new RuntimeException("Concrete syntax with id '" + languageId + "' not found.");

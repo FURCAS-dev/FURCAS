@@ -10,21 +10,21 @@ import org.eclipse.swt.graphics.RGB;
 
 import com.sap.ide.cts.editor.ITokenMapper;
 
-public class $CapLangName$Mapper implements ITokenMapper {
-    public Object mapColor(Token t) {
-	switch (t.getType()) {
-	case $CapLangName$Lexer.COMMENT:
-	    return new TextAttribute(new Color(null, new RGB(63, 127, 95)), null, SWT.ITALIC);
-	case $CapLangName$Lexer.NAME:
-	    return new TextAttribute(new Color(null, new RGB(0, 0, 0)), null, SWT.NONE);
-	default:
-	    return new TextAttribute(new Color(null, new RGB(200, 0, 180)), null, SWT.BOLD);
-	}
+
+public class $CapLangName$TokenMapper implements ITokenMapper {
+	
+	@Override
+    public TextAttribute mapColor(Token t) {
+        switch (t.getType()) {
+        case $CapLangName$Lexer.NAME:
+            return new TextAttribute(new Color(null, new RGB(0, 0, 0)), null, SWT.NONE);
+        default:
+            return new TextAttribute(new Color(null, new RGB(200, 0, 180)), null, SWT.BOLD);
+        }
     }
 
     @Override
     public TextAttribute getComment() {
-	return new TextAttribute (new Color( null, new RGB(63,127,95) ), null, SWT.ITALIC);
+        return new TextAttribute(new Color(null, new RGB(63, 127, 95)), null, SWT.ITALIC);
     }
-
 }

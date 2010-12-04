@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: FURCAS DSL Editor
+Bundle-SymbolicName: com.sap.furcas.ide.editor
+Bundle-Version: 1.0.0
+Bundle-Activator: com.sap.furcas.ide.editor.Activator
+Bundle-Vendor: SAP
+Require-Bundle: org.antlr,
+ org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.jface.text,
+ com.sap.furcas.runtime.common,
+ com.sap.furcas.runtime.parser,
+ com.sap.furcas.runtime.parser.incremental,
+ com.sap.furcas.runtime.textblocks
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Export-Package: com.sap.furcas.ide.editor

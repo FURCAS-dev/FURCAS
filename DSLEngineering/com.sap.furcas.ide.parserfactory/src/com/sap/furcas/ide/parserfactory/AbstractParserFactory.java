@@ -43,11 +43,11 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
 	 * {@link #getParserClass()}) that are to be considered part of the so-called
 	 * "hidden channel." Typical examples are comment token types such as "WS", "NL", "COMMENT",
 	 * or "MULTI_LINE_COMMENT"
+	 * 
+	 * FIXME: Isn't that already specified in the TCS? Why do we have to do this by hand? 
 	 */
 	public abstract String[] getHiddenChannelTokenNames();
 	
-	public abstract Integer[] getOmittedTokensForFormatting();
-
 	@Override
 	public P createParser(TokenStream input, ResourceSet connection) {
 		return createParser(input, connection, null, null);
@@ -98,7 +98,7 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
 				ma.setTextBlocksStream((ITextBlocksTokenStream) input);
 				parser.setObserver(new ParserTextBlocksHandler(
 					(ITextBlocksTokenStream) input, connection,
-					getMetamodelUri(connection), TcsUtil.getSyntaxePartitions(
+					getMetamodelUri(connection), TcsUtil.getSyntaxPartitions(
 						connection, getLanguageId()), priScope,
 					additionalCRIScope));
 			}
