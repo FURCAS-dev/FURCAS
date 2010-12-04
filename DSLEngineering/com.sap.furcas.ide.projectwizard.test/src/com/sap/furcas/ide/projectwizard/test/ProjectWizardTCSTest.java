@@ -1,5 +1,7 @@
 package com.sap.furcas.ide.projectwizard.test;
 
+import static org.junit.Assert.fail;
+
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
@@ -13,6 +15,7 @@ import com.sap.furcas.ide.projectwizard.util.ProjectInfo;
 import com.sap.furcas.ide.projectwizard.util.SourceCodeFactory;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.parser.ParserFacade;
+import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
@@ -41,11 +44,19 @@ public class ProjectWizardTCSTest extends GeneratedParserBasedTest {
      * @throws Exception
      */
     @Test
-    public void testForcedLower() throws Exception {
+    public void testForcedLower() {
         // Expect no errors
         String sample = "ExampleClass";
         
-        /*StubModelAdapter result = */parsingHelper.parseString(sample, 0);
+        /*StubModelAdapter result = */try {
+            parsingHelper.parseString(sample, 0);
+        } catch (IOException e) {
+            fail("parsing failed due to IOException");
+            e.printStackTrace();
+        } catch (UnknownProductionRuleException e) {
+            fail("parsing failed due to UnknownProductionRuleException");
+            e.printStackTrace();
+        }
 
     }
 

@@ -20,4 +20,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: generationTemp/,
  .
-Import-Package: org.eclipse.core.resources
+Import-Package: com.sap.furcas.runtime.tcs,
+ org.eclipse.core.resources

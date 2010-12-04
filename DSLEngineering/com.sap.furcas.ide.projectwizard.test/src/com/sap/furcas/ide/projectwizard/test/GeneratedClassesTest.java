@@ -32,7 +32,7 @@ public class GeneratedClassesTest {
         String requiredBundles = getRequiredBundles();
         try {
             int success = Main
-                    .compile(new String[] { "../com.sap.furcas.ide.projectwizard.test/generationTemp/generated/MydslMapper.java",
+                    .compile(new String[] { "./generationTemp/generated/MydslTokenMapper.java",
                             "-cp", requiredBundles });
             if (success != 0) {
                 //fail("Parser compilation failed with code '" + success + "'. Messages: \n" + errByteStream.toString());
@@ -44,17 +44,17 @@ public class GeneratedClassesTest {
     }
 
     private String getRequiredBundles() {
-        StringBuffer requiredBundles = new StringBuffer("../org.antlr/bin" + File.pathSeparator + "../com.sap.ide.cts.editor");
-        String[] bundles = new String[] { "org.eclipse.jface.text", "org.eclipse.swt"};
-        for (int i = 0; i < bundles.length; i++) {
-            Bundle bundle = Platform.getBundle(bundles[i]);
-            requiredBundles.append(File.pathSeparator + bundle.getLocation());
-        }
+        StringBuffer requiredBundles = new StringBuffer("../com.sap.furcas.ide.editor/bin" + File.pathSeparator + "./generationTemp/used");
+        
+         String[] bundles = new String[] { "org.eclipse.jface.text", "org.eclipse.swt"}; for (int i = 0; i < bundles.length;
+         i++) { Bundle bundle = Platform.getBundle(bundles[i]); requiredBundles.append(File.pathSeparator +
+         bundle.getLocation()); }
+         
         return requiredBundles.toString();
     }
 
     private void cleanGenerationFolder() {
-        File file = new File("../com.sap.furcas.ide.projectwizard.test/generationTemp/generated/MydslMapper.java");
+        File file = new File("../com.sap.furcas.ide.projectwizard.test/generationTemp/generated/MydslTokenMapper.java");
         file.delete();
 
     }
@@ -64,7 +64,7 @@ public class GeneratedClassesTest {
         try {
             InputStream is = null;
             String mapper = codeFactory.createMapperCode(pi);
-            File file = new File(thisPath + "/generationTemp/generated/MydslMapper.java");
+            File file = new File(thisPath + "/generationTemp/generated/MydslTokenMapper.java");
             try {
                 is = new ByteArrayInputStream(mapper.getBytes("UTF-8"));
             } catch (UnsupportedEncodingException e) {
