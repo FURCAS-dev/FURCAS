@@ -15,9 +15,9 @@
   </parent>
 
   <modules>
-    <module>plugins</module>
-    <module>prototypes/module>
-    <module>tests/module>
+    <module>org.eclipse.emf.query.index</module>
+    <module>org.eclipse.emf.query.index.test</module>
+    <module>org.eclipse.emf.query.index.ui</module>
   </modules>
 
 </project>
