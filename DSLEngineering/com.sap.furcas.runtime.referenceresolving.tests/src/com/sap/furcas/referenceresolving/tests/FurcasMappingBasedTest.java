@@ -36,29 +36,29 @@ import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 /**
- * Base class for test cases that use a FURCAS mapping specification (".tcs" file) and based on this
- * produce lexer and parser, then parse a text resource and register all reference resolving callbacks.
- * Then, the tests can start to manipulate the model produced by the parser run and observe how
- * OCL-based property assignments get re-assigned.
+ * Base class for test cases that use a FURCAS mapping specification (".tcs" file) and based on this produce lexer and
+ * parser, then parse a text resource and register all reference resolving callbacks. Then, the tests can start to
+ * manipulate the model produced by the parser run and observe how OCL-based property assignments get re-assigned.
  * 
  * @author Axel Uhl (D043530)
- *
+ * 
  */
 public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
     private static final String LANGUAGE = "BibtexWithPropertyInits";
     private static final File TCS = new File("fixtures/BibtexWithPropertyInits.tcs");
 
-    private static final File[] METAMODELS = { ScenarioFixtureData.BIBTEXT_METAMODEL, ScenarioFixtureData.BIBTEXT1_METAMODEL };
-    
+    private static final File[] METAMODELS = { ScenarioFixtureData.BIBTEXT_METAMODEL,
+            ScenarioFixtureData.BIBTEXT1_METAMODEL };
+
     private static ParsingHelper parsingHelper;
-	private static ResourceSet resourceSet;
-	private static ConcreteSyntax syntax;
+    private static ResourceSet resourceSet;
+    private static ConcreteSyntax syntax;
     private static SyntaxRegistry syntaxRegistry;
     private static TriggerManager triggerManager;
-	private EObject johnDoe;
-	private EObject article;
-	private EClass authorClass;
-	private EClass articleClass;
+    private EObject johnDoe;
+    private EObject article;
+    private EClass authorClass;
+    private EClass articleClass;
 
     @BeforeClass
     public static void setupParser() throws Exception {
@@ -69,19 +69,23 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
         syntax = syntaxBean.getSyntax();
         resourceSet.getResources().add(syntax.eResource());
         syntaxRegistry = SyntaxRegistry.getInstance();
-        triggerManager = syntaxRegistry.getTriggerManagerForSyntax(syntax, DefaultOppositeEndFinder.getInstance(), /* progress monitor */ null);
+        triggerManager = syntaxRegistry.getTriggerManagerForSyntax(syntax, DefaultOppositeEndFinder.getInstance(), /*
+                                                                                                                    * progress
+                                                                                                                    * monitor
+                                                                                                                    */
+                null);
         ParserFacade facade = generateParserForLanguage(syntaxBean, testConfig, new ClassLookupImpl());
         parsingHelper = new ParsingHelper(facade);
     }
-    
+
     @Before
     public void setupInitialModel() throws IOException, UnknownProductionRuleException {
         String sample = "article{" + "  Testing, \"John Doe\"," + "  year = \"2002\"" + "}" + "author = \"John Doe\"."
-        + "author = \"Jane Doll\".";
+                + "author = \"Jane Doll\".";
         EPackage ePackage = findPackage("BibText");
         Set<URI> referenceScope = Collections.singleton(ePackage.eResource().getURI());
-    	EMFModelAdapter modelAdapter = new EMFModelAdapter(ePackage, resourceSet, referenceScope);
-    	DefaultTextAwareModelAdapter handlerWrapper = new DefaultTextAwareModelAdapter(modelAdapter);
+        EMFModelAdapter modelAdapter = new EMFModelAdapter(ePackage, resourceSet, referenceScope);
+        DefaultTextAwareModelAdapter handlerWrapper = new DefaultTextAwareModelAdapter(modelAdapter);
 
         ModelParsingResult parsingResult = parsingHelper.parseString(sample, handlerWrapper);
         EObject bibTexFile = (EObject) parsingResult.getParsedModelElement();
@@ -89,29 +93,30 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
         EClass bibTexFileClass = bibTexFile.eClass();
         assertEquals("BibTextFile", bibTexFileClass.getName());
         @SuppressWarnings("unchecked")
-		Collection<EObject> entries = (Collection<EObject>) bibTexFile.eGet(bibTexFileClass.getEStructuralFeature("entries"));
+        Collection<EObject> entries = (Collection<EObject>) bibTexFile.eGet(bibTexFileClass
+                .getEStructuralFeature("entries"));
         assertEquals(3, entries.size());
         johnDoe = null;
         article = null;
         authorClass = null;
         articleClass = null;
         for (EObject entry : entries) {
-        	if (entry.eClass().getName().equals("Author")) {
-        		authorClass = entry.eClass();
-            	if (entry.eGet(authorClass.getEStructuralFeature("name")).equals("John Doe")) {
-            		johnDoe = entry;
-            	}
-        	} else if (entry.eClass().getName().equals("Article")) {
-        		articleClass = entry.eClass();
-        		article = entry;
-        	}
+            if (entry.eClass().getName().equals("Author")) {
+                authorClass = entry.eClass();
+                if (entry.eGet(authorClass.getEStructuralFeature("name")).equals("John Doe")) {
+                    johnDoe = entry;
+                }
+            } else if (entry.eClass().getName().equals("Article")) {
+                articleClass = entry.eClass();
+                article = entry;
+            }
         }
     }
 
     @Test
     public void testInitialModel() throws Exception {
-    	assertNotNull(syntax);
-    	assertEquals("BibtexWithPropertyInits", syntax.getName());
+        assertNotNull(syntax);
+        assertEquals("BibtexWithPropertyInits", syntax.getName());
         assertNotNull(johnDoe);
         // now check the reference was set using the right property name
         // assertNotNull(johnDoe.get("articles")); StubModelHandler not powerful enough
@@ -119,27 +124,27 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
         assertEquals(johnDoe, article.eGet(articleClass.getEStructuralFeature("author")));
         assertEquals("Where John Doe wrote it", article.eGet(articleClass.getEStructuralFeature("location")));
     }
-    
+
     @Test
-    //@Ignore("failing test case as preparation of impact analysis requirements")
+    // @Ignore("failing test case as preparation of impact analysis requirements")
     public void testChangeAuthorName() {
         triggerManager.addToObservedResourceSets(johnDoe.eResource().getResourceSet());
-    	johnDoe.eSet(authorClass.getEStructuralFeature("name"), "John Dough");
+        johnDoe.eSet(authorClass.getEStructuralFeature("name"), "John Dough");
         assertEquals("Where John Dough wrote it", article.eGet(articleClass.getEStructuralFeature("location")));
     }
-    
+
     /**
-     * Finds an EPackage in the {@link #resourceSet} by the <code>name</code> specified 
+     * Finds an EPackage in the {@link #resourceSet} by the <code>name</code> specified
      */
-	private static EPackage findPackage(String name) {
-		for (Resource r : resourceSet.getResources()) {
-			for (EObject c : r.getContents()) {
-				if (c instanceof EPackage && ((EPackage) c).getName().equals(name)) {
-					return (EPackage) c;
-				}
-			}
-		}
-		return null;
-	}
+    private static EPackage findPackage(String name) {
+        for (Resource r : resourceSet.getResources()) {
+            for (EObject c : r.getContents()) {
+                if (c instanceof EPackage && ((EPackage) c).getName().equals(name)) {
+                    return (EPackage) c;
+                }
+            }
+        }
+        return null;
+    }
 
 }
