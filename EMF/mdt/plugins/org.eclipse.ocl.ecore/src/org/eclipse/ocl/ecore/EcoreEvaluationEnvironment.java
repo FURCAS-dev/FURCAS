@@ -44,7 +44,6 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.ocl.AbstractEvaluationEnvironment;
 import org.eclipse.ocl.EvaluationEnvironment;
-import org.eclipse.ocl.EvaluationEnvironmentWithHiddenOpposites;
 import org.eclipse.ocl.LazyExtentMap;
 import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.ecore.internal.OCLEcorePlugin;
@@ -74,7 +73,7 @@ public class EcoreEvaluationEnvironment
 		extends
 		AbstractEvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject>
 		implements EvaluationEnvironment.Enumerations<EEnumLiteral>,
-		EvaluationEnvironmentWithHiddenOpposites<EStructuralFeature> {
+		EvaluationEnvironmentWithHiddenOpposites {
 
 	private boolean mustCheckOperationReflectionConsistency = true;
 
@@ -85,7 +84,14 @@ public class EcoreEvaluationEnvironment
 	 */
 	public EcoreEvaluationEnvironment() {
 		super();
-		oppositeEndFinder = new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE);
+		oppositeEndFinder = createOppositeEndFinder();
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	protected DefaultOppositeEndFinder createOppositeEndFinder() {
+		return new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE);
 	}
 
 	/**
@@ -100,14 +106,8 @@ public class EcoreEvaluationEnvironment
 		oppositeEndFinder = ((EcoreEvaluationEnvironment) parent).oppositeEndFinder;
 	}
 
-	/**
-	 * @since 3.1
-	 */
-	public EcoreEvaluationEnvironment(OppositeEndFinder oppositeEndFinder) {
+	EcoreEvaluationEnvironment(OppositeEndFinder oppositeEndFinder) {
 		super();
-		if (oppositeEndFinder == null) {
-			throw new IllegalArgumentException("Must provide a non-null opposite end finder"); //$NON-NLS-1$
-		}
 		this.oppositeEndFinder = oppositeEndFinder;
 	}
 
@@ -505,13 +505,7 @@ public class EcoreEvaluationEnvironment
 	/**
 	 * @since 3.1
 	 */
-	public Object navigateOppositeProperty(EStructuralFeature property,
-			Object source)
-			throws IllegalArgumentException {
-		return navigateOppositeProperty((EReference) property, source);
-	}
-
-    private Object navigateOppositeProperty(EReference property, Object target) throws IllegalArgumentException {
+	public Object navigateOppositeProperty(EReference property, Object target) throws IllegalArgumentException {
         Object result;
         if (property.isContainment()) {
             EObject resultCandidate = ((EObject) target).eContainer();

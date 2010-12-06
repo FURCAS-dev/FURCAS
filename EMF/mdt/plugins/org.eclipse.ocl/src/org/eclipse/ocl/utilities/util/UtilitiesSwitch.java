@@ -25,6 +25,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+
+//import org.eclipse.ocl.utilities.*;
 import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.CallingASTNode;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
@@ -34,7 +36,6 @@ import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 import org.eclipse.ocl.utilities.Visitable;
 import org.eclipse.ocl.utilities.Visitor;
-import org.eclipse.ocl.utilities.VisitorExtension;
 
 /**
  * <!-- begin-user-doc -->
@@ -171,13 +172,6 @@ public class UtilitiesSwitch<T1> {
 					result = defaultCase(theEObject);
 				return result;
 			}
-			case UtilitiesPackage.VISITOR_EXTENSION : {
-				VisitorExtension<?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitorExtension = (VisitorExtension<?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) theEObject;
-				T1 result = caseVisitorExtension(visitorExtension);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
 			default :
 				return defaultCase(theEObject);
 		}
@@ -301,23 +295,6 @@ public class UtilitiesSwitch<T1> {
 	 * @generated
 	 */
 	public <C, PM> T1 caseExpressionInOCL(ExpressionInOCL<C, PM> object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Visitor Extension</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * @since 3.1
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Visitor Extension</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public <T, C, O, P, EL, PM, S, COA, SSA, CT> T1 caseVisitorExtension(
-			VisitorExtension<T, C, O, P, EL, PM, S, COA, SSA, CT> object) {
 		return null;
 	}
 

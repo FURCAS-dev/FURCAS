@@ -116,8 +116,8 @@ public class IfExpItemProvider extends OCLExpressionItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/IfExp")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/IfExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -158,8 +158,8 @@ public class IfExpItemProvider extends OCLExpressionItemProvider implements
 		case EcorePackage.IF_EXP__CONDITION:
 		case EcorePackage.IF_EXP__THEN_EXPRESSION:
 		case EcorePackage.IF_EXP__ELSE_EXPRESSION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -360,10 +360,6 @@ public class IfExpItemProvider extends OCLExpressionItemProvider implements
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
-
-		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
 				EcoreFactory.eINSTANCE.createAssociationClassCallExp()));
 
@@ -546,10 +542,6 @@ public class IfExpItemProvider extends OCLExpressionItemProvider implements
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
-
-		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
 				EcoreFactory.eINSTANCE.createAssociationClassCallExp()));
 
@@ -730,10 +722,6 @@ public class IfExpItemProvider extends OCLExpressionItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
-
-		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
 	}
 
 	/**

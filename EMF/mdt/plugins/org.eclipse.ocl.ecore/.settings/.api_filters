@@ -15,5 +15,11 @@
                 <message_argument value="OPPOSITE_PROPERTY_CALL_EXP"/>
             </message_arguments>
         </filter>
+        <filter id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.ecore.EcorePackage.Literals"/>
+                <message_argument value="OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY"/>
+            </message_arguments>
+        </filter>
     </resource>
 </component>

@@ -211,8 +211,8 @@ public class TupleLiteralPartItemProvider extends ETypedElementItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/TupleLiteralPart")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/TupleLiteralPart")); //$NON-NLS-1$
 	}
 
 	/**
@@ -254,13 +254,13 @@ public class TupleLiteralPartItemProvider extends ETypedElementItemProvider
 		case EcorePackage.TUPLE_LITERAL_PART__END_POSITION:
 		case EcorePackage.TUPLE_LITERAL_PART__TYPE_START_POSITION:
 		case EcorePackage.TUPLE_LITERAL_PART__TYPE_END_POSITION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		case EcorePackage.TUPLE_LITERAL_PART__VALUE:
 		case EcorePackage.TUPLE_LITERAL_PART__ATTRIBUTE:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -459,10 +459,6 @@ public class TupleLiteralPartItemProvider extends ETypedElementItemProvider
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__VALUE,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
-
-		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__VALUE,
-				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
@@ -881,10 +877,6 @@ public class TupleLiteralPartItemProvider extends ETypedElementItemProvider
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
-
-		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
-				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
 	}
 
 	/**

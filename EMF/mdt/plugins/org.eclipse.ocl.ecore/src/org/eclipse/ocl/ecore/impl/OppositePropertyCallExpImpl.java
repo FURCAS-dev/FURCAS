@@ -1,31 +1,41 @@
-/*******************************************************************************
- * Copyright (c) 2009, 2010 SAP AG and others.
- * All rights reserved. This program and the accompanying materials
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2009,2010 SAP AG and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *     SAP AG - initial API and implementation
- *******************************************************************************/
+ *   Axel Uhl - Initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.eclipse.ocl.ecore.impl;
 
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.OppositePropertyCallExp;
-import org.eclipse.ocl.expressions.ExpressionsPackage;
-import org.eclipse.ocl.expressions.operations.OppositePropertyCallExpOperations;
+import org.eclipse.ocl.ecore.util.EcoreValidator;
+import org.eclipse.ocl.ecore.utilities.VisitorExtension;
+import org.eclipse.ocl.util.OCLUtil;
+import org.eclipse.ocl.util.TypeUtil;
+import org.eclipse.ocl.utilities.UMLReflection;
 import org.eclipse.ocl.utilities.Visitor;
-import org.eclipse.ocl.utilities.VisitorExtension;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,6 +55,8 @@ public class OppositePropertyCallExpImpl
 		extends NavigationCallExpImpl
 		implements OppositePropertyCallExp {
 
+	private static final int OPPOSITE_PROPERTY_CALL_EXP__OPPOSITE_PROPERTY_TYPE = 1;
+
 	/**
 	 * The cached value of the '{@link #getReferredOppositeProperty() <em>Referred Opposite Property</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -53,7 +65,7 @@ public class OppositePropertyCallExpImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature referredOppositeProperty;
+	protected EReference referredOppositeProperty;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -79,11 +91,11 @@ public class OppositePropertyCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EStructuralFeature getReferredOppositeProperty() {
+	public EReference getReferredOppositeProperty() {
 		if (referredOppositeProperty != null
-			&& ((EObject) referredOppositeProperty).eIsProxy()) {
+			&& referredOppositeProperty.eIsProxy()) {
 			InternalEObject oldReferredOppositeProperty = (InternalEObject) referredOppositeProperty;
-			referredOppositeProperty = (EStructuralFeature) eResolveProxy(oldReferredOppositeProperty);
+			referredOppositeProperty = (EReference) eResolveProxy(oldReferredOppositeProperty);
 			if (referredOppositeProperty != oldReferredOppositeProperty) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(
@@ -101,7 +113,7 @@ public class OppositePropertyCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EStructuralFeature basicGetReferredOppositeProperty() {
+	public EReference basicGetReferredOppositeProperty() {
 		return referredOppositeProperty;
 	}
 
@@ -111,8 +123,8 @@ public class OppositePropertyCallExpImpl
 	 * @generated
 	 */
 	public void setReferredOppositeProperty(
-			EStructuralFeature newReferredOppositeProperty) {
-		EStructuralFeature oldReferredOppositeProperty = referredOppositeProperty;
+			EReference newReferredOppositeProperty) {
+		EReference oldReferredOppositeProperty = referredOppositeProperty;
 		referredOppositeProperty = newReferredOppositeProperty;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(
@@ -120,17 +132,6 @@ public class OppositePropertyCallExpImpl
 				Notification.SET,
 				EcorePackage.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY,
 				oldReferredOppositeProperty, referredOppositeProperty));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public boolean checkOppositePropertyType(DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		return OppositePropertyCallExpOperations.checkOppositePropertyType(this, diagnostics,
-			context);
 	}
 
 	/**
@@ -158,7 +159,7 @@ public class OppositePropertyCallExpImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case EcorePackage.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY :
-				setReferredOppositeProperty((EStructuralFeature) newValue);
+				setReferredOppositeProperty((EReference) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -173,7 +174,7 @@ public class OppositePropertyCallExpImpl
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case EcorePackage.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY :
-				setReferredOppositeProperty((EStructuralFeature) null);
+				setReferredOppositeProperty((EReference) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -196,37 +197,45 @@ public class OppositePropertyCallExpImpl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == org.eclipse.ocl.expressions.OppositePropertyCallExp.class) {
-			switch (derivedFeatureID) {
-				case EcorePackage.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY :
-					return ExpressionsPackage.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY;
-				default :
-					return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
+	public boolean checkOppositePropertyType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		boolean result = true;
+		Environment<?, EClassifier, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+			.getValidationEnvironment(this, context);
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == org.eclipse.ocl.expressions.OppositePropertyCallExp.class) {
-			switch (baseFeatureID) {
-				case ExpressionsPackage.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY :
-					return EcorePackage.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY;
-				default :
-					return -1;
+		if (env != null) {
+			EReference property = getReferredOppositeProperty();
+			org.eclipse.ocl.expressions.OCLExpression<EClassifier> source = getSource();
+			EClassifier type = getType();
+
+			if ((property != null) && (source != null)) {
+				UMLReflection<?, EClassifier, ?, ?, ?, ?, ?, ?, ?, ?> uml = env
+					.getUMLReflection();
+				EClassifier refType = uml.getOwningClassifier(property);
+
+				if (!TypeUtil.exactTypeMatch(env, refType, type)) {
+					result = false;
+				}
 			}
 		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+
+		if (!result) {
+			if (diagnostics != null) {
+				// TODO: Specific message
+				diagnostics
+					.add(new BasicDiagnostic(
+						Diagnostic.ERROR,
+						EcoreValidator.DIAGNOSTIC_SOURCE,
+						OPPOSITE_PROPERTY_CALL_EXP__OPPOSITE_PROPERTY_TYPE,
+						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
+							.getString(
+								"_UI_GenericInvariant_diagnostic", new Object[]{"checkOppositePropertyType", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(this, context)}), //$NON-NLS-1$ //$NON-NLS-2$
+						new Object[]{this}));
+			}
+		}
+		return result;
 	}
 
 	/**
@@ -235,9 +244,8 @@ public class OppositePropertyCallExpImpl
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		if (v instanceof VisitorExtension<?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
-			return ((VisitorExtension<T, EClassifier, ?, EStructuralFeature, ?, ?, ?, ?, ?, ?>) v)
-				.visitOppositePropertyCallExp(this);
+		if (v instanceof VisitorExtension<?>) {
+			return ((VisitorExtension<T>) v).visitOppositePropertyCallExp(this);
 		} else {
 			return null;
 		}
