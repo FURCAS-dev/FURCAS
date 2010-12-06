@@ -83,7 +83,7 @@ public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactory {
 
     // implements the inherited specification
     public EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> createEvaluationEnvironment() {
-        return new PartialEcoreEvaluationEnvironment(oppositeEndFinder);
+        return new PartialEcoreEvaluationEnvironment(getOppositeEndFinder());
     }
 
     // implements the inherited specification
@@ -137,7 +137,4 @@ public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactory {
         return atPre;
     }
 
-    protected OppositeEndFinder getOppositeEndFinder() {
-        return oppositeEndFinder;
-    }
 }
