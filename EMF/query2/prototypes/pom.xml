@@ -15,7 +15,7 @@
   </parent>
 
   <modules>
-    <module>index/module>
+    <module>index</module>
   </modules>
 
 </project>
