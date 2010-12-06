@@ -37,6 +37,23 @@ public class PageFileProviderImpl implements PageFileProvider {
 		return this.getFileForElement(id);
 	}
 
+        private File getFileForElement(String id) {
+               String path;
+
+               if (basePath == null) {
+                       throw new IllegalStateException("Base path not set");
+               }
+
+               if(basePath.endsWith(File.separator)) {
+                       path = basePath + id.replace(':', '_').replace('/', '_') + ".page";
+               } else {
+                       path = basePath + File.separator + id.replace(':', '_').replace('/', '_') + ".page";
+               }
+
+               File file = new File(path);
+               return file;
+        }
+
 	private File getFileForElement(String id) {
 		if (basePath == null) {
 			throw new IllegalStateException("Base path not set");
