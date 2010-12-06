@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>mdt.tests</artifactId>
+		<groupId>com.sap.dsl</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<groupId>com.sap.dsl</groupId>
+	<artifactId>org.eclipse.ocl.standalone.tests</artifactId>
+	<version>1.3.0-SNAPSHOT</version>
+	<packaging>eclipse-plugin</packaging>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<!-- -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8080 -->
+					<argLine> -Xmx1024m -XX:+UseParallelGC -Dworkspace.location="${workspace_location}" -Dtarget.location="${target.location}" -Dorg.eclipse.ocl="${workspace.location}/EMF/mdt/plugins/org.eclipse.ocl" -Dorg.eclipse.ocl.ecore.tests="${workspace.location}/EMF/mdt/tests/org.eclipse.ocl.ecore.tests" -Dorg.eclipse.ocl.ecore.tests.testmodel="${workspace.location}/EMF/mdt/tests/org.eclipse.ocl.ecore.tests/model/OCLTest.ecore" -Dorg.eclipse.ocl.uml="${workspace.location}/EMF/mdt/plugins/org.eclipse.ocl.uml" -Dorg.eclipse.ocl.uml.tests="${workspace.location}/EMF/mdt/tests/org.eclipse.ocl.uml.tests" -Dorg.eclipse.ocl.uml.tests.testmodel="${workspace.location}/EMF/mdt/tests/org.eclipse.ocl.uml.tests/model/OCLTest.uml" -Dorg.eclipse.uml2.uml.resources="${target.location}/plugins/org.eclipse.uml2.uml.resources"</argLine>
+				</configuration>
+				<executions>
+					<execution>
+						<id>test</id>
+						<phase>test</phase>
+						<configuration>
+							<testSourceDirectory>src/</testSourceDirectory>
+							<includes>
+								<include>**/AllTests.java</include>
+							</includes>
+						</configuration>
+						<goals>
+							<goal>test</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.7</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>
