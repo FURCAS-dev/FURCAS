@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<!--
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2005 IBM Corporation and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   IBM - Initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id$
+ */
+-->
+<plugin>
+
+     <extension point="org.eclipse.ui.editorActions"> 
+      <editorContribution 
+         id="org.eclipse.emf.query.examples.ocl.editorContribution" 
+         targetID="org.eclipse.emf.examples.extlibrary.presentation.EXTLibraryEditorID"> 
+        <menu
+               label="%_UI_OclMenu_label"
+               path="org.eclipse.emf.examples.extlibraryMenuID/additions"
+               id="org.eclipse.emf.oclQueryMenuID">
+            <separator name="additions"/>
+         </menu>
+         <action
+               label="%_UI_CtxFreeQuery_label"
+               class="org.eclipse.emf.query.examples.ocl.actions.ContextFreeQueryDelegate"
+               menubarPath="org.eclipse.emf.examples.extlibraryMenuID/org.eclipse.emf.oclQueryMenuID/additions"
+               icon="$nl$/icons/elcl16/oclqryedit_co.gif"
+               id="org.eclipse.emf.query.examples.ocl.ContextFreeQueryAction"/>
+         <action
+               label="%_UI_OclQuery_label"
+               class="org.eclipse.emf.query.examples.ocl.actions.OCLQueryDelegate"
+               menubarPath="org.eclipse.emf.examples.extlibraryMenuID/org.eclipse.emf.oclQueryMenuID/additions"
+               icon="$nl$/icons/elcl16/oclqryedit_co.gif"
+               id="org.eclipse.emf.query.examples.ocl.OclQueryAction"/>
+      </editorContribution> 
+   </extension> 
+   
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <viewerContribution
+            targetID="org.eclipse.emf.examples.extlibrary.presentation.EXTLibraryEditorID"
+            id="org.eclipse.emf.query.examples.ocl.viewerContribution">
+        <menu
+               label="%_UI_OclMenu_label"
+               path="additions"
+               id="org.eclipse.emf.oclQueryMenuID">
+            <separator name="additions"/>
+         </menu>
+         <action
+               label="%_UI_CtxFreeQuery_label"
+               class="org.eclipse.emf.query.examples.ocl.actions.ContextFreeQueryDelegate"
+               menubarPath="org.eclipse.emf.oclQueryMenuID/additions"
+               icon="$nl$/icons/elcl16/oclqryedit_co.gif"
+               id="org.eclipse.emf.query.examples.ocl.ContextFreeQueryAction"/>
+         <action
+               label="%_UI_OclQuery_label"
+               class="org.eclipse.emf.query.examples.ocl.actions.OCLQueryDelegate"
+               menubarPath="org.eclipse.emf.oclQueryMenuID/additions"
+               icon="$nl$/icons/elcl16/oclqryedit_co.gif"
+               id="org.eclipse.emf.query.examples.ocl.OclQueryAction"/>
+      </viewerContribution>
+   </extension>
+
+</plugin>

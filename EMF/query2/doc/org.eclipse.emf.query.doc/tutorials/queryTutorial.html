@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="Stylesheet" type="text/css" href="doc.css" />
+<title>Tutorial: EMF Model Query Statements</title>
+</head>
+<body>
+<h1><a name="top">Tutorial: EMF Model Query Statements</a></h1>
+
+<h2>Contents</h2>
+<ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#refs">References</a></li>
+    <li><a href="#intro">Introduction</a></li>
+    <li><a href="#construct_statement">Constructing a Query Statement</a></li>
+    <li><a href="#query_clauses">Providing the Query Clauses</a></li>
+    <li><a href="#applying_conditions">Applying Conditions</a></li>
+    <li><a href="#nesting_conditions">Nesting Conditions</a></li>
+    <li><a href="#executing">Executing the Query</a></li>
+    <li><a href="#additional_examples">Additional Examples</a></li>
+    <li><a href="#summary">Summary</a></li>
+</ul>
+        
+<h2><a name="overview">Overview</a></h2>
+<p>
+The EMF Model Query framework provides a set of tools to construct and execute
+query statements. These query statements provide a client with a uniform way of
+discovering and potentially modifying the matching EObjects. Queries are first
+constructed with their query clauses and then they are ready to be executed.
+</p>
+<p class="small">[<a href="#top">back to top</a>]</p>
+
+<h2><a name="refs">References</a></h2>
+<p>
+This tutorial assumes that the reader is familiar with EMF and is familiar with
+the concept of querying data. A crucial part of understanding EMF is being able
+to understand its reflective mechanisms including <code>EClasses</code> and
+<code>EStructuralFeatures</code>.
+</p>
+<p>
+For reference, the full <a href="../references/examples/queryExample.html">example</a> for this tutorial is available.
+</p>
+<p class="small">[<a href="#top">back to top</a>]</p>
+
+<h2><a name="intro"></a>Introduction</h2>
+<p>
+In order to demonstrate EMF Query, we will be making use of the extended library
+model (<em class="CodeName">EXTLibrary</em>). This model
+is a variant of the standard EMF example model used in many of its tutorials.
+</p>
+<p>
+For those readers who are not familiar with this model, it describes a library
+with books and writers.  The most important aspect of the library model for this
+tutorial is the fact that books are modeled as EObjects whose EClass is
+<code>Book</code> and they contain an EStructuralFeature called <code>pages</code>
+that stores an integer number of pages contained in the book.
+</p>
+<p>
+The goal of this tutorial is to create an EMF query that will discover which
+books contain more than 500 pages. These books are considered &quot;large&quot; books.
+</p>
+<p class="small">[<a href="#top">back to top</a>]</p>
+
+<h2><a name="construct_statement">Constructing a Query Statement</a></h2>
+<p>
+There are two query statements available:
+<a href="../references/javadoc/org/eclipse/emf/query/statements/SELECT.html">SELECT</a> and
+<a href="../references/javadoc/org/eclipse/emf/query/statements/UPDATE.html">UPDATE</a>.
+The SELECT statement provides querying without modification while the UPDATE statement provides
+querying with modification. In this case, we require only querying without the modification.
+</p>
+<p>
+Often times, pseudocode can be used to clarify the function of the query
+statement. In EMF query the pseudocode is very close to the code. We will use
+pseudocode for now and switch back to the actual code near the end of this
+tutorial.
+</p>
+<p>
+Here is our query so far:
+</p>
+<pre class="Code">
+SELECT
+    FROM [source]
+    WHERE [condition]
+</pre>
+<p class="small">[<a href="#top">back to top</a>]</p>
+
+<h2><a name="query_clauses">Providing the Query Clauses</a></h2>
+<p>
+Every query statement requires some query clauses. The SELECT statement requires
+two clauses, a &quot;FROM&quot; and a &quot;WHERE.&quot; The former clause
+describes the source of EObjects where SELECT can iterate in order to derive
+results. The latter clause describes the criteria for an EObject that matches.
+</p>
+<p>
+The <a href="../references/javadoc/org/eclipse/emf/query/statements/FROM.html">FROM</a>
+clause requires an
+<a href="../references/javadoc/org/eclipse/emf/query/conditions/eobjects/EObjectSource.html">EObjectSource</a>.
+We will trivially satisfy the FROM clause by providing a collection of EObjects
+called <code>selectedEObjects</code>:
+</p>
+<pre class="Code">
+SELECT
+    FROM selectedEObjects
+    WHERE [condition]
+</pre>
+<p>
+The FROM clause defaults to hierarchical iteration, which means that for each
+EObject in the selectedEObjects collection, the SELECT statement will traverse
+its contained EObjects (<code>eContents()</code>) recursively until it reaches
+the leaves of the containment subtree to find its matching EObjects.
+</p>
+<p class="small">[<a href="#top">back to top</a>]</p>
+
+<h2><a name="applying_conditions">Applying Conditions</a></h2>
+<p>
+The final part of a SELECT statement is the
+<a href="../references/javadoc/org/eclipse/emf/query/statements/WHERE.html">WHERE</a>
+clause along with its condition. This condition will be evaluated at each
+EObject encountered by the FROM clause to determine whether the EObject matches
+the criteria of the query. The condition provided to the WHERE clause falls
+under a specialized condition called an
+<a href="../references/javadoc/org/eclipse/emf/query/conditions/eobjects/EObjectCondition.html">EObjectCondition</a>
+that is a condition that is specially designed to evaluate an EObject.
+</p>
+<p>
+Our original purpose for this query is to find book EObjects whose pages are
+larger than 500. The pages EStructuralFeature is an EAttribute whose value will
+be an integer so we will choose the
+<a href="../references/javadoc/org/eclipse/emf/query/conditions/eobjects/structuralfeatures/EObjectAttributeValueCondition.html">EObjectAttributeValueCondition</a>.
+Its purpose is to evaluate the value of a specific EAttribute:
+</p>
+<pre class="Code">
+SELECT
+    FROM selectedEObjects
+    WHERE EObjectAttributeValueCondition
+                EXTLibraryPackage.eINSTANCE.getBook_Pages()
+                [inner condition]
+</pre>
+<p class="small">[<a href="#top">back to top</a>]</p>
+
+<h2><a name="nesting_conditions">Nesting Conditions</a></h2>
+<p>
+Some conditions will require other conditions in order to perform their
+function. This gives clients enough versatility to formulate their queries.
+</p>
+<p>
+In the case of EObjectAttributeValueCondition, it must be constructed with a
+<a href="../references/javadoc/org/eclipse/emf/query/conditions/Condition.html">Condition.</a>
+Unlike the WHERE clause, it does not require the special EObjectCondition. This
+is because EAttributes may store primitive values like Strings, Integers or
+Booleans. Our EAttribute &quot;pages&quot; is an Integer EAttribute so we will
+use a number condition that will match a range of numerical values:
+</p>
+<pre class="Code">
+SELECT
+    FROM selectedEObjects
+    WHERE EObjectAttributeValueCondition
+                EXTLibraryPackage.eINSTANCE.getBook_Pages()
+                NumberCondition.IntegerValue(500, MAX_VALUE)
+</pre>
+<p>
+Now we have the final pseudo-code representation of the query. The
+<a href="../references/javadoc/org/eclipse/emf/query/conditions/numbers/NumberCondition.IntegerValue.html">NumberCondition.IntegerValue</a>
+condition will match any Integer between 500 and the maximum integer value
+inclusive.
+</p>
+<p class="small">[<a href="#top">back to top</a>]</p>
+
+<h2><a name="executing">Executing the Query</a></h2>
+<p>
+Since the beginning of the tutorial, we have been operating in pseudocode. When
+we translate the pseudocode into EMF Query code we get the following:
+</p>
+<pre class="Code">
+statement =
+    new SELECT(
+        new FROM(selectedEObjects),
+        new WHERE(new EObjectAttributeValueCondition(
+                    EXTLibraryPackage.eINSTANCE.getBook_Pages(),
+                    new NumberCondition.IntegerValue(new Integer(500), new Integer(Integer.MAX_VALUE)))
+        )
+    )
+</pre>
+<p>
+The
+<a href="../references/javadoc/org/eclipse/emf/query/conditions/eobjects/structuralfeatures/EStructuralFeatureValueGetter.html">EStructuralFeatureValueGetter</a>
+object is explicitly provided to perform the reflective retrieval of the
+structural feature value. This object may be substituted in order to provide
+more a more optimal way to retrieve this value. In the above example
+the default value getter is used although there are other constructors to allow
+clients to provide their own.
+</p>
+<p>
+Every query statement has an <code>execute()</code> method, which returns back
+the collection of matching EObjects.
+</p>
+<pre class="Code">
+statement.execute();
+</pre>
+<p>
+For robustness, the executor of the query statement should call the
+<a href="../references/javadoc/org/eclipse/emf/query/statements/IQueryResult.html#getException()">getException()</a>
+on the returned
+<a href="../references/javadoc/org/eclipse/emf/query/statements/IQueryResult.html">IQueryResult</a>
+of the execute() method in order to verify that no exceptions occurred during
+the execution of the query.
+</p>
+<p class="small">[<a href="#top">back to top</a>]</p>
+
+<h2><a name="additional_examples">Additional Examples</a></h2>
+<pre class="Code">
+BookCategory category;
+
+/*
+ * Looking for writers whose authored books of the specified category
+ */
+EObjectCondition condition = new EObjectReferenceValueCondition(
+    new EObjectTypeRelationCondition(EXTLibraryPackage.eINSTANCE
+        .getWriter()), EXTLibraryPackage.eINSTANCE.getWriter_Books(),
+    new EObjectAttributeValueCondition(EXTLibraryPackage.eINSTANCE
+        .getBook_Category(), new ObjectInstanceCondition(category)));
+
+// Build the query statement
+SELECT statement = new SELECT(
+    new FROM(selectedEObjects), 
+    new WHERE(condition)
+);
+
+// Execute query
+return statement.execute();
+</pre>
+<p>
+The above query makes use of the
+<a href="../references/javadoc/org/eclipse/emf/query/conditions/eobjects/structuralfeatures/EObjectReferenceValueCondition.html">EObjectReferenceValueCondition</a>
+and <a href="../references/javadoc/org/eclipse/emf/query/conditions/eobjects/EObjectTypeRelationCondition.html">EObjectTypeRelationCondition</a>.
+The former allows one to evaluate the value of an EReference. In this case, it
+is evaluating the value of the books EReference. By default, if the EReference
+has a multiplicity larger than 1 this condition will default to a
+&quot;ConditionPolicy.ANY,&quot; which means that it will match an EObject if
+any of its referenced EObjects matches the provided value condition.
+</p>
+<p>
+Two nested conditions are provided to the EObjectReferenceValueCondition: a
+context condition and a value condition. The context condition evaluates against
+the container of the EReference while the value condition evaluates against the
+referenced EObjects. Notice that both conditions will have to be
+EObjectConditions because they will be matching against EObjects.
+</p>
+<p>
+In the above query, the context condition is an EObjectTypeRelationCondition,
+which will ensure that the EObject has a certain EClass (type). The value
+condition was chosen to be the EObjectAttributeValueCondition, which will
+compare the book's category identity against the chosen category enumeration
+literal.
+</p>
+<pre class="Code">
+Writer chosenWriter;
+String name = chosenWriter.getName();
+
+/*
+ * Looking for books whose writer name is the specified name
+ */
+EObjectCondition condition = new EObjectReferenceValueCondition(
+    new EObjectTypeRelationCondition(EXTLibraryPackage.eINSTANCE.getBook()),
+    EXTLibraryPackage.eINSTANCE.getBook_Author(),
+    new EObjectAttributeValueCondition(EXTLibraryPackage.eINSTANCE
+        .getWriter_Name(), new StringValue(name)));
+
+// Build the select query statement
+SELECT statement = new SELECT(
+    new FROM(chosenWriter.eResource().getContents()), 
+    new WHERE(condition));
+</pre>
+<p>
+This query is similar in structure to the previous example. The differences are
+that the context condition is checking that the container of the EReference is
+a book and the author of the book has a value <code>name</code> for the name
+EAttribute.
+</p>
+<p class="small">[<a href="#top">back to top</a>]</p>
+
+<h2><a name="summary">Summary</a></h2>
+<p>
+In this tutorial, we did the following:
+</p>
+<ol>
+<li>Developed a query statement in pseudocode.</li>
+<li>Satisfied the query statement and its clauses.</li>
+<li>Used a nested condition to evaluate the value of an EAttribute.</li>
+<li>Executed the query to produce the results.</li>
+<li>Checked to ensure that the query did not generate any exceptions during its execution.</li>
+<li>Analyzed some more sophistocated queries.</li>
+</ol>
+<p class="small">[<a href="#top">back to top</a>]</p>
+
+<hr />
+
+<p>
+<a href="http://www.eclipse.org/legal/epl-v10.html">Copyright (c) 2000, 2007 IBM Corporation and others. All Rights Reserved.</a>
+</p>
+</body>
+</html>
