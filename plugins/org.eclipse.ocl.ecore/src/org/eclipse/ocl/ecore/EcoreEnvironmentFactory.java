@@ -62,7 +62,7 @@ public class EcoreEnvironmentFactory
 	
 	private final EPackage.Registry registry;
 
-	protected final OppositeEndFinder oppositeEndFinder;
+	private final OppositeEndFinder oppositeEndFinder;
 
 	/**
 	 * Initializes me.  Environments that I create will use the global package
