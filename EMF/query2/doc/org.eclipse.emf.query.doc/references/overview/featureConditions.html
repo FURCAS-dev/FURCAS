@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="Stylesheet" type="text/css" href="doc.css" />
+<title>Feature Conditions</title>
+</head>
+<body>
+<h1><a name="top">Feature Conditions</a></h1>
+
+<p>
+In addition to <a href="eobjectConditions.html#basic">conditions</a> testing the
+identity or type of a model element (an <em class="CodeName">EObject</em>), the
+EMF Model Query Framework provides a variety of conditions that introspect the
+features of model elements.
+</p>
+
+<blockquote>
+	<img src="images/featureConditions.png" alt="EStructuralFeature Condition API"/><br/>
+	<font size="-2">[<a target="_blank" href="images/featureConditions.svg">as SVG</a>]</font>
+</blockquote>
+
+<p>
+The basic condition that asks about the structural features of model elements is 
+the <a href="../javadoc/org/eclipse/emf/query/conditions/eobjects/structuralfeatures/EObjectStructuralFeatureCondition.html"><em class="CodeName">EObjectStructuralFeatureCondition</em></a>.
+This condition pertains to a single <em class="CodeName">EStructuralFeature</em>.
+By itself, it tests whether that feature is available on an element or not (whether
+the element's <em class="CodeName">EClass</em> has that feature).  This is a
+useful condition to check for subclasses that ask questions about the values of
+the feature.  Clients may directly extend this class, or they may use the
+subclasses described <a href="#feature_values">below</a> to assemble predicates
+on the feature values.
+</p><p>
+The <a href="../javadoc/org/eclipse/emf/query/conditions/eobjects/structuralfeatures/EObjectReferencerCondition.html"><em class="CodeName">EObjectReferencerCondition</em></a>
+selects objects that reference a client-specified target element via any
+cross-reference feature.  That is, it does not consider contaiment or container
+features.
+</p>
+<pre class="Code">
+Set&lt;EObject&gt; subjects = getSubjects();  // hypothetical source of test subjects
+
+Person dickens = getPerson("Charles Dickens");
+
+// look for any library item that was read by, written by, or acted by. Charles Dickens
+EObjectCondition cond = new <b>EObjectReferencerCondition(dickens)</b>;
+
+for (EObject subject : Subjects) {
+    if (cond.isSatisfied(subject)) {
+        System.out.println(subject);
+    }
+}
+</pre>
+<p>
+The <a href="../javadoc/org/eclipse/emf/query/conditions/eobjects/structuralfeatures/EObjectContainmentFeatureCondition.html"><em class="CodeName">EObjectContainmentFeatureCondition</em></a>
+selects elements that are contained in a specific feature of their containers.
+It checks an object's <em class="CodeName">eContainingFeature()</em> against the
+specified feature.
+</p>
+
+<a name="feature_values"></a>
+<h2>Conditions on Feature Values</h2>
+
+<p>
+The <a href="../javadoc/org/eclipse/emf/query/conditions/eobjects/structuralfeatures/EObjectStructuralFeatureValueCondition.html"><em class="CodeName">EObjectStructuralFeatureValueCondition</em></a>
+class defines a flexible framework for predicates on the particular values of
+features of the objects in the query scope.  It includes support for data types
+(in <em class="CodeName">EAttribute</em>s), element references (in
+<em class="CodeName">EReference</em>s), and the "boolean for-all" and "exists"
+quantifiers for multi-valued features.
+</p>
+
+<blockquote>
+	<img src="images/featureValueConditions.png" alt="EStructuralFeature Value Condition API"/><br/>
+	<font size="-2">[<a target="_blank" href="images/featureValueConditions.svg">as SVG</a>]</font>
+</blockquote>
+
+<p>
+An <em class="CodeName">EObjectStructuralFeatureValueCondition</em> applies an
+<em class="CodeName">EObjectCondition</em> (its <em class="CodeName">featureCondition</em>)
+to the value or values in a structural feature.  For multi-valued (multiplicity
+many) features, the optional <em class="CodeName">ConditionPolicy</em> is used
+to determine whether the condition matches when <em class="CodeName">ALL</em>
+values satisfy the feature condition (including the case of an empty set) or
+when <em class="CodeName">ANY</em> value satisfies the feature condition
+(excluding the case of an empty set).  The default policy is <em class="CodeName">ANY</em>.
+</p>
+<p>
+The <em class="CodeName">EObjectStructuralFeatureValueCondition</em> uses an
+<a href="../javadoc/org/eclipse/emf/query/conditions/eobjects/structuralfeatures/IEStructuralFeatureValueGetter.html"><em class="CodeName">IEStructuralFeatureValueGetter</em></a>
+to access the values of structural features.  This is useful in cases where the
+implementation of the model being queried has customizations such as lazy loading
+from the data store that require special handling.  Most applications only need
+the default instance that simply uses EMF reflection to obtain values.
+</p>
+<p>
+As the
+<a href="../javadoc/org/eclipse/emf/query/conditions/eobjects/structuralfeatures/EObjectReferenceValueCondition.html"><em class="CodeName">EObjectReferenceValueCondition</em></a>
+class tests the values in reference features, it is normally used with an
+<em class="CodeName">EObjectCondition</em> as the feature value condition.
+<a href="../javadoc/org/eclipse/emf/query/conditions/eobjects/structuralfeatures/EObjectAttributeValueCondition.html"><em class="CodeName">EObjectAttributeValueCondition</em></a>s
+are usually supplied with <em class="CodeName">Condition</em>s on primitive
+types.
+</p>
+<pre class="Code">
+Library subject = getLibrary();  // hypothetical source of library to test
+
+Condition name = new SubStringValue("Dickens");
+Condition writerName = new <b>EObjectAttributeValueCondition</b>(
+        <b>EXTLibraryPackage.Literals.WRITER__NAME</b>, <b>name</b>);
+Condition authorName = new <b>EObjectReferenceValueCondition</b>(
+        <b>EXTLibraryPackage.Literals.BOOK__AUTHOR</b>, <b>writerName</b>);
+
+// are all of the library's books written by somebody named Dickens?
+Condition allDickens = new EObjectReferenceValueCondition(
+        EXTLibraryPackage.Literals.LIBRARY__BOOKS, authorName,
+        <b>ConditionPolicy.ALL</b>, EStructuralFeatureValueGetter.getInstance());
+
+// are any of the library's books written by somebody named Dickens?
+Condition anyDickens = new EObjectReferenceValueCondition(
+        EXTLibraryPackage.Literals.LIBRARY__BOOKS, authorName,
+        <b>ConditionPolicy.ANY</b>, EStructuralFeatureValueGetter.getInstance());
+        
+System.out.println("Test all: " + allDickens.isSatisfied(subject));
+System.out.println("Test any: " + anyDickens.isSatisfied(subject));
+</pre>
+
+<h2>Handling Null Values</h2>
+
+<p>
+The value of a scalar <em class="CodeName">EAttribute</em> or
+<em class="CodeName">EReference</em> may be <em class="CodeName">null</em>
+(in EMF, multi-valued features may never contain <em class="CodeName">null</em>).
+To protect feature-value condition objects from being given null inputs, when
+a feature value is <em class="CodeName">null</em>, the
+<em class="CodeName">EObjectStructuralFeatureValueCondition</em> simply returns
+<em class="CodeName">false</em> without invoking the value condition.
+</p>
+<p>
+How, then, does a query search for objects that have null values in features?
+Either extend the <em class="CodeName">EObjectStructuralFeatureCondition</em>
+abstract class and check for <em class="CodeName">null</em> yourself, or use one
+of the <em class="CodeName">IS_NULL</em> shared instances define by the
+<em class="CodeName">ObjectInstanceCondition</em> (for attribute values) and
+<em class="CodeName">EObjectInstanceCondition</em> (for reference values) classes.
+</p>
+<pre class="Code">
+Library subject = getLibrary();  // hypothetical source of library to test
+
+Condition anonymous = new EObjectReferenceValueCondition(
+        EXTLibraryPackage.Literals.BOOK__AUTHOR,
+        <b>EObjectInstanceCondition.IS_NULL</b>);
+
+// see whether any of the books in this library has no author
+Condition anyAnonymous = new EObjectReferenceValueCondition(
+        EXTLibraryPackage.Literals.LIBRARY__BOOKS, <b>anonymous</b>,
+        ConditionPolicy.ANY, EStructuralFeatureValueGetter.getInstance());
+        
+System.out.println("Test: " + anyAnonymous.isSatisfied(subject));
+</pre>
+
+<hr/>
+
+<p>
+<a href="http://www.eclipse.org/legal/epl-v10.html">Copyright (c) 2000, 2007 IBM Corporation and others. All Rights Reserved.</a>
+</p>
+</body>
+</html>

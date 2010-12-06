@@ -41,22 +41,6 @@ public class AbstractVisitor<T>
 		EEnumLiteral, EParameter, EObject,
 		CallOperationAction, SendSignalAction, Constraint>
 		implements VisitorExtension<T> {
-    /**
-     * Initializes me.
-     */
-	protected AbstractVisitor() {
-		super();
-	}
-	
-	/**
-	 * Initializes me with an initial value for my result.
-	 * 
-	 * @param initialValue my initial result value
-	 */
-	protected AbstractVisitor(T result) {
-		super(result);
-	}
-	
 	/**
 	 * Visits the opposite property-call source. No qualifiers are visited as
 	 * these calls are not expected for UML but only for Ecore. Returns the
