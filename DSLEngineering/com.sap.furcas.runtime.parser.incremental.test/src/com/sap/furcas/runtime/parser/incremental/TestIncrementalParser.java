@@ -31,7 +31,6 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
-import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.testbase.ClassLookup;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
@@ -52,7 +51,6 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
             ScenarioFixtureData.BIBTEXT1_METAMODEL };
     private static final String MM_PACKAGE = "BibText";
 
-    private static ParserFacade facade;
     private static ResourceSet resourceSet;
     private static ConcreteSyntax syntax;
     private static IncrementalParserFacade incrementalParserFacade;
@@ -66,7 +64,7 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
         TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
         syntax = syntaxBean.getSyntax();
         resourceSet.getResources().add(syntax.eResource());
-        facade = generateParserForLanguage(syntaxBean, testConfig,
+        generateParserForLanguage(syntaxBean, testConfig,
                 new ClassLookup() {
 
                     @Override

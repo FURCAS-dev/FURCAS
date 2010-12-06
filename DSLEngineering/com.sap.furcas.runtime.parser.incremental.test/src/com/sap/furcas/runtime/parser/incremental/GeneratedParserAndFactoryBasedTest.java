@@ -25,57 +25,60 @@ import com.sap.furcas.runtime.parser.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 
 public abstract class GeneratedParserAndFactoryBasedTest extends
-		GeneratedParserBasedTest {
+        GeneratedParserBasedTest {
 
-	protected static ParserGenerationTestHelper generationHelper;
+    protected static ParserGenerationTestHelper generationHelper;
 
-	public static void generateParserFactoryForLanguage(String language,
-			String completeMetamodelPackageName, String metamodelProjectName)
-			throws FileNotFoundException, GrammarGenerationException,
-			ModelAdapterException, IOException {
-		assertNotNull(language);
-		assertNotNull(completeMetamodelPackageName);
-		assertNotNull(metamodelProjectName);
-		assertNotNull(generationHelper);
+    public static void generateParserFactoryForLanguage(String language,
+            String completeMetamodelPackageName, String metamodelProjectName)
+            throws FileNotFoundException, GrammarGenerationException,
+            ModelAdapterException, IOException {
+        assertNotNull(language);
+        assertNotNull(completeMetamodelPackageName);
+        assertNotNull(metamodelProjectName);
+        assertNotNull(generationHelper);
 
-		generationHelper.generateParserFactoryClasses(language,
-				completeMetamodelPackageName);
-		int success = generationHelper.compileParserFactory(language,
-				metamodelProjectName);
-		if (success != 0) {
-			fail("ParserFactory compilation failed with code '" + success);
-		}
-	}
+        generationHelper.generateParserFactoryClasses(language,
+                completeMetamodelPackageName);
+        int success = generationHelper.compileParserFactory(language,
+                metamodelProjectName);
+        if (success != 0) {
+            fail("ParserFactory compilation failed with code '" + success);
+        }
+    }
 
-	public static IncrementalParserFacade getIncrementalFacade(String language,
-			ResourceSet rs, EditingDomain editingDomain, OppositeEndFinder oppositeEndFinder, Set<URI> resourcesForLookup) throws InvalidParserImplementationException,
-			InstantiationException, IllegalAccessException {
+    public static IncrementalParserFacade getIncrementalFacade(String language,
+            ResourceSet rs, EditingDomain editingDomain,
+            OppositeEndFinder oppositeEndFinder, Set<URI> resourcesForLookup)
+            throws InvalidParserImplementationException,
+            InstantiationException, IllegalAccessException {
 
-		if (generationHelper == null) {
-			return null;
-		}
+        if (generationHelper == null) {
+            return null;
+        }
 
-		Class<AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>> parserFactoryClass = generationHelper
-				.getParserFactoryClass(language);
+        Class<AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>> parserFactoryClass = generationHelper
+                .getParserFactoryClass(language);
 
-		AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory = parserFactoryClass
-				.newInstance();
+        AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory = parserFactoryClass
+                .newInstance();
 
-		EPackage metamodelPackage = parserFactory.getMetamodelPackage(rs);
+        EPackage metamodelPackage = parserFactory.getMetamodelPackage(rs);
 
-		IncrementalParserFacade facade = createFacade(parserFactory,
-				metamodelPackage, rs, resourcesForLookup, editingDomain, oppositeEndFinder);
-		return facade;
-	}
+        IncrementalParserFacade facade = createFacade(parserFactory,
+                metamodelPackage, rs, resourcesForLookup, editingDomain,
+                oppositeEndFinder);
+        return facade;
+    }
 
-	public static IncrementalParserFacade createFacade(
-			AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory,
-			EPackage metamodelPackage, ResourceSet rs,
-			Set<URI> resourcesForLookup, EditingDomain editingDomain,
-			OppositeEndFinder oppositeEndFinder) {
-		return new IncrementalParserFacade(parserFactory,
-				new TextBlocksAwareModelAdapter(new EMFModelAdapter(
-						metamodelPackage, rs, resourcesForLookup)),
-				editingDomain, resourcesForLookup, oppositeEndFinder);
-	}
+    public static IncrementalParserFacade createFacade(
+            AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory,
+            EPackage metamodelPackage, ResourceSet rs,
+            Set<URI> resourcesForLookup, EditingDomain editingDomain,
+            OppositeEndFinder oppositeEndFinder) {
+        return new IncrementalParserFacade(parserFactory,
+                new TextBlocksAwareModelAdapter(new EMFModelAdapter(
+                        metamodelPackage, rs, resourcesForLookup)),
+                editingDomain, resourcesForLookup, oppositeEndFinder);
+    }
 }
