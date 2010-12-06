@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.sap.dsl</groupId>
-  <artifactId>query2</artifactId>
+  <artifactId>query2prototypes</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
