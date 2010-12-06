@@ -142,6 +142,14 @@ public class EcoreEnvironmentFactory
 	protected EClassifier getClassifier(Object context) {
         return oclType(context);
 	}
+	
+	/**
+	 * Retrieves the finder for looking up and navigating hidden opposites
+	 * @since 3.1
+	 */
+	protected OppositeEndFinder getOppositeEndFinder() {
+		return oppositeEndFinder;
+	}
     
 	static EClassifier oclType(Object object) {
 		EClassifier result = null;
