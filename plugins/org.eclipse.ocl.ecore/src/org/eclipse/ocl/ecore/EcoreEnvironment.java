@@ -164,6 +164,19 @@ public class EcoreEnvironment
 	}
 
     /**
+     * Initializes me with a package registry and a resource in which I am
+     * persisted (and from which I load myself if it already has content).
+     * 
+     * @param reg a package registry
+     * @param resource a resource, which may or may not already have content
+     */
+	EcoreEnvironment(EPackage.Registry reg, Resource resource, OppositeEndFinder oppositeEndFinder) {
+		registry = reg;
+		typeResolver = createTypeResolver(resource);
+		this.oppositeEndFinder = oppositeEndFinder;
+	}
+
+    /**
      * Initializes me with a parent environment, from which I inherit such things
      * as a package registry and a resource.
      * 
