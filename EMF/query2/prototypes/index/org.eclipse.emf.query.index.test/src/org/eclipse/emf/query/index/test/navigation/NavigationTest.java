@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.emf.query.index.test.navigation;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.Iterator;
 
