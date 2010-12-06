@@ -3438,10 +3438,6 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= ecoreValidator.validateETypedElement_ValidType(
 				oppositePropertyCallExp, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= expressionsValidator
-				.validateOppositePropertyCallExp_checkOppositePropertyType(
-					oppositePropertyCallExp, diagnostics, context);
 		return result;
 	}
 

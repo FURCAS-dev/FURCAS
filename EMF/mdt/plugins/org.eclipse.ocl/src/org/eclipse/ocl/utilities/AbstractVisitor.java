@@ -38,7 +38,6 @@ import org.eclipse.ocl.expressions.MessageExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.RealLiteralExp;
 import org.eclipse.ocl.expressions.StateExp;
@@ -68,7 +67,7 @@ import org.eclipse.ocl.expressions.VariableExp;
  * @author Christian W. Damus (cdamus)
  */
 public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
-		implements Visitor<T, C, O, P, EL, PM, S, COA, SSA, CT>, VisitorExtension<T, C, O, P, EL, PM, S, COA, SSA, CT> {
+		implements Visitor<T, C, O, P, EL, PM, S, COA, SSA, CT> {
     
     /**
      * Accumulator for the result of the AST visitation.
@@ -175,38 +174,6 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
         
         return handlePropertyCallExp(callExp, sourceResult, qualifierResults);
 	}
-
-	/**
-	 * Visits the opposite property-call source. No qualifiers are visited as
-	 * these calls are not expected for UML but only for Ecore. Returns the
-	 * result of
-	 * {@link #handleOppositePropertyCallExp(OppositePropertyCallExp, Object)}.
-	 * 
-	 * @since 3.1
-	 */
-	public T visitOppositePropertyCallExp(OppositePropertyCallExp<C, P> callExp) {
-        T sourceResult = safeVisit(callExp.getSource());
-        return handleOppositePropertyCallExp(callExp, sourceResult);
-	}
-    
-    /**
-     * Visits the specified opposite property call with the results of visiting
-     * its source and qualifiers (if any).  Note that in the case of a opposite property
-     * call expression as a qualifier of an association class call, the
-     * opposite property call does not have a source and, therefore, the
-     * <code>sourceResult</tt> will be <code>null</code> in that case.
-     * 
-     * @param callExp the opposite property call expression
-     * @param sourceResult the result of visiting the expression's source
-     * @return the accumulated {@link #result}, by default
-     * 
-     * @see #visitOppositePropertyCallExp(OppositePropertyCallExp)
-     * @since 3.1
-     */
-    protected T handleOppositePropertyCallExp(OppositePropertyCallExp<C, P> callExp,
-            T sourceResult) {
-        return result;
-    }
     
     /**
      * Visits the specified property call with the results of visiting

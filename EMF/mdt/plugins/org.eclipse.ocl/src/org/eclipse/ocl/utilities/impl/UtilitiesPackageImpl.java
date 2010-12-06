@@ -38,7 +38,6 @@ import org.eclipse.ocl.utilities.UtilitiesFactory;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 import org.eclipse.ocl.utilities.Visitable;
 import org.eclipse.ocl.utilities.Visitor;
-import org.eclipse.ocl.utilities.VisitorExtension;
 
 /**
  * <!-- begin-user-doc -->
@@ -105,13 +104,6 @@ public class UtilitiesPackageImpl
 	 * @generated
 	 */
 	private EClass expressionInOCLEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass visitorExtensionEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -375,16 +367,6 @@ public class UtilitiesPackageImpl
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * @since 3.1
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getVisitorExtension() {
-		return visitorExtensionEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -446,8 +428,6 @@ public class UtilitiesPackageImpl
 			EXPRESSION_IN_OCL__GENERATED_TYPE);
 
 		predefinedTypeEClass = createEClass(PREDEFINED_TYPE);
-
-		visitorExtensionEClass = createEClass(VISITOR_EXTENSION);
 	}
 
 	/**
@@ -518,19 +498,6 @@ public class UtilitiesPackageImpl
 			expressionInOCLEClass, "PM"); //$NON-NLS-1$
 		ETypeParameter predefinedTypeEClass_O = addETypeParameter(
 			predefinedTypeEClass, "O"); //$NON-NLS-1$
-		ETypeParameter visitorExtensionEClass_T = addETypeParameter(
-			visitorExtensionEClass, "T"); //$NON-NLS-1$
-		ETypeParameter visitorExtensionEClass_C = addETypeParameter(
-			visitorExtensionEClass, "C"); //$NON-NLS-1$
-		addETypeParameter(visitorExtensionEClass, "O"); //$NON-NLS-1$
-		ETypeParameter visitorExtensionEClass_P = addETypeParameter(
-			visitorExtensionEClass, "P"); //$NON-NLS-1$
-		addETypeParameter(visitorExtensionEClass, "EL"); //$NON-NLS-1$
-		addETypeParameter(visitorExtensionEClass, "PM"); //$NON-NLS-1$
-		addETypeParameter(visitorExtensionEClass, "S"); //$NON-NLS-1$
-		addETypeParameter(visitorExtensionEClass, "COA"); //$NON-NLS-1$
-		addETypeParameter(visitorExtensionEClass, "SSA"); //$NON-NLS-1$
-		addETypeParameter(visitorExtensionEClass, "CT"); //$NON-NLS-1$
 
 		// Set bounds for type parameters
 
@@ -979,23 +946,6 @@ public class UtilitiesPackageImpl
 		op = addEOperation(predefinedTypeEClass, null,
 			"oclOperations", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(predefinedTypeEClass_O);
-		initEOperation(op, g1);
-
-		initEClass(
-			visitorExtensionEClass,
-			VisitorExtension.class,
-			"VisitorExtension", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		op = addEOperation(visitorExtensionEClass, null,
-			"visitOppositePropertyCallExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		g1 = createEGenericType(theExpressionsPackage
-			.getOppositePropertyCallExp());
-		g2 = createEGenericType(visitorExtensionEClass_C);
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(visitorExtensionEClass_P);
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "callExp", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		g1 = createEGenericType(visitorExtensionEClass_T);
 		initEOperation(op, g1);
 
 		// Create resource

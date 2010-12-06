@@ -162,8 +162,8 @@ public class NavigationCallExpItemProvider extends FeatureCallExpItemProvider
 
 		switch (notification.getFeatureID(NavigationCallExp.class)) {
 		case EcorePackage.NAVIGATION_CALL_EXP__QUALIFIER:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -362,10 +362,6 @@ public class NavigationCallExpItemProvider extends FeatureCallExpItemProvider
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
-
-		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
-				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
 	}
 
 	/**

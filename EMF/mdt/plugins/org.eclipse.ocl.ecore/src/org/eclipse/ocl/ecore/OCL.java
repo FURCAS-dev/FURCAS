@@ -130,18 +130,6 @@ public class OCL extends org.eclipse.ocl.OCL<
 	}
 	
     /**
-     * Creates a new <code>OCL</code> creating a new Ecore environment
-     * factory instance that uses the <code>oppositeEndFinder</code>
-     * specified.
-     * 
-     * @return the new <code>OCL</code>
-     * @since 3.1
-     */
-	public static OCL newInstance(OppositeEndFinder oppositeEndFinder) {
-		return new OCL(new EcoreEnvironmentFactory(oppositeEndFinder));
-	}
-	
-    /**
      * Creates a new <code>OCL</code> using the specified Ecore environment
      * factory.
      * 
@@ -192,6 +180,18 @@ public class OCL extends org.eclipse.ocl.OCL<
 		return new OCL(envFactory, resource);
 	}
     
+    /**
+     * Creates a new <code>OCL</code> creating a new Ecore environment
+     * factory instance that uses the <code>oppositeEndFinder</code>
+     * specified for looking up and navigating hidden opposites.
+     * 
+     * @return the new <code>OCL</code>
+     * @since 3.1
+     */
+	public static OCL newInstance(OppositeEndFinder oppositeEndFinder) {
+		return new OCL(new EcoreEnvironmentFactory(oppositeEndFinder));
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 * <p>

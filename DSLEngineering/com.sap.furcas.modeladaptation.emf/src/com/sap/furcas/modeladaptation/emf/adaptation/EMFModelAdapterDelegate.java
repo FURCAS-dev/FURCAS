@@ -435,11 +435,11 @@ public class EMFModelAdapterDelegate {
     }
 
     private EReference getHiddenOppositeFeatureByName(EClass eClass, String propertyName) throws ModelAdapterException {
-        ArrayList<EStructuralFeature> hiddenOppositeEnds = new ArrayList<EStructuralFeature>();
+        ArrayList<EReference> hiddenOppositeEnds = new ArrayList<EReference>();
         // no need to fiddle with query2-based opposite end finder; we're only searching metamodels here
         DefaultOppositeEndFinder.getInstance().findOppositeEnds(eClass, propertyName, hiddenOppositeEnds);
         if (hiddenOppositeEnds.size() == 1) {
-            return (EReference) hiddenOppositeEnds.iterator().next();
+            return hiddenOppositeEnds.iterator().next();
         } else if (hiddenOppositeEnds.size() > 1) {
             throw new ModelAdapterException("Ambigous hidden opposite ends named " + propertyName + " for " + eClass);
         } else {
