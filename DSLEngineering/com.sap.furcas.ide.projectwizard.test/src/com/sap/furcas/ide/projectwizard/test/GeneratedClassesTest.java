@@ -31,11 +31,11 @@ public class GeneratedClassesTest {
         PrintStream systemErrOld = redirectSystemErrTo(errByteStream);
         String requiredBundles = getRequiredBundles();
         try {
-            int success = Main
-                    .compile(new String[] { "./generationTemp/generated/MydslTokenMapper.java",
-                            "-cp", requiredBundles });
+            int success = Main.compile(new String[] { "./generationTemp/generated/MydslTokenMapper.java",
+                    "./generationTemp/generated/MydslParserFactory.java", "./generationTemp/generated/MydslEditor.java",
+                    "./generationTemp/generated/Activator.java", "-cp", requiredBundles });
             if (success != 0) {
-                //fail("Parser compilation failed with code '" + success + "'. Messages: \n" + errByteStream.toString());
+                fail("Parser compilation failed with code '" + success + "'. Messages: \n" + errByteStream.toString());
             }
         } finally {
             restoreOldSystemErr(systemErrOld);
@@ -44,45 +44,116 @@ public class GeneratedClassesTest {
     }
 
     private String getRequiredBundles() {
-        StringBuffer requiredBundles = new StringBuffer("../com.sap.furcas.ide.editor/bin" + File.pathSeparator + "./generationTemp/used");
-        
-         String[] bundles = new String[] { "org.eclipse.jface.text", "org.eclipse.swt"}; for (int i = 0; i < bundles.length;
-         i++) { Bundle bundle = Platform.getBundle(bundles[i]); requiredBundles.append(File.pathSeparator +
-         bundle.getLocation()); }
-         
+        StringBuffer requiredBundles = new StringBuffer("../com.sap.furcas.ide.editor/bin" + File.pathSeparator
+                + "../org.antlr/bin" + File.pathSeparator + "../com.sap.furcas.runtime.parser.incremental/bin"
+                + File.pathSeparator + "../com.sap.ide.treeprovider/bin" + File.pathSeparator
+                + "../com.sap.ap.cts.refactoring/bin" + File.pathSeparator + "../com.sap.furcas.metamodel/bin"
+                + File.pathSeparator + "../de.hpi.sam.bp2009.ngpm/bin" + File.pathSeparator + "../com.sap.furcas.runtime.tcs/bin"
+                + File.pathSeparator + "../com.sap.furcas.ide.parserfactory/bin" + File.pathSeparator
+                + "../com.sap.furcas.runtime.common/bin" + File.pathSeparator + "../com.sap.furcas.runtime.parser/bin"
+                + File.pathSeparator + "../com.sap.furcas.ide.projectwizard.test/lib/staticbin" + File.pathSeparator
+                + "./lib/org.eclipse.swt.gtk.linux.x86_64_3.6.1.v3655c.jar");
+
+        String[] bundles = new String[] { "org.eclipse.jface.text", "org.eclipse.ui", "org.eclipse.core.runtime",
+                "org.eclipse.ui.editors", "org.eclipse.core.resources", "org.eclipse.emf.ecore", "org.eclipse.emf.common",
+                "org.eclipse.ui.workbench", "org.eclipse.osgi" };
+        for (int i = 0; i < bundles.length; i++) {
+            Bundle bundle = Platform.getBundle(bundles[i]);
+            String bundlePath = bundle.getLocation();
+            if (bundlePath.contains("reference:file:")) {
+                bundlePath = bundlePath.substring(15);
+            } else if (bundlePath.matches("System Bundle")){
+                String bundleJarName = bundle.toString().split(" ")[0] + ".jar";
+                bundlePath = Platform.getInstallLocation().getURL().toString() + "plugins/"+bundleJarName;
+                bundlePath = bundlePath.substring(5);
+            }
+            requiredBundles.append(File.pathSeparator + bundlePath);
+        }
+
         return requiredBundles.toString();
     }
 
     private void cleanGenerationFolder() {
-        File file = new File("../com.sap.furcas.ide.projectwizard.test/generationTemp/generated/MydslTokenMapper.java");
+        File file = new File("./generationTemp/generated/MydslTokenMapper.java");
+        file.delete();
+        file = new File("./generationTemp/generated/MydslEditor.java");
+        file.delete();
+        file = new File("./generationTemp/generated/MydslParserFactory.java");
+        file.delete();
+        file = new File("./generationTemp/generated/Activator.java");
+        file.delete();
+        file = new File("./generationTemp/generated/MydslTokenMapper.class");
+        file.delete();
+        file = new File("./generationTemp/generated/MydslEditor.class");
+        file.delete();
+        file = new File("./generationTemp/generated/MydslParserFactory.class");
+        file.delete();
+        file = new File("./generationTemp/generated/Activator.class");
         file.delete();
 
     }
 
     private void generateClasses(SourceCodeFactory codeFactory, ProjectInfo pi) {
-        String thisPath = "../com.sap.furcas.ide.projectwizard.test";
-        try {
-            InputStream is = null;
-            String mapper = codeFactory.createMapperCode(pi);
-            File file = new File(thisPath + "/generationTemp/generated/MydslTokenMapper.java");
-            try {
-                is = new ByteArrayInputStream(mapper.getBytes("UTF-8"));
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+        String contents = null;
 
-            codeFactory.writeToFile(is, file);
-        } catch (CodeGenerationException e) {
-            System.err.println(e.getMessage());
-            e.printStackTrace();
+        String thisPath = "../com.sap.furcas.ide.projectwizard.test/generationTemp/generated/";
+        String filename = "MydslTokenMapper.java";
+        try {
+            contents = codeFactory.createMapperCode(pi);
+            generateClass(codeFactory, thisPath, filename, contents);
+        } catch (CodeGenerationException e1) {
+            e1.printStackTrace();
         }
 
+        filename = "MydslEditor.java";
+        try {
+            contents = codeFactory.createEditorCode(pi);
+            generateClass(codeFactory, thisPath, filename, contents);
+        } catch (CodeGenerationException e1) {
+            e1.printStackTrace();
+        }
+
+        filename = "Activator.java";
+        try {
+            contents = codeFactory.createActivator(pi);
+            generateClass(codeFactory, thisPath, filename, contents);
+        } catch (CodeGenerationException e1) {
+            e1.printStackTrace();
+        }
+
+        filename = "MydslParserFactory.java";
+        try {
+            contents = codeFactory.createParserFactory(pi);
+            generateClass(codeFactory, thisPath, filename, contents);
+        } catch (CodeGenerationException e1) {
+            e1.printStackTrace();
+        }
+
+    }
+
+    /**
+     * @param codeFactory
+     * @param thisPath
+     * @param filename
+     * @param contents
+     */
+    private void generateClass(SourceCodeFactory codeFactory, String thisPath, String filename, String contents) {
+        InputStream is = null;
+        File file = new File(thisPath + filename);
+        try {
+
+            is = new ByteArrayInputStream(contents.getBytes("UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        codeFactory.writeToFile(is, file);
     }
 
     private static void configureProjectInfo(ProjectInfo pi) {
