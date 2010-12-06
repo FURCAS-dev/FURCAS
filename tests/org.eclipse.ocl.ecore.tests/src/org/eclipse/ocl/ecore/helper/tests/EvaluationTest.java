@@ -17,10 +17,16 @@
 
 package org.eclipse.ocl.ecore.helper.tests;
 
+import java.util.Collection;
+
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.opposites.ExtentMap;
 import org.eclipse.ocl.expressions.OCLExpression;
 
 /**
@@ -74,6 +80,34 @@ public class EvaluationTest
 		}
 	}
 	
+	/**
+	 * Tests that elements from a resource which is removed from its resource set are
+	 * no longer returned by an allInstances() expression
+	 */
+	public void test_allInstancesWithRemovingResource() throws ParserException {
+		ResourceSet rs = new ResourceSetImpl();
+		ocl.setExtentMap(new ExtentMap(rs));
+		Resource rOld = new ResourceImpl();
+		rs.getResources().add(rOld);
+		EObject oldApple = fruitFactory.create(apple);
+		rOld.getContents().add(oldApple);
+		Resource rNew = new ResourceImpl();
+		EObject newApple = fruitFactory.create(apple);
+		rNew.getContents().add(newApple);
+		helper.setContext(apple);
+		OCLExpression<EClassifier> ai = helper.createQuery("Fruit.allInstances()");
+		Object o = ocl.evaluate(rs, ai);
+		Collection<?> allApples = (Collection<?>) o;
+		assertFalse(allApples.contains(newApple));
+		rs.getResources().add(rNew);
+		Collection<?> allApplesNew = (Collection<?>) ocl.evaluate(rs, ai);
+		assertTrue(allApplesNew.contains(newApple));
+		rs.getResources().remove(rNew);
+		Collection<?> allApplesWithResourceRemovedAgain = (Collection<?>) ocl.evaluate(rs, ai);
+		assertFalse(allApplesWithResourceRemovedAgain.contains(newApple));
+		ocl.setExtentMap(null);
+	}
+   
 	/**
 	 * Tests the evaluation/checking of pre-compiled expressions/constraints by
 	 * the OCL Helper.

@@ -61,6 +61,11 @@ The following features are provided in addition to the OCL specification:
 	<li>Support for comparison (&lt;, &lt;=, etc.) and sorting of any
 	    java <code>Comparable</code>s of conformant types</li>
 	<li>Transitive closure of associations:  closure(expr : OCLExpression) iterator</li>
+	<li>Navigation of "hidden" opposites of references specified in Ecore models using
+	    a <em class="CodeName">Property.oppositeRoleName</em> annotation with source
+	    <em class="CodeName">http://schema.omg.org/spec/MOF/2.0/emof.xml</em> on the
+	    forward reference, producing an <em class="CodeName">OppositePropertyCallExp</em>
+	    expression</li>
 </ul>
 <p>
 The OCL implementation is defined in plug-ins for convenient deployment in

@@ -18,6 +18,8 @@
 package org.eclipse.ocl.ecore;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -33,10 +35,10 @@ import org.eclipse.ocl.AbstractEnvironmentFactory;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.EvaluationEnvironment;
+import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
-
-
+import org.eclipse.ocl.ecore.internal.evaluation.TracingEvaluationVisitor;
 
 /**
  * Implementation of the {@link EnvironmentFactory} for parsing OCL expressions
@@ -51,10 +53,10 @@ public class EcoreEnvironmentFactory
 		EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> {
 	
 	/**
-     * A convenient shared instance of the environment factory, that creates
-     * environments using the global package registry.
+	 * A convenient shared instance of the environment factory, that creates
+	 * environments using the global package registry.
 	 */
-    public static EcoreEnvironmentFactory INSTANCE = new EcoreEnvironmentFactory();
+	public static EcoreEnvironmentFactory INSTANCE = new EcoreEnvironmentFactory();
 	
 	private final EPackage.Registry registry;
 
@@ -115,30 +117,30 @@ public class EcoreEnvironmentFactory
         return oclType(context);
 	}
     
-    static EClassifier oclType(Object object) {
-        EClassifier result = null;
-        
-        if (object instanceof EObject) {
-            result = ((EObject) object).eClass();
-        } else {
-            // maybe it's an instance of an Ecore data type?
-            for (EClassifier next : EcorePackage.eINSTANCE.getEClassifiers()) {
-                if ((next != EcorePackage.Literals.EJAVA_OBJECT) && (next.isInstance(object))) {
-                    result = UMLReflectionImpl.INSTANCE.asOCLType(next);
-                    break;
-                }
-            }
-            
-            if (result == null) {
-                // it's just some weirdo object that we don't understand
-                result = OCLStandardLibraryImpl.INSTANCE.getOclAny();
-            }
-        }
-        
-        return result;
-    }
+	static EClassifier oclType(Object object) {
+		EClassifier result = null;
 
-    // implements the inherited specification
+		if (object instanceof EObject) {
+			result = ((EObject) object).eClass();
+		} else {
+			// maybe it's an instance of an Ecore data type?
+			for (EClassifier next : EcorePackage.eINSTANCE.getEClassifiers()) {
+                if ((next != EcorePackage.Literals.EJAVA_OBJECT) && (next.isInstance(object))) {
+					result = UMLReflectionImpl.INSTANCE.asOCLType(next);
+					break;
+				}
+			}
+
+			if (result == null) {
+				// it's just some weirdo object that we don't understand
+				result = OCLStandardLibraryImpl.INSTANCE.getOclAny();
+			}
+		}
+
+		return result;
+	}
+
+	// implements the inherited specification
 	public Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
 	createEnvironment(Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
 		if (!(parent instanceof EcoreEnvironment)) {
@@ -151,16 +153,34 @@ public class EcoreEnvironmentFactory
 		return result;
 	}
 
-    // implements the inherited specification
+	// implements the inherited specification
 	public EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject>
 	createEvaluationEnvironment() {
 		return new EcoreEvaluationEnvironment();
 	}
 
-    // implements the inherited specification
+	// implements the inherited specification
 	public EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject>
 	createEvaluationEnvironment(
 			EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> parent) {
 		return new EcoreEvaluationEnvironment(parent);
 	}
+
+	/**
+	 * @since 3.1
+	 */
+	public EvaluationVisitor<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> createEvaluationVisitor(
+			Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env,
+			EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> evalEnv,
+			Map<? extends EClass, ? extends Set<? extends EObject>> extentMap) {
+		EvaluationVisitor<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> result = new EvaluationVisitorImpl(
+			env, evalEnv, extentMap);
+
+		if (isEvaluationTracingEnabled()) {
+			// decorate the evaluation visitor with tracing support
+			result = new TracingEvaluationVisitor(result);
+		}
+		return result;
+	}
+
 }

@@ -27,6 +27,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.EnvironmentExtension;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.ocl.expressions.CollectionItem;
@@ -90,8 +91,15 @@ import org.eclipse.ocl.utilities.Visitor;
 public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	implements Visitor<Boolean, C, O, P, EL, PM, S, COA, SSA, CT> {
 	
-	private Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env = null;
-    private UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> uml = null;
+	/**
+	 * @since 3.1
+	 */
+	protected final Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env;
+	
+    /**
+	 * @since 3.1
+	 */
+    protected final UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> uml;
 	
 	/**
 	 * Obtains an instance of the validation visitor that validates against the
@@ -109,7 +117,9 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		if (environment == null) {
 			throw new NullPointerException();
 		}
-		
+		if (environment instanceof EnvironmentExtension) {
+			return ((EnvironmentExtension<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>) environment).createValidationVisitor();
+		}		
 		return new ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(environment);
 	}
 
@@ -118,9 +128,9 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * 
 	 * @param environment the environment
 	 * 
-	 * @since 1.2
+	 * @since 3.1
 	 */
-	protected ValidationVisitor(
+	public ValidationVisitor(
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment) {
 		
 		super();
@@ -1320,8 +1330,9 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @param exp the model property call expression to validate
      * 
      * @Return true if validation must terminate due to an error
+	 * @since 3.1
 	 */
-	private Boolean visitFeatureCallExp(FeatureCallExp<C> exp) {
+	public Boolean visitFeatureCallExp(FeatureCallExp<C> exp) {
 		if (exp.isMarkedPre()) {
 			// check for a postcondition constraint
 			if (!env.isInPostcondition(exp)) {

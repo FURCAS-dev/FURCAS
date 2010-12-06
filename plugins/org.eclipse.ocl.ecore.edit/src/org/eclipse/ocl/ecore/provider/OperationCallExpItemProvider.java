@@ -156,8 +156,8 @@ public class OperationCallExpItemProvider extends FeatureCallExpItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/OperationCallExp")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/OperationCallExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -196,12 +196,12 @@ public class OperationCallExpItemProvider extends FeatureCallExpItemProvider
 
 		switch (notification.getFeatureID(OperationCallExp.class)) {
 		case EcorePackage.OPERATION_CALL_EXP__OPERATION_CODE:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		case EcorePackage.OPERATION_CALL_EXP__ARGUMENT:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -306,6 +306,10 @@ public class OperationCallExpItemProvider extends FeatureCallExpItemProvider
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.OPERATION_CALL_EXP__ARGUMENT,
 				EcoreFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.OPERATION_CALL_EXP__ARGUMENT,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.OPERATION_CALL_EXP__ARGUMENT,

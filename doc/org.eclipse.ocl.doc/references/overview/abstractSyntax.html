@@ -15,7 +15,8 @@ Language 2.2 specification</a>.
 We will not attempt to describe this model, here.  However, the Eclipse
 implementation of OCL defines some extensions to this model that provide
 additional services.  The most important of these is support for the
-<i>Visitor</i> design pattern.
+<i>Visitor</i> design pattern. Another one is support for navigating
+an Ecore reference that has no opposite defined in the opposite direction.
 </p>
 
 <blockquote>
@@ -117,6 +118,44 @@ for (Variable&lt;?, ?&gt; next : variables) {
 
 System.out.println("Unused variables: + " varNames);
 </pre>
+
+<h2>The <em class="CodeName">OppositePropertyCallExp</em> Extension</h2>
+
+<p>
+In Ecore models, a reference may have defined an <em>opposite</em> reference, usually owned by the class that is
+the type of the forward reference. An opposite reference has several, often undesirable or even
+prohibitive, implications on the class owning it:
+</p>
+
+<ul>
+  <li>A getter and, for settable features with upper multiplicity 1, a setter will be added,
+      requiring the class to know the class owning the forward reference. This would create
+      cyclic component references if the two classes lived in different components and
+      would therefore not be possible.</li>
+  <li>The default serialization format and usually the storage format for non-default model
+      stores changes to include the opposite reference.</li>
+</ul>
+
+<p>
+Yet, particularly for expressing constraints over the instance models it is often instrumental
+to be able to navigate such forward references also in reverse. The <em class="CodeName">OppositePropertyCallExp</em>
+class which inherits from <em class="CodeName">NavigationCallExp</em> and is sibling of
+<em class="CodeName">PropertyCallExp</em> allows for this reverse navigation in OCL. It
+points to the forward reference, and its semantics are to navigate this reference in reverse.
+</p>
+
+<p>To allow for convenient creation of such expressions in the OCL concrete syntax, the standard
+property call syntax, such as <em class="CodeName">self.x</em> can be used, where <em class="CodeName">x</em>
+is not the name of a forward reference on <em class="CodeName">self</em>'s class but rather
+an annotated name on a reference using <em class="CodeName">self</em>'s class or any of its
+base classes as its type.<p>
+
+<p>The name for the reverse navigation can be specified by an
+<a href="../javadoc/org/eclipse/emf/ecore/EAnnotation.html"><em class="CodeName">EAnnotation</em></a> with
+source <em class="CodeName">http://schema.omg.org/spec/MOF/2.0/emof.xml</em> and with
+details key <em class="CodeName">Property.oppositeRoleName</em>. The details value
+contains the name by which the "hidden" opposite can be referred to in OCL
+expressions.</p>
 
 <hr/>
 

@@ -50,6 +50,8 @@ import org.eclipse.ocl.ecore.internal.OCLEcorePlugin;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.internal.OCLStatusCodes;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.types.CollectionType;
@@ -70,15 +72,26 @@ import org.eclipse.ocl.utilities.PredefinedType;
 public class EcoreEvaluationEnvironment
 		extends
 		AbstractEvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject>
-		implements EvaluationEnvironment.Enumerations<EEnumLiteral> {
+		implements EvaluationEnvironment.Enumerations<EEnumLiteral>,
+		EvaluationEnvironmentWithHiddenOpposites {
 
 	private boolean mustCheckOperationReflectionConsistency = true;
+
+    private final OppositeEndFinder oppositeEndFinder;
 
 	/**
 	 * Initializes me.
 	 */
 	public EcoreEvaluationEnvironment() {
 		super();
+		oppositeEndFinder = createOppositeEndFinder();
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	protected DefaultOppositeEndFinder createOppositeEndFinder() {
+		return new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE);
 	}
 
 	/**
@@ -90,7 +103,7 @@ public class EcoreEvaluationEnvironment
 	public EcoreEvaluationEnvironment(
 			EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> parent) {
 		super(parent);
-
+		oppositeEndFinder = ((EcoreEvaluationEnvironment) parent).oppositeEndFinder;
 	}
 
 	@Override
@@ -400,7 +413,7 @@ public class EcoreEvaluationEnvironment
 		return Collections.emptyMap();
 	}
 
-	// implements the inherited specification
+    // implements the inherited specification
 	public boolean isKindOf(Object object, EClassifier classifier) {
 		// special case for Integer/UnlimitedNatural and Real which
 		// are not related types in java but are in OCL
@@ -483,4 +496,35 @@ public class EcoreEvaluationEnvironment
 			throw new IllegalArgumentException(e);
 		}
 	}
+
+	/**
+	 * @since 3.1
+	 */
+	public Object navigateOppositeProperty(EReference property, Object target) throws IllegalArgumentException {
+        Object result;
+        if (property.isContainment()) {
+            EObject resultCandidate = ((EObject) target).eContainer();
+            if (resultCandidate == null) {
+                result = null;
+            } else {
+                // first check if the container is assignment-compatible to the property's owning type:
+                if (property.getEContainingClass().isInstance(resultCandidate)) {
+                    Object propertyValue = resultCandidate.eGet(property);
+                    if (propertyValue == target
+                            || (propertyValue instanceof Collection<?> && ((Collection<?>) propertyValue).contains(target))) {
+                        // important to create a copy because, e.g., the partial evaluator may modify the resulting collection
+                        result = CollectionUtil.createNewBag(Collections.singleton(resultCandidate));
+                    } else {
+                        result = null;
+                    }
+                } else {
+                    result = null;
+                }
+            }
+        } else {
+            result = oppositeEndFinder.navigateOppositePropertyWithForwardScope(property, (EObject) target);
+        }
+        return result;
+    }
+
 }
