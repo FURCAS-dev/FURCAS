@@ -187,7 +187,14 @@ public class EcoreEnvironment
 		}
 	}
 
-    // implements the inherited specification
+    EcoreEnvironment(EPackage.Registry registry,
+			OppositeEndFinder oppositeEndFinder) {
+		this.registry = registry;
+		typeResolver = createTypeResolver();
+		this.oppositeEndFinder = oppositeEndFinder;
+	}
+
+	// implements the inherited specification
 	public EnvironmentFactory<
 			EPackage, EClassifier, EOperation, EStructuralFeature,
 			EEnumLiteral, EParameter,

@@ -39,6 +39,8 @@ import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
 import org.eclipse.ocl.ecore.internal.evaluation.TracingEvaluationVisitor;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 /**
  * Implementation of the {@link EnvironmentFactory} for parsing OCL expressions
@@ -60,6 +62,8 @@ public class EcoreEnvironmentFactory
 	
 	private final EPackage.Registry registry;
 
+	private final OppositeEndFinder oppositeEndFinder;
+
 	/**
 	 * Initializes me.  Environments that I create will use the global package
      * registry to look up packages.
@@ -69,20 +73,42 @@ public class EcoreEnvironmentFactory
 	}
 	
 	/**
+	 * Initializes me.  Environments that I create will use the global package
+     * registry to look up packages. Use the {@link OppositeEndFinder} specified for
+     * hidden opposites look-up and navigation
+	 * @since 3.1
+	 */
+	public EcoreEnvironmentFactory(OppositeEndFinder oppositeEndFinder) {
+		this(EPackage.Registry.INSTANCE, oppositeEndFinder);
+	}
+	
+	/**
 	 * Initializes me with an <code>EPackage.Registry</code> that the
      * environments I create will use to look up packages.
      * 
      * @param reg my package registry (must not be <code>null</code>)
 	 */
 	public EcoreEnvironmentFactory(EPackage.Registry reg) {
+		this(reg, new DefaultOppositeEndFinder(reg));
+	}
+	
+	/**
+	 * Initializes me with an <code>EPackage.Registry</code> that the
+     * environments I create will use to look up packages.
+     * 
+     * @param reg my package registry (must not be <code>null</code>)
+	 * @since 3.1
+	 */
+	public EcoreEnvironmentFactory(EPackage.Registry reg, OppositeEndFinder oppositeEndFinder) {
 		super();
 		this.registry = reg;
+		this.oppositeEndFinder = oppositeEndFinder;
 	}
 	
     // implements the inherited specification
     public Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
 	createEnvironment() {
-		EcoreEnvironment result = new EcoreEnvironment(registry);
+		EcoreEnvironment result = new EcoreEnvironment(registry, oppositeEndFinder);
 		result.setFactory(this);
 		return result;
 	}
@@ -156,7 +182,7 @@ public class EcoreEnvironmentFactory
 	// implements the inherited specification
 	public EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject>
 	createEvaluationEnvironment() {
-		return new EcoreEvaluationEnvironment();
+		return new EcoreEvaluationEnvironment(oppositeEndFinder);
 	}
 
 	// implements the inherited specification

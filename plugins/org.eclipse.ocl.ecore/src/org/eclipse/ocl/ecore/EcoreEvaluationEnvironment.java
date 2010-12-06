@@ -106,6 +106,11 @@ public class EcoreEvaluationEnvironment
 		oppositeEndFinder = ((EcoreEvaluationEnvironment) parent).oppositeEndFinder;
 	}
 
+	EcoreEvaluationEnvironment(OppositeEndFinder oppositeEndFinder) {
+		super();
+		this.oppositeEndFinder = oppositeEndFinder;
+	}
+
 	@Override
 	public Object callOperation(EOperation operation, int opcode,
 			Object source, Object[] args)
