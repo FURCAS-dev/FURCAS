@@ -51,7 +51,7 @@ public class GeneratedClassesTest {
                 + File.pathSeparator + "../de.hpi.sam.bp2009.ngpm/bin" + File.pathSeparator + "../com.sap.furcas.runtime.tcs/bin"
                 + File.pathSeparator + "../com.sap.furcas.ide.parserfactory/bin" + File.pathSeparator
                 + "../com.sap.furcas.runtime.common/bin" + File.pathSeparator + "../com.sap.furcas.runtime.parser/bin"
-                + File.pathSeparator + "../com.sap.furcas.ide.projectwizard.test/lib/staticbin" + File.pathSeparator
+                + File.pathSeparator + "../com.sap.furcas.ide.projectwizard.test/lib/static" + File.pathSeparator
                 + "./lib/org.eclipse.swt.gtk.linux.x86_64_3.6.1.v3655c.jar");
 
         String[] bundles = new String[] { "org.eclipse.jface.text", "org.eclipse.ui", "org.eclipse.core.runtime",
