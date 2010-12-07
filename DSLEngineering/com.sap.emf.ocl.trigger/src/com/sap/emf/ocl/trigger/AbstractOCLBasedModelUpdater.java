@@ -9,6 +9,8 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
+import com.sap.emf.ocl.util.EcoreEnvironmentFactoryWithScopedExtentMap;
+
 public class AbstractOCLBasedModelUpdater extends AbstractTriggerable implements OCLBasedModelUpdater {
     private final EStructuralFeature propertyToUpdate;
     private final OppositeEndFinder oppositeEndFinder;
@@ -27,7 +29,7 @@ public class AbstractOCLBasedModelUpdater extends AbstractTriggerable implements
     @Override
     public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects,
             OppositeEndFinder oppositeEndFinder) {
-        OCL ocl = OCL.newInstance(oppositeEndFinder);
+        OCL ocl = OCL.newInstance(new EcoreEnvironmentFactoryWithScopedExtentMap(oppositeEndFinder));
         for (EObject eo : affectedContextObjects) {
             Object newValue = ocl.evaluate(eo, expression);
             eo.eSet(getPropertyToUpdate(), newValue);

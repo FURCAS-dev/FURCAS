@@ -20,6 +20,7 @@ import com.sap.emf.ocl.prepared.parameters.Parameter;
 import com.sap.emf.ocl.prepared.parameters.ParameterFactory;
 import com.sap.emf.ocl.prepared.parameters.ParameterFinder;
 import com.sap.emf.ocl.prepared.parameters.ParameterNotFoundException;
+import com.sap.emf.ocl.util.EcoreEnvironmentFactoryWithScopedExtentMap;
 import com.sap.emf.ocl.util.OclHelper;
 
 /**
@@ -212,7 +213,7 @@ public class PreparedOCLExpression {
 
     private OCL getOCL() {
         if (oppositeEndFinder != null) {
-            return OCL.newInstance(oppositeEndFinder);
+            return OCL.newInstance(new EcoreEnvironmentFactoryWithScopedExtentMap(oppositeEndFinder));
         } else {
             if (environmentFactory != null) {
                 return OCL.newInstance(environmentFactory);

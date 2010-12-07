@@ -18,6 +18,7 @@ import com.sap.furcas.runtime.common.interfaces.IBareModelAdapter;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ModelElementCreationException;
+import com.sap.furcas.runtime.tcs.TcsUtil;
 
 /**
  * simple implementation using a simple resolution strategy and a
@@ -243,8 +244,7 @@ public class DefaultTextAwareModelAdapter implements IModelAdapter {
 
     @Override
     public Collection<URI> getPRIPartitions(ResourceSet conn, String languageId) {
-        //must be done in a subclass
-        return null;
+        return TcsUtil.getSyntaxPartitions(conn, languageId);
     }
 
 }

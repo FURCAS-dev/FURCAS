@@ -70,13 +70,15 @@ public class GeneratedParserWrapper {
      * @throws IllegalArgumentException 
      * @throws NoSuchFieldException 
      */
-    public GeneratedParserWrapper(Class<? extends ObservableInjectingParser> parserClass, Class<? extends Lexer> lexerClass) throws InvalidParserImplementationException  {
+    public GeneratedParserWrapper(Class<? extends ObservableInjectingParser> parserClass, Class<? extends Lexer> lexerClass,
+            String languageName) throws InvalidParserImplementationException  {
         if(parserClass == null || lexerClass == null) {
             throw new IllegalArgumentException("parserClass or lexerclass is null:" + parserClass + "," + lexerClass);
         }
         try {
             this.lexer = lexerClass.getDeclaredConstructor((Class[]) null).newInstance((Object[])null);
-            this.parser = parserClass.getDeclaredConstructor(new Class[] {TokenStream.class}).newInstance(new Object[] {null});    
+            this.parser = parserClass.getDeclaredConstructor(new Class[] {TokenStream.class}).newInstance(new Object[] {null});
+            this.parser.setLanguageId(languageName);
             this.parserClass = parserClass;
             this.lexerClass = lexerClass;
     

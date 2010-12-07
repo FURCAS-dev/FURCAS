@@ -27,7 +27,7 @@ public class TCSParserFactoryImpl implements TCSParserFactory {
         try {
             return new ParserFacade(
                     (Class<? extends ObservableInjectingParser>) Class.forName("generated.TCSParser"),
-                    (Class<? extends Lexer>) Class.forName("generated.TCSLexer"));
+                    (Class<? extends Lexer>) Class.forName("generated.TCSLexer"), /* language name */ "TCS");
         } catch (ClassNotFoundException e) {
             throw new InvalidParserImplementationException(e);
         }
@@ -36,7 +36,7 @@ public class TCSParserFactoryImpl implements TCSParserFactory {
     private ParserFacade createStableFacade() throws InvalidParserImplementationException {
         return new ParserFacade(
                 com.sap.furcas.parser.tcs.stable.TCSParser.class,
-                com.sap.furcas.parser.tcs.stable.TCSLexer.class);
+                com.sap.furcas.parser.tcs.stable.TCSLexer.class, /* language name */ "TCS");
     }
 
 }

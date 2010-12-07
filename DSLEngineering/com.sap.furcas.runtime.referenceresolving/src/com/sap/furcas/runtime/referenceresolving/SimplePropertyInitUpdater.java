@@ -5,8 +5,6 @@ import java.util.Collection;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.OCL;
-import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
@@ -27,7 +25,8 @@ public class SimplePropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdate
     public SimplePropertyInitUpdater(LookupPropertyInit injectorAction, OppositeEndFinder oppositeEndFinder)
             throws ParserException {
         super(injectorAction.getPropertyReference().getStrucfeature(), oppositeEndFinder, new ExpressionWithContext(
-                createOCLHelper(injectorAction, oppositeEndFinder)
+                createOCLHelper(injectorAction.getValue(),
+                        ((InjectorActionsBlock) injectorAction.eContainer()).getParentTemplate(), oppositeEndFinder)
                         .createQuery(ContextAndForeachHelper.prepareOclQuery(injectorAction.getValue())),
                 (EClass) ContextAndForeachHelper.getParsingContext(injectorAction.getValue(),
                         ((InjectorActionsBlock) injectorAction.eContainer()).getParentTemplate())),
@@ -35,12 +34,6 @@ public class SimplePropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdate
         this.injectorAction = injectorAction;
     }
     
-    private static Helper createOCLHelper(LookupPropertyInit propInit, OppositeEndFinder oppositeEndFinder) {
-        Helper result = OCL.newInstance(oppositeEndFinder).createOCLHelper();
-        result.setContext(propInit.getInjectorActionsBlock().getParentTemplate().getMetaReference());
-        return result;
-    }
-
     @Override
     public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects,
             OppositeEndFinder oppositeEndFinder) {
