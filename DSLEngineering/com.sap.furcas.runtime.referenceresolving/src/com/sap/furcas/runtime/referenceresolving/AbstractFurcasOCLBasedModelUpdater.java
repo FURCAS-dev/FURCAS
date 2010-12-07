@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.emf.ocl.trigger.AbstractOCLBasedModelUpdater;
@@ -20,6 +24,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
+import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
@@ -117,6 +122,15 @@ public class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBasedModelUpd
             }
         }
         return wasInChosenAlternative;
+    }
+
+    protected static Helper createOCLHelper(String oclExpression, Template contextTemplate, 
+            OppositeEndFinder oppositeEndFinder) throws ParserException {
+        Helper result = OCL.newInstance(oppositeEndFinder).createOCLHelper();
+        EClass parsingContext = (EClass) ContextAndForeachHelper.getParsingContext(oclExpression,
+                contextTemplate);
+        result.setContext(parsingContext);
+        return result;
     }
 
 }

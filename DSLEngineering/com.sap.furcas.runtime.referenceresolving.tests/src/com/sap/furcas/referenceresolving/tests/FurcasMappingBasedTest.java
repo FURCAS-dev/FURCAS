@@ -69,11 +69,8 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
         syntax = syntaxBean.getSyntax();
         resourceSet.getResources().add(syntax.eResource());
         syntaxRegistry = SyntaxRegistry.getInstance();
-        triggerManager = syntaxRegistry.getTriggerManagerForSyntax(syntax, DefaultOppositeEndFinder.getInstance(), /*
-                                                                                                                    * progress
-                                                                                                                    * monitor
-                                                                                                                    */
-                null);
+        triggerManager = syntaxRegistry.getTriggerManagerForSyntax(syntax, DefaultOppositeEndFinder.getInstance(),
+                /* progress monitor */ null);
         ParserFacade facade = generateParserForLanguage(syntaxBean, testConfig, new ClassLookupImpl());
         parsingHelper = new ParsingHelper(facade);
     }

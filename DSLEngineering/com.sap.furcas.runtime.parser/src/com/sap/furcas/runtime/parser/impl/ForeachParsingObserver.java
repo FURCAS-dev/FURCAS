@@ -8,11 +8,11 @@ import org.antlr.runtime.Token;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.runtime.parser.IParsingObserver;
 
-public class ForeachParsingObeserver implements IParsingObserver {
+public class ForeachParsingObserver implements IParsingObserver {
 
     private final TextBlock textBlock;
 
-    public ForeachParsingObeserver(TextBlock textBlock) {
+    public ForeachParsingObserver(TextBlock textBlock) {
         this.textBlock = textBlock;
     }
 

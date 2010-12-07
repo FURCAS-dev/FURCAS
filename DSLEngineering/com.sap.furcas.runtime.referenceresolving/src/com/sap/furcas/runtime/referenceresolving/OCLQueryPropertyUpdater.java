@@ -2,7 +2,6 @@ package com.sap.furcas.runtime.referenceresolving;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.emf.ocl.trigger.ExpressionWithContext;
@@ -33,8 +32,9 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
 
     protected OCLQueryPropertyUpdater(Property propertyInit, OppositeEndFinder oppositeEndFinder) throws ParserException {
         super(propertyInit.getPropertyReference().getStrucfeature(), oppositeEndFinder, new ExpressionWithContext(
-                OCL.newInstance(oppositeEndFinder).createOCLHelper()
-                .createQuery(ContextAndForeachHelper.prepareOclQuery(getExpressionString(propertyInit))),
+                createOCLHelper(getExpressionString(propertyInit), propertyInit.getParentTemplate(), oppositeEndFinder)
+                .createQuery(ContextAndForeachHelper.prepareOclQuery(ContextAndForeachHelper.prepareOclQuery(
+                        getExpressionString(propertyInit), "__TEMP__"))), // TODO get rid of this as soon as queryByIdentifier is ready for prime time
         (EClass) ContextAndForeachHelper.getParsingContext(getExpressionString(propertyInit),
                 propertyInit.getParentTemplate())),
                 /* notifyNewContextElements */ true);
