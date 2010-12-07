@@ -69,6 +69,10 @@ public class EmfHelper {
 			if (rsImpl.getURIResourceMap() == null) {
 				rsImpl.setURIResourceMap(new HashMap<URI, Resource>());
 			}
+		}else if(rs==null){//providing the null check
+			//a new resource set is created if valid resource set is not passed
+			//check https://bugs.eclipse.org/bugs/show_bug.cgi?id=331905
+			this.rs=new ResourceSetImpl();
 		}
 		//		this.createDirtyIndex();
 		this.index = index;
