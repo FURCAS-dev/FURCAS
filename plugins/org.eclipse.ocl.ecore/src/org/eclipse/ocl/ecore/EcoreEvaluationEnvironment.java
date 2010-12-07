@@ -221,6 +221,13 @@ public class EcoreEvaluationEnvironment
 
 		return result;
 	}
+	
+	/**
+	 * @since 3.1
+	 */
+	protected OppositeEndFinder getOppositeEndFinder() {
+		return oppositeEndFinder;
+	}
 
 	// implements the inherited specification
 	@Override
