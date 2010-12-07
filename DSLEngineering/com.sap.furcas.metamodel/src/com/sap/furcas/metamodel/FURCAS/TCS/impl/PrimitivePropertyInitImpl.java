@@ -22,22 +22,22 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  */
 public class PrimitivePropertyInitImpl extends PropertyInitImpl implements PrimitivePropertyInit {
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         protected PrimitivePropertyInitImpl() {
-		super();
-	}
+        super();
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected EClass eStaticClass() {
-		return TCSPackage.Literals.PRIMITIVE_PROPERTY_INIT;
-	}
+        return TCSPackage.Literals.PRIMITIVE_PROPERTY_INIT;
+    }
 
 } //PrimitivePropertyInitImpl
