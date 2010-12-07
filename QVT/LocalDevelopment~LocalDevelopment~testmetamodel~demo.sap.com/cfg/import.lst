@@ -1,3 +1,0 @@
-common.facades__base.technology.facade[compile,api]: common.facades _base.technology.facade
-moin.facades__tc.moin.ide.facade[compile,api]: moin.facades _tc.moin.ide.facade
-moin.facades__tc.moin.libraries.jmi.facade[compile,api]: moin.facades _tc.moin.libraries.jmi.facade
