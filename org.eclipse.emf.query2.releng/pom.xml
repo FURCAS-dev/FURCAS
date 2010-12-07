@@ -106,43 +106,13 @@
 	</build>
 	<repositories>
 		<repository>
-			<id>webtools-update</id>
-			<url>http://download.eclipse.org/webtools/updates</url>
-			<layout>p2</layout>
-		</repository>
-		<repository>
-			<id>dltk1.0</id>
-			<url>http://download.eclipse.org/technology/dltk/updates-dev/1.0</url>
-			<layout>p2</layout>
-		</repository>
-		<repository>
 			<id>galileo</id>
 			<url>http://download.eclipse.org/releases/galileo/</url>
 			<layout>p2</layout>
 		</repository>
 		<repository>
-			<id>orbit</id>
-			<url>http://download.eclipse.org/tools/orbit/downloads/drops/R20100519200754/repository</url>
-			<layout>p2</layout>
-		</repository>
-		<repository>
-			<id>emft-mwe</id>
-			<url>http://download.eclipse.org/modeling/emft/mwe/downloads/drops/1.0.1/R201008251113/emft-mwe-SDK-1.0.1.zip</url>
-			<layout>p2</layout>
-		</repository>
-		<repository>
-			<id>emft-mwe-2</id>
-			<url>http://download.eclipse.org/modeling/emft/mwe/downloads/drops/1.0.1/R201008251113/emft-mwe-2-SDK-1.0.1.zip</url>
-			<layout>p2</layout>
-		</repository>
-		<repository>
 			<id>xtext</id>
-			<url>http://download.eclipse.org/modeling/tmf/xtext/downloads/drops/1.0.1/R201008251220/tmf-xtext-SDK-1.0.1.zip</url>
-			<layout>p2</layout>
-		</repository>
-		<repository>
-			<id>xpand</id>
-			<url>http://download.eclipse.org/modeling/m2t/xpand/downloads/drops/1.0.1/R201008251147/m2t-xpand-SDK-1.0.1.zip</url>
+			<url>http://download.eclipse.org/modeling/tmf/updates/releases/</url>
 			<layout>p2</layout>
 		</repository>
 
