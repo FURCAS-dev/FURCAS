@@ -22,22 +22,22 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  */
 public class BooleanPropertyExpImpl extends AtomExpImpl implements BooleanPropertyExp {
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         protected BooleanPropertyExpImpl() {
-		super();
-	}
+        super();
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected EClass eStaticClass() {
-		return TCSPackage.Literals.BOOLEAN_PROPERTY_EXP;
-	}
+        return TCSPackage.Literals.BOOLEAN_PROPERTY_EXP;
+    }
 
 } //BooleanPropertyExpImpl

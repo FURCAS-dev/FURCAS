@@ -105,9 +105,12 @@
         unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="otSequence" ordered="false"
         eType="#//Sequence" containment="true" eOpposite="#//Sequence/otContainer"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="storeOperatorTo" eType="#//PropertyReference"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="storeLeftSideTo" eType="#//PropertyReference"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="storeRightSideTo" eType="#//PropertyReference"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="storeOperatorTo" eType="#//PropertyReference"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="storeLeftSideTo" eType="#//PropertyReference"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="storeRightSideTo" eType="#//PropertyReference"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EnumerationTemplate" eSuperTypes="#//Template">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="automatic" ordered="false"
@@ -205,7 +208,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="propertyArgs" upperBound="-1"
         eType="#//PropertyArg" containment="true" eOpposite="#//PropertyArg/property"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="propertyReference" lowerBound="1"
-        eType="#//PropertyReference"/>
+        eType="#//PropertyReference" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CustomSeparator" eSuperTypes="#//SequenceElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false"
@@ -313,7 +316,8 @@
         lowerBound="1" eType="#//AndExp" eOpposite="#//AndExp/expressions"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyName" ordered="false"
         unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyReference" eType="#//PropertyReference"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyReference" eType="#//PropertyReference"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EqualsExp" eSuperTypes="#//AtomExp">
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" ordered="false"
@@ -443,7 +447,8 @@
         eOpposite="#//InjectorActionsBlock/injectorActions"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyInit" abstract="true" eSuperTypes="#//InjectorAction">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyReference" eType="#//PropertyReference"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyReference" eType="#//PropertyReference"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="default" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
