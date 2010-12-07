@@ -18,9 +18,21 @@
    </license>
 
    <requires>
-      <import plugin="org.eclipse.emf.query2.stringsyntax"/>
-      <import plugin="org.eclipse.emf.query2.stringsyntax.ui"/>
       <import feature="org.eclipse.emf.query2.core.feature" version="1.0.0.qualifier"/>
    </requires>
+
+   <plugin
+         id="org.eclipse.emf.query2.stringsyntax"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.query2.stringsyntax.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>
