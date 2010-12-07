@@ -140,7 +140,7 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
         if (instanceScopeAnalysis == null) {
             instanceScopeAnalysis = createInstanceScopeAnalysis();
         }
-        return instanceScopeAnalysis.getContextObjects(event);
+        return instanceScopeAnalysis.getContextObjects(event, notifyOnNewContextElements);
     }
 
     protected InstanceScopeAnalysis createInstanceScopeAnalysis() {

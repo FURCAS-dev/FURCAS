@@ -10,10 +10,12 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.emf.ocl.trigger.AbstractOCLBasedModelUpdater;
 import com.sap.emf.ocl.trigger.ExpressionWithContext;
+import com.sap.emf.ocl.util.EcoreEnvironmentFactoryWithScopedExtentMap;
 import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
@@ -25,6 +27,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
+import com.sap.furcas.runtime.parser.impl.ModelElementProxy;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
@@ -39,11 +42,31 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
  * 
  */
 public class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBasedModelUpdater {
+    
+    public enum SelfKind { SELF, CONTEXT, FOREACH };
+    
+    private final SelfKind selfKind;
 
     protected AbstractFurcasOCLBasedModelUpdater(EStructuralFeature propertyToUpdate,
             OppositeEndFinder oppositeEndFinder, ExpressionWithContext triggerExpression,
-            boolean notifyOnNewContextElements) {
+            boolean notifyOnNewContextElements, SelfKind selfKind) {
         super(propertyToUpdate, oppositeEndFinder, triggerExpression, notifyOnNewContextElements);
+        this.selfKind = selfKind;
+    }
+
+    /**
+     * This default implementation re-evaluates the {@link #triggerExpression} on each element reported as affected and
+     * sets the {@link #getPropertyToUpdate() property} to update by this updater to the evaluation result.
+     */
+    @Override
+    public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects,
+            OppositeEndFinder oppositeEndFinder) {
+        OCL ocl = OCL.newInstance(new EcoreEnvironmentFactoryWithScopedExtentMap(oppositeEndFinder));
+        for (EObject eo : affectedContextObjects) {
+            // TODO replace eo according to selfKind
+            Object newValue = ocl.evaluate(eo, expression);
+            eo.eSet(getPropertyToUpdate(), newValue);
+        }
     }
 
     private Collection<TextBlock> getTextBlocksUsingQueryElement(Template template) {
@@ -109,7 +132,7 @@ public class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBasedModelUpd
             for (AbstractToken tok : textBlock.getTokens()) {
                 if (tok instanceof LexedToken) {
                     LexedToken lt = (LexedToken) tok;
-                    // check if injectoraction was in chosen alternative or
+                    // check if injector action was in chosen alternative or
                     // directly in in the template
                     if (lt.getSequenceElement() != null
                             && (lt.getSequenceElement().getElementSequence()
@@ -131,6 +154,36 @@ public class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBasedModelUpd
                 contextTemplate);
         result.setContext(parsingContext);
         return result;
+    }
+    
+    protected EObject getSelf(EObject regularSelf) {
+        switch (selfKind) {
+        case SELF:
+            return regularSelf;
+        case CONTEXT:
+            return null; // FIXME need to port LocalContextBuilder to retrieve context from regularSelf and template
+        case FOREACH:
+            return null;
+        default:
+            throw new RuntimeException("Unknown self kind: "+selfKind);
+        }
+    }
+
+    /**
+     * Determines which object will be used as <tt>self</tt> in evaluating the
+     * OCL expression. Can either be a {@link ModelElementProxy proxy} or a
+     * {@link RefObject}. If the OCL expression uses <tt>#context</tt>, the
+     * {@link #getContextElement() context element} is used; otherwise the
+     * {@link #getModelElement()} call is used.
+     */
+    protected static SelfKind getSelfKind(String oclExpression) {
+        if (ContextAndForeachHelper.usesContext(oclExpression)) {
+            return SelfKind.CONTEXT;
+        } else if (ContextAndForeachHelper.usesForeach(oclExpression)) {
+            return SelfKind.FOREACH;
+        } else {
+            return SelfKind.SELF;
+        }
     }
 
 }
