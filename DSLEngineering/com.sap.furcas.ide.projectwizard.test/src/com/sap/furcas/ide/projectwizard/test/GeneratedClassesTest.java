@@ -35,7 +35,7 @@ public class GeneratedClassesTest {
                     "./generationTemp/generated/MydslParserFactory.java", "./generationTemp/generated/MydslEditor.java",
                     "./generationTemp/generated/Activator.java", "-cp", requiredBundles });
             if (success != 0) {
-                //fail("Parser compilation failed with code '" + success + "'. Messages: \n" + errByteStream.toString());
+                fail("Parser compilation failed with code '" + success + "'. Messages: \n" + errByteStream.toString());
             }
         } finally {
             restoreOldSystemErr(systemErrOld);
