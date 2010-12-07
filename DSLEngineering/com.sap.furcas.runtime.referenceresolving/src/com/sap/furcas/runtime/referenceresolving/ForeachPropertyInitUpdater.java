@@ -52,7 +52,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                         .createQuery(ContextAndForeachHelper.prepareOclQuery(injectorAction.getValue())),
                 (EClass) ContextAndForeachHelper.getParsingContext(injectorAction.getValue(),
                         ((InjectorActionsBlock) injectorAction.eContainer()).getParentTemplate())),
-                        /* notifyNewContextElements */ true);
+                        /* notifyNewContextElements */ true, getSelfKind(injectorAction.getValue()));
         triggerExpressionsWithoutContext = new LinkedList<OCLExpression>();
         for (PredicateSemantic whenClause : injectorAction.getPredicateSemantic()) {
             if (whenClause.getWhen() != null) {
