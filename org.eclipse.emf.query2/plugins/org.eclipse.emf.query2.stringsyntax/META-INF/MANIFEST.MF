@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: org.eclipse.emf.query2.syntax
-Bundle-Vendor: My Company
+Bundle-Name: EMF Query2 String Syntax Core
+Bundle-Vendor: eclipse.org
 Bundle-Version: 1.0.0
-Bundle-SymbolicName: org.eclipse.emf.query2.syntax;singleton:=true
+Bundle-SymbolicName: org.eclipse.emf.query2.stringsyntax;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
