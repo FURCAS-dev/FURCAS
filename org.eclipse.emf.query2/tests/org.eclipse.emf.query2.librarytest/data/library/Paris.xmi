@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="ASCII"?>
+<library:Library xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:library="http://eclipse.org/modeling/emf/query/1.0.0" location="Paris">
+  <books>
+    <borrowedBy href="../person/O.xmi#/7"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.127"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/L.xmi#/67"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.443"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.285"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.398"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.558"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.389"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/K.xmi#/144"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.37"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.382"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/M.xmi#/70"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.151"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/V.xmi#/19"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.467"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.257"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.430"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/B.xmi#/151"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.125"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/S.xmi#/34"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.430"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/R.xmi#/208"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.102"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/R.xmi#/191"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.201"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.265"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.543"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/K.xmi#/191"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.66"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/S.xmi#/501"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.454"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/H.xmi#/167"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.40"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/S.xmi#/442"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.579"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/R.xmi#/200"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.344"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.54"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.569"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.557"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.304"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.219"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/F.xmi#/115"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.489"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/H.xmi#/43"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.425"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.140"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/D.xmi#/74"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.551"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/G.xmi#/1"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.67"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.400"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.225"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/R.xmi#/22"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.562"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.424"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.333"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/S.xmi#/141"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.153"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/G.xmi#/59"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.297"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.320"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.438"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.509"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/K.xmi#/146"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.545"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.214"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.239"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/G.xmi#/83"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.210"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.92"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/W.xmi#/186"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.337"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/S.xmi#/74"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.302"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/K.xmi#/88"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.335"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/R.xmi#/185"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.583"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/W.xmi#/120"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.499"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.503"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/Z.xmi#/13"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.452"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.33"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.374"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.493"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.556"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.130"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/L.xmi#/153"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.239"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.159"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.572"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/S.xmi#/76"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.151"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.408"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/T.xmi#/93"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.289"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.74"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/G.xmi#/139"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.172"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.146"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/H.xmi#/286"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.74"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/M.xmi#/168"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.403"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.10"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/H.xmi#/147"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.565"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.88"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/T.xmi#/54"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.139"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.300"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.251"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.567"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.144"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.563"/>
+  </books>
+</library:Library>
