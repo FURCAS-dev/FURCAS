@@ -13,10 +13,10 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 import java.util.Stack;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
-import org.eclipse.ocl.expressions.ExpressionsPackage;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
@@ -33,7 +33,7 @@ public class TracebackStepCacheWithHiddenOpposites extends TracebackStepCache {
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, OCLFactory oclFactory) {
         TracebackStep result;
         switch (sourceExpression.eClass().getClassifierID()) {
-        case ExpressionsPackage.OPPOSITE_PROPERTY_CALL_EXP:
+        case EcorePackage.OPPOSITE_PROPERTY_CALL_EXP:
             result = new OppositePropertyCallTracebackStep((OppositePropertyCallExp) sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, this, getUnusedEvaluationRequestFactory(), oclFactory);
             break;
         default:

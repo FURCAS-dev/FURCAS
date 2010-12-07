@@ -696,31 +696,6 @@ public class ExpressionsItemProviderAdapterFactory extends
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.expressions.OppositePropertyCallExp} instances.
-	 * <!-- begin-user-doc -->
-	 * @since 3.1
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected OppositePropertyCallExpItemProvider oppositePropertyCallExpItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.ocl.expressions.OppositePropertyCallExp}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createOppositePropertyCallExpAdapter() {
-		if (oppositePropertyCallExpItemProvider == null) {
-			oppositePropertyCallExpItemProvider = new OppositePropertyCallExpItemProvider(
-					this);
-		}
-
-		return oppositePropertyCallExpItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -874,8 +849,6 @@ public class ExpressionsItemProviderAdapterFactory extends
 			unspecifiedValueExpItemProvider.dispose();
 		if (variableExpItemProvider != null)
 			variableExpItemProvider.dispose();
-		if (oppositePropertyCallExpItemProvider != null)
-			oppositePropertyCallExpItemProvider.dispose();
 	}
 
 }

@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: QVTTestAdapter
-Bundle-SymbolicName: QVTTestAdapter
-Bundle-Version: 1.0.0.qualifier
-Export-Package: de.ikv.medini.qvt.test
-Require-Bundle: OCLTestAdapter;bundle-version="1.0.0"

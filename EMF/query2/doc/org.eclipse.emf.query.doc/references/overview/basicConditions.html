@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="Stylesheet" type="text/css" href="doc.css" />
+<title>Basic Conditions</title>
+</head>
+<body>
+<h1><a name="top">Basic Conditions</a></h1>
+
+<p>
+The EMF Model Query Framework provides a variety of convenient conditions that
+implement predicates on simple data values, including strings, numbers, and
+booleans.  Because they work with types that are modeled in EMF using
+<em class="CodeName">EDataType</em>s, these conditions are typically used as
+predicates on the <em class="CodeName">EAttribute</em>s of model elements.
+</p>
+
+<blockquote>
+	<img src="images/basicConditions.png" alt="Basic Condition API"/><br/>
+	<font size="-2">[<a target="_blank" href="images/basicConditions.svg">as SVG</a>]</font>
+</blockquote>
+
+<a name="framework"></a>
+<h2>Condition Framework</h2>
+
+<p>
+The root of the condition hierarchy is, unsurprisingly, the
+<a href="../javadoc/org/eclipse/emf/query/conditions/Condition.html"><em class="CodeName">Condition</em></a>
+class.  It defines the basic protocol of predicate evaluation, the
+<em class="CodeName">boolean isSatisfied(Object)</em> method.  It also provides
+static factory methods for boolean operators, allowing multiple conditions to
+be combined in a string of code that vaguely resembles an expression:
+</p>
+<pre class="Code">
+Object subject = ... ; // a subject on which to test a complex condition
+
+Condition a = ... ; // conditions obtained from somewhere
+Condition b = ... ;
+Condition c = ... ;
+
+Condition complex = a.IMPLIES(b.OR(c));
+
+System.out.println("Test: " + complex.isSatisfied(subject));
+</pre>
+<p>
+These boolean operators are implemented as private inner classes of the
+<em class="CodeName">Condition</em> class.
+</p>
+<p>
+The <a href="../javadoc/org/eclipse/emf/query/conditions/ObjectInstanceCondition.html"><em class="CodeName">ObjectInstanceCondition</em></a>
+is different.  As its name implies, it checks whether an object under test is
+a particular known instance, supplied to the condition upon construction.  We
+show elsewhere how the shared <em class="CodeName">IS_NULL</em> instance of this
+condition class is the standard (and only) way to check whether the value of an
+<em class="CodeName">EAttribute</em> in a model element contains
+<em class="CodeName">null</em>s.
+</p>
+
+<h2>Condition Policies</h2>
+
+<p>
+The <a href="../javadoc/org/eclipse/emf/query/conditions/ConditionPolicy.html"><em class="CodeName">ConditionPolicy</em></a>
+class implements a quantifier, either "exists" (<em class="CodeName">ANY</em>) or
+"for all" (<em class="CodeName">ALL</em>).  A <em class="CodeName">ConditionPolicy</em>
+may be used to test a single condition against multiple subject:
+</p>
+<pre class="Code">
+Collection subjects = ... ; // some subjects on which to test a condition
+
+Condition cond = ... ; // a condition obtained from somewhere
+
+System.out.println("Test all: " + ConditionPolicy.ALL.isSatisfied(cond, subjects);
+System.out.println("Test any: " + ConditionPolicy.ANY.isSatisfied(cond, subjects);
+</pre>
+<p>
+or multiple conditions against a single subject:
+</p>
+<pre class="Code">
+Object subject = ... ; // a subjects on which to test some conditions
+
+Condition[] conditions = ... ; // some conditions obtained from somewhere
+
+System.out.println("Test all: " + ConditionPolicy.ALL.isSatisfied(conditions, subject);
+System.out.println("Test any: " + ConditionPolicy.ANY.isSatisfied(conditions, subject);
+</pre>
+
+<p>
+These condition objects may not be very exciting on their own, but they form the
+basis of every <a href="executingQueries.html">executable query</a>.
+</p>
+
+<a name="primitives"></a>
+<h2>Conditions on Primitive Types</h2>
+
+<p>
+The EMF Model Query framework includes, in the box, a variety of conditions on
+the commonly used Java boolean, numeric, and string primitive types.  These
+conditions, by default, assume their inputs to be of the appropriate Java
+wrapper types.  Optionally, they can be configured with
+<a href="valueAdapters.html">value adapters</a> that convert other data types
+to a value suitable for testing with these conditions.
+</p>
+
+<blockquote>
+	<img src="images/primitiveConditions.png" alt="Primitive Type Conditions"/><br/>
+	<font size="-2">[<a target="_blank" href="images/primitiveConditions.svg">as SVG</a>]</font>
+</blockquote>
+
+<p>
+The <a href="../javadoc/org/eclipse/emf/query/conditions/booleans/BooleanCondition.html"><em class="CodeName">BooleanCondition</em></a>
+class defines a predicate on boolean values.
+</p>
+<pre class="Code">
+Object subject = Boolean.TRUE;
+BooleanCondition cond = new BooleanCondition(true);
+
+System.out.println("Test: " + cond.isSatisfied(subject));
+</pre>
+
+<p>
+The abstract <a href="../javadoc/org/eclipse/emf/query/conditions/numbers/NumberCondition.html"><em class="CodeName">NumberCondition</em></a>
+class defines predicates on numeric values.  The concrete
+<em class="CodeName">*Value</em> subclasses are inner classes handling each of
+Java's different numeric types.  The condition is a range test:  a numeric value
+that falls within the range is accepted.  Exact matches are also supported, with
+convenience constructors taking a single value to specify the same upper and
+lower bound.  Ranges are inclusive on both bounds.
+</p>
+<pre class="Code">
+Object subject = new Double(Math.E);
+NumberCondition cond = new NumberCondition.DoubleValue(2.0, 3.0);  // J2SE 5.0 auto-boxing
+
+System.out.println("Test: " + cond.isSatisfied(subject));
+</pre>
+
+<p>
+The abstract <a href="../javadoc/org/eclipse/emf/query/conditions/strings/StringCondition.html"><em class="CodeName">StringCondition</em></a>
+class defines predicates on string values.  The concrete
+<em class="CodeName">StringValue</em>, <em class="CodeName">SubStringValue</em>,
+and <em class="CodeName">StringRegularExpressionValue</em> test string inputs
+for equality, substring containment, and regular expression pattern match,
+respectively.  All support case-insensitive matching as an option; the default
+is case-sensitive.
+</p><p>
+The <em class="CodeName">StringRegularExpressionValue</em>
+looks for a pattern-match using <em class="CodeName">Matcher.find()</em>,
+not  <em class="CodeName">Matcher.matches()</em>.  Thus, in order to specify a
+regex that matches the entire string, it is necessary to use the beginning-of-input
+and end-of-input anchors:  <em class="CodeName">^</em> and <em class="CodeName">$</em>.
+</p><p>
+The <em class="CodeName">StringLength</em> condition tests
+the length of a string, using the same range strategy as the
+<em class="CodeName">NumberCondition</em>s.
+</p>
+<pre class="Code">
+Object subject = "CATGGTGCCAC";
+StringCondition cond = new StringRegularExpressionValue("G+");
+
+System.out.println("Test: " + cond.isSatisfied(subject));
+</pre>
+
+<hr/>
+
+<p>
+<a href="http://www.eclipse.org/legal/epl-v10.html">Copyright (c) 2000, 2007 IBM Corporation and others. All Rights Reserved.</a>
+</p>
+</body>
+</html>

@@ -56,7 +56,6 @@ import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.TypedElement;
-import org.eclipse.ocl.utilities.UMLReflectionWithOpposite;
 
 /**
  * Implementation of the UML reflection service for the Ecore environment.
@@ -65,8 +64,7 @@ import org.eclipse.ocl.utilities.UMLReflectionWithOpposite;
  */
 public class UMLReflectionImpl
     implements
-    org.eclipse.ocl.utilities.UMLReflection<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint>,
-	UMLReflectionWithOpposite<EStructuralFeature> {
+    org.eclipse.ocl.utilities.UMLReflection<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> {
 
     /** Shared instance of the stateless reflection service. */
     public static final UMLReflectionImpl INSTANCE = new UMLReflectionImpl();
@@ -237,14 +235,6 @@ public class UMLReflectionImpl
         }
         
         return result;
-    }
-    
-    public EStructuralFeature getOpposite(EStructuralFeature property) {
-    	if (property instanceof EReference) {
-    		return ((EReference) property).getEOpposite();
-    	} else {
-    		return null;
-    	}
     }
     
     public EStructuralFeature createProperty(String name, EClassifier resultType) {

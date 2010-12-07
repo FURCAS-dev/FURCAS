@@ -19,7 +19,6 @@
  */
 package org.eclipse.ocl;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
@@ -31,12 +30,16 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.Variable;
+import org.eclipse.ocl.helper.OCLSyntaxHelper;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.lpg.AbstractBasicEnvironment;
 import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.options.Option;
 import org.eclipse.ocl.options.ProblemOption;
 import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
+import org.eclipse.ocl.parser.OCLAnalyzer;
+import org.eclipse.ocl.parser.ValidationVisitor;
+import org.eclipse.ocl.parser.backtracking.OCLBacktrackingParser;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
@@ -44,8 +47,7 @@ import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.util.UnicodeSupport;
 import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.utilities.TypedElement;
-import org.eclipse.ocl.utilities.UMLReflection;
-import org.eclipse.ocl.utilities.UMLReflectionWithOpposite;
+import org.eclipse.ocl.utilities.Visitor;
 
 /**
  * A partial implementation of the {@link Environment} interface providing
@@ -78,7 +80,8 @@ import org.eclipse.ocl.utilities.UMLReflectionWithOpposite;
 public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	extends AbstractBasicEnvironment
 	implements Environment.Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>,
-	    EnvironmentWithHiddenOpposites.Lookup<PK, C, O, P> {
+		EnvironmentExtension<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>,
+		Environment.Lookup<PK, C, O, P> {
     
 	/* Used to generate implicit iterator variables */
 	private int generatorInt = 0;
@@ -374,6 +377,20 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		}
 		
 		return result;
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	protected int getElementsSize() {
+		return namedElements.size();
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	protected VariableEntry getElement(int index) {
+		return namedElements.get(index);
 	}
     
 	@SuppressWarnings("deprecation")
@@ -793,43 +810,6 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	}
 
     // implements the interface method
-	/**
-	 * @since 3.1
-	 */
-	public Variable<C, PM> lookupImplicitSourceForOppositeProperty(String name) {
-		Variable<C, PM> vdcl;
-		
-		for (int i = namedElements.size() - 1; i >= 0; i--) {
-			VariableEntry element = namedElements.get(i);
-			vdcl = element.variable;
-			C owner = vdcl.getType();
-			
-			if (!element.isExplicit && (owner != null)) {
-				P property = safeTryLookupOppositeProperty(owner, name);
-				if (property != null) {
-					return vdcl;
-				}
-			}
-
-		}
-		
-		// try the "self" variable, last
-		vdcl = getSelfVariable();
-		if (vdcl != null) {
-			C owner = vdcl.getType();
-			if (owner != null) {
-				P property = safeTryLookupOppositeProperty(owner, name);
-				if (property != null) {
-					return vdcl;
-				}
-			}
-		}
-		
-		return null;
-
-	}
-
-	// implements the interface method
 	public Variable<C, PM> lookupImplicitSourceForProperty(String name) {
 		Variable<C, PM> vdcl;
 		
@@ -873,27 +853,6 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	    
 	    try {
 	        result = tryLookupProperty(owner, name);
-        } catch (LookupException e) {
-            if (!e.getAmbiguousMatches().isEmpty()) {
-                result = (P) e.getAmbiguousMatches().get(0);
-            }
-	    }
-        
-        return result;
-	}
-
-	/**
-	 * Wrapper for the "try" operation that doesn't throw, but just returns the
-	 * first ambiguous match in case of ambiguity.
-	 */
-	@SuppressWarnings("unchecked")
-    private P safeTryLookupOppositeProperty(C owner, String name) {
-	    P result = null;
-	    try {
-	        result = lookupOppositeProperty(owner, name);
-			if ((result == null) && AbstractOCLAnalyzer.isEscaped(name)) {
-			    result = lookupOppositeProperty(owner, AbstractOCLAnalyzer.unescape(name));
-			}
         } catch (LookupException e) {
             if (!e.getAmbiguousMatches().isEmpty()) {
                 result = (P) e.getAmbiguousMatches().get(0);
@@ -1101,76 +1060,17 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
         throws LookupException {
         
         P result = lookupProperty(owner, name);
-        // look up non-navigable/unnamed ends in any case because they may be located in
-		// a specialization of result's owner, hence take precedence over
-		// result:
-		UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> uml = getUMLReflection();
-		P nonNavigableEnd = null;
-		if (result == null || uml instanceof UMLReflectionWithOpposite<?>) {
-			nonNavigableEnd = lookupNonNavigableEnd(owner, name);
-			if ((nonNavigableEnd == null) && AbstractOCLAnalyzer.isEscaped(name)) {
-				nonNavigableEnd = lookupNonNavigableEnd(owner,
-					AbstractOCLAnalyzer.unescape(name));
-			}
-		}
-		if (result != null && uml instanceof UMLReflectionWithOpposite<?>) {
-			// Ambiguous hidden opposite ends may have been found.
-			// Don't consider unnamed opposite ends if a named "real" end has
-			// already been found
-			if (nonNavigableEnd != null && uml.getName(nonNavigableEnd) != null) {
-				@SuppressWarnings("unchecked")
-				UMLReflectionWithOpposite<P> umlWithOpposite = (UMLReflectionWithOpposite<P>) uml;
-				P nonNavigableEndOpposite = umlWithOpposite.getOpposite(nonNavigableEnd);
-				// check for ambiguity; note that nonNavigableEnd may be a
-				// temporary property which doesn't have a container set; type
-				// therefore needs
-				// to be determined through opposite
-				C nonNavigableEndOwner = TypeUtil.getPropertyType(this, null,
-					nonNavigableEndOpposite);
-				if (getUMLReflection().getAllSupertypes(nonNavigableEndOwner)
-					.contains(getUMLReflection().getOwningClassifier(result))) {
-					result = nonNavigableEnd;
-				} else if (!getUMLReflection().getAllSupertypes(
-					getUMLReflection().getOwningClassifier(result)).contains(
-					TypeUtil.getPropertyType(this, null,
-						umlWithOpposite.getOpposite(nonNavigableEnd)))) {
-					ProblemHandler.Severity sev = getValue(ProblemOption.AMBIGUOUS_ASSOCIATION_ENDS);
-					// will have to report the problem
-					String message = OCLMessages.bind(
-						OCLMessages.Ambig_AssocEnd_, name, getUMLReflection()
-							.getName(owner));
-					if (sev.getDiagnosticSeverity() >= Diagnostic.ERROR) {
-						List<P> ambiguousMatches = new ArrayList<P>();
-						ambiguousMatches.add(result);
-						ambiguousMatches.add(nonNavigableEnd);
-						throw new AmbiguousLookupException(message,
-							ambiguousMatches);
-					} else {
-						getProblemHandler().analyzerProblem(sev, message,
-							"lookupNonNavigableProperty", -1, -1); //$NON-NLS-1$
-					}
-				}
-			}
-		}
-		if (result == null) {
-			result = nonNavigableEnd;
-		}
-
-        return result;
-    }
-
-    /**
-     * This default implementation simply delegates to the
-     * {@link Environment#lookupOppositeProperty(Object, String)} method.
-     * 
-     * @since 3.1
-     */
-    public P tryLookupOppositeProperty(C owner, String name)
-        throws LookupException {
-        P result = lookupOppositeProperty(owner, name);
-        if ((result == null) && AbstractOCLAnalyzer.isEscaped(name)) {
-            result = lookupOppositeProperty(owner, AbstractOCLAnalyzer.unescape(name));
+        
+        if (result == null) {
+            // looks up non-navigable named ends as well as unnamed ends.  Hence
+            // the possibility of ambiguity
+            result = lookupNonNavigableEnd(owner, name);
+            
+            if ((result == null) && AbstractOCLAnalyzer.isEscaped(name)) {
+                result = lookupNonNavigableEnd(owner, AbstractOCLAnalyzer.unescape(name));
+            }
         }
+
         return result;
     }
 
@@ -1189,8 +1089,9 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
      * @throws LookupException in case that multiple non-navigable properties
      *     are found that have the same name and the problem option is ERROR
      *     or worse
+     * @since 3.1
      */
-    private P lookupNonNavigableEnd(C owner, String name) throws LookupException {
+    protected P lookupNonNavigableEnd(C owner, String name) throws LookupException {
         if (owner == null) {
             Variable<C, PM> vdcl = lookupImplicitSourceForProperty(name);
 
@@ -1233,60 +1134,6 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
     }
     
     /**
-     * Looks up a non-navigable association end on behalf of
-     * the specified <code>owner</code> classifier (which is at that end).
-     * 
-     * @param owner
-     *            a classifier in the context of which the property is used
-     * @param name
-     *            the end name to look up
-     * 
-     * @return the non-navigable end, or <code>null</code> if it cannot
-     *         be found
-     *         
-     * @throws LookupException in case that multiple non-navigable properties
-     *     are found that have the same name and the problem option is ERROR
-     *     or worse
-     * @since 3.1
-     */
-    public P lookupOppositeProperty(C owner, String name) throws LookupException {
-        if (owner == null) {
-            Variable<C, PM> vdcl = lookupImplicitSourceForOppositeProperty(name);
-
-            if (vdcl == null) {
-                return null;
-            }
-
-            owner = vdcl.getType();
-        }
-
-        List<P> matches = new java.util.ArrayList<P>(2);
-        findOppositeEnds(owner, name, matches);
-
-        if (matches.isEmpty()) {
-            return null;
-        } else if (matches.size() > 1) {
-            // ambiguous matches.  What to do?
-            if (notOK(ProblemOption.AMBIGUOUS_ASSOCIATION_ENDS)) {
-                ProblemHandler.Severity sev = getValue(ProblemOption.AMBIGUOUS_ASSOCIATION_ENDS);
-
-                // will have to report the problem
-                String message = OCLMessages.bind(OCLMessages.Ambig_AssocEnd_,
-                    name, getUMLReflection().getName(owner));
-
-                if (sev.getDiagnosticSeverity() >= Diagnostic.ERROR) {
-                    throw new AmbiguousLookupException(message, matches);
-                } else {
-                    getProblemHandler().analyzerProblem(sev, message,
-                        "lookupNonNavigableProperty", -1, -1); //$NON-NLS-1$
-                }
-            }
-        }
-        
-        return matches.get(0);
-    }
-    
-    /**
      * Searches for non-navigable association ends with the specified
      * <tt>name</tt> at the given <tt>classifier</tt>'s end of an association.
      * Subclasses should reimplement this method if they support non-navigable
@@ -1297,21 +1144,6 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
      * @param ends collects the ends found by the subclass implementation
      */
     protected void findNonNavigableAssociationEnds(C classifier, String name, List<P> ends) {
-        // no default implementation
-    }
-    
-    /**
-     * Searches for non-navigable association ends with the specified
-     * <tt>name</tt> at the given <tt>classifier</tt>'s end of an association.
-     * Subclasses should reimplement this method if they support non-navigable
-     * association ends.
-     * 
-     * @param classifier a classifier at an association end
-     * @param name the non-navigable end name to look for
-     * @param ends collects the ends found by the subclass implementation
-     * @since 3.1
-     */
-    protected void findOppositeEnds(C classifier, String name, List<P> ends) {
         // no default implementation
     }
     
@@ -1410,7 +1242,36 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			}
 		};
     }
+
+	/**
+	 * @since 3.1
+	 */
+	public Visitor<Boolean, C, O, P, EL, PM, S, COA, SSA, CT> createValidationVisitor() {
+		return new ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(this);
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	public OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCLAnalyzer(String input) {
+		return new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(this, input);
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	public OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCLAnalyzer(
+			OCLBacktrackingParser parser) {
+		return new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(parser);
+	}
     
+	/**
+	 * @since 3.1
+	 */
+	public OCLSyntaxHelper createOCLSyntaxHelper() {
+		return new org.eclipse.ocl.internal.helper.OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(this);
+	}
+
 	/**
 	 * Since {@link AbstractTypeResolver} implements {@link TypeChecker},
 	 * AbstractEnvironment will try to adapt {@link TypeChecker}, via its
@@ -1449,6 +1310,20 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			this.name = name;
 			this.variable = variable;
 			this.isExplicit = isExplicit;
+		}
+
+		/**
+		 * @since 3.1
+		 */
+		public Variable<C, PM> getVariable() {
+			return variable;
+		}
+
+		/**
+		 * @since 3.1
+		 */
+		public boolean isExplicit() {
+			return isExplicit;
 		}
 		
 		@Override

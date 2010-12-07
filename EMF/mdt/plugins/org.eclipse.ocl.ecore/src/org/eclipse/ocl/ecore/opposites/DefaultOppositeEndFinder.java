@@ -1,13 +1,19 @@
-/*******************************************************************************
- * Copyright (c) 2009, 2010 SAP AG and others.
- * All rights reserved. This program and the accompanying materials
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2009,2010 SAP AG and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
- *     SAP AG - initial API and implementation
- ******************************************************************************/
+ *   Axel Uhl - Initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.eclipse.ocl.ecore.opposites;
 
 import java.util.Collection;
@@ -25,7 +31,6 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -108,7 +113,7 @@ public class DefaultOppositeEndFinder
 	}
 
 	public void findOppositeEnds(EClassifier classifier, String name,
-			List<EStructuralFeature> ends) {
+			List<EReference> ends) {
 		if (classifier instanceof EClass) {
 			EClass eClass = (EClass) classifier;
 			updateOppositeCache();
@@ -130,9 +135,9 @@ public class DefaultOppositeEndFinder
 		}
 	}
 
-	public Map<String, EStructuralFeature> getAllOppositeEnds(
+	public Map<String, EReference> getAllOppositeEnds(
 			EClassifier classifier) {
-		Map<String, EStructuralFeature> result = new HashMap<String, EStructuralFeature>();
+		Map<String, EReference> result = new HashMap<String, EReference>();
 		if (classifier instanceof EClass) {
 			EClass eClass = (EClass) classifier;
 			updateOppositeCache();
@@ -148,7 +153,7 @@ public class DefaultOppositeEndFinder
 			}
 			// add all inherited opposite property definitions
 			for (EClassifier sup : eClass.getESuperTypes()) {
-				Map<String, EStructuralFeature> supOppositeEnds = getAllOppositeEnds(sup);
+				Map<String, EReference> supOppositeEnds = getAllOppositeEnds(sup);
 				for (String supOppositeEndName : supOppositeEnds.keySet()) {
 					// add superclass's opposite only if not already found in
 					// subclass; this implements the "subclass definitions override"
@@ -279,7 +284,7 @@ public class DefaultOppositeEndFinder
 
 	/**
 	 * Search for an {@link ECrossReferenceAdapter} up <code>target</code>'s
-	 * containment hierarchy
+	 * containmeht hierarchy
 	 */
 	private ECrossReferenceAdapter getCrossReferenceAdapter(EObject target) {
 		ECrossReferenceAdapter result = ECrossReferenceAdapter
