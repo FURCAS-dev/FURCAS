@@ -24,7 +24,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.resources;bundle-version="3.6.0",
  com.sap.furcas.ide.editor;bundle-version="1.0.0",
  com.sap.furcas.runtime.parser.incremental;bundle-version="1.0.0",
- com.sap.ide.treeprovider;bundle-version="1.0.0",
  com.sap.ap.cts.refactoring;bundle-version="1.0.0",
  com.sap.furcas.runtime.tcs;bundle-version="1.0.0",
  com.sap.furcas.ide.parserfactory;bundle-version="1.0.0"
