@@ -47,5 +47,10 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.sonatype.tycho</groupId>
+			<artifactId>org.eclipse.osgi</artifactId>
+			<version>3.6.1.R36x_v20100806</version>
+		</dependency>
 	</dependencies>
 </project>
