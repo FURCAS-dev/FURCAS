@@ -30,120 +30,120 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  */
 public class InstanceOfExpImpl extends AtomExpImpl implements InstanceOfExp {
         /**
-	 * The cached value of the '{@link #getSupertype() <em>Supertype</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getSupertype() <em>Supertype</em>}' attribute list.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see #getSupertype()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getSupertype()
+     * @generated
+     * @ordered
+     */
         protected EList<String> supertype;
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         protected InstanceOfExpImpl() {
-		super();
-	}
+        super();
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected EClass eStaticClass() {
-		return TCSPackage.Literals.INSTANCE_OF_EXP;
-	}
+        return TCSPackage.Literals.INSTANCE_OF_EXP;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public EList<String> getSupertype() {
-		if (supertype == null) {
-			supertype = new EDataTypeUniqueEList<String>(String.class, this, TCSPackage.INSTANCE_OF_EXP__SUPERTYPE);
-		}
-		return supertype;
-	}
+        if (supertype == null) {
+            supertype = new EDataTypeUniqueEList<String>(String.class, this, TCSPackage.INSTANCE_OF_EXP__SUPERTYPE);
+        }
+        return supertype;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TCSPackage.INSTANCE_OF_EXP__SUPERTYPE:
-				return getSupertype();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case TCSPackage.INSTANCE_OF_EXP__SUPERTYPE:
+                return getSupertype();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @SuppressWarnings("unchecked")
         @Override
         public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TCSPackage.INSTANCE_OF_EXP__SUPERTYPE:
-				getSupertype().clear();
-				getSupertype().addAll((Collection<? extends String>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case TCSPackage.INSTANCE_OF_EXP__SUPERTYPE:
+                getSupertype().clear();
+                getSupertype().addAll((Collection<? extends String>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         public void eUnset(int featureID) {
-		switch (featureID) {
-			case TCSPackage.INSTANCE_OF_EXP__SUPERTYPE:
-				getSupertype().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case TCSPackage.INSTANCE_OF_EXP__SUPERTYPE:
+                getSupertype().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TCSPackage.INSTANCE_OF_EXP__SUPERTYPE:
-				return supertype != null && !supertype.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case TCSPackage.INSTANCE_OF_EXP__SUPERTYPE:
+                return supertype != null && !supertype.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (supertype: ");
-		result.append(supertype);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (supertype: ");
+        result.append(supertype);
+        result.append(')');
+        return result.toString();
+    }
 
 } //InstanceOfExpImpl
