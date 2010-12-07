@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: OCLTestAdapter
-Bundle-SymbolicName: OCLTestAdapter
-Bundle-Version: 1.0.0.qualifier
-Export-Package: de.ikv.medini.ocl.test,
- de.ikv.medini.ocl.test.util

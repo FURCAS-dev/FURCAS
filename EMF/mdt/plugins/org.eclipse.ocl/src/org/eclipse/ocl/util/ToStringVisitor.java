@@ -42,7 +42,6 @@ import org.eclipse.ocl.expressions.MessageExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.RealLiteralExp;
 import org.eclipse.ocl.expressions.StateExp;
@@ -246,26 +245,6 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 		
 		return result.toString();
 	}
-    
-    /**
-	 * @since 3.1
-	 */
-    @Override
-    protected String handleOppositePropertyCallExp(
-    		OppositePropertyCallExp<C, P> callExp, String sourceResult) {
-    	P property = callExp.getReferredOppositeProperty();
-
-        if (sourceResult == null) {
-			// if we are the qualifier of an association class call, then
-			//   we just return our name, because our source is null (implied)
-			return "oppositeOf(" + getName(property) + ")";   //$NON-NLS-1$//$NON-NLS-2$
-		}
-		
-		StringBuffer result = new StringBuffer(
-			maybeAtPre(callExp, sourceResult + ".oppositeOf(" + getName(property) + ")"));//$NON-NLS-1$ //$NON-NLS-2$
-		
-		return result.toString();
-    }
 
 	/**
 	 * Callback for an AssociationClassCallExp visit. 
@@ -789,7 +768,10 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 		}
 	}
 
-	private String maybeAtPre(FeatureCallExp<C> mpc, String base) {
+	/**
+	 * @since 3.1
+	 */
+	protected String maybeAtPre(FeatureCallExp<C> mpc, String base) {
 		return mpc.isMarkedPre() ? base + "@pre" : base; //$NON-NLS-1$
 	}
 

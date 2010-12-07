@@ -1,13 +1,19 @@
-/*******************************************************************************
- * Copyright (c) 2009, 2010 SAP AG and others.
- * All rights reserved. This program and the accompanying materials
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2009,2010 SAP AG and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
- *     SAP AG - initial API and implementation
- ******************************************************************************/
+ *   Axel Uhl - Initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.eclipse.ocl.ecore.opposites;
 
 import java.util.Collection;
@@ -21,8 +27,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
+import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
+import org.eclipse.ocl.ecore.EcoreEnvironment;
 
 /**
  * Implementations shall be able to find and navigate "hidden references" on a classifier by name. Such references can be declared
@@ -31,7 +38,7 @@ import org.eclipse.emf.ecore.ETypedElement;
  * declaring the name for the otherwise non-existing opposite.
  * 
  * @author Axel Uhl
- * @since 3.0
+ * @since 3.1
  * 
  */
 public interface OppositeEndFinder {
@@ -48,7 +55,7 @@ public interface OppositeEndFinder {
      * {@link EcoreEnvironment#PROPERTY_OPPOSITE_ROLE_NAME_KEY} and the value equalling <code>name</code>. Such references are
      * added to <code>ends</code>.
      */
-    void findOppositeEnds(EClassifier classifier, String name, List<EStructuralFeature> ends);
+    void findOppositeEnds(EClassifier classifier, String name, List<EReference> ends);
 
     /**
      * Finds all {@link EReference}s whose {@link ETypedElement#getEType() type} is <code>classifier</code> or any of
@@ -62,7 +69,7 @@ public interface OppositeEndFinder {
      * @return a non-<code>null</code> map of all "hidden references" accessible from <code>classifier</code> together with their
      *         corresponding forward references
      */
-    Map<String, EStructuralFeature> getAllOppositeEnds(EClassifier classifier);
+    Map<String, EReference> getAllOppositeEnds(EClassifier classifier);
 
     /**
      * Reverse-navigates the <code>property</code> starting at <code>target</code>. As a result, one or more objects may result

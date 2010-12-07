@@ -21,6 +21,7 @@ public class DefaultPartitionAssignmentHandlerImpl implements PartitionAssignmen
 	 */
 	@Override
 	public void assignToPartition(EObject element, EObject elementInPartition) {
+	    if(element != elementInPartition) {
 		Resource partition = null;
 		// AttachesTo attachesToAssoc = connection
 		// .getAssociation(AttachesTo.ASSOCIATION_DESCRIPTOR);
@@ -57,6 +58,7 @@ public class DefaultPartitionAssignmentHandlerImpl implements PartitionAssignmen
 			partition = elementInPartition.eResource();
 		//}
 		partition.getContents().add(element);
+	    }
 	}
 
 	@Override

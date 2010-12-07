@@ -260,7 +260,6 @@ public class OCLMessages {
 	public static String ValidationResultIsNotBoolean_ERROR_;
 	
 	public static String HiddenOppositeOf;
-	public static String CantFindOppositeWithUMLReflection_ERROR_;
 
 	public static String NoOperationReflection_WARNING_;
 	

@@ -261,10 +261,6 @@ public class LoopExpItemProvider extends CallExpItemProvider implements
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.LOOP_EXP__BODY,
-				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
-
-		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.LOOP_EXP__ITERATOR,
 				ExpressionsFactory.eINSTANCE.createVariable()));
 	}

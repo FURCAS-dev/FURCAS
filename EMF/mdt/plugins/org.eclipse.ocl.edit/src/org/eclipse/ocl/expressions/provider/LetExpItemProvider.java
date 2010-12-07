@@ -281,10 +281,6 @@ public class LetExpItemProvider extends OCLExpressionItemProvider implements
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.LET_EXP__IN,
-				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
-
-		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.LET_EXP__VARIABLE,
 				ExpressionsFactory.eINSTANCE.createVariable()));
 	}

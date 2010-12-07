@@ -167,8 +167,8 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/MessageExp")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/MessageExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -208,15 +208,15 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 		switch (notification.getFeatureID(MessageExp.class)) {
 		case EcorePackage.MESSAGE_EXP__PROPERTY_START_POSITION:
 		case EcorePackage.MESSAGE_EXP__PROPERTY_END_POSITION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		case EcorePackage.MESSAGE_EXP__TARGET:
 		case EcorePackage.MESSAGE_EXP__ARGUMENT:
 		case EcorePackage.MESSAGE_EXP__CALLED_OPERATION:
 		case EcorePackage.MESSAGE_EXP__SENT_SIGNAL:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -417,10 +417,6 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
-				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
-
-		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
 				EcoreFactory.eINSTANCE.createAssociationClassCallExp()));
 
@@ -603,10 +599,6 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
-				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
-
-		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
 				EcoreFactory.eINSTANCE.createAnyType()));
 
@@ -1025,10 +1017,6 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
-
-		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
 				EcoreFactory.eINSTANCE.createAnyType()));
 
@@ -1445,10 +1433,6 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
-
-		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
 	}
 
 	/**

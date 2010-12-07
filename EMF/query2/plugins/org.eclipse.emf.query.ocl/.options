@@ -1,0 +1,14 @@
+# Debugging options for the org.eclipse.emf.query.ocl plug-in
+
+# Turn on general debugging for the org.eclipse.emf.query.ocl plug-in
+org.eclipse.emf.query.ocl/debug=true
+
+# Trace when exceptions are caught
+org.eclipse.emf.query.ocl/debug/exceptions/catching=false
+# Trace when exceptions are thrown
+org.eclipse.emf.query.ocl/debug/exceptions/throwing=false
+
+# Trace when methods are entered
+org.eclipse.emf.query.ocl/debug/methods/entering=false
+# Trace when methods are exited
+org.eclipse.emf.query.ocl/debug/methods/exiting=false
