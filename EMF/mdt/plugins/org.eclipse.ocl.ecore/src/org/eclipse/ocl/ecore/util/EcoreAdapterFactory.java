@@ -781,12 +781,6 @@ public class EcoreAdapterFactory
 		}
 
 		@Override
-		public <C, P> Adapter caseExpressions_OppositePropertyCallExp(
-				org.eclipse.ocl.expressions.OppositePropertyCallExp<C, P> object) {
-			return createExpressions_OppositePropertyCallExpAdapter();
-		}
-
-		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -2476,21 +2470,6 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_VariableExpAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.expressions.OppositePropertyCallExp <em>Opposite Property Call Exp</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * @since 3.1
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.expressions.OppositePropertyCallExp
-	 * @generated
-	 */
-	public Adapter createExpressions_OppositePropertyCallExpAdapter() {
 		return null;
 	}
 

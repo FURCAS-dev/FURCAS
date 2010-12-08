@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:library="http://eclipse.org/modeling/emf/query/1.0.0">
+  <library:Person name="Vossen, Gottfried"/>
+  <library:Person name="Vogel, Sven"/>
+  <library:Person name="van der Aalst, Leo"/>
+  <library:Person name="Vroon, Michiel"/>
+  <library:Person name="V&#xf6;lter, Markus"/>
+  <library:Person name="Vigenschow, Uwe"/>
+  <library:Person name="V&#xf6;lkl, Gerhard"/>
+  <library:Person name="Vogel"/>
+  <library:Person name="Vogt"/>
+  <library:Person name="Voigt"/>
+  <library:Person name="Vo&#xdf;"/>
+  <library:Person name="Vetter"/>
+  <library:Person name="Vollmer"/>
+  <library:Person name="V&#xf6;lker"/>
+  <library:Person name="Voss"/>
+  <library:Person name="Volk"/>
+  <library:Person name="Vogl"/>
+  <library:Person name="Vogler"/>
+  <library:Person name="Veit"/>
+  <library:Person name="Volz"/>
+  <library:Person name="Volkmann"/>
+  <library:Person name="V&#xf6;lkel"/>
+  <library:Person name="Vogelsang"/>
+  <library:Person name="Veith"/>
+  <library:Person name="Volkmer"/>
+  <library:Person name="Valentin"/>
+  <library:Person name="Voit"/>
+  <library:Person name="Vater"/>
+  <library:Person name="V&#xf6;lkl"/>
+  <library:Person name="Velten"/>
+  <library:Person name="Voges"/>
+  <library:Person name="Voll"/>
+  <library:Person name="Vieth"/>
+  <library:Person name="Vaupel"/>
+  <library:Person name="V&#xf6;gele"/>
+  <library:Person name="Vollrath"/>
+</xmi:XMI>

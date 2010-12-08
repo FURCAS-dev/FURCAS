@@ -21,6 +21,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.ui.MarkerHelper;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
@@ -33,10 +34,14 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.emf.edit.ui.action.ValidateAction;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.opposites.ExtentMap;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ui.PlatformUI;
+
+import com.sap.emf.ocl.util.EcoreEnvironmentFactoryWithScopedExtentMap;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 
@@ -127,12 +132,14 @@ public class RevalidateAction extends ValidateAction {
     private void validateConstraints(IProgressMonitor progressMonitor) throws CoreException {
         int selectionSize = contextObjects.size();
         progressMonitor.beginTask("", selectionSize);
-        OCL ocl = OCL.newInstance(oppositeEndFinder);
+        OCL ocl = OCL.newInstance(new EcoreEnvironmentFactoryWithScopedExtentMap(oppositeEndFinder));
         for (EObject eObject : contextObjects) {
             System.out.println("Re-validating "+constraintName+" on "+EcoreUtil.getURI(eObject));
             IFile fileForContext = getFile(eObject);
             URI eObjectURI = EcoreUtil.getURI(eObject);
             removeMarker(eObjectURI, fileForContext);
+            ocl.setExtentMap(new ExtentMap((Notifier) eObject, ((EcoreEnvironment) ocl.getEnvironment())
+                    .getOppositeEndFinder()));
             boolean valid = (Boolean) ocl.evaluate(eObject, invariant);
             if (!valid) {
                 if (fileForContext != null) {

@@ -9,7 +9,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BibTextFile">
     <eStructuralFeatures xsi:type="ecore:EReference" name="entries" ordered="false"
-        upperBound="-1" eType="#//BibTextEntry" containment="true"/>
+        upperBound="-1" eType="#//BibTextEntry" containment="true">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+        <details key="Property.oppositeRoleName" value="bibtexFile"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BibTextEntry" abstract="true" eSuperTypes="#//LocatedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" ordered="false" unique="false"
@@ -31,5 +35,12 @@
         lowerBound="1" eType="ecore:EDataType BibText1.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="articles" ordered="false"
         upperBound="-1" eType="#//Article" eOpposite="#//Article/author"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="revenues" upperBound="-1"
+        eType="#//RevenueLedger"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RevenueLedger">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="article" lowerBound="1"
+        eType="#//Article"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="revenueInEUR" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -377,10 +377,6 @@ public class VariableItemProvider extends ItemProviderAdapter implements
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
-
-		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
 	}
 
 	/**

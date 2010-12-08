@@ -9990,6 +9990,18 @@ public interface EcorePackage
 	EClass getOppositePropertyCallExp();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.ecore.OppositePropertyCallExp#getReferredOppositeProperty <em>Referred Opposite Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * @since 3.1
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Referred Opposite Property</em>'.
+	 * @see org.eclipse.ocl.ecore.OppositePropertyCallExp#getReferredOppositeProperty()
+	 * @see #getOppositePropertyCallExp()
+	 * @generated
+	 */
+	EReference getOppositePropertyCallExp_ReferredOppositeProperty();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10601,6 +10613,16 @@ public interface EcorePackage
 		 */
 		EClass OPPOSITE_PROPERTY_CALL_EXP = eINSTANCE
 			.getOppositePropertyCallExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Referred Opposite Property</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * @since 3.1
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY = eINSTANCE
+			.getOppositePropertyCallExp_ReferredOppositeProperty();
 
 	}
 

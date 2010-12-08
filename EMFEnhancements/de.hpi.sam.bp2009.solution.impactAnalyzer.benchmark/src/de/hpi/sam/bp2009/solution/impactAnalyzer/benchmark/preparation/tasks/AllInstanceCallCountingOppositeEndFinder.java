@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
@@ -41,13 +40,13 @@ public class AllInstanceCallCountingOppositeEndFinder implements OppositeEndFind
     }
 
     @Override
-    public void findOppositeEnds(EClassifier classifier, String name, List<EStructuralFeature> ends) {
+    public void findOppositeEnds(EClassifier classifier, String name, List<EReference> ends) {
 	findOppositeEndsCalled++;
 	delegate.findOppositeEnds(classifier, name, ends);
     }
 
     @Override
-    public Map<String, EStructuralFeature> getAllOppositeEnds(EClassifier classifier) {
+    public Map<String, EReference> getAllOppositeEnds(EClassifier classifier) {
 	setGetAllOppositeEndsCalled(getGetAllOppositeEndsCalled() + 1);
 	return delegate.getAllOppositeEnds(classifier);
     }

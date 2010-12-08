@@ -58,7 +58,6 @@
     <module>com.sap.ide.cts.product</module>
     <module>com.sap.mi.textual.parsing.textblocks</module>
     <module>com.sap.mi.textual.tcs.editor</module>
-    <module>com.sap.mi.textual.test</module>
     <module>com.sap.tc.moin.globalmodellistener</module>
     <module>com.sap.tc.moin.tcs.mof.editor</module>
     <module>cts.test.fixture</module>

@@ -8,7 +8,8 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: com.sap.furcas.metamodel,
  org.eclipse.emf.edit;bundle-version="2.6.0",
  com.sap.furcas.runtime.tcs,
- com.sap.furcas.runtime.common
+ com.sap.furcas.runtime.common,
+ com.sap.emf.ocl.util
 Export-Package: com.sap.furcas.runtime.textblocks,
  com.sap.furcas.runtime.textblocks.model,
  com.sap.furcas.runtime.textblocks.modifcation,

@@ -22,9 +22,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.FeatureCallExp;
+import org.eclipse.ocl.ecore.utilities.ToStringVisitor;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
-import org.eclipse.ocl.util.ToStringVisitor;
-import org.eclipse.ocl.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -210,9 +209,7 @@ public abstract class FeatureCallExpImpl
 			return super.toString();
 		}
 
-		return this
-			.<String, Visitor<String, ?, ?, ?, ?, ?, ?, ?, ?, ?>> accept(ToStringVisitor
-				.getInstance(this));
+		return accept(ToStringVisitor.getInstance(this));
 	}
 
 } //FeatureCallExpImpl

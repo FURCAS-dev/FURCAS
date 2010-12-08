@@ -2,13 +2,16 @@ package com.sap.furcas.referenceresolving.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -19,6 +22,7 @@ import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.emf.ocl.trigger.TriggerManager;
@@ -69,11 +73,8 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
         syntax = syntaxBean.getSyntax();
         resourceSet.getResources().add(syntax.eResource());
         syntaxRegistry = SyntaxRegistry.getInstance();
-        triggerManager = syntaxRegistry.getTriggerManagerForSyntax(syntax, DefaultOppositeEndFinder.getInstance(), /*
-                                                                                                                    * progress
-                                                                                                                    * monitor
-                                                                                                                    */
-                null);
+        triggerManager = syntaxRegistry.getTriggerManagerForSyntax(syntax, DefaultOppositeEndFinder.getInstance(),
+                /* progress monitor */ null);
         ParserFacade facade = generateParserForLanguage(syntaxBean, testConfig, new ClassLookupImpl());
         parsingHelper = new ParsingHelper(facade);
     }
@@ -86,6 +87,7 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
         Set<URI> referenceScope = Collections.singleton(ePackage.eResource().getURI());
         EMFModelAdapter modelAdapter = new EMFModelAdapter(ePackage, resourceSet, referenceScope);
         DefaultTextAwareModelAdapter handlerWrapper = new DefaultTextAwareModelAdapter(modelAdapter);
+        triggerManager.addToObservedResourceSets(resourceSet);
 
         ModelParsingResult parsingResult = parsingHelper.parseString(sample, handlerWrapper);
         EObject bibTexFile = (EObject) parsingResult.getParsedModelElement();
@@ -125,10 +127,23 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
         assertEquals("Where John Doe wrote it", article.eGet(articleClass.getEStructuralFeature("location")));
     }
 
+    @Ignore // as yet... working on it.
+    //@Test
+    public void testForeachPropertyInitValueInInitialModel() throws Exception {
+        @SuppressWarnings("unchecked")
+        EList<EObject> revenues = (EList<EObject>) johnDoe.eGet(authorClass.getEStructuralFeature("revenues"));
+        @SuppressWarnings("unchecked")
+        EList<EObject> johnsArticles = (EList<EObject>) johnDoe.eGet(authorClass.getEStructuralFeature("articles"));
+        assertEquals(johnsArticles.size(), revenues.size());
+        Iterator<EObject> johnsArticlesIterator = johnsArticles.iterator();
+        for (EObject revenue : revenues) {
+            assertSame(johnsArticlesIterator.next(), revenue.eGet(revenue.eClass().getEStructuralFeature("article")));
+        }
+    }
+
     @Test
     // @Ignore("failing test case as preparation of impact analysis requirements")
     public void testChangeAuthorName() {
-        triggerManager.addToObservedResourceSets(johnDoe.eResource().getResourceSet());
         johnDoe.eSet(authorClass.getEStructuralFeature("name"), "John Dough");
         assertEquals("Where John Dough wrote it", article.eGet(articleClass.getEStructuralFeature("location")));
     }
