@@ -24,7 +24,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.ocl.Environment;
-import org.eclipse.ocl.EnvironmentExtension;
 import org.eclipse.ocl.cst.CSTNode;
 import org.eclipse.ocl.cst.InitOrDerValueCS;
 import org.eclipse.ocl.cst.InvCS;
@@ -54,42 +53,22 @@ import org.eclipse.ocl.utilities.TypedElement;
 public class OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		extends
 		AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
-	
-	/**
-	 * Obtains an instance of the OCLAnalyzer that analyzes the
-	 * given input on behalf of the specified environment.
-	 * 
-	 * @param environment an OCL environment (must not be <code>null</code>)
-	 * @param input the text to be analyzed
-	 * 
-	 * @return an OCLAnalyzer instance for the specified environment
-	 * @since 3.1
-	 */
-	public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCLAnalyzer(
-				Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment, String input) {
-		if (environment instanceof EnvironmentExtension) {
-			return ((EnvironmentExtension<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>) environment).createOCLAnalyzer(input);
-		}		
-		return new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(environment, input);
-	}
 
 	/**
-	 * Obtains an instance of the OCLAnalyzer that analyzes the
-	 * given parser's input on behalf of the specified environment.
-	 * 
-	 * @param environment an OCL environment (must not be <code>null</code>)
-	 * @param parser performing syntax analysis
-	 * 
-	 * @return an OCLAnalyzer instance for the specified environment
 	 * @since 3.1
 	 */
-	public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCLAnalyzer(
-			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment,
-			OCLBacktrackingParser parser) {
-		if (environment instanceof EnvironmentExtension) {
-			return ((EnvironmentExtension<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>) environment).createOCLAnalyzer(parser);
-		}		
-		return new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(parser);
+	public static class Provider<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+		implements AbstractOCLAnalyzer.IProvider<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+	{
+		public OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCLAnalyzer(
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment, String input) {
+			return new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(environment, input);
+		}
+
+		public OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCLAnalyzer(
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment, OCLBacktrackingParser parser) {
+			return new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(parser);
+		}
 	}
 
 	private OCLFactoryWithHistory history;

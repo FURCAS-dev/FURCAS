@@ -88,6 +88,8 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 
 	private boolean traceEvaluation = OCLPlugin
 		.shouldTrace(OCLDebugOptions.EVALUATION);
+	
+//	private Injector injector = OCLPlugin.getInjector();
 
 	/**
 	 * Initializes me with an environment factory, which I will use to create a
@@ -771,4 +773,31 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 			env.dispose();
 		}
 	}
+
+	/**
+	 * Creates the Dependency Injector using one or more overriding modules.
+	 * 
+	 * @return the dependency injector
+	 * 
+	 * @since 3.1
+	 *
+	public Injector createInjector(Module... modules) {
+		injector = OCLPlugin.createInjector(modules);
+		return injector;
+	} */
+
+	/**
+	 * Obtains the Dependency Injector, creating one without overrides if no previous
+	 * call to createInjector has occurred.
+	 * 
+	 * @return the dependency injector
+	 * 
+	 * @since 3.1
+	 *
+	public Injector getInjector() {
+		if (injector == null) {
+			injector = OCLPlugin.getInjector();
+		}
+		return injector;
+	} */
 }

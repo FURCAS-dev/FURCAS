@@ -30,16 +30,13 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.Variable;
-import org.eclipse.ocl.helper.OCLSyntaxHelper;
+import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.lpg.AbstractBasicEnvironment;
 import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.options.Option;
 import org.eclipse.ocl.options.ProblemOption;
 import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
-import org.eclipse.ocl.parser.OCLAnalyzer;
-import org.eclipse.ocl.parser.ValidationVisitor;
-import org.eclipse.ocl.parser.backtracking.OCLBacktrackingParser;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
@@ -47,7 +44,8 @@ import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.util.UnicodeSupport;
 import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.utilities.TypedElement;
-import org.eclipse.ocl.utilities.Visitor;
+
+import com.google.inject.Injector;
 
 /**
  * A partial implementation of the {@link Environment} interface providing
@@ -80,7 +78,6 @@ import org.eclipse.ocl.utilities.Visitor;
 public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	extends AbstractBasicEnvironment
 	implements Environment.Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>,
-		EnvironmentExtension<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>,
 		Environment.Lookup<PK, C, O, P> {
     
 	/* Used to generate implicit iterator variables */
@@ -109,6 +106,8 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	private Map<P, CT> propertyDerivations = new java.util.HashMap<P, CT>();
 	
 	private TypeChecker<C, O, P> typeChecker;
+
+	private Injector injector;
 
     /**
      * Initializes me without a parent environment.
@@ -1242,36 +1241,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			}
 		};
     }
-
-	/**
-	 * @since 3.1
-	 */
-	public Visitor<Boolean, C, O, P, EL, PM, S, COA, SSA, CT> createValidationVisitor() {
-		return new ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(this);
-	}
-
-	/**
-	 * @since 3.1
-	 */
-	public OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCLAnalyzer(String input) {
-		return new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(this, input);
-	}
-
-	/**
-	 * @since 3.1
-	 */
-	public OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCLAnalyzer(
-			OCLBacktrackingParser parser) {
-		return new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(parser);
-	}
     
-	/**
-	 * @since 3.1
-	 */
-	public OCLSyntaxHelper createOCLSyntaxHelper() {
-		return new org.eclipse.ocl.internal.helper.OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(this);
-	}
-
 	/**
 	 * Since {@link AbstractTypeResolver} implements {@link TypeChecker},
 	 * AbstractEnvironment will try to adapt {@link TypeChecker}, via its
@@ -1284,12 +1254,42 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T getAdapter(Class<T> adapterType) {
+		if (adapterType == Injector.class) {
+			return (T) getInjector();
+		}
 		if (adapterType == TypeChecker.class) {
 			return (T) getTypeChecker();
 		}
 		
 		return super.getAdapter(adapterType);
 	}	
+
+	/**
+	 * Creates the Dependency Injector for this environment using one or more overriding modules.
+	 * 
+	 * @return the dependency injector
+	 * 
+	 * @since 3.1
+	 */
+	protected Injector createInjector() {
+		injector = OCLPlugin.getInjector();
+		return injector;
+	}
+
+	/**
+	 * Obtains the Dependency Injector for this environment, creating one without overrides if no previous
+	 * call to createInjector has occurred.
+	 * 
+	 * @return the dependency injector
+	 * 
+	 * @since 3.1
+	 */
+	protected Injector getInjector() {
+		if (injector == null) {
+			injector = createInjector();
+		}
+		return injector;
+	}
 
 	//
 	// Nested classes

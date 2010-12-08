@@ -31,6 +31,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import com.google.inject.Module;
+
 /**
  * The activator class controls the plug-in life cycle
  */
@@ -56,6 +60,11 @@ public class OCLEcorePlugin
 
 	//The shared Eclipse plug-in instance
 	private static Implementation plugin;
+	
+	/**
+	 * @since 3.1
+	 */
+	private static Injector injector = null;
 
 	/**
 	 * The constructor.
@@ -344,5 +353,33 @@ public class OCLEcorePlugin
 				};
 			}
 		};
+	}
+
+	/**
+	 * Creates the Dependency Injector using one or more overriding modules.
+	 * 
+	 * @return the dependency injector
+	 * 
+	 * @since 3.1
+	 */
+	public static Injector createInjector(Module... modules) {
+		assert injector == null;
+		injector = Guice.createInjector(modules);
+		return injector;
+	}
+
+	/**
+	 * Obtains the Dependency Injector, creating one without overrides if no previous
+	 * call to createInjector has occurred.
+	 * 
+	 * @return the dependency injector
+	 * 
+	 * @since 3.1
+	 */
+	public static Injector getInjector() {
+		if (injector == null) {
+			injector = createInjector(new OCLEcoreModule());
+		}
+		return injector;
 	}
 }

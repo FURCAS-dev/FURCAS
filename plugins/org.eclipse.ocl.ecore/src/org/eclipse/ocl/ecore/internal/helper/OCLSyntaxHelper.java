@@ -48,6 +48,20 @@ public class OCLSyntaxHelper
 		EEnumLiteral, EParameter, EObject,
 		CallOperationAction, SendSignalAction, Constraint,
 		EClass, EObject> {
+
+	public static class Provider implements org.eclipse.ocl.helper.OCLSyntaxHelper.IProvider<EPackage, EClassifier, EOperation, EStructuralFeature,
+	EEnumLiteral, EParameter, EObject,
+	CallOperationAction, SendSignalAction, Constraint,
+	EClass, EObject>
+	{
+		public org.eclipse.ocl.helper.OCLSyntaxHelper createOCLSyntaxHelper(
+				Environment<EPackage, EClassifier, EOperation, EStructuralFeature,
+				EEnumLiteral, EParameter, EObject,
+				CallOperationAction, SendSignalAction, Constraint,
+				EClass, EObject> env) {
+			return new org.eclipse.ocl.ecore.internal.helper.OCLSyntaxHelper(env);
+		}
+	}
 	
 	protected class ASTVisitor
 			extends
