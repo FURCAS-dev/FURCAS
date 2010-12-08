@@ -16,10 +16,11 @@
  */
 package org.eclipse.ocl.ecore.delegate;
 
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EOperation.Internal.InvocationDelegate;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
@@ -68,13 +69,18 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 	}
 
 	public OCLExpression getOperationBody(OCL ocl, EOperation operation) {
-		EClass context = operation.getEContainingClass();
-		OCL.Helper helper = ocl.createOCLHelper();
-		helper.setOperationContext(context, operation);
+		OCLExpression result = getCachedExpression(operation, BODY_CONSTRAINT_KEY);
+		if (result != null) {
+			return result;
+		}
 		String expr = EcoreUtil.getAnnotation(operation, OCLDelegateDomain.OCL_DELEGATE_URI, BODY_CONSTRAINT_KEY);
 		if (expr == null) {
 			return null;
 		}
+		EClass context = operation.getEContainingClass();
+		OCL.Helper helper = ocl.createOCLHelper();
+		helper.setOperationContext(context, operation);
+
 		Constraint constraint;
 		try {
 			constraint = helper.createBodyCondition(expr);
@@ -88,6 +94,7 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 		if (specification == null) {
 			return null;
 		}
+		cacheExpression(operation, constraint, BODY_CONSTRAINT_KEY);
 		return (OCLExpression) specification.getBodyExpression();
 	}
 

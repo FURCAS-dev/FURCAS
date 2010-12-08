@@ -439,7 +439,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		  (employeeEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "mustHaveName" //$NON-NLS-1$ //$NON-NLS-2$
+			 "constraints", "mustHaveName mustHaveNonEmptyName" //$NON-NLS-1$ //$NON-NLS-2$
 		   });								
 	}
 
@@ -467,7 +467,8 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		  (employeeEClass, 
 		   source, 
 		   new String[] {
-			 "mustHaveName", "not name.oclIsUndefined() and hasNameAsAttribute and hasNameAsOperation()" //$NON-NLS-1$ //$NON-NLS-2$
+			 "mustHaveName", "not name.oclIsUndefined() and hasNameAsAttribute and hasNameAsOperation()", //$NON-NLS-1$ //$NON-NLS-2$
+			 "mustHaveNonEmptyName", "name->notEmpty() implies name.size() > 0" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getEmployee__ReportsTo__Employee(), 
