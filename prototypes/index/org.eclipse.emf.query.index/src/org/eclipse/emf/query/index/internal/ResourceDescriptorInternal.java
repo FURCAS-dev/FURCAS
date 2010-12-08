@@ -21,7 +21,8 @@ import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
  */
 public interface ResourceDescriptorInternal extends ResourceDescriptor, PageableElement, MapEntry {
 
-	public static final long NOT_INDEXED = -1;
+	public static final long NOT_INDEXED = -2; //changing the not indexed constant from -1 to -2 because
+	// unloading the resource makes the times stamp as -1.
 
 	void addEObjectDescriptor(EObjectDescriptor eod);
 
