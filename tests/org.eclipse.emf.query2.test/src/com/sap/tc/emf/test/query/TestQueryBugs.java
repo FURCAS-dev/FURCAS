@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -60,7 +61,10 @@ public class TestQueryBugs extends QueryTestCase{
 	public void setUp(){
 		
 		rs = new ResourceSetImpl();
-		r = rs.createResource(URI.createFileURI("c://test1.xmi"));
+		IPath path=QueryTestsPlugin.getPluginInstance().getStateLocation();
+		String res1URI=path.append("/test1.xmi").toOSString();
+		r = rs.createResource(URI.createFileURI(res1URI));
+		
 	    div1 = CompanyFactory.eINSTANCE.createDivision();
 	    div1.setName("div1");
 	       
@@ -87,8 +91,9 @@ public class TestQueryBugs extends QueryTestCase{
 	    freelance = CompanyFactory.eINSTANCE.createFreelance();
 	    freelance.setName("freelance");
 	    dep2.getEmployee().add(freelance);
-	        
-	    r1 = rs.createResource(URI.createFileURI("c://test2.xmi"));
+	    String res2URI=path.append("/test2.xmi").toOSString();
+		r1 = rs.createResource(URI.createFileURI(res2URI));
+		
 	    dep1inres2=CompanyFactory.eINSTANCE.createDepartment();
 	    dep1inres2.setName("dep1inres2");
 	    dep1inres2.setBudget(50);
@@ -111,15 +116,18 @@ public class TestQueryBugs extends QueryTestCase{
 
 	    IndexerForTest.index(IndexFactory.getInstance(), r);
 	    IndexerForTest.index(IndexFactory.getInstance(), r1);
-	        
+	       
 	    try {
-	    	r.save(null);
-	    	r1.save(null);
-	    	r.unload();
-	    	r1.unload();
-	    } catch (IOException e) {
-	    	e.printStackTrace();
-	    }
+			r.save(null);
+			r1.save(null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	   
+	    r.unload();
+	    r1.unload();
+	    
 	    //Add the DirtyResourceFactory as an adapter to the resource set
 	    rs.eAdapters().add(DirtyResourceFactory.getInstance());
 	}
