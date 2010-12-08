@@ -46,7 +46,7 @@ public class AllInstanceEvaluationMeasurement {
 	this.model = model;
 	this.expression = expression;
 
-	this.ocl =  OCL.newInstance(oppositeEndFinder);
+	this.ocl =  OCL.newInstance();
     }
 
     public LinkedHashMap<String, String> getAdditionalInformation(){

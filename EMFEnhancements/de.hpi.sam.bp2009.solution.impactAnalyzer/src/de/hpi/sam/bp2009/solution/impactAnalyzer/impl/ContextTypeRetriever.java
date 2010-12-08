@@ -71,7 +71,7 @@ public class ContextTypeRetriever extends AbstractVisitor<EClass> {
      * tree
      */
     public ContextTypeRetriever() {
-        super(null);
+        super();
     }
 
     @Override

@@ -38,7 +38,6 @@ import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.ExtentMap;
-import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ui.PlatformUI;
 
 import com.sap.emf.ocl.util.EcoreEnvironmentFactoryWithScopedExtentMap;
@@ -90,14 +89,12 @@ public class RevalidateAction extends ValidateAction {
     private final Collection<EObject> contextObjects;
     private final String constraintName;
     private final OCLExpression invariant;
-    private final OppositeEndFinder oppositeEndFinder;
 
-    public RevalidateAction(String constraintName, Collection<EObject> contextObjects, OCLExpression invariant, OppositeEndFinder oppositeEndFinder) {
+    public RevalidateAction(String constraintName, Collection<EObject> contextObjects, OCLExpression invariant) {
         super();
         this.contextObjects = contextObjects;
         this.constraintName = constraintName;
         this.invariant = invariant;
-        this.oppositeEndFinder = oppositeEndFinder;
     }
 
     @Override
@@ -132,7 +129,7 @@ public class RevalidateAction extends ValidateAction {
     private void validateConstraints(IProgressMonitor progressMonitor) throws CoreException {
         int selectionSize = contextObjects.size();
         progressMonitor.beginTask("", selectionSize);
-        OCL ocl = OCL.newInstance(new EcoreEnvironmentFactoryWithScopedExtentMap(oppositeEndFinder));
+        OCL ocl = OCL.newInstance(new EcoreEnvironmentFactoryWithScopedExtentMap());
         for (EObject eObject : contextObjects) {
             System.out.println("Re-validating "+constraintName+" on "+EcoreUtil.getURI(eObject));
             IFile fileForContext = getFile(eObject);

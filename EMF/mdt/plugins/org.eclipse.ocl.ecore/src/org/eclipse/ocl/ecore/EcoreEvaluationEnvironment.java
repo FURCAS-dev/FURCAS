@@ -50,7 +50,6 @@ import org.eclipse.ocl.ecore.internal.OCLEcorePlugin;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.internal.OCLStatusCodes;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
-import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
@@ -87,11 +86,16 @@ public class EcoreEvaluationEnvironment
 		oppositeEndFinder = createOppositeEndFinder();
 	}
 
+	private OppositeEndFinder createOppositeEndFinder() {
+		OppositeEndFinder.IProvider provider = getInjector().getInstance(OppositeEndFinder.IProvider.class);
+		return provider.createOppositeEndFinder(EPackage.Registry.INSTANCE);
+	}
+	
 	/**
 	 * @since 3.1
 	 */
-	protected DefaultOppositeEndFinder createOppositeEndFinder() {
-		return new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE);
+	protected OppositeEndFinder getOppositeEndFinder() {
+		return oppositeEndFinder;
 	}
 
 	/**

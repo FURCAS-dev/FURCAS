@@ -35,6 +35,8 @@ import org.eclipse.ocl.util.Adaptable;
 import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
 
+import com.google.inject.Injector;
+
 /**
  * A partial implementation of the {@link EvaluationEnvironment} interface,
  * providing some useful common behaviors.  Implementors of metamodel-specific
@@ -60,6 +62,8 @@ public abstract class AbstractEvaluationEnvironment<C, O, P, CLS, E>
     private final Map<Option<?>, Object> options =
         new java.util.HashMap<Option<?>, Object>();
     
+    private Injector injector;
+    
     protected AbstractEvaluationEnvironment() {
     	this(null);
     }
@@ -70,6 +74,33 @@ public abstract class AbstractEvaluationEnvironment<C, O, P, CLS, E>
     	this.parent = parent;
     }
     
+	/**
+	 * Creates the Dependency Injector for this environment using one or more overriding modules.
+	 * 
+	 * @return the dependency injector
+	 * 
+	 * @since 3.1
+	 */
+	protected Injector createInjector() {
+		injector = OCLPlugin.getInjector();
+		return injector;
+	}
+
+	/**
+	 * Obtains the Dependency Injector for this environment, creating one without overrides if no previous
+	 * call to createInjector has occurred.
+	 * 
+	 * @return the dependency injector
+	 * 
+	 * @since 3.1
+	 */
+	protected Injector getInjector() {
+		if (injector == null) {
+			injector = createInjector();
+		}
+		return injector;
+	}
+
     /**
      * Obtains my parent (nesting) environment.
      * 

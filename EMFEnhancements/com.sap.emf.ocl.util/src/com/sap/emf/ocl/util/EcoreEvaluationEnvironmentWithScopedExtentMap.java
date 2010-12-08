@@ -22,12 +22,11 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.EcoreEvaluationEnvironment;
 import org.eclipse.ocl.ecore.opposites.ExtentMap;
-import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 public class EcoreEvaluationEnvironmentWithScopedExtentMap extends EcoreEvaluationEnvironment {
 
-    public EcoreEvaluationEnvironmentWithScopedExtentMap(OppositeEndFinder oppositeEndFinder) {
-        super(oppositeEndFinder);
+    protected EcoreEvaluationEnvironmentWithScopedExtentMap() {
+        super();
     }
 
     public EcoreEvaluationEnvironmentWithScopedExtentMap(EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> parent) {

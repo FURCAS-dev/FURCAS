@@ -51,10 +51,6 @@ public class PartialEcoreEnvironmentFactoryNoAllInstances extends PartialEcoreEn
         super();
     }
 
-    public PartialEcoreEnvironmentFactoryNoAllInstances(OppositeEndFinder oppositeEndFinder) {
-        super(oppositeEndFinder);
-    }
-
     /**
      * Taking a {@link Notification} object such that an evaluation performed with the {@link EvaluationVisitor} returned by this
      * factory's {@link #createEvaluationVisitor(Environment, EvaluationEnvironment, Map)} operation will be based on the state
@@ -70,7 +66,7 @@ public class PartialEcoreEnvironmentFactoryNoAllInstances extends PartialEcoreEn
     }
     
     public PartialEcoreEnvironmentFactoryNoAllInstances(Notification atPre, OppositeEndFinder oppositeEndFinder) {
-        super(atPre, oppositeEndFinder);
+        super(atPre);
     }
 
     /**

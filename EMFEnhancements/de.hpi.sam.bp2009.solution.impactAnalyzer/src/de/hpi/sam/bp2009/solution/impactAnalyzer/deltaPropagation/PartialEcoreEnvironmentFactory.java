@@ -31,7 +31,6 @@ import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
-import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 
 public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactory {
@@ -54,11 +53,7 @@ public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactory {
      * Uses a {@link DefaultOppositeEndFinder} for querying hidden opposites
      */
     public PartialEcoreEnvironmentFactory() {
-        super(DefaultOppositeEndFinder.getInstance());
-    }
-
-    public PartialEcoreEnvironmentFactory(OppositeEndFinder oppositeEndFinder) {
-        super(oppositeEndFinder);
+        super();
     }
 
     /**
@@ -76,14 +71,9 @@ public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactory {
         this.atPre = atPre;
     }
     
-    public PartialEcoreEnvironmentFactory(Notification atPre, OppositeEndFinder oppositeEndFinder) {
-        this(oppositeEndFinder);
-        this.atPre = atPre;
-    }
-
     // implements the inherited specification
     public EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> createEvaluationEnvironment() {
-        return new PartialEcoreEvaluationEnvironment(getOppositeEndFinder());
+        return new PartialEcoreEvaluationEnvironment();
     }
 
     // implements the inherited specification
