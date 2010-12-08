@@ -19,7 +19,7 @@ import org.junit.runners.Suite;
 		TestSuiteSyntheticInMemoryForCst.class, TestSuiteSyntheticWithSchedulingQueryTests.class, TestSuiteCompanyQueryTests.class,
 		TestSuiteNegativeQueryTests.class, TestSuiteSmokeQueryTests.class, //
 		//TestHasCrossPartitionLinks.class,
-		TestQueryRegression.class })
+		TestQueryRegression.class,TestQueryBugs.class })
 public class TestSuiteAllMQLQueryTests extends QueryTestCase {
 
 }
