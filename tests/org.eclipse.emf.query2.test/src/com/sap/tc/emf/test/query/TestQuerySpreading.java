@@ -71,12 +71,10 @@ public class TestQuerySpreading extends QueryTestCase {
 	private QueryContext getQueryContext(final TypeScopeProvider scopeProvider) {
 		return new QueryContext() {
 
-			@Override
 			public URI[] getResourceScope() {
 				return scopeProvider.getPartitionScope();
 			}
 
-			@Override
 			public ResourceSet getResourceSet() {
 				// TODO Auto-generated method stub
 				return TestQuerySpreading.this.testClient.getResourceSet();
@@ -121,8 +119,7 @@ public class TestQuerySpreading extends QueryTestCase {
 		mixedDirty_Dirty = this.testClient.getOrCreateResourceStable("mixedDirty_dirty.xmi");
 		mixedDirty_Dirty.setModified(true);
 
-		String query = String.format("select a, b from [%s] as a, [%s] as b in resources{[%s]} where a.bs = b", aType, bType,
-				mixedDirty_Dirty.getURI());
+		String query = String.format("select a, b from [%s] as a, [%s] as b in resources{[%s]} where a.bs = b", aType, bType, mixedDirty_Dirty.getURI());
 
 		TypeScopeProvider scopeProvider = mql.getInclusivePartitionScopeProvider(mixedDirty_Dirty.getURI(), mixedDirty_NonDirty.getURI());
 		ResultSet resultSet = mql.execute(query, this.getQueryContext(scopeProvider));
