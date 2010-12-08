@@ -85,7 +85,7 @@
 	</build>
 	<repositories>
 		<repository>
-			<id>xpand</id>
+			<id>emf</id>
 			<url>http://download.eclipse.org/modeling/emf/updates/releases/</url>
 			<layout>p2</layout>
 		</repository>
@@ -95,7 +95,7 @@
 			<layout>p2</layout>
 		</repository>
 		<repository>
-			<id>xpand</id>
+			<id>tmf</id>
 			<url>http://download.eclipse.org/modeling/tmf/updates/releases/</url>
 			<layout>p2</layout>
 		</repository>
