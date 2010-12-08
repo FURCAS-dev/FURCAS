@@ -72,7 +72,7 @@ public class Revalidator {
                                 // revalidate invariant on context objects that impact analysis will produce:
                                 Collection<EObject> revalidateOn = impactAnalyzer.getContextObjects(msg);
                                 if (revalidateOn != null && !revalidateOn.isEmpty()) {
-                                    new RevalidateAction(constraintName, revalidateOn, invariant, oppositeEndFinder)
+                                    new RevalidateAction(constraintName, revalidateOn, invariant)
                                             .run();
                                 }
                             }

@@ -10,7 +10,6 @@
  ******************************************************************************/
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation;
 
-import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
@@ -25,8 +24,8 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluat
  *
  */
 public class PartialEvaluatorNoAllInstances extends PartialEvaluator {
-    public PartialEvaluatorNoAllInstances(OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory) {
-        this(new PartialEcoreEnvironmentFactoryNoAllInstances(oppositeEndFinder), oclFactory);
+    public PartialEvaluatorNoAllInstances(OCLFactory oclFactory) {
+        this(new PartialEcoreEnvironmentFactoryNoAllInstances(), oclFactory);
     }
     
     protected PartialEvaluatorNoAllInstances(PartialEcoreEnvironmentFactoryNoAllInstances environmentFactory, OCLFactory oclFactory) {

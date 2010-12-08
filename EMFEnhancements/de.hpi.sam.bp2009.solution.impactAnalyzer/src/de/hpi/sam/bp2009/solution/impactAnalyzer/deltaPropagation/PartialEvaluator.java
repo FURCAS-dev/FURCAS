@@ -18,24 +18,20 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.CallExp;
-import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.IfExp;
 import org.eclipse.ocl.ecore.IteratorExp;
 import org.eclipse.ocl.ecore.LoopExp;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
-import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
-import org.eclipse.ocl.ecore.opposites.ExtentMap;
-import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
-
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
@@ -75,10 +71,6 @@ public class PartialEvaluator {
         helper = ocl.createOCLHelper();
     }
 
-    public PartialEvaluator(OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory) {
-        this(new PartialEcoreEnvironmentFactory(oppositeEndFinder), oclFactory);
-    }
-
     /**
      * Taking a {@link Notification} object such that an evaluation will be based on the state *before* the notification.
      * For example, if the notification indicates the removal of a reference from an element <tt>e1</tt> to an element <tt>e2</tt>
@@ -98,7 +90,7 @@ public class PartialEvaluator {
      * then <tt>e2</tt> will show in the results although in the current version of the model it would not.<p>
      */
     public PartialEvaluator(Notification atPre, OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory) {
-        this(new PartialEcoreEnvironmentFactory(atPre, oppositeEndFinder), oclFactory);
+        this(new PartialEcoreEnvironmentFactory(atPre), oclFactory);
     }
     
     public OCL getOcl() {

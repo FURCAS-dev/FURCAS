@@ -49,8 +49,6 @@ import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.utilities.UMLReflection;
 
-import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
-
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.ErrorMessage;
 import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectDependencyQueryContextProvider;
@@ -149,8 +147,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             if (expr == null)
                 return;
 
-            OCL ocl = OCL.newInstance(new EcoreEnvironmentFactory(this.getRegistry(), new Query2OppositeEndFinder(
-                    new ProjectDependencyQueryContextProvider())));
+            OCL ocl = OCL.newInstance(new EcoreEnvironmentFactory(this.getRegistry()));
             Helper helper = ocl.createOCLHelper();
 
             setCorrectContext(helper, modelElement);

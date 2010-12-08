@@ -213,7 +213,7 @@ public class PreparedOCLExpression {
 
     private OCL getOCL() {
         if (oppositeEndFinder != null) {
-            return OCL.newInstance(new EcoreEnvironmentFactoryWithScopedExtentMap(oppositeEndFinder));
+            return OCL.newInstance(new EcoreEnvironmentFactoryWithScopedExtentMap());
         } else {
             if (environmentFactory != null) {
                 return OCL.newInstance(environmentFactory);

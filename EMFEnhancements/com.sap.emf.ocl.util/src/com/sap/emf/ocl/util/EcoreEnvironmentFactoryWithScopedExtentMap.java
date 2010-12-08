@@ -18,8 +18,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
-import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
-import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 public class EcoreEnvironmentFactoryWithScopedExtentMap extends EcoreEnvironmentFactory {
     /**
@@ -30,16 +28,6 @@ public class EcoreEnvironmentFactoryWithScopedExtentMap extends EcoreEnvironment
     }
 
     /**
-     * Initializes me. Environments that I create will use the global package registry to look up packages. Use the
-     * {@link OppositeEndFinder} specified for hidden opposites look-up and navigation
-     * 
-     * @since 3.1
-     */
-    public EcoreEnvironmentFactoryWithScopedExtentMap(OppositeEndFinder oppositeEndFinder) {
-        this(EPackage.Registry.INSTANCE, oppositeEndFinder);
-    }
-
-    /**
      * Initializes me with an <code>EPackage.Registry</code> that the environments I create will use to look up
      * packages.
      * 
@@ -47,24 +35,12 @@ public class EcoreEnvironmentFactoryWithScopedExtentMap extends EcoreEnvironment
      *            my package registry (must not be <code>null</code>)
      */
     public EcoreEnvironmentFactoryWithScopedExtentMap(EPackage.Registry reg) {
-        this(reg, new DefaultOppositeEndFinder(reg));
-    }
-
-    /**
-     * Initializes me with an <code>EPackage.Registry</code> that the environments I create will use to look up
-     * packages.
-     * 
-     * @param reg
-     *            my package registry (must not be <code>null</code>)
-     * @since 3.1
-     */
-    public EcoreEnvironmentFactoryWithScopedExtentMap(EPackage.Registry reg, OppositeEndFinder oppositeEndFinder) {
-        super(reg, oppositeEndFinder);
+        super(reg);
     }
 
     @Override
     public EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> createEvaluationEnvironment() {
-        return new EcoreEvaluationEnvironmentWithScopedExtentMap(getOppositeEndFinder());
+        return new EcoreEvaluationEnvironmentWithScopedExtentMap();
     }
 
 }

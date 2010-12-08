@@ -97,7 +97,7 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     		}
     	}
 
-    	setOcl(OCL.newInstance(getOppositeEndFinder()));
+    	setOcl(OCL.newInstance());
 
 	if(expression.getOclWithPackage() != null){
 	    setOcl(OCL.newInstance(new EnvironmentFactory().createPackageContext(ocl.getEnvironment(),

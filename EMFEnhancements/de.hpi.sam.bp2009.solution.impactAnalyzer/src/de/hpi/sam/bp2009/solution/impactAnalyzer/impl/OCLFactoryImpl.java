@@ -27,7 +27,7 @@ public class OCLFactoryImpl implements OCLFactory {
     }
 
     public OCL createOCL(OppositeEndFinder oppositeEndFinder) {
-        return OCL.newInstance(new EcoreEnvironmentFactoryWithScopedExtentMap(oppositeEndFinder));
+        return OCL.newInstance(new EcoreEnvironmentFactoryWithScopedExtentMap());
     }
 
 }

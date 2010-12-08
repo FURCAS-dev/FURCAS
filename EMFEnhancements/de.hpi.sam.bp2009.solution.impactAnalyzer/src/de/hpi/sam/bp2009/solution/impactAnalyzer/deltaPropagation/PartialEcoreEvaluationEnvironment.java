@@ -30,17 +30,14 @@ import org.eclipse.ocl.expressions.VariableExp;
 
 public class PartialEcoreEvaluationEnvironment extends EcoreEvaluationEnvironment {
     private final Map<String, Object> map = new HashMap<String, Object>();
-    private final OppositeEndFinder oppositeEndFinder;
     
-    public PartialEcoreEvaluationEnvironment(OppositeEndFinder oppositeEndFinder) {
+    public PartialEcoreEvaluationEnvironment() {
         super();
-        this.oppositeEndFinder = oppositeEndFinder;
     }
     
     public PartialEcoreEvaluationEnvironment(
             EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> parent) {
         super(parent);
-        this.oppositeEndFinder = ((PartialEcoreEvaluationEnvironment) parent).getOppositeEndFinder();
     }
 
     /**
@@ -137,10 +134,7 @@ public class PartialEcoreEvaluationEnvironment extends EcoreEvaluationEnvironmen
         if (object instanceof EObject) {
             context = (EObject) object;
         }
-        return new ExtentMap(context, oppositeEndFinder);
+        return new ExtentMap(context);
     }
 
-    protected OppositeEndFinder getOppositeEndFinder() {
-        return oppositeEndFinder;
-    }
 }

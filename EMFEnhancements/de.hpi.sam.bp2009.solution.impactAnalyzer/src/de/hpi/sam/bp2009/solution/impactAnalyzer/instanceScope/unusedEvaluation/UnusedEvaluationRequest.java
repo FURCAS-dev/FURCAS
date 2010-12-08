@@ -291,7 +291,7 @@ public class UnusedEvaluationRequest {
 
     protected PartialEvaluatorNoAllInstances createPartialEvaluatorNoAllInstances(OppositeEndFinder oppositeEndFinder,
             OCLFactory oclFactory) {
-        return new PartialEvaluatorNoAllInstances(oppositeEndFinder, oclFactory);
+        return new PartialEvaluatorNoAllInstances(oclFactory);
     }
     
     /**
