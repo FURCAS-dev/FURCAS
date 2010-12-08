@@ -16,7 +16,6 @@
  */
 package org.eclipse.ocl.ecore.delegate;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
@@ -25,9 +24,11 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
-import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OCL.Helper;
+import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.osgi.util.NLS;
@@ -42,8 +43,6 @@ public class OCLValidationDelegate implements ValidationDelegate
 {	
 	protected final OCLDelegateDomain delegateDomain;
 	protected final EClassifier eClassifier;
-	private Map<EOperation, OCLExpression> invariantOperationMap;
-	private Map<String, OCLExpression> constraintNameMap;
 	  
 	/**
 	 * Initializes me with the classifier whose DelegateEClassifierAdapter delegates to me.
@@ -90,57 +89,67 @@ public class OCLValidationDelegate implements ValidationDelegate
 		}
 	}
 
+	private Constraint createConstraint(EOperation context, String expression) {
+		OCL ocl = delegateDomain.getOCL();
+		Helper helper = ocl.createOCLHelper();
+		helper.setOperationContext((EClassifier) context.eContainer(), context);
+		try {
+			return helper.createConstraint(ConstraintKind.BODYCONDITION, /*(String)*/expression);
+		} catch (ParserException e) {
+			throw new OCLDelegateException(e.getLocalizedMessage(), e);
+		}
+	}
+
+	private Constraint createConstraint(EClassifier eClassifier, String expression) {
+		OCL ocl = delegateDomain.getOCL();
+		Helper helper = ocl.createOCLHelper();
+		helper.setContext(eClassifier);
+		try {
+			return helper.createConstraint(ConstraintKind.INVARIANT, /*(String)*/expression);
+		} catch (ParserException e) {
+			throw new OCLDelegateException(e.getLocalizedMessage(), e);
+		}
+	}
+
 	public String toString() {
 		return "<" + delegateDomain.getURI() + ":validate> " + eClassifier.getEPackage().getName() + "::" + eClassifier.getName(); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 	public boolean validate(EClass eClass, EObject eObject,
 			Map<Object, Object> context, EOperation invariant, String expression) {
-		if (invariantOperationMap == null) {
-			invariantOperationMap = new HashMap<EOperation, OCLExpression>();
-		}
-		OCLExpression query = invariantOperationMap.get(invariant);
-		if ((query == null) && (constraintNameMap != null)) {
-			query = constraintNameMap.get(invariant.getName());
-		}
-		if ((query == null) & !invariantOperationMap.containsKey(invariant)) {
-			try {
-				query = createQuery(expression);
-			} finally {
-				invariantOperationMap.put(invariant, query);
-			}
+		OCLExpression query = ValidationBehavior.INSTANCE.getCachedExpression(invariant, InvocationBehavior.BODY_CONSTRAINT_KEY);
+		if (query == null) {
+			Constraint constraint = createConstraint(invariant, expression);
+			ValidationBehavior.INSTANCE.cacheExpression(invariant, constraint, InvocationBehavior.BODY_CONSTRAINT_KEY);
+			query = (OCLExpression) constraint.getSpecification()
+				.getBodyExpression();
 		}
 		return check(eObject, invariant.getName(), query);
 	}
 
 	public boolean validate(EClass eClass, EObject eObject,
 			Map<Object, Object> context, String constraint, String expression) {
-		if (constraintNameMap == null) {
-			constraintNameMap = new HashMap<String, OCLExpression>();
-		}
-		OCLExpression query = constraintNameMap.get(constraint);
-		if ((query == null) & !constraintNameMap.containsKey(constraint)) {
-			try {
-				query = createQuery(expression);
-			} finally {
-				constraintNameMap.put(constraint, query);
-			}
+		OCLExpression query = ValidationBehavior.INSTANCE.getCachedExpression(
+			eClass, constraint);
+		if (query == null) {
+			Constraint constraintAST = createConstraint(eClass, expression);
+			ValidationBehavior.INSTANCE.cacheExpression(eClass, constraintAST, constraint);
+			query = (OCLExpression) constraintAST.getSpecification()
+				.getBodyExpression();
 		}
 		return check(eObject, constraint, query);
 	}
 
 	public boolean validate(EDataType eDataType, Object value,
 			Map<Object, Object> context, String constraint, String expression) {
-		if (constraintNameMap == null) {
-			constraintNameMap = new HashMap<String, OCLExpression>();
-		}
-		OCLExpression query = constraintNameMap.get(constraint);
-		if ((query == null) & !constraintNameMap.containsKey(constraint)) {
-			try {
-				query = createQuery(expression);
-			} finally {
-				constraintNameMap.put(constraint, query);
-			}
+		OCLExpression query = ValidationBehavior.INSTANCE.getCachedExpression(
+			eDataType, constraint);
+		if (query == null) {
+			Constraint constraintAST = createConstraint(eDataType, expression);
+			ValidationBehavior.INSTANCE.cacheExpression(eDataType,
+				constraintAST, constraint);
+			query = (OCLExpression) constraintAST.getSpecification()
+				.getBodyExpression();
 		}
 		return check(value, constraint, query);
 	}
