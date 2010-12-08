@@ -1,4 +1,5 @@
 package org.eclipse.emf.query2.librarytest;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,17 +28,15 @@ import org.junit.Test;
 
 import com.google.inject.Injector;
 
-
 public class LibraryTransformation extends QueryTestCase {
 	private static Model model;
-	
-	
+
 	@BeforeClass
 	public static void setup() {
 		if (!Platform.isRunning()) {
-			 new org.eclipse.emf.mwe.utils.StandaloneSetup().setPlatformUri("..");
+			new org.eclipse.emf.mwe.utils.StandaloneSetup().setPlatformUri("..");
 		}
-		
+
 		Injector injector = new QueryStandaloneSetup().createInjectorAndDoEMFRegistration();
 		XtextResourceSet set = injector.getInstance(XtextResourceSet.class);
 		set.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
@@ -57,27 +56,25 @@ public class LibraryTransformation extends QueryTestCase {
 			Query transform = QueryTransformer.transform(query.getQuery());
 			System.out.println("\n" + query.getName() + "\n----------------------------------");
 			System.out.println(transform.toString().trim());
-			
+
 			long start = System.nanoTime();
 			ResultSet execute = QueryProcessorFactory.getDefault().createQueryProcessor(getDefaultIndexStore()).execute(transform, getQueryContext(rs));
 			long end = System.nanoTime();
 
 			System.out.println(execute);
-			System.out.println("Size: "+execute.getSize());
-			long time = end-start;
-			System.out.println("QueryTime: "+ time+"ns ("+(time/1000000000f)+"s)");
+			System.out.println("Size: " + execute.getSize());
+			long time = end - start;
+			System.out.println("QueryTime: " + time + "ns (" + (time / 1000000000f) + "s)");
 		}
 	}
 
 	private QueryContext getQueryContext(final ResourceSet rs) {
 		return new QueryContext() {
 
-			@Override
 			public URI[] getResourceScope() {
 				final List<URI> result = new ArrayList<URI>();
 				getDefaultIndexStore().executeQueryCommand(new QueryCommand() {
 
-					@Override
 					public void execute(QueryExecutor queryExecutor) {
 						ResourceQuery<ResourceDescriptor> resourceQuery = IndexQueryFactory.createResourceQuery();
 						for (ResourceDescriptor desc : queryExecutor.execute(resourceQuery)) {
@@ -89,7 +86,6 @@ public class LibraryTransformation extends QueryTestCase {
 				return result.toArray(new URI[0]);
 			}
 
-			@Override
 			public ResourceSet getResourceSet() {
 				return rs;
 			}
