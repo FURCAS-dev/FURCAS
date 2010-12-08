@@ -13,7 +13,7 @@ package org.eclipse.emf.query.index.test._querynew;
 /**
  * @author Martin Strenge, SAP AG
  * @author Bernd Kolb, SAP AG
- *
+ * 
  */
 public class Query {
 
@@ -46,13 +46,11 @@ public class Query {
 
 	public static class ResourceClass implements Single<Resource>, IResource {
 
-		@Override
 		public <T> ResourceClass containing(Single<T> content) {
 			// TODO Auto-generated method stub
 			return null;
 		}
 
-		@Override
 		public <T> ResourceClass containing(List<T> content) {
 			// TODO Auto-generated method stub
 			return null;
@@ -62,13 +60,11 @@ public class Query {
 
 	public static class ResourceClasses implements List<Resource>, IResource {
 
-		@Override
 		public <T> ResourceClasses containing(Single<T> content) {
 			// TODO Auto-generated method stub
 			return null;
 		}
 
-		@Override
 		public <T> ResourceClasses containing(List<T> content) {
 			// TODO Auto-generated method stub
 			return null;
@@ -95,19 +91,16 @@ public class Query {
 
 	public static class EObjectClass implements Single<EObject>, IEObject {
 
-		@Override
 		public EObjectClass in(SimpleResourceClasses res) {
 			// TODO Auto-generated method stub
 			return null;
 		}
 
-		@Override
 		public EObjectClass in(SimpleResourceClass res) {
 			// TODO Auto-generated method stub
 			return null;
 		}
 
-		@Override
 		public EObjectClass ofType(String uri) {
 			// TODO Auto-generated method stub
 			return null;
@@ -117,19 +110,16 @@ public class Query {
 
 	public static class EObjectClasses implements List<EObject>, IEObject {
 
-		@Override
 		public EObjectClasses in(SimpleResourceClasses res) {
 			// TODO Auto-generated method stub
 			return null;
 		}
 
-		@Override
 		public EObjectClasses in(SimpleResourceClass res) {
 			// TODO Auto-generated method stub
 			return null;
 		}
 
-		@Override
 		public EObjectClasses ofType(String uri) {
 			// TODO Auto-generated method stub
 			return null;
@@ -150,25 +140,21 @@ public class Query {
 
 	public static class ReferenceClass implements Single<Reference>, IReference {
 
-		@Override
 		public <T> ReferenceClass from(Single<T> from) {
 			// TODO Auto-generated method stub
 			return this;
 		}
 
-		@Override
 		public <T> ReferenceClass from(List<T> from) {
 			// TODO Auto-generated method stub
 			return this;
 		}
 
-		@Override
 		public <T> ReferenceClass to(Single<T> from) {
 			// TODO Auto-generated method stub
 			return this;
 		}
 
-		@Override
 		public <T> ReferenceClass to(List<T> from) {
 			// TODO Auto-generated method stub
 			return this;
@@ -178,25 +164,21 @@ public class Query {
 
 	public static class ReferenceClasses implements List<Reference>, IReference {
 
-		@Override
 		public <T> ReferenceClasses from(Single<T> from) {
 			// TODO Auto-generated method stub
 			return this;
 		}
 
-		@Override
 		public <T> ReferenceClasses from(List<T> from) {
 			// TODO Auto-generated method stub
 			return this;
 		}
 
-		@Override
 		public <T> ReferenceClasses to(Single<T> from) {
 			// TODO Auto-generated method stub
 			return this;
 		}
 
-		@Override
 		public <T> ReferenceClasses to(List<T> from) {
 			// TODO Auto-generated method stub
 			return this;
