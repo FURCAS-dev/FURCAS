@@ -10,12 +10,13 @@
  ******************************************************************************/
 package de.hpi.sam.bp2009.solution.oclToAst.tests;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import junit.framework.TestCase;
-import junit.textui.TestRunner;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -36,6 +37,9 @@ import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.eclipse.ocl.ecore.delegate.ValidationBehavior;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import company.CompanyFactory;
 import company.CompanyPackage;
@@ -59,16 +63,12 @@ import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
  * </ul>
  * </p>
  */
-public class EAnnotationOCLParserTest extends TestCase {
+public class EAnnotationOCLParserTest {
 
     /**
      * The fixture for this EAnnotation OCL Parser test case.
      */
     protected EAnnotationOCLParser fixture = null;
-
-    public static void main(String[] args) {
-        TestRunner.run(EAnnotationOCLParserTest.class);
-    }
 
     /**
      * Sets the fixture for this EAnnotation OCL Parser test case.
@@ -89,7 +89,7 @@ public class EAnnotationOCLParserTest extends TestCase {
     /**
      * @see junit.framework.TestCase#setUp()
      */
-    @Override
+    @Before
     public void setUp() {
         setFixture(OclToAstFactory.eINSTANCE.createEAnnotationOCLParser());
     }
@@ -97,7 +97,7 @@ public class EAnnotationOCLParserTest extends TestCase {
     /**
      * @see junit.framework.TestCase#tearDown()
      */
-    @Override
+    @After
     public void tearDown() {
         setFixture(null);
     }
@@ -109,6 +109,7 @@ public class EAnnotationOCLParserTest extends TestCase {
      * 
      * @see de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser#convertOclAnnotation(org.eclipse.emf.ecore.EModelElement)
      */
+    @Test
     public void testConvertOclAnnotation__EModelElement() {
         EClass placeC = EcoreFactory.eINSTANCE.createEClass();
         placeC.setName("Place");
@@ -129,6 +130,7 @@ public class EAnnotationOCLParserTest extends TestCase {
                 .getSpecification().getBodyExpression() instanceof OperationCallExp);
     }
 
+    @Test
     public void testInvocationDelegate_AST_Usage() {
         Department dep = CompanyFactory.eINSTANCE.createDepartment();
         dep.setBudget(10000);
@@ -173,6 +175,7 @@ public class EAnnotationOCLParserTest extends TestCase {
         val.setValue(content);
     }
 
+    @Test
     public void testSettingDelegate_AST_Usage() {
         CompanyFactory compFac = CompanyFactory.eINSTANCE;
         Division div = compFac.createDivision();
@@ -204,6 +207,7 @@ public class EAnnotationOCLParserTest extends TestCase {
         EcoreUtil.remove(CompanyPackage.eINSTANCE.getDepartment_Budget().getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI));
     }
 
+    @Test
     public void testValidationDelegate_AST_Usage() {
         Department dep = CompanyFactory.eINSTANCE.createDepartment();
         Division div = CompanyFactory.eINSTANCE.createDivision();
@@ -225,6 +229,7 @@ public class EAnnotationOCLParserTest extends TestCase {
                         Diagnostician.INSTANCE.createDefaultDiagnostic(dep), context));
     }
 
+    @Test
     public void testHiddenOpposite_AST_Usage() {
         Department dep = CompanyFactory.eINSTANCE.createDepartment();
         Division div = CompanyFactory.eINSTANCE.createDivision();
@@ -250,6 +255,7 @@ public class EAnnotationOCLParserTest extends TestCase {
      * 
      * @see de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser#convertOclAnnotation(org.eclipse.emf.ecore.EModelElement)
      */
+    @Test
     public void testConvertOclAnnotation__EOperation() {
         EClass aClass = EcoreFactory.eINSTANCE.createEClass();
         aClass.setName("aClass");
@@ -277,6 +283,7 @@ public class EAnnotationOCLParserTest extends TestCase {
         assertTrue("Expected value: '4', got: " + result.toString(), "4".equals(result.toString()));
     }
 
+    @Test
     public void testAnnotationParsingOfNgpmMetaModel() {
         EAnnotationOCLParser parser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
         parser.traversalConvertOclAnnotations(ExpressionsPackage.eINSTANCE);

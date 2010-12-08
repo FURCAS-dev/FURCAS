@@ -62,8 +62,6 @@ public abstract class AbstractEvaluationEnvironment<C, O, P, CLS, E>
     private final Map<Option<?>, Object> options =
         new java.util.HashMap<Option<?>, Object>();
     
-    private Injector injector;
-    
     protected AbstractEvaluationEnvironment() {
     	this(null);
     }
@@ -81,24 +79,8 @@ public abstract class AbstractEvaluationEnvironment<C, O, P, CLS, E>
 	 * 
 	 * @since 3.1
 	 */
-	protected Injector createInjector() {
-		injector = OCLPlugin.getInjector();
-		return injector;
-	}
-
-	/**
-	 * Obtains the Dependency Injector for this environment, creating one without overrides if no previous
-	 * call to createInjector has occurred.
-	 * 
-	 * @return the dependency injector
-	 * 
-	 * @since 3.1
-	 */
 	protected Injector getInjector() {
-		if (injector == null) {
-			injector = createInjector();
-		}
-		return injector;
+		return OCLPlugin.getInjector();
 	}
 
     /**

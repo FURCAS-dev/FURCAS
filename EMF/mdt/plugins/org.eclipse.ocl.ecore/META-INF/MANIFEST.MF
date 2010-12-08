@@ -13,7 +13,7 @@ Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.ocl.ecore,
  org.eclipse.ocl.ecore.delegate,
  org.eclipse.ocl.ecore.impl,
- org.eclipse.ocl.ecore.internal;x-friends:="org.eclipse.ocl.ecore.tests",
+ org.eclipse.ocl.ecore.internal;x-friends:="org.eclipse.ocl.ecore.tests,de.hpi.sam.bp2009.solution.oclToAst.tests",
  org.eclipse.ocl.ecore.opposites,
  org.eclipse.ocl.ecore.parser,
  org.eclipse.ocl.ecore.util,
