@@ -18,7 +18,9 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
+import com.sap.emf.ocl.util.EcoreEnvironmentFactoryWithScopedExtentMap;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
@@ -38,13 +40,15 @@ public class TCSSpecificOCLEvaluator {
     
     private final OCL ocl;
     private final Helper oclHelper;
+    private final OppositeEndFinder oppositeEndFinder;
 
     public TCSSpecificOCLEvaluator() {
         this(new ProjectDependencyQueryContextProvider());
     }
     
     public TCSSpecificOCLEvaluator(QueryContextProvider queryContext) {
-        ocl = OCL.newInstance(new Query2OppositeEndFinder(queryContext));
+        oppositeEndFinder = new Query2OppositeEndFinder(queryContext);
+        ocl = OCL.newInstance(new EcoreEnvironmentFactoryWithScopedExtentMap(oppositeEndFinder));
         oclHelper = ocl.createOCLHelper();
     }
 

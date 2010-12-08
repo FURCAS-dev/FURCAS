@@ -207,11 +207,10 @@ public class InstanceScopeAnalysis implements PartialEvaluatorFactory {
         }
     }
 
-    // TODO may need to be parameterized with notifyNewElements because currently for an element addition nothing is returned if no allInstances() calls are affected
-    public Collection<EObject> getContextObjects(Notification event) {
+    public Collection<EObject> getContextObjects(Notification event, boolean notifyOnNewContextElements) {
         Collection<EObject> resultCollection;
         if (NotificationHelper.isElementLifeCycleEvent(event)) {
-            resultCollection = handleLifeCycleEvent(event);
+            resultCollection = handleLifeCycleEvent(event, notifyOnNewContextElements);
         } else {
             resultCollection = new HashSet<EObject>();
         }
@@ -262,10 +261,9 @@ public class InstanceScopeAnalysis implements PartialEvaluatorFactory {
 	}
     }
 
-    private Collection<EObject> handleLifeCycleEvent(Notification event) {
+    private Collection<EObject> handleLifeCycleEvent(Notification event, boolean notifyOnNewContextElements) {
         Collection<EObject> result = new HashSet<EObject>();
         Boolean addEvent = NotificationHelper.isAddEvent(event);
-
         if (NotificationHelper.isManyEvent(event)) {
             List<?> featureValue;
             if (addEvent) {
@@ -275,6 +273,10 @@ public class InstanceScopeAnalysis implements PartialEvaluatorFactory {
             }
             for (Object value : featureValue) {
                 if (value instanceof EObject) {
+                    if (addEvent && notifyOnNewContextElements && getContext().isInstance(value)) {
+                        // put new elements into result set
+                        result.add((EObject) value);
+                    }
                     EClass valuesClass = ((EObject) value).eClass();
                     addAllPossibleContextsIfNonEmptyDelta(featureValue, result, event, valuesClass);
                 }
@@ -287,6 +289,10 @@ public class InstanceScopeAnalysis implements PartialEvaluatorFactory {
                 value = event.getOldValue();
             }
             if (value instanceof EObject) {
+                if (addEvent && notifyOnNewContextElements && getContext().isInstance(value)) {
+                    // put new elements into result set
+                    result.add((EObject) value);
+                }
                 Collection<Object> featureValueAsObjectCollection = Collections.singletonList(value);
                 EClass valuesClass = ((EObject) value).eClass();
                 addAllPossibleContextsIfNonEmptyDelta(featureValueAsObjectCollection, result, event, valuesClass);

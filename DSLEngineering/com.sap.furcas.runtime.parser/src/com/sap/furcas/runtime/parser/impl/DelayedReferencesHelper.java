@@ -28,15 +28,28 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.query.index.ui.IndexFactory;
+import org.eclipse.emf.query2.FromEntry;
+import org.eclipse.emf.query2.FromFixedSet;
+import org.eclipse.emf.query2.FromType;
+import org.eclipse.emf.query2.LocalWhereEntry;
+import org.eclipse.emf.query2.Operation;
+import org.eclipse.emf.query2.Query;
 import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.QueryProcessor;
 import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
+import org.eclipse.emf.query2.SelectAlias;
+import org.eclipse.emf.query2.SelectEntry;
 import org.eclipse.emf.query2.TypeScopeProvider;
+import org.eclipse.emf.query2.WhereEntry;
+import org.eclipse.emf.query2.WhereRelationReference;
+import org.eclipse.emf.query2.WhereString;
 
 import antlr.Token;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
@@ -380,7 +393,7 @@ public class DelayedReferencesHelper {
         if (originalObserver != null) {
             delegator.addParsingObserver(originalObserver);
         }
-        delegator.addParsingObserver(new ForeachParsingObeserver((TextBlock) reference.getTextBlock()));
+        delegator.addParsingObserver(new ForeachParsingObserver((TextBlock) reference.getTextBlock()));
         parser.setObserver(delegator);
 
         IModelElementProxy proxyForContextElement = null;
@@ -560,20 +573,20 @@ public class DelayedReferencesHelper {
         // TODO search only in the mapping partition!
         Template template = null;
         if (clazz != null) {
-            String query = "select template \n" + "from \"demo.sap.com/tcsmeta\"#" + "FURCAS::TCS::ClassTemplate as template, \n"
-                    + "\"" + EcoreUtil.getURI(clazz) + "\" as class "
-                    + " where template.metaReference = class where template.mode = ";
-            if (mode != null) {
-                query += "'" + mode + "'";
-            } else {
-                query += "null";
-            }
+            SelectEntry select = new SelectAlias("template");
+            FromType fromClassTemplate = new FromType("template", EcoreUtil.getURI(TCSPackage.eINSTANCE.getClassTemplate()), /* _withoutSubtypes */ false);
+            FromFixedSet fromClass = new FromFixedSet("class", EcoreUtil.getURI(clazz.eClass()), new URI[] { EcoreUtil.getURI(clazz) });
+            WhereEntry whereMetaReference = new WhereRelationReference(/* _leftAlias */ "template", /* _featureName */ "metaReference",
+                    /* _rightAlias */ "class");
+            WhereEntry whereMode = new LocalWhereEntry("template", new WhereString("mode", Operation.EQUAL, mode));
+            Query queryForClassTemplate = new Query(new SelectEntry[] { select }, new FromEntry[] { fromClassTemplate, fromClass },
+                    new WhereEntry[] { whereMetaReference, whereMode });
             if (true /* template == null */) { // TODO
                 QueryProcessor queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(getIndex());
                 TypeScopeProvider mappingQueryScope = queryProcessor.getInclusiveQueryScopeProvider(partitionScope
                         .toArray(new URI[] {}));
-                QueryContext context = getQueryScope(mappingQueryScope);
-                result = queryProcessor.execute(query, context);
+                QueryContext context = getQueryScope(rs, mappingQueryScope);
+                result = queryProcessor.execute(queryForClassTemplate, context);
                 URI[] eObjectsURIs = result.getUris("template");
                 if (eObjectsURIs.length > 1) {
                     template = (Template) rs.getEObject(eObjectsURIs[1], false);
@@ -582,12 +595,10 @@ public class DelayedReferencesHelper {
                 }
                 if (template == null) {
                     // maybe operatorTemplate?
-                    query = "select template \n" + "from \"demo.sap.com/tcsmeta\"#"
-                            + "FURCAS::TCS::OperatorTemplate as template, \n" + "\"" + EcoreUtil.getURI(clazz) + "\" as class "
-                            + " where template.metaReference = class";
-
-                    context = getQueryScope(mappingQueryScope);
-                    result = queryProcessor.execute(query, context);
+                    FromType fromOperatorTemplate = new FromType("template", EcoreUtil.getURI(TCSPackage.eINSTANCE.getOperatorTemplate()), /* _withoutSubtypes */ false);
+                    Query queryForOperatorTemplate = new Query(new SelectEntry[] { select }, new FromEntry[] { fromOperatorTemplate, fromClass },
+                            new WhereEntry[] { whereMetaReference, whereMode });
+                    result = queryProcessor.execute(queryForOperatorTemplate, context);
                     template = getTemplate(result, rs, template);
                 }
 
@@ -609,14 +620,16 @@ public class DelayedReferencesHelper {
         return template;
     }
 
-    private QueryContext getQueryScope(TypeScopeProvider mappingQueryScope) {
-        // TODO Auto-generated method stub
-        return null;
+    private QueryContext getQueryScope(ResourceSet rs, TypeScopeProvider mappingQueryScope) {
+        Set<URI> resourcesInScope = new HashSet<URI>();
+        for (URI uri : mappingQueryScope.getPartitionScope()) {
+            resourcesInScope.add(uri);
+        }
+        return com.sap.furcas.runtime.common.util.EcoreHelper.getQueryContext(rs, resourcesInScope);
     }
 
     private org.eclipse.emf.query.index.Index getIndex() {
-        // TODO Auto-generated method stub
-        return null;
+        return IndexFactory.getInstance();
     }
 
     private boolean setDelayedReferenceWithQuery(DelayedReference reference, IModelAdapter modelAdapter,

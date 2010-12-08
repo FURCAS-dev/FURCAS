@@ -30,9 +30,10 @@ public class ParserFacade {
 
     private final GeneratedParserWrapper wrapper;
 
-    public ParserFacade(Class<? extends ObservableInjectingParser> parserClass, Class<? extends Lexer> lexerClass)
+    public ParserFacade(Class<? extends ObservableInjectingParser> parserClass, Class<? extends Lexer> lexerClass,
+            String languageName)
             throws InvalidParserImplementationException {
-        wrapper = new GeneratedParserWrapper(parserClass, lexerClass);
+        wrapper = new GeneratedParserWrapper(parserClass, lexerClass, languageName);
     }
 
     public ParserFacade(ObservableInjectingParser parser, Lexer lexer) throws InvalidParserImplementationException {

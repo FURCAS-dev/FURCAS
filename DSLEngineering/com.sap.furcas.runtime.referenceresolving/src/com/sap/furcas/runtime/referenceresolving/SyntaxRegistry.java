@@ -74,23 +74,24 @@ public class SyntaxRegistry implements BundleActivator {
         // fetch all InjectorAction and Property elements from the syntax
         Collection<InjectorAction> injectorActions = getInjectorActions(syntax);
         Collection<Property> propertyInits = getPropertiesWithQuery(syntax);
+        initMonitor(syntax, monitor, injectorActions.size()+propertyInits.size());
+        registerInjectorActions(injectorActions, triggerManager, oppositeEndFinder, monitor);
+        registerPropertiesWithQuery(propertyInits, triggerManager, oppositeEndFinder, monitor);
+        if (monitor != null) {
+            monitor.done();
+        }
+    }
+
+    private void initMonitor(ConcreteSyntax syntax, IProgressMonitor monitor, int totalNumberOfElementsToProcess) {
         if (monitor != null) {
             monitor.beginTask(
                     "Registering OCL expressions for Impact Analysis for syntax: "
-                            + syntax.getName(), injectorActions.size()
-                            + propertyInits.size());
-            monitor.subTask("PropertyInits");
+                            + syntax.getName(), totalNumberOfElementsToProcess);
         }
-        for (InjectorAction injectorAction : injectorActions) {
-            if (monitor != null) {
-                monitor.worked(1);
-            }
-            if (injectorAction instanceof LookupPropertyInit) {
-                triggerManager.register(new SimplePropertyInitUpdater((LookupPropertyInit) injectorAction, oppositeEndFinder));
-            } else if (injectorAction instanceof ForeachPredicatePropertyInit) {
-                triggerManager.register(new ForeachPropertyInitUpdater((ForeachPredicatePropertyInit) injectorAction, oppositeEndFinder));
-            }
-        }
+    }
+
+    private void registerPropertiesWithQuery(Collection<Property> propertyInits, TriggerManager triggerManager,
+            OppositeEndFinder oppositeEndFinder, IProgressMonitor monitor) throws ParserException {
         if (monitor != null) {
             monitor.subTask("Property Queries");
         }
@@ -103,8 +104,22 @@ public class SyntaxRegistry implements BundleActivator {
                 triggerManager.register(new OCLQueryPropertyUpdater(property, oppositeEndFinder));
             }
         }
+    }
+
+    private void registerInjectorActions(Collection<InjectorAction> injectorActions, TriggerManager triggerManager,
+            OppositeEndFinder oppositeEndFinder, IProgressMonitor monitor) throws ParserException {
         if (monitor != null) {
-            monitor.done(); // TODO was commented in original; why?
+            monitor.subTask("PropertyInits");
+        }
+        for (InjectorAction injectorAction : injectorActions) {
+            if (monitor != null) {
+                monitor.worked(1);
+            }
+            if (injectorAction instanceof LookupPropertyInit) {
+                triggerManager.register(new SimplePropertyInitUpdater((LookupPropertyInit) injectorAction, oppositeEndFinder));
+            } else if (injectorAction instanceof ForeachPredicatePropertyInit) {
+                triggerManager.register(new ForeachPropertyInitUpdater((ForeachPredicatePropertyInit) injectorAction, oppositeEndFinder));
+            }
         }
     }
 

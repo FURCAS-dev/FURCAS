@@ -56,7 +56,7 @@ public class EMFModelAdapter implements IBareModelAdapter {
      *          this adapter shall be used with. The adapter cannot create elements which are not part
      *          of the rootPackage. If two metamodels shall be used/combined, it is required to define a
      *          root package that contains those two.
-     * @param resourceSet 
+     * @param resourceSet the transient resource for element creation will be created in this resource set
      * @param referenceScope List of (additional) resources that shall be looked at when references are
      *          resolved. The referenceScope by default already includes the URI of the root element
      *          and the visible URIs of the give resource set. In most cases the scope can therefore remain
