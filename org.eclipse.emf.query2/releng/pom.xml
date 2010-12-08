@@ -85,8 +85,13 @@
 	</build>
 	<repositories>
 		<repository>
+			<id>xpand</id>
+			<url>http://download.eclipse.org/modeling/emf/updates/releases/</url>
+			<layout>p2</layout>
+		</repository>
+		<repository>
 			<id>galileo</id>
-			<url>http://download.eclipse.org/releases/galileo/</url>
+			<url>http://download.eclipse.org/releases/helios/</url>
 			<layout>p2</layout>
 		</repository>
 		<repository>
@@ -94,7 +99,6 @@
 			<url>http://download.eclipse.org/modeling/tmf/updates/releases/</url>
 			<layout>p2</layout>
 		</repository>
-
 	</repositories>
 </project>
 
