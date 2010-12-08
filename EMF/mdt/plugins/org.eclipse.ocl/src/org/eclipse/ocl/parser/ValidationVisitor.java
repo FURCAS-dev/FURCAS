@@ -27,7 +27,6 @@ import java.util.Set;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.Environment;
-import org.eclipse.ocl.EnvironmentExtension;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.ocl.expressions.CollectionItem;
@@ -72,6 +71,7 @@ import org.eclipse.ocl.types.SetType;
 import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.types.VoidType;
+import org.eclipse.ocl.util.Adaptable;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.ocl.util.TypeUtil;
@@ -82,6 +82,9 @@ import org.eclipse.ocl.utilities.UMLReflection;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 import org.eclipse.ocl.utilities.Visitor;
 
+import com.google.inject.ImplementedBy;
+import com.google.inject.Injector;
+
 /**
  * Checks the well-formedness rules for the expressions package
  * 
@@ -90,6 +93,40 @@ import org.eclipse.ocl.utilities.Visitor;
  */
 public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	implements Visitor<Boolean, C, O, P, EL, PM, S, COA, SSA, CT> {
+	/**
+	 * The ValidationVisitorProvider orchestrates creation of ValidationVisitor instances. An
+	 * alternate ValidationVisitor implementation may be used by configuring the
+	 * environment's injector with a module configured with the alternate bindings.
+	 * 
+	 * @since 3.1
+	 */
+	@ImplementedBy(Provider.class)
+	public interface IProvider<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+	{
+		/**
+		 * Creates an instance of the validation visitor that validates against
+		 * an environment, which presumably was used in parsing the OCL in
+		 * the first place.
+		 * 
+		 * @param  the environment
+		 * 
+		 * @return a validation visitor instance for this environment
+		 */
+		Visitor<Boolean, C, O, P, EL, PM, S, COA, SSA, CT> createValidationVisitor(
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment);
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	public static class Provider<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+		implements IProvider<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+	{
+		public Visitor<Boolean, C, O, P, EL, PM, S, COA, SSA, CT> createValidationVisitor(
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment) {
+			return new ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(environment);
+		}
+	}
 	
 	/**
 	 * @since 3.1
@@ -117,8 +154,13 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		if (environment == null) {
 			throw new NullPointerException();
 		}
-		if (environment instanceof EnvironmentExtension) {
-			return ((EnvironmentExtension<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>) environment).createValidationVisitor();
+		if (environment instanceof Adaptable) {
+			Injector injector = ((Adaptable)environment).getAdapter(Injector.class);
+			@SuppressWarnings("unchecked")
+			IProvider<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> provider = injector.getInstance(IProvider.class);
+			if (provider != null) {
+				return provider.createValidationVisitor(environment);
+			}
 		}		
 		return new ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(environment);
 	}
