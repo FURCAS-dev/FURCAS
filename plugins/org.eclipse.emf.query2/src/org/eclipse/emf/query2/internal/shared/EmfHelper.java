@@ -11,6 +11,7 @@
 package org.eclipse.emf.query2.internal.shared;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -29,6 +30,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.query.index.DirtyResourceFactory;
 import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl;
 import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl.Options;
@@ -74,7 +76,6 @@ public class EmfHelper {
 			//check https://bugs.eclipse.org/bugs/show_bug.cgi?id=331905
 			this.rs=new ResourceSetImpl();
 		}
-		//		this.createDirtyIndex();
 		this.index = index;
 	}
 
@@ -237,7 +238,8 @@ public class EmfHelper {
 
 	private Index getBackwardNavIndex() {
 		if (useDirty) {
-			return this.dirtyIndex;
+			//The dirty index is maintained by the DirtyResourceFactory
+			return DirtyResourceFactory.getIndex();
 		} else {
 			return this.index;
 		}

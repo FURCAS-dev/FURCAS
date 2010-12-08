@@ -451,15 +451,13 @@ public class QueryProcessorImpl implements QueryProcessor {
 			}
 		};
 		emfHelper.getIndex().executeQueryCommand(command);
+		
 		return command.getResult();
 	}
 
 	private ResultSet executeSecuredInternal(PreparedQuery preparedQuery, EmfHelper emfHelper, boolean schedulingWanted,
 			boolean globalScopeIncluded, URI[] globalPartitionScope, URI[] globalContainerScope, int numberOfResults)
 			throws QueryExecutionException {
-
-		emfHelper.createDirtyIndex();
-
 		if (logger.isTraced(LogSeverity.INFO)) {
 			logger.trace(LogSeverity.INFO, FQLTraceMessages.MQL_PROCESSOR_EXECUTION_START);
 		}
