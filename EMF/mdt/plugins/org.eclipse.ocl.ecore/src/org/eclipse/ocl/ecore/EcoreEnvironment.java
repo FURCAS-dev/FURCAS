@@ -53,31 +53,28 @@ import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateException;
 import org.eclipse.ocl.ecore.internal.EcoreForeignMethods;
+import org.eclipse.ocl.ecore.internal.OCLEcorePlugin;
 import org.eclipse.ocl.ecore.internal.OCLFactoryImpl;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.internal.TypeResolverImpl;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
-import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
-import org.eclipse.ocl.ecore.parser.OCLAnalyzer;
-import org.eclipse.ocl.ecore.parser.ValidationVisitor;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl;
-import org.eclipse.ocl.helper.OCLSyntaxHelper;
-import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.options.ProblemOption;
 import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
-import org.eclipse.ocl.parser.backtracking.OCLBacktrackingParser;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.types.TypesPackage;
 import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.UMLReflection;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
-import org.eclipse.ocl.utilities.Visitor;
+
+import com.google.inject.Injector;
 
 /**
  * Implementation of the {@link Environment} for parsing OCL expressions on
@@ -170,19 +167,6 @@ public class EcoreEnvironment
 	}
 
     /**
-     * Initializes me with a package registry and a resource in which I am
-     * persisted (and from which I load myself if it already has content).
-     * 
-     * @param reg a package registry
-     * @param resource a resource, which may or may not already have content
-     */
-	EcoreEnvironment(EPackage.Registry reg, Resource resource, OppositeEndFinder oppositeEndFinder) {
-		registry = reg;
-		typeResolver = createTypeResolver(resource);
-		this.oppositeEndFinder = oppositeEndFinder;
-	}
-
-    /**
      * Initializes me with a parent environment, from which I inherit such things
      * as a package registry and a resource.
      * 
@@ -206,14 +190,7 @@ public class EcoreEnvironment
 		}
 	}
 
-    EcoreEnvironment(EPackage.Registry registry,
-			OppositeEndFinder oppositeEndFinder) {
-		this.registry = registry;
-		typeResolver = createTypeResolver();
-		this.oppositeEndFinder = oppositeEndFinder;
-	}
-
-	// implements the inherited specification
+    // implements the inherited specification
 	public EnvironmentFactory<
 			EPackage, EClassifier, EOperation, EStructuralFeature,
 			EEnumLiteral, EParameter,
@@ -288,7 +265,8 @@ public class EcoreEnvironment
 	 * @since 3.1
 	 */
 	protected OppositeEndFinder createOppositeEndFinder() {
-		return new DefaultOppositeEndFinder(registry);
+		OppositeEndFinder.IProvider provider = getInjector().getInstance(OppositeEndFinder.IProvider.class);
+		return provider.createOppositeEndFinder(registry);
 	}
 	
 	/**
@@ -319,35 +297,6 @@ public class EcoreEnvironment
 	 */
 	protected TypeResolver<EClassifier, EOperation, EStructuralFeature> createTypeResolver(Resource resource) {
 		return new TypeResolverImpl(this, resource);
-	}
-
-
-    @Override
-	public Visitor<Boolean, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> createValidationVisitor() {
-		return new ValidationVisitor(this);
-	}
-
-	/**
-	 * @since 3.1
-	 */
-	@Override
-	public OCLAnalyzer createOCLAnalyzer(String input) {
-		return new OCLAnalyzer(this, input);
-	}
-
-	/**
-	 * @since 3.1
-	 */
-	@Override
-	public OCLAnalyzer createOCLAnalyzer(OCLBacktrackingParser parser) {
-		return new OCLAnalyzer(parser);
-	}
-
-	/**
-	 * @since 3.1
-	 */
-	public OCLSyntaxHelper createOCLSyntaxHelper() {
-		return new org.eclipse.ocl.ecore.internal.helper.OCLSyntaxHelper(this);
 	}
 
 	/**
@@ -1080,5 +1029,13 @@ public class EcoreEnvironment
 	 */
 	public OppositeEndFinder getOppositeEndFinder() {
 		return oppositeEndFinder;
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	@Override
+	protected Injector createInjector() {
+		return OCLEcorePlugin.getInjector();
 	}
 }

@@ -106,14 +106,6 @@ public class EcoreEvaluationEnvironment
 		oppositeEndFinder = ((EcoreEvaluationEnvironment) parent).oppositeEndFinder;
 	}
 
-	/**
-	 * @since 3.1
-	 */
-	protected EcoreEvaluationEnvironment(OppositeEndFinder oppositeEndFinder) {
-		super();
-		this.oppositeEndFinder = oppositeEndFinder;
-	}
-
 	@Override
 	public Object callOperation(EOperation operation, int opcode,
 			Object source, Object[] args)
@@ -223,13 +215,6 @@ public class EcoreEvaluationEnvironment
 		}
 
 		return result;
-	}
-	
-	/**
-	 * @since 3.1
-	 */
-	protected OppositeEndFinder getOppositeEndFinder() {
-		return oppositeEndFinder;
 	}
 
 	// implements the inherited specification

@@ -35,7 +35,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.Environment;
-import org.eclipse.ocl.EnvironmentExtension;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.cst.ClassifierContextDeclCS;
@@ -98,6 +97,14 @@ import org.eclipse.ocl.utilities.Visitor;
 public class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	implements org.eclipse.ocl.helper.OCLSyntaxHelper {
 
+	public static class Provider<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> implements org.eclipse.ocl.helper.OCLSyntaxHelper.IProvider<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+	{
+		public org.eclipse.ocl.helper.OCLSyntaxHelper createOCLSyntaxHelper(
+				Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
+			return new org.eclipse.ocl.internal.helper.OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(env);
+		}
+	}
+	
 	// codes indicating the token before the cursor when completion invoked
 	private static final int NONE = -1;
 	private static final int DOT = 0;
@@ -140,13 +147,13 @@ public class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		ANY_TYPE_OPERATIONS.add(PredefinedType.GREATER_THAN_EQUAL_NAME);
 	}
 	
-	public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> org.eclipse.ocl.helper.OCLSyntaxHelper createOCLSyntaxHelper(
-			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment) {
-		if (environment instanceof EnvironmentExtension) {
-			return ((EnvironmentExtension<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>) environment).createOCLSyntaxHelper();
-		}		
-		return new OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(environment);
-	}
+//	public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> org.eclipse.ocl.helper.OCLSyntaxHelper createOCLSyntaxHelper(
+//			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment) {
+//		if (environment instanceof EnvironmentExtension) {
+//			return ((EnvironmentExtension<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>) environment).createOCLSyntaxHelper();
+//		}		
+//		return new OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(environment);
+//	}
 
 	private int syntaxHelpStringSuffix;
 
@@ -552,7 +559,7 @@ public class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		return new ChoiceImpl(name, description, kind, element);
 	}
 
-	/**
+	/** 
 	 * Gets the name of a named <code>elem</code>ent with its initial character
 	 * in lower case.
 	 * 

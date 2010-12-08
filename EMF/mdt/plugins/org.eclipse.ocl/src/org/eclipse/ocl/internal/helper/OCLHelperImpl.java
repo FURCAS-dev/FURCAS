@@ -35,9 +35,12 @@ import org.eclipse.ocl.helper.OCLSyntaxHelper;
 import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.options.ParsingOptions;
 import org.eclipse.ocl.types.OCLStandardLibrary;
+import org.eclipse.ocl.util.Adaptable;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.UMLReflection;
+
+import com.google.inject.Injector;
 
 /**
  * Default implementation of the {@link OCLHelper} interface.
@@ -414,7 +417,18 @@ class OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 */
 	protected OCLSyntaxHelper createSyntaxHelper() {
 		if (syntaxHelper == null) {
-			syntaxHelper = org.eclipse.ocl.internal.helper.OCLSyntaxHelper.createOCLSyntaxHelper(getEnvironment());
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment = getEnvironment();
+		    if (environment instanceof Adaptable) {
+		    	Injector injector = ((Adaptable)environment).getAdapter(Injector.class);
+		    	if (injector != null) {
+		    		@SuppressWarnings("unchecked")
+					org.eclipse.ocl.helper.OCLSyntaxHelper.IProvider<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> syntaxHelperProvider = injector.getInstance(org.eclipse.ocl.helper.OCLSyntaxHelper.IProvider.class);
+		    		syntaxHelper = syntaxHelperProvider.createOCLSyntaxHelper(environment);
+		    	}
+		    }
+		    if (syntaxHelper == null) {
+				syntaxHelper = new org.eclipse.ocl.internal.helper.OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(environment);
+		    }
 		}
 		return syntaxHelper;
 	}
