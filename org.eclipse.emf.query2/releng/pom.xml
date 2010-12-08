@@ -15,11 +15,32 @@
  
 	<modules>
 	
-	    <module>../plugins/org.eclipse.emf.query2.index</module>
+		<!-- plugins -->
+		<module>../plugins/org.eclipse.emf.query2.index</module>
 		<module>../plugins/org.eclipse.emf.query2.index.ui</module>
 		<module>../plugins/org.eclipse.emf.query2.core</module>
 		<module>../plugins/org.eclipse.emf.query2.stringsyntax</module>
 		<module>../plugins/org.eclipse.emf.query2.stringsyntax.ui</module>
+		
+		<module>../help/org.eclipse.emf.query2.help</module>
+		<module>../examples/org.eclipse.emf.query2.examples</module>
+		
+		<!-- Test plugins -->
+		<module>../tests/org.eclipse.emf.query.index.test</module>
+		<module>../tests/org.eclipse.emf.query2.test</module>
+		<module>../tests/org.eclipse.emf.query2.librarytest</module>
+
+		
+		<!-- features -->
+		<module>../help/org.eclipse.emf.query2.help.feature</module>
+		<module>../examples/org.eclipse.emf.query2.examples.feature</module>
+		<module>../plugins/org.eclipse.emf.query2.core.feature</module>
+		<module>../plugins/org.eclipse.emf.query2.stringsyntax.feature</module>
+		
+		<module>../tests/org.eclipse.emf.query2.test.feature</module>
+		
+		<!-- update site -->
+		<module>../plugins/org.eclipse.emf.query2.updatesite</module>
 					
 	</modules>
 
