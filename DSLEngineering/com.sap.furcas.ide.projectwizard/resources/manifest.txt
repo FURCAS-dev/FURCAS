@@ -5,6 +5,10 @@ Bundle-SymbolicName: $ProjectName$;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SAP
 Require-Bundle: org.eclipse.ui,
+ org.eclipse.ui.workbench,
+ org.eclipse.osgi,
+ org.eclipse.emf.common,
+ org.eclipse.emf.ecore,
  org.eclipse.core.runtime,
  com.sap.ide.cts.editor,
  com.sap.furcas.runtime.parser.incremental,
