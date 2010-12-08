@@ -1,6 +1,7 @@
 package com.sap.tc.emf.test.query.setup;
 
 import java.io.File;
+
 import java.io.IOException;
 import java.util.Collections;
 
@@ -9,6 +10,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.emf.query.index.DirtyResourceFactory;
 
 public class DefaultTestClientImpl implements TestClient {
 
@@ -25,7 +27,6 @@ public class DefaultTestClientImpl implements TestClient {
 	public Resource getOrCreateResourceStable(String name) {
 
 		URI uri = URI.createFileURI(this.parentDirectory + "/" + name);
-
 		Resource res = null;
 		res = this.getResourceSet().getResource(uri, false);
 		if (res == null) {
@@ -36,9 +37,11 @@ public class DefaultTestClientImpl implements TestClient {
 				//Assert.fail(t.getLocalizedMessage());
 			}
 		}
+		
 		if (!res.isTrackingModification()) {
 			res.setTrackingModification(true);
 		}
+		res.eAdapters().add(DirtyResourceFactory.getInstance());
 		return res;
 	}
 
@@ -52,6 +55,7 @@ public class DefaultTestClientImpl implements TestClient {
 			// create resource if it does not already exist in the resource set (no need to load it)
 			res = this.resourceSet.createResource(uri);
 		}
+		res.eAdapters().remove(DirtyResourceFactory.getInstance());
 		if (res != null) {
 			try {
 				res.delete(null);
@@ -68,6 +72,7 @@ public class DefaultTestClientImpl implements TestClient {
 
 		if (this.resourceSet == null) {
 			this.resourceSet = new ResourceSetImpl();
+//			resourceSet.eAdapters().add(DirtyResourceFactory.getInstance());
 		}
 
 		return this.resourceSet;
