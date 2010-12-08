@@ -67,7 +67,11 @@ public class GeneratedClassesTest {
      */
     private String getRequiredBundles() {
         getManifestPluginEntries();
-        String eclipsePath = System.getProperty("target.location");
+        String eclipsePath;
+        if (System.getProperty("eclipse.location")!=null)
+            eclipsePath = System.getProperty("eclipse.location");
+        else
+            eclipsePath = System.getProperty("target.location");
         StringBuffer requiredBundles = new StringBuffer("./lib/org.eclipse.swt.gtk.linux.x86_64_3.6.1.v3655c.jar"
                 + File.pathSeparator + "./lib/static");
         for (String plugin : workspacePlugins) {
