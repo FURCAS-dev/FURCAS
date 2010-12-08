@@ -422,17 +422,6 @@ public interface UtilitiesPackage
 	int EXPRESSION_IN_OCL_FEATURE_COUNT = VISITABLE_FEATURE_COUNT + 5;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.utilities.VisitorExtension <em>Visitor Extension</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * @since 3.1
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.utilities.VisitorExtension
-	 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getVisitorExtension()
-	 * @generated
-	 */
-	int VISITOR_EXTENSION = 8;
-
-	/**
 	 * The number of structural features of the '<em>Predefined Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -442,16 +431,6 @@ public interface UtilitiesPackage
 	 * @ordered
 	 */
 	int PREDEFINED_TYPE_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of structural features of the '<em>Visitor Extension</em>' class.
-	 * <!-- begin-user-doc -->
-	 * @since 3.1
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VISITOR_EXTENSION_FEATURE_COUNT = 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.utilities.ASTNode <em>AST Node</em>}'.
@@ -656,17 +635,6 @@ public interface UtilitiesPackage
 	EReference getExpressionInOCL_GeneratedType();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.utilities.VisitorExtension <em>Visitor Extension</em>}'.
-	 * <!-- begin-user-doc -->
-	 * @since 3.1
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Visitor Extension</em>'.
-	 * @see org.eclipse.ocl.utilities.VisitorExtension
-	 * @generated
-	 */
-	EClass getVisitorExtension();
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -869,17 +837,6 @@ public interface UtilitiesPackage
 		 */
 		EReference EXPRESSION_IN_OCL__GENERATED_TYPE = eINSTANCE
 			.getExpressionInOCL_GeneratedType();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.utilities.VisitorExtension <em>Visitor Extension</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * @since 3.1
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.utilities.VisitorExtension
-		 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getVisitorExtension()
-		 * @generated
-		 */
-		EClass VISITOR_EXTENSION = eINSTANCE.getVisitorExtension();
 
 	}
 

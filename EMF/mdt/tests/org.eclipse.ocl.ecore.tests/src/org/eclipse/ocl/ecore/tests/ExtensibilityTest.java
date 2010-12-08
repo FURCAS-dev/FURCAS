@@ -30,12 +30,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
-import org.eclipse.ocl.EnvironmentWithHiddenOpposites;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.LookupException;
@@ -46,6 +46,7 @@ import org.eclipse.ocl.TypeResolver;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
+import org.eclipse.ocl.ecore.EnvironmentWithHiddenOpposites;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.expressions.OCLExpression;
@@ -181,16 +182,12 @@ public class ExtensibilityTest
 	    return OCL.newInstance(new WrapperEnvironmentFactory());
 	}
 	
-	class WrapperEnvironment implements EnvironmentWithHiddenOpposites<
-            EPackage, EClassifier, EOperation, EStructuralFeature,
-            EEnumLiteral, EParameter,
-            EObject, CallOperationAction, SendSignalAction, Constraint,
-            EClass, EObject> {
+	class WrapperEnvironment implements EnvironmentWithHiddenOpposites {
 	    
-	    private final EnvironmentWithHiddenOpposites<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
+	    private final EnvironmentWithHiddenOpposites
 	    delegate;
 	    
-        private final EnvironmentWithHiddenOpposites<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
+        private final EnvironmentWithHiddenOpposites
         parent;
         
         private final WrapperEnvironmentFactory factory;
@@ -205,8 +202,8 @@ public class ExtensibilityTest
             Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
             
             this.factory = factory;
-            this.delegate = (EnvironmentWithHiddenOpposites<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>) delegate;
-            this.parent = (EnvironmentWithHiddenOpposites<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>) parent;
+            this.delegate = (EnvironmentWithHiddenOpposites) delegate;
+            this.parent = (EnvironmentWithHiddenOpposites) parent;
         }
     
         public Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> getParent() {
@@ -374,12 +371,12 @@ public class ExtensibilityTest
             return delegate.lookupProperty(owner, name);
         }
 
-        public EStructuralFeature lookupOppositeProperty(EClassifier owner, String name)
+        public EReference lookupOppositeProperty(EClassifier owner, String name)
             throws LookupException {
 	    return delegate.lookupOppositeProperty(owner, name);
 	}
 
-	public EClassifier getOppositePropertyType(EClassifier owner, EStructuralFeature property) {
+	public EClassifier getOppositePropertyType(EClassifier owner, EReference property) {
 		return delegate.getOppositePropertyType(owner, property);
 	}
 
@@ -420,7 +417,7 @@ public class ExtensibilityTest
             delegate.undefine(feature);
         }
 
-		public Map<String, EStructuralFeature> getHiddenOppositeProperties(
+		public Map<String, EReference> getHiddenOppositeProperties(
 				EClassifier classifier) {
 			return delegate.getHiddenOppositeProperties(classifier);
 		}

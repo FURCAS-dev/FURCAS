@@ -9,9 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-
 import com.sap.furcas.runtime.common.exceptions.DeferredActionResolvingException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.ReferenceSettingException;
@@ -20,7 +17,6 @@ import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.ModelElementCreationException;
 import com.sap.furcas.runtime.parser.impl.DefaultTextAwareModelAdapter;
 import com.sap.furcas.runtime.parser.impl.ModelElementProxy;
-import com.sap.furcas.runtime.tcs.TcsUtil;
 
 
 /**
@@ -238,9 +234,4 @@ public class TextBlocksAwareModelAdapter extends DefaultTextAwareModelAdapter {
 		// no-op; token stream not used by this class
 	}
 
-	@Override
-	public Collection<URI> getPRIPartitions(ResourceSet conn, String languageId) {
-		return TcsUtil.getSyntaxPartitions(conn, languageId);
-	}
-    
 }

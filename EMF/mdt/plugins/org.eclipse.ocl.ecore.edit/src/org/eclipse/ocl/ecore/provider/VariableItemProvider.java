@@ -227,8 +227,8 @@ public class VariableItemProvider extends ETypedElementItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Variable")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/Variable")); //$NON-NLS-1$
 	}
 
 	/**
@@ -270,12 +270,12 @@ public class VariableItemProvider extends ETypedElementItemProvider implements
 		case EcorePackage.VARIABLE__END_POSITION:
 		case EcorePackage.VARIABLE__TYPE_START_POSITION:
 		case EcorePackage.VARIABLE__TYPE_END_POSITION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		case EcorePackage.VARIABLE__INIT_EXPRESSION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -474,10 +474,6 @@ public class VariableItemProvider extends ETypedElementItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
 				ExpressionsFactory.eINSTANCE.createVariableExp()));
-
-		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createOppositePropertyCallExp()));
 	}
 
 	/**

@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
@@ -48,11 +47,12 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
     public ForeachPropertyInitUpdater(ForeachPredicatePropertyInit injectorAction, OppositeEndFinder oppositeEndFinder)
             throws ParserException {
         super(injectorAction.getPropertyReference().getStrucfeature(), oppositeEndFinder, new ExpressionWithContext(
-                OCL.newInstance(oppositeEndFinder).createOCLHelper()
+                createOCLHelper(injectorAction.getValue(),
+                        ((InjectorActionsBlock) injectorAction.eContainer()).getParentTemplate(), oppositeEndFinder)
                         .createQuery(ContextAndForeachHelper.prepareOclQuery(injectorAction.getValue())),
                 (EClass) ContextAndForeachHelper.getParsingContext(injectorAction.getValue(),
                         ((InjectorActionsBlock) injectorAction.eContainer()).getParentTemplate())),
-                        /* notifyNewContextElements */ true);
+                        /* notifyNewContextElements */ true, getSelfKind(injectorAction.getValue()));
         triggerExpressionsWithoutContext = new LinkedList<OCLExpression>();
         for (PredicateSemantic whenClause : injectorAction.getPredicateSemantic()) {
             if (whenClause.getWhen() != null) {

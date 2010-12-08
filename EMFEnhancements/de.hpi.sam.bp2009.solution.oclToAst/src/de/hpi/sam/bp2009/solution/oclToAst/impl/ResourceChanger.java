@@ -17,7 +17,6 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
@@ -26,8 +25,9 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ecore.CallOperationAction;
-import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.SendSignalAction;
+import org.eclipse.ocl.ecore.utilities.AbstractVisitor;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.CollectionItem;
 import org.eclipse.ocl.expressions.CollectionLiteralExp;
@@ -38,14 +38,12 @@ import org.eclipse.ocl.expressions.IteratorExp;
 import org.eclipse.ocl.expressions.LetExp;
 import org.eclipse.ocl.expressions.MessageExp;
 import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.TupleLiteralExp;
 import org.eclipse.ocl.expressions.TupleLiteralPart;
 import org.eclipse.ocl.expressions.TypeExp;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.VariableExp;
-import org.eclipse.ocl.utilities.AbstractVisitor;
 import org.eclipse.ocl.utilities.Visitable;
 
 /**
@@ -56,7 +54,7 @@ import org.eclipse.ocl.utilities.Visitable;
  */
 class ResourceChanger
         extends
-        AbstractVisitor<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> {
+        AbstractVisitor<EPackage> {
     private static final String OCL_PSEUDO_RESOURCE_URI = "ocl:///oclenv.ecore";
     private Map<EObject, EObject> orgToCopy;
 
@@ -317,7 +315,7 @@ class ResourceChanger
      * , java.lang.Object, java.util.List)
      */
     @Override
-    protected EPackage handleOppositePropertyCallExp(OppositePropertyCallExp<EClassifier, EStructuralFeature> callExp,
+    protected EPackage handleOppositePropertyCallExp(OppositePropertyCallExp callExp,
             EPackage sourceResult) {
         EClassifier newType = handle(callExp.getType());
         if (newType != null) {

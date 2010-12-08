@@ -14,6 +14,8 @@ import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
+import com.sap.emf.ocl.util.EcoreEnvironmentFactoryWithScopedExtentMap;
+
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 
@@ -25,7 +27,7 @@ public class OCLFactoryImpl implements OCLFactory {
     }
 
     public OCL createOCL(OppositeEndFinder oppositeEndFinder) {
-        return OCL.newInstance();
+        return OCL.newInstance(new EcoreEnvironmentFactoryWithScopedExtentMap(oppositeEndFinder));
     }
 
 }

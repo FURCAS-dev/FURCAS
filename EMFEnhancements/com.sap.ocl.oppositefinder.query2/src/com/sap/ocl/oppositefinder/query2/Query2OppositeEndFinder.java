@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -41,7 +40,6 @@ import org.eclipse.emf.query2.SelectAlias;
 import org.eclipse.emf.query2.SelectEntry;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
-
 
 import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider;
 
@@ -130,12 +128,12 @@ public class Query2OppositeEndFinder implements OppositeEndFinder {
     }
 
     @Override
-    public void findOppositeEnds(EClassifier classifier, String name, List<EStructuralFeature> ends) {
+    public void findOppositeEnds(EClassifier classifier, String name, List<EReference> ends) {
         delegate.findOppositeEnds(classifier, name, ends);
     }
 
     @Override
-    public Map<String, EStructuralFeature> getAllOppositeEnds(EClassifier classifier) {
+    public Map<String, EReference> getAllOppositeEnds(EClassifier classifier) {
         return delegate.getAllOppositeEnds(classifier);
     }
 

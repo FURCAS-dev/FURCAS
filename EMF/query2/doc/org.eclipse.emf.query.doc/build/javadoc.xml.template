@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Plugin Javadoc" default="javadoc">
+	<property name="destDir"    value="doc"/>
+	<property name="classpath"  value="bin"/>
+	<property name="overview"   value="build/overview.html"/>
+	<property name="eclipseDir" value="."/>
+	<property name="platformDocJar" value="org.eclipse.platform.doc.isv.jar"/>
+	<property name="emfDocJar" value="org.eclipse.emf.doc.jar"/>
+	<property name="oclDocJar" value="org.eclipse.ocl.doc.jar"/>
+	<property name="emfemfDocJar" value="org.eclipse.emf.ocl.doc.jar"/>
+	
+	<!-- other properties that must be passed to this script include:
+		 windowTitle
+		 groupTitle 
+	-->
+	
+	<property environment="env"/>
+	<property name="javaHome" value="${env.JAVA_HOME}"/>
+	
+	<property name="jdk.link.location" value="javadoc/jdk"/>
+	<available property="jdkJavadocExists" file="${jdk.link.location}/package-list"/>
+	
+	<target name="extractJDKJavadoc" unless="jdkJavadocExists">
+		<mkdir dir="${jdk.link.location}"/>
+		<get dest="${jdk.link.location}/package-list" src="http://java.sun.com/j2se/1.5/docs/api/package-list"/>
+	</target>
+	
+	<property name="platform.link.location" value="javadoc/platform"/>
+	<available property="platformJavadocExists" file="${platform.link.location}/reference/api/package-list"/>
+
+	<target name="extractPlatformJavadoc" unless="platformJavadocExists">
+		<mkdir dir="${platform.link.location}"/>
+		<unzip src="${platformDocJar}" dest="${platform.link.location}">
+		   <patternset includes="reference/api/package-list"/>
+		</unzip>
+	</target>
+	
+	<property name="emf.link.location" value="javadoc/emf"/>
+	<available property="emfJavadocExists" file="${emf.link.location}/references/javadoc/package-list"/>
+
+	<target name="extractEMFJavadoc" unless="emfJavadocExists">
+		<mkdir dir="${emf.link.location}"/>
+		<unzip src="${emfDocJar}" dest="${emf.link.location}">
+		   <patternset includes="references/javadoc/package-list"/>
+		</unzip>
+	</target>
+	
+	<property name="ocl.link.location" value="javadoc/ocl"/>
+	<available property="oclJavadocExists" file="${ocl.link.location}/references/javadoc/package-list"/>
+
+	<target name="extractOCLJavadoc" unless="oclJavadocExists">
+		<mkdir dir="${ocl.link.location}"/>
+		<unzip src="${oclDocJar}" dest="${ocl.link.location}">
+		   <patternset includes="references/javadoc/package-list"/>
+		</unzip>
+	</target>
+	
+	<property name="emfocl.link.location" value="javadoc/emfocl"/>
+	<available property="emfoclJavadocExists" file="${emfocl.link.location}/references/javadoc/package-list"/>
+
+	<target name="extractEMFOCLJavadoc" unless="emfoclJavadocExists">
+		<mkdir dir="${emfocl.link.location}"/>
+		<unzip src="${emfoclDocJar}" dest="${emfocl.link.location}">
+		   <patternset includes="references/javadoc/package-list"/>
+		</unzip>
+	</target>
+
+	<target name="getPackageLists"
+	    depends="extractJDKJavadoc,extractPlatformJavadoc,extractEMFJavadoc,extractOCLJavadoc,extractEMFOCLJavadoc">
+	</target>
+
+	<target name="javadoc" depends="getPackageLists">
+		<javadoc 
+			destdir="${destDir}" 
+			classpath="${classpath}"
+			overview="${overview}"
+
+			windowtitle="${windowTitle}"
+			footer="Copyright 2002, 2007 IBM Corporation and others.&lt;br&gt; All Rights Reserved."
+
+			access="protected" 
+			additionalparam="-breakiterator -tag model:X -tag generated:X -tag ordered:X"
+			author="false"
+			breakiterator="true"
+			charset="UTF-8"
+			docencoding="UTF-8"
+			nodeprecated="false"
+			nodeprecatedlist="false" 
+			noindex="false" 
+			nonavbar="false" 
+			notree="false" 
+			source="1.5"
+			splitindex="true" 
+			use="true" 
+			version="true"> 
+				<arg value="-J-Xmx180m"/>
+				
+				<link offline="true" href="http://java.sun.com/j2se/1.5/docs/api/"
+				    packagelistLoc="${jdk.link.location}/"/>
+				<link offline="true" href="/help/topic/org.eclipse.platform.doc.isv/reference/api/"
+				    packagelistLoc="${platform.link.location}/reference/api/"/>
+				<link offline="true" href="/help/topic/org.eclipse.emf.doc/references/javadoc/"
+				    packagelistLoc="${emf.link.location}/references/javadoc/"/>
+				<link offline="true" href="/help/topic/org.eclipse.ocl.doc/references/javadoc/"
+				    packagelistLoc="${ocl.link.location}/references/javadoc/"/>
+				<link offline="true" href="/help/topic/org.eclipse.emf.ocl.doc/references/javadoc/"
+				    packagelistLoc="${emfocl.link.location}/references/javadoc/"/>
+				
+				<tag name="ignore"     description="ignore" enabled="false"/>
+				<tag name="generated"  description="ignore" enabled="false"/>
+				<tag name="model"      description="ignore" enabled="false"/>
+				<tag name="modifiable" description="ignore" enabled="false"/>
+				<tag name="extends"    description="ignore" enabled="false"/>
+				<tag name="implements" description="ignore" enabled="false"/>
+				<tag name="ordered"    description="ignore" enabled="false"/>
+
+				<!-- If you add a @ plugin @ below, don't forget to update the antjavadoc.sh file -->
+
+				<group title="${groupTitle}" packages="@plugin@"/>
+				
+				<!-- If you add a @ plugin @ above, don't forget to update the antjavadoc.sh file -->
+
+				@packagesets@
+				
+		</javadoc>
+		
+		<!-- make sure the doc-files are copied -->
+		<macrodef name="copyDocFiles">
+			<attribute name="pluginDir"/>
+			<sequential>
+				<copy todir="${destDir}" failonerror="false">
+				        <fileset dir="@{pluginDir}/src" includes="**/doc-files/**"/>
+				</copy>		
+			</sequential>
+		</macrodef>
+
+		@copydocfiles@
+
+	</target>
+</project>

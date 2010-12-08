@@ -32,165 +32,165 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  */
 public abstract class BlockArgImpl extends LocatedElementImpl implements BlockArg {
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         protected BlockArgImpl() {
-		super();
-	}
+        super();
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected EClass eStaticClass() {
-		return TCSPackage.Literals.BLOCK_ARG;
-	}
+        return TCSPackage.Literals.BLOCK_ARG;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public Block getBlock() {
-		if (eContainerFeatureID() != TCSPackage.BLOCK_ARG__BLOCK) return null;
-		return (Block)eContainer();
-	}
+        if (eContainerFeatureID() != TCSPackage.BLOCK_ARG__BLOCK) return null;
+        return (Block)eContainer();
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public NotificationChain basicSetBlock(Block newBlock, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newBlock, TCSPackage.BLOCK_ARG__BLOCK, msgs);
-		return msgs;
-	}
+        msgs = eBasicSetContainer((InternalEObject)newBlock, TCSPackage.BLOCK_ARG__BLOCK, msgs);
+        return msgs;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public void setBlock(Block newBlock) {
-		if (newBlock != eInternalContainer() || (eContainerFeatureID() != TCSPackage.BLOCK_ARG__BLOCK && newBlock != null)) {
-			if (EcoreUtil.isAncestor(this, newBlock))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newBlock != null)
-				msgs = ((InternalEObject)newBlock).eInverseAdd(this, TCSPackage.BLOCK__BLOCK_ARGS, Block.class, msgs);
-			msgs = basicSetBlock(newBlock, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.BLOCK_ARG__BLOCK, newBlock, newBlock));
-	}
+        if (newBlock != eInternalContainer() || (eContainerFeatureID() != TCSPackage.BLOCK_ARG__BLOCK && newBlock != null)) {
+            if (EcoreUtil.isAncestor(this, newBlock))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newBlock != null)
+                msgs = ((InternalEObject)newBlock).eInverseAdd(this, TCSPackage.BLOCK__BLOCK_ARGS, Block.class, msgs);
+            msgs = basicSetBlock(newBlock, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.BLOCK_ARG__BLOCK, newBlock, newBlock));
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TCSPackage.BLOCK_ARG__BLOCK:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetBlock((Block)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case TCSPackage.BLOCK_ARG__BLOCK:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetBlock((Block)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TCSPackage.BLOCK_ARG__BLOCK:
-				return basicSetBlock(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case TCSPackage.BLOCK_ARG__BLOCK:
+                return basicSetBlock(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case TCSPackage.BLOCK_ARG__BLOCK:
-				return eInternalContainer().eInverseRemove(this, TCSPackage.BLOCK__BLOCK_ARGS, Block.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
+        switch (eContainerFeatureID()) {
+            case TCSPackage.BLOCK_ARG__BLOCK:
+                return eInternalContainer().eInverseRemove(this, TCSPackage.BLOCK__BLOCK_ARGS, Block.class, msgs);
+        }
+        return super.eBasicRemoveFromContainerFeature(msgs);
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TCSPackage.BLOCK_ARG__BLOCK:
-				return getBlock();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case TCSPackage.BLOCK_ARG__BLOCK:
+                return getBlock();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TCSPackage.BLOCK_ARG__BLOCK:
-				setBlock((Block)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case TCSPackage.BLOCK_ARG__BLOCK:
+                setBlock((Block)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         public void eUnset(int featureID) {
-		switch (featureID) {
-			case TCSPackage.BLOCK_ARG__BLOCK:
-				setBlock((Block)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case TCSPackage.BLOCK_ARG__BLOCK:
+                setBlock((Block)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TCSPackage.BLOCK_ARG__BLOCK:
-				return getBlock() != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case TCSPackage.BLOCK_ARG__BLOCK:
+                return getBlock() != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //BlockArgImpl

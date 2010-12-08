@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
@@ -112,7 +113,7 @@ public abstract class AbstractEcoreMetaModelLookup implements IMetaModelLookup<E
 
     private EStructuralFeature getHiddenOpposite(
 			ResolvedNameAndReferenceBean<EObject> reference, String featureName) throws MetaModelLookupException {
-    	List<EStructuralFeature> ends = new ArrayList<EStructuralFeature>();
+    	List<EReference> ends = new ArrayList<EReference>();
     	oppositeEndFinder.findOppositeEnds((EClassifier) reference.getReference(), featureName, ends);
     	if(ends.size() > 1) {
     		throw new MetaModelLookupException("More than one oppositeEnd found for: " + reference.getNames() + ":" + featureName);

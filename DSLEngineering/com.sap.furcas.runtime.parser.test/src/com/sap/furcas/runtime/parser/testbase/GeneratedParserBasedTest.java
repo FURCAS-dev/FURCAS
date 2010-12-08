@@ -24,7 +24,8 @@ import com.sun.tools.javac.Main;
 /**
  * A Test base class that allows to generate a language specific parser from a given TCS file.
  * 
- * The base class is configured (what to create, where to create it, ...) with the help {@link GeneratedParserTestConfiguration}.
+ * The base class is configured (what to create, where to create it, ...) with the help
+ * {@link GeneratedParserTestConfiguration}.
  * 
  * @author Stephan Erb (d049157)
  * 
@@ -40,15 +41,16 @@ public abstract class GeneratedParserBasedTest {
         return syntaxBean;
 
     }
+
     public static ParserFacade generateParserForLanguage(TCSSyntaxContainerBean syntaxBean,
             GeneratedParserTestConfiguration testConfig, ClassLookup classLookup) throws GrammarGenerationException,
             ParserGeneratorInvocationException, InvalidParserImplementationException {
-    	return generateParserForLanguage(syntaxBean, testConfig, classLookup, true);
-	}	
+        return generateParserForLanguage(syntaxBean, testConfig, classLookup, true);
+    }
 
     public static ParserFacade generateParserForLanguage(TCSSyntaxContainerBean syntaxBean,
-            GeneratedParserTestConfiguration testConfig, ClassLookup classLookup, boolean doCleanUp) throws GrammarGenerationException,
-            ParserGeneratorInvocationException, InvalidParserImplementationException {
+            GeneratedParserTestConfiguration testConfig, ClassLookup classLookup, boolean doCleanUp)
+            throws GrammarGenerationException, ParserGeneratorInvocationException, InvalidParserImplementationException {
         try {
             generateGrammar(testConfig, syntaxBean);
             generateParser(testConfig);
@@ -56,14 +58,14 @@ public abstract class GeneratedParserBasedTest {
 
             return loadParserFacade(testConfig, classLookup);
         } finally {
-        	if(doCleanUp) {
-        		cleanUp(testConfig);
-        	}
+            if (doCleanUp) {
+                cleanUp(testConfig);
+            }
         }
     }
 
-    protected final static void generateGrammar(GeneratedParserTestConfiguration testConfig, TCSSyntaxContainerBean syntaxBean)
-            throws GrammarGenerationException {
+    protected final static void generateGrammar(GeneratedParserTestConfiguration testConfig,
+            TCSSyntaxContainerBean syntaxBean) throws GrammarGenerationException {
         SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
         try {
             TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
@@ -125,7 +127,7 @@ public abstract class GeneratedParserBasedTest {
             @SuppressWarnings("unchecked")
             Class<? extends ObservableInjectingParser> parserclass = (Class<? extends ObservableInjectingParser>) classLookup
                     .loadClass(testConfig.getClassNameOfCompiledParser());
-            ParserFacade facade = new ParserFacade(parserclass, lexerclass);
+            ParserFacade facade = new ParserFacade(parserclass, lexerclass, testConfig.getLanguageName());
             return facade;
 
         } catch (ClassNotFoundException cnfe) { // catching from Class.forName
@@ -165,13 +167,14 @@ public abstract class GeneratedParserBasedTest {
     protected static void cleanUp(GeneratedParserTestConfiguration testConfig) {
         File genDir = new File(testConfig.getRelativePathToGeneratedFiles());
         assertTrue(genDir.getAbsolutePath() + " is not a directory", genDir.isDirectory());
-        
+
         for (File file : genDir.listFiles()) {
-            if (file.getName().startsWith(testConfig.getLexerName()) | file.getName().startsWith(testConfig.getParserName()) | file.getName().equals(testConfig.getLanguageName()+".tokens") ) { 
-               // keeping grammars for lookup
-               file.delete();
+            if (file.getName().startsWith(testConfig.getLexerName())
+                    | file.getName().startsWith(testConfig.getParserName())
+                    | file.getName().equals(testConfig.getLanguageName() + ".tokens")) {
+                // keeping grammars for lookup
+                file.delete();
             }
-            
         }
     }
 

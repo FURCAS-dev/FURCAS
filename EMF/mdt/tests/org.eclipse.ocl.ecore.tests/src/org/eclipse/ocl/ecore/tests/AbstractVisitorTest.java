@@ -41,7 +41,7 @@ import org.eclipse.ocl.utilities.ExpressionInOCL;
 @SuppressWarnings("nls")
 public class AbstractVisitorTest
 	extends AbstractTestSuite {
-	
+   
     /**
      * Tests that the results of handle/visit methods are percolated to the
      * root of the recursive visitation.

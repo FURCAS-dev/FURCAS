@@ -14,7 +14,9 @@ syntax BibtexWithPropertyInits {
 	template Article
 		: "article" "{"
 		[
-		key "," author{refersTo=name} "," attributes{separator = ","}
+		-- key "," author{query="bibtexFile.entries->select(oclIsKindOf(Author))", filter="->select(oclAsType(Author).name=?)"}
+		key "," author{refersTo=name}
+		    "," attributes{separator = ","}
 		]
 		"}"
 		{{ location = lookIn("OCL:'Where '.concat(self.author.name).concat(' wrote it')") }}
@@ -22,8 +24,14 @@ syntax BibtexWithPropertyInits {
 	
 	template Attribute abstract;
 	
-	template Author addToContext
+	template Author context addToContext
 		: "author" "=" name "."
+		  {{ revenues=foreach("OCL:self.articles") }}
+		;
+	
+	template RevenueLedger
+		: {{ article=lookIn("OCL:#foreach(BibText::Article)"),
+		     revenueInEUR=lookIn("OCL:#foreach(BibText::Article).author.name.size()") }}
 		;
 	
 	template Year

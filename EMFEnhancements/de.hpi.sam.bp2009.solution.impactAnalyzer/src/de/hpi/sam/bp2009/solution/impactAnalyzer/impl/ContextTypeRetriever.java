@@ -20,7 +20,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
+import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.SendSignalAction;
+import org.eclipse.ocl.ecore.utilities.AbstractVisitor;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.ocl.expressions.CollectionItem;
@@ -36,7 +38,6 @@ import org.eclipse.ocl.expressions.LetExp;
 import org.eclipse.ocl.expressions.MessageExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.RealLiteralExp;
 import org.eclipse.ocl.expressions.StateExp;
@@ -48,7 +49,6 @@ import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.VariableExp;
-import org.eclipse.ocl.utilities.AbstractVisitor;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 
 /**
@@ -64,7 +64,7 @@ import org.eclipse.ocl.utilities.ExpressionInOCL;
  * @author Axel Uhl
  * 
  */
-public class ContextTypeRetriever extends AbstractVisitor<EClass, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> {
+public class ContextTypeRetriever extends AbstractVisitor<EClass> {
 
     /**
      * Initializes the result with <code>null</code> for the case that no <code>self</code> reference is found in the expression
@@ -301,8 +301,7 @@ public class ContextTypeRetriever extends AbstractVisitor<EClass, EClassifier, E
             return result;
     }
 
-    @Override
-    public EClass visitOppositePropertyCallExp(OppositePropertyCallExp<EClassifier, EStructuralFeature> callExp) {
+    public EClass visitOppositePropertyCallExp(OppositePropertyCallExp callExp) {
         if (result == null) {
             // source is null when the property call expression is an
             // association class navigation qualifier

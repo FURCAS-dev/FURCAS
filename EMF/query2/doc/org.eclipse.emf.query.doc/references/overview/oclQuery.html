@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="Stylesheet" type="text/css" href="doc.css" />
+<title>Querying with OCL</title>
+</head>
+<body>
+<h1><a name="top">Querying with OCL</a></h1>
+
+<p>
+OCL basically is a query language in its own right, but sometimes it is useful
+to plug conditions specified in OCL into an existing query structure based on
+the EMF Model Query Framework.  The <em class="CodeName">org.eclipse.emf.query.ocl</em>
+plug-in provides the API to do that.
+</p>
+
+<h2>The OCL Condition</h2>
+
+<p>
+OCL is very good at specifying boolean-valued conditions, which are exactly what
+a query needs to determine whether to accept an object.  The
+<a href="../javadoc/org/eclipse/emf/query/ocl/conditions/BooleanOCLCondition.html"><em class="CodeName">BooleanOCLCondition</em></a>
+class uses the MDT OCL API to parse and evaluate an OCL constraint.
+</p>
+
+<blockquote>
+	<img src="images/oclConditions.png" alt="OCL Condition API"/><br/>
+	<font size="-2">[<a target="_blank" href="images/oclConditions.svg">as SVG</a>]</font>
+</blockquote>
+
+<p>
+The <em class="CodeName">BooleanOCLCondition</em> is a generic class, with type
+parameters corresponding to the like-named parameters of the
+<a href="../../../org.eclipse.ocl.doc/references/javadoc/org/eclipse/ocl/OCL.html"><em class="CodeName">OCL</em></a>
+class.  The simplest way to construct one is with an OCL environment instance,
+the boolean-valued OCL expression as a string, and the classifier in which
+context to parse the constraint.  For example, for an Ecore-based model:
+</p>
+<pre class="Code">
+// create an OCL environment for the Ecore metamodel
+OCL ocl = org.eclipse.ocl.ecore.<b>OCL.newInstance()</b>;
+
+// create an OCL condition that matches that either are mysteries or are shorter
+//    than 200 pages
+EObjectCondition tolerableRead = new <b>BooleanOCLCondition</b>&lt;EClassifier, EClass, EObject&gt;(
+    ocl.<b>getEnvironment()</b>,
+    "<b>self.category &lt;&gt; BookCategory::Mystery implies self.pages &lt; 200</b>",
+    EXTLibraryPackage.Literals.BOOK);
+
+// search the whole library system
+Library mainBranch = getMainBranch();
+
+IQueryResult result = new SELECT(new FROM(mainBranch), new WHERE(<b>tolerableRead</b>));
+
+for (Object next : result) {
+    System.out.println("I can read " + ((Book) next).getTitle());
+}
+</pre>
+
+<h2>Context-Free OCL Conditions</h2>
+
+<p>
+The example above illustrate an OCL condition that is parsed in the context of
+a specific classifier, namely <em class="CodeName">Book</em>.  Sometimes, however,
+it happens that a model has different classifiers that have like-named features
+that have the same meaning, but are not defined as a single, common feature.
+This may happen especially in models of heterogeneous metamodels.  Consider the
+case of the <em class="CodeName">ENamedElement</em> metaclass in Ecore and
+<em class="CodeName">NamedElement</em> in UML.  Both of these define a
+<em class="CodeName">name</em> property that means the same thing, but they
+are defined independently.  How do we use OCL to query elements named
+"MyStereotype" in a UML2 profile, which contains UML classes Ecore classes having
+the same names?
+</p><p>
+We can use a context-free OCL condition.  We construct a
+<em class="CodeName">BooleanOCLCondition</em> without specifying a context
+classifier.  This causes the condition to evaluate itself on any element in
+which context it parses, as it were by accident:
+</p>
+<pre class="Code">
+OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance();
+
+// create an OCL condition that looks for the name "MyStereotype"
+EObjectCondition byName = new BooleanOCLCondition&lt;EClassifier, EClass, EObject&gt;(
+    ocl.getEnvironment(),
+    "self.name = 'MyStereotype'",
+    <b>null</b>);  // no context classifier
+
+// search a UML Profile
+org.eclipse.uml2.uml.Profile profile = getMyProfile();
+
+IQueryResult result = new SELECT(new FROM(mainBranch), new WHERE(<b>byName</b>));
+
+for (Object next : result) {
+    if (next instanceof org.eclipse.emf.ecore.<b>EClassifier</b>) {
+        System.out.println("Found the Ecore representation: " + ((EClassifier) next).getName());
+    } else if (next instanceof org.eclipse.uml2.uml.<b>Classifier</b>) {
+        System.out.println("Found the UML representation: " + ((Classifier) next).getName());
+    } else {
+        System.out.println("Unexpected result: " + next);
+    }
+}
+</pre>
+
+
+
+<hr/>
+
+<p>
+<a href="http://www.eclipse.org/legal/epl-v10.html">Copyright (c) 2000, 2007 IBM Corporation and others. All Rights Reserved.</a>
+</p>
+</body>
+</html>

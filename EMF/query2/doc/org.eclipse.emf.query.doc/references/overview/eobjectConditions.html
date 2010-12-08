@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="Stylesheet" type="text/css" href="doc.css" />
+<title>EObject Conditions</title>
+</head>
+<body>
+<h1><a name="top">EObject Conditions</a></h1>
+
+<p>
+In addition to <a href="basicConditions.html#primitives">primitive value conditions</a>
+that test Java's (and EMF's) primitive data types, the EMF Model Query Framework
+provides a condition API geared specifically to working with model elements,
+that is <em class="CodeName">EObject</em>s in EMF resources.  These are the
+primary building blocks of executable queries, as it is with
+<a href="../javadoc/org/eclipse/emf/query/conditions/eobjects/EObjectCondition.html"><em class="CodeName">EObjectCondition</em></a>s
+that a query's <em class="CodeName">WHERE</em> clause filters the result set.
+</p>
+
+<h2>Abstract EObject Conditions</h2>
+
+<p>
+The root of the EObject condition hierarchy is the abstract
+<a href="../javadoc/org/eclipse/emf/query/conditions/eobjects/EObjectCondition.html"><em class="CodeName">EObjectCondition</em></a>
+class.  It is common for implementers of query conditions to extend this class
+to define their custom predicates using regular Java code.  However, it is
+rarely the case that this is actually necessary, as the framework provides a
+wide variety of condition classes that cover all of the most commonly used
+of EMF's reflective <em class="CodeName">EObject</em> API.
+</p>
+
+<blockquote>
+	<img src="images/eobjectConditions.png" alt="EObject Condition API"/><br/>
+	<font size="-2">[<a target="_blank" href="images/eobjectConditions.svg">as SVG</a>]</font>
+</blockquote>
+
+<p>
+Like its <a href="basicConditions.html#framework">superclass</a>, the
+<em class="CodeName">EObjectCondition</em> provides static factory methods for
+boolean operations, to combine EObject conditions into complex expressions.  In
+addition, the <em class="CodeName">EObjectConditionAdapter</em> class encapsulates
+any non-EObject <em class="CodeName">Condition</em> to embed it in an EObject-based
+expression.
+</p>
+
+<a name="basic"></a>
+<h2>Basic EObject Conditions</h2>
+
+<p>
+The EMF Query Framework provides a few simple instance-oriented conditions on
+<em class="CodeName">EObject</em>s.  These included tests for membership in
+a collection, object identity, and object classification.
+</p>
+
+<blockquote>
+	<img src="images/typerelation.png" alt="More EObject Conditions"/><br/>
+	<font size="-2">[<a target="_blank" href="images/typerelation.svg">as SVG</a>]</font>
+</blockquote>
+
+<p>
+The <a href="../javadoc/org/eclipse/emf/query/conditions/eobjects/IN.html"><em class="CodeName">IN</em></a>
+condition tests whether an <em class="CodeName">EObject</em> is in some collection.
+The client provides this collection either literally, as a single EObject or a
+set of EObjects, or as an abstract
+<a href="../javadoc/org/eclipse/emf/query/conditions/eobjects/IEObjectSource.html"><em class="CodeName">IEObjectSource</em></a>.
+This latter case is particularly interesting, because EMF queries are, themselves,
+object sources conforming to this interface.  This is one way in which queries
+can be nested.
+</p>
+<pre class="Code">
+EObject subject = getEObject();  // some hypothetical source of an EObject
+
+Set&lt;Book&gt; books = new HashSet&lt;Book&gt;();
+books.add(getBook("Bleak House"));
+books.add(getBook("The Pickwick Papers"));
+books.add(getBook("Nicholas Nickleby"));
+
+EObjectCondition cond = new <b>IN(books)</b>;
+
+System.out.println("Test: " + cond.isSatisfied(subject));
+</pre>
+
+<p>
+The <a href="../javadoc/org/eclipse/emf/query/conditions/eobjects/EObjectTypeRelationCondition.html"><em class="CodeName">EObjectTypeRelationCondition</em></a>
+class tests the <em class="CodeName">EClass</em> of an <em class="CodeName">EObject</em>.
+The <a href="../javadoc/org/eclipse/emf/query/conditions/eobjects/TypeRelation.html"><em class="CodeName">TypeRelation</em></a>
+enumerates all of the possible ways that the <em class="CodeName">EClass</em>
+of an object can relate to the constraining <em class="CodeName">EClass</em>.
+</p>
+<pre class="Code">
+Set&lt;EObject&gt; subjects = getEObject()s;  // some hypothetical source of EObjects
+
+EObjectCondition cond = new <b>EObjectTypeRelationCondition</b>(
+    EXTLibraryPackage.Literals.AUDIO_VISUAL_ITEM,
+    <b>TypeRelation.SAMETYPE_OR_SUBTYPE_LITERAL</b>);
+
+// which of the objects are audio-visual items of some kind?
+for (EObject subject : subjects) {
+    if (cond.isSatisfied(subject)) {
+        System.out.println(subject);
+    }
+}
+</pre>
+<p>
+The <a href="../javadoc/org/eclipse/emf/query/conditions/eobjects/EObjectInstanceCondition.html"><em class="CodeName">EObjectInstanceCondition</em></a>
+is a special case of the type condition that checks whether an input element is
+identical to a given element.
+</p>
+
+<hr/>
+
+<p>
+<a href="http://www.eclipse.org/legal/epl-v10.html">Copyright (c) 2000, 2007 IBM Corporation and others. All Rights Reserved.</a>
+</p>
+</body>
+</html>
