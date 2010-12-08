@@ -9,13 +9,20 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.ui,
  org.eclipse.ui.ide,
- org.eclipse.emf.importer,
- org.eclipse.emf.ecore.editor,
- org.antlr
+ org.eclipse.emf.importer;bundle-version="2.6.0",
+ org.eclipse.emf.ecore.editor;bundle-version="2.6.0",
+ org.antlr,
+ org.eclipse.emf.codegen.ecore.ui;bundle-version="2.6.0",
+ org.eclipse.emf.ecore.xmi;bundle-version="2.5.0",
+ org.eclipse.emf.ecoretools.tabbedproperties;bundle-version="0.8.0",
+ com.sap.furcas.utils,
+ com.sap.furcas.runtime.common;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
-Import-Package: com.sap.furcas.utils.projects,
+Import-Package: com.sap.furcas.ide.dslproject.conf,
+ com.sap.furcas.utils.projects,
  org.eclipse.emf.ecore,
- org.eclipse.emf.ecore.xmi,
  org.eclipse.emf.edit.ui.provider,
  org.eclipse.jdt.core
+Export-Package: com.sap.furcas.ide.projectwizard.util,
+ com.sap.furcas.ide.projectwizard.wizards

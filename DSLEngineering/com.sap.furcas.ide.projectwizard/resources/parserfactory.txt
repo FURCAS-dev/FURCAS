@@ -1,26 +1,54 @@
 package $ProjectName$.parser;
 
-import generated.Lexer;
-import generated.Parser;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
-public class ParserFactory extends AbstractRunletParserFactory<Parser, Lexer> {
+import generated.$CapLangName$Lexer;
+import generated.$CapLangName$Parser;
+
+import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
+
+public class $CapLangName$ParserFactory extends AbstractParserFactory<$CapLangName$Parser, $CapLangName$Lexer> {
 
     private static final String LANGUAGE_ID = "$CapLangName$";
 
     @Override
-    public Class<Lexer> getLexerClass() {
-        return Lexer.class;
+    public Class<$CapLangName$Lexer> getLexerClass() {
+	return $CapLangName$Lexer.class;
     }
 
     @Override
-    public Class<Parser> getParserClass() {
-        return Parser.class;
-    }
+    public Class<$CapLangName$Parser> getParserClass() {
+	return $CapLangName$Parser.class;
+	}
 
     @Override
     public String getLanguageId() {
         return LANGUAGE_ID;
     }
 
-}
+	@Override
+	public EPackage getMetamodelPackage(ResourceSet connection) {
+		EPackage eP = null;
+		EList<Resource> resources= connection.getResources();
+		for (Resource res : resources){
+			EList<EObject> eObjects = res.getContents();
+			for (EObject eObj : eObjects){
+				if (eObj instanceof EPackage)
+					eP = (EPackage) eObj;
+			}
+		}
+		
+		
+		return eP;
+	}
 
+	@Override
+	public String[] getHiddenChannelTokenNames() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

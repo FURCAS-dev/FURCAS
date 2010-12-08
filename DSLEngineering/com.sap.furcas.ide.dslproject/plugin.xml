@@ -78,19 +78,4 @@
          </enabledWhen>
       </page>
    </extension>
-   <extension
-         point="org.eclipse.ui.newWizards">
-      <category
-            id="com.sap.mi.textual.epi.wizard.category"
-            name="FURCAS DSL Engineering">
-      </category>
-      <wizard
-            category="com.sap.mi.textual.epi.wizard.category"
-            class="com.sap.furcas.ide.dslproject.projectwizard.TCSProjectsWizard"
-            id="com.sap.mi.textual.epi.projectwizard"
-            name="FURCAS DSL Project"
-            project="true">
-      </wizard>
-   </extension>
-
 </plugin>
