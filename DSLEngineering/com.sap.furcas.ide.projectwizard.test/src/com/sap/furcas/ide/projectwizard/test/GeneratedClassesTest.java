@@ -52,7 +52,7 @@ public class GeneratedClassesTest {
                 + File.pathSeparator + "../com.sap.furcas.ide.parserfactory/bin" + File.pathSeparator
                 + "../com.sap.furcas.runtime.common/bin" + File.pathSeparator + "../com.sap.furcas.runtime.parser/bin"
                 + File.pathSeparator + "../com.sap.furcas.ide.projectwizard.test/lib/static" + File.pathSeparator
-                + "./lib/org.eclipse.swt.gtk.linux.x86_64_3.6.1.v3655c.jar" + "../org.eclipse.jface.text/bin");
+                + "./lib/org.eclipse.swt.gtk.linux.x86_64_3.6.1.v3655c.jar");
 
         String[] bundles = new String[] { "org.eclipse.jface.text", "org.eclipse.ui", "org.eclipse.core.runtime",
                 "org.eclipse.ui.editors", "org.eclipse.core.resources", "org.eclipse.emf.ecore", "org.eclipse.emf.common",
