@@ -9,8 +9,8 @@
         <cs:dependency name="org.eclipse.platform" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.uml2.common.edit" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.uml2.uml.edit" componentType="osgi.bundle"/>
-        <cs:dependency name="org.junit4" componentType="osgi.bundle"/>        
         <cs:dependency name="org.eclipse.xtext.sdk" componentType="eclipse.feature"/>
+        <cs:dependency name="org.junit4" componentType="osgi.bundle"/>
     </cs:dependencies>
     <cs:actions>
         <cs:public name="setup.promoter" actor="ant">
@@ -20,12 +20,11 @@
             </cs:actorProperties>
             <cs:products alias="output" base="${buckminster.output}/promoter/"/>
         </cs:public>
-        <cs:public name="publish.build" actor="ant">
+        <cs:public name="setup.publisher" actor="ant">
             <cs:actorProperties>
                 <cs:property key="buildFile" value="promoter.ant"/>
-                <cs:property key="targets" value="publish.build"/>
+                <cs:property key="targets" value="setup.publisher"/>
             </cs:actorProperties>
-            <cs:products alias="output" base="${buckminster.output}/promoter/"/>
         </cs:public>
     </cs:actions>
 </cs:cspec>
