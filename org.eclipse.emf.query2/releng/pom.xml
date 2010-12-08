@@ -26,9 +26,11 @@
 		<module>../examples/org.eclipse.emf.query2.examples</module>
 		
 		<!-- Test plugins -->
+		<!--  
 		<module>../tests/org.eclipse.emf.query.index.test</module>
 		<module>../tests/org.eclipse.emf.query2.test</module>
 		<module>../tests/org.eclipse.emf.query2.librarytest</module>
+		 -->
 
 		
 		<!-- features -->
@@ -37,7 +39,7 @@
 		<module>../plugins/org.eclipse.emf.query2.core.feature</module>
 		<module>../plugins/org.eclipse.emf.query2.stringsyntax.feature</module>
 		
-		<module>../tests/org.eclipse.emf.query2.test.feature</module>
+		 <!-- <module>../tests/org.eclipse.emf.query2.test.feature</module>  -->
 		
 		<!-- update site -->
 		<module>../plugins/org.eclipse.emf.query2.updatesite</module>
