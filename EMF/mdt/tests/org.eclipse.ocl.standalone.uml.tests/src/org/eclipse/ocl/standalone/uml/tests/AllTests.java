@@ -34,14 +34,14 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EPackage;
+//import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.ocl.Environment;
-import org.eclipse.ocl.uml.UMLEnvironment;
-import org.eclipse.ocl.uml.UMLEnvironmentFactory;
-import org.eclipse.uml2.uml.UMLPackage;
+//import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+//import org.eclipse.ocl.Environment;
+//import org.eclipse.ocl.uml.UMLEnvironment;
+//import org.eclipse.ocl.uml.UMLEnvironmentFactory;
+//import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
 
@@ -54,13 +54,13 @@ public class AllTests extends TestCase {
     static {
         configurePlatformProtocol();
         configureEMF();
-        configureOCL();
+        //configureOCL();
     }
     
     public static Test suite() {
     	
-        TestSuite result = new TestSuite("All OCL Tests"); //$NON-NLS-1$
-        
+        TestSuite result = new TestSuite("All UML Tests"); //$NON-NLS-1$
+        //System.setProperty("standalone", "yes");
         result.addTest(org.eclipse.ocl.uml.tests.AllTests.suite());
         
         return result;
@@ -72,18 +72,18 @@ public class AllTests extends TestCase {
         //
         
         Map<String, Object> extMap = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();
-        extMap.put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
+        //extMap.put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
         extMap.put("uml", UMLResource.Factory.INSTANCE); //$NON-NLS-1$
 
         //
         // configure EPackages
         //
         
-        Map<String, Object> pkgReg = EPackage.Registry.INSTANCE;
+        //Map<String, Object> pkgReg = EPackage.Registry.INSTANCE;
         // extra mapping for UML backward compatibility
-        pkgReg.put("http://www.eclipse.org/uml2/2.0.0/UML", UMLPackage.eINSTANCE); //$NON-NLS-1$
+        //pkgReg.put("http://www.eclipse.org/uml2/2.0.0/UML", UMLPackage.eINSTANCE); //$NON-NLS-1$
         // force initialization and registration of various EPackages
-        org.eclipse.ocl.uml.UMLPackage.eINSTANCE.eClass();
+        //org.eclipse.ocl.uml.UMLPackage.eINSTANCE.eClass();
         
         //
         // configure URI mappings
@@ -105,7 +105,7 @@ public class AllTests extends TestCase {
     }
     
     private static String getUMLResourcesJar() {
-        File targetDir = new File(System.getProperty("target.location")); //$NON-NLS-1$
+        File targetDir = new File(System.getProperty("eclipse.location")); //$NON-NLS-1$
         File result = findFile(targetDir, new FilenameFilter() {
         
             public boolean accept(File dir, String name) {
@@ -139,17 +139,6 @@ public class AllTests extends TestCase {
         }
         
         return null;
-    }
-    
-    private static void configureOCL() {
-        Environment.Registry reg = Environment.Registry.INSTANCE;
-        
-        // register prototype environments
-		UMLEnvironment umlEnv = new UMLEnvironmentFactory().createEnvironment();
-		reg.registerEnvironment(umlEnv);
-        
-        // register their standard library packages
-		umlEnv.getOCLStandardLibrary();
     }
     
     private static void configurePlatformProtocol() {
