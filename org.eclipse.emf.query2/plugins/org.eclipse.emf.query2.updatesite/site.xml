@@ -9,6 +9,9 @@
    <feature url="features/org.eclipse.emf.query2.examples.feature_1.0.0.qualifier.jar" id="org.eclipse.emf.query2.examples.feature" version="1.0.0.qualifier">
       <category name="Query2 Tests and Examples"/>
    </feature>
+   <feature url="features/org.eclipse.emf.query2.test.feature_1.0.0.qualifier.jar" id="org.eclipse.emf.query2.test.feature" version="1.0.0.qualifier">
+      <category name="Query2 Tests and Examples"/>
+   </feature>
    <category-def name="Query2 Core" label="Query2 Core"/>
    <category-def name="Query2 String Syntax" label="Query2 String Syntax"/>
    <category-def name="Query2 Tests and Examples" label="Query2 Tests and Examples"/>
