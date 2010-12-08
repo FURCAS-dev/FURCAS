@@ -1,4 +1,5 @@
 package org.eclipse.emf.query2.librarytest;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.query.QueryCommandWithResult;
 import org.eclipse.emf.query.index.query.QueryExecutor;
@@ -12,7 +13,6 @@ public class IndexQueryCountTest extends QueryTestCase {
 		QueryCommandWithResult<Integer> command = null;
 		getDefaultIndexStore().executeQueryCommand(command = new QueryCommandWithResult<Integer>() {
 
-			@Override
 			public void execute(QueryExecutor queryExecutor) {
 				EObjectOfTypeCountQuery query = new EObjectOfTypeCountQuery();
 				query.eClassUri(URI.createURI("http://eclipse.org/modeling/emf/query/1.0.0#//Book"));
@@ -26,7 +26,6 @@ public class IndexQueryCountTest extends QueryTestCase {
 		long time = System.nanoTime();
 		getDefaultIndexStore().executeQueryCommand(command = new QueryCommandWithResult<Integer>() {
 
-			@Override
 			public void execute(QueryExecutor queryExecutor) {
 				EObjectOfTypeCountQuery query = new EObjectOfTypeCountQuery();
 				query.eClassUri(URI.createURI("http://eclipse.org/modeling/emf/query/1.0.0#//Book"));
