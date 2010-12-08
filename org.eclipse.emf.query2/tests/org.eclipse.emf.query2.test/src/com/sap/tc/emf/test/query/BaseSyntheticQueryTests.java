@@ -145,8 +145,9 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 		// test setup sanity check
 		/*
-		 * Note: setting the modification tracking to active may be done here instead of in the test client, but then the 'withSave' option
-		 * must always be true (?)
+		 * Note: setting the modification tracking to active may be done here
+		 * instead of in the test client, but then the 'withSave' option must
+		 * always be true (?)
 		 */
 		for (URI uri : mdi.getAllPartitions()) {
 			assertTrue("Modification tracking must be enabled for query tests", myTestClient.getResource(uri).isTrackingModification());
@@ -247,8 +248,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 	protected boolean basic_get_attributes_ast() throws Exception {
 
 		int testClassNr = 1;
-		FromType fromRelationShip = new FromType("mm", EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getEClassifier("TestClass"
-				+ testClassNr)), false);
+		FromType fromRelationShip = new FromType("mm", EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getEClassifier("TestClass" + testClassNr)), false);
 		FromEntry[] fromEntries = new FromEntry[] { fromRelationShip };
 
 		SelectAttrs selectMeName = new SelectAttrs("mm", new String[] { "name", "attrInt" + testClassNr });
@@ -262,8 +262,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean basic_get_attributes() throws Exception {
 
-		String query = "select mm.name, mm.attrInt1 from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] as mm";
+		String query = "select mm.name, mm.attrInt1 from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as mm";
 		ResultSet resultSet = this.executeQuery(query);
 
 		return this.basic_get_attributes_check(resultSet);
@@ -271,8 +270,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean basic_get_attributes_with_removal() throws Exception {
 
-		String query = "select mm.name, mm.attrInt1 from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] as mm";
+		String query = "select mm.name, mm.attrInt1 from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as mm";
 		ResultSet resultSet = this.executeQuery(query);
 
 		boolean successful = this.basic_get_attributes_check(resultSet);
@@ -289,8 +287,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean basic_get_attributes_with_comparison() throws Exception {
 
-		String query = "select mm.name, mm.attrInt1 from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] as mm, [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as mm2 where mm = mm2";
+		String query = "select mm.name, mm.attrInt1 from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as mm, ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as mm2 where mm = mm2";
 		ResultSet resultSet = this.executeQuery(query);
 
 		return this.basic_get_attributes_check(resultSet);
@@ -306,9 +304,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 			}
 		}
 
-		String query = "select mm.name, mm.attrInt1 from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] as mm, [" + EcoreUtil.getURI(EcorePackage.eINSTANCE.getEObject()) + "] as refEl in resources{" + partitions
-				+ "} where mm = refEl";
+		String query = "select mm.name, mm.attrInt1 from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as mm, ["
+				+ EcoreUtil.getURI(EcorePackage.eINSTANCE.getEObject()) + "] as refEl in resources{" + partitions + "} where mm = refEl";
 		ResultSet resultSet = this.executeQuery(query);
 
 		return this.basic_get_attributes_check(resultSet);
@@ -318,10 +315,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 		List<Object[]> intendedResultSet = new ArrayList<Object[]>();
 		for (int i = 0; i < instSize; i++) {
-			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, i, false),
-					new Integer(ModelDataInstantiator.calculateIntAttr(1, i, 1)) });
-			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, i, true),
-					new Integer(ModelDataInstantiator.calculateIntAttr(1, i, 1)) });
+			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, i, false), new Integer(ModelDataInstantiator.calculateIntAttr(1, i, 1)) });
+			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, i, true), new Integer(ModelDataInstantiator.calculateIntAttr(1, i, 1)) });
 		}
 
 		if (resultSet.isEmpty()) {
@@ -333,8 +328,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean basic_get_attributes_limited() throws Exception {
 
-		String query = "select mm.name, mm.attrInt1 from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] as mm";
+		String query = "select mm.name, mm.attrInt1 from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as mm";
 		ResultSet resultSet = this.executeQuery(query, 1);
 
 		return this.basic_get_attributes_limited_check(resultSet);
@@ -344,10 +338,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 		List<Object[]> intendedResultSet = new ArrayList<Object[]>(1);
 		for (int i = 0; i < instSize; i++) {
-			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, i, false),
-					new Integer(ModelDataInstantiator.calculateIntAttr(1, i, 1)) });
-			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, i, true),
-					new Integer(ModelDataInstantiator.calculateIntAttr(1, i, 1)) });
+			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, i, false), new Integer(ModelDataInstantiator.calculateIntAttr(1, i, 1)) });
+			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, i, true), new Integer(ModelDataInstantiator.calculateIntAttr(1, i, 1)) });
 		}
 
 		if (resultSet.getSize() != 1) {
@@ -424,8 +416,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean like_and_not_like() throws Exception {
 
-		String query = "select mm.name, mm.attrInt1 " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] as mm " + "where for mm((name not like 'TestClass*Obj*') and (name like 'TestS?b*'))";
+		String query = "select mm.name, mm.attrInt1 " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as mm "
+				+ "where for mm((name not like 'TestClass*Obj*') and (name like 'TestS?b*'))";
 		ResultSet resultSet = this.executeQuery(query);
 
 		return this.like_and_not_like_check(resultSet);
@@ -433,8 +425,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean like_and_not_like_2() throws Exception {
 
-		String query = "select mm.name, mm.attrInt1 " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] as mm " + "where mm.name not like 'TestClass*Obj*'  where mm.name like 'TestS?b*'";
+		String query = "select mm.name, mm.attrInt1 " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as mm "
+				+ "where mm.name not like 'TestClass*Obj*'  where mm.name like 'TestS?b*'";
 		ResultSet resultSet = this.executeQuery(query);
 
 		return this.like_and_not_like_check(resultSet);
@@ -444,8 +436,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 		List<Object[]> intendedResultSet = new ArrayList<Object[]>();
 		for (int i = 0; i < instSize; i++) {
-			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, i, true),
-					new Integer(ModelDataInstantiator.calculateIntAttr(1, i, 1)) });
+			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, i, true), new Integer(ModelDataInstantiator.calculateIntAttr(1, i, 1)) });
 		}
 
 		return this.verifyResultSet(resultSet, intendedResultSet);
@@ -453,8 +444,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean where_not_like() throws Exception {
 
-		String query = "select mm.name, mm.attrInt1 " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] as mm " + "where for mm(not(name like 'TestClass*Obj*'))";
+		String query = "select mm.name, mm.attrInt1 " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as mm "
+				+ "where for mm(not(name like 'TestClass*Obj*'))";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -463,8 +454,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean where_not_like_2() throws Exception {
 
-		String query = "select mm.name, mm.attrInt1 " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] as mm " + "where mm.name not like 'TestClass*Obj*'";
+		String query = "select mm.name, mm.attrInt1 " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as mm "
+				+ "where mm.name not like 'TestClass*Obj*'";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -473,8 +464,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean where_not_like_and_not_null_check() throws Exception {
 
-		String query = "select mm.name, mm.attrInt1 from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] as mm " + " where mm.reference1x2 <> null " + "where mm.name not like 'TestClass*Obj*'";
+		String query = "select mm.name, mm.attrInt1 from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as mm "
+				+ " where mm.reference1x2 <> null " + "where mm.name not like 'TestClass*Obj*'";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -485,11 +476,9 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 		List<Object[]> intendedResultSet = new ArrayList<Object[]>();
 		for (int i = 0; i < instSize; i++) {
-			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, i, false),
-					new Integer(ModelDataInstantiator.calculateIntAttr(1, i, 1)) });
+			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, i, false), new Integer(ModelDataInstantiator.calculateIntAttr(1, i, 1)) });
 			if (expectSubtypes)
-				intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, i, true),
-						new Integer(ModelDataInstantiator.calculateIntAttr(1, i, 1)) });
+				intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, i, true), new Integer(ModelDataInstantiator.calculateIntAttr(1, i, 1)) });
 		}
 
 		return this.verifyResultSet(resultSet, intendedResultSet);
@@ -532,11 +521,10 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean double_assoc() throws Exception {
 
-		String query = "select cl0.name, cl1.name, cl2.name " + "from ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] as cl0, " + " ["
+		String query = "select cl0.name, cl1.name, cl2.name " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] as cl0, " + " ["
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1, " + " ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] as cl2 " + "where cl0.reference0x1 = cl1 "
-				+ "where cl1.reference1x2 = cl2 " + "where for cl2(name = 'TestClass2Inst0')";
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] as cl2 " + "where cl0.reference0x1 = cl1 " + "where cl1.reference1x2 = cl2 "
+				+ "where for cl2(name = 'TestClass2Inst0')";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -545,12 +533,11 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean double_assoc_variant() throws Exception {
 
-		String query = "select cl0.name, cl1.name, cl2.name " + "from ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] as cl0, " + " ["
+		String query = "select cl0.name, cl1.name, cl2.name " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] as cl0, " + " ["
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1, " + " ["
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] as cl2, " + " ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] as cl2_2 " + "where cl0.reference0x1 = cl1 "
-				+ "where cl1.reference1x2 = cl2 " + "where cl2 = cl2_2 " + "where for cl2_2(name = 'TestClass2Inst0')";
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] as cl2_2 " + "where cl0.reference0x1 = cl1 " + "where cl1.reference1x2 = cl2 "
+				+ "where cl2 = cl2_2 " + "where for cl2_2(name = 'TestClass2Inst0')";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -559,11 +546,10 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean double_assoc_2() throws Exception {
 
-		String query = "select cl0.name, cl1.name, cl2.name " + "from ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] as cl0, " + " ["
+		String query = "select cl0.name, cl1.name, cl2.name " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] as cl0, " + " ["
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1, " + " ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] as cl2 " + "where cl0.reference0x1 = cl1 "
-				+ "where cl1.reference1x2 = cl2 " + "where cl2.name = 'TestClass2Inst0'";
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] as cl2 " + "where cl0.reference0x1 = cl1 " + "where cl1.reference1x2 = cl2 "
+				+ "where cl2.name = 'TestClass2Inst0'";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -572,11 +558,10 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean double_assoc_3() throws Exception {
 
-		String query = "select cl0.name, cl1.name, cl2.name " + "from ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] as cl0, " + " ["
+		String query = "select cl0.name, cl1.name, cl2.name " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] as cl0, " + " ["
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1, " + " ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] as cl2 " + "where cl0.reference0x1 = cl1 "
-				+ "where cl1.reference1x2 = cl2 " + "where cl2.name = 'TestClass2Inst0'";
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] as cl2 " + "where cl0.reference0x1 = cl1 " + "where cl1.reference1x2 = cl2 "
+				+ "where cl2.name = 'TestClass2Inst0'";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -585,12 +570,11 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean double_assoc_with_comparison() throws Exception {
 
-		String query = "select cl0.name, cl1.name, cl2.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0())
-				+ "] as cl0, [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1, ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1extra, ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] as cl2 " + "where cl0.reference0x1 = cl1 "
-				+ "where cl1.reference1x2 = cl2 " + "where cl1 = cl1extra " + "where cl0.reference0x1 = cl1extra "
-				+ "where cl1extra.reference1x2 = cl2 " + "where for cl2(name = 'TestClass2Inst0')";
+		String query = "select cl0.name, cl1.name, cl2.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] as cl0, ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1, [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
+				+ "] as cl1extra, [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] as cl2 " + "where cl0.reference0x1 = cl1 "
+				+ "where cl1.reference1x2 = cl2 " + "where cl1 = cl1extra " + "where cl0.reference0x1 = cl1extra " + "where cl1extra.reference1x2 = cl2 "
+				+ "where for cl2(name = 'TestClass2Inst0')";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -599,11 +583,10 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean double_paired_assocs() throws Exception {
 
-		String query = "select cl0.name, cl1.name, cl2.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0())
-				+ "] as cl0, [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1, " + "["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] as cl2 " + "where cl0.reference0x1 = cl1 "
-				+ "where cl1.reference1x2 = cl2 " + "where cl0.reference0x1 = cl1 " + "where cl1.reference1x2 = cl2 "
-				+ "where for cl2(name = 'TestClass2Inst0')";
+		String query = "select cl0.name, cl1.name, cl2.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] as cl0, ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1, " + "["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] as cl2 " + "where cl0.reference0x1 = cl1 " + "where cl1.reference1x2 = cl2 "
+				+ "where cl0.reference0x1 = cl1 " + "where cl1.reference1x2 = cl2 " + "where for cl2(name = 'TestClass2Inst0')";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -613,8 +596,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 	private boolean double_assoc_check(ResultSet resultSet) {
 
 		List<Object[]> intendedResultSet = new ArrayList<Object[]>();
-		intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(0, 0, false),
-				ModelDataInstantiator.calculateClassName(1, 0, false), ModelDataInstantiator.calculateClassName(2, 0, false) });
+		intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(0, 0, false), ModelDataInstantiator.calculateClassName(1, 0, false),
+				ModelDataInstantiator.calculateClassName(2, 0, false) });
 
 		return this.verifyResultSet(resultSet, intendedResultSet);
 	}
@@ -645,8 +628,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean string_null_comparison() throws Exception {
 
-		String query = "select cl0.attrString9 " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0())
-				+ "] withoutsubtypes as cl0 " + "where for cl0(attrString9 = null)";
+		String query = "select cl0.attrString9 " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] withoutsubtypes as cl0 "
+				+ "where for cl0(attrString9 = null)";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -655,8 +638,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean string_null_comparison_2() throws Exception {
 
-		String query = "select cl0.attrString9 " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0())
-				+ "] withoutsubtypes as cl0 " + "where cl0.attrString9 = null";
+		String query = "select cl0.attrString9 " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] withoutsubtypes as cl0 "
+				+ "where cl0.attrString9 = null";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -707,8 +690,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean string_not_null_comparison() throws Exception {
 
-		String query = "select cl0.attrString9 " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0())
-				+ "] withoutsubtypes as cl0 " + "where for cl0(attrString9 <> null)";
+		String query = "select cl0.attrString9 " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] withoutsubtypes as cl0 "
+				+ "where for cl0(attrString9 <> null)";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -717,8 +700,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean string_not_null_comparison_2() throws Exception {
 
-		String query = "select cl0.attrString9 " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0())
-				+ "] withoutsubtypes as cl0 " + "where cl0.attrString9 <> null";
+		String query = "select cl0.attrString9 " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] withoutsubtypes as cl0 "
+				+ "where cl0.attrString9 <> null";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -758,8 +741,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean empty_string_comparison() throws Exception {
 
-		String query = "select cl0.attrString5 " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0())
-				+ "] withoutsubtypes as cl0 " + "where for cl0(attrString5 = '')";
+		String query = "select cl0.attrString5 " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] withoutsubtypes as cl0 "
+				+ "where for cl0(attrString5 = '')";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -768,8 +751,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean empty_string_comparison_2() throws Exception {
 
-		String query = "select cl0.attrString5 " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0())
-				+ "] withoutsubtypes as cl0 " + "where cl0.attrString5 = ''";
+		String query = "select cl0.attrString5 " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] withoutsubtypes as cl0 "
+				+ "where cl0.attrString5 = ''";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -779,8 +762,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 	private boolean empty_string_comparison_check(ResultSet resultSet) {
 
 		List<Object[]> intendedResultSet = new ArrayList<Object[]>();
-		if (attrSize > 4
-				&& !(createDirtyData && (myTestClient.getOrCreateResourceStable(ModelDataInstantiator.getInstPartName(0)).isModified()))) {
+		if (attrSize > 4 && !(createDirtyData && (myTestClient.getOrCreateResourceStable(ModelDataInstantiator.getInstPartName(0)).isModified()))) {
 			for (int i = 0; i < instSize; i++) {
 				intendedResultSet.add(new Object[] { "" });
 			}
@@ -829,9 +811,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean nested_query_with_reference() throws Exception {
 
-		String query = "select cl1.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] withoutsubtypes as cl1 " + "where cl1.reference1x2 in " + "(select cl2 from ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] withoutsubtypes as cl2 "
+		String query = "select cl1.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] withoutsubtypes as cl1 "
+				+ "where cl1.reference1x2 in " + "(select cl2 from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] withoutsubtypes as cl2 "
 				+ " where for cl2(name = 'TestClass2Inst0'))";
 
 		ResultSet resultSet = this.executeQuery(query);
@@ -841,10 +822,9 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean nested_query_with_reference_variant() throws Exception {
 
-		String query = "select cl1.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] withoutsubtypes as cl1, " + "[" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] as cl1_1 " + "where cl1 = cl1_1 " + "where cl1.reference1x2 in " + "(select cl2 from ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] withoutsubtypes as cl2 "
+		String query = "select cl1.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] withoutsubtypes as cl1, " + "["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1_1 " + "where cl1 = cl1_1 " + "where cl1.reference1x2 in "
+				+ "(select cl2 from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] withoutsubtypes as cl2 "
 				+ " where for cl2(name = 'TestClass2Inst0'))";
 
 		ResultSet resultSet = this.executeQuery(query);
@@ -854,9 +834,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean nested_query_with_reference_2() throws Exception {
 
-		String query = "select cl1.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] withoutsubtypes as cl1 " + "where cl1.reference1x2 in " + "(select cl2 from ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] withoutsubtypes as cl2 "
+		String query = "select cl1.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] withoutsubtypes as cl1 "
+				+ "where cl1.reference1x2 in " + "(select cl2 from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] withoutsubtypes as cl2 "
 				+ " where cl2.name = 'TestClass2Inst0')";
 
 		ResultSet resultSet = this.executeQuery(query);
@@ -902,8 +881,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 	protected boolean nested_query_with_reference_and_not() throws Exception {
 
 		String query = "select cl1.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1 "
-				+ "where cl1.name not like 'TestClass*Obj*'  where cl1.name like 'TestS?b*' where cl1.reference1x2 not in "
-				+ "(select cl2 from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] as cl2)";
+				+ "where cl1.name not like 'TestClass*Obj*'  where cl1.name like 'TestS?b*' where cl1.reference1x2 not in " + "(select cl2 from ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] as cl2)";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -971,10 +950,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean nested_query_with_assoc_end() throws Exception {
 
-		String query = "select cl0.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] as cl0 "
-				+ "where cl0.reference0x1 in " + "(select cl1 from ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1 "
-				+ " where for cl1(name ='TestClass1Inst0'))";
+		String query = "select cl0.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] as cl0 " + "where cl0.reference0x1 in "
+				+ "(select cl1 from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1 " + " where for cl1(name ='TestClass1Inst0'))";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -983,10 +960,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean nested_query_with_assoc_end_2() throws Exception {
 
-		String query = "select cl0.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] as cl0 "
-				+ "where cl0.reference0x1 in " + "(select cl1 from ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1 "
-				+ " where cl1.name = 'TestClass1Inst0')";
+		String query = "select cl0.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] as cl0 " + "where cl0.reference0x1 in "
+				+ "(select cl1 from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1 " + " where cl1.name = 'TestClass1Inst0')";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -1029,8 +1004,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 		FromEntry[] fromEntries = new FromEntry[mmSize];
 
 		for (int i = 0; i < mmSize; i++) {
-			fromEntries[i] = new FromType("cl" + i, EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getEClassifier("TestClass" + i)),
-					true);
+			fromEntries[i] = new FromType("cl" + i, EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getEClassifier("TestClass" + i)), true);
 		}
 
 		SelectAttrs selectName1 = new SelectAttrs("cl0", new String[] { "name" });
@@ -1056,8 +1030,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean complex_assoc_linear() throws Exception {
 
-		String query = "select cl0.name " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] as cl0, "
-				+ "     [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1, " + "     ["
+		String query = "select cl0.name " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] as cl0, " + "     ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1, " + "     ["
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] as cl2, " + "     ["
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass3()) + "] as cl3, " + "     ["
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass4()) + "] as cl4, " + "     ["
@@ -1065,10 +1039,9 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass6()) + "] as cl6, " + "     ["
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass7()) + "] as cl7, " + "     ["
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass8()) + "] as cl8, " + "     ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass9()) + "] as cl9 " + "where cl0.reference0x1 = cl1 "
-				+ "where cl1.reference1x2 = cl2 " + "where cl2.reference2x3 = cl3 " + "where cl3.reference3x4 = cl4 "
-				+ "where cl4.reference4x5 = cl5 " + "where cl5.reference5x6 = cl6 " + "where cl6.reference6x7 = cl7 "
-				+ "where cl7.reference7x8 = cl8 " + "where cl8.reference8x9 = cl9 " + "where for cl9(name ='TestClass9Inst1')";
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass9()) + "] as cl9 " + "where cl0.reference0x1 = cl1 " + "where cl1.reference1x2 = cl2 "
+				+ "where cl2.reference2x3 = cl3 " + "where cl3.reference3x4 = cl4 " + "where cl4.reference4x5 = cl5 " + "where cl5.reference5x6 = cl6 "
+				+ "where cl6.reference6x7 = cl7 " + "where cl7.reference7x8 = cl8 " + "where cl8.reference8x9 = cl9 " + "where for cl9(name ='TestClass9Inst1')";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -1115,8 +1088,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 		for (int i = 0; i < mmSize; i++) {
 
-			fromEntries[i] = new FromType("cl" + i, EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getEClassifier("TestClass" + i)),
-					true);
+			fromEntries[i] = new FromType("cl" + i, EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getEClassifier("TestClass" + i)), true);
 		}
 
 		SelectAttrs selectName1 = new SelectAttrs("cl0", new String[] { "name" });
@@ -1136,8 +1108,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 		}
 
 		for (int i = 0; i < (mmSize / 2); i++) {
-			whereEntries[i + (mmSize - 1) - 1] = new WhereRelationReference("cl" + i, "reference" + i + "x" + (i + (mmSize / 2)), "cl"
-					+ (i + (mmSize / 2)));
+			whereEntries[i + (mmSize - 1) - 1] = new WhereRelationReference("cl" + i, "reference" + i + "x" + (i + (mmSize / 2)), "cl" + (i + (mmSize / 2)));
 		}
 
 		whereEntries[(mmSize / 2 - 1) + (mmSize - 1)] = localWhereEntry;
@@ -1151,8 +1122,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean complex_assoc_grid() throws Exception {
 
-		String query = "select cl0.name " + "  from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0())
-				+ "] as cl0, " + "  [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1, " + " ["
+		String query = "select cl0.name " + "  from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] as cl0, " + "  ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1, " + " ["
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] as cl2, " + " ["
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass3()) + "] as cl3, " + " ["
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass4()) + "] as cl4, " + " ["
@@ -1160,12 +1131,10 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass6()) + "] as cl6, " + " ["
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass7()) + "] as cl7, " + " ["
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass8()) + "] as cl8, " + " ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass9()) + "] as cl9 " + " where cl0.reference0x1 = cl1 "
-				+ " where cl1.reference1x2 = cl2 " + " where cl2.reference2x3 = cl3 " + " where cl3.reference3x4 = cl4 "
-				+ " where cl5.reference5x6 = cl6 " + " where cl6.reference6x7 = cl7 " + " where cl7.reference7x8 = cl8 "
-				+ " where cl8.reference8x9 = cl9 " + " where cl0.reference0x5 = cl5 " + " where cl1.reference1x6 = cl6 "
-				+ " where cl2.reference2x7 = cl7 " + " where cl3.reference3x8 = cl8 " + " where cl4.reference4x9 = cl9 "
-				+ " where for cl9(name like 'TestClass9Inst2*')";
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass9()) + "] as cl9 " + " where cl0.reference0x1 = cl1 " + " where cl1.reference1x2 = cl2 "
+				+ " where cl2.reference2x3 = cl3 " + " where cl3.reference3x4 = cl4 " + " where cl5.reference5x6 = cl6 " + " where cl6.reference6x7 = cl7 "
+				+ " where cl7.reference7x8 = cl8 " + " where cl8.reference8x9 = cl9 " + " where cl0.reference0x5 = cl5 " + " where cl1.reference1x6 = cl6 "
+				+ " where cl2.reference2x7 = cl7 " + " where cl3.reference3x8 = cl8 " + " where cl4.reference4x9 = cl9 " + " where for cl9(name like 'TestClass9Inst2*')";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -1183,20 +1152,14 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass6()) + "] as cl6, " + " ["
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass7()) + "] as cl7, " + " ["
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass8()) + "] as cl8, " + " ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass9()) + "] as cl9 "
-				+ " where cl0.reference0x1 = cl1 where cl0.attrInt0 < cl1.attrInt0 "
-				+ " where cl1.reference1x2 = cl2 where cl1.attrDouble0 < cl2.attrDouble0 "
-				+ " where cl2.reference2x3 = cl3 where cl2.attrInt0 < cl3.attrInt0 "
-				+ " where cl3.reference3x4 = cl4 where cl3.attrDouble0 <= cl4.attrDouble0 "
-				+ " where cl5.reference5x6 = cl6 where cl5.attrInt0 <= cl6.attrInt0 "
-				+ " where cl6.reference6x7 = cl7 where cl7.attrDouble0 > cl6.attrDouble0 "
-				+ " where cl7.reference7x8 = cl8 where cl8.attrInt0 > cl7.attrInt0 "
-				+ " where cl8.reference8x9 = cl9 where cl9.attrDouble0 >= cl8.attrDouble0 "
-				+ " where cl0.reference0x5 = cl5 where cl5.attrInt0 >= cl0.attrInt0 "
-				+ " where cl1.reference1x6 = cl6 where cl1.attrDouble0 <> cl6.attrDouble0 "
-				+ " where cl2.reference2x7 = cl7 where cl2.attrInt0 <> cl7.attrInt0 "
-				+ " where cl3.reference3x8 = cl8 where cl3.attrDouble0 < cl8.attrDouble0 "
-				+ " where cl4.reference4x9 = cl9 where cl4.attrInt0 < cl9.attrInt0 " + " where for cl9(name like 'TestClass9Inst2*')";
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass9()) + "] as cl9 " + " where cl0.reference0x1 = cl1 where cl0.attrInt0 < cl1.attrInt0 "
+				+ " where cl1.reference1x2 = cl2 where cl1.attrDouble0 < cl2.attrDouble0 " + " where cl2.reference2x3 = cl3 where cl2.attrInt0 < cl3.attrInt0 "
+				+ " where cl3.reference3x4 = cl4 where cl3.attrDouble0 <= cl4.attrDouble0 " + " where cl5.reference5x6 = cl6 where cl5.attrInt0 <= cl6.attrInt0 "
+				+ " where cl6.reference6x7 = cl7 where cl7.attrDouble0 > cl6.attrDouble0 " + " where cl7.reference7x8 = cl8 where cl8.attrInt0 > cl7.attrInt0 "
+				+ " where cl8.reference8x9 = cl9 where cl9.attrDouble0 >= cl8.attrDouble0 " + " where cl0.reference0x5 = cl5 where cl5.attrInt0 >= cl0.attrInt0 "
+				+ " where cl1.reference1x6 = cl6 where cl1.attrDouble0 <> cl6.attrDouble0 " + " where cl2.reference2x7 = cl7 where cl2.attrInt0 <> cl7.attrInt0 "
+				+ " where cl3.reference3x8 = cl8 where cl3.attrDouble0 < cl8.attrDouble0 " + " where cl4.reference4x9 = cl9 where cl4.attrInt0 < cl9.attrInt0 "
+				+ " where for cl9(name like 'TestClass9Inst2*')";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -1404,8 +1367,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 		// we first calculate a pre-query to obtain all MRIs of type TestClass2
 		int fixedIndex = 2;
 
-		FromEntry intermediateFromEntry = new FromType("intermediateAlias", EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE
-				.getEClassifier("TestClass" + fixedIndex)), true);
+		FromEntry intermediateFromEntry = new FromType("intermediateAlias", EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getEClassifier("TestClass" + fixedIndex)), true);
 		SelectAlias intermediateSelectEntry = new SelectAlias("intermediateAlias");
 
 		WhereString whereObjectValued = new WhereString("name", Operation.LIKE, "TestClass*Obj*");
@@ -1434,11 +1396,9 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 		for (int i = 0; i < mmSize; i++) {
 			if (i != fixedIndex) {
-				fromEntries[i] = new FromType("cl" + i, EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE
-						.getEClassifier("TestClass" + i)), true);
+				fromEntries[i] = new FromType("cl" + i, EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getEClassifier("TestClass" + i)), true);
 			} else {
-				fromEntries[i] = new FromFixedSet("cl" + i, EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getEClassifier("TestClass"
-						+ i)), intermediateElements);
+				fromEntries[i] = new FromFixedSet("cl" + i, EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getEClassifier("TestClass" + i)), intermediateElements);
 			}
 		}
 
@@ -1459,8 +1419,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 		}
 
 		for (int i = 0; i < (mmSize / 2); i++) {
-			whereEntries[i + (mmSize - 1) - 1] = new WhereRelationReference("cl" + i, "reference" + i + "x" + (i + (mmSize / 2)), "cl"
-					+ (i + (mmSize / 2)));
+			whereEntries[i + (mmSize - 1) - 1] = new WhereRelationReference("cl" + i, "reference" + i + "x" + (i + (mmSize / 2)), "cl" + (i + (mmSize / 2)));
 		}
 
 		whereEntries[(mmSize / 2 - 1) + (mmSize - 1)] = localWhereEntry;
@@ -1476,8 +1435,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 		// we first calculate a pre-query to obtain all MRIs of type TestClass2
 		int fixedIndex = 2;
-		FromEntry intermediateFromEntry = new FromType("intermediateAlias", EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE
-				.getEClassifier("TestClass" + fixedIndex)), true);
+		FromEntry intermediateFromEntry = new FromType("intermediateAlias", EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getEClassifier("TestClass" + fixedIndex)), true);
 		SelectAlias intermediateSelectEntry = new SelectAlias("intermediateAlias");
 
 		WhereString whereObjectValued = new WhereString("name", Operation.LIKE, "TestClass*Obj*");
@@ -1505,21 +1463,19 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 		// remove last comma
 		elements = elements.substring(0, elements.length() - 2);
 
-		String query = "select cl0.name " + "  from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0())
-				+ "] as cl0, " + "  [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1, " + " ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] as cl2 in elements { " + elements + " }, "
-				+ " [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass3()) + "] as cl3, " + " ["
+		String query = "select cl0.name " + "  from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] as cl0, " + "  ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1, " + " ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] as cl2 in elements { " + elements + " }, " + " ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass3()) + "] as cl3, " + " ["
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass4()) + "] as cl4, " + " ["
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass5()) + "] as cl5, " + " ["
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass6()) + "] as cl6, " + " ["
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass7()) + "] as cl7, " + " ["
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass8()) + "] as cl8, " + " ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass9()) + "] as cl9 " + " where cl0.reference0x1 = cl1 "
-				+ " where cl1.reference1x2 = cl2 " + " where cl2.reference2x3 = cl3 " + " where cl3.reference3x4 = cl4 "
-				+ " where cl5.reference5x6 = cl6 " + " where cl6.reference6x7 = cl7 " + " where cl7.reference7x8 = cl8 "
-				+ " where cl8.reference8x9 = cl9 " + " where cl0.reference0x5 = cl5 " + " where cl1.reference1x6 = cl6 "
-				+ " where cl2.reference2x7 = cl7 " + " where cl3.reference3x8 = cl8 " + " where cl4.reference4x9 = cl9 "
-				+ " where for cl9(name like 'TestClass9Inst2*')";
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass9()) + "] as cl9 " + " where cl0.reference0x1 = cl1 " + " where cl1.reference1x2 = cl2 "
+				+ " where cl2.reference2x3 = cl3 " + " where cl3.reference3x4 = cl4 " + " where cl5.reference5x6 = cl6 " + " where cl6.reference6x7 = cl7 "
+				+ " where cl7.reference7x8 = cl8 " + " where cl8.reference8x9 = cl9 " + " where cl0.reference0x5 = cl5 " + " where cl1.reference1x6 = cl6 "
+				+ " where cl2.reference2x7 = cl7 " + " where cl3.reference3x8 = cl8 " + " where cl4.reference4x9 = cl9 " + " where for cl9(name like 'TestClass9Inst2*')";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -1552,8 +1508,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 	 */
 	protected boolean select_multivalued_attributes_ast() throws Exception {
 
-		FromType fromRelationShip = new FromType("mm", EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getEClassifier("TestClass1")),
-				false);
+		FromType fromRelationShip = new FromType("mm", EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getEClassifier("TestClass1")), false);
 		FromEntry[] fromEntries = new FromEntry[] { fromRelationShip };
 
 		SelectAttrs selectMeName = new SelectAttrs("mm", new String[] { "name", "attrStringMultiValued2" });
@@ -1572,8 +1527,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean select_multivalued_attributes() throws Exception {
 
-		String query = "select mm.name, mm.attrStringMultiValued2 " + " from ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as mm "
+		String query = "select mm.name, mm.attrStringMultiValued2 " + " from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as mm "
 				+ " where for mm(name ='TestClass1Inst0')";
 
 		ResultSet resultSet = this.executeQuery(query);
@@ -1602,8 +1556,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 	 */
 	protected boolean select_enum_attribute_ast() throws Exception {
 
-		FromType fromRelationShip = new FromType("mm", EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getEClassifier("TestClass1")),
-				false);
+		FromType fromRelationShip = new FromType("mm", EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getEClassifier("TestClass1")), false);
 		FromEntry[] fromEntries = new FromEntry[] { fromRelationShip };
 
 		SelectAttrs selectMeName = new SelectAttrs("mm", new String[] { "name", "attrEnum" });
@@ -1622,8 +1575,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean select_enum_attribute() throws Exception {
 
-		String query = "select mm.name, mm.attrEnum " + " from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] as mm " + " where for mm(name ='TestClass1Inst0')";
+		String query = "select mm.name, mm.attrEnum " + " from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as mm "
+				+ " where for mm(name ='TestClass1Inst0')";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -1648,8 +1601,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 	 */
 	protected boolean assoc_with_struct_ast() throws Exception {
 
-		FromType fromRelationShip = new FromType("mm", EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getEClassifier("TestClass1")),
-				false);
+		FromType fromRelationShip = new FromType("mm", EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getEClassifier("TestClass1")), false);
 		FromType fromStruct = new FromType("strTp", EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getEClassifier("StructTp")), false);
 		FromEntry[] fromEntries = new FromEntry[] { fromRelationShip, fromStruct };
 
@@ -1672,9 +1624,9 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean assoc_with_struct() throws Exception {
 
-		String query = "select mm.name, strTp.Field2 " + "  from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] as mm, " + "       [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getStructTp()) + "] as strTp "
-				+ "  where mm.attrStruct = strTp " + "  where for mm(name ='TestClass1Inst0')";
+		String query = "select mm.name, strTp.Field2 " + "  from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as mm, " + "       ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getStructTp()) + "] as strTp " + "  where mm.attrStruct = strTp "
+				+ "  where for mm(name ='TestClass1Inst0')";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -1684,8 +1636,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 	private boolean assoc_with_struct_check(ResultSet resultSet) {
 
 		List<Object[]> intendedResultSet = new ArrayList<Object[]>();
-		intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, 0, false),
-				ModelDataInstantiator.calculateClassName(1, 0, false) + "structValue" });
+		intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, 0, false), ModelDataInstantiator.calculateClassName(1, 0, false) + "structValue" });
 
 		return this.verifyResultSet(resultSet, intendedResultSet);
 	}
@@ -1704,8 +1655,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 		FromType fromRelationShip = new FromType("mm", EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()), false);
 		FromType fromStruct = new FromType("strTp", EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getStructTp()), false);
-		FromType fromStructInStruct = new FromType("strInStrTp", EcoreUtil
-				.getURI(GeneratedmetamodelPackage.eINSTANCE.getStructInStructTp()), false);
+		FromType fromStructInStruct = new FromType("strInStrTp", EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getStructInStructTp()), false);
 		FromEntry[] fromEntries = new FromEntry[] { fromRelationShip, fromStruct, fromStructInStruct };
 
 		SelectAttrs selectMeName = new SelectAttrs("mm", new String[] { "name" });
@@ -1729,11 +1679,10 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean assoc_with_nested_struct() throws Exception {
 
-		String query = "select mm.name, strTp.Field2, strInStrTp.Field2 " + "  from ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as mm, " + "       ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getStructTp()) + "] as strTp, " + "       ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getStructInStructTp()) + "] as strInStrTp "
-				+ "  where mm.attrStruct = strTp " + "  where strTp.Field3 = strInStrTp " + "  where for mm(name ='TestClass1Inst0')";
+		String query = "select mm.name, strTp.Field2, strInStrTp.Field2 " + "  from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as mm, "
+				+ "       [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getStructTp()) + "] as strTp, " + "       ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getStructInStructTp()) + "] as strInStrTp " + "  where mm.attrStruct = strTp "
+				+ "  where strTp.Field3 = strInStrTp " + "  where for mm(name ='TestClass1Inst0')";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -1743,8 +1692,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 	private boolean assoc_with_nested_struct_check(ResultSet resultSet) {
 
 		List<Object[]> intendedResultSet = new ArrayList<Object[]>();
-		intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, 0, false),
-				ModelDataInstantiator.calculateClassName(1, 0, false) + "structValue",
+		intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, 0, false), ModelDataInstantiator.calculateClassName(1, 0, false) + "structValue",
 				ModelDataInstantiator.calculateClassName(1, 0, false) + "structValueField3structValue" });
 
 		return this.verifyResultSet(resultSet, intendedResultSet);
@@ -1784,9 +1732,9 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean assoc_with_class_typed() throws Exception {
 
-		String query = "select mm.name, obj.name " + "  from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] as mm, " + "       [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] as obj "
-				+ "  where mm.attrObjectValued0 = obj " + "  where for mm(name like 'TestClass1Inst0*')";
+		String query = "select mm.name, obj.name " + "  from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as mm, " + "       ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] as obj " + "  where mm.attrObjectValued0 = obj "
+				+ "  where for mm(name like 'TestClass1Inst0*')";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -1797,8 +1745,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 		List<Object[]> intendedResultSet = new ArrayList<Object[]>();
 		if (createObjValAttrs) {
-			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, 0, false),
-					ModelDataInstantiator.calculateObjectValuedAttrName(1, 0, 0, false) });
+			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, 0, false), ModelDataInstantiator.calculateObjectValuedAttrName(1, 0, 0, false) });
 		}
 		return this.verifyResultSet(resultSet, intendedResultSet);
 	}
@@ -1834,9 +1781,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean assoc_with_dirty_partition() throws Exception {
 
-		String query = "select cl1.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0())
-				+ "] withoutsubtypes as cl0,   [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] withoutsubtypes as cl1 " + "  where cl0.reference0x1 = cl1 "
+		String query = "select cl1.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] withoutsubtypes as cl0,   ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] withoutsubtypes as cl1 " + "  where cl0.reference0x1 = cl1 "
 				+ "  where for cl0(attrString0 = 'TestClass0Inst1strValue0_DIRTY')";
 
 		ResultSet resultSet = this.executeQuery(query);
@@ -1847,8 +1793,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 	private boolean assoc_with_dirty_partition_check(ResultSet resultSet) {
 
 		List<Object[]> intendedResultSet = new ArrayList<Object[]>();
-		if (partSize > 1 && createDirtyData
-				&& (myTestClient.getOrCreateResourceStable(ModelDataInstantiator.getInstPartName(0)).isModified())) {
+		if (partSize > 1 && createDirtyData && (myTestClient.getOrCreateResourceStable(ModelDataInstantiator.getInstPartName(0)).isModified())) {
 			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, 1, false) });
 		}
 
@@ -1914,8 +1859,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 		SelectEntry[] selectEntries = new SelectEntry[mmSize];
 
 		for (int i = 0; i < mmSize; i++) {
-			fromEntries[i] = new FromType("cl" + i, EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getEClassifier("TestClass" + i)),
-					true);
+			fromEntries[i] = new FromType("cl" + i, EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getEClassifier("TestClass" + i)), true);
 			selectEntries[i] = new SelectAttrs("cl" + i, new String[] { "name" });
 		}
 
@@ -1938,45 +1882,19 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean complex_assoc_linear_with_many_selections() throws Exception {
 
-		String query = "select cl0.name, cl1.name, cl2.name, cl3.name, cl4.name, cl5.name, cl6.name, cl7.name, cl8.name, cl9.name "
-				+ "  from ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0())
-				+ "] as cl0, "
-				+ "  ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] as cl1, "
-				+ " ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2())
-				+ "] as cl2, "
-				+ " ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass3())
-				+ "] as cl3, "
-				+ " ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass4())
-				+ "] as cl4, "
-				+ " ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass5())
-				+ "] as cl5, "
-				+ " ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass6())
-				+ "] as cl6, "
-				+ " ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass7())
-				+ "] as cl7, "
-				+ " ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass8())
-				+ "] as cl8, "
-				+ " ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass9())
-				+ "] as cl9 "
-				+ " where cl0.reference0x1 = cl1 "
-				+ " where cl1.reference1x2 = cl2 "
-				+ " where cl2.reference2x3 = cl3 "
-				+ " where cl3.reference3x4 = cl4 "
-				+ " where cl4.reference4x5 = cl5 "
-				+ " where cl5.reference5x6 = cl6 "
-				+ " where cl6.reference6x7 = cl7 "
-				+ " where cl7.reference7x8 = cl8 " + " where cl8.reference8x9 = cl9 " + " where for cl9(name like 'TestClass9Inst2*')";
+		String query = "select cl0.name, cl1.name, cl2.name, cl3.name, cl4.name, cl5.name, cl6.name, cl7.name, cl8.name, cl9.name " + "  from ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] as cl0, " + "  ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1, " + " ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] as cl2, " + " ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass3()) + "] as cl3, " + " ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass4()) + "] as cl4, " + " ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass5()) + "] as cl5, " + " ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass6()) + "] as cl6, " + " ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass7()) + "] as cl7, " + " ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass8()) + "] as cl8, " + " ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass9()) + "] as cl9 " + " where cl0.reference0x1 = cl1 " + " where cl1.reference1x2 = cl2 "
+				+ " where cl2.reference2x3 = cl3 " + " where cl3.reference3x4 = cl4 " + " where cl4.reference4x5 = cl5 " + " where cl5.reference5x6 = cl6 "
+				+ " where cl6.reference6x7 = cl7 " + " where cl7.reference7x8 = cl8 " + " where cl8.reference8x9 = cl9 " + " where for cl9(name like 'TestClass9Inst2*')";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -1985,45 +1903,19 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean complex_assoc_linear_with_many_selections_limited() throws Exception {
 
-		String query = "select cl0.name, cl1.name, cl2.name, cl3.name, cl4.name, cl5.name, cl6.name, cl7.name, cl8.name, cl9.name "
-				+ "  from ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0())
-				+ "] as cl0, "
-				+ "  ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] as cl1, "
-				+ " ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2())
-				+ "] as cl2, "
-				+ " ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass3())
-				+ "] as cl3, "
-				+ " ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass4())
-				+ "] as cl4, "
-				+ " ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass5())
-				+ "] as cl5, "
-				+ " ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass6())
-				+ "] as cl6, "
-				+ " ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass7())
-				+ "] as cl7, "
-				+ " ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass8())
-				+ "] as cl8, "
-				+ " ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass9())
-				+ "] as cl9 "
-				+ " where cl0.reference0x1 = cl1 "
-				+ " where cl1.reference1x2 = cl2 "
-				+ " where cl2.reference2x3 = cl3 "
-				+ " where cl3.reference3x4 = cl4 "
-				+ " where cl4.reference4x5 = cl5 "
-				+ " where cl5.reference5x6 = cl6 "
-				+ " where cl6.reference6x7 = cl7 "
-				+ " where cl7.reference7x8 = cl8 " + " where cl8.reference8x9 = cl9 " + " where for cl9(name like 'TestClass9Inst2*')";
+		String query = "select cl0.name, cl1.name, cl2.name, cl3.name, cl4.name, cl5.name, cl6.name, cl7.name, cl8.name, cl9.name " + "  from ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] as cl0, " + "  ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1, " + " ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] as cl2, " + " ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass3()) + "] as cl3, " + " ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass4()) + "] as cl4, " + " ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass5()) + "] as cl5, " + " ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass6()) + "] as cl6, " + " ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass7()) + "] as cl7, " + " ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass8()) + "] as cl8, " + " ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass9()) + "] as cl9 " + " where cl0.reference0x1 = cl1 " + " where cl1.reference1x2 = cl2 "
+				+ " where cl2.reference2x3 = cl3 " + " where cl3.reference3x4 = cl4 " + " where cl4.reference4x5 = cl5 " + " where cl5.reference5x6 = cl6 "
+				+ " where cl6.reference6x7 = cl7 " + " where cl7.reference7x8 = cl8 " + " where cl8.reference8x9 = cl9 " + " where for cl9(name like 'TestClass9Inst2*')";
 
 		ResultSet resultSet = this.executeQuery(query, 3);
 
@@ -2096,8 +1988,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 		for (Iterator<Integer> dirtyIterator = dirtyClassesList.iterator(); dirtyIterator.hasNext();) {
 			int i = dirtyIterator.next();
 			TypeScopeProvider queryScopeProvider = this.getMQLProcessor().getInclusivePartitionScopeProvider(myPartitionScope);
-			fromEntriesList.add(new FromType("cl" + i, EcoreUtil
-					.getURI(GeneratedmetamodelPackage.eINSTANCE.getEClassifier("TestClass" + i)), true, queryScopeProvider));
+			fromEntriesList.add(new FromType("cl" + i, EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getEClassifier("TestClass" + i)), true, queryScopeProvider));
 			selectEntriesList.add(new SelectAttrs("cl" + i, new String[] { "name" }));
 		}
 
@@ -2110,9 +2001,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 		WhereEntry[] whereEntries = new WhereEntry[dirtyClassesList.size()];
 
 		for (int i = 0; i < dirtyClassesList.size() - 1; i++) {
-			whereEntries[i] = new WhereRelationReference("cl" + dirtyClassesList.get(i).toString(), "reference"
-					+ dirtyClassesList.get(i).toString() + "x" + dirtyClassesList.get(i + 1).toString(), "cl"
-					+ dirtyClassesList.get(i + 1).toString());
+			whereEntries[i] = new WhereRelationReference("cl" + dirtyClassesList.get(i).toString(), "reference" + dirtyClassesList.get(i).toString() + "x"
+					+ dirtyClassesList.get(i + 1).toString(), "cl" + dirtyClassesList.get(i + 1).toString());
 		}
 
 		whereEntries[dirtyClassesList.size() - 1] = localWhereEntry;
@@ -2175,10 +2065,9 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean assoc_with_two_comparisons() throws Exception {
 
-		String query = "select cl0.name, cl0.attrInt2 " + "  from ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] as cl0, " + "       ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1 " + "  where cl0.reference0x1 = cl1 "
-				+ "  where cl1.attrInt2 > cl0.attrInt2 " + "  where for cl1(name ='TestClass1Inst1')";
+		String query = "select cl0.name, cl0.attrInt2 " + "  from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] as cl0, " + "       ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1 " + "  where cl0.reference0x1 = cl1 " + "  where cl1.attrInt2 > cl0.attrInt2 "
+				+ "  where for cl1(name ='TestClass1Inst1')";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -2187,11 +2076,10 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean assoc_with_two_comparisons_variant() throws Exception {
 
-		String query = "select cl0.name, cl0.attrInt2 " + "  from ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] as cl0, " + "       ["
+		String query = "select cl0.name, cl0.attrInt2 " + "  from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] as cl0, " + "       ["
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1, " + "       ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1_1 " + "  where cl0.reference0x1 = cl1 "
-				+ "  where cl1 = cl1_1 " + "  where cl1.attrInt2 > cl0.attrInt2 " + "  where cl1_1.name ='TestClass1Inst1'";
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1_1 " + "  where cl0.reference0x1 = cl1 " + "  where cl1 = cl1_1 "
+				+ "  where cl1.attrInt2 > cl0.attrInt2 " + "  where cl1_1.name ='TestClass1Inst1'";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -2202,8 +2090,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 		List<Object[]> intendedResultSet = new ArrayList<Object[]>();
 		for (int i = 1; i < 2; i++) {
-			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(0, i, false),
-					new Integer(ModelDataInstantiator.calculateIntAttr(0, i, 2)) });
+			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(0, i, false), new Integer(ModelDataInstantiator.calculateIntAttr(0, i, 2)) });
 		}
 
 		return this.verifyResultSet(resultSet, intendedResultSet);
@@ -2245,9 +2132,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean where_with_three_comparisons() throws Exception {
 
-		String query = "select mm.name, mm.attrInt1 " + "  from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] withoutsubtypes as mm " + "  where for mm((attrInt1 >= 1001002) and " + "              (attrInt1 < 1001010) and "
-				+ "               (not(name like 'TestClass*Obj*')))";
+		String query = "select mm.name, mm.attrInt1 " + "  from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] withoutsubtypes as mm "
+				+ "  where for mm((attrInt1 >= 1001002) and " + "              (attrInt1 < 1001010) and " + "               (not(name like 'TestClass*Obj*')))";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -2256,9 +2142,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean where_with_three_comparisons_limited() throws Exception {
 
-		String query = "select mm.name, mm.attrInt1 " + "  from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] withoutsubtypes as mm " + "  where for mm((attrInt1 >= 1001002) and " + "              (attrInt1 < 1001010) and "
-				+ "               (not(name like 'TestClass*Obj*')))";
+		String query = "select mm.name, mm.attrInt1 " + "  from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] withoutsubtypes as mm "
+				+ "  where for mm((attrInt1 >= 1001002) and " + "              (attrInt1 < 1001010) and " + "               (not(name like 'TestClass*Obj*')))";
 
 		ResultSet resultSet = this.executeQuery(query, 3);
 
@@ -2268,8 +2153,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 	protected boolean where_with_three_comparisons_2() throws Exception {
 
 		String query = "select mm.name, mm.attrInt1 from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] withoutsubtypes as mm where mm.attrInt1 >= 1001002 where mm.attrInt1 < 1001010 where "
-				+ " mm.name not like 'TestClass*Obj*'";
+				+ "] withoutsubtypes as mm where mm.attrInt1 >= 1001002 where mm.attrInt1 < 1001010 where " + " mm.name not like 'TestClass*Obj*'";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -2280,8 +2164,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 		List<Object[]> intendedResultSet = new ArrayList<Object[]>();
 		for (int i = 2; i < instSize; i++) {
-			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, i, false),
-					new Integer(ModelDataInstantiator.calculateIntAttr(1, i, 1)) });
+			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, i, false), new Integer(ModelDataInstantiator.calculateIntAttr(1, i, 1)) });
 		}
 
 		return this.verifyResultSet(resultSet, intendedResultSet);
@@ -2291,8 +2174,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 		List<Object[]> intendedResultSet = new ArrayList<Object[]>();
 		for (int i = 2; i < instSize; i++) {
-			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, i, false),
-					new Integer(ModelDataInstantiator.calculateIntAttr(1, i, 1)) });
+			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, i, false), new Integer(ModelDataInstantiator.calculateIntAttr(1, i, 1)) });
 		}
 
 		if (resultSet.getSize() != 3) {
@@ -2342,9 +2224,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean where_with_three_comparisons_and_or() throws Exception {
 
-		String query = "select mm.name, mm.attrInt1 " + "  from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] withoutsubtypes as mm " + "  where for mm((not(name like 'TestClass*Obj*')) and "
-				+ "               ((attrInt1 < 1001002) or " + "               (attrInt1 > 1001002)))";
+		String query = "select mm.name, mm.attrInt1 " + "  from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] withoutsubtypes as mm "
+				+ "  where for mm((not(name like 'TestClass*Obj*')) and " + "               ((attrInt1 < 1001002) or " + "               (attrInt1 > 1001002)))";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -2356,8 +2237,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 		List<Object[]> intendedResultSet = new ArrayList<Object[]>();
 		for (int i = 0; i < instSize; i++) {
 			if (i != 2) {
-				intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, i, false),
-						new Integer(ModelDataInstantiator.calculateIntAttr(1, i, 1)) });
+				intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, i, false), new Integer(ModelDataInstantiator.calculateIntAttr(1, i, 1)) });
 			}
 		}
 
@@ -2394,10 +2274,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 		List<Object[]> intendedResultSet = new ArrayList<Object[]>();
 		for (int i = 0; i < instSize; i++) {
-			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, i, false),
-					new Integer(ModelDataInstantiator.calculateIntAttr(1, i, 1)) });
-			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, i, true),
-					new Integer(ModelDataInstantiator.calculateIntAttr(1, i, 1)) });
+			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, i, false), new Integer(ModelDataInstantiator.calculateIntAttr(1, i, 1)) });
+			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, i, true), new Integer(ModelDataInstantiator.calculateIntAttr(1, i, 1)) });
 		}
 
 		return this.verifyResultSet(resultSet, intendedResultSet);
@@ -2413,8 +2291,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 			}
 		}
 
-		String query = "select el from [" + EcoreUtil.getURI(EcorePackage.eINSTANCE.getEObject()) + "] as el in resources{" + partitions
-				+ "}";
+		String query = "select el from [" + EcoreUtil.getURI(EcorePackage.eINSTANCE.getEObject()) + "] as el in resources{" + partitions + "}";
 		ResultSet resultSet = this.executeQuery(query);
 		return this.reflect_element_check(resultSet);
 	}
@@ -2467,9 +2344,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean assoc_to_subclass_of_reflect_element() throws Exception {
 
-		String query = "select t1.name, t2.name " + "  from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] as t1, " + "       [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as t2 "
-				+ "  where t1.reference1xRefElement = t2";
+		String query = "select t1.name, t2.name " + "  from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as t1, " + "       ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as t2 " + "  where t1.reference1xRefElement = t2";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -2480,20 +2356,17 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 		List<Object[]> intendedResultSet = new ArrayList<Object[]>();
 		for (int i = 0; i < instSize; i++) {
-			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, 0, false),
-					ModelDataInstantiator.calculateClassName(1, i, false) });
+			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, 0, false), ModelDataInstantiator.calculateClassName(1, i, false) });
 		}
 		return this.verifyResultSet(resultSet, intendedResultSet);
 	}
 
 	protected boolean reflect_element_with_fixed_set() throws Exception {
 
-		String preQuery = "select el from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] as el where el.name = 'TestClass1Inst0'";
+		String preQuery = "select el from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as el where el.name = 'TestClass1Inst0'";
 		ResultSet preResultSet = this.executeQuery(preQuery);
 
-		String query = "select el from [" + EcoreUtil.getURI(EcorePackage.eINSTANCE.getEObject()) + "] as el in elements {["
-				+ preResultSet.getUri(0, "el") + "]}";
+		String query = "select el from [" + EcoreUtil.getURI(EcorePackage.eINSTANCE.getEObject()) + "] as el in elements {[" + preResultSet.getUri(0, "el") + "]}";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -2502,14 +2375,12 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean reflect_element_compared_with_fixed_set() throws Exception {
 
-		String preQuery = "select el from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] as el where el.name = 'TestClass1Inst0'";
+		String preQuery = "select el from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as el where el.name = 'TestClass1Inst0'";
 		ResultSet preResultSet = this.executeQuery(preQuery);
 
 		String query = "select el from [" + EcoreUtil.getURI(EcorePackage.eINSTANCE.getEObject()) + "] as el, ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1 in elements {["
-				+ preResultSet.getUri(0, "el") + "]}, [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2())
-				+ "] as cl2 where cl1.reference1x2 = cl2 where el = cl1 ";
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1 in elements {[" + preResultSet.getUri(0, "el") + "]}, ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] as cl2 where cl1.reference1x2 = cl2 where el = cl1 ";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -2518,13 +2389,11 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean reflect_element_compared_with_fixed_set_2() throws Exception {
 
-		String preQuery = "select el from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] as el where el.name = 'TestClass1Inst0'";
+		String preQuery = "select el from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as el where el.name = 'TestClass1Inst0'";
 		ResultSet preResultSet = this.executeQuery(preQuery);
 
 		String query = "select el, cl1 from [" + EcoreUtil.getURI(EcorePackage.eINSTANCE.getEObject()) + "] as el, ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1 in elements {["
-				+ preResultSet.getUri(0, "el") + "]} where el = cl1 ";
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1 in elements {[" + preResultSet.getUri(0, "el") + "]} where el = cl1 ";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -2546,8 +2415,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 	protected boolean incompatible_types_return_empty_result() throws Exception {
 
 		String query = "select el from [" + EcoreUtil.getURI(EcorePackage.eINSTANCE.getEObject()) + "] as el, ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1," + "["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2())
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1," + "[" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2())
 				+ "] as cl2 where el = cl1 where el = cl2 where cl2 = cl2";
 
 		ResultSet resultSet = this.executeQuery(query);
@@ -2609,9 +2477,9 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean assoc_with_multiple_selection() throws Exception {
 
-		String query = "select cl0.name, cl1.name " + "  from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0())
-				+ "] as cl0, " + "       [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1 "
-				+ "  where cl0.reference0x1 = cl1 " + "  where for cl0(name ='TestClass0Inst0')";
+		String query = "select cl0.name, cl1.name " + "  from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] as cl0, " + "       ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] as cl1 " + "  where cl0.reference0x1 = cl1 "
+				+ "  where for cl0(name ='TestClass0Inst0')";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -2621,10 +2489,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 	private boolean assoc_with_multipled_selection_check(ResultSet resultSet) {
 
 		List<Object[]> intendedResultSet = new ArrayList<Object[]>();
-		intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(0, 0, false),
-				ModelDataInstantiator.calculateClassName(1, 0, false) });
-		intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(0, 0, false),
-				ModelDataInstantiator.calculateClassName(1, 0, true) });
+		intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(0, 0, false), ModelDataInstantiator.calculateClassName(1, 0, false) });
+		intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(0, 0, false), ModelDataInstantiator.calculateClassName(1, 0, true) });
 		return this.verifyResultSet(resultSet, intendedResultSet);
 	}
 
@@ -2668,10 +2534,9 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean enum_comparisons() throws Exception {
 
-		String query = "select mm.name, mm.attrInt1 " + "  from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] withoutsubtypes as mm, " + "       [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] withoutsubtypes as mm2 " + "  where mm.attrEnum = mm2.attrEnum " + "  where mm = mm2 "
-				+ "  where for mm((not(name like 'TestClass*Obj*')) and " + "               (attrEnum ='Label1'))";
+		String query = "select mm.name, mm.attrInt1 " + "  from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] withoutsubtypes as mm, "
+				+ "       [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] withoutsubtypes as mm2 " + "  where mm.attrEnum = mm2.attrEnum "
+				+ "  where mm = mm2 " + "  where for mm((not(name like 'TestClass*Obj*')) and " + "               (attrEnum ='Label1'))";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -2682,8 +2547,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 		List<Object[]> intendedResultSet = new ArrayList<Object[]>();
 		for (int i = 0; i < instSize; i++) {
-			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, i, false),
-					new Integer(ModelDataInstantiator.calculateIntAttr(1, i, 1)) });
+			intendedResultSet.add(new Object[] { ModelDataInstantiator.calculateClassName(1, i, false), new Integer(ModelDataInstantiator.calculateIntAttr(1, i, 1)) });
 		}
 
 		return this.verifyResultSet(resultSet, intendedResultSet);
@@ -2691,12 +2555,11 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean enforced_simple_scheduling() throws Exception {
 
-		String query = " select cl0.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] withoutsubtypes as cl1, [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2())
-				+ "] withoutsubtypes as cl2 in resources{[" + this.partitionScope[2] + "]}, ["
+		String query = " select cl0.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] withoutsubtypes as cl1, ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] withoutsubtypes as cl2 in resources{[" + this.partitionScope[2] + "]}, ["
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] withoutsubtypes as cl0, ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass3()) + "] withoutsubtypes as cl3 /* in resources{["
-				+ this.partitionScope[3] + "]} */ where cl0.reference0x1 = cl1 where cl1.reference1x2 = cl2 where cl2.reference2x3 = cl3 ";
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass3()) + "] withoutsubtypes as cl3 /* in resources{[" + this.partitionScope[3]
+				+ "]} */ where cl0.reference0x1 = cl1 where cl1.reference1x2 = cl2 where cl2.reference2x3 = cl3 ";
 
 		// FIXME this.makePartitionDirty( this.loadPartition( 3 ) );
 
@@ -2707,12 +2570,10 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean enforced_simple_scheduling_2() throws Exception {
 
-		String query = " select cl0.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0())
-				+ "] withoutsubtypes as cl0 in resources{[" + this.partitionScope[0] + "]}, ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] withoutsubtypes as cl1 in resources{["
-				+ this.partitionScope[1] + "]} , [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2())
-				+ "] withoutsubtypes as cl2 in resources{[" + this.partitionScope[2]
-				+ "]} where cl0.reference0x1 = cl1 where cl1.reference1x2 = cl2";
+		String query = " select cl0.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] withoutsubtypes as cl0 in resources{["
+				+ this.partitionScope[0] + "]}, [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] withoutsubtypes as cl1 in resources{["
+				+ this.partitionScope[1] + "]} , [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] withoutsubtypes as cl2 in resources{["
+				+ this.partitionScope[2] + "]} where cl0.reference0x1 = cl1 where cl1.reference1x2 = cl2";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -2721,12 +2582,11 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean enforced_simple_scheduling_3() throws Exception {
 
-		String query = " select cl0.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0())
-				+ "] withoutsubtypes as cl0, [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] withoutsubtypes as cl1 in resources{[" + this.partitionScope[1] + "]}, ["
+		String query = " select cl0.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] withoutsubtypes as cl0, ["
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] withoutsubtypes as cl1 in resources{[" + this.partitionScope[1] + "]}, ["
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] withoutsubtypes as cl2, ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass3()) + "] withoutsubtypes as cl3 /* in resources{["
-				+ this.partitionScope[3] + "]} */ where cl0.reference0x1 = cl1 where cl1.reference1x2 = cl2 where cl2.reference2x3 = cl3 ";
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass3()) + "] withoutsubtypes as cl3 /* in resources{[" + this.partitionScope[3]
+				+ "]} */ where cl0.reference0x1 = cl1 where cl1.reference1x2 = cl2 where cl2.reference2x3 = cl3 ";
 
 		// FIXME this.makePartitionDirty( this.loadPartition( 1 ) );
 
@@ -2770,19 +2630,10 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	protected boolean enforced_scheduling_2() throws Exception {
 
-		String query = " select cl0.name from ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0())
-				+ "] withoutsubtypes as cl0 in resources{["
-				+ this.partitionScope[0]
-				+ "]}, ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1())
-				+ "] withoutsubtypes as cl1 in resources{["
-				+ this.partitionScope[1]
-				+ "]} , ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2())
-				+ "] withoutsubtypes as cl2 in resources{["
-				+ this.partitionScope[2]
-				+ "]} where cl0.reference0x1 = cl1 where cl1.reference1x2 = cl2 where cl2.name ='TestClass2Inst0' where cl1.name = 'TestClass1Inst0'";
+		String query = " select cl0.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass0()) + "] withoutsubtypes as cl0 in resources{["
+				+ this.partitionScope[0] + "]}, [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass1()) + "] withoutsubtypes as cl1 in resources{["
+				+ this.partitionScope[1] + "]} , [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getTestClass2()) + "] withoutsubtypes as cl2 in resources{["
+				+ this.partitionScope[2] + "]} where cl0.reference0x1 = cl1 where cl1.reference1x2 = cl2 where cl2.name ='TestClass2Inst0' where cl1.name = 'TestClass1Inst0'";
 
 		ResultSet resultSet = this.executeQuery(query);
 
@@ -2844,8 +2695,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 		resultSet = mql.execute(mqlQuery, this.getQueryContext());
 
 		if (isTraced(LogSeverity.INFO)) {
-			trace(LogSeverity.INFO, "Query \n" + mqlQuery.toString() + "\nexecuted in "
-					+ String.valueOf(System.currentTimeMillis() - timeStamp) + " ms");
+			trace(LogSeverity.INFO, "Query \n" + mqlQuery.toString() + "\nexecuted in " + String.valueOf(System.currentTimeMillis() - timeStamp) + " ms");
 		}
 
 		return resultSet;
@@ -2873,8 +2723,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 		resultSet = mql.execute(mqlQuery, this.getQueryContext(), threshold);
 
 		if (isTraced(LogSeverity.INFO)) {
-			trace(LogSeverity.INFO, "Query \n" + mqlQuery + "\nexecuted in " + String.valueOf(System.currentTimeMillis() - timeStamp)
-					+ " ms");
+			trace(LogSeverity.INFO, "Query \n" + mqlQuery + "\nexecuted in " + String.valueOf(System.currentTimeMillis() - timeStamp) + " ms");
 		}
 
 		return resultSet;
@@ -2906,8 +2755,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 							if (tmpObject instanceof EObject && !((EObject) tmpObject).eIsProxy()) {
 								for (int k = 0; k < attrSize; k++) {
 									try {
-										String tmpStr = (String) tmpObject.getClass().getMethod("getAttrString" + k, (Class[]) null)
-												.invoke(tmpObject, (Object[]) null);
+										String tmpStr = (String) tmpObject.getClass().getMethod("getAttrString" + k, (Class[]) null).invoke(tmpObject, (Object[]) null);
 										tmpObject.getClass().getMethod("setAttrString" + k, new Class[] { String.class }).invoke(tmpObject,
 												(Object[]) (new String[] { tmpStr + "_DIRTY" }));
 									} catch (NoSuchMethodException nsme) {
@@ -2952,8 +2800,9 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 	// }
 
 	/**
-	 * Verfies the result set based on the String entries. The intended result set has to be a list of arrays, which represent the lines of
-	 * the result set.
+	 * Verfies the result set based on the String entries. The intended result
+	 * set has to be a list of arrays, which represent the lines of the result
+	 * set.
 	 * 
 	 * @param resultSet
 	 * @param intendedResult
@@ -3037,8 +2886,9 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 	}
 
 	/**
-	 * Verfies the result set based on the String entries. The intended result set has to be a list of arrays, which represent the lines of
-	 * the result set.
+	 * Verfies the result set based on the String entries. The intended result
+	 * set has to be a list of arrays, which represent the lines of the result
+	 * set.
 	 * 
 	 * @param resultSet
 	 * @param intendedResult
@@ -3166,12 +3016,10 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 		QueryContext context = new QueryContext() {
 
-			@Override
 			public URI[] getResourceScope() {
 				return partitionScope;
 			}
 
-			@Override
 			public ResourceSet getResourceSet() {
 				return myTestClient.getResourceSet();
 			}

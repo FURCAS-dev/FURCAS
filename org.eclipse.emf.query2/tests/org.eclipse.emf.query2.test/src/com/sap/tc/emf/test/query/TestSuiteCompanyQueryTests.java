@@ -147,12 +147,10 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 	private QueryContext getQueryContext(final TypeScopeProvider scopeProvider) {
 		return new QueryContext() {
 
-			@Override
 			public URI[] getResourceScope() {
 				return scopeProvider.getPartitionScope();
 			}
 
-			@Override
 			public ResourceSet getResourceSet() {
 				// TODO Auto-generated method stub
 				return TestSuiteCompanyQueryTests.this.testClient1.getResourceSet();
@@ -202,8 +200,7 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 			e1.printStackTrace();
 		}
 
-		this.globalPartitionScope = new URI[] { this.partitionDivAndDep.getURI(), this.partitionBosses.getURI(),
-				this.partitionCommonEmployees.getURI() };
+		this.globalPartitionScope = new URI[] { this.partitionDivAndDep.getURI(), this.partitionBosses.getURI(), this.partitionCommonEmployees.getURI() };
 
 		this.division1 = CompanyFactory.eINSTANCE.createDivision();
 		this.division1.setName("division1");
@@ -302,8 +299,6 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 	 */
 	@Test
 	public void employeesUnder40_ast() {
-		
-		
 
 		URI employeeUri = EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE);
 
@@ -339,37 +334,37 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 	@Test
 	public void employeesUnder40() {
 
-		String query = "select em, em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] withoutsubtypes as em "
-				+ " where for em(age < 40)";
+		String query = "select em, em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] withoutsubtypes as em " + " where for em(age < 40)";
 
 		// execute the query
 		this.employeesUnder40_check(query);
 	}
-//	@Test
-//	public void testDirtyReindexProblem(){
-//		String query = "select em, em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] withoutsubtypes as em "
-//		+ " where for em(age < 40)";
-//
-//		
-//		
-//		// execute the query
-//		this.employeesUnder40_check(query);
-//		
-//		boris.setAge(41);
-//		assertTrue(boris.eResource().isModified());
-//		this.employeesUnder40_check_dirty(query);
-//		
-//
-//	}
-	
+
+	// @Test
+	// public void testDirtyReindexProblem(){
+	// String query = "select em, em.name from [" +
+	// EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) +
+	// "] withoutsubtypes as em "
+	// + " where for em(age < 40)";
+	//
+	//		
+	//		
+	// // execute the query
+	// this.employeesUnder40_check(query);
+	//		
+	// boris.setAge(41);
+	// assertTrue(boris.eResource().isModified());
+	// this.employeesUnder40_check_dirty(query);
+	//		
+	//
+	// }
+
 	@Test
-	public void employeesAsManagers(){
-		
-		String query = "select em,em.name,dep.name " + " from ["
-		+ EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em, " + " ["
-		+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep"
-		+ "  where em.managed = dep ";
-		
+	public void employeesAsManagers() {
+
+		String query = "select em,em.name,dep.name " + " from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em, " + " ["
+				+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep" + "  where em.managed = dep ";
+
 		TypeScopeProvider queryScopeProvider = this.getMQLProcessor().getInclusivePartitionScopeProvider(this.globalPartitionScope);
 		QueryContext queryContext = this.getQueryContext(queryScopeProvider);
 		ResultSet resultSet = this.executeQuery(query, queryContext);
@@ -381,7 +376,7 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 			resultEmployeesSet.add(queryContext.getResourceSet().getEObject(uri, true));
 		}
 		assertTrue(resultEmployeesSet.contains(this.meinolfDivision1Departments));
-		
+
 		Writer writer = new StringWriter();
 		resultSet.asCSV(writer);
 		assertEquals(resultSet.toString(), writer.toString());
@@ -395,8 +390,7 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 	@Test
 	public void employeesUnder40_2() {
 
-		String query = "select em, em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] withoutsubtypes as em "
-				+ " where em.age < 40";
+		String query = "select em, em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] withoutsubtypes as em " + " where em.age < 40";
 
 		// execute the query
 		this.employeesUnder40_check(query);
@@ -414,8 +408,7 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 		for (URI uri : resultEmployees) {
 			resultEmployeesSet.add(queryContext.getResourceSet().getEObject(uri, true));
 		}
-		
-		
+
 		assertTrue(resultEmployeesSet.contains(this.meinolfDivision1Departments));
 		assertTrue(resultEmployeesSet.contains(this.boris));
 		assertTrue(resultEmployeesSet.contains(this.stefan));
@@ -423,35 +416,35 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 		resultSet.asCSV(writer);
 		assertEquals(resultSet.toString(), writer.toString());
 	}
-	
-//	private void employeesUnder40_check_dirty(Object preparedQuery) {
-//
-//		TypeScopeProvider queryScopeProvider = this.getMQLProcessor().getInclusivePartitionScopeProvider(this.globalPartitionScope);
-//		QueryContext queryContext = this.getQueryContext(queryScopeProvider);
-//		ResultSet resultSet = this.executeQuery(preparedQuery, queryContext);
-//
-//		// verify the result set
-//		URI[] resultEmployees = resultSet.getUris("em");
-//		Set<EObject> resultEmployeesSet = new HashSet<EObject>();
-//		for (URI uri : resultEmployees) {
-//			resultEmployeesSet.add(queryContext.getResourceSet().getEObject(uri, true));
-//		}
-//		assertTrue(resultEmployeesSet.contains(this.meinolfDivision1Departments));
-//		assertFalse(resultEmployeesSet.contains(this.boris));
-//		assertTrue(resultEmployeesSet.contains(this.stefan));
-//		Writer writer = new StringWriter();
-//		resultSet.asCSV(writer);
-//		assertEquals(resultSet.toString(), writer.toString());
-//	}
+
+	// private void employeesUnder40_check_dirty(Object preparedQuery) {
+	//
+	// TypeScopeProvider queryScopeProvider =
+	// this.getMQLProcessor().getInclusivePartitionScopeProvider(this.globalPartitionScope);
+	// QueryContext queryContext = this.getQueryContext(queryScopeProvider);
+	// ResultSet resultSet = this.executeQuery(preparedQuery, queryContext);
+	//
+	// // verify the result set
+	// URI[] resultEmployees = resultSet.getUris("em");
+	// Set<EObject> resultEmployeesSet = new HashSet<EObject>();
+	// for (URI uri : resultEmployees) {
+	// resultEmployeesSet.add(queryContext.getResourceSet().getEObject(uri,
+	// true));
+	// }
+	// assertTrue(resultEmployeesSet.contains(this.meinolfDivision1Departments));
+	// assertFalse(resultEmployeesSet.contains(this.boris));
+	// assertTrue(resultEmployeesSet.contains(this.stefan));
+	// Writer writer = new StringWriter();
+	// resultSet.asCSV(writer);
+	// assertEquals(resultSet.toString(), writer.toString());
+	// }
 
 	@Test
 	public void employeesWithoutBosses() {
 
-		String query1 = "select em from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE)
-				+ "] withoutsubtypes as em where em.employer = null";
+		String query1 = "select em from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] withoutsubtypes as em where em.employer = null";
 
-		String query2 = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE)
-				+ "] withoutsubtypes as em where em.employer = null";
+		String query2 = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] withoutsubtypes as em where em.employer = null";
 
 		this.employeesWithoutBosses_check(query1, query2);
 	}
@@ -460,7 +453,7 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 
 		TypeScopeProvider queryScopeProvider = this.getMQLProcessor().getInclusivePartitionScopeProvider(this.globalPartitionScope);
 		ResultSet resultSet1 = this.executeQuery(preparedQuery1, this.getQueryContext(queryScopeProvider));
-		
+
 		ResultSet resultSet2 = this.executeQuery(preparedQuery2, this.getQueryContext(queryScopeProvider));
 
 		assertEquals(resultSet1.getSize(), resultSet2.getSize());
@@ -490,8 +483,8 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 		Query query = new Query(selectEntries, fromEntries, whereEntries);
 
 		// verify pretty-print
-		String querypp = "select div.name,\n       dep.name\nfrom type: " + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION)
-				+ " as div,\n     type: " + EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + " as dep\nwhere div.department = dep\n";
+		String querypp = "select div.name,\n       dep.name\nfrom type: " + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + " as div,\n     type: "
+				+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + " as dep\nwhere div.department = dep\n";
 		assertEquals(query.toString(), querypp);
 
 		this.allDepartmentsAndDivisions_check(query);
@@ -578,8 +571,8 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 		Query query = new Query(selectEntries, fromEntries, whereEntries);
 
 		// verify pretty-print
-		String querypp = "select div.name,\n       dep.name\nfrom type: " + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION)
-				+ " as div,\n     type: " + EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + " as dep\nwhere div.department = dep\n";
+		String querypp = "select div.name,\n       dep.name\nfrom type: " + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + " as div,\n     type: "
+				+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + " as dep\nwhere div.department = dep\n";
 		assertEquals(query.toString(), querypp);
 
 		this.allDepartmentsAndDivisions_check(query);
@@ -634,8 +627,8 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 
 		// verify pretty-print
 		String querypp = "select dep.name,\n       dep\nfrom type: " + EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT)
-				+ " as dep\nwhere dep.division not  in\n       select div\n       from type: "
-				+ EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + " as div\n       where for div(budget GREATER 1000000)\n       \n";
+				+ " as dep\nwhere dep.division not  in\n       select div\n       from type: " + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION)
+				+ " as div\n       where for div(budget GREATER 1000000)\n       \n";
 		assertEquals(query.toString(), querypp);
 
 		this.departmentsWithSmallDivisions_check(query);
@@ -648,9 +641,8 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 	@Test
 	public void departmentsWithSmallDivisions() {
 
-		String query = "select dep.name, dep " + "from [" + EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep "
-				+ "where dep.division not in " + "(select div " + " from [" + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION)
-				+ "] as div where " + " for div(budget > 1000000))";
+		String query = "select dep.name, dep " + "from [" + EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep " + "where dep.division not in " + "(select div "
+				+ " from [" + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + "] as div where " + " for div(budget > 1000000))";
 
 		this.departmentsWithSmallDivisions_check(query);
 	}
@@ -662,9 +654,8 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 	@Test
 	public void departmentsWithSmallDivisions_2() {
 
-		String query = "select dep.name, dep " + "from [" + EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep "
-				+ "where dep.division not in " + "(select div " + " from [" + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION)
-				+ "] as div where " + " div.budget > 1000000)";
+		String query = "select dep.name, dep " + "from [" + EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep " + "where dep.division not in " + "(select div "
+				+ " from [" + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + "] as div where " + " div.budget > 1000000)";
 
 		this.departmentsWithSmallDivisions_check(query);
 	}
@@ -676,9 +667,8 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 	@Test
 	public void departmentsWithSmallDivisions_3() {
 
-		String query = "select dep.name, dep " + "from [" + EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep "
-				+ "where dep.division not in " + "(select div " + " from [" + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION)
-				+ "] as div where " + " div.budget >= 1000001)";
+		String query = "select dep.name, dep " + "from [" + EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep " + "where dep.division not in " + "(select div "
+				+ " from [" + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + "] as div where " + " div.budget >= 1000001)";
 
 		this.departmentsWithSmallDivisions_check(query);
 	}
@@ -756,9 +746,8 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 		Query query = new Query(selectEntries, fromEntries, whereEntries);
 
 		// verify pretty-print
-		String querypp = "select div.budget,\n       dep.budget\nfrom type: " + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION)
-				+ " as div,\n     type: " + EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT)
-				+ " as dep\nwhere div.budget < dep.budget\n";
+		String querypp = "select div.budget,\n       dep.budget\nfrom type: " + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + " as div,\n     type: "
+				+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + " as dep\nwhere div.budget < dep.budget\n";
 		assertEquals(query.toString(), querypp);
 
 		this.departmentsWhichAreBiggerThanDivisions_check(query);
@@ -883,8 +872,7 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 
 		// from clause
 		FromType employees = new FromType("em", EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE), false);
-		FromEntry department = new FromFixedSet("dep", EcoreUtil.getURI(this.department11.eClass()), new URI[] { EcoreUtil
-				.getURI((this.department11)) });
+		FromEntry department = new FromFixedSet("dep", EcoreUtil.getURI(this.department11.eClass()), new URI[] { EcoreUtil.getURI((this.department11)) });
 		FromEntry[] fromEntries = new FromEntry[] { employees, department };
 
 		// select clause
@@ -899,8 +887,8 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 		Query query = new Query(selectEntries, fromEntries, whereEntries);
 
 		// verify pretty-print
-		String querypp = "select em.name\nfrom type: " + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE)
-				+ " as em,\n     fixedElement: " + EcoreUtil.getURI(this.department11) + " as dep\nwhere dep.employee = em\n";
+		String querypp = "select em.name\nfrom type: " + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + " as em,\n     fixedElement: " + EcoreUtil.getURI(this.department11)
+				+ " as dep\nwhere dep.employee = em\n";
 		String querypp2 = query.toString();
 		assertEquals(querypp, querypp2);
 
@@ -914,9 +902,8 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 	@Test
 	public void deparmentsAndEmployees() {
 
-		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em, ["
-				+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep in elements { " + "["
-				+ EcoreUtil.getURI(this.department11) + "] } where dep.employee = em";
+		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em, [" + EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT)
+				+ "] as dep in elements { " + "[" + EcoreUtil.getURI(this.department11) + "] } where dep.employee = em";
 
 		this.deparmentsAndEmployees_check(query);
 	}
@@ -939,8 +926,8 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 
 		// from clause
 		FromType employees = new FromType("em", EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE), false);
-		FromType departments = new FromFixedSet("dep", EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT), new URI[] {
-				EcoreUtil.getURI(this.department11), EcoreUtil.getURI(this.department12) });
+		FromType departments = new FromFixedSet("dep", EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT), new URI[] { EcoreUtil.getURI(this.department11),
+				EcoreUtil.getURI(this.department12) });
 		FromEntry[] fromEntries = new FromEntry[] { employees, departments };
 
 		// select clause
@@ -956,9 +943,8 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 
 		// verify pretty-print
 		String querypp = "select em.name\nfrom type: " + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + " as em,\n     type: "
-				+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + " as dep\n           in elements {"
-				+ EcoreUtil.getURI(this.department11) + ",\n                        " + EcoreUtil.getURI(this.department12)
-				+ "}\nwhere dep.employee = em\n";
+				+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + " as dep\n           in elements {" + EcoreUtil.getURI(this.department11) + ",\n                        "
+				+ EcoreUtil.getURI(this.department12) + "}\nwhere dep.employee = em\n";
 		String querypp2 = query.toString();
 		assertEquals(querypp.substring(0, 300), querypp2.substring(0, 300));
 
@@ -972,9 +958,8 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 	@Test
 	public void employeesForAGivenDepartment() {
 
-		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em, ["
-				+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep in elements{[" + EcoreUtil.getURI(this.department11)
-				+ "], [" + EcoreUtil.getURI(this.department12) + "]} where dep.employee = em";
+		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em, [" + EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT)
+				+ "] as dep in elements{[" + EcoreUtil.getURI(this.department11) + "], [" + EcoreUtil.getURI(this.department12) + "]} where dep.employee = em";
 
 		this.employeesForAGivenDepartment_check(query);
 	}
@@ -986,9 +971,9 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 	@Test
 	public void employeesForAGivenDepartment_2() {
 
-		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE)
-				+ "] as em where em.employer in (select dep from [" + EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT)
-				+ "] as dep in elements{[" + EcoreUtil.getURI(this.department11) + "], [" + EcoreUtil.getURI(this.department12) + "]})";
+		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em where em.employer in (select dep from ["
+				+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep in elements{[" + EcoreUtil.getURI(this.department11) + "], ["
+				+ EcoreUtil.getURI(this.department12) + "]})";
 
 		this.employeesForAGivenDepartment_check(query);
 	}
@@ -1029,8 +1014,8 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 	public void employeesWhichAreDirectors() {
 
 		// get directors
-		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em "
-				+ " where em.directed in (select div from [" + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + "] as div)";
+		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em " + " where em.directed in (select div from ["
+				+ EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + "] as div)";
 
 		// execute the query
 		this.employeesWhichAreDirectors_check(query);
@@ -1040,8 +1025,7 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 	public void employeesWhichAreDirectors_2() {
 
 		// get directors
-		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em "
-				+ " where em.directed <> null";
+		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em " + " where em.directed <> null";
 
 		// execute the query
 		this.employeesWhichAreDirectors_check(query);
@@ -1051,8 +1035,7 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 	public void employeesWhichAreDirectors_3() {
 
 		// get directors
-		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em "
-				+ " where em.directed <> null";
+		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em " + " where em.directed <> null";
 
 		// execute the query
 		this.employeesWhichAreDirectors_check(query);
@@ -1071,8 +1054,8 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 	public void employeesWhichAreNotDirectors() {
 
 		// get all non-directors
-		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em "
-				+ " where em.directed not in (select div from [" + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + "]  as div)";
+		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em " + " where em.directed not in (select div from ["
+				+ EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + "]  as div)";
 
 		// execute the query
 		this.employeesWhichAreNotDirectors_check(query);
@@ -1082,8 +1065,7 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 	public void employeesWhichAreNotDirectors_2() {
 
 		// get all non-directors
-		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em "
-				+ " where em.directed = null";
+		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em " + " where em.directed = null";
 
 		// execute the query
 		this.employeesWhichAreNotDirectors_check(query);
@@ -1093,8 +1075,7 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 	public void employeesWhichAreNotDirectors_3() {
 
 		// get all non-directors
-		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em "
-				+ " where em.directed = null";
+		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em " + " where em.directed = null";
 
 		// execute the query
 		this.employeesWhichAreNotDirectors_check(query);
@@ -1112,7 +1093,7 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 		assertEquals(resultSet.getAttribute(3, "em", "name"), "Meinolf");
 		assertEquals(resultSet.getAttribute(4, "em", "name"), "Simon");
 		assertEquals(resultSet.getAttribute(5, "em", "name"), "Stefan");
-		
+
 	}
 
 	@Test

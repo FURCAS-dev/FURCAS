@@ -65,7 +65,6 @@ public class TestQueryRegression extends QueryTestCase {
 		this.index = getDefaultIndexStore();
 	}
 
-	@Override
 	@After
 	public void afterTestMethod() throws Exception {
 
@@ -183,10 +182,8 @@ public class TestQueryRegression extends QueryTestCase {
 		URI uriElementA2 = EcoreUtil.getURI(a2);
 
 		assertTrue("unexpected size: " + rs.getSize(), rs.getSize() > 0);
-		assertTrue("unexpected list: " + uriElementA2 + " --- " + Arrays.asList(rs.getUris("a")), Arrays.asList(rs.getUris("a")).contains(
-				uriElementA2));
-		assertFalse("unexpected list: " + uriElementA + " --- " + Arrays.asList(rs.getUris("a")), Arrays.asList(rs.getUris("a")).contains(
-				uriElementA));
+		assertTrue("unexpected list: " + uriElementA2 + " --- " + Arrays.asList(rs.getUris("a")), Arrays.asList(rs.getUris("a")).contains(uriElementA2));
+		assertFalse("unexpected list: " + uriElementA + " --- " + Arrays.asList(rs.getUris("a")), Arrays.asList(rs.getUris("a")).contains(uriElementA));
 	}
 
 	@Test
@@ -275,8 +272,7 @@ public class TestQueryRegression extends QueryTestCase {
 		// int sizeOfAllNamedElementsMinusClassifiersAndPackagesAndTypedElements
 		// = resultSet6.getSize();
 
-		String query8 = "select ne from [" + namedElementUri + "] withoutsubtypes {[" + classifierUri + "], [" + packageUri + "], ["
-				+ typedElementUri + "]} as ne";
+		String query8 = "select ne from [" + namedElementUri + "] withoutsubtypes {[" + classifierUri + "], [" + packageUri + "], [" + typedElementUri + "]} as ne";
 		ResultSet resultSet8 = processor.execute(query8, qsp);
 		int sizeOfAllNamedElementsMinusClassifiersAndPackagesAndTypedElements = resultSet8.getSize();
 
@@ -310,17 +306,14 @@ public class TestQueryRegression extends QueryTestCase {
 		URI UriD4Instance = EcoreUtil.getURI(d4);
 
 		String queryDouble = "select d4 from [" + uriD4 + "] as d4 where d4.attributeDouble = 0.0";
-		String queryDouble2 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeDouble < "
-				+ (((Number) Float.MAX_VALUE).doubleValue() * 2.0d);
+		String queryDouble2 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeDouble < " + (((Number) Float.MAX_VALUE).doubleValue() * 2.0d);
 		String queryDouble3 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeDouble < " + Double.POSITIVE_INFINITY;
 		String queryDouble4 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeDouble > " + Double.NEGATIVE_INFINITY;
 		String queryFloat = "select d4 from [" + uriD4 + "] as d4 where d4.attributeFloat = 0.0";
-		String queryFloat2 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeFloat = "
-				+ (((Number) Float.MAX_VALUE).doubleValue() * 2.0d);
+		String queryFloat2 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeFloat = " + (((Number) Float.MAX_VALUE).doubleValue() * 2.0d);
 		String queryFloat3 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeFloat < " + Float.POSITIVE_INFINITY;
 		String queryFloat4 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeFloat > " + Float.NEGATIVE_INFINITY;
-		String queryFloat5 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeFloat = "
-				+ -(((Number) Float.MAX_VALUE).doubleValue() * 2.0d);
+		String queryFloat5 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeFloat = " + -(((Number) Float.MAX_VALUE).doubleValue() * 2.0d);
 		String queryLong = "select d4 from [" + uriD4 + "] as d4 where d4.attributeLong = 0";
 		String queryLong2 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeLong < " + (Long.MAX_VALUE);
 		String queryInt = "select d4 from [" + uriD4 + "] as d4 where d4.attributeInteger = 0";
@@ -518,12 +511,10 @@ public class TestQueryRegression extends QueryTestCase {
 	private QueryContext getQueryContext(final TypeScopeProvider scopeProvider) {
 		return new QueryContext() {
 
-			@Override
 			public URI[] getResourceScope() {
 				return scopeProvider.getPartitionScope();
 			}
 
-			@Override
 			public ResourceSet getResourceSet() {
 				// TODO Auto-generated method stub
 				return TestQueryRegression.this.testClient1.getResourceSet();
@@ -536,8 +527,7 @@ public class TestQueryRegression extends QueryTestCase {
 	public void testUriAcceptance() throws Exception {
 		try {
 			QueryProcessor mql = this.getMQLProcessor();
-			String query = "select a from [" + EcoreUtil.getURI(Case004Package.Literals.A4)
-					+ "] as a in elements{[http://a@b.c:80/as düf~4_sa\u0123s%20ac\\]d\\\\fd#fragment]}";
+			String query = "select a from [" + EcoreUtil.getURI(Case004Package.Literals.A4) + "] as a in elements{[http://a@b.c:80/as düf~4_sa\u0123s%20ac\\]d\\\\fd#fragment]}";
 			System.out.println(query);
 			mql.execute(query, this.getQueryContext(null));
 		} catch (QueryFormatException e) {

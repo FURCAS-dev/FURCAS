@@ -12,7 +12,6 @@ public class IndexerForTest {
 	public static void index(Index index, final Resource... resources) {
 		index.executeUpdateCommand(new UpdateCommandAdapter() {
 
-			@Override
 			public void execute(IndexUpdater updater) {
 				ResourceIndexer.INSTANCE.resourceChanged(updater, resources);
 			}
@@ -22,7 +21,6 @@ public class IndexerForTest {
 	public static void delete(Index index, final URI... resources) {
 		index.executeUpdateCommand(new UpdateCommandAdapter() {
 
-			@Override
 			public void execute(IndexUpdater updater) {
 				for (URI resource : resources) {
 					updater.deleteResource(resource);

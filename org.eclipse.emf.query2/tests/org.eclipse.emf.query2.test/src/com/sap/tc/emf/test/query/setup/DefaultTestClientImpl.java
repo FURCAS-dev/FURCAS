@@ -20,8 +20,7 @@ public class DefaultTestClientImpl implements TestClient {
 		this.getResourceSet().getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 		parentDirectory = System.getProperty("java.io.tmpdir");
 	}
-	
-	@Override
+
 	public Resource getOrCreateResourceStable(String name) {
 
 		URI uri = URI.createFileURI(this.parentDirectory + "/" + name);
@@ -33,7 +32,7 @@ public class DefaultTestClientImpl implements TestClient {
 			try {
 				res.load(null);
 			} catch (Throwable t) {
-				//Assert.fail(t.getLocalizedMessage());
+				// Assert.fail(t.getLocalizedMessage());
 			}
 		}
 		if (!res.isTrackingModification()) {
@@ -42,14 +41,14 @@ public class DefaultTestClientImpl implements TestClient {
 		return res;
 	}
 
-	@Override
 	public boolean deleteResourceStable(String name) {
 		boolean ret = false;
 
 		URI uri = URI.createFileURI(this.parentDirectory + "/" + name);
 		Resource res = this.getResourceSet().getResource(uri, false);
 		if (res == null) {
-			// create resource if it does not already exist in the resource set (no need to load it)
+			// create resource if it does not already exist in the resource set
+			// (no need to load it)
 			res = this.resourceSet.createResource(uri);
 		}
 		if (res != null) {
@@ -63,7 +62,6 @@ public class DefaultTestClientImpl implements TestClient {
 		return ret;
 	}
 
-	@Override
 	public ResourceSet getResourceSet() {
 
 		if (this.resourceSet == null) {
@@ -78,7 +76,6 @@ public class DefaultTestClientImpl implements TestClient {
 		new File(this.parentDirectory).delete();
 	}
 
-	@Override
 	public void saveAll() throws IOException {
 
 		for (Resource r : this.getResourceSet().getResources()) {
@@ -86,7 +83,6 @@ public class DefaultTestClientImpl implements TestClient {
 		}
 	}
 
-	@Override
 	public Resource getResource(URI uri) {
 
 		return this.getResourceSet().getResource(uri, false);
