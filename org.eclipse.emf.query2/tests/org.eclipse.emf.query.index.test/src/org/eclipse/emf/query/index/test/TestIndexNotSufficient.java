@@ -69,7 +69,6 @@ public class TestIndexNotSufficient extends Assert {
 			this(refQuery, 1);
 		}
 
-		@Override
 		public void execute(QueryExecutor queryExecutor) {
 			long time = System.nanoTime();
 			QueryResult<C> result = queryExecutor.execute(refQuery);
@@ -139,7 +138,6 @@ public class TestIndexNotSufficient extends Assert {
 		query.targetEObject().fragment(class2Uri.fragment());
 		index.executeQueryCommand(new QueryCommand() {
 
-			@Override
 			public void execute(QueryExecutor queryExecutor) {
 				QueryResult<EReferenceDescriptor> result = queryExecutor.execute(query);
 				int size = 0;
@@ -157,7 +155,6 @@ public class TestIndexNotSufficient extends Assert {
 		query.targetEObject().fragment(class2Uri.fragment());
 		index.executeQueryCommand(new QueryCommand() {
 
-			@Override
 			public void execute(QueryExecutor queryExecutor) {
 				QueryResult<EReferenceDescriptor> result = queryExecutor.execute(query);
 				int size = 0;
@@ -225,7 +222,6 @@ public class TestIndexNotSufficient extends Assert {
 
 		index.executeQueryCommand(new QueryCommand() {
 
-			@Override
 			public void execute(QueryExecutor queryExecutor) {
 				EObjectQuery<EObjectDescriptor> query = IndexQueryFactory.createEObjectQuery();
 				QueryResult<EObjectDescriptor> result = queryExecutor.execute(query);
@@ -295,17 +291,13 @@ public class TestIndexNotSufficient extends Assert {
 		refQuery = IndexQueryFactory.createEReferenceQuery();
 		refQuery.sourceEObject().name("*s1");
 
-		index
-				.executeQueryCommand(new QueryCmd<EReferenceDescriptor, EReferenceDescriptor, EReferenceQuery<EReferenceDescriptor>>(
-						refQuery));
+		index.executeQueryCommand(new QueryCmd<EReferenceDescriptor, EReferenceDescriptor, EReferenceQuery<EReferenceDescriptor>>(refQuery));
 
 		// backward Query
 		refQuery = IndexQueryFactory.createEReferenceQuery();
 		refQuery.targetEObject().name("*s2");
 
-		index
-				.executeQueryCommand(new QueryCmd<EReferenceDescriptor, EReferenceDescriptor, EReferenceQuery<EReferenceDescriptor>>(
-						refQuery));
+		index.executeQueryCommand(new QueryCmd<EReferenceDescriptor, EReferenceDescriptor, EReferenceQuery<EReferenceDescriptor>>(refQuery));
 
 		// clean up
 		r.delete(null);
@@ -353,17 +345,13 @@ public class TestIndexNotSufficient extends Assert {
 		refQuery = IndexQueryFactory.createEReferenceQuery();
 		refQuery.sourceEObject().name("*s1");
 
-		index
-				.executeQueryCommand(new QueryCmd<EReferenceDescriptor, EReferenceDescriptor, EReferenceQuery<EReferenceDescriptor>>(
-						refQuery));
+		index.executeQueryCommand(new QueryCmd<EReferenceDescriptor, EReferenceDescriptor, EReferenceQuery<EReferenceDescriptor>>(refQuery));
 
 		// backward Query
 		refQuery = IndexQueryFactory.createEReferenceQuery();
 		refQuery.targetEObject().name("*s2");
 
-		index
-				.executeQueryCommand(new QueryCmd<EReferenceDescriptor, EReferenceDescriptor, EReferenceQuery<EReferenceDescriptor>>(
-						refQuery));
+		index.executeQueryCommand(new QueryCmd<EReferenceDescriptor, EReferenceDescriptor, EReferenceQuery<EReferenceDescriptor>>(refQuery));
 
 		// clean up
 		r.delete(null);
@@ -543,18 +531,15 @@ public class TestIndexNotSufficient extends Assert {
 	private void resourceChanged(Index index, final Resource... r) {
 		index.executeUpdateCommand(new UpdateCommandAdapter() {
 
-			@Override
 			public void execute(IndexUpdater updater) {
 				new ResourceIndexer() {
 
-					@Override
 					protected Map<String, String> getResourceUserData(Resource res) {
 						Map<String, String> result = new HashMap<String, String>();
 						result.put("key", "abcd");
 						return result;
 					}
 
-					@Override
 					protected Map<String, String> getEObjectUserData(EObject element) {
 						Map<String, String> result = new HashMap<String, String>();
 						result.put("key", "wxyz");
@@ -569,7 +554,6 @@ public class TestIndexNotSufficient extends Assert {
 	protected void deleteResources(final Collection<URI> uris, Index index) {
 		index.executeUpdateCommand(new UpdateCommandAdapter() {
 
-			@Override
 			public void execute(IndexUpdater updater) {
 				for (URI uri : uris) {
 					updater.deleteResource(uri);

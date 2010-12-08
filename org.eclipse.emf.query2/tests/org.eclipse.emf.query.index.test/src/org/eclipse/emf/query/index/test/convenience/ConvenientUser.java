@@ -29,7 +29,6 @@ public class ConvenientUser {
 		Index index = null;
 		index.executeQueryCommand(new QueryCommand() {
 
-			@Override
 			public void execute(QueryExecutor queryExecutor) {
 				QueryResult<ConvenientResourceDescriptor> execute = queryExecutor.execute(query);
 			}

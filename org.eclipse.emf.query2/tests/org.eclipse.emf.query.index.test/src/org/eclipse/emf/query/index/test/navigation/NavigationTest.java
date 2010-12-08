@@ -65,7 +65,6 @@ public class NavigationTest extends Assert {
 		long begin = System.currentTimeMillis();
 		index.executeUpdateCommand(new UpdateCommandAdapter() {
 
-			@Override
 			public void execute(IndexUpdater updater) {
 				ResourceIndexer ourResourceIndexer = new ResourceIndexer();
 				for (int i = 0; i < NUM_MODELS; i++) {
@@ -84,7 +83,7 @@ public class NavigationTest extends Assert {
 		for (int i = 0; i < REPS; i++) {
 			begin = System.currentTimeMillis();
 			index.executeQueryCommand(new QueryCommand() {
-				@Override
+
 				public void execute(QueryExecutor queryExecutor) {
 					EObjectQuery<EObjectDescriptor> createEObjectQuery = IndexQueryFactory.createEObjectQuery();
 					EReferenceQuery<EReferenceDescriptor> createEReferenceQuery = IndexQueryFactory.createEReferenceQuery();
@@ -118,7 +117,6 @@ public class NavigationTest extends Assert {
 	public void testGetResourceDescriptorFromEObject() throws Exception {
 		index.executeQueryCommand(new QueryCommand() {
 
-			@Override
 			public void execute(QueryExecutor queryExecutor) {
 				EObjectQuery<EObjectDescriptor> eObjectQuery = IndexQueryFactory.createEObjectQuery();
 				QueryResult<EObjectDescriptor> execute = queryExecutor.execute(eObjectQuery);
@@ -151,7 +149,6 @@ public class NavigationTest extends Assert {
 	public void testGetEObjectDescriptorsFromResource() throws Exception {
 		index.executeQueryCommand(new QueryCommand() {
 
-			@Override
 			public void execute(QueryExecutor queryExecutor) {
 				ResourceQuery<ResourceDescriptor> resourceQuery = IndexQueryFactory.createResourceQuery();
 				QueryResult<ResourceDescriptor> execute = queryExecutor.execute(resourceQuery);
@@ -188,7 +185,6 @@ public class NavigationTest extends Assert {
 	public void testGetEReferenceDescriptorsFromResource() throws Exception {
 		index.executeQueryCommand(new QueryCommand() {
 
-			@Override
 			public void execute(QueryExecutor queryExecutor) {
 				ResourceQuery<ResourceDescriptor> resourceQuery = IndexQueryFactory.createResourceQuery();
 				QueryResult<ResourceDescriptor> execute = queryExecutor.execute(resourceQuery);
@@ -225,7 +221,6 @@ public class NavigationTest extends Assert {
 	public void testEObjectDescriptorFromEReference() throws Exception {
 		index.executeQueryCommand(new QueryCommand() {
 
-			@Override
 			public void execute(QueryExecutor queryExecutor) {
 				ResourceQuery<ResourceDescriptor> resourceQuery = IndexQueryFactory.createResourceQuery();
 				QueryResult<ResourceDescriptor> execute = queryExecutor.execute(resourceQuery);
@@ -268,7 +263,6 @@ public class NavigationTest extends Assert {
 	public void testGetAllReferringReferences() throws Exception {
 		index.executeQueryCommand(new QueryCommand() {
 
-			@Override
 			public void execute(QueryExecutor queryExecutor) {
 				ResourceQuery<ResourceDescriptor> resourceQuery = IndexQueryFactory.createResourceQuery();
 				QueryResult<ResourceDescriptor> execute = queryExecutor.execute(resourceQuery);
@@ -304,7 +298,6 @@ public class NavigationTest extends Assert {
 	public void testTypeQueryForEClass() throws Exception {
 		index.executeQueryCommand(new QueryCommand() {
 
-			@Override
 			public void execute(QueryExecutor queryExecutor) {
 
 				// class loading
@@ -356,7 +349,6 @@ public class NavigationTest extends Assert {
 	protected void deleteResources(final Collection<URI> uris, Index index) {
 		index.executeUpdateCommand(new UpdateCommandAdapter() {
 
-			@Override
 			public void execute(IndexUpdater updater) {
 				for (URI uri : uris) {
 					updater.deleteResource(uri);
