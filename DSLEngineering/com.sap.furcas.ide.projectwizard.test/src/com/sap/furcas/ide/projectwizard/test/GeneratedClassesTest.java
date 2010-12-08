@@ -44,6 +44,7 @@ public class GeneratedClassesTest {
     }
 
     private String getRequiredBundles() {
+        String eclipsePath = System.getProperty("target.location");
         StringBuffer requiredBundles = new StringBuffer("../com.sap.furcas.ide.editor/bin" + File.pathSeparator
                 + "../org.antlr/bin" + File.pathSeparator + "../com.sap.furcas.runtime.parser.incremental/bin"
                 + File.pathSeparator + "../com.sap.ide.treeprovider/bin" + File.pathSeparator
@@ -52,21 +53,21 @@ public class GeneratedClassesTest {
                 + File.pathSeparator + "../com.sap.furcas.ide.parserfactory/bin" + File.pathSeparator
                 + "../com.sap.furcas.runtime.common/bin" + File.pathSeparator + "../com.sap.furcas.runtime.parser/bin"
                 + File.pathSeparator + "../com.sap.furcas.ide.projectwizard.test/lib/static" + File.pathSeparator
-                + "./lib/org.eclipse.swt.gtk.linux.x86_64_3.6.1.v3655c.jar");
+                + "./lib/org.eclipse.swt.gtk.linux.x86_64_3.6.1.v3655c.jar" + File.pathSeparator + eclipsePath);
 
         String[] bundles = new String[] { "org.eclipse.jface.text", "org.eclipse.ui", "org.eclipse.core.runtime",
                 "org.eclipse.ui.editors", "org.eclipse.core.resources", "org.eclipse.emf.ecore", "org.eclipse.emf.common",
                 "org.eclipse.ui.workbench", "org.eclipse.osgi" };
-        for (int i = 0; i < bundles.length; i++) {            
+        for (int i = 0; i < bundles.length; i++) {
+            String bundlePath = null;
             Bundle bundle = Platform.getBundle(bundles[i]);
-            String bundlePath = bundle.getLocation();
-            if (bundlePath.contains("reference:file:")) {
-                bundlePath = bundlePath.substring(15);
-            } else if (bundlePath.matches("System Bundle")){
-                String bundleJarName = bundle.toString().split(" ")[0] + ".jar";
-                bundlePath = Platform.getInstallLocation().getURL().toString() + "plugins/"+bundleJarName;
-                bundlePath = bundlePath.substring(5);
-            }
+            String bundleJarName = bundle.toString().split(" ")[0] + ".jar";
+            if (eclipsePath.contains("/"))
+                bundlePath = eclipsePath+"/plugins/"+bundleJarName;
+            else
+                bundlePath = eclipsePath+"\\plugins\\"+bundleJarName;
+                
+
             requiredBundles.append(File.pathSeparator + bundlePath);
         }
 
