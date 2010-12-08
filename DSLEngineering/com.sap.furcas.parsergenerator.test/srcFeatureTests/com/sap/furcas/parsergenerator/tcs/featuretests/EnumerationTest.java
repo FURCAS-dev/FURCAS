@@ -13,6 +13,12 @@ import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
 import com.sap.furcas.test.fixture.FeatureFixtureData;
 
+/**
+ * This class tests the TCS Enumeration feature.
+ * 
+ * @author Sebastian Schlag (D049672)
+ *
+ */
 public class EnumerationTest extends GeneratedParserBasedTest {
 
     private static final String LANGUAGE_MAPPEDENUM = "EnumerationFeatureMapped";

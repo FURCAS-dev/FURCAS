@@ -20,8 +20,10 @@ import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.TypeExp;
+import org.eclipse.ocl.ecore.TypeType;
 
 import com.sap.emf.ocl.prepared.PreparedOCLExpression;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
@@ -150,7 +152,8 @@ public class ContextAndForeachHelper {
                 parsingContext = getForeachMetaObject(oclExpression);
                 if (parsingContext == null) {
                     throw new RuntimeException(
-                            "Expected to find use of template with #foreach is a property init's expression but didn't");
+                            "Expected to find type of #foreach variable after #foreach in parentheses but didn't: "+
+                            oclExpression);
                 }
             } else {
                 parsingContext = template.getMetaReference();
@@ -205,7 +208,7 @@ public class ContextAndForeachHelper {
                 String oclTypeName = matcher.group(3);
                 OCL ocl = OCL.newInstance();
                 TypeExp typeQuery = (TypeExp) ocl.createOCLHelper().createQuery(oclTypeName);
-                result = typeQuery.getType();
+                result = ((TypeType) typeQuery.getType()).getReferredType();
             }
         }
         return result;
@@ -225,8 +228,10 @@ public class ContextAndForeachHelper {
             if (matcher.groupCount() >= 1) {
                 String oclTypeName = matcher.group(1);
                 OCL ocl = OCL.newInstance();
-                TypeExp typeQuery = (TypeExp) ocl.createOCLHelper().createQuery(oclTypeName);
-                result = typeQuery.getType();
+                Helper helper = ocl.createOCLHelper();
+                helper.setContext(EcorePackage.eINSTANCE.getEClassifier()); // EClassifier is a classifier that's always in scope
+                TypeExp typeQuery = (TypeExp) helper.createQuery(oclTypeName);
+                result = ((TypeType) typeQuery.getType()).getReferredType();
             }
         }
         return result;
@@ -242,7 +247,11 @@ public class ContextAndForeachHelper {
         return matcher.find();
     }
 
-    
+    /**
+     * Removes an optional leading "OCL:" prefix. Then performs all replacements of {@link #prepareOclQuery(String)} and
+     * replaces a "?" (see {@link #QUERY_PARAM_NAME}) by the {@link Object#toString()} representation of
+     * <code>keyValue</code>. The OCL expression string treated this way is returned.
+     */
     public static String prepareOclQuery(String queryToExecute, Object keyValue) {
         String result = queryToExecute;
         if (queryToExecute != null) {

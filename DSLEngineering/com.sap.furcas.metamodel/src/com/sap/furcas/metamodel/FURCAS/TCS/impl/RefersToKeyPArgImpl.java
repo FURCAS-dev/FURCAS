@@ -22,22 +22,22 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  */
 public class RefersToKeyPArgImpl extends PropertyArgImpl implements RefersToKeyPArg {
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         protected RefersToKeyPArgImpl() {
-		super();
-	}
+        super();
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected EClass eStaticClass() {
-		return TCSPackage.Literals.REFERS_TO_KEY_PARG;
-	}
+        return TCSPackage.Literals.REFERS_TO_KEY_PARG;
+    }
 
 } //RefersToKeyPArgImpl

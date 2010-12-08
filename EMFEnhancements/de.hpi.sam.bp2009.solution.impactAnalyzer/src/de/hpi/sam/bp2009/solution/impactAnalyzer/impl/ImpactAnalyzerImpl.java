@@ -106,7 +106,8 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
      *            expressions. In those cases, some framework may be responsible for the initial evaluation of those OCL
      *            expressions on new element, and therefore, context element creation events are not of interest.
      */
-    public ImpactAnalyzerImpl(OCLExpression expression, EClass context, boolean notifyOnNewContextElements, OppositeEndFinder oppositeEndFinder, ActivationOption configuration, OCLFactory oclFactory) {
+    public ImpactAnalyzerImpl(OCLExpression expression, EClass context, boolean notifyOnNewContextElements,
+            OppositeEndFinder oppositeEndFinder, ActivationOption configuration, OCLFactory oclFactory) {
         this.expression = expression;
         this.context = context;
         EClass inferredContext = expression.accept(createContextTypeRetriever());
@@ -139,7 +140,7 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
         if (instanceScopeAnalysis == null) {
             instanceScopeAnalysis = createInstanceScopeAnalysis();
         }
-        return instanceScopeAnalysis.getContextObjects(event);
+        return instanceScopeAnalysis.getContextObjects(event, notifyOnNewContextElements);
     }
 
     protected InstanceScopeAnalysis createInstanceScopeAnalysis() {

@@ -47,7 +47,7 @@ public class SemanticPredicatePropertyInitUpdater extends AbstractFurcasOCLBased
 
     protected SemanticPredicatePropertyInitUpdater(EStructuralFeature propertyToUpdate, OppositeEndFinder oppositeEndFinder,
             List<SemanticDisambRuleData> predicates, Template containingTemplate) {
-        super(propertyToUpdate, oppositeEndFinder, /* expression TODO */ null, /* notifyOnNewContextElements TODO */ true);
+        super(propertyToUpdate, oppositeEndFinder, /* expression TODO */ null, /* notifyOnNewContextElements TODO */ true, /* TODO */ SelfKind.SELF);
         this.predicates = predicates;
         this.containingTemplate = containingTemplate;
     }
