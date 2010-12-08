@@ -38,7 +38,7 @@ public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup
     private final QueryProcessor queryProcessor;
 
     public QueryBasedEcoreMetaModelLookUp(ResourceSet resourceSet, Set<URI> referenceScope) {
-    	super(new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE));
+    	super(new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE)); // FIXME inject OppositeEndFinder
         this.resourceSet = resourceSet;
         this.referenceScope = referenceScope;
         

@@ -61,6 +61,8 @@ import org.eclipse.ocl.util.Tuple;
 import org.eclipse.ocl.util.UnicodeSupport;
 import org.eclipse.ocl.utilities.PredefinedType;
 
+import com.google.inject.Injector;
+
 /**
  * Implementation of the {@link EvaluationEnvironment} for evaluation of OCL
  * expressions on instances of Ecore models (i.e., on M0 models).
@@ -91,6 +93,17 @@ public class EcoreEvaluationEnvironment
 		return provider.createOppositeEndFinder(EPackage.Registry.INSTANCE);
 	}
 	
+	/**
+	 * Creates the Dependency Injector for this environment using one or more overriding modules.
+	 * 
+	 * @return the dependency injector
+	 * 
+	 * @since 3.1
+	 */
+	protected Injector getInjector() {
+		return OCLEcorePlugin.getInjector();
+	}
+
 	/**
 	 * @since 3.1
 	 */
