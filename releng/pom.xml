@@ -78,11 +78,13 @@
 					<resolver>p2</resolver>
 				</configuration>
 			</plugin>
+			<!-- 
 			<plugin>
 				<groupId>org.sonatype.tycho</groupId>
 				<artifactId>maven-osgi-test-plugin</artifactId>
 				<version>${tycho-version}</version>
-			</plugin>
+			</plugin> 
+			 -->
 		</plugins>
 		<pluginManagement>
 			<plugins>
