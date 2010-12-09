@@ -318,7 +318,6 @@ public class SuiteSyntheticWithSchedulingQueryTest extends BaseSyntheticQueryTes
 
 	@Test
 	public void test_dirty_dominant_scheduling() throws Exception {
-
 		assertTrue("ResultSet is not correct", super.enforced_scheduling());
 	}
 

@@ -14,21 +14,26 @@
 	<name>EMF Query2 Core Tests</name>
 
 	<build>
-		<testSourceDirectory>src/</testSourceDirectory>
-		<testResources>
-			<testResource>
-				<directory>src-gen/</directory>
-			</testResource>
-		</testResources>
 		<plugins>
 			<plugin>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.4.2</version>
+				<groupId>org.sonatype.tycho</groupId>
+				<artifactId>maven-osgi-test-plugin</artifactId>
+				<version>${tycho-version}</version>
 				<configuration>
-					<argLine>-Xmx256m -Dfile.encoding=UTF-8</argLine>
-					<includes>
-						<include>**/*Test.java</include>
-					</includes>
+					<testSuite>com.sap.tc.emf.test.query.core.tests</testSuite>
+					<testClass>com.sap.tc.emf.test.query.SuiteAllMQLQueryTestSuite.java</testClass>
+					<useUIHarness>true</useUIHarness>
+					<useUIThread>true</useUIThread>
+					<argLine>-Xms128m -Xmx512m -XX:MaxPermSize=256m</argLine>
+					<product>org.eclipse.sdk.ide</product>
+					<application>org.eclipse.ui.ide.workbench</application>
+					<dependencies>
+						<dependency>
+							<type>p2-installable-unit</type>
+							<artifactId>org.eclipse.sdk.ide</artifactId>
+							<version>0.0.0</version>
+						</dependency>
+					</dependencies>
 				</configuration>
 			</plugin>
 		</plugins>
