@@ -17,9 +17,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runners.Parameterized.Parameters;
 
-public class TestSuiteSyntheticInMemoryForCst extends BaseSyntheticQueryTest {
+public class SuiteSyntheticInMemoryForCstTest extends BaseSyntheticQueryTest {
 
-    public TestSuiteSyntheticInMemoryForCst( Integer ratio ) {
+    public SuiteSyntheticInMemoryForCstTest( Integer ratio ) {
 
         this.dirtyPartitionsRatio = ratio.intValue( );
     }

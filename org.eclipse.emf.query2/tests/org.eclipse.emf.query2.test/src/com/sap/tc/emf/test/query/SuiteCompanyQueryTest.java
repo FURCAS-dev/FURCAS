@@ -67,7 +67,7 @@ import com.sap.tc.emf.test.query.setup.TestClient;
  * @author D046918
  * @version Apr 13, 2006
  */
-public class TestSuiteCompanyQueryTests extends QueryTestCase {
+public class SuiteCompanyQueryTest extends QueryTestCase {
 
 	private static final String COMPANY_MM_CONTAINER_NAME = "sap.com/tc/moin/test/company";
 
@@ -153,7 +153,7 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 
 			public ResourceSet getResourceSet() {
 				// TODO Auto-generated method stub
-				return TestSuiteCompanyQueryTests.this.testClient1.getResourceSet();
+				return SuiteCompanyQueryTest.this.testClient1.getResourceSet();
 			}
 
 		};

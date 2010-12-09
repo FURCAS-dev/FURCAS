@@ -21,9 +21,9 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 @RunWith( Parameterized.class )
-public class TestSuiteSmokeQueryTests extends BaseSyntheticQueryTest {
+public class SuiteSmokeQueryTest extends BaseSyntheticQueryTest {
 
-    public TestSuiteSmokeQueryTests( Integer ratio ) {
+    public SuiteSmokeQueryTest( Integer ratio ) {
 
         this.dirtyPartitionsRatio = ratio.intValue( );
     }

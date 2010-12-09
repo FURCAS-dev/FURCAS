@@ -48,7 +48,7 @@ import com.sap.tc.emf.test.query.setup.DefaultTestClientImpl;
 import com.sap.tc.emf.test.query.setup.IndexSetupManager;
 import com.sap.tc.emf.test.query.setup.TestClient;
 
-public class TestQueryRegression extends QueryTestCase {
+public class QueryRegressionTest extends QueryTestCase {
 
 	private TestClient testClient1;
 	private Index index;
@@ -517,7 +517,7 @@ public class TestQueryRegression extends QueryTestCase {
 
 			public ResourceSet getResourceSet() {
 				// TODO Auto-generated method stub
-				return TestQueryRegression.this.testClient1.getResourceSet();
+				return QueryRegressionTest.this.testClient1.getResourceSet();
 			}
 
 		};

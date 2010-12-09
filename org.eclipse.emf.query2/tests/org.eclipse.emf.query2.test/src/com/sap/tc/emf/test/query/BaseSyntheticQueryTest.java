@@ -67,7 +67,7 @@ import com.sap.tc.emf.test.query.setup.TestClient;
  * @version Apr 13, 2006
  */
 @RunWith(Parameterized.class)
-abstract public class BaseSyntheticQueryTests extends QueryTestCase {
+abstract public class BaseSyntheticQueryTest extends QueryTestCase {
 
 	// private static final String GENERATED_MM_CONTAINER_NAME =
 	// "sap.com/tc/moin/metamodel/generatedmetamodel";

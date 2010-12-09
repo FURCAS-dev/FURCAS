@@ -29,7 +29,7 @@ import org.junit.Test;
 import com.sap.tc.emf.test.query.setup.DefaultTestClientImpl;
 import com.sap.tc.emf.test.query.setup.TestClient;
 
-public class TestSuiteNegativeQueryTests extends QueryTestCase {
+public class SuiteNegativeQueryTest extends QueryTestCase {
 
 	private TestClient testClient1;
 
@@ -108,7 +108,7 @@ public class TestSuiteNegativeQueryTests extends QueryTestCase {
 			}
 
 			public ResourceSet getResourceSet() {
-				return TestSuiteNegativeQueryTests.this.testClient1.getResourceSet();
+				return SuiteNegativeQueryTest.this.testClient1.getResourceSet();
 			}
 
 		};

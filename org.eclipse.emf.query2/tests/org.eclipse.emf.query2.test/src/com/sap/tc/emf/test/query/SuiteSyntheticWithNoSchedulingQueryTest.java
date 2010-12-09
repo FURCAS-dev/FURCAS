@@ -18,9 +18,9 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.Parameterized.Parameters;
 
-public class TestSuiteSyntheticWithNoSchedulingQueryTests extends BaseSyntheticQueryTest {
+public class SuiteSyntheticWithNoSchedulingQueryTest extends BaseSyntheticQueryTest {
 
-	public TestSuiteSyntheticWithNoSchedulingQueryTests(Integer ratio) {
+	public SuiteSyntheticWithNoSchedulingQueryTest(Integer ratio) {
 
 		this.dirtyPartitionsRatio = ratio.intValue();
 	}

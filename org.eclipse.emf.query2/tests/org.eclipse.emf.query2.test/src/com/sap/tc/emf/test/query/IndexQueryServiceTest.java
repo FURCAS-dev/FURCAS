@@ -33,7 +33,7 @@ import com.sap.tc.emf.test.query.setup.DefaultTestClientImpl;
 import com.sap.tc.emf.test.query.setup.IndexSetupManager;
 import com.sap.tc.emf.test.query.setup.TestClient;
 
-public class TestIndexQueryService extends QueryTestCase {
+public class IndexQueryServiceTest extends QueryTestCase {
 
 	private TestClient testClient1;
 	private Index index;

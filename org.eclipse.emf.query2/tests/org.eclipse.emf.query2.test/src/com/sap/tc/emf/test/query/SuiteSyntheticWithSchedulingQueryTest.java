@@ -18,9 +18,9 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.Parameterized.Parameters;
 
-public class TestSuiteSyntheticWithSchedulingQueryTests extends BaseSyntheticQueryTest {
+public class SuiteSyntheticWithSchedulingQueryTest extends BaseSyntheticQueryTest {
 
-	public TestSuiteSyntheticWithSchedulingQueryTests(Integer ratio) {
+	public SuiteSyntheticWithSchedulingQueryTest(Integer ratio) {
 
 		// if the ratio is negative, it means that the scheduling optimizer should be turned off
 		int ratioInt = ratio.intValue();
