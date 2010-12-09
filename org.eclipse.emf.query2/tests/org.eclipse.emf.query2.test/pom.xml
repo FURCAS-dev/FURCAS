@@ -13,7 +13,7 @@
 	<packaging>eclipse-test-plugin</packaging>
 	<name>EMF Query2 Core Tests</name>
 
-	<!--  <build>
+	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.sonatype.tycho</groupId>
@@ -21,9 +21,7 @@
 				<version>${tycho-version}</version>
 				<configuration>
 					<testSuite>org.eclipse.emf.query2.test</testSuite>
-					<testClass>org.eclipse.emf.query2.test.SuiteAllMQLQueryTestSuite.java</testClass>
-					<useUIHarness>true</useUIHarness>
-					<useUIThread>true</useUIThread>
+					<testClass>org.eclipse.emf.query2.test.SuiteAllMQLQueryTestSuite</testClass>
 					<argLine>-Xms128m -Xmx512m -XX:MaxPermSize=256m</argLine>
 					<product>org.eclipse.sdk.ide</product>
 					<application>org.eclipse.ui.ide.workbench</application>
@@ -37,8 +35,6 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		
 	</build>
-	 -->
 
 </project>
