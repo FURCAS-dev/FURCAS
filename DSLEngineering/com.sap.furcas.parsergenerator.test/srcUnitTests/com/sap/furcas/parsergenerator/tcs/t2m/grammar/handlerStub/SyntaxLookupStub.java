@@ -41,7 +41,7 @@ public class SyntaxLookupStub extends SyntaxLookup {
      * @param keywordSet
      */
     public SyntaxLookupStub() {
-        super(null, null, null);
+        super(null, null);
         subtemplates = new HashMap<String, Template>();
     }
 

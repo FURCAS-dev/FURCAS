@@ -49,7 +49,7 @@ public class TestSyntaxLookup {
         ConcreteSyntaxStub syntax = new ConcreteSyntaxStub();
         
        
-        SyntaxLookup lookup = new SyntaxLookup(syntax, null, namingHelper);
+        SyntaxLookup lookup = new SyntaxLookup(syntax, namingHelper);
         // no primitive templates defined in SyntaxStub, so null should be returned
         assertNull(lookup.getDefaultPrimitiveTemplateRule(refE("test")));
         
@@ -58,7 +58,7 @@ public class TestSyntaxLookup {
         pStub.names = list("error");
         syntax.templates.add(pStub);
         
-        lookup = new SyntaxLookup(syntax, null, namingHelper);
+        lookup = new SyntaxLookup(syntax, namingHelper);
         
         // template names don't match, so still return null
         assertNull(lookup.getDefaultPrimitiveTemplateRule(refE("test")));
@@ -67,7 +67,7 @@ public class TestSyntaxLookup {
         cStub.names = list("test");
         syntax.templates.add(pStub);
         
-        lookup = new SyntaxLookup(syntax, null, namingHelper);
+        lookup = new SyntaxLookup(syntax, namingHelper);
         
      // template names match, but is not primitive, so still return null
         assertNull(lookup.getDefaultPrimitiveTemplateRule(refE("test")));
@@ -76,7 +76,7 @@ public class TestSyntaxLookup {
         pStub.names = list("test");
         syntax.templates.add(pStub);
         
-        lookup = new SyntaxLookup(syntax, null, namingHelper);
+        lookup = new SyntaxLookup(syntax, namingHelper);
         assertEquals(pStub, lookup.getDefaultPrimitiveTemplateRule(refE("test")));
         
         // qualified names now
@@ -85,7 +85,7 @@ public class TestSyntaxLookup {
         pStub = new PrimitiveTemplateStub();
         pStub.names = list("package", "test");
         syntax.templates.add(pStub);
-        lookup = new SyntaxLookup(syntax, null, namingHelper);
+        lookup = new SyntaxLookup(syntax, namingHelper);
         assertEquals(pStub, lookup.getDefaultPrimitiveTemplateRule(refE("package", "test")));
     }
 
@@ -97,7 +97,7 @@ public class TestSyntaxLookup {
         MetaModelElementResolutionHelperStub namingHelper = new MetaModelElementResolutionHelperStub();
         ConcreteSyntaxStub syntax = new ConcreteSyntaxStub();
         
-        SyntaxLookup lookup = new SyntaxLookup(syntax, null, namingHelper);
+        SyntaxLookup lookup = new SyntaxLookup(syntax, namingHelper);
         
         // no symbols defined in SyntaxStub, so symbol is returned in hyphons
         assertEquals("'test'", lookup.getSymbolRule("test"));
@@ -138,7 +138,7 @@ public class TestSyntaxLookup {
         MetaModelElementResolutionHelperStub namingHelper = new MetaModelElementResolutionHelperStub();
         ConcreteSyntaxStub syntax = new ConcreteSyntaxStub();
         
-        SyntaxLookup lookup = new SyntaxLookup(syntax, null, namingHelper);
+        SyntaxLookup lookup = new SyntaxLookup(syntax, namingHelper);
         assertEquals(0, lookup.getTCSTemplate(refE("test"), null).size());
         
         PrimitiveTemplateStub pStub = new PrimitiveTemplateStub();
@@ -161,7 +161,7 @@ public class TestSyntaxLookup {
         MetaModelElementResolutionHelperStub namingHelper = new MetaModelElementResolutionHelperStub();
         ConcreteSyntaxStub syntax = new ConcreteSyntaxStub();
         
-        SyntaxLookup lookup = new SyntaxLookup(syntax, null, namingHelper);
+        SyntaxLookup lookup = new SyntaxLookup(syntax, namingHelper);
         
         assertEquals(0, lookup.getTCSTemplate(refE("test"), null).size());
         
@@ -181,7 +181,7 @@ public class TestSyntaxLookup {
         MetaModelElementResolutionHelperStub namingHelper = new MetaModelElementResolutionHelperStub();
         ConcreteSyntaxStub syntax = new ConcreteSyntaxStub();
         
-        SyntaxLookup lookup = new SyntaxLookup(syntax, null, namingHelper);
+        SyntaxLookup lookup = new SyntaxLookup(syntax, namingHelper);
         assertNull(lookup.getAnonymousOperatorList());
         
         syntax.operatorListList = new BasicEList<OperatorList>();
@@ -213,7 +213,7 @@ public class TestSyntaxLookup {
         keywords.add(keyStub2 );
         syntax.keywords = keywordList;
         
-        SyntaxLookup lookup = new SyntaxLookup(syntax, keywords, namingHelper);
+        SyntaxLookup lookup = new SyntaxLookup(syntax, namingHelper);
         Set<Keyword> result = lookup.getAllKeywords();
         assertNotNull(result);
         assertEquals(2, result.size());
