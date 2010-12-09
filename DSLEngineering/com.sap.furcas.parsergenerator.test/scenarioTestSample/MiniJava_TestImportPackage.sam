@@ -1,0 +1,20 @@
+package com.sap.furcas.example.java.simple;
+
+import ClassA;
+import ClassB;
+
+/** 
+ * A very simple Mini Java test class. To function properly the
+ * given import must be resolved properly (Class A and B are located
+ * in the imported package listed above).
+ *
+ * @author Stephan Erb
+ */
+public class MyMiniJavaTestClass {
+	
+	protected ClassA myAttribute1;
+
+	protected ClassB myAttribute2;
+	
+}
+
