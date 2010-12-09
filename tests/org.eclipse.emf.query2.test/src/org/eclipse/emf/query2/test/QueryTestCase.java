@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  *******************************************************************************/
-package com.sap.tc.emf.test.query;
+package org.eclipse.emf.query2.test;
 
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.query.index.Index;
@@ -19,11 +19,11 @@ import org.eclipse.emf.query2.test.mm.generatedmetamodel.GeneratedmetamodelPacka
 import org.eclipse.emf.query2.test.mm.testcases.case001.Case001Package;
 import org.eclipse.emf.query2.test.mm.testcases.case002.Case002Package;
 import org.eclipse.emf.query2.test.mm.testcases.case004.Case004Package;
+import org.eclipse.emf.query2.test.setup.IndexSetupManager;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 
-import com.sap.tc.emf.test.query.setup.IndexSetupManager;
 
 public class QueryTestCase extends Assert {
 

@@ -1,4 +1,4 @@
-package com.sap.tc.emf.test.query.setup;
+package org.eclipse.emf.query2.test.setup;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;

@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  *******************************************************************************/
-package com.sap.tc.emf.test.query;
+package org.eclipse.emf.query2.test;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -25,13 +25,13 @@ import org.eclipse.emf.query2.test.mm.testcases.case001.A1;
 import org.eclipse.emf.query2.test.mm.testcases.case001.B1;
 import org.eclipse.emf.query2.test.mm.testcases.case001.Case001Factory;
 import org.eclipse.emf.query2.test.mm.testcases.case001.Case001Package;
+import org.eclipse.emf.query2.test.setup.DefaultTestClientImpl;
+import org.eclipse.emf.query2.test.setup.IndexSetupManager;
+import org.eclipse.emf.query2.test.setup.TestClient;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sap.tc.emf.test.query.setup.DefaultTestClientImpl;
-import com.sap.tc.emf.test.query.setup.IndexSetupManager;
-import com.sap.tc.emf.test.query.setup.TestClient;
 
 public class QuerySpreadingTest extends QueryTestCase {
 
