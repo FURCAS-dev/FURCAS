@@ -14,9 +14,9 @@ syntax BibtexWithPropertyInits {
 	template Article
 		: "article" "{"
 		[
-		key "," author{as=identifier, query="bibtexFile.entries->select(oclIsKindOf(Author))",
-		                              filter="->select(oclAsType(Author).name=?)"}
-		-- key "," author{refersTo=name}
+		--key "," author{as=identifier, query="bibtexFile.entries->select(oclIsKindOf(Author))",
+		--                              filter="->select(oclAsType(Author).name=?)"}
+		key "," author{refersTo=name}
 		    "," attributes{separator = ","}
 		]
 		"}"
