@@ -1,6 +1,5 @@
 package org.eclipse.emf.query2.internal.ui.handlers;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Iterator;
@@ -15,7 +14,6 @@ import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.text.Region;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -26,19 +24,18 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.ide.IDE;
-import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 import org.eclipse.xtext.resource.DefaultLocationInFileProvider;
 import org.eclipse.xtext.resource.ILocationInFileProvider;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.XtextReadonlyEditorInput;
 import org.eclipse.xtext.util.TextLocation;
+import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 
 public class OpenQueryInEditor extends AbstractHandler {
 
 	protected ILocationInFileProvider locationProvider = new DefaultLocationInFileProvider();
 
-	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		ISelection selection = HandlerUtil.getActiveWorkbenchWindow(event).getActivePage().getSelection();
 		if (selection != null & selection instanceof IStructuredSelection) {
@@ -64,8 +61,7 @@ public class OpenQueryInEditor extends AbstractHandler {
 			} else if (uri.isArchive()) {
 				// TODO don't fall back to java.io
 				IEditorInput input = new XtextReadonlyEditorInput(file);
-				openEditor = IDE.openEditor(page, input, PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(uri.lastSegment())
-						.getId());
+				openEditor = IDE.openEditor(page, input, PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(uri.lastSegment()).getId());
 			} else {
 				// fall back: URI is bundle resource uri and has to converted,
 				// or http uri
@@ -74,8 +70,7 @@ public class OpenQueryInEditor extends AbstractHandler {
 				String path = urlAsUri.toFileString();
 				if (path != null) {
 					IEditorInput input = new XtextReadonlyEditorInput(file);
-					openEditor = IDE.openEditor(page, input, PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(
-							uri.lastSegment()).getId());
+					openEditor = IDE.openEditor(page, input, PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(uri.lastSegment()).getId());
 				}
 			}
 		} catch (PartInitException partInitException) {
@@ -87,7 +82,7 @@ public class OpenQueryInEditor extends AbstractHandler {
 			final XtextEditor edit = (XtextEditor) openEditor;
 			if (uri.fragment() != null) {
 				edit.getDocument().readOnly(new IUnitOfWork.Void<XtextResource>() {
-					@Override
+
 					public void process(XtextResource resource) throws Exception {
 						EObject object = resource.getEObject(uri.fragment());
 						TextLocation region = locationProvider.getLocation(object);
