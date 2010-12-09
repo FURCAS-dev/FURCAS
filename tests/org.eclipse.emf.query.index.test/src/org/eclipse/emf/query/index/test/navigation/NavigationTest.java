@@ -51,7 +51,7 @@ public class NavigationTest extends Assert {
 	protected static final int REPS = 20;
 	private static Index index;
 	private Resource cont;
-	private String pagingDirectory = System.getProperty("java.io.tmpdir");
+	private String pagingDirectory = System.getProperty("java.io.tmpdir") + File.separator;
 	
 	public Options getOptions() {
 		System.out.println("Paging directory is:"+ pagingDirectory);
@@ -102,7 +102,7 @@ public class NavigationTest extends Assert {
 
 	private Resource getEcoreCopy() throws Exception {
 		ResourceSet rs = new ResourceSetImpl();
-		Resource copy = rs.createResource(URI.createFileURI(pagingDirectory+File.separator+"ecoreCopy.xmi"));
+		Resource copy = rs.createResource(URI.createFileURI(pagingDirectory+"ecoreCopy.xmi"));
 		Resource ecoreResource = EcorePackage.eINSTANCE.eResource();
 		copy.getContents().add(EcorePackage.eINSTANCE);
 		copy.save(null);
