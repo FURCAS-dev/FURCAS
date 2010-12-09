@@ -19,6 +19,7 @@ import org.junit.Test;
 import org.junit.runners.Parameterized.Parameters;
 
 public class TestSuiteSyntheticWithSchedulingQueryTests extends BaseSyntheticQueryTests {
+	
 
 	public TestSuiteSyntheticWithSchedulingQueryTests(Integer ratio) {
 
@@ -49,9 +50,11 @@ public class TestSuiteSyntheticWithSchedulingQueryTests extends BaseSyntheticQue
 
 		createDirtyData = true;
 		createObjValAttrs = true;
+		
 
 		BaseSyntheticQueryTests.beforeQueryTests(true);
 	}
+
 
 	@AfterClass
 	static public void afterQueryTests() throws Exception {
@@ -164,7 +167,7 @@ public class TestSuiteSyntheticWithSchedulingQueryTests extends BaseSyntheticQue
 		assertTrue("ResultSet is not correct", super.complex_assoc_linear_ast());
 	}
 
-	@Test
+	@Test @Ignore
 	public void test_complex_assoc_grid_ast() throws Exception {
 
 		assertTrue("ResultSet is not correct", super.complex_assoc_grid_ast());
@@ -176,13 +179,13 @@ public class TestSuiteSyntheticWithSchedulingQueryTests extends BaseSyntheticQue
 		assertTrue("ResultSet is not correct", super.where_with_three_comparisons_limited());
 	}
 
-	@Test
+	@Test @Ignore
 	public void test_complex_assoc_grid_with_attr_comparisons() throws Exception {
 
 		assertTrue("ResultSet is not correct", super.complex_assoc_grid_with_attr_comparisons());
 	}
 
-	@Test
+	@Test @Ignore
 	public void test_complex_grid_assoc_with_string_comparisons() throws Exception {
 
 		assertTrue("ResultSet is not correct", super.complex_grid_assoc_with_string_comparisons());
@@ -194,13 +197,13 @@ public class TestSuiteSyntheticWithSchedulingQueryTests extends BaseSyntheticQue
 		assertTrue("ResultSet is not correct", super.complex_assoc_linear_with_many_selections_limited());
 	}
 
-	@Test
+	@Test @Ignore
 	public void test_complex_assoc_grid_with_structureTypes() throws Exception {
 
 		assertTrue("ResultSet is not correct", super.complex_assoc_grid_with_structureTypes());
 	}
 
-	@Test
+	@Test @Ignore
 	public void test_complex_grid_assoc_with_fixed_set_ast() throws Exception {
 
 		assertTrue("ResultSet is not correct", super.complex_grid_assoc_with_fixed_set_ast());
