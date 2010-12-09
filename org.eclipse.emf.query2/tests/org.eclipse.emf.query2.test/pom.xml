@@ -10,7 +10,7 @@
 	</parent>
 	
 	<artifactId>org.eclipse.emf.query2.test</artifactId>
-	<packaging>eclipse-plugin</packaging>
+	<packaging>eclipse-test-plugin</packaging>
 	<name>EMF Query2 Core Tests</name>	
 	
 </project>
