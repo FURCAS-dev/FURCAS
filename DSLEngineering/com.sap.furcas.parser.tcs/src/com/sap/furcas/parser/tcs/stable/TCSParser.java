@@ -1,23 +1,23 @@
 // $ANTLR 3.1.1 C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g 2010-12-09 12:34:12
 
 package com.sap.furcas.parser.tcs.stable;
-import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
-import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
-import com.sap.furcas.runtime.parser.impl.PredicateSemantic;
-import com.sap.furcas.runtime.parser.impl.SemanticDisambRuleData;
-import com.sap.furcas.runtime.tcs.RuleNameFinder;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
-import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
-import org.antlr.runtime.Token;
-
-
-import org.antlr.runtime.*;
-import java.util.Stack;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
+
+import org.antlr.runtime.BaseRecognizer;
+import org.antlr.runtime.BitSet;
+import org.antlr.runtime.DFA;
+import org.antlr.runtime.EarlyExitException;
+import org.antlr.runtime.IntStream;
+import org.antlr.runtime.NoViableAltException;
+import org.antlr.runtime.RecognitionException;
+import org.antlr.runtime.RecognizerSharedState;
+import org.antlr.runtime.Token;
+import org.antlr.runtime.TokenStream;
+
+import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
+import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 public class TCSParser extends ObservableInjectingParser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "NAME", "STRING", "INT", "FLOAT", "DLCOLON", "LPAREN", "EQ", "RPAREN", "LCURLY", "RCURLY", "SEMI", "RARROW", "COLON", "COMA", "SHARP", "LT", "GT", "LSQUARE", "RSQUARE", "QMARK", "DLSQUARE", "PIPE", "DRSQUARE", "STAR", "DOLLAR", "DLCURLY", "DRCURLY", "LARROW", "POINT", "MINUS", "COMMENT", "MULTI_LINE_COMMENT", "EXCL", "AROBAS", "SLASH", "PLUS", "GE", "LE", "NE", "NL", "WS", "DIGIT", "ALPHA", "SNAME", "ESC", "'disambiguate'", "'endOfLine'", "'mode'", "'abstract'", "'right'", "'context'", "'serializer'", "'value'", "'autoCreate'", "'and'", "'one'", "'startNL'", "'orKeyword'", "'always'", "'forcedLower'", "'endNL'", "'default'", "'esc'", "'storeRightTo'", "'addToContext'", "'rightSpace'", "'operatored'", "'forcedUpper'", "'main'", "'operators'", "'leftNone'", "'rightNone'", "'octal'", "'postfix'", "'lookIn'", "'hex'", "'primitiveTemplate'", "'deep'", "'never'", "'createAs'", "'separator'", "'importContext'", "'for'", "'end'", "'foreach'", "'referenceOnly'", "'source'", "'partial'", "'invert'", "'all'", "'ifmissing'", "'word'", "'keywords'", "'part'", "'priority'", "'createIn'", "'multi'", "'left'", "'multiLine'", "'lexer'", "'syntax'", "'drop'", "'refersTo'", "'prefix'", "'nbNL'", "'template'", "'nonPrimary'", "'operatorTemplate'", "'function'", "'isDefined'", "'omitted'", "'indentIncr'", "'when'", "'leftSpace'", "'instanceOf'", "'storeOpTo'", "'startNbNL'", "'start'", "'enumerationTemplate'", "'using'", "'auto'", "'semDisambiguate'", "'false'", "'query'", "'k'", "'true'", "'token'", "'as'", "'disambiguateV3'", "'symbols'", "'filter'"
@@ -168,12 +168,15 @@ public class TCSParser extends ObservableInjectingParser {
         }
         
 
+    @Override
     public String[] getTokenNames() { return TCSParser.tokenNames; }
+    @Override
     public String getGrammarFileName() { return "C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g"; }
 
 
        private static final String syntaxUUID = "TCS";
-       public String getSyntaxUUID() {
+       @Override
+    public String getSyntaxUUID() {
             return syntaxUUID;
        }
        /**
@@ -3542,6 +3545,7 @@ public class TCSParser extends ObservableInjectingParser {
 
     // $ANTLR start "main"
     // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:500:1: main returns [Object ret2] : ( (ret= furcas_tcs_concretesyntax ) EOF ) ;
+    @Override
     public final Object main() throws RecognitionException {
 
         Object ret2 = null;
@@ -20493,9 +20497,11 @@ public class TCSParser extends ObservableInjectingParser {
             this.special = DFA28_special;
             this.transition = DFA28_transition;
         }
+        @Override
         public String getDescription() {
             return "590:309: (temp= furcas_textblockdefinition_textblockdefinition )?";
         }
+        @Override
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
@@ -20779,9 +20785,11 @@ public class TCSParser extends ObservableInjectingParser {
             this.special = DFA33_special;
             this.transition = DFA33_transition;
         }
+        @Override
         public String getDescription() {
             return "610:151: (temp= furcas_textblockdefinition_textblockdefinition )?";
         }
+        @Override
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
@@ -21065,9 +21073,11 @@ public class TCSParser extends ObservableInjectingParser {
             this.special = DFA52_special;
             this.transition = DFA52_transition;
         }
+        @Override
         public String getDescription() {
             return "667:151: (temp= furcas_textblockdefinition_textblockdefinition )?";
         }
+        @Override
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
@@ -21351,9 +21361,11 @@ public class TCSParser extends ObservableInjectingParser {
             this.special = DFA65_special;
             this.transition = DFA65_transition;
         }
+        @Override
         public String getDescription() {
             return "700:152: (temp= furcas_textblockdefinition_textblockdefinition )?";
         }
+        @Override
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
@@ -21741,9 +21753,11 @@ public class TCSParser extends ObservableInjectingParser {
             this.special = DFA70_special;
             this.transition = DFA70_transition;
         }
+        @Override
         public String getDescription() {
             return "762:3: (ret= furcas_tcs_sequence__impl | (ret= furcas_tcs_sequenceinalternative ) )";
         }
+        @Override
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
@@ -23635,6 +23649,7 @@ public class TCSParser extends ObservableInjectingParser {
             this.special = DFA87_special;
             this.transition = DFA87_transition;
         }
+        @Override
         public String getDescription() {
             return "970:3: (ret= furcas_tcs_primitivepropertyinit | ret= furcas_tcs_lookuppropertyinit | ret= furcas_tcs_foreachpredicatepropertyinit )";
         }
@@ -23784,9 +23799,11 @@ public class TCSParser extends ObservableInjectingParser {
             this.special = DFA97_special;
             this.transition = DFA97_transition;
         }
+        @Override
         public String getDescription() {
             return "1025:184: ( ( COMA 'mode' EQ (temp= identifierOrKeyword ) ) | )";
         }
+        @Override
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
@@ -24058,9 +24075,11 @@ public class TCSParser extends ObservableInjectingParser {
             this.special = DFA137_special;
             this.transition = DFA137_transition;
         }
+        @Override
         public String getDescription() {
             return "1573:3: (ret= furcas_tcs_equalsexp | ret= furcas_tcs_booleanpropertyexp | ret= furcas_tcs_isdefinedexp | ret= furcas_tcs_oneexp | ret= furcas_tcs_instanceofexp )";
         }
+        @Override
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;

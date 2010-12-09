@@ -1,14 +1,13 @@
-package ProjectName.editor; 
+package $ProjectName$.editor; 
 
-import textblocks.TextBlock; 
 
-import com.sap.furcas.ide.editor.AbstractGrammarBasedEditor; 
-import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
-import ProjectName.parser.$CapLangname$ParserFactory;
+import com.sap.furcas.ide.editor.AbstractGrammarBasedEditor;
+import $ProjectName$.parser.$CapLangName$ParserFactory;
 
 public class $CapLangName$Editor extends AbstractGrammarBasedEditor { 
 
 	public $CapLangName$Editor() { 
+
 		super(new $CapLangName$ParserFactory(), new $CapLangName$TokenMapper()); 
 	} 
 

@@ -6,17 +6,25 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SAP
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.junit;bundle-version="4.8.1",
- com.sap.furcas.modeladaptation.emf,
- com.sap.furcas.test,
- com.sap.furcas.runtime.common,
+ org.antlr,
  com.sap.furcas.runtime.parser.test,
+ com.sap.furcas.test,
+ com.sap.furcas.runtime.textblocks.test,
+ com.sap.furcas.ide.parserfactory,
+ com.sap.furcas.metamodel,
+ com.sap.furcas.runtime.common,
+ com.sap.furcas.runtime.tcs,
+ com.sap.furcas.runtime.parser.test,
+ com.sap.furcas.runtime.textblocks,
  com.sap.furcas.runtime.parser,
- org.antlr;bundle-version="3.1.1",
+ com.sap.furcas.modeladaptation.emf,
  com.sap.furcas.parsergenerator,
  com.sap.furcas.runtime.referenceresolving,
+ com.sap.furcas.runtime.parser.incremental,
  com.sap.emf.ocl.trigger,
  com.sap.furcas.runtime.parser.incremental.test,
- org.eclipse.emf.edit;bundle-version="2.6.0",
- com.sap.furcas.runtime.tcs
+ org.eclipse.core.runtime,
+ org.eclipse.emf;bundle-version="2.6.0",
+ org.eclipse.emf.edit;bundle-version="2.6.0"
 Bundle-ClassPath: generationTemp/,
  .

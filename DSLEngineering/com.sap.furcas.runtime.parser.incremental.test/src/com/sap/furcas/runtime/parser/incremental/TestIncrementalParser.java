@@ -66,17 +66,15 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
         TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
         syntax = syntaxBean.getSyntax();
         resourceSet.getResources().add(syntax.eResource());
+        ClassLookup classLookup = new ClassLookup() {
+            @Override
+            public Class<?> loadClass(String className)
+                    throws ClassNotFoundException {
+                return Class.forName(className);
+            }
+        };
         generateParserForLanguage(syntaxBean, testConfig,
-                new ClassLookup() {
-
-                    @Override
-                    public Class<?> loadClass(String className)
-                            throws ClassNotFoundException {
-                        return Class.forName(className);
-                    }
-
-                }, false);
-
+                classLookup, false);
         generationHelper = new ParserGenerationTestHelper(GENERATION_TEMP,
                 Collections.singletonList(PACKAGE_NAME), true);
         // EPackage pack = findPackage(LANGUAGE);
@@ -93,7 +91,7 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
                 .getInstance();
         incrementalParserFacade = getIncrementalFacade(LANGUAGE, resourceSet,
                 editingDomain, oppositeEndFinder, testConfig
-                        .getSourceConfiguration().getReferenceScope());
+                        .getSourceConfiguration().getReferenceScope(), classLookup);
         ECrossReferenceAdapter crossRefAdapter = new ECrossReferenceAdapter();
         resourceSet.eAdapters().add(crossRefAdapter);
         crossRefAdapter.setTarget(resourceSet);
