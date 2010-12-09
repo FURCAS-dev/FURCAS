@@ -5,15 +5,17 @@
          point="org.eclipse.ui.views">
       <view
             class="org.eclipse.emf.query2.internal.ui.QueryResultView"
+            icon="icons/file.gif"
             id="org.eclipse.emf.query2.syntax.tools.ui.queryresultview"
             name="Query Result View"
             restorable="true">
       </view>
        <view
-            class="org.eclipse.emf.query2.internal.ui.QueryView"
-            id="org.eclipse.emf.query2.syntax.tools.ui.queryview"
-            name="Query View"
-            restorable="true">
+             class="org.eclipse.emf.query2.internal.ui.QueryView"
+             icon="icons/magnifying-glass.gif"
+             id="org.eclipse.emf.query2.syntax.tools.ui.queryview"
+             name="Query View"
+             restorable="true">
       </view>
    </extension>
    <extension
