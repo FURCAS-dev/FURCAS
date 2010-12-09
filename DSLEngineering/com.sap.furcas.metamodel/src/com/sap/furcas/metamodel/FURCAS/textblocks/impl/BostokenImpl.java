@@ -22,22 +22,22 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
  */
 public class BostokenImpl extends AbstractTokenImpl implements Bostoken {
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         protected BostokenImpl() {
-		super();
-	}
+        super();
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected EClass eStaticClass() {
-		return TextblocksPackage.Literals.BOSTOKEN;
-	}
+        return TextblocksPackage.Literals.BOSTOKEN;
+    }
 
 } //BostokenImpl
