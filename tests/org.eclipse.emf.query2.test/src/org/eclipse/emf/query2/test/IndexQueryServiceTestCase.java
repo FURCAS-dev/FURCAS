@@ -33,7 +33,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-public class IndexQueryServiceTest extends QueryTestCase {
+public class IndexQueryServiceTestCase extends QueryTestCase {
 
 	private TestClient testClient1;
 	private Index index;

@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses( { IndexQueryServiceTest.class, QuerySpreadingTest.class,
+@Suite.SuiteClasses( { IndexQueryServiceTestCase.class, QuerySpreadingTest.class,
 		SuiteSyntheticWithNoSchedulingQueryTest.class, // formatting
 		SuiteSyntheticInMemoryForCstTest.class, SuiteSyntheticWithSchedulingQueryTest.class, SuiteCompanyQueryTest.class,
 		SuiteNegativeQueryTest.class, SuiteSmokeQueryTest.class, //
