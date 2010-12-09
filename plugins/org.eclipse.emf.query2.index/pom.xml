@@ -13,4 +13,26 @@
 	<packaging>eclipse-plugin</packaging>
 	<name>EMF Query2 Index</name>
 
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<configuration>
+					<findbugsXmlOutput>true</findbugsXmlOutput>
+					<failOnError>false</failOnError>
+					<excludeFilterFile>findbugs/FindBugsExcludeFilter.xml</excludeFilterFile>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+	
 </project>
