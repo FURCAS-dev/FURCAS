@@ -54,14 +54,6 @@
 				<artifactId>target-platform-configuration</artifactId>
 				<version>0.10.0</version>
 				<configuration>
-					<!-- <target> -->
-					<!-- <artifact> -->
-					<!-- <groupId>${project.groupId}</groupId> -->
-					<!-- <artifactId>FURCAS</artifactId> -->
-					<!-- <version>1.0.1-SNAPSHOT</version> -->
-					<!-- <classifier>test</classifier> -->
-					<!-- </artifact> -->
-					<!-- </target> -->
 					<resolver>p2</resolver>
 					<environments>
 						<environment>
@@ -118,14 +110,8 @@
 	
 	<repositories>
 		<repository>
-			<!-- <id>nexus</id> -->
 			<layout>p2</layout>
-			<!-- <url>http://nexus:8081/nexus/content/repositories/build.milestones.unzip/org/eclipse/download/eclipse/org.eclipse.platform/3.6.1/org.eclipse.platform-3.6.1.zip-unzip/</url> -->
-			<!-- <url>http://nexus:8081/nexus/content/repositories/build.milestones.unzip/</url> -->
-			<!-- </repository> -->
-			<!-- <repository> -->
 			<id>eclipse</id>
-			<!-- <url>http://nexus:8081/nexus/content/repositories/3rd-party.milestones.maven-central.proxy/</url> -->
 			<url>http://download.eclipse.org/releases/helios/</url>
 		</repository>
 	</repositories>
