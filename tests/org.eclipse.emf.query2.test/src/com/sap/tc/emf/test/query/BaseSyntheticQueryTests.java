@@ -59,7 +59,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import com.sap.tc.emf.test.query.setup.DefaultTestClientImpl;
-import com.sap.tc.emf.test.query.setup.IndexerForTest;
+import com.sap.tc.emf.test.query.setup.IndexSetupManager;
 import com.sap.tc.emf.test.query.setup.TestClient;
 
 /**
@@ -141,7 +141,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 		mdi.createData();
 
 		// index all created partitions
-		IndexerForTest.index(getDefaultIndexStore(), myTestClient.getResourceSet().getResources().toArray(new Resource[0]));
+		IndexSetupManager.index(getDefaultIndexStore(), myTestClient.getResourceSet().getResources().toArray(new Resource[0]));
 
 		// test setup sanity check
 		/*
@@ -177,7 +177,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 		// remove from index
 		if (deletePartitions && partitionScope != null) {
-			IndexerForTest.delete(getDefaultIndexStore(), partitionScope);
+			IndexSetupManager.delete(getDefaultIndexStore(), partitionScope);
 		}
 
 		// if we have to delete the partitions

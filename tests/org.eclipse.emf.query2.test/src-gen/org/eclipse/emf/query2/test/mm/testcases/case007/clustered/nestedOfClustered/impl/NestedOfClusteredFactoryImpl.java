@@ -98,7 +98,7 @@ public class NestedOfClusteredFactoryImpl extends EFactoryImpl implements Nested
 	 * @generated
 	 */
 	public NestedOfClusteredAReferencesNestedOfClusteredB createNestedOfClusteredAReferencesNestedOfClusteredB() {
-		NestedOfClusteredAReferencesNestedOfClusteredBImpl nestedOfClusteredAReferencesNestedOfClusteredB = new NestedOfClusteredAReferencesNestedOfClusteredBImpl();
+		NestedOfClusteredAReferencesNestedOfClusteredB nestedOfClusteredAReferencesNestedOfClusteredB = new NestedOfClusteredAReferencesNestedOfClusteredBImpl();
 		return nestedOfClusteredAReferencesNestedOfClusteredB;
 	}
 

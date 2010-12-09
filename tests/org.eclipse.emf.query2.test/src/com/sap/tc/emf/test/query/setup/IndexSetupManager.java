@@ -7,7 +7,7 @@ import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
 import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
 
-public class IndexerForTest {
+public class IndexSetupManager {
 
 	public static void index(Index index, final Resource... resources) {
 		index.executeUpdateCommand(new UpdateCommandAdapter() {

@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.emf.query2.test.mm.generatedmetamodel.impl;
 
+import java.beans.ConstructorProperties;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -140,6 +141,7 @@ import org.eclipse.emf.query2.test.mm.generatedmetamodel.TestClass9;
  * @generated
  */
 public class TestClass10Impl extends EObjectImpl implements TestClass10 {
+	
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -1203,9 +1205,9 @@ public class TestClass10Impl extends EObjectImpl implements TestClass10 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated Not
 	 */
-	protected TestClass10Impl() {
+	public TestClass10Impl() {
 		super();
 	}
 

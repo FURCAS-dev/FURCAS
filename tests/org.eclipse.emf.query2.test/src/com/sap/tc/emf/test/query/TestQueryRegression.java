@@ -45,7 +45,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.tc.emf.test.query.setup.DefaultTestClientImpl;
-import com.sap.tc.emf.test.query.setup.IndexerForTest;
+import com.sap.tc.emf.test.query.setup.IndexSetupManager;
 import com.sap.tc.emf.test.query.setup.TestClient;
 
 public class TestQueryRegression extends QueryTestCase {
@@ -201,7 +201,7 @@ public class TestQueryRegression extends QueryTestCase {
 		res.getContents().add(a);
 		URI uriA = EcoreUtil.getURI(a);
 
-		IndexerForTest.index(getDefaultIndexStore(), res);
+		IndexSetupManager.index(getDefaultIndexStore(), res);
 
 		// just verify execution without errors:
 		ResultSet rs = mql.execute("select a " //
@@ -435,7 +435,7 @@ public class TestQueryRegression extends QueryTestCase {
 
 		res.getContents().add(a1_1);
 
-		IndexerForTest.index(getDefaultIndexStore(), res);
+		IndexSetupManager.index(getDefaultIndexStore(), res);
 		// res.save(null);
 
 		ResultSet rs = mql.execute(query, qsp);
@@ -494,7 +494,7 @@ public class TestQueryRegression extends QueryTestCase {
 		// res.getContents().add(b_3);
 		// res.getContents().add(b_4);
 
-		IndexerForTest.index(getDefaultIndexStore(), res);
+		IndexSetupManager.index(getDefaultIndexStore(), res);
 		// res.save(null);
 
 		ResultSet rs = mql.execute(query, qsp);
@@ -552,7 +552,7 @@ public class TestQueryRegression extends QueryTestCase {
 		res.getContents().add(a_1);
 		res.save(null);
 
-		IndexerForTest.index(getDefaultIndexStore(), res);
+		IndexSetupManager.index(getDefaultIndexStore(), res);
 		res.unload();
 
 		String query = String.format("select a from [%s] as a where a.manyBs not in (select b from [%s] as b)", uriA4, uriB4);
@@ -562,7 +562,7 @@ public class TestQueryRegression extends QueryTestCase {
 		assertEquals(1, rs.getSize());
 		assertEquals(EcoreUtil.getURI(a_1), rs.getUri(0, "a"));
 
-		IndexerForTest.delete(getDefaultIndexStore(), res.getURI());
+		IndexSetupManager.delete(getDefaultIndexStore(), res.getURI());
 
 		res.delete(null);
 	}
