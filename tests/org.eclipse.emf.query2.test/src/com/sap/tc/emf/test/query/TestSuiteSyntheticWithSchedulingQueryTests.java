@@ -18,7 +18,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.Parameterized.Parameters;
 
-public class TestSuiteSyntheticWithSchedulingQueryTests extends BaseSyntheticQueryTests {
+public class TestSuiteSyntheticWithSchedulingQueryTests extends BaseSyntheticQueryTest {
 
 	public TestSuiteSyntheticWithSchedulingQueryTests(Integer ratio) {
 
@@ -50,13 +50,13 @@ public class TestSuiteSyntheticWithSchedulingQueryTests extends BaseSyntheticQue
 		createDirtyData = true;
 		createObjValAttrs = true;
 
-		BaseSyntheticQueryTests.beforeQueryTests(true);
+		BaseSyntheticQueryTest.beforeQueryTests(true);
 	}
 
 	@AfterClass
 	static public void afterQueryTests() throws Exception {
 
-		BaseSyntheticQueryTests.afterQueryTests(true);
+		BaseSyntheticQueryTest.afterQueryTests(true);
 	}
 
 	@Parameters

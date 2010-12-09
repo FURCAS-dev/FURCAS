@@ -17,7 +17,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runners.Parameterized.Parameters;
 
-public class TestSuiteSyntheticInMemoryForCst extends BaseSyntheticQueryTests {
+public class TestSuiteSyntheticInMemoryForCst extends BaseSyntheticQueryTest {
 
     public TestSuiteSyntheticInMemoryForCst( Integer ratio ) {
 
@@ -40,7 +40,7 @@ public class TestSuiteSyntheticInMemoryForCst extends BaseSyntheticQueryTests {
         createDirtyData = true;
         createObjValAttrs = true;
 
-        BaseSyntheticQueryTests.beforeQueryTests( true );
+        BaseSyntheticQueryTest.beforeQueryTests( true );
     }
 
     @Parameters
@@ -54,7 +54,7 @@ public class TestSuiteSyntheticInMemoryForCst extends BaseSyntheticQueryTests {
     @AfterClass
     static public void afterQueryTests( ) throws Exception {
 
-        BaseSyntheticQueryTests.afterQueryTests( true );
+        BaseSyntheticQueryTest.afterQueryTests( true );
     }
 
     @Test

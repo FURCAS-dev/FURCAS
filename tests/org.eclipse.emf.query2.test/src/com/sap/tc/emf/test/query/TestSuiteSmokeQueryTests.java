@@ -21,7 +21,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 @RunWith( Parameterized.class )
-public class TestSuiteSmokeQueryTests extends BaseSyntheticQueryTests {
+public class TestSuiteSmokeQueryTests extends BaseSyntheticQueryTest {
 
     public TestSuiteSmokeQueryTests( Integer ratio ) {
 
@@ -43,13 +43,13 @@ public class TestSuiteSmokeQueryTests extends BaseSyntheticQueryTests {
         createDirtyData = false;
         createObjValAttrs = false;
 
-        BaseSyntheticQueryTests.beforeQueryTests( true );
+        BaseSyntheticQueryTest.beforeQueryTests( true );
     }
 
     @AfterClass
     static public void afterQueryTests( ) throws Exception {
 
-        BaseSyntheticQueryTests.afterQueryTests( true );
+        BaseSyntheticQueryTest.afterQueryTests( true );
     }
 
     @Parameters
