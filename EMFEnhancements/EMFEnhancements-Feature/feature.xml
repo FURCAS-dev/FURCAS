@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="EMFEnhancementsFeature"
+      id="EMFEnhancements-Feature"
       label="EMFEnhancements-Features"
       version="1.0.0.qualifier"
       provider-name="SAP">
