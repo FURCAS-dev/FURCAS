@@ -59,7 +59,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.tc.emf.test.query.setup.DefaultTestClientImpl;
-import com.sap.tc.emf.test.query.setup.IndexerForTest;
+import com.sap.tc.emf.test.query.setup.IndexSetupManager;
 import com.sap.tc.emf.test.query.setup.TestClient;
 
 /**
@@ -112,7 +112,7 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 	private Index index = null;
 
 	static {
-		IndexerForTest.index(getDefaultIndexStore(), EcorePackage.eINSTANCE.eResource(), CompanyPackage.eINSTANCE.eResource());
+		IndexSetupManager.index(getDefaultIndexStore(), EcorePackage.eINSTANCE.eResource(), CompanyPackage.eINSTANCE.eResource());
 	}
 
 	@Before

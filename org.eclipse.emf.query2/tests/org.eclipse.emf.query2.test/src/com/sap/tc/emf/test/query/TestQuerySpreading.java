@@ -30,7 +30,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.sap.tc.emf.test.query.setup.DefaultTestClientImpl;
-import com.sap.tc.emf.test.query.setup.IndexerForTest;
+import com.sap.tc.emf.test.query.setup.IndexSetupManager;
 import com.sap.tc.emf.test.query.setup.TestClient;
 
 public class TestQuerySpreading extends QueryTestCase {
@@ -110,7 +110,7 @@ public class TestQuerySpreading extends QueryTestCase {
 		mixedDirty_Dirty.save(null);
 		mixedDirty_NonDirty.save(null);
 
-		IndexerForTest.index(getDefaultIndexStore(), mixedDirty_Dirty, mixedDirty_NonDirty);
+		IndexSetupManager.index(getDefaultIndexStore(), mixedDirty_Dirty, mixedDirty_NonDirty);
 
 		// reset the client to clear resource set
 		this.resetTestClient();
@@ -131,7 +131,7 @@ public class TestQuerySpreading extends QueryTestCase {
 		mixedDirty_Dirty.delete(null);
 		mixedDirty_NonDirty.delete(null);
 
-		IndexerForTest.delete(getDefaultIndexStore(), mixedDirty_Dirty.getURI(), mixedDirty_NonDirty.getURI());
+		IndexSetupManager.delete(getDefaultIndexStore(), mixedDirty_Dirty.getURI(), mixedDirty_NonDirty.getURI());
 	}
 
 }

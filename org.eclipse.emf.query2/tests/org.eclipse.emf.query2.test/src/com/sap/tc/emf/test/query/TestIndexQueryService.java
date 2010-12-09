@@ -30,7 +30,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.sap.tc.emf.test.query.setup.DefaultTestClientImpl;
-import com.sap.tc.emf.test.query.setup.IndexerForTest;
+import com.sap.tc.emf.test.query.setup.IndexSetupManager;
 import com.sap.tc.emf.test.query.setup.TestClient;
 
 public class TestIndexQueryService extends QueryTestCase {
@@ -102,7 +102,7 @@ public class TestIndexQueryService extends QueryTestCase {
 		linkSourceResource.getContents().add(e);
 
 		// index resources
-		IndexerForTest.index(getDefaultIndexStore(), notLinkedResource, linkTargetResource, invalidLinkTargetResource, linkSourceResource);
+		IndexSetupManager.index(getDefaultIndexStore(), notLinkedResource, linkTargetResource, invalidLinkTargetResource, linkSourceResource);
 
 		// we are looking for C2->B2 but not E2->B
 		URI referenceURI = EcoreUtil.getURI(Case002Package.Literals.C2__B);

@@ -23,7 +23,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 
-import com.sap.tc.emf.test.query.setup.IndexerForTest;
+import com.sap.tc.emf.test.query.setup.IndexSetupManager;
 
 public class QueryTestCase extends Assert {
 
@@ -31,7 +31,7 @@ public class QueryTestCase extends Assert {
 
 	static {
 
-		IndexerForTest.index(getDefaultIndexStore(), // 
+		IndexSetupManager.index(getDefaultIndexStore(), // 
 				EcorePackage.eINSTANCE.eResource(), // 
 				GeneratedmetamodelPackage.eINSTANCE.eResource(), // 
 				CompanyPackage.eINSTANCE.eResource(), //
