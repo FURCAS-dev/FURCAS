@@ -1,13 +1,13 @@
-package com.sap.furcas.runtime.parser.incremental;
+package com.sap.furcas.referenceresolving.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
 import java.util.Collections;
-import java.util.List;
 
 import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -24,14 +24,14 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import Bibtex.util.BibtexAdapterFactory;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
+import com.sap.furcas.runtime.parser.incremental.GeneratedParserAndFactoryBasedTest;
+import com.sap.furcas.runtime.parser.incremental.ParserGenerationTestHelper;
 import com.sap.furcas.runtime.parser.testbase.ClassLookup;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
@@ -43,14 +43,15 @@ import com.sap.furcas.test.fixture.ScenarioFixtureData;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 
 public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
+    private static final String LANGUAGE = "BibtexWithPropertyInits";
+    private static final File TCS = new File("fixtures/BibtexWithPropertyInits.tcs");
+
+    private static final File[] METAMODELS = { ScenarioFixtureData.BIBTEXT_METAMODEL,
+            ScenarioFixtureData.BIBTEXT1_METAMODEL };
+    
     private static final String GENERATION_TEMP = "./generationTemp/";
     private static final String PACKAGE_NAME = "generated";
-    private static final String LANGUAGE = "Bibtex";
-    private static final File TCS = new File("fixtures/Bibtex.tcs");
 
-    private static final File[] METAMODELS = {
-            ScenarioFixtureData.BIBTEXT_METAMODEL,
-            ScenarioFixtureData.BIBTEXT1_METAMODEL };
     private static final String MM_PACKAGE = "BibText";
 
     private static ResourceSet resourceSet;
@@ -68,13 +69,12 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
         resourceSet.getResources().add(syntax.eResource());
         ClassLookup classLookup = new ClassLookup() {
             @Override
-            public Class<?> loadClass(String className)
-                    throws ClassNotFoundException {
+            public Class<?> loadClass(String className) throws ClassNotFoundException {
                 return Class.forName(className);
             }
         };
-        generateParserForLanguage(syntaxBean, testConfig,
-                classLookup, false);
+        generateParserForLanguage(syntaxBean, testConfig, classLookup, false);
+
         generationHelper = new ParserGenerationTestHelper(GENERATION_TEMP,
                 Collections.singletonList(PACKAGE_NAME), true);
         // EPackage pack = findPackage(LANGUAGE);
@@ -84,7 +84,7 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
         generateParserFactoryForLanguage(LANGUAGE, MM_PACKAGE, testConfig
                 .getTargetConfiguration().getParserTargetPackageName());
         EditingDomain editingDomain = new AdapterFactoryEditingDomain(
-                new BibtexAdapterFactory(), new BasicCommandStack(),
+                new AdapterFactoryImpl(), new BasicCommandStack(),
                 resourceSet);
 
         OppositeEndFinder oppositeEndFinder = DefaultOppositeEndFinder
@@ -144,42 +144,15 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
         return resource;
     }
 
-    @Test
-    public void testIncrementalParserSetup() {
-        IncrementalParserFacade facade = getParserFacade();
-
-        AbstractToken content = createToken("");
-        TextBlock root = TestSourceTextBlockCreator
-                .initialiseTextBlocksWithContentToken(modelFactory, content);
-        Resource r = createTransientParsingResource(resourceSet, MM_PACKAGE);
-        r.getContents().add(root);
-
-        TextBlocksModel tbModel = new TextBlocksModel(root, null);
-        tbModel.replace(0, 0,
-                "article{  Testing, \"John Doe\",  year = \"2002\" } author = \"John Doe\".");
-
-        TextBlock currentVersionTb = facade.parseIncrementally(root);
-        Object syntaxObject = currentVersionTb.getCorrespondingModelElements()
-                .iterator().next();
-        // assert no exception
-        assertNotNull(syntaxObject);
-        @SuppressWarnings("unchecked")
-        List<EObject> entries = (List<EObject>) ((EObject) syntaxObject)
-                .eGet(((EObject) syntaxObject).eClass().getEStructuralFeature(
-                        "entries"));
-        assertEquals(2, entries.size());
-    }
-
-     /**
-     * Tests whether an simple addition to a textblock is correctly mapped to
-     an
-     * insertion in the model without re-creating the parent element.
-     *
+    /**
+     * Tests whether an simple addition to a textblock is correctly mapped to an insertion in the model without
+     * re-creating the parent element.
+     * 
      * @throws Exception
      */
-     @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     @Test
-     public void testParseBibTextAddNewSubBlock() throws Exception {
+    public void testParseBibTextAddNewSubBlock() throws Exception {
          IncrementalParserFacade facade = getParserFacade();
 
          AbstractToken content = createToken("");
@@ -190,7 +163,8 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
 
          TextBlocksModel tbModel = new TextBlocksModel(root, null);
          tbModel.replace(0, 0,
-                 "article{  Testing, \"John Doe\",  year = \"2002\" } author = \"John Doe\".");
+                 "article{" + "  Testing, \"John Doe\"," + "  year = \"2002\"" + "}" + "author = \"John Doe\"."
+                 + "author = \"Jane Doll\".");
 
          TextBlock currentVersionTb = facade.parseIncrementally(root);
          EObject syntaxObject = currentVersionTb.getCorrespondingModelElements()
@@ -235,83 +209,4 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
          EObject newYear = attributes.get(0);
          assertEquals("2010", newYear.eGet(newYear.eClass().getEStructuralFeature("value")));
      }
-    
-    
-    
-//     /**
-//     * Tests whether a reference where the reference by value was replaced is
-//     * correctly set to thw new value;
-//     *
-//     * @throws Exception
-//     */
-//     @Test
-//     public void testParseBibTextReplaceReference() throws Exception {
-//     // create TCS mapping on connection
-//     TcsTestHelper.createTcsSyntaxMappingOnConnection(connection);
-//    
-//     IncrementalParserFacade facade = getParserFacade();
-//     File syntaxDefFile = new File("scenarioTestResource/Bibtext.tcs");
-//    
-//     AbstractToken content = createToken("");
-//     TextBlock root = TestSourceTextBlockCreator
-//     .initialiseTextBlocksWithContentToken(modelFactory, content);
-//    
-//     TextBlocksModel tbModel = new TextBlocksModel(root, null);
-//     tbModel.replace(0, 0, getTcsFileContent(syntaxDefFile));
-//    
-//     TextBlock currentVersionTb = facade.parseIncrementally(root);
-//     ConcreteSyntax syntaxObject = (ConcreteSyntax) currentVersionTb
-//     .getCorrespondingModelElements().iterator().next();
-//     // assert no exception
-//     assertNotNull(syntaxObject);
-//     ConcreteSyntax syntax = syntaxObject;
-//     assertEquals("Bibtext", syntax.getName());
-//     assertEquals(7, syntax.getTemplates().size());
-//    
-//     Template article = syntaxObject.getTemplates().get(3);
-//    
-//     assertNotNull(currentVersionTb); // future version
-//     assertEquals(88, currentVersionTb.getSubNodes().size());
-//    
-//     TbChangeUtil.cleanUp(currentVersionTb);
-//     // replace a reference that referred to the "." token with one that
-//     // refers to the "{" token
-//     tbModel = new TextBlocksModel(currentVersionTb, null);
-//     tbModel.replace(423, 1, "{");
-//     TextBlock currentVersionTbNew = facade
-//     .parseIncrementally(currentVersionTb);
-//     // textBlock shouldn't have changed
-//     assertEquals(currentVersionTb, currentVersionTb);
-//     ConcreteSyntax syntaxObject2 = (ConcreteSyntax) currentVersionTbNew
-//     .getCorrespondingModelElements().iterator().next();
-//    
-//     // syntax element shouldn't have changed
-//     assertEquals(syntaxObject, syntaxObject2);
-//    
-//     ClassTemplate article2 = (ClassTemplate) syntaxObject2.getTemplates()
-//     .get(3);
-//     assertEquals(article, article2);
-//     Block b = (Block) article2.getTemplateSequence().getElements().get(2);
-//     LiteralRef lit = (LiteralRef) b.getBlockSequence().getElements().get(3);
-//     assertEquals("{", lit.getReferredLiteral().getValue());
-//     }
-//    
-//     private String getTcsFileContent(File syntaxDefFile) {
-//     String content = null;
-//     if (syntaxDefFile != null) {
-//     try {
-//     FileInputStream inputStream = new FileInputStream(syntaxDefFile);
-//     StringBuilder out = new StringBuilder();
-//     byte[] b = new byte[4096];
-//     for (int n; (n = inputStream.read(b)) != -1;) {
-//     out.append(new String(b, 0, n));
-//     }
-//     content = out.toString();
-//     inputStream.close();
-//     } catch (IOException e) {
-//     throw new RuntimeException(e);
-//     }
-//     }
-//     return content;
-//     }
 }

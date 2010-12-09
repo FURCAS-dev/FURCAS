@@ -29,6 +29,7 @@ public interface ForeachPredicatePropertyInit extends PropertyInit {
         /**
      * Returns the value of the '<em><b>Predicate Semantic</b></em>' containment reference list.
      * The list contents are of type {@link com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic}.
+     * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic#getForeachParent <em>Foreach Parent</em>}'.
      * <!-- begin-user-doc -->
          * <p>
          * If the meaning of the '<em>Predicate Semantic</em>' containment reference list isn't clear,
@@ -37,7 +38,8 @@ public interface ForeachPredicatePropertyInit extends PropertyInit {
          * <!-- end-user-doc -->
      * @return the value of the '<em>Predicate Semantic</em>' containment reference list.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getForeachPredicatePropertyInit_PredicateSemantic()
-     * @model containment="true"
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic#getForeachParent
+     * @model opposite="foreachParent" containment="true"
      * @generated
      */
         EList<PredicateSemantic> getPredicateSemantic();

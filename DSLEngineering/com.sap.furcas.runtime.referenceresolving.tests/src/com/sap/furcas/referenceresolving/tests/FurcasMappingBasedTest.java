@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.emf.ocl.trigger.TriggerManager;
@@ -127,8 +126,7 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
         assertEquals("Where John Doe wrote it", article.eGet(articleClass.getEStructuralFeature("location")));
     }
 
-    @Ignore // as yet... working on it.
-    //@Test
+    @Test
     public void testForeachPropertyInitValueInInitialModel() throws Exception {
         @SuppressWarnings("unchecked")
         EList<EObject> revenues = (EList<EObject>) johnDoe.eGet(authorClass.getEStructuralFeature("revenues"));
@@ -142,7 +140,6 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
     }
 
     @Test
-    // @Ignore("failing test case as preparation of impact analysis requirements")
     public void testChangeAuthorName() {
         johnDoe.eSet(authorClass.getEStructuralFeature("name"), "John Dough");
         assertEquals("Where John Dough wrote it", article.eGet(articleClass.getEStructuralFeature("location")));
