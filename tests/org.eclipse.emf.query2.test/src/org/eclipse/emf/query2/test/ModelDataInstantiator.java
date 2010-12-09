@@ -19,7 +19,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-
 import org.eclipse.emf.query2.test.mm.generatedmetamodel.EnumTp;
 import org.eclipse.emf.query2.test.mm.generatedmetamodel.GeneratedmetamodelFactory;
 import org.eclipse.emf.query2.test.mm.generatedmetamodel.GeneratedmetamodelPackage;
@@ -151,16 +150,16 @@ public class ModelDataInstantiator {
 			for (int instNr = 0; instNr < this.instSize; instNr++) {
 
 				/*
-				 * create TestClass and TestSubClass objects via JMI reflection
+				 * create TestClass and ModelSubClass objects via JMI reflection
 				 * (which itself is invoked by Java Reflection)
 				 */
 
-				tmpClass = (EClass) GeneratedmetamodelPackage.eINSTANCE.getEClassifier("TestClass" + testClassNr);
+				tmpClass = (EClass) GeneratedmetamodelPackage.eINSTANCE.getEClassifier("ModelClass" + testClassNr);
 				tmpElements[testClassNr][instNr] = GeneratedmetamodelFactory.eINSTANCE.create(tmpClass);
 				className = calculateClassName(testClassNr, instNr, false);
 				((EObject) tmpElements[testClassNr][instNr]).eSet(tmpClass.getEStructuralFeature("name"), className);
 
-				tmpSubClass = (EClass) GeneratedmetamodelPackage.eINSTANCE.getEClassifier("TestSubClass" + testClassNr);
+				tmpSubClass = (EClass) GeneratedmetamodelPackage.eINSTANCE.getEClassifier("ModelSubClass" + testClassNr);
 				tmpSubElements[testClassNr][instNr] = GeneratedmetamodelFactory.eINSTANCE.create(tmpSubClass);
 				className = calculateClassName(testClassNr, instNr, true);
 				((EObject) tmpSubElements[testClassNr][instNr]).eSet(tmpSubClass.getEStructuralFeature("name"), className);
@@ -213,7 +212,7 @@ public class ModelDataInstantiator {
 
 				Object[] structFields = new Object[2];
 				structFields[0] = testClassNr;
-				structFields[1] = "TestClass" + testClassNr + "Inst" + instNr + "structValueField3structValue";
+				structFields[1] = "ModelClass" + testClassNr + "Inst" + instNr + "structValueField3structValue";
 
 				structAttrInStructAttr = gpackage1.createStructInStructTp();
 				structAttrInStructAttr.setField1((Integer) structFields[0]);
@@ -222,7 +221,7 @@ public class ModelDataInstantiator {
 				structFields = new Object[3];
 
 				structFields[0] = testClassNr;
-				structFields[1] = "TestClass" + testClassNr + "Inst" + instNr + "structValue";
+				structFields[1] = "ModelClass" + testClassNr + "Inst" + instNr + "structValue";
 				structFields[2] = structAttrInStructAttr;
 
 				structAttr = gpackage1.createStructTp();
@@ -249,7 +248,7 @@ public class ModelDataInstantiator {
 					// we put all object values as instances of TestClass0
 					int ovaNr = 0;
 
-					tmpObjValClass = (EClass) GeneratedmetamodelPackage.eINSTANCE.getEClassifier("TestClass" + ovaNr);
+					tmpObjValClass = (EClass) GeneratedmetamodelPackage.eINSTANCE.getEClassifier("ModelClass" + ovaNr);
 					// create object value
 					tmpObjValAttribute[testClassNr][instNr][ovaNr] = gpackage1.create(tmpObjValClass);
 					// calculate object valued attribute name for current class
