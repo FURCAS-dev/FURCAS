@@ -33,7 +33,7 @@ import com.sap.tc.emf.test.query.setup.DefaultTestClientImpl;
 import com.sap.tc.emf.test.query.setup.IndexSetupManager;
 import com.sap.tc.emf.test.query.setup.TestClient;
 
-public class TestQuerySpreading extends QueryTestCase {
+public class QuerySpreadingTest extends QueryTestCase {
 
 	private TestClient testClient;
 	private Index index;
@@ -77,7 +77,7 @@ public class TestQuerySpreading extends QueryTestCase {
 
 			public ResourceSet getResourceSet() {
 				// TODO Auto-generated method stub
-				return TestQuerySpreading.this.testClient.getResourceSet();
+				return QuerySpreadingTest.this.testClient.getResourceSet();
 			}
 
 		};
