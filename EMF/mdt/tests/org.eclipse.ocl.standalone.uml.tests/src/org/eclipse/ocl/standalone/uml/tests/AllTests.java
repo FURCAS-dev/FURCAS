@@ -34,33 +34,36 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.URI;
-//import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
-//import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-//import org.eclipse.ocl.Environment;
-//import org.eclipse.ocl.uml.UMLEnvironment;
-//import org.eclipse.ocl.uml.UMLEnvironmentFactory;
-//import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.ecore.EcoreEnvironment;
+import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
+import org.eclipse.ocl.uml.UMLEnvironment;
+import org.eclipse.ocl.uml.UMLEnvironmentFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
 
 public class AllTests extends TestCase {
 
-    private static final String PLATFORM_PLUGIN = "platform:/plugin/"; //$NON-NLS-1$
     private static final String WORKSPACE_LOCATION =
         System.getProperty("workspace.location"); //$NON-NLS-1$
+    private static final String PLATFORM_PLUGIN = "file://" + WORKSPACE_LOCATION + File.separator + "EMF/mdt/plugins/" ; //$NON-NLS-1$
     
     static {
-        configurePlatformProtocol();
+    	configurePlatformProtocol();
         configureEMF();
-        //configureOCL();
+        configureOCL();
     }
     
     public static Test suite() {
     	
         TestSuite result = new TestSuite("All UML Tests"); //$NON-NLS-1$
-        //System.setProperty("standalone", "yes");
+        System.setProperty("standalone", "yes"); //$NON-NLS-1$ //$NON-NLS-2$
         result.addTest(org.eclipse.ocl.uml.tests.AllTests.suite());
         
         return result;
@@ -72,18 +75,20 @@ public class AllTests extends TestCase {
         //
         
         Map<String, Object> extMap = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();
-        //extMap.put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
+        extMap.put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
+        extMap.put("ecore", new EcoreResourceFactoryImpl()); //$NON-NLS-1$
         extMap.put("uml", UMLResource.Factory.INSTANCE); //$NON-NLS-1$
 
         //
         // configure EPackages
         //
         
-        //Map<String, Object> pkgReg = EPackage.Registry.INSTANCE;
+        Map<String, Object> pkgReg = EPackage.Registry.INSTANCE;
         // extra mapping for UML backward compatibility
-        //pkgReg.put("http://www.eclipse.org/uml2/2.0.0/UML", UMLPackage.eINSTANCE); //$NON-NLS-1$
+        pkgReg.put("http://www.eclipse.org/uml2/2.0.0/UML", UMLPackage.eINSTANCE); //$NON-NLS-1$
         // force initialization and registration of various EPackages
-        //org.eclipse.ocl.uml.UMLPackage.eINSTANCE.eClass();
+        org.eclipse.ocl.uml.UMLPackage.eINSTANCE.eClass();
+        org.eclipse.ocl.ecore.EcorePackage.eINSTANCE.eClass();
         
         //
         // configure URI mappings
@@ -91,8 +96,12 @@ public class AllTests extends TestCase {
         
         Map<URI, URI> uriMap = URIConverter.URI_MAP;
         
+        uriMap.put(URI.createURI(PLATFORM_PLUGIN + "org.eclipse.ocl.ecore.tests/"), //$NON-NLS-1$
+            URI.createURI("file:" + WORKSPACE_LOCATION + "org.eclipse.ocl.ecore.tests/")); //$NON-NLS-1$ //$NON-NLS-2$
         uriMap.put(URI.createURI(PLATFORM_PLUGIN + "org.eclipse.ocl.uml.tests/"), //$NON-NLS-1$
             URI.createURI("file:" + WORKSPACE_LOCATION + "org.eclipse.ocl.uml.tests/")); //$NON-NLS-1$ //$NON-NLS-2$
+        uriMap.put(URI.createURI("http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore"), //$NON-NLS-1$
+        	URI.createURI(PLATFORM_PLUGIN + "org.eclipse.ocl.ecore/model/oclstdlib.ecore")); //$NON-NLS-1$
         uriMap.put(URI.createURI("http://www.eclipse.org/ocl/1.1.0/oclstdlib.uml"), //$NON-NLS-1$
         	URI.createURI(PLATFORM_PLUGIN + "org.eclipse.ocl.uml/model/oclstdlib.uml")); //$NON-NLS-1$
         String umlResources = "jar:file:" + getUMLResourcesJar() + "!"; //$NON-NLS-1$ //$NON-NLS-2$
@@ -102,6 +111,21 @@ public class AllTests extends TestCase {
             URI.createURI(umlResources + "/metamodels/")); //$NON-NLS-1$
         uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP),
             URI.createURI(umlResources + "/profiles/")); //$NON-NLS-1$
+    }
+
+    private static void configureOCL() {
+        Environment.Registry reg = Environment.Registry.INSTANCE;
+        
+        // register prototype environments
+        //EcoreEnvironment ecoreEnv = (EcoreEnvironment) EcoreEnvironmentFactory.INSTANCE
+			//.createEnvironment();
+		//reg.registerEnvironment(ecoreEnv);
+		UMLEnvironment umlEnv = new UMLEnvironmentFactory().createEnvironment();
+		reg.registerEnvironment(umlEnv);
+        
+        // register their standard library packages
+		//ecoreEnv.getOCLStandardLibrary();
+		umlEnv.getOCLStandardLibrary();
     }
     
     private static String getUMLResourcesJar() {
@@ -199,5 +223,5 @@ public class AllTests extends TestCase {
                 
                 return null;
             }});
-    }
+    }    
 }
