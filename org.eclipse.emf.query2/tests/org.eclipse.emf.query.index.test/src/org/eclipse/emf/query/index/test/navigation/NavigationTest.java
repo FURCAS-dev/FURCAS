@@ -102,7 +102,7 @@ public class NavigationTest extends Assert {
 
 	private Resource getEcoreCopy() throws Exception {
 		ResourceSet rs = new ResourceSetImpl();
-		Resource copy = rs.createResource(URI.createFileURI(pagingDirectory+File.pathSeparator+"ecoreCopy.xmi"));
+		Resource copy = rs.createResource(URI.createFileURI(pagingDirectory+File.separator+"ecoreCopy.xmi"));
 		Resource ecoreResource = EcorePackage.eINSTANCE.eResource();
 		copy.getContents().add(EcorePackage.eINSTANCE);
 		copy.save(null);
