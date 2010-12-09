@@ -67,46 +67,46 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 		switch (eClass.getClassifierID()) {
 			case GeneratedmetamodelPackage.STRUCT_IN_STRUCT_TP: return createStructInStructTp();
 			case GeneratedmetamodelPackage.STRUCT_TP: return createStructTp();
-			case GeneratedmetamodelPackage.TEST_CLASS0: return createTestClass0();
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS0: return createTestSubClass0();
-			case GeneratedmetamodelPackage.TEST_CLASS1: return createTestClass1();
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS1: return createTestSubClass1();
-			case GeneratedmetamodelPackage.TEST_CLASS2: return createTestClass2();
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS2: return createTestSubClass2();
-			case GeneratedmetamodelPackage.TEST_CLASS3: return createTestClass3();
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS3: return createTestSubClass3();
-			case GeneratedmetamodelPackage.TEST_CLASS4: return createTestClass4();
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS4: return createTestSubClass4();
-			case GeneratedmetamodelPackage.TEST_CLASS5: return createTestClass5();
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS5: return createTestSubClass5();
-			case GeneratedmetamodelPackage.TEST_CLASS6: return createTestClass6();
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS6: return createTestSubClass6();
-			case GeneratedmetamodelPackage.TEST_CLASS7: return createTestClass7();
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS7: return createTestSubClass7();
-			case GeneratedmetamodelPackage.TEST_CLASS8: return createTestClass8();
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS8: return createTestSubClass8();
-			case GeneratedmetamodelPackage.TEST_CLASS9: return createTestClass9();
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS9: return createTestSubClass9();
-			case GeneratedmetamodelPackage.TEST_CLASS10: return createTestClass10();
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS10: return createTestSubClass10();
-			case GeneratedmetamodelPackage.TEST_CLASS11: return createTestClass11();
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS11: return createTestSubClass11();
-			case GeneratedmetamodelPackage.TEST_CLASS12: return createTestClass12();
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS12: return createTestSubClass12();
-			case GeneratedmetamodelPackage.TEST_CLASS13: return createTestClass13();
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS13: return createTestSubClass13();
-			case GeneratedmetamodelPackage.TEST_CLASS14: return createTestClass14();
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS14: return createTestSubClass14();
-			case GeneratedmetamodelPackage.TEST_CLASS15: return createTestClass15();
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS15: return createTestSubClass15();
-			case GeneratedmetamodelPackage.TEST_CLASS16: return createTestClass16();
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS16: return createTestSubClass16();
-			case GeneratedmetamodelPackage.TEST_CLASS17: return createTestClass17();
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS17: return createTestSubClass17();
-			case GeneratedmetamodelPackage.TEST_CLASS18: return createTestClass18();
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS18: return createTestSubClass18();
-			case GeneratedmetamodelPackage.TEST_CLASS19: return createTestClass19();
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS19: return createTestSubClass19();
+			case GeneratedmetamodelPackage.MODEL_CLASS0: return createModelClass0();
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS0: return createModelSubClass0();
+			case GeneratedmetamodelPackage.MODEL_CLASS1: return createModelClass1();
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS1: return createModelSubClass1();
+			case GeneratedmetamodelPackage.MODEL_CLASS2: return createModelClass2();
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS2: return createModelSubClass2();
+			case GeneratedmetamodelPackage.MODEL_CLASS3: return createModelClass3();
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS3: return createModelSubClass3();
+			case GeneratedmetamodelPackage.MODEL_CLASS4: return createModelClass4();
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS4: return createModelSubClass4();
+			case GeneratedmetamodelPackage.MODEL_CLASS5: return createModelClass5();
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS5: return createModelSubClass5();
+			case GeneratedmetamodelPackage.MODEL_CLASS6: return createModelClass6();
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS6: return createModelSubClass6();
+			case GeneratedmetamodelPackage.MODEL_CLASS7: return createModelClass7();
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS7: return createModelSubClass7();
+			case GeneratedmetamodelPackage.MODEL_CLASS8: return createModelClass8();
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS8: return createModelSubClass8();
+			case GeneratedmetamodelPackage.MODEL_CLASS9: return createModelClass9();
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS9: return createModelSubClass9();
+			case GeneratedmetamodelPackage.MODEL_CLASS10: return createModelClass10();
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS10: return createModelSubClass10();
+			case GeneratedmetamodelPackage.MODEL_CLASS11: return createModelClass11();
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS11: return createModelSubClass11();
+			case GeneratedmetamodelPackage.MODEL_CLASS12: return createModelClass12();
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS12: return createModelSubClass12();
+			case GeneratedmetamodelPackage.MODEL_CLASS13: return createModelClass13();
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS13: return createModelSubClass13();
+			case GeneratedmetamodelPackage.MODEL_CLASS14: return createModelClass14();
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS14: return createModelSubClass14();
+			case GeneratedmetamodelPackage.MODEL_CLASS15: return createModelClass15();
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS15: return createModelSubClass15();
+			case GeneratedmetamodelPackage.MODEL_CLASS16: return createModelClass16();
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS16: return createModelSubClass16();
+			case GeneratedmetamodelPackage.MODEL_CLASS17: return createModelClass17();
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS17: return createModelSubClass17();
+			case GeneratedmetamodelPackage.MODEL_CLASS18: return createModelClass18();
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS18: return createModelSubClass18();
+			case GeneratedmetamodelPackage.MODEL_CLASS19: return createModelClass19();
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS19: return createModelSubClass19();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -167,9 +167,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestClass0 createTestClass0() {
-		TestClass0Impl testClass0 = new TestClass0Impl();
-		return testClass0;
+	public ModelClass0 createModelClass0() {
+		ModelClass0Impl modelClass0 = new ModelClass0Impl();
+		return modelClass0;
 	}
 
 	/**
@@ -177,9 +177,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestSubClass0 createTestSubClass0() {
-		TestSubClass0Impl testSubClass0 = new TestSubClass0Impl();
-		return testSubClass0;
+	public ModelSubClass0 createModelSubClass0() {
+		ModelSubClass0Impl modelSubClass0 = new ModelSubClass0Impl();
+		return modelSubClass0;
 	}
 
 	/**
@@ -187,9 +187,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestClass1 createTestClass1() {
-		TestClass1Impl testClass1 = new TestClass1Impl();
-		return testClass1;
+	public ModelClass1 createModelClass1() {
+		ModelClass1Impl modelClass1 = new ModelClass1Impl();
+		return modelClass1;
 	}
 
 	/**
@@ -197,9 +197,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestSubClass1 createTestSubClass1() {
-		TestSubClass1Impl testSubClass1 = new TestSubClass1Impl();
-		return testSubClass1;
+	public ModelSubClass1 createModelSubClass1() {
+		ModelSubClass1Impl modelSubClass1 = new ModelSubClass1Impl();
+		return modelSubClass1;
 	}
 
 	/**
@@ -207,9 +207,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestClass2 createTestClass2() {
-		TestClass2Impl testClass2 = new TestClass2Impl();
-		return testClass2;
+	public ModelClass2 createModelClass2() {
+		ModelClass2Impl modelClass2 = new ModelClass2Impl();
+		return modelClass2;
 	}
 
 	/**
@@ -217,9 +217,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestSubClass2 createTestSubClass2() {
-		TestSubClass2Impl testSubClass2 = new TestSubClass2Impl();
-		return testSubClass2;
+	public ModelSubClass2 createModelSubClass2() {
+		ModelSubClass2Impl modelSubClass2 = new ModelSubClass2Impl();
+		return modelSubClass2;
 	}
 
 	/**
@@ -227,9 +227,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestClass3 createTestClass3() {
-		TestClass3Impl testClass3 = new TestClass3Impl();
-		return testClass3;
+	public ModelClass3 createModelClass3() {
+		ModelClass3Impl modelClass3 = new ModelClass3Impl();
+		return modelClass3;
 	}
 
 	/**
@@ -237,9 +237,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestSubClass3 createTestSubClass3() {
-		TestSubClass3Impl testSubClass3 = new TestSubClass3Impl();
-		return testSubClass3;
+	public ModelSubClass3 createModelSubClass3() {
+		ModelSubClass3Impl modelSubClass3 = new ModelSubClass3Impl();
+		return modelSubClass3;
 	}
 
 	/**
@@ -247,9 +247,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestClass4 createTestClass4() {
-		TestClass4Impl testClass4 = new TestClass4Impl();
-		return testClass4;
+	public ModelClass4 createModelClass4() {
+		ModelClass4Impl modelClass4 = new ModelClass4Impl();
+		return modelClass4;
 	}
 
 	/**
@@ -257,9 +257,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestSubClass4 createTestSubClass4() {
-		TestSubClass4Impl testSubClass4 = new TestSubClass4Impl();
-		return testSubClass4;
+	public ModelSubClass4 createModelSubClass4() {
+		ModelSubClass4Impl modelSubClass4 = new ModelSubClass4Impl();
+		return modelSubClass4;
 	}
 
 	/**
@@ -267,9 +267,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestClass5 createTestClass5() {
-		TestClass5Impl testClass5 = new TestClass5Impl();
-		return testClass5;
+	public ModelClass5 createModelClass5() {
+		ModelClass5Impl modelClass5 = new ModelClass5Impl();
+		return modelClass5;
 	}
 
 	/**
@@ -277,9 +277,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestSubClass5 createTestSubClass5() {
-		TestSubClass5Impl testSubClass5 = new TestSubClass5Impl();
-		return testSubClass5;
+	public ModelSubClass5 createModelSubClass5() {
+		ModelSubClass5Impl modelSubClass5 = new ModelSubClass5Impl();
+		return modelSubClass5;
 	}
 
 	/**
@@ -287,9 +287,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestClass6 createTestClass6() {
-		TestClass6Impl testClass6 = new TestClass6Impl();
-		return testClass6;
+	public ModelClass6 createModelClass6() {
+		ModelClass6Impl modelClass6 = new ModelClass6Impl();
+		return modelClass6;
 	}
 
 	/**
@@ -297,9 +297,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestSubClass6 createTestSubClass6() {
-		TestSubClass6Impl testSubClass6 = new TestSubClass6Impl();
-		return testSubClass6;
+	public ModelSubClass6 createModelSubClass6() {
+		ModelSubClass6Impl modelSubClass6 = new ModelSubClass6Impl();
+		return modelSubClass6;
 	}
 
 	/**
@@ -307,9 +307,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestClass7 createTestClass7() {
-		TestClass7Impl testClass7 = new TestClass7Impl();
-		return testClass7;
+	public ModelClass7 createModelClass7() {
+		ModelClass7Impl modelClass7 = new ModelClass7Impl();
+		return modelClass7;
 	}
 
 	/**
@@ -317,9 +317,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestSubClass7 createTestSubClass7() {
-		TestSubClass7Impl testSubClass7 = new TestSubClass7Impl();
-		return testSubClass7;
+	public ModelSubClass7 createModelSubClass7() {
+		ModelSubClass7Impl modelSubClass7 = new ModelSubClass7Impl();
+		return modelSubClass7;
 	}
 
 	/**
@@ -327,9 +327,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestClass8 createTestClass8() {
-		TestClass8Impl testClass8 = new TestClass8Impl();
-		return testClass8;
+	public ModelClass8 createModelClass8() {
+		ModelClass8Impl modelClass8 = new ModelClass8Impl();
+		return modelClass8;
 	}
 
 	/**
@@ -337,9 +337,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestSubClass8 createTestSubClass8() {
-		TestSubClass8Impl testSubClass8 = new TestSubClass8Impl();
-		return testSubClass8;
+	public ModelSubClass8 createModelSubClass8() {
+		ModelSubClass8Impl modelSubClass8 = new ModelSubClass8Impl();
+		return modelSubClass8;
 	}
 
 	/**
@@ -347,9 +347,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestClass9 createTestClass9() {
-		TestClass9Impl testClass9 = new TestClass9Impl();
-		return testClass9;
+	public ModelClass9 createModelClass9() {
+		ModelClass9Impl modelClass9 = new ModelClass9Impl();
+		return modelClass9;
 	}
 
 	/**
@@ -357,9 +357,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestSubClass9 createTestSubClass9() {
-		TestSubClass9Impl testSubClass9 = new TestSubClass9Impl();
-		return testSubClass9;
+	public ModelSubClass9 createModelSubClass9() {
+		ModelSubClass9Impl modelSubClass9 = new ModelSubClass9Impl();
+		return modelSubClass9;
 	}
 
 	/**
@@ -367,9 +367,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestClass10 createTestClass10() {
-		TestClass10Impl testClass10 = new TestClass10Impl();
-		return testClass10;
+	public ModelClass10 createModelClass10() {
+		ModelClass10Impl modelClass10 = new ModelClass10Impl();
+		return modelClass10;
 	}
 
 	/**
@@ -377,9 +377,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestSubClass10 createTestSubClass10() {
-		TestSubClass10Impl testSubClass10 = new TestSubClass10Impl();
-		return testSubClass10;
+	public ModelSubClass10 createModelSubClass10() {
+		ModelSubClass10Impl modelSubClass10 = new ModelSubClass10Impl();
+		return modelSubClass10;
 	}
 
 	/**
@@ -387,9 +387,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestClass11 createTestClass11() {
-		TestClass11Impl testClass11 = new TestClass11Impl();
-		return testClass11;
+	public ModelClass11 createModelClass11() {
+		ModelClass11Impl modelClass11 = new ModelClass11Impl();
+		return modelClass11;
 	}
 
 	/**
@@ -397,9 +397,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestSubClass11 createTestSubClass11() {
-		TestSubClass11Impl testSubClass11 = new TestSubClass11Impl();
-		return testSubClass11;
+	public ModelSubClass11 createModelSubClass11() {
+		ModelSubClass11Impl modelSubClass11 = new ModelSubClass11Impl();
+		return modelSubClass11;
 	}
 
 	/**
@@ -407,9 +407,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestClass12 createTestClass12() {
-		TestClass12Impl testClass12 = new TestClass12Impl();
-		return testClass12;
+	public ModelClass12 createModelClass12() {
+		ModelClass12Impl modelClass12 = new ModelClass12Impl();
+		return modelClass12;
 	}
 
 	/**
@@ -417,9 +417,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestSubClass12 createTestSubClass12() {
-		TestSubClass12Impl testSubClass12 = new TestSubClass12Impl();
-		return testSubClass12;
+	public ModelSubClass12 createModelSubClass12() {
+		ModelSubClass12Impl modelSubClass12 = new ModelSubClass12Impl();
+		return modelSubClass12;
 	}
 
 	/**
@@ -427,9 +427,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestClass13 createTestClass13() {
-		TestClass13Impl testClass13 = new TestClass13Impl();
-		return testClass13;
+	public ModelClass13 createModelClass13() {
+		ModelClass13Impl modelClass13 = new ModelClass13Impl();
+		return modelClass13;
 	}
 
 	/**
@@ -437,9 +437,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestSubClass13 createTestSubClass13() {
-		TestSubClass13Impl testSubClass13 = new TestSubClass13Impl();
-		return testSubClass13;
+	public ModelSubClass13 createModelSubClass13() {
+		ModelSubClass13Impl modelSubClass13 = new ModelSubClass13Impl();
+		return modelSubClass13;
 	}
 
 	/**
@@ -447,9 +447,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestClass14 createTestClass14() {
-		TestClass14Impl testClass14 = new TestClass14Impl();
-		return testClass14;
+	public ModelClass14 createModelClass14() {
+		ModelClass14Impl modelClass14 = new ModelClass14Impl();
+		return modelClass14;
 	}
 
 	/**
@@ -457,9 +457,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestSubClass14 createTestSubClass14() {
-		TestSubClass14Impl testSubClass14 = new TestSubClass14Impl();
-		return testSubClass14;
+	public ModelSubClass14 createModelSubClass14() {
+		ModelSubClass14Impl modelSubClass14 = new ModelSubClass14Impl();
+		return modelSubClass14;
 	}
 
 	/**
@@ -467,9 +467,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestClass15 createTestClass15() {
-		TestClass15Impl testClass15 = new TestClass15Impl();
-		return testClass15;
+	public ModelClass15 createModelClass15() {
+		ModelClass15Impl modelClass15 = new ModelClass15Impl();
+		return modelClass15;
 	}
 
 	/**
@@ -477,9 +477,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestSubClass15 createTestSubClass15() {
-		TestSubClass15Impl testSubClass15 = new TestSubClass15Impl();
-		return testSubClass15;
+	public ModelSubClass15 createModelSubClass15() {
+		ModelSubClass15Impl modelSubClass15 = new ModelSubClass15Impl();
+		return modelSubClass15;
 	}
 
 	/**
@@ -487,9 +487,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestClass16 createTestClass16() {
-		TestClass16Impl testClass16 = new TestClass16Impl();
-		return testClass16;
+	public ModelClass16 createModelClass16() {
+		ModelClass16Impl modelClass16 = new ModelClass16Impl();
+		return modelClass16;
 	}
 
 	/**
@@ -497,9 +497,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestSubClass16 createTestSubClass16() {
-		TestSubClass16Impl testSubClass16 = new TestSubClass16Impl();
-		return testSubClass16;
+	public ModelSubClass16 createModelSubClass16() {
+		ModelSubClass16Impl modelSubClass16 = new ModelSubClass16Impl();
+		return modelSubClass16;
 	}
 
 	/**
@@ -507,9 +507,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestClass17 createTestClass17() {
-		TestClass17Impl testClass17 = new TestClass17Impl();
-		return testClass17;
+	public ModelClass17 createModelClass17() {
+		ModelClass17Impl modelClass17 = new ModelClass17Impl();
+		return modelClass17;
 	}
 
 	/**
@@ -517,9 +517,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestSubClass17 createTestSubClass17() {
-		TestSubClass17Impl testSubClass17 = new TestSubClass17Impl();
-		return testSubClass17;
+	public ModelSubClass17 createModelSubClass17() {
+		ModelSubClass17Impl modelSubClass17 = new ModelSubClass17Impl();
+		return modelSubClass17;
 	}
 
 	/**
@@ -527,9 +527,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestClass18 createTestClass18() {
-		TestClass18Impl testClass18 = new TestClass18Impl();
-		return testClass18;
+	public ModelClass18 createModelClass18() {
+		ModelClass18Impl modelClass18 = new ModelClass18Impl();
+		return modelClass18;
 	}
 
 	/**
@@ -537,9 +537,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestSubClass18 createTestSubClass18() {
-		TestSubClass18Impl testSubClass18 = new TestSubClass18Impl();
-		return testSubClass18;
+	public ModelSubClass18 createModelSubClass18() {
+		ModelSubClass18Impl modelSubClass18 = new ModelSubClass18Impl();
+		return modelSubClass18;
 	}
 
 	/**
@@ -547,9 +547,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestClass19 createTestClass19() {
-		TestClass19Impl testClass19 = new TestClass19Impl();
-		return testClass19;
+	public ModelClass19 createModelClass19() {
+		ModelClass19Impl modelClass19 = new ModelClass19Impl();
+		return modelClass19;
 	}
 
 	/**
@@ -557,9 +557,9 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestSubClass19 createTestSubClass19() {
-		TestSubClass19Impl testSubClass19 = new TestSubClass19Impl();
-		return testSubClass19;
+	public ModelSubClass19 createModelSubClass19() {
+		ModelSubClass19Impl modelSubClass19 = new ModelSubClass19Impl();
+		return modelSubClass19;
 	}
 
 	/**

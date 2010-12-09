@@ -103,263 +103,263 @@ public class GeneratedmetamodelSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_CLASS0: {
-				TestClass0 testClass0 = (TestClass0)theEObject;
-				T result = caseTestClass0(testClass0);
+			case GeneratedmetamodelPackage.MODEL_CLASS0: {
+				ModelClass0 modelClass0 = (ModelClass0)theEObject;
+				T result = caseModelClass0(modelClass0);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS0: {
-				TestSubClass0 testSubClass0 = (TestSubClass0)theEObject;
-				T result = caseTestSubClass0(testSubClass0);
-				if (result == null) result = caseTestClass0(testSubClass0);
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS0: {
+				ModelSubClass0 modelSubClass0 = (ModelSubClass0)theEObject;
+				T result = caseModelSubClass0(modelSubClass0);
+				if (result == null) result = caseModelClass0(modelSubClass0);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_CLASS1: {
-				TestClass1 testClass1 = (TestClass1)theEObject;
-				T result = caseTestClass1(testClass1);
+			case GeneratedmetamodelPackage.MODEL_CLASS1: {
+				ModelClass1 modelClass1 = (ModelClass1)theEObject;
+				T result = caseModelClass1(modelClass1);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS1: {
-				TestSubClass1 testSubClass1 = (TestSubClass1)theEObject;
-				T result = caseTestSubClass1(testSubClass1);
-				if (result == null) result = caseTestClass1(testSubClass1);
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS1: {
+				ModelSubClass1 modelSubClass1 = (ModelSubClass1)theEObject;
+				T result = caseModelSubClass1(modelSubClass1);
+				if (result == null) result = caseModelClass1(modelSubClass1);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_CLASS2: {
-				TestClass2 testClass2 = (TestClass2)theEObject;
-				T result = caseTestClass2(testClass2);
+			case GeneratedmetamodelPackage.MODEL_CLASS2: {
+				ModelClass2 modelClass2 = (ModelClass2)theEObject;
+				T result = caseModelClass2(modelClass2);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS2: {
-				TestSubClass2 testSubClass2 = (TestSubClass2)theEObject;
-				T result = caseTestSubClass2(testSubClass2);
-				if (result == null) result = caseTestClass2(testSubClass2);
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS2: {
+				ModelSubClass2 modelSubClass2 = (ModelSubClass2)theEObject;
+				T result = caseModelSubClass2(modelSubClass2);
+				if (result == null) result = caseModelClass2(modelSubClass2);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_CLASS3: {
-				TestClass3 testClass3 = (TestClass3)theEObject;
-				T result = caseTestClass3(testClass3);
+			case GeneratedmetamodelPackage.MODEL_CLASS3: {
+				ModelClass3 modelClass3 = (ModelClass3)theEObject;
+				T result = caseModelClass3(modelClass3);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS3: {
-				TestSubClass3 testSubClass3 = (TestSubClass3)theEObject;
-				T result = caseTestSubClass3(testSubClass3);
-				if (result == null) result = caseTestClass3(testSubClass3);
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS3: {
+				ModelSubClass3 modelSubClass3 = (ModelSubClass3)theEObject;
+				T result = caseModelSubClass3(modelSubClass3);
+				if (result == null) result = caseModelClass3(modelSubClass3);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_CLASS4: {
-				TestClass4 testClass4 = (TestClass4)theEObject;
-				T result = caseTestClass4(testClass4);
+			case GeneratedmetamodelPackage.MODEL_CLASS4: {
+				ModelClass4 modelClass4 = (ModelClass4)theEObject;
+				T result = caseModelClass4(modelClass4);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS4: {
-				TestSubClass4 testSubClass4 = (TestSubClass4)theEObject;
-				T result = caseTestSubClass4(testSubClass4);
-				if (result == null) result = caseTestClass4(testSubClass4);
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS4: {
+				ModelSubClass4 modelSubClass4 = (ModelSubClass4)theEObject;
+				T result = caseModelSubClass4(modelSubClass4);
+				if (result == null) result = caseModelClass4(modelSubClass4);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_CLASS5: {
-				TestClass5 testClass5 = (TestClass5)theEObject;
-				T result = caseTestClass5(testClass5);
+			case GeneratedmetamodelPackage.MODEL_CLASS5: {
+				ModelClass5 modelClass5 = (ModelClass5)theEObject;
+				T result = caseModelClass5(modelClass5);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS5: {
-				TestSubClass5 testSubClass5 = (TestSubClass5)theEObject;
-				T result = caseTestSubClass5(testSubClass5);
-				if (result == null) result = caseTestClass5(testSubClass5);
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS5: {
+				ModelSubClass5 modelSubClass5 = (ModelSubClass5)theEObject;
+				T result = caseModelSubClass5(modelSubClass5);
+				if (result == null) result = caseModelClass5(modelSubClass5);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_CLASS6: {
-				TestClass6 testClass6 = (TestClass6)theEObject;
-				T result = caseTestClass6(testClass6);
+			case GeneratedmetamodelPackage.MODEL_CLASS6: {
+				ModelClass6 modelClass6 = (ModelClass6)theEObject;
+				T result = caseModelClass6(modelClass6);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS6: {
-				TestSubClass6 testSubClass6 = (TestSubClass6)theEObject;
-				T result = caseTestSubClass6(testSubClass6);
-				if (result == null) result = caseTestClass6(testSubClass6);
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS6: {
+				ModelSubClass6 modelSubClass6 = (ModelSubClass6)theEObject;
+				T result = caseModelSubClass6(modelSubClass6);
+				if (result == null) result = caseModelClass6(modelSubClass6);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_CLASS7: {
-				TestClass7 testClass7 = (TestClass7)theEObject;
-				T result = caseTestClass7(testClass7);
+			case GeneratedmetamodelPackage.MODEL_CLASS7: {
+				ModelClass7 modelClass7 = (ModelClass7)theEObject;
+				T result = caseModelClass7(modelClass7);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS7: {
-				TestSubClass7 testSubClass7 = (TestSubClass7)theEObject;
-				T result = caseTestSubClass7(testSubClass7);
-				if (result == null) result = caseTestClass7(testSubClass7);
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS7: {
+				ModelSubClass7 modelSubClass7 = (ModelSubClass7)theEObject;
+				T result = caseModelSubClass7(modelSubClass7);
+				if (result == null) result = caseModelClass7(modelSubClass7);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_CLASS8: {
-				TestClass8 testClass8 = (TestClass8)theEObject;
-				T result = caseTestClass8(testClass8);
+			case GeneratedmetamodelPackage.MODEL_CLASS8: {
+				ModelClass8 modelClass8 = (ModelClass8)theEObject;
+				T result = caseModelClass8(modelClass8);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS8: {
-				TestSubClass8 testSubClass8 = (TestSubClass8)theEObject;
-				T result = caseTestSubClass8(testSubClass8);
-				if (result == null) result = caseTestClass8(testSubClass8);
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS8: {
+				ModelSubClass8 modelSubClass8 = (ModelSubClass8)theEObject;
+				T result = caseModelSubClass8(modelSubClass8);
+				if (result == null) result = caseModelClass8(modelSubClass8);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_CLASS9: {
-				TestClass9 testClass9 = (TestClass9)theEObject;
-				T result = caseTestClass9(testClass9);
+			case GeneratedmetamodelPackage.MODEL_CLASS9: {
+				ModelClass9 modelClass9 = (ModelClass9)theEObject;
+				T result = caseModelClass9(modelClass9);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS9: {
-				TestSubClass9 testSubClass9 = (TestSubClass9)theEObject;
-				T result = caseTestSubClass9(testSubClass9);
-				if (result == null) result = caseTestClass9(testSubClass9);
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS9: {
+				ModelSubClass9 modelSubClass9 = (ModelSubClass9)theEObject;
+				T result = caseModelSubClass9(modelSubClass9);
+				if (result == null) result = caseModelClass9(modelSubClass9);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_CLASS10: {
-				TestClass10 testClass10 = (TestClass10)theEObject;
-				T result = caseTestClass10(testClass10);
+			case GeneratedmetamodelPackage.MODEL_CLASS10: {
+				ModelClass10 modelClass10 = (ModelClass10)theEObject;
+				T result = caseModelClass10(modelClass10);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS10: {
-				TestSubClass10 testSubClass10 = (TestSubClass10)theEObject;
-				T result = caseTestSubClass10(testSubClass10);
-				if (result == null) result = caseTestClass10(testSubClass10);
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS10: {
+				ModelSubClass10 modelSubClass10 = (ModelSubClass10)theEObject;
+				T result = caseModelSubClass10(modelSubClass10);
+				if (result == null) result = caseModelClass10(modelSubClass10);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_CLASS11: {
-				TestClass11 testClass11 = (TestClass11)theEObject;
-				T result = caseTestClass11(testClass11);
+			case GeneratedmetamodelPackage.MODEL_CLASS11: {
+				ModelClass11 modelClass11 = (ModelClass11)theEObject;
+				T result = caseModelClass11(modelClass11);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS11: {
-				TestSubClass11 testSubClass11 = (TestSubClass11)theEObject;
-				T result = caseTestSubClass11(testSubClass11);
-				if (result == null) result = caseTestClass11(testSubClass11);
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS11: {
+				ModelSubClass11 modelSubClass11 = (ModelSubClass11)theEObject;
+				T result = caseModelSubClass11(modelSubClass11);
+				if (result == null) result = caseModelClass11(modelSubClass11);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_CLASS12: {
-				TestClass12 testClass12 = (TestClass12)theEObject;
-				T result = caseTestClass12(testClass12);
+			case GeneratedmetamodelPackage.MODEL_CLASS12: {
+				ModelClass12 modelClass12 = (ModelClass12)theEObject;
+				T result = caseModelClass12(modelClass12);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS12: {
-				TestSubClass12 testSubClass12 = (TestSubClass12)theEObject;
-				T result = caseTestSubClass12(testSubClass12);
-				if (result == null) result = caseTestClass12(testSubClass12);
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS12: {
+				ModelSubClass12 modelSubClass12 = (ModelSubClass12)theEObject;
+				T result = caseModelSubClass12(modelSubClass12);
+				if (result == null) result = caseModelClass12(modelSubClass12);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_CLASS13: {
-				TestClass13 testClass13 = (TestClass13)theEObject;
-				T result = caseTestClass13(testClass13);
+			case GeneratedmetamodelPackage.MODEL_CLASS13: {
+				ModelClass13 modelClass13 = (ModelClass13)theEObject;
+				T result = caseModelClass13(modelClass13);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS13: {
-				TestSubClass13 testSubClass13 = (TestSubClass13)theEObject;
-				T result = caseTestSubClass13(testSubClass13);
-				if (result == null) result = caseTestClass13(testSubClass13);
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS13: {
+				ModelSubClass13 modelSubClass13 = (ModelSubClass13)theEObject;
+				T result = caseModelSubClass13(modelSubClass13);
+				if (result == null) result = caseModelClass13(modelSubClass13);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_CLASS14: {
-				TestClass14 testClass14 = (TestClass14)theEObject;
-				T result = caseTestClass14(testClass14);
+			case GeneratedmetamodelPackage.MODEL_CLASS14: {
+				ModelClass14 modelClass14 = (ModelClass14)theEObject;
+				T result = caseModelClass14(modelClass14);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS14: {
-				TestSubClass14 testSubClass14 = (TestSubClass14)theEObject;
-				T result = caseTestSubClass14(testSubClass14);
-				if (result == null) result = caseTestClass14(testSubClass14);
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS14: {
+				ModelSubClass14 modelSubClass14 = (ModelSubClass14)theEObject;
+				T result = caseModelSubClass14(modelSubClass14);
+				if (result == null) result = caseModelClass14(modelSubClass14);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_CLASS15: {
-				TestClass15 testClass15 = (TestClass15)theEObject;
-				T result = caseTestClass15(testClass15);
+			case GeneratedmetamodelPackage.MODEL_CLASS15: {
+				ModelClass15 modelClass15 = (ModelClass15)theEObject;
+				T result = caseModelClass15(modelClass15);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS15: {
-				TestSubClass15 testSubClass15 = (TestSubClass15)theEObject;
-				T result = caseTestSubClass15(testSubClass15);
-				if (result == null) result = caseTestClass15(testSubClass15);
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS15: {
+				ModelSubClass15 modelSubClass15 = (ModelSubClass15)theEObject;
+				T result = caseModelSubClass15(modelSubClass15);
+				if (result == null) result = caseModelClass15(modelSubClass15);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_CLASS16: {
-				TestClass16 testClass16 = (TestClass16)theEObject;
-				T result = caseTestClass16(testClass16);
+			case GeneratedmetamodelPackage.MODEL_CLASS16: {
+				ModelClass16 modelClass16 = (ModelClass16)theEObject;
+				T result = caseModelClass16(modelClass16);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS16: {
-				TestSubClass16 testSubClass16 = (TestSubClass16)theEObject;
-				T result = caseTestSubClass16(testSubClass16);
-				if (result == null) result = caseTestClass16(testSubClass16);
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS16: {
+				ModelSubClass16 modelSubClass16 = (ModelSubClass16)theEObject;
+				T result = caseModelSubClass16(modelSubClass16);
+				if (result == null) result = caseModelClass16(modelSubClass16);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_CLASS17: {
-				TestClass17 testClass17 = (TestClass17)theEObject;
-				T result = caseTestClass17(testClass17);
+			case GeneratedmetamodelPackage.MODEL_CLASS17: {
+				ModelClass17 modelClass17 = (ModelClass17)theEObject;
+				T result = caseModelClass17(modelClass17);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS17: {
-				TestSubClass17 testSubClass17 = (TestSubClass17)theEObject;
-				T result = caseTestSubClass17(testSubClass17);
-				if (result == null) result = caseTestClass17(testSubClass17);
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS17: {
+				ModelSubClass17 modelSubClass17 = (ModelSubClass17)theEObject;
+				T result = caseModelSubClass17(modelSubClass17);
+				if (result == null) result = caseModelClass17(modelSubClass17);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_CLASS18: {
-				TestClass18 testClass18 = (TestClass18)theEObject;
-				T result = caseTestClass18(testClass18);
+			case GeneratedmetamodelPackage.MODEL_CLASS18: {
+				ModelClass18 modelClass18 = (ModelClass18)theEObject;
+				T result = caseModelClass18(modelClass18);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS18: {
-				TestSubClass18 testSubClass18 = (TestSubClass18)theEObject;
-				T result = caseTestSubClass18(testSubClass18);
-				if (result == null) result = caseTestClass18(testSubClass18);
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS18: {
+				ModelSubClass18 modelSubClass18 = (ModelSubClass18)theEObject;
+				T result = caseModelSubClass18(modelSubClass18);
+				if (result == null) result = caseModelClass18(modelSubClass18);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_CLASS19: {
-				TestClass19 testClass19 = (TestClass19)theEObject;
-				T result = caseTestClass19(testClass19);
+			case GeneratedmetamodelPackage.MODEL_CLASS19: {
+				ModelClass19 modelClass19 = (ModelClass19)theEObject;
+				T result = caseModelClass19(modelClass19);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GeneratedmetamodelPackage.TEST_SUB_CLASS19: {
-				TestSubClass19 testSubClass19 = (TestSubClass19)theEObject;
-				T result = caseTestSubClass19(testSubClass19);
-				if (result == null) result = caseTestClass19(testSubClass19);
+			case GeneratedmetamodelPackage.MODEL_SUB_CLASS19: {
+				ModelSubClass19 modelSubClass19 = (ModelSubClass19)theEObject;
+				T result = caseModelSubClass19(modelSubClass19);
+				if (result == null) result = caseModelClass19(modelSubClass19);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -398,602 +398,602 @@ public class GeneratedmetamodelSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Class0</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Class0</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Class0</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Class0</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestClass0(TestClass0 object) {
+	public T caseModelClass0(ModelClass0 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Sub Class0</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Sub Class0</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Sub Class0</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Sub Class0</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestSubClass0(TestSubClass0 object) {
+	public T caseModelSubClass0(ModelSubClass0 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Class1</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Class1</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Class1</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Class1</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestClass1(TestClass1 object) {
+	public T caseModelClass1(ModelClass1 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Sub Class1</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Sub Class1</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Sub Class1</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Sub Class1</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestSubClass1(TestSubClass1 object) {
+	public T caseModelSubClass1(ModelSubClass1 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Class2</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Class2</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Class2</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Class2</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestClass2(TestClass2 object) {
+	public T caseModelClass2(ModelClass2 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Sub Class2</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Sub Class2</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Sub Class2</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Sub Class2</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestSubClass2(TestSubClass2 object) {
+	public T caseModelSubClass2(ModelSubClass2 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Class3</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Class3</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Class3</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Class3</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestClass3(TestClass3 object) {
+	public T caseModelClass3(ModelClass3 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Sub Class3</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Sub Class3</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Sub Class3</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Sub Class3</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestSubClass3(TestSubClass3 object) {
+	public T caseModelSubClass3(ModelSubClass3 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Class4</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Class4</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Class4</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Class4</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestClass4(TestClass4 object) {
+	public T caseModelClass4(ModelClass4 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Sub Class4</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Sub Class4</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Sub Class4</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Sub Class4</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestSubClass4(TestSubClass4 object) {
+	public T caseModelSubClass4(ModelSubClass4 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Class5</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Class5</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Class5</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Class5</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestClass5(TestClass5 object) {
+	public T caseModelClass5(ModelClass5 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Sub Class5</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Sub Class5</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Sub Class5</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Sub Class5</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestSubClass5(TestSubClass5 object) {
+	public T caseModelSubClass5(ModelSubClass5 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Class6</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Class6</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Class6</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Class6</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestClass6(TestClass6 object) {
+	public T caseModelClass6(ModelClass6 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Sub Class6</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Sub Class6</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Sub Class6</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Sub Class6</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestSubClass6(TestSubClass6 object) {
+	public T caseModelSubClass6(ModelSubClass6 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Class7</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Class7</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Class7</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Class7</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestClass7(TestClass7 object) {
+	public T caseModelClass7(ModelClass7 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Sub Class7</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Sub Class7</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Sub Class7</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Sub Class7</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestSubClass7(TestSubClass7 object) {
+	public T caseModelSubClass7(ModelSubClass7 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Class8</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Class8</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Class8</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Class8</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestClass8(TestClass8 object) {
+	public T caseModelClass8(ModelClass8 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Sub Class8</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Sub Class8</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Sub Class8</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Sub Class8</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestSubClass8(TestSubClass8 object) {
+	public T caseModelSubClass8(ModelSubClass8 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Class9</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Class9</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Class9</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Class9</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestClass9(TestClass9 object) {
+	public T caseModelClass9(ModelClass9 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Sub Class9</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Sub Class9</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Sub Class9</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Sub Class9</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestSubClass9(TestSubClass9 object) {
+	public T caseModelSubClass9(ModelSubClass9 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Class10</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Class10</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Class10</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Class10</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestClass10(TestClass10 object) {
+	public T caseModelClass10(ModelClass10 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Sub Class10</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Sub Class10</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Sub Class10</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Sub Class10</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestSubClass10(TestSubClass10 object) {
+	public T caseModelSubClass10(ModelSubClass10 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Class11</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Class11</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Class11</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Class11</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestClass11(TestClass11 object) {
+	public T caseModelClass11(ModelClass11 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Sub Class11</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Sub Class11</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Sub Class11</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Sub Class11</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestSubClass11(TestSubClass11 object) {
+	public T caseModelSubClass11(ModelSubClass11 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Class12</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Class12</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Class12</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Class12</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestClass12(TestClass12 object) {
+	public T caseModelClass12(ModelClass12 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Sub Class12</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Sub Class12</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Sub Class12</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Sub Class12</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestSubClass12(TestSubClass12 object) {
+	public T caseModelSubClass12(ModelSubClass12 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Class13</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Class13</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Class13</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Class13</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestClass13(TestClass13 object) {
+	public T caseModelClass13(ModelClass13 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Sub Class13</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Sub Class13</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Sub Class13</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Sub Class13</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestSubClass13(TestSubClass13 object) {
+	public T caseModelSubClass13(ModelSubClass13 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Class14</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Class14</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Class14</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Class14</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestClass14(TestClass14 object) {
+	public T caseModelClass14(ModelClass14 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Sub Class14</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Sub Class14</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Sub Class14</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Sub Class14</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestSubClass14(TestSubClass14 object) {
+	public T caseModelSubClass14(ModelSubClass14 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Class15</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Class15</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Class15</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Class15</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestClass15(TestClass15 object) {
+	public T caseModelClass15(ModelClass15 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Sub Class15</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Sub Class15</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Sub Class15</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Sub Class15</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestSubClass15(TestSubClass15 object) {
+	public T caseModelSubClass15(ModelSubClass15 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Class16</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Class16</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Class16</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Class16</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestClass16(TestClass16 object) {
+	public T caseModelClass16(ModelClass16 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Sub Class16</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Sub Class16</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Sub Class16</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Sub Class16</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestSubClass16(TestSubClass16 object) {
+	public T caseModelSubClass16(ModelSubClass16 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Class17</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Class17</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Class17</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Class17</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestClass17(TestClass17 object) {
+	public T caseModelClass17(ModelClass17 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Sub Class17</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Sub Class17</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Sub Class17</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Sub Class17</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestSubClass17(TestSubClass17 object) {
+	public T caseModelSubClass17(ModelSubClass17 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Class18</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Class18</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Class18</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Class18</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestClass18(TestClass18 object) {
+	public T caseModelClass18(ModelClass18 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Sub Class18</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Sub Class18</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Sub Class18</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Sub Class18</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestSubClass18(TestSubClass18 object) {
+	public T caseModelSubClass18(ModelSubClass18 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Class19</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Class19</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Class19</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Class19</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestClass19(TestClass19 object) {
+	public T caseModelClass19(ModelClass19 object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Test Sub Class19</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Sub Class19</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Test Sub Class19</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Sub Class19</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestSubClass19(TestSubClass19 object) {
+	public T caseModelSubClass19(ModelSubClass19 object) {
 		return null;
 	}
 

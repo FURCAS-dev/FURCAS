@@ -48,364 +48,364 @@ public interface GeneratedmetamodelFactory extends EFactory {
 	StructTp createStructTp();
 
 	/**
-	 * Returns a new object of class '<em>Test Class0</em>'.
+	 * Returns a new object of class '<em>Model Class0</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Class0</em>'.
+	 * @return a new object of class '<em>Model Class0</em>'.
 	 * @generated
 	 */
-	TestClass0 createTestClass0();
+	ModelClass0 createModelClass0();
 
 	/**
-	 * Returns a new object of class '<em>Test Sub Class0</em>'.
+	 * Returns a new object of class '<em>Model Sub Class0</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Sub Class0</em>'.
+	 * @return a new object of class '<em>Model Sub Class0</em>'.
 	 * @generated
 	 */
-	TestSubClass0 createTestSubClass0();
+	ModelSubClass0 createModelSubClass0();
 
 	/**
-	 * Returns a new object of class '<em>Test Class1</em>'.
+	 * Returns a new object of class '<em>Model Class1</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Class1</em>'.
+	 * @return a new object of class '<em>Model Class1</em>'.
 	 * @generated
 	 */
-	TestClass1 createTestClass1();
+	ModelClass1 createModelClass1();
 
 	/**
-	 * Returns a new object of class '<em>Test Sub Class1</em>'.
+	 * Returns a new object of class '<em>Model Sub Class1</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Sub Class1</em>'.
+	 * @return a new object of class '<em>Model Sub Class1</em>'.
 	 * @generated
 	 */
-	TestSubClass1 createTestSubClass1();
+	ModelSubClass1 createModelSubClass1();
 
 	/**
-	 * Returns a new object of class '<em>Test Class2</em>'.
+	 * Returns a new object of class '<em>Model Class2</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Class2</em>'.
+	 * @return a new object of class '<em>Model Class2</em>'.
 	 * @generated
 	 */
-	TestClass2 createTestClass2();
+	ModelClass2 createModelClass2();
 
 	/**
-	 * Returns a new object of class '<em>Test Sub Class2</em>'.
+	 * Returns a new object of class '<em>Model Sub Class2</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Sub Class2</em>'.
+	 * @return a new object of class '<em>Model Sub Class2</em>'.
 	 * @generated
 	 */
-	TestSubClass2 createTestSubClass2();
+	ModelSubClass2 createModelSubClass2();
 
 	/**
-	 * Returns a new object of class '<em>Test Class3</em>'.
+	 * Returns a new object of class '<em>Model Class3</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Class3</em>'.
+	 * @return a new object of class '<em>Model Class3</em>'.
 	 * @generated
 	 */
-	TestClass3 createTestClass3();
+	ModelClass3 createModelClass3();
 
 	/**
-	 * Returns a new object of class '<em>Test Sub Class3</em>'.
+	 * Returns a new object of class '<em>Model Sub Class3</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Sub Class3</em>'.
+	 * @return a new object of class '<em>Model Sub Class3</em>'.
 	 * @generated
 	 */
-	TestSubClass3 createTestSubClass3();
+	ModelSubClass3 createModelSubClass3();
 
 	/**
-	 * Returns a new object of class '<em>Test Class4</em>'.
+	 * Returns a new object of class '<em>Model Class4</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Class4</em>'.
+	 * @return a new object of class '<em>Model Class4</em>'.
 	 * @generated
 	 */
-	TestClass4 createTestClass4();
+	ModelClass4 createModelClass4();
 
 	/**
-	 * Returns a new object of class '<em>Test Sub Class4</em>'.
+	 * Returns a new object of class '<em>Model Sub Class4</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Sub Class4</em>'.
+	 * @return a new object of class '<em>Model Sub Class4</em>'.
 	 * @generated
 	 */
-	TestSubClass4 createTestSubClass4();
+	ModelSubClass4 createModelSubClass4();
 
 	/**
-	 * Returns a new object of class '<em>Test Class5</em>'.
+	 * Returns a new object of class '<em>Model Class5</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Class5</em>'.
+	 * @return a new object of class '<em>Model Class5</em>'.
 	 * @generated
 	 */
-	TestClass5 createTestClass5();
+	ModelClass5 createModelClass5();
 
 	/**
-	 * Returns a new object of class '<em>Test Sub Class5</em>'.
+	 * Returns a new object of class '<em>Model Sub Class5</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Sub Class5</em>'.
+	 * @return a new object of class '<em>Model Sub Class5</em>'.
 	 * @generated
 	 */
-	TestSubClass5 createTestSubClass5();
+	ModelSubClass5 createModelSubClass5();
 
 	/**
-	 * Returns a new object of class '<em>Test Class6</em>'.
+	 * Returns a new object of class '<em>Model Class6</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Class6</em>'.
+	 * @return a new object of class '<em>Model Class6</em>'.
 	 * @generated
 	 */
-	TestClass6 createTestClass6();
+	ModelClass6 createModelClass6();
 
 	/**
-	 * Returns a new object of class '<em>Test Sub Class6</em>'.
+	 * Returns a new object of class '<em>Model Sub Class6</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Sub Class6</em>'.
+	 * @return a new object of class '<em>Model Sub Class6</em>'.
 	 * @generated
 	 */
-	TestSubClass6 createTestSubClass6();
+	ModelSubClass6 createModelSubClass6();
 
 	/**
-	 * Returns a new object of class '<em>Test Class7</em>'.
+	 * Returns a new object of class '<em>Model Class7</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Class7</em>'.
+	 * @return a new object of class '<em>Model Class7</em>'.
 	 * @generated
 	 */
-	TestClass7 createTestClass7();
+	ModelClass7 createModelClass7();
 
 	/**
-	 * Returns a new object of class '<em>Test Sub Class7</em>'.
+	 * Returns a new object of class '<em>Model Sub Class7</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Sub Class7</em>'.
+	 * @return a new object of class '<em>Model Sub Class7</em>'.
 	 * @generated
 	 */
-	TestSubClass7 createTestSubClass7();
+	ModelSubClass7 createModelSubClass7();
 
 	/**
-	 * Returns a new object of class '<em>Test Class8</em>'.
+	 * Returns a new object of class '<em>Model Class8</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Class8</em>'.
+	 * @return a new object of class '<em>Model Class8</em>'.
 	 * @generated
 	 */
-	TestClass8 createTestClass8();
+	ModelClass8 createModelClass8();
 
 	/**
-	 * Returns a new object of class '<em>Test Sub Class8</em>'.
+	 * Returns a new object of class '<em>Model Sub Class8</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Sub Class8</em>'.
+	 * @return a new object of class '<em>Model Sub Class8</em>'.
 	 * @generated
 	 */
-	TestSubClass8 createTestSubClass8();
+	ModelSubClass8 createModelSubClass8();
 
 	/**
-	 * Returns a new object of class '<em>Test Class9</em>'.
+	 * Returns a new object of class '<em>Model Class9</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Class9</em>'.
+	 * @return a new object of class '<em>Model Class9</em>'.
 	 * @generated
 	 */
-	TestClass9 createTestClass9();
+	ModelClass9 createModelClass9();
 
 	/**
-	 * Returns a new object of class '<em>Test Sub Class9</em>'.
+	 * Returns a new object of class '<em>Model Sub Class9</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Sub Class9</em>'.
+	 * @return a new object of class '<em>Model Sub Class9</em>'.
 	 * @generated
 	 */
-	TestSubClass9 createTestSubClass9();
+	ModelSubClass9 createModelSubClass9();
 
 	/**
-	 * Returns a new object of class '<em>Test Class10</em>'.
+	 * Returns a new object of class '<em>Model Class10</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Class10</em>'.
+	 * @return a new object of class '<em>Model Class10</em>'.
 	 * @generated
 	 */
-	TestClass10 createTestClass10();
+	ModelClass10 createModelClass10();
 
 	/**
-	 * Returns a new object of class '<em>Test Sub Class10</em>'.
+	 * Returns a new object of class '<em>Model Sub Class10</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Sub Class10</em>'.
+	 * @return a new object of class '<em>Model Sub Class10</em>'.
 	 * @generated
 	 */
-	TestSubClass10 createTestSubClass10();
+	ModelSubClass10 createModelSubClass10();
 
 	/**
-	 * Returns a new object of class '<em>Test Class11</em>'.
+	 * Returns a new object of class '<em>Model Class11</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Class11</em>'.
+	 * @return a new object of class '<em>Model Class11</em>'.
 	 * @generated
 	 */
-	TestClass11 createTestClass11();
+	ModelClass11 createModelClass11();
 
 	/**
-	 * Returns a new object of class '<em>Test Sub Class11</em>'.
+	 * Returns a new object of class '<em>Model Sub Class11</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Sub Class11</em>'.
+	 * @return a new object of class '<em>Model Sub Class11</em>'.
 	 * @generated
 	 */
-	TestSubClass11 createTestSubClass11();
+	ModelSubClass11 createModelSubClass11();
 
 	/**
-	 * Returns a new object of class '<em>Test Class12</em>'.
+	 * Returns a new object of class '<em>Model Class12</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Class12</em>'.
+	 * @return a new object of class '<em>Model Class12</em>'.
 	 * @generated
 	 */
-	TestClass12 createTestClass12();
+	ModelClass12 createModelClass12();
 
 	/**
-	 * Returns a new object of class '<em>Test Sub Class12</em>'.
+	 * Returns a new object of class '<em>Model Sub Class12</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Sub Class12</em>'.
+	 * @return a new object of class '<em>Model Sub Class12</em>'.
 	 * @generated
 	 */
-	TestSubClass12 createTestSubClass12();
+	ModelSubClass12 createModelSubClass12();
 
 	/**
-	 * Returns a new object of class '<em>Test Class13</em>'.
+	 * Returns a new object of class '<em>Model Class13</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Class13</em>'.
+	 * @return a new object of class '<em>Model Class13</em>'.
 	 * @generated
 	 */
-	TestClass13 createTestClass13();
+	ModelClass13 createModelClass13();
 
 	/**
-	 * Returns a new object of class '<em>Test Sub Class13</em>'.
+	 * Returns a new object of class '<em>Model Sub Class13</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Sub Class13</em>'.
+	 * @return a new object of class '<em>Model Sub Class13</em>'.
 	 * @generated
 	 */
-	TestSubClass13 createTestSubClass13();
+	ModelSubClass13 createModelSubClass13();
 
 	/**
-	 * Returns a new object of class '<em>Test Class14</em>'.
+	 * Returns a new object of class '<em>Model Class14</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Class14</em>'.
+	 * @return a new object of class '<em>Model Class14</em>'.
 	 * @generated
 	 */
-	TestClass14 createTestClass14();
+	ModelClass14 createModelClass14();
 
 	/**
-	 * Returns a new object of class '<em>Test Sub Class14</em>'.
+	 * Returns a new object of class '<em>Model Sub Class14</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Sub Class14</em>'.
+	 * @return a new object of class '<em>Model Sub Class14</em>'.
 	 * @generated
 	 */
-	TestSubClass14 createTestSubClass14();
+	ModelSubClass14 createModelSubClass14();
 
 	/**
-	 * Returns a new object of class '<em>Test Class15</em>'.
+	 * Returns a new object of class '<em>Model Class15</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Class15</em>'.
+	 * @return a new object of class '<em>Model Class15</em>'.
 	 * @generated
 	 */
-	TestClass15 createTestClass15();
+	ModelClass15 createModelClass15();
 
 	/**
-	 * Returns a new object of class '<em>Test Sub Class15</em>'.
+	 * Returns a new object of class '<em>Model Sub Class15</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Sub Class15</em>'.
+	 * @return a new object of class '<em>Model Sub Class15</em>'.
 	 * @generated
 	 */
-	TestSubClass15 createTestSubClass15();
+	ModelSubClass15 createModelSubClass15();
 
 	/**
-	 * Returns a new object of class '<em>Test Class16</em>'.
+	 * Returns a new object of class '<em>Model Class16</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Class16</em>'.
+	 * @return a new object of class '<em>Model Class16</em>'.
 	 * @generated
 	 */
-	TestClass16 createTestClass16();
+	ModelClass16 createModelClass16();
 
 	/**
-	 * Returns a new object of class '<em>Test Sub Class16</em>'.
+	 * Returns a new object of class '<em>Model Sub Class16</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Sub Class16</em>'.
+	 * @return a new object of class '<em>Model Sub Class16</em>'.
 	 * @generated
 	 */
-	TestSubClass16 createTestSubClass16();
+	ModelSubClass16 createModelSubClass16();
 
 	/**
-	 * Returns a new object of class '<em>Test Class17</em>'.
+	 * Returns a new object of class '<em>Model Class17</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Class17</em>'.
+	 * @return a new object of class '<em>Model Class17</em>'.
 	 * @generated
 	 */
-	TestClass17 createTestClass17();
+	ModelClass17 createModelClass17();
 
 	/**
-	 * Returns a new object of class '<em>Test Sub Class17</em>'.
+	 * Returns a new object of class '<em>Model Sub Class17</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Sub Class17</em>'.
+	 * @return a new object of class '<em>Model Sub Class17</em>'.
 	 * @generated
 	 */
-	TestSubClass17 createTestSubClass17();
+	ModelSubClass17 createModelSubClass17();
 
 	/**
-	 * Returns a new object of class '<em>Test Class18</em>'.
+	 * Returns a new object of class '<em>Model Class18</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Class18</em>'.
+	 * @return a new object of class '<em>Model Class18</em>'.
 	 * @generated
 	 */
-	TestClass18 createTestClass18();
+	ModelClass18 createModelClass18();
 
 	/**
-	 * Returns a new object of class '<em>Test Sub Class18</em>'.
+	 * Returns a new object of class '<em>Model Sub Class18</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Sub Class18</em>'.
+	 * @return a new object of class '<em>Model Sub Class18</em>'.
 	 * @generated
 	 */
-	TestSubClass18 createTestSubClass18();
+	ModelSubClass18 createModelSubClass18();
 
 	/**
-	 * Returns a new object of class '<em>Test Class19</em>'.
+	 * Returns a new object of class '<em>Model Class19</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Class19</em>'.
+	 * @return a new object of class '<em>Model Class19</em>'.
 	 * @generated
 	 */
-	TestClass19 createTestClass19();
+	ModelClass19 createModelClass19();
 
 	/**
-	 * Returns a new object of class '<em>Test Sub Class19</em>'.
+	 * Returns a new object of class '<em>Model Sub Class19</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test Sub Class19</em>'.
+	 * @return a new object of class '<em>Model Sub Class19</em>'.
 	 * @generated
 	 */
-	TestSubClass19 createTestSubClass19();
+	ModelSubClass19 createModelSubClass19();
 
 	/**
 	 * Returns the package supported by this factory.
