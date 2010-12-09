@@ -108,8 +108,8 @@
 			<cs:attribute name="package.mdt-ocl-Update" />
 			<cs:attribute name="package.mdt-ocl-SDK" />
 			<cs:attribute name="package.mdt-ocl-CoreSDK" />
-			<cs:attribute name="package.mdt-ocl-Examples" />
-			<cs:attribute name="package.mdt-ocl-Runtime" />
+			<cs:attribute name="package.mdt-ocl-examples" />
+			<cs:attribute name="package.mdt-ocl-runtime" />
 		</cs:public>
 	</cs:groups>
 </cs:cspecExtension>
