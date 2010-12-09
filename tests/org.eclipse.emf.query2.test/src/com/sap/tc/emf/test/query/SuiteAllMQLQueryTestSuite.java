@@ -20,6 +20,6 @@ import org.junit.runners.Suite;
 		SuiteNegativeQueryTest.class, SuiteSmokeQueryTest.class, //
 		//TestHasCrossPartitionLinks.class,
 		QueryRegressionTest.class })
-public class TestSuiteAllMQLQueryTests extends QueryTestCase {
+public class SuiteAllMQLQueryTestSuite extends QueryTestCase {
 
 }
