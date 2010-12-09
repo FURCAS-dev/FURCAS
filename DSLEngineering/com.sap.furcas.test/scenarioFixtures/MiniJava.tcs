@@ -1,10 +1,6 @@
 /**
- * A simple Java like language.
+ * A simple Java-like language with classes, attributes and methods.
  * 
- * Important differences:
- *   * Instead of per-class imports only complete packages can be imported.
- *   * There are no primitive types. String, Interger et al have to modeled
- *     using ordinary classes
  */       
 syntax MiniJava {
 
@@ -15,19 +11,19 @@ syntax MiniJava {
                 value = "%token%";
 
 
-        
+		template Package :
+			name{as=packageName}
+			-- a package owns compilation units. However, we do not represent this in the concrete syntax
+        ;
+
         template CompilationUnit main:
-                "package" package{autoCreate=ifmissing} ";"
-                imports{separator = ";"}
-                classes
-        ;
-                
-        template Package :
-        	name{as=packageName}
+                "package" package_ ";" -- FIXME: how to prevent the re-creation if such a package does already exist? 
+                imports
+                containedClass
         ;
         
-        template PackageImport :
-                "import" package {refersTo=name, query="OCL:Package.allInstances()", filter="->select(name = ?)", invert="name"}
+        template ClassImport :
+                "import" importedClass{refersTo=name, query="OCL:MiniJava::ClassDeclaration.allInstances()", filter="->select(name=?)", invert="name"} ";"
         ;
         
         template ClassDeclaration :
@@ -42,13 +38,14 @@ syntax MiniJava {
         
         template FieldDeclaration :
                 visibility  
-                type {refersTo=name, query="OCL:self.parentClass.compilationUnit.imports.package.classes", filter="->select(name = ?)", invert="name"}
+                [[ "void" | type {refersTo=name, query="OCL:self.parentClass.compilationUnit.imports.importedClass", filter="->select(name=?)", invert="name"} ]]
                 name
+                ";"                
         ;
         
         template MethodDeclaration :
                 visibility  
-                [[ "void" | type {refersTo=name, query="OCL:self.parentClass.compilationUnit.imports.package.classes", filter="->select(name = ?)", invert="name"} ]]
+                [[ "void" | type {refersTo=name, query="OCL:self.parentClass.compilationUnit.imports.importedClass", filter="->select(name=?)", invert="name"} ]]
                 name "(" parameters{separator=","} ")"
                 "{"
                         body
@@ -56,7 +53,7 @@ syntax MiniJava {
         ;
         
         template Parameter :
-                type {refersTo=name, query="OCL:self.parentClass.translationUnit.imports.package.classes", filter="->select(name = ?)", invert="name"}
+                type {refersTo=name, query="OCL:self.parentClass.compilationUnit.imports.importedClass", filter="->select(name=?)", invert="name"}
                 name
         ;
         
@@ -64,11 +61,7 @@ syntax MiniJava {
                 "do" [[ "foo" | "bar" ]] ";" -- we just have this nonsense syntax for now...
         ;
         
-        enumerationTemplate Visibility auto :
-                #private           = "private",
-                #protected         = "protected",
-                #public            = "public"
-        ;
+        enumerationTemplate Visibility auto;
 
         symbols {
                 lsquare         = "[";
@@ -85,6 +78,7 @@ syntax MiniJava {
                
         omitted token COMMENT                : endOfLine(start = "//");
         omitted token MULTI_LINE_COMMENT     : multiLine(start = "/*", end = "*/");
+        
         
 lexer = "
 %options testLiterals = false;
