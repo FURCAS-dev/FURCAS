@@ -53,30 +53,30 @@ public abstract class InjectorActionImpl extends EObjectImpl implements Injector
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public InjectorActionsBlock getInjectorActionsBlock() {
+    public InjectorActionsBlock getInjectorActionsBlock() {
         if (eContainerFeatureID() != TCSPackage.INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK) return null;
         return (InjectorActionsBlock)eContainer();
     }
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetInjectorActionsBlock(InjectorActionsBlock newInjectorActionsBlock, NotificationChain msgs) {
+    public NotificationChain basicSetInjectorActionsBlock(InjectorActionsBlock newInjectorActionsBlock, NotificationChain msgs) {
         msgs = eBasicSetContainer((InternalEObject)newInjectorActionsBlock, TCSPackage.INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK, msgs);
         return msgs;
     }
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setInjectorActionsBlock(InjectorActionsBlock newInjectorActionsBlock) {
+    public void setInjectorActionsBlock(InjectorActionsBlock newInjectorActionsBlock) {
         if (newInjectorActionsBlock != eInternalContainer() || (eContainerFeatureID() != TCSPackage.INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK && newInjectorActionsBlock != null)) {
             if (EcoreUtil.isAncestor(this, newInjectorActionsBlock))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
