@@ -20,7 +20,7 @@
 				<artifactId>maven-osgi-test-plugin</artifactId>
 				<version>${tycho-version}</version>
 				<configuration>
-					<testSuite>com.sap.tc.emf.test.query.core.tests</testSuite>
+					<testSuite>com.sap.tc.emf.test.query</testSuite>
 					<testClass>com.sap.tc.emf.test.query.SuiteAllMQLQueryTestSuite.java</testClass>
 					<useUIHarness>true</useUIHarness>
 					<useUIThread>true</useUIThread>
