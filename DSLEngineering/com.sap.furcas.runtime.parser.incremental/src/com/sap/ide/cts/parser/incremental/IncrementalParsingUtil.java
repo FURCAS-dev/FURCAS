@@ -696,7 +696,7 @@ public class IncrementalParsingUtil {
 		return bean;
 	}
 
-	private static boolean linkExists(EObject parent, EObject child,
+	public static boolean linkExists(EObject parent, EObject child,
 			EReference reference) {
 		return ((parent.eGet(reference) instanceof Collection) &&
 				((Collection<?>)parent.eGet(reference)).contains(child));
