@@ -53,7 +53,7 @@ public class NavigationTest extends Assert {
 	private String pagingDirectory = System.getProperty("java.io.tmpdir");
 	
 	public Options getOptions() {
-		
+		System.out.println("Paging directory is:"+ pagingDirectory);
 		return new Options(pagingDirectory, Options.DISABLED, Options.DISABLED);
 	}
 
@@ -61,7 +61,7 @@ public class NavigationTest extends Assert {
 	public void testBuildUp() throws Exception {
 
 		index = new PageableIndexImpl(getOptions());
-
+		
 		System.out.println("indexing " + NUM_MODELS + " times ecore");
 		final Resource r = this.getEcoreCopy();
 		long begin = System.currentTimeMillis();
