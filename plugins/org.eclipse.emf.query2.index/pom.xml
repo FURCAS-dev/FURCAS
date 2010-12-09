@@ -13,7 +13,7 @@
 	<packaging>eclipse-plugin</packaging>
 	<name>EMF Query2 Index</name>
 
-	<!--  <build>
+	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -34,6 +34,5 @@
 
 		</plugins>
 	</build>
-	 -->
 
 </project>
