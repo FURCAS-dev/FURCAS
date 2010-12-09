@@ -21,6 +21,7 @@
 		<module>../plugins/org.eclipse.emf.query2.core</module>
 		<module>../plugins/org.eclipse.emf.query2.stringsyntax</module>
 		<module>../plugins/org.eclipse.emf.query2.stringsyntax.ui</module>
+		<module>../plugins/org.eclipse.emf.query2.stringsyntax.tools.ui</module>
 
 		<module>../help/org.eclipse.emf.query2.help</module>
 		<module>../examples/org.eclipse.emf.query2.examples</module>
