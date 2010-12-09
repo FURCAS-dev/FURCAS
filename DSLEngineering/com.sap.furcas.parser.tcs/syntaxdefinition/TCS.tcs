@@ -283,13 +283,13 @@ syntax TCS {
                   (isDefined(mode)?  "mode" "=" mode {as = identifierOrKeyword}",")
                   "as" "=" 
                               as {as = identifierOrKeyword, 
-                                                                query="OCL:self.foreachParent.injectorActionsBlockReference.parentTemplate.concreteSyntax.templates", 
+                                                                query="OCL:self.foreachParent.injectorActionsBlock.parentTemplate.concreteSyntax.templates", 
                                                         filter="->select(t | 
                                                                         if(t.oclIsTypeOf(FURCAS::TCS::ClassTemplate)) then 
                                                                                 t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference.name = ?
                                                                                 and(t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference.oclAsType(ecore::EClass)).eAllSuperTypes
                                                                                         ->prepend(t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference.oclAsType(ecore::EClass))
-                                                                                        ->includes(self.foreachParent.propertyReference.strucfeature.eType)
+                                                                                        ->includes(self.foreachParent.propertyReference.strucfeature.eType.oclAsType(ecore::EClass))
                                                                                 and (
                                                                                         if(not self.mode.oclIsUndefined()) then
                                                                                                 t.oclAsType(FURCAS::TCS::ClassTemplate).mode = self.mode

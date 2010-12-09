@@ -2672,11 +2672,11 @@ public interface TCSPackage extends EPackage {
         /**
      * The feature id for the '<em><b>Injector Actions Block</b></em>' container reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK = 0;
+    int INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK = 0;
 
         /**
      * The number of structural features of the '<em>Injector Action</em>' class.
@@ -2700,11 +2700,11 @@ public interface TCSPackage extends EPackage {
         /**
      * The feature id for the '<em><b>Injector Actions Block</b></em>' container reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int PROPERTY_INIT__INJECTOR_ACTIONS_BLOCK = INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK;
+    int PROPERTY_INIT__INJECTOR_ACTIONS_BLOCK = INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK;
 
         /**
      * The feature id for the '<em><b>Property Reference</b></em>' containment reference.
@@ -2755,11 +2755,11 @@ public interface TCSPackage extends EPackage {
         /**
      * The feature id for the '<em><b>Injector Actions Block</b></em>' container reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int PRIMITIVE_PROPERTY_INIT__INJECTOR_ACTIONS_BLOCK = PROPERTY_INIT__INJECTOR_ACTIONS_BLOCK;
+    int PRIMITIVE_PROPERTY_INIT__INJECTOR_ACTIONS_BLOCK = PROPERTY_INIT__INJECTOR_ACTIONS_BLOCK;
 
         /**
      * The feature id for the '<em><b>Property Reference</b></em>' containment reference.
@@ -6075,11 +6075,11 @@ public interface TCSPackage extends EPackage {
         /**
      * The feature id for the '<em><b>Injector Actions Block</b></em>' container reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int OCL_PROPERTY_INIT__INJECTOR_ACTIONS_BLOCK = PROPERTY_INIT__INJECTOR_ACTIONS_BLOCK;
+    int OCL_PROPERTY_INIT__INJECTOR_ACTIONS_BLOCK = PROPERTY_INIT__INJECTOR_ACTIONS_BLOCK;
 
         /**
      * The feature id for the '<em><b>Property Reference</b></em>' containment reference.
@@ -6167,11 +6167,11 @@ public interface TCSPackage extends EPackage {
         /**
      * The feature id for the '<em><b>Injector Actions Block</b></em>' container reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int FOREACH_PREDICATE_PROPERTY_INIT__INJECTOR_ACTIONS_BLOCK = PROPERTY_INIT__INJECTOR_ACTIONS_BLOCK;
+    int FOREACH_PREDICATE_PROPERTY_INIT__INJECTOR_ACTIONS_BLOCK = PROPERTY_INIT__INJECTOR_ACTIONS_BLOCK;
 
         /**
      * The feature id for the '<em><b>Property Reference</b></em>' containment reference.
@@ -6265,13 +6265,22 @@ public interface TCSPackage extends EPackage {
         int PREDICATE_SEMANTIC__MODE = 2;
 
         /**
+     * The feature id for the '<em><b>Foreach Parent</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PREDICATE_SEMANTIC__FOREACH_PARENT = 3;
+
+        /**
      * The number of structural features of the '<em>Predicate Semantic</em>' class.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int PREDICATE_SEMANTIC_FEATURE_COUNT = 3;
+        int PREDICATE_SEMANTIC_FEATURE_COUNT = 4;
 
         /**
      * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.SequenceInAlternativeImpl <em>Sequence In Alternative</em>}' class.
@@ -6879,11 +6888,11 @@ public interface TCSPackage extends EPackage {
         /**
      * The feature id for the '<em><b>Injector Actions Block</b></em>' container reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int LOOKUP_PROPERTY_INIT__INJECTOR_ACTIONS_BLOCK = PROPERTY_INIT__INJECTOR_ACTIONS_BLOCK;
+    int LOOKUP_PROPERTY_INIT__INJECTOR_ACTIONS_BLOCK = PROPERTY_INIT__INJECTOR_ACTIONS_BLOCK;
 
         /**
      * The feature id for the '<em><b>Property Reference</b></em>' containment reference.
@@ -9371,13 +9380,13 @@ public interface TCSPackage extends EPackage {
         /**
      * Returns the meta object for the container reference '{@link com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction#getInjectorActionsBlock <em>Injector Actions Block</em>}'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return the meta object for the container reference '<em>Injector Actions Block</em>'.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction#getInjectorActionsBlock()
      * @see #getInjectorAction()
      * @generated
      */
-        EReference getInjectorAction_InjectorActionsBlock();
+    EReference getInjectorAction_InjectorActionsBlock();
 
         /**
      * Returns the meta object for class '{@link com.sap.furcas.metamodel.FURCAS.TCS.PropertyInit <em>Property Init</em>}'.
@@ -9538,6 +9547,17 @@ public interface TCSPackage extends EPackage {
      * @generated
      */
         EAttribute getPredicateSemantic_Mode();
+
+        /**
+     * Returns the meta object for the container reference '{@link com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic#getForeachParent <em>Foreach Parent</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the container reference '<em>Foreach Parent</em>'.
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic#getForeachParent()
+     * @see #getPredicateSemantic()
+     * @generated
+     */
+    EReference getPredicateSemantic_ForeachParent();
 
         /**
      * Returns the meta object for class '{@link com.sap.furcas.metamodel.FURCAS.TCS.SequenceInAlternative <em>Sequence In Alternative</em>}'.
@@ -11739,10 +11759,10 @@ public interface TCSPackage extends EPackage {
                 /**
          * The meta object literal for the '<em><b>Injector Actions Block</b></em>' container reference feature.
          * <!-- begin-user-doc -->
-                 * <!-- end-user-doc -->
+         * <!-- end-user-doc -->
          * @generated
          */
-                EReference INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK = eINSTANCE.getInjectorAction_InjectorActionsBlock();
+        EReference INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK = eINSTANCE.getInjectorAction_InjectorActionsBlock();
 
                 /**
          * The meta object literal for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.PropertyInitImpl <em>Property Init</em>}' class.
@@ -11873,6 +11893,14 @@ public interface TCSPackage extends EPackage {
          * @generated
          */
                 EAttribute PREDICATE_SEMANTIC__MODE = eINSTANCE.getPredicateSemantic_Mode();
+
+                /**
+         * The meta object literal for the '<em><b>Foreach Parent</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference PREDICATE_SEMANTIC__FOREACH_PARENT = eINSTANCE.getPredicateSemantic_ForeachParent();
 
                 /**
          * The meta object literal for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.SequenceInAlternativeImpl <em>Sequence In Alternative</em>}' class.

@@ -2,18 +2,13 @@ package com.sap.furcas.ide.projectwizard.wizards;
 
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IProjectDescription;
+import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -21,22 +16,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.CommonPlugin;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.ENamedElement;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.emf.ecore.presentation.EcoreEditorPlugin;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -56,45 +37,91 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 import org.eclipse.ui.progress.UIJob;
 
-/*This Wizard creates a pair of projects for the Furcas DSL project. It generates the necessary folder,
- * packages, files and first lines of code that help to quickly be able to create the DSL.
+import com.sap.furcas.ide.dslproject.conf.EcoreMetaProjectConf;
+import com.sap.furcas.ide.dslproject.conf.ProjectMetaRefConfFactory;
+import com.sap.furcas.ide.projectwizard.util.CodeGenerationException;
+import com.sap.furcas.ide.projectwizard.util.CreateMMProject;
+import com.sap.furcas.ide.projectwizard.util.CreateProject;
+import com.sap.furcas.ide.projectwizard.util.ProjectInfo;
+
+/**
+ * This Wizard creates a pair of projects for the Furcas DSL project. It generates the necessary folder, packages, files and first
+ * lines of code that help to quickly be able to create the DSL.
+ * 
+ * @author Frederik Petersen (D054528)
+ * 
  */
 public class FurcasWizard extends Wizard implements INewWizard {
-    protected FurcasWizardLanguagePage page;
-    protected FurcasWizardMMSelectionPage page2;
-    public boolean createmm;
-    public boolean lpe;
+    /**
+     * The first page of the wizard.
+     */
+    protected LanguagePage page;
 
-    public Wizard getWiz() {
-        return this;
+    /**
+     * @return The first page of the wizard.
+     */
+    public LanguagePage getPage() {
+        return page;
     }
 
+    /**
+     * The second page of the wizard.
+     */
+    protected SelectionPage page2;
+
+    /**
+     * @return The second page of the wizard.
+     */
+    public SelectionPage getPage2() {
+        return page2;
+    }
+
+    /**
+     * @return The FurcasWizard instance.
+     */
     public FurcasWizard getFurcasWizard() {
         return this;
     }
 
+    boolean hadError = false;
+
+    /**
+     * @return the hadError
+     */
+    public boolean isHadError() {
+        return hadError;
+    }
+
+    /**
+     * @param hadError
+     *            the hadError to set
+     */
+    public void setHadError(boolean hadError) {
+        this.hadError = hadError;
+    }
+
+    /**
+     * Sets the Window title, calls the super constructor.
+     */
     public FurcasWizard() {
         super();
         setNeedsProgressMonitor(true);
         setWindowTitle("Furcas DSL Engineering Project Creator");
-        lpe = false;
-        createmm = false;
     }
 
-    /* The following variables are used for the creation of a fresh .ecore model file. */
-    public static final List<String> FILE_EXTENSIONS = Collections.unmodifiableList(Arrays.asList(EcoreEditorPlugin.INSTANCE
-            .getString("_UI_EcoreEditorFilenameExtensions").split("\\s*,\\s*")));
-    public static final String FORMATTED_FILE_EXTENSIONS = EcoreEditorPlugin.INSTANCE.getString(
-            "_UI_EcoreEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
-    protected EcorePackage ecorePackage = EcorePackage.eINSTANCE;
-    protected EcoreFactory ecoreFactory = ecorePackage.getEcoreFactory();
-    protected IStructuredSelection selection;
+    /**
+     * User's workbench.
+     */
     protected IWorkbench workbench;
-    protected List<String> initialObjectNames;
+    /**
+     * Wizard's classLoader
+     */
     private ClassLoader cL;
 
-    /*
+    /**
      * This method loads the image stored in the icons folder. It is displayed in the upper right corner of the wizard.
+     * 
+     * @return The image descriptor of the image. (The furcas logo)
      */
     protected ImageDescriptor getDefaultImageDescriptor() {
         cL = this.getClass().getClassLoader();
@@ -104,102 +131,91 @@ public class FurcasWizard extends Wizard implements INewWizard {
         return iD;
     }
 
-    public void init(IWorkbench workbench, IStructuredSelection selection) {
-        this.workbench = workbench;
-        this.selection = selection;
-        setWindowTitle(EcoreEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
-        setDefaultPageImageDescriptor(getDefaultImageDescriptor());
-    }
-
-
-    protected Collection<String> getInitialObjectNames() {
-        if (initialObjectNames == null) {
-            initialObjectNames = new ArrayList<String>();
-            for (EClassifier eClassifier : ecorePackage.getEClassifiers()) {
-                if (eClassifier instanceof EClass) {
-                    EClass eClass = (EClass) eClassifier;
-                    if (!eClass.isAbstract()) {
-                        initialObjectNames.add(eClass.getName());
-                    }
-                }
-            }
-            Collections.sort(initialObjectNames, CommonPlugin.INSTANCE.getComparator());
-        }
-        return initialObjectNames;
-    }
-
-    protected EObject createInitialModel() {
-        EClass eClass = (EClass) ecorePackage.getEClassifier("EPackage");
-        EObject rootObject = ecoreFactory.create(eClass);
-        if (rootObject instanceof ENamedElement) {
-            ((ENamedElement) rootObject).setName("");
-        }
-        return rootObject;
-    }
-
-    /* This method is called, when pressing the finish button in the wizard. It calls the doFinish method.
+    /**
+     * This method is called, when pressing the finish button in the wizard. It calls the doFinish method.
      */
-
     @Override
     public boolean performFinish() {
-
         final ProjectInfo pi = page.getProjectInfo();
 
-        if (page.valid) {
+        IRunnableWithProgress op = new IRunnableWithProgress() {
+            @Override
+            public void run(IProgressMonitor monitor) throws InvocationTargetException {
+                doFinish(pi, monitor);
 
-            IRunnableWithProgress op = new IRunnableWithProgress() {
-                @Override
-                public void run(IProgressMonitor monitor) throws InvocationTargetException {
-
-                    doFinish(pi, monitor);
-
-                    monitor.done();
-                }
-            };
-
-            try {
-                getContainer().run(true, false, op);
-            } catch (InterruptedException e) {
-                return false;
-            } catch (InvocationTargetException e) {
-                Throwable realException = e.getTargetException();
-                MessageDialog.openError(getShell(), "Error", realException.getMessage());
-                return false;
+                monitor.done();
             }
-            return true;
-        } else {
-            return false;
+        };
+
+        try {
+            getContainer().run(true, false, op);
+        } catch (InvocationTargetException e) {
+            MessageDialog.openError(getShell(), "Error",
+                    "InvocationTargetException while in main process of creation" + e.getMessage());
+        } catch (InterruptedException e) {
+            MessageDialog.openError(getShell(), "Error",
+                    "InterruptedException while in main process of creation" + e.getMessage());
         }
+
+        return true;
+
     }
 
-    /* 
-     * This method actually does all the work, after the Finish button is pressed. First it creates a new
-     * instance of the CreateProject class and calls its run() method. This leads to the creation of the 
-     * Language Project with all its generated files, packages, folders and code.
-     * Afterwards createMMProject() creates another project for the MetaModel and doAdditional() creates the
-     * new .ecore file. loadmm() leads to loading an existing Metamodel into the new one.
-     * After all the method generateSpecific() generates all the MetaModel related files and coding into
-     * the Language Project.
-     * */
-    void doFinish(final ProjectInfo pi, IProgressMonitor monitor) {
+    /**
+     * This method actually does all the work, after the Finish button is pressed. First it creates a new instance of the {@link}
+     * CreateProject class and calls its <code>run()</code> method. This leads to the creation of the Language Project with all
+     * its generated files, packages, folders and code. Afterwards {@link}createMMProject() creates another project for the
+     * MetaModel and doAdditional() creates the new .ecore file. loadmm() leads to loading an existing Metamodel into the new one.
+     * But those steps only happen if the user wants to create a fresh Metamodel project. Afterwords the method
+     * <code>generateSpecific()</code> generates all the MetaModel related files and coding into the Language Project.
+     * 
+     * @param pi
+     *            The user input.
+     * @param monitor
+     *            The progress monitor.
+     */
+    public void doFinish(final ProjectInfo pi, IProgressMonitor monitor) {
         new UIJob("creating FURCAS projects...") {
             @Override
             public IStatus runInUIThread(IProgressMonitor monitor) {
 
+                CreateProject cP = new CreateProject(pi, getShell(), getFurcasWizard());
                 try {
-                    new CreateProject(pi, getShell()).run(monitor);
-                    if (createmm || lpe) {
-                        createMMProject(monitor);
-                        doAdditional();//TODO see method below
-                    }
-                    if (lpe) {
-                        loadmm();//TODO see method below
-                    }
-                    generateSpecific();
-
+                    cP.run(monitor);
                 } catch (InvocationTargetException e) {
+                    hadError = true;
+                    MessageDialog.openError(getShell(), "Error",
+                            "InvocationTargetException while creating language project:" + e.getMessage());
                 } catch (InterruptedException e) {
+                    hadError = true;
+                    MessageDialog.openError(getShell(), "Error", e.getMessage());
                 }
+                IProject project = cP.project;
+
+                if (!pi.isLoadMetamodel() && !hadError) {
+                    try {
+                        doAdditional(pi);
+                    } catch (CodeGenerationException e) {
+                        hadError = true;
+                        MessageDialog.openError(getShell(), "Error", e.getMessage());
+                    } catch (InvocationTargetException e) {
+                        hadError = true;
+                        MessageDialog.openError(getShell(), "Error",
+                                "InvocationTargetException while creating metamodel project:" + e.getMessage());
+                    } catch (InterruptedException e) {
+                        hadError = true;
+                        MessageDialog.openError(getShell(), "Error", e.getMessage());
+                    }
+                }
+                if (!hadError)
+                    try {
+                        generateSpecific(project, pi, monitor);
+                    } catch (CodeGenerationException e) {
+                        hadError = true;
+                        MessageDialog.openError(getShell(), "Error", e.getMessage());
+                    }
+                if (hadError)
+                    deleteJunk(pi, monitor);
 
                 return Status.OK_STATUS;
             }
@@ -207,155 +223,192 @@ public class FurcasWizard extends Wizard implements INewWizard {
         }.schedule();
     }
 
-    public void doAdditional() {
-        IWorkbenchPage wpage = null;
-        try {
-
-            // Do the work within an operation.
-            //
-            WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
-                @Override
-                protected void execute(IProgressMonitor progressMonitor) {
-                    try {
-                        // Create a resource set
-                        //
-                        ResourceSet resourceSet = new ResourceSetImpl();
-                        resourceSet.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap());
-
-                        // Get the URI of the model file.
-                        //
-                        String mmprojectpath = page.getProjectInfo().getProjectName() + ".metamodel/"
-                                + page.getProjectInfo().getLanguageName() + ".ecore";
-                        URI fileURI = URI.createPlatformResourceURI(mmprojectpath, true);
-
-                        // Create a resource for this file. Don't specify a content type, as it could be Ecore or EMOF.
-                        //
-                        Resource resource = resourceSet.createResource(fileURI);
-
-                        // Add the initial model object to the contents.
-                        //
-                        EObject rootObject = createInitialModel();
-                        if (rootObject != null) {
-                            resource.getContents().add(rootObject);
-                        }
-
-                        // Save the contents of the resource to the file system.
-                        //
-                        Map<Object, Object> options = new HashMap<Object, Object>();
-                        options.put(XMLResource.OPTION_ENCODING, "UTF-8");
-                        resource.save(options);
-                    } catch (Exception exception) {
-                        EcoreEditorPlugin.INSTANCE.log(exception);
-                    } finally {
-                        progressMonitor.done();
-                    }
-                }
-            };
-
-            getContainer().run(false, false, operation);
-
-            final IFile modelFile = getModelFile();
-
-            IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
-            wpage = workbenchWindow.getActivePage();
-            final IWorkbenchPart activePart = wpage.getActivePart();
-            if (activePart instanceof ISetSelectionTarget) {
-                final ISelection targetSelection = new StructuredSelection(modelFile);
-                getShell().getDisplay().asyncExec(new Runnable() {
-                    public void run() {
-                        ((ISetSelectionTarget) activePart).selectReveal(targetSelection);
-                    }
-                });
-            }
-
-            // Open an editor on the new file.
-            //
+    /**
+     * This method gets called when an error occured making sure that unneccessary projects in workspace get cleaned up.
+     */
+    protected void deleteJunk(ProjectInfo pi, IProgressMonitor monitor) {
+        if (!pi.isLoadMetamodel()) {
+            IWorkspace workspace = ResourcesPlugin.getWorkspace();
+            IProject metamodelProject = workspace.getRoot().getProject(pi.getProjectName() + ".metamodel");
             try {
-                IEditorDescriptor defaultEditor = workbench.getEditorRegistry().getDefaultEditor(
-                        modelFile.getFullPath().toString());
-                wpage.openEditor(new FileEditorInput(modelFile),
-                        defaultEditor == null ? "org.eclipse.emf.ecore.presentation.EcoreEditorID" : defaultEditor.getId());
-            } catch (PartInitException exception) {
-                MessageDialog.openError(workbenchWindow.getShell(),
-                        EcoreEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
+                metamodelProject.delete(true, new SubProgressMonitor(monitor, 1));
+            } catch (CoreException e) {
+                // Nothing happens as there is no project to delete.
             }
-
-        } catch (Exception exception) {
-            EcoreEditorPlugin.INSTANCE.log(exception);
         }
+        IWorkspace workspace = ResourcesPlugin.getWorkspace();
+        IProject languageProject = workspace.getRoot().getProject(pi.getProjectName());
+        try {
+            languageProject.delete(true, new SubProgressMonitor(monitor, 1));
+        } catch (CoreException e) {
+            // Nothing happens as there is no project to delete.
+        }
+
     }
 
+    /**
+     * This method is only called if the user chooses to create a new Metamodel Project. It uses the <code>create()</code> method
+     * of {@link}CreateMMProject to generate the project. And it then opens the file in the editor.
+     * 
+     * @param pi
+     *            The user input.
+     * @throws CodeGenerationException
+     * @throws InterruptedException
+     * @throws InvocationTargetException
+     */
+    public void doAdditional(final ProjectInfo pi) throws CodeGenerationException, InvocationTargetException,
+            InterruptedException {
+        IWorkbenchPage wpage = null;
 
+        // Do the work within an operation.
+        //
+        WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
+            @Override
+            protected void execute(IProgressMonitor progressMonitor) {
+
+                try {
+                    CreateMMProject.create(getFurcasWizard(), progressMonitor, pi);
+                } catch (CodeGenerationException e) {
+                    getFurcasWizard().setHadError(true);
+                    MessageDialog.openError(getShell(), "Error", e.getMessage());
+                }
+
+            }
+        };
+
+        getContainer().run(false, false, operation);
+
+        // Select the new .ecore file.
+        //
+        final IFile modelFile = getModelFile();
+
+        IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
+        wpage = workbenchWindow.getActivePage();
+        final IWorkbenchPart activePart = wpage.getActivePart();
+        if (activePart instanceof ISetSelectionTarget) {
+            final ISelection targetSelection = new StructuredSelection(modelFile);
+            getShell().getDisplay().asyncExec(new Runnable() {
+                public void run() {
+                    ((ISetSelectionTarget) activePart).selectReveal(targetSelection);
+                }
+            });
+        }
+
+        // Open an editor on the file.
+        //
+        try {
+            IEditorDescriptor defaultEditor = workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString());
+            wpage.openEditor(new FileEditorInput(modelFile),
+                    defaultEditor == null ? "org.eclipse.emf.ecore.presentation.EcoreEditorID" : defaultEditor.getId());
+        } catch (PartInitException exception) {
+            MessageDialog.openError(workbenchWindow.getShell(),
+                    EcoreEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
+        }
+
+    }
+
+    /**
+     * Adds the first two pages to the wizard (as they're always part of the wizard irrespective of the user input.
+     */
     @Override
     public void addPages() {
-        createmm = false;
-        page = new FurcasWizardLanguagePage(selection);
+        page = new LanguagePage();
         addPage(page);
-        page2 = new FurcasWizardMMSelectionPage(selection, this);
+        page2 = new SelectionPage(this, page.getProjectInfo());
         addPage(page2);
 
     }
 
     /**
-     * Get the file. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
+     * Get the model file.
      */
     public IFile getModelFile() {
-        Path path = new Path(page.getProjectInfo().getProjectName() + ".metamodel/" + page.getProjectInfo().getLanguageName()
-                + ".ecore");
+        Path path = new Path(page.getProjectInfo().getProjectName() + ".metamodel/model/"
+                + CreateProject.capitalizeFirstChar(page.getProjectInfo().getLanguageName()) + ".ecore");
 
         return ResourcesPlugin.getWorkspace().getRoot().getFile(path);
     }
 
-    public void addMMP() {
-        createmm = true;
-    }
-
-    public void enableLoadPage() {
-        lpe = true;
-    }
-
-    /*
-     * This method provides the generation of the MetaModelspecific files and coding in the dsl project.
+    /**
+     * This method provides the generation of the MetaModelspecific files and coding in the dsl project. Since these are the last
+     * lines of code called by the wizard it also builds, refreshs and cleans the project for the purpose of generating all files
+     * at once, as some generators don't see previously generated files if the project is not rebuild/refreshed/cleaned.
+     * 
+     * @param project
+     *            The language project
+     * @param pi
+     *            The user input
+     * @throws CodeGenerationException
      */
-    protected void generateSpecific() {
-        // TODO see above
-    }
+    protected void generateSpecific(IProject project, ProjectInfo pi, IProgressMonitor monitor) throws CodeGenerationException {
+        if (project != null) {
+            EcoreMetaProjectConf conf;
+            if (!pi.isFromWorkspace())
+                // instantiates the configuration take a look at EcoreMetaProjectConf for more details
+                // uses the new PRI list in the ReferenceScope to load the referenced metamodel from registered packages
+                //
+                conf = new EcoreMetaProjectConf(project, "", pi.getNsURI());
+            else if (pi.getModelPath().matches("new")) {
+                String capLangName = CreateProject.capitalizeFirstChar(pi.getLanguageName());
+                IWorkspaceRoot root = project.getWorkspace().getRoot();
+                String newPath = root.getLocation().toString() + "/" + pi.getProjectName() + ".metamodel/model/" + capLangName
+                        + ".ecore";
 
-    /*
-     * This method generates a modelfile in the project folder and opens the load ressources dialog. Afterwords it also generates
-     * the MetaModelspecific files and coding in the project.
-     */
+                // instantiates the configuration take a look at EcoreMetaProjectConf for more details
+                // uses the ResourceSet in the ReferenceScope to load the freshly created .ecore file
+                //
+                conf = new EcoreMetaProjectConf(project, newPath, pi.getNsURI());
+            } else
+                // instantiates the configuration take a look at EcoreMetaProjectConf for more details
+                // uses the ResourceSet in the ReferenceScope to load the referenced metamodel in the workspace
+                //
+                conf = new EcoreMetaProjectConf(project, pi.getModelPath(), pi.getNsURI());
+            ;
 
-    protected void loadmm() {
-        // TODO see above
-    }
+            try {
+                ProjectMetaRefConfFactory.configure(project, conf);
+            } catch (CoreException e) {
+                throw new CodeGenerationException("Failed configure the metamodel connection for the project", e.getCause());
+            }
 
-    public void createMMProject(IProgressMonitor monitor) {
-        ProjectInfo info = page.getProjectInfo();
-        String projectname = info.getProjectName() + ".metamodel";
-        IProjectDescription description;
-        try {
-            IProgressMonitor progressMonitor = new NullProgressMonitor();
+            // Builds, refreshs, cleans the project to make sure, that all files will be found and generated
+            //
+            monitor.subTask("Refreshing, Rebuilding, Cleaning the project");
+            try {
+                project.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
+                IFolder folder = project.getFolder("generated").getFolder("generated");
+                folder.refreshLocal(1, new NullProgressMonitor());
+                project.build(IncrementalProjectBuilder.CLEAN_BUILD, monitor);
+                project.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
 
-            IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-            IProject project = root.getProject(projectname);
-            project.create(progressMonitor);
-            project.open(progressMonitor);
-            description = project.getDescription();
-            String[] natures = description.getNatureIds();
-            String[] newNatures = new String[natures.length + 1];
-            System.arraycopy(natures, 0, newNatures, 0, natures.length);
-            newNatures[natures.length] = JavaCore.NATURE_ID;
-            description.setNatureIds(newNatures);
-            project.setDescription(description, progressMonitor);
-            @SuppressWarnings("unused")
-            IJavaProject javaProject = JavaCore.create(project);
-        } catch (CoreException e) {
-            e.printStackTrace();
+            } catch (CoreException e) {
+                throw new CodeGenerationException("Failed to build, refresh or clean Workspace", e.getCause());
+            }
+
         }
-
     }
+
+    /**
+     * Initializes this creation wizard using the passed workbench and object selection.
+     * <p>
+     * This method is called after the no argument constructor and before other methods are called.
+     * </p>
+     * <p>
+     * Selection will always be empty in FurcasWizard and has no effect here.
+     * </p>
+     * 
+     * @param workbench
+     *            the current workbench
+     * @param selection
+     *            the current object selection -- no effect
+     */
+    @Override
+    public void init(IWorkbench workbench, IStructuredSelection selection) {
+        this.workbench = workbench;
+        setWindowTitle(EcoreEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
+        setDefaultPageImageDescriptor(getDefaultImageDescriptor());
+    }
+
+    
 
 }

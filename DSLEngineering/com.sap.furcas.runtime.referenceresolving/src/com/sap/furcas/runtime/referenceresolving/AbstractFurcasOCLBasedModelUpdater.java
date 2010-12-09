@@ -62,10 +62,27 @@ public class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBasedModelUpd
     public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects,
             OppositeEndFinder oppositeEndFinder) {
         OCL ocl = OCL.newInstance(new EcoreEnvironmentFactoryWithScopedExtentMap(oppositeEndFinder));
+        // TODO use prepared expression and parameterize based on token value taken from text blocks model
         for (EObject eo : affectedContextObjects) {
-            // TODO replace eo according to selfKind
             Object newValue = ocl.evaluate(eo, expression);
-            eo.eSet(getPropertyToUpdate(), newValue);
+            switch (selfKind) {
+            case SELF:
+                // only assign if result was not "invalid"
+                if (ocl.getEnvironment().getOCLStandardLibrary().getInvalid() != newValue) {
+                    if (!getPropertyToUpdate().isMany() && newValue instanceof Collection) {
+                        // pick first result if it exists or leave null
+                        newValue = ((Collection<?>) newValue).isEmpty() ? null : ((Collection<?>) newValue).iterator().next();
+                    }
+                    eo.eSet(getPropertyToUpdate(), newValue);
+                }
+                break;
+            case CONTEXT:
+                // TODO find object to set property on, based on context, injectorAction and text blocks model
+                break;
+            case FOREACH:
+                // TODO find object to set property on, based on foreach element, injectorAction and text blocks model
+                break;
+            }
         }
     }
 

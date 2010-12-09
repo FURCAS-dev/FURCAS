@@ -7,7 +7,7 @@ Bundle-Vendor: SAP
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.junit;bundle-version="4.8.1",
  org.antlr,
- com.sap.furcas.runtime.parser.test;bundle-version="1.0.0",
+ com.sap.furcas.runtime.parser.test,
  com.sap.furcas.test,
  com.sap.furcas.runtime.textblocks.test,
  com.sap.furcas.ide.parserfactory,
@@ -21,7 +21,6 @@ Require-Bundle: org.junit;bundle-version="4.8.1",
  com.sap.furcas.runtime.textblocks,
  com.sap.furcas.runtime.parser,
  com.sap.furcas.modeladaptation.emf,
- com.sap.furcas.runtime.parser,
  com.sap.furcas.runtime.parser.incremental,
  com.sap.furcas.parsergenerator
 Bundle-ClassPath: generationTemp/,
