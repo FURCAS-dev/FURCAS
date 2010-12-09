@@ -14,12 +14,12 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses( { TestIndexQueryService.class, TestQuerySpreading.class,
+@Suite.SuiteClasses( { IndexQueryServiceTest.class, QuerySpreadingTest.class,
 		TestSuiteSyntheticWithNoSchedulingQueryTests.class, // formatting
-		TestSuiteSyntheticInMemoryForCst.class, TestSuiteSyntheticWithSchedulingQueryTests.class, TestSuiteCompanyQueryTests.class,
-		TestSuiteNegativeQueryTests.class, TestSuiteSmokeQueryTests.class, //
+		TestSuiteSyntheticInMemoryForCst.class, TestSuiteSyntheticWithSchedulingQueryTests.class, SuiteCompanyQueryTest.class,
+		SuiteNegativeQueryTest.class, TestSuiteSmokeQueryTests.class, //
 		//TestHasCrossPartitionLinks.class,
-		TestQueryRegression.class })
+		QueryRegressionTest.class })
 public class TestSuiteAllMQLQueryTests extends QueryTestCase {
 
 }
