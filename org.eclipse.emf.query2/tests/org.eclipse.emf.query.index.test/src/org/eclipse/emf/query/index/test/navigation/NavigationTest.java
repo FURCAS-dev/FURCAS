@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.emf.query.index.test.navigation;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -101,7 +102,7 @@ public class NavigationTest extends Assert {
 
 	private Resource getEcoreCopy() throws Exception {
 		ResourceSet rs = new ResourceSetImpl();
-		Resource copy = rs.createResource(URI.createFileURI(pagingDirectory+"ecoreCopy.xmi"));
+		Resource copy = rs.createResource(URI.createFileURI(pagingDirectory+File.pathSeparator+"ecoreCopy.xmi"));
 		Resource ecoreResource = EcorePackage.eINSTANCE.eResource();
 		copy.getContents().add(EcorePackage.eINSTANCE);
 		copy.save(null);
