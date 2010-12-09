@@ -4,6 +4,8 @@ import java.util.Iterator;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
+import org.eclipse.core.resources.IProjectNatureDescriptor;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.jface.action.IAction;
@@ -66,6 +68,8 @@ public class ToggleNatureAction implements IObjectActionDelegate {
 	 *            to have sample nature added or removed
 	 */
 	private void toggleNature(IProject project) {
+		IProjectNatureDescriptor[] natureDescriptors = ResourcesPlugin.getWorkspace().getNatureDescriptors();
+		
 		try {
 			IProjectDescription description = project.getDescription();
 			String[] natures = description.getNatureIds();
@@ -90,6 +94,7 @@ public class ToggleNatureAction implements IObjectActionDelegate {
 			description.setNatureIds(newNatures);
 			project.setDescription(description, null);
 		} catch (CoreException e) {
+			e.printStackTrace();
 		}
 	}
 
