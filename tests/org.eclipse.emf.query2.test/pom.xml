@@ -13,7 +13,7 @@
 	<packaging>eclipse-test-plugin</packaging>
 	<name>EMF Query2 Core Tests</name>
 
-	<build>
+	<!--  <build>
 		<plugins>
 			<plugin>
 				<groupId>org.sonatype.tycho</groupId>
@@ -37,6 +37,8 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		
 	</build>
+	 -->
 
 </project>
