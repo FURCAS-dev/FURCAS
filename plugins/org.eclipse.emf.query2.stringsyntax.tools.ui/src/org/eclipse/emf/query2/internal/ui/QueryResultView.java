@@ -55,7 +55,6 @@ public class QueryResultView extends ViewPart {
 			this.searchText = searchText;
 		}
 
-		@Override
 		public void update(ViewerCell cell) {
 			String columnText = ((Row) cell.getElement()).get(i).toString();
 			cell.setText(columnText);
@@ -98,8 +97,7 @@ public class QueryResultView extends ViewPart {
 			// beginning
 			// and length of each occurrence into an array
 			for (int i = 0; i < content.length(); i++) {
-				if (i + searchTerm.length() <= content.length()
-						&& content.substring(i, i + searchTerm.length()).equalsIgnoreCase(searchTerm)) {
+				if (i + searchTerm.length() <= content.length() && content.substring(i, i + searchTerm.length()).equalsIgnoreCase(searchTerm)) {
 					// ranges format: n->start of the range, n+1->length of the
 					// range
 					ranges.add(i);
@@ -112,10 +110,8 @@ public class QueryResultView extends ViewPart {
 			int arrayIndexCounter = 0;
 			for (int listIndexCounter = 0; listIndexCounter < ranges.size(); listIndexCounter++) {
 				if (listIndexCounter % 2 == 0) {
-					if (searchTerm.length() > 1 && listIndexCounter != 0
-							&& ranges.get(listIndexCounter - 2) + ranges.get(listIndexCounter - 1) >= ranges.get(listIndexCounter)) {
-						intRanges[arrayIndexCounter - 1] = 0 - ranges.get(listIndexCounter - 2) + ranges.get(listIndexCounter)
-								+ ranges.get(++listIndexCounter);
+					if (searchTerm.length() > 1 && listIndexCounter != 0 && ranges.get(listIndexCounter - 2) + ranges.get(listIndexCounter - 1) >= ranges.get(listIndexCounter)) {
+						intRanges[arrayIndexCounter - 1] = 0 - ranges.get(listIndexCounter - 2) + ranges.get(listIndexCounter) + ranges.get(++listIndexCounter);
 					} else {
 						intRanges[arrayIndexCounter++] = ranges.get(listIndexCounter);
 					}
@@ -157,7 +153,6 @@ public class QueryResultView extends ViewPart {
 			this.searchString = ".*" + s + ".*";
 		}
 
-		@Override
 		public boolean select(Viewer viewer, Object parentElement, Object element) {
 			if (searchString == null || searchString.length() == 0) {
 				return true;
@@ -175,17 +170,14 @@ public class QueryResultView extends ViewPart {
 
 	private static class QueryResultContentProvider implements IStructuredContentProvider {
 
-		@Override
 		public void dispose() {
 		}
 
-		@Override
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		}
 
-		@Override
 		public Object[] getElements(Object inputElement) {
-			if (inputElement == null){
+			if (inputElement == null) {
 				return new Object[0];
 			}
 			ResultSet rs = (ResultSet) inputElement;
@@ -281,10 +273,9 @@ public class QueryResultView extends ViewPart {
 	}
 
 	private static final CellLabelProvider EMPTY_LABEL_PROVIDER = new CellLabelProvider() {
-		
-		@Override
+
 		public void update(ViewerCell cell) {
-			
+
 		}
 	};
 
@@ -299,7 +290,6 @@ public class QueryResultView extends ViewPart {
 	public QueryResultView() {
 	}
 
-	@Override
 	public void createPartControl(Composite parent) {
 
 		GridLayout layout = new GridLayout(2, false);
@@ -434,8 +424,7 @@ public class QueryResultView extends ViewPart {
 		}
 
 	}
-
-	@Override
+	
 	public void setFocus() {
 		tv.getTable().setFocus();
 	}

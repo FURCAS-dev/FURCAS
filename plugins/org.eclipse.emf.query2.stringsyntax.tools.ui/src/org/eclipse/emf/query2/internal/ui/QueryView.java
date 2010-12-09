@@ -68,7 +68,6 @@ public class QueryView extends ViewPart implements ISelectionProvider {
 
 	private static class QueryContainer extends QueryElement {
 
-
 		private URI resourceUri;
 
 		public QueryContainer(String name, URI uri) {
@@ -101,7 +100,7 @@ public class QueryView extends ViewPart implements ISelectionProvider {
 		public QueryContainer getContainer() {
 			return container;
 		}
-		
+
 		public URI getUri() {
 			return uri;
 		}
@@ -109,50 +108,42 @@ public class QueryView extends ViewPart implements ISelectionProvider {
 
 	public class QueryViewContentProvider implements ITreeContentProvider {
 
-		@Override
 		public Object[] getChildren(Object parentElement) {
 			return ((QueryContainer) parentElement).items();
 		}
 
-		@Override
 		public Object getParent(Object element) {
-			if(element instanceof QueryItem){
+			if (element instanceof QueryItem) {
 				return ((QueryItem) element).getContainer();
 			}
 			return null;
 		}
 
-		@Override
 		public boolean hasChildren(Object element) {
 			return element instanceof QueryContainer;
 		}
 
-		@Override
 		public Object[] getElements(Object inputElement) {
 			return ((Collection<QueryContainer>) inputElement).toArray(new QueryContainer[0]);
 		}
 
-		@Override
 		public void dispose() {
 		}
 
-		@Override
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		}
 	}
 
 	public class QueryViewLabelProvider extends LabelProvider {
 
-		@Override
 		public String getText(Object element) {
 			return ((QueryElement) element).getName();
 		}
-		
-		@Override
+
 		public Image getImage(Object element) {
 			if (element instanceof QueryItem) {
 				return queryImage;
-				
+
 			}
 			return fileImage;
 		}
@@ -175,13 +166,12 @@ public class QueryView extends ViewPart implements ISelectionProvider {
 		query.getSelectEntries().add(selectEntry);
 	}
 
-	@Override
 	public void createPartControl(Composite parent) {
 		tv = new TreeViewer(parent);
 		tv.setLabelProvider(new QueryViewLabelProvider());
 		tv.setContentProvider(new QueryViewContentProvider());
 		tv.setInput(doQuery(false));
-		
+
 		// This is new code
 		// First we create a menu Manager
 		MenuManager menuManager = new MenuManager();
@@ -196,20 +186,20 @@ public class QueryView extends ViewPart implements ISelectionProvider {
 
 	private Collection<QueryContainer> doQuery(boolean includeDirty) {
 		final ResourceSet[] rs = new ResourceSet[1];
-		if (!includeDirty){
-		rs[0] = new ResourceSetImpl();
-		}else {
+		if (!includeDirty) {
+			rs[0] = new ResourceSetImpl();
+		} else {
 			IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 			IEditorPart activeEditor = activePage.getActiveEditor();
 			if (activeEditor instanceof XtextEditor) {
 				getResourceSetFromXTextEditor(rs, activeEditor);
-				
-			}else{ //Get the resourceset from the XText editor
-				//Get all the editors and check for the XText editor
+
+			} else { // Get the resourceset from the XText editor
+				// Get all the editors and check for the XText editor
 				IEditorReference[] editorReferences = activePage.getEditorReferences();
 				for (int i = 0; i < editorReferences.length; i++) {
 					IEditorPart editor = editorReferences[i].getEditor(true);
-					if(editor instanceof XtextEditor){
+					if (editor instanceof XtextEditor) {
 						getResourceSetFromXTextEditor(rs, editor);
 					}
 				}
@@ -217,52 +207,49 @@ public class QueryView extends ViewPart implements ISelectionProvider {
 		}
 		Query transform = QueryTransformer.transform(query);
 		Map<URI, QueryContainer> result = new HashMap<URI, QueryContainer>();
-		final ResultSet resultSet = new QueryProcessorImpl(IndexFactory.getInstance()).execute(transform,
-				getQueryContext(rs[0]));
-		
+		final ResultSet resultSet = new QueryProcessorImpl(IndexFactory.getInstance()).execute(transform, getQueryContext(rs[0]));
+
 		for (int i = 0; i < resultSet.getSize(); i++) {
 			QueryContainer container;
 			URI uri = resultSet.getUri(i, "query");
 			URI trimFragment = uri.trimFragment();
-			if ((container =result.get(trimFragment))==null){
+			if ((container = result.get(trimFragment)) == null) {
 				container = new QueryContainer(uri.lastSegment(), trimFragment);
 				result.put(trimFragment, container);
 			}
 			String name = (String) resultSet.getAttribute(i, "query", "name");
 			container.addChild(new QueryItem(name, uri));
 		}
-		
+
 		return result.values();
 	}
-	// Create a XTextResource and ovverides the process() method to retrieve the needed
+
+	// Create a XTextResource and ovverides the process() method to retrieve the
+	// needed
 	// resource set.
-	private void getResourceSetFromXTextEditor(final ResourceSet[] rs,
-			IEditorPart activeEditor) {
+	private void getResourceSetFromXTextEditor(final ResourceSet[] rs, IEditorPart activeEditor) {
 		XtextEditor xtextEditor = (XtextEditor) activeEditor;
 		xtextEditor.getDocument().readOnly(new IUnitOfWork.Void<XtextResource>() {
 
-			@Override
 			public void process(XtextResource state) throws Exception {
 				rs[0] = state.getResourceSet();
 			}
-			
+
 		});
 	}
-	
+
 	public void refresh(boolean includeDirty) {
 		tv.setInput(doQuery(includeDirty));
 		tv.expandAll();
 	}
-	
+
 	private QueryContext getQueryContext(final ResourceSet rs) {
 		return new QueryContext() {
 
-			@Override
 			public URI[] getResourceScope() {
 				final List<URI> result = new ArrayList<URI>();
 				IndexFactory.getInstance().executeQueryCommand(new QueryCommand() {
 
-					@Override
 					public void execute(QueryExecutor queryExecutor) {
 						ResourceQuery<ResourceDescriptor> resourceQuery = IndexQueryFactory.createResourceQuery();
 						for (ResourceDescriptor desc : queryExecutor.execute(resourceQuery)) {
@@ -274,7 +261,6 @@ public class QueryView extends ViewPart implements ISelectionProvider {
 				return result.toArray(new URI[0]);
 			}
 
-			@Override
 			public ResourceSet getResourceSet() {
 				return rs;
 			}
@@ -282,41 +268,35 @@ public class QueryView extends ViewPart implements ISelectionProvider {
 		};
 	}
 
-	@Override
 	public void setFocus() {
 		tv.getTree().setFocus();
 	}
-	
-	@Override
+
 	public void dispose() {
 		queryImage.dispose();
 		fileImage.dispose();
 		super.dispose();
 	}
 
-	@Override
 	public void addSelectionChangedListener(ISelectionChangedListener listener) {
 		tv.addSelectionChangedListener(listener);
 	}
 
-	@Override
 	public ISelection getSelection() {
 		QueryElement element = (QueryElement) ((IStructuredSelection) tv.getSelection()).getFirstElement();
-			if (element instanceof QueryItem) {
-				QueryItem item = (QueryItem) element;
-				return new StructuredSelection(item.uri);
-			}
+		if (element instanceof QueryItem) {
+			QueryItem item = (QueryItem) element;
+			return new StructuredSelection(item.uri);
+		}
 		return new StructuredSelection();
 	}
 
-	@Override
 	public void removeSelectionChangedListener(ISelectionChangedListener listener) {
 		tv.removeSelectionChangedListener(listener);
 	}
 
-	@Override
 	public void setSelection(ISelection selection) {
-		
+
 	}
 
 }
