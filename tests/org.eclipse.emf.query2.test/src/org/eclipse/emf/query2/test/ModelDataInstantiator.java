@@ -397,7 +397,7 @@ public class ModelDataInstantiator {
 
 	static public String calculateClassName(int testClassNr, int instNr, boolean subClass) {
 
-		return "Test" + (subClass ? "Sub" : "") + "Class" + testClassNr + "Inst" + instNr;
+		return "Model" + (subClass ? "Sub" : "") + "Class" + testClassNr + "Inst" + instNr;
 	}
 
 	static public int calculateIntAttr(int testClassNr, int instNr, int attrNr) {
@@ -415,17 +415,17 @@ public class ModelDataInstantiator {
 		if (attrNr == EMPTY_STRING_ATTR_NUM) {
 			return "";
 		}
-		return "Test" + (subClass ? "Sub" : "") + "Class" + testClassNr + "Inst" + instNr + "strValue" + attrNr;
+		return "Model" + (subClass ? "Sub" : "") + "Class" + testClassNr + "Inst" + instNr + "strValue" + attrNr;
 	}
 
 	static public String calculateMultiValuedStringAttr(int testClassNr, int instNr, int attrNr, int valueNr, boolean subClass) {
 
-		return "Test" + (subClass ? "Sub" : "") + "Class" + testClassNr + "Inst" + instNr + "strMultiValued" + attrNr + "Value" + valueNr;
+		return "Model" + (subClass ? "Sub" : "") + "Class" + testClassNr + "Inst" + instNr + "strMultiValued" + attrNr + "Value" + valueNr;
 	}
 
 	static public String calculateObjectValuedAttrName(int testClassNr, int instNr, int attrNr, boolean subClass) {
 
-		return "Test" + (subClass ? "Sub" : "") + "Class" + testClassNr + "Inst" + instNr + "attrObjValued" + attrNr;
+		return "Model" + (subClass ? "Sub" : "") + "Class" + testClassNr + "Inst" + instNr + "attrObjValued" + attrNr;
 	}
 
 	static public int calculatePartitionForClassNr(int testClassNr, int _partSize) {
