@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EMF Query2 String Syntax Tooling
+Bundle-SymbolicName: org.eclipse.emf.query2.stringsyntaxtools.ui;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.eclipse.emf.query2.internal.ui.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.query2.stringsyntax;bundle-version="1.0.0",
+ org.eclipse.emf.query2.stringsyntax;bundle-version="1.0.0",
+ org.eclipse.emf.query2.index.ui;bundle-version="1.0.0",
+ org.eclipse.emf.query2.index;bundle-version="1.0.0",
+ org.eclipse.ui.ide;bundle-version="3.5.0",
+ org.eclipse.core.expressions;bundle-version="3.4.100",
+ org.eclipse.xtext.ui;bundle-version="1.0.1",
+ org.eclipse.emf.query2.core;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
