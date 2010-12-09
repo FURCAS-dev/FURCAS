@@ -3017,10 +3017,10 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EReference getInjectorAction_InjectorActionsBlock() {
+    public EReference getInjectorAction_InjectorActionsBlock() {
         return (EReference)injectorActionEClass.getEStructuralFeatures().get(0);
     }
 
@@ -3157,6 +3157,15 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      */
         public EAttribute getPredicateSemantic_Mode() {
         return (EAttribute)predicateSemanticEClass.getEStructuralFeatures().get(2);
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getPredicateSemantic_ForeachParent() {
+        return (EReference)predicateSemanticEClass.getEStructuralFeatures().get(3);
     }
 
         /**
@@ -3700,6 +3709,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         createEReference(predicateSemanticEClass, PREDICATE_SEMANTIC__AS);
         createEReference(predicateSemanticEClass, PREDICATE_SEMANTIC__WHEN);
         createEAttribute(predicateSemanticEClass, PREDICATE_SEMANTIC__MODE);
+        createEReference(predicateSemanticEClass, PREDICATE_SEMANTIC__FOREACH_PARENT);
 
         sequenceInAlternativeEClass = createEClass(SEQUENCE_IN_ALTERNATIVE);
         createEReference(sequenceInAlternativeEClass, SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER);
@@ -4173,13 +4183,14 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEAttribute(getScopeArg_Scope(), this.getScopeKind(), "scope", null, 1, 1, ScopeArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(foreachPredicatePropertyInitEClass, ForeachPredicatePropertyInit.class, "ForeachPredicatePropertyInit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getForeachPredicatePropertyInit_PredicateSemantic(), this.getPredicateSemantic(), null, "predicateSemantic", null, 0, -1, ForeachPredicatePropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getForeachPredicatePropertyInit_PredicateSemantic(), this.getPredicateSemantic(), this.getPredicateSemantic_ForeachParent(), "predicateSemantic", null, 0, -1, ForeachPredicatePropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getForeachPredicatePropertyInit_Mode(), theEcorePackage_1.getEString(), "mode", null, 0, 1, ForeachPredicatePropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(predicateSemanticEClass, PredicateSemantic.class, "PredicateSemantic", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getPredicateSemantic_As(), this.getTemplate(), null, "as", null, 0, 1, PredicateSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getPredicateSemantic_When(), theEcorePackage.getOCLExpression(), null, "when", null, 0, 1, PredicateSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getPredicateSemantic_Mode(), theEcorePackage_1.getEString(), "mode", null, 0, 1, PredicateSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getPredicateSemantic_ForeachParent(), this.getForeachPredicatePropertyInit(), this.getForeachPredicatePropertyInit_PredicateSemantic(), "foreachParent", null, 1, 1, PredicateSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(sequenceInAlternativeEClass, SequenceInAlternative.class, "SequenceInAlternative", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getSequenceInAlternative_AlternativeContainer(), this.getAlternative(), this.getAlternative_Sequences(), "alternativeContainer", null, 0, 1, SequenceInAlternative.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

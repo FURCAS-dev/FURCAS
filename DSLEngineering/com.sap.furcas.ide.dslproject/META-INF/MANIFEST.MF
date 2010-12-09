@@ -30,13 +30,6 @@ Export-Package: com.sap.furcas.ide.dslproject;
    org.eclipse.swt.widgets,
    com.sap.mi.textual.epi.conf",
  com.sap.furcas.ide.dslproject.conf;uses:="org.eclipse.core.resources,com.sap.furcas.utils.projects",
- com.sap.furcas.ide.dslproject.projectwizard;
-  uses:="org.eclipse.jface.wizard,
-   org.eclipse.core.runtime,
-   org.eclipse.ui,
-   org.eclipse.jface.viewers,
-   org.eclipse.swt.widgets,
-   com.sap.mi.textual.epi.conf",
  com.sap.furcas.ide.dslproject.ui;
   uses:="org.eclipse.jface.wizard,
    org.eclipse.ui,

@@ -39,281 +39,281 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
  */
 public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
         /**
-	 * The cached value of the '{@link #getForeachPedicatePropertyInit() <em>Foreach Pedicate Property Init</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getForeachPedicatePropertyInit() <em>Foreach Pedicate Property Init</em>}' reference.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see #getForeachPedicatePropertyInit()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getForeachPedicatePropertyInit()
+     * @generated
+     * @ordered
+     */
         protected ForeachPredicatePropertyInit foreachPedicatePropertyInit;
 
         /**
-	 * The cached value of the '{@link #getContextElement() <em>Context Element</em>}' reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getContextElement() <em>Context Element</em>}' reference list.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see #getContextElement()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getContextElement()
+     * @generated
+     * @ordered
+     */
         protected EList<EObject> contextElement;
 
         /**
-	 * The cached value of the '{@link #getResultModelElement() <em>Result Model Element</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getResultModelElement() <em>Result Model Element</em>}' reference.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see #getResultModelElement()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getResultModelElement()
+     * @generated
+     * @ordered
+     */
         protected EObject resultModelElement;
 
         /**
-	 * The cached value of the '{@link #getSourceModelElement() <em>Source Model Element</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getSourceModelElement() <em>Source Model Element</em>}' reference.
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @see #getSourceModelElement()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getSourceModelElement()
+     * @generated
+     * @ordered
+     */
         protected EObject sourceModelElement;
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         protected ForEachContextImpl() {
-		super();
-	}
+        super();
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         protected EClass eStaticClass() {
-		return TextblocksPackage.Literals.FOR_EACH_CONTEXT;
-	}
+        return TextblocksPackage.Literals.FOR_EACH_CONTEXT;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public ForeachPredicatePropertyInit getForeachPedicatePropertyInit() {
-		if (foreachPedicatePropertyInit != null && foreachPedicatePropertyInit.eIsProxy()) {
-			InternalEObject oldForeachPedicatePropertyInit = (InternalEObject)foreachPedicatePropertyInit;
-			foreachPedicatePropertyInit = (ForeachPredicatePropertyInit)eResolveProxy(oldForeachPedicatePropertyInit);
-			if (foreachPedicatePropertyInit != oldForeachPedicatePropertyInit) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblocksPackage.FOR_EACH_CONTEXT__FOREACH_PEDICATE_PROPERTY_INIT, oldForeachPedicatePropertyInit, foreachPedicatePropertyInit));
-			}
-		}
-		return foreachPedicatePropertyInit;
-	}
+        if (foreachPedicatePropertyInit != null && foreachPedicatePropertyInit.eIsProxy()) {
+            InternalEObject oldForeachPedicatePropertyInit = (InternalEObject)foreachPedicatePropertyInit;
+            foreachPedicatePropertyInit = (ForeachPredicatePropertyInit)eResolveProxy(oldForeachPedicatePropertyInit);
+            if (foreachPedicatePropertyInit != oldForeachPedicatePropertyInit) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblocksPackage.FOR_EACH_CONTEXT__FOREACH_PEDICATE_PROPERTY_INIT, oldForeachPedicatePropertyInit, foreachPedicatePropertyInit));
+            }
+        }
+        return foreachPedicatePropertyInit;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public ForeachPredicatePropertyInit basicGetForeachPedicatePropertyInit() {
-		return foreachPedicatePropertyInit;
-	}
+        return foreachPedicatePropertyInit;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public void setForeachPedicatePropertyInit(ForeachPredicatePropertyInit newForeachPedicatePropertyInit) {
-		ForeachPredicatePropertyInit oldForeachPedicatePropertyInit = foreachPedicatePropertyInit;
-		foreachPedicatePropertyInit = newForeachPedicatePropertyInit;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_CONTEXT__FOREACH_PEDICATE_PROPERTY_INIT, oldForeachPedicatePropertyInit, foreachPedicatePropertyInit));
-	}
+        ForeachPredicatePropertyInit oldForeachPedicatePropertyInit = foreachPedicatePropertyInit;
+        foreachPedicatePropertyInit = newForeachPedicatePropertyInit;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_CONTEXT__FOREACH_PEDICATE_PROPERTY_INIT, oldForeachPedicatePropertyInit, foreachPedicatePropertyInit));
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public EList<EObject> getContextElement() {
-		if (contextElement == null) {
-			contextElement = new EObjectResolvingEList<EObject>(EObject.class, this, TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_ELEMENT);
-		}
-		return contextElement;
-	}
+        if (contextElement == null) {
+            contextElement = new EObjectResolvingEList<EObject>(EObject.class, this, TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_ELEMENT);
+        }
+        return contextElement;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public EObject getResultModelElement() {
-		if (resultModelElement != null && resultModelElement.eIsProxy()) {
-			InternalEObject oldResultModelElement = (InternalEObject)resultModelElement;
-			resultModelElement = eResolveProxy(oldResultModelElement);
-			if (resultModelElement != oldResultModelElement) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblocksPackage.FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT, oldResultModelElement, resultModelElement));
-			}
-		}
-		return resultModelElement;
-	}
+        if (resultModelElement != null && resultModelElement.eIsProxy()) {
+            InternalEObject oldResultModelElement = (InternalEObject)resultModelElement;
+            resultModelElement = eResolveProxy(oldResultModelElement);
+            if (resultModelElement != oldResultModelElement) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblocksPackage.FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT, oldResultModelElement, resultModelElement));
+            }
+        }
+        return resultModelElement;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public EObject basicGetResultModelElement() {
-		return resultModelElement;
-	}
+        return resultModelElement;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public void setResultModelElement(EObject newResultModelElement) {
-		EObject oldResultModelElement = resultModelElement;
-		resultModelElement = newResultModelElement;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT, oldResultModelElement, resultModelElement));
-	}
+        EObject oldResultModelElement = resultModelElement;
+        resultModelElement = newResultModelElement;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT, oldResultModelElement, resultModelElement));
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public EObject getSourceModelElement() {
-		if (sourceModelElement != null && sourceModelElement.eIsProxy()) {
-			InternalEObject oldSourceModelElement = (InternalEObject)sourceModelElement;
-			sourceModelElement = eResolveProxy(oldSourceModelElement);
-			if (sourceModelElement != oldSourceModelElement) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblocksPackage.FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT, oldSourceModelElement, sourceModelElement));
-			}
-		}
-		return sourceModelElement;
-	}
+        if (sourceModelElement != null && sourceModelElement.eIsProxy()) {
+            InternalEObject oldSourceModelElement = (InternalEObject)sourceModelElement;
+            sourceModelElement = eResolveProxy(oldSourceModelElement);
+            if (sourceModelElement != oldSourceModelElement) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblocksPackage.FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT, oldSourceModelElement, sourceModelElement));
+            }
+        }
+        return sourceModelElement;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public EObject basicGetSourceModelElement() {
-		return sourceModelElement;
-	}
+        return sourceModelElement;
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         public void setSourceModelElement(EObject newSourceModelElement) {
-		EObject oldSourceModelElement = sourceModelElement;
-		sourceModelElement = newSourceModelElement;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT, oldSourceModelElement, sourceModelElement));
-	}
+        EObject oldSourceModelElement = sourceModelElement;
+        sourceModelElement = newSourceModelElement;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT, oldSourceModelElement, sourceModelElement));
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TextblocksPackage.FOR_EACH_CONTEXT__FOREACH_PEDICATE_PROPERTY_INIT:
-				if (resolve) return getForeachPedicatePropertyInit();
-				return basicGetForeachPedicatePropertyInit();
-			case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_ELEMENT:
-				return getContextElement();
-			case TextblocksPackage.FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT:
-				if (resolve) return getResultModelElement();
-				return basicGetResultModelElement();
-			case TextblocksPackage.FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT:
-				if (resolve) return getSourceModelElement();
-				return basicGetSourceModelElement();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case TextblocksPackage.FOR_EACH_CONTEXT__FOREACH_PEDICATE_PROPERTY_INIT:
+                if (resolve) return getForeachPedicatePropertyInit();
+                return basicGetForeachPedicatePropertyInit();
+            case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_ELEMENT:
+                return getContextElement();
+            case TextblocksPackage.FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT:
+                if (resolve) return getResultModelElement();
+                return basicGetResultModelElement();
+            case TextblocksPackage.FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT:
+                if (resolve) return getSourceModelElement();
+                return basicGetSourceModelElement();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @SuppressWarnings("unchecked")
         @Override
         public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TextblocksPackage.FOR_EACH_CONTEXT__FOREACH_PEDICATE_PROPERTY_INIT:
-				setForeachPedicatePropertyInit((ForeachPredicatePropertyInit)newValue);
-				return;
-			case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_ELEMENT:
-				getContextElement().clear();
-				getContextElement().addAll((Collection<? extends EObject>)newValue);
-				return;
-			case TextblocksPackage.FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT:
-				setResultModelElement((EObject)newValue);
-				return;
-			case TextblocksPackage.FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT:
-				setSourceModelElement((EObject)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case TextblocksPackage.FOR_EACH_CONTEXT__FOREACH_PEDICATE_PROPERTY_INIT:
+                setForeachPedicatePropertyInit((ForeachPredicatePropertyInit)newValue);
+                return;
+            case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_ELEMENT:
+                getContextElement().clear();
+                getContextElement().addAll((Collection<? extends EObject>)newValue);
+                return;
+            case TextblocksPackage.FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT:
+                setResultModelElement((EObject)newValue);
+                return;
+            case TextblocksPackage.FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT:
+                setSourceModelElement((EObject)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         public void eUnset(int featureID) {
-		switch (featureID) {
-			case TextblocksPackage.FOR_EACH_CONTEXT__FOREACH_PEDICATE_PROPERTY_INIT:
-				setForeachPedicatePropertyInit((ForeachPredicatePropertyInit)null);
-				return;
-			case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_ELEMENT:
-				getContextElement().clear();
-				return;
-			case TextblocksPackage.FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT:
-				setResultModelElement((EObject)null);
-				return;
-			case TextblocksPackage.FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT:
-				setSourceModelElement((EObject)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case TextblocksPackage.FOR_EACH_CONTEXT__FOREACH_PEDICATE_PROPERTY_INIT:
+                setForeachPedicatePropertyInit((ForeachPredicatePropertyInit)null);
+                return;
+            case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_ELEMENT:
+                getContextElement().clear();
+                return;
+            case TextblocksPackage.FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT:
+                setResultModelElement((EObject)null);
+                return;
+            case TextblocksPackage.FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT:
+                setSourceModelElement((EObject)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
         /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
         @Override
         public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TextblocksPackage.FOR_EACH_CONTEXT__FOREACH_PEDICATE_PROPERTY_INIT:
-				return foreachPedicatePropertyInit != null;
-			case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_ELEMENT:
-				return contextElement != null && !contextElement.isEmpty();
-			case TextblocksPackage.FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT:
-				return resultModelElement != null;
-			case TextblocksPackage.FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT:
-				return sourceModelElement != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case TextblocksPackage.FOR_EACH_CONTEXT__FOREACH_PEDICATE_PROPERTY_INIT:
+                return foreachPedicatePropertyInit != null;
+            case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_ELEMENT:
+                return contextElement != null && !contextElement.isEmpty();
+            case TextblocksPackage.FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT:
+                return resultModelElement != null;
+            case TextblocksPackage.FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT:
+                return sourceModelElement != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //ForEachContextImpl
