@@ -1,4 +1,4 @@
-package com.sap.tc.emf.test.query.setup;
+package org.eclipse.emf.query2.test.setup;
 
 import java.io.File;
 import java.io.IOException;

@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  *******************************************************************************/
-package com.sap.tc.emf.test.query;
+package org.eclipse.emf.query2.test;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -20,12 +20,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
-import com.sap.tc.emf.test.query.setup.TestClient;
 import org.eclipse.emf.query2.test.mm.generatedmetamodel.EnumTp;
 import org.eclipse.emf.query2.test.mm.generatedmetamodel.GeneratedmetamodelFactory;
 import org.eclipse.emf.query2.test.mm.generatedmetamodel.GeneratedmetamodelPackage;
 import org.eclipse.emf.query2.test.mm.generatedmetamodel.StructInStructTp;
 import org.eclipse.emf.query2.test.mm.generatedmetamodel.StructTp;
+import org.eclipse.emf.query2.test.setup.TestClient;
 
 @SuppressWarnings("nls")
 public class ModelDataInstantiator {

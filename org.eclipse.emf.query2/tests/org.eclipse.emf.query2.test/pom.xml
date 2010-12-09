@@ -20,8 +20,8 @@
 				<artifactId>maven-osgi-test-plugin</artifactId>
 				<version>${tycho-version}</version>
 				<configuration>
-					<testSuite>com.sap.tc.emf.test.query</testSuite>
-					<testClass>com.sap.tc.emf.test.query.SuiteAllMQLQueryTestSuite.java</testClass>
+					<testSuite>org.eclipse.emf.query2.test</testSuite>
+					<testClass>org.eclipse.emf.query2.test.SuiteAllMQLQueryTestSuite.java</testClass>
 					<useUIHarness>true</useUIHarness>
 					<useUIThread>true</useUIThread>
 					<argLine>-Xms128m -Xmx512m -XX:MaxPermSize=256m</argLine>

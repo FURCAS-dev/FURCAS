@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  *******************************************************************************/
-package com.sap.tc.emf.test.query;
+package org.eclipse.emf.query2.test;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -39,14 +39,14 @@ import org.eclipse.emf.query2.test.mm.testcases.case004.B4;
 import org.eclipse.emf.query2.test.mm.testcases.case004.Case004Factory;
 import org.eclipse.emf.query2.test.mm.testcases.case004.Case004Package;
 import org.eclipse.emf.query2.test.mm.testcases.case004.D4;
+import org.eclipse.emf.query2.test.setup.DefaultTestClientImpl;
+import org.eclipse.emf.query2.test.setup.IndexSetupManager;
+import org.eclipse.emf.query2.test.setup.TestClient;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.sap.tc.emf.test.query.setup.DefaultTestClientImpl;
-import com.sap.tc.emf.test.query.setup.IndexSetupManager;
-import com.sap.tc.emf.test.query.setup.TestClient;
 
 public class QueryRegressionTest extends QueryTestCase {
 

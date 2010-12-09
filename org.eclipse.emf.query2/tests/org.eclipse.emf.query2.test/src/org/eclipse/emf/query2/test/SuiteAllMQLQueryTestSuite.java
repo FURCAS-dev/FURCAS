@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  *******************************************************************************/
-package com.sap.tc.emf.test.query;
+package org.eclipse.emf.query2.test;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

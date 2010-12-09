@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  *******************************************************************************/
-package com.sap.tc.emf.test.query;
+package org.eclipse.emf.query2.test;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -53,14 +53,14 @@ import org.eclipse.emf.query2.test.mm.Company.Division;
 import org.eclipse.emf.query2.test.mm.Company.Employee;
 import org.eclipse.emf.query2.test.mm.Company.Freelance;
 import org.eclipse.emf.query2.test.mm.generatedmetamodel.GeneratedmetamodelPackage;
+import org.eclipse.emf.query2.test.setup.DefaultTestClientImpl;
+import org.eclipse.emf.query2.test.setup.IndexSetupManager;
+import org.eclipse.emf.query2.test.setup.TestClient;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.sap.tc.emf.test.query.setup.DefaultTestClientImpl;
-import com.sap.tc.emf.test.query.setup.IndexSetupManager;
-import com.sap.tc.emf.test.query.setup.TestClient;
 
 /**
  * @author D045917

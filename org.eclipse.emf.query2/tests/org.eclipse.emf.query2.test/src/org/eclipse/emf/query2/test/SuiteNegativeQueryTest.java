@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  *******************************************************************************/
-package com.sap.tc.emf.test.query;
+package org.eclipse.emf.query2.test;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -22,12 +22,12 @@ import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.internal.moinql.controller.QueryProcessorImpl;
 import org.eclipse.emf.query2.test.mm.Company.CompanyPackage;
 import org.eclipse.emf.query2.test.mm.generatedmetamodel.GeneratedmetamodelPackage;
+import org.eclipse.emf.query2.test.setup.DefaultTestClientImpl;
+import org.eclipse.emf.query2.test.setup.TestClient;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sap.tc.emf.test.query.setup.DefaultTestClientImpl;
-import com.sap.tc.emf.test.query.setup.TestClient;
 
 public class SuiteNegativeQueryTest extends QueryTestCase {
 

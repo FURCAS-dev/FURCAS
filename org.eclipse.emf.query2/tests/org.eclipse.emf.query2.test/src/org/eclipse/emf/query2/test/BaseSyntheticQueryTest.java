@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  *******************************************************************************/
-package com.sap.tc.emf.test.query;
+package org.eclipse.emf.query2.test;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -52,14 +52,14 @@ import org.eclipse.emf.query2.WhereOr;
 import org.eclipse.emf.query2.WhereRelationReference;
 import org.eclipse.emf.query2.WhereString;
 import org.eclipse.emf.query2.test.mm.generatedmetamodel.GeneratedmetamodelPackage;
+import org.eclipse.emf.query2.test.setup.DefaultTestClientImpl;
+import org.eclipse.emf.query2.test.setup.IndexSetupManager;
+import org.eclipse.emf.query2.test.setup.TestClient;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import com.sap.tc.emf.test.query.setup.DefaultTestClientImpl;
-import com.sap.tc.emf.test.query.setup.IndexSetupManager;
-import com.sap.tc.emf.test.query.setup.TestClient;
 
 /**
  * @author D045917
