@@ -72,7 +72,7 @@ public class PartialEvaluator {
      */
     public PartialEvaluator(OCLFactory oclFactory, OppositeEndFinder oppositeEndFinder) {
         this.factory = new PartialEcoreEnvironmentFactory(oppositeEndFinder);
-        this.ocl = oclFactory.createOCL(oppositeEndFinder);
+        this.ocl = oclFactory.createOCL(this.factory);
         helper = ocl.createOCLHelper();
     }
     

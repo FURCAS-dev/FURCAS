@@ -12,7 +12,9 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -21,6 +23,7 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
+import org.eclipse.ocl.ecore.opposites.ExtentMap;
 import org.eclipse.ocl.expressions.VariableExp;
 
 import com.sap.emf.ocl.util.EcoreEvaluationEnvironmentWithScopedExtentMap;
@@ -29,13 +32,35 @@ import com.sap.emf.ocl.util.EcoreEvaluationEnvironmentWithScopedExtentMap;
 public class PartialEcoreEvaluationEnvironment extends EcoreEvaluationEnvironmentWithScopedExtentMap {
     private final Map<String, Object> map = new HashMap<String, Object>();
     
-    public PartialEcoreEvaluationEnvironment(PartialEcoreEnvironmentFactory factory) {
+    /**
+     * Passed by the constructing environment factory; used to construct a useful {@link ExtentMap}
+     * in case the <code>context</code> object is null.
+     */
+    private final Object valueOfSourceExpression;
+    
+    public PartialEcoreEvaluationEnvironment(PartialEcoreEnvironmentFactory factory, Object valueOfSourceExpression) {
         super(factory);
+        this.valueOfSourceExpression = valueOfSourceExpression;
     }
     
     public PartialEcoreEvaluationEnvironment(
             EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> parent) {
         super(parent);
+        this.valueOfSourceExpression = ((PartialEcoreEvaluationEnvironment) parent).valueOfSourceExpression;
+    }
+
+    /**
+     * In addition to the base class implementation, an {@link ExtentMap} is also used if
+     * <code>context</code> is null but the 
+     */
+    @Override
+    public Map<EClass, Set<EObject>> createExtentMap(Object context) {
+        if (context != null || !(valueOfSourceExpression instanceof Notifier)) {
+            return super.createExtentMap(context);
+        } else {
+            // try with value of source expression instead
+            return new ExtentMap((Notifier) valueOfSourceExpression, getFactory().getOppositeEndFinder());
+        }
     }
 
     /**

@@ -45,5 +45,9 @@ public class EcoreEvaluationEnvironmentWithScopedExtentMap extends EcoreEvaluati
             return super.createExtentMap(object);
         }
     }
+    
+    protected EcoreEnvironmentFactoryWithScopedExtentMap getFactory() {
+        return factory;
+    }
 
 }
