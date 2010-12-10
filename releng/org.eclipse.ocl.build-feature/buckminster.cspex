@@ -69,7 +69,7 @@
 			</cs:actorProperties>
 			<cs:properties>
 				<cs:property key="content.ius" value="org.eclipse.ocl.examples.feature.group" />
-				<cs:property key="package.name" value="mdt-ocl-Examples" />
+				<cs:property key="package.name" value="mdt-ocl-examples" />
 			</cs:properties>
 			<cs:prerequisites>
 				<cs:attribute name="site.p2" alias="repository" />
@@ -85,7 +85,7 @@
 			</cs:actorProperties>
 			<cs:properties>
 				<cs:property key="content.ius" value="org.eclipse.ocl.all.feature.group"/>
-				<cs:property key="package.name" value="mdt-ocl-Runtime" />
+				<cs:property key="package.name" value="mdt-ocl-runtime" />
 			</cs:properties>
 			<cs:prerequisites>
 				<cs:attribute name="site.p2" alias="repository" />
