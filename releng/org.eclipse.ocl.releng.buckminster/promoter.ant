@@ -5,6 +5,7 @@
 
 	<target name="-setup.promoter">
 		<property name="promoter.setup.directory" location="${sp:output}" />
+		<echo>Promoter  setup directory: ${promoter.setup.directory}</echo>
 		<property name="promoter.properties.file" location="${promoter.setup.directory}/${promoter.properties.file.name}" />
 
 		<mkdir dir="${promoter.setup.directory}" />
