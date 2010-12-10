@@ -13,6 +13,8 @@ package de.hpi.sam.bp2009.solution.oclToAst.tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNotNull;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,22 +25,32 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.IntegerLiteralExp;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.eclipse.ocl.ecore.delegate.ValidationBehavior;
+import org.eclipse.ocl.utilities.UMLReflection;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import company.CompanyFactory;
@@ -281,6 +293,63 @@ public class EAnnotationOCLParserTest {
         OCL ocl = com.sap.emf.ocl.util.OCL.newInstance();
         Object result = ocl.evaluate(operation, expr);
         assertTrue("Expected value: '4', got: " + result.toString(), "4".equals(result.toString()));
+    }
+
+    /**
+     * Benchmark test comparing the time consumption using {@link EcoreEnvironment#getDefinition(Object)} to get the body condition 
+     * of an operation body defined by an {@link OCLExpression} with stereotype <blockquote>body</blockquote> and if no body expression 
+     * is returned, {@link EcoreEnvironment#getBodyCondition(EOperation)} is called to get the body expression instead of 
+     * using {@link EcoreEnvironment#getBodyCondition(EOperation)} first. 
+     */
+    @Test
+    @Ignore
+    public void testOperationBodyResolvingPerformance() {
+        EOperation op = CompanyPackage.eINSTANCE.getDepartment().getEAllOperations().get(0);
+        Constraint con = null;
+        Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env = OCL.newInstance().getEnvironment();
+        
+        //ensure all constraints got already parsed
+        getFixture().traversalConvertOclAnnotations(CompanyPackage.eINSTANCE);
+        for(int j = 10; j > 0; j--){
+            //looking up a constraint with stereotype body in getDefinition() first and after failing 
+            //usage of getBodyCondition() to resolve the operation's body expression.
+            double beforeBody = System.nanoTime();
+            for(int i = 20; i > 0; i--){
+                con = getDefinitionOrBodyConstraint(op, env);              
+            }
+            double afterBody = System.nanoTime();
+    
+            assertNotNull(con);
+            con.setStereotype(UMLReflection.DEFINITION);
+    
+            //looking up a constraint with stereotype definition in getDefinition() should be successful.
+            double beforeDef = System.nanoTime();
+            for(int i = 20; i > 0; i--){
+                con = getDefinitionOrBodyConstraint(op, env);
+            }
+            double afterDef = System.nanoTime();
+    
+            assertNotNull(con);
+            con.setStereotype(UMLReflection.BODY);
+            System.out.println("Time using stereotype 'body'      : " + (afterBody-beforeBody) + " ns \nTime using stereotype 'definition': " + (afterDef - beforeDef) + " ns");
+            System.out.println("Using getDefinition() is " + (afterBody-beforeBody)/(afterDef - beforeDef) + "times faster\n");
+        }
+    }
+
+    /**
+     * @param op operation the body expression should be returned for
+     * @param env the OCL Environment
+     * @return a {@link Constraint} representing the body of the given operation.
+     */
+    private Constraint getDefinitionOrBodyConstraint(
+            EOperation op,
+            Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env) {
+        Constraint con = null;
+        con = env.getDefinition(op);
+        if (con == null){
+            con = env.getBodyCondition(op);
+        }            
+        return con;
     }
 
     @Test
