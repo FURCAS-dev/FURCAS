@@ -139,22 +139,21 @@ public class LoadPage extends WizardPage {
                                     // Save the EPackage to global var eP
                                     //
                                     EObject containingPackage = ePackage.eContainer();
-                                    if ((EPackage) containingPackage instanceof EPackage){                                        
-                                        for (EObject object : containingPackage.eContents()){
+                                    if ((EPackage) containingPackage instanceof EPackage) {
+                                        for (EObject object : containingPackage.eContents()) {
                                             if (object instanceof EClass)
                                                 eP = (EPackage) containingPackage;
                                             else
                                                 eP = ePackage;
                                         }
-                                    }
-                                    else
+                                    } else
                                         eP = ePackage;
                                     pi.setNsURI(eP.getNsURI());
                                     uriField.setText(resource.getURI().toString());
                                     break;
                                 }
                             }
-                            
+
                         }
                     } else {
                         ResourceSet resourceSet = new ResourceSetImpl();
@@ -171,15 +170,14 @@ public class LoadPage extends WizardPage {
                                     // Save the EPackage to global var eP
                                     //
                                     EObject containingPackage = ePackage.eContainer();
-                                    if ((EPackage) containingPackage instanceof EPackage){                                        
-                                        for (EObject object : containingPackage.eContents()){
+                                    if ((EPackage) containingPackage instanceof EPackage) {
+                                        for (EObject object : containingPackage.eContents()) {
                                             if (object instanceof EClass)
                                                 eP = (EPackage) containingPackage;
                                             else
                                                 eP = ePackage;
                                         }
-                                    }
-                                    else
+                                    } else
                                         eP = ePackage;
                                     pi.setNsURI(eP.getNsURI());
                                     uriField.setText(resource.getURI().toString());
@@ -227,8 +225,7 @@ public class LoadPage extends WizardPage {
                 if (files.length > 0) {
                     IProject mMproject = files[0].getProject();
                     // Set the appropriate values in ProjectInfo and eP
-                    pi.setModelPath(mMproject.getWorkspace().getRoot().getLocation().toString()
-                            + files[0].getFullPath().toString());
+                    pi.setModelPath(files[0].getFullPath().toString());
                     try {
                         eP = fileToEPack(files[0]);
                     } catch (CodeGenerationException e) {
