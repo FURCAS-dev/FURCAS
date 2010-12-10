@@ -17,11 +17,11 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui.ide;visibility:=reexport,
  de.hpi.sam.bp2009.solution.eventManager,
  de.hpi.sam.bp2009.solution.impactAnalyzer,
- org.eclipse.emf.query.index,
- org.eclipse.emf.query.index.ui,
  com.sap.ocl.oppositefinder.query2,
- org.eclipse.emf.query2,
  org.eclipse.ocl.ecore,
  de.hpi.sam.bp2009.solution.queryContextScopeProvider,
- de.hpi.sam.bp2009.solution.impactAnalyzer.editor
+ de.hpi.sam.bp2009.solution.impactAnalyzer.editor,
+ org.eclipse.emf.query2.core,
+ org.eclipse.emf.query2.index,
+ org.eclipse.emf.query2.index.ui
 Bundle-ActivationPolicy: lazy

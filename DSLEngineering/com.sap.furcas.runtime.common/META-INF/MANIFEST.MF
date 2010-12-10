@@ -7,9 +7,9 @@ Bundle-Vendor: SAP
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.antlr;bundle-version="3.1.1",
  org.eclipse.core.runtime;bundle-version="3.6.0",
- org.eclipse.emf.query2;visibility:=reexport,
- org.eclipse.emf.query.index;visibility:=reexport,
- org.eclipse.emf.query.index.ui;visibility:=reexport,
+ org.eclipse.emf.query2.core;visibility:=reexport,
+ org.eclipse.emf.query2.index;visibility:=reexport,
+ org.eclipse.emf.query2.index.ui;visibility:=reexport,
  com.sap.emf.ocl.prepared,
  com.sap.furcas.metamodel;visibility:=reexport,
  com.sap.ocl.oppositefinder.query2,
