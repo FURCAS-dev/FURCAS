@@ -30,7 +30,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.ETypedElement;
@@ -70,13 +69,6 @@ import org.eclipse.ocl.util.CollectionUtil;
 public class DefaultOppositeEndFinder
 		implements OppositeEndFinder {
 
-	public static class Provider implements OppositeEndFinder.IProvider
-	{
-		public OppositeEndFinder createOppositeEndFinder(Registry registry) {
-			return new DefaultOppositeEndFinder(registry);
-		}
-	}
-
 	private final EPackage.Registry registry;
 
 	/**
@@ -105,13 +97,9 @@ public class DefaultOppositeEndFinder
 
 	public static DefaultOppositeEndFinder getInstance() {
 		if (instance == null) {
-			instance = new DefaultOppositeEndFinder();
+			instance = new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE);
 		}
 		return instance;
-	}
-
-	protected DefaultOppositeEndFinder() {
-		this(EPackage.Registry.INSTANCE);
 	}
 
 	public DefaultOppositeEndFinder(EPackage.Registry registry) {

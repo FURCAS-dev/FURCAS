@@ -10,15 +10,17 @@
  * Contributors:
  *  C.Damus, K.Hussey, E.D.Willink - Initial API and implementation
  * 	E.D.Willink - Bug 306079, 322159
+ *  K.Hussey - Bug 331143
  * 
  * </copyright>
  *
- * $Id: DelegatesTest.java,v 1.4 2010/08/24 16:16:55 ewillink Exp $
+ * $Id: DelegatesTest.java,v 1.5 2010/12/09 17:16:15 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.tests;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,18 +38,23 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EOperation.Internal.InvocationDelegate;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EStructuralFeature.Internal.SettingDelegate;
 import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
@@ -59,6 +66,7 @@ import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomainFactory;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateException;
 import org.eclipse.ocl.ecore.delegate.OCLInvocationDelegateFactory;
+import org.eclipse.ocl.ecore.delegate.OCLQueryDelegateFactory;
 import org.eclipse.ocl.ecore.delegate.OCLSettingDelegateFactory;
 import org.eclipse.ocl.ecore.delegate.OCLValidationDelegateFactory;
 import org.eclipse.ocl.ecore.delegate.ValidationDelegate;
@@ -106,6 +114,7 @@ public class DelegatesTest extends AbstractTestSuite
 
 	public Map<Object, Object> context = new HashMap<Object, Object>();
 	public boolean eclipseIsRunning;
+	public boolean usedLocalRegistry;
 	//
 	// Test framework
 	//
@@ -113,6 +122,7 @@ public class DelegatesTest extends AbstractTestSuite
 	protected void setUp() {
 		super.setUp();
 		eclipseIsRunning = eclipseIsRunning();
+		usedLocalRegistry = false;
 
 		String oclDelegateURI = OCLDelegateDomain.OCL_DELEGATE_URI;
 		if (!eclipseIsRunning) {		// Install the 'plugin' registrations
@@ -122,6 +132,8 @@ public class DelegatesTest extends AbstractTestSuite
 				new OCLSettingDelegateFactory.Global());
 			EValidator.ValidationDelegate.Registry.INSTANCE.put(oclDelegateURI,
 				new OCLValidationDelegateFactory.Global());
+			QueryDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI,
+				new OCLQueryDelegateFactory.Global());
 			resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
 				"xmi", new EcoreResourceFactoryImpl());		
 			EPackage.Registry.INSTANCE.remove(CompanyPackage.eNS_URI);	// Reference and nullify the side effect of the reference			
@@ -142,21 +154,55 @@ public class DelegatesTest extends AbstractTestSuite
 		// Install a local ValidationDelegate.Factory
 		ValidationDelegate.Factory.Registry validationDelegateFactoryRegistry =
 			new ValidationDelegate.Factory.Registry.Impl();
-		validationDelegateFactoryRegistry.put(oclDelegateURI, new OCLValidationDelegateFactory());
+		validationDelegateFactoryRegistry.put(oclDelegateURI, new OCLValidationDelegateFactory() {
+
+			@Override
+			public ValidationDelegate createValidationDelegate(EClassifier classifier) {
+				usedLocalRegistry = true;
+				return super.createValidationDelegate(classifier);
+			}
+			
+		});
 		adapter.putRegistry(ValidationDelegate.Factory.Registry.class, validationDelegateFactoryRegistry);
 
 		// Install a local SettingDelegate.Factory
 		EStructuralFeature.Internal.SettingDelegate.Factory.Registry settingDelegateFactoryRegistry =
 			new EStructuralFeature.Internal.SettingDelegate.Factory.Registry.Impl();
-		settingDelegateFactoryRegistry.put(oclDelegateURI, new OCLSettingDelegateFactory());
+		settingDelegateFactoryRegistry.put(oclDelegateURI, new OCLSettingDelegateFactory() {
+
+			@Override
+			public SettingDelegate createSettingDelegate(EStructuralFeature structuralFeature) {
+				usedLocalRegistry = true;
+				return super.createSettingDelegate(structuralFeature);
+			}
+			
+		});
 		adapter.putRegistry(EStructuralFeature.Internal.SettingDelegate.Factory.Registry.class, settingDelegateFactoryRegistry);
 
 		// Install a local InvocationDelegate.Factory
 		EOperation.Internal.InvocationDelegate.Factory.Registry invocationDelegateFactoryRegistry =
 			new EOperation.Internal.InvocationDelegate.Factory.Registry.Impl();
-		invocationDelegateFactoryRegistry.put(oclDelegateURI, new OCLInvocationDelegateFactory());
+		invocationDelegateFactoryRegistry.put(oclDelegateURI, new OCLInvocationDelegateFactory() {
+			@Override
+			public InvocationDelegate createInvocationDelegate(EOperation operation) {
+				usedLocalRegistry = true;
+				return super.createInvocationDelegate(operation);
+			}
+			
+		});
 		adapter.putRegistry(EOperation.Internal.InvocationDelegate.Factory.Registry.class, invocationDelegateFactoryRegistry);	
-		
+
+		// Install a local QueryDelegate.Factory
+		QueryDelegate.Factory.Registry queryDelegateFactoryRegistry =
+			new QueryDelegate.Factory.Registry.Impl();
+		queryDelegateFactoryRegistry.put(oclDelegateURI, new OCLQueryDelegateFactory() {
+			@Override
+			public QueryDelegate createQueryDelegate(EClassifier context,
+					Map<String, EClassifier> parameters, String expression) {
+				usedLocalRegistry = true;
+				return super.createQueryDelegate(context, parameters, expression);
+			}});
+		adapter.putRegistry(QueryDelegate.Factory.Registry.class, queryDelegateFactoryRegistry);			
 	}
 
 	protected void initModel(String testModelName) {
@@ -306,13 +352,114 @@ public class DelegatesTest extends AbstractTestSuite
 		}
 	}
 
+	public void doTest_queryExecution(String modelName) {
+		initModel(modelName);
+
+		QueryDelegate.Factory factory = QueryDelegate.Factory.Registry.INSTANCE
+			.getFactory(OCLDelegateDomain.OCL_DELEGATE_URI);
+
+		String n = "n";
+		String expression = "self.employees->select(employee | employee.manager <> null and employee.manager.name = n)";
+		EObject amy = employee("Amy");
+		Map<String, EClassifier> parameters = new HashMap<String, EClassifier>();
+		parameters.put(n, EcorePackage.Literals.ESTRING);
+
+		QueryDelegate delegate = factory.createQueryDelegate(companyClass,
+			parameters, expression);
+
+		executeWithException(delegate, amy, null,
+			OCLMessages.WrongContextClassifier_ERROR_, amy.eClass().getName(), acme.eClass().getName());
+
+		Map<String, Object> arguments = new HashMap<String, Object>();
+		arguments.put(n, "Amy");
+
+		Collection<?> amyReports = (Collection<?>) execute(delegate, acme, arguments);
+		assertEquals(3, amyReports.size());
+		assertTrue(amyReports.contains(employee("Bob")));
+		assertTrue(amyReports.contains(employee("Jane")));
+		assertTrue(amyReports.contains(employee("Fred")));
+
+		executeWithException(delegate, employee("Bob"), null,
+			OCLMessages.WrongContextClassifier_ERROR_, amy.eClass().getName(), acme.eClass().getName());
+
+		arguments = new HashMap<String, Object>();
+		arguments.put(n, "Bob");
+
+		Collection<?> bobReports = (Collection<?>) execute(delegate, acme, arguments);
+		assertEquals(2, bobReports.size());
+		assertTrue(bobReports.contains(employee("Norbert")));
+		assertTrue(bobReports.contains(employee("Sally")));
+
+		executeWithException(delegate, employee("Sally"), null,
+			OCLMessages.WrongContextClassifier_ERROR_, amy.eClass().getName(), acme.eClass().getName());
+
+		arguments = new HashMap<String, Object>();
+		arguments.put(n, "Sally");
+
+		Collection<?> sallyReports = (Collection<?>) execute(delegate, acme, arguments);
+		assertEquals(0, sallyReports.size());
+	}
+
+	public void doTest_queryExecutionWithExceptions(String modelName) throws InvocationTargetException {
+		initModel(modelName);
+
+		QueryDelegate.Factory factory = QueryDelegate.Factory.Registry.INSTANCE
+			.getFactory(OCLDelegateDomain.OCL_DELEGATE_URI);
+
+		String okName = "ok";
+		String badName = "xyzzy";
+		EObject amy = employee("Amy");
+		Map<String, Object> okBindings = new HashMap<String, Object>();
+		okBindings.put(okName, Integer.valueOf(123));
+		Map<String, EClassifier> variables = new HashMap<String, EClassifier>();
+		variables.put(okName, EcorePackage.Literals.ESTRING);
+		QueryDelegate delegate;
+		//
+		//	Syntax error in expression
+		//
+		delegate = factory.createQueryDelegate(companyClass, null, "n=");
+		executeWithException(delegate, amy, null,
+			"2:2:2:2 \"relationalNotLetCS\" expected after \"=\"");
+		//
+		//	Undeclared variable
+		//
+		delegate = factory.createQueryDelegate(companyClass, variables, badName);
+		executeWithException(delegate, acme, null,
+			OCLMessages.UnrecognizedVar_ERROR_, badName);
+		//
+		//	Definition of undeclared variable
+		//
+		delegate = factory.createQueryDelegate(companyClass, variables, "self");
+		Map<String, Object> bindings = new HashMap<String, Object>();
+		bindings.put(okName, "xx");
+		bindings.put(badName, Integer.valueOf(123));
+		executeWithException(delegate, acme, bindings,
+			OCLMessages.ExtraArg_ERROR_, badName);
+		//
+		//	Mis-definition of context
+		//
+		delegate = factory.createQueryDelegate(companyClass, variables, "self");
+		delegate.prepare();
+		executeWithException(delegate, amy, okBindings,
+			OCLMessages.WrongContextClassifier_ERROR_, amy.eClass().getName(), acme.eClass().getName());
+		//
+		//	Mis-definition of variable
+		//
+		delegate = factory.createQueryDelegate(companyClass, variables, "self");
+		delegate.prepare();
+		executeWithException(delegate, acme, okBindings,
+			OCLMessages.TypeConformanceInit_ERROR_, okName);
+	}
+
 	public void test_allInstances() {
 		doTest_allInstances(COMPANY_XMI);
+		assertEquals(!eclipseIsRunning, usedLocalRegistry);
 	}
 
 	public void test_allInstances_registered() {
 		initPackageRegistrations();
 		doTest_allInstances(COMPANY_XMI);
+		assertFalse(usedLocalRegistry);
 	}
 
 	public void test_attributeDefinedWithDerivationAndInitial() {
@@ -387,6 +534,7 @@ public class DelegatesTest extends AbstractTestSuite
 
 	public void test_constraintValidation() {
 		doTest_constraintValidation(COMPANY_XMI);
+		assertEquals(!eclipseIsRunning, usedLocalRegistry);
 	}
 
 	public void test_constraintValidation_withoutReflection() {
@@ -396,6 +544,7 @@ public class DelegatesTest extends AbstractTestSuite
 	public void test_constraintValidation_registered() {
 		initPackageRegistrations();
 		doTest_constraintValidation(COMPANY_XMI);
+		assertFalse(usedLocalRegistry);
 	}
 
 	public void test_eAttributeDerivation() {
@@ -479,11 +628,13 @@ public class DelegatesTest extends AbstractTestSuite
 	
 	public void test_invariantValidation() {
 		doTest_invariantValidation(COMPANY_XMI, true);
+		assertEquals(!eclipseIsRunning, usedLocalRegistry);
 	}
 
 	public void test_invariantValidation_registered() {
 		initPackageRegistrations();
 		doTest_invariantValidation(COMPANY_XMI, true);
+		assertFalse(usedLocalRegistry);
 	}
 
 	public void test_invariantValidation_withoutReflection() {
@@ -531,11 +682,13 @@ public class DelegatesTest extends AbstractTestSuite
 
 	public void test_operationInvocation() {
 		doTest_operationInvocation(COMPANY_XMI);
+		assertEquals(!eclipseIsRunning, usedLocalRegistry);
 	}
 
 	public void test_operationInvocation_registered() {
 		initPackageRegistrations();
 		doTest_operationInvocation(COMPANY_XMI);
+		assertFalse(usedLocalRegistry);
 	}
 
 	public void test_operationParsingToLexicalError() {
@@ -557,6 +710,28 @@ public class DelegatesTest extends AbstractTestSuite
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		invokeWithException(badClassInstance, "operationParsingToSyntacticError",
 			OCLMessages.OCLParseErrorCodes_DELETION, "2:5:2:6", "\"in\"");
+	}
+
+	public void test_queryExecution() {
+		doTest_queryExecution(COMPANY_XMI);
+		assertEquals(!eclipseIsRunning, usedLocalRegistry);
+	}
+
+	public void test_queryExecution_registered() {
+		initPackageRegistrations();
+		doTest_queryExecution(COMPANY_XMI);
+		assertFalse(usedLocalRegistry);
+	}
+
+	public void test_queryExecutionWithExceptions() throws InvocationTargetException {
+		doTest_queryExecutionWithExceptions(COMPANY_XMI);
+		assertEquals(!eclipseIsRunning, usedLocalRegistry);
+	}
+
+	public void test_queryExecutionWithExceptions_registered() throws InvocationTargetException {
+		initPackageRegistrations();
+		doTest_queryExecutionWithExceptions(COMPANY_XMI);
+		assertFalse(usedLocalRegistry);
 	}
 
 	/**
@@ -735,6 +910,30 @@ public class DelegatesTest extends AbstractTestSuite
 			}
 		}
 		fail("Expected to find: " + name);
+	}
+
+	Object execute(QueryDelegate delegate, Object target,
+			Map<String, Object> bindings) {
+		try {
+			return delegate.execute(target, bindings);
+		} catch (InvocationTargetException ite) {
+			fail("Failed to execute query: " + ite.getCause().getLocalizedMessage());
+			return null;
+		}
+	}
+
+	public void executeWithException(QueryDelegate delegate, Object target,
+			Map<String, Object> bindings, String messageTemplate,
+			Object... messageBindings) {
+		String expectedMessage = NLS.bind(messageTemplate, messageBindings);
+		try {
+			@SuppressWarnings("unused")
+			Object object = delegate.execute(target, bindings);
+			fail("Expected to catch InvocationTargetException: " + expectedMessage);
+		} catch (InvocationTargetException e) {
+			Throwable cause = e.getCause();
+			assertEquals(cause + ": ", expectedMessage, cause.getLocalizedMessage());
+		}
 	}
 
 	<T> EList<T> list(T... element) {

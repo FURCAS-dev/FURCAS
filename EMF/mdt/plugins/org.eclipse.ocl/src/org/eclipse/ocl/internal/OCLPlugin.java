@@ -26,10 +26,6 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.ocl.Environment;
 import org.osgi.framework.BundleContext;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.Module;
-
 /**
  * The activator class controls the plug-in life cycle
  */
@@ -63,11 +59,6 @@ public class OCLPlugin
 	 */
 	private static boolean traceAll = Boolean
 		.getBoolean("org.eclipse.ocl.debug"); //$NON-NLS-1$;
-	
-	/**
-	 * @since 3.1
-	 */
-	private static Injector injector = null;
 
 	/**
 	 * The constructor.
@@ -334,34 +325,6 @@ public class OCLPlugin
 		} catch (IllegalArgumentException iae) {
 			catching(OCLPlugin.class, "log", iae);//$NON-NLS-1$
 		}
-	}
-
-	/**
-	 * Creates the Dependency Injector using one or more overriding modules.
-	 * 
-	 * @return the dependency injector
-	 * 
-	 * @since 3.1
-	 */
-	public static Injector createInjector(Module... modules) {
-		assert injector == null;
-		injector = Guice.createInjector(modules);
-		return injector;
-	}
-
-	/**
-	 * Obtains the Dependency Injector, creating one without overrides if no previous
-	 * call to createInjector has occurred.
-	 * 
-	 * @return the dependency injector
-	 * 
-	 * @since 3.1
-	 */
-	public static Injector getInjector() {
-		if (injector == null) {
-			injector = createInjector();
-		}
-		return injector;
 	}
 
 }

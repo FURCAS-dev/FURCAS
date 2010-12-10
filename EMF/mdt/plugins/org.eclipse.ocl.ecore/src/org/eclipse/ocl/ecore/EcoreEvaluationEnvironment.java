@@ -50,6 +50,7 @@ import org.eclipse.ocl.ecore.internal.OCLEcorePlugin;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.internal.OCLStatusCodes;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
@@ -60,8 +61,6 @@ import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.util.Tuple;
 import org.eclipse.ocl.util.UnicodeSupport;
 import org.eclipse.ocl.utilities.PredefinedType;
-
-import com.google.inject.Injector;
 
 /**
  * Implementation of the {@link EvaluationEnvironment} for evaluation of OCL
@@ -78,38 +77,31 @@ public class EcoreEvaluationEnvironment
 
 	private boolean mustCheckOperationReflectionConsistency = true;
 
+	private final EcoreEnvironmentFactory factory;
+
     private final OppositeEndFinder oppositeEndFinder;
 
 	/**
 	 * Initializes me.
 	 */
 	public EcoreEvaluationEnvironment() {
+		this((EcoreEnvironmentFactory)null);
+	}
+    
+    /**
+     * Initializes me.
+     * @since 3.1
+     */
+    public EcoreEvaluationEnvironment(EcoreEnvironmentFactory factory) {
 		super();
-		oppositeEndFinder = createOppositeEndFinder();
-	}
-
-	private OppositeEndFinder createOppositeEndFinder() {
-		OppositeEndFinder.IProvider provider = getInjector().getInstance(OppositeEndFinder.IProvider.class);
-		return provider.createOppositeEndFinder(EPackage.Registry.INSTANCE);
-	}
-	
-	/**
-	 * Creates the Dependency Injector for this environment using one or more overriding modules.
-	 * 
-	 * @return the dependency injector
-	 * 
-	 * @since 3.1
-	 */
-	protected Injector getInjector() {
-		return OCLEcorePlugin.getInjector();
-	}
-
-	/**
-	 * @since 3.1
-	 */
-	protected OppositeEndFinder getOppositeEndFinder() {
-		return oppositeEndFinder;
-	}
+        this.factory = factory;
+        if (factory != null) {
+        	this.oppositeEndFinder = factory.getOppositeEndFinder();
+        }
+        else {
+        	this.oppositeEndFinder = new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE);
+        }
+    }
 
 	/**
 	 * Initializes me with my parent evaluation environment (nesting scope).
@@ -120,7 +112,9 @@ public class EcoreEvaluationEnvironment
 	public EcoreEvaluationEnvironment(
 			EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> parent) {
 		super(parent);
-		oppositeEndFinder = ((EcoreEvaluationEnvironment) parent).oppositeEndFinder;
+		EcoreEvaluationEnvironment ecoreParent = (EcoreEvaluationEnvironment) parent;
+        this.factory = ecoreParent.factory;
+        this.oppositeEndFinder = ecoreParent.oppositeEndFinder;
 	}
 
 	@Override
@@ -430,7 +424,7 @@ public class EcoreEvaluationEnvironment
 		return Collections.emptyMap();
 	}
 
-    // implements the inherited specification
+	// implements the inherited specification
 	public boolean isKindOf(Object object, EClassifier classifier) {
 		// special case for Integer/UnlimitedNatural and Real which
 		// are not related types in java but are in OCL

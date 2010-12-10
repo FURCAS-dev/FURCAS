@@ -28,7 +28,7 @@ public class OCLFactoryWithHistory
 		extends org.eclipse.ocl.parser.OCLFactoryWithHistory
 		implements OCLFactoryWithHiddenOpposite {
 
-	protected OCLFactoryWithHistory(OCLFactory delegate) {
+	public OCLFactoryWithHistory(OCLFactory delegate) {
 		super(delegate);
 	}
 

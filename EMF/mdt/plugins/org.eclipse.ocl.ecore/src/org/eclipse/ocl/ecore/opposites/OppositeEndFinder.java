@@ -26,13 +26,10 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
-
-import com.google.inject.ImplementedBy;
 
 /**
  * Implementations shall be able to find and navigate "hidden references" on a classifier by name. Such references can be declared
@@ -44,29 +41,7 @@ import com.google.inject.ImplementedBy;
  * @since 3.1
  * 
  */
-public interface OppositeEndFinder
-{
-
-	/**
-	 * The OppositeEndFinder Provider orchestrates creation of OppositeEndFinder instances. An
-	 * alternate OppositeEndFinder implementation may be used by configuring the
-	 * environment's injector with a module configured with the alternate bindings.
-	 * 
-	 * @since 3.1
-	 */
-	@ImplementedBy(DefaultOppositeEndFinder.Provider.class)
-	public static interface IProvider
-	{
-		/**
-		 * Creates an instance of the OppositeEndFinder that finds opposite ends
-		 * with the packages of a registry.
-		 * 
-		 * @param  the registry
-		 * 
-		 * @return an OppositeEndFinder instance for this environment
-		 */
-		OppositeEndFinder createOppositeEndFinder(Registry registry);
-	}
+public interface OppositeEndFinder {
 
     /**
      * The key that identifies opposite role names in an annotation
