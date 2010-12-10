@@ -23,20 +23,24 @@ import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.EcoreEvaluationEnvironment;
 import org.eclipse.ocl.ecore.opposites.ExtentMap;
 
-public class EcoreEvaluationEnvironmentWithScopedExtentMap extends EcoreEvaluationEnvironment {
 
-    protected EcoreEvaluationEnvironmentWithScopedExtentMap() {
-        super();
+public class EcoreEvaluationEnvironmentWithScopedExtentMap extends EcoreEvaluationEnvironment {
+    private final EcoreEnvironmentFactoryWithScopedExtentMap factory;
+
+    public EcoreEvaluationEnvironmentWithScopedExtentMap(EcoreEnvironmentFactoryWithScopedExtentMap factory) {
+        super(factory);
+        this.factory = factory;
     }
 
     public EcoreEvaluationEnvironmentWithScopedExtentMap(EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> parent) {
         super(parent);
+        this.factory = ((EcoreEvaluationEnvironmentWithScopedExtentMap) parent).factory;
     }
 
     @Override
     public Map<EClass, Set<EObject>> createExtentMap(Object object) {
         if (object instanceof Notifier) {
-            return new ExtentMap((Notifier) object, getOppositeEndFinder());
+            return new ExtentMap((Notifier) object, factory.getOppositeEndFinder());
         } else {
             return super.createExtentMap(object);
         }

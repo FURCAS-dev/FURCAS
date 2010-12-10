@@ -21,7 +21,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -43,7 +42,6 @@ import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider;
-import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectDependencyQueryContextProvider;
 
 /**
  * Uses EMF query2 to reverse-navigate a reference that has no opposite. The search scope
@@ -58,13 +56,6 @@ import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectDependen
  *
  */
 public class Query2OppositeEndFinder implements OppositeEndFinder {
-    public static class Provider implements OppositeEndFinder.IProvider {
-        @Override
-        public OppositeEndFinder createOppositeEndFinder(Registry registry) {
-            return new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider());
-        }
-    }
-
     /**
      * Used to obtain a query context for a given {@link EObject}.
      */

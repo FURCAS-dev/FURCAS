@@ -620,6 +620,6 @@ public class InstanceScopeAnalysis implements PartialEvaluatorFactory {
     }
 
     public PartialEvaluator createPartialEvaluator(OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory) {
-        return new PartialEvaluator(oclFactory);
+        return new PartialEvaluator(oclFactory, oppositeEndFinder);
     }
 }

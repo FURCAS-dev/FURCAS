@@ -101,7 +101,7 @@ public class NavigationPathCreationTest extends TestCase {
         List<ExceptionWithExpression> excList = new ArrayList<ExceptionWithExpression>();
 
         FilterSynthesisImpl filterSynthesizer = new FilterSynthesisImpl(expression.getExpression(), false,
-                OCL.newInstance());
+                com.sap.emf.ocl.util.OCL.newInstance());
         filterSynthesizer.getSynthesisedFilter();
 
         Map<EAttribute, Set<PropertyCallExp>> attributeCallExpressions = (Map<EAttribute, Set<PropertyCallExp>>) dirtyReflectionAttributeReader(

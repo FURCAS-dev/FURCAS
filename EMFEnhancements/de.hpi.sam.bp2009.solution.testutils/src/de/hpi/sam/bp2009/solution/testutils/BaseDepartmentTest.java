@@ -605,7 +605,7 @@ public class BaseDepartmentTest extends TestCase {
         OCLInput exp = new OCLInput(expression);
         String nsPrefix = basePackage.getNsPrefix();
         EPackage.Registry.INSTANCE.put(nsPrefix, basePackage);
-        OCL ocl = OCL.newInstance();
+        OCL ocl = com.sap.emf.ocl.util.OCL.newInstance();
         ocl = OCL.newInstance(new EnvironmentFactory().createPackageContext(ocl.getEnvironment(), basePackage));
         List<Constraint> result = null;
         try {

@@ -10,6 +10,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  de.hpi.sam.bp2009.ngpm,
  org.junit4,
  de.hpi.sam.bp2009.solution.testutils,
+ com.sap.emf.ocl.util,
  de.hpi.sam.bp2009.solution.impactAnalyzer
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper

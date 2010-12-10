@@ -42,7 +42,6 @@ import org.eclipse.emf.query.index.ui.IndexFactory;
 import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
@@ -147,7 +146,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             if (expr == null)
                 return;
 
-            OCL ocl = OCL.newInstance(new EcoreEnvironmentFactory(this.getRegistry()));
+            OCL ocl = com.sap.emf.ocl.util.OCL.newInstance(this.getRegistry());
             Helper helper = ocl.createOCLHelper();
 
             setCorrectContext(helper, modelElement);

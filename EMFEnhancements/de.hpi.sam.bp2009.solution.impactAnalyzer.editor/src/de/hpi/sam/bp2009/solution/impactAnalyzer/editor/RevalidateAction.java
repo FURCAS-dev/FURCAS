@@ -41,6 +41,7 @@ import org.eclipse.ocl.ecore.opposites.ExtentMap;
 import org.eclipse.ui.PlatformUI;
 
 import com.sap.emf.ocl.util.EcoreEnvironmentFactoryWithScopedExtentMap;
+import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 
@@ -129,7 +130,7 @@ public class RevalidateAction extends ValidateAction {
     private void validateConstraints(IProgressMonitor progressMonitor) throws CoreException {
         int selectionSize = contextObjects.size();
         progressMonitor.beginTask("", selectionSize);
-        OCL ocl = OCL.newInstance(new EcoreEnvironmentFactoryWithScopedExtentMap());
+        OCL ocl = com.sap.emf.ocl.util.OCL.newInstance(Query2OppositeEndFinder.getInstance());
         for (EObject eObject : contextObjects) {
             System.out.println("Re-validating "+constraintName+" on "+EcoreUtil.getURI(eObject));
             IFile fileForContext = getFile(eObject);

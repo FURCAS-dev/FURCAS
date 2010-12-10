@@ -31,10 +31,6 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
-import org.eclipse.ocl.ecore.internal.OCLEcoreModule;
-import org.eclipse.ocl.ecore.internal.OCLEcorePlugin;
-import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
@@ -46,19 +42,6 @@ import de.hpi.sam.petriNet.Place;
 import de.hpi.sam.petriNet.Transition;
 
 public class TestEcoreHelper {
-    private static class Query2OppositeEndFinderConfig extends OCLEcoreModule {
-        @Override
-        protected void configure() {
-            super.configure();
-            bind(OppositeEndFinder.IProvider.class).to(Query2OppositeEndFinder.Provider.class);
-        }
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-        OCLEcorePlugin.createInjector(new Query2OppositeEndFinderConfig());
-    }
-    
     @Test
     public void testSubclassQuery() {
         EcoreHelper helper = EcoreHelper.getInstance();
@@ -112,7 +95,7 @@ public class TestEcoreHelper {
         Resource e = rs.createResource(URI.createURI("http://my.next.resource/somethingElse"));
         e.getContents().add(place);
         e.getContents().add(transition);
-        OCL ocl = OCL.newInstance();
+        OCL ocl = com.sap.emf.ocl.util.OCL.newInstance(Query2OppositeEndFinder.getInstance());
         Helper oclHelper = ocl.createOCLHelper();
         oclHelper.setContext(PetriNetPackage.eINSTANCE.getTransition());
         OCLExpression expr = oclHelper.createQuery("self.transition2Place");

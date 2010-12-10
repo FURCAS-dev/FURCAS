@@ -27,13 +27,15 @@ import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+
+import com.sap.emf.ocl.util.EcoreEnvironmentFactoryWithScopedExtentMap;
 
 
-public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactory {
+public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactoryWithScopedExtentMap {
     private Object valueOfSourceExpression;
     private OCLExpression sourceExpression;
     
@@ -47,13 +49,14 @@ public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactory {
      * 
      * If <tt>null</tt>, the expression will be evaluated on the model as is.
      */
-    private Notification atPre;
-
+    private final Notification atPre;
+    
     /**
      * Uses a {@link DefaultOppositeEndFinder} for querying hidden opposites
      */
     public PartialEcoreEnvironmentFactory() {
         super();
+        this.atPre = null;
     }
 
     /**
@@ -67,13 +70,29 @@ public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactory {
      * Uses a {@link DefaultOppositeEndFinder} for navigating hidden opposites.
      */
     public PartialEcoreEnvironmentFactory(Notification atPre) {
-        this();
+        super();
         this.atPre = atPre;
+    }
+    
+    /**
+     * Uses the specific <code>oppositeEndFinder</code> to retrieve and navigate hidden opposite properties
+     * and for <code>allInstances()</code> evaluation.
+     */
+    public PartialEcoreEnvironmentFactory(Notification atPre, OppositeEndFinder oppositeEndFinder) {
+        super(oppositeEndFinder);
+        this.atPre = atPre;
+    }
+    
+    /**
+     * Uses a <code>null</code> {@link #atPre}.
+     */
+    public PartialEcoreEnvironmentFactory(OppositeEndFinder oppositeEndFinder) {
+        this(/* atPre */ null, oppositeEndFinder);
     }
     
     // implements the inherited specification
     public EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> createEvaluationEnvironment() {
-        return new PartialEcoreEvaluationEnvironment();
+        return new PartialEcoreEvaluationEnvironment(this);
     }
 
     // implements the inherited specification
