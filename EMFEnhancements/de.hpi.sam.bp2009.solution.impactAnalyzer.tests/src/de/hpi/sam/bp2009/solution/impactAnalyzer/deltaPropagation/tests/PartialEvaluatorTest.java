@@ -31,7 +31,6 @@ import org.eclipse.ocl.ecore.IfExp;
 import org.eclipse.ocl.ecore.IterateExp;
 import org.eclipse.ocl.ecore.IteratorExp;
 import org.eclipse.ocl.ecore.LetExp;
-import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.OppositePropertyCallExp;

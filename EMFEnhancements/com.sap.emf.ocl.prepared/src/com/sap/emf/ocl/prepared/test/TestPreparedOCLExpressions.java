@@ -7,7 +7,6 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.BooleanLiteralExp;
 import org.eclipse.ocl.ecore.IntegerLiteralExp;
-import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;

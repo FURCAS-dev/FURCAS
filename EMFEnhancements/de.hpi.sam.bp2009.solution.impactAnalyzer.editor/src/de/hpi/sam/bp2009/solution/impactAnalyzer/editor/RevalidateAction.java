@@ -40,7 +40,6 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.ExtentMap;
 import org.eclipse.ui.PlatformUI;
 
-import com.sap.emf.ocl.util.EcoreEnvironmentFactoryWithScopedExtentMap;
 import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
