@@ -49,4 +49,11 @@ Martin Strenge - initial API, implementation and documentation
          version="0.0.0"
          unpack="false"/>
 
+   <plugin
+         id="net.sourceforge.lpg.lpgjavaruntime"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>
