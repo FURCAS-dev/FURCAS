@@ -223,7 +223,6 @@ public class LoadPage extends WizardPage {
                 IFile[] files = WorkspaceResourceDialog.openFileSelection(getShell(), "Choose Metamodel",
                         "Select the desired Metamodel an click OK.", false, null, filters);
                 if (files.length > 0) {
-                    IProject mMproject = files[0].getProject();
                     // Set the appropriate values in ProjectInfo and eP
                     pi.setModelPath(files[0].getFullPath().toString());
                     try {
