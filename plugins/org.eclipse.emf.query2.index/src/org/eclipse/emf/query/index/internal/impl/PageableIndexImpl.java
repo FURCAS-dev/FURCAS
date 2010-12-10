@@ -163,7 +163,6 @@ public class PageableIndexImpl implements PageableIndex {
 		}
 	}
 
-	@Override
 	public boolean isDumpExists() {
 		File file = new File(masterDumpFilePath);
 		boolean indicesExists = file.exists();
