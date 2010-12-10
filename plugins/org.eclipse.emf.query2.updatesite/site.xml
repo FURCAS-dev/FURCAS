@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
    <feature url="features/org.eclipse.emf.query2.core.feature_1.0.0.qualifier.jar" id="org.eclipse.emf.query2.core.feature" version="1.0.0.qualifier">
-      <category name="Query2 Core"/>
+      <category name="EMF Query2 Core"/>
    </feature>
    <feature url="features/org.eclipse.emf.query2.stringsyntax.feature_1.0.0.qualifier.jar" id="org.eclipse.emf.query2.stringsyntax.feature" version="1.0.0.qualifier">
-      <category name="Query2 String Syntax"/>
+      <category name="EMF Query2 String Syntax"/>
    </feature>
    <feature url="features/org.eclipse.emf.query2.test.feature_1.0.0.qualifier.jar" id="org.eclipse.emf.query2.test.feature" version="1.0.0.qualifier">
-      <category name="Query2 Tests and Examples"/>
+      <category name="EMF Query2 Tests and Examples"/>
    </feature>
-   <category-def name="Query2 Core" label="Query2 Core">
+   <category-def name="EMF Query2 Core" label="EMF Query2 Core">
       <description>
-         The category collects all features that provides support to create indexes and to create queries using apis. The queries are create using object based representation.
+         The category collects all features that provides support to create indexes and to create queries using apis. The queries are created using object based representation.
       </description>
    </category-def>
-   <category-def name="Query2 String Syntax" label="Query2 String Syntax">
+   <category-def name="EMF Query2 String Syntax" label="EMF Query2 String Syntax">
       <description>
          The category collects all features that provides support to create queries using string based representation. The features requires dependencies to xText components.
       </description>
    </category-def>
-   <category-def name="Query2 Tests and Examples" label="Query2 Tests and Examples">
+   <category-def name="EMF Query2 Tests and Examples" label="EMF Query2 Tests and Examples">
       <description>
          The category collects all features that provides tests and examples for EMF Query2
       </description>
