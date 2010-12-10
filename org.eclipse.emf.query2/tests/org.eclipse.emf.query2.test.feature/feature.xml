@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.emf.query2.test.feature"
-      label="Query2 Tests and Examples"
+      label="Query2 Tests"
       version="1.0.0.qualifier"
       provider-name="eclipse.org">
 
@@ -23,14 +23,14 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-   
+
    <plugin
          id="org.eclipse.emf.query2.syntax.test"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-   
+
    <plugin
          id="org.eclipse.emf.query2.librarytest"
          download-size="0"
