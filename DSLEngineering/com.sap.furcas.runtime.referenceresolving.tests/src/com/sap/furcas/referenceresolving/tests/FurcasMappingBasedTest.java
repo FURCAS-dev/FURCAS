@@ -127,8 +127,7 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
         assertEquals("Where John Doe wrote it", article.eGet(articleClass.getEStructuralFeature("location")));
     }
 
-    @Ignore // as yet... working on it.
-    //@Test
+    @Ignore // first need to fix finding the foreach context using textblocks model annotations
     public void testForeachPropertyInitValueInInitialModel() throws Exception {
         @SuppressWarnings("unchecked")
         EList<EObject> revenues = (EList<EObject>) johnDoe.eGet(authorClass.getEStructuralFeature("revenues"));
@@ -142,7 +141,6 @@ public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
     }
 
     @Test
-    // @Ignore("failing test case as preparation of impact analysis requirements")
     public void testChangeAuthorName() {
         johnDoe.eSet(authorClass.getEStructuralFeature("name"), "John Dough");
         assertEquals("Where John Dough wrote it", article.eGet(articleClass.getEStructuralFeature("location")));

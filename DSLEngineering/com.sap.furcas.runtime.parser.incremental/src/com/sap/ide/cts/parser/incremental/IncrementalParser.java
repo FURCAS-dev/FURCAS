@@ -15,6 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -539,6 +540,7 @@ public class IncrementalParser extends IncrementalRecognizer {
      * @param oldVersion
      * @param newVersion
      */
+    @SuppressWarnings("unchecked")
     private void replaceCorrespondingModelElements(TextBlock oldVersion,
             TextBlock newVersion) {
         Collection<EObject> correspondingModelElements = oldVersion
@@ -636,7 +638,7 @@ public class IncrementalParser extends IncrementalRecognizer {
                                             compositeFeatureAssocBean.compositeFeatureAssoc,
                                             correspondingNewElement);
                                 } else {
-                                    ((Collection<EObject>) parent
+                                    ((EList<EObject>) parent
                                             .eGet(compositeFeatureAssocBean.compositeFeatureAssoc))
                                             .add(correspondingNewElement);
                                 }
@@ -746,7 +748,7 @@ public class IncrementalParser extends IncrementalRecognizer {
         if (syntaxLookup == null) {
             syntaxLookup = new SyntaxLookup(TcsUtil.getSyntaxByName(
                     getEditingDomain().getResourceSet(),
-                    parserFactory.getLanguageId()), null, getResolutionHelper());
+                    parserFactory.getLanguageId()), getResolutionHelper());
         }
         return syntaxLookup;
     }

@@ -20,6 +20,7 @@ import org.eclipse.ocl.ecore.OCLExpression;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic#getAs <em>As</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic#getWhen <em>When</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic#getMode <em>Mode</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic#getForeachParent <em>Foreach Parent</em>}</li>
  * </ul>
  * </p>
  *
@@ -105,5 +106,33 @@ public interface PredicateSemantic extends EObject {
      * @generated
      */
         void setMode(String value);
+
+        /**
+     * Returns the value of the '<em><b>Foreach Parent</b></em>' container reference.
+     * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit#getPredicateSemantic <em>Predicate Semantic</em>}'.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Foreach Parent</em>' container reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Foreach Parent</em>' container reference.
+     * @see #setForeachParent(ForeachPredicatePropertyInit)
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getPredicateSemantic_ForeachParent()
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit#getPredicateSemantic
+     * @model opposite="predicateSemantic" required="true" transient="false"
+     * @generated
+     */
+    ForeachPredicatePropertyInit getForeachParent();
+
+        /**
+     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic#getForeachParent <em>Foreach Parent</em>}' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Foreach Parent</em>' container reference.
+     * @see #getForeachParent()
+     * @generated
+     */
+    void setForeachParent(ForeachPredicatePropertyInit value);
 
 } // PredicateSemantic

@@ -19,6 +19,7 @@ import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.parser.antlr3.ITokenFactory;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.parser.testbase.ClassLookup;
 import com.sap.furcas.runtime.tcs.RuleNameFinder;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRParserFactory;
 import com.sun.tools.javac.Main;
@@ -198,15 +199,13 @@ public class ParserGenerationTestHelper {
 
     @SuppressWarnings("unchecked")
     public Class<AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>> getParserFactoryClass(
-            String languageName) {
+            String languageName, ClassLookup classLookup) {
         // try loading compiled classes
         File genDir = new File(generationDirectory);
         try {
-            Class<?> parserFactoryClass = Class.forName(generationPackage + "."
+            Class<?> parserFactoryClass = classLookup.loadClass(generationPackage + "."
                     + languageName + "ParserFactory");
-
             return (Class<AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>>) parserFactoryClass;
-
         } catch (ClassNotFoundException cnfe) { // catching from Class.forName
             throw new RuntimeException(
                     "Can't find generated classes at runtime in "
