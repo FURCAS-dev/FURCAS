@@ -18,42 +18,7 @@
    </license>
 
    <plugin
-         id="com.sap.emf.importer.moin.rose"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="com.sap.emf.ocl.attributegrammar"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="com.sap.emf.ocl.impactanalysis.example"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="com.sap.emf.ocl.impactanalysis.example.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="com.sap.emf.ocl.impactanalysis.example.editor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="com.sap.emf.ocl.impactanalysis.example.model"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -173,6 +138,20 @@
 
    <plugin
          id="de.hpi.sam.petriNet"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.ecore"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl"
          download-size="0"
          install-size="0"
          version="0.0.0"
