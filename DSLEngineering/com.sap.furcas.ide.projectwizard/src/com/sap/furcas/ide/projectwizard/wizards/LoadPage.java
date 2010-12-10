@@ -17,6 +17,7 @@ import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
@@ -137,17 +138,22 @@ public class LoadPage extends WizardPage {
                                 if (nsURIs.contains(ePackage.getNsURI())) {
                                     // Save the EPackage to global var eP
                                     //
-                                    if (ePackage.getESuperPackage() == null)
+                                    EObject containingPackage = ePackage.eContainer();
+                                    if ((EPackage) containingPackage instanceof EPackage) {
+                                        for (EObject object : containingPackage.eContents()) {
+                                            if (object instanceof EClass)
+                                                eP = (EPackage) containingPackage;
+                                            else
+                                                eP = ePackage;
+                                        }
+                                    } else
                                         eP = ePackage;
-                                    else
-                                        eP = ePackage.getESuperPackage();
-                                    // Set the namespace URI in the ProjectInfo to metamodels nsURI
-                                    //
                                     pi.setNsURI(eP.getNsURI());
                                     uriField.setText(resource.getURI().toString());
                                     break;
                                 }
                             }
+
                         }
                     } else {
                         ResourceSet resourceSet = new ResourceSetImpl();
@@ -163,12 +169,16 @@ public class LoadPage extends WizardPage {
                                 if (nsURIs.contains(ePackage.getNsURI())) {
                                     // Save the EPackage to global var eP
                                     //
-                                    if (ePackage.getESuperPackage() == null)
+                                    EObject containingPackage = ePackage.eContainer();
+                                    if ((EPackage) containingPackage instanceof EPackage) {
+                                        for (EObject object : containingPackage.eContents()) {
+                                            if (object instanceof EClass)
+                                                eP = (EPackage) containingPackage;
+                                            else
+                                                eP = ePackage;
+                                        }
+                                    } else
                                         eP = ePackage;
-                                    else
-                                        eP = ePackage.getESuperPackage();
-                                    // Set the namespace URI in the ProjectInfo to metamodels nsURI
-                                    //
                                     pi.setNsURI(eP.getNsURI());
                                     uriField.setText(resource.getURI().toString());
                                     break;
@@ -194,12 +204,12 @@ public class LoadPage extends WizardPage {
                     public boolean select(Viewer viewer, Object parentElement, Object element) {
                         if (element instanceof IFolder || element instanceof IProject)
                             return true;
-                        if (element instanceof IFile){
+                        if (element instanceof IFile) {
                             IFile file = (IFile) element;
                             if (file.getFileExtension().matches("ecore"))
                                 return true;
                         }
-                            
+
                         return false;
                     }
 
@@ -215,8 +225,7 @@ public class LoadPage extends WizardPage {
                 if (files.length > 0) {
                     IProject mMproject = files[0].getProject();
                     // Set the appropriate values in ProjectInfo and eP
-                    pi.setModelPath(mMproject.getWorkspace().getRoot().getLocation().toString()
-                            + files[0].getFullPath().toString());
+                    pi.setModelPath(files[0].getFullPath().toString());
                     try {
                         eP = fileToEPack(files[0]);
                     } catch (CodeGenerationException e) {
@@ -258,7 +267,7 @@ public class LoadPage extends WizardPage {
      * @param iFile
      *            The file that is to be converted to the Epackage.
      * @return The EPackage containing the metamodel loaded from the file.
-     * @throws CodeGenerationException 
+     * @throws CodeGenerationException
      */
     protected EPackage fileToEPack(IFile iFile) throws CodeGenerationException {
         ResourceSet resSet = new ResourceSetImpl();
@@ -271,7 +280,7 @@ public class LoadPage extends WizardPage {
         try {
             resource.load(options);
         } catch (IOException e) {
-            throw new CodeGenerationException("Error while loading resource of File: "+iFile.getName(), e.getCause());
+            throw new CodeGenerationException("Error while loading resource of File: " + iFile.getName(), e.getCause());
         }
         EList<EObject> sd = resource.getContents();
         for (EObject object : sd) {

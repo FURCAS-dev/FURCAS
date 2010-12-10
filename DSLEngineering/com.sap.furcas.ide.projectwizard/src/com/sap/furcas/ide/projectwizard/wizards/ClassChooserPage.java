@@ -138,10 +138,9 @@ public class ClassChooserPage extends WizardPage {
         if (object instanceof EPackage) {
             EPackage ePack = (EPackage) object;
             if (searchTree != null) {
-                if (ePack.getESuperPackage() == null)
-                    searchTree.setInput(ePack);
-                else
-                    searchTree.setInput(ePack.getESuperPackage());
+
+                searchTree.setInput(ePack);
+
             }
         }
     }

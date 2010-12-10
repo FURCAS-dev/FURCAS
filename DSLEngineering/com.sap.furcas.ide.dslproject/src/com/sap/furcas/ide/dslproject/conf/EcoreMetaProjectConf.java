@@ -100,8 +100,8 @@ public final class EcoreMetaProjectConf implements IProjectMetaRefConf {
         ResourceSet connection = BuildHelper.getResourceSetForProject(referencedProject);
         if (!modelPath.matches("")) {
             connection = new ResourceSetImpl();
-            String uri = URI.createFileURI(modelPath).toString();
-            Resource resource = connection.createResource(URI.createFileURI(modelPath));
+            String uri = URI.createPlatformResourceURI(modelPath, true).toString();
+            Resource resource = connection.createResource(URI.createPlatformResourceURI(modelPath, true));
             Map<Object, Object> options = new HashMap<Object, Object>();
             options.put(XMLResource.OPTION_ENCODING, "UTF-8");
             try {
