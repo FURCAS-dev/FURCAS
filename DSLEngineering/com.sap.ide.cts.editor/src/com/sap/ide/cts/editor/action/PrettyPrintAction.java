@@ -53,7 +53,7 @@ public class PrettyPrintAction extends Action {
 	    ResourceSet connection = modelElement.eResource().getResourceSet();
 
 	    Template template = determineTemplate(connection);
-	    ConcreteSyntax syntax = template.getConcretesyntax();
+	    ConcreteSyntax syntax = template.getConcreteSyntax();
 	    TextBlock textBlockToReuse = determineTextBlockToReuse(connection, template);
 
 	    try {
@@ -91,7 +91,7 @@ public class PrettyPrintAction extends Action {
 	}
     }
 
-    public Template determineTemplate(Connection connection) throws Exception {
+    public Template determineTemplate(ResourceSet connection) throws Exception {
 	MQLProcessor mql = connection.getMQLProcessor();
 	Template template = null;
 
