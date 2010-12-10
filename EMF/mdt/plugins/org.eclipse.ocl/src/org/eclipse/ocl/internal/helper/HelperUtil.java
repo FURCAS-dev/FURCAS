@@ -407,7 +407,7 @@ public class HelperUtil {
 		}
 		
 		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-		result = OCLAnalyzer.createOCLAnalyzer(env, prefix+ '\n' + text);
+		result = env.getFactory().createOCLAnalyzer(env, prefix + '\n' + text);
 		
 		// offset the character position by the length of the extra text
 		result.setCharacterOffset(-(prefix.length() + 1)); // one for the newline

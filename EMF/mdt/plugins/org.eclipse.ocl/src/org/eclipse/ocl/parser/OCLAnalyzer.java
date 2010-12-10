@@ -38,7 +38,6 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
-import org.eclipse.ocl.parser.backtracking.OCLBacktrackingParser;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.TypedElement;
@@ -53,23 +52,6 @@ import org.eclipse.ocl.utilities.TypedElement;
 public class OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		extends
 		AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
-
-	/**
-	 * @since 3.1
-	 */
-	public static class Provider<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-		implements AbstractOCLAnalyzer.IProvider<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-	{
-		public OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCLAnalyzer(
-			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment, String input) {
-			return new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(environment, input);
-		}
-
-		public OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCLAnalyzer(
-			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment, OCLBacktrackingParser parser) {
-			return new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(parser);
-		}
-	}
 
 	private OCLFactoryWithHistory history;
 
@@ -139,16 +121,8 @@ public class OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	protected OCLFactory createOCLFactory(
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
 
-		history = createOCLFactoryWithHistory(env);
+		history = env.getFactory().createOCLFactoryWithHistory(env);
 		return history;
-	}
-
-	/**
-	 * @since 3.1
-	 */
-	protected OCLFactoryWithHistory createOCLFactoryWithHistory(
-			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
-		return new OCLFactoryWithHistory(super.createOCLFactory(env));
 	}
 
 	private <T> T sanitize(T parseResult) {

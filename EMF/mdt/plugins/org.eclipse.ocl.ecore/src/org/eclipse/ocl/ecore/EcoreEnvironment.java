@@ -53,11 +53,11 @@ import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateException;
 import org.eclipse.ocl.ecore.internal.EcoreForeignMethods;
-import org.eclipse.ocl.ecore.internal.OCLEcorePlugin;
 import org.eclipse.ocl.ecore.internal.OCLFactoryImpl;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.internal.TypeResolverImpl;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.Variable;
@@ -73,8 +73,6 @@ import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.UMLReflection;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
-
-import com.google.inject.Injector;
 
 /**
  * Implementation of the {@link Environment} for parsing OCL expressions on
@@ -261,12 +259,14 @@ public class EcoreEnvironment
         return UMLReflectionImpl.INSTANCE;
     }
 
-	/**
-	 * @since 3.1
-	 */
-	protected OppositeEndFinder createOppositeEndFinder() {
-		OppositeEndFinder.IProvider provider = getInjector().getInstance(OppositeEndFinder.IProvider.class);
-		return provider.createOppositeEndFinder(registry);
+	private OppositeEndFinder createOppositeEndFinder() {
+		EnvironmentFactory<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> factory = getFactory();
+		if (factory instanceof EcoreEnvironmentFactoryInterface) {
+			return ((EcoreEnvironmentFactoryInterface)factory).getOppositeEndFinder();
+		}
+		else {
+			return new DefaultOppositeEndFinder(registry);
+		}
 	}
 	
 	/**
@@ -298,6 +298,7 @@ public class EcoreEnvironment
 	protected TypeResolver<EClassifier, EOperation, EStructuralFeature> createTypeResolver(Resource resource) {
 		return new TypeResolverImpl(this, resource);
 	}
+
 
 	/**
      * {@inheritDoc}
@@ -1029,13 +1030,5 @@ public class EcoreEnvironment
 	 */
 	public OppositeEndFinder getOppositeEndFinder() {
 		return oppositeEndFinder;
-	}
-
-	/**
-	 * @since 3.1
-	 */
-	@Override
-	protected Injector createInjector() {
-		return OCLEcorePlugin.getInjector();
 	}
 }
