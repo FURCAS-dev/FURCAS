@@ -11,10 +11,10 @@ Require-Bundle: org.eclipse.emf.ecore,
  de.hpi.sam.bp2009.ngpm,
  de.hpi.sam.bp2009.company,
  org.junit4,
- org.eclipse.emf.query.index,
- org.eclipse.emf.query.index.ui
+ org.eclipse.emf.query2.core,
+ org.eclipse.emf.query2.index,
+ org.eclipse.emf.query2.index.ui
 Import-Package: company,
  data.classes,
- de.hpi.sam.petriNet,
- org.eclipse.emf.query2
+ de.hpi.sam.petriNet
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

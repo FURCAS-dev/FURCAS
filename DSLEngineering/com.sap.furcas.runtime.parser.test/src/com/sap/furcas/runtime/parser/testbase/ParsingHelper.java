@@ -50,16 +50,17 @@ public class ParsingHelper {
         return stubModelHandler;
     }
 
-    public void parseFile(String dslSampleFile, String DSLSAMPLEDIR, int expectedErrors, IModelAdapter adapter) throws Exception {
+    public ModelParsingResult parseFile(String dslSampleFile, String DSLSAMPLEDIR, int expectedErrors, IModelAdapter adapter) throws Exception {
         InputStream charStream = new FileInputStream(DSLSAMPLEDIR + dslSampleFile);
-        parseStream(expectedErrors, charStream, adapter);
+        return parseStream(expectedErrors, charStream, adapter);
     }
 
-    public void parseStream(int expectedErrors, InputStream in, IModelAdapter modelAdapter) throws IOException,
+    public ModelParsingResult parseStream(int expectedErrors, InputStream in, IModelAdapter modelAdapter) throws IOException,
             UnknownProductionRuleException {
 
         ModelParsingResult result = parse(in, modelAdapter);
         checkModelForParsingErrors(expectedErrors, result);
+        return result;
     }
 
     private ModelParsingResult parse(InputStream in, IModelAdapter modelAdapter) throws IOException,
