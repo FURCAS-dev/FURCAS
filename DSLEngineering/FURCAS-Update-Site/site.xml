@@ -6,10 +6,10 @@
    <feature url="features/FURCAS_1.0.1.qualifier.jar" id="FURCAS" version="1.0.1.qualifier">
       <category name="furcas"/>
    </feature>
-   <feature url="features/EMFEnhancements-Feature_1.0.0.qualifier.jar" id="EMFEnhancements-Feature" version="1.0.0.qualifier">
+   <feature url="features/org.eclipse.ocl_3.1.0.qualifier.jar" id="org.eclipse.ocl" version="3.1.0.qualifier" patch="true">
       <category name="furcas"/>
    </feature>
-   <feature url="features/org.eclipse.ocl_3.1.0.qualifier.jar" id="org.eclipse.ocl" version="3.1.0.qualifier" patch="true">
+   <feature url="features/EMFEnhancementsFeature_1.0.0.qualifier.jar" id="EMFEnhancementsFeature" version="1.0.0.qualifier">
       <category name="furcas"/>
    </feature>
    <category-def name="furcas" label="FURCAS Textual Modelling">
