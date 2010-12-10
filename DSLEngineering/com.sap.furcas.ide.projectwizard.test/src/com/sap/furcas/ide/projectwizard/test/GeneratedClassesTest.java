@@ -235,7 +235,7 @@ public class GeneratedClassesTest {
             e.printStackTrace();
         }
         for (String i : lines) {
-            if (i.contains("org.eclipse")) {
+            if (i.startsWith("org.eclipse") && !i.startsWith("org.eclipse.emf")) {
                 if (i.contains(";"))
                     i = i.split(";")[0];
                 String modifier = i.replaceAll("Require-Bundle: ", "");
