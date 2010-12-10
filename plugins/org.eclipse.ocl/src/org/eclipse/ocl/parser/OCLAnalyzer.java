@@ -121,7 +121,7 @@ public class OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	protected OCLFactory createOCLFactory(
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
 
-		history = new OCLFactoryWithHistory(super.createOCLFactory(env));
+		history = env.getFactory().createOCLFactoryWithHistory(env);
 		return history;
 	}
 

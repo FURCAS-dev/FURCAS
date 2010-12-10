@@ -2423,7 +2423,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			astNode = simpleVariableName(simpleNameCS, env, source, simpleName);
 		}
 		if (astNode == null) {
-			astNode = simplePropertyName(simpleNameCS, env, source,
+			astNode = simpleNavigationName(simpleNameCS, env, source,
 				sourceElementType, simpleName);
 		}
 		if (astNode == null) {
@@ -2531,6 +2531,19 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		}
 
 		return result;
+	}
+
+	/**
+	 * Allows subclasses to return calls that are not necessarily a {@link PropertyCallExp} but some
+	 * other {@link NavigationCallExp}.
+	 * 
+	 * @since 3.1
+	 */
+	protected NavigationCallExp<C, P> simpleNavigationName(
+		SimpleNameCS simpleNameCS,
+		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+		OCLExpression<C> source, C owner, String simpleName) {
+		return simplePropertyName(simpleNameCS, env, source, owner, simpleName);
 	}
 
 	/**

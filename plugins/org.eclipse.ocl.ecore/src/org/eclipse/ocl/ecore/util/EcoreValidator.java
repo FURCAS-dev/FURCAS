@@ -56,6 +56,7 @@ import org.eclipse.ocl.ecore.NullLiteralExp;
 import org.eclipse.ocl.ecore.NumericLiteralExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.OrderedSetType;
 import org.eclipse.ocl.ecore.PrimitiveLiteralExp;
 import org.eclipse.ocl.ecore.PrimitiveType;
@@ -330,6 +331,9 @@ public class EcoreValidator
 			case EcorePackage.VARIABLE_EXP :
 				return validateVariableExp((VariableExp) value, diagnostics,
 					context);
+			case EcorePackage.OPPOSITE_PROPERTY_CALL_EXP :
+				return validateOppositePropertyCallExp(
+					(OppositePropertyCallExp) value, diagnostics, context);
 			default :
 				return true;
 		}
@@ -3381,6 +3385,59 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= expressionsValidator.validateVariableExp_checkVarType(
 				variableExp, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.1
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateOppositePropertyCallExp(
+			OppositePropertyCallExp oppositePropertyCallExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(oppositePropertyCallExp,
+			diagnostics, context))
+			return false;
+		boolean result = validate_EveryMultiplicityConforms(
+			oppositePropertyCallExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryDataValueConforms(oppositePropertyCallExp,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryReferenceIsContained(
+				oppositePropertyCallExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				oppositePropertyCallExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryProxyResolves(oppositePropertyCallExp,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_UniqueID(oppositePropertyCallExp, diagnostics,
+				context);
+		if (result || diagnostics != null)
+			result &= validate_EveryKeyUnique(oppositePropertyCallExp,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryMapEntryUnique(oppositePropertyCallExp,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateOCLExpression_WellFormedName(
+				oppositePropertyCallExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= ecoreValidator.validateETypedElement_ValidLowerBound(
+				oppositePropertyCallExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= ecoreValidator.validateETypedElement_ValidUpperBound(
+				oppositePropertyCallExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= ecoreValidator.validateETypedElement_ConsistentBounds(
+				oppositePropertyCallExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= ecoreValidator.validateETypedElement_ValidType(
+				oppositePropertyCallExp, diagnostics, context);
 		return result;
 	}
 

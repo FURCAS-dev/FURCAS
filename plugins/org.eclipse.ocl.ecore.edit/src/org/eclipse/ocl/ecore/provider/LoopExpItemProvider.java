@@ -143,8 +143,8 @@ public class LoopExpItemProvider extends CallExpItemProvider implements
 		switch (notification.getFeatureID(LoopExp.class)) {
 		case EcorePackage.LOOP_EXP__BODY:
 		case EcorePackage.LOOP_EXP__ITERATOR:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -249,6 +249,10 @@ public class LoopExpItemProvider extends CallExpItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.LOOP_EXP__BODY,
 				EcoreFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.LOOP_EXP__BODY,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.LOOP_EXP__BODY,

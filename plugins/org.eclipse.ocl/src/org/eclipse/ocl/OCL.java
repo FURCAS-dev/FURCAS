@@ -265,11 +265,9 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 			OCLBacktrackingParser parser = new OCLBacktrackingParser(lexer);
 			parser.setDefaultRepairCount(parserRepairCount);
 			lexer.lexer(parser.getIPrsStream());
-			analyzer = new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-				parser);
+			analyzer = rootEnvironment.getFactory().createOCLAnalyzer(rootEnvironment, parser);
 		} else {
-			analyzer = new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-				rootEnvironment, input);
+			analyzer = rootEnvironment.getFactory().createOCLAnalyzer(rootEnvironment, input);
 		}
 		return analyzer;
 	}

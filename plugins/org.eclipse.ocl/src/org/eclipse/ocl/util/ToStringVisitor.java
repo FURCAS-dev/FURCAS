@@ -768,7 +768,10 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 		}
 	}
 
-	private String maybeAtPre(FeatureCallExp<C> mpc, String base) {
+	/**
+	 * @since 3.1
+	 */
+	protected String maybeAtPre(FeatureCallExp<C> mpc, String base) {
 		return mpc.isMarkedPre() ? base + "@pre" : base; //$NON-NLS-1$
 	}
 

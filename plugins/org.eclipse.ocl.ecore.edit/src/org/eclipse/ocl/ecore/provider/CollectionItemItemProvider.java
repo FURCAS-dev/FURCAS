@@ -135,8 +135,8 @@ public class CollectionItemItemProvider extends
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/CollectionItem")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/CollectionItem")); //$NON-NLS-1$
 	}
 
 	/**
@@ -175,8 +175,8 @@ public class CollectionItemItemProvider extends
 
 		switch (notification.getFeatureID(CollectionItem.class)) {
 		case EcorePackage.COLLECTION_ITEM__ITEM:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -281,6 +281,10 @@ public class CollectionItemItemProvider extends
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.COLLECTION_ITEM__ITEM,
 				EcoreFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.COLLECTION_ITEM__ITEM,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.COLLECTION_ITEM__ITEM,

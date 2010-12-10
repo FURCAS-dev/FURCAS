@@ -75,7 +75,7 @@ import org.eclipse.ocl.utilities.TypedElement;
 public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	extends AbstractBasicEnvironment
 	implements Environment.Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>,
-	    Environment.Lookup<PK, C, O, P> {
+		Environment.Lookup<PK, C, O, P> {
     
 	/* Used to generate implicit iterator variables */
 	private int generatorInt = 0;
@@ -371,6 +371,20 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		}
 		
 		return result;
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	protected int getElementsSize() {
+		return namedElements.size();
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	protected VariableEntry getElement(int index) {
+		return namedElements.get(index);
 	}
     
 	@SuppressWarnings("deprecation")
@@ -1069,8 +1083,9 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
      * @throws LookupException in case that multiple non-navigable properties
      *     are found that have the same name and the problem option is ERROR
      *     or worse
+     * @since 3.1
      */
-    private P lookupNonNavigableEnd(C owner, String name) throws LookupException {
+    protected P lookupNonNavigableEnd(C owner, String name) throws LookupException {
         if (owner == null) {
             Variable<C, PM> vdcl = lookupImplicitSourceForProperty(name);
 
@@ -1260,6 +1275,20 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			this.name = name;
 			this.variable = variable;
 			this.isExplicit = isExplicit;
+		}
+
+		/**
+		 * @since 3.1
+		 */
+		public Variable<C, PM> getVariable() {
+			return variable;
+		}
+
+		/**
+		 * @since 3.1
+		 */
+		public boolean isExplicit() {
+			return isExplicit;
 		}
 		
 		@Override

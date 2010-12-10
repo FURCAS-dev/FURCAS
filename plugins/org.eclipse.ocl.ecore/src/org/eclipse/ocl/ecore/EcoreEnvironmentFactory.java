@@ -18,6 +18,8 @@
 package org.eclipse.ocl.ecore;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -33,8 +35,18 @@ import org.eclipse.ocl.AbstractEnvironmentFactory;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.EvaluationEnvironment;
+import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
+import org.eclipse.ocl.ecore.internal.evaluation.TracingEvaluationVisitor;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.ecore.parser.OCLAnalyzer;
+import org.eclipse.ocl.ecore.parser.OCLFactoryWithHistory;
+import org.eclipse.ocl.ecore.parser.ValidationVisitor;
+import org.eclipse.ocl.helper.OCLSyntaxHelper;
+import org.eclipse.ocl.parser.backtracking.OCLBacktrackingParser;
+import org.eclipse.ocl.utilities.Visitor;
 
 
 
@@ -48,7 +60,8 @@ public class EcoreEnvironmentFactory
 	extends AbstractEnvironmentFactory<
 		EPackage, EClassifier, EOperation, EStructuralFeature,
 		EEnumLiteral, EParameter,
-		EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> {
+		EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
+	implements EcoreEnvironmentFactoryInterface {
 	
 	/**
      * A convenient shared instance of the environment factory, that creates
@@ -57,6 +70,8 @@ public class EcoreEnvironmentFactory
     public static EcoreEnvironmentFactory INSTANCE = new EcoreEnvironmentFactory();
 	
 	private final EPackage.Registry registry;
+
+	private OppositeEndFinder oppositeEndFinder = null;
 
 	/**
 	 * Initializes me.  Environments that I create will use the global package
@@ -154,7 +169,7 @@ public class EcoreEnvironmentFactory
     // implements the inherited specification
 	public EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject>
 	createEvaluationEnvironment() {
-		return new EcoreEvaluationEnvironment();
+		return new EcoreEvaluationEnvironment(this);
 	}
 
     // implements the inherited specification
@@ -163,4 +178,85 @@ public class EcoreEnvironmentFactory
 			EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> parent) {
 		return new EcoreEvaluationEnvironment(parent);
 	}
+
+	/**
+	 * @since 3.1
+	 */
+	@Override
+	public OCLAnalyzer createOCLAnalyzer(
+			Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env,
+			String input) {
+		return new OCLAnalyzer(env, input);
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	@Override
+	public OCLAnalyzer createOCLAnalyzer(
+			Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env,
+			OCLBacktrackingParser parser) {
+		return new OCLAnalyzer(parser);
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	public OCLFactoryWithHistory createOCLFactoryWithHistory(
+			Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env) {
+		return new OCLFactoryWithHistory(env.getOCLFactory());
+	}
+
+	/**
+	 * @since 3.1
+	 */
+    @Override
+	public OCLSyntaxHelper createOCLSyntaxHelper(
+			Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env) {
+		return new org.eclipse.ocl.ecore.internal.helper.OCLSyntaxHelper(env);
+	}
+
+	/**
+	 * @since 3.1
+	 */
+    @Override
+	public Visitor<Boolean, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> createValidationVisitor(
+		Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env) {
+		return new ValidationVisitor(env);
+	}
+
+	/**
+	 * @since 3.1
+	 */
+    protected OppositeEndFinder createOppositeEndFinder(EPackage.Registry registry) {
+		return new DefaultOppositeEndFinder(registry);
+	}
+
+	/**
+	 * @since 3.1
+	 */
+    public OppositeEndFinder getOppositeEndFinder() {
+    	if (oppositeEndFinder == null) {
+    		oppositeEndFinder = createOppositeEndFinder(registry);
+    	}
+		return oppositeEndFinder;
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	public EvaluationVisitor<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> createEvaluationVisitor(
+			Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env,
+			EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> evalEnv,
+			Map<? extends EClass, ? extends Set<? extends EObject>> extentMap) {
+		EvaluationVisitor<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> result = new EvaluationVisitorImpl(
+			env, evalEnv, extentMap);
+
+		if (isEvaluationTracingEnabled()) {
+			// decorate the evaluation visitor with tracing support
+			result = new TracingEvaluationVisitor(result);
+		}
+		return result;
+	}
+
 }
