@@ -9,6 +9,6 @@
   </parent>
   <groupId>com.sap.dsl</groupId>
   <artifactId>org.eclipse.ocl</artifactId>
-  <version>3.0.2-SNAPSHOT</version>
+  <version>3.0.1-SNAPSHOT</version>
   <packaging>eclipse-plugin</packaging>
 </project>
