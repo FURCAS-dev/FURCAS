@@ -3,8 +3,7 @@
       id="FURCAS"
       label="FURCAS"
       version="1.0.1.qualifier"
-      provider-name="SAP AG / FZI"
-      plugin="com.sap.ide.cts.product">
+      provider-name="SAP AG / FZI">
 
    <description url="http://www.example.com/description">
       [Enter Feature Description here.]
@@ -23,7 +22,7 @@
    </url>
 
    <requires>
-      <import feature="EMFEnhancements-Feature" version="1.0.0.qualifier"/>
+      <import feature="EMFEnhancementsFeature" version="1.0.0.qualifier"/>
    </requires>
 
    <plugin
@@ -152,7 +151,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.emf.query2"
+         id="org.eclipse.emf.query2.core"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -166,14 +165,14 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.emf.query.index"
+         id="org.eclipse.emf.query2.index"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.emf.query.index.ui"
+         id="org.eclipse.emf.query2.index.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"

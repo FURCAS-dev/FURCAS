@@ -76,6 +76,14 @@ syntax TCS {
                                 tokens
                                 (isDefined(lexer) ? "lexer" "=" lexer{as = stringSymbol} ";")
                         ] {nbNL = 2} "}"
+                        {{ keywords = lookIn("OCL:LiteralRef.allInstances()->select(
+                                lr | self.templates->includes(lr.parentTemplate)).referredLiteral->asSet()
+                                ->union(self.operatorLists.priorities.operators.literal->asSet())
+                                ->select(k | if k.oclIsTypeOf(Keyword) then
+                                                self.keywords->excludes(k.oclAsType(Keyword))
+                                        else 
+                                                false 
+                                        endif)") }}
                 ;
 
 
@@ -189,7 +197,7 @@ syntax TCS {
 
         template TCS::LiteralRef
                 :
-                                referredLiteral{refersTo = value, lookIn = #all, as = stringSymbol, autoCreate = ifmissing, createAs = FURCAS::TCS::Keyword}
+                        referredLiteral{refersTo = value, lookIn = #all, as = stringSymbol, autoCreate = ifmissing, createAs = FURCAS::TCS::Keyword}
                         {{ parentTemplate = lookIn("OCL:#context") }}
                 ;
 

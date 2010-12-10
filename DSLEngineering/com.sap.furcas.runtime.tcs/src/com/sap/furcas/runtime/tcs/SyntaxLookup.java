@@ -47,8 +47,8 @@ public class SyntaxLookup {
 	/** The syntax. */
 	private final ConcreteSyntax syntax;
 	
-	/** The keyword set. */
-	private Set<Keyword> keywordSet;
+//	/** The keyword set. */
+//	private Set<Keyword> keywordSet;
 
     private final MetaModelElementResolutionHelper<?> resolutionHelper;
 
@@ -66,20 +66,9 @@ public class SyntaxLookup {
 	 * @param resolutionHelper 
 	 * @param keywordSet 
 	 */
-	public SyntaxLookup(ConcreteSyntax syntax, Set<Keyword> keywordSet, MetaModelElementResolutionHelper<?> resolutionHelper) {
+	public SyntaxLookup(ConcreteSyntax syntax, MetaModelElementResolutionHelper<?> resolutionHelper) {
 		super();
 		this.syntax = syntax;
-		this.keywordSet = keywordSet;
-		if (this.keywordSet == null) {
-		    this.keywordSet = new HashSet<Keyword>();
-		}
-		if (syntax != null) {
-		    this.keywordSet.addAll(syntax.getKeywords()); // declared vs. used keywords
-//		    if(syntax.eContainer() != null) {
-//		    	this.alternativeSequenceAssoc = ((TcsPackage)syntax.refImmediatePackage()).getAlternativeSequence();
-//		    }
-		    
-		}
 		this.resolutionHelper = resolutionHelper;
 
 		// initialize list of primitive templates for getDefault Primitive....
@@ -105,7 +94,8 @@ public class SyntaxLookup {
 	
 
 	public Set<Keyword> getAllKeywords () {
-	    return keywordSet;
+//	    return keywordSet;
+	    return new HashSet<Keyword>(syntax.getKeywords());
 	}
 
 
