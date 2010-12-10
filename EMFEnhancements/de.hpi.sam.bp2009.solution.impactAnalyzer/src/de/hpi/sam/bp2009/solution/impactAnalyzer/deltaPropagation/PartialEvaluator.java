@@ -65,6 +65,17 @@ public class PartialEvaluator {
         this(new PartialEcoreEnvironmentFactory(), oclFactory);
     }
     
+    /**
+     * Constructs the OCL instance using {@link OCLFactory#createOCL(OppositeEndFinder)}, passing the
+     * <code>oppositeEndFinder</code> provided. A default {@link PartialEcoreEnvironmentFactory} is
+     * used, configured as well with the <code>oppositeEndFinder</code> provided here.
+     */
+    public PartialEvaluator(OCLFactory oclFactory, OppositeEndFinder oppositeEndFinder) {
+        this.factory = new PartialEcoreEnvironmentFactory(oppositeEndFinder);
+        this.ocl = oclFactory.createOCL(oppositeEndFinder);
+        helper = ocl.createOCLHelper();
+    }
+    
     protected PartialEvaluator(PartialEcoreEnvironmentFactory factory, OCLFactory oclFactory) {
         this.factory = factory;
         this.ocl = oclFactory.createOCL(factory);
@@ -90,7 +101,7 @@ public class PartialEvaluator {
      * then <tt>e2</tt> will show in the results although in the current version of the model it would not.<p>
      */
     public PartialEvaluator(Notification atPre, OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory) {
-        this(new PartialEcoreEnvironmentFactory(atPre), oclFactory);
+        this(new PartialEcoreEnvironmentFactory(atPre, oppositeEndFinder), oclFactory);
     }
     
     public OCL getOcl() {

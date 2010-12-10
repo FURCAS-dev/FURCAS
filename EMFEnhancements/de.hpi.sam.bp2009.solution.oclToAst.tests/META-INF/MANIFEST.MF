@@ -22,5 +22,6 @@ Require-Bundle: org.eclipse.core.runtime,
  de.hpi.sam.bp2009.ngpm,
  org.eclipse.emf.query2.core,
  org.eclipse.emf.query2.index,
- org.eclipse.emf.query2.index.ui
+ org.eclipse.emf.query2.index.ui,
+ com.sap.emf.ocl.util
 Bundle-ActivationPolicy: lazy

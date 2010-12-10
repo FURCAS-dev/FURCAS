@@ -206,7 +206,7 @@ public class ContextAndForeachHelper {
         if (matcher.find()) {
             if (matcher.groupCount() >= 3) {
                 String oclTypeName = matcher.group(3);
-                OCL ocl = OCL.newInstance();
+                OCL ocl = com.sap.emf.ocl.util.OCL.newInstance();
                 TypeExp typeQuery = (TypeExp) ocl.createOCLHelper().createQuery(oclTypeName);
                 result = ((TypeType) typeQuery.getType()).getReferredType();
             }
@@ -227,7 +227,7 @@ public class ContextAndForeachHelper {
         if (matcher.find()) {
             if (matcher.groupCount() >= 1) {
                 String oclTypeName = matcher.group(1);
-                OCL ocl = OCL.newInstance();
+                OCL ocl = com.sap.emf.ocl.util.OCL.newInstance(); // TODO should use an injected OppositeEndFinder
                 Helper helper = ocl.createOCLHelper();
                 helper.setContext(EcorePackage.eINSTANCE.getEClassifier()); // EClassifier is a classifier that's always in scope
                 TypeExp typeQuery = (TypeExp) helper.createQuery(oclTypeName);

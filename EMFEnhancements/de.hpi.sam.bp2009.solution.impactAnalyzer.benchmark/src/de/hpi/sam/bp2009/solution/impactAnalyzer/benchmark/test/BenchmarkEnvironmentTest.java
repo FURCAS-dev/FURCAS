@@ -102,7 +102,7 @@ public class BenchmarkEnvironmentTest extends TestCase {
     }
 
     private void evaluate(Resource fullSizeModel, OCLExpressionWithContext expression, RawNotification rawNoti) {
-	OCL ocl = OCL.newInstance();
+	OCL ocl = com.sap.emf.ocl.util.OCL.newInstance();
 	ocl = OCL.newInstance(new EnvironmentFactory().createPackageContext(ocl.getEnvironment(),
 	        expression.getOclWithPackage().getPackage()));
 

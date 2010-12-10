@@ -33,7 +33,7 @@ public class ShortPrettyPrinter {
 
     public ShortPrettyPrinter(IModelElementInvestigator investigator) {
 	this.investigator = investigator;
-	this.ocl = OCL.newInstance(new EcoreEnvironmentFactoryWithScopedExtentMap()); // TODO need a consistent OppositeEndFinder
+	this.ocl = com.sap.emf.ocl.util.OCL.newInstance(); // TODO need a consistent OppositeEndFinder
     }
 
     public void makeFlyweight(TextBlock rootBlock) {

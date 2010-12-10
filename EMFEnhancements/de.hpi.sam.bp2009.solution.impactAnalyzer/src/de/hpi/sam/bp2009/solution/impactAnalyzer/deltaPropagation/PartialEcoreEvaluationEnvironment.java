@@ -12,7 +12,6 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -22,17 +21,16 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
-import org.eclipse.ocl.ecore.EcoreEvaluationEnvironment;
-import org.eclipse.ocl.ecore.opposites.ExtentMap;
-import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.expressions.VariableExp;
 
+import com.sap.emf.ocl.util.EcoreEvaluationEnvironmentWithScopedExtentMap;
 
-public class PartialEcoreEvaluationEnvironment extends EcoreEvaluationEnvironment {
+
+public class PartialEcoreEvaluationEnvironment extends EcoreEvaluationEnvironmentWithScopedExtentMap {
     private final Map<String, Object> map = new HashMap<String, Object>();
     
-    public PartialEcoreEvaluationEnvironment() {
-        super();
+    public PartialEcoreEvaluationEnvironment(PartialEcoreEnvironmentFactory factory) {
+        super(factory);
     }
     
     public PartialEcoreEvaluationEnvironment(
@@ -121,20 +119,6 @@ public class PartialEcoreEvaluationEnvironment extends EcoreEvaluationEnvironmen
     @Override
     public String toString() {
         return map.toString();
-    }
-
-    /**
-     * In the case of the "hidden opposites" OCL environment, an instance of the {@link ExtentMap} class is used. Is bases its
-     * <code>allInstances</code> computations on the {@link OppositeEndFinder} passed to the constructor of this object. See
-     * {@link OppositeEndFinder#getAllInstancesSeenBy(EClass, org.eclipse.emf.common.notify.Notifier)}.
-     */
-    @Override
-    public Map<EClass, Set<EObject>> createExtentMap(Object object) {
-        EObject context = null;
-        if (object instanceof EObject) {
-            context = (EObject) object;
-        }
-        return new ExtentMap(context);
     }
 
 }

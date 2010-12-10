@@ -9,6 +9,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.ocl.ecore,
  de.hpi.sam.bp2009.solution.oclToAst,
  de.hpi.sam.bp2009.company,
+ com.sap.emf.ocl.util,
  org.junit4;bundle-version="4.8.1"
 Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.model,
  de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications,

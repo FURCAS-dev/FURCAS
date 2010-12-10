@@ -45,8 +45,7 @@ public class AllInstanceEvaluationMeasurement {
 	this.oppositeEndFinder = oppositeEndFinder;
 	this.model = model;
 	this.expression = expression;
-
-	this.ocl =  OCL.newInstance();
+	this.ocl = com.sap.emf.ocl.util.OCL.newInstance(oppositeEndFinder);
     }
 
     public LinkedHashMap<String, String> getAdditionalInformation(){

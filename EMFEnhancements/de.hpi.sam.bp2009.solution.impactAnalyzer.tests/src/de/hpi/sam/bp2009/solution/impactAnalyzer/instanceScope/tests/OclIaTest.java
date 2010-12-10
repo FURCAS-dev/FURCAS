@@ -366,7 +366,7 @@ public class OclIaTest extends BaseDepartmentTest {
 
         assertEquals(1, ve.getType().getLowerMultiplicity());
 
-        OCL ocl = OCL.newInstance();
+        OCL ocl = com.sap.emf.ocl.util.OCL.newInstance();
         Object oldResult = ocl.evaluate(ctd, exp);
         Notification noti = NotificationHelper.createChangeLowerMultiplicityNotification(p.getOwnedTypeDefinition(), 0);
         ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ClassesPackage.eINSTANCE

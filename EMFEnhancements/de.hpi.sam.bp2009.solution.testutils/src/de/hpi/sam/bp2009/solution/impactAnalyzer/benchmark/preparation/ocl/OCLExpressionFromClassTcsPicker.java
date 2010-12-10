@@ -54,28 +54,30 @@ public class OCLExpressionFromClassTcsPicker implements OCLExpressionPicker {
      *            to parse
      * @return a list of {@link Constraint}s parsed from given expression
      */
-    protected OCLExpressionWithContext parse(String expression, EPackage basePackage, OclExpressionWithPackage oclWithPackage) {
-		OCLInput exp = new OCLInput(expression);
-		String nsPrefix = basePackage.getNsPrefix();
-		EPackage.Registry.INSTANCE.put(nsPrefix, basePackage);
-		ArrayList<String> path = new ArrayList<String>();
-		path.add(nsPrefix);
-		OCL ocl = OCL.newInstance();
+    protected OCLExpressionWithContext parse(String expression, EPackage basePackage,
+            OclExpressionWithPackage oclWithPackage) {
+        OCLInput exp = new OCLInput(expression);
+        String nsPrefix = basePackage.getNsPrefix();
+        EPackage.Registry.INSTANCE.put(nsPrefix, basePackage);
+        ArrayList<String> path = new ArrayList<String>();
+        path.add(nsPrefix);
+        OCL ocl = com.sap.emf.ocl.util.OCL.newInstance();
         ocl = OCL.newInstance(new EnvironmentFactory().createPackageContext(ocl.getEnvironment(), basePackage));
-		OCLExpressionWithContext result = null;
-		try {
-		    @SuppressWarnings("rawtypes")
-		    ExpressionInOCL specification = ocl.parse(exp).iterator().next().getSpecification();
-		    OCLExpression expr = (OCLExpression) specification.getBodyExpression();
+        OCLExpressionWithContext result = null;
+        try {
+            @SuppressWarnings("rawtypes")
+            ExpressionInOCL specification = ocl.parse(exp).iterator().next().getSpecification();
+            OCLExpression expr = (OCLExpression) specification.getBodyExpression();
 
-		    result = new OCLExpressionWithContext(expr, (EClass) specification.getContextVariable().getType(), oclWithPackage);
+            result = new OCLExpressionWithContext(expr, (EClass) specification.getContextVariable().getType(),
+                    oclWithPackage);
 
-		} catch (ParserException e) {
-		    System.err.println("Error while parsing Expression:" + exp);
-		    e.printStackTrace();
-		    System.exit(0);
-		}
-		return result;
+        } catch (ParserException e) {
+            System.err.println("Error while parsing Expression:" + exp);
+            e.printStackTrace();
+            System.exit(0);
+        }
+        return result;
     }
 
 }
