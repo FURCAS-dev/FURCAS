@@ -40,9 +40,7 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.VariableExp;
-import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
 import org.eclipse.ocl.parser.AbstractOCLParser;
-import org.eclipse.ocl.parser.backtracking.OCLBacktrackingParser;
 
 /**
  * @since 3.1
@@ -53,32 +51,6 @@ public class OCLAnalyzer
 		EEnumLiteral, EParameter, EObject,
 		CallOperationAction, SendSignalAction, Constraint,
 		EClass, EObject> {
-
-	/**
-	 * @since 3.1
-	 */
-	public static class Provider
-		implements AbstractOCLAnalyzer.IProvider<EPackage, EClassifier, EOperation, EStructuralFeature,
-		EEnumLiteral, EParameter, EObject,
-		CallOperationAction, SendSignalAction, Constraint,
-		EClass, EObject>
-	{
-		public OCLAnalyzer createOCLAnalyzer(
-			Environment<EPackage, EClassifier, EOperation, EStructuralFeature,
-			EEnumLiteral, EParameter, EObject,
-			CallOperationAction, SendSignalAction, Constraint,
-			EClass, EObject> environment, String input) {
-			return new OCLAnalyzer(environment, input);
-		}
-
-		public OCLAnalyzer createOCLAnalyzer(
-			Environment<EPackage, EClassifier, EOperation, EStructuralFeature,
-			EEnumLiteral, EParameter, EObject,
-			CallOperationAction, SendSignalAction, Constraint,
-			EClass, EObject> environment, OCLBacktrackingParser parser) {
-			return new OCLAnalyzer(parser);
-		}
-	}
 
 	public OCLAnalyzer(AbstractOCLParser parser) {
 		super(parser);
@@ -164,15 +136,6 @@ public class OCLAnalyzer
 
 		initPropertyPositions(result, simpleNameCS);
 		return result;
-	}
-
-	@Override
-	protected org.eclipse.ocl.parser.OCLFactoryWithHistory createOCLFactoryWithHistory(
-			Environment<EPackage, EClassifier, EOperation, EStructuralFeature,
-			EEnumLiteral, EParameter, EObject,
-			CallOperationAction, SendSignalAction, Constraint,
-			EClass, EObject> env) {
-		return new OCLFactoryWithHistory(env.getOCLFactory());
 	}
 
 	private OppositePropertyCallExp createOppositePropertyCallExp(
