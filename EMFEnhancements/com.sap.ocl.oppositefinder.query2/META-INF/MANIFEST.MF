@@ -9,8 +9,8 @@ Require-Bundle: org.eclipse.emf,
  org.eclipse.emf.ecore,
  org.eclipse.ocl,
  org.eclipse.ocl.ecore,
- org.eclipse.emf.query2,
- org.eclipse.emf.query.index.ui,
- org.eclipse.emf.query.index,
- de.hpi.sam.bp2009.solution.queryContextScopeProvider
+ de.hpi.sam.bp2009.solution.queryContextScopeProvider,
+ org.eclipse.emf.query2.core,
+ org.eclipse.emf.query2.index,
+ org.eclipse.emf.query2.index.ui
 Export-Package: com.sap.ocl.oppositefinder.query2
