@@ -42,6 +42,8 @@ public interface ParserFactory<P extends ObservableInjectingParser,
     
     public EPackage getMetamodelPackage(ResourceSet connection);
     
+    public URI getSyntaxUri();
+    
     public String getLanguageId();
 
     public Set<URI> getParserLookupScope(ResourceSet connection);

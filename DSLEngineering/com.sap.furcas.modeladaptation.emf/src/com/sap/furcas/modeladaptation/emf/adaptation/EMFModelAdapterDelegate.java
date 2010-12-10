@@ -90,18 +90,19 @@ public class EMFModelAdapterDelegate {
         // FIXME: it does not make much sense to pass the explicitly given referenceScope to the metamodeLookup class
         // This is hack is required atm, because we have testcases that use several distinct
         // ecore files without a unifying super-package.
-        Set<URI> referenceScopeIncludingMetamodels = new HashSet<URI>(referenceScope);
+        Set<URI> localReferenceScope = referenceScope != null ? referenceScope : new HashSet<URI>();
+        Set<URI> referenceScopeIncludingMetamodels = new HashSet<URI>(localReferenceScope);
         referenceScopeIncludingMetamodels.add(URI.createURI(rootPackage.getNsURI()));
         referenceScopeIncludingMetamodels.add(URI.createURI(rootPackage.eClass().getEPackage().getNsURI()));
         metamodelLookup = new QueryBasedEcoreMetaModelLookUp(resourceSet, referenceScopeIncludingMetamodels);
         
         // The model lookup needs to know about the element created by this delegate
         transientResource = createTransientParsingResource(resourceSet);
-        Set<URI> referenceScopeIncludingCreatedElements = new HashSet<URI>(referenceScope);
+        Set<URI> referenceScopeIncludingCreatedElements = new HashSet<URI>(localReferenceScope);
         referenceScopeIncludingCreatedElements.add(transientResource.getURI());
         modelLookup = new EcoreModelElementFinder(resourceSet, referenceScopeIncludingCreatedElements, metamodelLookup);
         QueryContextProvider queryContext = new ProjectDependencyQueryContextProvider(getAdditionalScopeSeeds(
-                resourceSet, referenceScope));
+                resourceSet, localReferenceScope));
         this.oclEvaluator = new TCSSpecificOCLEvaluator(queryContext);
         this.oppositeEndFinder = new Query2OppositeEndFinder(queryContext);
     }
