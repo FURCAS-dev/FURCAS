@@ -1,0 +1,12 @@
+package com.sap.furcas.example.java.imported;
+
+/**
+ * This class is referenced by another class.
+ * See the documentation of MiniJava_TestImportPackage.sam
+ *
+ * @author Stephan Erb
+ */
+public class ClassB {
+	
+}
+
