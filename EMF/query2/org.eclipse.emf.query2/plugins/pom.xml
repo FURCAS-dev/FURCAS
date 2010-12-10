@@ -17,6 +17,8 @@
   <modules>
     <module>org.eclipse.emf.query2.core</module>
     <module>org.eclipse.emf.query2.stringsyntax</module>
+    <module>org.eclipse.emf.query2.stringsyntax.ui</module>
+    <module>org.eclipse.emf.query2.stringsyntax.tools.ui</module>
     <module>org.eclipse.emf.query2.index</module>
     <module>org.eclipse.emf.query2.index.ui</module>
   </modules>
