@@ -4,28 +4,27 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="MiniJava"
     nsURI="http://www.furcas.org/example/minijava" nsPrefix="">
   <eClassifiers xsi:type="ecore:EClass" name="CompilationUnit">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="classes" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containedClass" lowerBound="1"
         eType="#//ClassDeclaration" containment="true" eOpposite="#//ClassDeclaration/compilationUnit"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="imports" upperBound="-1"
-        eType="#//PackageImport" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="package" eType="#//Package"/>
+        eType="#//ClassImport" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="package_" eType="#//Package"
+        eOpposite="#//Package/compilationUnits"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PackageImport">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="package" lowerBound="1"
-        eType="#//Package"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassImport">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importedClass" lowerBound="1"
+        eType="#//ClassDeclaration" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassDeclaration" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
         eType="#//MemberDeclaration" containment="true" eOpposite="#//MemberDeclaration/parentClass"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="#//Visibility"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="package" eType="#//Package"
-        eOpposite="#//Package/classes"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="compilationUnit" eType="#//CompilationUnit"
-        eOpposite="#//CompilationUnit/classes"/>
+        eOpposite="#//CompilationUnit/containedClass"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Package" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="classes" upperBound="-1"
-        eType="#//ClassDeclaration" containment="true" eOpposite="#//ClassDeclaration/package"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compilationUnits" upperBound="-1"
+        eType="#//CompilationUnit" containment="true" eOpposite="#//CompilationUnit/package_"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FieldDeclaration" eSuperTypes="#//MemberDeclaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="MemberDeclaration" abstract="true" eSuperTypes="#//TypedElement">
@@ -49,7 +48,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Parameter" eSuperTypes="#//TypedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="TypedElement" abstract="true" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ClassDeclaration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//ClassDeclaration"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Statement"/>
 </ecore:EPackage>
