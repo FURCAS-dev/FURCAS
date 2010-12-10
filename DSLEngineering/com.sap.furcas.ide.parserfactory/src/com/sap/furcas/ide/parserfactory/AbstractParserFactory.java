@@ -118,6 +118,12 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
 		EPackage mmPackage = getMetamodelPackage(connection);
 		return mmPackage.eResource().getURI();
 	}
+	
+	@Override
+	public URI getSyntaxUri() {
+	    //TODO default position of the mapping model file
+	    return null;
+	}
 
 	@Override
 	public L createLexer(CharStream input, ITokenFactory<? extends ANTLR3LocationToken> factory) {
