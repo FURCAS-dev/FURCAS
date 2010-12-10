@@ -119,7 +119,7 @@ public class ANTLRGrammarGenerator {
         
         this.writer = grammarWriter;
         this.syntax = syntaxbean.getSyntax();
-        this.syntaxLookup = new SyntaxLookup(syntax, syntaxbean.getKeywords(), resolutionHelper);
+        this.syntaxLookup = new SyntaxLookup(syntax, resolutionHelper);
         TemplateNamingHelper<T> namingHelper = new TemplateNamingHelper<T>(resolutionHelper);
         this.locationMap = syntaxbean.getElementToLocationMap();
         
@@ -178,6 +178,8 @@ public class ANTLRGrammarGenerator {
 
         writer.setGrammarName(syntax.getName());
         // FIXME: currently no id is defined / generated // EcoreUtil.getID(syntax)
+        // this should really be a UUID so that we can identify if the syntax was newly 
+        // generated. THis change in UUID is used to trigger the migration algorithms.
         writer.setSyntaxUUID(syntax.getName());
 
         String lexerString = syntax.getLexer();

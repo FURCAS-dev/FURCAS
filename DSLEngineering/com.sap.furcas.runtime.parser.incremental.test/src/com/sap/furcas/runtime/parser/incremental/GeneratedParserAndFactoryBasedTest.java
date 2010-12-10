@@ -20,6 +20,7 @@ import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.parser.testbase.ClassLookup;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
@@ -49,22 +50,17 @@ public abstract class GeneratedParserAndFactoryBasedTest extends
 
     public static IncrementalParserFacade getIncrementalFacade(String language,
             ResourceSet rs, EditingDomain editingDomain,
-            OppositeEndFinder oppositeEndFinder, Set<URI> resourcesForLookup)
+            OppositeEndFinder oppositeEndFinder, Set<URI> resourcesForLookup, ClassLookup classLookup)
             throws InvalidParserImplementationException,
             InstantiationException, IllegalAccessException {
-
         if (generationHelper == null) {
             return null;
         }
-
         Class<AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>> parserFactoryClass = generationHelper
-                .getParserFactoryClass(language);
-
+                .getParserFactoryClass(language, classLookup);
         AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory = parserFactoryClass
                 .newInstance();
-
         EPackage metamodelPackage = parserFactory.getMetamodelPackage(rs);
-
         IncrementalParserFacade facade = createFacade(parserFactory,
                 metamodelPackage, rs, resourcesForLookup, editingDomain,
                 oppositeEndFinder);

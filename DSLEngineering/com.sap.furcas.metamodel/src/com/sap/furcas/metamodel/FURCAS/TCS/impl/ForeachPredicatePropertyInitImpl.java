@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -92,7 +93,7 @@ public class ForeachPredicatePropertyInitImpl extends PropertyInitImpl implement
      */
         public EList<PredicateSemantic> getPredicateSemantic() {
         if (predicateSemantic == null) {
-            predicateSemantic = new EObjectContainmentEList<PredicateSemantic>(PredicateSemantic.class, this, TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__PREDICATE_SEMANTIC);
+            predicateSemantic = new EObjectContainmentWithInverseEList<PredicateSemantic>(PredicateSemantic.class, this, TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__PREDICATE_SEMANTIC, TCSPackage.PREDICATE_SEMANTIC__FOREACH_PARENT);
         }
         return predicateSemantic;
     }
@@ -116,6 +117,21 @@ public class ForeachPredicatePropertyInitImpl extends PropertyInitImpl implement
         mode = newMode;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__MODE, oldMode, mode));
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__PREDICATE_SEMANTIC:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getPredicateSemantic()).basicAdd(otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
     }
 
         /**
