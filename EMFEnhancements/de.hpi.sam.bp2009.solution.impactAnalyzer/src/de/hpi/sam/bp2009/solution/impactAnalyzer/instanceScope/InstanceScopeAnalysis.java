@@ -99,7 +99,7 @@ public class InstanceScopeAnalysis implements PartialEvaluatorFactory {
      *            {@link Tracer}s can retrieve it using {@link PathCache#getOppositeEndFinder()}.
      */
     public InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer, OppositeEndFinder oppositeEndFinder, ActivationOption configuration, OCLFactory oclFactory) {
-        this(expression, exprContext, filterSynthesizer, oppositeEndFinder, new PartialEvaluator(oclFactory), configuration,
+        this(expression, exprContext, filterSynthesizer, oppositeEndFinder, new PartialEvaluator(oclFactory, oppositeEndFinder), configuration,
                 oclFactory,
                 /* pathCache */ configuration.isTracebackStepISAActive() ? null : new PathCache(oppositeEndFinder), /* tracebackStepCache */ configuration.isTracebackStepISAActive() ? new TracebackStepCache(oppositeEndFinder) : null);
     }
@@ -251,7 +251,7 @@ public class InstanceScopeAnalysis implements PartialEvaluatorFactory {
     private boolean hasNoEffectOnOverallExpression(Notification event, NavigationCallExp attributeOrAssociationEndCall,
             AnnotatedEObject sourceElement){
 	if(configuration.isDeltaPropagationActive()) {
-	    PartialEvaluator partialEvaluatorAtPre = new PartialEvaluator(event, oppositeEndFinder, oclFactory);
+	    PartialEvaluator partialEvaluatorAtPre = createPartialEvaluator(event, oppositeEndFinder, oclFactory);
 	    Object oldValue = partialEvaluatorAtPre.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
 	    PartialEvaluator partialEvaluatorAtPost = createPartialEvaluator(oppositeEndFinder, oclFactory);
 	    Object newValue = partialEvaluatorAtPost.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());

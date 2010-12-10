@@ -92,7 +92,7 @@ public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactoryWithS
     
     // implements the inherited specification
     public EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> createEvaluationEnvironment() {
-        return new PartialEcoreEvaluationEnvironment(this);
+        return new PartialEcoreEvaluationEnvironment(this, valueOfSourceExpression);
     }
 
     // implements the inherited specification
