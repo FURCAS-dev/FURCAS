@@ -39,6 +39,16 @@ import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
 import org.eclipse.ocl.ecore.internal.evaluation.TracingEvaluationVisitor;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.ecore.parser.OCLAnalyzer;
+import org.eclipse.ocl.ecore.parser.OCLFactoryWithHistory;
+import org.eclipse.ocl.ecore.parser.ValidationVisitor;
+import org.eclipse.ocl.helper.OCLSyntaxHelper;
+import org.eclipse.ocl.parser.backtracking.OCLBacktrackingParser;
+import org.eclipse.ocl.utilities.Visitor;
+
+
 
 /**
  * Implementation of the {@link EnvironmentFactory} for parsing OCL expressions
@@ -50,15 +60,18 @@ public class EcoreEnvironmentFactory
 	extends AbstractEnvironmentFactory<
 		EPackage, EClassifier, EOperation, EStructuralFeature,
 		EEnumLiteral, EParameter,
-		EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> {
+		EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
+	implements EcoreEnvironmentFactoryInterface {
 	
 	/**
-	 * A convenient shared instance of the environment factory, that creates
-	 * environments using the global package registry.
+     * A convenient shared instance of the environment factory, that creates
+     * environments using the global package registry.
 	 */
-	public static EcoreEnvironmentFactory INSTANCE = new EcoreEnvironmentFactory();
+    public static EcoreEnvironmentFactory INSTANCE = new EcoreEnvironmentFactory();
 	
 	private final EPackage.Registry registry;
+
+	private OppositeEndFinder oppositeEndFinder = null;
 
 	/**
 	 * Initializes me.  Environments that I create will use the global package
@@ -117,30 +130,30 @@ public class EcoreEnvironmentFactory
         return oclType(context);
 	}
     
-	static EClassifier oclType(Object object) {
-		EClassifier result = null;
-
-		if (object instanceof EObject) {
-			result = ((EObject) object).eClass();
-		} else {
-			// maybe it's an instance of an Ecore data type?
-			for (EClassifier next : EcorePackage.eINSTANCE.getEClassifiers()) {
+    static EClassifier oclType(Object object) {
+        EClassifier result = null;
+        
+        if (object instanceof EObject) {
+            result = ((EObject) object).eClass();
+        } else {
+            // maybe it's an instance of an Ecore data type?
+            for (EClassifier next : EcorePackage.eINSTANCE.getEClassifiers()) {
                 if ((next != EcorePackage.Literals.EJAVA_OBJECT) && (next.isInstance(object))) {
-					result = UMLReflectionImpl.INSTANCE.asOCLType(next);
-					break;
-				}
-			}
+                    result = UMLReflectionImpl.INSTANCE.asOCLType(next);
+                    break;
+                }
+            }
+            
+            if (result == null) {
+                // it's just some weirdo object that we don't understand
+                result = OCLStandardLibraryImpl.INSTANCE.getOclAny();
+            }
+        }
+        
+        return result;
+    }
 
-			if (result == null) {
-				// it's just some weirdo object that we don't understand
-				result = OCLStandardLibraryImpl.INSTANCE.getOclAny();
-			}
-		}
-
-		return result;
-	}
-
-	// implements the inherited specification
+    // implements the inherited specification
 	public Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
 	createEnvironment(Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
 		if (!(parent instanceof EcoreEnvironment)) {
@@ -153,17 +166,80 @@ public class EcoreEnvironmentFactory
 		return result;
 	}
 
-	// implements the inherited specification
+    // implements the inherited specification
 	public EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject>
 	createEvaluationEnvironment() {
-		return new EcoreEvaluationEnvironment();
+		return new EcoreEvaluationEnvironment(this);
 	}
 
-	// implements the inherited specification
+    // implements the inherited specification
 	public EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject>
 	createEvaluationEnvironment(
 			EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> parent) {
 		return new EcoreEvaluationEnvironment(parent);
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	@Override
+	public OCLAnalyzer createOCLAnalyzer(
+			Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env,
+			String input) {
+		return new OCLAnalyzer(env, input);
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	@Override
+	public OCLAnalyzer createOCLAnalyzer(
+			Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env,
+			OCLBacktrackingParser parser) {
+		return new OCLAnalyzer(parser);
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	public OCLFactoryWithHistory createOCLFactoryWithHistory(
+			Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env) {
+		return new OCLFactoryWithHistory(env.getOCLFactory());
+	}
+
+	/**
+	 * @since 3.1
+	 */
+    @Override
+	public OCLSyntaxHelper createOCLSyntaxHelper(
+			Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env) {
+		return new org.eclipse.ocl.ecore.internal.helper.OCLSyntaxHelper(env);
+	}
+
+	/**
+	 * @since 3.1
+	 */
+    @Override
+	public Visitor<Boolean, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> createValidationVisitor(
+		Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env) {
+		return new ValidationVisitor(env);
+	}
+
+	/**
+	 * @since 3.1
+	 */
+    protected OppositeEndFinder createOppositeEndFinder(EPackage.Registry registry) {
+		return new DefaultOppositeEndFinder(registry);
+	}
+
+	/**
+	 * @since 3.1
+	 */
+    public OppositeEndFinder getOppositeEndFinder() {
+    	if (oppositeEndFinder == null) {
+    		oppositeEndFinder = createOppositeEndFinder(registry);
+    	}
+		return oppositeEndFinder;
 	}
 
 	/**

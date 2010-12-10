@@ -134,7 +134,6 @@ import org.eclipse.ocl.lpg.BasicEnvironment2;
 import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.options.ParsingOptions;
 import org.eclipse.ocl.options.ProblemOption;
-import org.eclipse.ocl.parser.backtracking.OCLBacktrackingParser;
 import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.MessageType;
@@ -143,7 +142,6 @@ import org.eclipse.ocl.types.OrderedSetType;
 import org.eclipse.ocl.types.SequenceType;
 import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.types.VoidType;
-import org.eclipse.ocl.util.Adaptable;
 import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.util.OCLUtil;
@@ -153,9 +151,6 @@ import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.ocl.utilities.UMLReflection;
-
-import com.google.inject.ImplementedBy;
-import com.google.inject.Injector;
 
 /**
  * The <code>AbstractOCLAnalyzer</code> supports semantic analysis of a CST
@@ -176,88 +171,6 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	private static final String OCL_ESCAPE_PREFIX = "_"; //$NON-NLS-1$
 
 	private static final int OCL_ESCAPE_LENGTH = OCL_ESCAPE_PREFIX.length();
-
-	/**
-	 * The OCLAnalyzer Provider orchestrates creation of OCLAnalyzer instances. An
-	 * alternate OCLAnalyzer implementation may be used by configuring the
-	 * environment's injector with a module configured with the alternate bindings.
-	 * 
-	 * @since 3.1
-	 */
-	@ImplementedBy(OCLAnalyzer.Provider.class)
-	public static interface IProvider<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-	{
-		/**
-		 * Creates an instance of the OCLAnalyzer that analyzes the
-		 * given input on behalf of an environment.
-		 * 
-		 * @param  the environment
-		 * @param input the text to be analyzed
-		 * 
-		 * @return an OCLAnalyzer instance for this environment
-		 */
-		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCLAnalyzer(
-			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment, String input);
-
-		/**
-		 * Creates an instance of the OCLAnalyzer that analyzes the
-		 * given parser's input on behalf of an environment.
-		 * 
-		 * @param  the environment
-		 * @param parser performing syntax analysis
-		 * 
-		 * @return an OCLAnalyzer instance for this environment
-		 */
-		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCLAnalyzer(
-			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment, OCLBacktrackingParser parser);
-	}
-	
-	/**
-	 * Obtains an instance of the OCLAnalyzer that analyzes the
-	 * given input on behalf of the specified environment.
-	 * 
-	 * @param environment an OCL environment (must not be <code>null</code>)
-	 * @param input the text to be analyzed
-	 * 
-	 * @return an OCLAnalyzer instance for the specified environment
-	 * @since 3.1
-	 */
-	public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCLAnalyzer(
-				Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment, String input) {
-		if (environment instanceof Adaptable) {
-			Injector injector = ((Adaptable)environment).getAdapter(Injector.class);
-			@SuppressWarnings("unchecked")
-			IProvider<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> provider = injector.getInstance(IProvider.class);
-			if (provider != null) {
-				return provider.createOCLAnalyzer(environment, input);
-			}
-		}		
-		return new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(environment, input);
-	}
-
-	/**
-	 * Obtains an instance of the OCLAnalyzer that analyzes the
-	 * given parser's input on behalf of the specified environment.
-	 * 
-	 * @param environment an OCL environment (must not be <code>null</code>)
-	 * @param parser performing syntax analysis
-	 * 
-	 * @return an OCLAnalyzer instance for the specified environment
-	 * @since 3.1
-	 */
-	public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCLAnalyzer(
-			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment,
-			OCLBacktrackingParser parser) {
-		if (environment instanceof Adaptable) {
-			Injector injector = ((Adaptable)environment).getAdapter(Injector.class);
-			@SuppressWarnings("unchecked")
-			IProvider<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> provider = injector.getInstance(IProvider.class);
-			if (provider != null) {
-				return provider.createOCLAnalyzer(environment, parser);
-			}
-		}		
-		return new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(parser);
-	}
 
 	/*
 	 * Factories for creating OCL AST nodes

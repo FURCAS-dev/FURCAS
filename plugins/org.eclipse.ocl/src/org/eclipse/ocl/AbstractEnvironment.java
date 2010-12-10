@@ -30,7 +30,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.Variable;
-import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.lpg.AbstractBasicEnvironment;
 import org.eclipse.ocl.lpg.ProblemHandler;
@@ -44,8 +43,6 @@ import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.util.UnicodeSupport;
 import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.utilities.TypedElement;
-
-import com.google.inject.Injector;
 
 /**
  * A partial implementation of the {@link Environment} interface providing
@@ -106,8 +103,6 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	private Map<P, CT> propertyDerivations = new java.util.HashMap<P, CT>();
 	
 	private TypeChecker<C, O, P> typeChecker;
-
-	private Injector injector;
 
     /**
      * Initializes me without a parent environment.
@@ -1254,42 +1249,12 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T getAdapter(Class<T> adapterType) {
-		if (adapterType == Injector.class) {
-			return (T) getInjector();
-		}
 		if (adapterType == TypeChecker.class) {
 			return (T) getTypeChecker();
 		}
 		
 		return super.getAdapter(adapterType);
 	}	
-
-	/**
-	 * Creates the Dependency Injector for this environment using one or more overriding modules.
-	 * 
-	 * @return the dependency injector
-	 * 
-	 * @since 3.1
-	 */
-	protected Injector createInjector() {
-		injector = OCLPlugin.getInjector();
-		return injector;
-	}
-
-	/**
-	 * Obtains the Dependency Injector for this environment, creating one without overrides if no previous
-	 * call to createInjector has occurred.
-	 * 
-	 * @return the dependency injector
-	 * 
-	 * @since 3.1
-	 */
-	protected Injector getInjector() {
-		if (injector == null) {
-			injector = createInjector();
-		}
-		return injector;
-	}
 
 	//
 	// Nested classes
