@@ -25,7 +25,7 @@ import org.junit.Assert;
 import org.junit.Before;
 
 
-public class QueryTestCase extends Assert {
+public abstract class QueryTestCase extends Assert {
 
 	private static final Index DEFAULT_INDEX = new PageableIndexImpl(Options.PAGING_AND_DUMPING_DISABLED);
 
