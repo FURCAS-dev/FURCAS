@@ -10,7 +10,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -203,14 +202,14 @@ public class TestSyntaxLookup {
     @Test
     public void testGetAllKeywords() {
         MetaModelElementResolutionHelperStub namingHelper = new MetaModelElementResolutionHelperStub();
-        Set<Keyword> keywords = new HashSet<Keyword>();
+        EList<Keyword> keywordList = new BasicEList<Keyword>();
         Keyword keyStub1 = new KeywordStub();
         
-        keywords.add(keyStub1 );
+        keywordList.add(keyStub1 );
         ConcreteSyntaxStub syntax = new ConcreteSyntaxStub();
-        EList<Keyword> keywordList = new BasicEList<Keyword>();
+        
         Keyword keyStub2 = new KeywordStub();
-        keywords.add(keyStub2 );
+        keywordList.add(keyStub2 );
         syntax.keywords = keywordList;
         
         SyntaxLookup lookup = new SyntaxLookup(syntax, namingHelper);
