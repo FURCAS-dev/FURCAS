@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.emf.query2.core.feature"
-      label="EMF Query2 Core"
+      label="EMF Query2 Core Feature"
       version="1.0.0.qualifier"
-      provider-name="EMF Query2 Core Feature">
+      provider-name="Eclipse Modeling Project">
 
    <description url="http://www.eclipse.org/modeling/emf/">
       %description

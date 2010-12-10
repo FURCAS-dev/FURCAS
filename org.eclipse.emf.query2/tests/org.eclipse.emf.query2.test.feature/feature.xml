@@ -3,7 +3,7 @@
       id="org.eclipse.emf.query2.test.feature"
       label="Query2 Tests"
       version="1.0.0.qualifier"
-      provider-name="eclipse.org">
+      provider-name="Eclipse Modeling Project">
 
    <description url="http://www.eclipse.org/modeling/emf/">
       %description
