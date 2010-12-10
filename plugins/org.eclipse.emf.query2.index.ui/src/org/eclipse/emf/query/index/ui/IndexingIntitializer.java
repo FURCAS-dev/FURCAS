@@ -15,7 +15,6 @@ import org.eclipse.ui.IStartup;
 
 public class IndexingIntitializer implements IStartup {
 
-	@Override
 	public void earlyStartup() {
 		// Check whether master dump file for indices exist or not. If the file does not exist then start a full build, otherwise a incremental build
 		// can be run.
