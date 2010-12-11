@@ -6,62 +6,59 @@ syntax People {
 	-- tagged contexts
 	-- OCL queries
 
-	primitiveTemplate identifier for ->String default using NAME:
+	primitiveTemplate identifier for String default using NAME:
 		value = "unescapeString(%token%)";
 
-
 	
-	
-	template ->World main context
+	template World main context
 		: 
-		[[ "world" "{" ->nations{separator=","} "}"
-		|	disambiguate("~WORLD") "heaven" "{" ->nations{separator=","} "}" "defs:" ->definitions
+		[[ "world" "{" nations{separator=","} "}"
+		|	disambiguate("~WORLD") "heaven" "{" nations{separator=","} "}" "defs:" definitions
 		]]
 		;
-	
 		
-	template ->Nation context(nationTag)
-		: ->name "[" ->cities{separator=","} "]"
-		  "capital:" ->capital{refersTo=name, lookIn='cities'}
+	template Nation context(nationTag)
+		: name "[" cities{separator=","} "]"
+		  "capital:" capital{refersTo=name, lookIn='cities'}
 		;
 		
-	template ->City context addToContext
-		: ->name "(" ->persons{separator=","} ")"
-		  (isDefined(->representative) ? "representative:" 
-		  	->representative{
-		  			filter = "->select(p | p.name = ?)", invert = "self.name",
+	template City context addToContext
+		: name "(" persons{separator=","} ")"
+		  (isDefined(representative) ? "representative:" 
+		  	representative{
+		  			filter = "->select(p | p.name = 'hugo')", invert = "self.name",
 		  			refersTo = name,
 		  			query = "OCL:#context(nationTag).capital.persons"
 		  		})
 		;
 		
-	template ->Person
+	template Person
 		: 
-			->name
+			name
 			
 			-- language does not allow for person to be anywhere
 			-- in other nation than its container (which does not need to be a bug)  
-			"@" ->currentlyIn{refersTo = name, lookIn = '#context(nationTag).cities'} 
-			(isDefined(->parents) ? 
+			"@" currentlyIn{refersTo = name, lookIn = '#context(nationTag).cities'} 
+			(isDefined(parents) ? 
 				"("
-					"mother:" ->parents{refersTo=name, forcedLower=1, forcedUpper=1}
-				--	"father:" ->parents{refersTo=name, forcedLower=1, forcedUpper=1}
+					"mother:" parents{refersTo=name, forcedLower=1, forcedUpper=1}
+				--	"father:" parents{refersTo=name, forcedLower=1, forcedUpper=1}
 				")"
 			)	
-			(isDefined(->spouse) ? 
-				"spouse:" ->spouse{as=identifier, query="OCL:Person.allInstances()", filter="->select(p|p.name=?)"}
+			(isDefined(spouse) ? 
+				"spouse:" spouse{as=identifier, query="OCL:Person.allInstances()", filter="->select(p|p.name=?)"}
 			)
-			{{->male = 'true', ->age='42', ->height='1.83', ->codeName='"Viper"', ->embassy=lookIn("currentlyIn.nation.capital"), ->embassy2=lookIn("OCL:currentlyIn.nation.capital")}} -- nonsense defaults
+			{{male = 'true', age='42', height='1.83', codeName='"Viper"', embassy=lookIn("currentlyIn.nation.capital"), embassy2=lookIn("OCL:currentlyIn.nation.capital")}} -- nonsense defaults
 		;
 		
-	template ->PersonDefinition abstract operatored(PersonDefinitions);
+	template PersonDefinition abstract operatored(PersonDefinitions);
 	
-	template ->ConcretePersonDefinition 
-		:	->person{refersTo=name}
+	template ConcretePersonDefinition 
+		:	person{refersTo=name}
 		;
 	
-	operatorTemplate ->NestedPersonDefinition(operators = starOp, source=->'nestedDefinition', storeOpTo = ->op)
-		:	{{ ->lowerMultiplicity='0', ->upperMultiplicity='-1'}}
+	operatorTemplate NestedPersonDefinition(operators = starOp, source='nestedPersonDefinition', storeOpTo = op)
+		:	{{ lowerMultiplicity='0', upperMultiplicity='-1'}}
 		;
 	
 	
