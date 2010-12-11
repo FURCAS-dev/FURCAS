@@ -1,3 +1,8 @@
+/**
+ * A simple language feature definition and usages.
+ * Usages are bound to corresponding definition using the queryByIdentifier property argument.
+ *
+ */
 syntax QueryByIdentifierFeatureTestSyntax { 
 
   primitiveTemplate identifier for ecore::EString default using NAME
@@ -5,8 +10,8 @@ syntax QueryByIdentifierFeatureTestSyntax {
     ;
   
   template DefinitionUsageList main
-    : "definitions ":" definitions
-      "usages" ":" usages
+    : "Definitions" ":" definitions
+      "Usages" ":" usages
     ;
 
   template Definition 
@@ -14,9 +19,9 @@ syntax QueryByIdentifierFeatureTestSyntax {
     ;
 
   template Usage 
-    : "use" boundDefinition{queryByIdentifier="OCL:self.parentList.definitions", feature="name"} ";"
+    : "use" boundDefinition{queryByIdentifier="OCL:self.parentList.definitions", feature=name} ";"
     ;
 
-  token COMMENT : endOfLine(start = "//");
+  omitted token COMMENT : endOfLine(start = "//");
 
 }

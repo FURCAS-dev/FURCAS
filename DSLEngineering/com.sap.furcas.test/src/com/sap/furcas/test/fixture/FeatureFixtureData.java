@@ -4,7 +4,7 @@ import java.io.File;
 
 public class FeatureFixtureData {
     
-    public static final File EXAMPLE_FOLDER = new File("../com.sap.furcas.test/featureFixtures/");
+    public static final String EXAMPLE_FOLDER = "../com.sap.furcas.test/featureFixtures/";
 
     
     // EnumerationTemplates Tests
