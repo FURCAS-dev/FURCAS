@@ -1,6 +1,7 @@
 // A simple example for the query by identifier feature
 //
 // There is a definition corresponding to each usage statement.  
+
 Definitions:
 	def a;
 	def b;

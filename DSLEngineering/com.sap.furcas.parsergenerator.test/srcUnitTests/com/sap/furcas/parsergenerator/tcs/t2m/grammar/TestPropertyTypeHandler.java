@@ -1005,10 +1005,7 @@ public class TestPropertyTypeHandler {
     
     @Test
     public void testAddElementQueryByIdentifier() throws MetaModelLookupException, SyntaxElementException {
-        SyntaxLookupStub syntaxLookupStub = getSyntaxStubWithTemplateStubs();
-        // the default primitive template to be used to serialize the mock property created below
-        syntaxLookupStub.defaultPrimitiveTemplate = new PrimitiveTemplateStub(list("DefaultPrimitiveTemplate"));
-        syntaxLookupStub.defaultPrimitiveTemplate.setTemplateName("DefaultPrimitiveTemplate");
+        SyntaxLookupStub syntaxLookupStub = getSyntaxStubWithPrimitiveTemplateStubs();
         MetaLookupStub metaLookupStub = new MetaLookupStub();
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
@@ -1028,7 +1025,40 @@ public class TestPropertyTypeHandler {
         propHandler.addElement(prop, buf);
 
         assertEquals(
-                "( temp=DefaultPrimitiveTemplate {setOclRef(ret, \"PropertyName\", null, temp, \"OCL:self.fooFeature->select(ArgFeatureName = ?)\");})",
+                "( temp=FeatureTypeName {setOclRef(ret, \"PropertyName\", null, temp, \"OCL:self.fooFeature->select(ArgFeatureName = ?)\");})",
+                buf.getResult());
+    }
+    
+    @Test
+    public void testAddElementQueryByIdentifierAs() throws MetaModelLookupException, SyntaxElementException {
+        SyntaxLookupStub syntaxLookupStub = getSyntaxStubWithPrimitiveTemplateStubs();
+        MetaLookupStub metaLookupStub = new MetaLookupStub();
+        TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
+
+        // Class under test
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+
+        // result buffer
+        RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
+
+        PropertyStub prop = getMockProperty("PropertyName", "ParentClass", "FeatureTypeName", metaLookupStub, false, false);
+
+        QueryByIdentifierPargStub queryBy = new QueryByIdentifierPargStub();
+        queryBy.featureName = "ArgFeatureName";
+        queryBy.oclQuery = "OCL:self.fooFeature";
+        prop.args.add(queryBy);
+        
+        // Provide a specific primitive template that we want to use for serializing
+        AsPargStub asPArg = new AsPargStub();
+        PrimitiveTemplateStub primitiveTemplate = new PrimitiveTemplateStub(list("SpecificPrimitiveTemplate"));
+        primitiveTemplate.setTemplateName("SpecificPrimitiveTemplate");
+        asPArg.setTemplate(primitiveTemplate);
+        prop.args.add(asPArg);
+
+        propHandler.addElement(prop, buf);
+
+        assertEquals(
+                "( temp=SpecificPrimitiveTemplate {setOclRef(ret, \"PropertyName\", null, temp, \"OCL:self.fooFeature->select(ArgFeatureName = ?)\");})",
                 buf.getResult());
     }
 
@@ -1243,38 +1273,27 @@ public class TestPropertyTypeHandler {
     }
 
     class AsPargStub extends PargStub implements AsPArg {
-        public String value;
+        private String value;
+        private Template template;
 
-        /*
-         * (non-Javadoc)
-         * 
-         * @see TCS.AsPArg#getValue()
-         */
         @Override
-		public String getValue() {
+        public String getValue() {
             return value;
         }
 
-        /*
-         * (non-Javadoc)
-         * 
-         * @see TCS.AsPArg#setValue(java.lang.String)
-         */
         @Override
-		public void setValue(String value) {
-
+        public void setValue(String newValue) {
+            value = value;
         }
 
         @Override
         public void setTemplate(Template newValue) {
-            // TODO Auto-generated method stub
-
+            template = newValue;
         }
 
         @Override
         public Template getTemplate() {
-            // TODO Auto-generated method stub
-            return null;
+            return template;
         }
     }
 

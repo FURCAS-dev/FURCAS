@@ -1,6 +1,7 @@
 // A simple example for the query by identifier feature
 //
 // There are no definitions for the usages. It should not be possible  to resolve them.
+
 Definitions:
 	def myDefinition;
 	

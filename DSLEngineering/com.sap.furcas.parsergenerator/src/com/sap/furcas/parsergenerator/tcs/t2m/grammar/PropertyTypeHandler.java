@@ -312,7 +312,7 @@ public class PropertyTypeHandler<Type extends Object> {
             ResolvedNameAndReferenceBean<Type> metaModelTypeOfPropertyListName, String propertyName, PropertyArgs args)
             throws SyntaxElementException, MetaModelLookupException {
         // creates temp = ...
-        appendRefersToTempPart(prop, ruleBodyPart, metaModelTypeOfPropertyListName, args.asPArg, args.refersTo, true);
+        appendRefersToTempPart(prop, ruleBodyPart, metaModelTypeOfPropertyListName, args, true);
 
         // creates the bit that sets the temp from above as reference to
         // modelElement "ret" of this rule
@@ -326,7 +326,7 @@ public class PropertyTypeHandler<Type extends Object> {
         }
         String oclQuery = query.replaceAll("\\\"", "\\\\\"");
         oclQuery = oclQuery.replaceAll("\r\n", "\"+\r\n\"");
-        oclQuery = oclQuery.replaceAll("\n", "\"+\"");
+        oclQuery = oclQuery.replaceAll("\n", "\"+\n\"");
 
         validateOclQuery(prop, args, query);
 
@@ -378,10 +378,8 @@ public class PropertyTypeHandler<Type extends Object> {
     private void addRefersToCode(Property prop, StringBuilder ruleBodyPart,
             ResolvedNameAndReferenceBean<Type> metaModelTypeOfProperty, String propertyName, PropertyArgs args)
             throws MetaModelLookupException, MetamodelNameResolvingException, SyntaxElementException {
-        RefersToPArg refersTo = args.refersTo;
-
         // appends the temp = ... part
-        appendRefersToTempPart(prop, ruleBodyPart, metaModelTypeOfProperty, args.asPArg, refersTo, false);
+        appendRefersToTempPart(prop, ruleBodyPart, metaModelTypeOfProperty, args, false);
 
         // now append the part that sets temp as reference of modelelement "ret"
         // of this rule
@@ -415,7 +413,7 @@ public class PropertyTypeHandler<Type extends Object> {
         }
         if (!skipDelayedReferences) {
             ruleBodyPart.append(concatBuf(" {setRef(ret, \"", propertyName, "\", ", resolvedTypeOfPropertyName, ", \"",
-                    refersTo.getPropertyName(), "\", temp, " + lookIn + ", " + autoCreate + ", " + createAs + ", "
+                    args.refersTo.getPropertyName(), "\", temp, " + lookIn + ", " + autoCreate + ", " + createAs + ", "
                             + (args.importContextPArg != null) + ", " + createIn + ");}"));
         }
     }
@@ -430,58 +428,51 @@ public class PropertyTypeHandler<Type extends Object> {
      * @throws MetaModelLookupException
      */
     private void appendRefersToTempPart(Property prop, StringBuilder ruleBodyPart,
-            ResolvedNameAndReferenceBean<Type> metaModelTypeOfPropertyReference, AsPArg asPArg, RefersToPArg refersTo,
+            ResolvedNameAndReferenceBean<Type> metaModelTypeOfPropertyReference, PropertyArgs args,
             boolean primitivesOnly) throws SyntaxElementException, MetaModelLookupException {
         // example:
-        // temp=identifier {setRef(ret, "author", "Author", "name", temp, null,
-        // "never", null, false, null);}
-        // meaning create a delayed reference, where after all model elements
-        // have been created,
-        // the model injector will set Article.author = Author x with x.name =
-        // temp
+        // temp=identifier {setRef(ret, "author", "Author", "name", temp, null, "never", null, false, null);}
+        // meaning create a delayed reference, where after all model elements have been created,
+        // the model injector will set Article.author = Author x with x.name = temp
 
         ruleBodyPart.append(" temp=");
 
         // what Parser rule to call to create the key value for the referred object
-        if (asPArg == null && refersTo == null) {
-            PrimitiveTemplate propertyPrimitiveTemplate = syntaxLookup.getDefaultPrimitiveTemplateRule(metaModelTypeOfPropertyReference);
-            ruleBodyPart.append(namingHelper.getRuleNameForTemplate(propertyPrimitiveTemplate));
-        } else if (asPArg != null) {                    
-            if (asPArg.getTemplate() != null) {
-                ruleBodyPart.append(namingHelper.getRuleNameForTemplate(asPArg.getTemplate()));
+        if (args.asPArg != null) {
+            if (args.asPArg.getTemplate() != null) {
+                ruleBodyPart.append(namingHelper.getRuleNameForTemplate(args.asPArg.getTemplate()));
             } else {
-                String asRule = asPArg.getValue();
+                String asRule = args.asPArg.getValue();
                 if (!syntaxLookup.hasPrimitiveRule(asRule)) {
-                    errorBucket.addError("Unknown As reference " + asPArg, asPArg);
+                    errorBucket.addError("Unknown As reference " + args.asPArg, args.asPArg);
                 }
                 ruleBodyPart.append(asRule);
             }
         } else {
-            PrimitiveTemplate propertyPrimitiveTemplate = syntaxLookup
-                    .getDefaultPrimitiveTemplateRule(metaModelTypeOfPropertyReference);
+            PrimitiveTemplate propertyPrimitiveTemplate = syntaxLookup.getDefaultPrimitiveTemplateRule(metaModelTypeOfPropertyReference);
             // if this is null, then there is no primitive template for this, so
             // we need to consider PropertyType as a non-primitive
             boolean isPrimitive = (propertyPrimitiveTemplate != null);
 
             // need to find out what type the property is of (i.e.
             // Article.author is of Type Author)
-            if (isPrimitive) { // if primitive use the default primitive
-                               // template
-                ruleBodyPart.append(propertyPrimitiveTemplate);
+            if (isPrimitive) { // if primitive use the default primitive template
+                ruleBodyPart.append(propertyPrimitiveTemplate.getTemplateName());
             } else {
-                ResolvedNameAndReferenceBean<Type> referredFeatureType = metaLookup.getFeatureClassReference(
-                        metaModelTypeOfPropertyReference, refersTo.getPropertyName());
+                String propertyName = null;
+                if (args.oclQueryByIdentifierPArg == null) {
+                    propertyName = args.refersTo.getPropertyName();
+                } else {
+                    propertyName = args.oclQueryByIdentifierPArg.getFeature();
+                }
+                ResolvedNameAndReferenceBean<Type> referredFeatureType = metaLookup.getFeatureClassReference(metaModelTypeOfPropertyReference, propertyName);
                 if (referredFeatureType == null) {
-                    errorBucket.addError(
-                            "Type " + metaModelTypeOfPropertyReference + " has no feature " + refersTo.getPropertyName(),
-                            refersTo);
+                    errorBucket.addError("Type " + metaModelTypeOfPropertyReference + " has no feature " + propertyName, prop);
                 } else {
                     PrimitiveTemplate primTemp = syntaxLookup.getDefaultPrimitiveTemplateRule(referredFeatureType);
                     if (primTemp != null) {
                         ruleBodyPart.append(primTemp.getTemplateName());
                     } else {
-                        // QualifiedNamedElement featureClassTemplate =
-                        // syntaxLookup.getTCSTemplate(referredFeatureTypeName);
                         String calledRuleName = namingHelper.buildRuleName(referredFeatureType);
                         // TODO: check if we need to consider mode here
                         Collection<Template> checkTemplates = syntaxLookup.getTCSTemplate(referredFeatureType, null);
@@ -489,7 +480,6 @@ public class PropertyTypeHandler<Type extends Object> {
                             errorBucket.addError("Syntax does not define a rule for " + referredFeatureType, prop);
                         }
                         for (Template checkTemplate : checkTemplates) {
-
                             if (primitivesOnly && !(checkTemplate instanceof PrimitiveTemplate)) {
                                 errorBucket.addError("Query only possible for primitive feature references "
                                         + referredFeatureType, prop);
