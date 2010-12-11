@@ -30,7 +30,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.LookInPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ModePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
@@ -730,7 +730,7 @@ public class TestPropertyTypeHandler {
         assertTrue("Exception expected because Metamodel is invalid", caught);
 
     }
-
+    
     private PropertyStub getMockProperty(String propertyName, String parentName, String featureName,
             MetaLookupStub metaLookupStub, boolean isOptional, boolean isUnbounded) {
         // the template as class under test will use this for meta lookup
@@ -739,6 +739,11 @@ public class TestPropertyTypeHandler {
         PropertyStub prop = new PropertyStub() {
             @Override
             public EObject eContainer() {
+                return owner;
+            }
+
+            @Override
+            public Template getParentTemplate() {
                 return owner;
             }
 
@@ -996,6 +1001,35 @@ public class TestPropertyTypeHandler {
                 "( temp=FeatureTypeName {setRef(ret, \"PropertyName\", \"[FeatureTypeName]\", \"ArgPropertyName\", temp, null, \"never\", null, true, null);})",
                 buf.getResult());
 
+    }
+    
+    @Test
+    public void testAddElementQueryByIdentifier() throws MetaModelLookupException, SyntaxElementException {
+        SyntaxLookupStub syntaxLookupStub = getSyntaxStubWithTemplateStubs();
+        // the default primitive template to be used to serialize the mock property created below
+        syntaxLookupStub.defaultPrimitiveTemplate = new PrimitiveTemplateStub(list("DefaultPrimitiveTemplate"));
+        syntaxLookupStub.defaultPrimitiveTemplate.setTemplateName("DefaultPrimitiveTemplate");
+        MetaLookupStub metaLookupStub = new MetaLookupStub();
+        TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
+
+        // Class under test
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+
+        // result buffer
+        RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
+
+        PropertyStub prop = getMockProperty("PropertyName", "ParentClass", "FeatureTypeName", metaLookupStub, false, false);
+
+        QueryByIdentifierPargStub queryBy = new QueryByIdentifierPargStub();
+        queryBy.featureName = "ArgFeatureName";
+        queryBy.oclQuery = "OCL:self.fooFeature";
+        prop.args.add(queryBy);
+
+        propHandler.addElement(prop, buf);
+
+        assertEquals(
+                "( temp=DefaultPrimitiveTemplate {setOclRef(ret, \"PropertyName\", null, temp, \"OCL:self.fooFeature->select(ArgFeatureName = ?)\");})",
+                buf.getResult());
     }
 
     @Test
@@ -1288,26 +1322,32 @@ public class TestPropertyTypeHandler {
 
         }
     }
+    
+    class QueryByIdentifierPargStub extends PargStub implements QueryByIdentifierPArg {
 
-    class MQLQueryPargStub extends PargStub implements QueryPArg {
-
-        public String query;
-
+        public String featureName;
+        public String oclQuery;
+        
         @Override
-		public String getQuery() {
-            return query;
+        public String getQueryByIdentifier() {
+            return oclQuery;
         }
 
-        /*
-         * (non-Javadoc)
-         * 
-         * @see TCS.RefersToPArg#setPropertyName(java.lang.String)
-         */
         @Override
-		public void setQuery(String value) {
-
+        public void setQueryByIdentifier(String value) {
+            oclQuery = value;
         }
 
+        @Override
+        public String getFeature() {
+            return featureName;
+        }
+
+        @Override
+        public void setFeature(String value) {
+            featureName = featureName;
+        }
+        
     }
 
     class PargStub extends LocatedElementStub implements PropertyArg {

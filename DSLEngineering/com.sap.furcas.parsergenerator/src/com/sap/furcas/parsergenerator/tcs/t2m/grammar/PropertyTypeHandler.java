@@ -36,6 +36,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
 import com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg;
@@ -60,6 +61,8 @@ import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
 
 /**
  * The Class PropertyTypeHandler.
+ * 
+ * TODO: once queryByIdentifier is bootrapped and stable, entirely remove QueryPArg and InvertPArg
  */
 public class PropertyTypeHandler<Type extends Object> {
 
@@ -142,6 +145,8 @@ public class PropertyTypeHandler<Type extends Object> {
             } else if (args.asPArg != null && args.oclQueryPArg != null) {
                 // it is also allowed to use the query arg while specifying a
                 // template for parsing the written reference value.
+                addQueriedReferenceCode(prop, repeatablePart, metaModelTypeOfProperty, propertyName, args);
+            } else if (args.oclQueryByIdentifierPArg != null) {
                 addQueriedReferenceCode(prop, repeatablePart, metaModelTypeOfProperty, propertyName, args);
             } else { // property not to be referenced but used within
                 repeatablePart.append(" temp=");
@@ -311,21 +316,28 @@ public class PropertyTypeHandler<Type extends Object> {
 
         // creates the bit that sets the temp from above as reference to
         // modelElement "ret" of this rule
-        String query = args.oclQueryPArg.getQuery() + (args.oclFilterPArg != null ? args.oclFilterPArg.getFilter() : "");
-        String javaQuery = query.replaceAll("\\\"", "\\\\\"");
-        javaQuery = javaQuery.replaceAll("\r\n", "\"+\"");
-        javaQuery = javaQuery.replaceAll("\n", "\"+\"");
+        
+        // TODO: cleanup required: remove oclQueryPArg handling
+        String query = null;
+        if (args.oclQueryByIdentifierPArg == null) {
+            query = args.oclQueryPArg.getQuery() + (args.oclFilterPArg != null ? args.oclFilterPArg.getFilter() : "");
+        } else {
+            query = args.oclQueryByIdentifierPArg.getQueryByIdentifier() + "->select(" +  args.oclQueryByIdentifierPArg.getFeature() + " = ?)";
+        }
+        String oclQuery = query.replaceAll("\\\"", "\\\\\"");
+        oclQuery = oclQuery.replaceAll("\r\n", "\"+\r\n\"");
+        oclQuery = oclQuery.replaceAll("\n", "\"+\"");
 
         validateOclQuery(prop, args, query);
 
         if (args.refersTo != null) {
             if (!skipDelayedReferences) {
                 ruleBodyPart.append(concatBuf(" {setOclRef(ret, \"", propertyName, "\", \"", args.refersTo.getPropertyName(),
-                        "\", temp, \"" + javaQuery + "\");}"));
+                        "\", temp, \"" + oclQuery + "\");}"));
             }
         } else {
             if (!skipDelayedReferences) {
-                ruleBodyPart.append(concatBuf(" {setOclRef(ret, \"", propertyName, "\", null, temp, \"" + javaQuery + "\");}"));
+                ruleBodyPart.append(concatBuf(" {setOclRef(ret, \"", propertyName, "\", null, temp, \"" + oclQuery + "\");}"));
             }
         }
 
@@ -430,17 +442,11 @@ public class PropertyTypeHandler<Type extends Object> {
 
         ruleBodyPart.append(" temp=");
 
-        // what Parser rule to call to create the key value for the referred
-        // object
-        if (asPArg != null) {
-            //now obsolete as we use direct reference to template
-            //            String asRule = asPArg.getValue();
-            //            if ( !syntaxLookup.hasPrimitiveRule(asRule) ) {
-            //                errorBucket.addError("Unknown As reference " + asPArg, asPArg);
-            //            }
-            //                    if(asPArg.getTemplate() == null) {
-            //                	errorBucket.addError("Unknown As reference " + asPArg, asPArg);
-            //                    }
+        // what Parser rule to call to create the key value for the referred object
+        if (asPArg == null && refersTo == null) {
+            PrimitiveTemplate propertyPrimitiveTemplate = syntaxLookup.getDefaultPrimitiveTemplateRule(metaModelTypeOfPropertyReference);
+            ruleBodyPart.append(namingHelper.getRuleNameForTemplate(propertyPrimitiveTemplate));
+        } else if (asPArg != null) {                    
             if (asPArg.getTemplate() != null) {
                 ruleBodyPart.append(namingHelper.getRuleNameForTemplate(asPArg.getTemplate()));
             } else {
@@ -774,7 +780,10 @@ public class PropertyTypeHandler<Type extends Object> {
 
         private FilterPArg oclFilterPArg;
 
+        private QueryByIdentifierPArg oclQueryByIdentifierPArg;
+
         private DisambiguatePArg disambiguatePArg;
+        
 
         /**
          * Instantiates a new property args.
@@ -857,6 +866,11 @@ public class PropertyTypeHandler<Type extends Object> {
                         throw new SyntaxElementException("Double definition of filterParg", oclFilterPArg);
                     }
                     oclFilterPArg = (FilterPArg) propertyArg;
+                } else if (propertyArg instanceof QueryByIdentifierPArg) {
+                    if (oclQueryByIdentifierPArg != null) {
+                        throw new SyntaxElementException("Double definition of queryByIdentifierPArg", oclQueryByIdentifierPArg);
+                    }
+                    oclQueryByIdentifierPArg = (QueryByIdentifierPArg) propertyArg;
                 } else if (propertyArg instanceof DisambiguatePArg) {
                     if (disambiguatePArg != null) {
                         throw new SyntaxElementException("Double definition of disambiguateParg", oclQueryPArg);
