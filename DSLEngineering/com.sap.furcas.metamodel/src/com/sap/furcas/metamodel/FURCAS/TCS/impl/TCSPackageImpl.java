@@ -88,6 +88,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.PropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyVal;
 import com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToKeyPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
@@ -641,6 +642,13 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * @generated
      */
         private EClass queryPArgEClass = null;
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass queryByIdentifierPArgEClass = null;
 
         /**
      * <!-- begin-user-doc -->
@@ -2855,6 +2863,33 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
         /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getQueryByIdentifierPArg() {
+        return queryByIdentifierPArgEClass;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getQueryByIdentifierPArg_QueryByIdentifier() {
+        return (EAttribute)queryByIdentifierPArgEClass.getEStructuralFeatures().get(0);
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getQueryByIdentifierPArg_Feature() {
+        return (EAttribute)queryByIdentifierPArgEClass.getEStructuralFeatures().get(1);
+    }
+
+        /**
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -3665,6 +3700,10 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         queryPArgEClass = createEClass(QUERY_PARG);
         createEAttribute(queryPArgEClass, QUERY_PARG__QUERY);
 
+        queryByIdentifierPArgEClass = createEClass(QUERY_BY_IDENTIFIER_PARG);
+        createEAttribute(queryByIdentifierPArgEClass, QUERY_BY_IDENTIFIER_PARG__QUERY_BY_IDENTIFIER);
+        createEAttribute(queryByIdentifierPArgEClass, QUERY_BY_IDENTIFIER_PARG__FEATURE);
+
         filterPArgEClass = createEClass(FILTER_PARG);
         createEAttribute(filterPArgEClass, FILTER_PARG__FILTER);
         createEAttribute(filterPArgEClass, FILTER_PARG__INVERT);
@@ -3849,6 +3888,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         forcedUpperPArgEClass.getESuperTypes().add(this.getPropertyArg());
         injectorActionsBlockEClass.getESuperTypes().add(this.getSequenceElement());
         queryPArgEClass.getESuperTypes().add(this.getPropertyArg());
+        queryByIdentifierPArgEClass.getESuperTypes().add(this.getPropertyArg());
         filterPArgEClass.getESuperTypes().add(this.getPropertyArg());
         oclPArgEClass.getESuperTypes().add(this.getPropertyArg());
         contextTemplateEClass.getESuperTypes().add(this.getTemplate());
@@ -4145,6 +4185,10 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
         initEClass(queryPArgEClass, QueryPArg.class, "QueryPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getQueryPArg_Query(), ecorePackage.getEString(), "query", null, 1, 1, QueryPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(queryByIdentifierPArgEClass, QueryByIdentifierPArg.class, "QueryByIdentifierPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getQueryByIdentifierPArg_QueryByIdentifier(), ecorePackage.getEString(), "queryByIdentifier", null, 0, 1, QueryByIdentifierPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getQueryByIdentifierPArg_Feature(), ecorePackage.getEString(), "feature", null, 0, 1, QueryByIdentifierPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(filterPArgEClass, FilterPArg.class, "FilterPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getFilterPArg_Filter(), theEcorePackage_1.getEString(), "filter", null, 1, 1, FilterPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

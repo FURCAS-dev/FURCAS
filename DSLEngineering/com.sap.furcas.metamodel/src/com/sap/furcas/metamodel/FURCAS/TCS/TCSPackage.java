@@ -587,7 +587,7 @@ public interface TCSPackage extends EPackage {
      * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getContextTemplate()
      * @generated
      */
-        int CONTEXT_TEMPLATE = 76;
+        int CONTEXT_TEMPLATE = 77;
 
         /**
      * The feature id for the '<em><b>Location</b></em>' attribute.
@@ -2667,7 +2667,7 @@ public interface TCSPackage extends EPackage {
      * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getInjectorAction()
      * @generated
      */
-        int INJECTOR_ACTION = 78;
+        int INJECTOR_ACTION = 79;
 
         /**
      * The feature id for the '<em><b>Injector Actions Block</b></em>' container reference.
@@ -2695,7 +2695,7 @@ public interface TCSPackage extends EPackage {
      * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getPropertyInit()
      * @generated
      */
-        int PROPERTY_INIT = 79;
+        int PROPERTY_INIT = 80;
 
         /**
      * The feature id for the '<em><b>Injector Actions Block</b></em>' container reference.
@@ -5795,7 +5795,7 @@ public interface TCSPackage extends EPackage {
      * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getOclPArg()
      * @generated
      */
-        int OCL_PARG = 74;
+        int OCL_PARG = 75;
 
         /**
      * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.QueryPArgImpl <em>Query PArg</em>}' class.
@@ -5862,6 +5862,79 @@ public interface TCSPackage extends EPackage {
         int QUERY_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 1;
 
         /**
+     * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.QueryByIdentifierPArgImpl <em>Query By Identifier PArg</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.QueryByIdentifierPArgImpl
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getQueryByIdentifierPArg()
+     * @generated
+     */
+    int QUERY_BY_IDENTIFIER_PARG = 73;
+
+        /**
+     * The feature id for the '<em><b>Location</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_BY_IDENTIFIER_PARG__LOCATION = PROPERTY_ARG__LOCATION;
+
+        /**
+     * The feature id for the '<em><b>Comments Before</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_BY_IDENTIFIER_PARG__COMMENTS_BEFORE = PROPERTY_ARG__COMMENTS_BEFORE;
+
+        /**
+     * The feature id for the '<em><b>Comments After</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_BY_IDENTIFIER_PARG__COMMENTS_AFTER = PROPERTY_ARG__COMMENTS_AFTER;
+
+        /**
+     * The feature id for the '<em><b>Property</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_BY_IDENTIFIER_PARG__PROPERTY = PROPERTY_ARG__PROPERTY;
+
+        /**
+     * The feature id for the '<em><b>Query By Identifier</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_BY_IDENTIFIER_PARG__QUERY_BY_IDENTIFIER = PROPERTY_ARG_FEATURE_COUNT + 0;
+
+        /**
+     * The feature id for the '<em><b>Feature</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_BY_IDENTIFIER_PARG__FEATURE = PROPERTY_ARG_FEATURE_COUNT + 1;
+
+        /**
+     * The number of structural features of the '<em>Query By Identifier PArg</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_BY_IDENTIFIER_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 2;
+
+        /**
      * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.FilterPArgImpl <em>Filter PArg</em>}' class.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -5869,7 +5942,7 @@ public interface TCSPackage extends EPackage {
      * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getFilterPArg()
      * @generated
      */
-        int FILTER_PARG = 73;
+        int FILTER_PARG = 74;
 
         /**
      * The feature id for the '<em><b>Location</b></em>' attribute.
@@ -6005,7 +6078,7 @@ public interface TCSPackage extends EPackage {
      * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getPropertyReference()
      * @generated
      */
-        int PROPERTY_REFERENCE = 75;
+        int PROPERTY_REFERENCE = 76;
 
         /**
      * The feature id for the '<em><b>Strucfeature</b></em>' reference.
@@ -6042,7 +6115,7 @@ public interface TCSPackage extends EPackage {
      * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getContextTags()
      * @generated
      */
-        int CONTEXT_TAGS = 77;
+        int CONTEXT_TAGS = 78;
 
         /**
      * The feature id for the '<em><b>Tags</b></em>' attribute list.
@@ -6070,7 +6143,7 @@ public interface TCSPackage extends EPackage {
      * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getOclPropertyInit()
      * @generated
      */
-        int OCL_PROPERTY_INIT = 80;
+        int OCL_PROPERTY_INIT = 81;
 
         /**
      * The feature id for the '<em><b>Injector Actions Block</b></em>' container reference.
@@ -6134,7 +6207,7 @@ public interface TCSPackage extends EPackage {
      * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getScopeArg()
      * @generated
      */
-        int SCOPE_ARG = 81;
+        int SCOPE_ARG = 82;
 
         /**
      * The feature id for the '<em><b>Scope</b></em>' attribute.
@@ -6162,7 +6235,7 @@ public interface TCSPackage extends EPackage {
      * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getForeachPredicatePropertyInit()
      * @generated
      */
-        int FOREACH_PREDICATE_PROPERTY_INIT = 82;
+        int FOREACH_PREDICATE_PROPERTY_INIT = 83;
 
         /**
      * The feature id for the '<em><b>Injector Actions Block</b></em>' container reference.
@@ -6235,7 +6308,7 @@ public interface TCSPackage extends EPackage {
      * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getPredicateSemantic()
      * @generated
      */
-        int PREDICATE_SEMANTIC = 83;
+        int PREDICATE_SEMANTIC = 84;
 
         /**
      * The feature id for the '<em><b>As</b></em>' reference.
@@ -6290,7 +6363,7 @@ public interface TCSPackage extends EPackage {
      * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getSequenceInAlternative()
      * @generated
      */
-        int SEQUENCE_IN_ALTERNATIVE = 84;
+        int SEQUENCE_IN_ALTERNATIVE = 85;
 
         /**
      * The feature id for the '<em><b>Location</b></em>' attribute.
@@ -6435,7 +6508,7 @@ public interface TCSPackage extends EPackage {
      * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getPartialPArg()
      * @generated
      */
-        int PARTIAL_PARG = 85;
+        int PARTIAL_PARG = 86;
 
         /**
      * The feature id for the '<em><b>Location</b></em>' attribute.
@@ -6490,7 +6563,7 @@ public interface TCSPackage extends EPackage {
      * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getDisambiguatePArg()
      * @generated
      */
-        int DISAMBIGUATE_PARG = 86;
+        int DISAMBIGUATE_PARG = 87;
 
         /**
      * The feature id for the '<em><b>Location</b></em>' attribute.
@@ -6554,7 +6627,7 @@ public interface TCSPackage extends EPackage {
      * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getInstanceOfExp()
      * @generated
      */
-        int INSTANCE_OF_EXP = 87;
+        int INSTANCE_OF_EXP = 88;
 
         /**
      * The feature id for the '<em><b>Location</b></em>' attribute.
@@ -6636,7 +6709,7 @@ public interface TCSPackage extends EPackage {
      * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getEnumLiteralVal()
      * @generated
      */
-        int ENUM_LITERAL_VAL = 88;
+        int ENUM_LITERAL_VAL = 89;
 
         /**
      * The feature id for the '<em><b>Location</b></em>' attribute.
@@ -6691,7 +6764,7 @@ public interface TCSPackage extends EPackage {
      * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getStringVal()
      * @generated
      */
-        int STRING_VAL = 89;
+        int STRING_VAL = 90;
 
         /**
      * The feature id for the '<em><b>Location</b></em>' attribute.
@@ -6755,7 +6828,7 @@ public interface TCSPackage extends EPackage {
      * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getIntegerVal()
      * @generated
      */
-        int INTEGER_VAL = 90;
+        int INTEGER_VAL = 91;
 
         /**
      * The feature id for the '<em><b>Location</b></em>' attribute.
@@ -6819,7 +6892,7 @@ public interface TCSPackage extends EPackage {
      * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getNegativeIntegerVal()
      * @generated
      */
-        int NEGATIVE_INTEGER_VAL = 91;
+        int NEGATIVE_INTEGER_VAL = 92;
 
         /**
      * The feature id for the '<em><b>Location</b></em>' attribute.
@@ -6883,7 +6956,7 @@ public interface TCSPackage extends EPackage {
      * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getLookupPropertyInit()
      * @generated
      */
-        int LOOKUP_PROPERTY_INIT = 92;
+        int LOOKUP_PROPERTY_INIT = 93;
 
         /**
      * The feature id for the '<em><b>Injector Actions Block</b></em>' container reference.
@@ -6938,7 +7011,7 @@ public interface TCSPackage extends EPackage {
      * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getTemplateModifiers()
      * @generated
      */
-        int TEMPLATE_MODIFIERS = 93;
+        int TEMPLATE_MODIFIERS = 94;
 
         /**
      * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.SpaceKind <em>Space Kind</em>}' enum.
@@ -6948,7 +7021,7 @@ public interface TCSPackage extends EPackage {
      * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getSpaceKind()
      * @generated
      */
-        int SPACE_KIND = 94;
+        int SPACE_KIND = 95;
 
         /**
      * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.Associativity <em>Associativity</em>}' enum.
@@ -6958,7 +7031,7 @@ public interface TCSPackage extends EPackage {
      * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getAssociativity()
      * @generated
      */
-        int ASSOCIATIVITY = 95;
+        int ASSOCIATIVITY = 96;
 
         /**
      * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.AutoCreateKind <em>Auto Create Kind</em>}' enum.
@@ -6968,7 +7041,7 @@ public interface TCSPackage extends EPackage {
      * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getAutoCreateKind()
      * @generated
      */
-        int AUTO_CREATE_KIND = 96;
+        int AUTO_CREATE_KIND = 97;
 
         /**
      * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.ScopeKind <em>Scope Kind</em>}' enum.
@@ -6978,7 +7051,7 @@ public interface TCSPackage extends EPackage {
      * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getScopeKind()
      * @generated
      */
-        int SCOPE_KIND = 97;
+        int SCOPE_KIND = 98;
 
 
         /**
@@ -9184,6 +9257,38 @@ public interface TCSPackage extends EPackage {
      * @generated
      */
     EAttribute getQueryPArg_Query();
+
+        /**
+     * Returns the meta object for class '{@link com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg <em>Query By Identifier PArg</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Query By Identifier PArg</em>'.
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg
+     * @generated
+     */
+    EClass getQueryByIdentifierPArg();
+
+        /**
+     * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg#getQueryByIdentifier <em>Query By Identifier</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Query By Identifier</em>'.
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg#getQueryByIdentifier()
+     * @see #getQueryByIdentifierPArg()
+     * @generated
+     */
+    EAttribute getQueryByIdentifierPArg_QueryByIdentifier();
+
+        /**
+     * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg#getFeature <em>Feature</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Feature</em>'.
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg#getFeature()
+     * @see #getQueryByIdentifierPArg()
+     * @generated
+     */
+    EAttribute getQueryByIdentifierPArg_Feature();
 
         /**
      * Returns the meta object for class '{@link com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg <em>Filter PArg</em>}'.
@@ -11599,6 +11704,32 @@ public interface TCSPackage extends EPackage {
          * @generated
          */
         EAttribute QUERY_PARG__QUERY = eINSTANCE.getQueryPArg_Query();
+
+                /**
+         * The meta object literal for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.QueryByIdentifierPArgImpl <em>Query By Identifier PArg</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.QueryByIdentifierPArgImpl
+         * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getQueryByIdentifierPArg()
+         * @generated
+         */
+        EClass QUERY_BY_IDENTIFIER_PARG = eINSTANCE.getQueryByIdentifierPArg();
+
+                /**
+         * The meta object literal for the '<em><b>Query By Identifier</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute QUERY_BY_IDENTIFIER_PARG__QUERY_BY_IDENTIFIER = eINSTANCE.getQueryByIdentifierPArg_QueryByIdentifier();
+
+                /**
+         * The meta object literal for the '<em><b>Feature</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute QUERY_BY_IDENTIFIER_PARG__FEATURE = eINSTANCE.getQueryByIdentifierPArg_Feature();
 
                 /**
          * The meta object literal for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.FilterPArgImpl <em>Filter PArg</em>}' class.
