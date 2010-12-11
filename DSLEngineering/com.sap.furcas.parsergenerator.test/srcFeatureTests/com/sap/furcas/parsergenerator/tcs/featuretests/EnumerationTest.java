@@ -24,7 +24,7 @@ public class EnumerationTest extends GeneratedParserBasedTest {
     private static final String LANGUAGE_MAPPEDENUM = "EnumerationFeatureMapped";
     private static final String LANGUAGE_AUTOENUM = "EnumerationFeatureAuto";
     private static final File mappedEnumTCS = FeatureFixtureData.ENUM_FEATURE_TCS;
-    private static final File autoEnumTCS = FeatureFixtureData.ENUMAUTO_FEATURE_TCS;
+    private static final File autoEnumTCS = FeatureFixtureData.ENUM_FEATURE_AUTO_TCS;
     private static final File METAMODEL = FeatureFixtureData.ENUM_FEATURE_METAMODEL;
 
     private static ParsingHelper mappedEnumParsingHelper;
