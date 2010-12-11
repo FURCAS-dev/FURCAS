@@ -40,14 +40,15 @@ import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 /**
- * Base class for test cases that use a FURCAS mapping specification (".tcs" file) and based on this produce lexer and
- * parser, then parse a text resource and register all reference resolving callbacks. Then, the tests can start to
- * manipulate the model produced by the parser run and observe how OCL-based property assignments get re-assigned.
+ * A test case that use a FURCAS mapping specification (".tcs" file) and based on this produce lexer and
+ * parser, then parse a text resource and register all reference resolving callbacks. Then, the test
+ * manipulates the model produced by the parser run and observes how OCL-based property assignments get re-assigned.
  * 
  * @author Axel Uhl (D043530)
  * 
  */
-public class FurcasMappingBasedTest extends GeneratedParserBasedTest {
+public class TestPropertyInitReEvaluation extends GeneratedParserBasedTest {
+    
     private static final String LANGUAGE = "BibtexWithPropertyInits";
     private static final File TCS = new File("fixtures/BibtexWithPropertyInits.tcs");
 
