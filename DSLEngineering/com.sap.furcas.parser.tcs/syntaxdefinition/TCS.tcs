@@ -424,7 +424,7 @@ syntax TCS {
                 ;
                 
        	template TCS::QueryByIdentifierPArg
-                :       "queryByIdentifier" "=" queryByIdentifier{as = stringSymbol} "," "feature" = feature{as = identifierOrKeyword}
+                :       "queryByIdentifier" "=" queryByIdentifier{as = stringSymbol} "," "feature" "=" feature{as = identifierOrKeyword}
                 ;
 
         template TCS::ModePArg
