@@ -41,7 +41,8 @@ import com.sap.furcas.runtime.textblocks.testutils.TextBlocksModelElementFactory
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 
-public class TestWithTextBlocksAttached extends GeneratedParserAndFactoryBasedTest {
+public class TestPropertyInitReEvaluationWithTextBlocks extends GeneratedParserAndFactoryBasedTest {
+    
     private static final String LANGUAGE = "BibtexWithPropertyInits";
     private static final File TCS = new File("fixtures/BibtexWithPropertyInits.tcs");
 
