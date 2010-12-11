@@ -1,0 +1,109 @@
+/**
+ * A simple expression language with a built-in calculator.
+ * 
+ * Introductory courses to attribute grammars often feature
+ * the idea of an expression language that is evaluated
+ * during parsing. The evaluation is performed bottom-up and
+ * solely based on synthesized attributes.
+ *
+ * The same is realized here with the help of OCL and property-inits.
+ * After parsing, the "calculatedValue" property holds the value of
+ * an (sub)-expression
+ */
+syntax Expression {
+
+-- BEGIN Primitive templates
+		
+	primitiveTemplate integer for EInt default using INT:
+		value = "Integer.valueOf(%token%)";
+		
+-- END Primitive templates
+
+
+-- BEGIN Class templates
+		
+	template ExpressionStatement main
+		: expression
+		;
+		
+	template Expression abstract operatored;
+		
+	template IntegerExpression
+		: value {{calculatedValue=lookIn("OCL:self.value")}}
+		;
+		
+	operatorTemplate NegateExpression(operators=opMinus, source='expression')
+		: {{calculatedValue=lookIn("OCL: -self.expression.calculatedValue")}}
+		;
+			
+	operatorTemplate MultiplicationExpression(operators=opMul, source='leftSide')
+		: rightSide {{calculatedValue=lookIn("OCL:self.leftSide.calculatedValue * self.rightSide.calculatedValue")}}
+		;
+	
+	operatorTemplate AdditionExpression(operators=opPlus, source='leftSide')
+		: rightSide {{calculatedValue=lookIn("OCL:self.leftSide.calculatedValue + self.rightSide.calculatedValue")}}
+		;	
+		
+
+-- BEGIN Special symbols
+-- Possible modifications:
+	symbols {
+--		lsquare		= "[";
+--		rsquare		= "]"	: rightSpace;
+--		excl		= "!";
+--		coma		= ","	: leftNone, rightSpace;
+		lparen		= "(";
+		rparen		= ")"	: leftNone, rightSpace;
+--		lcurly		= "{"	: leftSpace;
+--		rcurly		= "}"	: leftNone, rightSpace;
+--		semi		= ";"	: leftNone, rightSpace;
+--		colon		= ":"	: leftSpace, rightSpace;
+--		pipe		= "|"	: leftSpace, rightSpace;
+--		sharp		= "#"	: leftSpace;
+--		qmark		= "?";
+--		coloncolon	= "::"	: leftNone, rightNone;
+
+		-- operator symbols
+--		point		= "."	: leftNone;
+--		rarrow		= "->"	: leftNone;
+		minus		= "-"	: leftSpace, rightSpace;
+		star		= "*"	: leftSpace, rightSpace;
+--		slash		= "/"	: leftSpace, rightSpace;
+		plus		= "+"	: leftSpace, rightSpace;
+--		eq			= "="	: leftSpace, rightSpace;
+--		gt			= ">"	: leftSpace, rightSpace;
+--		lt			= "<"	: leftSpace, rightSpace;
+--		ge			= ">="	: leftSpace, rightSpace;
+--		le			= "<="	: leftSpace, rightSpace;
+--		ne			= "<>"	: leftSpace, rightSpace;
+--		larrow		= "<-"	: leftSpace, rightSpace;
+	}
+-- END Special symbols
+
+-- BEGIN Operator table
+-- Defines all operators with their priority, arity, and associativity.
+-- All defined operators must be used in operator templates.
+
+-- Specify operator table(s) here if necessary.
+operators {
+		priority 0 {
+			opMinus = minus, 1;
+		}
+		priority 1 {
+			opMul = star, 2;
+		}
+		priority 2 {
+			opPlus = plus, 2;
+		}
+	}
+-- END Operator table
+
+
+-- BEGIN Lexer
+-- Specifies the lexical entities.
+-- Only needs modification when default lexer is not satisfactory.
+-- Generally modified along with Primitive templates.
+	token COMMENT	: endOfLine(start = "--");
+
+
+}
