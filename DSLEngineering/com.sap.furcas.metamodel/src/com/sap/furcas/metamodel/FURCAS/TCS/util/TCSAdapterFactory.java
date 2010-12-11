@@ -457,6 +457,10 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
                 return createQueryPArgAdapter();
             }
             @Override
+            public Adapter caseQueryByIdentifierPArg(QueryByIdentifierPArg object) {
+                return createQueryByIdentifierPArgAdapter();
+            }
+            @Override
             public Adapter caseFilterPArg(FilterPArg object) {
                 return createFilterPArgAdapter();
             }
@@ -1575,6 +1579,20 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
         public Adapter createQueryPArgAdapter() {
+        return null;
+    }
+
+        /**
+     * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg <em>Query By Identifier PArg</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg
+     * @generated
+     */
+    public Adapter createQueryByIdentifierPArgAdapter() {
         return null;
     }
 
