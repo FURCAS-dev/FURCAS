@@ -35,6 +35,7 @@ public class SyntaxLookupStub extends SyntaxLookup {
     public Set<Keyword> keywords;
     public List<ClassTemplate> nonPrimaries = new ArrayList<ClassTemplate>();
     public List<ClassTemplate> primaries = new ArrayList<ClassTemplate>();
+    public PrimitiveTemplate defaultPrimitiveTemplate;
 
     /**
      * @param syntax
@@ -53,7 +54,7 @@ public class SyntaxLookupStub extends SyntaxLookup {
 
     @Override
     public PrimitiveTemplate getDefaultPrimitiveTemplateRule(ResolvedNameAndReferenceBean<?> bean) {
-        return null;
+        return defaultPrimitiveTemplate;
     }
 
     @Override
