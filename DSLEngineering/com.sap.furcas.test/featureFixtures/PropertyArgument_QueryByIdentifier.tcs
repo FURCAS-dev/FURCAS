@@ -1,0 +1,22 @@
+syntax QueryByIdentifierFeatureTestSyntax { 
+
+  primitiveTemplate identifier for ecore::EString default using NAME
+    : value = "unescapeString(%token%)"
+    ;
+  
+  template DefinitionUsageList main
+    : "definitions ":" definitions
+      "usages" ":" usages
+    ;
+
+  template Definition 
+    : "def" name ";"
+    ;
+
+  template Usage 
+    : "use" boundDefinition{queryByIdentifier="OCL:self.parentList.definitions", feature="name"} ";"
+    ;
+
+  token COMMENT : endOfLine(start = "//");
+
+}
