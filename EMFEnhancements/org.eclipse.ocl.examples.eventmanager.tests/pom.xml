@@ -8,7 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <groupId>com.sap.dsl</groupId>
-  <artifactId>de.hpi.sam.bp2009.solution.eventManager.tests</artifactId>
+  <artifactId>org.eclipse.ocl.examples.eventmanager.tests</artifactId>
   <version>1.0.0</version>
   <packaging>eclipse-test-plugin</packaging>
 </project>
