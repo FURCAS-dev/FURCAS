@@ -11,7 +11,7 @@ Require-Bundle: de.hpi.sam.bp2009.ngpm,
  org.eclipse.emf.query2.index.ui,
  org.eclipse.emf.query2.index,
  org.junit,
- de.hpi.sam.bp2009.solution.eventManager,
+ org.eclipse.ocl.examples.eventmanager,
  de.hpi.sam.bp2009.solution.queryContextScopeProvider,
  de.hpi.sam.bp2009.solution.scopeProvider,
  com.sap.ocl.oppositefinder.query2

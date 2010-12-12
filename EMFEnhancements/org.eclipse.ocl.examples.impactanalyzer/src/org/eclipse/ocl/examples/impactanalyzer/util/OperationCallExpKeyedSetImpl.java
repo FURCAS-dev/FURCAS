@@ -20,8 +20,8 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.examples.eventmanager.CompositeIterable;
 
-import de.hpi.sam.bp2009.solution.eventManager.CompositeIterable;
 
 /**
  * Immutable implementation of a data structure keyed by {@link OperationCallExp} expressions where the values

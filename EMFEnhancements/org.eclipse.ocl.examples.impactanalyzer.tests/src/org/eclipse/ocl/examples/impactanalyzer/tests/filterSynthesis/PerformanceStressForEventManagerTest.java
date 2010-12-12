@@ -29,6 +29,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.examples.eventmanager.EventManager;
+import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
+import org.eclipse.ocl.examples.eventmanager.Statistics;
+import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.BenchmarkOCLPreparer;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
@@ -48,10 +52,6 @@ import dataaccess.analytics.AnalyticsFactory;
 import dataaccess.analytics.AnalyticsPackage;
 import dataaccess.expressions.literals.LiteralsFactory;
 import dataaccess.expressions.literals.StringLiteral;
-import de.hpi.sam.bp2009.solution.eventManager.EventManager;
-import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
-import de.hpi.sam.bp2009.solution.eventManager.Statistics;
-import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 
 
 public class PerformanceStressForEventManagerTest extends TestCase {

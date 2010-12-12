@@ -14,12 +14,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.examples.eventmanager.EventManager;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.ActivationOption;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.OptimizationActivation;
 import org.eclipse.ocl.examples.impactanalyzer.impl.ImpactAnalyzerFactoryImpl;
 
 
-import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 
 public interface ImpactAnalyzerFactory {
     static final ImpactAnalyzerFactory INSTANCE = new ImpactAnalyzerFactoryImpl();

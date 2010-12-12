@@ -15,11 +15,11 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.examples.eventmanager.EventManager;
+import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.ActivationOption;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.OptimizationActivation;
 
-import de.hpi.sam.bp2009.solution.eventManager.EventManager;
-import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 
 /**
  * The Impact Analyzer (IA) analyzes the impact of {@link Notification}s on a single {@link OCLExpression} in the sense that it

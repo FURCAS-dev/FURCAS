@@ -7,13 +7,13 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.examples.eventmanager.EventManager;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 
 import com.sap.emf.ocl.attributegrammar.AttributeGrammar;
 
-import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 
 public class AttributeGrammarImpl implements AttributeGrammar {
     private final Map<EStructuralFeature, OCLExpression> rules;

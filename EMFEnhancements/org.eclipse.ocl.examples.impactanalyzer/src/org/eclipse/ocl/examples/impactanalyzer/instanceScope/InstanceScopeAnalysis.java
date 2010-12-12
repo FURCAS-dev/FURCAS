@@ -52,6 +52,7 @@ import org.eclipse.ocl.ecore.TupleLiteralExp;
 import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.examples.eventmanager.NotificationHelper;
 import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.ActivationOption;
 import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluator;
@@ -64,7 +65,6 @@ import org.eclipse.ocl.utilities.PredefinedType;
 
 import com.sap.emf.ocl.util.OclHelper;
 
-import de.hpi.sam.bp2009.solution.eventManager.NotificationHelper;
 
 /**
  * Supports a lookup from a source model element of either an attribute value change event or a link add/remove event together

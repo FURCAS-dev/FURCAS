@@ -2,12 +2,12 @@ package com.sap.runlet.interpreter;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
+import org.eclipse.ocl.examples.eventmanager.filters.AndFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.AssociationFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 
 import data.classes.ClassesPackage;
-import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
-import de.hpi.sam.bp2009.solution.eventManager.filters.AndFilter;
-import de.hpi.sam.bp2009.solution.eventManager.filters.AssociationFilter;
-import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 
 public class MethodCallResolverCacheInvalidationListener extends AdapterImpl {
     private final MethodCallResolver resolver;
