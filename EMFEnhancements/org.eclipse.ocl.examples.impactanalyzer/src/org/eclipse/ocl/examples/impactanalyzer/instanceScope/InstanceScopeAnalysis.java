@@ -61,9 +61,9 @@ import org.eclipse.ocl.examples.impactanalyzer.filterSynthesis.FilterSynthesisIm
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackStep;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackStepCache;
 import org.eclipse.ocl.examples.impactanalyzer.util.AnnotatedEObject;
+import org.eclipse.ocl.examples.impactanalyzer.util.OclHelper;
 import org.eclipse.ocl.utilities.PredefinedType;
 
-import com.sap.emf.ocl.util.OclHelper;
 
 
 /**

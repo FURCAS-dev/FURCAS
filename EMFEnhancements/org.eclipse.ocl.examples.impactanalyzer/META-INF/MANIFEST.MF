@@ -14,7 +14,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.osgi,
  org.eclipse.emf.common,
  org.eclipse.ocl.examples.eventmanager,
- com.sap.emf.ocl.util
+ org.eclipse.ocl.examples.impactanalyzer.util
 Export-Package: org.eclipse.ocl.examples.impactanalyzer,
  org.eclipse.ocl.examples.impactanalyzer.configuration,
  org.eclipse.ocl.examples.impactanalyzer.deltaPropagation;x-friends:="org.eclipse.ocl.examples.impactanalyzer.debug,org.eclipse.ocl.examples.impactanalyzer.tests",

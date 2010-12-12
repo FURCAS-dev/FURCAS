@@ -61,7 +61,7 @@ public class OCLExpressionFromClassTcsPicker implements OCLExpressionPicker {
         EPackage.Registry.INSTANCE.put(nsPrefix, basePackage);
         ArrayList<String> path = new ArrayList<String>();
         path.add(nsPrefix);
-        OCL ocl = com.sap.emf.ocl.util.OCL.newInstance();
+        OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance();
         ocl = OCL.newInstance(new EnvironmentFactory().createPackageContext(ocl.getEnvironment(), basePackage));
         OCLExpressionWithContext result = null;
         try {

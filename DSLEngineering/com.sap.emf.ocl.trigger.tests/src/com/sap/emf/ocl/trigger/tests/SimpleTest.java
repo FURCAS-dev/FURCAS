@@ -45,7 +45,7 @@ public class SimpleTest extends TestCase {
     public void testTrivialTrigger() throws ParserException {
         final Department d = CompanyFactory.eINSTANCE.createDepartment();
         resource.getContents().add(d);
-        Helper helper = com.sap.emf.ocl.util.OCL.newInstance().createOCLHelper();
+        Helper helper = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance().createOCLHelper();
         helper.setContext(CompanyPackage.eINSTANCE.getDepartment());
         final OCLExpression trivialExpression = helper.createQuery("self.name");
         final boolean[] result = new boolean[1];
@@ -67,7 +67,7 @@ public class SimpleTest extends TestCase {
         resource.getContents().add(d1);
         final Department d2 = CompanyFactory.eINSTANCE.createDepartment();
         resource.getContents().add(d2);
-        Helper helper = com.sap.emf.ocl.util.OCL.newInstance().createOCLHelper();
+        Helper helper = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance().createOCLHelper();
         helper.setContext(CompanyPackage.eINSTANCE.getDepartment());
         final OCLExpression trivialExpression = helper.createQuery("self.name");
         final boolean[] result = new boolean[1];

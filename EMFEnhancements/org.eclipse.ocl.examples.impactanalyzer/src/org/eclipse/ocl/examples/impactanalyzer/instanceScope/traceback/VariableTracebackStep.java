@@ -39,9 +39,9 @@ import org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation.Un
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet.UnusedEvaluationResult;
 import org.eclipse.ocl.examples.impactanalyzer.util.AnnotatedEObject;
+import org.eclipse.ocl.examples.impactanalyzer.util.OclHelper;
 import org.eclipse.ocl.examples.impactanalyzer.util.OperationCallExpKeyedSet;
 
-import com.sap.emf.ocl.util.OclHelper;
 
 
 /**

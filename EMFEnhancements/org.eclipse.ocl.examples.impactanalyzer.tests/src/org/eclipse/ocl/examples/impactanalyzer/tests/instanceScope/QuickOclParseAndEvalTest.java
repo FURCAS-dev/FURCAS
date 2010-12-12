@@ -67,7 +67,7 @@ public class QuickOclParseAndEvalTest extends TestCase
     ctd.setClazz(class1);
     param.setOwnedTypeDefinition(ctd);
     signature.setOwner(class2);
-    ocl = com.sap.emf.ocl.util.OCL.newInstance();
+    ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance();
     oclHelper = ocl.createOCLHelper();
     oclHelper.setContext(ClassesPackage.eINSTANCE.getParameter());
   }

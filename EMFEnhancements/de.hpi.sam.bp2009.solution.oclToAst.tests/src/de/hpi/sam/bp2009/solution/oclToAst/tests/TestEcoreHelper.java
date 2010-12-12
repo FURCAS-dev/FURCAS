@@ -95,7 +95,7 @@ public class TestEcoreHelper {
         Resource e = rs.createResource(URI.createURI("http://my.next.resource/somethingElse"));
         e.getContents().add(place);
         e.getContents().add(transition);
-        OCL ocl = com.sap.emf.ocl.util.OCL.newInstance(Query2OppositeEndFinder.getInstance());
+        OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(Query2OppositeEndFinder.getInstance());
         Helper oclHelper = ocl.createOCLHelper();
         oclHelper.setContext(PetriNetPackage.eINSTANCE.getTransition());
         OCLExpression expr = oclHelper.createQuery("self.transition2Place");

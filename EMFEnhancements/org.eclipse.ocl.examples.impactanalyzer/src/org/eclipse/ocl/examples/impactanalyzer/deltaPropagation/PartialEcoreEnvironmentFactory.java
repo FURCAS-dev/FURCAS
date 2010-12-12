@@ -31,8 +31,8 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.examples.impactanalyzer.util.EcoreEnvironmentFactoryWithScopedExtentMap;
 
-import com.sap.emf.ocl.util.EcoreEnvironmentFactoryWithScopedExtentMap;
 
 
 public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactoryWithScopedExtentMap {

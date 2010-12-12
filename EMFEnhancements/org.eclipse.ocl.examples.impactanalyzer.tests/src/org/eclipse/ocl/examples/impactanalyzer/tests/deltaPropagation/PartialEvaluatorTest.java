@@ -127,7 +127,7 @@ public class PartialEvaluatorTest extends TestCase {
         rs.getResources().add(expression.eResource());
         assertTrue(expression instanceof OperationCallExp);
         OperationCallExp oce = (OperationCallExp) expression;
-        FilterSynthesisImpl mapper = new FilterSynthesisImpl(expression, /* notifyNewContextElements */false, com.sap.emf.ocl.util.OCL.newInstance());
+        FilterSynthesisImpl mapper = new FilterSynthesisImpl(expression, /* notifyNewContextElements */false, org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance());
         assertTrue(evaluator.hasNoEffectOnOverallExpression((OCLExpression) oce.getSource(), "Humba", "Trala", mapper));
         assertFalse(evaluator.hasNoEffectOnOverallExpression((OCLExpression) oce.getSource(), "Humba", "Humba Humba", mapper));
     }
@@ -142,7 +142,7 @@ public class PartialEvaluatorTest extends TestCase {
         rs.getResources().add(expression.eResource());
         assertTrue(expression instanceof IteratorExp);
         IteratorExp iteratorExp = (IteratorExp) expression;
-        FilterSynthesisImpl mapper = new FilterSynthesisImpl(expression, /* notifyNewContextElements */false, com.sap.emf.ocl.util.OCL.newInstance());
+        FilterSynthesisImpl mapper = new FilterSynthesisImpl(expression, /* notifyNewContextElements */false, org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance());
         assertTrue(evaluator.hasNoEffectOnOverallExpression((OCLExpression) iteratorExp.getSource(), Collections.EMPTY_SET,
                 Collections.singleton(ms), mapper));
         ms.setName("abc");
@@ -163,7 +163,7 @@ public class PartialEvaluatorTest extends TestCase {
         IteratorExp selectExp = (IteratorExp) expression; // select
         IteratorExp collectExp = (IteratorExp) selectExp.getSource();
         PropertyCallExp inputPropertyCallExp = (PropertyCallExp) collectExp.getBody(); // s.input->select(...)
-        FilterSynthesisImpl mapper = new FilterSynthesisImpl(expression, /* notifyNewContextElements */false, com.sap.emf.ocl.util.OCL.newInstance());
+        FilterSynthesisImpl mapper = new FilterSynthesisImpl(expression, /* notifyNewContextElements */false, org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance());
         assertTrue(evaluator.hasNoEffectOnOverallExpression(inputPropertyCallExp, Collections.EMPTY_SET,
                 Collections.singleton(p), mapper));
         p.setName("abc");
@@ -195,7 +195,7 @@ public class PartialEvaluatorTest extends TestCase {
         ResourceSet rs = new ResourceSetImpl();
         // the following expresssion becomes self.ownedSignatures->collect(s | s.input)->select(name='abc')
         OCLExpression expression = evaluator.getHelper().createQuery("self.getAssociationEnds().otherEnd()->select(delegation->notEmpty()).type.clazz->reject(c|c=self)->asSet()");
-        FilterSynthesisImpl mapper = new FilterSynthesisImpl(expression, /* notifyNewContextElements */false, com.sap.emf.ocl.util.OCL.newInstance());
+        FilterSynthesisImpl mapper = new FilterSynthesisImpl(expression, /* notifyNewContextElements */false, org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance());
         OperationCallExp getAssociationEnds = ((OperationCallExp) ((IteratorExp) ((IteratorExp) ((IteratorExp) ((IteratorExp) ((IteratorExp) ((CallExp) expression) /*asSet*/.getSource())/*reject*/.getSource())/*collect(clazz)*/.getSource())/*collect(type)*/.getSource())/*select(delegation->notEmpty())*/.getSource())/*collect(otherEnd())*/.getSource())/*self.getAssociationEnds()*/;
         // getAssociationEnds(): self.elementsOfType->collect(associationEnd->asSet())->asSet()
         OCLExpression getAssociationEndsBody = mapper.getBodyForCall(getAssociationEnds);

@@ -8,8 +8,8 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.examples.impactanalyzer.util.EcoreEnvironmentFactoryWithScopedExtentMap;
 
-import com.sap.emf.ocl.util.EcoreEnvironmentFactoryWithScopedExtentMap;
 import com.sap.furcas.metamodel.FURCAS.TCS.AsPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
@@ -33,7 +33,7 @@ public class ShortPrettyPrinter {
 
     public ShortPrettyPrinter(IModelElementInvestigator investigator) {
 	this.investigator = investigator;
-	this.ocl = com.sap.emf.ocl.util.OCL.newInstance(); // TODO need a consistent OppositeEndFinder
+	this.ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(); // TODO need a consistent OppositeEndFinder
     }
 
     public void makeFlyweight(TextBlock rootBlock) {

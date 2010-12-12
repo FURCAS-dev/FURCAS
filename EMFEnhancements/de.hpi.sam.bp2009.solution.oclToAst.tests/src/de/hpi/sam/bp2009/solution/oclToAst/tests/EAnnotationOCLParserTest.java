@@ -160,7 +160,7 @@ public class EAnnotationOCLParserTest {
         e1.setEmployer(dep);
 
         getFixture().traversalConvertOclAnnotations(CompanyPackage.eINSTANCE);
-        OCL ocl = com.sap.emf.ocl.util.OCL.newInstance();
+        OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance();
         // change the annotation string value to proof usage of already parsed ast.
         Entry<String, String> value = CompanyPackage.eINSTANCE.getDepartment().getEOperations().get(0)
                 .getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI).getDetails().get(0);
@@ -204,7 +204,7 @@ public class EAnnotationOCLParserTest {
         anno.getDetails().put(SettingBehavior.INITIAL_CONSTRAINT_KEY, "10000");
 
         getFixture().traversalConvertOclAnnotations(CompanyPackage.eINSTANCE);
-        OCL ocl = com.sap.emf.ocl.util.OCL.newInstance();
+        OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance();
         // change the annotation string value to proof usage of already parsed ast.
         CompanyPackage.eINSTANCE.getDepartment_Budget().getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI).getDetails().get(0)
                 .setValue("-2");
@@ -290,7 +290,7 @@ public class EAnnotationOCLParserTest {
         OCLExpression expr = (OCLExpression) ((Constraint) operation.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI)
                 .getContents().get(0)).getSpecification().getBodyExpression();
         assertTrue(expr instanceof IntegerLiteralExp);
-        OCL ocl = com.sap.emf.ocl.util.OCL.newInstance();
+        OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance();
         Object result = ocl.evaluate(operation, expr);
         assertTrue("Expected value: '4', got: " + result.toString(), "4".equals(result.toString()));
     }

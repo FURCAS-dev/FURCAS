@@ -18,7 +18,7 @@ import com.sap.emf.ocl.prepared.PreparedOCLExpression;
 public class TestPreparedOCLExpressions extends TestCase {
     @Test
     public void testIntegerParameterizedExpressionMixingLiteralsWithValues() throws ParserException {
-        Helper helper = com.sap.emf.ocl.util.OCL.newInstance().createOCLHelper();
+        Helper helper = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance().createOCLHelper();
         EClass eClassClass = EcorePackage.eINSTANCE.getEClass();
         helper.setContext(eClassClass);
         OCLExpression e = helper.createQuery("self.eStructuralFeatures->size() > 1111");
@@ -30,7 +30,7 @@ public class TestPreparedOCLExpressions extends TestCase {
 
     @Test
     public void testIntegerParameterizedExpressionAccessByValue() throws ParserException {
-        Helper helper = com.sap.emf.ocl.util.OCL.newInstance().createOCLHelper();
+        Helper helper = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance().createOCLHelper();
         EClass eClassClass = EcorePackage.eINSTANCE.getEClass();
         helper.setContext(eClassClass);
         OCLExpression e = helper.createQuery("self.eStructuralFeatures->size() > 1111");
@@ -41,7 +41,7 @@ public class TestPreparedOCLExpressions extends TestCase {
 
     @Test
     public void testIntegerParameterizedExpressionAccessByPosition() throws ParserException {
-        Helper helper = com.sap.emf.ocl.util.OCL.newInstance().createOCLHelper();
+        Helper helper = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance().createOCLHelper();
         EClass eClassClass = EcorePackage.eINSTANCE.getEClass();
         helper.setContext(eClassClass);
         OCLExpression e = helper.createQuery("self.eStructuralFeatures->size() > 1111");
@@ -52,7 +52,7 @@ public class TestPreparedOCLExpressions extends TestCase {
 
     @Test
     public void testBooleanParameterizedExpressionWithPositionalAccess() throws ParserException {
-        Helper helper = com.sap.emf.ocl.util.OCL.newInstance().createOCLHelper();
+        Helper helper = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance().createOCLHelper();
         EClass eClassClass = EcorePackage.eINSTANCE.getEClass();
         helper.setContext(eClassClass);
         OCLExpression e = helper.createQuery("true and self.eStructuralFeatures->size() > 3");
@@ -64,7 +64,7 @@ public class TestPreparedOCLExpressions extends TestCase {
 
     @Test
     public void testStringParameterizedExpression() throws ParserException {
-        Helper helper = com.sap.emf.ocl.util.OCL.newInstance().createOCLHelper();
+        Helper helper = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance().createOCLHelper();
         EClass eClassClass = EcorePackage.eINSTANCE.getEClass();
         helper.setContext(eClassClass);
         OCLExpression e = helper.createQuery("self.name = '?'");

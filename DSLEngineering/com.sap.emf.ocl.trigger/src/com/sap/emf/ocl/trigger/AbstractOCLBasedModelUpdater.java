@@ -27,7 +27,7 @@ public class AbstractOCLBasedModelUpdater extends AbstractTriggerable implements
     @Override
     public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects,
             OppositeEndFinder oppositeEndFinder) {
-        OCL ocl = com.sap.emf.ocl.util.OCL.newInstance(oppositeEndFinder);
+        OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(oppositeEndFinder);
         for (EObject eo : affectedContextObjects) {
             Object newValue = ocl.evaluate(eo, expression);
             eo.eSet(getPropertyToUpdate(), newValue);
