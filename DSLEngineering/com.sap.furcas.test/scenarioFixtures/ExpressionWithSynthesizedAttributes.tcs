@@ -36,12 +36,12 @@ syntax ExpressionWithSynthesizedAttributes {
 		: {{calculatedValue=lookIn("OCL: -self.expression.calculatedValue")}}
 		;
 			
-	operatorTemplate MultiplicationExpression(operators=opMul, source='leftSide')
-		: rightSide {{calculatedValue=lookIn("OCL:self.leftSide.calculatedValue * self.rightSide.calculatedValue")}}
+	operatorTemplate MultiplicationExpression(operators=opMul, source='leftSide', storeRightTo='rightSide')
+		: {{calculatedValue=lookIn("OCL:self.leftSide.calculatedValue * self.rightSide.calculatedValue")}}
 		;
 	
-	operatorTemplate AdditionExpression(operators=opPlus, source='leftSide')
-		: rightSide {{calculatedValue=lookIn("OCL:self.leftSide.calculatedValue + self.rightSide.calculatedValue")}}
+	operatorTemplate AdditionExpression(operators=opPlus, source='leftSide', storeRightTo='rightSide')
+		: {{calculatedValue=lookIn("OCL:self.leftSide.calculatedValue + self.rightSide.calculatedValue")}}
 		;	
 		
 

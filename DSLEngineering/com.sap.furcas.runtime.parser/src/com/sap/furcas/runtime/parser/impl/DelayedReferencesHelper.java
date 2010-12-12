@@ -119,9 +119,8 @@ public class DelayedReferencesHelper {
         if (reference.getType() == DelayedReference.TYPE_SEMANTIC_PREDICATE) {
             return setDelayedReferenceWithPredicate(reference, modelAdapter, contextManager, contextElement, parser);
         } else if (reference.getType() == DelayedReference.SEMANTIC_DISAMBIGUATE) {
-			return setDelayedReferenceWithSemanticDisambiguate(reference,
-				modelAdapter, contextManager, contextElement, parser);
-		}
+            return setDelayedReferenceWithSemanticDisambiguate(reference, modelAdapter, contextManager, contextElement, parser);
+        }
         if (reference.getOclQuery() != null && reference.getType() != DelayedReference.CONTEXT_LOOKUP) {
             return setDelayedReferenceWithQuery(reference, modelAdapter, contextManager, contextElement);
         } else {
@@ -725,9 +724,7 @@ public class DelayedReferencesHelper {
         boolean problemReported = false;
 
         if ("always".equals(reference.getAutoCreate())) {
-            create(reference, modelAdapter, contextManager, referenceContext); // may
-            // throw
-            // exception
+            create(reference, modelAdapter, contextManager, referenceContext); // may throw exception
             referenceSuccessfullySet = true;
         } else { // autocreate = "ifMissing" or "never"
             try {
