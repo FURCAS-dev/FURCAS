@@ -67,7 +67,7 @@
          unpack="false"/>
 
    <plugin
-         id="de.hpi.sam.bp2009.solution.eventManager"
+         id="org.eclipse.ocl.examples.eventmanager"
          download-size="0"
          install-size="0"
          version="0.0.0"
