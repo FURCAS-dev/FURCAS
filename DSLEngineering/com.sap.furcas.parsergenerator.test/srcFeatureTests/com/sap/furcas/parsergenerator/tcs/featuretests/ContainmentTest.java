@@ -1,7 +1,6 @@
 package com.sap.furcas.parsergenerator.tcs.featuretests;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 
