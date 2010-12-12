@@ -1,5 +1,6 @@
 package org.eclipse.emf.query.index.ui;
 
+import org.eclipse.emf.query.index.Index;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -7,7 +8,7 @@ import org.osgi.framework.BundleContext;
 /**
  * The activator class controls the plug-in life cycle
  */
-public class Activator extends AbstractUIPlugin{
+public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.eclipse.emf.query2.index.ui";
@@ -44,6 +45,10 @@ public class Activator extends AbstractUIPlugin{
 	@Override
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
+		// Dumping of Indexes at the close of IDE, so that when the IDE is
+		// started for the next time, indices must not be build again and
+		// instead loaded from saved ones.
+		IndexFactory.dumpIndexes();
 		super.stop(context);
 	}
 
@@ -68,5 +73,4 @@ public class Activator extends AbstractUIPlugin{
 		return imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
 
-	
 }

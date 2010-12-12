@@ -35,5 +35,14 @@ public interface Index {
 
 	void save();
 
+	/**
+	 * @return Path of master dump file
+	 */ 
 	void load();
+	
+	/**
+	 * @return status whether the dump for Index exists already
+	 */
+	boolean isDumpExists();
+	
 }

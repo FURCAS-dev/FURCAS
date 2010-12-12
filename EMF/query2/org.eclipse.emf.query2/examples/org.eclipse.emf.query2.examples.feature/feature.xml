@@ -3,7 +3,7 @@
       id="org.eclipse.emf.query2.examples.feature"
       label="EMF Query2 Examples"
       version="1.0.0.qualifier"
-      provider-name="eclipse.org">
+      provider-name="Eclipse Modeling Project">
 
    <description url="http://www.example.com/description">
       [Enter Feature Description here.]
