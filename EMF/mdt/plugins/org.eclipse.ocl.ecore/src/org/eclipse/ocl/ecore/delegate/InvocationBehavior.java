@@ -80,7 +80,6 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 		EClass context = operation.getEContainingClass();
 		OCL.Helper helper = ocl.createOCLHelper();
 		helper.setOperationContext(context, operation);
-
 		Constraint constraint;
 		try {
 			constraint = helper.createBodyCondition(expr);
