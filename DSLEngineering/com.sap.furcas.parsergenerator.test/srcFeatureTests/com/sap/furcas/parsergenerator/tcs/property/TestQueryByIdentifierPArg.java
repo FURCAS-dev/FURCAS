@@ -25,7 +25,7 @@ import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
 import com.sap.furcas.test.fixture.FeatureFixtureData;
-import com.sap.furcas.test.testutils.ScopeHelper;
+import com.sap.furcas.test.testutils.ResourceTestHelper;
 
 /**
  * A test for the queryByIdentifier property argument, which can be used to
@@ -94,7 +94,7 @@ public class TestQueryByIdentifierPArg extends GeneratedParserBasedTest {
     
     private IModelAdapter createNewEMFModelAdapter() {
         return new DefaultTextAwareModelAdapter(
-                new EMFModelAdapter(rootPackage, ScopeHelper.createResourceSet(), Collections.singleton(rootPackage.eResource().getURI())));
+                new EMFModelAdapter(rootPackage, ResourceTestHelper.createResourceSet(), Collections.singleton(rootPackage.eResource().getURI())));
     }
     
     /**

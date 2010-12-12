@@ -17,7 +17,7 @@ import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
-import com.sap.furcas.test.testutils.ScopeHelper;
+import com.sap.furcas.test.testutils.ResourceTestHelper;
 
 /**
  * This class tests if the containment settings are set correctly in the TCS metamodel.
@@ -42,8 +42,8 @@ public class ContainmentTest extends GeneratedParserBasedTest {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS) {
             @Override
             public GrammarGenerationSourceConfiguration getSourceConfiguration() {
-                return new GrammarGenerationSourceConfiguration(ScopeHelper.createResourceSet(),
-                        ScopeHelper.createFURCASReferenceScope());
+                return new GrammarGenerationSourceConfiguration(ResourceTestHelper.createResourceSet(),
+                        ResourceTestHelper.createFURCASReferenceScope());
             }
         };
         syntaxBean = parseSyntax(testConfig);

@@ -27,7 +27,7 @@ import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
-import com.sap.furcas.test.testutils.ScopeHelper;
+import com.sap.furcas.test.testutils.ResourceTestHelper;
 
 /**
  * Simple Test for a simple, java like language.
@@ -152,7 +152,7 @@ public class MiniJavaTest extends GeneratedParserBasedTest {
 
     private IModelAdapter createNewEMFModelAdapter() {
         return new DefaultTextAwareModelAdapter(
-                new EMFModelAdapter(rootPackage, ScopeHelper.createResourceSet(), Collections.singleton(rootPackage.eResource().getURI())));
+                new EMFModelAdapter(rootPackage, ResourceTestHelper.createResourceSet(), Collections.singleton(rootPackage.eResource().getURI())));
     }
     
     /**
