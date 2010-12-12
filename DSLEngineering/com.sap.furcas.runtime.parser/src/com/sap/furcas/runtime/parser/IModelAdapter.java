@@ -121,7 +121,7 @@ public interface IModelAdapter extends IModelElementInvestigator { // extends In
      * Same as {@link #set(Object, String, Object)} with additionally
      * specified index on where to set the value in an ordered property.
      */
-    void set(Object modelElement, String prop, Object value, int index) throws ModelAdapterException;
+    public void set(Object modelElement, String prop, Object value, int index) throws ModelAdapterException;
 
     /**
      * Unsets the poperty <tt>prop</tt> of the given <tt>modelElement</tt> which had the given

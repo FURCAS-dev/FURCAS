@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.EmptyStackException;
-import java.util.Iterator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Stack;
 
@@ -20,6 +20,7 @@ import org.antlr.runtime.RecognizerSharedState;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenStream;
 
+import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.implementation.ResolvedModelElementProxy;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.common.interfaces.IRuleName;
@@ -671,86 +672,124 @@ unResolvedDelayedReferenceList.remove(delayedReference);
 		delayedReferenceList.remove(ref);
 	}
 
-	/**
-	 * parsing may generate references which can only be resolved after parsing,
-	 * this method needs to be called to tell the parser to use the elements
-	 * parsed so far (and elements in other contexts if any) to resolve any open
-	 * references. This is done using a kind of fixpoint iteration where
-	 * references are tried to resolve until no new reference is successfully
-	 * resolved.
-	 * 
-	 * @return <tt>true</tt> if all unresolved references were resolved,
-	 *         <tt>false</tt> if there are still unresolved references. A client
-	 *         can obtain those unresolved references by calling
-	 *         {@link #getUnresolvedReferences}.
-	 */
-	public final boolean setDelayedReferencesAfterParsing() {
-		injector.performAdapterDeferredActions();
-		replaceResolvedProxies();
+    /**
+     * parsing may generate references which can only be resolved after parsing,
+     * this method needs to be called to tell the parser to use the elements
+     * parsed so far (and elements in other contexts if any) to resolve any open
+     * references. This is done using a kind of fixpoint iteration where
+     * references are tried to resolve until no new reference is successfully
+     * resolved.
+     * 
+     * @return <tt>true</tt> if all unresolved references were resolved,
+     *         <tt>false</tt> if there are still unresolved references. A client
+     *         can obtain those unresolved references by calling
+     *         {@link #getUnresolvedReferences}.
+     */
+    public final boolean setDelayedReferencesAfterParsing() {
+        injector.performAdapterDeferredActions();
+        replaceResolvedProxies();
 
-		/*
-		 * It is assumed here that at this point of time, the code structure
-		 * guarantees that the list of delayed References does not contain any
-		 * IModelElementproxy elements, neither does the ContextManager contain
-		 * any IModelElementProxy object.
-		 */
+        /*
+         * It is assumed here that at this point of time, the code structure
+         * guarantees that the list of delayed References does not contain any
+         * IModelElementproxy elements, neither does the ContextManager contain
+         * any IModelElementProxy object.
+         */
 
-		if (injector.getErrorList().size() == 0) {
+        if (injector.getErrorList().size() != 0) {
+            return delayedReferenceList.size() == 0;
+        }
 
-			// try to resolve references as long as there are new references
-			// resolved
-			// this is done because the actual optimal ordering is not known at
-			// this point
-			boolean resolvedNewReference = true;
-			while (!delayedReferenceList.isEmpty() && resolvedNewReference
-					|| !unResolvedDelayedReferenceList.isEmpty()) {
-				// clear the error list as the errors might get resolved
-				// within
-				// the next iteration
-				// if not they will be added again anyways
-				injector.getErrorList().clear();
-				// if in the resolving part some new references are created they
-				// must be evaluated as well
-                for (DelayedReference delayedReference : unResolvedDelayedReferenceList) {
-                    delayedReferenceList.add(delayedReference);
+        // try to resolve references as long as there are new references resolved
+        // this is done because the actual optimal ordering is not known at  this point
+        boolean resolvedNewReference = true;
+        Collection<DelayedReference> resolvedReferences = new HashSet<DelayedReference>();
+        
+        while (!delayedReferenceList.isEmpty() && resolvedNewReference || !unResolvedDelayedReferenceList.isEmpty()) {
+            // clear the error list as the errors might get resolved within
+            // the next iteration if not they will be added again anyways
+            injector.getErrorList().clear();
+            // if in the resolving part some new references are created they
+            // must be evaluated as well
+            delayedReferenceList.addAll(unResolvedDelayedReferenceList);
+            unResolvedDelayedReferenceList.clear();
+
+            resolvedNewReference = false;
+            for (DelayedReference reference : delayedReferenceList) {
+                
+                if (reference.getAutoCreate() != null && resolvedReferences.contains(reference)) {
+                    // make sure to create elements only once. Otherwise endless elements will
+                    // be created and the fixpoint iteration never stops.
+                    continue;
                 }
-				unResolvedDelayedReferenceList.clear();
-				resolvedNewReference = false;
-				for (Iterator<DelayedReference> iterator = delayedReferenceList
-						.iterator(); iterator.hasNext();) {
-					DelayedReference reference = iterator.next();
-					try {
-						Collection<ParsingError> errorList = new ArrayList<ParsingError>(
-								injector.getErrorList());
-						boolean newlyResolved = injector.resolveReference(
-								reference, contextManager, this);
-						if (newlyResolved) {
-							iterator.remove();
-							resolvedNewReference = true;
-						} else if (reference.isOptional()) {
-							restoreErrorList(errorList);
-						}
-						if (reference.getRealValue() != null) {
-							Object me = (reference.getModelElement() instanceof IModelElementProxy) ? ((IModelElementProxy) reference
-									.getModelElement()).getRealObject()
-									: reference.getModelElement();
-							onRuleElementResolvedOutOfContext(reference
-									.getRealValue(), me, reference.getToken(),
-									reference);
-						}
-					} catch (ModelElementCreationException e) {
-						getInjector().addError(
-								new ParsingError(e.getMessage(), reference
-										.getToken()));
-					}
-				}
-			}
-		}
-		return delayedReferenceList.size() == 0;
+                
+                if (reference.getType() == DelayedReference.TYPE_SEMANTIC_PREDICATE && resolvedReferences.contains(reference)) {
+                    // resolve foreach properties only once. Otherwise delayed references for the individual foreach
+                    // elements would be created over and over again
+                    // FIXME: this is buggy if the actual value of the predicate used in the for changes over the course
+                    // of the fixpoint iteration. The elements missed before would be missed entirely. 
+                    continue;
+                }
+                
+                try {
+                    Collection<ParsingError> errorList = new ArrayList<ParsingError>(injector.getErrorList());
 
-	}
+                    Object valueBefore = getReferenceValue(reference);
+                    boolean resolvedSuccessfully = injector.resolveReference(reference, contextManager, this);
+                    Object valueAfter = getReferenceValue(reference);
+                    boolean valueChanged = valueHasChanged(valueBefore, valueAfter);
+                    if (resolvedSuccessfully) {
+                        // log which references could be resolved. Keep them around
+                        // so that they can be tried to resolve again if necessary.
+                        resolvedReferences.add(reference);
+                        if (valueChanged) {
+                            resolvedNewReference = true;
+                        }
+                    } else if (reference.isOptional()) {
+                        restoreErrorList(errorList);
+                    }
+                    if (resolvedSuccessfully && valueChanged) {
+                        Object me = (reference.getModelElement() instanceof IModelElementProxy) ? ((IModelElementProxy) reference
+                                .getModelElement()).getRealObject() : reference.getModelElement();
+                        onRuleElementResolvedOutOfContext(reference.getRealValue(), me, reference.getToken(), reference);
+                    }
+                } catch (ModelElementCreationException e) {
+                    getInjector().addError(new ParsingError(e.getMessage(), reference.getToken()));
+                } catch (ModelAdapterException e) {
+                    getInjector().addError(new ParsingError(e.getMessage(), reference.getToken()));
+                }
+            }
+        }
+        delayedReferenceList.removeAll(resolvedReferences);
+        return delayedReferenceList.size() == 0;
+    }
 
-	private void restoreErrorList(Collection<ParsingError> errorList) {
+    private Object getReferenceValue(DelayedReference reference) throws ModelAdapterException {
+        return injector.getModelAdapter().get(reference.getModelElement(), reference.getPropertyName());
+    }
+    
+    private boolean valueHasChanged(Object valueBefore, Object valueAfter) {
+        if ((valueBefore == null && valueAfter != null) || (valueBefore != null && valueAfter == null)) {
+            return true;
+        }
+        
+        if (valueBefore == null && valueAfter == null) {
+            return false;
+        } else if (valueBefore instanceof Collection && valueAfter instanceof Collection) {
+            Collection<?> collectionBefore = (Collection<?>) valueBefore;
+            Collection<?> collectionAfter = (Collection<?>) valueAfter;
+            
+            return !collectionBefore.containsAll(collectionAfter) ||
+                   !collectionAfter.containsAll(collectionBefore);
+        } else {
+            return !valueBefore.equals(valueAfter);
+        }
+            
+    }
+
+
+
+    private void restoreErrorList(Collection<ParsingError> errorList) {
 		injector.getErrorList().clear();
 		injector.getErrorList().addAll(errorList);
 	}
