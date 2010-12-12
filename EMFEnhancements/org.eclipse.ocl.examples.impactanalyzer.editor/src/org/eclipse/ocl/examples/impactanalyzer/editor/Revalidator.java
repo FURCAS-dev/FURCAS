@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.delegate.ValidationBehavior;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
@@ -40,7 +41,16 @@ public class Revalidator {
     private final OCLFactory oclFactory;
     private final OppositeEndFinder oppositeEndFinder;
 
-    public Revalidator(AdapterFactoryEditingDomain editingDomain, EPackage pkg, OCLFactory oclFactory, OppositeEndFinder oppositeEndFinder) {
+    /**
+     * @param pkg the metamodel package whose invariants to observe
+     * @param oclFactory used to create {@link OCL} instances
+     * @param oppositeEndFinder used to instantiate an {@link OCL} object using
+     * {@link OCLFactory#createOCL(OppositeEndFinder)}, and used for the {@link ImpactAnalyzer} when
+     * retrieving and navigating hidden opposite references as well as for evaluating
+     * <code>allInstances()</code> expressions
+     */
+    public Revalidator(AdapterFactoryEditingDomain editingDomain, EPackage pkg, OCLFactory oclFactory,
+            OppositeEndFinder oppositeEndFinder) {
         eventManager = EventManagerFactory.eINSTANCE.createEventManagerFor(editingDomain.getResourceSet());
         this.oclFactory = oclFactory;
         this.oppositeEndFinder = oppositeEndFinder;
@@ -69,7 +79,7 @@ public class Revalidator {
                                 // revalidate invariant on context objects that impact analysis will produce:
                                 Collection<EObject> revalidateOn = impactAnalyzer.getContextObjects(msg);
                                 if (revalidateOn != null && !revalidateOn.isEmpty()) {
-                                    new RevalidateAction(constraintName, revalidateOn, invariant)
+                                    new RevalidateAction(constraintName, revalidateOn, invariant, oclFactory, oppositeEndFinder)
                                             .run();
                                 }
                             }
