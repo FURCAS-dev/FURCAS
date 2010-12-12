@@ -62,7 +62,7 @@
 		</cs:public>
 
 		
-		<cs:public name="package.mdt-ocl-Examples" actor="ant">
+		<cs:public name="package.mdt-ocl-examples" actor="ant">
 			<cs:actorProperties>
 				<cs:property key="buildFile" value="packaging.ant" />
 				<cs:property key="targets" value="package.ius" />
@@ -78,7 +78,7 @@
 			<cs:products alias="output" base="${buckminster.output}/zips/" />
 		</cs:public>
 
-		<cs:public name="package.mdt-ocl-Runtime" actor="ant">
+		<cs:public name="package.mdt-ocl-runtime" actor="ant">
 			<cs:actorProperties>
 				<cs:property key="buildFile" value="packaging.ant" />
 				<cs:property key="targets" value="package.ius" />
@@ -108,8 +108,8 @@
 			<cs:attribute name="package.mdt-ocl-Update" />
 			<cs:attribute name="package.mdt-ocl-SDK" />
 			<cs:attribute name="package.mdt-ocl-CoreSDK" />
-			<cs:attribute name="package.mdt-ocl-Examples" />
-			<cs:attribute name="package.mdt-ocl-Runtime" />
+			<cs:attribute name="package.mdt-ocl-examples" />
+			<cs:attribute name="package.mdt-ocl-runtime" />
 		</cs:public>
 	</cs:groups>
 </cs:cspecExtension>
