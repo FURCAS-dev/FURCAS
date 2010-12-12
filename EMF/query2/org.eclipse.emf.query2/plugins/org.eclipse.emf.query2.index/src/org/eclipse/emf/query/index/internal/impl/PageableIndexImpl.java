@@ -40,13 +40,13 @@ public class PageableIndexImpl implements PageableIndex {
 
 	public static class Options {
 
-		public static final int DISABLED = Integer.MAX_VALUE;
-		public static final Options PAGING_AND_DUMPING_DISABLED = new Options(null, DISABLED, DISABLED);
-
 		private final String baseDirectory;
 		private final int tolerance;
 		private final int limit;
-
+		
+		public static final int DISABLED = Integer.MAX_VALUE;
+		public static final Options PAGING_AND_DUMPING_DISABLED = new Options(null, Options.DISABLED, Options.DISABLED);
+		
 		public Options(String pagingDirectory, int limit, int tolerance) {
 			if (limit < 0) {
 				limit = DISABLED;
@@ -75,6 +75,8 @@ public class PageableIndexImpl implements PageableIndex {
 	private ReentrantReadWriteLock rwLock;
 
 	private PageFileProvider chProv;
+
+	private String masterDumpFilePath;
 
 	public PageableIndexImpl(Options options) {
 		rwLock = new ReentrantReadWriteLock();
@@ -133,8 +135,10 @@ public class PageableIndexImpl implements PageableIndex {
 
 	public void load() {
 		this.rwLock.writeLock().lock();
+		masterDumpFilePath = null;
 		try {
 			File inputFile = this.chProv.getInputFile(DUMP_FILE_ID);
+			masterDumpFilePath = inputFile.getPath();
 			if (inputFile.exists()) {
 				FileInputStream fis = new FileInputStream(inputFile);
 				SerializationStrategyFactory factory = new SerializationStrategyFactory(fis);
@@ -155,8 +159,14 @@ public class PageableIndexImpl implements PageableIndex {
 		try {
 			stream.close();
 		} catch (IOException e) {
-			throw new RuntimeException(e); // FIXME exception handling
+			throw new RuntimeException(e);
 		}
+	}
+
+	public boolean isDumpExists() {
+		File file = new File(masterDumpFilePath);
+		boolean indicesExists = file.exists();
+		return indicesExists;
 	}
 
 }

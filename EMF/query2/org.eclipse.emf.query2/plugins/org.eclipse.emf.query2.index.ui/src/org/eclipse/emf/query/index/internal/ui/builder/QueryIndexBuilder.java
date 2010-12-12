@@ -69,7 +69,7 @@ public class QueryIndexBuilder extends IncrementalProjectBuilder {
 		}
 	}
 
-	public static final String BUILDER_ID = "org.eclipse.emf.query.index.ui.queryIndexBuilder";
+	public static final String BUILDER_ID = "org.eclipse.emf.query2.index.ui.queryIndexBuilder";
 
 	/*
 	 * (non-Javadoc)
