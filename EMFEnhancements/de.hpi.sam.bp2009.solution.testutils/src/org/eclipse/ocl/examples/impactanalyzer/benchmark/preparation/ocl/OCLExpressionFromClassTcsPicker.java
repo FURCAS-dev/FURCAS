@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl;
+package org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +20,9 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.OCLTestExpressionContainer.OclExpressionWithPackage;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLTestExpressionContainer.OclExpressionWithPackage;
 
 /**
  * The {@link OCLExpressionFromClassTcsPicker} parses the OCL expressions which were extracted

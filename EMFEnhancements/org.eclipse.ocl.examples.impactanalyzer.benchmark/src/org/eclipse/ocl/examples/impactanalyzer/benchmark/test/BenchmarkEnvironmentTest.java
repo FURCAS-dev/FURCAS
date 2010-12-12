@@ -28,15 +28,15 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.PathOptions;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.ProcessingOptions;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationResourceLoader;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.RawNotification;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.RealWorldReplayNotificationProducer;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.BenchmarkOCLPreparer;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.EnvironmentFactory;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.tasks.BenchmarkTask;
 import org.junit.Test;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationResourceLoader;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.RawNotification;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.RealWorldReplayNotificationProducer;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.BenchmarkOCLPreparer;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.EnvironmentFactory;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 
 public class BenchmarkEnvironmentTest extends TestCase {
 

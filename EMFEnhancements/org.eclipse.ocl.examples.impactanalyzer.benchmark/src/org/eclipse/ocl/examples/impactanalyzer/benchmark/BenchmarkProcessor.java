@@ -21,12 +21,12 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.execution.BenchmarkExecutionProcessor;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationResourceLoader;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.tasks.BenchmarkTask;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.tasks.BenchmarkTaskPreparer;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.tasks.BenchmarkTaskStepwiseBuilder;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.ActivationOption;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationResourceLoader;
 
 /**
  * The {@link BenchmarkProcessor}s main purpose is to analyze the overall performance of the instance scope analysis. However, the

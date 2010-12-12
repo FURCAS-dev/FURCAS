@@ -29,6 +29,7 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationHelper;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.OptimizationActivation;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OCLFactoryImpl;
 import org.junit.Test;
@@ -51,7 +52,6 @@ import dataaccess.expressions.literals.LiteralsFactory;
 import dataaccess.expressions.literals.LiteralsPackage;
 import dataaccess.expressions.literals.ObjectLiteral;
 import dataaccess.expressions.literals.StringLiteral;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
 import de.hpi.sam.bp2009.solution.testutils.BaseDepartmentTest;
 
 public class OclIaTest extends BaseDepartmentTest {

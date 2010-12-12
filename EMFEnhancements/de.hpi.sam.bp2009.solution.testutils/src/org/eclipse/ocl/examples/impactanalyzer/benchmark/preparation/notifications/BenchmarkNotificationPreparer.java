@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications;
+package org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,8 +16,8 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.model.ShrinkedResourceProvider;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.model.ShrinkedResourceProvider;
 
 
 public class BenchmarkNotificationPreparer {
