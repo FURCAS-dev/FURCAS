@@ -22,7 +22,7 @@
     <module>org.eclipse.ocl.examples.impactanalyzer.example.editor</module>
     <module>org.eclipse.ocl.examples.impactanalyzer.example.model</module>
     <module>com.sap.emf.ocl.prepared</module>
-    <module>com.sap.emf.ocl.util</module>
+    <module>org.eclipse.ocl.examples.impactanalyzer.util</module>
     <module>com.sap.ocl.oppositefinder.query2</module>
     <module>com.sap.ocl.oppositefinder.query2.test</module>
     <module>de.hpi.sam.activityDiagram</module>
