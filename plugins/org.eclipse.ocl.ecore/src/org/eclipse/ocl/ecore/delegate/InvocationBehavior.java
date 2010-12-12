@@ -68,13 +68,13 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 	}
 
 	public OCLExpression getOperationBody(OCL ocl, EOperation operation) {
-		EClass context = operation.getEContainingClass();
-		OCL.Helper helper = ocl.createOCLHelper();
-		helper.setOperationContext(context, operation);
 		String expr = EcoreUtil.getAnnotation(operation, OCLDelegateDomain.OCL_DELEGATE_URI, BODY_CONSTRAINT_KEY);
 		if (expr == null) {
 			return null;
 		}
+		EClass context = operation.getEContainingClass();
+		OCL.Helper helper = ocl.createOCLHelper();
+		helper.setOperationContext(context, operation);
 		Constraint constraint;
 		try {
 			constraint = helper.createBodyCondition(expr);
