@@ -44,7 +44,7 @@ import com.sap.furcas.test.testutils.ResourceTestHelper;
  */
 public class TestSynthesizedAttributeGrammar extends GeneratedParserBasedTest {
     
-    private static final String LANGUAGE = "Expression";
+    private static final String LANGUAGE = "ExpressionWithSynthesizedAttributes";
     private static final File TCS = ScenarioFixtureData.EXPRESSION_WITH_SYNTHESIZED_ATTRIBUTE_TCS;
     private static final File[] METAMODELS = { ScenarioFixtureData.EXPRESSION_WITH_SYNTHESIZED_ATTRIBUTE_METAMODEL };
 
