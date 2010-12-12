@@ -30,9 +30,9 @@ import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.impactanalyzer.util.AnnotatedEObject;
 import org.eclipse.ocl.examples.impactanalyzer.util.HighlightingToStringVisitor;
+import org.eclipse.ocl.examples.impactanalyzer.util.OclHelper;
 import org.eclipse.ocl.examples.impactanalyzer.util.SemanticIdentity;
 
-import com.sap.emf.ocl.util.OclHelper;
 
 
 /**

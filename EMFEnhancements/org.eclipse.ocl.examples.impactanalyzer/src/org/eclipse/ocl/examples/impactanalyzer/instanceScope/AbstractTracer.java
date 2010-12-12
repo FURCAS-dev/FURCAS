@@ -34,8 +34,8 @@ import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OperationBodyToCallMapper;
 import org.eclipse.ocl.examples.impactanalyzer.util.AnnotatedEObject;
+import org.eclipse.ocl.examples.impactanalyzer.util.OclHelper;
 
-import com.sap.emf.ocl.util.OclHelper;
 
 
 public abstract class AbstractTracer<T extends EObject> implements Tracer {

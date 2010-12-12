@@ -60,7 +60,7 @@ public class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBasedModelUpd
     @Override
     public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects,
             OppositeEndFinder oppositeEndFinder) {
-        OCL ocl = com.sap.emf.ocl.util.OCL.newInstance(oppositeEndFinder);
+        OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(oppositeEndFinder);
         // TODO use prepared expression and parameterize based on token value taken from text blocks model
         for (EObject eo : affectedContextObjects) {
             Object newValue = ocl.evaluate(eo, expression);
@@ -165,7 +165,7 @@ public class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBasedModelUpd
 
     protected static Helper createOCLHelper(String oclExpression, Template contextTemplate, 
             OppositeEndFinder oppositeEndFinder) throws ParserException {
-        Helper result = com.sap.emf.ocl.util.OCL.newInstance(oppositeEndFinder).createOCLHelper();
+        Helper result = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(oppositeEndFinder).createOCLHelper();
         EClass parsingContext = (EClass) ContextAndForeachHelper.getParsingContext(oclExpression,
                 contextTemplate);
         result.setContext(parsingContext);

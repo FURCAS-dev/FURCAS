@@ -49,10 +49,10 @@ import org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation.Un
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet.UnusedEvaluationResult;
 import org.eclipse.ocl.examples.impactanalyzer.util.AnnotatedEObject;
 import org.eclipse.ocl.examples.impactanalyzer.util.HighlightingToStringVisitor;
+import org.eclipse.ocl.examples.impactanalyzer.util.OclHelper;
 import org.eclipse.ocl.examples.impactanalyzer.util.OperationCallExpKeyedSet;
 import org.eclipse.ocl.examples.impactanalyzer.util.Tuple.Pair;
 
-import com.sap.emf.ocl.util.OclHelper;
 
 
 public abstract class AbstractTracebackStep<E extends OCLExpression> implements TracebackStep {

@@ -146,7 +146,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             if (expr == null)
                 return;
 
-            OCL ocl = com.sap.emf.ocl.util.OCL.newInstance(this.getRegistry());
+            OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(this.getRegistry());
             Helper helper = ocl.createOCLHelper();
 
             setCorrectContext(helper, modelElement);

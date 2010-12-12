@@ -60,7 +60,7 @@ public class SemanticPredicatePropertyInitUpdater extends AbstractFurcasOCLBased
     @Override
     public Collection<OCLExpression> getTriggerExpressionsWithoutContext() {
         Collection<OCLExpression> result = new LinkedList<OCLExpression>();
-        Helper oclHelper = com.sap.emf.ocl.util.OCL.newInstance(getOppositeEndFinder()).createOCLHelper();
+        Helper oclHelper = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(getOppositeEndFinder()).createOCLHelper();
         for (SemanticDisambRuleData predicate : predicates) {
             try {
                 oclHelper.setContext(ContextAndForeachHelper.getParsingContext(predicate.getOCL(), containingTemplate));

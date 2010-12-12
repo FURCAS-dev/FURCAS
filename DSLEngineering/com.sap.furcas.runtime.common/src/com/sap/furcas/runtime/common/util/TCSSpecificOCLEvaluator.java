@@ -44,7 +44,7 @@ public class TCSSpecificOCLEvaluator {
     }
     
     public TCSSpecificOCLEvaluator(QueryContextProvider queryContext) {
-        ocl = com.sap.emf.ocl.util.OCL.newInstance(new Query2OppositeEndFinder(queryContext));
+        ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(new Query2OppositeEndFinder(queryContext));
         oclHelper = ocl.createOCLHelper();
     }
 

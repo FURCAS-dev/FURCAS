@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package com.sap.emf.ocl.util;
+package org.eclipse.ocl.examples.impactanalyzer.util;
 
 import java.util.Collection;
 import java.util.Collections;

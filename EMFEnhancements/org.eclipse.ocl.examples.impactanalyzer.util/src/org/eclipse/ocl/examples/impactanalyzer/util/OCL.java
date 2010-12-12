@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package com.sap.emf.ocl.util;
+package org.eclipse.ocl.examples.impactanalyzer.util;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;

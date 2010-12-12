@@ -276,7 +276,7 @@ public class NgpmModelBasedOclIaTest extends TestCase {
         // would have to be a call on the output of append()
         final MethodCallExpression callOnAppendCallResult = (MethodCallExpression) ngpmModel.getEObject("E012BF1E3D01FCF05D0E11DF9483DFF10A1CE22F");
         callOnAppendCallResult.getObject().setOwnedTypeDefinition(null); // force append's output type definition to be used in call's getType()
-        final Object oldValue = com.sap.emf.ocl.util.OCL.newInstance().evaluate(callOnAppendCallResult, exp);
+        final Object oldValue = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance().evaluate(callOnAppendCallResult, exp);
         final MethodSignature append = (MethodSignature) ngpmModel.getEObject("E01F04667A9220905D0911DFA13BFF380A1CE22F");
         final ClassTypeDefinition appendOutputCTD = (ClassTypeDefinition) append.getOutput();
         assertEquals(string, appendOutputCTD.getClazz());

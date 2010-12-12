@@ -24,7 +24,7 @@ public class OCLFactoryImpl implements OCLFactory {
     }
 
     public OCL createOCL(OppositeEndFinder oppositeEndFinder) {
-        return com.sap.emf.ocl.util.OCL.newInstance(oppositeEndFinder);
+        return org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(oppositeEndFinder);
     }
 
 }
