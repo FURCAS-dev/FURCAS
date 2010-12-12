@@ -181,8 +181,8 @@ public class InjectorActionsHandler<Type> {
 				}
 
 				String javaQuery = value.replaceAll("\\\"", "\\\\\"");
-				javaQuery = javaQuery.replaceAll("\r\n", "\"+\"");
-				javaQuery = javaQuery.replaceAll("\n", "\"+\"");
+				javaQuery = javaQuery.replaceAll("\r\n", "\"+\r\n\"");
+				javaQuery = javaQuery.replaceAll("\n", "\"+\n\"");
 				buffer.append("setOclRef(ret, \"" + propName
 						+ "\", null, null, \"" + javaQuery + "\", "
 						+ isOptional + ");");
@@ -204,8 +204,8 @@ public class InjectorActionsHandler<Type> {
 			}
 
 			String javaQuery = value.replaceAll("\\\"", "\\\\\"");
-			javaQuery = javaQuery.replaceAll("\r\n", "\"+\"");
-			javaQuery = javaQuery.replaceAll("\n", "\"+\"");
+			javaQuery = javaQuery.replaceAll("\r\n", "\"+\r\n\"");
+			javaQuery = javaQuery.replaceAll("\n", "\"+\n\"");
 			buffer.append("\n{\n");
 			buffer
 					.append("List<PredicateSemantic> list = new ArrayList<PredicateSemantic>();\n");
@@ -222,8 +222,8 @@ public class InjectorActionsHandler<Type> {
 				}
 				if (next.getWhen() != null) {
 					String javaQueryWhen = toString(next.getWhen()).replaceAll("\\\"", "\\\\\"");
-					javaQueryWhen = javaQueryWhen.replaceAll("\r\n", "\"+\"");
-					javaQueryWhen = javaQueryWhen.replaceAll("\n", "\"+\"");
+					javaQueryWhen = javaQueryWhen.replaceAll("\r\n", "\"+\r\n\"");
+					javaQueryWhen = javaQueryWhen.replaceAll("\n", "\"+\n\"");
 					buffer.append("list.add(new PredicateSemantic(\""
 							+ javaQueryWhen + "\", \""
 							+ finder.getRuleName(next.getAs(), localMode)

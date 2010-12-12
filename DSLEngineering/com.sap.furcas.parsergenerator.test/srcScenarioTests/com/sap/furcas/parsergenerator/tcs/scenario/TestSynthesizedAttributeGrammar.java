@@ -64,17 +64,10 @@ public class TestSynthesizedAttributeGrammar extends GeneratedParserBasedTest {
     public void testSimpleCaluclations() throws Exception {
         assertEquals(1, calculate("1"));
         assertEquals(2, calculate("1+1"));
-        assertEquals(6, calculate("1+2+3"));
+        assertEquals(15, calculate("1+2+3+4+5"));
 
         assertEquals(25, calculate("5*5"));
         assertEquals(27, calculate("3*3*3"));
-    }
-    
-    @Test
-    @Ignore("Fails for unknown reasons")
-    public void testNegation() throws Exception {
-        assertEquals(-2, calculate("-1*2"));
-        assertEquals(1, calculate("--1"));
     }
     
     @Test
@@ -82,19 +75,51 @@ public class TestSynthesizedAttributeGrammar extends GeneratedParserBasedTest {
         assertEquals(1, calculate("(1)"));
         assertEquals(2, calculate("(1+1)"));
         assertEquals(6, calculate("1+(2+3)"));
+        
+        assertEquals(1, calculate("(((1)))"));
     } 
     
     @Test
-    public void testPreceedence() throws Exception {
-        assertEquals(7, calculate("1+2*3"));
+    public void testNegation() throws Exception {
+        assertEquals(-1, calculate("-1"));
+        assertEquals(-2, calculate("-1*2"));
+        assertEquals(2, calculate("-1*-2"));
 
-        assertEquals(9, calculate("(1+2)*3"));
-        assertEquals(7, calculate("1+(2*3)"));
+        assertEquals(-10, calculate("2*-5"));
+        assertEquals(-10, calculate("-2*5"));
+        
+        assertEquals(1, calculate("-(-1)"));
     }
     
+    @Test
+    @Ignore("Fails for unknown reasons")
+    public void testDoubleNegation() throws Exception {
+        assertEquals(1, calculate("-(-1)"));
+        assertEquals(1, calculate("--1"));
+    }
+    
+    @Test
+    public void testPreceedenceSimple() throws Exception {
+        assertEquals(9, calculate("(1+2)*3"));
+        assertEquals(7, calculate("1+(2*3)"));
+        
+        assertEquals(7, calculate("1+2*3"));
+    }
+    
+    @Test
+    public void testPreceedenceComplex() throws Exception {
+        // Test indivudually
+        assertEquals(20, calculate("2*10"));
+        assertEquals(-10, calculate("2*-5"));
+        assertEquals(0, calculate("10+-10"));
+        
+        // Test in total
+        assertEquals(0, calculate("2*10+2*-5+-10"));
+    }
+
     private int calculate(String expressionToCalculate) throws Exception {
         IModelAdapter modelAdapter = createNewEMFModelAdapter();
-        ModelParsingResult result = parsingHelper.parseString(expressionToCalculate, modelAdapter);
+        ModelParsingResult result = parsingHelper.parseString(expressionToCalculate, /*expected errors*/ 0, modelAdapter);
         EObject exprStatement = (EObject) result.getParsedModelElement();
         
         EObject expression = (EObject) exprStatement.eGet(exprStatement.eClass().getEStructuralFeature("expression"));
