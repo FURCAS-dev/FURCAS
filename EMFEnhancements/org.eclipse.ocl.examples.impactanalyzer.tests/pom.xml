@@ -9,7 +9,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>com.sap.dsl</groupId>
-	<artifactId>de.hpi.sam.bp2009.solution.impactAnalyzer.tests</artifactId>
+	<artifactId>org.eclipse.ocl.examples.impactanalyzer.tests</artifactId>
 	<version>0.1.0</version>
 	<packaging>eclipse-test-plugin</packaging>
 

@@ -8,7 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <groupId>com.sap.dsl</groupId>
-  <artifactId>com.sap.emf.ocl.impactanalysis.example</artifactId>
+  <artifactId>org.eclipse.ocl.examples.impactanalyzer.example</artifactId>
   <version>1.0.0</version>
   <packaging>eclipse-plugin</packaging>
 </project>
