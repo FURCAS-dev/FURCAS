@@ -11,8 +11,8 @@
 package org.eclipse.ocl.examples.eventmanager.tests;
 
 import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
+import org.eclipse.ocl.examples.impactanalyzer.testutils.BaseDepartmentTest;
 
-import de.hpi.sam.bp2009.solution.testutils.BaseDepartmentTest;
 
 /**
  * <!-- begin-user-doc --> A test case for the model object '<em><b>Event Filter</b></em>'. <!-- end-user-doc -->

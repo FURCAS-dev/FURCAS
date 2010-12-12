@@ -18,8 +18,8 @@ import org.eclipse.ocl.examples.eventmanager.EventManager;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationHelper;
+import org.eclipse.ocl.examples.impactanalyzer.testutils.BaseDepartmentTest;
 
-import de.hpi.sam.bp2009.solution.testutils.BaseDepartmentTest;
 
 public class IncludeSubclassesTest extends BaseDepartmentTest {
     private EventManager m;

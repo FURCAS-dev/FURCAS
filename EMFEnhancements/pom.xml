@@ -41,7 +41,7 @@
     <module>de.hpi.sam.bp2009.solution.queryContextScopeProvider</module>
     <module>de.hpi.sam.bp2009.solution.scopeProvider</module>
     <module>de.hpi.sam.bp2009.solution.scopeProvider.tests</module>
-    <module>de.hpi.sam.bp2009.solution.testutils</module>
+    <module>org.eclipse.ocl.examples.impactanalyzer.testutils</module>
     <module>de.hpi.sam.petriNet</module>
     <module>EMFEnhancements-Feature</module>
   </modules>
