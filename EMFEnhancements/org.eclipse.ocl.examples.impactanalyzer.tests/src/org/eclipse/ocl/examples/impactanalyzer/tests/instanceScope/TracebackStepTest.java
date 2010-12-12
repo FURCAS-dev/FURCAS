@@ -25,12 +25,12 @@ import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationHelper;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.OptimizationActivation;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OCLFactoryImpl;
+import org.eclipse.ocl.examples.impactanalyzer.testutils.BaseDepartmentTest;
 import org.junit.Test;
 
 import data.classes.ClassesFactory;
 import data.classes.ClassesPackage;
 import data.classes.SapClass;
-import de.hpi.sam.bp2009.solution.testutils.BaseDepartmentTest;
 
 public class TracebackStepTest extends BaseDepartmentTest {
     private EPackage cp;

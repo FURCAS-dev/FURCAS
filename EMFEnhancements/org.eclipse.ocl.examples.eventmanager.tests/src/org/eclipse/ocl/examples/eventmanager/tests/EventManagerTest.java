@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.eventmanager.filters.ContainmentFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.OrFilter;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationHelper;
+import org.eclipse.ocl.examples.impactanalyzer.testutils.BaseDepartmentTest;
 import org.junit.Test;
 
 import company.CompanyFactory;
@@ -32,7 +33,6 @@ import company.Department;
 import company.Division;
 import company.Employee;
 
-import de.hpi.sam.bp2009.solution.testutils.BaseDepartmentTest;
 
 public class EventManagerTest extends BaseDepartmentTest {
 

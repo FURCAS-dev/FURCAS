@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package de.hpi.sam.bp2009.solution.testutils;
+package org.eclipse.ocl.examples.impactanalyzer.testutils;
 
 import java.lang.reflect.Field;
 import java.util.HashSet;

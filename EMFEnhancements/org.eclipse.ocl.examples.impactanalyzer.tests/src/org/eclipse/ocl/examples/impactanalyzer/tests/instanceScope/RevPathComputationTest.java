@@ -32,6 +32,7 @@ import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationHelper;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.OptimizationActivation;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OCLFactoryImpl;
+import org.eclipse.ocl.examples.impactanalyzer.testutils.BaseDepartmentTest;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -43,7 +44,6 @@ import company.Employee;
 import company.Freelance;
 import company.Student;
 
-import de.hpi.sam.bp2009.solution.testutils.BaseDepartmentTest;
 
 /**
  * Tests whether the right context instances are computed. This is done as follows: A simple instance of the company model is

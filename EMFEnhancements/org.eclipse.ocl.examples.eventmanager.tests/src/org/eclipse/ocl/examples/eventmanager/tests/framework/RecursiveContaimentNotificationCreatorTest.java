@@ -16,6 +16,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationHelper;
+import org.eclipse.ocl.examples.impactanalyzer.testutils.BaseDepartmentTest;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +25,6 @@ import company.CompanyFactory;
 import company.Division;
 import company.Employee;
 
-import de.hpi.sam.bp2009.solution.testutils.BaseDepartmentTest;
 
 public class RecursiveContaimentNotificationCreatorTest extends BaseDepartmentTest{
 

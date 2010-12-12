@@ -39,6 +39,7 @@ import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationHelper;
 import org.eclipse.ocl.examples.impactanalyzer.filterSynthesis.FilterSynthesisImpl;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OCLFactoryImpl;
+import org.eclipse.ocl.examples.impactanalyzer.testutils.BaseDepartmentTest;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -49,7 +50,6 @@ import company.Department;
 import company.Employee;
 import company.Student;
 
-import de.hpi.sam.bp2009.solution.testutils.BaseDepartmentTest;
 
 /**
  * Class scope analysis test
