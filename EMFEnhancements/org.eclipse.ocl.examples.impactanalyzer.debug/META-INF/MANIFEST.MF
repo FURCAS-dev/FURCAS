@@ -6,7 +6,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ClassPath: lib/y.jar,
  .
-Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.debug
+Export-Package: org.eclipse.ocl.examples.impactanalyzer.debug
 Import-Package: org.junit
 Require-Bundle: org.eclipse.ocl.examples.impactanalyzer,
  org.eclipse.emf.ecore,

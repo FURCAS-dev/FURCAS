@@ -17,7 +17,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
             uri="http://sap.com/sac"
-            class="com.sap.emf.ocl.impactanalysis.example.signature_and_call.provider.Signature_and_callItemProviderAdapterFactory"
+            class="org.eclipse.ocl.examples.impactanalyzer.example.signature_and_call.provider.Signature_and_callItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

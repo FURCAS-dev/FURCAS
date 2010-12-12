@@ -4,11 +4,11 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.ocl.examples.impactanalyzer.example.edit;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-ClassPath: .
-Bundle-Activator: com.sap.emf.ocl.impactanalysis.example.signature_and_call.provider.Signature_and_callEditPlugin$Implementation
+Bundle-Activator: org.eclipse.ocl.examples.impactanalyzer.example.signature_and_call.provider.Signature_and_callEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: com.sap.emf.ocl.impactanalysis.example.signature_and_call.provider
+Export-Package: org.eclipse.ocl.examples.impactanalyzer.example.signature_and_call.provider
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ocl.examples.impactanalyzer.example;visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport

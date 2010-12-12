@@ -17,7 +17,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://sap.com/sac"
-            class="com.sap.emf.ocl.impactanalysis.example.signature_and_call.Signature_and_callPackage"
+            class="org.eclipse.ocl.examples.impactanalyzer.example.signature_and_call.Signature_and_callPackage"
             genModel="model/signature_and_call.genmodel"/>
    </extension>
 	<extension point = "org.eclipse.emf.ecore.extension_parser">
