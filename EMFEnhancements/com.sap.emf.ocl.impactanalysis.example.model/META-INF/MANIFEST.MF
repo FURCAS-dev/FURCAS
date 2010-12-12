@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: com.sap.emf.ocl.impactanalysis.example.model
-Bundle-SymbolicName: com.sap.emf.ocl.impactanalysis.example.model
-Bundle-Version: 0.1.0
-Require-Bundle: org.eclipse.emf.ecore
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
