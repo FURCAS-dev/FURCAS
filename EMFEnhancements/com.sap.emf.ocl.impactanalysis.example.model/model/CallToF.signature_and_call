@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<sac:Call xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sac="http://sap.com/sac">
-  <signature href="F.signature_and_call#/"/>
-  <arguments xsi:type="sac:StringLiteral" symbol="asfd"/>
-  <arguments xsi:type="sac:StringLiteral"/>
-  <arguments xsi:type="sac:StringLiteral"/>
-</sac:Call>

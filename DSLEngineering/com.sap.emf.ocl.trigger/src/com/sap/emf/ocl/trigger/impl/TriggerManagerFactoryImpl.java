@@ -1,11 +1,11 @@
 package com.sap.emf.ocl.trigger.impl;
 
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.examples.impactanalyzer.configuration.ActivationOption;
 
 import com.sap.emf.ocl.trigger.TriggerManager;
 import com.sap.emf.ocl.trigger.TriggerManagerFactory;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.ActivationOption;
 
 public class TriggerManagerFactoryImpl implements TriggerManagerFactory {
 
