@@ -20,7 +20,6 @@ syntax ForeachPredicatePropertyInit {
 		    "," attributes{separator = ","}
 		]
 		"}"
-		{{ location = lookIn("OCL:'Where '.concat(self.author.name).concat(' wrote it')") }}
 		;
 	
 	template Attribute abstract;
@@ -34,11 +33,6 @@ syntax ForeachPredicatePropertyInit {
 		: {{ article=lookIn("OCL:#foreach(BibText::Article)"),
 		     revenueInEUR=lookIn("OCL:#foreach(BibText::Article).author.name.size()") }}
 		;
-	
-	template Year
-		: "year" "=" value
-		;
-		
 
 -- BEGIN Special symbols
 -- Possible modifications:
