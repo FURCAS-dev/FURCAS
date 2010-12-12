@@ -32,6 +32,14 @@ import com.sap.furcas.test.testutils.ResourceTestHelper;
 /**
  * A test case that tests if foreach predicate property inits are executed correctly.
  * 
+ * The revenues of an author are defined by the following expression: <code>{{ revenues=foreach("OCL:self.articles", as=RevenueLedger) }}</code>.
+ * Thus for each article of an author a new RevenueLedger model element should be created.
+ * 
+ * When a new RevenueLedger model element is created the feature revenueInEUR is evaluated according to the following expression:
+ * <code>revenueInEUR=lookIn("OCL:#foreach(BibText::Article).author.name.size()") }}</code>.
+ * 
+ * This testcase tests both cases using an example that contains one article and two authors.
+ * 
  * @author Sebastian Schlag (D049672)
  * 
  */
@@ -62,7 +70,7 @@ public class ForeachPredicatePropertyInit extends GeneratedParserBasedTest {
     public void getAuthors() throws Exception {
         IModelAdapter modelAdapter = createNewEMFModelAdapter();
 
-        String sample = "article{" + "  Testing, \"John Doe\"," + "  year = \"2002\"" + "}" + "author = \"John Doe\"."
+        String sample = "article{" + "  Testing, \"John Doe\"," + "}" + "author = \"John Doe\"."
                 + "author = \"Jane Doll\".";
 
         ModelParsingResult parsingResult = parsingHelper.parseString(sample, modelAdapter);
@@ -88,7 +96,12 @@ public class ForeachPredicatePropertyInit extends GeneratedParserBasedTest {
         }
 
     }
-
+    
+    /**
+     * Since the sample code has two authors (John Doe, Jane Doll) and one article (written by John Doe),
+     * the Jane Doll object should <em>not</em> contain a RevenueLedger model element. Since the article is written by John Doe,
+     * the John Doe object should contain <em>one</em> RevenueLedger model element, which's revenueInEUR should be set to "John Doe".length() = 8.
+     */
     @Test
     public void testForeachPredicatePropertyInits() {
         
