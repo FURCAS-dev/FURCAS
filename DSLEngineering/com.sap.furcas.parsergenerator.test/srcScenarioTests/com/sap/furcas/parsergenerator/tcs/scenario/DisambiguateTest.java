@@ -11,7 +11,6 @@ import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
-import com.sap.furcas.runtime.parser.testbase.StubModelAdapter;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 /**
@@ -37,7 +36,7 @@ public class DisambiguateTest extends GeneratedParserBasedTest {
 
     @Test
     public void testSample1() throws Exception {
-        StubModelAdapter stubModelHandler = parsingHelper.parseFile("DisambiguateSample.sam", DSLSAMPLEDIR, 0);
+        parsingHelper.parseFile("DisambiguateSample.sam", DSLSAMPLEDIR, 0);
     }
 
 }
