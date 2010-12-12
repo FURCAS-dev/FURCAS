@@ -1,13 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2006, 2009 SAP AG and others.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *     SAP AG - initial API and implementation
- *******************************************************************************/
 package org.eclipse.emf.query2.test;
 
 import java.util.ArrayList;
@@ -61,11 +51,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 
-/**
- * @author D045917
- * @author D046918
- * @version Apr 13, 2006
- */
 @RunWith(Parameterized.class)
 abstract public class BaseSyntheticQueryTest extends QueryTestCase {
 
@@ -210,9 +195,9 @@ abstract public class BaseSyntheticQueryTest extends QueryTestCase {
 		init();
 	}
 
+	@Override
 	@Before
 	public void beforeTestMethod() throws Exception {
-
 		if (isTraced(LogSeverity.INFO)) {
 			int ratio = (this.dirtyPartitionsRatio == 0) ? 0 : (100 / this.dirtyPartitionsRatio);
 			trace(LogSeverity.INFO, "Executing test with dirty partitions ratio on " + ratio + "%");
@@ -229,9 +214,9 @@ abstract public class BaseSyntheticQueryTest extends QueryTestCase {
 
 	}
 
+	@Override
 	@After
 	public void afterTestMethod() throws Exception {
-
 		clear();
 	}
 
@@ -398,9 +383,9 @@ abstract public class BaseSyntheticQueryTest extends QueryTestCase {
 		SelectAttrs selectMeName = new SelectAttrs("mm", new String[] { "name", "attrInt1" });
 		SelectEntry[] selectEntries = new SelectEntry[] { selectMeName };
 
-		WhereString whereName = new WhereString("name", Operation.LIKE, "Test\\Class*Obj*\\");
+		WhereString whereName = new WhereString("name", Operation.LIKE, "Model\\Class*Obj*\\");
 		WhereNot whereNot = new WhereNot(whereName);
-		WhereString whereName2 = new WhereString("name", Operation.LIKE, "TestS?b*");
+		WhereString whereName2 = new WhereString("name", Operation.LIKE, "ModelS?b*");
 		WhereClause[] whereClauses = { whereNot, whereName2 };
 		WhereAnd whereAnd = new WhereAnd(whereClauses);
 		LocalWhereEntry localWhereEntry = new LocalWhereEntry("mm", whereAnd);
@@ -416,7 +401,7 @@ abstract public class BaseSyntheticQueryTest extends QueryTestCase {
 	protected boolean like_and_not_like() throws Exception {
 
 		String query = "select mm.name, mm.attrInt1 " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass1()) + "] as mm "
-				+ "where for mm((name not like 'ModelClass*Obj*') and (name like 'TestS?b*'))";
+				+ "where for mm((name not like 'ModelClass*Obj*') and (name like 'ModelS?b*'))";
 		ResultSet resultSet = this.executeQuery(query);
 
 		return this.like_and_not_like_check(resultSet);
@@ -425,7 +410,7 @@ abstract public class BaseSyntheticQueryTest extends QueryTestCase {
 	protected boolean like_and_not_like_2() throws Exception {
 
 		String query = "select mm.name, mm.attrInt1 " + "from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass1()) + "] as mm "
-				+ "where mm.name not like 'ModelClass*Obj*'  where mm.name like 'TestS?b*'";
+				+ "where mm.name not like 'ModelClass*Obj*'  where mm.name like 'ModelS?b*'";
 		ResultSet resultSet = this.executeQuery(query);
 
 		return this.like_and_not_like_check(resultSet);
@@ -880,7 +865,7 @@ abstract public class BaseSyntheticQueryTest extends QueryTestCase {
 	protected boolean nested_query_with_reference_and_not() throws Exception {
 
 		String query = "select cl1.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass1()) + "] as cl1 "
-				+ "where cl1.name not like 'ModelClass*Obj*'  where cl1.name like 'TestS?b*' where cl1.reference1x2 not in " + "(select cl2 from ["
+				+ "where cl1.name not like 'ModelClass*Obj*'  where cl1.name like 'ModelS?b*' where cl1.reference1x2 not in " + "(select cl2 from ["
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass2()) + "] as cl2)";
 
 		ResultSet resultSet = this.executeQuery(query);
@@ -891,7 +876,7 @@ abstract public class BaseSyntheticQueryTest extends QueryTestCase {
 	protected boolean nested_query_with_reference_and_not_2() throws Exception {
 
 		String query = "select cl1.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass1()) + "] as cl1 "
-				+ "where cl1.name not like 'ModelClass*Obj*' where cl1.name like 'TestS?b*' where cl1.reference1x2 = null";
+				+ "where cl1.name not like 'ModelClass*Obj*' where cl1.name like 'ModelS?b*' where cl1.reference1x2 = null";
 
 		ResultSet resultSet = this.executeQuery(query);
 
