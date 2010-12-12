@@ -8,12 +8,12 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 
 import com.sap.emf.ocl.attributegrammar.AttributeGrammar;
 import com.sap.emf.ocl.attributegrammar.AttributeGrammarFactory;
 import com.sap.emf.ocl.attributegrammar.RuleTypeConformanceException;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 
 public class AttributeGrammarFactoryImpl implements AttributeGrammarFactory {
 

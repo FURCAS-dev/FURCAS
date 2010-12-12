@@ -74,28 +74,28 @@
          unpack="false"/>
 
    <plugin
-         id="de.hpi.sam.bp2009.solution.impactAnalyzer"
+         id="org.eclipse.ocl.examples.impactanalyzer"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark"
+         id="org.eclipse.ocl.examples.impactanalyzer.benchmark"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="de.hpi.sam.bp2009.solution.impactAnalyzer.debug"
+         id="org.eclipse.ocl.examples.impactanalyzer.debug"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="de.hpi.sam.bp2009.solution.impactAnalyzer.editor"
+         id="org.eclipse.ocl.examples.impactanalyzer.editor"
          download-size="0"
          install-size="0"
          version="0.0.0"

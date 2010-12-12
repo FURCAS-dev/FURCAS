@@ -9,7 +9,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ocl.ecore,
  de.hpi.sam.bp2009.solution.eventManager,
  org.eclipse.emf.common,
- de.hpi.sam.bp2009.solution.impactAnalyzer,
+ org.eclipse.ocl.examples.impactanalyzer,
  org.junit;bundle-version="4.8.1",
  com.sap.emf.ocl.util
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
