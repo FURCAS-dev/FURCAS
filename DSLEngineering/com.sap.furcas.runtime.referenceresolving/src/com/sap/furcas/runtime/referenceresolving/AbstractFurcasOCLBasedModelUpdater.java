@@ -12,6 +12,7 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
 
 import com.sap.emf.ocl.trigger.AbstractOCLBasedModelUpdater;
 import com.sap.emf.ocl.trigger.ExpressionWithContext;
@@ -29,7 +30,6 @@ import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 import com.sap.furcas.runtime.parser.impl.ModelElementProxy;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 
 /**
  * Offers some "text blocks magic" utility methods to subclasses, such as finding the text blocks and from those the

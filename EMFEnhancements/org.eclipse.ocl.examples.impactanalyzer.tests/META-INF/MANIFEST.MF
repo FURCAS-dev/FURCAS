@@ -13,6 +13,6 @@ Require-Bundle: org.eclipse.emf.ecore,
  com.sap.emf.ocl.util,
  org.eclipse.ocl.examples.impactanalyzer
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper
+Export-Package: org.eclipse.ocl.examples.impactanalyzer.tests.helper
 Import-Package: org.eclipse.emf.query.index.ui,
  org.eclipse.emf.query.index.update

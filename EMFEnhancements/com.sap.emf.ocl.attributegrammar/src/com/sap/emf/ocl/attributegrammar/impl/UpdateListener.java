@@ -8,8 +8,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 
 /**
  * Handles change notifications that are relevant for a specific {@link OCLExpression} which defines

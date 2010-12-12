@@ -14,7 +14,7 @@
 <booleanAttribute key="includeOptional" value="true"/>
 <stringAttribute key="location" value="${workspace_loc}/../junit-workspace"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-<listEntry value="/org.eclipse.ocl.examples.impactanalyzer.benchmark/src/de/hpi/sam/bp2009/solution/impactAnalyzer/benchmark/test/BenchmarkAsPluginTest.java"/>
+<listEntry value="/org.eclipse.ocl.examples.impactanalyzer.benchmark/src/org/eclipse/ocl/examples/impactanalyzer/benchmark/test/BenchmarkAsPluginTest.java"/>
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="1"/>
@@ -24,7 +24,7 @@
 <stringAttribute key="org.eclipse.jdt.junit.TESTNAME" value=""/>
 <stringAttribute key="org.eclipse.jdt.junit.TEST_KIND" value="org.eclipse.jdt.junit.loader.junit4"/>
 <stringAttribute key="org.eclipse.jdt.launching.JRE_CONTAINER" value="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/SAP JVM 6 (cons i486 opt)"/>
-<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.test.BenchmarkAsPluginTest"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.eclipse.ocl.examples.impactanalyzer.benchmark.test.BenchmarkAsPluginTest"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl ${target.nl} -consoleLog"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="org.eclipse.ocl.examples.impactanalyzer.benchmark"/>
 <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.pde.ui.workbenchClasspathProvider"/>

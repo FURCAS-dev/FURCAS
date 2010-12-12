@@ -15,14 +15,14 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.emf.common,
  de.hpi.sam.bp2009.solution.eventManager,
  com.sap.emf.ocl.util
-Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer,
- de.hpi.sam.bp2009.solution.impactAnalyzer.configuration,
- de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,org.eclipse.ocl.examples.impactanalyzer.debug",
- de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,org.eclipse.ocl.examples.impactanalyzer.debug",
- de.hpi.sam.bp2009.solution.impactAnalyzer.impl;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,org.eclipse.ocl.examples.impactanalyzer.debug",
- de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,org.eclipse.ocl.examples.impactanalyzer.debug",
- de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.debug;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,org.eclipse.ocl.examples.impactanalyzer.debug",
- de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,org.eclipse.ocl.examples.impactanalyzer.debug",
- de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,org.eclipse.ocl.examples.impactanalyzer.debug",
- de.hpi.sam.bp2009.solution.impactAnalyzer.util;x-friends:="org.eclipse.ocl.examples.impactanalyzer.debug"
-Bundle-Activator: de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerPlugin
+Export-Package: org.eclipse.ocl.examples.impactanalyzer,
+ org.eclipse.ocl.examples.impactanalyzer.configuration,
+ org.eclipse.ocl.examples.impactanalyzer.deltaPropagation;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,org.eclipse.ocl.examples.impactanalyzer.debug",
+ org.eclipse.ocl.examples.impactanalyzer.filterSynthesis;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,org.eclipse.ocl.examples.impactanalyzer.debug",
+ org.eclipse.ocl.examples.impactanalyzer.impl;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,org.eclipse.ocl.examples.impactanalyzer.debug",
+ org.eclipse.ocl.examples.impactanalyzer.instanceScope;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,org.eclipse.ocl.examples.impactanalyzer.debug",
+ org.eclipse.ocl.examples.impactanalyzer.instanceScope.debug;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,org.eclipse.ocl.examples.impactanalyzer.debug",
+ org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,org.eclipse.ocl.examples.impactanalyzer.debug",
+ org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,org.eclipse.ocl.examples.impactanalyzer.debug",
+ org.eclipse.ocl.examples.impactanalyzer.util;x-friends:="org.eclipse.ocl.examples.impactanalyzer.debug"
+Bundle-Activator: org.eclipse.ocl.examples.impactanalyzer.impl.ImpactAnalyzerPlugin

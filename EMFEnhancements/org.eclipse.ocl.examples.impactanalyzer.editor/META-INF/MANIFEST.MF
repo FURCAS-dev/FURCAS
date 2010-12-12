@@ -14,4 +14,4 @@ Require-Bundle: org.eclipse.core.runtime,
  com.sap.ocl.oppositefinder.query2,
  de.hpi.sam.bp2009.solution.queryContextScopeProvider,
  com.sap.emf.ocl.util
-Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer.editor
+Export-Package: org.eclipse.ocl.examples.impactanalyzer.editor

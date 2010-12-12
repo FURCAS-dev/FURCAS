@@ -7,9 +7,9 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: com.sap.emf.ocl.impactanalysis.example.signature_and_call,
- com.sap.emf.ocl.impactanalysis.example.signature_and_call.impl,
- com.sap.emf.ocl.impactanalysis.example.signature_and_call.util
+Export-Package: org.eclipse.ocl.examples.impactanalyzer.example.signature_and_call,
+ org.eclipse.ocl.examples.impactanalyzer.example.signature_and_call.impl,
+ org.eclipse.ocl.examples.impactanalyzer.example.signature_and_call.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  de.hpi.sam.bp2009.solution.eventManager,

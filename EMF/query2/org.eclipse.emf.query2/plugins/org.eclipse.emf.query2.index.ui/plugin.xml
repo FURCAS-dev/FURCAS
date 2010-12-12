@@ -23,7 +23,7 @@
          </run>
       </runtime>
       <builder
-            id="org.eclipse.emf.query.index.ui.queryIndexBuilder">
+            id="org.eclipse.emf.query2.index.ui.queryIndexBuilder">
       </builder>
    </extension>
    <extension
