@@ -156,8 +156,8 @@ public class ParserGenerator {
         for (File file : genDir.listFiles()) {
             if (file.getName().startsWith(testConfig.getLexerName())
                     | file.getName().startsWith(testConfig.getParserName())
-                    | file.getName().equals(testConfig.getLanguageName() + ".tokens")) {
-                // keeping grammars for debugging
+                    | file.getName().equals(testConfig.getLanguageName() + ".tokens")
+                    | file.getName().equals(testConfig.getTargetConfiguration().getGrammarTargetFile().getName())) {
                 file.delete();
             }
         }

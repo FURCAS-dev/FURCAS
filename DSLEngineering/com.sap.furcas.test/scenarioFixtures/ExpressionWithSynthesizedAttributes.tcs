@@ -10,7 +10,7 @@
  * After parsing, the "calculatedValue" property holds the value of
  * an (sub)-expression
  */
-syntax Expression {
+syntax ExpressionWithSynthesizedAttributes {
 
 -- BEGIN Primitive templates
 		
