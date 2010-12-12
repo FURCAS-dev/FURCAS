@@ -89,6 +89,9 @@ import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
+import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.editor.Revalidator;
 import org.eclipse.ocl.examples.impactanalyzer.example.signature_and_call.Signature_and_callPackage;
@@ -126,6 +129,7 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 
+import com.sap.emf.ocl.util.EcoreEnvironmentFactoryWithScopedExtentMap;
 import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectDependencyQueryContextProvider;
@@ -926,7 +930,15 @@ public class Signature_and_callEditor
             resourceToDiagnosticMap.put(resource,  analyzeResourceProblems(resource, exception));
         }
         editingDomain.getResourceSet().eAdapters().add(problemIndicationAdapter);
-        revalidator = new Revalidator(editingDomain, Signature_and_callPackage.eINSTANCE, OCLFactory.INSTANCE,
+        OCLFactory oclFactory = new OCLFactory() {
+            public OCL createOCL(EcoreEnvironmentFactory environmentFactory) {
+                return OCL.newInstance(environmentFactory);
+            }
+            public OCL createOCL(OppositeEndFinder oppositeEndFinder) {
+                return OCL.newInstance(new EcoreEnvironmentFactoryWithScopedExtentMap(oppositeEndFinder));
+            }
+        };
+        revalidator = new Revalidator(editingDomain, Signature_and_callPackage.eINSTANCE, oclFactory,
                 new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider()));
     }
 
