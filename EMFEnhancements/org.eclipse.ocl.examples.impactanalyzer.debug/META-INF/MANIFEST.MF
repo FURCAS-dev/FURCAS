@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Debug
+Bundle-SymbolicName: org.eclipse.ocl.examples.impactanalyzer.debug;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ClassPath: lib/y.jar,
+ .
+Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.debug
+Import-Package: org.junit
+Require-Bundle: org.eclipse.ocl.examples.impactanalyzer,
+ org.eclipse.emf.ecore,
+ org.eclipse.ocl.ecore
