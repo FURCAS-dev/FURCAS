@@ -26,6 +26,11 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.model.ModelCloner;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationResourceLoader;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.RawNotification;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.OCLExpressionFromClassTcsPicker;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.OptimizationActivation;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OCLFactoryImpl;
 import org.junit.Test;
@@ -37,11 +42,6 @@ import data.classes.MethodSignature;
 import data.classes.SapClass;
 import dataaccess.expressions.ExpressionsPackage;
 import dataaccess.expressions.MethodCallExpression;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.model.ModelCloner;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationResourceLoader;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.RawNotification;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionFromClassTcsPicker;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 
 public class NgpmModelBasedOclIaTest extends TestCase {
     Resource ngpmModel = null;

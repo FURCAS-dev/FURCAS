@@ -24,11 +24,11 @@ import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.postprocessing.ResultDescriptionWriter;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationForModelList;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.RawNotification;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.ActivationOption;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationForModelList;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.RawNotification;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 
 /**
  * In order to be able to create many more BenchmarkTasks they must be created

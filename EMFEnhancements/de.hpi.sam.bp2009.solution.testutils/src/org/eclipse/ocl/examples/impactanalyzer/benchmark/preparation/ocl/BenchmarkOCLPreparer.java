@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl;
+package org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl;
 
 import java.util.ArrayList;
 import java.util.List;

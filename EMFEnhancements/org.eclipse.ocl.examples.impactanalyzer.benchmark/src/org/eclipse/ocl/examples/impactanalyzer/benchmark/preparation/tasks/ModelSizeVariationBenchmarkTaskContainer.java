@@ -18,12 +18,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.model.ModelCloner;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.ActivationOption;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.OptimizationActivation;
 
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.model.ModelCloner;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 
 public class ModelSizeVariationBenchmarkTaskContainer extends BenchmarkTaskContainer{
 	private static final long serialVersionUID = 1L;

@@ -30,11 +30,11 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.RawNotification;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.EnvironmentFactory;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.RawNotification;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.EnvironmentFactory;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 
 @SuppressWarnings("restriction")
 public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{

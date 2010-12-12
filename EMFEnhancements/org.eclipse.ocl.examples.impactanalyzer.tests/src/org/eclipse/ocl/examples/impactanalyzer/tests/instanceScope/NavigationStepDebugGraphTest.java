@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationHelper;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OCLFactoryImpl;
 import org.junit.After;
 import org.junit.Before;
@@ -29,7 +30,6 @@ import company.CompanyFactory;
 import company.Department;
 import company.impl.DepartmentImpl;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
 import de.hpi.sam.bp2009.solution.testutils.BaseDepartmentTest;
 
 public class NavigationStepDebugGraphTest extends BaseDepartmentTest  {

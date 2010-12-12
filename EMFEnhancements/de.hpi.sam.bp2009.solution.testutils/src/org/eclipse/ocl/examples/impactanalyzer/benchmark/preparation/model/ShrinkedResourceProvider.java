@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.model;
+package org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.model;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -16,8 +16,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationResourceLoader;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationResourceLoader;
 
 /**
  * TODO: Write documentation for this class

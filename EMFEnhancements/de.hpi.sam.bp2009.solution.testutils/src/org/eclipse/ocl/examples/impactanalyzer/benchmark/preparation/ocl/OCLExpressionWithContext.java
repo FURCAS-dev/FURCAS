@@ -8,12 +8,12 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl;
+package org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.OCLTestExpressionContainer.OclExpressionWithPackage;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLTestExpressionContainer.OclExpressionWithPackage;
 
 public class OCLExpressionWithContext {
     private OCLExpression expr;

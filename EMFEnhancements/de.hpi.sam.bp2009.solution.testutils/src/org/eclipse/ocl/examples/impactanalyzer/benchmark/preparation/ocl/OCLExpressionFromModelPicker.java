@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl;
+package org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -24,8 +24,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.Tuple.Pair;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.Tuple.Pair;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 

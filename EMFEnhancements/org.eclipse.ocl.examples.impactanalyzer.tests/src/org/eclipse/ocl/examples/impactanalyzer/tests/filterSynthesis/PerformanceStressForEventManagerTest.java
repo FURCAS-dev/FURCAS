@@ -30,6 +30,8 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.BenchmarkOCLPreparer;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OCLFactoryImpl;
 import org.junit.Before;
 import org.junit.Test;
@@ -50,8 +52,6 @@ import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.Statistics;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.BenchmarkOCLPreparer;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 
 
 public class PerformanceStressForEventManagerTest extends TestCase {

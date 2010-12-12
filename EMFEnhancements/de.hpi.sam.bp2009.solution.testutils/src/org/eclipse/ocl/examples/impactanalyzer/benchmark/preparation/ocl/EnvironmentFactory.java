@@ -1,4 +1,4 @@
-package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl;
+package org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;

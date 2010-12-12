@@ -29,6 +29,7 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.ExpressionInOCL;
 import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.EnvironmentFactory;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -42,7 +43,6 @@ import company.impl.DivisionImpl;
 import company.impl.EmployeeImpl;
 import company.impl.FreelanceImpl;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.EnvironmentFactory;
 
 /**
  * This is the super class for all tests based on the Department model.

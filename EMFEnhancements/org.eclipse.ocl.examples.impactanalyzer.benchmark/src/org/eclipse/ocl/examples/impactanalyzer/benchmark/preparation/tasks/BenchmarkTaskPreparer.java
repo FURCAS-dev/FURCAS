@@ -15,12 +15,12 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.PathOptions;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.BenchmarkNotificationPreparer;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationForModelList;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.BenchmarkOCLPreparer;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.ActivationOption;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.BenchmarkNotificationPreparer;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationForModelList;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.BenchmarkOCLPreparer;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 
 /**
  * The {@link BenchmarkTaskPreparer} provides methods for creating a collection of

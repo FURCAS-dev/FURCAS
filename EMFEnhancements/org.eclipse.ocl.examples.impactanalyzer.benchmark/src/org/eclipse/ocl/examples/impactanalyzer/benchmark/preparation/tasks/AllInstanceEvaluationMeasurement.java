@@ -19,8 +19,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 
 /** It is not necessary that a all instance evaluation is measured multiple times for one single model size
  * Therefore different benchmark jobs for one model size share the same all instance evaluation measurement.
