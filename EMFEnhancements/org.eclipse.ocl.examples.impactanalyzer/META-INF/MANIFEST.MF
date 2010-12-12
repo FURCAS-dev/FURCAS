@@ -17,12 +17,12 @@ Require-Bundle: org.eclipse.emf.ecore,
  com.sap.emf.ocl.util
 Export-Package: org.eclipse.ocl.examples.impactanalyzer,
  org.eclipse.ocl.examples.impactanalyzer.configuration,
- org.eclipse.ocl.examples.impactanalyzer.deltaPropagation;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,org.eclipse.ocl.examples.impactanalyzer.debug",
- org.eclipse.ocl.examples.impactanalyzer.filterSynthesis;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,org.eclipse.ocl.examples.impactanalyzer.debug",
- org.eclipse.ocl.examples.impactanalyzer.impl;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,org.eclipse.ocl.examples.impactanalyzer.debug",
- org.eclipse.ocl.examples.impactanalyzer.instanceScope;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,org.eclipse.ocl.examples.impactanalyzer.debug",
- org.eclipse.ocl.examples.impactanalyzer.instanceScope.debug;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,org.eclipse.ocl.examples.impactanalyzer.debug",
- org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,org.eclipse.ocl.examples.impactanalyzer.debug",
- org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,org.eclipse.ocl.examples.impactanalyzer.debug",
+ org.eclipse.ocl.examples.impactanalyzer.deltaPropagation;x-friends:="org.eclipse.ocl.examples.impactanalyzer.debug,org.eclipse.ocl.examples.impactanalyzer.tests",
+ org.eclipse.ocl.examples.impactanalyzer.filterSynthesis;x-friends:="org.eclipse.ocl.examples.impactanalyzer.debug,org.eclipse.ocl.examples.impactanalyzer.tests",
+ org.eclipse.ocl.examples.impactanalyzer.impl;x-friends:="org.eclipse.ocl.examples.impactanalyzer.debug,org.eclipse.ocl.examples.impactanalyzer.tests",
+ org.eclipse.ocl.examples.impactanalyzer.instanceScope;x-friends:="org.eclipse.ocl.examples.impactanalyzer.debug,org.eclipse.ocl.examples.impactanalyzer.tests",
+ org.eclipse.ocl.examples.impactanalyzer.instanceScope.debug;x-friends:="org.eclipse.ocl.examples.impactanalyzer.debug,org.eclipse.ocl.examples.impactanalyzer.tests",
+ org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback;x-friends:="org.eclipse.ocl.examples.impactanalyzer.debug,org.eclipse.ocl.examples.impactanalyzer.tests",
+ org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation;x-friends:="org.eclipse.ocl.examples.impactanalyzer.debug,org.eclipse.ocl.examples.impactanalyzer.tests",
  org.eclipse.ocl.examples.impactanalyzer.util;x-friends:="org.eclipse.ocl.examples.impactanalyzer.debug"
-Bundle-Activator: org.eclipse.ocl.examples.impactanalyzer.impl.ImpactAnalyzerPlugin
+
