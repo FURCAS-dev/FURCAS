@@ -23,7 +23,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
     private LexedToken createTokenWithWorkingCopy(String value) {
 	TextBlock parentBlock = modelFactory.createTextBlock();
 	parentBlock.setVersion(Version.REFERENCE);
-	LexedToken testToken = createToken(value);
+	LexedToken testToken = modelFactory.createToken(value);
 	testToken.setParent(parentBlock);
 	TbUtil.createNewCopy(TbVersionUtil.getOtherVersion(parentBlock, Version.REFERENCE), Version.PREVIOUS, false, null);
 	return testToken;
@@ -37,7 +37,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	bos.setParent(parentBlock);
 
 	if (withEmptyToken) {
-	    LexedToken testToken = createToken("");
+	    LexedToken testToken = modelFactory.createToken("");
 	    testToken.setVersion(Version.REFERENCE);
 	    testToken.setParent(parentBlock);
 	    testToken.setOffset(0);
@@ -64,7 +64,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	int totalLength = 0;
 	for (int i = 0; i < values.length; i++) {
 	    String value = values[i];
-	    LexedToken testToken = createToken(value);
+	    LexedToken testToken = modelFactory.createToken(value);
 	    testToken.setVersion(Version.REFERENCE);
 	    testToken.setOffset(totalLength);
 	    parentBlock.getSubNodes().add(testToken);
@@ -91,7 +91,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	bos.setVersion(Version.REFERENCE);
 	bos.setParent(parentBlock);
 
-	LexedToken testToken = createToken(value);
+	LexedToken testToken = modelFactory.createToken(value);
 	testToken.setVersion(Version.REFERENCE);
 	testToken.setParent(parentBlock);
 
@@ -134,7 +134,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 						       // after contents
 	    parentBlock.setOffset(lastIndex + 2); // gap of 2 before start
 
-	    LexedToken testToken = createToken(value);
+	    LexedToken testToken = modelFactory.createToken(value);
 	    testToken.setVersion(Version.REFERENCE);
 	    testToken.setParent(parentBlock);
 	    testToken.setOffset(3); // absolute offset differs
@@ -197,7 +197,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	    subParentBlock.setOffset(2); // gap of 2 before start and after end
 	    subParentBlock.setOffsetRelative(true);
 
-	    LexedToken testToken = createToken(value);
+	    LexedToken testToken = modelFactory.createToken(value);
 	    testToken.setVersion(Version.REFERENCE);
 	    testToken.setParent(subParentBlock);
 	    testToken.setOffset(2); // absolute offset differs

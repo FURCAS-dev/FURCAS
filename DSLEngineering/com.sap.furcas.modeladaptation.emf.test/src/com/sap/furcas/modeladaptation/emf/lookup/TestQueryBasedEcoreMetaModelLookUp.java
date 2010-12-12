@@ -19,7 +19,7 @@ import org.junit.Test;
 import com.sap.furcas.emf.stubs.EcoreAnyStub;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
-import com.sap.furcas.test.testutils.ScopeHelper;
+import com.sap.furcas.test.testutils.ResourceTestHelper;
 import com.sap.furcas.test.testutils.StringListHelper;
 
 public class TestQueryBasedEcoreMetaModelLookUp {
@@ -28,7 +28,7 @@ public class TestQueryBasedEcoreMetaModelLookUp {
 
     @Before
     public void setup() throws Exception {
-        lookup = new QueryBasedEcoreMetaModelLookUp(ScopeHelper.createResourceSet(), ScopeHelper.createFURCASReferenceScope());
+        lookup = new QueryBasedEcoreMetaModelLookUp(ResourceTestHelper.createResourceSet(), ResourceTestHelper.createFURCASReferenceScope());
     }
 
     @Test
