@@ -13,7 +13,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.ocl.ecore,
  org.eclipse.osgi,
  org.eclipse.emf.common,
- de.hpi.sam.bp2009.solution.eventManager,
+ org.eclipse.ocl.examples.eventmanager,
  com.sap.emf.ocl.util
 Export-Package: org.eclipse.ocl.examples.impactanalyzer,
  org.eclipse.ocl.examples.impactanalyzer.configuration,

@@ -7,7 +7,7 @@ Bundle-Activator: com.sap.emf.ocl.trigger.Activator
 Bundle-Vendor: SAP
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ocl.ecore,
- de.hpi.sam.bp2009.solution.eventManager,
+ org.eclipse.ocl.examples.eventmanager,
  org.eclipse.emf.common,
  org.eclipse.ocl.examples.impactanalyzer,
  org.junit;bundle-version="4.8.1",

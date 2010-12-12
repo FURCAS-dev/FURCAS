@@ -12,7 +12,7 @@ Export-Package: org.eclipse.ocl.examples.impactanalyzer.example.signature_and_ca
  org.eclipse.ocl.examples.impactanalyzer.example.signature_and_call.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- de.hpi.sam.bp2009.solution.eventManager,
+ org.eclipse.ocl.examples.eventmanager,
  org.eclipse.ocl.examples.impactanalyzer,
  org.eclipse.emf.ecore.xmi
 Bundle-ActivationPolicy: lazy

@@ -47,6 +47,8 @@ import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.eclipse.ocl.ecore.impl.TypeExpImpl;
+import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
+import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OperationBodyToCallMapper;
 import org.eclipse.ocl.expressions.VariableExp;
@@ -55,8 +57,6 @@ import org.eclipse.ocl.utilities.PredefinedType;
 
 import com.sap.emf.ocl.util.OclHelper;
 
-import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
-import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 
 /**
  * Collects the relevant events for a single {@link OCLExpression} recursively. The analyzer can be parameterized during

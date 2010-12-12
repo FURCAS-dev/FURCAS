@@ -14,8 +14,8 @@ import java.lang.ref.WeakReference;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.util.EContentAdapter;
+import org.eclipse.ocl.examples.eventmanager.EventManager;
 
-import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 
 /**
  * This special {@link EContentAdapter} is used to notify a given {@link EventManager} if any notification is raised

@@ -9,6 +9,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.examples.eventmanager.EventManager;
+import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
+import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.ActivationOption;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.OptimizationActivation;
@@ -18,9 +21,6 @@ import com.sap.emf.ocl.trigger.ExpressionWithContext;
 import com.sap.emf.ocl.trigger.TriggerManager;
 import com.sap.emf.ocl.trigger.Triggerable;
 
-import de.hpi.sam.bp2009.solution.eventManager.EventManager;
-import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
-import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 
 public class TriggerManagerImpl implements TriggerManager {
     private final EventManager eventManager;

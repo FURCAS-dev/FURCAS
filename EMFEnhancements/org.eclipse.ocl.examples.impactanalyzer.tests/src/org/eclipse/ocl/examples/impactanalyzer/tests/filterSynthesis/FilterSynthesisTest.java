@@ -27,6 +27,13 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.ocl.examples.eventmanager.EventManager;
+import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
+import org.eclipse.ocl.examples.eventmanager.filters.AssociationFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.ClassFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.LogicalOperationFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.StructuralFeatureFilter;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationHelper;
@@ -42,13 +49,6 @@ import company.Department;
 import company.Employee;
 import company.Student;
 
-import de.hpi.sam.bp2009.solution.eventManager.EventManager;
-import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
-import de.hpi.sam.bp2009.solution.eventManager.filters.AssociationFilter;
-import de.hpi.sam.bp2009.solution.eventManager.filters.ClassFilter;
-import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
-import de.hpi.sam.bp2009.solution.eventManager.filters.LogicalOperationFilter;
-import de.hpi.sam.bp2009.solution.eventManager.filters.StructuralFeatureFilter;
 import de.hpi.sam.bp2009.solution.testutils.BaseDepartmentTest;
 
 /**

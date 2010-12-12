@@ -19,6 +19,7 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
 import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.ActivationOption;
@@ -26,7 +27,6 @@ import org.eclipse.ocl.examples.impactanalyzer.filterSynthesis.FilterSynthesisIm
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.InstanceScopeAnalysis;
 
 
-import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 
 /**
  * Implementation of the {@link ImpactAnalyzer}

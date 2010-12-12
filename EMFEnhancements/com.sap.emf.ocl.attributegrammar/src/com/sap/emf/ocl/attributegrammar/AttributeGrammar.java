@@ -2,10 +2,10 @@ package com.sap.emf.ocl.attributegrammar;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.ocl.examples.eventmanager.EventManager;
+import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
 
-import de.hpi.sam.bp2009.solution.eventManager.EventManager;
-import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 
 /**
  * A set of OCL expressions defining how to compute and update structural features of
