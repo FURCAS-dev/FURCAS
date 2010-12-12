@@ -27,7 +27,6 @@ public abstract class GeneratedParserBasedTest {
         TCSSyntaxContainerBean syntaxBean = generator.parseSyntax(testConfig.getSourceConfiguration(), testConfig.getSyntaxDefinitionFile());
         
         return syntaxBean;
-
     }
 
     protected static ParserFacade generateParserForLanguage(TCSSyntaxContainerBean syntaxBean,
