@@ -7,7 +7,7 @@ Bundle-Vendor: SAP
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.junit4,
  com.sap.ocl.oppositefinder.query2,
- de.hpi.sam.bp2009.company,
+ org.eclipse.ocl.examples.impactanalyzer.testmodel.company,
  org.eclipse.ocl.ecore,
  org.eclipse.emf.query2.core,
  org.eclipse.emf.query2.index,

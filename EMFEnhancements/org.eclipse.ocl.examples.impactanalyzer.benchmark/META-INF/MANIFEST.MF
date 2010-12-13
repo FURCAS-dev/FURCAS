@@ -6,7 +6,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: de.hpi.sam.bp2009.ngpm,
+Require-Bundle: org.eclipse.ocl.examples.impactanalyzer.testmodel.ngpm,
  org.junit,
  org.junit4,
  org.eclipse.ocl.examples.impactanalyzer,

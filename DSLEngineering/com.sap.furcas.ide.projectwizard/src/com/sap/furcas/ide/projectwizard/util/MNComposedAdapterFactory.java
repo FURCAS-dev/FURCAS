@@ -18,8 +18,9 @@ public class MNComposedAdapterFactory {
     private static ComposedAdapterFactory mnCompAdapterFactory;
 
     public final static ComposedAdapterFactory getAdapterFactory() {
-        if (mnCompAdapterFactory == null)
+        if (mnCompAdapterFactory == null) {
             mnCompAdapterFactory = new ComposedAdapterFactory(createFactoryList());
+        }
         return mnCompAdapterFactory;
     }
 

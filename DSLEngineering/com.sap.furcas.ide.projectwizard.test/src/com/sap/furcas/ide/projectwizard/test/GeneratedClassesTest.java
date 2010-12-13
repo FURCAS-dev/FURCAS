@@ -95,10 +95,12 @@ public class GeneratedClassesTest {
             String bundlePath = null;
             Bundle bundle = Platform.getBundle((String) bundles[i]);
             String bundleJarName = bundle.toString().split(" ")[0] + ".jar";
-            if (eclipsePath.contains("/"))
+            if (eclipsePath.contains("/")){
                 bundlePath = eclipsePath + "/plugins/" + bundleJarName;
-            else
+            }
+            else{
                 bundlePath = eclipsePath + "\\plugins\\" + bundleJarName;
+            }
 
             requiredBundles.append(File.pathSeparator + bundlePath);
         }

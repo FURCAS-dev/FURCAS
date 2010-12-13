@@ -30,21 +30,11 @@ public class $CapLangName$ParserFactory extends AbstractParserFactory<$CapLangNa
         return LANGUAGE_ID;
     }
 
-	@Override
-	public EPackage getMetamodelPackage(ResourceSet connection) {
-		EPackage eP = null;
-		EList<Resource> resources= connection.getResources();
-		for (Resource res : resources){
-			EList<EObject> eObjects = res.getContents();
-			for (EObject eObj : eObjects){
-				if (eObj instanceof EPackage)
-					eP = (EPackage) eObj;
-			}
-		}
-		
-		
-		return eP;
-	}
+	@Override 
+    public EPackage getMetamodelPackage(ResourceSet connection) { 
+        return EPackage.Registry.INSTANCE.getEPackage("$URI$"); 
+    } 
+
 
 	@Override
 	public String[] getHiddenChannelTokenNames() {
