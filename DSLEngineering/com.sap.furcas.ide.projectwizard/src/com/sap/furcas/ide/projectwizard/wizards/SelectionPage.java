@@ -259,8 +259,9 @@ public class SelectionPage extends WizardPage {
             pi.setClassName(classNameText.getText());
             if (page3 != null) {
                 page3.setPageComplete(true);
-                if (page3.getNextPage() != null)
+                if (page3.getNextPage() != null){
                     page3.getNextPage().setPageComplete(true);
+                }
             }
         }
         return null;
@@ -277,10 +278,12 @@ public class SelectionPage extends WizardPage {
         final char[] chars = s.toCharArray();
         for (int x = 0; x < chars.length; x++) {
             final char c = chars[x];
-            if ((c >= 'a') && (c <= 'z'))
+            if ((c >= 'a') && (c <= 'z')){
                 continue; // lowercase
-            if ((c >= 'A') && (c <= 'Z'))
+            }
+            if ((c >= 'A') && (c <= 'Z')){
                 continue; // uppercase
+            }
             return false;
         }
         return true;
@@ -294,8 +297,9 @@ public class SelectionPage extends WizardPage {
      * @return true if it is an upper case character, false if not.
      */
     private boolean isUpper(final char c) {
-        if ((c >= 'A') && (c <= 'Z'))
+        if ((c >= 'A') && (c <= 'Z')){
             return true;
+        }
         return false;
     }
 

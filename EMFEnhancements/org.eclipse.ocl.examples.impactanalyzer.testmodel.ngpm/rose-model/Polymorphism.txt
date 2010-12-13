@@ -1,0 +1,130 @@
+Polymorphic operation calls:
+----------------------------
+
+An OperationExpression references an Operation in the
+metamodel. However, this is only the static view. During runtime, a
+different operation that conforms to that referenced by the
+OperationExpression may be invoked, depending on the actual type of
+the object on which the operation is called.
+
+The type system guarantees that when the code calling an operation on
+an object has passed the compiler checks, it will find an operation on
+the actual type of the object on which the operation has to be invoked
+at runtime that at least conforms to the operation referenced at
+compile time. The operation is found either on the type of the object
+itself, on a TypeAdapter of that type or on a type to which the
+object's type delegates.
+
+Polymorphic association access:
+-------------------------------
+
+Requirement: A structure that is a superstructure of another and that
+uses equal names to identify corresponding connecting elements
+(probably the association ends) should be considered "conforming" to
+the substructure. Rationale: All navigations possible in the
+substructure are also possible in the superstructure and yield
+conforming elements.
+
+Caveat: Taken together with the fact that conforming instances can be
+inserted into an end, navigating back may use a different
+association.
+
+Question: Can users easily determine whether an exposed association end
+conforms to another one? Tool support could help.
+
+Discussion:
+
+When an AssociationNavigationExpression references an AssociationEnd,
+at runtime the navigation may use a conforming end attached to the
+actual type of the object on which the navigation is started.
+Otherwise, it would not be possible to pass a conforming structure and
+navigate it using (statically) the association ends of the structure
+to which the passed one conforms.
+
+When using an AddLink or RemoveLink statement, this may also have to
+work polymorphically w.r.t the association being used. Example:
+
+class A {
+  a <-AtoB-> B b; // bidirectional assoc, end names "a" and "b"
+}
+
+class B {
+  // no exposed ends
+}
+
+// C conforms to A because it exposes a conforming association end
+class C {
+  c <-CtoB-> B b; // exposes an end conforming to AtoB.b
+}
+
+B b1 = ...;
+C c1 = ...;
+A a1 = c1;
+
+AddLink(AtoB, a1, b1); // dynamically, this would probably have to
+                       // fill CtoB because a1 is bound to an object
+		       // of type C.
+
+If there was no CtoB association, C would have to expose the B end of
+the AtoB association in order to conform to A. If A did not expose the
+b end, C would conform to A without exposing the b end. In both cases
+it would be possible to call AddLink(AtoB, a1, b1) such that the C
+instance bound to a1 and the B instance bound to b1 are then linked.
+
+A problem with polymorphic associations could be "catcalls" like with
+arrays in Java. Therefore we have forbidden covariant types of
+association ends that could polymorphically be used instead of
+another.
+
+The easiest option seems to be to require that "conforming" for
+exposed ends only means that the *same* end can be exposed in the
+conforming class. Otherwise, multiple associations would point to the
+same type with one end but only to conforming types with the other
+end. Then, what are the semantics for navigating from the common type
+to the other end? If the one other end does not conform to the other
+other end, they could probably not be used polymorphically, and thus
+computing the union would not make sense. Instead, the program would
+have to disambiguate the reference to the association end, or
+otherwise it would always mean the end that leads to the class to
+which the other one conforms (the "superclass").
+
+The issue occurs w.r.t the conformance that depends on exposed ends
+which in turn is important for nested structures and their
+conformance. It seems intuitive that two structurally equivalent types
+A and B should conform to each other. However, again intuitively, this
+wouldn't require the associations that they use to define their
+internal structure to be the same but only conform to each other. This
+probably assumes that such a hierarchical object is not operated
+through the associations themselves but rather through the (exposed
+only?) ends ("properties") which then need to conform to each
+other. In this sense, using an exposed end to access an association
+must work polymorphically.
+
+Solution proposal:
+
+There is no notion of conformance of associations with other
+associations. However, association ends may conform to other
+association ends:
+
+  context AssociationEnd::conformsTo(ae:AssociationEnd):
+    post:
+      result = (self.multiplicity=ae.multiplicity and
+                self.navigable=ae.navigable and
+		self.composite=ae.composite and
+		self.type.conformsTo(ae.type) and
+		(not ae.readonly implies ae.type.conformsTo(self.type)))
+
+In other words, an association end conforms to another end "ae" if it
+has equal navigability, composition property and multiplicity, and its
+type conforms to ae's type, and if ae can be used to manipulate the
+association (ae is not readonly, currently meaning that ae's
+association is not readonly) then ae's type also conforms to this
+end's type (bidirectional conformance).
+
+An AssociationNavigationExpression works polymorphically, if and only
+if the end it navigates to is exposed by the static (compile-time)
+type of the object on which the navigation is performed
+(ane.object.type) and the actual type of this object exposes a
+conforming association end. In all other cases, the association
+navigated by the AssociationNavigationExpression is the one that is
+determined at compile time.
