@@ -18,6 +18,9 @@
    </license>
 
    <requires>
+      <import feature="org.eclipse.emf.query2.core.feature" version="1.0.0.qualifier" patch="true"/>
+      <import feature="org.eclipse.ocl.uml" version="3.1.0.qualifier" patch="true"/>
+      <import feature="org.eclipse.ocl" version="3.1.0.qualifier" patch="true"/>
       <import feature="org.eclipse.emf" version="2.6.0.qualifier" patch="true"/>
       <import feature="org.eclipse.emf.common" version="2.6.0.qualifier" patch="true"/>
       <import feature="org.eclipse.emf.ecore" version="2.7.0.qualifier" patch="true"/>
@@ -26,75 +29,62 @@
       <import feature="org.eclipse.emf.ecore.xmi" version="2.6.0.qualifier" patch="true"/>
       <import feature="org.eclipse.emf.edit" version="2.7.0.qualifier" patch="true"/>
       <import feature="org.eclipse.emf.edit.ui" version="2.6.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.ocl" version="3.1.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.ocl.uml" version="3.0.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.ocl.ecore" version="3.1.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.emf.query2.core" version="1.0.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.emf.query2.index" version="1.0.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.emf.query2.index.ui" version="1.0.0.qualifier" patch="true"/>
    </requires>
 
    <plugin
          id="com.sap.emf.ocl.attributegrammar"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.0.qualifier"
          unpack="false"/>
 
    <plugin
          id="com.sap.emf.ocl.prepared"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.0.qualifier"
          unpack="false"/>
 
    <plugin
          id="com.sap.ocl.oppositefinder.query2"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.0.qualifier"
          unpack="false"/>
 
    <plugin
          id="de.hpi.sam.activityDiagram"
          download-size="0"
          install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="de.hpi.sam.bp2009.solution.oclToAst"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
+         version="1.0.0"
          unpack="false"/>
 
    <plugin
          id="de.hpi.sam.bp2009.solution.oclToMqlMapping"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.0"
          unpack="false"/>
 
    <plugin
          id="de.hpi.sam.bp2009.solution.queryContextScopeProvider"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="0.1.0"
          unpack="false"/>
 
    <plugin
          id="de.hpi.sam.bp2009.solution.scopeProvider"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.0.qualifier"
          unpack="false"/>
 
    <plugin
          id="de.hpi.sam.petriNet"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.0"
          unpack="false"/>
 
    <plugin
@@ -106,6 +96,112 @@
 
    <plugin
          id="com.sap.emf.importer.moin.rose"
+         download-size="0"
+         install-size="0"
+         version="1.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.hpi.sam.bp2009.solution.oclToAst"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.examples.eventmanager"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.examples.eventmanager.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.examples.impactanalyzer.benchmark"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.examples.impactanalyzer.debug"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.examples.impactanalyzer.editor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.examples.impactanalyzer.example"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.examples.impactanalyzer.example.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.examples.impactanalyzer.example.editor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.examples.impactanalyzer.example.model"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.examples.impactanalyzer.testmodel.company"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.examples.impactanalyzer.testmodel.ngpm"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.examples.impactanalyzer.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.examples.impactanalyzer.testutils"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.examples.impactanalyzer.util"
          download-size="0"
          install-size="0"
          version="0.0.0"
