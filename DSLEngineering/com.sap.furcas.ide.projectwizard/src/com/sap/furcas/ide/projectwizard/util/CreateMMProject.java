@@ -112,10 +112,11 @@ public class CreateMMProject {
         if (rootObject != null) {
             if (rootObject instanceof EPackage) {
                 createModel(pi, resource, rootObject);
-            } else
+            } else {
                 // Should never get here
                 //
                 resource.getContents().add(rootObject);
+            }
         }
 
         // Save the contents of the resource to the file system.
@@ -198,8 +199,9 @@ public class CreateMMProject {
         EObject rootObject = ecoreFactory.create(eClass);
         if (rootObject instanceof ENamedElement) {
             ((ENamedElement) rootObject).setName(CreateProject.capitalizeFirstChar(pi.getLanguageName()));
-        } else
+        } else {
             throw new CodeGenerationException("Failed to create the new Model!");
+        }
         return rootObject;
     }
 

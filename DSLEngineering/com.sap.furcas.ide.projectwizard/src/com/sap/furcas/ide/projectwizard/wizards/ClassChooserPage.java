@@ -117,8 +117,9 @@ public class ClassChooserPage extends WizardPage {
                             EClass eC = (EClass) object;
                             pi.setClassName(eC.getName());
                             setPageComplete(true);
-                        } else
+                        } else{
                             setPageComplete(false);
+                        }
                     }
                 }
             }
