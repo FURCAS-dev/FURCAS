@@ -17,7 +17,7 @@ public class AlternativeBibtexEditor extends AbstractGrammarBasedEditor {
 
 	@Override
 	public TextBlock parse(TextBlock rootBlock) throws SemanticParserException {
-		Connection connection = getWorkingConnection();
+		Connection connection = getResourceSet();
 		initializeNewParser(connection);
 		TextBlock newRoot = super.parse(rootBlock);
 		return newRoot;

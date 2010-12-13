@@ -2,11 +2,13 @@ package furcas.examples.parser;
 
 import generated.BibtexLexer;
 import generated.BibtexParser;
-import bibtex.BibtexPackage;
+
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
+import Bibtex.BibtexPackage;
 
 import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 
 public class BibtexParserFactory extends AbstractParserFactory<BibtexParser, BibtexLexer> { 
 
@@ -33,15 +35,14 @@ public class BibtexParserFactory extends AbstractParserFactory<BibtexParser, Bib
 	}
 
 	@Override
-	public RefPackage getMetamodelPackage(Connection connection) {
-	    BibtexPackage bibtexPackage = connection.getPackage(BibtexPackage.PACKAGE_DESCRIPTOR);
-		return bibtexPackage;
+	public EPackage getMetamodelPackage(ResourceSet connection) {;
+		return BibtexPackage.eINSTANCE;
 	}
 
-	@Override
-	public Integer[] getOmittedTokensForFormatting() {
-		// TODO Auto-generated method stub
-		return null;
-	} 
+//	@Override
+//	public Integer[] getOmittedTokensForFormatting() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	} 
 
 }
