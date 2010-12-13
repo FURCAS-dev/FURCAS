@@ -4,6 +4,10 @@ Bundle-Name: Tests
 Bundle-SymbolicName: com.sap.emf.ocl.trigger.tests
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SAP
-Fragment-Host: com.sap.emf.ocl.trigger
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: de.hpi.sam.bp2009.company
+Require-Bundle: org.eclipse.ocl.examples.impactanalyzer.testmodel.company,
+ com.sap.emf.ocl.trigger,
+ org.junit4,
+ org.eclipse.ocl,
+ org.eclipse.ocl.ecore,
+ org.eclipse.ocl.examples.impactanalyzer.util

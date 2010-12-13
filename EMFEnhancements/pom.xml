@@ -26,7 +26,8 @@
     <module>com.sap.ocl.oppositefinder.query2</module>
     <module>com.sap.ocl.oppositefinder.query2.test</module>
     <module>de.hpi.sam.activityDiagram</module>
-    <module>de.hpi.sam.bp2009.company</module>
+    <module>org.eclipse.ocl.examples.impactanalyzer.testmodel.company</module>
+    <module>org.eclipse.ocl.examples.impactanalyzer.testmodel.ngpm</module>
     <module>org.eclipse.ocl.examples.eventmanager</module>
     <module>org.eclipse.ocl.examples.eventmanager.tests</module>
     <module>org.eclipse.ocl.examples.impactanalyzer</module>
