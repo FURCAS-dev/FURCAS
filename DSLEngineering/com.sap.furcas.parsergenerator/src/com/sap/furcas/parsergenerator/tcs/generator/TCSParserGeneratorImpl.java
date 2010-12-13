@@ -10,6 +10,8 @@ import com.sap.furcas.parsergenerator.GrammarGenerationTargetConfiguration;
 import com.sap.furcas.parsergenerator.TCSParserGenerator;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.common.exceptions.ParserInvokationException;
+import com.sap.furcas.runtime.parser.ParsingError;
+import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 
 public class TCSParserGeneratorImpl implements TCSParserGenerator {
     
@@ -43,9 +45,39 @@ public class TCSParserGeneratorImpl implements TCSParserGenerator {
             try {
                 targetConfig.getMappingResource().save(null);
             } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                throw new RuntimeException(
+                        "Could not save syntax mapping model to resource: "
+                                + targetConfig.getMappingResource().getURI());
             }
+        }
+        return result;
+    }
+
+    @Override
+    public TCSSyntaxContainerBean parseSyntax(
+            GrammarGenerationSourceConfiguration sourceConfig,
+            File syntaxDefFile,
+            GrammarGenerationTargetConfiguration targetConfig,
+            GenerationErrorHandler resourceMarkingGenerationErrorHandler) {
+        TCSSyntaxContainerBean result = null;
+        try {
+            result = SyntaxParser.parse(sourceConfig, syntaxDefFile);
+            if(targetConfig.getMappingResource() != null) {
+                targetConfig.getMappingResource().getContents().add(result.getSyntax());
+            
+                    targetConfig.getMappingResource().save(null);
+            
+            }
+        } catch (ParserInvokationException e1) {
+            if(e1.getCause() instanceof SyntaxParsingException) {
+                for (ParsingError pe : ((SyntaxParsingException) e1.getCause()).getErrorList()) {
+                    resourceMarkingGenerationErrorHandler.error(pe);
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(
+                    "Could not save syntax mapping model to resource: "
+                            + targetConfig.getMappingResource().getURI());
         }
         return result;
     }
