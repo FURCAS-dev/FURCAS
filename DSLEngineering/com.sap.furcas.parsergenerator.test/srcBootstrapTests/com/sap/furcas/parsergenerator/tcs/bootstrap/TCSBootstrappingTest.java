@@ -18,7 +18,7 @@ import com.sap.furcas.runtime.parser.impl.DefaultTextAwareModelAdapter;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
-import com.sap.furcas.test.testutils.ScopeHelper;
+import com.sap.furcas.test.testutils.ResourceTestHelper;
 
 /**
  * This class runs a full bootstrap cycle, if started with the useBootstrappedTCSParser = true system property.
@@ -47,7 +47,7 @@ public class TCSBootstrappingTest extends GeneratedParserBasedTest {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS) {
             @Override
             public GrammarGenerationSourceConfiguration getSourceConfiguration() {
-                return new GrammarGenerationSourceConfiguration(ScopeHelper.createResourceSet(), ScopeHelper.createFURCASReferenceScope());
+                return new GrammarGenerationSourceConfiguration(ResourceTestHelper.createResourceSet(), ResourceTestHelper.createFURCASReferenceScope());
             }
         };
         TCSSyntaxContainerBean syntaxBeanyntaxBean = parseSyntax(testConfig);

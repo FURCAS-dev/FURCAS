@@ -14,6 +14,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.ocl.examples.eventmanager.EventManager;
+import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
+import org.eclipse.ocl.examples.eventmanager.filters.AssociationFilter;
 
 import behavioral.actions.ActionsFactory;
 import behavioral.actions.Block;
@@ -28,9 +31,6 @@ import data.classes.Parameter;
 import data.classes.SapClass;
 import data.classes.TypeAdapter;
 import data.classes.util.ClassesValidator;
-import de.hpi.sam.bp2009.solution.eventManager.EventManager;
-import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
-import de.hpi.sam.bp2009.solution.eventManager.filters.AssociationFilter;
 
 public class MetamodelTests extends TestCase {
     private ResourceSet resourceSet;

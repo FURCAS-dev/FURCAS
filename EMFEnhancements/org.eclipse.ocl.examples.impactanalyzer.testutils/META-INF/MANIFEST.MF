@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Testutils
+Bundle-SymbolicName: org.eclipse.ocl.examples.impactanalyzer.testutils
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.eclipse.emf.ecore,
+ de.hpi.sam.bp2009.ngpm,
+ org.eclipse.ocl.ecore,
+ de.hpi.sam.bp2009.solution.oclToAst,
+ de.hpi.sam.bp2009.company,
+ org.eclipse.ocl.examples.impactanalyzer.util,
+ org.junit4;bundle-version="4.8.1"
+Export-Package: org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.model,
+ org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications,
+ org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl,
+ org.eclipse.ocl.examples.impactanalyzer.testutils

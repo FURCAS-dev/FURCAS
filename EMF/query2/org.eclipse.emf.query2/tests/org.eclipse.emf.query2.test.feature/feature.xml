@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.emf.query2.test.feature"
+      label="Query2 Tests"
+      version="1.0.0.qualifier"
+      provider-name="Eclipse Modeling Project">
+
+   <description url="http://www.eclipse.org/modeling/emf/">
+      %description
+   </description>
+
+   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
+      Copyright (c) 2005, 2010 SAP AG.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License
+v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+Contributors:
+Ashwani Kr Sharma - initial API, implementation and documentation
+Saurav Sarkar - initial API, implementation and documentation
+Bernd Kolb - initial API, implementation and documentation
+Chritian Mohr - initial API, implementation and documentation
+Martin Strenge - initial API, implementation and documentation
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <plugin
+         id="org.eclipse.emf.query2.test"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.query2.syntax.test"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.query2.librarytest"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.query2.index.test"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"
+         unpack="false"/>
+
+</feature>

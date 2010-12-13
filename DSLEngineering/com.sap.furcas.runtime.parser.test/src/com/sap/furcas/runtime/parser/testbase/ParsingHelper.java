@@ -31,6 +31,12 @@ public class ParsingHelper {
         ModelParsingResult result = parse(charStream, modelAdapter);
         return result;
     }
+    
+    public ModelParsingResult parseString(String sample, int expectedErrors, IModelAdapter modelAdapter) throws IOException, UnknownProductionRuleException {
+        InputStream charStream = new ByteArrayInputStream(sample.getBytes());
+        ModelParsingResult result = parseStream(expectedErrors, charStream, modelAdapter);
+        return result;
+    }
 
     public StubModelAdapter parseString(String sample, int expectedErrors) throws IOException, UnknownProductionRuleException {
         StubModelAdapter stubModelHandler = new StubModelAdapter();

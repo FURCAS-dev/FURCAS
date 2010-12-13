@@ -3,6 +3,8 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.stubs;
 
+import org.eclipse.emf.common.util.EList;
+
 import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
 
 /**
@@ -13,6 +15,14 @@ public class PrimitiveTemplateStub extends TemplateStub implements PrimitiveTemp
     public String templateName;
     public String value;
     public boolean isOrkeyword;
+    
+    public PrimitiveTemplateStub() {
+        super();
+    }
+    
+    public PrimitiveTemplateStub(EList<String> names) {
+        super(names);
+    }
 
     @Override
     public String getSerializer() {

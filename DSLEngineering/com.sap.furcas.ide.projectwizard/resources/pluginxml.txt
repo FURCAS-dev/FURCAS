@@ -10,12 +10,4 @@
 		</editor> 
 	</extension> 
  
- <extension point="com.sap.tc.moin.incubation.contentprovider.Content">  
-   <ContentDefinition>  
-		<Path   
-			Value="mappings"  
- 			Versioned="true">  
-		</Path>  
-	</ContentDefinition>  
- </extension> 
 </plugin> 

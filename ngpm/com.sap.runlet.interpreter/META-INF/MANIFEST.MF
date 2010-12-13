@@ -11,7 +11,7 @@ Require-Bundle: org.eclipse.core.runtime,
  de.hpi.sam.bp2009.ngpm,
  org.eclipse.emf.ecore,
  com.sap.ngpm.utils,
- de.hpi.sam.bp2009.solution.eventManager,
+ org.eclipse.ocl.examples.eventmanager,
  org.eclipse.emf.common
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.runlet.interpreter,

@@ -10,31 +10,14 @@
  ******************************************************************************/
 package de.hpi.sam.bp2009.solution.oclToAst.tests;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
-
-import junit.textui.TestRunner;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
 
 /**
  * A test suite for the '<em><b>oclToAst</b></em>' package.
  */
-public class OclToAstTests extends TestSuite {
-
-	public static void main(String[] args) {
-		TestRunner.run(suite());
-	}
-
-	public static Test suite() {
-		TestSuite suite = new OclToAstTests("oclToAst Tests");
-	        //$JUnit-BEGIN$
-		suite.addTestSuite(EAnnotationOCLParserTest.class);
-		suite.addTestSuite(TestEcoreHelper.class);
-	        //$JUnit-END$
-		return suite;
-	}
-
-	public OclToAstTests(String name) {
-		super(name);
-	}
-
+@RunWith(Suite.class)
+@SuiteClasses({EAnnotationOCLParserTest.class, TestEcoreHelper.class})
+public class OclToAstTests {
 } //OclToAstTests

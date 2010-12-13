@@ -7,8 +7,8 @@ Bundle-Vendor: SAP
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: com.sap.furcas.runtime.common,
  com.sap.furcas.metamodel,
- org.eclipse.emf.query2,
+ org.eclipse.emf.query2.core,
  org.eclipse.core.runtime,
  com.sap.furcas.modeladaptation.emf,
- org.eclipse.emf.query.index
+ org.eclipse.emf.query2.index
 Export-Package: com.sap.furcas.runtime.tcs

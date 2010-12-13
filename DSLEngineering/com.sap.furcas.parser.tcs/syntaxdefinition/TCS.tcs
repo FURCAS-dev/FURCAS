@@ -422,6 +422,10 @@ syntax TCS {
         template TCS::FilterPArg
                 :       "filter" "=" filter{as = stringSymbol} (isDefined(invert) ? "," "invert" "=" invert{as = stringSymbol})
                 ;
+                
+       	template TCS::QueryByIdentifierPArg
+                :       "queryByIdentifier" "=" queryByIdentifier{as = stringSymbol} "," "feature" "=" feature{as = identifierOrKeyword}
+                ;
 
         template TCS::ModePArg
                 :       "mode" "=" mode{as = identifierOrKeyword}

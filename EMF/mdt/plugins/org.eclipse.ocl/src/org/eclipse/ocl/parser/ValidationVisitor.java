@@ -27,7 +27,6 @@ import java.util.Set;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.Environment;
-import org.eclipse.ocl.EnvironmentExtension;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.ocl.expressions.CollectionItem;
@@ -113,14 +112,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	Visitor<Boolean, C, O, P, EL, PM, S, COA, SSA, CT> getInstance(
 		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment) {
-		
-		if (environment == null) {
-			throw new NullPointerException();
-		}
-		if (environment instanceof EnvironmentExtension) {
-			return ((EnvironmentExtension<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>) environment).createValidationVisitor();
-		}		
-		return new ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(environment);
+		return environment.getFactory().createValidationVisitor(environment);
 	}
 
 	/**

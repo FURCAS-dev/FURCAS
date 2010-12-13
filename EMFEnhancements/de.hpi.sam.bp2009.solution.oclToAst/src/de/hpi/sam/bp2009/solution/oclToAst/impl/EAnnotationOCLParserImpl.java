@@ -42,14 +42,11 @@ import org.eclipse.emf.query.index.ui.IndexFactory;
 import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.utilities.UMLReflection;
-
-import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.ErrorMessage;
@@ -116,7 +113,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
         }
     }
 
-    private void handlePackage(URI fileUri, EObject sPkg) { 
+    private void handlePackage(URI fileUri, EPackage sPkg) { 
         /*
          * change the current resource to the ecore from the loaded packages
          */
@@ -124,8 +121,8 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
         if (((EPackage) sPkg).getEAnnotation(OCL_TYPES) != null) {
             ((EPackage) sPkg).getEAnnotation(OCL_TYPES).getContents().clear();
         }
-        System.out.println("Converting package " + ((EPackage) sPkg).getName() + " with nsURI " + ((EPackage) sPkg).getNsURI());
-        traversalConvertOclAnnotations((EPackage) sPkg);
+        System.out.println("Converting package " + sPkg.getName() + " with nsURI " + sPkg.getNsURI());
+        traversalConvertOclAnnotations(sPkg);
         try {
             rs.save(null);
         } catch (IOException e) {
@@ -149,8 +146,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             if (expr == null)
                 return;
 
-            OCL ocl = OCL.newInstance(new EcoreEnvironmentFactory(this.getRegistry(), new Query2OppositeEndFinder(
-                    new ProjectDependencyQueryContextProvider())));
+            OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(this.getRegistry());
             Helper helper = ocl.createOCLHelper();
 
             setCorrectContext(helper, modelElement);
@@ -324,10 +320,10 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
     }
 
     /**
-     * Calculates the root pacakge for a given element
+     * Calculates the root package for a given element
      * 
      * @param modelElement
-     *            get the root pacakge for this
+     *            get the root package for this
      * @return the root package
      */
     private EPackage getRootPackage(EModelElement modelElement) {

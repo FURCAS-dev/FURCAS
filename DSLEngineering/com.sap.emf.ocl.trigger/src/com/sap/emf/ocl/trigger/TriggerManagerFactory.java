@@ -1,10 +1,10 @@
 package com.sap.emf.ocl.trigger;
 
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.examples.impactanalyzer.configuration.ActivationOption;
 
 import com.sap.emf.ocl.trigger.impl.TriggerManagerFactoryImpl;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.ActivationOption;
 
 /**
  * Used to create a {@link TriggerManager}. The resulting {@link TriggerManager}

@@ -12,10 +12,10 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
 
 import com.sap.emf.ocl.trigger.AbstractOCLBasedModelUpdater;
 import com.sap.emf.ocl.trigger.ExpressionWithContext;
-import com.sap.emf.ocl.util.EcoreEnvironmentFactoryWithScopedExtentMap;
 import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
@@ -30,7 +30,6 @@ import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 import com.sap.furcas.runtime.parser.impl.ModelElementProxy;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 
 /**
  * Offers some "text blocks magic" utility methods to subclasses, such as finding the text blocks and from those the
@@ -61,7 +60,7 @@ public class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBasedModelUpd
     @Override
     public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects,
             OppositeEndFinder oppositeEndFinder) {
-        OCL ocl = OCL.newInstance(new EcoreEnvironmentFactoryWithScopedExtentMap(oppositeEndFinder));
+        OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(oppositeEndFinder);
         // TODO use prepared expression and parameterize based on token value taken from text blocks model
         for (EObject eo : affectedContextObjects) {
             Object newValue = ocl.evaluate(eo, expression);
@@ -166,7 +165,7 @@ public class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBasedModelUpd
 
     protected static Helper createOCLHelper(String oclExpression, Template contextTemplate, 
             OppositeEndFinder oppositeEndFinder) throws ParserException {
-        Helper result = OCL.newInstance(oppositeEndFinder).createOCLHelper();
+        Helper result = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(oppositeEndFinder).createOCLHelper();
         EClass parsingContext = (EClass) ContextAndForeachHelper.getParsingContext(oclExpression,
                 contextTemplate);
         result.setContext(parsingContext);

@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.14 2010/08/24 16:17:06 ewillink Exp $
+ * $Id: OCLMessages.java,v 1.15 2010/12/09 17:16:21 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.l10n;
@@ -262,6 +262,7 @@ public class OCLMessages {
 	public static String HiddenOppositeOf;
 
 	public static String NoOperationReflection_WARNING_;
+	public static String ExtraArg_ERROR_;
 	
 	private static IMessages messagesImpl;
 	

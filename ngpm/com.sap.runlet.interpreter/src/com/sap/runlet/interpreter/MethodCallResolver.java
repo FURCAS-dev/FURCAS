@@ -11,6 +11,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 
 import com.sap.ap.metamodel.utils.StringFormatter;
 import com.sap.runlet.abstractinterpreter.util.Tuple.Pair;
@@ -20,7 +21,6 @@ import data.classes.SapClass;
 import data.classes.SignatureImplementation;
 import data.classes.SignatureOwner;
 import data.classes.TypeAdapter;
-import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 
 public class MethodCallResolver {
     /**

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id: plugin.xml,v 1.1 2010/12/09 06:59:31 akrsharma Exp $
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://sap.com/moin/generatedmetamodel"
+            class="org.eclipse.emf.query2.test.mm.generatedmetamodel.GeneratedmetamodelPackage"
+            genModel="model/generatedmetamodel.genmodel"/>
+   </extension>
+
+</plugin>

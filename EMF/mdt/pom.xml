@@ -10,7 +10,7 @@
 
   <parent>
     <groupId>com.sap.dsl</groupId>
-    <artifactId>emf</artifactId>
+    <artifactId>EMF</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 

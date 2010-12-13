@@ -43,11 +43,11 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ConcretePersonDefinition" eSuperTypes="#/0/PersonDefinition"/>
     <eClassifiers xsi:type="ecore:EClass" name="NestedPersonDefinition" eSuperTypes="#/0/PersonDefinition">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerMultiplicity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperMultiplicity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerMultiplicity" eType="#/1/Integer"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperMultiplicity" eType="#/1/Integer"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="nestedPersonDefinition"
           lowerBound="1" eType="#/0/PersonDefinition"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="#/1/String"/>
     </eClassifiers>
   </ecore:EPackage>
   <ecore:EPackage name="PrimitiveTypes" nsURI="PrimitiveTypes" nsPrefix="PrimitiveTypes">

@@ -41,11 +41,6 @@ public class PeopleTest extends GeneratedParserBasedTest {
         parsingHelper = new ParsingHelper(facade);
     }
 
-    /**
-     * test syntax errors cause parsing errors
-     * 
-     * @throws Exception
-     */
     @Test
     public void testSampleDirect() throws Exception {
 
@@ -134,11 +129,6 @@ public class PeopleTest extends GeneratedParserBasedTest {
         assertEquals("Viper", person1.get("codeName"));
     }
 
-    /**
-     * test syntax errors cause parsing errors
-     * 
-     * @throws Exception
-     */
     @Test
     public void testPostFixOperator() throws Exception {
 
@@ -172,7 +162,7 @@ public class PeopleTest extends GeneratedParserBasedTest {
         assertEquals(person1, def.get("person"));
         StubModelElement nestedDef = nesteddefs.iterator().next();
         assertEquals(nestedDef, world.get("definitions"));
-        assertEquals(def, nestedDef.get("nestedDefinition"));
+        assertEquals(def, nestedDef.get("nestedPersonDefinition"));
         assertEquals("*", nestedDef.get("op"));
     }
 

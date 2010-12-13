@@ -11,7 +11,6 @@ import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
-import com.sap.furcas.runtime.parser.testbase.StubModelAdapter;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 @Ignore("Already ignored in the moin codebase. Furthermore, not even included in the test suite.")
@@ -34,8 +33,8 @@ public class PartialTest extends GeneratedParserBasedTest {
 
     @Test
     public void testSample1() throws Exception {
-        StubModelAdapter stubModelHandler = parsingHelper.parseFile("XPathSample01.sam", DSLSAMPLEDIR);
-        stubModelHandler = parsingHelper.parseFile("XPathSample02.sam", DSLSAMPLEDIR, 0);
+        parsingHelper.parseFile("XPathSample01.sam", DSLSAMPLEDIR, /*expected errors*/ 0);
+        parsingHelper.parseFile("XPathSample02.sam", DSLSAMPLEDIR, /*expected errors*/ 0);
     }
 
 }

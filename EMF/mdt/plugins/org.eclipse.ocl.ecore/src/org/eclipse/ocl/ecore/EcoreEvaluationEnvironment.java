@@ -77,22 +77,31 @@ public class EcoreEvaluationEnvironment
 
 	private boolean mustCheckOperationReflectionConsistency = true;
 
+	private final EcoreEnvironmentFactory factory;
+
     private final OppositeEndFinder oppositeEndFinder;
 
 	/**
 	 * Initializes me.
 	 */
 	public EcoreEvaluationEnvironment() {
+		this((EcoreEnvironmentFactory)null);
+	}
+    
+    /**
+     * Initializes me.
+     * @since 3.1
+     */
+    public EcoreEvaluationEnvironment(EcoreEnvironmentFactory factory) {
 		super();
-		oppositeEndFinder = createOppositeEndFinder();
-	}
-
-	/**
-	 * @since 3.1
-	 */
-	protected DefaultOppositeEndFinder createOppositeEndFinder() {
-		return new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE);
-	}
+        this.factory = factory;
+        if (factory != null) {
+        	this.oppositeEndFinder = factory.getOppositeEndFinder();
+        }
+        else {
+        	this.oppositeEndFinder = new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE);
+        }
+    }
 
 	/**
 	 * Initializes me with my parent evaluation environment (nesting scope).
@@ -103,15 +112,9 @@ public class EcoreEvaluationEnvironment
 	public EcoreEvaluationEnvironment(
 			EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> parent) {
 		super(parent);
-		oppositeEndFinder = ((EcoreEvaluationEnvironment) parent).oppositeEndFinder;
-	}
-
-	/**
-	 * @since 3.1
-	 */
-	protected EcoreEvaluationEnvironment(OppositeEndFinder oppositeEndFinder) {
-		super();
-		this.oppositeEndFinder = oppositeEndFinder;
+		EcoreEvaluationEnvironment ecoreParent = (EcoreEvaluationEnvironment) parent;
+        this.factory = ecoreParent.factory;
+        this.oppositeEndFinder = ecoreParent.oppositeEndFinder;
 	}
 
 	@Override
@@ -223,13 +226,6 @@ public class EcoreEvaluationEnvironment
 		}
 
 		return result;
-	}
-	
-	/**
-	 * @since 3.1
-	 */
-	protected OppositeEndFinder getOppositeEndFinder() {
-		return oppositeEndFinder;
 	}
 
 	// implements the inherited specification
@@ -428,7 +424,7 @@ public class EcoreEvaluationEnvironment
 		return Collections.emptyMap();
 	}
 
-    // implements the inherited specification
+	// implements the inherited specification
 	public boolean isKindOf(Object object, EClassifier classifier) {
 		// special case for Integer/UnlimitedNatural and Real which
 		// are not related types in java but are in OCL

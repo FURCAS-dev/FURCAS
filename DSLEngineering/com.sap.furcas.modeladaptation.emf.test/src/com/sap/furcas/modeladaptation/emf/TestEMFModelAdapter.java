@@ -31,7 +31,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.ReferenceSettingException;
-import com.sap.furcas.test.testutils.ScopeHelper;
+import com.sap.furcas.test.testutils.ResourceTestHelper;
 
 public class TestEMFModelAdapter {
 
@@ -39,7 +39,7 @@ public class TestEMFModelAdapter {
         
     @Before
     public void setup() {
-        adapter = new TestableEMFModelAdapter(FURCASPackage.eINSTANCE, ScopeHelper.createResourceSet(), ScopeHelper.createFURCASReferenceScope());
+        adapter = new TestableEMFModelAdapter(FURCASPackage.eINSTANCE, ResourceTestHelper.createResourceSet(), ResourceTestHelper.createFURCASReferenceScope());
     }
         
     @Test
