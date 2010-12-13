@@ -7,7 +7,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
@@ -207,15 +206,17 @@ public class FurcasWizard extends Wizard implements INewWizard {
                         MessageDialog.openError(getShell(), "Error", e.getMessage());
                     }
                 }
-                if (!hadError)
+                if (!hadError) {
                     try {
                         generateSpecific(project, pi, monitor);
                     } catch (CodeGenerationException e) {
                         hadError = true;
                         MessageDialog.openError(getShell(), "Error", e.getMessage());
                     }
-                if (hadError)
+                }
+                if (hadError) {
                     deleteJunk(pi, monitor);
+                }
 
                 return Status.OK_STATUS;
             }
@@ -343,26 +344,26 @@ public class FurcasWizard extends Wizard implements INewWizard {
     protected void generateSpecific(IProject project, ProjectInfo pi, IProgressMonitor monitor) throws CodeGenerationException {
         if (project != null) {
             EcoreMetaProjectConf conf;
-            if (!pi.isFromWorkspace())
+            if (!pi.isFromWorkspace()) {
                 // instantiates the configuration take a look at EcoreMetaProjectConf for more details
                 // uses the new PRI list in the ReferenceScope to load the referenced metamodel from registered packages
                 //
                 conf = new EcoreMetaProjectConf(project, "", pi.getNsURI());
-            else if (pi.getModelPath().matches("new")) {
+            } else if (pi.getModelPath().matches("new")) {
                 String capLangName = CreateProject.capitalizeFirstChar(pi.getLanguageName());
-                IWorkspaceRoot root = project.getWorkspace().getRoot();
-                String newPath = root.getLocation().toString() + "/" + pi.getProjectName() + ".metamodel/model/" + capLangName
+                String newPath = "/" + pi.getProjectName() + ".metamodel/model/" + capLangName
                         + ".ecore";
 
                 // instantiates the configuration take a look at EcoreMetaProjectConf for more details
                 // uses the ResourceSet in the ReferenceScope to load the freshly created .ecore file
                 //
                 conf = new EcoreMetaProjectConf(project, newPath, pi.getNsURI());
-            } else
+            } else {
                 // instantiates the configuration take a look at EcoreMetaProjectConf for more details
                 // uses the ResourceSet in the ReferenceScope to load the referenced metamodel in the workspace
                 //
                 conf = new EcoreMetaProjectConf(project, pi.getModelPath(), pi.getNsURI());
+            }
             ;
 
             try {
@@ -408,7 +409,5 @@ public class FurcasWizard extends Wizard implements INewWizard {
         setWindowTitle(EcoreEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
         setDefaultPageImageDescriptor(getDefaultImageDescriptor());
     }
-
-    
 
 }

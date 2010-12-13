@@ -77,7 +77,7 @@ public class CreateProject extends WorkspaceModifyOperation {
         } catch (CodeGenerationException e) {
             wizard.setHadError(true);
             MessageDialog.openError(this.shell, "Error", e.getMessage());
-            
+
         }
     }
 
@@ -165,7 +165,7 @@ public class CreateProject extends WorkspaceModifyOperation {
                 try {
                     f.create(false, true, monitor);
                 } catch (CoreException e) {
-                    throw new CodeGenerationException("Failed to create source: "+srcDir.getName(), e.getCause());
+                    throw new CodeGenerationException("Failed to create source: " + srcDir.getName(), e.getCause());
                 }
             }
         }
