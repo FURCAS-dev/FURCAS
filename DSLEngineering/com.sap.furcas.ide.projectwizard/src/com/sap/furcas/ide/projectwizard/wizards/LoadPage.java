@@ -146,8 +146,9 @@ public class LoadPage extends WizardPage {
                                             else
                                                 eP = ePackage;
                                         }
-                                    } else
+                                    } else {
                                         eP = ePackage;
+                                    }
                                     pi.setNsURI(eP.getNsURI());
                                     uriField.setText(resource.getURI().toString());
                                     break;
@@ -172,13 +173,15 @@ public class LoadPage extends WizardPage {
                                     EObject containingPackage = ePackage.eContainer();
                                     if ((EPackage) containingPackage instanceof EPackage) {
                                         for (EObject object : containingPackage.eContents()) {
-                                            if (object instanceof EClass)
+                                            if (object instanceof EClass) {
                                                 eP = (EPackage) containingPackage;
-                                            else
+                                            } else {
                                                 eP = ePackage;
+                                            }
                                         }
-                                    } else
+                                    } else {
                                         eP = ePackage;
+                                    }
                                     pi.setNsURI(eP.getNsURI());
                                     uriField.setText(resource.getURI().toString());
                                     break;
@@ -202,12 +205,14 @@ public class LoadPage extends WizardPage {
 
                     @Override
                     public boolean select(Viewer viewer, Object parentElement, Object element) {
-                        if (element instanceof IFolder || element instanceof IProject)
+                        if (element instanceof IFolder || element instanceof IProject) {
                             return true;
+                        }
                         if (element instanceof IFile) {
                             IFile file = (IFile) element;
-                            if (file.getFileExtension().matches("ecore"))
+                            if (file.getFileExtension().matches("ecore")) {
                                 return true;
+                            }
                         }
 
                         return false;
@@ -304,8 +309,9 @@ public class LoadPage extends WizardPage {
             setPageComplete(true);
             getNextPage();
         }
-        if (!uriField.getText().matches(text))
+        if (!uriField.getText().matches(text)) {
             uriField.setText(text);
+        }
         Wizard supWizard = (Wizard) wizard;
         supWizard.getContainer().updateButtons();
         if (getNextPage() != null) {
@@ -323,8 +329,9 @@ public class LoadPage extends WizardPage {
             cCP.setPageComplete(false);
             wizard.addPage(cCP);
         }
-        if (cCP.geteP() == null)
+        if (cCP.geteP() == null) {
             cCP.seteP(eP);
+        }
 
         return cCP;
     }
