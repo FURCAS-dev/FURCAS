@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Test
+Bundle-Name: EMF Query2 Index Tests
 Bundle-SymbolicName: org.eclipse.emf.query2.index.test
 Bundle-Version: 1.0.0.qualifier
 Fragment-Host: org.eclipse.emf.query2.index;bundle-version="1.0.0"
