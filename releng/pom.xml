@@ -84,7 +84,7 @@
 				<groupId>org.sonatype.tycho</groupId>
 				<artifactId>maven-osgi-test-plugin</artifactId>
 				<version>${tycho-version}</version>
-				<configuration>
+				<!--  <configuration>
 					<dependencies>
 						<groupId>org.eclipse.emf.query2</groupId>
 						<artifactId>org.eclipse.emf.query2.index.ui.test</artifactId>
@@ -92,6 +92,7 @@
 						<type>eclipse-plugin</type>
 					</dependencies>
 				</configuration>
+				 -->
 			</plugin>
 		</plugins>
 		<pluginManagement>
