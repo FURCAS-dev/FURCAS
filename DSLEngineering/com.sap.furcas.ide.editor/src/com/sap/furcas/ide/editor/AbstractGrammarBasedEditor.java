@@ -64,6 +64,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.FileEditorInput;
@@ -87,7 +88,6 @@ import com.sap.furcas.runtime.parser.ParsingError;
 import com.sap.furcas.runtime.parser.impl.ModelInjector;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.parser.textblocks.ITextBlocksTokenStream;
-import com.sap.furcas.runtime.parser.textblocks.ParsingTextblocksActivator;
 import com.sap.furcas.runtime.parser.textblocks.observer.ParserTextBlocksHandler;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
@@ -481,6 +481,17 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
     public void dispose() {
         super.dispose();
     }
+    
+    /**
+     * This is for implementing {@link IEditorPart} and simply tests the command stack.
+     * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+     * @generated
+     */
+        @Override
+        public boolean isDirty() {
+        return ((BasicCommandStack)getEditingDomain().getCommandStack()).isSaveNeeded();
+    }
 
     /**
      * This sets up the editing domain for the model editor. <!-- begin-user-doc
@@ -813,11 +824,11 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
                 parseCommand = new ParseCommand(previousBlock,
                         getEditingDomain().getResourceSet(), this, /* errorMode */false);
 
-                ParsingTextblocksActivator.getDefault().enableMoinLogging(
-                        getEditingDomain().getResourceSet());
+//                ParsingTextblocksActivator.getDefault().enableMoinLogging(
+//                        getEditingDomain().getResourceSet());
                 getEditingDomain().getCommandStack().execute(parseCommand);
-                ParsingTextblocksActivator.getDefault().disableMoinLogging(
-                        getEditingDomain().getResourceSet());
+//                ParsingTextblocksActivator.getDefault().disableMoinLogging(
+//                        getEditingDomain().getResourceSet());
                 if (parseCommand.getParseException() != null) {
                     throw parseCommand.getParseException();
                 }

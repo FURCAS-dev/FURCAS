@@ -84,7 +84,7 @@ public class CtsDocumentProvider extends AbstractDocumentProvider {
 			try {
 				IProject project = (IProject) mei.getAdapter(IProject.class);
 				CtsDocument ctsDocument = ((CtsDocument) info.fDocument);
-				ResourceSet co = ctsDocument.getRootObject().eResource().getResourceSet();
+				ResourceSet co = editingDomain.getResourceSet();
 				if(TbVersionUtil.getOtherVersion(ctsDocument.getRootBlock(), Version.CURRENT) != null) {
 					//only clean up if a current version exists, as this is only the case if
 					//the rootBlock was at least lexable
@@ -98,7 +98,8 @@ public class CtsDocumentProvider extends AbstractDocumentProvider {
 					monitor.worked(50);
 				}
 				monitor.beginTask("Saving connection.", 100);
-				ctsDocument.getRootObject().eResource().save(null);
+				ctsDocument.getRootBlock().eResource().save(null);
+				getEditingDomain().getCommandStack().flush();
 				monitor.worked(100);
 //			} catch (NullPartitionNotEmptyException e) {
 //				throw new CoreException(new Status(Status.ERROR,

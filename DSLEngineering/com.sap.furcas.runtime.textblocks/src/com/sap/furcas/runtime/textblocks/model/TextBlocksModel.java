@@ -379,17 +379,36 @@ public class TextBlocksModel {
      * parent textblock. Now empty textblocks are removed recursively as well.
      */
     public void replace(final int replacedRegionOffset, final int replacedRegionLength, final String newText) {
-	TextBlock workingcopy = (TextBlock) TbReplacingHelper.getOrCreateWorkingCopy(rootBlock);
-	setRootTextBlock(workingcopy);
-	// if (ParsingTextblocksActivator.getDefault() != null) {
-	// ParsingTextblocksActivator.getDefault().enableMoinLogging(
-	// workingcopy.get___Connection());
-	// }
-	replace(workingcopy, replacedRegionOffset, replacedRegionLength, newText);
-	// if (ParsingTextblocksActivator.getDefault() != null) {
-	// ParsingTextblocksActivator.getDefault().disableMoinLogging(
-	// workingcopy.get___Connection());
-	// }
+        editingDomain.getCommandStack().execute(new AbstractCommand("Replace") {
+
+            @Override
+            public boolean canExecute() {
+                return true;
+            }
+
+            @Override
+            public void execute() {
+                TextBlock workingcopy = (TextBlock) TbReplacingHelper.getOrCreateWorkingCopy(rootBlock);
+                setRootTextBlock(workingcopy);
+                // if (ParsingTextblocksActivator.getDefault() != null) {
+                // ParsingTextblocksActivator.getDefault().enableMoinLogging(
+                // workingcopy.get___Connection());
+                // }
+                replace(workingcopy, replacedRegionOffset, replacedRegionLength, newText);
+                // if (ParsingTextblocksActivator.getDefault() != null) {
+                // ParsingTextblocksActivator.getDefault().disableMoinLogging(
+                // workingcopy.get___Connection());
+                // }
+            }
+
+            @Override
+            public void redo() {
+                // TODO Auto-generated method stub
+
+            }
+
+        });
+	
 
     }
 
@@ -754,27 +773,46 @@ public class TextBlocksModel {
      * @param replacedRegionLength
      * @param newText
      */
-    public void replace(TextBlock root, int replacedRegionAbsoluteOffset, int replacedRegionLength, String newText) {
-	TextBlock workingCopy = (TextBlock) TbReplacingHelper.getOrCreateWorkingCopy(root);
-	if (replacedRegionAbsoluteOffset < 0 || replacedRegionAbsoluteOffset > root.getLength()) {
-	    throw new IllegalArgumentException(Integer.toString(replacedRegionLength));
-	}
-	if (replacedRegionAbsoluteOffset + replacedRegionLength > root.getLength()) {
-	    throw new IllegalArgumentException((replacedRegionAbsoluteOffset + replacedRegionLength) + " > " + root.getLength());
-	}
-	if (root.getParent() != null) {
-	    throw new IllegalArgumentException("TextBlock is not root.");
-	}
+    public void replace(final TextBlock root, final int replacedRegionAbsoluteOffset, final int replacedRegionLength, final String newText) {
+        editingDomain.getCommandStack().execute(new AbstractCommand("Replace") {
 
-	if (root.getLength() == 0) {
+            @Override
+            public boolean canExecute() {
+                return true;
+            }
 
-	    replaceInEmptyTree(newText, workingCopy);
-	} else {
-	    replaceInNonEmptyTree(replacedRegionAbsoluteOffset, replacedRegionLength, newText, workingCopy);
+            @Override
+            public void execute() {
 
-	}
-	workingCopy.setChildrenChanged(true);
-	TbReplacingHelper.updateBlockCachedString(workingCopy, replacedRegionAbsoluteOffset, replacedRegionLength, newText);
+                TextBlock workingCopy = (TextBlock) TbReplacingHelper.getOrCreateWorkingCopy(root);
+                if (replacedRegionAbsoluteOffset < 0 || replacedRegionAbsoluteOffset > root.getLength()) {
+                    throw new IllegalArgumentException(Integer.toString(replacedRegionLength));
+                }
+                if (replacedRegionAbsoluteOffset + replacedRegionLength > root.getLength()) {
+                    throw new IllegalArgumentException((replacedRegionAbsoluteOffset + replacedRegionLength) + " > " + root.getLength());
+                }
+                if (root.getParent() != null) {
+                    throw new IllegalArgumentException("TextBlock is not root.");
+                }
+
+                if (root.getLength() == 0) {
+
+                    replaceInEmptyTree(newText, workingCopy);
+                } else {
+                    replaceInNonEmptyTree(replacedRegionAbsoluteOffset, replacedRegionLength, newText, workingCopy);
+
+                }
+                workingCopy.setChildrenChanged(true);
+                TbReplacingHelper.updateBlockCachedString(workingCopy, replacedRegionAbsoluteOffset, replacedRegionLength, newText);
+            }
+
+            @Override
+            public void redo() {
+                // TODO Auto-generated method stub
+
+            }
+
+        });
     }
 
     /**
