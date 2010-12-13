@@ -6,3 +6,4 @@ Bundle-Version: 1.0.0.qualifier
 Fragment-Host: org.eclipse.emf.query2.index.ui;bundle-version="1.0.0.qualifier"
 Bundle-Vendor: EMF Modeling Project
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.junit4;bundle-version="4.5.0"
