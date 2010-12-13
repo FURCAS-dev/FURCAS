@@ -68,6 +68,8 @@ public class DefaultPartitionAssignmentHandlerImpl implements PartitionAssignmen
 
 	@Override
 	public void assignToDefaultPartition(EObject element) {
+	    if(element.eResource() != defaultPartition) {
 		defaultPartition.getContents().add(element);
+	    }
 	}
 }
