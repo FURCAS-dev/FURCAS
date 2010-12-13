@@ -53,14 +53,14 @@
          unpack="false"/>
 
    <plugin
-         id="de.hpi.sam.bp2009.company"
+         id="org.eclipse.ocl.examples.impactanalyzer.testmodel.company"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="de.hpi.sam.bp2009.ngpm"
+         id="org.eclipse.ocl.examples.impactanalyzer.testmodel.ngpm"
          download-size="0"
          install-size="0"
          version="0.0.0"

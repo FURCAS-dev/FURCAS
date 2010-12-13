@@ -5,10 +5,10 @@ Bundle-SymbolicName: org.eclipse.ocl.examples.impactanalyzer.testutils
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.emf.ecore,
- de.hpi.sam.bp2009.ngpm,
+ org.eclipse.ocl.examples.impactanalyzer.testmodel.ngpm,
  org.eclipse.ocl.ecore,
  de.hpi.sam.bp2009.solution.oclToAst,
- de.hpi.sam.bp2009.company,
+ org.eclipse.ocl.examples.impactanalyzer.testmodel.company,
  org.eclipse.ocl.examples.impactanalyzer.util,
  org.junit4;bundle-version="4.8.1"
 Export-Package: org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.model,

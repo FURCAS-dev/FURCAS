@@ -1,0 +1,65 @@
+
+(object Petal
+    version    	50
+    _written   	"Rose 8.3.0407.2800"
+    charSet    	0)
+
+(object Class_Category "Reflect"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set)
+    quid       	"42B2850A011C"
+    stereotype 	"metamodel"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "Element"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"MOF"
+		    name       	"mof.idl_substitute_name"
+		    value      	(value Text "RefObject"))
+		(object Attribute
+		    tool       	"JCR"
+		    name       	"java_substitute_name"
+		    value      	(value Text "RefObject")))
+	    quid       	"42B283E203E6"))
+    logical_presentations 	(list unit_reference_list
+	(object ClassDiagram "Reflect"
+	    quid       	"4304F1200127"
+	    title      	"Reflect"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	2006
+	    items      	(list diagram_item_list
+		(object ClassView "Class" "Logical View::Reflect::Element" @1
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(222, 162)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@1
+			location   	(131, 111)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	182
+			justify    	0
+			label      	"Element")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"42B283E203E6"
+		    width      	200
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)))))
