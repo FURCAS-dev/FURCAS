@@ -18,7 +18,6 @@
    </license>
 
    <requires>
-      <import feature="org.eclipse.emf.query2.core.feature" version="1.0.0.qualifier" patch="true"/>
       <import feature="org.eclipse.ocl.uml" version="3.1.0.qualifier" patch="true"/>
       <import feature="org.eclipse.ocl" version="3.1.0.qualifier" patch="true"/>
    </requires>
