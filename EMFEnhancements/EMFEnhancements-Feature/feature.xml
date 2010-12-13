@@ -17,6 +17,23 @@
       [Enter License Description here.]
    </license>
 
+   <requires>
+      <import feature="org.eclipse.emf" version="2.6.0.qualifier" patch="true"/>
+      <import feature="org.eclipse.emf.common" version="2.6.0.qualifier" patch="true"/>
+      <import feature="org.eclipse.emf.ecore" version="2.7.0.qualifier" patch="true"/>
+      <import feature="org.eclipse.emf.ecore.edit" version="2.6.0.qualifier" patch="true"/>
+      <import feature="org.eclipse.emf.ecore.editor" version="2.6.0.qualifier" patch="true"/>
+      <import feature="org.eclipse.emf.ecore.xmi" version="2.6.0.qualifier" patch="true"/>
+      <import feature="org.eclipse.emf.edit" version="2.7.0.qualifier" patch="true"/>
+      <import feature="org.eclipse.emf.edit.ui" version="2.6.0.qualifier" patch="true"/>
+      <import feature="org.eclipse.ocl" version="3.1.0.qualifier" patch="true"/>
+      <import feature="org.eclipse.ocl.uml" version="3.0.0.qualifier" patch="true"/>
+      <import feature="org.eclipse.ocl.ecore" version="3.1.0.qualifier" patch="true"/>
+      <import feature="org.eclipse.emf.query2.core" version="1.0.0.qualifier" patch="true"/>
+      <import feature="org.eclipse.emf.query2.index" version="1.0.0.qualifier" patch="true"/>
+      <import feature="org.eclipse.emf.query2.index.ui" version="1.0.0.qualifier" patch="true"/>
+   </requires>
+
    <plugin
          id="com.sap.emf.ocl.attributegrammar"
          download-size="0"
@@ -40,55 +57,6 @@
 
    <plugin
          id="de.hpi.sam.activityDiagram"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.ocl.examples.impactanalyzer.testmodel.company"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.ocl.examples.impactanalyzer.testmodel.ngpm"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="de.hpi.sam.bp2009.solution.eventManager"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="de.hpi.sam.bp2009.solution.impactAnalyzer"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="de.hpi.sam.bp2009.solution.impactAnalyzer.debug"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="de.hpi.sam.bp2009.solution.impactAnalyzer.editor"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -123,35 +91,24 @@
          unpack="false"/>
 
    <plugin
-         id="de.hpi.sam.bp2009.solution.testutils"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="de.hpi.sam.petriNet"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
-   <requires>
-      <import feature="org.eclipse.emf" version="2.6.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.emf.common" version="2.6.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.emf.ecore" version="2.7.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.emf.ecore.edit" version="2.6.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.emf.ecore.editor" version="2.6.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.emf.ecore.xmi" version="2.6.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.emf.edit" version="2.7.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.emf.edit.ui" version="2.6.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.ocl" version="3.1.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.ocl.uml" version="3.0.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.ocl.ecore" version="3.1.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.emf.query2.core" version="1.0.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.emf.query2.index" version="1.0.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.emf.query2.index.ui" version="1.0.0.qualifier" patch="true"/>
-   </requires>
+   <plugin
+         id="org.eclipse.ocl.examples.impactanalyzer"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
+   <plugin
+         id="com.sap.emf.importer.moin.rose"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>
