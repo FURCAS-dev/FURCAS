@@ -7,6 +7,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query.index.internal.ui.builder.QueryIndexBuilder;
+import org.eclipse.emf.query.index.internal.ui.builder.QueryIndexNature;
 import org.eclipse.ui.IStartup;
 
 /**
@@ -44,7 +45,7 @@ public class IndexingIntitializer implements IStartup {
 				if (iProject.isOpen()) {
 					String[] natureIds = iProject.getDescription().getNatureIds();
 					for (int j = 0; j < natureIds.length; j++) {
-						if ("org.eclipse.emf.query.index.ui.queryIndexNature".equals(natureIds[j])) {
+						if (QueryIndexNature.NATURE_ID.equals(natureIds[j])) {
 							iProject.refreshLocal(IResource.DEPTH_INFINITE, null);
 							iProject.build(buildKind, new NullProgressMonitor());
 
