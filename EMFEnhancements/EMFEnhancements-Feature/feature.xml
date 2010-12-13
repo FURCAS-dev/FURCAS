@@ -52,27 +52,6 @@
          unpack="false"/>
 
    <plugin
-         id="de.hpi.sam.bp2009.solution.oclToMqlMapping"
-         download-size="0"
-         install-size="0"
-         version="1.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="de.hpi.sam.bp2009.solution.queryContextScopeProvider"
-         download-size="0"
-         install-size="0"
-         version="0.1.0"
-         unpack="false"/>
-
-   <plugin
-         id="de.hpi.sam.bp2009.solution.scopeProvider"
-         download-size="0"
-         install-size="0"
-         version="1.0.0.qualifier"
-         unpack="false"/>
-
-   <plugin
          id="de.hpi.sam.petriNet"
          download-size="0"
          install-size="0"
@@ -87,13 +66,6 @@
          unpack="false"/>
 
    <plugin
-         id="com.sap.emf.importer.moin.rose"
-         download-size="0"
-         install-size="0"
-         version="1.0.0"
-         unpack="false"/>
-
-   <plugin
          id="de.hpi.sam.bp2009.solution.oclToAst"
          download-size="0"
          install-size="0"
@@ -105,14 +77,6 @@
          download-size="0"
          install-size="0"
          version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.ocl.examples.eventmanager.tests"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
          unpack="false"/>
 
    <plugin
@@ -249,6 +213,34 @@
 
    <plugin
          id="org.eclipse.emf.edit.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.sap.emf.importer.moin.rose"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.hpi.sam.bp2009.solution.oclToMqlMapping"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.hpi.sam.bp2009.solution.queryContextScopeProvider"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.hpi.sam.bp2009.solution.scopeProvider"
          download-size="0"
          install-size="0"
          version="0.0.0"
