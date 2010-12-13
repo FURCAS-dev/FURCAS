@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+  <extension point="org.eclipse.ui.popupMenus">
+    <objectContribution id="compileTemplateContribution" objectClass="org.eclipse.core.resources.IFile" nameFilter="*.javajet">
+      <action id="compileTemplate" class="org.eclipse.emf.codegen.action.CompileTemplateAction" menubarPath="additions" label="%_UI_CompileTemplate_label" enablesFor="*" />
+      <!-- <filter name="nature" value="org.eclipse.emf.codegen.jet.IJETNature"/> -->
+    </objectContribution>
+  </extension>
+
+  <extension point="org.eclipse.ui.newWizards">
+    <category name="%_UI_JETDevelopment_label" id="org.eclipse.emf.codegen.ui.JETNewWizards">
+    </category>
+    <wizard name="%_UI_JETConvertProject_label" icon="icons/full/ctool16/ConvertToJETProjectWizard.gif" category="org.eclipse.emf.codegen.ui.JETNewWizards" class="org.eclipse.emf.codegen.presentation.ConvertToJETProjectWizard" id="org.eclipse.emf.codegen.ui.ConvertToJETProjectWizard">
+      <description>%_UI_JETConvertProject_message</description>
+    </wizard>
+  </extension>
+
+  <extension point="org.eclipse.ui.propertyPages">
+    <page id="JETSettingsPropertiesPage" name="%_UI_JETSettings_label" class="org.eclipse.emf.codegen.presentation.JETPropertyPage">
+      <filter name="nature" value="org.eclipse.emf.codegen.jet.IJETNature" />
+      <enabledWhen>
+         <adapt
+               type="org.eclipse.core.resources.IProject">
+         </adapt>
+      </enabledWhen>
+    </page>
+  </extension>
+</plugin>
