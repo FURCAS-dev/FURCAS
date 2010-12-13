@@ -9,8 +9,8 @@
 		<relativePath>../../releng/pom.xml</relativePath>
 	</parent>
 	
-	<artifactId>org.eclipse.emf.query.index.test</artifactId>
+	<artifactId>org.eclipse.emf.query2.index.ui.test</artifactId>
 	<packaging>eclipse-test-plugin</packaging>
-	<name>EMF Query2 Index Tests</name>	
+	<name>EMF Query2 Index UI Tests</name>	
 	
 </project>
