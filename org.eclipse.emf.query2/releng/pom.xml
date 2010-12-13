@@ -33,12 +33,12 @@
 		<module>../plugins/org.eclipse.emf.query2.stringsyntax.feature</module>
 
 		<!-- Test plugins -->
-		 <module>../tests/org.eclipse.emf.query.index.test</module> 
-		<!-- <module>../tests/org.eclipse.emf.query2.index.ui.test</module> -->
+		<module>../tests/org.eclipse.emf.query.index.test</module>
+		<module>../tests/org.eclipse.emf.query2.index.ui.test</module>
 		<module>../tests/org.eclipse.emf.query2.test</module>
 		<module>../tests/org.eclipse.emf.query2.librarytest</module>
 		<module>../tests/org.eclipse.emf.query2.syntax.test</module>
-		
+
 		<!-- test features -->
 		<module>../tests/org.eclipse.emf.query2.test.feature</module>
 
@@ -80,11 +80,19 @@
 					<resolver>p2</resolver>
 				</configuration>
 			</plugin>
-			<!--
-				<plugin> <groupId>org.sonatype.tycho</groupId>
+			<plugin>
+				<groupId>org.sonatype.tycho</groupId>
 				<artifactId>maven-osgi-test-plugin</artifactId>
-				<version>${tycho-version}</version> </plugin>
-			-->
+				<version>${tycho-version}</version>
+				<configuration>
+					<dependencies>
+						<groupId>org.eclipse.emf.query2</groupId>
+						<artifactId>org.eclipse.emf.query2.index.ui.test</artifactId>
+						<packaging>eclipse-test-plugin</packaging>
+						<type>eclipse-plugin</type>
+					</dependencies>
+				</configuration>
+			</plugin>
 		</plugins>
 		<pluginManagement>
 			<plugins>
