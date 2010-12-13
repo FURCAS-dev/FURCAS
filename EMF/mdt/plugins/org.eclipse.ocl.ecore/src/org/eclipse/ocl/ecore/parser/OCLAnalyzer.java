@@ -138,15 +138,6 @@ public class OCLAnalyzer
 		return result;
 	}
 
-	@Override
-	protected org.eclipse.ocl.parser.OCLFactoryWithHistory createOCLFactoryWithHistory(
-			Environment<EPackage, EClassifier, EOperation, EStructuralFeature,
-			EEnumLiteral, EParameter, EObject,
-			CallOperationAction, SendSignalAction, Constraint,
-			EClass, EObject> env) {
-		return new OCLFactoryWithHistory(env.getOCLFactory());
-	}
-
 	private OppositePropertyCallExp createOppositePropertyCallExp(
 			SimpleNameCS simpleNameCS, EnvironmentWithHiddenOpposites env,
 			OCLExpression<EClassifier> source, EClassifier owner, String simpleName, EReference property) {

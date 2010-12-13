@@ -6,11 +6,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.examples.eventmanager.EventManager;
+import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 
 import com.sap.emf.ocl.attributegrammar.impl.AttributeGrammarFactoryImpl;
 
-import de.hpi.sam.bp2009.solution.eventManager.EventManager;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.OCLFactory;
 
 /**
  * Produces {@link AttributeGrammar}s based on OCL expressions that define values for

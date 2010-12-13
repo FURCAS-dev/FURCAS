@@ -19,7 +19,7 @@ import com.sap.furcas.parsergenerator.emf.tcs.inject.ModelInjectionResult;
 import com.sap.furcas.parsergenerator.emf.tcs.inject.TCSSpecificEMFModelInjector;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
-import com.sap.furcas.test.testutils.ScopeHelper;
+import com.sap.furcas.test.testutils.ResourceTestHelper;
 
 /**
  * Base class for syntax injection tests
@@ -37,8 +37,8 @@ public abstract class AbstractTCSInjectionTest {
     }
 
     protected static void parseInputStream(InputStream in) throws InvalidParserImplementationException, IOException, UnknownProductionRuleException {
-        ResourceSet resourceSet = ScopeHelper.createResourceSet();
-        Set<URI> referenceScope = ScopeHelper.createEcoreReferenceScope();
+        ResourceSet resourceSet = ResourceTestHelper.createResourceSet();
+        Set<URI> referenceScope = ResourceTestHelper.createEcoreReferenceScope();
 
         modelParsingResult = TCSSpecificEMFModelInjector.parseSyntaxDefinition(in, resourceSet, referenceScope,/* observer */null);
     }

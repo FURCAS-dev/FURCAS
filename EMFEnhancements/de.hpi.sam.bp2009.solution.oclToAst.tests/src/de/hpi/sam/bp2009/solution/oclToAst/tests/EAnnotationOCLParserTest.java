@@ -10,32 +10,48 @@
  ******************************************************************************/
 package de.hpi.sam.bp2009.solution.oclToAst.tests;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNotNull;
+
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import junit.framework.TestCase;
-import junit.textui.TestRunner;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.IntegerLiteralExp;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.eclipse.ocl.ecore.delegate.ValidationBehavior;
+import org.eclipse.ocl.utilities.UMLReflection;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
 
 import company.CompanyFactory;
 import company.CompanyPackage;
@@ -59,16 +75,12 @@ import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
  * </ul>
  * </p>
  */
-public class EAnnotationOCLParserTest extends TestCase {
+public class EAnnotationOCLParserTest {
 
     /**
      * The fixture for this EAnnotation OCL Parser test case.
      */
     protected EAnnotationOCLParser fixture = null;
-
-    public static void main(String[] args) {
-        TestRunner.run(EAnnotationOCLParserTest.class);
-    }
 
     /**
      * Sets the fixture for this EAnnotation OCL Parser test case.
@@ -89,7 +101,7 @@ public class EAnnotationOCLParserTest extends TestCase {
     /**
      * @see junit.framework.TestCase#setUp()
      */
-    @Override
+    @Before
     public void setUp() {
         setFixture(OclToAstFactory.eINSTANCE.createEAnnotationOCLParser());
     }
@@ -97,7 +109,7 @@ public class EAnnotationOCLParserTest extends TestCase {
     /**
      * @see junit.framework.TestCase#tearDown()
      */
-    @Override
+    @After
     public void tearDown() {
         setFixture(null);
     }
@@ -109,6 +121,7 @@ public class EAnnotationOCLParserTest extends TestCase {
      * 
      * @see de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser#convertOclAnnotation(org.eclipse.emf.ecore.EModelElement)
      */
+    @Test
     public void testConvertOclAnnotation__EModelElement() {
         EClass placeC = EcoreFactory.eINSTANCE.createEClass();
         placeC.setName("Place");
@@ -129,6 +142,7 @@ public class EAnnotationOCLParserTest extends TestCase {
                 .getSpecification().getBodyExpression() instanceof OperationCallExp);
     }
 
+    @Test
     public void testInvocationDelegate_AST_Usage() {
         Department dep = CompanyFactory.eINSTANCE.createDepartment();
         dep.setBudget(10000);
@@ -146,7 +160,7 @@ public class EAnnotationOCLParserTest extends TestCase {
         e1.setEmployer(dep);
 
         getFixture().traversalConvertOclAnnotations(CompanyPackage.eINSTANCE);
-        OCL ocl = OCL.newInstance();
+        OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance();
         // change the annotation string value to proof usage of already parsed ast.
         Entry<String, String> value = CompanyPackage.eINSTANCE.getDepartment().getEOperations().get(0)
                 .getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI).getDetails().get(0);
@@ -173,6 +187,7 @@ public class EAnnotationOCLParserTest extends TestCase {
         val.setValue(content);
     }
 
+    @Test
     public void testSettingDelegate_AST_Usage() {
         CompanyFactory compFac = CompanyFactory.eINSTANCE;
         Division div = compFac.createDivision();
@@ -189,7 +204,7 @@ public class EAnnotationOCLParserTest extends TestCase {
         anno.getDetails().put(SettingBehavior.INITIAL_CONSTRAINT_KEY, "10000");
 
         getFixture().traversalConvertOclAnnotations(CompanyPackage.eINSTANCE);
-        OCL ocl = OCL.newInstance();
+        OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance();
         // change the annotation string value to proof usage of already parsed ast.
         CompanyPackage.eINSTANCE.getDepartment_Budget().getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI).getDetails().get(0)
                 .setValue("-2");
@@ -204,6 +219,7 @@ public class EAnnotationOCLParserTest extends TestCase {
         EcoreUtil.remove(CompanyPackage.eINSTANCE.getDepartment_Budget().getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI));
     }
 
+    @Test
     public void testValidationDelegate_AST_Usage() {
         Department dep = CompanyFactory.eINSTANCE.createDepartment();
         Division div = CompanyFactory.eINSTANCE.createDivision();
@@ -225,6 +241,7 @@ public class EAnnotationOCLParserTest extends TestCase {
                         Diagnostician.INSTANCE.createDefaultDiagnostic(dep), context));
     }
 
+    @Test
     public void testHiddenOpposite_AST_Usage() {
         Department dep = CompanyFactory.eINSTANCE.createDepartment();
         Division div = CompanyFactory.eINSTANCE.createDivision();
@@ -250,6 +267,7 @@ public class EAnnotationOCLParserTest extends TestCase {
      * 
      * @see de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser#convertOclAnnotation(org.eclipse.emf.ecore.EModelElement)
      */
+    @Test
     public void testConvertOclAnnotation__EOperation() {
         EClass aClass = EcoreFactory.eINSTANCE.createEClass();
         aClass.setName("aClass");
@@ -272,11 +290,69 @@ public class EAnnotationOCLParserTest extends TestCase {
         OCLExpression expr = (OCLExpression) ((Constraint) operation.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI)
                 .getContents().get(0)).getSpecification().getBodyExpression();
         assertTrue(expr instanceof IntegerLiteralExp);
-        OCL ocl = OCL.newInstance();
+        OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance();
         Object result = ocl.evaluate(operation, expr);
         assertTrue("Expected value: '4', got: " + result.toString(), "4".equals(result.toString()));
     }
 
+    /**
+     * Benchmark test comparing the time consumption using {@link EcoreEnvironment#getDefinition(Object)} to get the body condition 
+     * of an operation body defined by an {@link OCLExpression} with stereotype <blockquote>body</blockquote> and if no body expression 
+     * is returned, {@link EcoreEnvironment#getBodyCondition(EOperation)} is called to get the body expression instead of 
+     * using {@link EcoreEnvironment#getBodyCondition(EOperation)} first. 
+     */
+    @Test
+    @Ignore
+    public void testOperationBodyResolvingPerformance() {
+        EOperation op = CompanyPackage.eINSTANCE.getDepartment().getEAllOperations().get(0);
+        Constraint con = null;
+        Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env = OCL.newInstance().getEnvironment();
+        
+        //ensure all constraints got already parsed
+        getFixture().traversalConvertOclAnnotations(CompanyPackage.eINSTANCE);
+        for(int j = 10; j > 0; j--){
+            //looking up a constraint with stereotype body in getDefinition() first and after failing 
+            //usage of getBodyCondition() to resolve the operation's body expression.
+            double beforeBody = System.nanoTime();
+            for(int i = 20; i > 0; i--){
+                con = getDefinitionOrBodyConstraint(op, env);              
+            }
+            double afterBody = System.nanoTime();
+    
+            assertNotNull(con);
+            con.setStereotype(UMLReflection.DEFINITION);
+    
+            //looking up a constraint with stereotype definition in getDefinition() should be successful.
+            double beforeDef = System.nanoTime();
+            for(int i = 20; i > 0; i--){
+                con = getDefinitionOrBodyConstraint(op, env);
+            }
+            double afterDef = System.nanoTime();
+    
+            assertNotNull(con);
+            con.setStereotype(UMLReflection.BODY);
+            System.out.println("Time using stereotype 'body'      : " + (afterBody-beforeBody) + " ns \nTime using stereotype 'definition': " + (afterDef - beforeDef) + " ns");
+            System.out.println("Using getDefinition() is " + (afterBody-beforeBody)/(afterDef - beforeDef) + "times faster\n");
+        }
+    }
+
+    /**
+     * @param op operation the body expression should be returned for
+     * @param env the OCL Environment
+     * @return a {@link Constraint} representing the body of the given operation.
+     */
+    private Constraint getDefinitionOrBodyConstraint(
+            EOperation op,
+            Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env) {
+        Constraint con = null;
+        con = env.getDefinition(op);
+        if (con == null){
+            con = env.getBodyCondition(op);
+        }            
+        return con;
+    }
+
+    @Test
     public void testAnnotationParsingOfNgpmMetaModel() {
         EAnnotationOCLParser parser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
         parser.traversalConvertOclAnnotations(ExpressionsPackage.eINSTANCE);

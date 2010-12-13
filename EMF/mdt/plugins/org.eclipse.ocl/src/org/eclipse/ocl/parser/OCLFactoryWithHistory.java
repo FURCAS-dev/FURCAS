@@ -76,7 +76,7 @@ public class OCLFactoryWithHistory implements OCLFactory {
     
     private boolean disposable;
     
-    protected OCLFactoryWithHistory(OCLFactory delegate) {
+    public OCLFactoryWithHistory(OCLFactory delegate) {
         this.delegate = delegate;
     }
 

@@ -40,7 +40,7 @@ public class TestIncrementalLexer extends TextBlockTest {
         ANTLRIncrementalLexerAdapter incrementalLexer = new ANTLRIncrementalLexerAdapter(
                 mockLexerAdapter, null, editingDomain);
 
-        LexedToken contentToken = createToken("test");
+        LexedToken contentToken = modelFactory.createToken("test");
 
         TextBlock root = TestSourceTextBlockCreator
                 .initialiseTextBlocksWithContentToken(modelFactory,
@@ -80,7 +80,7 @@ public class TestIncrementalLexer extends TextBlockTest {
                 new AdapterFactoryEditingDomain(new TextblocksAdapterFactory(),
                         new BasicCommandStack()));
 
-        LexedToken contentToken = createToken("test");
+        LexedToken contentToken = modelFactory.createToken("test");
 
         TextBlock root = TestSourceTextBlockCreator
                 .initialiseTextBlocksWithContentToken(modelFactory,
@@ -106,7 +106,7 @@ public class TestIncrementalLexer extends TextBlockTest {
         // TbUtil.dereferenceVersions(tok1, editedVersion.getTokens().get(1));
         // tok1.getOtherVersions().clear();
 
-        LexedToken lt = createToken(editedVersion.getTokens().get(1).getValue());
+        LexedToken lt = modelFactory.createToken(editedVersion.getTokens().get(1).getValue());
         lt.setVersion(Version.CURRENT);
         lt.setLength(5);
 
@@ -155,7 +155,7 @@ public class TestIncrementalLexer extends TextBlockTest {
                 new AdapterFactoryEditingDomain(new TextblocksAdapterFactory(),
                         new BasicCommandStack()));
 
-        LexedToken contentToken = createToken("test");
+        LexedToken contentToken = modelFactory.createToken("test");
 
         TextBlock root = TestSourceTextBlockCreator
                 .initialiseTextBlocksWithContentToken(modelFactory,
@@ -175,12 +175,12 @@ public class TestIncrementalLexer extends TextBlockTest {
         // Set exactly the same tokens as nothing in their structure changed
         // except BOS token
         List<AbstractToken> nextTokens = new ArrayList<AbstractToken>(3);
-        LexedToken newTok1 = createToken("test");
+        LexedToken newTok1 = modelFactory.createToken("test");
         newTok1.setLength(4);
         newTok1.setVersion(Version.CURRENT);
         nextTokens.add(newTok1);
 
-        LexedToken newTok2 = createToken("1");
+        LexedToken newTok2 = modelFactory.createToken("1");
         newTok2.setOffset(4);
         newTok2.setLength(1);
         newTok2.setVersion(Version.CURRENT);
@@ -212,7 +212,7 @@ public class TestIncrementalLexer extends TextBlockTest {
                 new AdapterFactoryEditingDomain(new TextblocksAdapterFactory(),
                         new BasicCommandStack()));
 
-        LexedToken tok1 = createToken("tok1");
+        LexedToken tok1 = modelFactory.createToken("tok1");
 
         /*
          * Structure before: -root -tok1 -subBlock --tok2 --tok3x
@@ -230,11 +230,11 @@ public class TestIncrementalLexer extends TextBlockTest {
         subBlock.setLength(8);
         root.getSubNodes().add(subBlock);
 
-        LexedToken tok2 = createToken("tok2");
+        LexedToken tok2 = modelFactory.createToken("tok2");
         tok2.setOffsetRelative(true);
         subBlock.getSubNodes().add(tok2);
 
-        LexedToken tok3 = createToken("tok3");
+        LexedToken tok3 = modelFactory.createToken("tok3");
         tok3.setOffset(4);
         tok3.setOffsetRelative(true);
         subBlock.getSubNodes().add(tok3);
@@ -254,7 +254,7 @@ public class TestIncrementalLexer extends TextBlockTest {
         // except BOS token
         List<AbstractToken> nextTokens = new ArrayList<AbstractToken>(3);
 
-        LexedToken newTok3 = createToken("tok3");
+        LexedToken newTok3 = modelFactory.createToken("tok3");
         // lexer uses offset relative to last constructionlocation
         // so this has to be simulated here as well
         newTok3.setOffset(0);
@@ -263,7 +263,7 @@ public class TestIncrementalLexer extends TextBlockTest {
         newTok3.setRelexingNeeded(true);
         nextTokens.add(newTok3);
 
-        LexedToken newTok4 = createToken("x");
+        LexedToken newTok4 = modelFactory.createToken("x");
         newTok4.setOffset(4);
         newTok4.setLength(1);
         newTok4.setVersion(Version.CURRENT);
@@ -307,7 +307,7 @@ public class TestIncrementalLexer extends TextBlockTest {
                 new AdapterFactoryEditingDomain(new TextblocksAdapterFactory(),
                         new BasicCommandStack()));
 
-        LexedToken tok1 = createToken("tok1");
+        LexedToken tok1 = modelFactory.createToken("tok1");
 
         /*
          * Structure before: -root -tok1 -subBlock --tok2 --tok3x
@@ -325,12 +325,12 @@ public class TestIncrementalLexer extends TextBlockTest {
         subBlock.setLength(8);
         root.getSubNodes().add(subBlock);
 
-        LexedToken tok2 = createToken("tok2");
+        LexedToken tok2 = modelFactory.createToken("tok2");
         tok2.setOffsetRelative(true);
         tok2.setLookback(1);
         subBlock.getSubNodes().add(tok2);
 
-        LexedToken tok3 = createToken("tok3");
+        LexedToken tok3 = modelFactory.createToken("tok3");
         tok3.setOffset(4);
         tok3.setOffsetRelative(true);
         tok3.setLookback(1);
@@ -351,7 +351,7 @@ public class TestIncrementalLexer extends TextBlockTest {
         // except BOS token
         List<AbstractToken> nextTokens = new ArrayList<AbstractToken>(5);
 
-        LexedToken newTok2 = createToken("tok2");
+        LexedToken newTok2 = modelFactory.createToken("tok2");
         // lexer uses offset relative to last constructionlocation
         // so this has to be simulated here as well which is this token
         newTok2.setOffset(0);
@@ -360,7 +360,7 @@ public class TestIncrementalLexer extends TextBlockTest {
         newTok2.setRelexingNeeded(true);
         nextTokens.add(newTok2);
 
-        LexedToken newTok3 = createToken("tok3");
+        LexedToken newTok3 = modelFactory.createToken("tok3");
         // lexer uses offset relative to last constructionlocation
         // so this has to be simulated here as well which is this tok2
         newTok3.setOffset(4);
@@ -369,7 +369,7 @@ public class TestIncrementalLexer extends TextBlockTest {
         newTok3.setRelexingNeeded(true);
         nextTokens.add(newTok3);
 
-        LexedToken newTok4 = createToken("x");
+        LexedToken newTok4 = modelFactory.createToken("x");
         // lexer uses offset relative to last constructionlocation
         // so this has to be simulated here as well which is tok3
         newTok4.setOffset(4);
@@ -378,7 +378,7 @@ public class TestIncrementalLexer extends TextBlockTest {
         newTok4.setRelexingNeeded(true);
         nextTokens.add(newTok4);
 
-        LexedToken newTok5 = createToken("y");
+        LexedToken newTok5 = modelFactory.createToken("y");
         // lexer uses offset relative to last constructionlocation
         // so this has to be simulated here as well which is tok3
         newTok5.setOffset(5);
@@ -457,7 +457,7 @@ public class TestIncrementalLexer extends TextBlockTest {
                 new AdapterFactoryEditingDomain(new TextblocksAdapterFactory(),
                         new BasicCommandStack()));
 
-        LexedToken tok1 = createToken("tok1");
+        LexedToken tok1 = modelFactory.createToken("tok1");
 
         /*
          * Structure before: -root -tok1 -subBlock --xtok2 --tok3
@@ -475,12 +475,12 @@ public class TestIncrementalLexer extends TextBlockTest {
         subBlock.setLength(8);
         root.getSubNodes().add(subBlock);
 
-        LexedToken tok2 = createToken("tok2");
+        LexedToken tok2 = modelFactory.createToken("tok2");
         tok2.setOffsetRelative(true);
         tok2.setLookback(1);
         subBlock.getSubNodes().add(tok2);
 
-        LexedToken tok3 = createToken("tok3");
+        LexedToken tok3 = modelFactory.createToken("tok3");
         tok3.setOffset(4);
         tok3.setOffsetRelative(true);
         tok3.setLookback(1);
@@ -506,7 +506,7 @@ public class TestIncrementalLexer extends TextBlockTest {
         // except BOS token
         List<AbstractToken> nextTokens = new ArrayList<AbstractToken>(5);
 
-        LexedToken newTok1 = createToken("tok1");
+        LexedToken newTok1 = modelFactory.createToken("tok1");
         // lexer uses offset relative to last constructionlocation
         // so this has to be simulated here as well which is this token
         newTok1.setOffset(0);
@@ -515,7 +515,7 @@ public class TestIncrementalLexer extends TextBlockTest {
         newTok1.setRelexingNeeded(true);
         nextTokens.add(newTok1);
 
-        LexedToken x = createToken("x");
+        LexedToken x = modelFactory.createToken("x");
         // lexer uses offset relative to last constructionlocation
         // so this has to be simulated here as well which is tok1
         x.setOffset(4);
@@ -524,7 +524,7 @@ public class TestIncrementalLexer extends TextBlockTest {
         x.setRelexingNeeded(true);
         nextTokens.add(x);
 
-        LexedToken newTok2 = createToken("tok2");
+        LexedToken newTok2 = modelFactory.createToken("tok2");
         // lexer uses offset relative to last constructionlocation
         // so this has to be simulated here as well which is this token in the
         // previous version

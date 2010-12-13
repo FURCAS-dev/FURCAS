@@ -10,12 +10,13 @@
  ******************************************************************************/
 package de.hpi.sam.bp2009.solution.oclToAst.tests;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-
-import junit.framework.TestCase;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -30,17 +31,18 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.junit.Test;
 
 import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
-import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectDependencyQueryContextProvider;
 import de.hpi.sam.petriNet.PetriNet;
 import de.hpi.sam.petriNet.PetriNetFactory;
 import de.hpi.sam.petriNet.PetriNetPackage;
 import de.hpi.sam.petriNet.Place;
 import de.hpi.sam.petriNet.Transition;
 
-public class TestEcoreHelper extends TestCase {
+public class TestEcoreHelper {
+    @Test
     public void testSubclassQuery() {
         EcoreHelper helper = EcoreHelper.getInstance();
         EClass testClass = PetriNetPackage.eINSTANCE.getElement();
@@ -55,6 +57,7 @@ public class TestEcoreHelper extends TestCase {
         assertEquals(expectedNames, foundNames);
     }
 
+    @Test
     public void testReverseReferenceTraverser() {
         EcoreHelper helper = EcoreHelper.getInstance();
         PetriNet petriNet = PetriNetFactory.eINSTANCE.createPetriNet();
@@ -68,6 +71,7 @@ public class TestEcoreHelper extends TestCase {
         assertEquals(petriNet, result.iterator().next());
     }
 
+    @Test
     public void testHiddenOppositeTraverser() {
         EcoreHelper helper = EcoreHelper.getInstance();
         Transition transition = PetriNetFactory.eINSTANCE.createTransition();
@@ -82,6 +86,7 @@ public class TestEcoreHelper extends TestCase {
         assertEquals(place, result.iterator().next());
     }
     
+    @Test
     public void testHiddenOppositeOclTraversal() throws ParserException {
         Transition transition = PetriNetFactory.eINSTANCE.createTransition();
         Place place = PetriNetFactory.eINSTANCE.createPlace();
@@ -90,7 +95,7 @@ public class TestEcoreHelper extends TestCase {
         Resource e = rs.createResource(URI.createURI("http://my.next.resource/somethingElse"));
         e.getContents().add(place);
         e.getContents().add(transition);
-        OCL ocl = OCL.newInstance(new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider()));
+        OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(Query2OppositeEndFinder.getInstance());
         Helper oclHelper = ocl.createOCLHelper();
         oclHelper.setContext(PetriNetPackage.eINSTANCE.getTransition());
         OCLExpression expr = oclHelper.createQuery("self.transition2Place");

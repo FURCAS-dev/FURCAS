@@ -14,12 +14,9 @@
  *
  * $Id: OCLSyntaxHelper.java,v 1.18 2010/01/22 18:38:12 asanchez Exp $
  */
-
 package org.eclipse.ocl.helper;
 
 import java.util.List;
-
-
 
 /**
  * @since 3.1

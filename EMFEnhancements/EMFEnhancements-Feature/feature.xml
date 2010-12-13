@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="EMFEnhancements-Feature"
+      id="EMFEnhancementsFeature"
       label="EMFEnhancements-Features"
       version="1.0.0.qualifier"
       provider-name="SAP">
@@ -18,42 +18,7 @@
    </license>
 
    <plugin
-         id="com.sap.emf.importer.moin.rose"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="com.sap.emf.ocl.attributegrammar"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="com.sap.emf.ocl.impactanalysis.example"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="com.sap.emf.ocl.impactanalysis.example.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="com.sap.emf.ocl.impactanalysis.example.editor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="com.sap.emf.ocl.impactanalysis.example.model"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -67,7 +32,7 @@
          unpack="false"/>
 
    <plugin
-         id="com.sap.emf.ocl.util"
+         id="org.eclipse.ocl.examples.impactanalyzer.util"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -102,35 +67,35 @@
          unpack="false"/>
 
    <plugin
-         id="de.hpi.sam.bp2009.solution.eventManager"
+         id="org.eclipse.ocl.examples.eventmanager"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="de.hpi.sam.bp2009.solution.impactAnalyzer"
+         id="org.eclipse.ocl.examples.impactanalyzer"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark"
+         id="org.eclipse.ocl.examples.impactanalyzer.benchmark"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="de.hpi.sam.bp2009.solution.impactAnalyzer.debug"
+         id="org.eclipse.ocl.examples.impactanalyzer.debug"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="de.hpi.sam.bp2009.solution.impactAnalyzer.editor"
+         id="org.eclipse.ocl.examples.impactanalyzer.editor"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -165,7 +130,7 @@
          unpack="false"/>
 
    <plugin
-         id="de.hpi.sam.bp2009.solution.testutils"
+         id="org.eclipse.ocl.examples.impactanalyzer.testutils"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -173,6 +138,20 @@
 
    <plugin
          id="de.hpi.sam.petriNet"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.ecore"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl"
          download-size="0"
          install-size="0"
          version="0.0.0"

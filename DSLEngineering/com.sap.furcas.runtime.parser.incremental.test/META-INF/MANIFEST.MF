@@ -11,7 +11,6 @@ Require-Bundle: org.junit;bundle-version="4.8.1",
  com.sap.furcas.test,
  com.sap.furcas.runtime.textblocks.test,
  com.sap.furcas.ide.parserfactory,
- bibtex.metamodel;bundle-version="1.0.0",
  org.eclipse.core.runtime,
  org.eclipse.emf;bundle-version="2.6.0",
  org.eclipse.emf.edit;bundle-version="2.6.0",
@@ -25,4 +24,4 @@ Require-Bundle: org.junit;bundle-version="4.8.1",
  com.sap.furcas.parsergenerator
 Bundle-ClassPath: generationTemp/,
  .
-Export-Package: com.sap.furcas.runtime.parser.incremental
+Export-Package: com.sap.furcas.runtime.parser.incremental.testbase

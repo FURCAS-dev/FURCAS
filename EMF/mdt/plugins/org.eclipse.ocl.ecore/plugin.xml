@@ -11,9 +11,9 @@
  Contributors:
    IBM - initial API and implementation
    Zeligsoft - Bugs 231435, 248869, 256040
-   Kenn Hussey - 191689, 291361, 291365
+   Kenn Hussey - 191689, 291361, 291365, 331143
 
- $Id: plugin.xml,v 1.5 2010/02/27 13:27:32 ewillink Exp $
+ $Id: plugin.xml,v 1.6 2010/12/09 17:16:18 ewillink Exp $
 -->
 
 <plugin>
@@ -90,4 +90,9 @@
        class = "org.eclipse.ocl.ecore.delegate.OCLInvocationDelegateFactory$Global" />
   </extension>
  
+  <extension point = "org.eclipse.emf.ecore.query_delegate">
+    <factory uri = "http://www.eclipse.org/emf/2002/Ecore/OCL"
+       class = "org.eclipse.ocl.ecore.delegate.OCLQueryDelegateFactory$Global" />
+  </extension>
+
 </plugin>

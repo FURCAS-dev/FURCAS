@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sac:Call xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sac="http://eclipse.org/ocl/impactananalyzer/example/sac">
+  <signature href="G.signature_and_call#/"/>
+  <arguments xsi:type="sac:StringLiteral"/>
+</sac:Call>

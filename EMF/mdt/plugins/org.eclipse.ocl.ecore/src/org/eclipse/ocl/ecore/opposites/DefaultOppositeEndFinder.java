@@ -97,13 +97,9 @@ public class DefaultOppositeEndFinder
 
 	public static DefaultOppositeEndFinder getInstance() {
 		if (instance == null) {
-			instance = new DefaultOppositeEndFinder();
+			instance = new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE);
 		}
 		return instance;
-	}
-
-	protected DefaultOppositeEndFinder() {
-		this(EPackage.Registry.INSTANCE);
 	}
 
 	public DefaultOppositeEndFinder(EPackage.Registry registry) {

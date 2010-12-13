@@ -14,31 +14,30 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
 import com.sap.furcas.parsergenerator.GrammarGenerationTargetConfiguration;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
-import com.sap.furcas.test.testutils.ScopeHelper;
+import com.sap.furcas.test.testutils.ResourceTestHelper;
 
 /**
  * This class serves as a configuration for the {@link GeneratedParserBasedTest}.
  * It configures where to generate the grammar, the parser and the lexer.
  * 
+ * @author Stephan Erb
  * 
- * @author Stephan Erb (d049157)
- *
  */
 public class GeneratedParserTestConfiguration {
 
-    private static final String DEFAULT_GENERATIONDIR_SOURCEROOT = "./generationTemp";
-    private static final String DEFAULT_PACKAGE = "generated";
-    private static final String DEFAULT_GENERATIONDIR = DEFAULT_GENERATIONDIR_SOURCEROOT + "/" + DEFAULT_PACKAGE + "/";
+    protected static final String DEFAULT_GENERATIONDIR_SOURCEROOT = "./generationTemp";
+    protected static final String DEFAULT_PACKAGE = "generated";
+    protected static final String DEFAULT_GENERATIONDIR = DEFAULT_GENERATIONDIR_SOURCEROOT + "/" + DEFAULT_PACKAGE + "/";
     
-    private static final String ANTLR_GRAMMAR_SUFFIX = ".g";
+    protected static final String ANTLR_GRAMMAR_SUFFIX = ".g";
     
-    private final ResourceSet resourceSet;
-    private final Set<URI> referenceScope;
-    private final String languageName;
-    private final File syntaxDefFile;
-    private final String packageName;
-    private final String generationDir;
-    private final File grammarFile;
+    protected final ResourceSet resourceSet;
+    protected final Set<URI> referenceScope;
+    protected final String languageName;
+    protected final File syntaxDefFile;
+    protected final String packageName;
+    protected final String generationDir;
+    protected final File grammarFile;
     
 
     /**
@@ -82,7 +81,7 @@ public class GeneratedParserTestConfiguration {
     }
     
     private static Set<URI> createReferenceScope() {
-        return ScopeHelper.createEcoreReferenceScope();
+        return ResourceTestHelper.createEcoreReferenceScope();
     }
     
     private static ResourceSet createResourceSet(File... metamodels) throws MetaModelLookupException {
@@ -93,9 +92,9 @@ public class GeneratedParserTestConfiguration {
     }
     
     private static ResourceSet loadResourceSet(File... fileArr) throws MetaModelLookupException {
-        ScopeHelper.createEcoreReferenceScope();
+        ResourceTestHelper.createEcoreReferenceScope();
         
-        ResourceSet resourceSet = ScopeHelper.createResourceSet();
+        ResourceSet resourceSet = ResourceTestHelper.createResourceSet();
         for (File file : fileArr) {
             loadResourceFromUri(resourceSet, file.toURI().normalize().toString());
         }

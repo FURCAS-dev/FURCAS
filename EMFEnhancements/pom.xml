@@ -17,23 +17,23 @@
   <modules>
     <module>com.sap.emf.importer.moin.rose</module>
     <module>com.sap.emf.ocl.attributegrammar</module>
-    <module>com.sap.emf.ocl.impactanalysis.example</module>
-    <module>com.sap.emf.ocl.impactanalysis.example.edit</module>
-    <module>com.sap.emf.ocl.impactanalysis.example.editor</module>
-    <module>com.sap.emf.ocl.impactanalysis.example.model</module>
+    <module>org.eclipse.ocl.examples.impactanalyzer.example</module>
+    <module>org.eclipse.ocl.examples.impactanalyzer.example.edit</module>
+    <module>org.eclipse.ocl.examples.impactanalyzer.example.editor</module>
+    <module>org.eclipse.ocl.examples.impactanalyzer.example.model</module>
     <module>com.sap.emf.ocl.prepared</module>
-    <module>com.sap.emf.ocl.util</module>
+    <module>org.eclipse.ocl.examples.impactanalyzer.util</module>
     <module>com.sap.ocl.oppositefinder.query2</module>
     <module>com.sap.ocl.oppositefinder.query2.test</module>
     <module>de.hpi.sam.activityDiagram</module>
     <module>de.hpi.sam.bp2009.company</module>
-    <module>de.hpi.sam.bp2009.solution.eventManager</module>
-    <module>de.hpi.sam.bp2009.solution.eventManager.tests</module>
-    <module>de.hpi.sam.bp2009.solution.impactAnalyzer</module>
-    <module>de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark</module>
-    <module>de.hpi.sam.bp2009.solution.impactAnalyzer.debug</module>
-    <module>de.hpi.sam.bp2009.solution.impactAnalyzer.editor</module>
-    <module>de.hpi.sam.bp2009.solution.impactAnalyzer.tests</module>
+    <module>org.eclipse.ocl.examples.eventmanager</module>
+    <module>org.eclipse.ocl.examples.eventmanager.tests</module>
+    <module>org.eclipse.ocl.examples.impactanalyzer</module>
+    <module>org.eclipse.ocl.examples.impactanalyzer.benchmark</module>
+    <module>org.eclipse.ocl.examples.impactanalyzer.debug</module>
+    <module>org.eclipse.ocl.examples.impactanalyzer.editor</module>
+    <module>org.eclipse.ocl.examples.impactanalyzer.tests</module>
     <module>de.hpi.sam.bp2009.solution.oclToAst</module>
     <module>de.hpi.sam.bp2009.solution.oclToAst.tests</module>
     <module>de.hpi.sam.bp2009.solution.oclToMqlMapping</module>
@@ -41,9 +41,9 @@
     <module>de.hpi.sam.bp2009.solution.queryContextScopeProvider</module>
     <module>de.hpi.sam.bp2009.solution.scopeProvider</module>
     <module>de.hpi.sam.bp2009.solution.scopeProvider.tests</module>
-    <module>de.hpi.sam.bp2009.solution.testutils</module>
+    <module>org.eclipse.ocl.examples.impactanalyzer.testutils</module>
     <module>de.hpi.sam.petriNet</module>
-	<module>EMFEnhancements-Feature</module>
+    <module>EMFEnhancements-Feature</module>
   </modules>
 
 </project>

@@ -14,14 +14,13 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.examples.impactanalyzer.util.OclHelper;
 
 import com.sap.emf.ocl.prepared.parameters.DuplicateParameterValueException;
 import com.sap.emf.ocl.prepared.parameters.Parameter;
 import com.sap.emf.ocl.prepared.parameters.ParameterFactory;
 import com.sap.emf.ocl.prepared.parameters.ParameterFinder;
 import com.sap.emf.ocl.prepared.parameters.ParameterNotFoundException;
-import com.sap.emf.ocl.util.EcoreEnvironmentFactoryWithScopedExtentMap;
-import com.sap.emf.ocl.util.OclHelper;
 
 /**
  * Similar to a JDBC prepared statement, where parameters can be set to specific values before executing it,
@@ -213,12 +212,12 @@ public class PreparedOCLExpression {
 
     private OCL getOCL() {
         if (oppositeEndFinder != null) {
-            return OCL.newInstance(new EcoreEnvironmentFactoryWithScopedExtentMap(oppositeEndFinder));
+            return org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(oppositeEndFinder);
         } else {
             if (environmentFactory != null) {
                 return OCL.newInstance(environmentFactory);
             } else {
-                return OCL.newInstance();
+                return org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance();
             }
         }
     }

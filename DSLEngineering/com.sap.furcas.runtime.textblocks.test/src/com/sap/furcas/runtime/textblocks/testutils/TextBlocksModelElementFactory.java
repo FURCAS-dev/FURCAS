@@ -15,4 +15,6 @@ public interface TextBlocksModelElementFactory {
 
     public Bostoken createBostoken();
 
+    public LexedToken createToken(String content);
+
 }

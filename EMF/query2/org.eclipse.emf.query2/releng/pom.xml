@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.eclipse.emf.query2</groupId>
+	<artifactId>org.eclipse.emf.query2_parent</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<tycho-version>0.8.0</tycho-version>
+	</properties>
+
+	<modules>
+
+		<!-- plugins -->
+		<module>../plugins/org.eclipse.emf.query2.index</module>
+		<module>../plugins/org.eclipse.emf.query2.index.ui</module>
+		<module>../plugins/org.eclipse.emf.query2.core</module>
+		<module>../plugins/org.eclipse.emf.query2.stringsyntax</module>
+		<module>../plugins/org.eclipse.emf.query2.stringsyntax.ui</module>
+		<module>../plugins/org.eclipse.emf.query2.stringsyntax.tools.ui</module>
+
+		<module>../help/org.eclipse.emf.query2.help</module>
+		<module>../examples/org.eclipse.emf.query2.examples</module>
+
+		<!-- Test plugins -->
+
+		<module>../tests/org.eclipse.emf.query.index.test</module>
+		<module>../tests/org.eclipse.emf.query2.test</module>
+		<module>../tests/org.eclipse.emf.query2.librarytest</module>
+		<module>../tests/org.eclipse.emf.query2.syntax.test</module>
+
+		<!-- features -->
+		<module>../help/org.eclipse.emf.query2.help.feature</module>
+		<module>../examples/org.eclipse.emf.query2.examples.feature</module>
+		<module>../plugins/org.eclipse.emf.query2.core.feature</module>
+		<module>../plugins/org.eclipse.emf.query2.stringsyntax.feature</module>
+
+		<module>../tests/org.eclipse.emf.query2.test.feature</module>
+
+		<!-- update site -->
+		<module>../plugins/org.eclipse.emf.query2.updatesite</module>
+
+	</modules>
+
+	<reports>
+		<report>maven-jdepend-plugin</report>
+		<report>maven-checkstyle-plugin</report>
+		<report>maven-cobertura-plugin</report>
+		<report>maven-changes-plugin</report>
+		<report>maven-changelog-plugin</report>
+		<report>maven-developer-activity-plugin</report>
+		<report>maven-file-activity-plugin</report>
+		<report>maven-license-plugin</report>
+		<report>maven-javadoc-plugin</report>
+		<report>maven-jxr-plugin</report>
+		<report>maven-junit-report-plugin</report>
+		<report>maven-linkcheck-plugin</report>
+		<report>maven-tasklist-plugin</report>
+		<report>maven-pmd-plugin</report>
+	</reports>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.sonatype.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+				<groupId>org.sonatype.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<resolver>p2</resolver>
+				</configuration>
+			</plugin>
+			<!-- 
+			<plugin>
+				<groupId>org.sonatype.tycho</groupId>
+				<artifactId>maven-osgi-test-plugin</artifactId>
+				<version>${tycho-version}</version>
+			</plugin> 
+			 -->
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.sonatype.tycho</groupId>
+					<artifactId>maven-osgi-compiler-plugin</artifactId>
+					<version>${tycho-version}</version>
+					<configuration>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.3</version>
+					<configuration>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	<repositories>
+		<repository>
+			<id>emf</id>
+			<url>http://download.eclipse.org/modeling/emf/updates/releases/</url>
+			<layout>p2</layout>
+		</repository>
+		<repository>
+			<id>galileo</id>
+			<url>http://download.eclipse.org/releases/helios/</url>
+			<layout>p2</layout>
+		</repository>
+		<repository>
+			<id>tmf</id>
+			<url>http://download.eclipse.org/modeling/tmf/updates/releases/</url>
+			<layout>p2</layout>
+		</repository>
+	</repositories>
+</project>
+

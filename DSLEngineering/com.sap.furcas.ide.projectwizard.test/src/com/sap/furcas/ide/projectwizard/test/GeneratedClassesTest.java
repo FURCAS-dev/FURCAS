@@ -10,6 +10,8 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.core.runtime.Platform;
 import org.junit.Test;
@@ -26,13 +28,21 @@ import com.sun.tools.javac.Main;
  * their dependencies are still up to date and working. It fails if one of the classes can't compile.
  * 
  * @author Frederik Petersen (D054528)
+ * @author Axel Uhl (D043530)
  * 
  */
 public class GeneratedClassesTest {
 
-    ArrayList<String> nonWorkspacePlugins = new ArrayList<String>();
-
-    ArrayList<String> workspacePlugins = new ArrayList<String>();
+    private static final String BIN_DIR_NAME = "bin";
+    private final ArrayList<String> nonWorkspacePlugins = new ArrayList<String>();
+    private final ArrayList<String> workspacePlugins = new ArrayList<String>();
+    
+    /**
+     * Maps plain bundle names (e.g., "org.eclipse.emf") to a {@link File} location in the workspace in case
+     * a (sub)directory by the single name given by the key exists in the workspace that contains a "bin" folder.
+     * If <code>null</code>, the workspace hasn't been analyzed yet.
+     */
+    private Map<String, File> workspacePluginCandidates;
 
     /**
      * This test method calls the other methods in this class to generate, compile and clean the java classes.
@@ -68,14 +78,16 @@ public class GeneratedClassesTest {
     private String getRequiredBundles() {
         getManifestPluginEntries();
         String eclipsePath;
-        if (System.getProperty("eclipse.location")!=null)
+        if (System.getProperty("eclipse.location")!=null) {
             eclipsePath = System.getProperty("eclipse.location");
-        else
+        } else {
             eclipsePath = System.getProperty("target.location");
+        }
         StringBuffer requiredBundles = new StringBuffer("./lib/org.eclipse.swt.gtk.linux.x86_64_3.6.1.v3655c.jar"
                 + File.pathSeparator + "./lib/static");
         for (String plugin : workspacePlugins) {
-            requiredBundles.append(File.pathSeparator + "../" + plugin + "/bin");
+            requiredBundles.append(File.pathSeparator + getWorkspacePluginCandidates().get(plugin) +
+                    File.separator + BIN_DIR_NAME);
         }
 
         Object[] bundles = nonWorkspacePlugins.toArray();
@@ -235,21 +247,60 @@ public class GeneratedClassesTest {
             e.printStackTrace();
         }
         for (String i : lines) {
-            if (i.contains("org.eclipse")) {
-                if (i.contains(";"))
-                    i = i.split(";")[0];
-                String modifier = i.replaceAll("Require-Bundle: ", "");
+            if (i.contains(";")) {
+                i = i.split(";")[0];
+            }
+            if (i.startsWith("Require") || i.startsWith(" ")) {
+                String modifier = i.replaceAll("Require-Bundle: ", "").trim();
                 modifier = modifier.replace(",", "");
-                nonWorkspacePlugins.add(modifier.trim());
-            } else if (i.startsWith("Require") || i.startsWith(" ")) {
-                if (i.contains(";"))
-                    i = i.split(";")[0];
-                String modifier = i.replaceAll("Require-Bundle: ", "");
-                modifier = modifier.replace(",", "");
-                workspacePlugins.add(modifier.trim());
+                if (isBundleInWorkspace(modifier)) {
+                    workspacePlugins.add(modifier);
+                } else {
+                    nonWorkspacePlugins.add(modifier);
+                }
             }
         }
-
+    }
+    
+    private boolean isBundleInWorkspace(String bundleName) {
+        File bundleDir = getWorkspacePluginCandidates().get(bundleName);
+        return bundleDir != null;
+    }
+    
+    private Map<String, File> getWorkspacePluginCandidates() {
+        if (workspacePluginCandidates == null) {
+            workspacePluginCandidates = determineWorkspacePluginCandidates();
+        }
+        return workspacePluginCandidates;
+    }
+    
+    private Map<String, File> determineWorkspacePluginCandidates() {
+        Map<String, File> result = new HashMap<String, File>();
+        File workspaceRoot = new File("../.."); // assuming we're running in DSLEngineering/*wizard.test
+        assert(workspaceRoot.exists() && workspaceRoot.isDirectory());
+        findRecursively(workspaceRoot, result);
+        return result;
     }
 
+    private boolean containsBin(File bundleDir) {
+        assert(bundleDir.exists() && bundleDir.isDirectory());
+        for (File f : bundleDir.listFiles()) {
+            if (f.getName().equals(BIN_DIR_NAME)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void findRecursively(File d, Map<String, File> result) {
+        if (d.exists() && d.isDirectory()) {
+            if (containsBin(d)) {
+                result.put(d.getName(), d);
+            } else {
+                for (File entry : d.listFiles()) {
+                    findRecursively(entry, result);
+                }
+            }
+        }
+    }
 }

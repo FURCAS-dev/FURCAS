@@ -414,7 +414,7 @@ class OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 */
 	protected OCLSyntaxHelper createSyntaxHelper() {
 		if (syntaxHelper == null) {
-			syntaxHelper = org.eclipse.ocl.internal.helper.OCLSyntaxHelper.createOCLSyntaxHelper(getEnvironment());
+			syntaxHelper = getEnvironment().getFactory().createOCLSyntaxHelper(getEnvironment());
 		}
 		return syntaxHelper;
 	}
