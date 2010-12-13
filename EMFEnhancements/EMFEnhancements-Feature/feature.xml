@@ -21,14 +21,6 @@
       <import feature="org.eclipse.emf.query2.core.feature" version="1.0.0.qualifier" patch="true"/>
       <import feature="org.eclipse.ocl.uml" version="3.1.0.qualifier" patch="true"/>
       <import feature="org.eclipse.ocl" version="3.1.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.emf" version="2.6.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.emf.common" version="2.6.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.emf.ecore" version="2.7.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.emf.ecore.edit" version="2.6.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.emf.ecore.editor" version="2.6.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.emf.ecore.xmi" version="2.6.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.emf.edit" version="2.7.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.emf.edit.ui" version="2.6.0.qualifier" patch="true"/>
    </requires>
 
    <plugin
@@ -202,6 +194,61 @@
 
    <plugin
          id="org.eclipse.ocl.examples.impactanalyzer.util"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.emf.common"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.ecore"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.ecore.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.ecore.editor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.ecore.xmi"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.edit.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
