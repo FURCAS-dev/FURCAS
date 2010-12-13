@@ -69,10 +69,11 @@ public class WizardProjectHelper {
         final String projectName;
         // Check if this is the creation of the metamodel project or not.
         //
-        if (metamodel)
+        if (metamodel) {
             projectName = pi.getProjectName() + ".metamodel";
-        else
+        } else {
             projectName = pi.getProjectName();
+        }
 
         progressMonitor.beginTask("", 10);
         progressMonitor.subTask("Creating project " + projectName);
@@ -100,9 +101,9 @@ public class WizardProjectHelper {
         if (!metamodel) {
             projectDescription.setNatureIds(new String[] { "com.sap.furcas.ide.dslproject.syntaxGenerationNature",
                     JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature" });
-        } else
+        } else {
             projectDescription.setNatureIds(new String[] { JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature" });
-
+        }
         addBuilders(progressMonitor, metamodel, project, projectDescription);
 
         setClasspath(srcFolders, nonSrcFolders, progressMonitor, project, javaProject, classpathEntries);
@@ -110,7 +111,7 @@ public class WizardProjectHelper {
         try {
             javaProject.setOutputLocation(new Path("/" + projectName + "/bin"), new SubProgressMonitor(progressMonitor, 1));
         } catch (JavaModelException e) {
-            throw new CodeGenerationException("Error while setting output location: "+"/" + projectName + "/bin", e.getCause());
+            throw new CodeGenerationException("Error while setting output location: " + "/" + projectName + "/bin", e.getCause());
         }
 
         if (!metamodel) {
