@@ -5,6 +5,7 @@ import static org.junit.Assert.fail;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.junit.Test;
 
+import com.sap.furcas.ide.projectwizard.util.CreateProject;
 import com.sap.furcas.ide.projectwizard.util.ProjectInfo;
 import com.sap.furcas.ide.projectwizard.wizards.FurcasWizard;
 
@@ -14,6 +15,10 @@ public class OverallWizardTest {
     public void wizardTest() {
         ProjectInfo pi = new ProjectInfo();
         GeneratedClassesTest.configureProjectInfo(pi);
+        String capLangName = CreateProject.capitalizeFirstChar(pi.getLanguageName());
+        pi.setModelPath("/" + pi.getProjectName() + ".metamodel/model/" + capLangName
+                + ".ecore");
+        pi.setFromWorkspace(true);
         try {
             runWizard(pi);
         } catch (Exception e) {
