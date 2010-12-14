@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
@@ -68,7 +67,6 @@ public class TestForeachPredicateProperty extends GeneratedParserBasedTest {
     }
 
     @Before
-    @Ignore("Fails for unknown reasons")
     public void getAuthors() throws Exception {
         IModelAdapter modelAdapter = createNewEMFModelAdapter();
 
