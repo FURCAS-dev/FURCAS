@@ -22,7 +22,7 @@
 			</cs:actorProperties>
 			<cs:properties>
 				<cs:property key="content.ius" value="org.eclipse.ocl.master.feature.group" />
-				<cs:property key="target.platform.ius" value="lpg.runtime.java, lpg.runtime.java.source" />
+				<cs:property key="target.platform.ius" value="lpg.runtime.java,lpg.runtime.java.source" />
 				<cs:property key="package.name" value="mdt-ocl-Update" />
 			</cs:properties>
 			<cs:prerequisites>
@@ -54,7 +54,7 @@
 			</cs:actorProperties>
 			<cs:properties>
 				<cs:property key="content.ius" value="org.eclipse.ocl.core.sdk.feature.group" />
-				<cs:property key="target.platform.ius" value="lpg.runtime.java, lpg.runtime.java.source" />
+				<cs:property key="target.platform.ius" value="lpg.runtime.java" />
 				<cs:property key="package.name" value="mdt-ocl-CoreSDK" />
 			</cs:properties>
 			<cs:prerequisites>
@@ -64,7 +64,6 @@
 			<cs:products alias="output" base="${buckminster.output}/zips/" />
 		</cs:public>
 
-		
 		<cs:public name="package.mdt-ocl-examples" actor="ant">
 			<cs:actorProperties>
 				<cs:property key="buildFile" value="packaging.ant" />
