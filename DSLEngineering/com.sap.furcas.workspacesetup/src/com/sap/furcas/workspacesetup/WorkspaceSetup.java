@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.SWT;
@@ -64,10 +65,10 @@ public class WorkspaceSetup implements IWorkbenchWindowActionDelegate {
             try {
                 readPom(parentPom);
             } catch (XPathExpressionException e) {
-                // TODO Auto-generated catch block
+                MessageDialog.openError(window.getShell(), "Unexpected Error: XPath not working!", e.getMessage());
                 e.printStackTrace();
             } catch (ParserConfigurationException e) {
-                // TODO Auto-generated catch block
+                MessageDialog.openError(window.getShell(), "Unexpected Error: DocumentBuilderFactory not working!", e.getMessage());
                 e.printStackTrace();
             }
         }
@@ -109,10 +110,10 @@ public class WorkspaceSetup implements IWorkbenchWindowActionDelegate {
                 projectMap.put(path, extractWorkspace(path));
             }
         } catch (SAXException e) {
-            // Could not parse xml
+            MessageDialog.openError(window.getShell(), "Could not parse pom.xml!", e.getMessage());
             e.printStackTrace();
         } catch (IOException e) {
-            // Could not open xml
+            MessageDialog.openError(window.getShell(), "Could not open pom.xml!", e.getMessage());
             e.printStackTrace();
         }
     }
@@ -181,7 +182,7 @@ public class WorkspaceSetup implements IWorkbenchWindowActionDelegate {
             set.setElements(new IProject[] { project });
         }
     }
-    
+
     class ImportOperation extends WorkspaceModifyOperation {
         @Override
         protected void execute(IProgressMonitor progressMonitor) {
@@ -201,7 +202,7 @@ public class WorkspaceSetup implements IWorkbenchWindowActionDelegate {
                     if (project.getLocation().toString().startsWith(parentPom.replace(File.separator, "/"))) {
                         if (!projectMap.containsKey(project.getLocation().toString().replace("/", File.separator))) {
                             System.out.println("Remove project: " + project.getLocation().toString());
-                            project.delete(false, null);
+                            project.delete(false, false, null);
                         } else {
                             System.out.println("Keep project: " + project.getLocation().toString());
                         }
@@ -210,7 +211,7 @@ public class WorkspaceSetup implements IWorkbenchWindowActionDelegate {
                     }
                 }
             } catch (CoreException e) {
-                // TODO Auto-generated catch block
+                MessageDialog.openError(window.getShell(), "Unexpected Error: Eclipse-Core not working!", e.getMessage());
                 e.printStackTrace();
             }
 
