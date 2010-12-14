@@ -14,7 +14,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.progress.IProgressService;
 
-import com.sap.ide.cts.editor.commands.TextBlockHouseKeepingCommand;
+import com.sap.furcas.ide.editor.commands.TextBlockHouseKeepingCommand;
 
 public class TextBlockHouseKeepingAction implements IObjectActionDelegate {
 

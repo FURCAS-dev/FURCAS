@@ -14,7 +14,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-import com.sap.ide.cts.editor.CtsActivator;
+import com.sap.furcas.ide.editor.CtsActivator;
 
 /**
  * Create TestCase UI component.

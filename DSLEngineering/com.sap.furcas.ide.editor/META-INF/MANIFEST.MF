@@ -26,5 +26,4 @@ Require-Bundle: org.antlr,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.furcas.ide.editor,
- com.sap.ide.cts.editor,
- com.sap.ide.cts.editor.document
+ com.sap.furcas.ide.editor.document
