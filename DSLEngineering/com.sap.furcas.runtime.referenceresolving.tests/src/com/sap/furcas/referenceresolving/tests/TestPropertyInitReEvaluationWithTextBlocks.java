@@ -24,6 +24,7 @@ import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.emf.ocl.trigger.TriggerManager;
@@ -165,8 +166,18 @@ public class TestPropertyInitReEvaluationWithTextBlocks extends GeneratedParserA
         assertEquals(johnsArticles.size(), revenues.size());
         Iterator<EObject> johnsArticlesIterator = johnsArticles.iterator();
         for (EObject revenue : revenues) {
-            assertSame(johnsArticlesIterator.next(), revenue.eGet(revenue.eClass().getEStructuralFeature("article")));
+            EObject theArticle = johnsArticlesIterator.next();
+            assertSame(theArticle, revenue.eGet(revenue.eClass().getEStructuralFeature("article")));
+            assertEquals(((String) ((EObject) theArticle.eGet(articleClass.getEStructuralFeature("author"))).eGet(
+                    authorClass.getEStructuralFeature("name"))).length(), revenue.eGet(
+                            revenue.eClass().getEStructuralFeature("revenueInEUR")));
         }
+    }
+    
+    @Ignore
+    public void testChangeOfExpressionValueUsingHashForeach() throws Exception {
+        johnDoe.eSet(authorClass.getEStructuralFeature("name"), "The Only John Doe");
+        testForeachPropertyInitValueInInitialModel();
     }
 
     @Test

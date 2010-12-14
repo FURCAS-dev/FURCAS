@@ -97,12 +97,12 @@ public class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBasedModelUpd
                 for (EObject textBlock : textBlockCandidates) {
                     result.add((TextBlock) textBlock);
                 }
-                Collection<EObject> additionalTextBlockCandidates = getOppositeEndFinder()
-                        .navigateOppositePropertyWithBackwardScope(
-                                TextblocksPackage.eINSTANCE.getTextBlock_AdditionalTemplates(), template);
-                for (EObject textBlock : additionalTextBlockCandidates) {
-                    result.add((TextBlock) textBlock);
-                }
+            }
+            Collection<EObject> additionalTextBlockCandidates = getOppositeEndFinder()
+                    .navigateOppositePropertyWithBackwardScope(
+                            TextblocksPackage.eINSTANCE.getTextBlock_AdditionalTemplates(), template);
+            for (EObject textBlock : additionalTextBlockCandidates) {
+                result.add((TextBlock) textBlock);
             }
         }
         // now find all TextBlocks that reference the template in their
