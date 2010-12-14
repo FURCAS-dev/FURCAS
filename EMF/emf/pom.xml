@@ -23,6 +23,12 @@
     <module>org.eclipse.emf.ecore.xmi</module>
     <module>org.eclipse.emf.edit</module>
     <module>org.eclipse.emf.edit.ui</module>
+    <module>org.eclipse.emf.codegen.ecore.ui</module>
+    <module>org.eclipse.emf.codegen.ecore</module>
+    <module>org.eclipse.emf.codegen.ui</module>
+    <module>org.eclipse.emf.common.ui</module>
+    <module>org.eclipse.emf.ecore.change.edit</module>
+    <module>org.eclipse.emf.ecore.change</module>
   </modules>
 
 </project>
