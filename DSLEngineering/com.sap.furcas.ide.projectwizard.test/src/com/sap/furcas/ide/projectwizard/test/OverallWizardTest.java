@@ -11,28 +11,27 @@ import com.sap.furcas.ide.projectwizard.wizards.FurcasWizard;
 
 public class OverallWizardTest {
 
+
     @Test
     public void wizardTest() {
         FurcasWizard wizard = null;
         ProjectInfo pi = new ProjectInfo();
         GeneratedClassesTest.configureProjectInfo(pi);
         String capLangName = CreateProject.capitalizeFirstChar(pi.getLanguageName());
-        pi.setModelPath("/" + pi.getProjectName() + ".metamodel/model/" + capLangName
-                + ".ecore");
+        pi.setModelPath("/" + pi.getProjectName() + ".metamodel/model/" + capLangName + ".ecore");
         pi.setFromWorkspace(true);
-        try {
-            wizard = runWizard(pi);
-        } catch (Exception e) {
-            fail("Test failed due to: " + e.getMessage());
-        } finally {
-            wizard.deleteJunk(pi, new NullProgressMonitor());
+        wizard = runWizard(pi);
+        if (wizard.isHadError()) {
+            fail("Wizard has ERRORs. See console output for details.");
         }
+        
+
     }
 
     private FurcasWizard runWizard(ProjectInfo pi) {
         FurcasWizard wizard = new FurcasWizard();
         NullProgressMonitor monitor = new NullProgressMonitor();
-        wizard.doFinish(pi, monitor);
+        wizard.structuredProcess(pi, monitor);
         return wizard;
 
     }
