@@ -174,7 +174,7 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
                         refScopeBean.getResourceSet(), refScopeBean.getReferenceScope());
                 
                 IFile grammarFile = getGrammarFile(syntaxDefFile);
-                URI createFileURI = URI.createFileURI(project.getFullPath() + File.separator + "mappings" + File.separator + getFileNameBase(syntaxDefFile) + "." + "tcs");
+                URI createFileURI = URI.createPlatformResourceURI(project.getFullPath() + File.separator + "mappings" + File.separator + getFileNameBase(syntaxDefFile) + "." + "tcs", true);
                 Resource mappingResource =  refScopeBean.getResourceSet().createResource(createFileURI);
                 GrammarGenerationTargetConfiguration targetConfig = new GrammarGenerationTargetConfiguration(
                         getPackageName(grammarFile), convertIFileToFile(grammarFile), mappingResource);
