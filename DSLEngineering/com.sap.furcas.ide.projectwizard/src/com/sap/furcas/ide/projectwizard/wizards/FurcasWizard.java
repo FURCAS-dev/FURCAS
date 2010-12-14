@@ -276,36 +276,38 @@ public class FurcasWizard extends Wizard implements INewWizard {
 
             }
         };
+        if (getContainer() != null) {
+            getContainer().run(false, false, operation);
 
-        getContainer().run(false, false, operation);
+            // Select the new .ecore file.
+            //
+            final IFile modelFile = getModelFile();
 
-        // Select the new .ecore file.
-        //
-        final IFile modelFile = getModelFile();
+            IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
+            wpage = workbenchWindow.getActivePage();
+            final IWorkbenchPart activePart = wpage.getActivePart();
+            if (activePart instanceof ISetSelectionTarget) {
+                final ISelection targetSelection = new StructuredSelection(modelFile);
+                getShell().getDisplay().asyncExec(new Runnable() {
+                    public void run() {
+                        ((ISetSelectionTarget) activePart).selectReveal(targetSelection);
+                    }
+                });
+            }
 
-        IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
-        wpage = workbenchWindow.getActivePage();
-        final IWorkbenchPart activePart = wpage.getActivePart();
-        if (activePart instanceof ISetSelectionTarget) {
-            final ISelection targetSelection = new StructuredSelection(modelFile);
-            getShell().getDisplay().asyncExec(new Runnable() {
-                public void run() {
-                    ((ISetSelectionTarget) activePart).selectReveal(targetSelection);
-                }
-            });
+            // Open an editor on the file.
+            //
+            try {
+                IEditorDescriptor defaultEditor = workbench.getEditorRegistry().getDefaultEditor(
+                        modelFile.getFullPath().toString());
+                wpage.openEditor(new FileEditorInput(modelFile),
+                        defaultEditor == null ? "org.eclipse.emf.ecore.presentation.EcoreEditorID" : defaultEditor.getId());
+            } catch (PartInitException exception) {
+                MessageDialog.openError(workbenchWindow.getShell(),
+                        EcoreEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
+            }
+
         }
-
-        // Open an editor on the file.
-        //
-        try {
-            IEditorDescriptor defaultEditor = workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString());
-            wpage.openEditor(new FileEditorInput(modelFile),
-                    defaultEditor == null ? "org.eclipse.emf.ecore.presentation.EcoreEditorID" : defaultEditor.getId());
-        } catch (PartInitException exception) {
-            MessageDialog.openError(workbenchWindow.getShell(),
-                    EcoreEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
-        }
-
     }
 
     /**
@@ -349,7 +351,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 // uses the new PRI list in the ReferenceScope to load the referenced metamodel from registered packages
                 //
                 conf = new EcoreMetaProjectConf(project, "", pi.getNsURI());
-            }  else {
+            } else {
                 // instantiates the configuration, take a look at EcoreMetaProjectConf for more details
                 // uses the ResourceSet in the ReferenceScope to load the referenced metamodel in the workspace
                 //
