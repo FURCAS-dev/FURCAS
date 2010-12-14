@@ -938,8 +938,8 @@ public class Signature_and_callEditor
                 return OCL.newInstance(new EcoreEnvironmentFactoryWithScopedExtentMap(oppositeEndFinder));
             }
         };
-        revalidator = new Revalidator(editingDomain, Signature_and_callPackage.eINSTANCE, oclFactory,
-                new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider()));
+        revalidator = new Revalidator(editingDomain, oclFactory, new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider()),
+                Signature_and_callPackage.eINSTANCE);
     }
 
     /**
