@@ -183,13 +183,15 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
                 TCSSyntaxContainerBean syntaxBean = generator.parseSyntax(sourceConfig, convertIFileToFile(syntaxDefFile), targetConfig,
                         new ResourceMarkingGenerationErrorHandler(
                                 syntaxDefFile));
+                if(syntaxBean != null) {
                 generator.generateGrammarFromSyntax(syntaxBean, sourceConfig, targetConfig, new ResourceMarkingGenerationErrorHandler(
                                 syntaxDefFile));
-                if (grammarFile.exists()) {
-                    generator.generateParserFromGrammar(targetConfig, new ResourceMarkingGenerationErrorHandler(grammarFile));
-
-                    // refresh dir where java was generated so that Java builder can compile
-                    grammarFile.getParent().refreshLocal(1, new SubProgressMonitor(monitor, 10));
+                    if (grammarFile.exists()) {
+                        generator.generateParserFromGrammar(targetConfig, new ResourceMarkingGenerationErrorHandler(grammarFile));
+    
+                        // refresh dir where java was generated so that Java builder can compile
+                        grammarFile.getParent().refreshLocal(1, new SubProgressMonitor(monitor, 10));
+                    }
                 }
             } catch (GrammarGenerationException e) {
                throw new CoreException(EclipseExceptionHelper.getErrorStatus(e, Activator.PLUGIN_ID));
