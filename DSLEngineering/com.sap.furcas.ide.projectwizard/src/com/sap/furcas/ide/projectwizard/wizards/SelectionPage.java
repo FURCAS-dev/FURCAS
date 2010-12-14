@@ -17,6 +17,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
+import com.sap.furcas.ide.projectwizard.util.CreateProject;
 import com.sap.furcas.ide.projectwizard.util.ProjectInfo;
 
 /**
@@ -128,7 +129,9 @@ public class SelectionPage extends WizardPage {
                 nsURIText.setVisible(true);
                 classNameLabel.setVisible(true);
                 nsURILabel.setVisible(true);
-                pi.setModelPath("new");
+                String capLangName = CreateProject.capitalizeFirstChar(pi.getLanguageName());
+                pi.setModelPath("/" + pi.getProjectName() + ".metamodel/model/" + capLangName
+                        + ".ecore");
                 pi.setFromWorkspace(true);
             }
 
