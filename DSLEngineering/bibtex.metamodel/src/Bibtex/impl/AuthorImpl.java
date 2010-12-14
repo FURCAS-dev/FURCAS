@@ -10,6 +10,7 @@ import Bibtex.Author;
 import Bibtex.BibtexPackage;
 import Bibtex.Entry;
 
+import Bibtex.LiteratureDb;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -35,6 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link Bibtex.impl.AuthorImpl#getName <em>Name</em>}</li>
  *   <li>{@link Bibtex.impl.AuthorImpl#getPublications <em>Publications</em>}</li>
+ *   <li>{@link Bibtex.impl.AuthorImpl#getLiteraturedb <em>Literaturedb</em>}</li>
  * </ul>
  * </p>
  *
@@ -70,6 +72,16 @@ public class AuthorImpl extends EObjectImpl implements Author {
      * @ordered
      */
     protected EList<Entry> publications;
+
+    /**
+     * The cached value of the '{@link #getLiteraturedb() <em>Literaturedb</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getLiteraturedb()
+     * @generated
+     * @ordered
+     */
+    protected LiteratureDb literaturedb;
 
     /**
      * <!-- begin-user-doc -->
@@ -128,6 +140,44 @@ public class AuthorImpl extends EObjectImpl implements Author {
      * <!-- end-user-doc -->
      * @generated
      */
+    public LiteratureDb getLiteraturedb() {
+        if (literaturedb != null && literaturedb.eIsProxy()) {
+            InternalEObject oldLiteraturedb = (InternalEObject)literaturedb;
+            literaturedb = (LiteratureDb)eResolveProxy(oldLiteraturedb);
+            if (literaturedb != oldLiteraturedb) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, BibtexPackage.AUTHOR__LITERATUREDB, oldLiteraturedb, literaturedb));
+            }
+        }
+        return literaturedb;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public LiteratureDb basicGetLiteraturedb() {
+        return literaturedb;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setLiteraturedb(LiteratureDb newLiteraturedb) {
+        LiteratureDb oldLiteraturedb = literaturedb;
+        literaturedb = newLiteraturedb;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BibtexPackage.AUTHOR__LITERATUREDB, oldLiteraturedb, literaturedb));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -164,6 +214,9 @@ public class AuthorImpl extends EObjectImpl implements Author {
                 return getName();
             case BibtexPackage.AUTHOR__PUBLICATIONS:
                 return getPublications();
+            case BibtexPackage.AUTHOR__LITERATUREDB:
+                if (resolve) return getLiteraturedb();
+                return basicGetLiteraturedb();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -184,6 +237,9 @@ public class AuthorImpl extends EObjectImpl implements Author {
                 getPublications().clear();
                 getPublications().addAll((Collection<? extends Entry>)newValue);
                 return;
+            case BibtexPackage.AUTHOR__LITERATUREDB:
+                setLiteraturedb((LiteratureDb)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -202,6 +258,9 @@ public class AuthorImpl extends EObjectImpl implements Author {
             case BibtexPackage.AUTHOR__PUBLICATIONS:
                 getPublications().clear();
                 return;
+            case BibtexPackage.AUTHOR__LITERATUREDB:
+                setLiteraturedb((LiteratureDb)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -218,6 +277,8 @@ public class AuthorImpl extends EObjectImpl implements Author {
                 return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
             case BibtexPackage.AUTHOR__PUBLICATIONS:
                 return publications != null && !publications.isEmpty();
+            case BibtexPackage.AUTHOR__LITERATUREDB:
+                return literaturedb != null;
         }
         return super.eIsSet(featureID);
     }

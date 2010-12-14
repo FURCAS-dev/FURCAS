@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="ASCII"?>
+<com.sap.furcas.TCS:ConcreteSyntax xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.sap.furcas.TCS="http://www.furcas.org/TCS" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xsi:schemaLocation="http://www.furcas.org/TCS http://www.furcas.org#//TCS" name="Bibtex">
+  <templates xsi:type="com.sap.furcas.TCS:PrimitiveTemplate" metaReference="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" templateName="identifier" default="true" tokenName="NAME" value="%token%">
+    <textBlockDefinition/>
+  </templates>
+  <templates xsi:type="com.sap.furcas.TCS:PrimitiveTemplate" metaReference="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" templateName="integerSymbol" default="true" tokenName="INT" value="Integer.valueOf(%token%)">
+    <textBlockDefinition/>
+  </templates>
+  <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.sap.com/furcas/examples/bibtex#//LiteratureDb" isContext="true" isMain="true">
+    <textBlockDefinition/>
+    <templateSequence>
+      <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.2">
+        <propertyReference strucfeature="ecore:EAttribute http://www.sap.com/furcas/examples/bibtex#//LiteratureDb/name"/>
+      </elements>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.2" referredLiteral="com.sap.furcas.TCS:Keyword /Bibtex.dsl/mappings/Bibtex.tcs#//@keywords.7"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.2" referredLiteral="com.sap.furcas.TCS:Keyword /Bibtex.dsl/mappings/Bibtex.tcs#//@keywords.4"/>
+      <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.2">
+        <propertyReference strucfeature="ecore:EReference http://www.sap.com/furcas/examples/bibtex#//LiteratureDb/entries"/>
+      </elements>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.2" referredLiteral="com.sap.furcas.TCS:Keyword /Bibtex.dsl/mappings/Bibtex.tcs#//@keywords.5"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.2" referredLiteral="com.sap.furcas.TCS:Keyword /Bibtex.dsl/mappings/Bibtex.tcs#//@keywords.8"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.2" referredLiteral="com.sap.furcas.TCS:Keyword /Bibtex.dsl/mappings/Bibtex.tcs#//@keywords.4"/>
+      <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.2">
+        <propertyReference strucfeature="ecore:EReference http://www.sap.com/furcas/examples/bibtex#//LiteratureDb/author"/>
+      </elements>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.2" referredLiteral="com.sap.furcas.TCS:Keyword /Bibtex.dsl/mappings/Bibtex.tcs#//@keywords.5"/>
+    </templateSequence>
+  </templates>
+  <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.sap.com/furcas/examples/bibtex#//Entry">
+    <textBlockDefinition/>
+    <templateSequence>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3" referredLiteral="com.sap.furcas.TCS:Keyword /Bibtex.dsl/mappings/Bibtex.tcs#//@keywords.2"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3" referredLiteral="com.sap.furcas.TCS:Keyword /Bibtex.dsl/mappings/Bibtex.tcs#//@keywords.4"/>
+      <elements xsi:type="com.sap.furcas.TCS:Block" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3">
+        <blockSequence>
+          <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3">
+            <propertyReference strucfeature="ecore:EAttribute http://www.sap.com/furcas/examples/bibtex#//Entry/id"/>
+          </elements>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3" referredLiteral="com.sap.furcas.TCS:Keyword /Bibtex.dsl/mappings/Bibtex.tcs#//@keywords.1"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3" referredLiteral="com.sap.furcas.TCS:Keyword /Bibtex.dsl/mappings/Bibtex.tcs#//@keywords.9"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3" referredLiteral="com.sap.furcas.TCS:Keyword /Bibtex.dsl/mappings/Bibtex.tcs#//@keywords.0"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3" referredLiteral="com.sap.furcas.TCS:Keyword /Bibtex.dsl/mappings/Bibtex.tcs#//@keywords.4"/>
+          <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3">
+            <propertyReference strucfeature="ecore:EAttribute http://www.sap.com/furcas/examples/bibtex#//Entry/title"/>
+          </elements>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3" referredLiteral="com.sap.furcas.TCS:Keyword /Bibtex.dsl/mappings/Bibtex.tcs#//@keywords.5"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3" referredLiteral="com.sap.furcas.TCS:Keyword /Bibtex.dsl/mappings/Bibtex.tcs#//@keywords.1"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3" referredLiteral="com.sap.furcas.TCS:Keyword /Bibtex.dsl/mappings/Bibtex.tcs#//@keywords.6"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3" referredLiteral="com.sap.furcas.TCS:Keyword /Bibtex.dsl/mappings/Bibtex.tcs#//@keywords.0"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3" referredLiteral="com.sap.furcas.TCS:Keyword /Bibtex.dsl/mappings/Bibtex.tcs#//@keywords.4"/>
+          <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3">
+            <propertyArgs xsi:type="com.sap.furcas.TCS:RefersToPArg" propertyName="name"/>
+            <propertyArgs xsi:type="com.sap.furcas.TCS:SeparatorPArg">
+              <separatorSequence>
+                <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3" referredLiteral="com.sap.furcas.TCS:Keyword /Bibtex.dsl/mappings/Bibtex.tcs#//@keywords.3"/>
+              </separatorSequence>
+            </propertyArgs>
+            <propertyArgs xsi:type="com.sap.furcas.TCS:QueryPArg" query="OCL:Bibtex::Author.allInstances()->select(a|a.name=?)"/>
+            <propertyReference strucfeature="ecore:EReference http://www.sap.com/furcas/examples/bibtex#//Entry/author"/>
+          </elements>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3" referredLiteral="com.sap.furcas.TCS:Keyword /Bibtex.dsl/mappings/Bibtex.tcs#//@keywords.5"/>
+        </blockSequence>
+      </elements>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3" referredLiteral="com.sap.furcas.TCS:Keyword /Bibtex.dsl/mappings/Bibtex.tcs#//@keywords.5"/>
+      <elements xsi:type="com.sap.furcas.TCS:InjectorActionsBlock" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3">
+        <injectorActions xsi:type="com.sap.furcas.TCS:LookupPropertyInit" value="OCL:#context">
+          <propertyReference strucfeature="ecore:EReference http://www.sap.com/furcas/examples/bibtex#//Entry/literaturedb"/>
+        </injectorActions>
+      </elements>
+    </templateSequence>
+  </templates>
+  <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.sap.com/furcas/examples/bibtex#//Author">
+    <textBlockDefinition/>
+    <templateSequence>
+      <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.4">
+        <propertyReference strucfeature="ecore:EAttribute http://www.sap.com/furcas/examples/bibtex#//Author/name"/>
+      </elements>
+      <elements xsi:type="com.sap.furcas.TCS:InjectorActionsBlock" parentTemplate="com.sap.furcas.TCS:ClassTemplate /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.4">
+        <injectorActions xsi:type="com.sap.furcas.TCS:LookupPropertyInit" value="OCL:#context">
+          <propertyReference strucfeature="ecore:EReference http://www.sap.com/furcas/examples/bibtex#//Author/literaturedb"/>
+        </injectorActions>
+      </elements>
+    </templateSequence>
+  </templates>
+  <keywords literalRefs="/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.3 /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.9" value="="/>
+  <keywords literalRefs="/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.1 /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.7" value=","/>
+  <keywords literalRefs="/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.0" value="@article"/>
+  <keywords literalRefs="/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.11/@propertyArgs.1/@separatorSequence/@elements.0" value="and"/>
+  <keywords literalRefs="/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.2 /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.6 /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.1 /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.4 /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.10" value="{"/>
+  <keywords literalRefs="/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.4 /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.8 /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.6 /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.12 /Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.3" value="}"/>
+  <keywords literalRefs="/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.8" value="author"/>
+  <keywords literalRefs="/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.1" value="Entries:"/>
+  <keywords literalRefs="/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.5" value="Authors:"/>
+  <keywords literalRefs="/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.2" value="title"/>
+  <tokens name="COMMENT">
+    <pattern>
+      <simplePatterns xsi:type="com.sap.furcas.TCS:RulePattern">
+        <rule xsi:type="com.sap.furcas.TCS:EndOfLineRule">
+          <start name="--"/>
+        </rule>
+      </simplePatterns>
+    </pattern>
+  </tokens>
+</com.sap.furcas.TCS:ConcreteSyntax>

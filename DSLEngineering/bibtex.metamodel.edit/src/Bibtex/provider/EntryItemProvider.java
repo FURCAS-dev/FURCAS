@@ -67,6 +67,7 @@ public class EntryItemProvider
             addTitlePropertyDescriptor(object);
             addIdPropertyDescriptor(object);
             addAuthorPropertyDescriptor(object);
+            addLiteraturedbPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -129,6 +130,28 @@ public class EntryItemProvider
                  getString("_UI_Entry_author_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_Entry_author_feature", "_UI_Entry_type"),
                  BibtexPackage.Literals.ENTRY__AUTHOR,
+                 true,
+                 false,
+                 true,
+                 null,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Literaturedb feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addLiteraturedbPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_Entry_literaturedb_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_Entry_literaturedb_feature", "_UI_Entry_type"),
+                 BibtexPackage.Literals.ENTRY__LITERATUREDB,
                  true,
                  false,
                  true,

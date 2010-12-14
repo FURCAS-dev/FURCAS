@@ -66,6 +66,7 @@ public class AuthorItemProvider
 
             addNamePropertyDescriptor(object);
             addPublicationsPropertyDescriptor(object);
+            addLiteraturedbPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -106,6 +107,28 @@ public class AuthorItemProvider
                  getString("_UI_Author_publications_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_Author_publications_feature", "_UI_Author_type"),
                  BibtexPackage.Literals.AUTHOR__PUBLICATIONS,
+                 true,
+                 false,
+                 true,
+                 null,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Literaturedb feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addLiteraturedbPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_Author_literaturedb_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_Author_literaturedb_feature", "_UI_Author_type"),
+                 BibtexPackage.Literals.AUTHOR__LITERATUREDB,
                  true,
                  false,
                  true,
