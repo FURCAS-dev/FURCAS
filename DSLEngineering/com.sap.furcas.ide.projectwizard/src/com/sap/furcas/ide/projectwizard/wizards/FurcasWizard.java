@@ -349,17 +349,8 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 // uses the new PRI list in the ReferenceScope to load the referenced metamodel from registered packages
                 //
                 conf = new EcoreMetaProjectConf(project, "", pi.getNsURI());
-            } else if (pi.getModelPath().matches("new")) {
-                String capLangName = CreateProject.capitalizeFirstChar(pi.getLanguageName());
-                String newPath = "/" + pi.getProjectName() + ".metamodel/model/" + capLangName
-                        + ".ecore";
-
-                // instantiates the configuration take a look at EcoreMetaProjectConf for more details
-                // uses the ResourceSet in the ReferenceScope to load the freshly created .ecore file
-                //
-                conf = new EcoreMetaProjectConf(project, newPath, pi.getNsURI());
-            } else {
-                // instantiates the configuration take a look at EcoreMetaProjectConf for more details
+            }  else {
+                // instantiates the configuration, take a look at EcoreMetaProjectConf for more details
                 // uses the ResourceSet in the ReferenceScope to load the referenced metamodel in the workspace
                 //
                 conf = new EcoreMetaProjectConf(project, pi.getModelPath(), pi.getNsURI());
