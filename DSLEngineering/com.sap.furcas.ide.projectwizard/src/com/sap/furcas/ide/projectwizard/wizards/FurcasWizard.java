@@ -178,45 +178,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
             @Override
             public IStatus runInUIThread(IProgressMonitor monitor) {
 
-                CreateProject cP = new CreateProject(pi, getShell(), getFurcasWizard());
-                try {
-                    cP.run(monitor);
-                } catch (InvocationTargetException e) {
-                    hadError = true;
-                    MessageDialog.openError(getShell(), "Error",
-                            "InvocationTargetException while creating language project:" + e.getMessage());
-                } catch (InterruptedException e) {
-                    hadError = true;
-                    MessageDialog.openError(getShell(), "Error", e.getMessage());
-                }
-                IProject project = cP.project;
-
-                if (!pi.isLoadMetamodel() && !hadError) {
-                    try {
-                        doAdditional(pi);
-                    } catch (CodeGenerationException e) {
-                        hadError = true;
-                        MessageDialog.openError(getShell(), "Error", e.getMessage());
-                    } catch (InvocationTargetException e) {
-                        hadError = true;
-                        MessageDialog.openError(getShell(), "Error",
-                                "InvocationTargetException while creating metamodel project:" + e.getMessage());
-                    } catch (InterruptedException e) {
-                        hadError = true;
-                        MessageDialog.openError(getShell(), "Error", e.getMessage());
-                    }
-                }
-                if (!hadError) {
-                    try {
-                        generateSpecific(project, pi, monitor);
-                    } catch (CodeGenerationException e) {
-                        hadError = true;
-                        MessageDialog.openError(getShell(), "Error", e.getMessage());
-                    }
-                }
-                if (hadError) {
-                    deleteJunk(pi, monitor);
-                }
+                structuredProcess(pi, monitor);
 
                 return Status.OK_STATUS;
             }
@@ -307,8 +269,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
                         EcoreEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
             }
 
-        }
-        else{
+        } else {
             // That should only run if called by a test
             //
             NullProgressMonitor monitor = new NullProgressMonitor();
@@ -383,7 +344,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
 
             } catch (CoreException e) {
                 throw new CodeGenerationException("Failed to build, refresh or clean Workspace", e.getCause());
-            }
+            } 
 
         }
     }
@@ -407,6 +368,52 @@ public class FurcasWizard extends Wizard implements INewWizard {
         this.workbench = workbench;
         setWindowTitle(EcoreEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
         setDefaultPageImageDescriptor(getDefaultImageDescriptor());
+    }
+
+    /**
+     * @param pi
+     * @param monitor
+     */
+    public void structuredProcess(final ProjectInfo pi, IProgressMonitor monitor) {
+        CreateProject cP = new CreateProject(pi, getShell(), getFurcasWizard());
+        try {
+            cP.run(monitor);
+        } catch (InvocationTargetException e) {
+            hadError = true;
+            MessageDialog.openError(getShell(), "Error",
+                    "InvocationTargetException while creating language project:" + e.getMessage());
+        } catch (InterruptedException e) {
+            hadError = true;
+            MessageDialog.openError(getShell(), "Error", e.getMessage());
+        }
+        IProject project = cP.project;
+
+        if (!pi.isLoadMetamodel() && !hadError) {
+            try {
+                doAdditional(pi);
+            } catch (CodeGenerationException e) {
+                hadError = true;
+                MessageDialog.openError(getShell(), "Error", e.getMessage());
+            } catch (InvocationTargetException e) {
+                hadError = true;
+                MessageDialog.openError(getShell(), "Error",
+                        "InvocationTargetException while creating metamodel project:" + e.getMessage());
+            } catch (InterruptedException e) {
+                hadError = true;
+                MessageDialog.openError(getShell(), "Error", e.getMessage());
+            }
+        }
+        if (!hadError) {
+            try {
+                generateSpecific(project, pi, monitor);
+            } catch (CodeGenerationException e) {
+                hadError = true;
+                MessageDialog.openError(getShell(), "Error", e.getMessage());
+            }
+        }
+        if (hadError) {
+            deleteJunk(pi, monitor);
+        }
     }
 
 }
