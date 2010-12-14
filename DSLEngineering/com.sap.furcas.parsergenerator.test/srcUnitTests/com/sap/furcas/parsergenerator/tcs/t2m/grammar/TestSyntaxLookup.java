@@ -54,7 +54,7 @@ public class TestSyntaxLookup {
         List<Template> importedTemplates = new ArrayList<Template>();
         List<ConcreteSyntax> importedConcreteSyntaxs = new ArrayList<ConcreteSyntax>();
         
-        SyntaxLookup lookup = new SyntaxLookup(syntax, importedConcreteSyntaxs,importedTemplates, keywords, namingHelper);
+        SyntaxLookup lookup = new SyntaxLookup(syntax, importedConcreteSyntaxs,importedTemplates,keywords, namingHelper);
         // no primitive templates defined in SyntaxStub, so null should be returned
         assertNull(lookup.getDefaultPrimitiveTemplateRule(refE("test")));
         
@@ -105,7 +105,7 @@ public class TestSyntaxLookup {
         List<Template> importedTemplates = new ArrayList<Template>();
         List<ConcreteSyntax> importedConcreteSyntaxs = new ArrayList<ConcreteSyntax>();
         
-        SyntaxLookup lookup = new SyntaxLookup(syntax, importedConcreteSyntaxs,importedTemplates, keywords, namingHelper);
+        SyntaxLookup lookup = new SyntaxLookup(syntax, importedConcreteSyntaxs,importedTemplates,keywords,  namingHelper);
         
         // no symbols defined in SyntaxStub, so symbol is returned in hyphons
         assertEquals("'test'", lookup.getSymbolRule("test"));
@@ -150,7 +150,7 @@ public class TestSyntaxLookup {
         List<Template> importedTemplates = new ArrayList<Template>();
         List<ConcreteSyntax> importedConcreteSyntaxs = new ArrayList<ConcreteSyntax>();
         
-        SyntaxLookup lookup = new SyntaxLookup(syntax, importedConcreteSyntaxs,importedTemplates, keywords, namingHelper);
+        SyntaxLookup lookup = new SyntaxLookup(syntax, importedConcreteSyntaxs,importedTemplates,keywords,  namingHelper);
         assertEquals(0, lookup.getTCSTemplate(refE("test"), null).size());
         
         PrimitiveTemplateStub pStub = new PrimitiveTemplateStub();
@@ -181,7 +181,7 @@ public class TestSyntaxLookup {
         importedSyntaxs.add(syntax1);
 
         
-        SyntaxLookup lookup = new SyntaxLookup(syntax, importedConcreteSyntaxs,importedTemplates, keywords, namingHelper);
+        SyntaxLookup lookup = new SyntaxLookup(syntax, importedConcreteSyntaxs,importedTemplates,keywords, namingHelper);
         
         assertEquals(0, lookup.getTCSTemplate(refE("test"), null).size());
         
@@ -245,12 +245,11 @@ public class TestSyntaxLookup {
         
         keywords.add(keyStub1 );
         ConcreteSyntaxStub syntax = new ConcreteSyntaxStub();
-        EList<Keyword> keywordList = new BasicEList<Keyword>();
+        Set<Keyword> keywordList = new HashSet<Keyword>();
         Keyword keyStub2 = new KeywordStub();
         keywords.add(keyStub2 );
-        syntax.keywords = keywordList;
         
-        SyntaxLookup lookup = new SyntaxLookup(syntax,importedConcreteSyntaxs,importedTemplates, keywords, namingHelper);
+        SyntaxLookup lookup = new SyntaxLookup(syntax,importedConcreteSyntaxs,importedTemplates, keywordList, namingHelper);
         Set<Keyword> result = lookup.getAllKeywords();
         assertNotNull(result);
         assertEquals(2, result.size());

@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EClassifier;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.TCS.VisibilityEnum;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
 
 /**
@@ -21,7 +22,7 @@ public class TemplateStub extends LocatedElementStub implements Template {
     public String semDisambiguate;
     public EClass metaReference;
     public TextBlockDefinition textBlockDefinition;
-    private String visibilty;
+    private VisibilityEnum visibilty;
 
     public TemplateStub() {
 
@@ -164,13 +165,13 @@ public class TemplateStub extends LocatedElementStub implements Template {
     }
 
     @Override
-    public String getTemplateVisibility() {
+    public VisibilityEnum getTemplateVisibility() {
         // TODO Auto-generated method stub
         return visibilty;
     }
 
     @Override
-    public void setTemplateVisibility(String visibility1) {
+    public void setTemplateVisibility(VisibilityEnum visibility1) {
         this.visibilty = visibility1;
 
     }

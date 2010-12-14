@@ -25,29 +25,29 @@ package com.sap.furcas.metamodel.FURCAS.TCS;
  */
 public interface ConcreteSyntaxImport extends ImportDeclaration {
     /**
-     * Returns the value of the '<em><b>Mode</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Mode</b></em>' attribute.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Mode</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Mode</em>' attribute.
-     * @see #setMode(String)
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getConcreteSyntaxImport_Mode()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>Mode</em>' attribute.
+	 * @see #setMode(String)
+	 * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getConcreteSyntaxImport_Mode()
+	 * @model
+	 * @generated
+	 */
     String getMode();
 
     /**
-     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntaxImport#getMode <em>Mode</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntaxImport#getMode <em>Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Mode</em>' attribute.
-     * @see #getMode()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Mode</em>' attribute.
+	 * @see #getMode()
+	 * @generated
+	 */
     void setMode(String value);
 
 } // ConcreteSyntaxImport

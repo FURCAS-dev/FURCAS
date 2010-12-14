@@ -32,6 +32,7 @@ public class GeneratedParserTestConfiguration {
     
     private static final String ANTLR_GRAMMAR_SUFFIX = ".g";
     
+    private final File[] metamodels;
     private final ResourceSet resourceSet;
     private final Set<URI> referenceScope;
     private final String languageName;
@@ -60,7 +61,7 @@ public class GeneratedParserTestConfiguration {
      * 
      * @param languageName the name of the language as specified in the tcs-File
      * @param syntaxDefFile the tcs-File
-     * @param generationDir a relative path to the directoy where all generated files (grammar, lexer, parser) shall be written to
+     * @param generationDir a relative path to the directory where all generated files (grammar, lexer, parser) shall be written to
      * @param packageName the Java interpretation generationDir in form of the package name.
      * @param metamodels the metamodels which are referenced/used within the tcs file.
      * 
@@ -71,13 +72,22 @@ public class GeneratedParserTestConfiguration {
         this.syntaxDefFile = syntaxDefFile;
         this.generationDir = generationDir;
         this.packageName = packageName;
+        this.metamodels = metamodels;
         
         grammarFile = createGrammarFile(languageName);
         resourceSet = createResourceSet(metamodels);
         referenceScope = createReferenceScope();
     }
     
-    private File createGrammarFile(String language) {
+    public File[] getMetamodels() {
+		return metamodels;
+	}
+
+	public String getPackageName() {
+		return DEFAULT_PACKAGE;
+	}
+
+	private File createGrammarFile(String language) {
         return new File(generationDir + language + ANTLR_GRAMMAR_SUFFIX);
     }
     

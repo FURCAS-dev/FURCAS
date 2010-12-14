@@ -2,8 +2,6 @@ package com.sap.ide.cts.editor.prettyprint.imported;
 
 import java.util.List;
 
-import tcs.Alternative;
-import tcs.SequenceInAlternative;
 
 /**
  * A simple interface that allows clients to participate in the pretty printing
@@ -25,7 +23,8 @@ public interface PrettyPrintingPolicy {
      * @param alternative
      * @return
      */
-    public List<SequenceInAlternative> getSequenceElementsOfCurrentAlternativeInPreferredOrder(Alternative alternative);
+	List<com.sap.furcas.metamodel.FURCAS.TCS.SequenceInAlternative> getSequenceElementsOfCurrentAlternativeInPreferredOrder(
+			com.sap.furcas.metamodel.FURCAS.TCS.Alternative alternative);
 
     /**
      * Allows to adapt the whitespace that is supposed to be printed.
@@ -39,5 +38,7 @@ public interface PrettyPrintingPolicy {
     public String adaptWhiteSpace(String tcsImpliedWhiteSpace);
 
     public Boolean desiresAdditionalWhiteSpace();
+
+	
 
 }

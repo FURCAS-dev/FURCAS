@@ -1,12 +1,10 @@
 syntax Bibtext {
-
+ 
 	-- simple basic syntax containing articles and authors, used as Hello Word example
 
 	primitiveTemplate identifier for ->String default using NAME:
 		value = "unescapeString(%token%)";
 
-
-	
 	
 	template ->BibTextFile main context
 		: [->entries] -- entries each in new line

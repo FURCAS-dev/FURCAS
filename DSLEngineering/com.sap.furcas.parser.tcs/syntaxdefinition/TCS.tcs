@@ -2,7 +2,7 @@
 -- Strings are double quoted
 -- Comments begin with -- and end with the end of the line
 syntax TCS {
-
+  
         primitiveTemplate identifier for ecore::EString default using NAME :
                 value = "unescapeString(%token%)";
 
@@ -17,7 +17,7 @@ syntax TCS {
                 value = "unescapeString(%token%)",
 				serializer="\"%value%\"";
 	
-	primitiveTemplate plainStringSymbol for ecore::EString using STRING:
+		primitiveTemplate plainStringSymbol for ecore::EString using STRING:
                 value = "unescapeString(%token%)";
 
         primitiveTemplate integerSymbol for ecore::EIntegerObject default using INT:
@@ -184,8 +184,8 @@ syntax TCS {
         template TCS::ContextTags
                 : "(" tags{separator= ","} ")"
                 ;
--- @end Templates
-
+-- @end Templates 
+  
 --@the import concept 
 		template ImportDeclaration abstract;
 				 
@@ -198,8 +198,12 @@ syntax TCS {
                         : (isPartImport ? "partial") "to_import" concreteSyntax { refersTo = name,
                         query = "OCL:ConcreteSyntax.allInstances()->select(cs | cs.name = ?)"}
                         template { as = identifierOrKeyword, query = "OCL:self.concreteSyntax.templates
-                                        ->select(t | t.metaReference.name = ? and if t.oclIsTypeOf(TCS::ClassTemplate)
-                                        then t.oclAsType(TCS::ClassTemplate).mode = self.mode else true  endif)"}
+                                        ->select(t | t.metaReference.name = ? and 
+                                        	if(not self.mode.oclIsUndefined()) then
+                                            	t.oclAsType(FURCAS::TCS::ClassTemplate).mode = self.mode
+                                            else
+                                            	t.oclAsType(FURCAS::TCS::ClassTemplate).mode.oclIsUndefined()
+                                            endif)"}
                          (isDefined(mode) ?  "#" mode ) ";" 
                          ;
 

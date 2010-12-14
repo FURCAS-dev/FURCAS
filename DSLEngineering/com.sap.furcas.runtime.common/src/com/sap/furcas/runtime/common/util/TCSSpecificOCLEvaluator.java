@@ -18,6 +18,7 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.opposites.ExtentMap;
 
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
@@ -38,13 +39,15 @@ public class TCSSpecificOCLEvaluator {
     
     private final OCL ocl;
     private final Helper oclHelper;
+	private Query2OppositeEndFinder oppositeEndFinder;
 
     public TCSSpecificOCLEvaluator() {
         this(new ProjectDependencyQueryContextProvider());
     }
     
     public TCSSpecificOCLEvaluator(QueryContextProvider queryContext) {
-        ocl = OCL.newInstance(new Query2OppositeEndFinder(queryContext));
+         oppositeEndFinder = new Query2OppositeEndFinder(queryContext);
+		ocl = OCL.newInstance(oppositeEndFinder);
         oclHelper = ocl.createOCLHelper();
     }
 
@@ -75,7 +78,7 @@ public class TCSSpecificOCLEvaluator {
         try {
             oclHelper.setContext(objectForSelf.eClass());
             OCLExpression exp = oclHelper.createQuery(queryToExecute);
-
+            ocl.setExtentMap(new ExtentMap(sourceModelElement.eResource().getResourceSet(), oppositeEndFinder));
             Object result = ocl.evaluate(objectForSelf, exp);
             if (ocl.isInvalid(result)) {
                 throw new ModelAdapterException("Cannot evaluate OCLExpression:" + queryToExecute + " Reason: "

@@ -18,29 +18,29 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface FURCASFactory extends EFactory {
         /**
-     * The singleton instance of the factory.
-     * <!-- begin-user-doc -->
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
         FURCASFactory eINSTANCE = com.sap.furcas.metamodel.FURCAS.impl.FURCASFactoryImpl.init();
 
         /**
-     * Returns a new object of class '<em>Empty Dummy Class To Workaround Generator Bug</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Empty Dummy Class To Workaround Generator Bug</em>'.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @return a new object of class '<em>Empty Dummy Class To Workaround Generator Bug</em>'.
-     * @generated
-     */
+	 * @return a new object of class '<em>Empty Dummy Class To Workaround Generator Bug</em>'.
+	 * @generated
+	 */
         EmptyDummyClassToWorkaroundGeneratorBug createEmptyDummyClassToWorkaroundGeneratorBug();
 
         /**
-     * Returns the package supported by this factory.
-     * <!-- begin-user-doc -->
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @return the package supported by this factory.
-     * @generated
-     */
+	 * @return the package supported by this factory.
+	 * @generated
+	 */
         FURCASPackage getFURCASPackage();
 
 } //FURCASFactory

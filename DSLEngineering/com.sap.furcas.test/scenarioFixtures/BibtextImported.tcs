@@ -1,0 +1,179 @@
+syntax BibtextImported {
+
+	-- simple basic syntax containing articles and authors, used as Hello Word example
+
+	primitiveTemplate identifier for String default using NAME:
+		value = "unescapeString(%token%)";
+
+
+	
+	
+	template BibTextFile main context
+		: [entries{forcedLower=3}] -- entries each in new line
+		;
+		
+	template BibTextEntry abstract;
+	
+	template Article
+		: "article" "{"
+		[
+		key "," author{refersTo=name} "," attributes{separator = ","}
+		]
+		"}"
+		;
+	
+	template Attribute abstract;
+	
+	template Author addToContext
+		: "author" "=" name "."
+		;
+	
+	template Year
+		: "year" "=" value
+		;
+		
+
+-- BEGIN Special symbols
+-- Possible modifications:
+	symbols {
+--		lsquare		= "[";
+--		rsquare		= "]"	: rightSpace;
+--		excl		= "!";
+--		coma		= ","	: leftNone, rightSpace;
+--		lparen		= "(";
+--		rparen		= ")"	: leftNone, rightSpace;
+--		lcurly		= "{"	: leftSpace;
+--		rcurly		= "}"	: leftNone, rightSpace;
+--		semi		= ";"	: leftNone, rightSpace;
+--		colon		= ":"	: leftSpace, rightSpace;
+--		pipe		= "|"	: leftSpace, rightSpace;
+--		sharp		= "#"	: leftSpace;
+--		qmark		= "?";
+--		coloncolon	= "::"	: leftNone, rightNone;
+
+		-- operator symbols
+--		point		= "."	: leftNone;
+--		rarrow		= "->"	: leftNone;
+--		minus		= "-"	: leftSpace, rightSpace;
+--		star		= "*"	: leftSpace, rightSpace;
+--		slash		= "/"	: leftSpace, rightSpace;
+--		plus		= "+"	: leftSpace, rightSpace;
+--		eq			= "="	: leftSpace, rightSpace;
+--		gt			= ">"	: leftSpace, rightSpace;
+--		lt			= "<"	: leftSpace, rightSpace;
+--		ge			= ">="	: leftSpace, rightSpace;
+--		le			= "<="	: leftSpace, rightSpace;
+--		ne			= "<>"	: leftSpace, rightSpace;
+--		larrow		= "<-"	: leftSpace, rightSpace;
+	}
+-- END Special symbols
+
+-- BEGIN Operator table
+-- Defines all operators with their priority, arity, and associativity.
+-- All defined operators must be used in operator templates.
+
+-- Specify operator table(s) here if necessary.
+
+-- END Operator table
+
+
+-- BEGIN Lexer
+-- Specifies the lexical entities.
+-- Only needs modification when default lexer is not satisfactory.
+-- Generally modified along with Primitive templates.
+	token COMMENT	: endOfLine(start = "--");
+
+	lexer = "
+%options testLiterals = false;
+
+NL
+	:	(	'\\r' '\\n'
+		|	'\\n' '\\r'	//Improbable
+		|	'\\r'
+		|	'\\n'
+		)
+	{newline();}
+	;
+
+WS
+	:	(	' '
+		|	'\\t'
+		)
+	;
+
+%protected
+DIGIT
+	:	'0'..'9'
+	;
+
+%protected
+ALPHA
+	:	'a'..'z'
+	|	'A'..'Z'
+	|	'_'
+	//For Unicode compatibility (from 0000 to 00ff)
+	|	'\\u00C0' .. '\\u00D6'
+	|	'\\u00D8' .. '\\u00F6'
+	|	'\\u00F8' .. '\\u00FF'
+	;
+
+%protected
+SNAME
+	:	(ALPHA) (ALPHA | DIGIT)*
+;
+
+NAME
+	:	(
+			SNAME
+		|	'\"'!
+			(	ESC
+			|	'\\n' {newline();}
+			|	~('\\\\'|'\\\"'|'\\n')
+			)*
+			'\"'!
+		)
+	;
+
+%protected
+ESC
+	:	'\\\\'!
+		(	'n' 
+		|	'r' 
+		|	't' 
+		|	'b' 
+		|	'f' 
+		|	'\"' 
+		|	'\\'' 
+		|	'\\\\' 
+		|	(
+				('0'..'3')
+				(
+				:	('0'..'7')
+					(
+					:	'0'..'7'
+					)?
+				)?
+			|	('4'..'7')
+				(
+				:	('0'..'7')
+				)?
+			)
+				{
+				}
+		)
+	;
+
+STRING
+	:	'\\''!
+		(	ESC
+		|	'\\n' {newline();}
+		|	~('\\\\'|'\\''|'\\n')
+		)*
+		'\\''!
+			{setText(unescapeString(getText(), 1));}
+	;
+
+	";
+-- END Lexer
+
+}

@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
@@ -111,9 +110,6 @@ public class ANTLRGrammarGenerator {
 
     private InjectorActionsHandler<?> actionsHandler;
 
-    private static Logger log = Logger.getLogger(ANTLRGrammarGenerator.class
-            .getName());
-
     private final List<String> imported_lexer_collection = new ArrayList<String>();
 
     private List<Token> imported_tokens = new ArrayList<Token>();
@@ -152,7 +148,7 @@ public class ANTLRGrammarGenerator {
                         importedSyntaxes.add(importDeclaration
                                 .getConcreteSyntax());
                     } else {
-                        // TODO for nested Imports
+                        // TODO for nested Imports or binded imports
                     }
                 } else if (importDeclaration instanceof TemplateImport) {
                     importedTemplates.add(((TemplateImport) importDeclaration)
@@ -166,7 +162,7 @@ public class ANTLRGrammarGenerator {
         // null is given here as keyword list, this will be build in
         // SyntaxLookup
         this.syntaxLookup = new SyntaxLookup(syntax, importedSyntaxes,
-                importedTemplates, null, resolutionHelper);
+                importedTemplates, syntaxbean.getKeywords(), resolutionHelper);
         TemplateNamingHelper<T> namingHelper = new TemplateNamingHelper<T>(
                 resolutionHelper);
         this.locationMap = syntaxbean.getElementToLocationMap();
@@ -226,16 +222,16 @@ public class ANTLRGrammarGenerator {
         Collection<Template> templates = new ArrayList<Template>();
         templates.addAll(syntax.getTemplates());
 
-        List<String> qualifiedNamesOfSyntaxTemplates = new ArrayList<String>();
-        for (Template syntaxTemplate : templates) {
-                if (syntaxTemplate.getMetaReference() != null) {
-                        qualifiedNamesOfSyntaxTemplates.add(syntaxTemplate
-                                        .getMetaReference().getName());
-                } else {
-                        log.warning("The metareference of the template " + syntaxTemplate + "is null");
-                }
+//        List<String> qualifiedNamesOfSyntaxTemplates = new ArrayList<String>();
+//        for (Template syntaxTemplate : templates) {
+//                if (syntaxTemplate.getMetaReference() != null) {
+//                        qualifiedNamesOfSyntaxTemplates.add(syntaxTemplate
+//                                        .getMetaReference().getName());
+//                } else {
+//                	errorBucket.addWarning("The metareference of the template is null", syntaxTemplate);
+//                }
                 
-        }
+//        }
         init(writer2, metaLookup, syntaxbean);
         errorBucket.clear();
 
@@ -255,12 +251,13 @@ public class ANTLRGrammarGenerator {
                         // concreteSyntax already exists in the main syntax
                         for (Template templates_imported : imported_syntax
                                         .getTemplates()) {
-                                if ((qualifiedNamesOfSyntaxTemplates
-                                                .contains(templates_imported.getMetaReference()
-                                                                .getName()))
-                                                || (imported_templates.contains(templates_imported))) {
-                                        log.warning("the template " + templates_imported
-                                                        + " allready exists in the main syntax.. ");
+//                                if ((qualifiedNamesOfSyntaxTemplates
+//                                                .contains(templates_imported.getMetaReference()
+//                                                                .getName()))
+//                                                || (imported_templates.contains(templates_imported)))
+                        	if(templates.contains(templates_imported))
+                                {
+                                	errorBucket.addWarning("the template already exists in the main syntax.. ", templates_imported);
                                 } else {
                                         imported_templates.add(templates_imported);
                                 }
@@ -309,9 +306,9 @@ public class ANTLRGrammarGenerator {
         if (importsNotnull) {
             for (String imported_lexer : imported_lexer_collection) {
                 if (!imported_lexer.equalsIgnoreCase(lexerString)) {
-                    log.warning("the lexer of the  imported syntax and the lexer of the main syntax have to be equal.. ");
+                	errorBucket.addWarning("the lexer of the  imported syntax and the lexer of the main syntax have to be equal.. ",imported_lexer );
                 } else {
-                    log.info("the lexer of the imported syntax is the same as the lexer of the main syntax");
+                	errorBucket.addWarning("the lexer of the imported syntax is the same as the lexer of the main syntax",imported_lexer);
                 }
             }
         }
@@ -333,14 +330,14 @@ public class ANTLRGrammarGenerator {
         }
 
      // TODO what to to when the template of an imported
-        // concreteSyntax allready exists in the main syntax
+        // concreteSyntax already exists in the main syntax
 
         for (Template template1 : imported_templates) {
-                if (qualifiedNamesOfSyntaxTemplates.contains(template1
-                                .getMetaReference().getName())
-                                || templates.contains(template1)) {
-                        log.warning("the template " + template1
-                                        + " already exists in the main syntax.. ");
+//                if (qualifiedNamesOfSyntaxTemplates.contains(template1
+//                                .getMetaReference().getName())
+//                                || templates.contains(template1))
+        	if (templates.contains(template1)) {
+                	errorBucket.addWarning("the template already exists in the main syntax.. ", template1);
                 } else {
                         // templates are the template of the main syntax
                         templates.add(template1);
@@ -350,11 +347,10 @@ public class ANTLRGrammarGenerator {
         if (syntaxbean.getImportedTemplates().size() > 0) {
                 for (Template template : syntaxbean.getImportedTemplates()) {
                         // TODO what to do if the template already exists
-                        if (qualifiedNamesOfSyntaxTemplates.contains(template
-                                        .getMetaReference().getName())) {
-                                log.warning("the template "
-                                                + template
-                                                + " of the imported templates already exists in the main syntax..");
+//                        if (qualifiedNamesOfSyntaxTemplates.contains(template
+//                                        .getMetaReference().getName())) 
+                        if (templates.contains(template)){
+                        	errorBucket.addWarning("the template of the imported templates already exists in the main syntax..", template);
                         } else {
                                 templates.add(template);
                         }
@@ -380,8 +376,8 @@ public class ANTLRGrammarGenerator {
         // }
         
         Collection<Token> tokens = new ArrayList<Token>(syntax.getTokens());
-        Collection<Token> tokenList = new ArrayList<Token>();
-        Collection<String> tokenListName = new ArrayList<String>();
+		Collection<Token> tokenList = new ArrayList<Token>();
+		Collection<String> tokenListName = new ArrayList<String>();
         Collection<Symbol> symbols = new ArrayList<Symbol>(syntax.getSymbols());
         Collection<Symbol> symbolList = new ArrayList<Symbol>();
         Collection<String> symbolListValues = new ArrayList<String>();
@@ -390,26 +386,23 @@ public class ANTLRGrammarGenerator {
                 // TODO what to do with the tokens of the concrete syntax of the
                 // imported template(TemplateImport)
                 for (Token token : imported_tokens) {
-                        for (Token existing : tokens) {
-                                if (existing.getName().equalsIgnoreCase(token.getName())) {
-                                        log.warning("this token already exists in the main mapping : "
-                                                        + existing);
-                                } else {
-                                        tokenListName.add(token.getName());
-                                        if (!tokenListName.contains(token.getName()))
-                                        tokenList.add(token);
-                                }
-                        }
+                	if (tokens.contains(token)) {
+                		errorBucket.addWarning("this token already exists in the main mapping ",
+                				token);
+					} else {
+						tokens.add(token);
+
+					}
+                	
                 }
-                tokens.addAll(tokenList);
                 
                 // TODO what to do with the symbols of the concrete syntax of the
                 // imported template(TemplateImport)
                 for (Symbol symbol : imported_symbols) {
                         for (Symbol existingSymbol : symbols) {
                                 if (existingSymbol.getValue().equalsIgnoreCase(symbol.getValue())) {
-                                        log.warning("this symbol already exists in the main mapping : "
-                                                        + symbol);
+                                	errorBucket.addWarning("this symbol already exists in the main mapping ",
+                                                         symbol);
                                 } else {
                                         symbolListValues.add(symbol.getValue());
                                         if (!symbolListValues.contains(symbol.getValue()))

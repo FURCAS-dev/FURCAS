@@ -27,55 +27,55 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface ImportDeclaration extends EObject {
     /**
-     * Returns the value of the '<em><b>Concrete Syntax</b></em>' reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Concrete Syntax</b></em>' reference.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Concrete Syntax</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Concrete Syntax</em>' reference.
-     * @see #setConcreteSyntax(ConcreteSyntax)
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getImportDeclaration_ConcreteSyntax()
-     * @model required="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Concrete Syntax</em>' reference.
+	 * @see #setConcreteSyntax(ConcreteSyntax)
+	 * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getImportDeclaration_ConcreteSyntax()
+	 * @model required="true"
+	 * @generated
+	 */
     ConcreteSyntax getConcreteSyntax();
 
     /**
-     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.ImportDeclaration#getConcreteSyntax <em>Concrete Syntax</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.ImportDeclaration#getConcreteSyntax <em>Concrete Syntax</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Concrete Syntax</em>' reference.
-     * @see #getConcreteSyntax()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Concrete Syntax</em>' reference.
+	 * @see #getConcreteSyntax()
+	 * @generated
+	 */
     void setConcreteSyntax(ConcreteSyntax value);
 
     /**
-     * Returns the value of the '<em><b>Is Part Import</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Is Part Import</b></em>' attribute.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Is Part Import</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Is Part Import</em>' attribute.
-     * @see #setIsPartImport(boolean)
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getImportDeclaration_IsPartImport()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>Is Part Import</em>' attribute.
+	 * @see #setIsPartImport(boolean)
+	 * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getImportDeclaration_IsPartImport()
+	 * @model
+	 * @generated
+	 */
     boolean isIsPartImport();
 
     /**
-     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.ImportDeclaration#isIsPartImport <em>Is Part Import</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.ImportDeclaration#isIsPartImport <em>Is Part Import</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Is Part Import</em>' attribute.
-     * @see #isIsPartImport()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Is Part Import</em>' attribute.
+	 * @see #isIsPartImport()
+	 * @generated
+	 */
     void setIsPartImport(boolean value);
 
 } // ImportDeclaration

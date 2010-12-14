@@ -33,6 +33,7 @@ public class ScenarioFixtureData {
     
     public static final File ATL_TCS = new File("../com.sap.furcas.test/scenarioFixtures/ATL.tcs");
     public static final File BIBTEXT_TCS = new File("../com.sap.furcas.test/scenarioFixtures/Bibtext.tcs");
+    public static final File BIBTEXT_IMPORT_TCS = new File("../com.sap.furcas.test/scenarioFixtures/BibtextImport.tcs");
     public static final File BIBTEXT_FORCED_LOWER_TCS = new File("../com.sap.furcas.test/scenarioFixtures/BibtextForcedLower.tcs");
     public static final File BIBTEXT_MODES_TCS = new File("../com.sap.furcas.test/scenarioFixtures/BibtextModes.tcs");
     public static final File BIBTEXT_REFER_SUBTYPE_TCS = new File("../com.sap.furcas.test/scenarioFixtures/BibtextReferSubType.tcs");
@@ -61,6 +62,7 @@ public class ScenarioFixtureData {
     public static final File XPATH_TCS = new File("../com.sap.furcas.test/scenarioFixtures/XPath.tcs");
     public static final File XPATH_REDUCED_TCS = new File("../com.sap.furcas.test/scenarioFixtures/XPathReduced.tcs");
     public static final File MINI_JAVA_TCS = new File("../com.sap.furcas.test/scenarioFixtures/MiniJava.tcs");
+	public static final File BIBTEXT_IMPORTED_TCS = new File("../com.sap.furcas.test/scenarioFixtures/BibtextImported.tcs");;
     
 
 }

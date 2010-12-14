@@ -758,13 +758,13 @@ public class IncrementalParser extends IncrementalRecognizer {
 	               }
 	               if (syntaxLookup == null) {
 	                   syntaxLookup = new SyntaxLookup(concreteSyntax,
-	                           imported_concreteSyntaxs, imported_templates, null,
+	                           imported_concreteSyntaxs, imported_templates,null, 
 	                           getResolutionHelper());
 	               }
 	           } else {
 	            if (syntaxLookup == null) {
-	                   syntaxLookup = new SyntaxLookup(concreteSyntax, null, null,
-	                           null, getResolutionHelper());
+	                   syntaxLookup = new SyntaxLookup(concreteSyntax, null, null,null,
+	                            getResolutionHelper());
 	               }
 	            }
 	    
