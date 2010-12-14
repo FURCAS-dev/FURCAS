@@ -13,6 +13,7 @@ public class OverallWizardTest {
 
     @Test
     public void wizardTest() {
+        FurcasWizard wizard = null;
         ProjectInfo pi = new ProjectInfo();
         GeneratedClassesTest.configureProjectInfo(pi);
         String capLangName = CreateProject.capitalizeFirstChar(pi.getLanguageName());
@@ -20,16 +21,19 @@ public class OverallWizardTest {
                 + ".ecore");
         pi.setFromWorkspace(true);
         try {
-            runWizard(pi);
+            wizard = runWizard(pi);
         } catch (Exception e) {
             fail("Test failed due to: " + e.getMessage());
+        } finally {
+            wizard.deleteJunk(pi, new NullProgressMonitor());
         }
     }
 
-    private void runWizard(ProjectInfo pi) {
+    private FurcasWizard runWizard(ProjectInfo pi) {
         FurcasWizard wizard = new FurcasWizard();
         NullProgressMonitor monitor = new NullProgressMonitor();
         wizard.doFinish(pi, monitor);
+        return wizard;
 
     }
 
