@@ -106,8 +106,9 @@ public final class EcoreMetaProjectConf implements IProjectMetaRefConf {
             options.put(XMLResource.OPTION_ENCODING, "UTF-8");
             try {
                 resource.load(options);
+                newPRIs.add(resource.getURI());
             } catch (IOException e) {
-                // TODO
+                Activator.logger.logError("Error loading resource: " + resource.getURI() , e);
             }
             EList<EObject> list = resource.getContents();
             for (EObject object : list) {

@@ -7,7 +7,7 @@ import org.eclipse.jface.text.source.projection.IProjectionListener;
 import org.eclipse.jface.text.source.projection.ProjectionViewer;
 import org.eclipse.ui.texteditor.ITextEditor;
 
-import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
+import com.sap.furcas.ide.editor.AbstractGrammarBasedEditor;
 
 
 public class CtsFoldingStructureProvider implements IJavaFoldingStructureProvider {

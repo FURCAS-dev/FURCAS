@@ -2,11 +2,9 @@ package com.sap.ide.cts.editor.action;
 
 import java.util.Collection;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.action.Action;
-import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.DocumentEvent;
 import org.eclipse.jface.window.Window;
@@ -14,10 +12,10 @@ import org.eclipse.swt.dnd.Clipboard;
 import org.eclipse.swt.dnd.TextTransfer;
 import org.eclipse.swt.dnd.Transfer;
 
-import com.sap.ide.cts.editor.CtsActivator;
+import com.sap.furcas.ide.editor.CtsActivator;
+import com.sap.furcas.ide.editor.document.CtsDocument;
+import com.sap.furcas.ide.editor.document.CtsHistoryDocument;
 import com.sap.ide.cts.editor.DialogsImages;
-import com.sap.ide.cts.editor.document.CtsDocument;
-import com.sap.ide.cts.editor.document.CtsHistoryDocument;
 import com.sap.ide.cts.editor.junitcreate.CreateTestCaseDialog;
 import com.sap.ide.cts.editor.junitcreate.DocumentHistory;
 import com.sap.ide.cts.editor.junitcreate.JavaTestCaseBuilder;
@@ -52,7 +50,7 @@ public class CreateTestCaseAction extends Action {
 	    CtsHistoryDocument histDocument = (CtsHistoryDocument) document;
 	    DocumentHistory history = histDocument.getDocumentHistory();
 	    
-	    URI srcLri = document.getRootObject().get___Mri().getLri();
+	    URI srcLri = EcoreUtil.getURI(document.getRootObject());
 
 	    Collection<DocumentEvent> events = history.getHistory(version);
 	    String testCase = null; 
@@ -60,18 +58,18 @@ public class CreateTestCaseAction extends Action {
 	    try {
 		URI documentRootMRI = history.persistSnapshot(testCaseName, version);
 		if (documentRootMRI != null) {
-		    URI copyLRI = documentRootMRI.getLri();
+		    URI copyLRI = documentRootMRI;
 		    testCase = JavaTestCaseBuilder.buildTestCase(srcLri, copyLRI, events, testCaseName, description);
 		} else {
 		    MessageDialog.openWarning(CtsActivator.getDefault().getWorkbench().getActiveWorkbenchWindow().getShell(),
 			    "Cannot create testcase", "Could not persist snapshot. Please consult the error log.");
 		}
 
-	    } catch (PartitionCreatingNotPossibleException e) {
-		String msg = e.getMessage();
-		IStatus status = new Status(IStatus.ERROR, CtsActivator.PLUGIN_ID, IStatus.OK, msg, e);
-		ErrorDialog.openError(CtsActivator.getDefault().getWorkbench().getActiveWorkbenchWindow().getShell(),
-			"Cannot create partition", "Could not create partition with your desired name.", status);
+//	    } catch (PartitionCreatingNotPossibleException e) {
+//		String msg = e.getMessage();
+//		IStatus status = new Status(IStatus.ERROR, CtsActivator.PLUGIN_ID, IStatus.OK, msg, e);
+//		ErrorDialog.openError(CtsActivator.getDefault().getWorkbench().getActiveWorkbenchWindow().getShell(),
+//			"Cannot create partition", "Could not create partition with your desired name.", status);
 	    } catch (NoSuchSnapshotException e) {
 		String msg = e.getMessage();
 		msg += " You must save your editor in order to complete the current"

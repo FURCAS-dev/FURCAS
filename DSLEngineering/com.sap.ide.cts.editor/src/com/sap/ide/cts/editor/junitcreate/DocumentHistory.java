@@ -28,12 +28,12 @@ import org.eclipse.ui.progress.IProgressService;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
+import com.sap.furcas.ide.editor.CtsActivator;
+import com.sap.furcas.ide.editor.document.CtsDocument;
+import com.sap.furcas.ide.editor.document.CtsHistoryDocument;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.ide.cts.editor.CtsActivator;
 import com.sap.ide.cts.editor.deepcopy.DeepCopyHelper;
 import com.sap.ide.cts.editor.deepcopy.GenericModelCopyStrategy;
-import com.sap.ide.cts.editor.document.CtsDocument;
-import com.sap.ide.cts.editor.document.CtsHistoryDocument;
 
 
 

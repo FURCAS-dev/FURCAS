@@ -9,22 +9,29 @@ import java.util.Map;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.Token;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 
-import tcs.Alternative;
-import tcs.ClassTemplate;
-import tcs.ContextTemplate;
-import tcs.SequenceElement;
-import tcs.Template;
-import textblockdefinition.TextBlockDefinition;
-import textblocks.AbstractToken;
-import textblocks.Bostoken;
-import textblocks.Eostoken;
-import textblocks.LexedToken;
-import textblocks.OmittedToken;
-import textblocks.TextBlock;
-import textblocks.TextblocksPackage;
-import textblocks.VersionEnum;
-
+import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
+import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksFactory;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
+import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.tcs.TcsUtil;
+import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
+import com.sap.furcas.runtime.textblocks.modifcation.TbMarkingUtil;
+import com.sap.furcas.runtime.textblocks.validation.TbValidationUtil;
 import com.sap.ide.cts.editor.contentassist.TcsDebugUtil;
 import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorStream;
 import com.sap.ide.cts.editor.prettyprint.textblocks.TextBlockCommands.AddNextTextBlockCommand;
@@ -36,13 +43,6 @@ import com.sap.ide.cts.editor.prettyprint.textblocks.TextBlockCommands.FinishTex
 import com.sap.ide.cts.editor.prettyprint.textblocks.TextBlockCommands.TextBlockCommand;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.mi.textual.parsing.textblocks.TbMarkingUtil;
-import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
-import com.sap.mi.textual.parsing.textblocks.TbValidationUtil;
-import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 
 /**
@@ -66,8 +66,8 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
     protected final LinkedList<SequenceElement> currentSE = new LinkedList<SequenceElement>();
     protected final Map<TextBlock, Template> blockToTemplate = new HashMap<TextBlock, Template>();
 
-    protected final TextblocksPackage textblocksPacakge;
-    protected final ModelPartition partitionForTextBlocks;
+    protected final TextblocksFactory textblocksFactory;
+    protected final Resource partitionForTextBlocks;
     
     protected TextBlock rootBlock;
     protected TextBlock currentBlock;
@@ -80,7 +80,7 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
     
     public TextBlockTCSExtractorStream(TextblocksPackage pack, ModelPartition partitionForTextBlocks,
 	    ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) {
-	this.textblocksPacakge = pack;
+	this.textblocksFactory = pack;
 	this.partitionForTextBlocks = partitionForTextBlocks;
 	this.lexer = parserFactory.createLexer(null);
     }
@@ -90,9 +90,9 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
     }
 
     private TextBlock createTextBlock() {
-	TextBlock b = (TextBlock) textblocksPacakge.getTextBlock().refCreateInstanceInPartition(partitionForTextBlocks);
+	TextBlock b = (TextBlock) textblocksFactory.getTextBlock().refCreateInstanceInPartition(partitionForTextBlocks);
 	b.setChildrenChanged(false);
-	b.setVersion(VersionEnum.REFERENCE);
+	b.setVersion(Version.REFERENCE);
 	b.setRelexingNeeded(false);
 	b.setStartRow(0);
 	b.setStartColumn(0);
@@ -108,9 +108,9 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
 
     private LexedToken createLexedToken(SequenceElement se) {
 	// TODO compute lookahead and lookback using lexer!
-	LexedToken t = (LexedToken) textblocksPacakge.getLexedToken().refCreateInstanceInPartition(partitionForTextBlocks);
+	LexedToken t = (LexedToken) textblocksFactory.getLexedToken().refCreateInstanceInPartition(partitionForTextBlocks);
 	t.setChildrenChanged(false);
-	t.setVersion(VersionEnum.REFERENCE);
+	t.setVersion(Version.REFERENCE);
 	t.setRelexingNeeded(false);
 	t.setStartRow(0);
 	t.setStartColumn(0);
@@ -130,9 +130,9 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
     
     private OmittedToken createOmittedToken() {
 	// TODO compute lookahead and lookback using lexer!
-	OmittedToken t = (OmittedToken) textblocksPacakge.getOmittedToken().refCreateInstanceInPartition(partitionForTextBlocks);
+	OmittedToken t = (OmittedToken) textblocksFactory.getOmittedToken().refCreateInstanceInPartition(partitionForTextBlocks);
 	t.setChildrenChanged(false);
-	t.setVersion(VersionEnum.REFERENCE);
+	t.setVersion(Version.REFERENCE);
 	t.setRelexingNeeded(false);
 	t.setStartRow(0);
 	t.setStartColumn(0);
@@ -157,7 +157,7 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
 		}
 	    }
 	}
-	Bostoken bos = ANTLRIncrementalLexerAdapter.createBOSToken(textblocksPacakge, VersionEnum.REFERENCE,
+	Bostoken bos = ANTLRIncrementalLexerAdapter.createBOSToken(textblocksFactory, Version.REFERENCE,
 		ANTLRIncrementalLexerAdapter.bosTokenType);
 	addToken(bos);
     }
@@ -170,14 +170,14 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
 		}
 	    }
 	}
-	Eostoken eos = ANTLRIncrementalLexerAdapter.createEOSToken(textblocksPacakge, VersionEnum.REFERENCE,
+	Eostoken eos = ANTLRIncrementalLexerAdapter.createEOSToken(textblocksFactory, Version.REFERENCE,
 		ANTLRIncrementalLexerAdapter.eosTokenType);
 	eos.setOffset(currentOffset);
 	addToken(eos);
     }
 
     private void addToken(AbstractToken t) {
-	assert t.getParentBlock() == null: "New token must not already have a parent";
+	assert t.getParent() == null: "New token must not already have a parent";
 	assert !currentBlock.getTokens().contains(t) : "Must not add the same token twice";
 	currentBlock.getTokens().add(t);
 	currentOffset += t.getLength();
@@ -188,7 +188,7 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
 	assert b.getSubBlocks().isEmpty() : "New blocks must not already have subblocks";
 	assert b.getTokens().isEmpty() : "New blocks must not already have tokens";
 	assert !currentBlock.getSubBlocks().contains(b) : "Must not add a Tb twice";
-	assert b.getParentBlock() == null : "Must not already have a parent";
+	assert b.getParent() == null : "Must not already have a parent";
 	currentBlock.getSubBlocks().add(b);
 	currentOffset = 0;
 	currentBlockLength = 0;
@@ -197,8 +197,7 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
     
     protected void setType(TextBlock block, Template template) {
 	if (template != null) {
-	    TextBlockDefinition tbDef = textblocksPacakge.getTextblockdefinition().getTextblockDefinitionReferencesProduction()
-		    .getTextBlockDefinition(template).iterator().next();
+	    TextBlockDefinition tbDef = template.getTextBlockDefinition();
 	    block.setType(tbDef);
 	}
     }
@@ -209,20 +208,20 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
     
     protected void addToParentContext(TextBlock startBlock) {
 
-	List<RefObject> modelElements = startBlock.getCorrespondingModelElements();
+	List<EObject> modelElements = startBlock.getCorrespondingModelElements();
 
-	TextBlock parentBlock = startBlock.getParentBlock();
+	TextBlock parentBlock = startBlock.getParent();
 	while (parentBlock != null) {
 	    Template t = getType(parentBlock);
 
 	    if (t instanceof ContextTemplate) {
 		ContextTemplate ct = (ContextTemplate) t;
-		if (ct.isContext()) {
+		if (ct.isIsContext()) {
 		    parentBlock.getElementsInContext().addAll(modelElements);
 		    return;
 		}
 	    }
-	    parentBlock = parentBlock.getParentBlock();
+	    parentBlock = parentBlock.getParent();
 	}
     }
     
@@ -316,7 +315,7 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
     }
 
     @Override
-    public int startClassTemplateForObject(RefObject object, Template t) {
+    public int startClassTemplateForObject(EObject object, Template t) {
 	int handle = textBlocksHandleCounter++;
 	commandQueue.add(new AddNextTextBlockCommand(this, object, t, getCurrentSE(), handle));
 	return handle;
@@ -363,7 +362,7 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
 
 	currentBlock.setLength(currentBlockLength);
 
-	TextBlock parent = currentBlock.getParentBlock();
+	TextBlock parent = currentBlock.getParent();
 	if (parent != null) {
 
 	    if (currentBlockLength == 0) {
@@ -412,7 +411,7 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
 	}
     }
 
-    /*package*/ void addNextTextBlock(RefObject correspondingModelElement, Template template, SequenceElement se, int handle) {
+    /*package*/ void addNextTextBlock(EObject correspondingModelElement, Template template, SequenceElement se, int handle) {
 	if (DEBUG) {
 	    System.out.println("adding TextBlock for template " + TcsDebugUtil.prettyPrint(template) + " with handle: " + handle);
 	}
@@ -440,11 +439,11 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
 		System.out.println("adding BosToken");
 	    }
 	    if (template instanceof ClassTemplate) {
-		if (((ClassTemplate) template).isMain()) {
+		if (((ClassTemplate) template).isIsMain()) {
 		    addBosToken();
 		}
 	    } else if (template == null) {
-		if (currentBlock.getParentBlock() == null) {
+		if (currentBlock.getParent() == null) {
 		    addBosToken();
 		}
 	    }
@@ -529,11 +528,11 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
 	    }
 	    Template template = this.blockToTemplate.get(rootBlock);
 	    if (template instanceof ClassTemplate) {
-		if (((ClassTemplate) template).isMain()) {
+		if (((ClassTemplate) template).isIsMain()) {
 		    addEosToken();
 		}
 	    } else if (template == null) {
-		if (rootBlock.getParentBlock() == null) {
+		if (rootBlock.getParent() == null) {
 		    addEosToken();
 		}
 	    }

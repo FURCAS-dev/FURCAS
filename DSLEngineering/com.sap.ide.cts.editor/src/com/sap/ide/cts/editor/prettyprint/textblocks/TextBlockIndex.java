@@ -10,7 +10,7 @@ import tcs.ConcreteSyntax;
 import tcs.Template;
 import textblocks.TextBlock;
 
-import com.sap.ide.cts.editor.CtsActivator;
+import com.sap.furcas.ide.editor.CtsActivator;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**

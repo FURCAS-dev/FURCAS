@@ -17,6 +17,8 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 
 import com.sap.furcas.ide.dslproject.Activator;
 import com.sap.furcas.ide.dslproject.Constants;
@@ -172,17 +174,24 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
                         refScopeBean.getResourceSet(), refScopeBean.getReferenceScope());
                 
                 IFile grammarFile = getGrammarFile(syntaxDefFile);
-                GrammarGenerationTargetConfiguration targetConfig = new GrammarGenerationTargetConfiguration(getPackageName(grammarFile), convertIFileToFile(grammarFile));
+                URI createFileURI = URI.createFileURI(project.getFullPath() + File.separator + "mappings" + File.separator + getFileNameBase(syntaxDefFile) + "." + "tcs");
+                Resource mappingResource =  refScopeBean.getResourceSet().createResource(createFileURI);
+                GrammarGenerationTargetConfiguration targetConfig = new GrammarGenerationTargetConfiguration(
+                        getPackageName(grammarFile), convertIFileToFile(grammarFile), mappingResource);
 
                 TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
-                TCSSyntaxContainerBean syntaxBean = generator.parseSyntax(sourceConfig, convertIFileToFile(syntaxDefFile));
+                TCSSyntaxContainerBean syntaxBean = generator.parseSyntax(sourceConfig, convertIFileToFile(syntaxDefFile), targetConfig,
+                        new ResourceMarkingGenerationErrorHandler(
+                                syntaxDefFile));
+                if(syntaxBean != null) {
                 generator.generateGrammarFromSyntax(syntaxBean, sourceConfig, targetConfig, new ResourceMarkingGenerationErrorHandler(
                                 syntaxDefFile));
-                if (grammarFile.exists()) {
-                    generator.generateParserFromGrammar(targetConfig, new ResourceMarkingGenerationErrorHandler(grammarFile));
-
-                    // refresh dir where java was generated so that Java builder can compile
-                    grammarFile.getParent().refreshLocal(1, new SubProgressMonitor(monitor, 10));
+                    if (grammarFile.exists()) {
+                        generator.generateParserFromGrammar(targetConfig, new ResourceMarkingGenerationErrorHandler(grammarFile));
+    
+                        // refresh dir where java was generated so that Java builder can compile
+                        grammarFile.getParent().refreshLocal(1, new SubProgressMonitor(monitor, 10));
+                    }
                 }
             } catch (GrammarGenerationException e) {
                throw new CoreException(EclipseExceptionHelper.getErrorStatus(e, Activator.PLUGIN_ID));
