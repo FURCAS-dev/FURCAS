@@ -54,6 +54,8 @@
     <module>com.sap.furcas.runtime.textblocks.test</module>
     <module>com.sap.furcas.test</module>
     <module>com.sap.furcas.utils</module>
+    <module>com.sap.furcas.workspacesetup</module>
+    <module>com.sap.furcas.workspacesetup.feature</module>
 
 	<!--
     <module>com.sap.ide.cts.editor</module>

@@ -10,8 +10,5 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.ocl.uml"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.ocl.uml.tests"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.ocl.ecore.edit"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.ocl.edit"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.ocl.uml.edit"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
