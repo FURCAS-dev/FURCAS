@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link Bibtex.Author#getName <em>Name</em>}</li>
  *   <li>{@link Bibtex.Author#getPublications <em>Publications</em>}</li>
+ *   <li>{@link Bibtex.Author#getLiteraturedb <em>Literaturedb</em>}</li>
  * </ul>
  * </p>
  *
@@ -39,7 +40,7 @@ public interface Author extends EObject {
      * @return the value of the '<em>Name</em>' attribute.
      * @see #setName(String)
      * @see Bibtex.BibtexPackage#getAuthor_Name()
-     * @model
+     * @model required="true"
      * @generated
      */
     String getName();
@@ -71,5 +72,31 @@ public interface Author extends EObject {
      * @generated
      */
     EList<Entry> getPublications();
+
+    /**
+     * Returns the value of the '<em><b>Literaturedb</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Literaturedb</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Literaturedb</em>' reference.
+     * @see #setLiteraturedb(LiteratureDb)
+     * @see Bibtex.BibtexPackage#getAuthor_Literaturedb()
+     * @model
+     * @generated
+     */
+    LiteratureDb getLiteraturedb();
+
+    /**
+     * Sets the value of the '{@link Bibtex.Author#getLiteraturedb <em>Literaturedb</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Literaturedb</em>' reference.
+     * @see #getLiteraturedb()
+     * @generated
+     */
+    void setLiteraturedb(LiteratureDb value);
 
 } // Author

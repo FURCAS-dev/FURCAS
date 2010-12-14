@@ -6,11 +6,11 @@ import org.antlr.runtime.CharStream;
 import org.antlr.runtime.Lexer;
 import org.eclipse.jface.dialogs.MessageDialog;
 
+import com.sap.furcas.ide.editor.CtsActivator;
 import com.sap.furcas.metamodel.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.TCS.Token;
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.ide.cts.editor.CtsActivator;
 import com.sap.ide.cts.parser.incremental.MappingLinkRecoveringIncrementalParser;
 import com.sap.ide.cts.parser.incremental.TextBlockMappingRecoveringFailedException;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategy;

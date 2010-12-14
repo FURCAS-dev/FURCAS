@@ -1,0 +1,44 @@
+--specify your DSL grammar rules here ...
+
+syntax AlternativeBibtex {
+
+  -- place templates here (at least one main template)
+  primitiveTemplate identifier for EString default using NAME:
+    value = "%token%";
+        
+  primitiveTemplate integerSymbol for EInt default using INT:
+        value = "Integer.valueOf(%token%)";
+        
+  template LiteratureDb main context  
+  : "DB:" name "{"
+  		[ author ] 
+  	"}"
+  ;
+  
+  template Entry
+  : id ":" title
+  	{{literaturedb = lookIn("OCL:#context")}}
+  ;
+  
+  template Author
+  :
+  	name ":" 
+  	[ publications ]
+  	
+  	{{literaturedb = lookIn("OCL:#context")}}
+  ;
+ 
+  -- place keywords here (optional, seldom used)
+
+  -- place symbols here (optional)
+
+  -- place operatorLists here (optional)
+
+  -- place tokens here (optional, except for COMMENT)
+
+  token COMMENT : endOfLine(start = "--");
+
+  -- place lexer here (optional)
+
+}
+  

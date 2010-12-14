@@ -143,13 +143,22 @@ public interface BibtexPackage extends EPackage {
     int ENTRY__AUTHOR = 2;
 
     /**
+     * The feature id for the '<em><b>Literaturedb</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ENTRY__LITERATUREDB = 3;
+
+    /**
      * The number of structural features of the '<em>Entry</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ENTRY_FEATURE_COUNT = 3;
+    int ENTRY_FEATURE_COUNT = 4;
 
     /**
      * The meta object id for the '{@link Bibtex.impl.AuthorImpl <em>Author</em>}' class.
@@ -180,13 +189,22 @@ public interface BibtexPackage extends EPackage {
     int AUTHOR__PUBLICATIONS = 1;
 
     /**
+     * The feature id for the '<em><b>Literaturedb</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AUTHOR__LITERATUREDB = 2;
+
+    /**
      * The number of structural features of the '<em>Author</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int AUTHOR_FEATURE_COUNT = 2;
+    int AUTHOR_FEATURE_COUNT = 3;
 
 
     /**
@@ -276,6 +294,17 @@ public interface BibtexPackage extends EPackage {
     EReference getEntry_Author();
 
     /**
+     * Returns the meta object for the reference '{@link Bibtex.Entry#getLiteraturedb <em>Literaturedb</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Literaturedb</em>'.
+     * @see Bibtex.Entry#getLiteraturedb()
+     * @see #getEntry()
+     * @generated
+     */
+    EReference getEntry_Literaturedb();
+
+    /**
      * Returns the meta object for class '{@link Bibtex.Author <em>Author</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -306,6 +335,17 @@ public interface BibtexPackage extends EPackage {
      * @generated
      */
     EReference getAuthor_Publications();
+
+    /**
+     * Returns the meta object for the reference '{@link Bibtex.Author#getLiteraturedb <em>Literaturedb</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Literaturedb</em>'.
+     * @see Bibtex.Author#getLiteraturedb()
+     * @see #getAuthor()
+     * @generated
+     */
+    EReference getAuthor_Literaturedb();
 
     /**
      * Returns the factory that creates the instances of the model.
@@ -398,6 +438,14 @@ public interface BibtexPackage extends EPackage {
         EReference ENTRY__AUTHOR = eINSTANCE.getEntry_Author();
 
         /**
+         * The meta object literal for the '<em><b>Literaturedb</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference ENTRY__LITERATUREDB = eINSTANCE.getEntry_Literaturedb();
+
+        /**
          * The meta object literal for the '{@link Bibtex.impl.AuthorImpl <em>Author</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -422,6 +470,14 @@ public interface BibtexPackage extends EPackage {
          * @generated
          */
         EReference AUTHOR__PUBLICATIONS = eINSTANCE.getAuthor_Publications();
+
+        /**
+         * The meta object literal for the '<em><b>Literaturedb</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference AUTHOR__LITERATUREDB = eINSTANCE.getAuthor_Literaturedb();
 
     }
 

@@ -72,7 +72,7 @@ public interface LiteratureDb extends EObject {
      * @return the value of the '<em>Name</em>' attribute.
      * @see #setName(String)
      * @see Bibtex.BibtexPackage#getLiteratureDb_Name()
-     * @model
+     * @model required="true"
      * @generated
      */
     String getName();

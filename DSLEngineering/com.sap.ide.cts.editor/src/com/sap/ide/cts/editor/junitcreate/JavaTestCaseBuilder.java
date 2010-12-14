@@ -5,7 +5,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.text.DocumentEvent;
 
-import com.sap.ide.cts.editor.document.CtsHistoryDocument;
+import com.sap.furcas.ide.editor.document.CtsHistoryDocument;
 
 /**
  * Helper class to create JUnit Test methods based on the information provided
