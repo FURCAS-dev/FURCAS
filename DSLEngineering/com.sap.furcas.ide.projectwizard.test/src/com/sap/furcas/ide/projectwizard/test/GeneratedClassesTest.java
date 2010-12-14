@@ -210,7 +210,7 @@ public class GeneratedClassesTest {
      * 
      * @param pi
      */
-    private static void configureProjectInfo(ProjectInfo pi) {
+    public static void configureProjectInfo(ProjectInfo pi) {
         pi.setLoadMetamodel(false);
         pi.setClassName("ExampleClass");
         pi.setFileExtension("dsl");
