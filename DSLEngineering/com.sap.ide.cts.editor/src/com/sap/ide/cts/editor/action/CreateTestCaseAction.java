@@ -12,10 +12,10 @@ import org.eclipse.swt.dnd.Clipboard;
 import org.eclipse.swt.dnd.TextTransfer;
 import org.eclipse.swt.dnd.Transfer;
 
-import com.sap.ide.cts.editor.CtsActivator;
+import com.sap.furcas.ide.editor.CtsActivator;
+import com.sap.furcas.ide.editor.document.CtsDocument;
+import com.sap.furcas.ide.editor.document.CtsHistoryDocument;
 import com.sap.ide.cts.editor.DialogsImages;
-import com.sap.ide.cts.editor.document.CtsDocument;
-import com.sap.ide.cts.editor.document.CtsHistoryDocument;
 import com.sap.ide.cts.editor.junitcreate.CreateTestCaseDialog;
 import com.sap.ide.cts.editor.junitcreate.DocumentHistory;
 import com.sap.ide.cts.editor.junitcreate.JavaTestCaseBuilder;

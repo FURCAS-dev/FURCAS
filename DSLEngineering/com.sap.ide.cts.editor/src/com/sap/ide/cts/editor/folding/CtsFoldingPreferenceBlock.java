@@ -16,7 +16,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
-import com.sap.ide.cts.editor.CtsActivator;
+import com.sap.furcas.ide.editor.CtsActivator;
 
 
 @SuppressWarnings("restriction")

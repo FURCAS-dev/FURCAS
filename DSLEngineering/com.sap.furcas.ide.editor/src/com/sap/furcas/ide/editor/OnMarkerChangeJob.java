@@ -10,8 +10,8 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 
+import com.sap.furcas.ide.editor.document.CtsDocument;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
-import com.sap.ide.cts.editor.document.CtsDocument;
 
 
 /**

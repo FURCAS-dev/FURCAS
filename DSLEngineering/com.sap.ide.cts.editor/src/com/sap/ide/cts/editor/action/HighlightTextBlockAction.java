@@ -7,10 +7,10 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
+import com.sap.furcas.ide.editor.document.CtsDocument;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.runtime.textblocks.TbUtil;
-import com.sap.ide.cts.editor.document.CtsDocument;
 
 public class HighlightTextBlockAction implements Listener {
 
