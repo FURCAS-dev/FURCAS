@@ -185,6 +185,15 @@ public class BibtexPackageImpl extends EPackageImpl implements BibtexPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getEntry_Literaturedb() {
+        return (EReference)entryEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getAuthor() {
         return authorEClass;
     }
@@ -205,6 +214,15 @@ public class BibtexPackageImpl extends EPackageImpl implements BibtexPackage {
      */
     public EReference getAuthor_Publications() {
         return (EReference)authorEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getAuthor_Literaturedb() {
+        return (EReference)authorEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -244,10 +262,12 @@ public class BibtexPackageImpl extends EPackageImpl implements BibtexPackage {
         createEAttribute(entryEClass, ENTRY__TITLE);
         createEAttribute(entryEClass, ENTRY__ID);
         createEReference(entryEClass, ENTRY__AUTHOR);
+        createEReference(entryEClass, ENTRY__LITERATUREDB);
 
         authorEClass = createEClass(AUTHOR);
         createEAttribute(authorEClass, AUTHOR__NAME);
         createEReference(authorEClass, AUTHOR__PUBLICATIONS);
+        createEReference(authorEClass, AUTHOR__LITERATUREDB);
     }
 
     /**
@@ -283,16 +303,18 @@ public class BibtexPackageImpl extends EPackageImpl implements BibtexPackage {
         initEClass(literatureDbEClass, LiteratureDb.class, "LiteratureDb", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getLiteratureDb_Author(), this.getAuthor(), null, "author", null, 0, -1, LiteratureDb.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getLiteratureDb_Entries(), this.getEntry(), null, "entries", null, 0, -1, LiteratureDb.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getLiteratureDb_Name(), ecorePackage.getEString(), "name", null, 0, 1, LiteratureDb.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getLiteratureDb_Name(), ecorePackage.getEString(), "name", null, 1, 1, LiteratureDb.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(entryEClass, Entry.class, "Entry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getEntry_Title(), ecorePackage.getEString(), "title", null, 0, 1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getEntry_Id(), ecorePackage.getEString(), "id", "", 0, 1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getEntry_Title(), ecorePackage.getEString(), "title", null, 1, 1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getEntry_Id(), ecorePackage.getEString(), "id", "", 1, 1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getEntry_Author(), this.getAuthor(), this.getAuthor_Publications(), "author", null, 0, -1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getEntry_Literaturedb(), this.getLiteratureDb(), null, "literaturedb", null, 0, 1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(authorEClass, Author.class, "Author", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getAuthor_Name(), ecorePackage.getEString(), "name", null, 0, 1, Author.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getAuthor_Name(), ecorePackage.getEString(), "name", null, 1, 1, Author.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getAuthor_Publications(), this.getEntry(), this.getEntry_Author(), "publications", null, 0, -1, Author.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getAuthor_Literaturedb(), this.getLiteratureDb(), null, "literaturedb", null, 0, 1, Author.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);

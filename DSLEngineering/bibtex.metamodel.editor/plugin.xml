@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="Bibtex.presentation.BibtexModelWizardID"
+            name="%_UI_BibtexModelWizard_label"
+            class="Bibtex.presentation.BibtexModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/BibtexModelFile.gif">
+         <description>%_UI_BibtexModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="Bibtex.presentation.BibtexEditorID"
+            name="%_UI_BibtexEditor_label"
+            icon="icons/full/obj16/BibtexModelFile.gif"
+            extensions="bibtex"
+            class="Bibtex.presentation.BibtexEditor"
+            contributorClass="Bibtex.presentation.BibtexActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
