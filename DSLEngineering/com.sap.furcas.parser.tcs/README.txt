@@ -6,9 +6,9 @@ Bootstrap Howto:
     1) Run the Phase1 launch script to generate a bootstrapped parser.
        Fix your TCS.tcs until all steps are green, then continue.
        
-    2) Run the Phase2 launch script. It will run all parsergenerator scenario
-       tests using the bootstrapped parser. Repeat steps 1) and 2) until all
-       scenario tests are green, then continue.
+    2) Run the Phase2 launch scripts a) and b). They will run all TCS feature
+       and scenario integration tests using the bootstrapped parser.
+       Repeat steps 1) and 2) until all scenario tests are green, then continue.
        
        Important: You may need to manually refresh (F5) the "generationTemp" folder
                   before this phase can succeed!

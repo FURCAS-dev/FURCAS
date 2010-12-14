@@ -85,16 +85,11 @@ public class GeneratedParserTestConfiguration {
     }
     
     private static ResourceSet createResourceSet(File... metamodels) throws MetaModelLookupException {
-        ResourceSet resourceSet =  loadResourceSet(metamodels);
-//        resourceSet.getPackageRegistry().put(FURCASPackage.eNS_URI, FURCASPackage.eINSTANCE);
-//        resourceSet.getPackageRegistry().put(FURCASPackage.eNAME, FURCASPackage.eINSTANCE);
-        return resourceSet;
+        ResourceSet resourceSet = ResourceTestHelper.createResourceSet();
+        return loadResourceSet(resourceSet, metamodels);
     }
     
-    private static ResourceSet loadResourceSet(File... fileArr) throws MetaModelLookupException {
-        ResourceTestHelper.createEcoreReferenceScope();
-        
-        ResourceSet resourceSet = ResourceTestHelper.createResourceSet();
+    private static ResourceSet loadResourceSet(ResourceSet resourceSet, File... fileArr) throws MetaModelLookupException {
         for (File file : fileArr) {
             loadResourceFromUri(resourceSet, file.toURI().normalize().toString());
         }
