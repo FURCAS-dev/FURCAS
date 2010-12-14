@@ -227,7 +227,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
     /**
      * This method gets called when an error occured making sure that unneccessary projects in workspace get cleaned up.
      */
-    protected void deleteJunk(ProjectInfo pi, IProgressMonitor monitor) {
+    public void deleteJunk(ProjectInfo pi, IProgressMonitor monitor) {
         if (!pi.isLoadMetamodel()) {
             IWorkspace workspace = ResourcesPlugin.getWorkspace();
             IProject metamodelProject = workspace.getRoot().getProject(pi.getProjectName() + ".metamodel");
@@ -307,6 +307,12 @@ public class FurcasWizard extends Wizard implements INewWizard {
                         EcoreEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
             }
 
+        }
+        else{
+            // That should only run if called by a test
+            //
+            NullProgressMonitor monitor = new NullProgressMonitor();
+            CreateMMProject.create(getFurcasWizard(), monitor, pi);
         }
     }
 
