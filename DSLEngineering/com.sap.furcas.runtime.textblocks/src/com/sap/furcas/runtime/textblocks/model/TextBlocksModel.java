@@ -16,7 +16,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.command.AbstractCommand;
+import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
@@ -64,7 +67,9 @@ public class TextBlocksModel {
      * @param modelAdapter
      */
     public TextBlocksModel(TextBlock rootBlock2, IModelElementInvestigator modelAdapter) {
-	this(rootBlock2, Version.REFERENCE, modelAdapter, null);
+        this(rootBlock2, Version.REFERENCE, modelAdapter,
+                new AdapterFactoryEditingDomain(new AdapterFactoryImpl(),
+                        new BasicCommandStack()));
     }
 
     /**
