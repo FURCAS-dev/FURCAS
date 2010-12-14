@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+  <extension-point id="examples" name="%_UI_Examples_extensionpoint" schema="schema/examples.exsd" />
+  <extension point="org.eclipse.ui.elementFactories">
+     <factory
+         class="org.eclipse.emf.common.ui.URIEditorInputFactory"
+         id="org.eclipse.emf.common.ui.URIEditorInputFactory"/>
+  </extension>
+</plugin>

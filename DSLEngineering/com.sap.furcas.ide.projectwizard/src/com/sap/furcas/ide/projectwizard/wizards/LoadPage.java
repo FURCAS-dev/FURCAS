@@ -120,75 +120,54 @@ public class LoadPage extends WizardPage {
                 //
                 RegisteredPackageDialog registeredPackageDialog = new RegisteredPackageDialog(getShell());
                 registeredPackageDialog.open();
-                // save the result
+                // Save the result
+                //
                 Object[] result = registeredPackageDialog.getResult();
                 if (result != null) {
-                    List<?> nsURIs = Arrays.asList(result);
-                    if (registeredPackageDialog.isDevelopmentTimeVersion()) {
-                        ResourceSet resourceSet = new ResourceSetImpl();
-                        resourceSet.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap());
-                        Map<String, URI> ePackageNsURItoGenModelLocationMap = EcorePlugin.getEPackageNsURIToGenModelLocationMap();
-                        for (int i = 0, length = result.length; i < length; i++) {
-                            URI location = ePackageNsURItoGenModelLocationMap.get(result[i]);
-                            Resource resource = resourceSet.getResource(location, true);
-                            EcoreUtil.resolveAll(resource);
-                        }
-                        for (Resource resource : resourceSet.getResources()) {
-                            for (EPackage ePackage : getAllPackages(resource)) {
-                                if (nsURIs.contains(ePackage.getNsURI())) {
-                                    // Save the EPackage to global var eP
-                                    //
-                                    EObject containingPackage = ePackage.eContainer();
-                                    if ((EPackage) containingPackage instanceof EPackage) {
-                                        for (EObject object : containingPackage.eContents()) {
-                                            if (object instanceof EClass)
-                                                eP = (EPackage) containingPackage;
-                                            else
-                                                eP = ePackage;
-                                        }
-                                    } else {
-                                        eP = ePackage;
-                                    }
-                                    pi.setNsURI(eP.getNsURI());
-                                    uriField.setText(resource.getURI().toString());
-                                    break;
-                                }
-                            }
+                    saveSelection(result);
+                }
+            }
 
-                        }
-                    } else {
-                        ResourceSet resourceSet = new ResourceSetImpl();
-                        resourceSet.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap());
-                        Map<String, URI> ePackageNsURItoGenModelLocationMap = EcorePlugin.getEPackageNsURIToGenModelLocationMap();
-                        for (int i = 0, length = result.length; i < length; i++) {
-                            URI location = ePackageNsURItoGenModelLocationMap.get(result[i]);
-                            Resource resource = resourceSet.getResource(location, true);
-                            EcoreUtil.resolveAll(resource);
-                        }
-                        for (Resource resource : resourceSet.getResources()) {
-                            for (EPackage ePackage : getAllPackages(resource)) {
-                                if (nsURIs.contains(ePackage.getNsURI())) {
-                                    // Save the EPackage to global var eP
-                                    //
-                                    EObject containingPackage = ePackage.eContainer();
-                                    if ((EPackage) containingPackage instanceof EPackage) {
-                                        for (EObject object : containingPackage.eContents()) {
-                                            if (object instanceof EClass) {
-                                                eP = (EPackage) containingPackage;
-                                            } else {
-                                                eP = ePackage;
-                                            }
-                                        }
+            /**
+             * @param result
+             * @param nsURIs
+             */
+            private void saveSelection(Object[] result) {
+                List<?> nsURIs = Arrays.asList(result);
+                ResourceSet resourceSet = new ResourceSetImpl();
+                resourceSet.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap());
+                Map<String, URI> ePackageNsURItoGenModelLocationMap = EcorePlugin.getEPackageNsURIToGenModelLocationMap();
+                for (int i = 0, length = result.length; i < length; i++) {
+                    URI location = ePackageNsURItoGenModelLocationMap.get(result[i]);
+                    Resource resource = resourceSet.getResource(location, true);
+                    EcoreUtil.resolveAll(resource);
+                }
+                for (Resource resource : resourceSet.getResources()) {
+                    for (EPackage ePackage : getAllPackages(resource)) {
+                        if (nsURIs.contains(ePackage.getNsURI())) {
+                            // Save the EPackage to global var eP
+                            //
+                            EObject containingPackage = ePackage.eContainer();
+                            if (containingPackage instanceof EPackage) {
+                                for (EObject object : containingPackage.eContents()) {
+                                    if (object instanceof EClass) {
+                                        eP = (EPackage) containingPackage;
+                                        break;
                                     } else {
                                         eP = ePackage;
                                     }
-                                    pi.setNsURI(eP.getNsURI());
-                                    uriField.setText(resource.getURI().toString());
-                                    break;
                                 }
+                            } else {
+                                eP = ePackage;
                             }
+                            pi.setNsURI(eP.getNsURI());
+                            // Not really necessary, as it's not used.
+                            //
+                            uriField.setText(resource.getURI().toString());
+                            break;
                         }
                     }
+
                 }
             }
 
@@ -229,6 +208,7 @@ public class LoadPage extends WizardPage {
                         "Select the desired Metamodel an click OK.", false, null, filters);
                 if (files.length > 0) {
                     // Set the appropriate values in ProjectInfo and eP
+                    //
                     pi.setModelPath(files[0].getFullPath().toString());
                     try {
                         eP = fileToEPack(files[0]);
@@ -236,6 +216,8 @@ public class LoadPage extends WizardPage {
                         MessageDialog.openError(getShell(), "Error", e.getMessage());
                     }
                     pi.setNsURI(eP.getNsURI());
+                    // Not really necessary, as it's not used.
+                    //
                     uriField.setText(URI.createPlatformResourceURI(files[0].getFullPath().toString(), true).toString());
                 }
             }
