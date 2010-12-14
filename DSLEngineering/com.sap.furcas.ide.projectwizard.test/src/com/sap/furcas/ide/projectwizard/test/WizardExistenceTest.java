@@ -4,6 +4,7 @@ import static org.junit.Assert.fail;
 
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.wizards.IWizardDescriptor;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class WizardExistenceTest {
@@ -12,6 +13,7 @@ public class WizardExistenceTest {
      * Note: This test will not work in non headless mode!!
      * It checks the target eclipse workbench wizard registry for the furcas wizard.
      */
+    @Ignore
     @Test
     public void checkWizardExistence() {
         String id = "com.sap.furcas.ide.projectwizard.wizards.FurcasWizard";
