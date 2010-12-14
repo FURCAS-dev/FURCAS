@@ -111,6 +111,7 @@ import com.sap.ide.cts.parser.incremental.ParserFactory;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategyImpl;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRLexerAdapter;
+import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
 public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
         implements MarkerRefreshListener {
@@ -257,6 +258,7 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
 
         this.setParserFactory(parserFactory);
         this.tokenMapper = tokenMapper;
+        this.oppositeEndFinder = Query2OppositeEndFinder.getInstance();
         initializeEditingDomain();
         // do this via plugin.xml?
         // setDocumentProvider(new CtsDocumentProvider());
@@ -304,10 +306,11 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
 
     @Override
     public void createPartControl(Composite parent) {
-        super.createPartControl(parent);
         final AbstractGrammarBasedViewerConfiguration config = createSourceViewerConfig(getDocumentProvider()
                 .getAnnotationModel(getEditorInput()));
         setSourceViewerConfiguration(config);
+        
+        super.createPartControl(parent);
 
         ProjectionViewer viewer = (ProjectionViewer) getSourceViewer();
         projectionSupport = new ProjectionSupport(viewer,
@@ -483,14 +486,13 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
     }
     
     /**
-     * This is for implementing {@link IEditorPart} and simply tests the command stack.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
+     * This is for implementing {@link IEditorPart} and simply tests the command
+     * stack.
      */
-        @Override
-        public boolean isDirty() {
-        return ((BasicCommandStack)getEditingDomain().getCommandStack()).isSaveNeeded();
+    @Override
+    public boolean isDirty() {
+        return ((BasicCommandStack) getEditingDomain().getCommandStack())
+                .isSaveNeeded();
     }
 
     /**
@@ -834,7 +836,7 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
                 }
                 TextBlock newBlock = parseCommand.getNewBlock();
                 // move to new current version
-                if (!EcoreHelper.isAlive(newBlock)) {
+                if (newBlock == null || !EcoreHelper.isAlive(newBlock)) {
                     throw new RuntimeException(
                             "Textblock returned by parsing has been deleted!");
                 }
@@ -1040,7 +1042,7 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
 
     private boolean runningOutlineUpdate = false;
     private ResourceSet resourceSet;
-    private OppositeEndFinder oppositeEndFinder;
+    private final OppositeEndFinder oppositeEndFinder;
 
     private void updateOutlineSave() {
         try {
