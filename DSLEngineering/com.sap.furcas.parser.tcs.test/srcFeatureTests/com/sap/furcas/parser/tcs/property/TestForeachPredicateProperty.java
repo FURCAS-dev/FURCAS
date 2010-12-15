@@ -5,8 +5,9 @@ import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
 import java.util.Collection;
-import java.util.Collections;
+import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -27,7 +28,6 @@ import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
 import com.sap.furcas.test.fixture.FeatureFixtureData;
-import com.sap.furcas.test.testutils.ResourceTestHelper;
 
 /**
  * A test case that tests if foreach predicate property inits are executed correctly.
@@ -51,7 +51,11 @@ public class TestForeachPredicateProperty extends GeneratedParserBasedTest {
     private static final File METAMODEL = FeatureFixtureData.FOREACH_PREDICATE_PROPERTY_INIT_METAMODEL;
 
     private static ParsingHelper parsingHelper;
+    
     private static EPackage rootPackage;
+    private static Set<URI> referenceScope;
+    private static ResourceSet resourceSet;
+    
     private EObject johnDoe = null;
     private EObject janeDoll = null;
 
@@ -61,19 +65,20 @@ public class TestForeachPredicateProperty extends GeneratedParserBasedTest {
         TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
         ParserFacade facade = generateParserForLanguage(syntaxBean, testConfig, new ClassLookupImpl());
         parsingHelper = new ParsingHelper(facade);
-
-        rootPackage = findPackage("ForeachPredicatePropertyInit", testConfig.getSourceConfiguration().getResourceSet());
-
+        
+        resourceSet = testConfig.getSourceConfiguration().getResourceSet();
+        referenceScope = testConfig.getSourceConfiguration().getReferenceScope();
+        rootPackage = findPackage("ForeachPredicatePropertyInit");
     }
 
     @Before
-    public void getAuthors() throws Exception {
+    public void initializeModel() throws Exception {
         IModelAdapter modelAdapter = createNewEMFModelAdapter();
 
         String sample = "article{" + "  Testing, \"John Doe\"," + "}" + "author = \"John Doe\"."
                 + "author = \"Jane Doll\".";
 
-        ModelParsingResult parsingResult = parsingHelper.parseString(sample, modelAdapter);
+        ModelParsingResult parsingResult = parsingHelper.parseString(sample, /*expected errors*/ 0, modelAdapter);
 
         EObject bibTexFile = (EObject) parsingResult.getParsedModelElement();
         assertNotNull(bibTexFile);
@@ -106,15 +111,11 @@ public class TestForeachPredicateProperty extends GeneratedParserBasedTest {
     public void testForeachPredicatePropertyInits() {
         
         // According to the example, no RevenueLedger model elements should have been created for author Jane Doll.
-        @SuppressWarnings("unchecked")
-        Collection<EObject> janesRevenueLedgers = (Collection<EObject>) janeDoll.eGet( janeDoll.eClass()
-                .getEStructuralFeature("revenues"));
+        Collection<?> janesRevenueLedgers = (Collection<?>) janeDoll.eGet( janeDoll.eClass().getEStructuralFeature("revenues"));
         assertEquals(0, janesRevenueLedgers.size());
         
         // According to the example, only one RevenueLedger model element should have been created for author John Doe.
-        @SuppressWarnings("unchecked")
-        Collection<EObject> johnsRevenueLedgers = (Collection<EObject>) johnDoe.eGet(johnDoe.eClass()
-                .getEStructuralFeature("revenues"));
+        Collection<?> johnsRevenueLedgers = (Collection<?>) johnDoe.eGet(johnDoe.eClass().getEStructuralFeature("revenues"));
         assertEquals(1, johnsRevenueLedgers.size());
 
         // According to the TCS file revenueInEUR should be set to the length of the author's name.
@@ -125,14 +126,13 @@ public class TestForeachPredicateProperty extends GeneratedParserBasedTest {
     }
 
     private IModelAdapter createNewEMFModelAdapter() {
-        return new DefaultTextAwareModelAdapter(new EMFModelAdapter(rootPackage, ResourceTestHelper.createResourceSet(),
-                Collections.singleton(rootPackage.eResource().getURI())));
+        return new DefaultTextAwareModelAdapter(new EMFModelAdapter(rootPackage, resourceSet, referenceScope));
     }
 
     /**
      * Finds an EPackage in the {@link #resourceSet} by the <code>name</code> specified
      */
-    private static EPackage findPackage(String name, ResourceSet resourceSet) {
+    private static EPackage findPackage(String name) {
         for (Resource r : resourceSet.getResources()) {
             for (EObject c : r.getContents()) {
                 if (c instanceof EPackage && ((EPackage) c).getName().equals(name)) {
