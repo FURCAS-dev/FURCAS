@@ -88,7 +88,7 @@
 			</cs:actorProperties>
 			<cs:properties>
 				<cs:property key="content.ius" value="org.eclipse.ocl.all.feature.group"/>
-				<cs:property key="target.platform.ius" value="lpg.runtime.java,lpg.runtime.java.source" />
+				<cs:property key="target.platform.ius" value="lpg.runtime.java" />
 				<cs:property key="package.name" value="mdt-ocl-runtime" />
 			</cs:properties>
 			<cs:prerequisites>
