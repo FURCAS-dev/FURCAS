@@ -77,7 +77,7 @@ public class EMFModelAdapterDelegate {
     /**
      * @param rootPackage metamodel root package used for metamodel lookups
      * @param resourceSet
-     *            the {@link #createTransientParsingResource(ResourceSet) transient resource} will be created in this
+     *            the {@link EcoreHelper#createTransientParsingResource(ResourceSet, EPackage) transient resource} will be created in this
      *            resource set. New elements, in turn, end up in that resource and therefore in this
      *            <code>resourceSet</code>.
      * @param referenceScope
@@ -97,7 +97,7 @@ public class EMFModelAdapterDelegate {
         metamodelLookup = new QueryBasedEcoreMetaModelLookUp(resourceSet, referenceScopeIncludingMetamodels);
         
         // The model lookup needs to know about the element created by this delegate
-        transientResource = createTransientParsingResource(resourceSet);
+        transientResource = EcoreHelper.createTransientParsingResource(resourceSet, rootPackage);
         Set<URI> referenceScopeIncludingCreatedElements = new HashSet<URI>(localReferenceScope);
         referenceScopeIncludingCreatedElements.add(transientResource.getURI());
         modelLookup = new EcoreModelElementFinder(resourceSet, referenceScopeIncludingCreatedElements, metamodelLookup);
@@ -117,15 +117,6 @@ public class EMFModelAdapterDelegate {
         return result;
     }
 
-    /**
-     * Create a resource to holds all element created by this ModelAdapter. Otherwise query2 cannot find them.
-     */
-    private Resource createTransientParsingResource(ResourceSet resourceSet) {
-        Resource resource = resourceSet.createResource(URI.createURI(
-                rootPackage.getNsURI() + "/transientParsingResource" + EcoreUtil.generateUUID()));
-        return resource;
-    }
-    
     private void assignToTransientResource(EObject eObject) {
         transientResource.getContents().add(eObject);
     }
