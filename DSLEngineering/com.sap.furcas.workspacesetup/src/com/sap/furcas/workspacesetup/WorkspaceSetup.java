@@ -78,8 +78,7 @@ public class WorkspaceSetup implements IWorkbenchWindowActionDelegate {
             WorkspaceModifyOperation operation = new ImportOperation();
             new ProgressMonitorDialog(window.getShell()).run(true, true, operation);
         } catch (InvocationTargetException e) {
-            MessageDialog.openError(window.getShell(), "Error!", e.getMessage());
-            e.printStackTrace();
+            // Do nothing: User canceled the action
         } catch (InterruptedException e) {
             MessageDialog.openError(window.getShell(), "Error!", e.getMessage());
             e.printStackTrace();
