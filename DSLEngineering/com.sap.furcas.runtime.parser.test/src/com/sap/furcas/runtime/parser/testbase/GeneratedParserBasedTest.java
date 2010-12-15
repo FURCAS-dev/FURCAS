@@ -34,14 +34,20 @@ public abstract class GeneratedParserBasedTest {
             throws GrammarGenerationException, ParserGeneratorInvocationException, InvalidParserImplementationException {
         
         ParserGenerator generator = new ParserGenerator(testConfig);
+        boolean failed = false;
         try {
             generator.generateGrammar(syntaxBean);
             generator.generateParser();
             generator.compileParser();
 
             return generator.loadParserFacade(classLookup);
+        } catch (RuntimeException e) {
+            failed = true;
+            throw e;
         } finally {
-            generator.cleanUp();
+            if (!failed) {
+                generator.cleanUp();
+            }
         }
     }
 

@@ -151,13 +151,13 @@ public class ParserGenerator {
 
     public void cleanUp() {
         File genDir = new File(testConfig.getRelativePathToGeneratedFiles());
-        assertTrue(genDir.getAbsolutePath() + " is not a directory", genDir.isDirectory());
+        assertTrue(genDir.getAbsolutePath() + " is supposed to be a directory", genDir.isDirectory());
 
         for (File file : genDir.listFiles()) {
-            if (file.getName().startsWith(testConfig.getLexerName())
-                    | file.getName().startsWith(testConfig.getParserName())
-                    | file.getName().equals(testConfig.getLanguageName() + ".tokens")
-                    | file.getName().equals(testConfig.getTargetConfiguration().getGrammarTargetFile().getName())) {
+            if (       file.getName().startsWith(testConfig.getLanguageName()) && file.getName().endsWith(".java")
+                    || file.getName().startsWith(testConfig.getLanguageName()) && file.getName().endsWith(".class")
+                    || file.getName().startsWith(testConfig.getLanguageName()) && file.getName().endsWith(".g")
+                    || file.getName().equals(testConfig.getLanguageName() + ".tokens")) {
                 file.delete();
             }
         }
