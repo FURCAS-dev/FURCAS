@@ -3,6 +3,7 @@ package com.sap.furcas.workspacesetup;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
 
@@ -19,6 +20,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.action.IAction;
@@ -176,9 +178,16 @@ public class WorkspaceSetup implements IWorkbenchWindowActionDelegate {
         IWorkingSetManager workingSetManager = PlatformUI.getWorkbench().getWorkingSetManager();
         IWorkingSet set = workingSetManager.getWorkingSet(workingSet);
         if (set == null) {
-            workingSetManager.createWorkingSet(workingSet, new IProject[] { project });
+            set = workingSetManager.createWorkingSet(workingSet, new IProject[] { project });
+            workingSetManager.addWorkingSet(set);
         } else {
-            set.setElements(new IProject[] { project });
+            ArrayList<IAdaptable> oldList = new ArrayList<IAdaptable>();
+            IAdaptable[] old = set.getElements();
+            for(IAdaptable p : old) {
+                oldList.add(p);
+            }
+            oldList.add(project);
+            set.setElements(oldList.toArray(old));
         }
     }
 
