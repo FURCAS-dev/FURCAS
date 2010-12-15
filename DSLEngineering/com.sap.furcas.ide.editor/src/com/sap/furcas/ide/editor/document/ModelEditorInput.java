@@ -1,6 +1,8 @@
 package com.sap.furcas.ide.editor.document;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
@@ -35,7 +37,14 @@ public class ModelEditorInput implements IEditorInput {
 
     @Override
     public String getName() {
-        return eObject.toString();
+        EStructuralFeature nameFeat = eObject.eClass().getEStructuralFeature("name");
+        if(nameFeat != null) {
+            return (String) eObject.eGet(nameFeat);
+        } else if(EcoreUtil.getID(eObject) != null) {
+            return EcoreUtil.getID(eObject);
+        } else {
+            return eObject.toString();
+        }
     }
 
     @Override
