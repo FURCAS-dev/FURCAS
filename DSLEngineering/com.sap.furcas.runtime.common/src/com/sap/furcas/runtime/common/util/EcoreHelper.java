@@ -199,4 +199,18 @@ public class EcoreHelper {
 		return object.eResource() != null;
 	}
 
+    /**
+     * Creates a new resource in the given {@link ResourceSet#} named according to the uri of the 
+     * given <code>rootPackage</code> and postfixed with a generated UUID.
+     * 
+     * @param rootPackage
+     *            the {@link EPackage} of the instances stored in the resource.
+     *            Used for creating the {@link URI} of the resource.
+     */
+    public static Resource createTransientParsingResource(ResourceSet resourceSet, EPackage rootPackage) {
+        Resource resource = resourceSet.createResource(URI.createURI(
+                rootPackage.getNsURI() + "/transientParsingResource" + EcoreUtil.generateUUID()));
+        return resource;
+    }
+
 }

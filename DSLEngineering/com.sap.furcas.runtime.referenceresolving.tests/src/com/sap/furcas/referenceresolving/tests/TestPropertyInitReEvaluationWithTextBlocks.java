@@ -2,12 +2,17 @@ package com.sap.furcas.referenceresolving.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.Collection;
+import java.util.Iterator;
 
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -19,13 +24,18 @@ import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
+import com.sap.emf.ocl.trigger.TriggerManager;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
+import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.incremental.testbase.GeneratedParserAndFactoryBasedTest;
 import com.sap.furcas.runtime.parser.incremental.testbase.GeneratedParserAndFactoryTestConfiguration;
+import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.furcas.runtime.textblocks.testutils.EMFTextBlocksModelElementFactory;
 import com.sap.furcas.runtime.textblocks.testutils.TestSourceTextBlockCreator;
@@ -34,6 +44,14 @@ import com.sap.furcas.test.fixture.ScenarioFixtureData;
 import com.sap.furcas.test.testutils.ResourceTestHelper;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 
+/**
+ * A test case that use a FURCAS mapping specification (".tcs" file) and based on this produce lexer and
+ * parser, then parse a text resource and register all reference resolving callbacks. Then, the test
+ * manipulates the model produced by the parser run and observes how OCL-based property assignments get re-assigned.
+ * 
+ * @author Axel Uhl (D043530)
+ * 
+ */
 public class TestPropertyInitReEvaluationWithTextBlocks extends GeneratedParserAndFactoryBasedTest {
     
     private static final String LANGUAGE = "BibtexWithPropertyInits";
@@ -46,34 +64,37 @@ public class TestPropertyInitReEvaluationWithTextBlocks extends GeneratedParserA
     
     private TextBlocksModelElementFactory modelFactory;
     private Resource transientParsingResource;
+    private TextBlock currentVersionTb;
+    private EObject bibtexFile;
     private static ResourceSet resourceSet;
 
+    private static SyntaxRegistry syntaxRegistry;
+    private static TriggerManager triggerManager;
+    private static ConcreteSyntax syntax;
+    private EObject johnDoe;
+    private EObject article;
+    private EClass authorClass;
+    private EClass articleClass;
 
     @BeforeClass
     public static void setupParser() throws Exception {
         GeneratedParserAndFactoryTestConfiguration testConfig = new GeneratedParserAndFactoryTestConfiguration(LANGUAGE, TCS, MM_PACKAGE_NAME, METAMODELS);
-
         resourceSet = testConfig.getSourceConfiguration().getResourceSet();
         EditingDomain editingDomain = new AdapterFactoryEditingDomain(new AdapterFactoryImpl(),
                 new BasicCommandStack(), resourceSet);
-
         OppositeEndFinder oppositeEndFinder = DefaultOppositeEndFinder.getInstance();
-        
         TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
+        syntax = syntaxBean.getSyntax();
         incrementalParserFacade = generateParserAndParserFactoryForLanguage(syntaxBean, testConfig,
                 editingDomain, oppositeEndFinder, new ClassLookupImpl());
-        
         ECrossReferenceAdapter crossRefAdapter = new ECrossReferenceAdapter();
         resourceSet.eAdapters().add(crossRefAdapter);
         crossRefAdapter.setTarget(resourceSet);
+        syntaxRegistry = SyntaxRegistry.getInstance();
+        triggerManager = syntaxRegistry.getTriggerManagerForSyntax(syntax, DefaultOppositeEndFinder.getInstance(),
+                /* progress monitor */ null);
     }
 
-    @Before
-    public void setup() {
-        modelFactory = new EMFTextBlocksModelElementFactory();
-        transientParsingResource = ResourceTestHelper.createTransientResource(resourceSet);
-    }
-    
     @After
     public void cleanup() throws Exception {
         transientParsingResource.delete(/*options*/ null);
@@ -85,54 +106,84 @@ public class TestPropertyInitReEvaluationWithTextBlocks extends GeneratedParserA
      * 
      * @throws Exception
      */
-    @Test
-    public void testParseBibTextAddNewSubBlock() throws Exception {
+    @Before
+    public void setupInitialModel() throws IOException, UnknownProductionRuleException {
+        modelFactory = new EMFTextBlocksModelElementFactory();
+        transientParsingResource = ResourceTestHelper.createTransientResource(resourceSet);
         AbstractToken content = modelFactory.createToken("");
         TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, content);
         transientParsingResource.getContents().add(root);
-
         TextBlocksModel tbModel = new TextBlocksModel(root, null);
         tbModel.replace(0, 0, "article{" + "  Testing, \"John Doe\"," + "  year = \"2002\"" + "}" +
                 "author = \"John Doe\"." + "author = \"Jane Doll\".");
-
-        TextBlock currentVersionTb = incrementalParserFacade.parseIncrementally(root);
-        EObject syntaxObject = currentVersionTb.getCorrespondingModelElements().iterator().next();
-        // assert no exception
-        assertNotNull(syntaxObject);
-
-        EList<?> entries = (EList<?>) (syntaxObject).eGet((syntaxObject).eClass().getEStructuralFeature("entries"));
+        currentVersionTb = incrementalParserFacade.parseIncrementally(root);
+        bibtexFile = currentVersionTb.getCorrespondingModelElements().iterator().next();
+        triggerManager.addToObservedResourceSets(resourceSet);
+        johnDoe = null;
+        article = null;
+        authorClass = null;
+        articleClass = null;
+        assertNotNull(bibtexFile);
+        EClass bibTexFileClass = bibtexFile.eClass();
+        assertEquals("BibTextFile", bibTexFileClass.getName());
+        @SuppressWarnings("unchecked")
+        Collection<EObject> entries = (Collection<EObject>) bibtexFile.eGet(bibTexFileClass
+                .getEStructuralFeature("entries"));
+        for (EObject entry : entries) {
+            if (entry.eClass().getName().equals("Author")) {
+                authorClass = entry.eClass();
+                if (entry.eGet(authorClass.getEStructuralFeature("name")).equals("John Doe")) {
+                    johnDoe = entry;
+                }
+            } else if (entry.eClass().getName().equals("Article")) {
+                articleClass = entry.eClass();
+                article = entry;
+            }
+        }
+    }
+    
+    @Test
+    public void testInitialModel() {
+        assertNotNull(bibtexFile);
+        EList<?> entries = (EList<?>) (bibtexFile).eGet((bibtexFile).eClass().getEStructuralFeature("entries"));
         assertEquals(3, entries.size());
-//         EObject article = entries.get(0);
-//
-//         EList<EObject> attributes = (EList<EObject>) article.eGet(article.eClass().getEStructuralFeature("attributes"));
-//         assertEquals(1, attributes.size());
-//    
-//         TbChangeUtil.cleanUp(currentVersionTb);
-//         // add a new year to article
-//         tbModel = new TextBlocksModel(currentVersionTb, null);
-//         tbModel.replace(31, 0,
-//             "year = \"2010\",");
-//         TextBlock currentVersionTbNew = facade.parseIncrementally(currentVersionTb);
-//         // textBlock shouldn't have changed
-//         assertEquals(currentVersionTb, currentVersionTb);
-//         EObject syntaxObject2 = currentVersionTbNew
-//                 .getCorrespondingModelElements().iterator().next();
-//        
-//         // bibtexfile element shouldn't have changed
-//         assertEquals(syntaxObject, syntaxObject2);
-//        
-//         // article element shouldn't have changed
-//         entries = (EList<EObject>) (syntaxObject2)
-//             .eGet((syntaxObject).eClass().getEStructuralFeature(
-//                 "entries"));
-//         EObject newArticle = entries.get(0);
-//         assertEquals(article, newArticle);
-//         
-//         attributes = (EList<EObject>) article.eGet(article.eClass().getEStructuralFeature("attributes"));
-//         
-//         assertEquals(2, attributes.size());
-//         
-//         EObject newYear = attributes.get(0);
-//         assertEquals("2010", newYear.eGet(newYear.eClass().getEStructuralFeature("value")));
+        assertNotNull(syntax);
+        assertEquals("BibtexWithPropertyInits", syntax.getName());
+        assertNotNull(johnDoe);
+        // now check the reference was set using the right property name
+        // assertNotNull(johnDoe.get("articles")); StubModelHandler not powerful enough
+        assertNotNull(article.eGet(articleClass.getEStructuralFeature("author")));
+        assertEquals(johnDoe, article.eGet(articleClass.getEStructuralFeature("author")));
+        assertEquals("Where John Doe wrote it", article.eGet(articleClass.getEStructuralFeature("location")));
      }
+
+    @Test
+    public void testForeachPropertyInitValueInInitialModel() throws Exception {
+        @SuppressWarnings("unchecked")
+        EList<EObject> revenues = (EList<EObject>) johnDoe.eGet(authorClass.getEStructuralFeature("revenues"));
+        @SuppressWarnings("unchecked")
+        EList<EObject> johnsArticles = (EList<EObject>) johnDoe.eGet(authorClass.getEStructuralFeature("articles"));
+        assertEquals(johnsArticles.size(), revenues.size());
+        Iterator<EObject> johnsArticlesIterator = johnsArticles.iterator();
+        for (EObject revenue : revenues) {
+            EObject theArticle = johnsArticlesIterator.next();
+            assertSame(theArticle, revenue.eGet(revenue.eClass().getEStructuralFeature("article")));
+            assertEquals(((String) ((EObject) theArticle.eGet(articleClass.getEStructuralFeature("author"))).eGet(
+                    authorClass.getEStructuralFeature("name"))).length(), revenue.eGet(
+                            revenue.eClass().getEStructuralFeature("revenueInEUR")));
+        }
+    }
+    
+    @Ignore
+    public void testChangeOfExpressionValueUsingHashForeach() throws Exception {
+        johnDoe.eSet(authorClass.getEStructuralFeature("name"), "The Only John Doe");
+        testForeachPropertyInitValueInInitialModel();
+    }
+
+    @Test
+    public void testChangeAuthorName() {
+        johnDoe.eSet(authorClass.getEStructuralFeature("name"), "John Dough");
+        assertEquals("Where John Dough wrote it", article.eGet(articleClass.getEStructuralFeature("location")));
+    }
+
 }

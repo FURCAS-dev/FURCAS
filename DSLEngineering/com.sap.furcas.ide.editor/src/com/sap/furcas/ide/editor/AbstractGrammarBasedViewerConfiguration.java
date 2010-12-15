@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.antlr.runtime.Lexer;
-import org.antlr.runtime.Parser;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IAutoEditStrategy;
@@ -32,8 +31,10 @@ import org.eclipse.jface.text.source.SourceViewerConfiguration;
 
 import com.sap.furcas.ide.editor.autoedit.ClosingBraceAutoEditStrategy;
 import com.sap.furcas.ide.editor.autoedit.CtsAutoEditStrategy;
+import com.sap.furcas.ide.editor.contentassist.CtsContentAssistProcessor;
 import com.sap.furcas.ide.editor.document.CtsDocument;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 
 
@@ -42,7 +43,7 @@ public class AbstractGrammarBasedViewerConfiguration extends SourceViewerConfigu
     	protected final AbstractGrammarBasedEditor editor;
     	private final IAnnotationModel annotationModel;
 	private final Class<? extends Lexer> myLexerClass;
-	private final Class<? extends Parser> parserClass;
+	private final Class<? extends ObservableInjectingParser> parserClass;
 	private final ITokenMapper myMapper;
 //	private Parameter[] context = null;
 	private ContentAssistant myAssistant;
@@ -56,7 +57,7 @@ public class AbstractGrammarBasedViewerConfiguration extends SourceViewerConfigu
 	public AbstractGrammarBasedViewerConfiguration(ResourceSet connection,
 			IAnnotationModel annotationModel,
 			/*Parameter[] context,*/ Class<? extends Lexer> lexerClass,
-			Class<? extends Parser> parserClass, ITokenMapper myMapper, String languageId,
+			Class<? extends ObservableInjectingParser> parserClass, ITokenMapper myMapper, String languageId,
 			AbstractGrammarBasedEditor editor) {
 		this.annotationModel = annotationModel;
 		this.myLexerClass = lexerClass;
@@ -91,15 +92,15 @@ public class AbstractGrammarBasedViewerConfiguration extends SourceViewerConfigu
 
 	@Override
 	public IContentAssistant getContentAssistant(ISourceViewer sourceViewer) {
-//		if (getMyAssistant() == null) {
-//			setMyAssistant(new ContentAssistant());
-//			getMyAssistant().setContentAssistProcessor(
-//					new CtsContentAssistProcessor(connection, getLexerClass(), getParserClass(),
-//							languageId),
-//					IDocument.DEFAULT_CONTENT_TYPE);
-//			getMyAssistant().setAutoActivationDelay(1);
-//			getMyAssistant().enableAutoActivation(true);
-//		}
+		if (getMyAssistant() == null) {
+			setMyAssistant(new ContentAssistant());
+			getMyAssistant().setContentAssistProcessor(
+					new CtsContentAssistProcessor(connection, getLexerClass(), getParserClass(),
+							languageId),
+					IDocument.DEFAULT_CONTENT_TYPE);
+			getMyAssistant().setAutoActivationDelay(1);
+			getMyAssistant().enableAutoActivation(true);
+		}
 		return getMyAssistant();
 	}
 	
@@ -166,7 +167,7 @@ public class AbstractGrammarBasedViewerConfiguration extends SourceViewerConfigu
 		return myLexerClass;
 	}
 
-	protected Class<? extends Parser> getParserClass() {
+	protected Class<? extends ObservableInjectingParser> getParserClass() {
 		return parserClass;
 	}
 

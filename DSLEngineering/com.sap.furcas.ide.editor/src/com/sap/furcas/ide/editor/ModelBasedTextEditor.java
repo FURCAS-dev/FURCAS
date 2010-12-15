@@ -143,7 +143,6 @@ public class ModelBasedTextEditor extends TextEditor implements ITextEditor, IRe
         @Override
         protected void configureSourceViewerDecorationSupport(
     	    SourceViewerDecorationSupport support) {
-    		this.configureSourceViewerDecorationSupport(support);
     		super.configureSourceViewerDecorationSupport(support);
         }
 	

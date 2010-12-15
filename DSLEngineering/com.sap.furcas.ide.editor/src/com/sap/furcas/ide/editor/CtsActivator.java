@@ -8,9 +8,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.BundleException;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -40,24 +38,24 @@ public class CtsActivator extends AbstractUIPlugin {
         super.start(context);
         plugin = this;
         //this is to ensure that the global model listener is registered before an editor can be opened
-        ensurePluginLoaded(context, "com.sap.tc.moin.globalmodellistener");
-		ensurePluginLoaded(context, "com.sap.mi.textual.parsing.textblocks");
+        //ensurePluginLoaded(context, "com.sap.tc.moin.globalmodellistener");
+	//	ensurePluginLoaded(context, "com.sap.mi.textual.parsing.textblocks");
     }
 
-	private void ensurePluginLoaded(BundleContext context, String bundleName) {
-		for (Bundle b : context.getBundles()) {
-			if (b.getSymbolicName() != null &&
-					b.getSymbolicName().equals(bundleName)) {
-				if (b.getState() != Bundle.ACTIVE){
-					try {
-						b.start();
-					} catch (BundleException e) {
-						throw new RuntimeException("OSGi failure",e);
-					}
-				}
-			}
-		}
-	}
+//	private void ensurePluginLoaded(BundleContext context, String bundleName) {
+//		for (Bundle b : context.getBundles()) {
+//			if (b.getSymbolicName() != null &&
+//					b.getSymbolicName().equals(bundleName)) {
+//				if (b.getState() != Bundle.ACTIVE){
+//					try {
+//						b.start();
+//					} catch (BundleException e) {
+//						throw new RuntimeException("OSGi failure",e);
+//					}
+//				}
+//			}
+//		}
+//	}
 
     /*
      * (non-Javadoc)
