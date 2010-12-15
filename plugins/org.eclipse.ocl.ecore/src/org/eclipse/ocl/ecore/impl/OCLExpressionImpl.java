@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLExpressionImpl.java,v 1.8 2009/01/23 17:16:23 cdamus Exp $
+ * $Id: OCLExpressionImpl.java,v 1.9 2010/12/15 17:32:43 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.ETypedElementImpl;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.OCLExpression;
-import org.eclipse.ocl.util.ToStringVisitor;
+import org.eclipse.ocl.ecore.utilities.ToStringVisitor;
 import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
@@ -337,9 +337,7 @@ public abstract class OCLExpressionImpl
 			return super.toString();
 		}
 
-		return this
-			.<String, Visitor<String, ?, ?, ?, ?, ?, ?, ?, ?, ?>> accept(ToStringVisitor
-				.getInstance(this));
+		return accept(ToStringVisitor.getInstance(this));
 	}
 
 } //OCLExpressionImpl

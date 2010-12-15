@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: EcoreFactory.java,v 1.8 2009/12/06 18:15:06 ewillink Exp $
+ * $Id: EcoreFactory.java,v 1.9 2010/12/15 17:32:44 ewillink Exp $
  */
 package org.eclipse.ocl.ecore;
 
@@ -434,6 +434,16 @@ public interface EcoreFactory
 	 * @generated
 	 */
 	VariableExp createVariableExp();
+
+	/**
+	 * Returns a new object of class '<em>Opposite Property Call Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * @since 3.1
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Opposite Property Call Exp</em>'.
+	 * @generated
+	 */
+	OppositePropertyCallExp createOppositePropertyCallExp();
 
 	/**
 	 * Returns the package supported by this factory.

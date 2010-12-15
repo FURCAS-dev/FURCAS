@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: EcoreFactoryImpl.java,v 1.9 2009/12/06 18:15:39 ewillink Exp $
+ * $Id: EcoreFactoryImpl.java,v 1.10 2010/12/15 17:32:43 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -47,6 +47,7 @@ import org.eclipse.ocl.ecore.MessageExp;
 import org.eclipse.ocl.ecore.MessageType;
 import org.eclipse.ocl.ecore.NullLiteralExp;
 import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.OrderedSetType;
 import org.eclipse.ocl.ecore.PrimitiveType;
 import org.eclipse.ocl.ecore.PropertyCallExp;
@@ -203,6 +204,8 @@ public class EcoreFactoryImpl
 				return createVariable();
 			case EcorePackage.VARIABLE_EXP :
 				return createVariableExp();
+			case EcorePackage.OPPOSITE_PROPERTY_CALL_EXP :
+				return createOppositePropertyCallExp();
 			default :
 				throw new IllegalArgumentException(
 					"The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -648,6 +651,17 @@ public class EcoreFactoryImpl
 	public VariableExp createVariableExp() {
 		VariableExpImpl variableExp = new VariableExpImpl();
 		return variableExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.1
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OppositePropertyCallExp createOppositePropertyCallExp() {
+		OppositePropertyCallExpImpl oppositePropertyCallExp = new OppositePropertyCallExpImpl();
+		return oppositePropertyCallExp;
 	}
 
 	/**

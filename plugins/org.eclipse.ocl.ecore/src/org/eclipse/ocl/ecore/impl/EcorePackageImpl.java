@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: EcorePackageImpl.java,v 1.14 2010/02/08 20:57:00 ewillink Exp $
+ * $Id: EcorePackageImpl.java,v 1.15 2010/12/15 17:32:43 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -57,6 +57,7 @@ import org.eclipse.ocl.ecore.NullLiteralExp;
 import org.eclipse.ocl.ecore.NumericLiteralExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.OrderedSetType;
 import org.eclipse.ocl.ecore.PrimitiveLiteralExp;
 import org.eclipse.ocl.ecore.PrimitiveType;
@@ -464,6 +465,13 @@ public class EcorePackageImpl
 	 * @generated
 	 */
 	private EClass variableExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass oppositePropertyCallExpEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1072,6 +1080,27 @@ public class EcorePackageImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.1
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOppositePropertyCallExp() {
+		return oppositePropertyCallExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.1
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOppositePropertyCallExp_ReferredOppositeProperty() {
+		return (EReference) oppositePropertyCallExpEClass
+			.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -1210,6 +1239,10 @@ public class EcorePackageImpl
 		variableEClass = createEClass(VARIABLE);
 
 		variableExpEClass = createEClass(VARIABLE_EXP);
+
+		oppositePropertyCallExpEClass = createEClass(OPPOSITE_PROPERTY_CALL_EXP);
+		createEReference(oppositePropertyCallExpEClass,
+			OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY);
 	}
 
 	/**
@@ -1624,6 +1657,8 @@ public class EcorePackageImpl
 		g2 = createEGenericType(theEcorePackage_1.getEParameter());
 		g1.getETypeArguments().add(g2);
 		variableExpEClass.getEGenericSuperTypes().add(g1);
+		oppositePropertyCallExpEClass.getESuperTypes().add(
+			this.getNavigationCallExp());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(anyTypeEClass, AnyType.class,
@@ -1903,6 +1938,16 @@ public class EcorePackageImpl
 			variableExpEClass,
 			VariableExp.class,
 			"VariableExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(
+			oppositePropertyCallExpEClass,
+			OppositePropertyCallExp.class,
+			"OppositePropertyCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(
+			getOppositePropertyCallExp_ReferredOppositeProperty(),
+			theEcorePackage_1.getEReference(),
+			null,
+			"referredOppositeProperty", null, 1, 1, OppositePropertyCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
