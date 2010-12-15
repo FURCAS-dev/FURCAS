@@ -38,6 +38,7 @@
 			</cs:actorProperties>
 			<cs:properties>
 				<cs:property key="content.ius" value="org.eclipse.ocl.all.sdk.feature.group" />
+				<cs:property key="target.platform.ius" value="lpg.runtime.java,lpg.runtime.java.source" />
 				<cs:property key="package.name" value="mdt-ocl-SDK" />
 			</cs:properties>
 			<cs:prerequisites>
@@ -54,7 +55,7 @@
 			</cs:actorProperties>
 			<cs:properties>
 				<cs:property key="content.ius" value="org.eclipse.ocl.core.sdk.feature.group" />
-				<cs:property key="target.platform.ius" value="lpg.runtime.java" />
+				<cs:property key="target.platform.ius" value="lpg.runtime.java,lpg.runtime.java.source" />
 				<cs:property key="package.name" value="mdt-ocl-CoreSDK" />
 			</cs:properties>
 			<cs:prerequisites>
@@ -87,6 +88,7 @@
 			</cs:actorProperties>
 			<cs:properties>
 				<cs:property key="content.ius" value="org.eclipse.ocl.all.feature.group"/>
+				<cs:property key="target.platform.ius" value="lpg.runtime.java,lpg.runtime.java.source" />
 				<cs:property key="package.name" value="mdt-ocl-runtime" />
 			</cs:properties>
 			<cs:prerequisites>
