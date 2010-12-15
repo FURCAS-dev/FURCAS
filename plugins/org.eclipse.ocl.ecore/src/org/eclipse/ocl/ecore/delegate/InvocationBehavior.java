@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InvocationBehavior.java,v 1.2 2010/04/08 06:27:20 ewillink Exp $
+ * $Id: InvocationBehavior.java,v 1.3 2010/12/15 17:49:34 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.delegate;
 
@@ -68,13 +68,13 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 	}
 
 	public OCLExpression getOperationBody(OCL ocl, EOperation operation) {
-		EClass context = operation.getEContainingClass();
-		OCL.Helper helper = ocl.createOCLHelper();
-		helper.setOperationContext(context, operation);
 		String expr = EcoreUtil.getAnnotation(operation, OCLDelegateDomain.OCL_DELEGATE_URI, BODY_CONSTRAINT_KEY);
 		if (expr == null) {
 			return null;
 		}
+		EClass context = operation.getEContainingClass();
+		OCL.Helper helper = ocl.createOCLHelper();
+		helper.setOperationContext(context, operation);
 		Constraint constraint;
 		try {
 			constraint = helper.createBodyCondition(expr);
