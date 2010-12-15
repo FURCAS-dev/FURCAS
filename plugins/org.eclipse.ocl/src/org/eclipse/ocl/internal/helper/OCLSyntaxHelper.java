@@ -15,7 +15,7 @@
  *   
  * </copyright>
  *
- * $Id: OCLSyntaxHelper.java,v 1.18 2010/01/22 18:38:12 asanchez Exp $
+ * $Id: OCLSyntaxHelper.java,v 1.19 2010/12/15 17:33:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -35,6 +35,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.cst.ClassifierContextDeclCS;
@@ -94,7 +95,8 @@ import org.eclipse.ocl.utilities.Visitor;
  * @author Yasser Lulu 
  * @author Christian W. Damus (cdamus)
  */
-final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
+public class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+	implements org.eclipse.ocl.helper.OCLSyntaxHelper {
 
 	// codes indicating the token before the cursor when completion invoked
 	private static final int NONE = -1;
@@ -144,7 +146,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	private OCLStandardLibrary<C> stdlib;
     private UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> uml;
 
-	OCLSyntaxHelper(Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
+	public OCLSyntaxHelper(Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
 		environment = env;
 		stdlib = env.getOCLStandardLibrary();
         uml = env.getUMLReflection();
@@ -321,7 +323,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		return result.toString();
 	}
 
-	private class ASTVisitor
+	protected class ASTVisitor
 		implements Visitor<List<Choice>, C, O, P, EL, PM, S, COA, SSA, CT> {
 
 		private final int completionPosition;
@@ -336,10 +338,14 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		 * @param position the completion position
 		 * @param constraintType the type of constraint that we are completing
 		 */
-		ASTVisitor(String text, int position, ConstraintKind constraintType) {
+		protected ASTVisitor(String text, int position, ConstraintKind constraintType) {
 			this.text = text;
 			completionPosition = position;
 			this.constraintType = constraintType;
+		}
+		
+		protected ConstraintKind getConstraintType() {
+			return constraintType;
 		}
 		
 		public List<Choice> visitOperationCallExp(OperationCallExp<C, O> exp) {
@@ -498,12 +504,12 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 * @param eClass the eclass to get features from 
 	 * @return List oclchoices list for structural features
 	 */
-	private List<Choice> getPropertyChoices(C eClass) {
+	protected List<Choice> getPropertyChoices(C eClass) {
 		List<Choice> result = new ArrayList<Choice>();
 		Set<P> properties = new HashSet<P>(TypeUtil.getAttributes(environment, eClass));
 		
 		for (P property : properties) {
-			result.add(new ChoiceImpl(
+			result.add(createChoice(
                 uml.getName(property),
                 getDescription(property),
                 ChoiceKind.PROPERTY,
@@ -516,7 +522,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 			    if (name != null) {
     				name = initialLower(name);
     				
-    				Choice choice = new ChoiceImpl(
+    				Choice choice = createChoice(
     					name,
     					uml.getName(assocClass),
     					ChoiceKind.ASSOCIATION_CLASS,
@@ -534,6 +540,10 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		return result;
 	}
 	
+	protected Choice createChoice(String name, String description, ChoiceKind kind, Object element) {
+		return new ChoiceImpl(name, description, kind, element);
+	}
+
 	/**
 	 * Gets the name of a named <code>elem</code>ent with its initial character
 	 * in lower case.
@@ -564,7 +574,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 * @return syntax help choices for user (list of {@link Choice}s;
 	 *     could be empty
 	 */
-	private List<Choice> getChoices(OCLExpression<C> expression, ConstraintKind constraintType) {
+	protected List<Choice> getChoices(OCLExpression<C> expression, ConstraintKind constraintType) {
 		return getChoices(expression.getType(), constraintType);
 	}
 	
@@ -727,6 +737,10 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		return result;
 	}
 
+	protected Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> getEnvironment() {
+		return environment;
+	}
+
 	/**
 	 * builds and returns a list of Choice that represent the directly
 	 * contained classifiers.
@@ -860,7 +874,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 */
 	private List<IToken> tokenize(String text) {
 		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer =
-			new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(environment, text);
+			environment.getFactory().createOCLAnalyzer(environment, text);
 		return tokenize(analyzer);
 	}
 	
@@ -893,7 +907,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 * @param namedElement a named element presented to the user as a choice
 	 * @return the most appropriate description for the element
 	 */
-	private String getDescription(Object namedElement) {
+	protected String getDescription(Object namedElement) {
 		return uml.getDescription(namedElement);
 	}
 
@@ -909,7 +923,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 * @return a list of {@link Choice}s representing the syntax help choices
 	 *     for the user; could be empty
 	 */
-	List<Choice> getSyntaxHelp(ConstraintKind constraintType, String txt) {
+	public List<Choice> getSyntaxHelp(ConstraintKind constraintType, String txt) {
 	    OCLExpression<C> expression;
 	    List<Choice> result;
 	    
@@ -920,14 +934,14 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 				int position = txt.lastIndexOf(HelperUtil.DOT); // known BMP code point
 				
 				expression = getOCLExpression(environment, position, txt, constraintType);
-				result = expression.accept(new ASTVisitor(txt, position, constraintType));
+				result = expression.accept(createASTVisitor(constraintType, txt, position));
                 disposeAll(expression);
 			} else if (txt.endsWith(HelperUtil.ARROW)) {
 				syntaxHelpStringSuffix = ARROW;
 				int position = txt.lastIndexOf(HelperUtil.ARROW); // known BMP code points
 				
 				expression = getOCLExpression(environment, position, txt, constraintType);
-                result = expression.accept(new ASTVisitor(txt, position, constraintType));
+                result = expression.accept(createASTVisitor(constraintType, txt, position));
                 disposeAll(expression);
 			} else if (txt.endsWith(HelperUtil.CARET)) { // known BMP code points
 				syntaxHelpStringSuffix = CARET;
@@ -939,7 +953,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 				}
 				
 				expression = getOCLExpression(environment, position, txt, constraintType);
-                result = expression.accept(new ASTVisitor(txt, position, constraintType));
+                result = expression.accept(createASTVisitor(constraintType, txt, position));
                 disposeAll(expression);
 			} else if (txt.endsWith(HelperUtil.DOUBLE_COLON)) {
 				syntaxHelpStringSuffix = NONE;
@@ -949,8 +963,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 				// look backwards past the path name to see whether there is an
 				//   "oclIsInState(" before it
 				OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer =
-					new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-							environment, txt);
+					environment.getFactory().createOCLAnalyzer(environment, txt);
 				IPrsStream parser = analyzer.getAbstractParser().getIPrsStream();		
 				List<IToken> tokens = tokenize(analyzer);
 				
@@ -1014,8 +1027,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 				disposeAll(expression);
 			} else {
 				OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parser =
-					new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-							environment, txt);
+					environment.getFactory().createOCLAnalyzer(environment, txt);
 				
 				// see whether we can complete a partial name
 				List<IToken> tokens = tokenize(parser);
@@ -1075,6 +1087,11 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		}
 		
 		return result;
+	}
+
+	protected ASTVisitor createASTVisitor(ConstraintKind constraintType,
+			String txt, int position) {
+		return new ASTVisitor(txt, position, constraintType);
 	}
 
 	protected boolean isOclIsInState(IToken token) {
@@ -1145,8 +1162,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	    
         String newTxt = txt.substring(start, end);
         OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer =
-            new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-            		env, newTxt);
+        	environment.getFactory().createOCLAnalyzer(env, newTxt);
         
         PackageDeclarationCS packageContext = null;
         OCLExpressionCS cst = null;
@@ -1211,8 +1227,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
                     start = token.getStartOffset();
                     newTxt = preamble + txt.substring(start, end);
                     
-                    analyzer = new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-                    		env, newTxt);
+                    analyzer = environment.getFactory().createOCLAnalyzer(env, newTxt);
                     
                     // offset the parser left by the length of our preamble text
                     // and right by the number of characters on the left side
@@ -1356,9 +1371,9 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			String variables) throws ParserException {
 		int beginIndex = 0;
+		EnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environmentFactory = environment.getFactory();
 		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> mainAnalyzer =
-			new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-					env, variables);
+			environmentFactory.createOCLAnalyzer(env, variables);
 		
 		if (!parseVariableDeclaration(env, mainAnalyzer)) {
 			IPrsStream parser = mainAnalyzer.getAbstractParser().getIPrsStream();		
@@ -1371,15 +1386,13 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 				if ((token.getKind() == OCLParsersym.TK_COMMA)
 						|| (token.getKind() == OCLParsersym.TK_SEMICOLON)) {
 					newTxt = variables.substring(beginIndex, token.getStartOffset());
-					analyzer = new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-							env, newTxt);
+					analyzer = environmentFactory.createOCLAnalyzer(env, newTxt);
 					if (parseVariableDeclaration(env, analyzer)) {
 						beginIndex = token.getEndOffset() + 1;
 		
 						// try to the end of the expression
 						newTxt = variables.substring(beginIndex);
-						analyzer = new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-								env, newTxt);
+						analyzer = environmentFactory.createOCLAnalyzer(env, newTxt);
 						if (parseVariableDeclaration(env, analyzer)) {
 							break;
             			}
@@ -1395,8 +1408,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 			String variables) throws ParserException {
 		
 		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer =
-			new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-					env, variables);
+			environment.getFactory().createOCLAnalyzer(env, variables);
 		
 		parseVariableDeclaration(env, analyzer);
 	}

@@ -13,15 +13,14 @@
  *
  * </copyright>
  *
- * $Id: LiteralExpImpl.java,v 1.6 2009/01/22 00:20:02 cdamus Exp $
+ * $Id: LiteralExpImpl.java,v 1.7 2010/12/15 17:32:43 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.LiteralExp;
-import org.eclipse.ocl.util.ToStringVisitor;
-import org.eclipse.ocl.utilities.Visitor;
+import org.eclipse.ocl.ecore.utilities.ToStringVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -66,9 +65,7 @@ public abstract class LiteralExpImpl
 			return super.toString();
 		}
 
-		return this
-			.<String, Visitor<String, ?, ?, ?, ?, ?, ?, ?, ?, ?>> accept(ToStringVisitor
-				.getInstance(this));
+		return accept(ToStringVisitor.getInstance(this));
 	}
 
 } //LiteralExpImpl

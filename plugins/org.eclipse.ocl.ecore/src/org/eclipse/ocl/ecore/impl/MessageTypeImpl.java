@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: MessageTypeImpl.java,v 1.12 2010/04/23 05:52:40 ewillink Exp $
+ * $Id: MessageTypeImpl.java,v 1.13 2010/12/15 17:32:43 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -294,8 +294,8 @@ public class MessageTypeImpl
 				}
 
 				for (ETypedElement next : typedElements) {
-					features.add(uml.createProperty(next.getName(), TypeUtil
-						.resolveType(env, uml.getOCLType(next))));
+					features.add(uml.createProperty(next.getName(),
+						TypeUtil.resolveType(env, uml.getOCLType(next))));
 				}
 			}
 		}

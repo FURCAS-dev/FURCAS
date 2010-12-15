@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: HelperUtil.java,v 1.8 2009/10/23 21:00:10 ewillink Exp $
+ * $Id: HelperUtil.java,v 1.9 2010/12/15 17:33:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -407,8 +407,7 @@ public class HelperUtil {
 		}
 		
 		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-		result = new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-				env, (prefix + '\n' + text));
+		result = env.getFactory().createOCLAnalyzer(env, prefix + '\n' + text);
 		
 		// offset the character position by the length of the extra text
 		result.setCharacterOffset(-(prefix.length() + 1)); // one for the newline

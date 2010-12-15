@@ -12,7 +12,9 @@ An application that integrates OCL may find it advantageous to provide its users
 enhanced OCL environment, to simplify their task of formulating OCL constraints and queries.
 For example, an application might define additional "primitive" operations on the OCL
 standard data types that are pertinent to its domain, or "global" variables that inject
-useful objects into the user's context.
+useful objects into the user's context. It is also possible to customize the way
+"hidden" opposites are looked up and navigated, specifically to allow reverse navigation
+across Ecore references that have no opposite defined.
 </p>
 
 <h2>Defining Global Variables</h2>
@@ -279,10 +281,80 @@ Person person = getPersonToValidate();
 System.out.printf("%s valid SSN: %b%n", person, ocl.<b>check</b>(person, validSSN));
 </pre>
 
+<h2>Customizing "Hidden" Opposite Lookup and Navigation</h2>
+
+<p>
+The default <a href="../../javadoc/org/eclipse/ocl/ecore/EcoreEnvironmentFactory.html"><em class="CodeName">EcoreEnvironmentFactory</em></a>
+produces environments which can find references that have an annotation with source <em class="CodeName">http://schema.omg.org/spec/MOF/2.0/emof.xml</em>
+that have a detail with key <em class="CodeName">Property.oppositeRoleName</em>. In the class that is the type of the reference,
+and all its subclasses, for OCL this annotation defines an otherwise "hidden" opposite property which can be used
+in OCL expressions. This can be convenient when it is not possible or desirable to define an explicit
+opposite reference, e.g., because the class that would have to own the opposite reference can't easily be
+modified or the serialization of that class must not be changed.
+</p>
+
+<p>
+The logic used to find these "hidden" opposites and to navigate them is provided by implementations
+of the <a href="../../javadoc/org/eclipse/ocl/ecore/OppositeEndFinder.html"><em class="CodeName">OppositeEndFinder</em></a>
+interface. By default, the <em class="CodeName">EcoreEnvironmentFactory</em> uses the
+<a href="../../javadoc/org/eclipse/ocl/ecore/DefaultOppositeEndFinder.html"><em class="CodeName">DefaultOppositeEndFinder</em></a>
+implementation. It performs the lookup of annotated references by maintaining a cache based on
+the Ecore package registry. Successful navigation of those "hidden" opposites requires an
+<a href="../../javadoc/org/eclipse/emf/ecore/util/ECrossReferenceAdapter.html"><em class="CodeName">ECrossReferenceAdapter</em></a>
+to be registered for the containment hierarchy or the resource or resource set that should be used as the
+scope of the navigation.
+</p>
+
+<p>
+Obviously, <a href="../../javadoc/org/eclipse/emf/ecore/util/ECrossReferenceAdapter.html"><em class="CodeName">ECrossReferenceAdapter</em></a>
+has a significant downside: it responds to "hidden" opposite navigation requests only based on what has
+so far been loaded by EMF. If the set of resources held by an underlying EMF storage system contains more
+resources than have so far been loaded into the resource set, non-loaded content from that storage system
+won't be considered by the <em class="CodeName">ECrossReferenceAdapter</em>. Given a store with reasonable
+search capabilities it is desirable to take advantage of these capabilities also to perform reverse navigation
+of those "hidden" opposites. To achieve this, a specific implementation of the
+<a href="../../javadoc/org/eclipse/ocl/ecore/OppositeEndFinder.html"><em class="CodeName">OppositeEndFinder</em></a>
+interface can be provided. It may be a specialization of
+<a href="../../javadoc/org/eclipse/ocl/ecore/DefaultOppositeEndFinder.html"><em class="CodeName">DefaultOppositeEndFinder</em></a>,
+e.g., when the reference lookup based on the Ecore package registry is sufficient and only the
+navigation behavior shall be redefined:
+</p>
+
+<pre class="Code">
+  class MyOppositeEndFinder extends DefaultOppositeEndFinder {
+      MyOppositeEndFinder(EPackage.Registry registry) {
+          super(registry);
+      }
+      
+      @Override
+      public Object navigateOppositeProperty(EStructuralFeature property, Object target) {
+		  Collection<Object> result = null;
+		  EObject eTarget = (EObject) target;
+		  // do something clever, e.g., using your underlying store's query facility or
+		  // the new EMF Query2 component (incubation)
+		  // ...
+		  return result;
+      }
+  }
+</pre>
+
+With this, OCL can be instantiated using the custom opposite end finder as follows:
+
+<pre class="Code">   
+  OCL ocl = OCL.newInstance(new MyOppositeEndFinder());
+  ...
+</pre>
+
+With this, when the use of a property in an OCL expression cannot be resolved to an attribute
+or reference, the opposite end finder is asked to look for a correspondingly-named "hidden"
+opposite. Navigation across this "hidden" opposite will then call the <em class="CodeName">navigateOppositeProperty</em>
+method on <em class="CodeName">MyOppositeEndFinder</em>.
+
 <hr/>
 
 <p>
 <a href="http://www.eclipse.org/legal/epl-v10.html">Copyright (c) 2000, 2007 IBM Corporation and others. All Rights Reserved.</a>
 </p>
+
 </body>
 </html>

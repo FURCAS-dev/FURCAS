@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: EcoreAdapterFactory.java,v 1.11 2010/05/03 09:32:49 ewillink Exp $
+ * $Id: EcoreAdapterFactory.java,v 1.12 2010/12/15 17:32:44 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.util;
 
@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
+import org.eclipse.ocl.ecore.*;
 import org.eclipse.ocl.ecore.AnyType;
 import org.eclipse.ocl.ecore.AssociationClassCallExp;
 import org.eclipse.ocl.ecore.BagType;
@@ -411,6 +412,12 @@ public class EcoreAdapterFactory
 		@Override
 		public Adapter caseVariableExp(VariableExp object) {
 			return createVariableExpAdapter();
+		}
+
+		@Override
+		public Adapter caseOppositePropertyCallExp(
+				OppositePropertyCallExp object) {
+			return createOppositePropertyCallExpAdapter();
 		}
 
 		@Override
@@ -1532,6 +1539,21 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createVariableExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.ecore.OppositePropertyCallExp <em>Opposite Property Call Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 3.1
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.ecore.OppositePropertyCallExp
+	 * @generated
+	 */
+	public Adapter createOppositePropertyCallExpAdapter() {
 		return null;
 	}
 

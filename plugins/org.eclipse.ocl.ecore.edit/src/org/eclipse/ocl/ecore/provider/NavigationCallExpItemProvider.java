@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigationCallExpItemProvider.java,v 1.3 2010/04/08 06:27:12 ewillink Exp $
+ * $Id: NavigationCallExpItemProvider.java,v 1.4 2010/12/15 17:33:19 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.provider;
 
@@ -162,8 +162,8 @@ public class NavigationCallExpItemProvider extends FeatureCallExpItemProvider
 
 		switch (notification.getFeatureID(NavigationCallExp.class)) {
 		case EcorePackage.NAVIGATION_CALL_EXP__QUALIFIER:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -268,6 +268,10 @@ public class NavigationCallExpItemProvider extends FeatureCallExpItemProvider
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
 				EcoreFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,

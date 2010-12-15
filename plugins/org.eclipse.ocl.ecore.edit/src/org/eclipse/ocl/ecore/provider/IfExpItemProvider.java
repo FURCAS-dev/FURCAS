@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IfExpItemProvider.java,v 1.3 2010/04/08 06:27:12 ewillink Exp $
+ * $Id: IfExpItemProvider.java,v 1.4 2010/12/15 17:33:18 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.provider;
 
@@ -116,8 +116,8 @@ public class IfExpItemProvider extends OCLExpressionItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/IfExp")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/IfExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -158,8 +158,8 @@ public class IfExpItemProvider extends OCLExpressionItemProvider implements
 		case EcorePackage.IF_EXP__CONDITION:
 		case EcorePackage.IF_EXP__THEN_EXPRESSION:
 		case EcorePackage.IF_EXP__ELSE_EXPRESSION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -264,6 +264,10 @@ public class IfExpItemProvider extends OCLExpressionItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.IF_EXP__CONDITION,
 				EcoreFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.IF_EXP__CONDITION,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.IF_EXP__CONDITION,
@@ -445,6 +449,10 @@ public class IfExpItemProvider extends OCLExpressionItemProvider implements
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
 				ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -620,6 +628,10 @@ public class IfExpItemProvider extends OCLExpressionItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
 				EcoreFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,

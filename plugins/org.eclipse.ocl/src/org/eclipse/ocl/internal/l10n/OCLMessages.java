@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.15 2010/12/09 17:16:21 ewillink Exp $
+ * $Id: OCLMessages.java,v 1.16 2010/12/15 17:33:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.l10n;
@@ -259,6 +259,8 @@ public class OCLMessages {
 	public static String ValidationResultIsNull_ERROR_;	
 	public static String ValidationResultIsNotBoolean_ERROR_;
 	
+	public static String HiddenOppositeOf;
+
 	public static String NoOperationReflection_WARNING_;
 	public static String ExtraArg_ERROR_;
 	

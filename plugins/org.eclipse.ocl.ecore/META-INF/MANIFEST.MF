@@ -14,5 +14,8 @@ Export-Package: org.eclipse.ocl.ecore,
  org.eclipse.ocl.ecore.delegate,
  org.eclipse.ocl.ecore.impl,
  org.eclipse.ocl.ecore.internal;x-friends:="org.eclipse.ocl.ecore.tests",
- org.eclipse.ocl.ecore.util
+ org.eclipse.ocl.ecore.opposites,
+ org.eclipse.ocl.ecore.parser,
+ org.eclipse.ocl.ecore.util,
+ org.eclipse.ocl.ecore.utilities
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
