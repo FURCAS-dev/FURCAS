@@ -12,6 +12,7 @@ import org.antlr.runtime.Token;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
+import com.sap.furcas.ide.editor.contentassist.TcsDebugUtil;
 import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
@@ -32,7 +33,6 @@ import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbMarkingUtil;
 import com.sap.furcas.runtime.textblocks.validation.TbValidationUtil;
-import com.sap.ide.cts.editor.contentassist.TcsDebugUtil;
 import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorStream;
 import com.sap.ide.cts.editor.prettyprint.textblocks.TextBlockCommands.AddNextTextBlockCommand;
 import com.sap.ide.cts.editor.prettyprint.textblocks.TextBlockCommands.AddNextTokenCommand;
