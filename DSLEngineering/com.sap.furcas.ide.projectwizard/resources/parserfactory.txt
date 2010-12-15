@@ -1,9 +1,7 @@
 package $ProjectName$.parser;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import generated.$CapLangName$Lexer;
@@ -41,4 +39,10 @@ public class $CapLangName$ParserFactory extends AbstractParserFactory<$CapLangNa
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override 
+        public URI getSyntaxUri() { 
+            return URI.createPlatformPluginURI("/$ProjectName$/mappings/$CapLangName$.tcs", true); 
+        } 
+	
 }

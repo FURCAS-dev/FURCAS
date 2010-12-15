@@ -38,6 +38,7 @@
     <module>com.sap.furcas.modeladaptation.emf</module>
     <module>com.sap.furcas.modeladaptation.emf.test</module>	
     <module>com.sap.furcas.parser.tcs</module>
+    <module>com.sap.furcas.parser.tcs.test</module>
     <module>com.sap.furcas.parsergenerator</module>
     <module>com.sap.furcas.parsergenerator.emf</module>
     <module>com.sap.furcas.parsergenerator.test</module>
@@ -54,6 +55,8 @@
     <module>com.sap.furcas.runtime.textblocks.test</module>
     <module>com.sap.furcas.test</module>
     <module>com.sap.furcas.utils</module>
+    <module>com.sap.furcas.workspacesetup</module>
+    <module>com.sap.furcas.workspacesetup.feature</module>
 
 	<!--
     <module>com.sap.ide.cts.editor</module>

@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -91,15 +92,16 @@ public class Query2OppositeEndFinder implements OppositeEndFinder {
     public Collection<EObject> navigateOppositePropertyWithForwardScope(EReference property, EObject target)
             throws IllegalArgumentException {
         if (target instanceof EObject) {
-            EObject etarget = (EObject) target;
+            EObject etarget = target;
             Collection<EObject> result = null;
-            if (property instanceof EReference && ((EClass) ((EReference) property).getEType()).isSuperTypeOf(etarget.eClass())) {
+            if (property instanceof EReference && (((EClass) (property).getEType()).isSuperTypeOf(etarget.eClass())
+                    || ((EClass) (property).getEType()).equals(EcorePackage.eINSTANCE.getEObject()))) {
                 QueryContext queryContext = queryContextProvider.getForwardScopeQueryContext(etarget);
                 ResourceSet rs = etarget.eResource().getResourceSet();
                 if (rs == null) {
                     rs = new ResourceSetImpl();
                 }
-                result = EcoreHelper.getInstance().reverseNavigate(etarget, (EReference) property, queryContext, rs, IndexFactory.getInstance());
+                result = EcoreHelper.getInstance().reverseNavigate(etarget, property, queryContext, rs, IndexFactory.getInstance());
             }
             return result;
         }
@@ -109,9 +111,10 @@ public class Query2OppositeEndFinder implements OppositeEndFinder {
     @Override
     public Collection<EObject> navigateOppositePropertyWithBackwardScope(EReference property, EObject target) {
         if (target instanceof EObject) {
-            EObject etarget = (EObject) target;
+            EObject etarget = target;
             Collection<EObject> result = null;
-            if (property instanceof EReference && ((EClass) ((EReference) property).getEType()).isSuperTypeOf(etarget.eClass())) {
+            if (property instanceof EReference && (((EClass) (property).getEType()).isSuperTypeOf(etarget.eClass())
+                    || ((EClass) (property).getEType()).equals(EcorePackage.eINSTANCE.getEObject()))) {
                 QueryContext queryContext = queryContextProvider.getBackwardScopeQueryContext(etarget);
                 ResourceSet rs = etarget.eResource().getResourceSet();
                 if (rs == null) {
@@ -120,7 +123,7 @@ public class Query2OppositeEndFinder implements OppositeEndFinder {
                         rs = new ResourceSetImpl();
                     }
                 }
-                result = EcoreHelper.getInstance().reverseNavigate(etarget, (EReference) property, queryContext, rs, IndexFactory.getInstance());
+                result = EcoreHelper.getInstance().reverseNavigate(etarget, property, queryContext, rs, IndexFactory.getInstance());
             }
             return result;
         }
