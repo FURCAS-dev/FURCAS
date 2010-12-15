@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CallExpItemProvider.java,v 1.3 2010/04/08 06:27:11 ewillink Exp $
+ * $Id: CallExpItemProvider.java,v 1.4 2010/12/15 17:33:18 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.provider;
 
@@ -187,12 +187,12 @@ public class CallExpItemProvider extends OCLExpressionItemProvider implements
 		switch (notification.getFeatureID(CallExp.class)) {
 		case EcorePackage.CALL_EXP__PROPERTY_START_POSITION:
 		case EcorePackage.CALL_EXP__PROPERTY_END_POSITION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		case EcorePackage.CALL_EXP__SOURCE:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -297,6 +297,10 @@ public class CallExpItemProvider extends OCLExpressionItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.CALL_EXP__SOURCE,
 				EcoreFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.CALL_EXP__SOURCE,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.CALL_EXP__SOURCE,

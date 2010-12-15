@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: VariableItemProvider.java,v 1.3 2010/04/08 06:27:12 ewillink Exp $
+ * $Id: VariableItemProvider.java,v 1.4 2010/12/15 17:33:18 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.provider;
 
@@ -227,8 +227,8 @@ public class VariableItemProvider extends ETypedElementItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Variable")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/Variable")); //$NON-NLS-1$
 	}
 
 	/**
@@ -270,12 +270,12 @@ public class VariableItemProvider extends ETypedElementItemProvider implements
 		case EcorePackage.VARIABLE__END_POSITION:
 		case EcorePackage.VARIABLE__TYPE_START_POSITION:
 		case EcorePackage.VARIABLE__TYPE_END_POSITION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		case EcorePackage.VARIABLE__INIT_EXPRESSION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -380,6 +380,10 @@ public class VariableItemProvider extends ETypedElementItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
 				EcoreFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
