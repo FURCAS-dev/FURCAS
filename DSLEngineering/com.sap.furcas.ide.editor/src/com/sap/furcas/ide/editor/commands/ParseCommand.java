@@ -37,6 +37,8 @@ public class ParseCommand extends AbstractCommand {
             newBlock = editor.parse(previousBlock, errorMode);
         } catch (SemanticParserException e) {
             parseException = e;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
