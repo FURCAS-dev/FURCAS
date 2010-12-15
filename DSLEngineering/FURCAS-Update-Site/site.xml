@@ -9,7 +9,7 @@
    <feature url="features/EMFEnhancementsFeature_1.0.0.qualifier.jar" id="EMFEnhancementsFeature" version="1.0.0.qualifier">
       <category name="furcas"/>
    </feature>
-   <feature url="features/com.sap.furcas.workspacesetup.feature_1.0.0.jar" id="com.sap.furcas.workspacesetup.feature" version="1.0.0">
+   <feature url="features/com.sap.furcas.workspacesetup.feature_1.0.0.qualifier.jar" id="com.sap.furcas.workspacesetup.feature" version="1.0.0.qualifier">
       <category name="furcas"/>
    </feature>
    <category-def name="furcas" label="FURCAS Textual Modelling">
