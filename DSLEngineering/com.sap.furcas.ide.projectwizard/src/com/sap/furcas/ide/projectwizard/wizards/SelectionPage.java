@@ -123,6 +123,8 @@ public class SelectionPage extends WizardPage {
                 getNextPage();
                 setPageComplete(true);
                 wiz.getContainer().updateButtons();
+
+                nsURIText.setText("http://www."+pi.getLanguageName().toLowerCase()+".com/metamodel/");
                 classNameLabel.setText("Name the first class of the metamodel:");
                 nsURILabel.setText("nsURI of the metamodel:");
                 classNameText.setVisible(true);
@@ -155,7 +157,6 @@ public class SelectionPage extends WizardPage {
                 }
                 getNextPage();
                 setPageComplete(true);
-                nsURIText.setText("http://www."+pi.getLanguageName().toLowerCase()+".com/metamodel/");
                 wiz.getContainer().updateButtons();
                 classNameLabel.setVisible(false);
                 nsURILabel.setVisible(false);
