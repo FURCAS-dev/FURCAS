@@ -1,6 +1,7 @@
 package com.sap.furcas.runtime.referenceresolving;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
@@ -19,15 +20,15 @@ import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 public class SimplePropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdater {
     private LookupPropertyInit injectorAction;
 
-    public SimplePropertyInitUpdater(LookupPropertyInit injectorAction, OppositeEndFinder oppositeEndFinder)
+    protected SimplePropertyInitUpdater(LookupPropertyInit injectorAction, EPackage.Registry metamodelPackageRegistry, OppositeEndFinder oppositeEndFinder)
             throws ParserException {
-        super(injectorAction.getPropertyReference().getStrucfeature(), oppositeEndFinder, new ExpressionWithContext(
-                createOCLHelper(injectorAction.getValue(),
-                        ((InjectorActionsBlock) injectorAction.eContainer()).getParentTemplate(), oppositeEndFinder)
-                        .createQuery(ContextAndForeachHelper.prepareOclQuery(injectorAction.getValue())),
-                (EClass) ContextAndForeachHelper.getParsingContext(injectorAction.getValue(),
-                        ((InjectorActionsBlock) injectorAction.eContainer()).getParentTemplate())),
-                        /* notifyNewContextElements */ true, getSelfKind(injectorAction.getValue()));
+        super(injectorAction.getPropertyReference().getStrucfeature(), metamodelPackageRegistry, oppositeEndFinder,
+                        new ExpressionWithContext(
+                                createOCLHelper(injectorAction.getValue(),
+                                        ((InjectorActionsBlock) injectorAction.eContainer()).getParentTemplate(), oppositeEndFinder)
+                                        .createQuery(ContextAndForeachHelper.prepareOclQuery(injectorAction.getValue())),
+                                (EClass) ContextAndForeachHelper.getParsingContext(injectorAction.getValue(),
+                                        ((InjectorActionsBlock) injectorAction.eContainer()).getParentTemplate())), /* notifyNewContextElements */ true, getSelfKind(injectorAction.getValue()));
         this.injectorAction = injectorAction;
     }
     

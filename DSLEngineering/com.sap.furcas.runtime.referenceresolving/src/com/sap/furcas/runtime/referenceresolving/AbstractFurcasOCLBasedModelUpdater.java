@@ -6,6 +6,7 @@ import java.util.HashSet;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ParserException;
@@ -53,9 +54,9 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
     private final SelfKind selfKind;
 
     protected AbstractFurcasOCLBasedModelUpdater(EStructuralFeature propertyToUpdate,
-            OppositeEndFinder oppositeEndFinder, ExpressionWithContext triggerExpression,
-            boolean notifyOnNewContextElements, SelfKind selfKind) {
-        super(propertyToUpdate, oppositeEndFinder, triggerExpression, notifyOnNewContextElements);
+            EPackage.Registry metamodelPackageRegistry, OppositeEndFinder oppositeEndFinder,
+            ExpressionWithContext triggerExpression, boolean notifyOnNewContextElements, SelfKind selfKind) {
+        super(propertyToUpdate, metamodelPackageRegistry, oppositeEndFinder, triggerExpression, notifyOnNewContextElements);
         this.selfKind = selfKind;
     }
 

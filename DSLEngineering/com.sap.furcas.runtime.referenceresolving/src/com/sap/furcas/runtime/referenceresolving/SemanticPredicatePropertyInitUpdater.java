@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL.Helper;
@@ -45,9 +46,9 @@ public class SemanticPredicatePropertyInitUpdater extends AbstractFurcasOCLBased
         }
     }
 
-    protected SemanticPredicatePropertyInitUpdater(EStructuralFeature propertyToUpdate, OppositeEndFinder oppositeEndFinder,
-            List<SemanticDisambRuleData> predicates, Template containingTemplate) {
-        super(propertyToUpdate, oppositeEndFinder, /* expression TODO */ null, /* notifyOnNewContextElements TODO */ true, /* TODO */ SelfKind.SELF);
+    protected SemanticPredicatePropertyInitUpdater(EStructuralFeature propertyToUpdate, EPackage.Registry metamodelPackageRegistry,
+            OppositeEndFinder oppositeEndFinder, List<SemanticDisambRuleData> predicates, Template containingTemplate) {
+        super(propertyToUpdate, metamodelPackageRegistry, oppositeEndFinder, /* expression TODO */ null, /* notifyOnNewContextElements TODO */ true, /* TODO */ SelfKind.SELF);
         this.predicates = predicates;
         this.containingTemplate = containingTemplate;
     }
