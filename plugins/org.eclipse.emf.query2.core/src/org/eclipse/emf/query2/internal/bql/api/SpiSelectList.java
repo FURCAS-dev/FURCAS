@@ -124,11 +124,11 @@ public final class SpiSelectList {
 		SpiUtils.toStringNewLine(sb, ident);
 		sb.append(SpiUtils.OPENING_PARENTHESES);
 		sb.append(this.modelElementExpression.getAlias());
-		sb.append(", ");
+		sb.append(", "); //$NON-NLS-1$
 		int attributeDefinitionsSize = this.attributeDefinitions.size();
 		if (attributeDefinitionsSize > 0) {
 			sb.append(SpiUtils.ATTRIBUTES);
-			sb.append(": ");
+			sb.append(": "); //$NON-NLS-1$
 			for (int i = 0; i < attributeDefinitionsSize - 1; i++) {
 				sb.append(((SpiAttributeDefinition) this.attributeDefinitions.get(i)).attributeId);
 				sb.append(',');

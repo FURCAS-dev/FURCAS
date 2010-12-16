@@ -1147,7 +1147,7 @@ final public class TypeCheckerImpl implements TypeChecker {
 		if (assoc == null) {
 			// we only support associations, i.e. no structure types because
 			// structure types cannot be selected in the nested query
-			this.reportFatal(ApiMessages.NULL_COMPARISON_NOT_POSSIBLE_FOR_STRUCT, "", assocName);
+			this.reportFatal(ApiMessages.NULL_COMPARISON_NOT_POSSIBLE_FOR_STRUCT, "", assocName);  //$NON-NLS-1$
 		}
 
 		// List assocEnds = this.jmiHelper.getAssociationEnds(
