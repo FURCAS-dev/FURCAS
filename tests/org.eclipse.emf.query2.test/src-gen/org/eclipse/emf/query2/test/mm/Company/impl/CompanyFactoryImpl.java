@@ -1,13 +1,15 @@
-/*******************************************************************************
- * Copyright (c) 2006, 2009 SAP AG and others.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *     SAP AG - initial API and implementation
- *******************************************************************************/
+/**
+ * /*******************************************************************************
+ *  * Copyright (c) 2006, 2009 SAP AG and others.
+ *  * All rights reserved. This program and the accompanying materials
+ *  * are made available under the terms of the Eclipse Public License v1.0
+ *  * which accompanies this distribution, and is available at
+ *  * http://www.eclipse.org/legal/epl-v10.html
+ *  *
+ *  * Contributors:
+ *  *     SAP AG - initial API and implementation
+ *  ******************************************************************************/
+ 
 package org.eclipse.emf.query2.test.mm.Company.impl;
 
 import org.eclipse.emf.ecore.EClass;
@@ -69,6 +71,7 @@ public class CompanyFactoryImpl extends EFactoryImpl implements CompanyFactory {
 			case CompanyPackage.FREELANCE: return createFreelance();
 			case CompanyPackage.DIVISION: return createDivision();
 			case CompanyPackage.STUDENT: return createStudent();
+			case CompanyPackage.TRANSPORT: return createTransport();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -122,6 +125,16 @@ public class CompanyFactoryImpl extends EFactoryImpl implements CompanyFactory {
 	public Student createStudent() {
 		StudentImpl student = new StudentImpl();
 		return student;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Transport createTransport() {
+		TransportImpl transport = new TransportImpl();
+		return transport;
 	}
 
 	/**

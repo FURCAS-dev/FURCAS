@@ -1,13 +1,15 @@
-/*******************************************************************************
- * Copyright (c) 2006, 2009 SAP AG and others.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *     SAP AG - initial API and implementation
- *******************************************************************************/
+/**
+ * /*******************************************************************************
+ *  * Copyright (c) 2006, 2009 SAP AG and others.
+ *  * All rights reserved. This program and the accompanying materials
+ *  * are made available under the terms of the Eclipse Public License v1.0
+ *  * which accompanies this distribution, and is available at
+ *  * http://www.eclipse.org/legal/epl-v10.html
+ *  *
+ *  * Contributors:
+ *  *     SAP AG - initial API and implementation
+ *  ******************************************************************************/
+ 
 package org.eclipse.emf.query2.test.mm.Company;
 
 import org.eclipse.emf.common.util.EList;
@@ -26,6 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.emf.query2.test.mm.Company.Division#getDepartment <em>Department</em>}</li>
  *   <li>{@link org.eclipse.emf.query2.test.mm.Company.Division#getDirector <em>Director</em>}</li>
  *   <li>{@link org.eclipse.emf.query2.test.mm.Company.Division#getBudget <em>Budget</em>}</li>
+ *   <li>{@link org.eclipse.emf.query2.test.mm.Company.Division#getCommuting <em>Commuting</em>}</li>
  * </ul>
  * </p>
  *
@@ -133,5 +136,31 @@ public interface Division extends EObject {
 	 * @generated
 	 */
 	void setBudget(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Commuting</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Commuting</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Commuting</em>' reference.
+	 * @see #setCommuting(Transport)
+	 * @see org.eclipse.emf.query2.test.mm.Company.CompanyPackage#getDivision_Commuting()
+	 * @model
+	 * @generated
+	 */
+	Transport getCommuting();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.emf.query2.test.mm.Company.Division#getCommuting <em>Commuting</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Commuting</em>' reference.
+	 * @see #getCommuting()
+	 * @generated
+	 */
+	void setCommuting(Transport value);
 
 } // Division
