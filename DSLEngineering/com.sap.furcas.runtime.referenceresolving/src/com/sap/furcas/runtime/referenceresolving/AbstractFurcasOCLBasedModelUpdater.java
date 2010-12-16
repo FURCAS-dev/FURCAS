@@ -22,6 +22,8 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
 import com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic;
+import com.sap.furcas.metamodel.FURCAS.TCS.Property;
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionPackage;
@@ -32,7 +34,6 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 import com.sap.furcas.runtime.parser.impl.ModelElementProxy;
-import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 
 
@@ -45,7 +46,7 @@ import com.sap.furcas.runtime.textblocks.TbUtil;
  * @author Axel Uhl (D043530)
  * 
  */
-public class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBasedModelUpdater {
+public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBasedModelUpdater {
     
     public enum SelfKind { SELF, CONTEXT, FOREACH };
     
@@ -69,23 +70,17 @@ public class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBasedModelUpd
         // TODO use prepared expression and parameterize based on token value taken from text blocks model
         for (EObject eo : affectedContextObjects) {
             Object newValue = ocl.evaluate(eo, expression);
-            switch (selfKind) {
-            case SELF:
-                // only assign if result was not "invalid"
-                if (ocl.getEnvironment().getOCLStandardLibrary().getInvalid() != newValue) {
-                    if (!getPropertyToUpdate().isMany() && newValue instanceof Collection) {
-                        // pick first result if it exists or leave null
-                        newValue = ((Collection<?>) newValue).isEmpty() ? null : ((Collection<?>) newValue).iterator().next();
-                    }
-                    eo.eSet(getPropertyToUpdate(), newValue);
+            // only assign if result was not "invalid"
+            if (ocl.getEnvironment().getOCLStandardLibrary().getInvalid() != newValue) {
+                if (!getPropertyToUpdate().isMany() && newValue instanceof Collection) {
+                    // pick first result if it exists or leave null
+                    newValue = ((Collection<?>) newValue).isEmpty() ? null : ((Collection<?>) newValue).iterator()
+                            .next();
                 }
-                break;
-            case CONTEXT:
-                // TODO find object to set property on, based on context, injectorAction and text blocks model
-                break;
-            case FOREACH:
-                // TODO find object to set property on, based on foreach element, injectorAction and text blocks model
-                break;
+                EObject elementToUpdate = getElementToUpdate(eo);
+                if (elementToUpdate != null) {
+                    elementToUpdate.eSet(getPropertyToUpdate(), newValue);
+                }
             }
         }
     }
@@ -212,7 +207,7 @@ public class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBasedModelUpd
      *            {@link SelfKind#FOREACH}. In the case of {@link SelfKind#CONTEXT}, a context stack is constructed
      *            starting at this text block, moving "up" the text blocks / template execution hierarchy.
      */
-    protected EObject getElementToUpdate(EObject self, InjectorAction injectorAction) {
+    protected EObject getElementToUpdate(EObject self) {
         // Collection<TextBlock> inTextBlocks = getTextBlocksInChosenAlternativeForInjectorAction(injectorAction);
         switch (selfKind) {
         case SELF:
@@ -226,22 +221,17 @@ public class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBasedModelUpd
             Collection<EObject> foreachContextsUsingSelfAsForeachElement = getOppositeEndFinder()
                     .navigateOppositePropertyWithBackwardScope(
                             TextblocksPackage.eINSTANCE.getForEachContext_ContextElement(), self);
-            String languageId = null;
-            if (!foreachContextsUsingSelfAsForeachElement.isEmpty()) {
-                languageId = TcsUtil.getLanguageId(injectorAction);
-            }
             for (EObject eo : foreachContextsUsingSelfAsForeachElement) {
                 ForEachContext foreachContext = (ForEachContext) eo;
                 ForeachPredicatePropertyInit propInit = foreachContext.getForeachPedicatePropertyInit();
                 // now check which when-clause is chosen for the current foreach-element self
                 for (PredicateSemantic whenClause : propInit.getPredicateSemantic()) {
                     OCLExpression whenExpression = whenClause.getWhen();
-                    if (whenExpression == null || (Boolean) ocl.evaluate(foreachContext, whenExpression)) {
+                    if (whenExpression == null || (Boolean) ocl.evaluate(self, whenExpression)) {
                         // now we know the when-clause; determine template for when-clause and check if
                         // it contains injectorAction
-                        Template t = TcsUtil.findTemplate(self.eClass(), whenClause.getMode(), TcsUtil.getSyntaxPartitions(
-                                self.eResource().getResourceSet(), languageId));
-                        if (EcoreUtil.isAncestor(injectorAction, t)) {
+                        Template t = whenClause.getAs();
+                        if (EcoreUtil.isAncestor(t, getSequenceElement())) {
                             // yes, the self object led to the injector action firing
                             return foreachContext.getResultModelElement();
                         }
@@ -253,6 +243,12 @@ public class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBasedModelUpd
             throw new RuntimeException("Unknown self kind: "+selfKind);
         }
     }
+
+    /**
+     * Tells the {@link SequenceElement} (e.g., an {@link InjectorActionsBlock} or a {@link Property})
+     * from which this updater was created.
+     */
+    protected abstract SequenceElement getSequenceElement();
 
     /**
      * Determines which object will be used as <tt>self</tt> in evaluating the
