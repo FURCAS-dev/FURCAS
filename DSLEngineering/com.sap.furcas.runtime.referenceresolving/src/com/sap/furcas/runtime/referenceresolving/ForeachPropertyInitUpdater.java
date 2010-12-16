@@ -5,6 +5,7 @@ import java.util.LinkedList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
@@ -46,15 +47,15 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
     private final Collection<OCLExpression> triggerExpressionsWithoutContext;
     private final ForeachPredicatePropertyInit foreachPredicatePropertyInit;
 
-    public ForeachPropertyInitUpdater(ForeachPredicatePropertyInit foreachPredicatePropertyInit, OppositeEndFinder oppositeEndFinder)
+    protected ForeachPropertyInitUpdater(ForeachPredicatePropertyInit foreachPredicatePropertyInit, EPackage.Registry metamodelPackageRegistry, OppositeEndFinder oppositeEndFinder)
             throws ParserException {
-        super(foreachPredicatePropertyInit.getPropertyReference().getStrucfeature(), oppositeEndFinder, new ExpressionWithContext(
-                createOCLHelper(foreachPredicatePropertyInit.getValue(),
-                        ((InjectorActionsBlock) foreachPredicatePropertyInit.eContainer()).getParentTemplate(), oppositeEndFinder)
-                        .createQuery(ContextAndForeachHelper.prepareOclQuery(foreachPredicatePropertyInit.getValue())),
-                (EClass) ContextAndForeachHelper.getParsingContext(foreachPredicatePropertyInit.getValue(),
-                        ((InjectorActionsBlock) foreachPredicatePropertyInit.eContainer()).getParentTemplate())),
-                        /* notifyNewContextElements */ true, getSelfKind(foreachPredicatePropertyInit.getValue()));
+        super(foreachPredicatePropertyInit.getPropertyReference().getStrucfeature(), metamodelPackageRegistry, oppositeEndFinder,
+                        new ExpressionWithContext(
+                                createOCLHelper(foreachPredicatePropertyInit.getValue(),
+                                        ((InjectorActionsBlock) foreachPredicatePropertyInit.eContainer()).getParentTemplate(), oppositeEndFinder)
+                                        .createQuery(ContextAndForeachHelper.prepareOclQuery(foreachPredicatePropertyInit.getValue())),
+                                (EClass) ContextAndForeachHelper.getParsingContext(foreachPredicatePropertyInit.getValue(),
+                                        ((InjectorActionsBlock) foreachPredicatePropertyInit.eContainer()).getParentTemplate())), /* notifyNewContextElements */ true, getSelfKind(foreachPredicatePropertyInit.getValue()));
         triggerExpressionsWithoutContext = new LinkedList<OCLExpression>();
         this.foreachPredicatePropertyInit = foreachPredicatePropertyInit;
         for (PredicateSemantic whenClause : foreachPredicatePropertyInit.getPredicateSemantic()) {

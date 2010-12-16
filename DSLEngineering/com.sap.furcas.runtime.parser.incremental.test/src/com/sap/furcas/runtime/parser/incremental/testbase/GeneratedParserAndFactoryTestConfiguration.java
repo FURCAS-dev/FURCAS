@@ -12,6 +12,8 @@ package com.sap.furcas.runtime.parser.incremental.testbase;
 
 import java.io.File;
 
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 
@@ -72,6 +74,10 @@ public class GeneratedParserAndFactoryTestConfiguration extends GeneratedParserT
 
     public String getMetamodelPackageName() {
         return metamodelPackageName;
+    }
+    
+    public ResourceSet getResourceSet() {
+        return resourceSet;
     }
     
 }

@@ -1,6 +1,7 @@
 package com.sap.furcas.runtime.referenceresolving;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
@@ -32,14 +33,14 @@ import com.sap.furcas.runtime.tcs.TcsUtil;
 public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater {
     private final Property property;
 
-    protected OCLQueryPropertyUpdater(Property propertyInit, OppositeEndFinder oppositeEndFinder) throws ParserException {
-        super(propertyInit.getPropertyReference().getStrucfeature(), oppositeEndFinder, new ExpressionWithContext(
-                createOCLHelper(getExpressionString(propertyInit), propertyInit.getParentTemplate(), oppositeEndFinder)
-                .createQuery(ContextAndForeachHelper.prepareOclQuery(ContextAndForeachHelper.prepareOclQuery(
-                        getExpressionString(propertyInit), "__TEMP__"))), // TODO get rid of this as soon as queryByIdentifier is ready for prime time
-        (EClass) ContextAndForeachHelper.getParsingContext(getExpressionString(propertyInit),
-                propertyInit.getParentTemplate())),
-                /* notifyNewContextElements */ true, getSelfKind(getExpressionString(propertyInit)));
+    protected OCLQueryPropertyUpdater(Property propertyInit, EPackage.Registry metamodelPackageRegistry, OppositeEndFinder oppositeEndFinder) throws ParserException {
+        super(propertyInit.getPropertyReference().getStrucfeature(), metamodelPackageRegistry, oppositeEndFinder,
+                new ExpressionWithContext(
+                        createOCLHelper(getExpressionString(propertyInit), propertyInit.getParentTemplate(), oppositeEndFinder)
+                        .createQuery(ContextAndForeachHelper.prepareOclQuery(ContextAndForeachHelper.prepareOclQuery(
+                                getExpressionString(propertyInit), "__TEMP__"))), // TODO get rid of this as soon as queryByIdentifier is ready for prime time
+                (EClass) ContextAndForeachHelper.getParsingContext(getExpressionString(propertyInit),
+                        propertyInit.getParentTemplate())), /* notifyNewContextElements */ true, getSelfKind(getExpressionString(propertyInit)));
         this.property = propertyInit;
         // TODO handle parameterization of query expression
     }

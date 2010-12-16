@@ -59,4 +59,19 @@ public class OCL {
         return org.eclipse.ocl.ecore.OCL.newInstance(new EcoreEnvironmentFactoryWithScopedExtentMap(
                 oppositeEndFinder == null ? DefaultOppositeEndFinder.getInstance() : oppositeEndFinder));
     }
+    
+    /**
+     * Uses the specific opposite end finder to parameterize the OCL environment returned.
+     * The opposite end finder is used consistently for all hidden opposite property retrievals
+     * and navigations as well as for <code>allInstances</code> operation calls by means of an
+     * {@link ExtentMap} parameterized with this opposite end finder.
+     * 
+     * @param registry the package registry to use for metamodel package lookups
+     * @param oppositeEndFinder if <code>null</code>, a {@link DefaultOppositeEndFinder} is used instead.
+     */
+    public static org.eclipse.ocl.ecore.OCL newInstance(EPackage.Registry registry, OppositeEndFinder oppositeEndFinder) {
+        return org.eclipse.ocl.ecore.OCL.newInstance(new EcoreEnvironmentFactoryWithScopedExtentMap(registry, 
+                oppositeEndFinder == null ? DefaultOppositeEndFinder.getInstance() : oppositeEndFinder));
+    }
+    
 }
