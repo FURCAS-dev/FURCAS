@@ -1,13 +1,15 @@
-/*******************************************************************************
- * Copyright (c) 2006, 2009 SAP AG and others.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *     SAP AG - initial API and implementation
- *******************************************************************************/
+/**
+ * /*******************************************************************************
+ *  * Copyright (c) 2006, 2009 SAP AG and others.
+ *  * All rights reserved. This program and the accompanying materials
+ *  * are made available under the terms of the Eclipse Public License v1.0
+ *  * which accompanies this distribution, and is available at
+ *  * http://www.eclipse.org/legal/epl-v10.html
+ *  *
+ *  * Contributors:
+ *  *     SAP AG - initial API and implementation
+ *  ******************************************************************************/
+ 
 package org.eclipse.emf.query2.test.mm.Company;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -356,13 +358,22 @@ public interface CompanyPackage extends EPackage {
 	int DIVISION__BUDGET = 3;
 
 	/**
+	 * The feature id for the '<em><b>Commuting</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIVISION__COMMUTING = 4;
+
+	/**
 	 * The number of structural features of the '<em>Division</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DIVISION_FEATURE_COUNT = 4;
+	int DIVISION_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.query2.test.mm.Company.impl.StudentImpl <em>Student</em>}' class.
@@ -445,6 +456,34 @@ public interface CompanyPackage extends EPackage {
 	 * @ordered
 	 */
 	int STUDENT_FEATURE_COUNT = EMPLOYEE_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.query2.test.mm.Company.impl.TransportImpl <em>Transport</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.query2.test.mm.Company.impl.TransportImpl
+	 * @see org.eclipse.emf.query2.test.mm.Company.impl.CompanyPackageImpl#getTransport()
+	 * @generated
+	 */
+	int TRANSPORT = 5;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSPORT__NAME = 0;
+
+	/**
+	 * The number of structural features of the '<em>Transport</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSPORT_FEATURE_COUNT = 1;
 
 
 	/**
@@ -686,6 +725,17 @@ public interface CompanyPackage extends EPackage {
 	EAttribute getDivision_Budget();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.emf.query2.test.mm.Company.Division#getCommuting <em>Commuting</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Commuting</em>'.
+	 * @see org.eclipse.emf.query2.test.mm.Company.Division#getCommuting()
+	 * @see #getDivision()
+	 * @generated
+	 */
+	EReference getDivision_Commuting();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.query2.test.mm.Company.Student <em>Student</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -694,6 +744,27 @@ public interface CompanyPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getStudent();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.emf.query2.test.mm.Company.Transport <em>Transport</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Transport</em>'.
+	 * @see org.eclipse.emf.query2.test.mm.Company.Transport
+	 * @generated
+	 */
+	EClass getTransport();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.query2.test.mm.Company.Transport#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.eclipse.emf.query2.test.mm.Company.Transport#getName()
+	 * @see #getTransport()
+	 * @generated
+	 */
+	EAttribute getTransport_Name();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -902,6 +973,14 @@ public interface CompanyPackage extends EPackage {
 		EAttribute DIVISION__BUDGET = eINSTANCE.getDivision_Budget();
 
 		/**
+		 * The meta object literal for the '<em><b>Commuting</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DIVISION__COMMUTING = eINSTANCE.getDivision_Commuting();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.query2.test.mm.Company.impl.StudentImpl <em>Student</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -910,6 +989,24 @@ public interface CompanyPackage extends EPackage {
 		 * @generated
 		 */
 		EClass STUDENT = eINSTANCE.getStudent();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.query2.test.mm.Company.impl.TransportImpl <em>Transport</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.query2.test.mm.Company.impl.TransportImpl
+		 * @see org.eclipse.emf.query2.test.mm.Company.impl.CompanyPackageImpl#getTransport()
+		 * @generated
+		 */
+		EClass TRANSPORT = eINSTANCE.getTransport();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRANSPORT__NAME = eINSTANCE.getTransport_Name();
 
 	}
 

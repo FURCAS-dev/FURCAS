@@ -1,13 +1,15 @@
-/*******************************************************************************
- * Copyright (c) 2006, 2009 SAP AG and others.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *     SAP AG - initial API and implementation
- *******************************************************************************/
+/**
+ * /*******************************************************************************
+ *  * Copyright (c) 2006, 2009 SAP AG and others.
+ *  * All rights reserved. This program and the accompanying materials
+ *  * are made available under the terms of the Eclipse Public License v1.0
+ *  * which accompanies this distribution, and is available at
+ *  * http://www.eclipse.org/legal/epl-v10.html
+ *  *
+ *  * Contributors:
+ *  *     SAP AG - initial API and implementation
+ *  ******************************************************************************/
+ 
 package org.eclipse.emf.query2.test.mm.Company.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -24,6 +26,7 @@ import org.eclipse.emf.query2.test.mm.Company.Division;
 import org.eclipse.emf.query2.test.mm.Company.Employee;
 import org.eclipse.emf.query2.test.mm.Company.Freelance;
 import org.eclipse.emf.query2.test.mm.Company.Student;
+import org.eclipse.emf.query2.test.mm.Company.Transport;
 
 /**
  * <!-- begin-user-doc -->
@@ -66,6 +69,13 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 	 * @generated
 	 */
 	private EClass studentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass transportEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -331,8 +341,35 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getDivision_Commuting() {
+		return (EReference)divisionEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getStudent() {
 		return studentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTransport() {
+		return transportEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTransport_Name() {
+		return (EAttribute)transportEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -388,8 +425,12 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		createEReference(divisionEClass, DIVISION__DEPARTMENT);
 		createEReference(divisionEClass, DIVISION__DIRECTOR);
 		createEAttribute(divisionEClass, DIVISION__BUDGET);
+		createEReference(divisionEClass, DIVISION__COMMUTING);
 
 		studentEClass = createEClass(STUDENT);
+
+		transportEClass = createEClass(TRANSPORT);
+		createEAttribute(transportEClass, TRANSPORT__NAME);
 	}
 
 	/**
@@ -451,8 +492,12 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		initEReference(getDivision_Department(), this.getDepartment(), this.getDepartment_Division(), "department", null, 1, -1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getDivision_Director(), this.getEmployee(), this.getEmployee_Directed(), "director", null, 1, 1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getDivision_Budget(), ecorePackage.getEInt(), "budget", null, 1, 1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getDivision_Commuting(), this.getTransport(), null, "commuting", null, 0, 1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(studentEClass, Student.class, "Student", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(transportEClass, Transport.class, "Transport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTransport_Name(), ecorePackage.getEString(), "name", null, 0, 1, Transport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
