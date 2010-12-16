@@ -14,7 +14,7 @@
  *   
  * </copyright>
  *
- * $Id: AbstractEnvironmentFactory.java,v 1.6 2009/06/25 19:23:52 ewillink Exp $
+ * $Id: AbstractEnvironmentFactory.java,v 1.7 2010/12/15 17:33:43 ewillink Exp $
  */
 package org.eclipse.ocl;
 
@@ -23,11 +23,17 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.ocl.expressions.Variable;
+import org.eclipse.ocl.helper.OCLSyntaxHelper;
 import org.eclipse.ocl.internal.evaluation.TracingEvaluationVisitor;
+import org.eclipse.ocl.parser.OCLAnalyzer;
+import org.eclipse.ocl.parser.OCLFactoryWithHistory;
+import org.eclipse.ocl.parser.ValidationVisitor;
+import org.eclipse.ocl.parser.backtracking.OCLBacktrackingParser;
 import org.eclipse.ocl.util.Adaptable;
 import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.UMLReflection;
+import org.eclipse.ocl.utilities.Visitor;
 
 
 /**
@@ -209,6 +215,47 @@ public abstract class AbstractEnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SS
         }
         
         return result;
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	public OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCLAnalyzer(
+		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env, String input) {
+		return new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(env, input);
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	public OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCLAnalyzer(
+		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			OCLBacktrackingParser parser) {
+		return new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(parser);
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	public OCLFactoryWithHistory createOCLFactoryWithHistory(
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
+		return new OCLFactoryWithHistory(env.getOCLFactory());
+	}
+   
+	/**
+	 * @since 3.1
+	 */
+	public OCLSyntaxHelper createOCLSyntaxHelper(
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
+		return new org.eclipse.ocl.internal.helper.OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(env);
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	public Visitor<Boolean, C, O, P, EL, PM, S, COA, SSA, CT> createValidationVisitor(
+		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
+		return new ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(env);
 	}
 
     /**

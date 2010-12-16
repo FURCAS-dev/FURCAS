@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: OCL.java,v 1.14 2010/01/22 18:38:13 asanchez Exp $
+ * $Id: OCL.java,v 1.15 2010/12/15 17:33:43 ewillink Exp $
  */
 package org.eclipse.ocl;
 
@@ -265,11 +265,9 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 			OCLBacktrackingParser parser = new OCLBacktrackingParser(lexer);
 			parser.setDefaultRepairCount(parserRepairCount);
 			lexer.lexer(parser.getIPrsStream());
-			analyzer = new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-				parser);
+			analyzer = rootEnvironment.getFactory().createOCLAnalyzer(rootEnvironment, parser);
 		} else {
-			analyzer = new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-				rootEnvironment, input);
+			analyzer = rootEnvironment.getFactory().createOCLAnalyzer(rootEnvironment, input);
 		}
 		return analyzer;
 	}

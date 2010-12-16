@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLFactoryImpl.java,v 1.1 2007/03/27 18:46:39 cdamus Exp $
+ * $Id: OCLFactoryImpl.java,v 1.2 2010/12/15 17:32:44 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.internal;
 
@@ -27,11 +27,13 @@ import org.eclipse.ocl.ecore.BagType;
 import org.eclipse.ocl.ecore.CollectionType;
 import org.eclipse.ocl.ecore.EcoreFactory;
 import org.eclipse.ocl.ecore.MessageType;
+import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.OrderedSetType;
 import org.eclipse.ocl.ecore.SequenceType;
 import org.eclipse.ocl.ecore.SetType;
 import org.eclipse.ocl.ecore.TupleType;
 import org.eclipse.ocl.ecore.impl.TypeTypeImpl;
+import org.eclipse.ocl.ecore.utilities.OCLFactoryWithHiddenOpposite;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.ocl.expressions.CollectionItem;
@@ -70,7 +72,7 @@ import org.eclipse.ocl.utilities.UMLReflection;
  * @author Christian W. Damus (cdamus)
  */
 @SuppressWarnings("unchecked")
-public class OCLFactoryImpl implements OCLFactory {
+public class OCLFactoryImpl implements OCLFactory, OCLFactoryWithHiddenOpposite {
     public static OCLFactory INSTANCE = new OCLFactoryImpl();
     
     private OCLFactoryImpl() {
@@ -242,6 +244,10 @@ public class OCLFactoryImpl implements OCLFactory {
     public <C, O> OperationCallExp<C, O> createOperationCallExp() {
         return (OperationCallExp<C, O>)
             EcoreFactory.eINSTANCE.createOperationCallExp();
+    }
+
+    public OppositePropertyCallExp createOppositePropertyCallExp() {
+        return EcoreFactory.eINSTANCE.createOppositePropertyCallExp();
     }
 
     public <C, P> PropertyCallExp<C, P> createPropertyCallExp() {

@@ -397,5 +397,9 @@
         <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EParameter"/>
       </eGenericSuperTypes>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OppositePropertyCallExp" eSuperTypes="#//ecore/NavigationCallExp">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="referredOppositeProperty"
+          lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EReference"/>
+    </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

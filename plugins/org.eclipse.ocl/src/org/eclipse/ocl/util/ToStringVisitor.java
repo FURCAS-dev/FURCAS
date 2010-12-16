@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.12 2010/03/22 01:28:22 ewillink Exp $
+ * $Id: ToStringVisitor.java,v 1.13 2010/12/15 17:33:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.util;
@@ -768,7 +768,10 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 		}
 	}
 
-	private String maybeAtPre(FeatureCallExp<C> mpc, String base) {
+	/**
+	 * @since 3.1
+	 */
+	protected String maybeAtPre(FeatureCallExp<C> mpc, String base) {
 		return mpc.isMarkedPre() ? base + "@pre" : base; //$NON-NLS-1$
 	}
 

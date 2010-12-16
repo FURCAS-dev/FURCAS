@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExpressionInOCLItemProvider.java,v 1.4 2010/04/08 06:27:11 ewillink Exp $
+ * $Id: ExpressionInOCLItemProvider.java,v 1.5 2010/12/15 17:33:18 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.provider;
 
@@ -128,8 +128,8 @@ public class ExpressionInOCLItemProvider extends ItemProviderAdapter implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/ExpressionInOCL")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/ExpressionInOCL")); //$NON-NLS-1$
 	}
 
 	/**
@@ -170,8 +170,8 @@ public class ExpressionInOCLItemProvider extends ItemProviderAdapter implements
 		case EcorePackage.EXPRESSION_IN_OCL__RESULT_VARIABLE:
 		case EcorePackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE:
 		case EcorePackage.EXPRESSION_IN_OCL__GENERATED_TYPE:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -276,6 +276,10 @@ public class ExpressionInOCLItemProvider extends ItemProviderAdapter implements
 		newChildDescriptors.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__BODY_EXPRESSION,
 				EcoreFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__BODY_EXPRESSION,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__BODY_EXPRESSION,
@@ -568,6 +572,10 @@ public class ExpressionInOCLItemProvider extends ItemProviderAdapter implements
 		newChildDescriptors.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
 				EcoreFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
 
 		newChildDescriptors
 				.add(createChildParameter(

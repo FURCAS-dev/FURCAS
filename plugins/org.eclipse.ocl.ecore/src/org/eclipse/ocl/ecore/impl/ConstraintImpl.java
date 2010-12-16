@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ConstraintImpl.java,v 1.8 2010/02/08 20:57:00 ewillink Exp $
+ * $Id: ConstraintImpl.java,v 1.9 2010/12/15 17:32:43 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EcorePackage;
-import org.eclipse.ocl.util.ToStringVisitor;
+import org.eclipse.ocl.ecore.utilities.ToStringVisitor;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 
 /**

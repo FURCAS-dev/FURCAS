@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLFactoryWithHistory.java,v 1.3 2008/05/04 01:17:02 cdamus Exp $
+ * $Id: OCLFactoryWithHistory.java,v 1.4 2010/12/15 17:33:43 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -66,17 +66,17 @@ import org.eclipse.ocl.utilities.TypedElement;
  * 
  * @author Christian W. Damus (cdamus)
  * 
- * @since 1.2
+ * @since 3.1
  */
-class OCLFactoryWithHistory implements OCLFactory {
+public class OCLFactoryWithHistory implements OCLFactory {
 
-    private final OCLFactory delegate;
+    protected final OCLFactory delegate;
     private List<Object> history = new java.util.ArrayList<Object>();
     private Set<TypedElement<?>> errorNodes = new java.util.HashSet<TypedElement<?>>();
     
     private boolean disposable;
     
-    OCLFactoryWithHistory(OCLFactory delegate) {
+    public OCLFactoryWithHistory(OCLFactory delegate) {
         this.delegate = delegate;
     }
 
@@ -99,7 +99,7 @@ class OCLFactoryWithHistory implements OCLFactory {
         disposable = true;
     }
     
-    <T> T record(T object) {
+    protected <T> T record(T object) {
         history.add(object);
         return object;
     }

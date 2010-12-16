@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoopExpItemProvider.java,v 1.3 2010/04/08 06:27:12 ewillink Exp $
+ * $Id: LoopExpItemProvider.java,v 1.4 2010/12/15 17:33:18 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.provider;
 
@@ -143,8 +143,8 @@ public class LoopExpItemProvider extends CallExpItemProvider implements
 		switch (notification.getFeatureID(LoopExp.class)) {
 		case EcorePackage.LOOP_EXP__BODY:
 		case EcorePackage.LOOP_EXP__ITERATOR:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -249,6 +249,10 @@ public class LoopExpItemProvider extends CallExpItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.LOOP_EXP__BODY,
 				EcoreFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.LOOP_EXP__BODY,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.LOOP_EXP__BODY,
