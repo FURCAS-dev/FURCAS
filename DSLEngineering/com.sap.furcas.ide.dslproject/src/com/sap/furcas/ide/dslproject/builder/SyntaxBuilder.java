@@ -180,13 +180,17 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
                         getPackageName(grammarFile), convertIFileToFile(grammarFile), mappingResource);
 
                 TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
+                monitor.subTask("Parsing Syntax: " +  syntaxDefFile.getName());
                 TCSSyntaxContainerBean syntaxBean = generator.parseSyntax(sourceConfig, convertIFileToFile(syntaxDefFile), targetConfig,
                         new ResourceMarkingGenerationErrorHandler(
                                 syntaxDefFile));
                 if(syntaxBean != null) {
-                generator.generateGrammarFromSyntax(syntaxBean, sourceConfig, targetConfig, new ResourceMarkingGenerationErrorHandler(
+                    monitor.subTask("Generating Grammar: " +  grammarFile.getName());
+                    generator.generateGrammarFromSyntax(syntaxBean, sourceConfig, targetConfig, new ResourceMarkingGenerationErrorHandler(
                                 syntaxDefFile));
+                    grammarFile.getParent().refreshLocal(1, new SubProgressMonitor(monitor, 10));
                     if (grammarFile.exists()) {
+                        monitor.subTask("Generating Parser for Grammar: " +  grammarFile.getName());
                         generator.generateParserFromGrammar(targetConfig, new ResourceMarkingGenerationErrorHandler(grammarFile));
     
                         // refresh dir where java was generated so that Java builder can compile
