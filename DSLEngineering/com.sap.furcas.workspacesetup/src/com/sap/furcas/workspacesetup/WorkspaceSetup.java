@@ -170,8 +170,11 @@ public class WorkspaceSetup implements IWorkbenchWindowActionDelegate {
     }
 
     public static IProject importProject(String projectPath, String workingSet) throws CoreException {
+        System.out.println("importProject()");
         IProject project = importProject(projectPath);
+        System.out.println("addProjectToWorkingSet()");
         addProjectToWorkingSet(project, workingSet);
+        System.out.println("return");
         return project;
     }
 
@@ -179,10 +182,12 @@ public class WorkspaceSetup implements IWorkbenchWindowActionDelegate {
         IWorkingSetManager workingSetManager = PlatformUI.getWorkbench().getWorkingSetManager();
         IWorkingSet set = workingSetManager.getWorkingSet(workingSet);
         if (set == null) {
+            System.out.println("createWorkingSet()");
             set = workingSetManager.createWorkingSet(workingSet, new IProject[] { project });
             set.setId("org.eclipse.jdt.ui.JavaWorkingSetPage");
             workingSetManager.addWorkingSet(set);
         } else {
+            System.out.println("setElements()");
             ArrayList<IAdaptable> oldList = new ArrayList<IAdaptable>();
             IAdaptable[] old = set.getElements();
             for (IAdaptable p : old) {
@@ -204,6 +209,8 @@ public class WorkspaceSetup implements IWorkbenchWindowActionDelegate {
                     System.out.println(projectPath + ": " + projectMap.get(projectPath));
 
                     importProject(projectPath, projectMap.get(projectPath));
+                    
+                    System.out.println("Done.");
                 }
 
                 // loop through loaded projects and remove all unused projects
