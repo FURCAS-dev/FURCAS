@@ -4,11 +4,15 @@
 	<property name="publisher.properties.file.name" value="publisher.properties" />
 
 	<target name="-setup.promoter">
-		<property name="promoter.setup.directory" location="${sp:output}" />
+		<!-- <property name="promoter.setup.directory" location="${sp:output}" />
 		<property name="promoter.properties.file" location="${promoter.setup.directory}/${promoter.properties.file.name}" />
 
-		<mkdir dir="${promoter.setup.directory}" />
+		<mkdir dir="${promoter.setup.directory}" />-->
+		<property environment="env." />
 
+		<fail message="WORKSPACE not present in the environment, can't continue" unless="env.WORKSPACE" />
+		<property name="promoter.properties.file" location="${env.WORKSPACE}/${promoter.properties.file.name}" />
+		
 		<!-- supply defaults -->
 		<property name="build.id" value="" />
 		<property name="hudson.build.id" value="" />

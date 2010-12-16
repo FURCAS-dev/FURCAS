@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id$
+ * $Id: OppositePropertyCallExpTest.java,v 1.1 2010/12/15 17:34:07 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.tests;
 
