@@ -33,7 +33,7 @@ public class DirtyResourceFactory extends EContentAdapter {
 				||notification.getEventType()==Notification.REMOVE){
 		dirtyIndex.executeUpdateCommand(new UpdateCommandAdapter() {
 			
-			@Override
+			
 			public void execute(IndexUpdater updater) {
 				final ResourceIndexer indexer = new ResourceIndexer();
 				
@@ -50,7 +50,7 @@ public class DirtyResourceFactory extends EContentAdapter {
 					||notification.getEventType()==Notification.REMOVE){
 				dirtyIndex.executeUpdateCommand(new UpdateCommandAdapter() {
 					
-					@Override
+					
 					public void execute(IndexUpdater updater) {
 						final ResourceIndexer indexer = new ResourceIndexer();
 						
