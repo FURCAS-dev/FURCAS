@@ -40,7 +40,8 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
                         .createQuery(ContextAndForeachHelper.prepareOclQuery(ContextAndForeachHelper.prepareOclQuery(
                                 getExpressionString(propertyInit), "__TEMP__"))), // TODO get rid of this as soon as queryByIdentifier is ready for prime time
                 (EClass) ContextAndForeachHelper.getParsingContext(getExpressionString(propertyInit),
-                        propertyInit.getParentTemplate())), /* notifyNewContextElements */ true, getSelfKind(getExpressionString(propertyInit)));
+                        propertyInit.getParentTemplate())), /* notifyNewContextElements */ true,
+                        getSelfKind(getExpressionString(propertyInit)), ContextAndForeachHelper.getContextTag(getExpressionString(propertyInit)));
         this.property = propertyInit;
         // TODO handle parameterization of query expression
     }

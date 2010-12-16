@@ -175,10 +175,11 @@ public class ContextAndForeachHelper {
 
     public static String getContextTag(String oclExpression) {
         Matcher matcher = contextPattern.matcher(oclExpression);
-        matcher.find();
         String result = null;
-        if (matcher.groupCount() >= 2) {
-            result = matcher.group(2);
+        if (matcher.find()) {
+            if (matcher.groupCount() >= 2) {
+                result = matcher.group(2);
+            }
         }
         return result;
 

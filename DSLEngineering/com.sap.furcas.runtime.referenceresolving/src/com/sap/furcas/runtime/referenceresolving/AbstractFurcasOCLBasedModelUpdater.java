@@ -52,12 +52,14 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
     public enum SelfKind { SELF, CONTEXT, FOREACH };
     
     private final SelfKind selfKind;
+    private final String contextTag;
 
     protected AbstractFurcasOCLBasedModelUpdater(EStructuralFeature propertyToUpdate,
             EPackage.Registry metamodelPackageRegistry, OppositeEndFinder oppositeEndFinder,
-            ExpressionWithContext triggerExpression, boolean notifyOnNewContextElements, SelfKind selfKind) {
+            ExpressionWithContext triggerExpression, boolean notifyOnNewContextElements, SelfKind selfKind, String contextTag) {
         super(propertyToUpdate, metamodelPackageRegistry, oppositeEndFinder, triggerExpression, notifyOnNewContextElements);
         this.selfKind = selfKind;
+        this.contextTag = contextTag;
     }
 
     /**
@@ -214,35 +216,52 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
         case SELF:
             return self;
         case CONTEXT:
-            // LocalContextBuilder contextBuilder = new LocalContextBuilder();
-            // TbParsingUtil.constructContext(inTextBlock, contextBuilder);
-            return null; // FIXME need to port LocalContextBuilder to retrieve context from regularSelf and template
+            return getElementToUpdateFromContextElement(self);
         case FOREACH:
-            OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(getOppositeEndFinder());
-            Collection<EObject> foreachContextsUsingSelfAsForeachElement = getOppositeEndFinder()
-                    .navigateOppositePropertyWithBackwardScope(
-                            TextblocksPackage.eINSTANCE.getForEachContext_ContextElement(), self);
-            for (EObject eo : foreachContextsUsingSelfAsForeachElement) {
-                ForEachContext foreachContext = (ForEachContext) eo;
-                ForeachPredicatePropertyInit propInit = foreachContext.getForeachPedicatePropertyInit();
-                // now check which when-clause is chosen for the current foreach-element self
-                for (PredicateSemantic whenClause : propInit.getPredicateSemantic()) {
-                    OCLExpression whenExpression = whenClause.getWhen();
-                    if (whenExpression == null || (Boolean) ocl.evaluate(self, whenExpression)) {
-                        // now we know the when-clause; determine template for when-clause and check if
-                        // it contains injectorAction
-                        Template t = whenClause.getAs();
-                        if (EcoreUtil.isAncestor(t, getSequenceElement())) {
-                            // yes, the self object led to the injector action firing
-                            return foreachContext.getResultModelElement();
-                        }
-                    }
-                }
-            }
-            return null;
+            return getElementToUpdateFromForeachElement(self);
         default:
             throw new RuntimeException("Unknown self kind: "+selfKind);
         }
+    }
+
+    private EObject getElementToUpdateFromForeachElement(EObject self) {
+        OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(getOppositeEndFinder());
+        Collection<EObject> foreachContextsUsingSelfAsForeachElement = getOppositeEndFinder()
+                .navigateOppositePropertyWithBackwardScope(
+                        TextblocksPackage.eINSTANCE.getForEachContext_ContextElement(), self);
+        for (EObject eo : foreachContextsUsingSelfAsForeachElement) {
+            ForEachContext foreachContext = (ForEachContext) eo;
+            ForeachPredicatePropertyInit propInit = foreachContext.getForeachPedicatePropertyInit();
+            // now check which when-clause is chosen for the current foreach-element self
+            for (PredicateSemantic whenClause : propInit.getPredicateSemantic()) {
+                OCLExpression whenExpression = whenClause.getWhen();
+                if (whenExpression == null || (Boolean) ocl.evaluate(self, whenExpression)) {
+                    // now we know the when-clause; determine template for when-clause and check if
+                    // it contains injectorAction
+                    Template t = whenClause.getAs();
+                    if (EcoreUtil.isAncestor(t, getSequenceElement())) {
+                        // yes, the self object led to the injector action firing
+                        return foreachContext.getResultModelElement();
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * We know the {@link #getSequenceElement() sequence element} in which the OCL expression was used
+     * that contains the <code>#context</code> sub-expression. We also know the <code>contextElement</code> and from it
+     * can determine the {@link TextBlock} that documents the creation of the context element. From {@link #contextTag}
+     * we know if/which context tag was used. We need to find a path of text blocks to a text block documenting
+     * the execution of the template containing the {@link #getSequenceElement() sequence element} containing
+     * the OCL expression.
+     */
+    private EObject getElementToUpdateFromContextElement(EObject contextElement) {
+        // LocalContextBuilder contextBuilder = new LocalContextBuilder();
+        // TbParsingUtil.constructContext(inTextBlock, contextBuilder);
+        /* TODO really use */ contextTag.length();
+        return null; // FIXME need to port LocalContextBuilder to retrieve context from regularSelf and template
     }
 
     /**
