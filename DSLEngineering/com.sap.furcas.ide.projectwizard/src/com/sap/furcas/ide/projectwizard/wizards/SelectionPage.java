@@ -155,6 +155,7 @@ public class SelectionPage extends WizardPage {
                 }
                 getNextPage();
                 setPageComplete(true);
+                nsURIText.setText("http://www."+pi.getLanguageName().toLowerCase()+".com/metamodel/");
                 wiz.getContainer().updateButtons();
                 classNameLabel.setVisible(false);
                 nsURILabel.setVisible(false);
