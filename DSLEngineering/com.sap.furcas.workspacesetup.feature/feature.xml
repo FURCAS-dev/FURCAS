@@ -2,7 +2,7 @@
 <feature
       id="com.sap.furcas.workspacesetup.feature"
       label="Workspace Setup"
-      version="1.0.0.qualifier"
+      version="1.0.1.qualifier"
       provider-name="SAP">
 
    <description url="http://www.example.com/description">
