@@ -8,19 +8,11 @@
             label="Sample Action Set"
             visible="true"
             id="button.actionSet">
-         <menu
-               label="Sample &amp;Menu"
-               id="sampleMenu">
-            <separator
-                  name="sampleGroup">
-            </separator>
-         </menu>
          <action
-               label="&amp;Initialize Furcas Workspace"
-               icon="icons/sample.gif"
+               label="Initialize Furcas Workspace"
+               icon="icons/furcasdeath.gif"
                class="com.sap.furcas.workspacesetup.WorkspaceSetup"
                tooltip="Initialize Furcas Workspace"
-               menubarPath="sampleMenu/sampleGroup"
                toolbarPath="sampleGroup"
                id="button.actions.SampleAction">
          </action>

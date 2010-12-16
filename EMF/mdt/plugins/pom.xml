@@ -19,6 +19,7 @@
     <module>org.eclipse.ocl.uml</module>
     <module>org.eclipse.ocl.ecore</module>
     <module>org.eclipse.ocl-feature</module>
+	<module>org.eclipse.ocl.uml-feature</module>
   </modules>
 
 </project>
