@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentFactory.java,v 1.2 2007/10/11 23:05:04 cdamus Exp $
+ * $Id: EnvironmentFactory.java,v 1.3 2010/12/15 17:33:43 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -23,9 +23,14 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.helper.OCLSyntaxHelper;
+import org.eclipse.ocl.parser.OCLAnalyzer;
+import org.eclipse.ocl.parser.OCLFactoryWithHistory;
+import org.eclipse.ocl.parser.backtracking.OCLBacktrackingParser;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.util.Adaptable;
 import org.eclipse.ocl.util.OCLUtil;
+import org.eclipse.ocl.utilities.Visitor;
 
 /**
  * A factory for creating OCL parser {@link Environment}s.  Clients of the OCL
@@ -36,7 +41,7 @@ import org.eclipse.ocl.util.OCLUtil;
  * mappings are optional (e.g., state machines, signals, and association
  * classes aren't supported by all metamodels).
  * <p>
- * This interface is <b>not</b> intended to be implemented to be implemented
+ * @noimplement This interface is <b>not</b> intended to be implemented to be implemented
  * "directly" by providers of metamodel bindings.
  * It is highly recommended to extend the {@link AbstractEnvironmentFactory}
  * class, instead.
@@ -231,6 +236,66 @@ public interface EnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			EvaluationEnvironment<C, O, P, CLS, E> evalEnv,
 			Map<? extends CLS, ? extends Set<? extends E>> extentMap);
+
+	/**
+	 * Creates an instance of the OCLAnalyzer that analyzes the
+	 * given input on behalf of this environment.
+	 * 
+	 * @param input the text to be analyzed
+	 * 
+	 * @return an OCLAnalyzer instance for this environment
+	 * @since 3.1
+	 */
+	OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCLAnalyzer(
+		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment, String input);
+
+	/**
+	 * Creates an instance of the OCLAnalyzer that analyzes the
+	 * given parser's input on behalf of this environment.
+	 * 
+	 * @param environment an OCL environment (must not be <code>null</code>)
+	 * @param parser performing syntax analysis
+	 * 
+	 * @return an OCLAnalyzer instance for this environment
+	 * @since 3.1
+	 */
+	OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCLAnalyzer(
+		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment, OCLBacktrackingParser parser);
+
+	/**
+	 * Creates an instance of the OCLFactoryWithHistory object for this environment.
+	 * 
+	 * @param environment an OCL environment (must not be <code>null</code>)
+	 * 
+	 * @return an OCLFactoryWithHistory instance for this environment
+	 * @since 3.1
+	 */
+	OCLFactoryWithHistory createOCLFactoryWithHistory(
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env);
+
+	/**
+	 * Creates an instance of the OCLSyntaxHelper object for this environment.
+	 * 
+	 * @param environment an OCL environment (must not be <code>null</code>)
+	 * 
+	 * @return an OCLSyntaxHelper instance for this environment
+	 * @since 3.1
+	 */
+	OCLSyntaxHelper createOCLSyntaxHelper(
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment);
+
+	/**
+	 * Obtains an instance of the validation visitor that validates against the
+	 * specified environment, which presumably was used in parsing the OCL in
+	 * the first place.
+	 * 
+	 * @param environment an OCL environment (must not be <code>null</code>)
+	 * 
+	 * @return a validation visitor instance for the specified environment
+	 * @since 3.1
+	 */
+	Visitor<Boolean, C, O, P, EL, PM, S, COA, SSA, CT> createValidationVisitor(
+		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment);
 	
 	/**
 	 * Optional adapter interface for look-up methods that throw

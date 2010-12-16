@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionRangeItemProvider.java,v 1.3 2010/04/08 06:27:11 ewillink Exp $
+ * $Id: CollectionRangeItemProvider.java,v 1.4 2010/12/15 17:33:18 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.provider;
 
@@ -157,8 +157,8 @@ public class CollectionRangeItemProvider extends
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/CollectionRange")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/CollectionRange")); //$NON-NLS-1$
 	}
 
 	/**
@@ -198,8 +198,8 @@ public class CollectionRangeItemProvider extends
 		switch (notification.getFeatureID(CollectionRange.class)) {
 		case EcorePackage.COLLECTION_RANGE__FIRST:
 		case EcorePackage.COLLECTION_RANGE__LAST:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -304,6 +304,10 @@ public class CollectionRangeItemProvider extends
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
 				EcoreFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
@@ -482,6 +486,10 @@ public class CollectionRangeItemProvider extends
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
 				EcoreFactory.eINSTANCE.createVariableExp()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+				EcoreFactory.eINSTANCE.createOppositePropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CallExpImpl.java,v 1.7 2009/01/23 17:16:23 cdamus Exp $
+ * $Id: CallExpImpl.java,v 1.8 2010/12/15 17:32:43 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -25,12 +25,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.ecore.CallExp;
 import org.eclipse.ocl.ecore.EcorePackage;
+import org.eclipse.ocl.ecore.utilities.ToStringVisitor;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
-import org.eclipse.ocl.util.ToStringVisitor;
 import org.eclipse.ocl.utilities.CallingASTNode;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
-import org.eclipse.ocl.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -381,9 +380,7 @@ public abstract class CallExpImpl
 			return super.toString();
 		}
 
-		return this
-			.<String, Visitor<String, ?, ?, ?, ?, ?, ?, ?, ?, ?>> accept(ToStringVisitor
-				.getInstance(this));
+		return accept(ToStringVisitor.getInstance(this));
 	}
 
 } //CallExpImpl

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SyntaxHelpTest.java,v 1.5 2009/11/28 17:37:22 ewillink Exp $
+ * $Id: SyntaxHelpTest.java,v 1.6 2010/12/15 17:34:07 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.helper.tests;
@@ -36,6 +36,25 @@ import org.eclipse.ocl.helper.ConstraintKind;
 @SuppressWarnings("nls")
 public class SyntaxHelpTest
 	extends AbstractTestSuite {
+	
+	/**
+	 * Basic completion test for metamodel level.
+	 */
+	public void testMetaModelCompletionsForOppositePropertyCallExp() {
+		helper.setContext(apple);
+		List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "self.");
+		
+		assertChoice(choices, ChoiceKind.PROPERTY, "droppedUnderTree");
+		assertChoice(choices, ChoiceKind.PROPERTY, "tree");
+		
+		choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "self.tree.");
+		
+		assertChoice(choices, ChoiceKind.PROPERTY, "fruits");
+
+		helper.setContext(stem);
+		choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "self.");
+		assertChoice(choices, ChoiceKind.PROPERTY, "stemOfApple");
+	}
 	
 	/**
 	 * Basic completion test for metamodel level.

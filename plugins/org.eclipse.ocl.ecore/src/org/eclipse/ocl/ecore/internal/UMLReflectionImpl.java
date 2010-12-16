@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: UMLReflectionImpl.java,v 1.12 2010/05/03 09:32:48 ewillink Exp $
+ * $Id: UMLReflectionImpl.java,v 1.13 2010/12/15 17:32:44 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
@@ -630,7 +630,7 @@ public class UMLReflectionImpl
      * 
      * @see #getOCLType(EClassifier)
      */ 
-    EClassifier getOCLCollectionType(EClassifier type,
+    public EClassifier getOCLCollectionType(EClassifier type,
             boolean isOrdered, boolean isUnique) {
         EClassifier resultType = type;
     

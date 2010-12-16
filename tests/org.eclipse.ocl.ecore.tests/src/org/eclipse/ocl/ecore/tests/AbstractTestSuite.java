@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.27 2010/05/03 09:38:46 ewillink Exp $
+ * $Id: AbstractTestSuite.java,v 1.28 2010/12/15 17:34:07 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -98,6 +98,11 @@ public abstract class AbstractTestSuite
 	protected EOperation util_processBag;
 	protected EOperation util_processSequence;
 	
+	protected EClass tree;
+	protected EAttribute tree_name;
+	protected EReference tree_fruits;
+	protected EReference tree_fruitsDroppedUnder;
+	
 	protected final OCLFactory oclFactory = OCLFactoryImpl.INSTANCE;
 
 	/**
@@ -141,6 +146,7 @@ public abstract class AbstractTestSuite
 		result.createTestSuite(SerializationTest.class, "Serialization Tests");
 		result.createTestSuite(EvaluationHaltedTest.class, "Ecore Halted Evaluation Tests");
 		result.createTestSuite(DelegatesTest.class, "Delegate Tests");
+		result.createTestSuite(OppositePropertyCallExpTest.class, "Opposite Property Call Expression Tests");
 	}
 	
 	/**
@@ -203,6 +209,11 @@ public abstract class AbstractTestSuite
 		apple_newApple = apple.getEOperations().get(1);
 		
 		stem = (EClass) fruitPackage.getEClassifier("Stem");
+		
+		tree = (EClass) fruitPackage.getEClassifier("Tree");
+		tree_name = (EAttribute) tree.getEStructuralFeature("name");
+		tree_fruits = (EReference) tree.getEStructuralFeature("fruits");
+		tree_fruitsDroppedUnder = (EReference) tree.getEStructuralFeature("fruitsDroppedUnder");
 		
 		color = (EEnum) fruitPackage.getEClassifier("Color");
 		color_black = color.getEEnumLiteral("black");

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelperImpl.java,v 1.7 2010/02/08 20:57:24 ewillink Exp $
+ * $Id: OCLHelperImpl.java,v 1.8 2010/12/15 17:33:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -31,6 +31,7 @@ import org.eclipse.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.helper.OCLHelper;
+import org.eclipse.ocl.helper.OCLSyntaxHelper;
 import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.options.ParsingOptions;
 import org.eclipse.ocl.types.OCLStandardLibrary;
@@ -53,7 +54,7 @@ class OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
     private final OCLFactory oclFactory;
 	private Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env;
 
-	private OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> syntaxHelper;
+	private OCLSyntaxHelper syntaxHelper;
 	
 	private boolean validating = true;
     private final OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> ocl;
@@ -411,11 +412,9 @@ class OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * 
 	 * @return OCLSyntaxHelper
 	 */
-	protected OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-	createSyntaxHelper() {
+	protected OCLSyntaxHelper createSyntaxHelper() {
 		if (syntaxHelper == null) {
-			syntaxHelper = new OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-					getEnvironment());
+			syntaxHelper = getEnvironment().getFactory().createOCLSyntaxHelper(getEnvironment());
 		}
 		return syntaxHelper;
 	}
