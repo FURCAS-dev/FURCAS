@@ -7,6 +7,7 @@ import java.util.HashSet;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
@@ -17,17 +18,21 @@ import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
 import com.sap.emf.ocl.trigger.AbstractOCLBasedModelUpdater;
 import com.sap.emf.ocl.trigger.ExpressionWithContext;
 import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
+import com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionPackage;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 import com.sap.furcas.runtime.parser.impl.ModelElementProxy;
+import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 
 
@@ -171,14 +176,78 @@ public class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBasedModelUpd
         result.setContext(parsingContext);
         return result;
     }
-    
-    protected EObject getSelf(EObject regularSelf) {
+
+    /**
+     * The OCL impact analyzer determines OCL context elements for which an expression of this model updater may have
+     * changed its value. But those elements are not necessarily the same elements on which a property is to be updated
+     * with the new evaluation result. Instead, if <code>#context</code> or <code>#foreach</code> were used in the OCL
+     * expression, then the element produced by some superior <code>context</code> template or a superior template's
+     * <code>foreach</code> element is the context element of the OCL expression, and the element to be updated has to
+     * be determined from the textblocks model which represents a record of template executions and lets us determine
+     * the element for which <code>#context</code> or <code>#foreach</code>, respectively, identifies the element
+     * delivered as OCL context element by the impact analyzer.
+     * <p>
+     * 
+     * This method uses the {@link #selfKind} enumeration to determine the strategy by which to find the element to
+     * update. We distinguish the following cases:
+     * 
+     * <ul>
+     * <li>{@link SelfKind#SELF}: <code>self</code> is the element to update</li>
+     * <li>{@link SelfKind#CONTEXT}: <code>self</code> is the element referred to as <code>#context</code> in the
+     * original OCL expression (before <code>#context</code> was replaced by <code>self</code>). From the
+     * <code>inTextBlock</code> we can TODO</li>
+     * <li>{@link SelfKind#FOREACH}: <code>self</code> is the element referred to as <code>#foreach</code> in the
+     * original OCL expression, before <code>#foreach</code> was replaced by <code>self</code>. There must have been a
+     * {@link ForEachContext} whose {@link ForEachContext#getContextElement()} contains <code>self</code>. Once we've
+     * found this {@link ForEachContext}, we can fetch its {@link ForEachContext#getResultModelElement()}. This may be
+     * the element to be updated, if its production was actually selected by the <code>when</code> clauses of the
+     * <code>foreach</code> clause whose execution is described by the {@link ForEachContext}.</ul>
+     * 
+     * @param self
+     *            the context for the OCL expression as identified by the OCL impact analyzer; for the straightforward
+     *            case where {@link #selfKind} is {@link SelfKind#SELF}, this is at the same time the result of this
+     *            method; otherwise, the <code>inTextBlock</code> argument is used to compute the result
+     * @param inTextBlock
+     *            needed for the cases where {@link #selfKind} is either {@link SelfKind#CONTEXT} or
+     *            {@link SelfKind#FOREACH}. In the case of {@link SelfKind#CONTEXT}, a context stack is constructed
+     *            starting at this text block, moving "up" the text blocks / template execution hierarchy.
+     */
+    protected EObject getElementToUpdate(EObject self, InjectorAction injectorAction) {
+        // Collection<TextBlock> inTextBlocks = getTextBlocksInChosenAlternativeForInjectorAction(injectorAction);
         switch (selfKind) {
         case SELF:
-            return regularSelf;
+            return self;
         case CONTEXT:
+            // LocalContextBuilder contextBuilder = new LocalContextBuilder();
+            // TbParsingUtil.constructContext(inTextBlock, contextBuilder);
             return null; // FIXME need to port LocalContextBuilder to retrieve context from regularSelf and template
         case FOREACH:
+            OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(getOppositeEndFinder());
+            Collection<EObject> foreachContextsUsingSelfAsForeachElement = getOppositeEndFinder()
+                    .navigateOppositePropertyWithBackwardScope(
+                            TextblocksPackage.eINSTANCE.getForEachContext_ContextElement(), self);
+            String languageId = null;
+            if (!foreachContextsUsingSelfAsForeachElement.isEmpty()) {
+                languageId = TcsUtil.getLanguageId(injectorAction);
+            }
+            for (EObject eo : foreachContextsUsingSelfAsForeachElement) {
+                ForEachContext foreachContext = (ForEachContext) eo;
+                ForeachPredicatePropertyInit propInit = foreachContext.getForeachPedicatePropertyInit();
+                // now check which when-clause is chosen for the current foreach-element self
+                for (PredicateSemantic whenClause : propInit.getPredicateSemantic()) {
+                    OCLExpression whenExpression = whenClause.getWhen();
+                    if (whenExpression == null || (Boolean) ocl.evaluate(foreachContext, whenExpression)) {
+                        // now we know the when-clause; determine template for when-clause and check if
+                        // it contains injectorAction
+                        Template t = TcsUtil.findTemplate(self.eClass(), whenClause.getMode(), TcsUtil.getSyntaxPartitions(
+                                self.eResource().getResourceSet(), languageId));
+                        if (EcoreUtil.isAncestor(injectorAction, t)) {
+                            // yes, the self object led to the injector action firing
+                            return foreachContext.getResultModelElement();
+                        }
+                    }
+                }
+            }
             return null;
         default:
             throw new RuntimeException("Unknown self kind: "+selfKind);
