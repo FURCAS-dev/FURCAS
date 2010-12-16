@@ -70,7 +70,8 @@ public class WorkspaceSetup implements IWorkbenchWindowActionDelegate {
                 MessageDialog.openError(window.getShell(), "Unexpected Error: XPath not working!", e.getMessage());
                 e.printStackTrace();
             } catch (ParserConfigurationException e) {
-                MessageDialog.openError(window.getShell(), "Unexpected Error: DocumentBuilderFactory not working!", e.getMessage());
+                MessageDialog.openError(window.getShell(), "Unexpected Error: DocumentBuilderFactory not working!",
+                        e.getMessage());
                 e.printStackTrace();
             }
         }
@@ -179,11 +180,12 @@ public class WorkspaceSetup implements IWorkbenchWindowActionDelegate {
         IWorkingSet set = workingSetManager.getWorkingSet(workingSet);
         if (set == null) {
             set = workingSetManager.createWorkingSet(workingSet, new IProject[] { project });
+            set.setId("org.eclipse.jdt.ui.JavaWorkingSetPage");
             workingSetManager.addWorkingSet(set);
         } else {
             ArrayList<IAdaptable> oldList = new ArrayList<IAdaptable>();
             IAdaptable[] old = set.getElements();
-            for(IAdaptable p : old) {
+            for (IAdaptable p : old) {
                 oldList.add(p);
             }
             oldList.add(project);
