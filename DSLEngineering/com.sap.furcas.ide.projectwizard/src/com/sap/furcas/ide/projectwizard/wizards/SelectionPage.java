@@ -187,7 +187,7 @@ public class SelectionPage extends WizardPage {
         nsURIText = new Text(container, SWT.BORDER | SWT.SINGLE);
         gd = new GridData(GridData.FILL_HORIZONTAL);
         nsURIText.setLayoutData(gd);
-        nsURIText.setText("http://www.mydsl.com/metamodel/");
+        nsURIText.setText("http://www."+pi.getLanguageName().toLowerCase()+".com/metamodel/");
         pi.setNsURI(nsURIText.getText());
         nsURIText.addModifyListener(new ModifyListener() {
             public void modifyText(ModifyEvent e) {
