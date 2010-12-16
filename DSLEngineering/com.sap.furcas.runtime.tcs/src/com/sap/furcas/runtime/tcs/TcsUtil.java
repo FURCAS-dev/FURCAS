@@ -1156,7 +1156,7 @@ public class TcsUtil {
 
     public static List<ConcreteSyntax> getSyntaxesInResourceSet(ResourceSet connection) {
 
-        String query = "select cs from " + EcoreUtil.getURI(TCSPackage.eINSTANCE.getConcreteSyntax()) + " withoutsubtypes as cs";
+        String query = "select cs from [" + EcoreUtil.getURI(TCSPackage.eINSTANCE.getConcreteSyntax()) + "] withoutsubtypes as cs";
 
         ResultSet resultSet = queryConn(connection, query);
         URI[] resultElements = resultSet.getUris("cs");

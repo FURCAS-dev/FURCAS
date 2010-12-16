@@ -16,8 +16,10 @@ import org.antlr.runtime.Lexer;
 import org.antlr.runtime.RecognitionException;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.command.BasicCommandStack;
@@ -34,6 +36,7 @@ import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.ITextListener;
 import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.TextEvent;
@@ -41,6 +44,7 @@ import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.AnnotationModel;
 import org.eclipse.jface.text.source.AnnotationPainter;
 import org.eclipse.jface.text.source.AnnotationPainter.IDrawingStrategy;
+import org.eclipse.jface.text.source.DefaultCharacterPairMatcher;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.jface.text.source.ICharacterPairMatcher;
 import org.eclipse.jface.text.source.SourceViewer;
@@ -68,6 +72,7 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.FileEditorInput;
+import org.eclipse.ui.texteditor.ChainedPreferenceStore;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.eclipse.ui.texteditor.SourceViewerDecorationSupport;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
@@ -76,6 +81,8 @@ import com.sap.furcas.ide.editor.commands.CleanUpTextBlocksCommand;
 import com.sap.furcas.ide.editor.commands.ParseCommand;
 import com.sap.furcas.ide.editor.document.CtsDocument;
 import com.sap.furcas.ide.editor.document.ModelEditorInput;
+import com.sap.furcas.ide.editor.matching.CtsStaticMatcher;
+import com.sap.furcas.ide.editor.preferences.PreferenceInitializer;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.provider.TCSItemProviderAdapterFactory;
@@ -130,38 +137,37 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
     protected void configureSourceViewerDecorationSupport(
             SourceViewerDecorationSupport support) {
 
-        // IConfigurationElement[] config = Platform.getExtensionRegistry()
-        // .getConfigurationElementsFor(
-        // "com.sap.ide.cts.editor.bracketMatching");
-        // if (config.length != 0) {
-        // IConfigurationElement e = config[0];
-        // String matchingType = e.getAttribute("matchingType");
-        // if (matchingType.equals("default")) {
-        // fBracketMatcher = new DefaultCharacterPairMatcher(
-        // CtsStaticMatcher.MATCHING_BRACKETS);
-        // }
-        // if (matchingType.equals("configurable")) {
-        // char matchingBraces[] = e.getAttribute("matchingBrackets")
-        // .toCharArray();
-        // if (matchingBraces != null) {
-        // fBracketMatcher = new DefaultCharacterPairMatcher(
-        // matchingBraces);
-        // }
-        // }
-        //
-        // support.setCharacterPairMatcher(fBracketMatcher);
-        // support.setMatchingCharacterPainterPreferenceKeys(
-        // PreferenceInitializer.EDITOR_MATCHING_BRACKETS,
-        // PreferenceInitializer.EDITOR_MATCHING_BRACKETS_COLOR);
-        // }
-        //
-        // IPreferenceStore pref
-        // =CtsActivator.getDefault().getPreferenceStore();
-        // pref.setValue(PreferenceInitializer.EDITOR_MATCHING_BRACKETS, true);
-        // IPreferenceStore[] stores = {getPreferenceStore(), pref};
-        // super.setPreferenceStore(new ChainedPreferenceStore(stores));
-        //
-        // super.configureSourceViewerDecorationSupport(support);
+        IConfigurationElement[] config = Platform.getExtensionRegistry()
+                .getConfigurationElementsFor(
+                        "com.sap.ide.cts.editor.bracketMatching");
+        if (config.length != 0) {
+            IConfigurationElement e = config[0];
+            String matchingType = e.getAttribute("matchingType");
+            if (matchingType.equals("default")) {
+                fBracketMatcher = new DefaultCharacterPairMatcher(
+                        CtsStaticMatcher.MATCHING_BRACKETS);
+            }
+            if (matchingType.equals("configurable")) {
+                char matchingBraces[] = e.getAttribute("matchingBrackets")
+                        .toCharArray();
+                if (matchingBraces != null) {
+                    fBracketMatcher = new DefaultCharacterPairMatcher(
+                            matchingBraces);
+                }
+            }
+
+            support.setCharacterPairMatcher(fBracketMatcher);
+            support.setMatchingCharacterPainterPreferenceKeys(
+                    PreferenceInitializer.EDITOR_MATCHING_BRACKETS,
+                    PreferenceInitializer.EDITOR_MATCHING_BRACKETS_COLOR);
+        }
+
+        IPreferenceStore pref = CtsActivator.getDefault().getPreferenceStore();
+        pref.setValue(PreferenceInitializer.EDITOR_MATCHING_BRACKETS, true);
+        IPreferenceStore[] stores = { getPreferenceStore(), pref };
+        super.setPreferenceStore(new ChainedPreferenceStore(stores));
+
+        super.configureSourceViewerDecorationSupport(support);
     }
 
     public static class BoxDrawingStrategy implements IDrawingStrategy {
@@ -567,13 +573,13 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
             if(input instanceof FileEditorInput) {
                 Resource r = getEditingDomain().loadResource(URI.createFileURI(((FileEditorInput)input).getPath().toOSString()).toString());
                 if(r.getErrors().size() > 0) {
-                    Activator.getDefault().getLog().log(new Status(Status.ERROR, Activator.PLUGIN_ID, "Could not load resource: " + ((FileEditorInput)input).getPath() + r.getErrors()));
+                    CtsActivator.getDefault().getLog().log(new Status(Status.ERROR, CtsActivator.PLUGIN_ID, "Could not load resource: " + ((FileEditorInput)input).getPath() + r.getErrors()));
                     return;
                 }
                 input = new ModelEditorInput(r.getContents().iterator().next());
             }
         } catch (Exception e) {
-            Activator.getDefault().getLog().log(new Status(Status.ERROR, Activator.PLUGIN_ID, "Could not load resource: " + ((FileEditorInput)input).getPath(), e));
+            CtsActivator.getDefault().getLog().log(new Status(Status.ERROR, CtsActivator.PLUGIN_ID, "Could not load resource: " + ((FileEditorInput)input).getPath(), e));
         }
         super.init(site, input);
         // editingDomain.getCommandStack().openGroup("Deferred Editor Initialization");

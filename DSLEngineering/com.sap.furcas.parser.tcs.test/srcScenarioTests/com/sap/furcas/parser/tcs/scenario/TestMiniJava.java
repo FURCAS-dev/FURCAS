@@ -6,9 +6,10 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -27,7 +28,6 @@ import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
-import com.sap.furcas.test.testutils.ResourceTestHelper;
 
 /**
  * Simple Test for a simple, java like language.
@@ -42,7 +42,10 @@ public class TestMiniJava extends GeneratedParserBasedTest {
     private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
     
     private static ParsingHelper parsingHelper;
+    
     private static EPackage rootPackage;
+    private static Set<URI> referenceScope;
+    private static ResourceSet resourceSet;
 
     @BeforeClass
     public static void setupParser() throws Exception {
@@ -51,6 +54,8 @@ public class TestMiniJava extends GeneratedParserBasedTest {
         ParserFacade facade = generateParserForLanguage(syntaxBean, testConfig, new ClassLookupImpl());
         parsingHelper = new ParsingHelper(facade);
         rootPackage = findPackage("MiniJava", testConfig.getSourceConfiguration().getResourceSet());
+        resourceSet = testConfig.getSourceConfiguration().getResourceSet();
+        referenceScope = testConfig.getSourceConfiguration().getReferenceScope();
     }
 
     /**
@@ -151,8 +156,7 @@ public class TestMiniJava extends GeneratedParserBasedTest {
     }
 
     private IModelAdapter createNewEMFModelAdapter() {
-        return new DefaultTextAwareModelAdapter(
-                new EMFModelAdapter(rootPackage, ResourceTestHelper.createResourceSet(), Collections.singleton(rootPackage.eResource().getURI())));
+        return new DefaultTextAwareModelAdapter(new EMFModelAdapter(rootPackage, resourceSet, referenceScope));
     }
     
     /**
