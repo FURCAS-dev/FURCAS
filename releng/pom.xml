@@ -34,7 +34,7 @@
 
 		<!-- Test plugins -->
 		<module>../tests/org.eclipse.emf.query.index.test</module>
-		<module>../tests/org.eclipse.emf.query2.index.ui.test</module>
+		<!--  <module>../tests/org.eclipse.emf.query2.index.ui.test</module>  -->
 		<module>../tests/org.eclipse.emf.query2.test</module>
 		<module>../tests/org.eclipse.emf.query2.librarytest</module>
 		<module>../tests/org.eclipse.emf.query2.syntax.test</module>
