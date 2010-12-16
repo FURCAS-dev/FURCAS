@@ -25,7 +25,7 @@ public class DirtyResourceFactory extends EContentAdapter {
 	private static DirtyResourceFactory instance;
 	
 
-	@Override
+	
 	public void notifyChanged(final Notification notification) {
 		super.notifyChanged(notification);
 		if(notification.getNotifier() instanceof EObject){
