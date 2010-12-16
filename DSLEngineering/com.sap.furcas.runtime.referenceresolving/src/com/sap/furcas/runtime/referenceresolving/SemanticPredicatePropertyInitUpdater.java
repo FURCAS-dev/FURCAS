@@ -11,6 +11,7 @@ import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 
@@ -70,5 +71,11 @@ public class SemanticPredicatePropertyInitUpdater extends AbstractFurcasOCLBased
             }
         }
         return result;
+    }
+
+    @Override
+    protected SequenceElement getSequenceElement() {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

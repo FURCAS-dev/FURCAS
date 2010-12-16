@@ -24,7 +24,6 @@ import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.emf.ocl.trigger.TriggerManager;
@@ -174,7 +173,7 @@ public class TestPropertyInitReEvaluationWithTextBlocks extends GeneratedParserA
         }
     }
     
-    @Ignore
+    @Test
     public void testChangeOfExpressionValueUsingHashForeach() throws Exception {
         johnDoe.eSet(authorClass.getEStructuralFeature("name"), "The Only John Doe");
         testForeachPropertyInitValueInInitialModel();

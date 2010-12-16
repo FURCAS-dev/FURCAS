@@ -8,6 +8,7 @@ import com.sap.emf.ocl.trigger.ExpressionWithContext;
 import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 
@@ -29,6 +30,7 @@ import com.sap.furcas.runtime.tcs.TcsUtil;
  * 
  */
 public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater {
+    private final Property property;
 
     protected OCLQueryPropertyUpdater(Property propertyInit, OppositeEndFinder oppositeEndFinder) throws ParserException {
         super(propertyInit.getPropertyReference().getStrucfeature(), oppositeEndFinder, new ExpressionWithContext(
@@ -38,8 +40,8 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
         (EClass) ContextAndForeachHelper.getParsingContext(getExpressionString(propertyInit),
                 propertyInit.getParentTemplate())),
                 /* notifyNewContextElements */ true, getSelfKind(getExpressionString(propertyInit)));
+        this.property = propertyInit;
         // TODO handle parameterization of query expression
-//      ref.setGenericReference(true);
     }
 
     private static String getExpressionString(Property propertyInit) {
@@ -49,5 +51,10 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
             throw new RuntimeException("Didn't find a query argument in rule for property "+propertyInit.getPropertyReference().getStrucfeature());
         }
         return qarg.getQuery() + (filter != null ? filter.getFilter() : "");
+    }
+
+    @Override
+    protected SequenceElement getSequenceElement() {
+        return property;
     }
 }

@@ -13,6 +13,7 @@ import com.sap.emf.ocl.trigger.ExpressionWithContext;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
 import com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic;
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 
 /**
@@ -43,18 +44,20 @@ import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
  */
 public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdater {
     private final Collection<OCLExpression> triggerExpressionsWithoutContext;
+    private final ForeachPredicatePropertyInit foreachPredicatePropertyInit;
 
-    public ForeachPropertyInitUpdater(ForeachPredicatePropertyInit injectorAction, OppositeEndFinder oppositeEndFinder)
+    public ForeachPropertyInitUpdater(ForeachPredicatePropertyInit foreachPredicatePropertyInit, OppositeEndFinder oppositeEndFinder)
             throws ParserException {
-        super(injectorAction.getPropertyReference().getStrucfeature(), oppositeEndFinder, new ExpressionWithContext(
-                createOCLHelper(injectorAction.getValue(),
-                        ((InjectorActionsBlock) injectorAction.eContainer()).getParentTemplate(), oppositeEndFinder)
-                        .createQuery(ContextAndForeachHelper.prepareOclQuery(injectorAction.getValue())),
-                (EClass) ContextAndForeachHelper.getParsingContext(injectorAction.getValue(),
-                        ((InjectorActionsBlock) injectorAction.eContainer()).getParentTemplate())),
-                        /* notifyNewContextElements */ true, getSelfKind(injectorAction.getValue()));
+        super(foreachPredicatePropertyInit.getPropertyReference().getStrucfeature(), oppositeEndFinder, new ExpressionWithContext(
+                createOCLHelper(foreachPredicatePropertyInit.getValue(),
+                        ((InjectorActionsBlock) foreachPredicatePropertyInit.eContainer()).getParentTemplate(), oppositeEndFinder)
+                        .createQuery(ContextAndForeachHelper.prepareOclQuery(foreachPredicatePropertyInit.getValue())),
+                (EClass) ContextAndForeachHelper.getParsingContext(foreachPredicatePropertyInit.getValue(),
+                        ((InjectorActionsBlock) foreachPredicatePropertyInit.eContainer()).getParentTemplate())),
+                        /* notifyNewContextElements */ true, getSelfKind(foreachPredicatePropertyInit.getValue()));
         triggerExpressionsWithoutContext = new LinkedList<OCLExpression>();
-        for (PredicateSemantic whenClause : injectorAction.getPredicateSemantic()) {
+        this.foreachPredicatePropertyInit = foreachPredicatePropertyInit;
+        for (PredicateSemantic whenClause : foreachPredicatePropertyInit.getPredicateSemantic()) {
             if (whenClause.getWhen() != null) {
                 triggerExpressionsWithoutContext.add(whenClause.getWhen());
             }
@@ -70,6 +73,11 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
     @Override
     public Collection<OCLExpression> getTriggerExpressionsWithoutContext() {
         return triggerExpressionsWithoutContext;
+    }
+
+    @Override
+    protected SequenceElement getSequenceElement() {
+        return foreachPredicatePropertyInit.getInjectorActionsBlock();
     }
 
 }
