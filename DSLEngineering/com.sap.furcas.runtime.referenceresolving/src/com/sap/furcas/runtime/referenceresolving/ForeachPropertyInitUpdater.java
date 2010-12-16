@@ -55,7 +55,9 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                                         ((InjectorActionsBlock) foreachPredicatePropertyInit.eContainer()).getParentTemplate(), oppositeEndFinder)
                                         .createQuery(ContextAndForeachHelper.prepareOclQuery(foreachPredicatePropertyInit.getValue())),
                                 (EClass) ContextAndForeachHelper.getParsingContext(foreachPredicatePropertyInit.getValue(),
-                                        ((InjectorActionsBlock) foreachPredicatePropertyInit.eContainer()).getParentTemplate())), /* notifyNewContextElements */ true, getSelfKind(foreachPredicatePropertyInit.getValue()));
+                                        ((InjectorActionsBlock) foreachPredicatePropertyInit.eContainer()).getParentTemplate())),
+                                        /* notifyNewContextElements */ true, getSelfKind(foreachPredicatePropertyInit.getValue()),
+                                        ContextAndForeachHelper.getContextTag(foreachPredicatePropertyInit.getValue()));
         triggerExpressionsWithoutContext = new LinkedList<OCLExpression>();
         this.foreachPredicatePropertyInit = foreachPredicatePropertyInit;
         for (PredicateSemantic whenClause : foreachPredicatePropertyInit.getPredicateSemantic()) {

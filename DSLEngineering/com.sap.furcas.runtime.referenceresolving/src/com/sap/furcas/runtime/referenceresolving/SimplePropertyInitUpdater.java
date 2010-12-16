@@ -28,7 +28,9 @@ public class SimplePropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdate
                                         ((InjectorActionsBlock) injectorAction.eContainer()).getParentTemplate(), oppositeEndFinder)
                                         .createQuery(ContextAndForeachHelper.prepareOclQuery(injectorAction.getValue())),
                                 (EClass) ContextAndForeachHelper.getParsingContext(injectorAction.getValue(),
-                                        ((InjectorActionsBlock) injectorAction.eContainer()).getParentTemplate())), /* notifyNewContextElements */ true, getSelfKind(injectorAction.getValue()));
+                                        ((InjectorActionsBlock) injectorAction.eContainer()).getParentTemplate())),
+                                        /* notifyNewContextElements */ true, getSelfKind(injectorAction.getValue()),
+                                        ContextAndForeachHelper.getContextTag(injectorAction.getValue()));
         this.injectorAction = injectorAction;
     }
     
