@@ -93,7 +93,7 @@ public class EmfHelper {
 		if (!rs.getResources().isEmpty()) {
 			dirtyIndex.executeUpdateCommand(new UpdateCommandAdapter() {
 
-				@Override
+				
 				public void execute(IndexUpdater updater) {
 					ResourceIndexer rd = new ResourceIndexer();
 					Resource[] array = rs.getResources().toArray(new Resource[rs.getResources().size()]);
@@ -176,7 +176,7 @@ public class EmfHelper {
 
 	private void addToIndex(final Resource r) {
 		dirtyIndex.executeUpdateCommand(new UpdateCommandAdapter() {
-			@Override
+			
 			public void execute(IndexUpdater updater) {
 				ResourceIndexer rd = ResourceIndexer.INSTANCE;
 				rd.resourceChanged(updater, r);
@@ -251,7 +251,7 @@ public class EmfHelper {
 		QueryCommandWithResult<List<EObject>> command;
 		this.getBackwardNavIndex().executeQueryCommand(command = new QueryCommandWithResult<List<EObject>>() {
 
-			@Override
+			
 			public void execute(QueryExecutor queryExecutor) { // TODO provide more query possibilities on the index API
 				EReferenceQuery<EReferenceDescriptor> query = IndexQueryFactory.createEReferenceQuery();
 				query.eReferenceURI(endAndMetaObject);
