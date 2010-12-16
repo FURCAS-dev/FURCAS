@@ -14,7 +14,7 @@
  *   
  * </copyright>
  *
- * $Id: AbstractEnvironmentFactory.java,v 1.6 2009/06/25 19:23:52 ewillink Exp $
+ * $Id: AbstractEnvironmentFactory.java,v 1.7 2010/12/15 17:33:43 ewillink Exp $
  */
 package org.eclipse.ocl;
 
