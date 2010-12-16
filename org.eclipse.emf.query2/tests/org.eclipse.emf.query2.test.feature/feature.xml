@@ -57,12 +57,4 @@ Martin Strenge - initial API, implementation and documentation
          fragment="true"
          unpack="false"/>
 
-   <plugin
-         id="org.eclipse.emf.query2.index.ui.test"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
-         unpack="false"/>
-
 </feature>
