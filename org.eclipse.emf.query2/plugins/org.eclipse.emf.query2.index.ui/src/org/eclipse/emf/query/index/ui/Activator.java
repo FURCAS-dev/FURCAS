@@ -1,6 +1,5 @@
 package org.eclipse.emf.query.index.ui;
 
-import org.eclipse.emf.query.index.Index;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -11,7 +10,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.emf.query2.index.ui";
+	public static final String PLUGIN_ID = "org.eclipse.emf.query2.index.ui"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
