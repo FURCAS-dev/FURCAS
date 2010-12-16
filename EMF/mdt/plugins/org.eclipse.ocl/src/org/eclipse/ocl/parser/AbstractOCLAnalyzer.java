@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.43 2010/04/23 06:20:28 ewillink Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.44 2010/12/15 17:33:43 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: LiteralExpImpl.java,v 1.6 2009/01/22 00:20:02 cdamus Exp $
+ * $Id: LiteralExpImpl.java,v 1.7 2010/12/15 17:32:43 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
