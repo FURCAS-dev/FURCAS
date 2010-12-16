@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEnvironment.java,v 1.20 2009/12/04 21:25:20 ewillink Exp $
+ * $Id: AbstractEnvironment.java,v 1.21 2010/12/15 17:33:43 ewillink Exp $
  */
 package org.eclipse.ocl;
 

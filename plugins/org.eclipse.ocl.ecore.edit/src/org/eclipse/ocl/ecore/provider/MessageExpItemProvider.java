@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessageExpItemProvider.java,v 1.4 2010/04/08 06:27:12 ewillink Exp $
+ * $Id: MessageExpItemProvider.java,v 1.5 2010/12/15 17:33:19 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.provider;
 
