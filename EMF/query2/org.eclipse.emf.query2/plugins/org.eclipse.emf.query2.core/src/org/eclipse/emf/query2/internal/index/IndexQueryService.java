@@ -35,6 +35,7 @@ import org.eclipse.emf.query.index.query.QueryResult;
 import org.eclipse.emf.query.index.query.descriptors.EObjectDescriptor;
 import org.eclipse.emf.query.index.query.descriptors.EReferenceDescriptor;
 import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
+import org.eclipse.emf.query2.Messages;
 
 public class IndexQueryService {
 
@@ -83,7 +84,7 @@ public class IndexQueryService {
 		if (eClassUris.length == 0) { // query for EObject (i.e. reflect
 			// element)
 			if (!isInclusiveScope) {
-				throw new IllegalArgumentException("Query for EObject not allowed without inclusive scope");
+				throw new IllegalArgumentException("Query2Core_IndexQueryService_EObjectWithoutInclusiveScope"); //$NON-NLS-1$
 			}
 			for (URI scopeURI : scope) {
 				final EObjectQuery<EObjectDescriptor> eObjectQuery = IndexQueryFactory.createEObjectQuery();
@@ -325,7 +326,7 @@ public class IndexQueryService {
 		if (o instanceof EClass)
 			return (EClass) o;
 		else
-			throw new IllegalArgumentException("URI does not identify a class: " + eClassUri.toString());
+			throw new IllegalArgumentException(Messages.getString("Query2Core_IndexQueryService_UnIdentifiableClass", new String[]{eClassUri.toString()})); //$NON-NLS-1$
 	}
 
 }

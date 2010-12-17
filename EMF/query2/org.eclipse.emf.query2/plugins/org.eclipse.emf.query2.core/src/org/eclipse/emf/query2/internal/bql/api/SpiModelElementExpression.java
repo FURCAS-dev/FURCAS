@@ -152,18 +152,18 @@ public final class SpiModelElementExpression {
 		}
 		sb.append(SpiUtils.OPENING_PARENTHESES);
 		sb.append(SpiUtils.MODEL_ELEMENT_EXPRESSION);
-		sb.append(": ");
+		sb.append(": "); //$NON-NLS-1$
 		sb.append(SpiUtils.ALIAS);
-		sb.append(" = ");
+		sb.append(" = "); //$NON-NLS-1$
 		sb.append(this.getAlias());
 		if (this.types != null) {
 			SpiUtils.toStringNewLine(sb, ident + 1);
 			sb.append(SpiUtils.TYPES);
-			sb.append(": ");
+			sb.append(": "); //$NON-NLS-1$
 			int numberOfTypes = this.types.length;
 			for (int i = 0; i < numberOfTypes; i++) {
 				if (i > 0) {
-					sb.append(", ");
+					sb.append(", "); //$NON-NLS-1$
 				}
 				SpiUtils.toStringNewLine(sb, ident + 2);
 				sb.append(SpiUtils.uriIdForPrinting(this.types[i]));
@@ -172,11 +172,11 @@ public final class SpiModelElementExpression {
 		if (this.elements != null) {
 			SpiUtils.toStringNewLine(sb, ident + 1);
 			sb.append(SpiUtils.ELEMENTS);
-			sb.append(": ");
+			sb.append(": "); //$NON-NLS-1$
 			int numberOfElements = this.elements.length;
 			for (int i = 0; i < numberOfElements; i++) {
 				if (i > 0) {
-					sb.append(", ");
+					sb.append(", "); //$NON-NLS-1$
 				}
 				SpiUtils.toStringNewLine(sb, ident + 2);
 				sb.append(SpiUtils.uriIdForPrinting(this.elements[i]));

@@ -11,6 +11,7 @@
 package org.eclipse.emf.query2.internal.shared;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -29,6 +30,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.query.index.DirtyResourceFactory;
 import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl;
 import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl.Options;
@@ -69,8 +71,11 @@ public class EmfHelper {
 			if (rsImpl.getURIResourceMap() == null) {
 				rsImpl.setURIResourceMap(new HashMap<URI, Resource>());
 			}
+		}else if(rs==null){//providing the null check
+			//a new resource set is created if valid resource set is not passed
+			//check https://bugs.eclipse.org/bugs/show_bug.cgi?id=331905
+			this.rs=new ResourceSetImpl();
 		}
-		// this.createDirtyIndex();
 		this.index = index;
 	}
 
@@ -88,6 +93,7 @@ public class EmfHelper {
 		if (!rs.getResources().isEmpty()) {
 			dirtyIndex.executeUpdateCommand(new UpdateCommandAdapter() {
 
+				
 				public void execute(IndexUpdater updater) {
 					ResourceIndexer rd = new ResourceIndexer();
 					Resource[] array = rs.getResources().toArray(new Resource[rs.getResources().size()]);
@@ -170,7 +176,7 @@ public class EmfHelper {
 
 	private void addToIndex(final Resource r) {
 		dirtyIndex.executeUpdateCommand(new UpdateCommandAdapter() {
-
+			
 			public void execute(IndexUpdater updater) {
 				ResourceIndexer rd = ResourceIndexer.INSTANCE;
 				rd.resourceChanged(updater, r);
@@ -208,12 +214,11 @@ public class EmfHelper {
 			}
 		}
 
-		// for (TreeIterator<EObject> it = EcoreUtil.getAllProperContents(mp,
-		// false); it.hasNext();) {
-		// if ((object = it.next()) instanceof EObject && !object.eIsProxy()) {
-		// result.add(object);
-		// }
-		// }
+		//		for (TreeIterator<EObject> it = EcoreUtil.getAllProperContents(mp, false); it.hasNext();) {
+		//			if ((object = it.next()) instanceof EObject && !object.eIsProxy()) {
+		//				result.add(object);
+		//			}
+		//		}
 		return result;
 	}
 
@@ -233,20 +238,21 @@ public class EmfHelper {
 
 	private Index getBackwardNavIndex() {
 		if (useDirty) {
-			return this.dirtyIndex;
+			//The dirty index is maintained by the DirtyResourceFactory
+			return DirtyResourceFactory.getIndex();
 		} else {
 			return this.index;
 		}
 	}
 
-	public List<EObject> getReferringElementsWithTypeAndInScope(final EObject toObject, final URI endAndMetaObject, final Set<URI> priScope, final Set<EClass> mrisOfTypes,
-			final Set<URI> elements) {
+	public List<EObject> getReferringElementsWithTypeAndInScope(final EObject toObject, final URI endAndMetaObject,
+			final Set<URI> priScope, final Set<EClass> mrisOfTypes, final Set<URI> elements) {
 
 		QueryCommandWithResult<List<EObject>> command;
 		this.getBackwardNavIndex().executeQueryCommand(command = new QueryCommandWithResult<List<EObject>>() {
 
-			public void execute(QueryExecutor queryExecutor) { 
-				// TODO provide more query possibilities on the index API
+			
+			public void execute(QueryExecutor queryExecutor) { // TODO provide more query possibilities on the index API
 				EReferenceQuery<EReferenceDescriptor> query = IndexQueryFactory.createEReferenceQuery();
 				query.eReferenceURI(endAndMetaObject);
 				query.targetEObject().fragment(toObject.eResource().getURIFragment(toObject));

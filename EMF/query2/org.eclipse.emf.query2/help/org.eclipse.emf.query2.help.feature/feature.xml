@@ -2,7 +2,8 @@
 <feature
       id="org.eclipse.emf.query2.help.feature"
       label="EMF Query2 Help Feature"
-      version="1.0.0.qualifier">
+      version="1.0.0.qualifier"
+      provider-name="Eclipse Modeling Project">
 
    <description url="http://www.example.com/description">
       [Enter Feature Description here.]
