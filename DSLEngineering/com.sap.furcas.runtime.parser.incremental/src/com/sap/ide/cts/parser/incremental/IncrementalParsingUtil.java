@@ -301,9 +301,12 @@ public class IncrementalParsingUtil {
 			newFeatureBean.value, newFeatureBean.valueIndex);
 		// as default assign elements to the same partition as parents
 		if (newFeatureBean.value instanceof EObject && assignToPartition) {
+		    if(!(newFeatureBean.parentRefObject).eResource().equals(
+                                        ((EObject) newFeatureBean.value).eResource())) {
 			(newFeatureBean.parentRefObject).eResource()
 				.getContents().add(
 					(EObject) newFeatureBean.value);
+		    }
 		}
 	}
 

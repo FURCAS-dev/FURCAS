@@ -133,4 +133,11 @@ public class TcsUtil {
 	return metaModelTypeOfProperty;
     }
 
+    public static String escapeMultiLineOclQuery(String value) {
+        String javaQuery = value.replaceAll("\\\"", "\\\\\"");
+        javaQuery = javaQuery.replaceAll("\r\n", "\n");
+        javaQuery = javaQuery.replaceAll("\n", "\"+\n\"");
+        return javaQuery;
+    }
+
 }

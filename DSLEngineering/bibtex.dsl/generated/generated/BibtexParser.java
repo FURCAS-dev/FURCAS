@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g 2010-12-13 13:05:58
+// $ANTLR 3.1.1 C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g 2010-12-15 14:13:25
 
 package generated;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
@@ -59,7 +59,7 @@ public class BibtexParser extends ObservableInjectingParser {
         
 
     public String[] getTokenNames() { return BibtexParser.tokenNames; }
-    public String getGrammarFileName() { return "C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g"; }
+    public String getGrammarFileName() { return "C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g"; }
 
 
        private static final String syntaxUUID = "Bibtex";
@@ -137,7 +137,7 @@ public class BibtexParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "identifier"
-    // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:208:1: identifier returns [Object ret2] : (ast= NAME ) ;
+    // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:208:1: identifier returns [Object ret2] : (ast= NAME ) ;
     public final Object identifier() throws RecognitionException {
 
         Object ret2 = null;
@@ -146,11 +146,11 @@ public class BibtexParser extends ObservableInjectingParser {
 
         java.lang.Object ret=null;
         try {
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:209:3: ( (ast= NAME ) )
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:210:3: (ast= NAME )
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:209:3: ( (ast= NAME ) )
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:210:3: (ast= NAME )
             {
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:210:3: (ast= NAME )
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:210:4: ast= NAME
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:210:3: (ast= NAME )
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:210:4: ast= NAME
             {
             ast=(Token)match(input,NAME,FOLLOW_NAME_in_identifier69); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -181,7 +181,7 @@ public class BibtexParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "integerSymbol"
-    // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:218:1: integerSymbol returns [Object ret2] : (ast= INT ) ;
+    // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:218:1: integerSymbol returns [Object ret2] : (ast= INT ) ;
     public final Object integerSymbol() throws RecognitionException {
 
         Object ret2 = null;
@@ -190,11 +190,11 @@ public class BibtexParser extends ObservableInjectingParser {
 
         java.lang.Object ret=null;
         try {
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:219:3: ( (ast= INT ) )
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:220:3: (ast= INT )
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:219:3: ( (ast= INT ) )
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:220:3: (ast= INT )
             {
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:220:3: (ast= INT )
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:220:4: ast= INT
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:220:3: (ast= INT )
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:220:4: ast= INT
             {
             ast=(Token)match(input,INT,FOLLOW_INT_in_integerSymbol100); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -225,7 +225,7 @@ public class BibtexParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "main"
-    // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:228:1: main returns [Object ret2] : ( (ret= bibtex_literaturedb ) EOF ) ;
+    // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:228:1: main returns [Object ret2] : ( (ret= bibtex_literaturedb ) EOF ) ;
     public final Object main() throws RecognitionException {
 
         Object ret2 = null;
@@ -234,14 +234,14 @@ public class BibtexParser extends ObservableInjectingParser {
 
 
         try {
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:229:3: ( ( (ret= bibtex_literaturedb ) EOF ) )
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:230:3: ( (ret= bibtex_literaturedb ) EOF )
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:229:3: ( ( (ret= bibtex_literaturedb ) EOF ) )
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:230:3: ( (ret= bibtex_literaturedb ) EOF )
             {
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:230:3: ( (ret= bibtex_literaturedb ) EOF )
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:230:4: (ret= bibtex_literaturedb ) EOF
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:230:3: ( (ret= bibtex_literaturedb ) EOF )
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:230:4: (ret= bibtex_literaturedb ) EOF
             {
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:230:4: (ret= bibtex_literaturedb )
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:230:5: ret= bibtex_literaturedb
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:230:4: (ret= bibtex_literaturedb )
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:230:5: ret= bibtex_literaturedb
             {
             pushFollow(FOLLOW_bibtex_literaturedb_in_main128);
             ret=bibtex_literaturedb();
@@ -277,7 +277,7 @@ public class BibtexParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "bibtex_literaturedb"
-    // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:237:1: bibtex_literaturedb returns [Object ret2] : ( (temp= identifier ) 'Entries:' '{' (temp= bibtex_entry (temp= bibtex_entry )* )? '}' 'Authors:' '{' (temp= bibtex_author (temp= bibtex_author )* )? '}' ) ;
+    // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:237:1: bibtex_literaturedb returns [Object ret2] : ( (temp= identifier ) 'Entries:' '{' (temp= bibtex_entry (temp= bibtex_entry )* )? '}' 'Authors:' '{' (temp= bibtex_author (temp= bibtex_author )* )? '}' ) ;
     public final Object bibtex_literaturedb() throws RecognitionException {
 
         Object ret2 = null;
@@ -292,17 +292,17 @@ public class BibtexParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:243:3: ( ( (temp= identifier ) 'Entries:' '{' (temp= bibtex_entry (temp= bibtex_entry )* )? '}' 'Authors:' '{' (temp= bibtex_author (temp= bibtex_author )* )? '}' ) )
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:244:3: ( (temp= identifier ) 'Entries:' '{' (temp= bibtex_entry (temp= bibtex_entry )* )? '}' 'Authors:' '{' (temp= bibtex_author (temp= bibtex_author )* )? '}' )
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:243:3: ( ( (temp= identifier ) 'Entries:' '{' (temp= bibtex_entry (temp= bibtex_entry )* )? '}' 'Authors:' '{' (temp= bibtex_author (temp= bibtex_author )* )? '}' ) )
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:244:3: ( (temp= identifier ) 'Entries:' '{' (temp= bibtex_entry (temp= bibtex_entry )* )? '}' 'Authors:' '{' (temp= bibtex_author (temp= bibtex_author )* )? '}' )
             {
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:244:3: ( (temp= identifier ) 'Entries:' '{' (temp= bibtex_entry (temp= bibtex_entry )* )? '}' 'Authors:' '{' (temp= bibtex_author (temp= bibtex_author )* )? '}' )
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:244:4: (temp= identifier ) 'Entries:' '{' (temp= bibtex_entry (temp= bibtex_entry )* )? '}' 'Authors:' '{' (temp= bibtex_author (temp= bibtex_author )* )? '}'
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:244:3: ( (temp= identifier ) 'Entries:' '{' (temp= bibtex_entry (temp= bibtex_entry )* )? '}' 'Authors:' '{' (temp= bibtex_author (temp= bibtex_author )* )? '}' )
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:244:4: (temp= identifier ) 'Entries:' '{' (temp= bibtex_entry (temp= bibtex_entry )* )? '}' 'Authors:' '{' (temp= bibtex_author (temp= bibtex_author )* )? '}'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.0");
             }
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:244:99: (temp= identifier )
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:244:101: temp= identifier
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:244:117: (temp= identifier )
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:244:119: temp= identifier
             {
             pushFollow(FOLLOW_identifier_in_bibtex_literaturedb166);
             temp=identifier();
@@ -321,23 +321,23 @@ public class BibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.1");
             }
             match(input,15,FOLLOW_15_in_bibtex_literaturedb172); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.2");
             }
             match(input,16,FOLLOW_16_in_bibtex_literaturedb175); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.3");
             }
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:245:376: (temp= bibtex_entry (temp= bibtex_entry )* )?
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:245:430: (temp= bibtex_entry (temp= bibtex_entry )* )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -346,7 +346,7 @@ public class BibtexParser extends ObservableInjectingParser {
             }
             switch (alt2) {
                 case 1 :
-                    // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:245:378: temp= bibtex_entry (temp= bibtex_entry )*
+                    // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:245:432: temp= bibtex_entry (temp= bibtex_entry )*
                     {
                     pushFollow(FOLLOW_bibtex_entry_in_bibtex_literaturedb182);
                     temp=bibtex_entry();
@@ -358,7 +358,7 @@ public class BibtexParser extends ObservableInjectingParser {
                       setProperty(ret, "entries", temp);
                       setParent(temp,ret,"entries");
                     }
-                    // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:246:33: (temp= bibtex_entry )*
+                    // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:246:33: (temp= bibtex_entry )*
                     loop1:
                     do {
                         int alt1=2;
@@ -371,7 +371,7 @@ public class BibtexParser extends ObservableInjectingParser {
 
                         switch (alt1) {
                     	case 1 :
-                    	    // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:246:35: temp= bibtex_entry
+                    	    // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:246:35: temp= bibtex_entry
                     	    {
                     	    pushFollow(FOLLOW_bibtex_entry_in_bibtex_literaturedb190);
                     	    temp=bibtex_entry();
@@ -402,30 +402,30 @@ public class BibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.4");
             }
             match(input,17,FOLLOW_17_in_bibtex_literaturedb201); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.5");
             }
             match(input,18,FOLLOW_18_in_bibtex_literaturedb204); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.6");
             }
             match(input,16,FOLLOW_16_in_bibtex_literaturedb207); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.7");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.7");
             }
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:247:498: (temp= bibtex_author (temp= bibtex_author )* )?
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:247:570: (temp= bibtex_author (temp= bibtex_author )* )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -434,7 +434,7 @@ public class BibtexParser extends ObservableInjectingParser {
             }
             switch (alt4) {
                 case 1 :
-                    // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:247:500: temp= bibtex_author (temp= bibtex_author )*
+                    // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:247:572: temp= bibtex_author (temp= bibtex_author )*
                     {
                     pushFollow(FOLLOW_bibtex_author_in_bibtex_literaturedb214);
                     temp=bibtex_author();
@@ -446,7 +446,7 @@ public class BibtexParser extends ObservableInjectingParser {
                       setProperty(ret, "author", temp);
                       setParent(temp,ret,"author");
                     }
-                    // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:248:32: (temp= bibtex_author )*
+                    // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:248:32: (temp= bibtex_author )*
                     loop3:
                     do {
                         int alt3=2;
@@ -459,7 +459,7 @@ public class BibtexParser extends ObservableInjectingParser {
 
                         switch (alt3) {
                     	case 1 :
-                    	    // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:248:34: temp= bibtex_author
+                    	    // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:248:34: temp= bibtex_author
                     	    {
                     	    pushFollow(FOLLOW_bibtex_author_in_bibtex_literaturedb222);
                     	    temp=bibtex_author();
@@ -490,7 +490,7 @@ public class BibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.8");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.8");
             }
             match(input,17,FOLLOW_17_in_bibtex_literaturedb233); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -521,7 +521,7 @@ public class BibtexParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "bibtex_entry"
-    // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:257:1: bibtex_entry returns [Object ret2] : ( '@article' '{' ( ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' ) ) '}' ) ;
+    // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:257:1: bibtex_entry returns [Object ret2] : ( '@article' '{' ( ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' ) ) '}' ) ;
     public final Object bibtex_entry() throws RecognitionException {
 
         Object ret2 = null;
@@ -536,40 +536,40 @@ public class BibtexParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:263:3: ( ( '@article' '{' ( ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' ) ) '}' ) )
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:264:3: ( '@article' '{' ( ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' ) ) '}' )
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:263:3: ( ( '@article' '{' ( ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' ) ) '}' ) )
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:264:3: ( '@article' '{' ( ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' ) ) '}' )
             {
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:264:3: ( '@article' '{' ( ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' ) ) '}' )
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:264:4: '@article' '{' ( ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' ) ) '}'
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:264:3: ( '@article' '{' ( ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' ) ) '}' )
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:264:4: '@article' '{' ( ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' ) ) '}'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.0");
             }
             match(input,19,FOLLOW_19_in_bibtex_entry273); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.1");
             }
             match(input,16,FOLLOW_16_in_bibtex_entry276); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2");
             }
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:264:334: ( ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' ) )
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:264:335: ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' )
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:264:388: ( ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' ) )
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:264:389: ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' )
             {
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:264:335: ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' )
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:264:336: (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}'
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:264:389: ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' )
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:264:390: (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.0");
             }
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:264:458: (temp= identifier )
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:264:460: temp= identifier
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:264:530: (temp= identifier )
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:264:532: temp= identifier
             {
             pushFollow(FOLLOW_identifier_in_bibtex_entry286);
             temp=identifier();
@@ -588,38 +588,38 @@ public class BibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.1");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.1");
             }
             match(input,20,FOLLOW_20_in_bibtex_entry292); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.2");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.2");
             }
             match(input,21,FOLLOW_21_in_bibtex_entry295); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.3");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.3");
             }
             match(input,22,FOLLOW_22_in_bibtex_entry298); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.4");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.4");
             }
             match(input,16,FOLLOW_16_in_bibtex_entry301); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.5");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.5");
             }
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:265:734: (temp= identifier )
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:265:736: temp= identifier
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:265:824: (temp= identifier )
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:265:826: temp= identifier
             {
             pushFollow(FOLLOW_identifier_in_bibtex_entry308);
             temp=identifier();
@@ -638,44 +638,44 @@ public class BibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.6");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.6");
             }
             match(input,17,FOLLOW_17_in_bibtex_entry314); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.7");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.7");
             }
             match(input,20,FOLLOW_20_in_bibtex_entry317); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.8");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.8");
             }
             match(input,23,FOLLOW_23_in_bibtex_entry320); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.9");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.9");
             }
             match(input,22,FOLLOW_22_in_bibtex_entry323); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.10");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.10");
             }
             match(input,16,FOLLOW_16_in_bibtex_entry326); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.11");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.11");
             }
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:266:881: (temp= identifier ( ( 'and' ) temp= identifier )* )?
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:266:989: (temp= identifier ( ( 'and' ) temp= identifier )* )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -684,7 +684,7 @@ public class BibtexParser extends ObservableInjectingParser {
             }
             switch (alt6) {
                 case 1 :
-                    // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:266:883: temp= identifier ( ( 'and' ) temp= identifier )*
+                    // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:266:991: temp= identifier ( ( 'and' ) temp= identifier )*
                     {
                     pushFollow(FOLLOW_identifier_in_bibtex_entry333);
                     temp=identifier();
@@ -695,7 +695,7 @@ public class BibtexParser extends ObservableInjectingParser {
                     if ( state.backtracking==0 ) {
                       setOclRef(ret, "author", "name", temp, "OCL:Bibtex::Author.allInstances()->select(a|a.name=?)");
                     }
-                    // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:266:998: ( ( 'and' ) temp= identifier )*
+                    // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:266:1106: ( ( 'and' ) temp= identifier )*
                     loop5:
                     do {
                         int alt5=2;
@@ -708,16 +708,16 @@ public class BibtexParser extends ObservableInjectingParser {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:266:999: ( 'and' ) temp= identifier
+                    	    // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:266:1107: ( 'and' ) temp= identifier
                     	    {
                     	    if ( state.backtracking==0 ) {
                     	      _enterSepSeq();
                     	    }
-                    	    // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:266:1016: ( 'and' )
-                    	    // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:266:1017: 'and'
+                    	    // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:266:1124: ( 'and' )
+                    	    // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:266:1125: 'and'
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.11/@propertyArgs.1/@separatorSequence/@elements.0");
+                    	      _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.11/@propertyArgs.1/@separatorSequence/@elements.0");
                     	    }
                     	    match(input,24,FOLLOW_24_in_bibtex_entry341); if (state.failed) return ret2;
                     	    if ( state.backtracking==0 ) {
@@ -757,7 +757,7 @@ public class BibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.12");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.12");
             }
             match(input,17,FOLLOW_17_in_bibtex_entry359); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -773,14 +773,14 @@ public class BibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.3");
             }
             match(input,17,FOLLOW_17_in_bibtex_entry365); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.4");
             }
             if ( state.backtracking==0 ) {
               _enterInjectorAction();setOclRef(ret, "literaturedb", null, null, "OCL:#context", true);_exitInjectorAction();
@@ -813,7 +813,7 @@ public class BibtexParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "bibtex_author"
-    // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:274:1: bibtex_author returns [Object ret2] : ( (temp= identifier ) ) ;
+    // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:274:1: bibtex_author returns [Object ret2] : ( (temp= identifier ) ) ;
     public final Object bibtex_author() throws RecognitionException {
 
         Object ret2 = null;
@@ -828,17 +828,17 @@ public class BibtexParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:280:3: ( ( (temp= identifier ) ) )
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:281:3: ( (temp= identifier ) )
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:280:3: ( ( (temp= identifier ) ) )
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:281:3: ( (temp= identifier ) )
             {
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:281:3: ( (temp= identifier ) )
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:281:4: (temp= identifier )
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:281:3: ( (temp= identifier ) )
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:281:4: (temp= identifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.4/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.4/@templateSequence/@elements.0");
             }
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:281:99: (temp= identifier )
-            // C:\\dev\\workspaces\\runtime-workspace\\Bibtex.dsl\\generated\\generated\\Bibtex.g:281:101: temp= identifier
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:281:117: (temp= identifier )
+            // C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:281:119: temp= identifier
             {
             pushFollow(FOLLOW_identifier_in_bibtex_author412);
             temp=identifier();
@@ -857,7 +857,7 @@ public class BibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("/Bibtex.dsl/mappings/Bibtex.tcs#//@templates.4/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/resource/bibtex.dsl/mappings/Bibtex.tcs#//@templates.4/@templateSequence/@elements.1");
             }
             if ( state.backtracking==0 ) {
               _enterInjectorAction();setOclRef(ret, "literaturedb", null, null, "OCL:#context", true);_exitInjectorAction();

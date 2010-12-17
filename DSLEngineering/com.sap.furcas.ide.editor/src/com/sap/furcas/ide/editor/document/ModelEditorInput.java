@@ -1,5 +1,6 @@
 package com.sap.furcas.ide.editor.document;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -11,6 +12,8 @@ public class ModelEditorInput implements IEditorInput {
 
     
     private final EObject eObject;
+    private IProject project;
+
 
     public ModelEditorInput(EObject eObject) {
         super();
@@ -55,12 +58,20 @@ public class ModelEditorInput implements IEditorInput {
 
     @Override
     public String getToolTipText() {
-        // TODO Auto-generated method stub
-        return eObject.toString();
+        String uri = EcoreUtil.getURI(eObject).toString();
+        return uri != null ? uri : getName();
     }
 
     public EObject getEObject() {
         return eObject;
     }
 
+    public void setProject(IProject proj) {
+        this.project = proj;
+    }
+
+
+    public IProject getProject() {
+        return project;
+    }
 }
