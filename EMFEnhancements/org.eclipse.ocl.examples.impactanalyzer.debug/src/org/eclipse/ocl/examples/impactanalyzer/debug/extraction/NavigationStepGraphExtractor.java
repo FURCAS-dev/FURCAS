@@ -41,7 +41,7 @@ public class NavigationStepGraphExtractor extends AbstractGraphExtractor {
 	return getNavigationStepDelegate();
     }
 
-    @Override
+    
     public Node buildGraph(GraphContext graphContext, Node parentGroupNode, Node precedingNode) {
 	NodeList nl = new NodeList();
 
@@ -64,7 +64,6 @@ public class NavigationStepGraphExtractor extends AbstractGraphExtractor {
 	return newNode;
     }
 
-    @Override
     public String getNodeName() {
 	if(getNavigationStep() instanceof AllInstancesNavigationStep)
 	    return "allInstances";

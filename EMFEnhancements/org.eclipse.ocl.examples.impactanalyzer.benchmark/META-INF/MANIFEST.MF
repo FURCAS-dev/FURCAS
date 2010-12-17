@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.eclipse.ocl.examples.impactanalyzer.benchmark
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.ocl.examples.impactanalyzer.testmodel.ngpm,
  org.junit,
  org.junit4,

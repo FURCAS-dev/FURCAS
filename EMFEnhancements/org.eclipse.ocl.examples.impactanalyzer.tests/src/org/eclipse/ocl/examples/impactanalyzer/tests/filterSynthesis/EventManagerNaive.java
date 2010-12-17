@@ -39,7 +39,6 @@ public class EventManagerNaive implements EventManager {
         resourceSets.put(set, null);
     }
 
-    @Override
     public void setActive(boolean active) {
         this.active = active;
     }
@@ -92,7 +91,6 @@ public class EventManagerNaive implements EventManager {
         return result;
     }
 
-    @Override
     public void subscribe(EventFilter filter, Adapter caller) {
         subscribe((Notifier) null, filter, caller);
 

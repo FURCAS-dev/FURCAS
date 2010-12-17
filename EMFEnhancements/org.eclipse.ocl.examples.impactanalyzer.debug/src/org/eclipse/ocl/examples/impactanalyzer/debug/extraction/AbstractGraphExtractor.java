@@ -32,13 +32,13 @@ public abstract class AbstractGraphExtractor implements GraphExtractor {
 	return navigationStepDelegate;
     }
 
-    @Override
+    
     public Node buildGraph(GraphContext graphContext) {
 	// Create a new root group node
 	return buildGraph(graphContext, graphContext.createRootNode(), null);
     }
 
-    @Override
+    
     public boolean hasBeenNavigated() {
 	if (((AbstractNavigationStep) getNavigationStepDelegate()).getNavigateCounter() > 0) {
 	    return true;

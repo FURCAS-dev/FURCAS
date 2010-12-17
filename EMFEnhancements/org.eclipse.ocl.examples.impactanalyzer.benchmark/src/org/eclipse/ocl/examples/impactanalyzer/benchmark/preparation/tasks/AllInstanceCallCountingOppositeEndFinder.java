@@ -33,35 +33,29 @@ public class AllInstanceCallCountingOppositeEndFinder implements OppositeEndFind
     public AllInstanceCallCountingOppositeEndFinder() {
     }
 
-    @Override
     public Set<EObject> getAllInstancesSeeing(EClass cls, Notifier context) {
 	setAllInstancesCalled(getAllInstancesCalled() + 1);
         return delegate.getAllInstancesSeeing(cls, context);
     }
 
-    @Override
     public void findOppositeEnds(EClassifier classifier, String name, List<EReference> ends) {
 	findOppositeEndsCalled++;
 	delegate.findOppositeEnds(classifier, name, ends);
     }
 
-    @Override
     public Map<String, EReference> getAllOppositeEnds(EClassifier classifier) {
 	setGetAllOppositeEndsCalled(getGetAllOppositeEndsCalled() + 1);
 	return delegate.getAllOppositeEnds(classifier);
     }
 
-    @Override
     public Collection<EObject> navigateOppositePropertyWithForwardScope(EReference property, EObject target) {
 	return delegate.navigateOppositePropertyWithForwardScope(property, target);
     }
 
-    @Override
     public Collection<EObject> navigateOppositePropertyWithBackwardScope(EReference property, EObject target) {
 	return delegate.navigateOppositePropertyWithBackwardScope(property, target);
     }
 
-    @Override
     public Set<EObject> getAllInstancesSeenBy(EClass cls, Notifier context) {
 	setAllInstancesCalled(getAllInstancesCalled() + 1);
 	return delegate.getAllInstancesSeenBy(cls, context);

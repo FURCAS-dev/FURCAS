@@ -16,7 +16,6 @@ public class AdditiveMeasurement extends DefaultMeasurement {
 	ArrayList<Measurement> measurementList = new ArrayList<Measurement>();
 	MicroMeasurement lastMeasure = null;
 
-	@Override
 	public long getResult() {
 		long result = 0;
 
@@ -27,7 +26,6 @@ public class AdditiveMeasurement extends DefaultMeasurement {
 		return result;
 	}
 
-	@Override
 	public void before() {
 		MicroMeasurement newMeasure = new MicroMeasurement();
 		measurementList.add(newMeasure);
@@ -36,7 +34,6 @@ public class AdditiveMeasurement extends DefaultMeasurement {
 		newMeasure.before();
 	}
 
-	@Override
 	public void after() {
 		if(lastMeasure != null){
 			lastMeasure.after();

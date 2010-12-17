@@ -122,7 +122,7 @@ public class BenchmarkEnvironmentTest extends TestCase {
 	private class BenchmarkTaskMock implements BenchmarkTask{
 	private final int callCounter = 0;
 
-	@Override
+	
 	public Collection<EObject> call() throws Exception {
 		//Thread.sleep(0, 10);
 
@@ -133,47 +133,47 @@ public class BenchmarkEnvironmentTest extends TestCase {
 	    return callCounter;
 	}
 
-	@Override
+	
 	public Map<String, String> getAdditionalInformation() {
 	    return Collections.emptyMap();
 	}
 
-	@Override
+	
 	public void beforeCall() {
 	    // TODO Auto-generated method stub
 
 	}
 
-	@Override
+	
 	public void afterCall() {
 	    // TODO Auto-generated method stub
 
 	}
 
-	@Override
+	
 	public Map<String, String> getAdditionalMeasurementInformation() {
 	    return new LinkedHashMap<String, String>();
 	}
 
-	@Override
+	
 	public boolean activate() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
+	
 	public Object getResult() {
 	    // TODO Auto-generated method stub
 	    return null;
 	}
 
-	@Override
+	
 	public void callEvaluation() {
 	    // TODO Auto-generated method stub
 
 	}
 
-	@Override
+	
 	public boolean deactivate() {
 	    // TODO Auto-generated method stub
 	    return false;

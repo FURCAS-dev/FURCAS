@@ -75,7 +75,7 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 	additionalInformation.put("modelId", modelId);
     }
 
-    @Override
+    
     public boolean activate(){
     	// For creating the notification the model is changed. Therefore the
     	// creation of notifications shall be happen just before the benchmark task
@@ -131,7 +131,7 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 	return resultSet;
     }
 
-    @Override
+    
     public void beforeCall() {
 	    assert additionalMeasurementInformation.size() == 0;
     	    assert result == null;
@@ -145,7 +145,7 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     	    ((AllInstanceCallCountingOppositeEndFinder)getOppositeEndFinder()).resetAll();
     }
 
-    @Override
+    
     public Collection<EObject> call() throws Exception {
         if (filterMatches) {
             result = ia.getContextObjects(notification);
@@ -155,14 +155,14 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
         return result;
     }
 
-    @Override
+    
     public void callEvaluation() {
 	/*for(EObject affectedElement : result){
 	    evaluationResult.add(getOcl().evaluate(affectedElement, expression.getExpression()));
 	}*/
     }
 
-    @Override
+    
     public void afterCall() {
 	assert result != null;
 	assert evaluationResult != null;
@@ -205,7 +205,7 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     }
 
 
-    @Override
+    
     public boolean deactivate() {
 	Collection<EObject> result = allResults.get(0);
 
@@ -293,7 +293,7 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 	return notification;
     }
 
-    @Override
+    
     public Map<String, String> getAdditionalInformation() {
     	return additionalInformation;
     }
@@ -308,7 +308,7 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 	return resourceSize;
     }
 
-    @Override
+    
     public Map<String, String> getAdditionalMeasurementInformation() {
 	LinkedHashMap<String, String> result = new LinkedHashMap<String,String>();
 	result.putAll(additionalMeasurementInformation);
@@ -326,7 +326,7 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 		return model;
 	}
 
-	@Override
+	
 	public Object getResult() {
 	    return result;
 	}
