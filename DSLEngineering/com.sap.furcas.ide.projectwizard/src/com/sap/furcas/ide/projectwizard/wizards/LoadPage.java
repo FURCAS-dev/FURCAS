@@ -129,8 +129,9 @@ public class LoadPage extends WizardPage {
             }
 
             /**
-             * @param result
-             * @param nsURIs
+             * Saves the chosen metamodel to the global variable <code>eP</code>. It also makes sure to choose a metamodel not having a 'super'metamodel
+             * as the Builder can't handle it. If that is the case the 'super'metamodel is assigned to the local variable <code>eP</code>.
+             * The method also sets the nsURI field in the ProjectInfo instance.
              */
             private void saveSelection(Object[] result) {
                 List<?> nsURIs = Arrays.asList(result);
