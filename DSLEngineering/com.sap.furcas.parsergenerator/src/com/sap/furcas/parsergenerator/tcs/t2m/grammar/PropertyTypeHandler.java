@@ -324,9 +324,7 @@ public class PropertyTypeHandler<Type extends Object> {
         } else {
             query = args.oclQueryByIdentifierPArg.getQueryByIdentifier() + "->select(" +  args.oclQueryByIdentifierPArg.getFeature() + " = ?)";
         }
-        String oclQuery = query.replaceAll("\\\"", "\\\\\"");
-        oclQuery = oclQuery.replaceAll("\r\n", "\"+\r\n\"");
-        oclQuery = oclQuery.replaceAll("\n", "\"+\n\"");
+        String oclQuery = TcsUtil.escapeMultiLineOclQuery(query);
 
         validateOclQuery(prop, args, query);
 
