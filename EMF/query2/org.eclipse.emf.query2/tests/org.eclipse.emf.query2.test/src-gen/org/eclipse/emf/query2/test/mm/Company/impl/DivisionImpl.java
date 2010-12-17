@@ -1,13 +1,15 @@
-/*******************************************************************************
- * Copyright (c) 2006, 2009 SAP AG and others.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *     SAP AG - initial API and implementation
- *******************************************************************************/
+/**
+ * /*******************************************************************************
+ *  * Copyright (c) 2006, 2009 SAP AG and others.
+ *  * All rights reserved. This program and the accompanying materials
+ *  * are made available under the terms of the Eclipse Public License v1.0
+ *  * which accompanies this distribution, and is available at
+ *  * http://www.eclipse.org/legal/epl-v10.html
+ *  *
+ *  * Contributors:
+ *  *     SAP AG - initial API and implementation
+ *  ******************************************************************************/
+ 
 package org.eclipse.emf.query2.test.mm.Company.impl;
 
 import java.util.Collection;
@@ -30,6 +32,7 @@ import org.eclipse.emf.query2.test.mm.Company.CompanyPackage;
 import org.eclipse.emf.query2.test.mm.Company.Department;
 import org.eclipse.emf.query2.test.mm.Company.Division;
 import org.eclipse.emf.query2.test.mm.Company.Employee;
+import org.eclipse.emf.query2.test.mm.Company.Transport;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,6 +45,7 @@ import org.eclipse.emf.query2.test.mm.Company.Employee;
  *   <li>{@link org.eclipse.emf.query2.test.mm.Company.impl.DivisionImpl#getDepartment <em>Department</em>}</li>
  *   <li>{@link org.eclipse.emf.query2.test.mm.Company.impl.DivisionImpl#getDirector <em>Director</em>}</li>
  *   <li>{@link org.eclipse.emf.query2.test.mm.Company.impl.DivisionImpl#getBudget <em>Budget</em>}</li>
+ *   <li>{@link org.eclipse.emf.query2.test.mm.Company.impl.DivisionImpl#getCommuting <em>Commuting</em>}</li>
  * </ul>
  * </p>
  *
@@ -107,6 +111,16 @@ public class DivisionImpl extends EObjectImpl implements Division {
 	 * @ordered
 	 */
 	protected int budget = BUDGET_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getCommuting() <em>Commuting</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCommuting()
+	 * @generated
+	 * @ordered
+	 */
+	protected Transport commuting;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -246,6 +260,44 @@ public class DivisionImpl extends EObjectImpl implements Division {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Transport getCommuting() {
+		if (commuting != null && commuting.eIsProxy()) {
+			InternalEObject oldCommuting = (InternalEObject)commuting;
+			commuting = (Transport)eResolveProxy(oldCommuting);
+			if (commuting != oldCommuting) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CompanyPackage.DIVISION__COMMUTING, oldCommuting, commuting));
+			}
+		}
+		return commuting;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Transport basicGetCommuting() {
+		return commuting;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCommuting(Transport newCommuting) {
+		Transport oldCommuting = commuting;
+		commuting = newCommuting;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CompanyPackage.DIVISION__COMMUTING, oldCommuting, commuting));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -293,6 +345,9 @@ public class DivisionImpl extends EObjectImpl implements Division {
 				return basicGetDirector();
 			case CompanyPackage.DIVISION__BUDGET:
 				return getBudget();
+			case CompanyPackage.DIVISION__COMMUTING:
+				if (resolve) return getCommuting();
+				return basicGetCommuting();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -319,6 +374,9 @@ public class DivisionImpl extends EObjectImpl implements Division {
 			case CompanyPackage.DIVISION__BUDGET:
 				setBudget((Integer)newValue);
 				return;
+			case CompanyPackage.DIVISION__COMMUTING:
+				setCommuting((Transport)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -343,6 +401,9 @@ public class DivisionImpl extends EObjectImpl implements Division {
 			case CompanyPackage.DIVISION__BUDGET:
 				setBudget(BUDGET_EDEFAULT);
 				return;
+			case CompanyPackage.DIVISION__COMMUTING:
+				setCommuting((Transport)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -363,6 +424,8 @@ public class DivisionImpl extends EObjectImpl implements Division {
 				return director != null;
 			case CompanyPackage.DIVISION__BUDGET:
 				return budget != BUDGET_EDEFAULT;
+			case CompanyPackage.DIVISION__COMMUTING:
+				return commuting != null;
 		}
 		return super.eIsSet(featureID);
 	}

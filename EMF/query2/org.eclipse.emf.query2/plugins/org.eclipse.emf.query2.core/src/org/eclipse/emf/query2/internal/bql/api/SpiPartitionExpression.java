@@ -96,7 +96,7 @@ public final class SpiPartitionExpression {
 		}
 		sb.append(SpiUtils.OPENING_PARENTHESES);
 		sb.append(SpiUtils.PARTITIONS);
-		sb.append(": ");
+		sb.append(": "); //$NON-NLS-1$
 		if (this.partitionList != null) {
 			if (this.isIncludeList) {
 				sb.append(SpiUtils.INCLUDE_LIST);

@@ -71,13 +71,13 @@ public final class SpiSelectExpression {
 		SpiUtils.toStringNewLine(sb, ident);
 		sb.append(SpiUtils.OPENING_PARENTHESES);
 		sb.append(SpiUtils.SELECT);
-		sb.append(": ");
+		sb.append(": "); //$NON-NLS-1$
 		this.modelElementClusterExpression.toString(sb, ident + 1, true);
 		sb.append(',');
 		SpiUtils.toStringNewLine(sb, ident + 1);
 		if (this.selectLists != null && this.selectLists.length > 0) {
 			sb.append(SpiUtils.SELECT_LIST);
-			sb.append(": ");
+			sb.append(": "); //$NON-NLS-1$
 			for (int i = 0; i < this.selectLists.length - 1; i++) {
 				this.selectLists[i].toString(sb, ident + 2, true);
 				sb.append(',');

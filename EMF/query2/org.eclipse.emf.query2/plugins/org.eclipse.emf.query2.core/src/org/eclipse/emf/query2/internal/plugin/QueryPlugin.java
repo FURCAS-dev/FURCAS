@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
  * @generated
  */
 public final class QueryPlugin extends EMFPlugin {
-	public static final String ID = "org.eclipse.emf.query2";
+	public static final String ID = "org.eclipse.emf.query2"; //$NON-NLS-1$
 	
 	/**
 	 * Keep track of the singleton.
