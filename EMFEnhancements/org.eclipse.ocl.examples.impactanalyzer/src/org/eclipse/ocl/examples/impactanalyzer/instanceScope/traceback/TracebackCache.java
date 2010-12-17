@@ -87,11 +87,13 @@ public class TracebackCache {
      * keyed by the step and the <code>fromObject</code> from which navigation was computed, caching the prior results.
      */
     private final Map<Triple<TracebackStep, AnnotatedEObject, UnusedEvaluationRequestSet>, OperationCallExpKeyedSet> navigateCache;
-    
+
     /**
-     * Caches the results of {@link UnusedEvaluationRequest#evaluate(com.sap.emf.ocl.hiddenopposites.OppositeEndFinder evaluating}
-     * an {@link UnusedEvaluationRequest}. The result may either be a {@link ValueNotFoundException} telling for which unknown
-     * variable the request failed, or a {@link Boolean} telling if the evaluation caused unusedness to be proven.
+     * Caches the results of
+     * {@link UnusedEvaluationRequest#evaluate(org.eclipse.ocl.ecore.opposites.OppositeEndFinder, org.eclipse.ocl.examples.impactanalyzer.OCLFactory)
+     * evaluating} an {@link UnusedEvaluationRequest}. The result may either be a {@link ValueNotFoundException} telling
+     * for which unknown variable the request failed, or a {@link Boolean} telling if the evaluation caused unusedness
+     * to be proven.
      */
     private final Map<UnusedEvaluationRequest, Object> unusedEvaluationCache;
     
@@ -131,18 +133,22 @@ public class TracebackCache {
     }
 
     /**
-     * Caches the results of {@link UnusedEvaluationRequest#evaluate(com.sap.emf.ocl.hiddenopposites.OppositeEndFinder evaluating}
-     * an {@link UnusedEvaluationRequest}. The result may either be a {@link ValueNotFoundException} telling for which unknown
-     * variable the request failed, or a {@link Boolean} telling if the evaluation caused unusedness to be proven.
+     * Caches the results of
+     * {@link UnusedEvaluationRequest#evaluate(org.eclipse.ocl.ecore.opposites.OppositeEndFinder, org.eclipse.ocl.examples.impactanalyzer.OCLFactory)
+     * evaluating} an {@link UnusedEvaluationRequest}. The result may either be a {@link ValueNotFoundException} telling
+     * for which unknown variable the request failed, or a {@link Boolean} telling if the evaluation caused unusedness
+     * to be proven.
      */
     public Object getCachedEvaluationResult(UnusedEvaluationRequest request) {
         return unusedEvaluationCache.get(request);
     }
 
     /**
-     * Caches the results of {@link UnusedEvaluationRequest#evaluate(com.sap.emf.ocl.hiddenopposites.OppositeEndFinder evaluating}
-     * an {@link UnusedEvaluationRequest}. The result may either be a {@link ValueNotFoundException} telling for which unknown
-     * variable the request failed, or a {@link Boolean} telling if the evaluation caused unusedness to be proven.
+     * Caches the results of
+     * {@link UnusedEvaluationRequest#evaluate(org.eclipse.ocl.ecore.opposites.OppositeEndFinder, org.eclipse.ocl.examples.impactanalyzer.OCLFactory)
+     * evaluating} an {@link UnusedEvaluationRequest}. The result may either be a {@link ValueNotFoundException} telling
+     * for which unknown variable the request failed, or a {@link Boolean} telling if the evaluation caused unusedness
+     * to be proven.
      */
     public void cacheEvaluationResult(UnusedEvaluationRequest request, Object evaluationResult) {
         unusedEvaluationCache.put(request, evaluationResult);

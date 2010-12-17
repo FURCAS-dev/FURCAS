@@ -93,7 +93,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.ocl.examples.impactanalyzer.editor"
+         id="org.eclipse.ocl.examples.impactanalyzer.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"

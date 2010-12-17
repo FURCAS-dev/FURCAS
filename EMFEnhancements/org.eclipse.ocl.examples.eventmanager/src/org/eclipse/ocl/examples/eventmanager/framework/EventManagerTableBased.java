@@ -104,20 +104,10 @@ public class EventManagerTableBased implements EventManager {
         register(listener, eventFilterTree, ListenerTypeEnum.preChange);
     }
 
-    /*
-     * @see
-     * com.sap.tc.moin.repository.events.EventRegistry#registerCommitListener(com.sap.tc.moin.repository.events.CommitListener,
-     * com.sap.tc.moin.repository.events.filter.MoinEventFilter)
-     */
     public void registerCommitListener(Adapter listener, EventFilter eventFilterTree) {
         register(listener, eventFilterTree, ListenerTypeEnum.postCommit);
     }
 
-    /*
-     * @see
-     * com.sap.tc.moin.repository.events.EventRegistry#registerPreCommitListener(com.sap.tc.moin.repository.events.PreCommitListener
-     * , com.sap.tc.moin.repository.events.filter.MoinEventFilter)
-     */
     public void registerPreCommitListener(Adapter listener, EventFilter eventFilterTree) {
         register(listener, eventFilterTree, ListenerTypeEnum.preCommit);
     }
@@ -155,9 +145,6 @@ public class EventManagerTableBased implements EventManager {
         addNotifierForListener(notifier);
     }
 
-    /*
-     * @see com.sap.tc.moin.repository.events.EventRegistry#deregister(com.sap.tc.moin.repository.events.MoinChangeListener)
-     */
     public void deregister(Adapter listener) {
         // TODO what if a listener is being removed that has pending events?? -> EventDeferring
         registrationManager.deregister(listener);
@@ -169,9 +156,6 @@ public class EventManagerTableBased implements EventManager {
 
     // private static final ListenerTypeEnum listenerTypesToReceiveChangeEvents = new
     // ListenerTypeEnum(ListenerTypeEnum.postChange,ListenerTypeEnum.preCommit,ListenerTypeEnum.postCommit);
-    /*
-     * @see com.sap.tc.moin.repository.events.EventManager
-     */
     public void fireChangeEvent(Notification event) {
         if (!doFireEvents)
             return;
@@ -186,9 +170,6 @@ public class EventManagerTableBased implements EventManager {
 
     }
 
-    /*
-     * @see com.sap.tc.moin.repository.events.EventManager
-     */
     public void firePreChangeEvent(Notification event) {
         if (!doFireEvents)
             return;
@@ -197,9 +178,6 @@ public class EventManagerTableBased implements EventManager {
         fireEvent(event);
     }
 
-    /*
-     * @see com.sap.tc.moin.repository.events.EventManager#beginCommand(com.sap.tc.moin.repository.commands.MoinCommand)
-     */
     public void beginCommand() {
         if (!doFireEvents)
             return;
@@ -208,9 +186,6 @@ public class EventManagerTableBased implements EventManager {
             notifier.deferNotification();
     }
 
-    /*
-     * @see com.sap.tc.moin.repository.events.EventManager#postCommitCommand(com.sap.tc.moin.repository.commands.MoinCommand)
-     */
     public void postCommitCommand() {
         if (!doFireEvents)
             return;
@@ -221,9 +196,6 @@ public class EventManagerTableBased implements EventManager {
 
     }
 
-    /*
-     * @see com.sap.tc.moin.repository.events.EventManager#preCommitCommand(com.sap.tc.moin.repository.commands.MoinCommand)
-     */
     public void preCommitCommand() {
         if (!doFireEvents)
             return;
@@ -234,9 +206,6 @@ public class EventManagerTableBased implements EventManager {
 
     }
 
-    /*
-     * @see com.sap.tc.moin.repository.events.EventManager#cancelCommand(com.sap.tc.moin.repository.commands.MoinCommand)
-     */
     private static final ListenerTypeEnum allCommitListenerTypes = new ListenerTypeEnum(ListenerTypeEnum.preCommit,
             ListenerTypeEnum.postCommit);
 

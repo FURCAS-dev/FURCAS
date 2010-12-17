@@ -29,7 +29,7 @@ import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 
 /**
  * EventFilterTables are used to connect {@link de.hpi.sam.bp2009.solution.eventManager.filters.sap.tc.moin.repository.events.filter.EventFilter EventFilters} and
- * {@link com.sap.tc.moin.repository.events.framework.Registration Registrations}. For each filter type exists a special subtype
+ * {@link Registration Registrations}. For each filter type exists a special subtype
  * of EventFilterTable which handles exactly all instances of this filter type. It is responsible for computing all
  * possible registration candidates that match an event in the context of the filter type it handles. Additionally it
  * encapsulates the knowledge how to get the necessary information from the passed event (
@@ -81,7 +81,7 @@ public abstract class TableForEventFilter {
     }
 
     /**
-     * stores the passed {@link com.sap.tc.moin.repository.events.framework.Registration}. The Registration will stored as
+     * stores the passed {@link Registration}. The Registration will stored as
      * "interested in events meeting the filterCriterion of the passed event in the context of the appropriate
      * EventFitlerTable subclass"
      */

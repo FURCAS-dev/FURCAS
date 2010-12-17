@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: com.sap.emf.ocl.impactanalysis.example.model
+Bundle-Name: org.eclipse.ocl.examples.impactanalyzer.example.model
 Bundle-SymbolicName: org.eclipse.ocl.examples.impactanalyzer.example.model
 Bundle-Version: 0.1.0
 Require-Bundle: org.eclipse.emf.ecore

@@ -155,19 +155,18 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
     }
 
     /**
-     * Checks if <tt>s</tt> conforms to the {@link OclExpressionInternal#getType type} of the {@link #getExpression() expression}
-     * managed by this tracer. A mismatch may occur because of "reverse polymorphic traversal." In other words, if an expression
-     * with a {@link ModelPropertyCallExpInternal#getSource(CoreConnection) source} traces back to its source in order to find out
-     * the possible values for <tt>self</tt> that may have produced a specific value, the actual source object may be of a more
-     * general type than the static type of the source expression of the specific expression analyzed. This can happen because
-     * there may be multiple occurrences of attribute or association end call expressions for the same attribute/association that
-     * occur in different expressions, where navigation back to <tt>self</tt> is not always possible because of the actual type
-     * constraints.
+     * Checks if <tt>s</tt> conforms to the {@link OclExpressionInternal#getType type} of the {@link #getExpression()
+     * expression} managed by this tracer. A mismatch may occur because of "reverse polymorphic traversal." In other
+     * words, if an expression with a {@link ModelPropertyCallExpInternal#getSource(CoreConnection) source} traces back
+     * to its source in order to find out the possible values for <tt>self</tt> that may have produced a specific value,
+     * the actual source object may be of a more general type than the static type of the source expression of the
+     * specific expression analyzed. This can happen because there may be multiple occurrences of attribute or
+     * association end call expressions for the same attribute/association that occur in different expressions, where
+     * navigation back to <tt>self</tt> is not always possible because of the actual type constraints.
      * <p>
      * 
-     * All implementations of {@link Tracer#traceback(RefObjectImpl, com.sap.tc.moin.repository.mmi.model.Classifier,
-     * java.util.Set, Set<OoperationCallExp>)} must call this operation to ensure they don't try to continue on a trace that
-     * type-wise is impossible.
+     * All implementations of {@link Tracer#traceback(EClass, PathCache, OperationBodyToCallMapper)} must call this
+     * operation to ensure they don't try to continue on a trace that type-wise is impossible.
      */
     protected boolean doesTypeMatch(EObject s) {
         return getExpression().eClass().isInstance(s);
