@@ -33,7 +33,7 @@
     <module>org.eclipse.ocl.examples.impactanalyzer</module>
     <module>org.eclipse.ocl.examples.impactanalyzer.benchmark</module>
     <module>org.eclipse.ocl.examples.impactanalyzer.debug</module>
-    <module>org.eclipse.ocl.examples.impactanalyzer.editor</module>
+    <module>org.eclipse.ocl.examples.impactanalyzer.ui</module>
     <module>org.eclipse.ocl.examples.impactanalyzer.tests</module>
     <module>de.hpi.sam.bp2009.solution.oclToAst</module>
     <module>de.hpi.sam.bp2009.solution.oclToAst.tests</module>
