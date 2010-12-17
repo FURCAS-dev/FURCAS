@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationTest.java,v 1.4 2009/11/28 17:36:04 ewillink Exp $
+ * $Id: EvaluationTest.java,v 1.5 2010/12/15 17:34:07 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.helper.tests;

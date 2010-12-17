@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.12 2010/03/22 01:28:22 ewillink Exp $
+ * $Id: ToStringVisitor.java,v 1.13 2010/12/15 17:33:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.util;

@@ -22,34 +22,14 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.query.index.ui.IndexFactory;
-import org.eclipse.emf.query2.FromEntry;
-import org.eclipse.emf.query2.FromFixedSet;
-import org.eclipse.emf.query2.FromType;
-import org.eclipse.emf.query2.LocalWhereEntry;
-import org.eclipse.emf.query2.Operation;
-import org.eclipse.emf.query2.Query;
-import org.eclipse.emf.query2.QueryContext;
-import org.eclipse.emf.query2.QueryProcessor;
-import org.eclipse.emf.query2.QueryProcessorFactory;
-import org.eclipse.emf.query2.ResultSet;
-import org.eclipse.emf.query2.SelectAlias;
-import org.eclipse.emf.query2.SelectEntry;
-import org.eclipse.emf.query2.TypeScopeProvider;
-import org.eclipse.emf.query2.WhereEntry;
-import org.eclipse.emf.query2.WhereRelationReference;
-import org.eclipse.emf.query2.WhereString;
 
 import antlr.Token;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
-import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
@@ -70,6 +50,7 @@ import com.sap.furcas.runtime.parser.TextLocation;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.impl.context.AmbiguousLookupException;
 import com.sap.furcas.runtime.parser.impl.context.ContextManager;
+import com.sap.furcas.runtime.tcs.TcsUtil;
 
 /**
  * separate class for lenghty algorithmic methods involved with setting references after the parsing process.
@@ -174,10 +155,10 @@ public class DelayedReferencesHelper {
                             // no matching when/as combination; perform default
                             // handling:
                             if (next instanceof EObject) {
-                                EClass myResultObj = ((EObject) next).eClass();
+                                EClass foreachElementType = ((EObject) next).eClass();
                                 // get the template
-                                tmpl = findTemplate(myResultObj, reference.getMode(), parser.getInjector().getModelAdapter()
-                                        .getPRIPartitions(myResultObj.eResource().getResourceSet(), parser.getLanguageId()));
+                                tmpl = TcsUtil.findTemplate(foreachElementType, reference.getMode(), parser.getInjector().getModelAdapter()
+                                        .getPRIPartitions(foreachElementType.eResource().getResourceSet(), parser.getLanguageId()));
                                 // get the rule name from the template
                                 ruleName = reference.getRuleNameFinder().getRuleName(tmpl, reference.getMode());
                             } else {
@@ -560,75 +541,6 @@ public class DelayedReferencesHelper {
                 reference.setModelElement(proxy.getRealObject());
             }
         }
-    }
-
-    private Template findTemplate(EClass modelElement, String mode, Collection<URI> partitionScope) {
-
-        // TODO query fully qualified name!
-        ResultSet result;
-        EClassifier clazz = modelElement;
-        ResourceSet rs = modelElement.eResource().getResourceSet();
-
-        // TODO search only in the mapping partition!
-        Template template = null;
-        if (clazz != null) {
-            SelectEntry select = new SelectAlias("template");
-            FromType fromClassTemplate = new FromType("template", EcoreUtil.getURI(TCSPackage.eINSTANCE.getClassTemplate()), /* _withoutSubtypes */ false);
-            FromFixedSet fromClass = new FromFixedSet("class", EcoreUtil.getURI(clazz.eClass()), new URI[] { EcoreUtil.getURI(clazz) });
-            WhereEntry whereMetaReference = new WhereRelationReference(/* _leftAlias */ "template", /* _featureName */ "metaReference",
-                    /* _rightAlias */ "class");
-            WhereEntry whereMode = new LocalWhereEntry("template", new WhereString("mode", Operation.EQUAL, mode));
-            Query queryForClassTemplate = new Query(new SelectEntry[] { select }, new FromEntry[] { fromClassTemplate, fromClass },
-                    new WhereEntry[] { whereMetaReference, whereMode });
-            if (true /* template == null */) { // TODO
-                QueryProcessor queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(getIndex());
-                TypeScopeProvider mappingQueryScope = queryProcessor.getInclusiveQueryScopeProvider(partitionScope
-                        .toArray(new URI[] {}));
-                QueryContext context = getQueryScope(rs, mappingQueryScope);
-                result = queryProcessor.execute(queryForClassTemplate, context);
-                URI[] eObjectsURIs = result.getUris("template");
-                if (eObjectsURIs.length > 1) {
-                    template = (Template) rs.getEObject(eObjectsURIs[1], false);
-                } else if (eObjectsURIs.length == 1) {
-                    template = (Template) rs.getEObject(eObjectsURIs[0], false);
-                }
-                if (template == null) {
-                    // maybe operatorTemplate?
-                    FromType fromOperatorTemplate = new FromType("template", EcoreUtil.getURI(TCSPackage.eINSTANCE.getOperatorTemplate()), /* _withoutSubtypes */ false);
-                    Query queryForOperatorTemplate = new Query(new SelectEntry[] { select }, new FromEntry[] { fromOperatorTemplate, fromClass },
-                            new WhereEntry[] { whereMetaReference, whereMode });
-                    result = queryProcessor.execute(queryForOperatorTemplate, context);
-                    template = getTemplate(result, rs, template);
-                }
-
-            }
-        }
-
-        return template;
-    }
-
-    private Template getTemplate(ResultSet result, ResourceSet rs, Template template) {
-        URI[] eObjectsURIs;
-        eObjectsURIs = result.getUris("template");
-
-        if (eObjectsURIs.length > 1) {
-            template = (com.sap.furcas.metamodel.FURCAS.TCS.Template) rs.getEObject(eObjectsURIs[1], false);
-        } else if (eObjectsURIs.length == 1) {
-            template = (Template) rs.getEObject(eObjectsURIs[0], false);
-        }
-        return template;
-    }
-
-    private QueryContext getQueryScope(ResourceSet rs, TypeScopeProvider mappingQueryScope) {
-        Set<URI> resourcesInScope = new HashSet<URI>();
-        for (URI uri : mappingQueryScope.getPartitionScope()) {
-            resourcesInScope.add(uri);
-        }
-        return com.sap.furcas.runtime.common.util.EcoreHelper.getQueryContext(rs, resourcesInScope);
-    }
-
-    private org.eclipse.emf.query.index.Index getIndex() {
-        return IndexFactory.getInstance();
     }
 
     private boolean setDelayedReferenceWithQuery(DelayedReference reference, IModelAdapter modelAdapter,

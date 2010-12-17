@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: EcorePackageImpl.java,v 1.14 2010/02/08 20:57:00 ewillink Exp $
+ * $Id: EcorePackageImpl.java,v 1.15 2010/12/15 17:32:43 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 

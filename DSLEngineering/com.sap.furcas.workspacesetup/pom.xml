@@ -9,6 +9,6 @@
   </parent>
   <groupId>com.sap.dsl</groupId>
   <artifactId>com.sap.furcas.workspacesetup</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1-SNAPSHOT</version>
   <packaging>eclipse-plugin</packaging>
 </project>
