@@ -66,7 +66,7 @@ public class BasicQueryProcessorMemoryEstimationImpl extends SpiAbstractBasicQue
 	 */
 	public BasicQueryProcessorMemoryEstimationImpl(Index index) {
 
-		super("VZE");
+		super("VZE"); //$NON-NLS-1$
 		this.index = index;
 		// wraps a memory FQL
 		this.memFQL = new BasicQueryProcessorMemoryImpl();
