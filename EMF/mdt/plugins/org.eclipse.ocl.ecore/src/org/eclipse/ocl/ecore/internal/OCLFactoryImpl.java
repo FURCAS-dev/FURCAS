@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLFactoryImpl.java,v 1.1 2007/03/27 18:46:39 cdamus Exp $
+ * $Id: OCLFactoryImpl.java,v 1.2 2010/12/15 17:32:44 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.internal;
 

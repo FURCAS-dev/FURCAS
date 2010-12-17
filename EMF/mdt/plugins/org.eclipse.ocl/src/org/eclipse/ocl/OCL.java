@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: OCL.java,v 1.14 2010/01/22 18:38:13 asanchez Exp $
+ * $Id: OCL.java,v 1.15 2010/12/15 17:33:43 ewillink Exp $
  */
 package org.eclipse.ocl;
 

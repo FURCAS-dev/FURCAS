@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEnvironmentFactory.java,v 1.2 2007/03/22 21:59:19 cdamus Exp $
+ * $Id: EcoreEnvironmentFactory.java,v 1.3 2010/12/15 17:32:44 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore;

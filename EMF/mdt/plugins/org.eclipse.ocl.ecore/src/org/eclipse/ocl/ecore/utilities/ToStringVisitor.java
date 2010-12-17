@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id$
+ * $Id: ToStringVisitor.java,v 1.1 2010/12/15 17:32:44 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.utilities;
 

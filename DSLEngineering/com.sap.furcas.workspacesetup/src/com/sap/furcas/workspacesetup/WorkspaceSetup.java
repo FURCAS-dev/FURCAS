@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -70,7 +71,8 @@ public class WorkspaceSetup implements IWorkbenchWindowActionDelegate {
                 MessageDialog.openError(window.getShell(), "Unexpected Error: XPath not working!", e.getMessage());
                 e.printStackTrace();
             } catch (ParserConfigurationException e) {
-                MessageDialog.openError(window.getShell(), "Unexpected Error: DocumentBuilderFactory not working!", e.getMessage());
+                MessageDialog.openError(window.getShell(), "Unexpected Error: DocumentBuilderFactory not working!",
+                        e.getMessage());
                 e.printStackTrace();
             }
         }
@@ -121,8 +123,17 @@ public class WorkspaceSetup implements IWorkbenchWindowActionDelegate {
 
     private String extractWorkspace(String path) {
         try {
-            String path2 = path.replace(parentPom, "").substring(1);
-            return path2.substring(0, path2.indexOf(File.separator));
+            // remove path/to/working/set/
+            path = path.replace(parentPom, "").substring(1);
+            
+            String[] segments = path.split(Pattern.quote(File.separator));
+            if(segments.length > 2) {
+                // like EMF/query2/org.eclipse.emf.query2
+                return segments[0] + "-" + segments[1];
+            } else {
+                // like DSLEngineering/com.sap.furcas.workspacesetup
+                return segments[0];
+            }
         } catch (Exception e) {
             System.out.println("Could not extract workspace: " + path);
             return "INVALID";
@@ -169,8 +180,11 @@ public class WorkspaceSetup implements IWorkbenchWindowActionDelegate {
     }
 
     public static IProject importProject(String projectPath, String workingSet) throws CoreException {
+        System.out.println("importProject()");
         IProject project = importProject(projectPath);
+        System.out.println("addProjectToWorkingSet()");
         addProjectToWorkingSet(project, workingSet);
+        System.out.println("return");
         return project;
     }
 
@@ -178,12 +192,15 @@ public class WorkspaceSetup implements IWorkbenchWindowActionDelegate {
         IWorkingSetManager workingSetManager = PlatformUI.getWorkbench().getWorkingSetManager();
         IWorkingSet set = workingSetManager.getWorkingSet(workingSet);
         if (set == null) {
+            System.out.println("createWorkingSet()");
             set = workingSetManager.createWorkingSet(workingSet, new IProject[] { project });
+            set.setId("org.eclipse.jdt.ui.JavaWorkingSetPage");
             workingSetManager.addWorkingSet(set);
         } else {
+            System.out.println("setElements()");
             ArrayList<IAdaptable> oldList = new ArrayList<IAdaptable>();
             IAdaptable[] old = set.getElements();
-            for(IAdaptable p : old) {
+            for (IAdaptable p : old) {
                 oldList.add(p);
             }
             oldList.add(project);
@@ -202,6 +219,8 @@ public class WorkspaceSetup implements IWorkbenchWindowActionDelegate {
                     System.out.println(projectPath + ": " + projectMap.get(projectPath));
 
                     importProject(projectPath, projectMap.get(projectPath));
+                    
+                    System.out.println("Done.");
                 }
 
                 // loop through loaded projects and remove all unused projects

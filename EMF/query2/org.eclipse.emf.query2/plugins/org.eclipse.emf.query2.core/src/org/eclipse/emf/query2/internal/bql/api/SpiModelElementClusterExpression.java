@@ -242,18 +242,18 @@ public final class SpiModelElementClusterExpression {
 		SpiUtils.toStringNewLine(sb, ident);
 		sb.append(SpiUtils.OPENING_PARENTHESES);
 		sb.append(SpiUtils.MODEL_ELEMENT_CLUSTER_EXPRESSION);
-		sb.append(": ");
+		sb.append(": "); //$NON-NLS-1$
 		SpiUtils.toStringNewLine(sb, ident + 1);
 		sb.append(SpiUtils.HEADER_MODEL_ELEMENT_EXPRESSION);
-		sb.append(": ");
+		sb.append(": "); //$NON-NLS-1$
 		this.headerModelElementExpression.toString(sb, ident + 2, true);
 		SpiUtils.toStringNewLine(sb, ident + 1);
 		sb.append(SpiUtils.ADDITION_MODEL_ELEMENT_EXPRESSIONS);
-		sb.append(": ");
+		sb.append(": "); //$NON-NLS-1$
 		int addModElSize = this.additionalModelElementExpressions.size();
 		for (int i = 0; i < addModElSize; i++) {
 			if (i > 0) {
-				sb.append(", ");
+				sb.append(", "); //$NON-NLS-1$
 			}
 			this.additionalModelElementExpressions.get(i).toString(sb, ident + 2, true);
 		}
@@ -261,10 +261,10 @@ public final class SpiModelElementClusterExpression {
 		if (intLinksSize > 0) {
 			SpiUtils.toStringNewLine(sb, ident + 1);
 			sb.append(SpiUtils.CLUSTER_INTERNAL_LINKS);
-			sb.append(": ");
+			sb.append(": "); //$NON-NLS-1$
 			for (int i = 0; i < intLinksSize; i++) {
 				if (i > 0) {
-					sb.append(", ");
+					sb.append(", "); //$NON-NLS-1$
 				}
 				this.clusterInternalLinks.get(i).toString(sb, ident + 2, true);
 			}
@@ -273,10 +273,10 @@ public final class SpiModelElementClusterExpression {
 		if (extLinksSize > 0) {
 			SpiUtils.toStringNewLine(sb, ident + 1);
 			sb.append(SpiUtils.CLUSTER_EXTERNAL_LINKS);
-			sb.append(": ");
+			sb.append(": "); //$NON-NLS-1$
 			for (int i = 0; i < extLinksSize; i++) {
 				if (i > 0) {
-					sb.append(", ");
+					sb.append(", "); //$NON-NLS-1$
 				}
 				this.clusterExternalLinks.get(i).toString(sb, ident + 2, true);
 			}
@@ -285,10 +285,10 @@ public final class SpiModelElementClusterExpression {
 		if (mriSetLinksSize > 0) {
 			SpiUtils.toStringNewLine(sb, ident + 1);
 			sb.append(SpiUtils.MRI_SET_LINKS);
-			sb.append(": ");
+			sb.append(": "); //$NON-NLS-1$
 			for (int i = 0; i < mriSetLinksSize; i++) {
 				if (i > 0) {
-					sb.append(", ");
+					sb.append(", "); //$NON-NLS-1$
 				}
 				this.mriSetLinks.get(i).toString(sb, ident + 2, true);
 			}

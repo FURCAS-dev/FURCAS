@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelperImpl.java,v 1.7 2010/02/08 20:57:24 ewillink Exp $
+ * $Id: OCLHelperImpl.java,v 1.8 2010/12/15 17:33:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.helper;

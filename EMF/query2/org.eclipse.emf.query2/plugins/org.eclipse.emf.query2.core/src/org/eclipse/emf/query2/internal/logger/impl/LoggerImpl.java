@@ -50,18 +50,18 @@ public class LoggerImpl implements QueryLogger {
 
 	static {
 		DEBUG = Boolean.parseBoolean(Platform
-				.getDebugOption("org.eclipse.emf.query2/trace/severity/debug"));
+				.getDebugOption("org.eclipse.emf.query2/trace/severity/debug")); //$NON-NLS-1$
 		ERROR = Boolean.parseBoolean(Platform
-				.getDebugOption("org.eclipse.emf.query2/trace/severity/error"));
+				.getDebugOption("org.eclipse.emf.query2/trace/severity/error")); //$NON-NLS-1$
 		FATAL = Boolean.parseBoolean(Platform
-				.getDebugOption("org.eclipse.emf.query2/trace/severity/fatal"));
+				.getDebugOption("org.eclipse.emf.query2/trace/severity/fatal")); //$NON-NLS-1$
 		INFO = Boolean.parseBoolean(Platform
-				.getDebugOption("org.eclipse.emf.query2/trace/severity/info"));
+				.getDebugOption("org.eclipse.emf.query2/trace/severity/info")); //$NON-NLS-1$
 		PATH = Boolean.parseBoolean(Platform
-				.getDebugOption("org.eclipse.emf.query2/trace/severity/path"));
+				.getDebugOption("org.eclipse.emf.query2/trace/severity/path")); //$NON-NLS-1$
 		WARNING = Boolean
 				.parseBoolean(Platform
-						.getDebugOption("org.eclipse.emf.query2/trace/severity/warning"));
+						.getDebugOption("org.eclipse.emf.query2/trace/severity/warning")); //$NON-NLS-1$
 	}
 
 	private static final String LINEBREAK = "\n"; //$NON-NLS-1$

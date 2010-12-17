@@ -57,6 +57,6 @@ final public class WherePlaceholder extends WhereComparator {
 	protected void toString(StringBuilder sb, int indent) {
 
 		super.toString(sb, indent);
-		sb.append("$").append(this.placeholderName);
+		sb.append("$").append(this.placeholderName); //$NON-NLS-1$
 	}
 }
