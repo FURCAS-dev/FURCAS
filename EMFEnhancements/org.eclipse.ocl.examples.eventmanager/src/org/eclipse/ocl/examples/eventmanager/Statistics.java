@@ -19,18 +19,14 @@ import java.util.Set;
 import org.eclipse.ocl.examples.eventmanager.util.StatisticsImpl;
 import org.eclipse.ocl.examples.eventmanager.util.StatisticsStub;
 
-
-
-
 /**
  * To gather statistics about the OCL Impact Analysis and EMF Event Manager, set the system property
- * <tt>com.sap.tc.moin.ocl.ia.statistics</tt> to <tt>true</tt>. Otherwise, calls to {@link #getInstance()}
- * will return a mock object whose methods don't do anything and therefore should not contribute
- * significantly to overall performance characteristics. If the system property is set, however,
- * statistics will be gathered and can obtained at the end of a test / measurement run by using
- * methods on the result of {@link Statistics#getInstance()} such as {@link #getAverage(String)}
- * passing in any of the <code>groupId</code>s returned by {@link #getGroupIds()}. All individual
- * records of a group can be obtained by {@link #getRecords(String)}.
+ * <tt>org.eclipse.ocl.examples.impactanalyzer.statistics</tt> to <tt>true</tt>. Otherwise, calls to
+ * {@link #getInstance()} will return a mock object whose methods don't do anything and therefore should not contribute
+ * significantly to overall performance characteristics. If the system property is set, however, statistics will be
+ * gathered and can obtained at the end of a test / measurement run by using methods on the result of
+ * {@link Statistics#getInstance()} such as {@link #getAverage(String)} passing in any of the <code>groupId</code>s
+ * returned by {@link #getGroupIds()}. All individual records of a group can be obtained by {@link #getRecords(String)}.
  */
 public abstract class Statistics {
     private static Statistics instance;
@@ -57,7 +53,7 @@ public abstract class Statistics {
 
     public static Statistics getInstance() {
 	if (instance == null) {
-	    String sysProp = System.getProperty("de.hpi.sam.bp2009.statistics");
+	    String sysProp = System.getProperty("org.eclipse.ocl.examples.impactanalyzer.statistics");
 	    if (sysProp != null && (sysProp.toLowerCase().equals("true") ||
 		    sysProp.toLowerCase().equals("yes"))) {
 		instance = new StatisticsImpl();
