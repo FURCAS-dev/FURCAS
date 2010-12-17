@@ -118,8 +118,10 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
                                         //the tb is moved to a new parent, therefore
                                         //all the feature that referred from the parent to this TB
                                         //needs to be unset
-                                        referenceHandler.unsetFeature(parent, subBlock.textBlock);
-                                        subBlock.textBlock.setParent(null);
+                                        if(parent != null) {
+                                            referenceHandler.unsetFeature(parent, subBlock.textBlock);
+                                            subBlock.textBlock.setParent(null);
+                                        }
 				    }
 				    addToBlockAt(tb, endIndex++, subBlock.textBlock);
 				}

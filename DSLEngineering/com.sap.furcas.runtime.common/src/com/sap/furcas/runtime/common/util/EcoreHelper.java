@@ -42,7 +42,7 @@ public class EcoreHelper {
     }
 	
     /**
-     * Constructs a query context that contains only the given <tt>resources</tt>.
+     * Constructs a query context that contains the given <tt>resources</tt> as well as all resources in the given resource set.
      */
     public static QueryContext getQueryContext(final ResourceSet resourceSet, final Set<URI> referenceScope) {
         return new QueryContext() {
@@ -52,6 +52,24 @@ public class EcoreHelper {
                 for (Resource resource : resourceSet.getResources()) {
                     result.add(resource.getURI());
                 }
+                return result.toArray(new URI[result.size()]);
+            }
+
+            @Override
+            public ResourceSet getResourceSet() {
+                return resourceSet;
+            }
+        };
+    }
+    
+    /**
+     * Constructs a query context that contains the given <tt>resources</tt> .
+     */
+    public static QueryContext getRestrictedQueryContext(final ResourceSet resourceSet, final Set<URI> resources) {
+        return new QueryContext() {
+            @Override
+            public URI[] getResourceScope() {
+                Collection<URI> result = new HashSet<URI>(resources);
                 return result.toArray(new URI[result.size()]);
             }
 
