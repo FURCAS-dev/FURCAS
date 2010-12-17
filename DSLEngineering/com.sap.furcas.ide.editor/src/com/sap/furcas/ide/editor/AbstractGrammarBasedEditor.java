@@ -14,6 +14,7 @@ import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.RecognitionException;
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -26,6 +27,7 @@ import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -569,6 +571,7 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
      */
     @Override
     public void init(IEditorSite site, IEditorInput input) throws PartInitException {
+        IEditorInput wrappedInput = input;
         try {
             if(input instanceof FileEditorInput) {
                 Resource r = getEditingDomain().loadResource(URI.createFileURI(((FileEditorInput)input).getPath().toOSString()).toString());
@@ -576,12 +579,17 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
                     CtsActivator.getDefault().getLog().log(new Status(Status.ERROR, CtsActivator.PLUGIN_ID, "Could not load resource: " + ((FileEditorInput)input).getPath() + r.getErrors()));
                     return;
                 }
-                input = new ModelEditorInput(r.getContents().iterator().next());
+                wrappedInput = new ModelEditorInput(r.getContents().iterator().next());
+                IContainer[] containers = EcorePlugin.getWorkspaceRoot().findContainersForLocationURI(((FileEditorInput) input).getURI());
+                if(containers.length > 0) {
+                    IProject proj = containers[0].getProject();
+                    ((ModelEditorInput) wrappedInput).setProject(proj);
+                }
             }
         } catch (Exception e) {
             CtsActivator.getDefault().getLog().log(new Status(Status.ERROR, CtsActivator.PLUGIN_ID, "Could not load resource: " + ((FileEditorInput)input).getPath(), e));
         }
-        super.init(site, input);
+        super.init(site, wrappedInput);
         // editingDomain.getCommandStack().openGroup("Deferred Editor Initialization");
         try {
             initializeNewParser();
@@ -615,7 +623,7 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
 
             ClassTemplate rootTemplate = TcsUtil.getMainClassTemplate(syntax);
             CtsDocument document = (CtsDocument) getDocumentProvider()
-                    .getDocument(input);
+                    .getDocument(wrappedInput);
             document.completeInit(syntax, rootTemplate, getParserFactory(),
                     /*getRecoveryStrategy(),*/ getParser(), null);
 
@@ -1042,6 +1050,7 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
     private boolean runningOutlineUpdate = false;
     private ResourceSet resourceSet;
     private final OppositeEndFinder oppositeEndFinder;
+    private ObservableInjectingParser dryParser;
 
     private void updateOutlineSave() {
         try {
@@ -1120,7 +1129,9 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
                     }
 
                     // assign newly created block to partition
-                    tbPartition.getContents().add(newBlock);
+                    if(!tbPartition.equals(newBlock.eResource())){
+                        tbPartition.getContents().add(newBlock);
+                    }
 
                     EObject result = null;
                     if (newBlock.getCorrespondingModelElements().size() > 0) {
@@ -1232,10 +1243,14 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
 
     private ObservableInjectingParser createDryParser(TextBlock rootBlock,
             ResourceSet connection) {
-        Lexer lexer = getParserFactory().createLexer(
-                new ANTLRStringStream(rootBlock.getCachedString()));
-        return getParserFactory().createParser(new CommonTokenStream(lexer),
+//        if(dryParser == null) {
+            Lexer lexer = getParserFactory().createLexer(
+                    new ANTLRStringStream(rootBlock.getCachedString()));
+            dryParser = getParserFactory().createParser(new CommonTokenStream(lexer),
                 connection);
+//        }
+//        dryParser.reset();
+        return dryParser;
     }
 
     /**
