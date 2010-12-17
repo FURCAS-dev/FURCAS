@@ -180,9 +180,7 @@ public class InjectorActionsHandler<Type> {
 					errorBucket.addError(error, propInit);
 				}
 
-				String javaQuery = value.replaceAll("\\\"", "\\\\\"");
-				javaQuery = javaQuery.replaceAll("\r\n", "\"+\r\n\"");
-				javaQuery = javaQuery.replaceAll("\n", "\"+\n\"");
+				String javaQuery = TcsUtil.escapeMultiLineOclQuery(value);
 				buffer.append("setOclRef(ret, \"" + propName
 						+ "\", null, null, \"" + javaQuery + "\", "
 						+ isOptional + ");");
@@ -203,9 +201,7 @@ public class InjectorActionsHandler<Type> {
 				errorBucket.addError(error, propInit);
 			}
 
-			String javaQuery = value.replaceAll("\\\"", "\\\\\"");
-			javaQuery = javaQuery.replaceAll("\r\n", "\"+\r\n\"");
-			javaQuery = javaQuery.replaceAll("\n", "\"+\n\"");
+			String javaQuery = TcsUtil.escapeMultiLineOclQuery(value);
 			buffer.append("\n{\n");
 			buffer
 					.append("List<PredicateSemantic> list = new ArrayList<PredicateSemantic>();\n");
@@ -221,9 +217,7 @@ public class InjectorActionsHandler<Type> {
 					localMode = next.getMode();
 				}
 				if (next.getWhen() != null) {
-					String javaQueryWhen = toString(next.getWhen()).replaceAll("\\\"", "\\\\\"");
-					javaQueryWhen = javaQueryWhen.replaceAll("\r\n", "\"+\r\n\"");
-					javaQueryWhen = javaQueryWhen.replaceAll("\n", "\"+\n\"");
+					String javaQueryWhen = TcsUtil.escapeMultiLineOclQuery(toString(next.getWhen()));
 					buffer.append("list.add(new PredicateSemantic(\""
 							+ javaQueryWhen + "\", \""
 							+ finder.getRuleName(next.getAs(), localMode)
@@ -260,7 +254,7 @@ public class InjectorActionsHandler<Type> {
 				.getExitInjectorActionNotification());
 	}
 
-	private String toString(OCLExpression when) {
+        private String toString(OCLExpression when) {
 		// TODO Auto-generated method stub
 		return null;
 	}
