@@ -109,7 +109,10 @@ public class EcoreModelElementFinder {
 
         ResultSet resultSet = null;
         try {
-            QueryContext scopeProvider = EcoreHelper.getQueryContext(resourceSet, referenceScope);
+            //FIXME check which query context we should use here, normally only a local context should be
+            //used, as lookups should only be done in a local context rather than OCL queries
+            //which may use a more global context.
+            QueryContext scopeProvider = EcoreHelper.getRestrictedQueryContext(resourceSet, referenceScope);
             resultSet = queryProcessor.execute(mq, scopeProvider); // ,
         } catch (IllegalArgumentException e) {
             // trying to access an non-existent property is an illegal argument for query2
