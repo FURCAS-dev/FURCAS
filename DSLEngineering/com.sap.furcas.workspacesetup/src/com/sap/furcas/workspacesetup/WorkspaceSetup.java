@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
@@ -41,7 +42,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class WorkspaceSetup implements IWorkbenchWindowActionDelegate {
-    public static String parentPom;
+    private String parentPom;
 
     private IWorkbenchWindow window;
     private Hashtable<String, String> projectMap = new Hashtable<String, String>();
@@ -56,7 +57,7 @@ public class WorkspaceSetup implements IWorkbenchWindowActionDelegate {
         // Let user find the parent pom.xml
         FileDialog fileDialog = new FileDialog(window.getShell(), SWT.OPEN);
         fileDialog.setText("Import");
-        fileDialog.setFilterPath("C:/");
+        fileDialog.setFilterPath(Platform.getLocation().toOSString());
         fileDialog.setFilterExtensions(new String[] { "pom.xml" });
         fileDialog.open();
 
@@ -125,9 +126,9 @@ public class WorkspaceSetup implements IWorkbenchWindowActionDelegate {
         try {
             // remove path/to/working/set/
             path = path.replace(parentPom, "").substring(1);
-            
+
             String[] segments = path.split(Pattern.quote(File.separator));
-            if(segments.length > 2) {
+            if (segments.length > 2) {
                 // like EMF/query2/org.eclipse.emf.query2
                 return segments[0] + "-" + segments[1];
             } else {
@@ -140,28 +141,12 @@ public class WorkspaceSetup implements IWorkbenchWindowActionDelegate {
         }
     }
 
-    /**
-     * Selection in the workbench has been changed. We can change the state of the 'real' action here if we want, but this can
-     * only happen after the delegate has been created.
-     * 
-     * @see IWorkbenchWindowActionDelegate#selectionChanged
-     */
     public void selectionChanged(IAction action, ISelection selection) {
     }
 
-    /**
-     * We can use this method to dispose of any system resources we previously allocated.
-     * 
-     * @see IWorkbenchWindowActionDelegate#dispose
-     */
     public void dispose() {
     }
 
-    /**
-     * We will cache window object in order to be able to provide parent shell for the message dialog.
-     * 
-     * @see IWorkbenchWindowActionDelegate#init
-     */
     public void init(IWorkbenchWindow window) {
         this.window = window;
     }
@@ -180,11 +165,8 @@ public class WorkspaceSetup implements IWorkbenchWindowActionDelegate {
     }
 
     public static IProject importProject(String projectPath, String workingSet) throws CoreException {
-        System.out.println("importProject()");
         IProject project = importProject(projectPath);
-        System.out.println("addProjectToWorkingSet()");
         addProjectToWorkingSet(project, workingSet);
-        System.out.println("return");
         return project;
     }
 
@@ -192,12 +174,10 @@ public class WorkspaceSetup implements IWorkbenchWindowActionDelegate {
         IWorkingSetManager workingSetManager = PlatformUI.getWorkbench().getWorkingSetManager();
         IWorkingSet set = workingSetManager.getWorkingSet(workingSet);
         if (set == null) {
-            System.out.println("createWorkingSet()");
             set = workingSetManager.createWorkingSet(workingSet, new IProject[] { project });
             set.setId("org.eclipse.jdt.ui.JavaWorkingSetPage");
             workingSetManager.addWorkingSet(set);
         } else {
-            System.out.println("setElements()");
             ArrayList<IAdaptable> oldList = new ArrayList<IAdaptable>();
             IAdaptable[] old = set.getElements();
             for (IAdaptable p : old) {
@@ -216,11 +196,8 @@ public class WorkspaceSetup implements IWorkbenchWindowActionDelegate {
                 Iterator<String> set = projectMap.keySet().iterator();
                 while (set.hasNext()) {
                     String projectPath = set.next();
-                    System.out.println(projectPath + ": " + projectMap.get(projectPath));
-
+                    //System.out.println(projectPath + ": " + projectMap.get(projectPath));
                     importProject(projectPath, projectMap.get(projectPath));
-                    
-                    System.out.println("Done.");
                 }
 
                 // loop through loaded projects and remove all unused projects
@@ -228,13 +205,8 @@ public class WorkspaceSetup implements IWorkbenchWindowActionDelegate {
                 for (IProject project : projects) {
                     if (project.getLocation().toString().startsWith(parentPom.replace(File.separator, "/"))) {
                         if (!projectMap.containsKey(project.getLocation().toString().replace("/", File.separator))) {
-                            System.out.println("Remove project: " + project.getLocation().toString());
                             project.delete(false, false, null);
-                        } else {
-                            System.out.println("Keep project: " + project.getLocation().toString());
                         }
-                    } else {
-                        System.out.println("Leave project: " + project.getLocation().toString());
                     }
                 }
             } catch (CoreException e) {
