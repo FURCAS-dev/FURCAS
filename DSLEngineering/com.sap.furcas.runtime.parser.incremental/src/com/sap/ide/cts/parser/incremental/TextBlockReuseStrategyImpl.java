@@ -172,8 +172,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 							referenceHandler
 								.setNewFeature(
 									newFeatureBean,
-									TcsUtil
-										.isReferenceOnly(subNodeResult.textBlock
+									!TcsUtil.isReferenceOnly(subNodeResult.textBlock
 											.getType()
 											.getParseRule()));
 						}
@@ -279,22 +278,24 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 	}
 
 	private TbBean handleReferenceOnlyTemplate(TextBlock oldVersion, TextBlockProxy newVersion) {
-		for (EObject ro : new ArrayList<EObject>(oldVersion.getParent()
-			.getCorrespondingModelElements())) {
-			for (EObject value : new ArrayList<EObject>(oldVersion
-				.getReferencedElements())) {
-				try {
-					SetNewFeatureBean bean = new SetNewFeatureBean(ro,
-						((Property) oldVersion.getSequenceElement())
-							.getPropertyReference().getStrucfeature()
-							.getName(), value, 0);
-					referenceHandler.unsetFeature(bean);
-					oldVersion.getReferencedElements().remove(ro);
-				} catch (Exception e) {
-					continue;
-				}
-			}
-		}
+                if (oldVersion.getParent() != null) {
+                    for (EObject ro : new ArrayList<EObject>(oldVersion.getParent()
+                            .getCorrespondingModelElements())) {
+                        for (EObject value : new ArrayList<EObject>(
+                                oldVersion.getReferencedElements())) {
+                            try {
+                                SetNewFeatureBean bean = new SetNewFeatureBean(ro,
+                                        ((Property) oldVersion.getSequenceElement())
+                                                .getPropertyReference()
+                                                .getStrucfeature().getName(), value, 0);
+                                referenceHandler.unsetFeature(bean);
+                                oldVersion.getReferencedElements().remove(ro);
+                            } catch (Exception e) {
+                                continue;
+                            }
+                        }
+                    }
+                }
 		TextBlock tb = tbFactory
 			.createNewTextBlock(newVersion, oldVersion.getParent());
 		changedBlocks.add(tb);

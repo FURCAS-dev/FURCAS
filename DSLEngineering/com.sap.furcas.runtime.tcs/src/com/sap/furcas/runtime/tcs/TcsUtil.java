@@ -1451,7 +1451,7 @@ public class TcsUtil {
         // TODO limit query to a single partition or use model information from
         // parsing handler instead?
 
-        String query = "select ofClass from " + EcoreUtil.getURI(type) + " as ofClass";
+        String query = "select ofClass from [" + EcoreUtil.getURI(type) + "] as ofClass";
 
         ResultSet resultSet = queryConn(conn, query);
         URI[] resultElements = resultSet.getUris("ofClass");
