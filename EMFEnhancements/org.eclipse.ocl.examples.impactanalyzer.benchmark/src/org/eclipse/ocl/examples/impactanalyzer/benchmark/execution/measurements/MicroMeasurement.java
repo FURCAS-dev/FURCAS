@@ -16,7 +16,6 @@ public class MicroMeasurement extends DefaultMeasurement {
     private long timeBefore = -1;
     private long timeAfter = -1;
 
-    @Override
     public void before() {
 	beforeWasCalled = true;
 	timeBefore = System.nanoTime();
@@ -24,7 +23,6 @@ public class MicroMeasurement extends DefaultMeasurement {
 	assert timeBefore > -1;
     }
 
-    @Override
     public void after() {
 	if (!beforeWasCalled)
 	    throw new RuntimeException("Before was not called");
@@ -36,7 +34,6 @@ public class MicroMeasurement extends DefaultMeasurement {
 	    throw new RuntimeException("Method after() appearently was called before calling before()");
     }
 
-    @Override
     public long getResult() {
 	if (!(beforeWasCalled && afterWasCalled))
 	    return -1;

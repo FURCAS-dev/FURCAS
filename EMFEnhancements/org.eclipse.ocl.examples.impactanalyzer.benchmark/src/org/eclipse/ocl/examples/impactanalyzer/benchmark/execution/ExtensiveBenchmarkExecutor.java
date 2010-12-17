@@ -25,7 +25,6 @@ import bb.util.Benchmark;
  */
 public class ExtensiveBenchmarkExecutor implements BenchmarkExecutor{
 
-    @Override
     public void execute(BenchmarkTask task, BenchmarkResultWriter writer) {
 	
     Benchmark bench = null;

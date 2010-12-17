@@ -35,7 +35,6 @@ import org.eclipse.ocl.examples.impactanalyzer.util.OCL;
  */
 public class OCLExpressionFromModelPicker implements OCLExpressionPicker {
 
-    @Override
     public List<OCLExpressionWithContext> pickUpExpressions() {
         return pickUpExpressions(data.classes.ClassesPackage.eINSTANCE,
         	data.constraints.ConstraintsPackage.eINSTANCE, data.documents.DocumentsPackage.eINSTANCE,

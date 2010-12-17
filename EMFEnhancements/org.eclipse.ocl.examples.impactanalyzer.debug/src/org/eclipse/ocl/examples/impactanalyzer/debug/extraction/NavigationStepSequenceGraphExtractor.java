@@ -37,7 +37,7 @@ public class NavigationStepSequenceGraphExtractor extends AbstractGraphExtractor
 	return (NavigationStepSequence)getNavigationStepDelegate();
     }
     
-    @Override
+    
     public Node buildGraph(GraphContext graphContext, Node parentGroupNode, Node precedingNode) {
 	NodeList parentNodeList = new NodeList();
 	ArrayList<Node> resultingNodes = new ArrayList<Node>();
@@ -108,7 +108,7 @@ public class NavigationStepSequenceGraphExtractor extends AbstractGraphExtractor
 	graphContext.setLabelTextForNode(this.getNodeName(), "", newNode);
     }
 
-    @Override
+    
     public String getNodeName() {
 	return "sequence";
     }

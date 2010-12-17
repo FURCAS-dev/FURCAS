@@ -35,7 +35,6 @@ public class StandardBenchmarkExecutor implements BenchmarkExecutor {
 
     private HashMap<String, Throwable> notExecutedDueToException = new LinkedHashMap<String, Throwable>();
 
-    @Override
     public void execute(BenchmarkTask task, BenchmarkResultWriter writer) {
 	try {
 	    if (task.activate()) {

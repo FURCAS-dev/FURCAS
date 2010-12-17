@@ -316,7 +316,6 @@ public class PerformanceStressForEventManagerTest extends TestCase {
             this.filter = filter;
         }
         
-        @Override
         public void notifyChanged(Notification notification) {
             notificationCount++;
             if (received.contains(notification)) {
@@ -330,17 +329,14 @@ public class PerformanceStressForEventManagerTest extends TestCase {
             }
         }
 
-        @Override
         public Notifier getTarget() {
             return target;
         }
 
-        @Override
         public void setTarget(Notifier newTarget) {
             target = newTarget;
         }
 
-        @Override
         public boolean isAdapterForType(Object type) {
             return false;
         }

@@ -34,7 +34,6 @@ import org.eclipse.ocl.utilities.ExpressionInOCL;
  */
 public class OCLExpressionFromClassTcsPicker implements OCLExpressionPicker {
 
-    @Override
     public List<OCLExpressionWithContext> pickUpExpressions() {
 	ArrayList<OCLExpressionWithContext> result = new ArrayList<OCLExpressionWithContext>();
 

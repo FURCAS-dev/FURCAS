@@ -36,7 +36,7 @@ public class BranchingNavigationStepGraphExtractor extends AbstractGraphExtracto
 	return (BranchingNavigationStep)getNavigationStepDelegate();
     }
 
-    @Override
+    
     public Node buildGraph(GraphContext graphContext, Node parentGroupNode, Node precedingNode) {
 	NodeList parentNodeList = new NodeList();
 	ArrayList<Node> resultingNodeList = new ArrayList<Node>();
@@ -99,7 +99,7 @@ public class BranchingNavigationStepGraphExtractor extends AbstractGraphExtracto
 	graphContext.setLabelTextForNode(this.getNodeName(), "", newPrecedingNode);
     }
     
-    @Override
+    
     public String getNodeName() {
 	return "branch";
     }
