@@ -7,7 +7,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.ocl.examples.impactanalyzer.testmodel.ngpm,
  org.eclipse.ocl.ecore,
- de.hpi.sam.bp2009.solution.oclToAst,
  org.eclipse.ocl.examples.impactanalyzer.testmodel.company,
  org.eclipse.ocl.examples.impactanalyzer.util,
  org.junit4;bundle-version="4.8.1"

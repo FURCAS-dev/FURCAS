@@ -11,23 +11,21 @@
 package org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.Tuple.Pair;
-
-import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
-import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
+import org.eclipse.ocl.ecore.delegate.SettingBehavior;
+import org.eclipse.ocl.ecore.delegate.ValidationBehavior;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCL;
 
 /**
  * The {@link OCLExpressionFromModelPicker} extracts constraints out of the
@@ -57,48 +55,46 @@ public class OCLExpressionFromModelPicker implements OCLExpressionPicker {
 
     public List<OCLExpressionWithContext> pickUpExpressions(EPackage... packages){
         List<OCLExpressionWithContext> expressionSet = new ArrayList<OCLExpressionWithContext>(
-                searchAndParseExpressions(packages).values());
+                searchAndParseExpressions(packages));
         return expressionSet;
     }
 
-    private LinkedHashMap<Pair<String, EClassifier>, OCLExpressionWithContext> searchAndParseExpressions(EPackage... ps) {
-        LinkedHashMap<Pair<String, EClassifier>, OCLExpressionWithContext> allConstraints = new LinkedHashMap<Pair<String, EClassifier>, OCLExpressionWithContext>();
-	EAnnotationOCLParser oclParser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
-	for (EPackage pkg : ps) {
-	    oclParser.traversalConvertOclAnnotations(pkg);
-	}
+    private Collection<OCLExpressionWithContext> searchAndParseExpressions(EPackage... ps) {
+        Collection<OCLExpressionWithContext> allConstraints = new HashSet<OCLExpressionWithContext>();
 	for (EPackage p : ps) {
 	    for (EClassifier c : p.getEClassifiers()) {
-		EAnnotation a = c.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
-		allConstraints = addConstraintToConstraintList(a, allConstraints, c);
-		if (c instanceof EClass) {
-		    for (EAttribute at : ((EClass) c).getEAttributes()) {
-			a = at.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
-			allConstraints = addConstraintToConstraintList(a, allConstraints, c);
-		    }
-		}
+	        if (c instanceof EClass) {
+	            for (OCLExpression invariant : getInvariants((EClass) c)) {
+	                allConstraints.add(new OCLExpressionWithContext(invariant, (EClass) c));
+	            }
+                    for (EAttribute at : ((EClass) c).getEAttributes()) {
+                        EAnnotation a = at.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+                        if (a != null) {
+                            System.out.println("hurra");
+                            allConstraints.add(new OCLExpressionWithContext(SettingBehavior.INSTANCE.getFeatureBody(
+                                    OCL.newInstance(), at), (EClass) c));
+                        }
+                    }
+	        }
 	    }
 	}
 	return allConstraints;
     }
-
-    private LinkedHashMap<Pair<String, EClassifier>, OCLExpressionWithContext> addConstraintToConstraintList(EAnnotation a,
-            LinkedHashMap<Pair<String, EClassifier>, OCLExpressionWithContext> allConstraints, EClassifier c) {
-	if (a == null)
-	    return allConstraints;
-	int index = 0;
-	for (Entry<String, String> detail : a.getDetails()) {
-	    String e = detail.getValue();
-	    if (e == null) {
-		break;
-	    } else {
-                EAnnotation astAnno = ((EModelElement)a.eContainer()).getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
-                OCLExpression expr = (OCLExpression) ((Constraint)astAnno.getContents().get(index)).getSpecification().getBodyExpression();
-                allConstraints.put(new Pair<String, EClassifier>(e, c), new OCLExpressionWithContext(expr ,(EClass) c) );
+    
+    private Collection<OCLExpression> getInvariants(EClass c) {
+        Collection<OCLExpression> result = new HashSet<OCLExpression>();
+        EAnnotation ann = c.getEAnnotation(EcorePackage.eNS_URI);
+        if (ann != null) {
+            String spaceSeparatedConstraintNames = ann.getDetails().get("constraints");
+            if (spaceSeparatedConstraintNames != null) {
+                String[] constraintNames = spaceSeparatedConstraintNames.split(" ");
+                for (final String constraintName : constraintNames) {
+                    OCLExpression invariant = ValidationBehavior.INSTANCE.getInvariant(c,
+                            constraintName, OCL.newInstance());
+                    result.add(invariant);
+                }
             }
-	    index++;
-	}
-
-	return allConstraints;
+        }
+        return result;
     }
 }
