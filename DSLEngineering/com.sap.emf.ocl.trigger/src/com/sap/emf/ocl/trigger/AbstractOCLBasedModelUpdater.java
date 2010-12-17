@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.Collections;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
@@ -12,12 +14,14 @@ import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 public class AbstractOCLBasedModelUpdater extends AbstractTriggerable implements OCLBasedModelUpdater {
     private final EStructuralFeature propertyToUpdate;
     private final OppositeEndFinder oppositeEndFinder;
+    private final EPackage.Registry metamodelPackageRegistry;
 
-    protected AbstractOCLBasedModelUpdater(EStructuralFeature propertyToUpdate, OppositeEndFinder oppositeEndFinder,
-            ExpressionWithContext triggerExpression, boolean notifyOnNewContextElements) {
+    protected AbstractOCLBasedModelUpdater(EStructuralFeature propertyToUpdate, Registry metamodelPackageRegistry,
+            OppositeEndFinder oppositeEndFinder, ExpressionWithContext triggerExpression, boolean notifyOnNewContextElements) {
         super(Collections.singleton(triggerExpression), null, notifyOnNewContextElements);
         this.propertyToUpdate = propertyToUpdate;
         this.oppositeEndFinder = oppositeEndFinder;
+        this.metamodelPackageRegistry = metamodelPackageRegistry;
     }
 
     /**
@@ -27,7 +31,7 @@ public class AbstractOCLBasedModelUpdater extends AbstractTriggerable implements
     @Override
     public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects,
             OppositeEndFinder oppositeEndFinder) {
-        OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(oppositeEndFinder);
+        OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(metamodelPackageRegistry, oppositeEndFinder);
         for (EObject eo : affectedContextObjects) {
             Object newValue = ocl.evaluate(eo, expression);
             eo.eSet(getPropertyToUpdate(), newValue);

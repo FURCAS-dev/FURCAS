@@ -6,7 +6,12 @@ import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
 import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
-
+/**
+ * This class helps to execute the index and update the index 
+ * on resource deletion
+ * @author I054564
+ *
+ */
 public class IndexSetupManager {
 
 	public static void index(Index index, final Resource... resources) {

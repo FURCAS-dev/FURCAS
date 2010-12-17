@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ConstraintImpl.java,v 1.8 2010/02/08 20:57:00 ewillink Exp $
+ * $Id: ConstraintImpl.java,v 1.9 2010/12/15 17:32:43 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 

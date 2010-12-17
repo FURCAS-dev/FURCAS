@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.27 2010/05/03 09:38:46 ewillink Exp $
+ * $Id: AbstractTestSuite.java,v 1.28 2010/12/15 17:34:07 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;

@@ -86,9 +86,9 @@ final public class AuxServices {
 	public static final int STRING_COMPARISON_MAX_LENGTH = 200;
 
 	@SuppressWarnings("nls")
-	public static final String OPENPAREN_T = "(", CLOSEPAREN_T = ")", SYMNOT_T = "!", COMMA_T = ",", DOT_T = ".", BACKSLASH_T = "\\", GREATER_T = ">", GREATEREQUAL_T = ">=", EQUAL_T = "=", NOTEQUAL_T = "<>", LESS_T = "<", LESSEQUAL_T = "<=", SPACE_T = " ", OPENCURLY_T = "{", CLOSECURLY_T = "}", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+	public static final String OPENPAREN_T = "(", CLOSEPAREN_T = ")", SYMNOT_T = "!", COMMA_T = ",", DOT_T = ".", BACKSLASH_T = "\\", GREATER_T = ">", GREATEREQUAL_T = ">=", EQUAL_T = "=", NOTEQUAL_T = "<>", LESS_T = "<", LESSEQUAL_T = "<=", SPACE_T = " ", OPENCURLY_T = "{", CLOSECURLY_T = "}", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$ //$NON-NLS-13$ //$NON-NLS-14$ //$NON-NLS-15$
 			OPENBRACKET_T = "[", CLOSEBRACKET_T = "]", OPENQUOTE_T = "'", CLOSEQUOTE_T = "'", AND_T = "and", OR_T = "or", NOT_T = "not", SELECT_T = "select", FROM_T = "from", WHERE_T = "where", AS_T = "as", RESET_T = "reset", UNION_T = "union", ASSOC_T = "assoc", IN_T = "in", LIKE_T = "like", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$ //$NON-NLS-13$ //$NON-NLS-14$ //$NON-NLS-15$ //$NON-NLS-16$
-			ISMULTIVALUED_T = "multi", COLONCOLON_T = "::", EMPTY_T = "EMPTY", STORAGE_T = "@", PARTITION_T = "P", ELEMENTS_T = "E", CONTAINER_T = "C", FOR_T = "for", SHARP_T = "#", EMPTYSTR = ""; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$
+			ISMULTIVALUED_T = "multi", COLONCOLON_T = "::", EMPTY_T = "EMPTY", STORAGE_T = "@", PARTITION_T = "P", ELEMENTS_T = "E", CONTAINER_T = "C", FOR_T = "for", SHARP_T = "#", EMPTYSTR = ""; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
 
 	public static final String RESULTALIAS = "MQL_RESULT"; //$NON-NLS-1$
 

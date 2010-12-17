@@ -5,12 +5,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 
@@ -44,9 +46,11 @@ public class SemanticPredicatePropertyInitUpdater extends AbstractFurcasOCLBased
         }
     }
 
-    protected SemanticPredicatePropertyInitUpdater(EStructuralFeature propertyToUpdate, OppositeEndFinder oppositeEndFinder,
-            List<SemanticDisambRuleData> predicates, Template containingTemplate) {
-        super(propertyToUpdate, oppositeEndFinder, /* expression TODO */ null, /* notifyOnNewContextElements TODO */ true, /* TODO */ SelfKind.SELF);
+    protected SemanticPredicatePropertyInitUpdater(EStructuralFeature propertyToUpdate, EPackage.Registry metamodelPackageRegistry,
+            OppositeEndFinder oppositeEndFinder, List<SemanticDisambRuleData> predicates, Template containingTemplate) {
+        super(propertyToUpdate, metamodelPackageRegistry, oppositeEndFinder, /* expression TODO */ null,
+                /* notifyOnNewContextElements TODO */ true, /* TODO */ SelfKind.SELF,
+                ContextAndForeachHelper.getContextTag(/* expression TODO */ null));
         this.predicates = predicates;
         this.containingTemplate = containingTemplate;
     }
@@ -70,5 +74,11 @@ public class SemanticPredicatePropertyInitUpdater extends AbstractFurcasOCLBased
             }
         }
         return result;
+    }
+
+    @Override
+    protected SequenceElement getSequenceElement() {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

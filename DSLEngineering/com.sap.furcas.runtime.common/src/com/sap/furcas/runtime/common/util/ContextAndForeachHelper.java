@@ -175,10 +175,11 @@ public class ContextAndForeachHelper {
 
     public static String getContextTag(String oclExpression) {
         Matcher matcher = contextPattern.matcher(oclExpression);
-        matcher.find();
         String result = null;
-        if (matcher.groupCount() >= 2) {
-            result = matcher.group(2);
+        if (matcher.find()) {
+            if (matcher.groupCount() >= 2) {
+                result = matcher.group(2);
+            }
         }
         return result;
 
@@ -206,9 +207,7 @@ public class ContextAndForeachHelper {
         if (matcher.find()) {
             if (matcher.groupCount() >= 3) {
                 String oclTypeName = matcher.group(3);
-                OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance();
-                TypeExp typeQuery = (TypeExp) ocl.createOCLHelper().createQuery(oclTypeName);
-                result = ((TypeType) typeQuery.getType()).getReferredType();
+                result = getTypeByNameUsingOCLTypeExp(oclTypeName);
             }
         }
         return result;
@@ -227,13 +226,19 @@ public class ContextAndForeachHelper {
         if (matcher.find()) {
             if (matcher.groupCount() >= 1) {
                 String oclTypeName = matcher.group(1);
-                OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(); // TODO should use an injected OppositeEndFinder
-                Helper helper = ocl.createOCLHelper();
-                helper.setContext(EcorePackage.eINSTANCE.getEClassifier()); // EClassifier is a classifier that's always in scope
-                TypeExp typeQuery = (TypeExp) helper.createQuery(oclTypeName);
-                result = ((TypeType) typeQuery.getType()).getReferredType();
+                result = getTypeByNameUsingOCLTypeExp(oclTypeName);
             }
         }
+        return result;
+    }
+
+    protected static EClassifier getTypeByNameUsingOCLTypeExp(String oclTypeName) throws ParserException {
+        EClassifier result;
+        OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(); // TODO should use an injected OppositeEndFinder
+        Helper helper = ocl.createOCLHelper();
+        helper.setContext(EcorePackage.eINSTANCE.getEClassifier()); // EClassifier is a classifier that's always in scope
+        TypeExp typeQuery = (TypeExp) helper.createQuery(oclTypeName);
+        result = ((TypeType) typeQuery.getType()).getReferredType();
         return result;
     }
 

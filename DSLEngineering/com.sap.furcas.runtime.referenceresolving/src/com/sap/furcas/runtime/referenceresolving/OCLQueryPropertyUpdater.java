@@ -1,6 +1,7 @@
 package com.sap.furcas.runtime.referenceresolving;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
@@ -8,6 +9,7 @@ import com.sap.emf.ocl.trigger.ExpressionWithContext;
 import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 
@@ -29,17 +31,19 @@ import com.sap.furcas.runtime.tcs.TcsUtil;
  * 
  */
 public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater {
+    private final Property property;
 
-    protected OCLQueryPropertyUpdater(Property propertyInit, OppositeEndFinder oppositeEndFinder) throws ParserException {
-        super(propertyInit.getPropertyReference().getStrucfeature(), oppositeEndFinder, new ExpressionWithContext(
-                createOCLHelper(getExpressionString(propertyInit), propertyInit.getParentTemplate(), oppositeEndFinder)
-                .createQuery(ContextAndForeachHelper.prepareOclQuery(ContextAndForeachHelper.prepareOclQuery(
-                        getExpressionString(propertyInit), "__TEMP__"))), // TODO get rid of this as soon as queryByIdentifier is ready for prime time
-        (EClass) ContextAndForeachHelper.getParsingContext(getExpressionString(propertyInit),
-                propertyInit.getParentTemplate())),
-                /* notifyNewContextElements */ true, getSelfKind(getExpressionString(propertyInit)));
+    protected OCLQueryPropertyUpdater(Property propertyInit, EPackage.Registry metamodelPackageRegistry, OppositeEndFinder oppositeEndFinder) throws ParserException {
+        super(propertyInit.getPropertyReference().getStrucfeature(), metamodelPackageRegistry, oppositeEndFinder,
+                new ExpressionWithContext(
+                        createOCLHelper(getExpressionString(propertyInit), propertyInit.getParentTemplate(), oppositeEndFinder)
+                        .createQuery(ContextAndForeachHelper.prepareOclQuery(ContextAndForeachHelper.prepareOclQuery(
+                                getExpressionString(propertyInit), "__TEMP__"))), // TODO get rid of this as soon as queryByIdentifier is ready for prime time
+                (EClass) ContextAndForeachHelper.getParsingContext(getExpressionString(propertyInit),
+                        propertyInit.getParentTemplate())), /* notifyNewContextElements */ true,
+                        getSelfKind(getExpressionString(propertyInit)), ContextAndForeachHelper.getContextTag(getExpressionString(propertyInit)));
+        this.property = propertyInit;
         // TODO handle parameterization of query expression
-//      ref.setGenericReference(true);
     }
 
     private static String getExpressionString(Property propertyInit) {
@@ -49,5 +53,10 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
             throw new RuntimeException("Didn't find a query argument in rule for property "+propertyInit.getPropertyReference().getStrucfeature());
         }
         return qarg.getQuery() + (filter != null ? filter.getFilter() : "");
+    }
+
+    @Override
+    protected SequenceElement getSequenceElement() {
+        return property;
     }
 }
