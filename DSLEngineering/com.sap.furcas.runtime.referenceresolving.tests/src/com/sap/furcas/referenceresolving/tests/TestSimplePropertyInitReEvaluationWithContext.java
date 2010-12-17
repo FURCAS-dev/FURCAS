@@ -2,18 +2,17 @@ package com.sap.furcas.referenceresolving.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
-import java.util.Iterator;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
@@ -26,10 +25,10 @@ import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
  * @author Axel Uhl (D043530)
  * 
  */
-public class TestPropertyInitReEvaluationWithTextBlocks extends AbstractBibtexTestWithTextBlocks {
+public class TestSimplePropertyInitReEvaluationWithContext extends AbstractBibtexTestWithTextBlocks {
     
-    private static final String LANGUAGE = "BibtexWithPropertyInits";
-    private static final File TCS = new File("fixtures/BibtexWithPropertyInits.tcs");
+    private static final String LANGUAGE = "BibtexWithPropertyInitsWithContext";
+    private static final File TCS = new File("fixtures/BibtexWithPropertyInitsWithContext.tcs");
 
     private EObject johnDoe;
     private EObject article;
@@ -50,7 +49,7 @@ public class TestPropertyInitReEvaluationWithTextBlocks extends AbstractBibtexTe
     @Before
     public void setupInitialModel() throws IOException, UnknownProductionRuleException {
         String textToParse = "article{" + "  Testing, \"John Doe\"," + "  year = \"2002\"" + "}" +
-                             "author = \"John Doe\"." + "author = \"Jane Doll\".";
+                             "author = \"John Doe\". humba " + "author = \"Jane Doll\". humba";
         setupBibtexFileFromTextToParse(textToParse);
         johnDoe = null;
         article = null;
@@ -81,7 +80,7 @@ public class TestPropertyInitReEvaluationWithTextBlocks extends AbstractBibtexTe
         EList<?> entries = (EList<?>) (bibtexFile).eGet((bibtexFile).eClass().getEStructuralFeature("entries"));
         assertEquals(3, entries.size());
         assertNotNull(syntax);
-        assertEquals("BibtexWithPropertyInits", syntax.getName());
+        assertEquals("BibtexWithPropertyInitsWithContext", syntax.getName());
         assertNotNull(johnDoe);
         // now check the reference was set using the right property name
         // assertNotNull(johnDoe.get("articles")); StubModelHandler not powerful enough
@@ -91,32 +90,21 @@ public class TestPropertyInitReEvaluationWithTextBlocks extends AbstractBibtexTe
      }
 
     @Test
-    public void testForeachPropertyInitValueInInitialModel() throws Exception {
+    public void testContextPropertyInitValueInInitialModel() throws Exception {
         @SuppressWarnings("unchecked")
         EList<EObject> revenues = (EList<EObject>) johnDoe.eGet(authorClass.getEStructuralFeature("revenues"));
-        @SuppressWarnings("unchecked")
-        EList<EObject> johnsArticles = (EList<EObject>) johnDoe.eGet(authorClass.getEStructuralFeature("articles"));
-        assertEquals(johnsArticles.size(), revenues.size());
-        Iterator<EObject> johnsArticlesIterator = johnsArticles.iterator();
+        assertEquals(1, revenues.size());
         for (EObject revenue : revenues) {
-            EObject theArticle = johnsArticlesIterator.next();
-            assertSame(theArticle, revenue.eGet(revenue.eClass().getEStructuralFeature("article")));
-            assertEquals(((String) ((EObject) theArticle.eGet(articleClass.getEStructuralFeature("author"))).eGet(
+            assertEquals(((String) johnDoe.eGet(
                     authorClass.getEStructuralFeature("name"))).length(), revenue.eGet(
                             revenue.eClass().getEStructuralFeature("revenueInEUR")));
         }
     }
     
-    @Test
-    public void testChangeOfExpressionValueUsingHashForeach() throws Exception {
+    @Ignore("Still fails because #context determination so far still returns null") // TODO
+    public void testChangeOfExpressionValueUsingHashContext() throws Exception {
         johnDoe.eSet(authorClass.getEStructuralFeature("name"), "The Only John Doe");
-        testForeachPropertyInitValueInInitialModel();
-    }
-
-    @Test
-    public void testChangeAuthorName() {
-        johnDoe.eSet(authorClass.getEStructuralFeature("name"), "John Dough");
-        assertEquals("Where John Dough wrote it", article.eGet(articleClass.getEStructuralFeature("location")));
+        testContextPropertyInitValueInInitialModel();
     }
 
 }

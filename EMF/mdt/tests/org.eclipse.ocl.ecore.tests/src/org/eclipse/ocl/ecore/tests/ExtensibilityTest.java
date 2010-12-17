@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExtensibilityTest.java,v 1.3 2009/11/28 17:47:24 ewillink Exp $
+ * $Id: ExtensibilityTest.java,v 1.4 2010/12/15 17:34:07 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;

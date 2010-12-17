@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentFactory.java,v 1.2 2007/10/11 23:05:04 cdamus Exp $
+ * $Id: EnvironmentFactory.java,v 1.3 2010/12/15 17:33:43 ewillink Exp $
  */
 
 package org.eclipse.ocl;

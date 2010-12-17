@@ -1,16 +1,14 @@
 package com.sap.furcas.runtime.referenceresolving;
 
-import java.util.Collection;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.emf.ocl.trigger.ExpressionWithContext;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 
 /**
@@ -22,24 +20,22 @@ import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 public class SimplePropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdater {
     private LookupPropertyInit injectorAction;
 
-    public SimplePropertyInitUpdater(LookupPropertyInit injectorAction, OppositeEndFinder oppositeEndFinder)
+    protected SimplePropertyInitUpdater(LookupPropertyInit injectorAction, EPackage.Registry metamodelPackageRegistry, OppositeEndFinder oppositeEndFinder)
             throws ParserException {
-        super(injectorAction.getPropertyReference().getStrucfeature(), oppositeEndFinder, new ExpressionWithContext(
-                createOCLHelper(injectorAction.getValue(),
-                        ((InjectorActionsBlock) injectorAction.eContainer()).getParentTemplate(), oppositeEndFinder)
-                        .createQuery(ContextAndForeachHelper.prepareOclQuery(injectorAction.getValue())),
-                (EClass) ContextAndForeachHelper.getParsingContext(injectorAction.getValue(),
-                        ((InjectorActionsBlock) injectorAction.eContainer()).getParentTemplate())),
-                        /* notifyNewContextElements */ true, getSelfKind(injectorAction.getValue()));
+        super(injectorAction.getPropertyReference().getStrucfeature(), metamodelPackageRegistry, oppositeEndFinder,
+                        new ExpressionWithContext(
+                                createOCLHelper(injectorAction.getValue(),
+                                        ((InjectorActionsBlock) injectorAction.eContainer()).getParentTemplate(), oppositeEndFinder)
+                                        .createQuery(ContextAndForeachHelper.prepareOclQuery(injectorAction.getValue())),
+                                (EClass) ContextAndForeachHelper.getParsingContext(injectorAction.getValue(),
+                                        ((InjectorActionsBlock) injectorAction.eContainer()).getParentTemplate())),
+                                        /* notifyNewContextElements */ true, getSelfKind(injectorAction.getValue()),
+                                        ContextAndForeachHelper.getContextTag(injectorAction.getValue()));
         this.injectorAction = injectorAction;
     }
     
     @Override
-    public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects,
-            OppositeEndFinder oppositeEndFinder) {
-        // TODO once the TextblockDefinition.parseRule property is set by the TCSParser, enable the following:
-        // Collection<TextBlock> affectedTextBlocks = getTextBlocksInChosenAlternativeForInjectorAction(injectorAction);
-        injectorAction.eAdapters(); // TODO remove this phony usage...
-        super.notify(expression, affectedContextObjects, oppositeEndFinder);
+    protected SequenceElement getSequenceElement() {
+        return injectorAction.getInjectorActionsBlock();
     }
 }

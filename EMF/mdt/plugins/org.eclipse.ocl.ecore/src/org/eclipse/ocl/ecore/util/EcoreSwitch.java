@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: EcoreSwitch.java,v 1.10 2009/12/06 18:16:10 ewillink Exp $
+ * $Id: EcoreSwitch.java,v 1.11 2010/12/15 17:32:44 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.util;
 

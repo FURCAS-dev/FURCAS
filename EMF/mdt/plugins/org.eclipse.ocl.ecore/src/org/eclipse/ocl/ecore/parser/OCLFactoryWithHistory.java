@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id$
+ * $Id: OCLFactoryWithHistory.java,v 1.1 2010/12/15 17:32:43 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.parser;
 

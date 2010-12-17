@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: EcoreAdapterFactory.java,v 1.11 2010/05/03 09:32:49 ewillink Exp $
+ * $Id: EcoreAdapterFactory.java,v 1.12 2010/12/15 17:32:44 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.util;
 
