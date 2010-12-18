@@ -4,7 +4,7 @@ The graph visualization tool provides the functionality to generate a graph for 
 
 Follow the following steps to generate a GraphML file:
 1. Make sure that you have checked out the project 
-   de.hpi.sam.bp2009.solution.impactAnalyzer.debug
+   org.eclipse.ocl.examples.impactanalyzer.debug
 2. In order to generate a graph you may debug into the InstanceScopeAnalysis.self()
    method or a similar method, in which you have access to an NavigationStep object. 
    It's recommended to start the visualization tool after the navigate method of the
@@ -20,7 +20,7 @@ Follow the following steps to generate a GraphML file:
    license. At the moment, only the evaluation copy of this library is used to generate a graph.
    If the graph file was not written to the specified path and the message
    "The evaluation time of yFiles for Java has expired" is returned, the 
-   /de.hpi.sam.bp2009.solution.impactAnalyzer.debug/lib/y.jar must be replaced by a new
+   /org.eclipse.ocl.examples.impactanalyzer.debug/lib/y.jar must be replaced by a new
    evaluation copy in order to be able to generate a graph file.
    A new evaluation copy can be requested at http://www.yworks.com/en/products_yfiles_eval.php
 
