@@ -98,10 +98,11 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 				return null;
 			}
 			body = (OCLExpression) specification.getBodyExpression();
-			return body;
-		}
-		finally {
 			cacheExpression(structuralFeature, body, key);
+			return body;
+		} catch (RuntimeException e) {
+			cacheInvalidExpression(structuralFeature, key);
+			throw e;
 		}
 	}
 	
