@@ -60,8 +60,10 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.delegate.DelegateDomain;
 import org.eclipse.ocl.ecore.delegate.DelegateResourceSetAdapter;
+import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomainFactory;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateException;
@@ -709,6 +711,27 @@ public class DelegatesTest extends AbstractTestSuite
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		invokeWithException(badClassInstance, "operationParsingToSyntacticError",
 			OCLMessages.OCLParseErrorCodes_DELETION, "2:5:2:6", "\"in\"");
+	}
+
+	/**
+	 * Ensures that {@link InvocationBehavior#getOperationBody(OCL, EOperation)}
+	 * consistently returns <code>null</code> for stdlib operations that don't
+	 * have a body defined at all instead of returning an <code>invalid</code> literal.
+	 * @throws ParserException 
+	 */
+	public void test_operationDefinedInStdlibBodyRemainsNull() throws ParserException {
+		OCL ocl = OCL.newInstance();
+		Helper helper = ocl.createOCLHelper();
+		helper.setContext(EcorePackage.eINSTANCE.getEClassifier());
+		OCLExpression expr = helper.createQuery("'abc'.oclAsType(String)");
+		assertTrue(expr instanceof OperationCallExp);
+		OperationCallExp oce = (OperationCallExp) expr;
+		EOperation o = oce.getReferredOperation();
+		OCLExpression body = InvocationBehavior.INSTANCE.getOperationBody(ocl, o);
+		assertNull(body);
+		// and again, now reading from cache
+		OCLExpression bodyStillNull = InvocationBehavior.INSTANCE.getOperationBody(ocl, o);;
+		assertNull(bodyStillNull);
 	}
 
 	public void test_queryExecution() {
