@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description name="www.furcas.org" url="www.furcas.org/update-site/">
+      The FURCAS update site
+   </description>
+   <feature url="features/FURCAS_1.0.1.201012182128.jar" id="FURCAS" version="1.0.1.201012182128">
+      <category name="furcas"/>
+   </feature>
+   <feature url="features/EMFEnhancementsFeature_1.0.0.201012182128.jar" id="EMFEnhancementsFeature" version="1.0.0.201012182128">
+      <category name="furcas"/>
+   </feature>
+   <feature url="features/com.sap.furcas.workspacesetup.feature_1.0.1.201012182128.jar" id="com.sap.furcas.workspacesetup.feature" version="1.0.1.201012182128">
+      <category name="furcas"/>
+   </feature>
+   <category-def name="furcas" label="FURCAS Textual Modelling">
+      <description>
+         Something
+      </description>
+   </category-def>
+</site>
