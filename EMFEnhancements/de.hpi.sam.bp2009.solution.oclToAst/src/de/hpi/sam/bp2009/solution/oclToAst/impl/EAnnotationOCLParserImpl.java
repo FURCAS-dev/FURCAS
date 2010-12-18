@@ -44,6 +44,7 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.utilities.UMLReflection;
@@ -150,7 +151,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             Helper helper = ocl.createOCLHelper();
 
             setCorrectContext(helper, modelElement);
-            Constraint constraint = createConstraint(modelElement, expr, typ, helper);
+            OCLExpression constraint = createConstraint(modelElement, expr, typ, helper);
 
             if (constraint == null)
                 return;
@@ -160,7 +161,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             /*
              * Iterate the AST, search for OCL specific types, and add them to the resource of the EAnnotation
              */
-            constraint.getSpecification().getBodyExpression().accept(rc);
+            constraint.accept(rc);
             EPackage p = getRootPackage(modelElement);
             if (p != null) {
                 addOclTypesAnnotationToPackage(rc.getSet(), p);
@@ -172,7 +173,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
         }
     }
 
-    private Constraint createConstraint(EModelElement modelElement, String expr, String typ, Helper helper) {
+    private OCLExpression createConstraint(EModelElement modelElement, String expr, String typ, Helper helper) {
         Constraint constraint = null;
         try {
             if (UMLReflection.DERIVATION.equals(typ)) {
@@ -194,7 +195,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
         } catch (ParserException e1) {
             parserExceptionHandling(modelElement, expr, e1);
         }
-        return constraint;
+        return (OCLExpression) constraint.getSpecification().getBodyExpression();
     }
 
     private void setCorrectContext(Helper helper, EModelElement modelElement) {

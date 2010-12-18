@@ -137,9 +137,9 @@ public class EAnnotationOCLParserTest {
 
         getFixture().convertOclAnnotation(placeC);
         // ValidationBehavior.INSTANCE.getInvariant(placeC, "someKey", OCL.newInstance());
-        assertTrue(placeC.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI).getContents().get(0) instanceof Constraint);
-        assertTrue(((Constraint) placeC.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI).getContents().get(0))
-                .getSpecification().getBodyExpression() instanceof OperationCallExp);
+        assertTrue(placeC.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI).getContents().get(0) instanceof OCLExpression);
+        assertTrue(((OCLExpression) placeC.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI).getContents().get(0))
+                instanceof OperationCallExp);
     }
 
     @Test
@@ -287,8 +287,8 @@ public class EAnnotationOCLParserTest {
         anno.getDetails().get(0).setValue("null");
         EAnnotation annotation = operation.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
         annotation.getContents();
-        OCLExpression expr = (OCLExpression) ((Constraint) operation.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI)
-                .getContents().get(0)).getSpecification().getBodyExpression();
+        OCLExpression expr = (OCLExpression) operation.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI)
+                .getContents().get(0);
         assertTrue(expr instanceof IntegerLiteralExp);
         OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance();
         Object result = ocl.evaluate(operation, expr);
