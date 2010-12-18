@@ -57,9 +57,9 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.delegate.DelegateDomain;
 import org.eclipse.ocl.ecore.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
@@ -70,7 +70,6 @@ import org.eclipse.ocl.ecore.delegate.OCLQueryDelegateFactory;
 import org.eclipse.ocl.ecore.delegate.OCLSettingDelegateFactory;
 import org.eclipse.ocl.ecore.delegate.OCLValidationDelegateFactory;
 import org.eclipse.ocl.ecore.delegate.ValidationDelegate;
-import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.osgi.util.NLS;
 
@@ -578,8 +577,8 @@ public class DelegatesTest extends AbstractTestSuite
 		int posOfMustHaveName = annotation.getDetails().indexOfKey("mustHaveName");
 		Helper helper = OCL.newInstance().createOCLHelper();
 		helper.setContext(employeeClass);
-		Constraint constraint = helper.createConstraint(ConstraintKind.INVARIANT, "false"); // a constraint always returning false
-		annotation.getContents().set(posOfMustHaveName, constraint);
+		OCLExpression query = helper.createQuery("false"); // a constraint always returning false
+		annotation.getContents().set(posOfMustHaveName, query);
 		assertFalse("Expected the always-false cached constraint to be used",
 			CompanyValidator.INSTANCE.validateEmployee_mustHaveName((Employee) employee("Amy"), diagnostics, context));
 	}
@@ -599,7 +598,7 @@ public class DelegatesTest extends AbstractTestSuite
 				foundMustHaveName = true;
 				assertTrue("Annotation contents too small; expected to find cached constraint", annotation.getContents().size() > i);
 				EObject eo = annotation.getContents().get(i);
-				assertTrue("Expected to find a Constraint element at position "+i+" in annotation", eo instanceof Constraint);
+				assertTrue("Expected to find a Constraint element at position "+i+" in annotation", eo instanceof OCLExpression);
 			}
 		}
 		assertTrue("Expected to find compiled constraint mustHaveName on Employee", foundMustHaveName);
@@ -620,7 +619,7 @@ public class DelegatesTest extends AbstractTestSuite
 				foundMustHaveName = true;
 				assertTrue("Annotation contents too small; expected to find cached constraint", annotation.getContents().size() > i);
 				EObject eo = annotation.getContents().get(i);
-				assertTrue("Expected to find a Constraint element at position "+i+" in annotation", eo instanceof Constraint);
+				assertTrue("Expected to find a Constraint element at position "+i+" in annotation", eo instanceof OCLExpression);
 			}
 		}
 		assertTrue("Expected to find compiled constraint mustHaveName on Employee", foundMustHaveName);
@@ -771,7 +770,7 @@ public class DelegatesTest extends AbstractTestSuite
 	public void test_validationEvaluatingToWrongType() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationEvaluatingToWrongType"), null);
-		String message = NLS.bind(OCLMessages.InvariantConstraintBoolean_ERROR_, "ValidationEvaluatingToWrongType");
+		String message = NLS.bind(OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, "evaluatingToWrongType");
 		validateWithError("evaluatingToWrongType", "_UI_ConstraintDelegateException_diagnostic", badClassInstance,
 			"evaluatingToWrongType", EObjectValidator.getObjectLabel(badClassInstance, context), message);
 	}

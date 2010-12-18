@@ -22,14 +22,15 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.ocl.ecore.Constraint;
-import org.eclipse.ocl.ecore.ExpressionInOCL;
+import org.eclipse.ocl.ecore.InvalidLiteralExp;
+import org.eclipse.ocl.ecore.NullLiteralExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 /**
@@ -41,7 +42,8 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 		implements DelegatedBehavior<E, R, F> {
 
 	private static List<DelegatedBehavior<?, ?, ?>> delegatedBehaviors = null;
-	private static final Constraint DUMMY_CONSTRAINT = org.eclipse.ocl.ecore.EcoreFactory.eINSTANCE.createConstraint();
+	private static final InvalidLiteralExp INVALID_CONSTRAINT = org.eclipse.ocl.ecore.EcoreFactory.eINSTANCE.createInvalidLiteralExp();
+	private static final NullLiteralExp NULL_CONSTRAINT = org.eclipse.ocl.ecore.EcoreFactory.eINSTANCE.createNullLiteralExp();
 
 	public static List<DelegatedBehavior<?, ?, ?>> getDelegatedBehaviors() {
 		// FIXME Maybe use an extension point here (but need a common
@@ -56,30 +58,60 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 	};
 
     /**
+     * Cache the constraintKey expression for modelElement, using the eContents and eDetails of
+     * the {@link OCLDelegateDomain#OCL_DELEGATE_URI} EAnnotation to store the
+     * constraintKey->expression mapping. Since
+     * eDetails is a String to String mapping, the index of the eDetails constraintKey entry
+     * is used to identify the index in eContents at which the corresponding expression is found.
+     * <p>
+     * On exit:
+     * <pre>
+     * eAnnotation = modelElement.getEAnnotation(OCL_DELEGATE_URI)
+     * index = eAnnotation.getDetails().indexOf(constraintKey)
+     * eAnnotation != null 
+     * index >= 0
+     * eAnnotation.getContents().get(index) = expression
+     * </pre>
+      * If no eDetails entry exists one is created to satisfy the above postconditions.
+      * <br>
+      * Dummy entries may be added to eContents() to maintain eDetails/eContents alignment.
+      * <p>
+      * A null expression may be cached to cache a failed creation. Use of a cached
+      * null expression returns an {@link InvalidLiteralExp}.
+      * 
+      * @param modelElement for which an expression is to be cached
+      * @param expression to be cached, may be null
+      * @param constraintKey distinguishing between multiple expressions
      * @since 3.1
 	 */
-    protected void cacheExpression(EModelElement modelElement, Constraint constraint, String... keys) {
+    protected void cacheExpression(EModelElement modelElement, OCLExpression expression, String constraintKey) {
     	EAnnotation a = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
     	if (a == null){
     		a = EcoreFactory.eINSTANCE.createEAnnotation();
     		a.setSource(OCLDelegateDomain.OCL_DELEGATE_URI);
     		modelElement.getEAnnotations().add(a);
 		}
-		for (String key : keys) {
-			int indexOfKey = a.getDetails().indexOfKey(key);
-			if (indexOfKey >= 0) {
-				pad(a.getContents(), indexOfKey);
-				a.getContents().add(constraint);
-				return;
-			}
+    	EMap<String, String> details = a.getDetails();
+		int indexOfKey = details.indexOfKey(constraintKey);
+		if (indexOfKey < 0) {
+			details.put(constraintKey, null);
+			indexOfKey = details.size()-1;
 		}
-		a.getDetails().put(keys[0], null);
-		pad(a.getContents(), a.getDetails().size()-1);
-		a.getContents().add(constraint);
+		List<EObject> contents = a.getContents();
+		EObject cacheValue = expression != null ? expression : INVALID_CONSTRAINT;
+		if (indexOfKey < contents.size()) {
+			contents.set(indexOfKey, cacheValue);
+		}
+		else {
+			for (int i = contents.size(); i < indexOfKey; i++) {
+				contents.add(NULL_CONSTRAINT); // can't use null in an EList
+			}
+			contents.add(cacheValue);
+		}
     }
 
 	/**
-	 * Looks for a {@link Constraint} element attached to the
+	 * Looks for an {@link OCLExpression} element attached to the
 	 * {@link OCLDelegateDomain#OCL_DELEGATE_URI} annotation of
 	 * <code>modelElement</code> at the same position at which the
 	 * {@link OCLDelegateDomain#OCL_DELEGATE_URI} annotation holds a detail
@@ -87,36 +119,32 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 	 * detail at position 3 with key "body" and "body" is part of
 	 * <code>constraintKeys</code> then the contents element at position 3 of
 	 * the {@link OCLDelegateDomain#OCL_DELEGATE_URI} annotation is returned if it is
-	 * a {@link Constraint} element. If a {@link Constraint} element is found,
-	 * the {@link OCLExpression} obtained by calling
-	 * {@link Constraint#getSpecification() getSpecification()}.
-	 * {@link ExpressionInOCL#getBodyExpression() getBodyExpression()} on the
-	 * constraint is returned.
+	 * a {@link OCLEXpression} element.
 	 * 
-	 * @return <code>null</code> if no {@link Constraint} is found in the
-	 *         position expected
+	 * @param modelElement from which to return a cached expression
+	 * @param constraintKeys the prioritised list of constraintKeys for to find a cached expression
+	 * @return null if none of the constraintKeys are known, or
+	 * if no constraint is associated with the first known constraintKey
+	 * else an {@link InvalidLiteralExp} if a null constraint was cached against
+	 * the first known constraintKey, else the cached expression.
+	 * 
 	 * @since 3.1
 	 */
-	protected OCLExpression getCachedExpression(EModelElement modelElement,
-			String... constraintKeys) {
-		EAnnotation anno = modelElement
-			.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+	protected OCLExpression getCachedExpression(EModelElement modelElement, String... constraintKeys) {
+		EAnnotation anno = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
 		if (anno != null) {
 			int pos = -1;
 			// find the position of the first constraintKey that is a key in details 
+			EList<EObject> contents = anno.getContents();
+			EMap<String, String> details = anno.getDetails();
 			for (String constraintKey : constraintKeys) {
-				pos = anno.getDetails().indexOfKey(constraintKey);
-				if (pos >= 0) {
-					break;
-				}
-			}
-			if (pos >= 0) {
-				if (anno.getContents().size() > pos) {
-					EObject contentElement = anno.getContents().get(pos);
-					if (contentElement instanceof Constraint && contentElement != DUMMY_CONSTRAINT) {
-						return (OCLExpression) ((Constraint) contentElement)
-							.getSpecification().getBodyExpression();
+				pos = details.indexOfKey(constraintKey);
+				if ((0 <= pos) && (pos < contents.size())) {
+					EObject contentElement = contents.get(pos);
+					if (contentElement == NULL_CONSTRAINT) {
+						return null;
 					}
+					return (OCLExpression) contentElement;
 				}
 			}
 		}
@@ -171,16 +199,6 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 			}
 		}
 		return null;
-	}
-
-	/**
-	 * pads <code>contents</code> with <code>null</code> elements so that adding
-	 * another object to it as position <code>upTo</code> becomes possible.
-	 */
-    private void pad(EList<EObject> contents, int upTo) {
-		for (int i=contents.size(); i<upTo; i++) {
-			contents.add(DUMMY_CONSTRAINT); // can't use null in an EList
-		}
 	}
 
 	public void setDelegates(EPackage ePackage, List<String> delegateURIs) {

@@ -57,6 +57,46 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 	public Class<ValidationDelegate.Factory> getFactoryClass() {
 		return ValidationDelegate.Factory.class;
 	}
+
+	/**
+	 * @since 3.1
+	 */
+	public OCLExpression getInvariant(EModelElement cls, String constraintName, OCL ocl) {
+		OCLExpression result = getCachedExpression(cls, constraintName);
+		if (result != null) {
+			return result;
+		}
+		OCLExpression invariant = null;
+		try {
+			OCL.Helper helper = ocl.createOCLHelper();
+			if (!(cls instanceof EClassifier)) {
+				return null;
+			}
+			helper.setContext((EClassifier) cls);
+			String expr = EcoreUtil.getAnnotation(cls, OCLDelegateDomain.OCL_DELEGATE_URI, constraintName);
+			if (expr == null) {
+				return null;
+			}
+			Constraint constraint;
+			try {
+				constraint = helper.createInvariant(expr);
+			} catch (ParserException e) {
+				throw new OCLDelegateException(e.getLocalizedMessage(), e);
+			}
+			if (constraint == null) {
+				return null;
+			}
+			ExpressionInOCL specification = (ExpressionInOCL) constraint.getSpecification();
+			if (specification == null) {
+				return null;
+			}
+			invariant = (OCLExpression) specification.getBodyExpression();
+			return invariant;
+		}
+		finally {
+			cacheExpression(cls, invariant, constraintName);
+		}
+	}
 	
 	public String getName() {
 		return NAME;
@@ -65,39 +105,4 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 	public Class<ValidationDelegate.Factory.Registry> getRegistryClass() {
 		return ValidationDelegate.Factory.Registry.class;
 	}
-
-        /**
-		 * @since 3.1
-		 */
-        public OCLExpression getInvariant(EModelElement cls, String constraintName, OCL ocl){
-            OCLExpression result = getCachedExpression(cls, constraintName);
-            if (result != null){
-                    return result;
-            }
-            OCL.Helper helper = ocl.createOCLHelper();
-            if (!(cls instanceof EClassifier)){
-                    return null;
-            }
-            helper.setContext((EClassifier)cls);
-            String expr = EcoreUtil.getAnnotation(cls, OCLDelegateDomain.OCL_DELEGATE_URI, constraintName);
-            if (expr == null){
-                    return null;
-            }
-            Constraint constraint;
-            try {
-                    constraint = helper.createInvariant(expr);
-            } catch (ParserException e) {
-                    throw new OCLDelegateException(e.getLocalizedMessage(), e);
-            }
-            if (constraint == null) {
-                    return null;
-            }
-            ExpressionInOCL specification = (ExpressionInOCL) constraint.getSpecification();
-            if (specification == null) {
-                    return null;
-            }
-            cacheExpression(cls, constraint, constraintName);
-            return (OCLExpression) specification.getBodyExpression();
-    }
-
 }
