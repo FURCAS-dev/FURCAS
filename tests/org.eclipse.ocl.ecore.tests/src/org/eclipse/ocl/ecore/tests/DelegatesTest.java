@@ -61,6 +61,7 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.delegate.DelegateDomain;
 import org.eclipse.ocl.ecore.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
@@ -71,6 +72,7 @@ import org.eclipse.ocl.ecore.delegate.OCLInvocationDelegateFactory;
 import org.eclipse.ocl.ecore.delegate.OCLQueryDelegateFactory;
 import org.eclipse.ocl.ecore.delegate.OCLSettingDelegateFactory;
 import org.eclipse.ocl.ecore.delegate.OCLValidationDelegateFactory;
+import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.eclipse.ocl.ecore.delegate.ValidationDelegate;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.osgi.util.NLS;
@@ -531,6 +533,27 @@ public class DelegatesTest extends AbstractTestSuite
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		getWithException(badClassInstance, "attributeParsingToSyntacticError",
 			OCLMessages.OCLParseErrorCodes_DELETION, "2:9:2:12", "\"null\"");
+	}
+
+	/**
+	 * Ensures that {@link InvocationBehavior#getOperationBody(OCL, EOperation)}
+	 * consistently returns <code>null</code> for stdlib operations that don't
+	 * have a body defined at all instead of returning an <code>invalid</code> literal.
+	 * @throws ParserException 
+	 */
+	public void test_attributeNotDefinedInOCLRemainsNull() throws ParserException {
+		OCL ocl = OCL.newInstance();
+		Helper helper = ocl.createOCLHelper();
+		helper.setContext(EcorePackage.eINSTANCE.getEClassifier());
+		OCLExpression expr = helper.createQuery("self.name");
+		assertTrue(expr instanceof PropertyCallExp);
+		PropertyCallExp pce = (PropertyCallExp) expr;
+		EStructuralFeature p = pce.getReferredProperty();
+		OCLExpression body = SettingBehavior.INSTANCE.getFeatureBody(ocl, p);
+		assertNull(body);
+		// and again, now reading from cache
+		OCLExpression bodyStillNull = SettingBehavior.INSTANCE.getFeatureBody(ocl, p);
+		assertNull(bodyStillNull);
 	}
 
 	public void test_constraintValidation() {
