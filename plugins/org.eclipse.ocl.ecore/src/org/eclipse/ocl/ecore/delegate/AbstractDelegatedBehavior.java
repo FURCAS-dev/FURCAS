@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -109,6 +110,15 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 			contents.add(cacheValue);
 		}
     }
+
+    /**
+     * Remembers that the body of <code>operation</code> for annotation key <code>constraintKey</code>
+     * didn't compile properly. It is therefore cached as an {@link #INVALID_CONSTRAINT}.
+     * @since 3.1
+     */
+	protected void cacheInvalidExpression(EOperation operation, String constraintKey) {
+		cacheExpression(operation, INVALID_CONSTRAINT, constraintKey);
+	}
 
 	/**
 	 * Looks for an {@link OCLExpression} element attached to the
