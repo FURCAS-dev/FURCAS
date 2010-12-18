@@ -73,28 +73,34 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 		if (result != null) {
 			return result;
 		}
-		String expr = EcoreUtil.getAnnotation(operation, OCLDelegateDomain.OCL_DELEGATE_URI, BODY_CONSTRAINT_KEY);
-		if (expr == null) {
-			return null;
-		}
-		EClass context = operation.getEContainingClass();
-		OCL.Helper helper = ocl.createOCLHelper();
-		helper.setOperationContext(context, operation);
-		Constraint constraint;
+		OCLExpression body = null;
 		try {
-			constraint = helper.createBodyCondition(expr);
-		} catch (ParserException e) {
-			throw new OCLDelegateException(e.getLocalizedMessage(), e);
+			String expr = EcoreUtil.getAnnotation(operation, OCLDelegateDomain.OCL_DELEGATE_URI, BODY_CONSTRAINT_KEY);
+			if (expr == null) {
+				return null;
+			}
+			EClass context = operation.getEContainingClass();
+			OCL.Helper helper = ocl.createOCLHelper();
+			helper.setOperationContext(context, operation);
+			Constraint constraint;
+			try {
+				constraint = helper.createBodyCondition(expr);
+			} catch (ParserException e) {
+				throw new OCLDelegateException(e.getLocalizedMessage(), e);
+			}
+			if (constraint == null) {
+				return null;
+			}
+			ExpressionInOCL specification = (ExpressionInOCL) constraint.getSpecification();
+			if (specification == null) {
+				return null;
+			}
+			body = (OCLExpression) specification.getBodyExpression();
+			return body;
 		}
-		if (constraint == null) {
-			return null;
+		finally {
+			cacheExpression(operation, body, BODY_CONSTRAINT_KEY);
 		}
-		ExpressionInOCL specification = (ExpressionInOCL) constraint.getSpecification();
-		if (specification == null) {
-			return null;
-		}
-		cacheExpression(operation, constraint, BODY_CONSTRAINT_KEY);
-		return (OCLExpression) specification.getBodyExpression();
 	}
 
 	public Class<InvocationDelegate.Factory.Registry> getRegistryClass() {

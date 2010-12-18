@@ -61,40 +61,48 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 	}
 
 	public OCLExpression getFeatureBody(OCL ocl, EStructuralFeature structuralFeature) {
-		OCLExpression result = getCachedExpression(structuralFeature, INITIAL_CONSTRAINT_KEY, DERIVATION_CONSTRAINT_KEY);
+		OCLExpression result = getCachedExpression(structuralFeature, DERIVATION_CONSTRAINT_KEY, INITIAL_CONSTRAINT_KEY);
 		if (result != null){
 			return result;
 		}
-	    EAnnotation eAnnotation = structuralFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
-	    if (eAnnotation == null) {
-	    	return null;
-	    }
-	    EMap<String, String> details = eAnnotation.getDetails();
-		String expr = details.get(DERIVATION_CONSTRAINT_KEY);
-		if (expr == null) {
-			expr = details.get(INITIAL_CONSTRAINT_KEY);
+		OCLExpression body = null;
+		String key = DERIVATION_CONSTRAINT_KEY;
+		try {
+		    EAnnotation eAnnotation = structuralFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		    if (eAnnotation == null) {
+		    	return null;
+		    }
+		    EMap<String, String> details = eAnnotation.getDetails();
+			String expr = details.get(key);
 			if (expr == null) {
+				expr = details.get(INITIAL_CONSTRAINT_KEY);
+				if (expr == null) {
+					return null;
+				}
+				key = INITIAL_CONSTRAINT_KEY;		// Only change cached key on success
+			}
+			EClass context = structuralFeature.getEContainingClass();
+			OCL.Helper helper = ocl.createOCLHelper();
+			helper.setAttributeContext(context, structuralFeature);
+			Constraint constraint;
+			try {
+				constraint = helper.createDerivedValueExpression(expr);
+			} catch (ParserException e) {
+				throw new OCLDelegateException(e.getLocalizedMessage(), e);
+			}
+			if (constraint == null) {
 				return null;
 			}
+			ExpressionInOCL specification = (ExpressionInOCL) constraint.getSpecification();
+			if (specification == null) {
+				return null;
+			}
+			body = (OCLExpression) specification.getBodyExpression();
+			return body;
 		}
-		EClass context = structuralFeature.getEContainingClass();
-		OCL.Helper helper = ocl.createOCLHelper();
-		helper.setAttributeContext(context, structuralFeature);
-		Constraint constraint;
-		try {
-			constraint = helper.createDerivedValueExpression(expr);
-		} catch (ParserException e) {
-			throw new OCLDelegateException(e.getLocalizedMessage(), e);
+		finally {
+			cacheExpression(structuralFeature, body, key);
 		}
-		if (constraint == null) {
-			return null;
-		}
-		ExpressionInOCL specification = (ExpressionInOCL) constraint.getSpecification();
-		if (specification == null) {
-			return null;
-		}
-		cacheExpression(structuralFeature, constraint, INITIAL_CONSTRAINT_KEY, DERIVATION_CONSTRAINT_KEY);
-		return (OCLExpression) specification.getBodyExpression();
 	}
 	
 	public String getName() {
