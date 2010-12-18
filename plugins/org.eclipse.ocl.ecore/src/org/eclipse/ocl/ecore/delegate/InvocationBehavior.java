@@ -96,10 +96,11 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 				return null;
 			}
 			body = (OCLExpression) specification.getBodyExpression();
-			return body;
-		}
-		finally {
 			cacheExpression(operation, body, BODY_CONSTRAINT_KEY);
+			return body;
+		} catch (RuntimeException t) {
+			cacheInvalidExpression(operation, BODY_CONSTRAINT_KEY);
+			throw t;
 		}
 	}
 
