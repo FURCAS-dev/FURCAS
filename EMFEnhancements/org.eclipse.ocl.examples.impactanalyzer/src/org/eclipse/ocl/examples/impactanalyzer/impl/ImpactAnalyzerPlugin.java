@@ -42,7 +42,7 @@ public class ImpactAnalyzerPlugin extends EclipsePlugin {
      * 
      * @since 1.3
      */
-    private static boolean traceAll = Boolean.getBoolean("de.hpi.sam.bp2009.solution.impactAnalyzer.debug"); //$NON-NLS-1$;
+    private static boolean traceAll = Boolean.getBoolean("org.eclipse.ocl.examples.impactanalyzer.debug"); //$NON-NLS-1$;
 
     /**
      * Initializes me with my Eclipse plug-in descriptor.

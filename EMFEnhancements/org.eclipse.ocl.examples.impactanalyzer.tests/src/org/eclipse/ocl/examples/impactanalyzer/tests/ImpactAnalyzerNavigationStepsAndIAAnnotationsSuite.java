@@ -16,7 +16,7 @@ import junit.framework.TestSuite;
 public class ImpactAnalyzerNavigationStepsAndIAAnnotationsSuite extends TestSuite {
 
 	public static Test suite() {
-        System.setProperty("de.hpi.sam.bp2009.solution.impactAnalyzer.debug", "true");
+        System.setProperty("org.eclipse.ocl.examples.impactanalyzer.debug", "true");
         System.setProperty("navigationStepIA", "true");
         System.setProperty("unusedCheckIA", "false");
         return ImpactAnalyzerAllTests.suite();

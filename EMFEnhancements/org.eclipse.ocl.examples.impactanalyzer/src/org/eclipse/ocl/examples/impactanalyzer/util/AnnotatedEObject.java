@@ -35,9 +35,9 @@ public class AnnotatedEObject implements EObject {
     private final String comment;
     private final EObject objectReached;
     private final AnnotatedEObject from;
-    public final static String NOT_IN_DEBUG_MODE_MESSAGE = "To enable annotations, set the system property de.hpi.sam.bp2009.solution.impactAnalyzer.debug to true, "
-        + "e.g., by using the VM argument -Dde.hpi.sam.bp2009.solution.impactAnalyzer.debug=true";
-    public final static boolean IS_IN_DEBUG_MODE = Boolean.getBoolean("de.hpi.sam.bp2009.solution.impactAnalyzer.debug");
+    public final static String NOT_IN_DEBUG_MODE_MESSAGE = "To enable annotations, set the system property org.eclipse.ocl.examples.impactanalyzer.debug to true, "
+        + "e.g., by using the VM argument -Dorg.eclipse.ocl.examples.impactanalyzer.debug=true";
+    public final static boolean IS_IN_DEBUG_MODE = Boolean.getBoolean("org.eclipse.ocl.examples.impactanalyzer.debug");
 
     public boolean equals(Object o) {
         if (o instanceof AnnotatedEObject) {
