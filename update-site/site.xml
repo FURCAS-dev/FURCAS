@@ -3,13 +3,13 @@
    <description name="www.furcas.org" url="www.furcas.org/update-site/">
       The FURCAS update site
    </description>
-   <feature url="features/FURCAS_1.0.1.201012191003.jar" id="FURCAS" version="1.0.1.201012191003">
+   <feature url="features/FURCAS_1.0.1.201012191702.jar" id="FURCAS" version="1.0.1.201012191702">
       <category name="furcas"/>
    </feature>
-   <feature url="features/EMFEnhancementsFeature_1.0.0.201012191003.jar" id="EMFEnhancementsFeature" version="1.0.0.201012191003">
+   <feature url="features/EMFEnhancementsFeature_1.0.0.201012191702.jar" id="EMFEnhancementsFeature" version="1.0.0.201012191702">
       <category name="furcas"/>
    </feature>
-   <feature url="features/com.sap.furcas.workspacesetup.feature_1.0.1.201012191003.jar" id="com.sap.furcas.workspacesetup.feature" version="1.0.1.201012191003">
+   <feature url="features/com.sap.furcas.workspacesetup.feature_1.0.1.201012191702.jar" id="com.sap.furcas.workspacesetup.feature" version="1.0.1.201012191702">
       <category name="furcas"/>
    </feature>
    <category-def name="furcas" label="FURCAS Textual Modelling">
