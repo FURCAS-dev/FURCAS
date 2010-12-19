@@ -57,6 +57,8 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.SemanticException;
+import org.eclipse.ocl.ecore.InvalidLiteralExp;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
@@ -73,6 +75,7 @@ import org.eclipse.ocl.ecore.delegate.OCLQueryDelegateFactory;
 import org.eclipse.ocl.ecore.delegate.OCLSettingDelegateFactory;
 import org.eclipse.ocl.ecore.delegate.OCLValidationDelegateFactory;
 import org.eclipse.ocl.ecore.delegate.SettingBehavior;
+import org.eclipse.ocl.ecore.delegate.ValidationBehavior;
 import org.eclipse.ocl.ecore.delegate.ValidationDelegate;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.osgi.util.NLS;
@@ -648,6 +651,29 @@ public class DelegatesTest extends AbstractTestSuite
 			}
 		}
 		assertTrue("Expected to find compiled constraint mustHaveName on Employee", foundMustHaveName);
+	}
+	
+	public void test_invariantCachingForError() {
+		initPackageRegistrations();
+		initModel(COMPANY_XMI);
+		EAnnotation annotation = employeeClass.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		annotation.getContents().clear(); // remove any previously cached compiled OCL Constraint
+		try {
+			annotation.getDetails().put("badConstraint", "'abc' * 'def'");
+			try {
+				ValidationBehavior.INSTANCE.getInvariant(employeeClass, "badConstraint", (OCL)ocl);
+				fail("Expected exception when validating a bad invariant");
+			}
+			catch (RuntimeException e) {
+				assert e.getCause().getClass() == SemanticException.class;
+			}
+			OCLExpression expr = ValidationBehavior.INSTANCE.getInvariant(employeeClass, "badConstraint", (OCL)ocl);
+			assert expr instanceof InvalidLiteralExp;
+		}
+		finally {
+			annotation.getContents().clear(); // remove any previously cached compiled OCL Constraint
+			annotation.getDetails().remove("badConstraint");
+		}
 	}
 	
 	public void test_invariantValidation() {
