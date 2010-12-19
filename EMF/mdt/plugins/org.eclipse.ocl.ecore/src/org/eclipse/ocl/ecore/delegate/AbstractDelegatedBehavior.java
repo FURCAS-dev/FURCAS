@@ -30,8 +30,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.InvalidLiteralExp;
-import org.eclipse.ocl.ecore.NullLiteralExp;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.impl.NullLiteralExpImpl;
 
 /**
  * A basic implementation of a delegated behavior.
@@ -41,9 +41,10 @@ import org.eclipse.ocl.ecore.OCLExpression;
 public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 		implements DelegatedBehavior<E, R, F> {
 
+	private static class NullExpression extends NullLiteralExpImpl {}
+	
 	private static List<DelegatedBehavior<?, ?, ?>> delegatedBehaviors = null;
 	private static final InvalidLiteralExp INVALID_CONSTRAINT = org.eclipse.ocl.ecore.EcoreFactory.eINSTANCE.createInvalidLiteralExp();
-	private static final NullLiteralExp NULL_CONSTRAINT = org.eclipse.ocl.ecore.EcoreFactory.eINSTANCE.createNullLiteralExp();
 
 	public static List<DelegatedBehavior<?, ?, ?>> getDelegatedBehaviors() {
 		// FIXME Maybe use an extension point here (but need a common
@@ -104,7 +105,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 		}
 		else {
 			for (int i = contents.size(); i < indexOfKey; i++) {
-				contents.add(NULL_CONSTRAINT); // can't use null in an EList
+				contents.add(new NullExpression()); // can't use null or duplicates in the EList
 			}
 			contents.add(cacheValue);
 		}
@@ -142,15 +143,14 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 	protected OCLExpression getCachedExpression(EModelElement modelElement, String... constraintKeys) {
 		EAnnotation anno = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
 		if (anno != null) {
-			int pos = -1;
 			// find the position of the first constraintKey that is a key in details 
 			EList<EObject> contents = anno.getContents();
 			EMap<String, String> details = anno.getDetails();
 			for (String constraintKey : constraintKeys) {
-				pos = details.indexOfKey(constraintKey);
+				int pos = details.indexOfKey(constraintKey);
 				if ((0 <= pos) && (pos < contents.size())) {
 					EObject contentElement = contents.get(pos);
-					if (contentElement == NULL_CONSTRAINT) {
+					if (contentElement instanceof NullExpression) {
 						return null;
 					}
 					return (OCLExpression) contentElement;

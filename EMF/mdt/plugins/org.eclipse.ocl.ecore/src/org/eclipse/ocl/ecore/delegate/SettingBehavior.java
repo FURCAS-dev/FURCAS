@@ -65,22 +65,22 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 		if (result != null){
 			return result;
 		}
-		OCLExpression body = null;
 		String key = DERIVATION_CONSTRAINT_KEY;
-		try {
-		    EAnnotation eAnnotation = structuralFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
-		    if (eAnnotation == null) {
-		    	return null;
-		    }
-		    EMap<String, String> details = eAnnotation.getDetails();
-			String expr = details.get(key);
+	    EAnnotation eAnnotation = structuralFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+	    if (eAnnotation == null) {
+	    	return null;
+	    }
+	    EMap<String, String> details = eAnnotation.getDetails();
+		String expr = details.get(key);
+		if (expr == null) {
+			key = INITIAL_CONSTRAINT_KEY;
+			expr = details.get(key);
 			if (expr == null) {
-				expr = details.get(INITIAL_CONSTRAINT_KEY);
-				if (expr == null) {
-					return null;
-				}
-				key = INITIAL_CONSTRAINT_KEY;		// Only change cached key on success
+				return null;
 			}
+		}
+		OCLExpression body = null;
+		try {
 			EClass context = structuralFeature.getEContainingClass();
 			OCL.Helper helper = ocl.createOCLHelper();
 			helper.setAttributeContext(context, structuralFeature);
@@ -98,11 +98,9 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 				return null;
 			}
 			body = (OCLExpression) specification.getBodyExpression();
-			cacheExpression(structuralFeature, body, key);
 			return body;
-		} catch (RuntimeException e) {
-			cacheInvalidExpression(structuralFeature, key);
-			throw e;
+		} finally {
+			cacheExpression(structuralFeature, body, key);
 		}
 	}
 	
