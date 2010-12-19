@@ -58,7 +58,11 @@ import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.SemanticException;
+import org.eclipse.ocl.ecore.BooleanLiteralExp;
+import org.eclipse.ocl.ecore.EcoreFactory;
+import org.eclipse.ocl.ecore.EvaluationVisitorImpl;
 import org.eclipse.ocl.ecore.InvalidLiteralExp;
+import org.eclipse.ocl.ecore.NullLiteralExp;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
@@ -592,6 +596,39 @@ public class DelegatesTest extends AbstractTestSuite
 		doTest_eReferenceDerivation(COMPANY_XMI);
 	}
 
+	/**
+	 * Caches an operation AST in the annotation used by the {@link SettingBehavior} implementation
+	 * and ensures that it's used by the delegate as well as the {@link EvaluationVisitorImpl}
+	 * @throws ParserException 
+	 * @throws InvocationTargetException 
+	 */
+	public void test_eReferenceDerivationUsedFromCache() throws ParserException, InvocationTargetException {
+		initModel(COMPANY_XMI);
+		EObject company = companyFactory.create(companyClass);
+		EObject manager = companyFactory.create(employeeClass);
+		manager.eSet(employeeClass.getEStructuralFeature("company"), company);
+		EObject employee = companyFactory.create(employeeClass);
+		employee.eSet(employeeClass.getEStructuralFeature("company"), company);
+		employee.eSet(employeeClass.getEStructuralFeature("manager"), manager);
+		OCL ocl = OCL.newInstance();
+		Helper helper = ocl.createOCLHelper();
+		helper.setContext(employeeClass);
+		OCLExpression expr = helper.createQuery("self.directReports");
+		assertTrue(((Collection<?>) ocl.evaluate(manager, expr)).contains(employee));
+		EStructuralFeature directReportsRef = employeeClass.getEStructuralFeature("directReports");
+		// Now cache a NullLiteralExp as the derivation expression for directReports:
+		NullLiteralExp nullLiteralExp = EcoreFactory.eINSTANCE.createNullLiteralExp();
+		EAnnotation directReportsAnn = directReportsRef.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		assertTrue(directReportsAnn.getDetails().containsKey(SettingBehavior.DERIVATION_CONSTRAINT_KEY));
+		EObject oldFirstContents = directReportsAnn.getContents().get(0);
+		try {
+			directReportsAnn.getContents().set(0, nullLiteralExp);
+			assertNull(ocl.evaluate(manager, expr));
+		} finally {
+			directReportsAnn.getContents().set(0, oldFirstContents);
+		}
+	}
+
 	public void test_invariantCacheBeingUsed() throws ParserException {
 		initPackageRegistrations();
 		initModel(COMPANY_XMI);
@@ -781,6 +818,37 @@ public class DelegatesTest extends AbstractTestSuite
 		// and again, now reading from cache
 		OCLExpression bodyStillNull = InvocationBehavior.INSTANCE.getOperationBody(ocl, o);;
 		assertNull(bodyStillNull);
+	}
+	
+	/**
+	 * Caches an operation AST in the annotation used by the {@link InvocationBehavior} implementation
+	 * and ensures that it's used by the delegate as well as the {@link EvaluationVisitorImpl}.
+	 * @throws ParserException 
+	 * @throws InvocationTargetException 
+	 */
+	public void test_operationUsedFromCache() throws ParserException, InvocationTargetException {
+		initModel(COMPANY_XMI);
+		EObject manager = companyFactory.create(employeeClass);
+		EObject employee = companyFactory.create(employeeClass);
+		employee.eSet(employeeClass.getEStructuralFeature("manager"), manager);
+		OCL ocl = OCL.newInstance();
+		Helper helper = ocl.createOCLHelper();
+		helper.setContext(employeeClass);
+		OCLExpression expr = helper.createQuery("self.reportsTo(self.manager)");
+		assertTrue((Boolean) ocl.evaluate(employee, expr)); // by the default impl, employee reports to manager
+		EOperation reportsToOp = employeeClass.getEOperation(CompanyPackage.EMPLOYEE___REPORTS_TO__EMPLOYEE);
+		// Now cache a BooleanLiteralExp with the "false" literal as the implementation for reportsTo:
+		BooleanLiteralExp falseLiteralExp = EcoreFactory.eINSTANCE.createBooleanLiteralExp();
+		falseLiteralExp.setBooleanSymbol(false);
+		EAnnotation reportsToAnn = reportsToOp.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		assertTrue(reportsToAnn.getDetails().containsKey(InvocationBehavior.BODY_CONSTRAINT_KEY));
+		EObject oldFirstContents = reportsToAnn.getContents().get(0);
+		try {
+			reportsToAnn.getContents().set(0, falseLiteralExp);
+			assertFalse((Boolean) ocl.evaluate(employee, expr));
+		} finally {
+			reportsToAnn.getContents().set(0, oldFirstContents);
+		}
 	}
 
 	public void test_queryExecution() {
