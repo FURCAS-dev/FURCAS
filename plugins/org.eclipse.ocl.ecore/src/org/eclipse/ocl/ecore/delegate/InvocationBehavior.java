@@ -73,12 +73,12 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 		if (result != null) {
 			return result;
 		}
+		String expr = EcoreUtil.getAnnotation(operation, OCLDelegateDomain.OCL_DELEGATE_URI, BODY_CONSTRAINT_KEY);
+		if (expr == null) {
+			return null;
+		}
 		OCLExpression body = null;
 		try {
-			String expr = EcoreUtil.getAnnotation(operation, OCLDelegateDomain.OCL_DELEGATE_URI, BODY_CONSTRAINT_KEY);
-			if (expr == null) {
-				return null;
-			}
 			EClass context = operation.getEContainingClass();
 			OCL.Helper helper = ocl.createOCLHelper();
 			helper.setOperationContext(context, operation);
@@ -96,11 +96,9 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 				return null;
 			}
 			body = (OCLExpression) specification.getBodyExpression();
-			cacheExpression(operation, body, BODY_CONSTRAINT_KEY);
 			return body;
-		} catch (RuntimeException t) {
-			cacheInvalidExpression(operation, BODY_CONSTRAINT_KEY);
-			throw t;
+		} finally {
+			cacheExpression(operation, body, BODY_CONSTRAINT_KEY);
 		}
 	}
 
