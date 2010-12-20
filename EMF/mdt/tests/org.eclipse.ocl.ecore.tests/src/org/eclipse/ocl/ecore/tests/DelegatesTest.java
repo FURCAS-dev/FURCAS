@@ -855,8 +855,8 @@ public class DelegatesTest extends AbstractTestSuite
 		helper.setContext(employeeClass);
 		String expression = "self.reportsTo(self.manager)";
 		OCLExpression expr = helper.createQuery(expression);
-		final int TIMES = 1000000;
-		final int REPEAT = 3;
+		final int TIMES = 1;
+		final int REPEAT = 1;
 		for (int r = 0; r < REPEAT; r++) {
 			long start = System.currentTimeMillis();
 			for (int i = 0; i < TIMES; i++) {
