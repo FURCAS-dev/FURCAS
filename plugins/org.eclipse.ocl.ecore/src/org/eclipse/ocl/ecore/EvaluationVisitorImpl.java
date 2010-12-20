@@ -109,15 +109,8 @@ public class EvaluationVisitorImpl
 
 	@Override
 	protected OCLExpression<EClassifier> getOperationBody(EOperation operation) {
-		OCLExpression<EClassifier> result;
-		try {
-			result = InvocationBehavior.INSTANCE.getOperationBody(
-				null, operation);
-		} catch (IllegalArgumentException e) {
-			result = InvocationBehavior.INSTANCE.getOperationBody(OCL.newInstance(getEnvironment().getFactory()), operation);
-		}
-//		OCLExpression<EClassifier> result = InvocationBehavior.INSTANCE.getOperationBody(
-//			getLazyOCL(), operation);
+		OCLExpression<EClassifier> result = InvocationBehavior.INSTANCE.getOperationBody(
+			getLazyOCL(), operation);
 		if (result == null) {
 			result = super.getOperationBody(operation);
 		}
@@ -127,15 +120,8 @@ public class EvaluationVisitorImpl
 	@Override
 	protected OCLExpression<EClassifier> getPropertyBody(
 			EStructuralFeature property) {
-		OCLExpression<EClassifier> result;
-		try {
-			result = SettingBehavior.INSTANCE.getFeatureBody(
-				null, property);
-		} catch (IllegalArgumentException e) {
-			result = SettingBehavior.INSTANCE.getFeatureBody(OCL.newInstance(getEnvironment().getFactory()), property);
-		}
-//		OCLExpression<EClassifier> result = SettingBehavior.INSTANCE.getFeatureBody(
-//			getLazyOCL(), property);
+		OCLExpression<EClassifier> result = SettingBehavior.INSTANCE.getFeatureBody(
+			getLazyOCL(), property);
 		if (result == null) {
 			result = super.getPropertyBody(property);
 		}
