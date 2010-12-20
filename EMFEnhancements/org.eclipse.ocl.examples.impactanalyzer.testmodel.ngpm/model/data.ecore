@@ -2,13 +2,15 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="data"
-    nsURI="http:///data.ecore" nsPrefix="data">
+    nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data.ecore"
+    nsPrefix="data">
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
     <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
     <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
     <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
   </eAnnotations>
-  <eSubpackages name="classes" nsURI="http:///data/classes.ecore" nsPrefix="data.classes">
+  <eSubpackages name="classes" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/classes.ecore"
+      nsPrefix="data.classes">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
       <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
@@ -1038,7 +1040,8 @@
       </eOperations>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="constraints" nsURI="http:///data/constraints.ecore" nsPrefix="data.constraints">
+  <eSubpackages name="constraints" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/constraints.ecore"
+      nsPrefix="data.constraints">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
       <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
@@ -1091,7 +1094,7 @@
           unique="false" lowerBound="1" eType="#//constraints/Severity"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="quantitystructure" nsURI="http:///data/quantitystructure.ecore"
+  <eSubpackages name="quantitystructure" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/quantitystructure.ecore"
       nsPrefix="data.quantitystructure">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
@@ -1103,7 +1106,8 @@
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="Dummy"/>
   </eSubpackages>
-  <eSubpackages name="timedependency" nsURI="http:///data/timedependency.ecore" nsPrefix="data.timedependency">
+  <eSubpackages name="timedependency" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/timedependency.ecore"
+      nsPrefix="data.timedependency">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
       <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
@@ -1146,7 +1150,8 @@
           transient="true" eOpposite="#//classes/Association/timeDependency"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="documents" nsURI="http:///data/documents.ecore" nsPrefix="data.documents">
+  <eSubpackages name="documents" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/documents.ecore"
+      nsPrefix="data.documents">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
       <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
@@ -1157,7 +1162,8 @@
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="Dummy"/>
   </eSubpackages>
-  <eSubpackages name="generics" nsURI="http:///data/generics.ecore" nsPrefix="data.generics">
+  <eSubpackages name="generics" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/generics.ecore"
+      nsPrefix="data.generics">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
       <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
@@ -1257,7 +1263,8 @@
           lowerBound="1" eType="#//generics/FormalTypeParameter" eOpposite="#//generics/FormalTypeParameter/actualTypeParameters"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="tuples" nsURI="http:///data/tuples.ecore" nsPrefix="data.tuples">
+  <eSubpackages name="tuples" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/tuples.ecore"
+      nsPrefix="data.tuples">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
       <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>

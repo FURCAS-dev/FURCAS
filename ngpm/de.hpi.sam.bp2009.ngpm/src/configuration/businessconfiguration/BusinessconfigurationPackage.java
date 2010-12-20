@@ -44,7 +44,7 @@ public interface BusinessconfigurationPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http:///configuration/businessconfiguration.ecore";
+	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/configuration/businessconfiguration.ecore";
 
 	/**
      * The package namespace name.

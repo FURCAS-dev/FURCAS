@@ -2,7 +2,8 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="persistence"
-    nsURI="http:///persistence.ecore" nsPrefix="persistence">
+    nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/persistence.ecore"
+    nsPrefix="persistence">
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
     <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
     <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
@@ -11,7 +12,8 @@
   <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
     <details key="documentation" value="Persistence modeling cronstructs. This can primarily be used to tell whether an entity class shall have persistence support or not. Specific mark-up may be provided for associations.&#xD;&#xA;&#xD;&#xA;The package also will allow developers to specify concurrency control aspects, such as the locking style to use for a transaction or an entity class. Developers also need to be able to specify how persistent data is to be &quot;partitioned&quot; in the sense of defining the granularity for locking and fetching data.&#xD;&#xA;&#xD;&#xA;Furthermore, this package may contribute specific actions to make entity objects persistent and delete persistent objects.&#xD;&#xA;&#xD;&#xA;The package also has to define the semantics of persistence in the first place, such as how persistence affects the semantics of queries.&#xD;&#xA;&#xD;&#xA;TODO Does marking an entity class as persistent mean that there is this kind of &quot;virtual&quot; top-level &quot;collection&quot; of instances of this class which then can be queried and referred to by name? Is it like the topmost container that guarantees reachability and therefore allows for a garbage collection semantics &quot;by reachability?&quot;&#xD;&#xA;&#xD;&#xA;TODO Perhaps this package should be separated out into an own top-level metamodel package because it has dependencies on behavioral/actions and dataaccess/expressions."/>
   </eAnnotations>
-  <eSubpackages name="actions" nsURI="http:///persistence/actions.ecore" nsPrefix="persistence.actions">
+  <eSubpackages name="actions" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/persistence/actions.ecore"
+      nsPrefix="persistence.actions">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
       <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
@@ -37,7 +39,8 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Rollback" eSuperTypes="behavioral.ecore#//actions/Statement"/>
   </eSubpackages>
-  <eSubpackages name="expressions" nsURI="http:///persistence/expressions.ecore" nsPrefix="persistence.expressions">
+  <eSubpackages name="expressions" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/persistence/expressions.ecore"
+      nsPrefix="persistence.expressions">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
       <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>

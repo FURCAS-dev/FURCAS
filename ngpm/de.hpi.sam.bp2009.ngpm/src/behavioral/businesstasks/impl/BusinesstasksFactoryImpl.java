@@ -31,7 +31,7 @@ public class BusinesstasksFactoryImpl extends EFactoryImpl implements Businessta
      */
 	public static BusinesstasksFactory init() {
         try {
-            BusinesstasksFactory theBusinesstasksFactory = (BusinesstasksFactory)EPackage.Registry.INSTANCE.getEFactory("http:///behavioral/businesstasks.ecore"); 
+            BusinesstasksFactory theBusinesstasksFactory = (BusinesstasksFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/businesstasks.ecore"); 
             if (theBusinesstasksFactory != null) {
                 return theBusinesstasksFactory;
             }

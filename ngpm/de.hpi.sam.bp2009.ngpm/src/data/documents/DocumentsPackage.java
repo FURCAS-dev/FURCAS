@@ -43,7 +43,7 @@ public interface DocumentsPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http:///data/documents.ecore";
+	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/documents.ecore";
 
 	/**
      * The package namespace name.

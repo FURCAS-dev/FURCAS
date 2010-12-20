@@ -94,15 +94,17 @@ public class GeneratedClassesTest {
         for (int i = 0; i < bundles.length; i++) {
             String bundlePath = null;
             Bundle bundle = Platform.getBundle((String) bundles[i]);
-            String bundleJarName = bundle.toString().split(" ")[0] + ".jar";
-            if (eclipsePath.contains("/")){
-                bundlePath = eclipsePath + "/plugins/" + bundleJarName;
+            if (bundle == null) {
+                System.err.println("Unable to find bundle "+bundles[i]);
+            } else {
+                String bundleJarName = bundle.toString().split(" ")[0] + ".jar";
+                if (eclipsePath.contains("/")) {
+                    bundlePath = eclipsePath + "/plugins/" + bundleJarName;
+                } else {
+                    bundlePath = eclipsePath + "\\plugins\\" + bundleJarName;
+                }
+                requiredBundles.append(File.pathSeparator + bundlePath);
             }
-            else{
-                bundlePath = eclipsePath + "\\plugins\\" + bundleJarName;
-            }
-
-            requiredBundles.append(File.pathSeparator + bundlePath);
         }
 
         return requiredBundles.toString();

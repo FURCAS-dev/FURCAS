@@ -31,7 +31,7 @@ public class TimedependencyFactoryImpl extends EFactoryImpl implements Timedepen
      */
 	public static TimedependencyFactory init() {
         try {
-            TimedependencyFactory theTimedependencyFactory = (TimedependencyFactory)EPackage.Registry.INSTANCE.getEFactory("http:///data/timedependency.ecore"); 
+            TimedependencyFactory theTimedependencyFactory = (TimedependencyFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/timedependency.ecore"); 
             if (theTimedependencyFactory != null) {
                 return theTimedependencyFactory;
             }

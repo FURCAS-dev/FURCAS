@@ -2,13 +2,15 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="integration"
-    nsURI="http:///integration.ecore" nsPrefix="integration">
+    nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/integration.ecore"
+    nsPrefix="integration">
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
     <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
     <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
     <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
   </eAnnotations>
-  <eSubpackages name="mapping" nsURI="http:///integration/mapping.ecore" nsPrefix="integration.mapping">
+  <eSubpackages name="mapping" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/integration/mapping.ecore"
+      nsPrefix="integration.mapping">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
       <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
@@ -18,7 +20,7 @@
       <details key="documentation" value="Consolidation of the various mapping technologies. Most importantly, declaratively specifying a mapping from instances of one type to instances of another type must be covered."/>
     </eAnnotations>
   </eSubpackages>
-  <eSubpackages name="processintegration" nsURI="http:///integration/processintegration.ecore"
+  <eSubpackages name="processintegration" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/integration/processintegration.ecore"
       nsPrefix="integration.processintegration">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
@@ -45,7 +47,8 @@
           eType="ecore:EClass behavioral.ecore#//events/Subscription"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="wsdl" nsURI="http:///integration/wsdl.ecore" nsPrefix="integration.wsdl">
+  <eSubpackages name="wsdl" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/integration/wsdl.ecore"
+      nsPrefix="integration.wsdl">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
       <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
@@ -55,7 +58,8 @@
       <details key="documentation" value="For web services interoperability. Depends on package xsd."/>
     </eAnnotations>
   </eSubpackages>
-  <eSubpackages name="xsd" nsURI="http:///integration/xsd.ecore" nsPrefix="integration.xsd">
+  <eSubpackages name="xsd" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/integration/xsd.ecore"
+      nsPrefix="integration.xsd">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
       <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
@@ -139,7 +143,8 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="contentModel" eType="#//xsd/Containable"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="binding" nsURI="http:///integration/binding.ecore" nsPrefix="integration.binding">
+  <eSubpackages name="binding" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/integration/binding.ecore"
+      nsPrefix="integration.binding">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
       <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>

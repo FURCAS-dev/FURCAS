@@ -31,7 +31,7 @@ public class TuplesFactoryImpl extends EFactoryImpl implements TuplesFactory {
      */
 	public static TuplesFactory init() {
         try {
-            TuplesFactory theTuplesFactory = (TuplesFactory)EPackage.Registry.INSTANCE.getEFactory("http:///data/tuples.ecore"); 
+            TuplesFactory theTuplesFactory = (TuplesFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/tuples.ecore"); 
             if (theTuplesFactory != null) {
                 return theTuplesFactory;
             }
