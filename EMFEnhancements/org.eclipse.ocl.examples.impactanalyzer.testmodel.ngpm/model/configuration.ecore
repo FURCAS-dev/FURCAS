@@ -2,7 +2,8 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="configuration"
-    nsURI="http:///configuration.ecore" nsPrefix="configuration">
+    nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/configuration.ecore"
+    nsPrefix="configuration">
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
     <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
     <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
@@ -11,7 +12,7 @@
   <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
     <details key="documentation" value="How application developers declare configuration switches, what their type system is, what dependencies, relations and constraints on the configuration switches are, how configuration UIs are connected and what defaults for configurations are"/>
   </eAnnotations>
-  <eSubpackages name="businessconfiguration" nsURI="http:///configuration/businessconfiguration.ecore"
+  <eSubpackages name="businessconfiguration" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/configuration/businessconfiguration.ecore"
       nsPrefix="configuration.businessconfiguration">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
@@ -95,7 +96,7 @@
       </eClassifiers>
     </eSubpackages>
   </eSubpackages>
-  <eSubpackages name="context_drivers" nsURI="http:///configuration/context_drivers.ecore"
+  <eSubpackages name="context_drivers" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/configuration/context_drivers.ecore"
       nsPrefix="configuration.context_drivers">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>

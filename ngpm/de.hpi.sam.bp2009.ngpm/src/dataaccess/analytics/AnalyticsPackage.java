@@ -50,7 +50,7 @@ public interface AnalyticsPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http:///dataaccess/analytics.ecore";
+	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/dataaccess/analytics.ecore";
 
 	/**
      * The package namespace name.

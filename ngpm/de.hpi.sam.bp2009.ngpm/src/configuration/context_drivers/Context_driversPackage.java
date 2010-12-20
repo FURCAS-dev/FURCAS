@@ -45,7 +45,7 @@ public interface Context_driversPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http:///configuration/context_drivers.ecore";
+	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/configuration/context_drivers.ecore";
 
 	/**
      * The package namespace name.

@@ -2,7 +2,8 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="modelmanagement"
-    nsURI="http:///modelmanagement.ecore" nsPrefix="modelmanagement">
+    nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/modelmanagement.ecore"
+    nsPrefix="modelmanagement">
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
     <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
     <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
@@ -77,7 +78,7 @@
         eType="#//Package" containment="true" eOpposite="#//Package/owner"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Module"/>
-  <eSubpackages name="processcomponents" nsURI="http:///modelmanagement/processcomponents.ecore"
+  <eSubpackages name="processcomponents" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/modelmanagement/processcomponents.ecore"
       nsPrefix="modelmanagement.processcomponents">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
@@ -107,7 +108,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ProcessComponentOutsideCompany" eSuperTypes="#//processcomponents/ProcessComponent"/>
   </eSubpackages>
-  <eSubpackages name="deploymentunits" nsURI="http:///modelmanagement/deploymentunits.ecore"
+  <eSubpackages name="deploymentunits" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/modelmanagement/deploymentunits.ecore"
       nsPrefix="modelmanagement.deploymentunits">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>

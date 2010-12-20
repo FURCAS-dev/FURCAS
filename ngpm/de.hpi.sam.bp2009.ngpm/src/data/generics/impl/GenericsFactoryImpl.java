@@ -31,7 +31,7 @@ public class GenericsFactoryImpl extends EFactoryImpl implements GenericsFactory
      */
 	public static GenericsFactory init() {
         try {
-            GenericsFactory theGenericsFactory = (GenericsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///data/generics.ecore"); 
+            GenericsFactory theGenericsFactory = (GenericsFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/generics.ecore"); 
             if (theGenericsFactory != null) {
                 return theGenericsFactory;
             }

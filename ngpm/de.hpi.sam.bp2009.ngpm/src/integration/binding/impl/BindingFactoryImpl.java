@@ -31,7 +31,7 @@ public class BindingFactoryImpl extends EFactoryImpl implements BindingFactory {
      */
 	public static BindingFactory init() {
         try {
-            BindingFactory theBindingFactory = (BindingFactory)EPackage.Registry.INSTANCE.getEFactory("http:///integration/binding.ecore"); 
+            BindingFactory theBindingFactory = (BindingFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/integration/binding.ecore"); 
             if (theBindingFactory != null) {
                 return theBindingFactory;
             }

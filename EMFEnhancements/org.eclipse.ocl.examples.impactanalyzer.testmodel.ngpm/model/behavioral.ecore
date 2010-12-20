@@ -2,7 +2,8 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="behavioral"
-    nsURI="http:///behavioral.ecore" nsPrefix="behavioral">
+    nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral.ecore"
+    nsPrefix="behavioral">
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
     <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
     <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
@@ -11,7 +12,8 @@
   <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
     <details key="documentation" value="Processes, workflows and events. This is where BPEL and BPMN should be positioned and mapped to our infrastructures. But also the Process Agent Framework and BTM has to end up here."/>
   </eAnnotations>
-  <eSubpackages name="bpdm" nsURI="http:///behavioral/bpdm.ecore" nsPrefix="behavioral.bpdm">
+  <eSubpackages name="bpdm" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/bpdm.ecore"
+      nsPrefix="behavioral.bpdm">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
       <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
@@ -19,7 +21,7 @@
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="Dummy"/>
   </eSubpackages>
-  <eSubpackages name="businesstasks" nsURI="http:///behavioral/businesstasks.ecore"
+  <eSubpackages name="businesstasks" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/businesstasks.ecore"
       nsPrefix="behavioral.businesstasks">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
@@ -31,7 +33,8 @@
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="TaskAgent"/>
   </eSubpackages>
-  <eSubpackages name="actions" nsURI="http:///behavioral/actions.ecore" nsPrefix="behavioral.actions">
+  <eSubpackages name="actions" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/actions.ecore"
+      nsPrefix="behavioral.actions">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
       <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
@@ -352,7 +355,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="ConditionalStatement" abstract="true"
         eSuperTypes="dataaccess.ecore#//expressions/Conditional #//actions/Statement"/>
   </eSubpackages>
-  <eSubpackages name="rules" nsURI="http:///behavioral/rules.ecore" nsPrefix="behavioral.rules">
+  <eSubpackages name="rules" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/rules.ecore"
+      nsPrefix="behavioral.rules">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
       <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
@@ -363,7 +367,8 @@
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="Dummy"/>
   </eSubpackages>
-  <eSubpackages name="events" nsURI="http:///behavioral/events.ecore" nsPrefix="behavioral.events">
+  <eSubpackages name="events" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/events.ecore"
+      nsPrefix="behavioral.events">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
       <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
@@ -416,7 +421,7 @@
       </eStructuralFeatures>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="transactions" nsURI="http:///behavioral/transactions.ecore"
+  <eSubpackages name="transactions" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/transactions.ecore"
       nsPrefix="behavioral.transactions">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
@@ -428,7 +433,7 @@
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="Dummy"/>
   </eSubpackages>
-  <eSubpackages name="status_and_action_old" nsURI="http:///behavioral/status_and_action_old.ecore"
+  <eSubpackages name="status_and_action_old" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/status_and_action_old.ecore"
       nsPrefix="behavioral.status_and_action_old">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
@@ -573,7 +578,7 @@
       <eLiterals name="NEUTEAL" value="3"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="status_and_action" nsURI="http:///behavioral/status_and_action.ecore"
+  <eSubpackages name="status_and_action" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/status_and_action.ecore"
       nsPrefix="behavioral.status_and_action">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>

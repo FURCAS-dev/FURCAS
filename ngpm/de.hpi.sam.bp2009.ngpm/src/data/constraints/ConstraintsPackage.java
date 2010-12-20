@@ -48,7 +48,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http:///data/constraints.ecore";
+	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/constraints.ecore";
 
 	/**
      * The package namespace name.
