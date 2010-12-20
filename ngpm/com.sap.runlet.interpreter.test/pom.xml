@@ -11,4 +11,27 @@
   <artifactId>com.sap.runlet.interpreter.test</artifactId>
   <version>1.0.0</version>
   <packaging>eclipse-plugin</packaging>
+<!-- enable this again once we understand how to run tests in Maven that require certain
+     projects to be checked out in the target workspace
+
+  <packaging>eclipse-test-plugin</packaging>
+
+        <build>
+                <plugins>
+                        <plugin>
+                                <groupId>org.sonatype.tycho</groupId>
+                                <artifactId>maven-osgi-test-plugin</artifactId>
+                                <configuration>
+                                        <argLine>-Xmx1024m -XX:+UseParallelGC</argLine>
+                                        <includes>
+                                                <include>**/*Test.java</include>
+                                                <include>**/Test*.java</include>
+                                                <include>**/*Suite.java</include>
+                                        </includes>
+                                </configuration>
+                        </plugin>
+                </plugins>
+        </build>
+
+-->
 </project>
