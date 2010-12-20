@@ -31,7 +31,7 @@ public class LiteralsFactoryImpl extends EFactoryImpl implements LiteralsFactory
      */
 	public static LiteralsFactory init() {
         try {
-            LiteralsFactory theLiteralsFactory = (LiteralsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///dataaccess/expressions/literals.ecore"); 
+            LiteralsFactory theLiteralsFactory = (LiteralsFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/dataaccess/expressions/literals.ecore"); 
             if (theLiteralsFactory != null) {
                 return theLiteralsFactory;
             }

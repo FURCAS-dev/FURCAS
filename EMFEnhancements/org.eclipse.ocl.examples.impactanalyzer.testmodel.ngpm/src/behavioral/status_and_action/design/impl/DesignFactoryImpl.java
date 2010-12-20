@@ -31,7 +31,7 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory {
      */
 	public static DesignFactory init() {
         try {
-            DesignFactory theDesignFactory = (DesignFactory)EPackage.Registry.INSTANCE.getEFactory("http:///behavioral/status_and_action/design.ecore"); 
+            DesignFactory theDesignFactory = (DesignFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/status_and_action/design.ecore"); 
             if (theDesignFactory != null) {
                 return theDesignFactory;
             }

@@ -43,7 +43,7 @@ public interface FpPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http:///dataaccess/expressions/fp.ecore";
+	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/dataaccess/expressions/fp.ecore";
 
 	/**
      * The package namespace name.

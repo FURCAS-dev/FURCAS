@@ -43,7 +43,7 @@ public interface ExperimentalPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http:///configuration/businessconfiguration/experimental.ecore";
+	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/configuration/businessconfiguration/experimental.ecore";
 
 	/**
      * The package namespace name.

@@ -588,7 +588,7 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="S&amp;AM is mostly about pre- and post-conditions for invocation of signatures. The abstraction that S&amp;AM adds over simple pre/post constraints is that it groups parts of an object's state into what is called a status variable. Status variables furthermore are expected to have a finite set of possible values.&#xD;&#xA;&#xD;&#xA;Synchronizers are used to set the status of a status variable. This means that for those status variables (if they are implemented only by a signature) there must be a writing signature that allows for setting the value. Conceptually, synchronizers seem a bit like an event subscription with the condition that a status variable assumes a certain value, and the event listener sets the value of another status variable to a given value.&#xD;&#xA;&#xD;&#xA;Status population also does a setting of status variables. Viewn from the other side, this looks like a status variable is derived from the values of other status variables. Again, this could be expressed as a signature with a corresponding implementation that acts as a status variable signature. Impact analysis could be performed for the implementation to determine when the value changes.&#xD;&#xA;&#xD;&#xA;Given a full-blown boolean expression algebra, only a subset of the expressions can be modeled in S&amp;AM. Also, if the type of a status variable has an infinite (or very large) value set, modeling with the S&amp;AM notation gets unwieldy.&#xD;&#xA;&#xD;&#xA;From a distance, it seems that S&amp;AM is a graphical notation for a specific subset of pre/post constraints over &quot;status functions&quot; and invocable signatures.&#xD;&#xA;&#xD;&#xA;S&amp;AM could be regarded a view on other constraint and event registration metadata, but that would be difficult to bring, e.g., into a graphical notation."/>
     </eAnnotations>
-    <eSubpackages name="design" nsURI="http:///behavioral/status_and_action/design.ecore"
+    <eSubpackages name="design" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/status_and_action/design.ecore"
         nsPrefix="behavioral.status_and_action.design">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
@@ -650,7 +650,7 @@
             ordered="false" unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
       </eClassifiers>
     </eSubpackages>
-    <eSubpackages name="assembly" nsURI="http:///behavioral/status_and_action/assembly.ecore"
+    <eSubpackages name="assembly" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/status_and_action/assembly.ecore"
         nsPrefix="behavioral.status_and_action.assembly">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
