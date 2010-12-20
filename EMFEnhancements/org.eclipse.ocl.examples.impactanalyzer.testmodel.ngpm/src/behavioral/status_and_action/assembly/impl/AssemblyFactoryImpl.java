@@ -31,7 +31,7 @@ public class AssemblyFactoryImpl extends EFactoryImpl implements AssemblyFactory
      */
 	public static AssemblyFactory init() {
         try {
-            AssemblyFactory theAssemblyFactory = (AssemblyFactory)EPackage.Registry.INSTANCE.getEFactory("http:///behavioral/status_and_action/assembly.ecore"); 
+            AssemblyFactory theAssemblyFactory = (AssemblyFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/status_and_action/assembly.ecore"); 
             if (theAssemblyFactory != null) {
                 return theAssemblyFactory;
             }

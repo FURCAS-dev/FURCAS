@@ -31,7 +31,7 @@ public class FpFactoryImpl extends EFactoryImpl implements FpFactory {
      */
 	public static FpFactory init() {
         try {
-            FpFactory theFpFactory = (FpFactory)EPackage.Registry.INSTANCE.getEFactory("http:///dataaccess/expressions/fp.ecore"); 
+            FpFactory theFpFactory = (FpFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/dataaccess/expressions/fp.ecore"); 
             if (theFpFactory != null) {
                 return theFpFactory;
             }

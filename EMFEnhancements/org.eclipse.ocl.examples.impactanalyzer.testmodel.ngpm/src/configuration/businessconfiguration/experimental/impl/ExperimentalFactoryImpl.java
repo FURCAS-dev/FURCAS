@@ -31,7 +31,7 @@ public class ExperimentalFactoryImpl extends EFactoryImpl implements Experimenta
      */
 	public static ExperimentalFactory init() {
         try {
-            ExperimentalFactory theExperimentalFactory = (ExperimentalFactory)EPackage.Registry.INSTANCE.getEFactory("http:///configuration/businessconfiguration/experimental.ecore"); 
+            ExperimentalFactory theExperimentalFactory = (ExperimentalFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/configuration/businessconfiguration/experimental.ecore"); 
             if (theExperimentalFactory != null) {
                 return theExperimentalFactory;
             }

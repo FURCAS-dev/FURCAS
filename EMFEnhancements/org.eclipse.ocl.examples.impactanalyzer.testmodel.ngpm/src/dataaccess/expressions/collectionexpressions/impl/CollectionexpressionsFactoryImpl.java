@@ -31,7 +31,7 @@ public class CollectionexpressionsFactoryImpl extends EFactoryImpl implements Co
      */
 	public static CollectionexpressionsFactory init() {
         try {
-            CollectionexpressionsFactory theCollectionexpressionsFactory = (CollectionexpressionsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///dataaccess/expressions/collectionexpressions.ecore"); 
+            CollectionexpressionsFactory theCollectionexpressionsFactory = (CollectionexpressionsFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/dataaccess/expressions/collectionexpressions.ecore"); 
             if (theCollectionexpressionsFactory != null) {
                 return theCollectionexpressionsFactory;
             }

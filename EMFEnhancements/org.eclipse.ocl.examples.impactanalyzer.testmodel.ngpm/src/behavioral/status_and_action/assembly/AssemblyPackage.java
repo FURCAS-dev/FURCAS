@@ -45,7 +45,7 @@ public interface AssemblyPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http:///behavioral/status_and_action/assembly.ecore";
+	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/status_and_action/assembly.ecore";
 
 	/**
      * The package namespace name.

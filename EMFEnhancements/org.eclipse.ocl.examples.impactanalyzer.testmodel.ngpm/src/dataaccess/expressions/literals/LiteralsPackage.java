@@ -44,7 +44,7 @@ public interface LiteralsPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http:///dataaccess/expressions/literals.ecore";
+	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/dataaccess/expressions/literals.ecore";
 
 	/**
      * The package namespace name.

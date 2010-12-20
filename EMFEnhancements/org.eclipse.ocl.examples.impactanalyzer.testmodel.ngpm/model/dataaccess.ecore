@@ -406,7 +406,7 @@
         <details key="constraints" value="ObjectTypeMustConformToFunctionArgument ArgumentMustBeSingleArgumentFunctionWithNonVoidOutput MapFunctionMustBeSideEffectFree"/>
       </eAnnotations>
     </eClassifiers>
-    <eSubpackages name="literals" nsURI="http:///dataaccess/expressions/literals.ecore"
+    <eSubpackages name="literals" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/dataaccess/expressions/literals.ecore"
         nsPrefix="dataaccess.expressions.literals">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
@@ -485,7 +485,7 @@
         </eStructuralFeatures>
       </eClassifiers>
     </eSubpackages>
-    <eSubpackages name="collectionexpressions" nsURI="http:///dataaccess/expressions/collectionexpressions.ecore"
+    <eSubpackages name="collectionexpressions" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/dataaccess/expressions/collectionexpressions.ecore"
         nsPrefix="dataaccess.expressions.collectionexpressions">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
@@ -559,7 +559,8 @@
         </eAnnotations>
       </eClassifiers>
     </eSubpackages>
-    <eSubpackages name="fp" nsURI="http:///dataaccess/expressions/fp.ecore" nsPrefix="dataaccess.expressions.fp">
+    <eSubpackages name="fp" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/dataaccess/expressions/fp.ecore"
+        nsPrefix="dataaccess.expressions.fp">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
         <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
