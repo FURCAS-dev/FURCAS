@@ -11,7 +11,7 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>org.eclipse.emf.query.index.ui.queryIndexBuilder</name>
+			<name>org.eclipse.emf.query2.index.ui.queryIndexBuilder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
@@ -29,6 +29,6 @@
 	<natures>
 		<nature>org.eclipse.pde.PluginNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
-		<nature>org.eclipse.emf.query.index.ui.queryIndexNature</nature>
+		<nature>org.eclipse.emf.query2.index.ui.queryIndexNature</nature>
 	</natures>
 </projectDescription>

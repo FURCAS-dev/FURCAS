@@ -43,7 +43,7 @@ public class Activator extends Plugin {
 	}
 
 	static IProject getStdlibProject() {
-	    return getProject("de.hpi.sam.bp2009.solution.testutils");
+	    return getProject("org.eclipse.ocl.examples.impactanalyzer.testutils");
 	}
 	
 	static IProject getProject(String projectName) {

@@ -43,9 +43,7 @@ public class OclPerformanceTest extends TestCase {
     }
 
     private IProject getStdlibProject() {
-	IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(
-		"ngpm.stdlib");
-	return project;
+        return ResourcesPlugin.getWorkspace().getRoot().getProject("org.eclipse.ocl.examples.impactanalyzer.testutils");
     }
     
 }

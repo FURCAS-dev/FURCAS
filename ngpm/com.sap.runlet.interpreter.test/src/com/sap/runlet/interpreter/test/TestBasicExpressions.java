@@ -124,7 +124,7 @@ public class TestBasicExpressions extends TestCase {
                     }
                 }
                 indexer.resourceChanged(updater, resourceSet.getResource(URI.createURI(
-                        "platform:/resource/de.hpi.sam.bp2009.solution.testutils/src/de/hpi/sam/bp2009/solution/impactAnalyzer/benchmark/preparation/notifications/fixtures/models/NgpmModel.xmi"),
+                        "platform:/plugin/org.eclipse.ocl.examples.impactanalyzer.testutils/src/org/eclipse/ocl/examples/impactanalyzer/benchmark/preparation/notifications/fixtures/models/NgpmModel.xmi"),
                         /* loadOnDemand */ true));
             }
         });
