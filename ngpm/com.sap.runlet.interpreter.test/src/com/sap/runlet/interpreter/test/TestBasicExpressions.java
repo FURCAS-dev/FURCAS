@@ -8,7 +8,6 @@ import java.util.Map;
 
 import junit.framework.TestCase;
 
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -93,11 +92,13 @@ import dataaccess.expressions.literals.StringLiteral;
 public class TestBasicExpressions extends TestCase {
     private enum Accessors { GETTER, SETTER, ADDER, REMOVER };
     private static boolean indexCreated = false;
+    private ResourceSet resourceSet;
 
     @BeforeClass
     public void setUp() throws CoreException {
+        resourceSet = new ResourceSetImpl();
         if (!indexCreated) {
-            updateIndex(new ResourceSetImpl());
+            updateIndex(resourceSet);
             indexCreated = true;
         }
     }
@@ -124,7 +125,7 @@ public class TestBasicExpressions extends TestCase {
                     }
                 }
                 indexer.resourceChanged(updater, resourceSet.getResource(URI.createURI(
-                        "platform:/plugin/org.eclipse.ocl.examples.impactanalyzer.testutils/src/org/eclipse/ocl/examples/impactanalyzer/benchmark/preparation/notifications/fixtures/models/NgpmModel.xmi"),
+                        "platform:/plugin/com.sap.runlet.interpreter.test/src/com/sap/runlet/interpreter/test/NgpmModel.xmi"),
                         /* loadOnDemand */ true));
             }
         });
@@ -132,10 +133,7 @@ public class TestBasicExpressions extends TestCase {
      
     @Test
     public void testStringLiteral() {
-	IProject project = Activator.getStdlibProject();
 	try {
-	    project.open(/* progress monitor */null);
-	    ResourceSet resourceSet = Activator.createResourceSet(project);
 	    StringLiteral nl = LiteralsFactory.eINSTANCE.createStringLiteral();
 	    nl.setLiteral("Humba");
 	    SapClass stringClass = MetamodelUtils.findClass(resourceSet, "String");
@@ -152,10 +150,7 @@ public class TestBasicExpressions extends TestCase {
 
     @Test
     public void testNumberLiterals() {
-	IProject project = Activator.getStdlibProject();
 	try {
-	    project.open(/* progress monitor */null);
-	    ResourceSet resourceSet = Activator.createResourceSet(project);
 	    NumberLiteral nl = LiteralsFactory.eINSTANCE.createNumberLiteral();
 	    nl.setLiteral("123.450");
 	    SapClass numberClass = MetamodelUtils.findClass(resourceSet, "Number");
@@ -171,10 +166,7 @@ public class TestBasicExpressions extends TestCase {
     
     @Test
     public void testNumberAdd() {
-	IProject project = Activator.getStdlibProject();
 	try {
-	    project.open(/* progress monitor */null);
-	    ResourceSet resourceSet = Activator.createResourceSet(project);
 	    NumberLiteral nl = LiteralsFactory.eINSTANCE.createNumberLiteral();
 	    nl.setLiteral("123.450");
 	    SapClass numberClass = MetamodelUtils.findClass(resourceSet, "Number");
@@ -210,10 +202,7 @@ public class TestBasicExpressions extends TestCase {
      */
     @Test
     public void testSimpleVariableAssignmentInBlock() {
-	IProject project = Activator.getStdlibProject();
 	try {
-	    project.open(/* progress monitor */null);
-	    ResourceSet resourceSet = Activator.createResourceSet(project);
 	    NumberLiteral nl = LiteralsFactory.eINSTANCE.createNumberLiteral();
 	    nl.setLiteral("123.450");
 	    SapClass numberClass = MetamodelUtils.findClass(resourceSet, "Number");
@@ -261,10 +250,7 @@ public class TestBasicExpressions extends TestCase {
      */
     @Test
     public void testUseOfVariableBeforeDeclaration() {
-	IProject project = Activator.getStdlibProject();
 	try {
-	    project.open(/* progress monitor */null);
-	    ResourceSet resourceSet = Activator.createResourceSet(project);
 	    NumberLiteral nl = LiteralsFactory.eINSTANCE.createNumberLiteral();
 	    nl.setLiteral("123.450");
 	    SapClass numberClass = MetamodelUtils.findClass(resourceSet, "Number");
@@ -315,10 +301,7 @@ public class TestBasicExpressions extends TestCase {
      */
     @Test
     public void testRecursiveFunctionCall() {
-	IProject project = Activator.getStdlibProject();
 	try {
-	    project.open(/* progress monitor */null);
-	    ResourceSet resourceSet = Activator.createResourceSet(project);
 	    Block block = ActionsFactory.eINSTANCE.createBlock();
 
 	    SapClass numberClass = MetamodelUtils.findClass(resourceSet, "Number");
@@ -403,10 +386,7 @@ public class TestBasicExpressions extends TestCase {
      */
     @Test
     public void testVariableScoping() {
-	IProject project = Activator.getStdlibProject();
 	try {
-	    project.open(/* progress monitor */null);
-	    ResourceSet resourceSet = Activator.createResourceSet(project);
 	    Block block = ActionsFactory.eINSTANCE.createBlock();
 	    NamedValueDeclaration varDecl = ActionsFactory.eINSTANCE.createNamedValueDeclaration();
 	    Variable a = ActionsFactory.eINSTANCE.createVariable();
@@ -497,10 +477,7 @@ public class TestBasicExpressions extends TestCase {
 
     @Test
     public void testPolymorphicMethodInvocation() {
-	IProject project = Activator.getStdlibProject();
 	try {
-	    project.open(/* progress monitor */null);
-	    ResourceSet resourceSet = Activator.createResourceSet(project);
 	    SapClass c1 = createClass("C1");
 	    MethodSignature s1 = ClassesFactory.eINSTANCE.createMethodSignature();
 	    s1.setName("s1");
@@ -588,10 +565,7 @@ public class TestBasicExpressions extends TestCase {
     
     @Test
     public void testSimpleLinks() {
-	IProject project = Activator.getStdlibProject();
 	try {
-	    project.open(/* progress monitor */null);
-	    ResourceSet resourceSet = Activator.createResourceSet(project);
 	    SapClass c1 = createClass("C1");
 	    SapClass numberClass = MetamodelUtils.findClass(resourceSet, "Number");
 	    Association c1ToNumber = MetamodelUtils.createAssociation(resourceSet, c1, 0, -1,
@@ -638,10 +612,7 @@ public class TestBasicExpressions extends TestCase {
 	
     @Test
     public void testTwoLinks() {
-	IProject project = Activator.getStdlibProject();
 	try {
-	    project.open(/* progress monitor */null);
-	    ResourceSet resourceSet = Activator.createResourceSet(project);
 	    SapClass c1 = createClass("C1");
 	    SapClass numberClass = MetamodelUtils.findClass(resourceSet, "Number");
 	    Association c1ToNumber = ClassesFactory.eINSTANCE.createAssociation();
@@ -707,10 +678,7 @@ public class TestBasicExpressions extends TestCase {
 	
     @Test
     public void testSimpleFunctionFromMethod() {
-	IProject project = Activator.getStdlibProject();
 	try {
-	    project.open(/* progress monitor */null);
-	    ResourceSet resourceSet = Activator.createResourceSet(project);
 	    NumberLiteral nl = LiteralsFactory.eINSTANCE.createNumberLiteral();
 	    nl.setLiteral("123.450");
 	    SapClass numberClass = MetamodelUtils.findClass(resourceSet, "Number");
@@ -746,10 +714,7 @@ public class TestBasicExpressions extends TestCase {
 
     @Test
     public void testMultiObjectMethodInvocation() {
-	IProject project = Activator.getStdlibProject();
 	try {
-	    project.open(/* progress monitor */null);
-	    ResourceSet resourceSet = Activator.createResourceSet(project);
 	    SapClass c1 = createClass("C1");
 	    SapClass numberClass = MetamodelUtils.findClass(resourceSet, "Number");
 	    Association c1ToNumber = ClassesFactory.eINSTANCE.createAssociation();
@@ -899,11 +864,7 @@ public class TestBasicExpressions extends TestCase {
      */
     @Test
     public void testSimpleCellSetExpression() {
-	IProject project = Activator.getStdlibProject();
 	try {
-	    project.open(/* progress monitor */null);
-	    ResourceSet resourceSet = Activator.createResourceSet(project);
-	    
 	    // set up data structures
 	    SapClass salesOrderItem = createClass("SalesOrderItem");
 	    SapClass numberClass = MetamodelUtils.findClass(resourceSet, "Number");
@@ -1379,10 +1340,7 @@ public class TestBasicExpressions extends TestCase {
     
     @Test
     public void testAssociationEndSignatureImplementations() {
-	IProject project = Activator.getStdlibProject();
 	try {
-	    project.open(/* progress monitor */null);
-	    ResourceSet resourceSet = Activator.createResourceSet(project);
 	    Resource resource = resourceSet.createResource(URI.createURI("http://testAssociationEndSignatureImplementations"));
 	    
 	    // set up data structures
@@ -1564,10 +1522,7 @@ public class TestBasicExpressions extends TestCase {
     
     @Test
     public void testForeach() {
-	IProject project = Activator.getStdlibProject();
 	try {
-	    project.open(/* progress monitor */null);
-	    ResourceSet resourceSet = Activator.createResourceSet(project);
 	    // sig = function() {
 	    FunctionSignature sig = ClassesFactory.eINSTANCE.createFunctionSignature();
 	    Block impl = ActionsFactory.eINSTANCE.createBlock();
@@ -1640,10 +1595,7 @@ public class TestBasicExpressions extends TestCase {
 
     @Test
     public void testExcluding() {
-	IProject project = Activator.getStdlibProject();
 	try {
-	    project.open(/* progress monitor */null);
-	    ResourceSet resourceSet = Activator.createResourceSet(project);
 	    // sig = function() {
 	    FunctionSignature sig = ClassesFactory.eINSTANCE.createFunctionSignature();
 	    Block impl = ActionsFactory.eINSTANCE.createBlock();
@@ -1730,10 +1682,7 @@ public class TestBasicExpressions extends TestCase {
      * at position <tt>at</tt>.
      */
     public int sumWithExcludingAt(int count, int times, int[] toExclude, int at, boolean unique) {
-	IProject project = Activator.getStdlibProject();
 	try {
-	    project.open(/* progress monitor */null);
-	    ResourceSet resourceSet = Activator.createResourceSet(project);
 	    // sig = function() {
 	    FunctionSignature sig = ClassesFactory.eINSTANCE.createFunctionSignature();
 	    Block impl = ActionsFactory.eINSTANCE.createBlock();
