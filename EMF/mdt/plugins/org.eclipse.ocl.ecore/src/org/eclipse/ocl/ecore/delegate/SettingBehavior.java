@@ -60,6 +60,12 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 		return SettingDelegate.Factory.class;
 	}
 
+	/**
+	 * Throws an {@link IllegalArgumentException} in case a <code>null</code> {@link OCL} reference is passed
+	 * but a valid one is needed because nothing is found in the cache for the <code>structuralFeature</code>
+	 * requested. This behavior can be used to attempt a cache lookup without having to create a valid {@link OCL}
+	 * object. Catching the exception can then be used to try again with a valid {@link OCL} object.
+	 */
 	public OCLExpression getFeatureBody(OCL ocl, EStructuralFeature structuralFeature) {
 		OCLExpression result = getCachedExpression(structuralFeature, DERIVATION_CONSTRAINT_KEY, INITIAL_CONSTRAINT_KEY);
 		if (result != null){
@@ -78,6 +84,10 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 			if (expr == null) {
 				return null;
 			}
+		}
+		if (ocl == null) {
+			// now we would have needed, but it's not there
+			throw new IllegalArgumentException("Requiring a valid OCL object since feature body not found in cache"); //$NON-NLS-1$
 		}
 		OCLExpression body = null;
 		try {
