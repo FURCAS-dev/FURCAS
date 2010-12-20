@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/abapmapping.ecore"
+            class="abapmapping.AbapmappingPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/abapmapping/abapdictionary.ecore"
+            class="abapmapping.abapdictionary.AbapdictionaryPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/ap_runtime_constraints.ecore"
+            class="ap_runtime_constraints.Ap_runtime_constraintsPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/bpdm.ecore"
+            class="behavioral.bpdm.BpdmPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/businesstasks.ecore"
+            class="behavioral.businesstasks.BusinesstasksPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/actions.ecore"
+            class="behavioral.actions.ActionsPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/rules.ecore"
+            class="behavioral.rules.RulesPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/events.ecore"
+            class="behavioral.events.EventsPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/transactions.ecore"
+            class="behavioral.transactions.TransactionsPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/status_and_action_old.ecore"
+            class="behavioral.status_and_action_old.Status_and_action_oldPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http:///behavioral/status_and_action/design.ecore"
+            class="behavioral.status_and_action.design.DesignPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http:///behavioral/status_and_action/assembly.ecore"
+            class="behavioral.status_and_action.assembly.AssemblyPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/configuration/businessconfiguration.ecore"
+            class="configuration.businessconfiguration.BusinessconfigurationPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http:///configuration/businessconfiguration/experimental.ecore"
+            class="configuration.businessconfiguration.experimental.ExperimentalPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/configuration/context_drivers.ecore"
+            class="configuration.context_drivers.Context_driversPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/classes.ecore"
+            class="data.classes.ClassesPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/constraints.ecore"
+            class="data.constraints.ConstraintsPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/quantitystructure.ecore"
+            class="data.quantitystructure.QuantitystructurePackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/timedependency.ecore"
+            class="data.timedependency.TimedependencyPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/documents.ecore"
+            class="data.documents.DocumentsPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/generics.ecore"
+            class="data.generics.GenericsPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/tuples.ecore"
+            class="data.tuples.TuplesPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/dataaccess/expressions.ecore"
+            class="dataaccess.expressions.ExpressionsPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http:///dataaccess/expressions/literals.ecore"
+            class="dataaccess.expressions.literals.LiteralsPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http:///dataaccess/expressions/collectionexpressions.ecore"
+            class="dataaccess.expressions.collectionexpressions.CollectionexpressionsPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http:///dataaccess/expressions/fp.ecore"
+            class="dataaccess.expressions.fp.FpPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/dataaccess/query.ecore"
+            class="dataaccess.query.QueryPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/dataaccess/analytics.ecore"
+            class="dataaccess.analytics.AnalyticsPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/integration/processintegration.ecore"
+            class="integration.processintegration.ProcessintegrationPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/integration/xsd.ecore"
+            class="integration.xsd.XsdPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/integration/binding.ecore"
+            class="integration.binding.BindingPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/localization.ecore"
+            class="localization.LocalizationPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/modelmanagement.ecore"
+            class="modelmanagement.ModelmanagementPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/modelmanagement/processcomponents.ecore"
+            class="modelmanagement.processcomponents.ProcesscomponentsPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/modelmanagement/deploymentunits.ecore"
+            class="modelmanagement.deploymentunits.DeploymentunitsPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/persistence/actions.ecore"
+            class="persistence.actions.ActionsPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/persistence/expressions.ecore"
+            class="persistence.expressions.ExpressionsPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/ui/data_binding.ecore"
+            class="ui.data_binding.Data_bindingPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/ui/templates.ecore"
+            class="ui.templates.TemplatesPackage"
+            genModel="model/ngpm.genmodel"/>
+   </extension>
+
+</plugin>

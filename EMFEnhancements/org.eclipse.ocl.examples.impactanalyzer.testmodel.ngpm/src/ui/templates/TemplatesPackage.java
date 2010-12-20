@@ -43,7 +43,7 @@ public interface TemplatesPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http:///ui/templates.ecore";
+	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/ui/templates.ecore";
 
 	/**
      * The package namespace name.

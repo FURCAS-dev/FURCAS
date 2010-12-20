@@ -40,7 +40,7 @@ public interface ActionsPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/persistence/actions.ecore";
+	String eNS_URI = "http:///persistence/actions.ecore";
 
 	/**
      * The package namespace name.

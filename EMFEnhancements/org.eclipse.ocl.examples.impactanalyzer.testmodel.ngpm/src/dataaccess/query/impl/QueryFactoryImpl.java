@@ -31,7 +31,7 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory {
      */
 	public static QueryFactory init() {
         try {
-            QueryFactory theQueryFactory = (QueryFactory)EPackage.Registry.INSTANCE.getEFactory("http:///dataaccess/query.ecore"); 
+            QueryFactory theQueryFactory = (QueryFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/dataaccess/query.ecore"); 
             if (theQueryFactory != null) {
                 return theQueryFactory;
             }

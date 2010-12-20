@@ -47,7 +47,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/dataaccess/expressions.ecore";
+	String eNS_URI = "http:///dataaccess/expressions.ecore";
 
 	/**
      * The package namespace name.

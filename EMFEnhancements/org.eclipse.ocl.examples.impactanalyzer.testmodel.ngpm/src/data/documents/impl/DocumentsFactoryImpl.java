@@ -31,7 +31,7 @@ public class DocumentsFactoryImpl extends EFactoryImpl implements DocumentsFacto
      */
 	public static DocumentsFactory init() {
         try {
-            DocumentsFactory theDocumentsFactory = (DocumentsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///data/documents.ecore"); 
+            DocumentsFactory theDocumentsFactory = (DocumentsFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/documents.ecore"); 
             if (theDocumentsFactory != null) {
                 return theDocumentsFactory;
             }

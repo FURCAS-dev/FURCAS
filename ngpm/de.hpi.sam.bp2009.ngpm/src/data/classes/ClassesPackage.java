@@ -47,7 +47,7 @@ public interface ClassesPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/classes.ecore";
+	String eNS_URI = "http:///data/classes.ecore";
 
 	/**
      * The package namespace name.

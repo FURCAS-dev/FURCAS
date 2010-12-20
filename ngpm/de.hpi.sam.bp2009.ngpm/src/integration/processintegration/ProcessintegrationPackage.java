@@ -43,7 +43,7 @@ public interface ProcessintegrationPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/integration/processintegration.ecore";
+	String eNS_URI = "http:///integration/processintegration.ecore";
 
 	/**
      * The package namespace name.

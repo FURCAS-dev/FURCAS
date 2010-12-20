@@ -31,7 +31,7 @@ public class Data_bindingFactoryImpl extends EFactoryImpl implements Data_bindin
      */
 	public static Data_bindingFactory init() {
         try {
-            Data_bindingFactory theData_bindingFactory = (Data_bindingFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/ui/data_binding.ecore"); 
+            Data_bindingFactory theData_bindingFactory = (Data_bindingFactory)EPackage.Registry.INSTANCE.getEFactory("http:///ui/data_binding.ecore"); 
             if (theData_bindingFactory != null) {
                 return theData_bindingFactory;
             }

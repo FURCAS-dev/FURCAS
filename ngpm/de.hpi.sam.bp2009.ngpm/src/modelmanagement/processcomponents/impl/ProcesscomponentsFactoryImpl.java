@@ -31,7 +31,7 @@ public class ProcesscomponentsFactoryImpl extends EFactoryImpl implements Proces
      */
 	public static ProcesscomponentsFactory init() {
         try {
-            ProcesscomponentsFactory theProcesscomponentsFactory = (ProcesscomponentsFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/modelmanagement/processcomponents.ecore"); 
+            ProcesscomponentsFactory theProcesscomponentsFactory = (ProcesscomponentsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///modelmanagement/processcomponents.ecore"); 
             if (theProcesscomponentsFactory != null) {
                 return theProcesscomponentsFactory;
             }

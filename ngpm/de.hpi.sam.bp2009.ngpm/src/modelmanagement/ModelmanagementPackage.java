@@ -45,7 +45,7 @@ public interface ModelmanagementPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/modelmanagement.ecore";
+	String eNS_URI = "http:///modelmanagement.ecore";
 
 	/**
      * The package namespace name.

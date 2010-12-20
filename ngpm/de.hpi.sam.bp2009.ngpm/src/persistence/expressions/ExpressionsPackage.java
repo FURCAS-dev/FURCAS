@@ -43,7 +43,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/persistence/expressions.ecore";
+	String eNS_URI = "http:///persistence/expressions.ecore";
 
 	/**
      * The package namespace name.

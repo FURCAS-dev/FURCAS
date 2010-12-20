@@ -46,7 +46,7 @@ public interface ProcesscomponentsPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/modelmanagement/processcomponents.ecore";
+	String eNS_URI = "http:///modelmanagement/processcomponents.ecore";
 
 	/**
      * The package namespace name.

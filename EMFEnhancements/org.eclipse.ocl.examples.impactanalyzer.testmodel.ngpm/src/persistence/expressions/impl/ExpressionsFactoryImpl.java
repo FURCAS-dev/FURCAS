@@ -32,7 +32,7 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements ExpressionsF
      */
 	public static ExpressionsFactory init() {
         try {
-            ExpressionsFactory theExpressionsFactory = (ExpressionsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///persistence/expressions.ecore"); 
+            ExpressionsFactory theExpressionsFactory = (ExpressionsFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/persistence/expressions.ecore"); 
             if (theExpressionsFactory != null) {
                 return theExpressionsFactory;
             }

@@ -40,7 +40,7 @@ public interface Ap_runtime_constraintsPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/ap_runtime_constraints.ecore";
+	String eNS_URI = "http:///ap_runtime_constraints.ecore";
 
 	/**
      * The package namespace name.

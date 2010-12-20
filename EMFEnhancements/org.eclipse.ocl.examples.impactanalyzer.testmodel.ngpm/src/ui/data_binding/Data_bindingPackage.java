@@ -40,7 +40,7 @@ public interface Data_bindingPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http:///ui/data_binding.ecore";
+	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/ui/data_binding.ecore";
 
 	/**
      * The package namespace name.

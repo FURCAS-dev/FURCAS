@@ -31,7 +31,7 @@ public class TemplatesFactoryImpl extends EFactoryImpl implements TemplatesFacto
      */
 	public static TemplatesFactory init() {
         try {
-            TemplatesFactory theTemplatesFactory = (TemplatesFactory)EPackage.Registry.INSTANCE.getEFactory("http:///ui/templates.ecore"); 
+            TemplatesFactory theTemplatesFactory = (TemplatesFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/ui/templates.ecore"); 
             if (theTemplatesFactory != null) {
                 return theTemplatesFactory;
             }

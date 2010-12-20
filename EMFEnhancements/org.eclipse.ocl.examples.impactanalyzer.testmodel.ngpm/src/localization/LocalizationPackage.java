@@ -46,7 +46,7 @@ public interface LocalizationPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http:///localization.ecore";
+	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/localization.ecore";
 
 	/**
      * The package namespace name.

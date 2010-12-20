@@ -31,7 +31,7 @@ public class ProcessintegrationFactoryImpl extends EFactoryImpl implements Proce
      */
 	public static ProcessintegrationFactory init() {
         try {
-            ProcessintegrationFactory theProcessintegrationFactory = (ProcessintegrationFactory)EPackage.Registry.INSTANCE.getEFactory("http:///integration/processintegration.ecore"); 
+            ProcessintegrationFactory theProcessintegrationFactory = (ProcessintegrationFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/integration/processintegration.ecore"); 
             if (theProcessintegrationFactory != null) {
                 return theProcessintegrationFactory;
             }

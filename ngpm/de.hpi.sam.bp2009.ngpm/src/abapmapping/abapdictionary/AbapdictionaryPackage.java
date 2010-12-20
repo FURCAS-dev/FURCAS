@@ -42,7 +42,7 @@ public interface AbapdictionaryPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/abapmapping/abapdictionary.ecore";
+	String eNS_URI = "http:///abapmapping/abapdictionary.ecore";
 
 	/**
      * The package namespace name.

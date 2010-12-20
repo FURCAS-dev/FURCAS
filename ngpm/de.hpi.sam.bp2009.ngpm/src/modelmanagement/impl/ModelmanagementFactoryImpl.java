@@ -35,7 +35,7 @@ public class ModelmanagementFactoryImpl extends EFactoryImpl implements Modelman
      */
 	public static ModelmanagementFactory init() {
         try {
-            ModelmanagementFactory theModelmanagementFactory = (ModelmanagementFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/modelmanagement.ecore"); 
+            ModelmanagementFactory theModelmanagementFactory = (ModelmanagementFactory)EPackage.Registry.INSTANCE.getEFactory("http:///modelmanagement.ecore"); 
             if (theModelmanagementFactory != null) {
                 return theModelmanagementFactory;
             }

@@ -31,7 +31,7 @@ public class LocalizationFactoryImpl extends EFactoryImpl implements Localizatio
      */
 	public static LocalizationFactory init() {
         try {
-            LocalizationFactory theLocalizationFactory = (LocalizationFactory)EPackage.Registry.INSTANCE.getEFactory("http:///localization.ecore"); 
+            LocalizationFactory theLocalizationFactory = (LocalizationFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/localization.ecore"); 
             if (theLocalizationFactory != null) {
                 return theLocalizationFactory;
             }

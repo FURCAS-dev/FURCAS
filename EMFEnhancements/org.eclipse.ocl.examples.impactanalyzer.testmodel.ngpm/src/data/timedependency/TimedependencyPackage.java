@@ -51,7 +51,7 @@ public interface TimedependencyPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http:///data/timedependency.ecore";
+	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/timedependency.ecore";
 
 	/**
      * The package namespace name.
