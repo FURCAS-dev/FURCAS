@@ -68,6 +68,12 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 		return NAME;
 	}
 
+	/**
+	 * Throws an {@link IllegalArgumentException} in case a <code>null</code> {@link OCL} reference is passed
+	 * but a valid one is needed because nothing is found in the cache for the <code>operation</code>
+	 * requested. This behavior can be used to attempt a cache lookup without having to create a valid {@link OCL}
+	 * object. Catching the exception can then be used to try again with a valid {@link OCL} object.
+	 */
 	public OCLExpression getOperationBody(OCL ocl, EOperation operation) {
 		OCLExpression result = getCachedExpression(operation, BODY_CONSTRAINT_KEY);
 		if (result != null) {
@@ -76,6 +82,10 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 		String expr = EcoreUtil.getAnnotation(operation, OCLDelegateDomain.OCL_DELEGATE_URI, BODY_CONSTRAINT_KEY);
 		if (expr == null) {
 			return null;
+		}
+		if (ocl == null) {
+			// now we would have needed, but it's not there
+			throw new IllegalArgumentException("Requiring a valid OCL object since operation body not found in cache"); //$NON-NLS-1$
 		}
 		OCLExpression body = null;
 		try {

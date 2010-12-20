@@ -549,17 +549,15 @@ public class DelegatesTest extends AbstractTestSuite
 	 * @throws ParserException 
 	 */
 	public void test_attributeNotDefinedInOCLRemainsNull() throws ParserException {
-		OCL ocl = OCL.newInstance();
-		Helper helper = ocl.createOCLHelper();
 		helper.setContext(EcorePackage.eINSTANCE.getEClassifier());
-		OCLExpression expr = helper.createQuery("self.name");
+		OCLExpression expr = (OCLExpression) helper.createQuery("self.name");
 		assertTrue(expr instanceof PropertyCallExp);
 		PropertyCallExp pce = (PropertyCallExp) expr;
 		EStructuralFeature p = pce.getReferredProperty();
-		OCLExpression body = SettingBehavior.INSTANCE.getFeatureBody(ocl, p);
+		OCLExpression body = SettingBehavior.INSTANCE.getFeatureBody((OCL) ocl, p);
 		assertNull(body);
 		// and again, now reading from cache
-		OCLExpression bodyStillNull = SettingBehavior.INSTANCE.getFeatureBody(ocl, p);
+		OCLExpression bodyStillNull = SettingBehavior.INSTANCE.getFeatureBody((OCL) ocl, p);
 		assertNull(bodyStillNull);
 	}
 
@@ -806,17 +804,15 @@ public class DelegatesTest extends AbstractTestSuite
 	 * @throws ParserException 
 	 */
 	public void test_operationDefinedInStdlibBodyRemainsNull() throws ParserException {
-		OCL ocl = OCL.newInstance();
-		Helper helper = ocl.createOCLHelper();
 		helper.setContext(EcorePackage.eINSTANCE.getEClassifier());
-		OCLExpression expr = helper.createQuery("'abc'.oclAsType(String)");
+		OCLExpression expr = (OCLExpression) helper.createQuery("'abc'.oclAsType(String)");
 		assertTrue(expr instanceof OperationCallExp);
 		OperationCallExp oce = (OperationCallExp) expr;
 		EOperation o = oce.getReferredOperation();
-		OCLExpression body = InvocationBehavior.INSTANCE.getOperationBody(ocl, o);
+		OCLExpression body = InvocationBehavior.INSTANCE.getOperationBody((OCL) ocl, o);
 		assertNull(body);
 		// and again, now reading from cache
-		OCLExpression bodyStillNull = InvocationBehavior.INSTANCE.getOperationBody(ocl, o);;
+		OCLExpression bodyStillNull = InvocationBehavior.INSTANCE.getOperationBody((OCL) ocl, o);;
 		assertNull(bodyStillNull);
 	}
 	
@@ -831,10 +827,8 @@ public class DelegatesTest extends AbstractTestSuite
 		EObject manager = companyFactory.create(employeeClass);
 		EObject employee = companyFactory.create(employeeClass);
 		employee.eSet(employeeClass.getEStructuralFeature("manager"), manager);
-		OCL ocl = OCL.newInstance();
-		Helper helper = ocl.createOCLHelper();
 		helper.setContext(employeeClass);
-		OCLExpression expr = helper.createQuery("self.reportsTo(self.manager)");
+		OCLExpression expr = (OCLExpression) helper.createQuery("self.reportsTo(self.manager)");
 		assertTrue((Boolean) ocl.evaluate(employee, expr)); // by the default impl, employee reports to manager
 		EOperation reportsToOp = employeeClass.getEOperation(CompanyPackage.EMPLOYEE___REPORTS_TO__EMPLOYEE);
 		// Now cache a BooleanLiteralExp with the "false" literal as the implementation for reportsTo:
@@ -848,6 +842,29 @@ public class DelegatesTest extends AbstractTestSuite
 			assertFalse((Boolean) ocl.evaluate(employee, expr));
 		} finally {
 			reportsToAnn.getContents().set(0, oldFirstContents);
+		}
+	}
+	
+	public void test_performanceOfCacheRetrieval() throws ParserException {
+		initModel(COMPANY_XMI);
+		EObject manager = companyFactory.create(employeeClass);
+		EObject employee = companyFactory.create(employeeClass);
+		employee.eSet(employeeClass.getEStructuralFeature("manager"), manager);
+		OCL ocl = OCL.newInstance();
+		Helper helper = ocl.createOCLHelper();
+		helper.setContext(employeeClass);
+		String expression = "self.reportsTo(self.manager)";
+		OCLExpression expr = helper.createQuery(expression);
+		final int TIMES = 1000000;
+		final int REPEAT = 3;
+		for (int r = 0; r < REPEAT; r++) {
+			long start = System.currentTimeMillis();
+			for (int i = 0; i < TIMES; i++) {
+				ocl.evaluate(employee, expr);
+			}
+			long end = System.currentTimeMillis();
+			System.out.println("Executing " + expression + " " + TIMES
+				+ " times took " + (end - start) + "ms");
 		}
 	}
 
