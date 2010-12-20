@@ -1,19 +1,13 @@
 package com.sap.runlet.interpreter.test;
 
 import junit.framework.TestCase;
-
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.ResourcesPlugin;
-
 import behavioral.actions.ActionsFactory;
 import behavioral.actions.Block;
 import behavioral.actions.IfElse;
 
 public class OclPerformanceTest extends TestCase {
     public void testDerivedGetterPerformance() {
-	IProject project = getStdlibProject();
 	try {
-	    project.open(/* progress monitor */null);
 	    Block ifBlock = ActionsFactory.eINSTANCE.createBlock();
 	    Block elseBlock = ActionsFactory.eINSTANCE.createBlock();
 	    IfElse ie = ActionsFactory.eINSTANCE.createIfElse();
@@ -42,8 +36,4 @@ public class OclPerformanceTest extends TestCase {
 	}
     }
 
-    private IProject getStdlibProject() {
-        return ResourcesPlugin.getWorkspace().getRoot().getProject("org.eclipse.ocl.examples.impactanalyzer.testutils");
-    }
-    
 }

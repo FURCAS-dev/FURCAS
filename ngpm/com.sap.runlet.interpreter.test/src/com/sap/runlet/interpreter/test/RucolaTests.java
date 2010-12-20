@@ -35,7 +35,11 @@ public class RucolaTests extends TestCase {
 	assertEquals("Mannheim", cityName);
     }
     
-    public void testFunctionCall() {
+    /**
+     * Currently ignored because it seems that the CellSetTest model didn't make it across from
+     * MOIN to EMF properly.
+     */
+    public void ignore_testFunctionCall() {
 	Entity cellSetTest = rucola.newEntity("CellSetTest");
 	Function cellSet = (Function) cellSetTest.call("getCellSet");
 	Entity organizations = cellSetTest.call("createOrganizations").asEntity();
