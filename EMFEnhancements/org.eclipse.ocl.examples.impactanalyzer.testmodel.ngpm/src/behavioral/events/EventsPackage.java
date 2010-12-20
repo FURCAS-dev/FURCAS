@@ -67,7 +67,7 @@ public interface EventsPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http:///behavioral/events.ecore";
+	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/events.ecore";
 
 	/**
      * The package namespace name.

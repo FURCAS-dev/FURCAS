@@ -31,7 +31,7 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
      */
 	public static ClassesFactory init() {
         try {
-            ClassesFactory theClassesFactory = (ClassesFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/classes.ecore"); 
+            ClassesFactory theClassesFactory = (ClassesFactory)EPackage.Registry.INSTANCE.getEFactory("http:///data/classes.ecore"); 
             if (theClassesFactory != null) {
                 return theClassesFactory;
             }

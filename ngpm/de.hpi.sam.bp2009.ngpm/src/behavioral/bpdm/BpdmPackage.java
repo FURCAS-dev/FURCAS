@@ -40,7 +40,7 @@ public interface BpdmPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/bpdm.ecore";
+	String eNS_URI = "http:///behavioral/bpdm.ecore";
 
 	/**
      * The package namespace name.

@@ -45,7 +45,7 @@ public interface TransactionsPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http:///behavioral/transactions.ecore";
+	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/transactions.ecore";
 
 	/**
      * The package namespace name.

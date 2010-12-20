@@ -31,7 +31,7 @@ public class RulesFactoryImpl extends EFactoryImpl implements RulesFactory {
      */
 	public static RulesFactory init() {
         try {
-            RulesFactory theRulesFactory = (RulesFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/rules.ecore"); 
+            RulesFactory theRulesFactory = (RulesFactory)EPackage.Registry.INSTANCE.getEFactory("http:///behavioral/rules.ecore"); 
             if (theRulesFactory != null) {
                 return theRulesFactory;
             }

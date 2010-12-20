@@ -43,7 +43,7 @@ public interface BusinesstasksPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/businesstasks.ecore";
+	String eNS_URI = "http:///behavioral/businesstasks.ecore";
 
 	/**
      * The package namespace name.

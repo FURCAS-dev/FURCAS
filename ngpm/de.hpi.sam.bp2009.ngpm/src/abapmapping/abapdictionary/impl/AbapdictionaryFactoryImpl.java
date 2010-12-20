@@ -31,7 +31,7 @@ public class AbapdictionaryFactoryImpl extends EFactoryImpl implements Abapdicti
      */
 	public static AbapdictionaryFactory init() {
         try {
-            AbapdictionaryFactory theAbapdictionaryFactory = (AbapdictionaryFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/abapmapping/abapdictionary.ecore"); 
+            AbapdictionaryFactory theAbapdictionaryFactory = (AbapdictionaryFactory)EPackage.Registry.INSTANCE.getEFactory("http:///abapmapping/abapdictionary.ecore"); 
             if (theAbapdictionaryFactory != null) {
                 return theAbapdictionaryFactory;
             }

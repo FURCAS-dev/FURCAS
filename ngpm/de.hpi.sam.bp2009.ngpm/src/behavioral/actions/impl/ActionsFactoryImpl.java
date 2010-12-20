@@ -31,7 +31,7 @@ public class ActionsFactoryImpl extends EFactoryImpl implements ActionsFactory {
      */
 	public static ActionsFactory init() {
         try {
-            ActionsFactory theActionsFactory = (ActionsFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/actions.ecore"); 
+            ActionsFactory theActionsFactory = (ActionsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///behavioral/actions.ecore"); 
             if (theActionsFactory != null) {
                 return theActionsFactory;
             }

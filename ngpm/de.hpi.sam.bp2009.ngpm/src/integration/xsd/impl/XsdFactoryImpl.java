@@ -32,7 +32,7 @@ public class XsdFactoryImpl extends EFactoryImpl implements XsdFactory {
      */
 	public static XsdFactory init() {
         try {
-            XsdFactory theXsdFactory = (XsdFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/integration/xsd.ecore"); 
+            XsdFactory theXsdFactory = (XsdFactory)EPackage.Registry.INSTANCE.getEFactory("http:///integration/xsd.ecore"); 
             if (theXsdFactory != null) {
                 return theXsdFactory;
             }

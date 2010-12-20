@@ -31,7 +31,7 @@ public class AnalyticsFactoryImpl extends EFactoryImpl implements AnalyticsFacto
      */
 	public static AnalyticsFactory init() {
         try {
-            AnalyticsFactory theAnalyticsFactory = (AnalyticsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///dataaccess/analytics.ecore"); 
+            AnalyticsFactory theAnalyticsFactory = (AnalyticsFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/dataaccess/analytics.ecore"); 
             if (theAnalyticsFactory != null) {
                 return theAnalyticsFactory;
             }

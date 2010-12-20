@@ -32,7 +32,7 @@ public class Status_and_action_oldFactoryImpl extends EFactoryImpl implements St
      */
 	public static Status_and_action_oldFactory init() {
         try {
-            Status_and_action_oldFactory theStatus_and_action_oldFactory = (Status_and_action_oldFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/status_and_action_old.ecore"); 
+            Status_and_action_oldFactory theStatus_and_action_oldFactory = (Status_and_action_oldFactory)EPackage.Registry.INSTANCE.getEFactory("http:///behavioral/status_and_action_old.ecore"); 
             if (theStatus_and_action_oldFactory != null) {
                 return theStatus_and_action_oldFactory;
             }

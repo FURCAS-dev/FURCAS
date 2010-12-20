@@ -31,7 +31,7 @@ public class DeploymentunitsFactoryImpl extends EFactoryImpl implements Deployme
      */
 	public static DeploymentunitsFactory init() {
         try {
-            DeploymentunitsFactory theDeploymentunitsFactory = (DeploymentunitsFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/modelmanagement/deploymentunits.ecore"); 
+            DeploymentunitsFactory theDeploymentunitsFactory = (DeploymentunitsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///modelmanagement/deploymentunits.ecore"); 
             if (theDeploymentunitsFactory != null) {
                 return theDeploymentunitsFactory;
             }

@@ -45,7 +45,7 @@ public interface RulesPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/rules.ecore";
+	String eNS_URI = "http:///behavioral/rules.ecore";
 
 	/**
      * The package namespace name.

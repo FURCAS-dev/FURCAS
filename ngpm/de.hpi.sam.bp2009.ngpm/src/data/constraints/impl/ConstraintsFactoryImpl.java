@@ -32,7 +32,7 @@ public class ConstraintsFactoryImpl extends EFactoryImpl implements ConstraintsF
      */
 	public static ConstraintsFactory init() {
         try {
-            ConstraintsFactory theConstraintsFactory = (ConstraintsFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/constraints.ecore"); 
+            ConstraintsFactory theConstraintsFactory = (ConstraintsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///data/constraints.ecore"); 
             if (theConstraintsFactory != null) {
                 return theConstraintsFactory;
             }

@@ -31,7 +31,7 @@ public class BpdmFactoryImpl extends EFactoryImpl implements BpdmFactory {
      */
 	public static BpdmFactory init() {
         try {
-            BpdmFactory theBpdmFactory = (BpdmFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/bpdm.ecore"); 
+            BpdmFactory theBpdmFactory = (BpdmFactory)EPackage.Registry.INSTANCE.getEFactory("http:///behavioral/bpdm.ecore"); 
             if (theBpdmFactory != null) {
                 return theBpdmFactory;
             }

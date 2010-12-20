@@ -31,7 +31,7 @@ public class Context_driversFactoryImpl extends EFactoryImpl implements Context_
      */
 	public static Context_driversFactory init() {
         try {
-            Context_driversFactory theContext_driversFactory = (Context_driversFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/configuration/context_drivers.ecore"); 
+            Context_driversFactory theContext_driversFactory = (Context_driversFactory)EPackage.Registry.INSTANCE.getEFactory("http:///configuration/context_drivers.ecore"); 
             if (theContext_driversFactory != null) {
                 return theContext_driversFactory;
             }

@@ -45,7 +45,7 @@ public interface TuplesPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/tuples.ecore";
+	String eNS_URI = "http:///data/tuples.ecore";
 
 	/**
      * The package namespace name.

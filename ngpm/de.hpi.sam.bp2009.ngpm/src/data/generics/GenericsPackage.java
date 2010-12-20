@@ -46,7 +46,7 @@ public interface GenericsPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/generics.ecore";
+	String eNS_URI = "http:///data/generics.ecore";
 
 	/**
      * The package namespace name.

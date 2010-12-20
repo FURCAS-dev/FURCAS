@@ -32,7 +32,7 @@ public class AbapmappingFactoryImpl extends EFactoryImpl implements AbapmappingF
      */
 	public static AbapmappingFactory init() {
         try {
-            AbapmappingFactory theAbapmappingFactory = (AbapmappingFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/abapmapping.ecore"); 
+            AbapmappingFactory theAbapmappingFactory = (AbapmappingFactory)EPackage.Registry.INSTANCE.getEFactory("http:///abapmapping.ecore"); 
             if (theAbapmappingFactory != null) {
                 return theAbapmappingFactory;
             }

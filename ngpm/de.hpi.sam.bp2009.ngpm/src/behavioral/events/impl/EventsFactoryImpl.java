@@ -31,7 +31,7 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
      */
 	public static EventsFactory init() {
         try {
-            EventsFactory theEventsFactory = (EventsFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/events.ecore"); 
+            EventsFactory theEventsFactory = (EventsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///behavioral/events.ecore"); 
             if (theEventsFactory != null) {
                 return theEventsFactory;
             }

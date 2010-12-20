@@ -43,7 +43,7 @@ public interface AbapmappingPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http:///abapmapping.ecore";
+	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/abapmapping.ecore";
 
 	/**
      * The package namespace name.

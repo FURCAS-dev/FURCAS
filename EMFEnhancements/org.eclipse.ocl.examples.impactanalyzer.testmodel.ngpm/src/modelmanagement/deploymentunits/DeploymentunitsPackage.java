@@ -48,7 +48,7 @@ public interface DeploymentunitsPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http:///modelmanagement/deploymentunits.ecore";
+	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/modelmanagement/deploymentunits.ecore";
 
 	/**
      * The package namespace name.

@@ -47,7 +47,7 @@ public interface BindingPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http:///integration/binding.ecore";
+	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/integration/binding.ecore";
 
 	/**
      * The package namespace name.

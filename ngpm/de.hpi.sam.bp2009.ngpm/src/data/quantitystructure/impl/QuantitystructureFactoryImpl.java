@@ -31,7 +31,7 @@ public class QuantitystructureFactoryImpl extends EFactoryImpl implements Quanti
      */
 	public static QuantitystructureFactory init() {
         try {
-            QuantitystructureFactory theQuantitystructureFactory = (QuantitystructureFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/quantitystructure.ecore"); 
+            QuantitystructureFactory theQuantitystructureFactory = (QuantitystructureFactory)EPackage.Registry.INSTANCE.getEFactory("http:///data/quantitystructure.ecore"); 
             if (theQuantitystructureFactory != null) {
                 return theQuantitystructureFactory;
             }

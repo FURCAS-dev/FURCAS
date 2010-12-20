@@ -43,7 +43,7 @@ public interface XsdPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/integration/xsd.ecore";
+	String eNS_URI = "http:///integration/xsd.ecore";
 
 	/**
      * The package namespace name.

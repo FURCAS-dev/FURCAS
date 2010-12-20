@@ -31,7 +31,7 @@ public class BusinessconfigurationFactoryImpl extends EFactoryImpl implements Bu
      */
 	public static BusinessconfigurationFactory init() {
         try {
-            BusinessconfigurationFactory theBusinessconfigurationFactory = (BusinessconfigurationFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/configuration/businessconfiguration.ecore"); 
+            BusinessconfigurationFactory theBusinessconfigurationFactory = (BusinessconfigurationFactory)EPackage.Registry.INSTANCE.getEFactory("http:///configuration/businessconfiguration.ecore"); 
             if (theBusinessconfigurationFactory != null) {
                 return theBusinessconfigurationFactory;
             }

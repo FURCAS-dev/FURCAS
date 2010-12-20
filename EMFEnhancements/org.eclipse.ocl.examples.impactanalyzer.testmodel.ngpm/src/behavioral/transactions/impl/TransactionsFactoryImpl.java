@@ -31,7 +31,7 @@ public class TransactionsFactoryImpl extends EFactoryImpl implements Transaction
      */
 	public static TransactionsFactory init() {
         try {
-            TransactionsFactory theTransactionsFactory = (TransactionsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///behavioral/transactions.ecore"); 
+            TransactionsFactory theTransactionsFactory = (TransactionsFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/transactions.ecore"); 
             if (theTransactionsFactory != null) {
                 return theTransactionsFactory;
             }

@@ -43,7 +43,7 @@ public interface QuantitystructurePackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http:///data/quantitystructure.ecore";
+	String eNS_URI = "http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/quantitystructure.ecore";
 
 	/**
      * The package namespace name.
