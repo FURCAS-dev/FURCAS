@@ -33,6 +33,7 @@ import org.eclipse.emf.query2.WhereNestedReference;
 import org.eclipse.emf.query2.WhereOr;
 import org.eclipse.emf.query2.WhereRelationReference;
 import org.eclipse.emf.query2.WhereString;
+import org.eclipse.emf.query2.syntax.Messages;
 import org.eclipse.emf.query2.syntax.query.AliasAttributeExpression;
 import org.eclipse.emf.query2.syntax.query.AndWhereEntry;
 import org.eclipse.emf.query2.syntax.query.BooleanExpression;
@@ -70,10 +71,12 @@ public class QueryTransformer {
 	}
 
 	/**
-	 * For queries accepting arguments. Each ? in where clause of the query is replaced with object in Object[] replacableValues
-	 * ? in query is replaced in order of element in Object[] replacableValues. 
-	 * User can pass values has following:
-	 * transform(query, new Object[] { new Integer(200), new String(""), new Double(20.0), new Long(20000000000), new Boolean(true) } );
+	 * For queries accepting arguments. Each ? in where clause of the query is
+	 * replaced with object in Object[] replacableValues ? in query is replaced
+	 * in order of element in Object[] replacableValues. User can pass values
+	 * has following: transform(query, new Object[] { new Integer(200), new
+	 * String(""), new Double(20.0), new Long(20000000000), new Boolean(true) }
+	 * );
 	 * 
 	 * @param query
 	 * @param replacableValues
@@ -82,15 +85,15 @@ public class QueryTransformer {
 	public static Query transform(MQLquery query, Object[] replacableValues) {
 		QueryTransformer.replacableValues = replacableValues;
 		lastReplacedValueIndex = -1;
-		
+
 		List<SelectEntry> selectEntries = transformSelect(query.getSelectEntries());
 		List<FromEntry> fromEntries = transformFrom(query.getFromEntries());
 		List<WhereEntry> whereEntries = transformWhere(query.getWhereEntry());
-		
+
 		lastReplacedValueIndex = -1;
 		return new Query(selectEntries, fromEntries, whereEntries);
 	}
-	
+
 	private static List<SelectEntry> transformSelect(EList<org.eclipse.emf.query2.syntax.query.SelectEntry> selectEntries) {
 		List<SelectEntry> result = new ArrayList<SelectEntry>(selectEntries.size());
 
@@ -114,26 +117,25 @@ public class QueryTransformer {
 			} else {
 				final ResourceScope es = (ResourceScope) entry.getScopeClause();
 				EList<EClass> withoutsubtypes = entry.getWithoutsubtypesTypes();
-				FromType from = new FromType(entry.getAlias(), EcoreUtil.getURI(entry.getType()), entry.isWithoutsubtypes(),
-						new TypeScopeProvider() {
+				FromType from = new FromType(entry.getAlias(), EcoreUtil.getURI(entry.getType()), entry.isWithoutsubtypes(), new TypeScopeProvider() {
 
-							public boolean isInclusiveScope() {
-								return es == null ? false : !es.isNotIn();
-							}
+					public boolean isInclusiveScope() {
+						return es == null ? false : !es.isNotIn();
+					}
 
-							public URI[] getPartitionScope() {
-								if (es == null) {
-									return new URI[0];
-								}
-								URI[] result = new URI[es.getUris().size()];
-								int i = 0;
-								for (String uri : es.getUris()) {
-									result[i] = URI.createURI(uri);
-									i++;
-								}
-								return result;
-							}
-						});
+					public URI[] getPartitionScope() {
+						if (es == null) {
+							return new URI[0];
+						}
+						URI[] result = new URI[es.getUris().size()];
+						int i = 0;
+						for (String uri : es.getUris()) {
+							result[i] = URI.createURI(uri);
+							i++;
+						}
+						return result;
+					}
+				});
 				if (withoutsubtypes.size() != 0) {
 					Set<URI> uris = new HashSet<URI>(withoutsubtypes.size());
 					for (EClass cls : withoutsubtypes) {
@@ -171,62 +173,58 @@ public class QueryTransformer {
 			Expression rhs = object.getRhs();
 			AliasAttributeExpression lhs = object.getLhs();
 			String alias = lhs.getAlias().getAlias();
-			if (rhs instanceof AliasAttributeExpression && lhs.getAttribute() == null
-					&& ((AliasAttributeExpression) rhs).getAttribute() == null) {
+			if (rhs instanceof AliasAttributeExpression && lhs.getAttribute() == null && ((AliasAttributeExpression) rhs).getAttribute() == null) {
 				return toList(new WhereComparisonAliases(alias, ((AliasAttributeExpression) rhs).getAlias().getAlias()));
 			}
 			String name = lhs.getAttribute().getName();
 			if (rhs instanceof AliasAttributeExpression) {
 				AliasAttributeExpression aae = (AliasAttributeExpression) rhs;
 				if (aae.getAttribute() != null) {
-					return toList(new WhereComparisonAttrs(alias, name, getOperation(object.getOperator()), aae.getAlias().getAlias(), aae
-							.getAttribute().getName()));
+					return toList(new WhereComparisonAttrs(alias, name, getOperation(object.getOperator()), aae.getAlias().getAlias(), aae.getAttribute().getName()));
 				} else {
 					return toList(new WhereRelationReference(alias, name, aae.getAlias().getAlias()));
 				}
 			}
-			
+
 			// For replacable value
-			if(rhs instanceof ReplacableValue) {
+			if (rhs instanceof ReplacableValue) {
 				lastReplacedValueIndex += 1;
 				Object replacedValue = replacableValues[lastReplacedValueIndex];
-				if(replacedValue instanceof String) {
+				if (replacedValue instanceof String) {
 					return createWhereEntry(lhs, new WhereString(name, getOperation(object.getOperator()), (String) replacedValue));
-				} else if(replacedValue instanceof Boolean) {
+				} else if (replacedValue instanceof Boolean) {
 					Boolean booleanValue = (Boolean) replacedValue;
 					return createWhereEntry(lhs, new WhereBool(name, booleanValue.booleanValue()));
-				} else if(replacedValue instanceof Integer) {
+				} else if (replacedValue instanceof Integer) {
 					int value = ((Integer) replacedValue);
 					return createWhereEntry(lhs, new WhereInt(name, getOperation(object.getOperator()), value));
-				} else if(replacedValue instanceof Long) {
-					long longValue = ( (Long) replacedValue);
+				} else if (replacedValue instanceof Long) {
+					long longValue = ((Long) replacedValue);
 					return createWhereEntry(lhs, new WhereLong(name, getOperation(object.getOperator()), longValue));
-				} else if(replacedValue instanceof Double) {
-					double doubleValue = ( (Double) replacedValue);
+				} else if (replacedValue instanceof Double) {
+					double doubleValue = ((Double) replacedValue);
 					return createWhereEntry(lhs, new WhereDouble(name, getOperation(object.getOperator()), doubleValue));
-				} 
+				}
 			}
-			
+
 			if (rhs instanceof BooleanExpression) {
 				BooleanExpression be = (BooleanExpression) rhs;
 				return createWhereEntry(lhs, new WhereBool(name, be.isTrue()));
 			}
 			if (rhs instanceof StringExpression) {
-				return createWhereEntry(lhs, new WhereString(name, getOperation(object.getOperator()), ((StringExpression) object.getRhs())
-						.getValue()));
+				return createWhereEntry(lhs, new WhereString(name, getOperation(object.getOperator()), ((StringExpression) object.getRhs()).getValue()));
 
 			}
 			if (rhs instanceof LongExpression) {
 				long longValue = ((LongExpression) object.getRhs()).getValue();
-				if(longValue > Integer.MAX_VALUE) {
+				if (longValue > Integer.MAX_VALUE) {
 					return createWhereEntry(lhs, new WhereLong(name, getOperation(object.getOperator()), longValue));
 				} else {
 					return createWhereEntry(lhs, new WhereInt(name, getOperation(object.getOperator()), (int) longValue));
 				}
 			}
 			if (rhs instanceof DoubleExpression) {
-				return createWhereEntry(lhs, new WhereDouble(name, getOperation(object.getOperator()), ((DoubleExpression) object)
-						.getValue()));
+				return createWhereEntry(lhs, new WhereDouble(name, getOperation(object.getOperator()), ((DoubleExpression) object).getValue()));
 			}
 			if (rhs instanceof NullExpression) {
 				return toList(new LocalWhereEntry(alias, new WhereString(name, getOperation(object.getOperator()), null)));
@@ -236,7 +234,7 @@ public class QueryTransformer {
 				return toList(new WhereNestedReference(object.getOperator() == Operator.NOT_IN, alias, name, query));
 			}
 
-			throw new IllegalArgumentException(object.getRhs().getClass() + " is unknown");
+			throw new IllegalArgumentException(Messages.getString(Messages.Query2StringSyntax_QueryTransformer_UnknownValue, new String[]{object.getRhs().getClass().getName()}) );
 		}
 
 		@Override
@@ -268,7 +266,7 @@ public class QueryTransformer {
 			return Collections.<WhereEntry> singletonList(entry);
 		}
 	}
-	
+
 	private static Operation getOperation(Operator operator) {
 		switch (operator) {
 		case EQUAL:
@@ -289,7 +287,7 @@ public class QueryTransformer {
 			// return Operation.NOT_LIKE;
 		}
 
-		throw new IllegalArgumentException("unexpected operator: " + operator.toString());
+		throw new IllegalArgumentException(Messages.getString(Messages.Query2StringSyntax_QueryTransformer_UnexpectedOperator, new String[] { operator.toString() }));
 	}
 
 	private static class WhereClauseTransformer extends QuerySwitch<WhereClause> {
@@ -309,7 +307,7 @@ public class QueryTransformer {
 			}
 			if (rhs instanceof LongExpression) {
 				long longValue = ((LongExpression) object.getRhs()).getValue();
-				if(longValue > Integer.MAX_VALUE) {
+				if (longValue > Integer.MAX_VALUE) {
 					return new WhereLong(name, getOperation(object.getOperator()), longValue);
 				} else {
 					return new WhereInt(name, getOperation(object.getOperator()), (int) longValue);
@@ -318,27 +316,27 @@ public class QueryTransformer {
 			if (rhs instanceof DoubleExpression) {
 				return new WhereDouble(name, getOperation(object.getOperator()), ((DoubleExpression) rhs).getValue());
 			}
-			
-			if(rhs instanceof ReplacableValue) {
+
+			if (rhs instanceof ReplacableValue) {
 				lastReplacedValueIndex += 1;
 				Object replacedValue = replacableValues[lastReplacedValueIndex];
-				if(replacedValue instanceof String) {
+				if (replacedValue instanceof String) {
 					return new WhereString(name, getOperation(object.getOperator()), (String) replacedValue);
-				} else if(replacedValue instanceof Boolean) {
+				} else if (replacedValue instanceof Boolean) {
 					Boolean booleanValue = (Boolean) replacedValue;
 					return new WhereBool(name, booleanValue.booleanValue());
-				} else if(replacedValue instanceof Integer) {
+				} else if (replacedValue instanceof Integer) {
 					int value = ((Integer) replacedValue);
 					return new WhereInt(name, getOperation(object.getOperator()), value);
-				} else if(replacedValue instanceof Long) {
-					long longValue = ( (Long) replacedValue);
+				} else if (replacedValue instanceof Long) {
+					long longValue = ((Long) replacedValue);
 					return new WhereLong(name, getOperation(object.getOperator()), longValue);
-				} else if(replacedValue instanceof Double) {
-					double doubleValue = ( (Double) replacedValue);
+				} else if (replacedValue instanceof Double) {
+					double doubleValue = ((Double) replacedValue);
 					return new WhereDouble(name, getOperation(object.getOperator()), doubleValue);
-				} 
+				}
 			}
-			
+
 			return super.caseExpressionWhereEntry(object);
 		}
 
