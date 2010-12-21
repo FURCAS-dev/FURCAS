@@ -8,21 +8,21 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package org.eclipse.ocl.examples.impactanalyzer.deltaPropagation;
+package org.eclipse.ocl.examples.impactanalyzer;
 
+import org.eclipse.ocl.ecore.CallExp;
+import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 
-public abstract class DeltaPropagationStrategyWithTargetExpressionAndPartialEvaluator extends
-        DeltaPropagationStrategyWithTargetExpression {
-    private final PartialEvaluatorImpl evaluator;
+public interface PartialEvaluator {
 
-    protected DeltaPropagationStrategyWithTargetExpressionAndPartialEvaluator(OCLExpression propagatesTo, PartialEvaluatorImpl evaluator) {
-        super(propagatesTo);
-        this.evaluator = evaluator;
-    }
-    
-    protected PartialEvaluatorImpl getEvaluator() {
-        return evaluator;
-    }
+    public abstract Object evaluate(Object context, OCLExpression e);
+
+    public abstract Object evaluate(Object context, CallExp e, Object valueOfSourceExpression);
+
+    public abstract Helper getHelper();
+
+    public abstract OCL getOcl();
 
 }

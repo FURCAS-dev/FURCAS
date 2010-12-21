@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -65,7 +66,7 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
      */
     @Override
     public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects,
-            OppositeEndFinder oppositeEndFinder) {
+            OppositeEndFinder oppositeEndFinder, Notification change) {
         OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(oppositeEndFinder);
         for (EObject eo : affectedContextObjects) {
             Object newValue = ocl.evaluate(eo, expression);
@@ -76,8 +77,12 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
                     newValue = ((Collection<?>) newValue).isEmpty() ? null : ((Collection<?>) newValue).iterator()
                             .next();
                 }
-                for (EObject elementToUpdate : getElementsToUpdate(eo)) {
-                    elementToUpdate.eSet(getPropertyToUpdate(), newValue);
+                try {
+                    for (EObject elementToUpdate : getElementsToUpdate(eo)) {
+                        elementToUpdate.eSet(getPropertyToUpdate(), newValue);
+                    }
+                } catch (ParserException e) {
+                    throw new RuntimeException(e);
                 }
             }
         }
@@ -134,7 +139,7 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
      *            case where {@link #selfKind} is {@link SelfKind#SELF}, this is at the same time the result of this
      *            method; otherwise, the <code>inTextBlock</code> argument is used to compute the result
      */
-    protected Set<EObject> getElementsToUpdate(EObject self) {
+    protected Set<EObject> getElementsToUpdate(EObject self) throws ParserException {
         // Collection<TextBlock> inTextBlocks = getTextBlocksInChosenAlternativeForInjectorAction(injectorAction);
         switch (selfKind) {
         case SELF:
@@ -153,7 +158,7 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
         }
     }
 
-    private EObject getElementToUpdateFromForeachElement(EObject self) {
+    private EObject getElementToUpdateFromForeachElement(EObject self) throws ParserException {
         OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(getOppositeEndFinder());
         Collection<EObject> foreachContextsUsingSelfAsForeachElement = getOppositeEndFinder()
                 .navigateOppositePropertyWithBackwardScope(
@@ -161,10 +166,12 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
         for (EObject eo : foreachContextsUsingSelfAsForeachElement) {
             ForEachContext foreachContext = (ForEachContext) eo;
             ForeachPredicatePropertyInit propInit = foreachContext.getForeachPedicatePropertyInit();
+            Helper oclHelper = ocl.createOCLHelper();
+            oclHelper.setContext(self.eClass());
             // now check which when-clause is chosen for the current foreach-element self
             for (PredicateSemantic whenClause : propInit.getPredicateSemantic()) {
-                OCLExpression whenExpression = whenClause.getWhen();
-                if (whenExpression == null || (Boolean) ocl.evaluate(self, whenExpression)) {
+                if (whenClause.getWhen() == null
+                        || (Boolean) ocl.evaluate(self, oclHelper.createQuery(whenClause.getWhen()))) {
                     // now we know the when-clause; determine template for when-clause and check if
                     // it contains injectorAction
                     Template t = whenClause.getAs();

@@ -13,7 +13,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.ecore.OCLExpression;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
@@ -217,13 +216,13 @@ public class InjectorActionsHandler<Type> {
 					localMode = next.getMode();
 				}
 				if (next.getWhen() != null) {
-					String javaQueryWhen = TcsUtil.escapeMultiLineOclQuery(toString(next.getWhen()));
+					String javaQueryWhen = TcsUtil.escapeMultiLineOclQuery(next.getWhen());
 					buffer.append("list.add(new PredicateSemantic(\""
 							+ javaQueryWhen + "\", \""
 							+ finder.getRuleName(next.getAs(), localMode)
 							+ "\"));\n");
 					oclErrors = metaLookup.validateOclQuery(block
-							.getParentTemplate(), toString(next.getWhen()).replaceFirst("OCL:", ""), block
+							.getParentTemplate(), next.getWhen().replaceFirst("OCL:", ""), block
 							.getParentTemplate().getMetaReference());
 					for (String error : oclErrors) {
 						errorBucket.addError(error, propInit);
@@ -252,11 +251,6 @@ public class InjectorActionsHandler<Type> {
 		}
 		buffer.append(ObservationDirectivesHelper
 				.getExitInjectorActionNotification());
-	}
-
-        private String toString(OCLExpression when) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	/**

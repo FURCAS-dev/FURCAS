@@ -23,7 +23,7 @@ public class IdentityPropagationStrategy extends DeltaPropagationStrategyWithTar
     }
 
     public Collection<Pair<OCLExpression, Collection<Object>>> mapDelta(OCLExpression e, Collection<Object> delta) {
-        return PartialEvaluator.getResultCollectionFromSingleDelta(getPropagatesTo(), delta);
+        return PartialEvaluatorImpl.getResultCollectionFromSingleDelta(getPropagatesTo(), delta);
     }
 
 }

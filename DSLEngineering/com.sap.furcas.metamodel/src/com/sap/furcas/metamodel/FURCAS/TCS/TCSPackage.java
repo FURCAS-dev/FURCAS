@@ -6311,22 +6311,22 @@ public interface TCSPackage extends EPackage {
         int PREDICATE_SEMANTIC = 84;
 
         /**
+     * The feature id for the '<em><b>When</b></em>' attribute.
+     * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+        int PREDICATE_SEMANTIC__WHEN = 0;
+
+        /**
      * The feature id for the '<em><b>As</b></em>' reference.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int PREDICATE_SEMANTIC__AS = 0;
-
-        /**
-     * The feature id for the '<em><b>When</b></em>' reference.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-        int PREDICATE_SEMANTIC__WHEN = 1;
+        int PREDICATE_SEMANTIC__AS = 1;
 
         /**
      * The feature id for the '<em><b>Mode</b></em>' attribute.
@@ -9610,15 +9610,15 @@ public interface TCSPackage extends EPackage {
         EReference getPredicateSemantic_As();
 
         /**
-     * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic#getWhen <em>When</em>}'.
+     * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic#getWhen <em>When</em>}'.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>When</em>'.
+     * @return the meta object for the attribute '<em>When</em>'.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic#getWhen()
      * @see #getPredicateSemantic()
      * @generated
      */
-        EReference getPredicateSemantic_When();
+        EAttribute getPredicateSemantic_When();
 
         /**
      * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic#getMode <em>Mode</em>}'.
@@ -11972,12 +11972,12 @@ public interface TCSPackage extends EPackage {
                 EReference PREDICATE_SEMANTIC__AS = eINSTANCE.getPredicateSemantic_As();
 
                 /**
-         * The meta object literal for the '<em><b>When</b></em>' reference feature.
+         * The meta object literal for the '<em><b>When</b></em>' attribute feature.
          * <!-- begin-user-doc -->
                  * <!-- end-user-doc -->
          * @generated
          */
-                EReference PREDICATE_SEMANTIC__WHEN = eINSTANCE.getPredicateSemantic_When();
+                EAttribute PREDICATE_SEMANTIC__WHEN = eINSTANCE.getPredicateSemantic_When();
 
                 /**
          * The meta object literal for the '<em><b>Mode</b></em>' attribute feature.

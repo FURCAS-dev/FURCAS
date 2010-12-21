@@ -54,9 +54,10 @@ import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.examples.eventmanager.NotificationHelper;
 import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
+import org.eclipse.ocl.examples.impactanalyzer.PartialEvaluatorFactory;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.ActivationOption;
-import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluator;
-import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluatorFactory;
+import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluatorFactoryImpl;
+import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluatorImpl;
 import org.eclipse.ocl.examples.impactanalyzer.filterSynthesis.FilterSynthesisImpl;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackStep;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackStepCache;
@@ -74,7 +75,7 @@ import org.eclipse.ocl.utilities.PredefinedType;
  * may be called directly of indirectly by the root expression.
  *
  */
-public class InstanceScopeAnalysis implements PartialEvaluatorFactory {
+public class InstanceScopeAnalysis extends PartialEvaluatorFactoryImpl {
     private final Logger logger = Logger.getLogger(InstanceScopeAnalysis.class.getName());
     private final PathCache pathCache;
     private final TracebackStepCache tracebackStepCache;
@@ -83,7 +84,7 @@ public class InstanceScopeAnalysis implements PartialEvaluatorFactory {
     private final OppositeEndFinder oppositeEndFinder;
     private final ActivationOption configuration;
     private final OCLFactory oclFactory;
-    private final PartialEvaluator partialEvaluatorForAllInstancesDeltaPropagation;
+    private final PartialEvaluatorImpl partialEvaluatorForAllInstancesDeltaPropagation;
 
     private static final Set<String> comparisonOpNames = new HashSet<String>(Arrays.asList(new String[] {
             PredefinedType.EQUAL_NAME, PredefinedType.LESS_THAN_NAME, PredefinedType.LESS_THAN_EQUAL_NAME,
@@ -99,7 +100,7 @@ public class InstanceScopeAnalysis implements PartialEvaluatorFactory {
      *            {@link Tracer}s can retrieve it using {@link PathCache#getOppositeEndFinder()}.
      */
     public InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer, OppositeEndFinder oppositeEndFinder, ActivationOption configuration, OCLFactory oclFactory) {
-        this(expression, exprContext, filterSynthesizer, oppositeEndFinder, new PartialEvaluator(oclFactory, oppositeEndFinder), configuration,
+        this(expression, exprContext, filterSynthesizer, oppositeEndFinder, new PartialEvaluatorImpl(oclFactory, oppositeEndFinder), configuration,
                 oclFactory,
                 /* pathCache */ configuration.isTracebackStepISAActive() ? null : new PathCache(oppositeEndFinder), /* tracebackStepCache */ configuration.isTracebackStepISAActive() ? new TracebackStepCache(oppositeEndFinder) : null);
     }
@@ -113,7 +114,7 @@ public class InstanceScopeAnalysis implements PartialEvaluatorFactory {
         }
     }
 
-    protected InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer, OppositeEndFinder oppositeEndFinder, PartialEvaluator partialEvaluator, ActivationOption configuration, OCLFactory oclFactory, PathCache pathCache, TracebackStepCache tracebackStepCache) {
+    protected InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer, OppositeEndFinder oppositeEndFinder, PartialEvaluatorImpl partialEvaluator, ActivationOption configuration, OCLFactory oclFactory, PathCache pathCache, TracebackStepCache tracebackStepCache) {
         checkConstructorArgs(expression, exprContext, filterSynthesizer);
         context = exprContext;
         this.oclFactory = oclFactory;
@@ -251,9 +252,9 @@ public class InstanceScopeAnalysis implements PartialEvaluatorFactory {
     private boolean hasNoEffectOnOverallExpression(Notification event, NavigationCallExp attributeOrAssociationEndCall,
             AnnotatedEObject sourceElement){
 	if(configuration.isDeltaPropagationActive()) {
-	    PartialEvaluator partialEvaluatorAtPre = createPartialEvaluator(event, oppositeEndFinder, oclFactory);
+	    PartialEvaluatorImpl partialEvaluatorAtPre = createPartialEvaluator(event, oppositeEndFinder, oclFactory);
 	    Object oldValue = partialEvaluatorAtPre.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
-	    PartialEvaluator partialEvaluatorAtPost = createPartialEvaluator(oppositeEndFinder, oclFactory);
+	    PartialEvaluatorImpl partialEvaluatorAtPost = createPartialEvaluator(oppositeEndFinder, oclFactory);
 	    Object newValue = partialEvaluatorAtPost.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
 	    return partialEvaluatorAtPost.hasNoEffectOnOverallExpression(attributeOrAssociationEndCall, oldValue, newValue, filterSynthesizer);
 	} else {
@@ -607,7 +608,7 @@ public class InstanceScopeAnalysis implements PartialEvaluatorFactory {
         return result;
     }
 
-    protected PartialEvaluator getPartialEvaluatorForAllInstancesDeltaPropagation() {
+    protected PartialEvaluatorImpl getPartialEvaluatorForAllInstancesDeltaPropagation() {
         return partialEvaluatorForAllInstancesDeltaPropagation;
     }
 
@@ -615,11 +616,4 @@ public class InstanceScopeAnalysis implements PartialEvaluatorFactory {
         return this;
     }
 
-    public PartialEvaluator createPartialEvaluator(Notification atPre, OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory) {
-        return new PartialEvaluator(atPre, oppositeEndFinder, oclFactory);
-    }
-
-    public PartialEvaluator createPartialEvaluator(OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory) {
-        return new PartialEvaluator(oclFactory, oppositeEndFinder);
-    }
 }

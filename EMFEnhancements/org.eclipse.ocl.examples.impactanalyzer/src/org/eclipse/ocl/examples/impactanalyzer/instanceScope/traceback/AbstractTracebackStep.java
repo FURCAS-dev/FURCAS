@@ -41,7 +41,7 @@ import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.OptimizationActivation;
-import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluator;
+import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluatorImpl;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OperationBodyToCallMapper;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequest;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestFactory;
@@ -235,7 +235,7 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
      * <li><b>Composition rule</b>: An expression is unused if its {@link EObject#eContainer() containing expression} is unused.</li>
      * </ul>
      * 
-     * Eventually, unused checks perform one or more {@link PartialEvaluator (partial) evaluations} of expressions which are
+     * Eventually, unused checks perform one or more {@link PartialEvaluatorImpl (partial) evaluations} of expressions which are
      * reached by navigation across the OCL expression's AST, starting from the expression whose "unusedness" is to be proven.
      * Similar to the scope changes implied by the AST navigations during
      * {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, TracebackCache, Notification)}, these navigations leave and

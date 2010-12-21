@@ -31,6 +31,7 @@ import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
+import org.eclipse.ocl.examples.impactanalyzer.PartialEvaluator;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OperationBodyToCallMapper;
 import org.eclipse.ocl.examples.impactanalyzer.util.Tuple.Pair;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
@@ -52,7 +53,7 @@ import org.eclipse.ocl.utilities.PredefinedType;
  * @author Axel Uhl
  * 
  */
-public class PartialEvaluator {
+public class PartialEvaluatorImpl implements PartialEvaluator {
     private final OCL ocl;
     private final Helper helper;
     private PartialEcoreEnvironmentFactory factory;
@@ -61,7 +62,7 @@ public class PartialEvaluator {
      * Uses a {@link DefaultOppositeEndFinder} to navigate hidden opposite properties and evaluates
      * the model based on its current state.
      */
-    public PartialEvaluator(OCLFactory oclFactory) {
+    public PartialEvaluatorImpl(OCLFactory oclFactory) {
         this(new PartialEcoreEnvironmentFactory(), oclFactory);
     }
     
@@ -70,13 +71,13 @@ public class PartialEvaluator {
      * <code>oppositeEndFinder</code> provided. A default {@link PartialEcoreEnvironmentFactory} is
      * used, configured as well with the <code>oppositeEndFinder</code> provided here.
      */
-    public PartialEvaluator(OCLFactory oclFactory, OppositeEndFinder oppositeEndFinder) {
+    public PartialEvaluatorImpl(OCLFactory oclFactory, OppositeEndFinder oppositeEndFinder) {
         this.factory = new PartialEcoreEnvironmentFactory(oppositeEndFinder);
         this.ocl = oclFactory.createOCL(this.factory);
         helper = ocl.createOCLHelper();
     }
     
-    protected PartialEvaluator(PartialEcoreEnvironmentFactory factory, OCLFactory oclFactory) {
+    protected PartialEvaluatorImpl(PartialEcoreEnvironmentFactory factory, OCLFactory oclFactory) {
         this.factory = factory;
         this.ocl = oclFactory.createOCL(factory);
         helper = ocl.createOCLHelper();
@@ -90,7 +91,7 @@ public class PartialEvaluator {
      * 
      * A {@link DefaultOppositeEndFinder} is used for hidden opposite navigation.
      */
-    public PartialEvaluator(Notification atPre, OCLFactory oclFactory) {
+    public PartialEvaluatorImpl(Notification atPre, OCLFactory oclFactory) {
         this(new PartialEcoreEnvironmentFactory(atPre), oclFactory);
     }
     
@@ -100,7 +101,7 @@ public class PartialEvaluator {
      * across reference <tt>r</tt> then when during partial evaluation <tt>r</tt> is traversed starting from <tt>e1</tt>
      * then <tt>e2</tt> will show in the results although in the current version of the model it would not.<p>
      */
-    public PartialEvaluator(Notification atPre, OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory) {
+    public PartialEvaluatorImpl(Notification atPre, OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory) {
         this(new PartialEcoreEnvironmentFactory(atPre, oppositeEndFinder), oclFactory);
     }
     

@@ -1928,10 +1928,16 @@ public class TcsUtil {
     public static boolean wasExecuted(ContextTemplate base, EList<Integer> alternativeChoices, SequenceElement searchFor) {
         Sequence sequence = base.getTemplateSequence();
         List<Integer> alternativeChoicesWithLeadingMinusOneRemoved = new LinkedList<Integer>(alternativeChoices);
-        alternativeChoicesWithLeadingMinusOneRemoved.remove(0);
+        removeHeadUpToNextPositiveInteger(alternativeChoicesWithLeadingMinusOneRemoved);
         return sequence != null && wasExecuted(sequence, alternativeChoicesWithLeadingMinusOneRemoved, searchFor);
     }
     
+    private static void removeHeadUpToNextPositiveInteger(List<Integer> alternativeChoicesWithLeadingMinusOneRemoved) {
+        while (!alternativeChoicesWithLeadingMinusOneRemoved.isEmpty() && alternativeChoicesWithLeadingMinusOneRemoved.get(0) < 0) {
+            alternativeChoicesWithLeadingMinusOneRemoved.remove(0);
+        }
+    }
+
     private static boolean wasExecuted(Sequence sequence, List<Integer> alternativeChoices, SequenceElement searchFor) {
         boolean result = false;
         for (SequenceElement element : sequence.getElements()) {
