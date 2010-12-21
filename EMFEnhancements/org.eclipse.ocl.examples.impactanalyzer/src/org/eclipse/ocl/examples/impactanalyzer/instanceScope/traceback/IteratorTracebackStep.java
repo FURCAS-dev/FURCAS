@@ -23,8 +23,8 @@ import org.eclipse.ocl.ecore.IteratorExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
-import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluator;
-import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluatorFactory;
+import org.eclipse.ocl.examples.impactanalyzer.PartialEvaluatorFactory;
+import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluatorImpl;
 import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.ValueNotFoundException;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OperationBodyToCallMapper;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestFactory;
@@ -121,7 +121,7 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
         if (atPre != null) {
             // TODO perform the partial evaluation only if the values of all variables inevitably required by the predicate are known
             // TODO otherwise, think about using the UnusedEvaluationRequest technique to queue predicate evaluation for later
-            PartialEvaluator evalPre = new PartialEvaluator(atPre, oppositeEndFinder, oclFactory);
+            PartialEvaluatorImpl evalPre = new PartialEvaluatorImpl(atPre, oppositeEndFinder, oclFactory);
             try {
                 Object result = evalPre.evaluate(null, getExpression(), sourceCollection);
                 resultPre = isSourceInResult(sourceObject, result);
@@ -135,7 +135,7 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
         boolean resultPost = acceptIfPredicateTrue;
         if (resultPre != acceptIfPredicateTrue) {
             // evaluate whether the source object passes the iterator's body after the change
-            PartialEvaluator evalPost = partialEvaluatorFactory.createPartialEvaluator(oppositeEndFinder, oclFactory);
+            PartialEvaluatorImpl evalPost = partialEvaluatorFactory.createPartialEvaluator(oppositeEndFinder, oclFactory);
             try {
                 Object result = evalPost.evaluate(null, getExpression(), sourceCollection);
                 resultPost = isSourceInResult(sourceObject, result);

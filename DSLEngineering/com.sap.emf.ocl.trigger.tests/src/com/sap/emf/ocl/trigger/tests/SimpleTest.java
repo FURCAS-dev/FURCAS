@@ -5,6 +5,7 @@ import java.util.Collections;
 
 import junit.framework.TestCase;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -50,7 +51,8 @@ public class SimpleTest extends TestCase {
         final boolean[] result = new boolean[1];
         Triggerable t = new AbstractTriggerable(/* with context */ null, Collections.singleton(trivialExpression)) {
             @Override
-            public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects, OppositeEndFinder oppositeEndFinder) {
+            public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects,
+                    OppositeEndFinder oppositeEndFinder, Notification change) {
                 result[0] = expression == trivialExpression && affectedContextObjects.size() == 1 &&
                             affectedContextObjects.contains(d);
             }
@@ -72,7 +74,7 @@ public class SimpleTest extends TestCase {
         final boolean[] result = new boolean[1];
         Triggerable t = new AbstractTriggerable(/* with context */ null, Collections.singleton(trivialExpression)) {
             @Override
-            public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects, OppositeEndFinder oppositeEndFinder) {
+            public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects, OppositeEndFinder oppositeEndFinder, Notification change) {
                 result[0] = expression == trivialExpression && affectedContextObjects.size() == 1 &&
                             affectedContextObjects.contains(d1);
             }

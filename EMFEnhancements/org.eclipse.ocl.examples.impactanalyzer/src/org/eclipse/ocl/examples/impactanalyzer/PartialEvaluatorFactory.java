@@ -8,15 +8,15 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package org.eclipse.ocl.examples.impactanalyzer.deltaPropagation;
+package org.eclipse.ocl.examples.impactanalyzer;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
-import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
-
-
+import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluatorFactoryImpl;
+import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluatorImpl;
 
 public interface PartialEvaluatorFactory {
-    PartialEvaluator createPartialEvaluator(Notification atPre, OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory);
-    PartialEvaluator createPartialEvaluator(OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory);
+    PartialEvaluatorFactory INSTANCE = new PartialEvaluatorFactoryImpl();
+    PartialEvaluatorImpl createPartialEvaluator(Notification atPre, OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory);
+    PartialEvaluatorImpl createPartialEvaluator(OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory);
 }

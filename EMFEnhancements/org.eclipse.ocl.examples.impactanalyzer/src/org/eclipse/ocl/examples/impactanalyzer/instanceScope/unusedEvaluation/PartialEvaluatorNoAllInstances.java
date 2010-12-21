@@ -12,7 +12,7 @@ package org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation;
 
 
 import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
-import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluator;
+import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluatorImpl;
 
 /**
  * A partial evaluator which doesn't attempt to perform <code>allInstances()</code> requests
@@ -23,7 +23,7 @@ import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluator
  * @author Axel Uhl (D043530)
  *
  */
-public class PartialEvaluatorNoAllInstances extends PartialEvaluator {
+public class PartialEvaluatorNoAllInstances extends PartialEvaluatorImpl {
     public PartialEvaluatorNoAllInstances(OCLFactory oclFactory) {
         this(new PartialEcoreEnvironmentFactoryNoAllInstances(), oclFactory);
     }

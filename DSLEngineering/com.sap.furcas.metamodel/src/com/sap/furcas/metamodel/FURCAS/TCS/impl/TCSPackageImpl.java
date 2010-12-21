@@ -3152,7 +3152,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * @generated
      */
         public EReference getPredicateSemantic_As() {
-        return (EReference)predicateSemanticEClass.getEStructuralFeatures().get(0);
+        return (EReference)predicateSemanticEClass.getEStructuralFeatures().get(1);
     }
 
         /**
@@ -3160,8 +3160,8 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        public EReference getPredicateSemantic_When() {
-        return (EReference)predicateSemanticEClass.getEStructuralFeatures().get(1);
+        public EAttribute getPredicateSemantic_When() {
+        return (EAttribute)predicateSemanticEClass.getEStructuralFeatures().get(0);
     }
 
         /**
@@ -3722,8 +3722,8 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         createEAttribute(foreachPredicatePropertyInitEClass, FOREACH_PREDICATE_PROPERTY_INIT__MODE);
 
         predicateSemanticEClass = createEClass(PREDICATE_SEMANTIC);
+        createEAttribute(predicateSemanticEClass, PREDICATE_SEMANTIC__WHEN);
         createEReference(predicateSemanticEClass, PREDICATE_SEMANTIC__AS);
-        createEReference(predicateSemanticEClass, PREDICATE_SEMANTIC__WHEN);
         createEAttribute(predicateSemanticEClass, PREDICATE_SEMANTIC__MODE);
         createEReference(predicateSemanticEClass, PREDICATE_SEMANTIC__FOREACH_PARENT);
 
@@ -4206,8 +4206,8 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEAttribute(getForeachPredicatePropertyInit_Mode(), theEcorePackage_1.getEString(), "mode", null, 0, 1, ForeachPredicatePropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(predicateSemanticEClass, PredicateSemantic.class, "PredicateSemantic", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getPredicateSemantic_When(), theEcorePackage_1.getEString(), "when", null, 0, 1, PredicateSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getPredicateSemantic_As(), this.getTemplate(), null, "as", null, 0, 1, PredicateSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getPredicateSemantic_When(), theEcorePackage.getOCLExpression(), null, "when", null, 0, 1, PredicateSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getPredicateSemantic_Mode(), theEcorePackage_1.getEString(), "mode", null, 0, 1, PredicateSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getPredicateSemantic_ForeachParent(), this.getForeachPredicatePropertyInit(), this.getForeachPredicatePropertyInit_PredicateSemantic(), "foreachParent", null, 1, 1, PredicateSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

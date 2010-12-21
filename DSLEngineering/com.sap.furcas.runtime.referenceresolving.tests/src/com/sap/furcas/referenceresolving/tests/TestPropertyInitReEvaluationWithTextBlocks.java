@@ -118,5 +118,15 @@ public class TestPropertyInitReEvaluationWithTextBlocks extends AbstractBibtexTe
         johnDoe.eSet(authorClass.getEStructuralFeature("name"), "John Dough");
         assertEquals("Where John Dough wrote it", article.eGet(articleClass.getEStructuralFeature("location")));
     }
+    
+    @Test
+    public void testAddArticleAndExpectRevenueLedgerCreation() throws Exception {
+        EObject newArticle = articleClass.getEPackage().getEFactoryInstance().create(articleClass);
+        newArticle.eSet(articleClass.getEStructuralFeature("location"), "Location of the New Article");
+        @SuppressWarnings("unchecked")
+        EList<EObject> johnsArticles = (EList<EObject>) johnDoe.eGet(authorClass.getEStructuralFeature("articles"));
+        johnsArticles.add(newArticle);
+        testForeachPropertyInitValueInInitialModel();
+    }
 
 }

@@ -34,7 +34,7 @@ import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
-import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluator;
+import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluatorImpl;
 import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.ValueNotFoundException;
 import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.VariableValueNotFoundInfo;
 import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.VariableValueNotFoundInfoImpl;
@@ -42,7 +42,7 @@ import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.VariableValueNot
 
 
 /**
- * A largely immutable request to perform a (partial) evaluation (see also {@link PartialEvaluator}) of an {@link OCLExpression},
+ * A largely immutable request to perform a (partial) evaluation (see also {@link PartialEvaluatorImpl}) of an {@link OCLExpression},
  * comparing the result with a given expected result or <code>invalid</code>. If the result compares equal, this indicates that
  * the subexpression where the change occurred is not used, leading the traceback process to returning an empty set. The only
  * modification allowed to a request is setting an inferred variable's value (see

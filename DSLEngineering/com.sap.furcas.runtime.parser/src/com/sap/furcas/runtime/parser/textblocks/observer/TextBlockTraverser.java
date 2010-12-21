@@ -5,7 +5,6 @@ package com.sap.furcas.runtime.parser.textblocks.observer;
 
 import java.util.List;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 
@@ -20,9 +19,10 @@ public class TextBlockTraverser {
         TextBlockProxyTraversationContext rootContext = new TextBlockProxyTraversationContext(new TextBlockProxy());
         stack.push(rootContext);
     }
-    
+
     /**
      * returns existing or newly created textblockproxy
+     * 
      * @return
      */
     public TextBlockProxy enterNextChild() {
@@ -31,22 +31,22 @@ public class TextBlockTraverser {
         currentContext.setLastVisitedChildIndex(lastIndex + 1);
 
         TextBlockProxy newTextBlockProxy = new TextBlockProxy();
-		TextBlockProxyTraversationContext newContext = new TextBlockProxyTraversationContext(newTextBlockProxy);
+        TextBlockProxyTraversationContext newContext = new TextBlockProxyTraversationContext(newTextBlockProxy);
         currentContext.addSubNode(newTextBlockProxy);
         stack.push(newContext);
-        
+
         return newContext.getContextBlock();
     }
-    
+
     /**
      * Returns the index of the last visited child.
+     * 
      * @return
      */
     public int getLastVisitedChildIndex() {
-    	TextBlockProxyTraversationContext currentContext = stack.peek();
+        TextBlockProxyTraversationContext currentContext = stack.peek();
         return currentContext.getLastVisitedChildIndex();
     }
-    
 
     public void leaveChild() {
         stack.pop();
@@ -54,72 +54,67 @@ public class TextBlockTraverser {
             throw new IllegalStateException("Cannot leave root context");
         }
     }
-    
+
     public TextBlockProxy getCurrent() {
         return stack.peek().getContextBlock();
     }
-    
+
     public SequenceElement getCurrentSequenceElement() {
         return stack.peek().getCurrentSequenceElement();
     }
-    
+
     public void addSubNode(AbstractToken token) {
         stack.peek().addSubNode(token);
     }
-    
+
     public void addSubNode(TextBlockProxy token) {
         stack.peek().addSubNode(token);
     }
-    
+
     public List<?> getSubNodes() {
-        return stack.peek().getSubNodes();        
+        return stack.peek().getSubNodes();
     }
-    
+
     /**
      * @param offChannelTokens
      */
-    public void addSubNodes(
-            List<? extends AbstractToken> tokens) {
+    public void addSubNodes(List<? extends AbstractToken> tokens) {
         stack.peek().addSubNodes(tokens);
     }
-    
+
     /**
-     * this can be used to reset the counter one child back in order to
-     * re-enter the last child upon the next call to {@link #enterNextChild()}.
+     * this can be used to reset the counter one child back in order to re-enter the last child upon the next call to
+     * {@link #enterNextChild()}.
      */
-	public void resetOneChildBack() {
-//		//only reset if we are at least at the first child
-//		if(stack.peek().getLastVisitedChildIndex() > -1) {
-			stack.peek().setLastVisitedChildIndex(stack.peek().getLastVisitedChildIndex()-1);
-//		}
-	}
+    public void resetOneChildBack() {
+        // //only reset if we are at least at the first child
+        // if(stack.peek().getLastVisitedChildIndex() > -1) {
+        stack.peek().setLastVisitedChildIndex(stack.peek().getLastVisitedChildIndex() - 1);
+        // }
+    }
 
-	public void setCurrentSequenceElement(SequenceElement sequenceElement) {
-		// TODO Auto-generated method stub
-		stack.peek().setCurrentSequenceElement(sequenceElement);
-	}
+    public void setCurrentSequenceElement(SequenceElement sequenceElement) {
+        // TODO Auto-generated method stub
+        stack.peek().setCurrentSequenceElement(sequenceElement);
+    }
 
-	/**
-	 * Adds the given <code>element</code> to the context of the element
-	 * on top of the stack.
-	 * @param element
-	 */
-	public void addToContext(Object element) {
-	    stack.peek().addElementToContext(element);
-	}
+    /**
+     * Adds the given <code>element</code> to the context of the element on top of the stack.
+     * 
+     * @param element
+     */
+    public void addToContext(Object element) {
+        stack.peek().addElementToContext(element);
+    }
 
     public void enterAlternative(int choice) {
-    	TextBlockProxyTraversationContext context = stack.peek();
-    	if (context.getCurrentSequenceElement() instanceof Alternative) {
-    	    context.setCurrentAlternative(choice);
-    	}
-        }
+        TextBlockProxyTraversationContext context = stack.peek();
+        context.setCurrentAlternative(choice);
+    }
 
     public void exitAlternative() {
-		TextBlockProxyTraversationContext context = stack.peek();
-		if (context.getCurrentSequenceElement() instanceof Alternative) {
-		    context.exitAlternative();
-		}
+        TextBlockProxyTraversationContext context = stack.peek();
+        context.exitAlternative();
     }
 
     public void setOperatorToken(boolean b) {
@@ -130,7 +125,4 @@ public class TextBlockTraverser {
         return stack.peek().isOperatorToken();
     }
 
-
-  
-    
 }

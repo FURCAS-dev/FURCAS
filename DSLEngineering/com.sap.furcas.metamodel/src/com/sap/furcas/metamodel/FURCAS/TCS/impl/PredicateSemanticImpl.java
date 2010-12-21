@@ -27,8 +27,8 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Template;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.PredicateSemanticImpl#getAs <em>As</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.PredicateSemanticImpl#getWhen <em>When</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.PredicateSemanticImpl#getAs <em>As</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.PredicateSemanticImpl#getMode <em>Mode</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.PredicateSemanticImpl#getForeachParent <em>Foreach Parent</em>}</li>
  * </ul>
@@ -38,6 +38,26 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Template;
  */
 public class PredicateSemanticImpl extends EObjectImpl implements PredicateSemantic {
         /**
+     * The default value of the '{@link #getWhen() <em>When</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getWhen()
+     * @generated
+     * @ordered
+     */
+    protected static final String WHEN_EDEFAULT = null;
+
+        /**
+     * The cached value of the '{@link #getWhen() <em>When</em>}' attribute.
+     * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+     * @see #getWhen()
+     * @generated
+     * @ordered
+     */
+        protected String when = WHEN_EDEFAULT;
+
+        /**
      * The cached value of the '{@link #getAs() <em>As</em>}' reference.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -46,16 +66,6 @@ public class PredicateSemanticImpl extends EObjectImpl implements PredicateSeman
      * @ordered
      */
         protected Template as;
-
-        /**
-     * The cached value of the '{@link #getWhen() <em>When</em>}' reference.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @see #getWhen()
-     * @generated
-     * @ordered
-     */
-        protected OCLExpression when;
 
         /**
      * The default value of the '{@link #getMode() <em>Mode</em>}' attribute.
@@ -139,34 +149,17 @@ public class PredicateSemanticImpl extends EObjectImpl implements PredicateSeman
          * <!-- end-user-doc -->
      * @generated
      */
-        public OCLExpression getWhen() {
-        if (when != null && when.eIsProxy()) {
-            InternalEObject oldWhen = (InternalEObject)when;
-            when = (OCLExpression)eResolveProxy(oldWhen);
-            if (when != oldWhen) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.PREDICATE_SEMANTIC__WHEN, oldWhen, when));
-            }
-        }
+        public String getWhen() {
         return when;
     }
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public OCLExpression basicGetWhen() {
-        return when;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        public void setWhen(OCLExpression newWhen) {
-        OCLExpression oldWhen = when;
+    public void setWhen(String newWhen) {
+        String oldWhen = when;
         when = newWhen;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.PREDICATE_SEMANTIC__WHEN, oldWhen, when));
@@ -286,12 +279,11 @@ public class PredicateSemanticImpl extends EObjectImpl implements PredicateSeman
         @Override
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
+            case TCSPackage.PREDICATE_SEMANTIC__WHEN:
+                return getWhen();
             case TCSPackage.PREDICATE_SEMANTIC__AS:
                 if (resolve) return getAs();
                 return basicGetAs();
-            case TCSPackage.PREDICATE_SEMANTIC__WHEN:
-                if (resolve) return getWhen();
-                return basicGetWhen();
             case TCSPackage.PREDICATE_SEMANTIC__MODE:
                 return getMode();
             case TCSPackage.PREDICATE_SEMANTIC__FOREACH_PARENT:
@@ -308,11 +300,11 @@ public class PredicateSemanticImpl extends EObjectImpl implements PredicateSeman
         @Override
         public void eSet(int featureID, Object newValue) {
         switch (featureID) {
+            case TCSPackage.PREDICATE_SEMANTIC__WHEN:
+                setWhen((String)newValue);
+                return;
             case TCSPackage.PREDICATE_SEMANTIC__AS:
                 setAs((Template)newValue);
-                return;
-            case TCSPackage.PREDICATE_SEMANTIC__WHEN:
-                setWhen((OCLExpression)newValue);
                 return;
             case TCSPackage.PREDICATE_SEMANTIC__MODE:
                 setMode((String)newValue);
@@ -332,11 +324,11 @@ public class PredicateSemanticImpl extends EObjectImpl implements PredicateSeman
         @Override
         public void eUnset(int featureID) {
         switch (featureID) {
+            case TCSPackage.PREDICATE_SEMANTIC__WHEN:
+                setWhen(WHEN_EDEFAULT);
+                return;
             case TCSPackage.PREDICATE_SEMANTIC__AS:
                 setAs((Template)null);
-                return;
-            case TCSPackage.PREDICATE_SEMANTIC__WHEN:
-                setWhen((OCLExpression)null);
                 return;
             case TCSPackage.PREDICATE_SEMANTIC__MODE:
                 setMode(MODE_EDEFAULT);
@@ -356,10 +348,10 @@ public class PredicateSemanticImpl extends EObjectImpl implements PredicateSeman
         @Override
         public boolean eIsSet(int featureID) {
         switch (featureID) {
+            case TCSPackage.PREDICATE_SEMANTIC__WHEN:
+                return WHEN_EDEFAULT == null ? when != null : !WHEN_EDEFAULT.equals(when);
             case TCSPackage.PREDICATE_SEMANTIC__AS:
                 return as != null;
-            case TCSPackage.PREDICATE_SEMANTIC__WHEN:
-                return when != null;
             case TCSPackage.PREDICATE_SEMANTIC__MODE:
                 return MODE_EDEFAULT == null ? mode != null : !MODE_EDEFAULT.equals(mode);
             case TCSPackage.PREDICATE_SEMANTIC__FOREACH_PARENT:
@@ -378,7 +370,9 @@ public class PredicateSemanticImpl extends EObjectImpl implements PredicateSeman
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (mode: ");
+        result.append(" (when: ");
+        result.append(when);
+        result.append(", mode: ");
         result.append(mode);
         result.append(')');
         return result.toString();
