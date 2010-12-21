@@ -24,7 +24,6 @@ import java.util.regex.Pattern;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import antlr.Token;
@@ -164,7 +163,8 @@ public class DelayedReferencesHelper {
                             } else {
                                 // handle the base types
                                 if (!(next instanceof String) || !(next instanceof Number)) {
-                                    reportProblem("The OCL element " + next + " cannot be used.", reference.getToken());
+                                    reportProblem("The OCL element " + next + " cannot be used, as it is neither of type String nor a Number",
+                                            reference.getToken());
                                     return false;
                                 }
                             }
@@ -172,7 +172,7 @@ public class DelayedReferencesHelper {
                             ruleName = activePredicateSemantic.getAs();
                         }
                         if (ruleName == null) {
-                            reportProblem("At least one as parameter is needet in that case.", reference.getToken());
+                            reportProblem("At least one as parameter is needed in that case.", reference.getToken());
                             return false;
                         }
                         if (reference.getTextBlock() != null) {
@@ -449,8 +449,7 @@ public class DelayedReferencesHelper {
                 if (reference.getTextBlock() != null) {
                     addForEachContext((TextBlock) reference.getTextBlock(), (EObject) reference.getModelElement(),
                             (EObject) next, (ForeachPredicatePropertyInit) reference.getQueryElement(),
-                            (EObject) reference.getRealValue(), ((EObject) reference.getModelElement()).eResource()
-                                    .getResourceSet());
+                            (EObject) reference.getRealValue());
                 }
             }
         } finally {
@@ -464,7 +463,7 @@ public class DelayedReferencesHelper {
     }
 
     private static void addForEachContext(TextBlock contextBlock, EObject sourceModelElement, EObject currentForEachElement,
-            ForeachPredicatePropertyInit sequenceElement, EObject resultElement, ResourceSet rs) {
+            ForeachPredicatePropertyInit sequenceElement, EObject resultElement) {
         boolean forEachContextExists = false;
 
         // FIXME: The contextBlock may be null if there was a foreach that was
