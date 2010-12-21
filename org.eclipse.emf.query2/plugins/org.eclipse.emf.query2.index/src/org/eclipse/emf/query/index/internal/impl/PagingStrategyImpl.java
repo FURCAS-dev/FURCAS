@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock.WriteLock;
 
+import org.eclipse.emf.query.index.Messages;
 import org.eclipse.emf.query.index.internal.PageFileProvider;
 import org.eclipse.emf.query.index.internal.PageableElement;
 import org.eclipse.emf.query.index.internal.PagingStrategy;
@@ -78,7 +79,7 @@ public class PagingStrategyImpl<T extends PageableElement> implements PagingStra
 				}
 				list.put(entry);
 			} else {
-				throw new RuntimeException("already in queue");
+				throw new RuntimeException(Messages.Query2Index_PagingStrategyImpl_AlreadyInQueue);
 			}
 		}
 
@@ -109,7 +110,7 @@ public class PagingStrategyImpl<T extends PageableElement> implements PagingStra
 					moveEntryFirstUnlocked(entry);
 				}
 			} else {
-				throw new IllegalArgumentException("Element not locked");
+				throw new IllegalArgumentException(Messages.Query2Index_PagingStrategyImpl_ElementNotLocked);
 			}
 		}
 
@@ -330,7 +331,7 @@ public class PagingStrategyImpl<T extends PageableElement> implements PagingStra
 		lock.lock();
 		try {
 			if (lruList.hasLockedPages()) {
-				throw new IllegalStateException("Paging strategy has locked pages");
+				throw new IllegalStateException(Messages.Query2Index_PagingStrategyImpl_LockedPages);
 			} else {
 				try {
 					while (!lruList.isEmpty()) {

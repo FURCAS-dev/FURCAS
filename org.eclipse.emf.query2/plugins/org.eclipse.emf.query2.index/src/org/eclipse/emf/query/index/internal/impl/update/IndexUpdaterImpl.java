@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.query.index.Messages;
 import org.eclipse.emf.query.index.internal.IndexUpdaterInternal;
 import org.eclipse.emf.query.index.internal.ResourceDescriptorInternal;
 import org.eclipse.emf.query.index.internal.impl.EObjectDescriptorImpl;
@@ -58,7 +59,7 @@ public class IndexUpdaterImpl implements IndexUpdaterInternal {
 			EObjectDescriptorImpl eod = this.descriptorFactory.createEObjectDescriptor(typeUri, desc, fragment, name, userData);
 			desc.addEObjectDescriptor(eod);
 		} else {
-			throw new UnsupportedOperationException("behavior to implement");
+			throw new UnsupportedOperationException(Messages.Query2Index_IndexUpdaterImpl_ToImplement);
 		}
 	}
 
@@ -70,10 +71,10 @@ public class IndexUpdaterImpl implements IndexUpdaterInternal {
 				ReferenceDescriptorImpl refDesc = this.descriptorFactory.createReferenceDescriptor(eod, typeUri, targetResourceUri, targetFragment);
 				desc.addReferenceDescriptor(refDesc);
 			} else {
-				throw new UnsupportedOperationException("behavior to implmement");
+				throw new UnsupportedOperationException(Messages.Query2Index_IndexUpdaterImpl_ToImplement);
 			}
 		} else {
-			throw new UnsupportedOperationException("behavior to implement");
+			throw new UnsupportedOperationException(Messages.Query2Index_IndexUpdaterImpl_ToImplement);
 		}
 	}
 
@@ -157,7 +158,8 @@ public class IndexUpdaterImpl implements IndexUpdaterInternal {
 		assert _resDesc instanceof PageableResourceDescriptorImpl;
 		PageableResourceDescriptorImpl resDesc = (PageableResourceDescriptorImpl) _resDesc;
 
-		URI oldKey = resDesc.getURI();
+		URI resourceDescriptorURI = resDesc.getURI();
+		URI oldKey = resourceDescriptorURI;
 		PageableResourceDescriptorImpl existingResDesc = globalTables.resourceIndex.acquire(oldKey);
 		if (existingResDesc != null) {
 			if (!existingResDesc.isIndexed()) {
@@ -167,7 +169,7 @@ public class IndexUpdaterImpl implements IndexUpdaterInternal {
 				// indexed
 				globalTables.resourceIndex.delete(existingResDesc);
 			} else {
-				throw new RuntimeException("Resource already in index: " + resDesc.getURI());
+				throw new RuntimeException(Messages.getString(Messages.Query2Index_IndexUpdaterImpl_ResourceAlreadyInUse, new String[] { resourceDescriptorURI.toString() }));
 			}
 		}
 

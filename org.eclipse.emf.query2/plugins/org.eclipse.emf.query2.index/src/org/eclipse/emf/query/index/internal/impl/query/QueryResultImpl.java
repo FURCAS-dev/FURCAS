@@ -12,6 +12,7 @@ package org.eclipse.emf.query.index.internal.impl.query;
 
 import java.util.Iterator;
 
+import org.eclipse.emf.query.index.Messages;
 import org.eclipse.emf.query.index.internal.QueryExecutorInternal;
 import org.eclipse.emf.query.index.query.QueryResult;
 
@@ -54,7 +55,7 @@ public class QueryResultImpl<ExtDescriptorType, IntDescriptorType> implements Qu
 
 	private void checkValid() {
 		if (!this.queryExecutor.isValid()) {
-			throw new IllegalStateException("Query result is not valid anymore");
+			throw new IllegalStateException(Messages.Query2Index_QueryResultImpl_InvalidResult);
 		}
 	}
 

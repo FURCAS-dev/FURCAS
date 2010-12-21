@@ -11,7 +11,7 @@ public class QueryIndexNature implements IProjectNature {
 	/**
 	 * ID of this project nature
 	 */
-	public static final String NATURE_ID = "org.eclipse.emf.query2.index.ui.queryIndexNature";
+	public static final String NATURE_ID = "org.eclipse.emf.query2.index.ui.queryIndexNature"; //$NON-NLS-1$
 
 	private IProject project;
 
