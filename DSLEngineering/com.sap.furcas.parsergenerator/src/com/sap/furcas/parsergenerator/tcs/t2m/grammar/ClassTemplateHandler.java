@@ -117,10 +117,6 @@ public class ClassTemplateHandler<Type extends Object> {
     public void addTemplate(ClassTemplate template,
             RuleBodyBufferFactory ruleBodyBufferFactory)
     throws MetaModelLookupException, SyntaxElementException {
-
-        if (template.getPrefixSequence() != null) {
-            errorBucket.addError("ClassTemplate prefixSequence not implemented yet.", template);
-        }
         if (template.isIsMulti() && ! template.isIsMain()) {
             errorBucket.addWarning("Multi keyword can only be applied to main template, else it will be ignored.", template);
         }

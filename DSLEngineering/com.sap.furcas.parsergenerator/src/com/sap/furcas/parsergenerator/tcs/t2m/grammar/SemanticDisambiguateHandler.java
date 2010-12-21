@@ -106,7 +106,7 @@ public class SemanticDisambiguateHandler {
 		//TODO refactor this to ClassTemplate and OperatorTemplate in a common superclass
 		boolean isOperatorTemplate = template instanceof OperatorTemplate;
 		if (isOperatorTemplate)
-			sequence = ((OperatorTemplate) template).getOtSequence();
+			sequence = ((OperatorTemplate) template).getTemplateSequence();
 		else
 			sequence = ((ClassTemplate) template).getTemplateSequence();
 		// TODO change this character to a better intuitive version maybe ${...}

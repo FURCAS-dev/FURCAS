@@ -1348,12 +1348,12 @@ public class TestPropertyTypeHandler {
         public String oclQuery;
         
         @Override
-        public String getQueryByIdentifier() {
+        public String getQuery() {
             return oclQuery;
         }
 
         @Override
-        public void setQueryByIdentifier(String value) {
+        public void setQuery(String value) {
             oclQuery = value;
         }
 

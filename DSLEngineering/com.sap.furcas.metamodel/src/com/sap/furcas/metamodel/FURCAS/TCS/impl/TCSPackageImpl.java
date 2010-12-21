@@ -1144,18 +1144,8 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * @generated
      */
         @Override
-	public EReference getClassTemplate_TemplateSequence() {
-        return (EReference)classTemplateEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
 	public EAttribute getClassTemplate_Modifiers() {
-        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(1);
+        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(0);
     }
 
         /**
@@ -1165,7 +1155,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      */
         @Override
 	public EAttribute getClassTemplate_IsAbstract() {
-        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(2);
+        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(1);
     }
 
         /**
@@ -1175,17 +1165,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      */
         @Override
 	public EAttribute getClassTemplate_IsDeep() {
-        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(3);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getClassTemplate_PrefixSequence() {
-        return (EReference)classTemplateEClass.getEStructuralFeatures().get(4);
+        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(2);
     }
 
         /**
@@ -1195,7 +1175,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      */
         @Override
 	public EAttribute getClassTemplate_IsOperatored() {
-        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(5);
+        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(3);
     }
 
         /**
@@ -1205,7 +1185,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      */
         @Override
 	public EReference getClassTemplate_OperatorList() {
-        return (EReference)classTemplateEClass.getEStructuralFeatures().get(6);
+        return (EReference)classTemplateEClass.getEStructuralFeatures().get(4);
     }
 
         /**
@@ -1215,7 +1195,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      */
         @Override
 	public EAttribute getClassTemplate_IsMain() {
-        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(7);
+        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(5);
     }
 
         /**
@@ -1225,7 +1205,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      */
         @Override
 	public EAttribute getClassTemplate_IsMulti() {
-        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(8);
+        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(6);
     }
 
         /**
@@ -1235,7 +1215,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      */
         @Override
 	public EAttribute getClassTemplate_IsNonPrimary() {
-        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(9);
+        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(7);
     }
 
         /**
@@ -1245,7 +1225,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      */
         @Override
 	public EAttribute getClassTemplate_Mode() {
-        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(10);
+        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(8);
     }
 
         /**
@@ -1373,7 +1353,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * @generated
      */
         @Override
-	public EReference getOperatorTemplate_OtSequence() {
+	public EReference getOperatorTemplate_StoreOperatorTo() {
         return (EReference)operatorTemplateEClass.getEStructuralFeatures().get(4);
     }
 
@@ -1383,7 +1363,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * @generated
      */
         @Override
-	public EReference getOperatorTemplate_StoreOperatorTo() {
+	public EReference getOperatorTemplate_StoreLeftSideTo() {
         return (EReference)operatorTemplateEClass.getEStructuralFeatures().get(5);
     }
 
@@ -1393,18 +1373,8 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * @generated
      */
         @Override
-	public EReference getOperatorTemplate_StoreLeftSideTo() {
-        return (EReference)operatorTemplateEClass.getEStructuralFeatures().get(6);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
 	public EReference getOperatorTemplate_StoreRightSideTo() {
-        return (EReference)operatorTemplateEClass.getEStructuralFeatures().get(7);
+        return (EReference)operatorTemplateEClass.getEStructuralFeatures().get(6);
     }
 
         /**
@@ -2875,7 +2845,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getQueryByIdentifierPArg_QueryByIdentifier() {
+    public EAttribute getQueryByIdentifierPArg_Query() {
         return (EAttribute)queryByIdentifierPArgEClass.getEStructuralFeatures().get(0);
     }
 
@@ -3021,6 +2991,15 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      */
         public EReference getContextTemplate_Scope() {
         return (EReference)contextTemplateEClass.getEStructuralFeatures().get(4);
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getContextTemplate_TemplateSequence() {
+        return (EReference)contextTemplateEClass.getEStructuralFeatures().get(5);
     }
 
         /**
@@ -3449,11 +3428,9 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         createEReference(functionTemplateEClass, FUNCTION_TEMPLATE__FUNCTION_SEQUENCE);
 
         classTemplateEClass = createEClass(CLASS_TEMPLATE);
-        createEReference(classTemplateEClass, CLASS_TEMPLATE__TEMPLATE_SEQUENCE);
         createEAttribute(classTemplateEClass, CLASS_TEMPLATE__MODIFIERS);
         createEAttribute(classTemplateEClass, CLASS_TEMPLATE__IS_ABSTRACT);
         createEAttribute(classTemplateEClass, CLASS_TEMPLATE__IS_DEEP);
-        createEReference(classTemplateEClass, CLASS_TEMPLATE__PREFIX_SEQUENCE);
         createEAttribute(classTemplateEClass, CLASS_TEMPLATE__IS_OPERATORED);
         createEReference(classTemplateEClass, CLASS_TEMPLATE__OPERATOR_LIST);
         createEAttribute(classTemplateEClass, CLASS_TEMPLATE__IS_MAIN);
@@ -3474,7 +3451,6 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         createEAttribute(operatorTemplateEClass, OPERATOR_TEMPLATE__SOURCE);
         createEAttribute(operatorTemplateEClass, OPERATOR_TEMPLATE__STORE_OP_TO);
         createEAttribute(operatorTemplateEClass, OPERATOR_TEMPLATE__STORE_RIGHT_TO);
-        createEReference(operatorTemplateEClass, OPERATOR_TEMPLATE__OT_SEQUENCE);
         createEReference(operatorTemplateEClass, OPERATOR_TEMPLATE__STORE_OPERATOR_TO);
         createEReference(operatorTemplateEClass, OPERATOR_TEMPLATE__STORE_LEFT_SIDE_TO);
         createEReference(operatorTemplateEClass, OPERATOR_TEMPLATE__STORE_RIGHT_SIDE_TO);
@@ -3701,7 +3677,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         createEAttribute(queryPArgEClass, QUERY_PARG__QUERY);
 
         queryByIdentifierPArgEClass = createEClass(QUERY_BY_IDENTIFIER_PARG);
-        createEAttribute(queryByIdentifierPArgEClass, QUERY_BY_IDENTIFIER_PARG__QUERY_BY_IDENTIFIER);
+        createEAttribute(queryByIdentifierPArgEClass, QUERY_BY_IDENTIFIER_PARG__QUERY);
         createEAttribute(queryByIdentifierPArgEClass, QUERY_BY_IDENTIFIER_PARG__FEATURE);
 
         filterPArgEClass = createEClass(FILTER_PARG);
@@ -3722,6 +3698,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         createEAttribute(contextTemplateEClass, CONTEXT_TEMPLATE__IS_REFERENCE_ONLY);
         createEReference(contextTemplateEClass, CONTEXT_TEMPLATE__CONTEXT_TAGS);
         createEReference(contextTemplateEClass, CONTEXT_TEMPLATE__SCOPE);
+        createEReference(contextTemplateEClass, CONTEXT_TEMPLATE__TEMPLATE_SEQUENCE);
 
         contextTagsEClass = createEClass(CONTEXT_TAGS);
         createEAttribute(contextTagsEClass, CONTEXT_TAGS__TAGS);
@@ -3935,11 +3912,9 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEReference(getFunctionTemplate_FunctionSequence(), this.getSequence(), this.getSequence_FunctionContainer(), "functionSequence", null, 1, 1, FunctionTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(classTemplateEClass, ClassTemplate.class, "ClassTemplate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getClassTemplate_TemplateSequence(), this.getSequence(), this.getSequence_TemplateContainer(), "templateSequence", null, 1, 1, ClassTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getClassTemplate_Modifiers(), this.getTemplateModifiers(), "modifiers", null, 0, -1, ClassTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getClassTemplate_IsAbstract(), ecorePackage.getEBoolean(), "isAbstract", null, 1, 1, ClassTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getClassTemplate_IsDeep(), ecorePackage.getEBoolean(), "isDeep", null, 1, 1, ClassTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEReference(getClassTemplate_PrefixSequence(), this.getSequence(), this.getSequence_PrefixContainer(), "prefixSequence", null, 1, 1, ClassTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getClassTemplate_IsOperatored(), ecorePackage.getEBoolean(), "isOperatored", null, 1, 1, ClassTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEReference(getClassTemplate_OperatorList(), this.getOperatorList(), null, "operatorList", null, 0, 1, ClassTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getClassTemplate_IsMain(), ecorePackage.getEBoolean(), "isMain", null, 1, 1, ClassTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -3960,7 +3935,6 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEAttribute(getOperatorTemplate_Source(), ecorePackage.getEString(), "source", null, 1, 1, OperatorTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getOperatorTemplate_StoreOpTo(), ecorePackage.getEString(), "storeOpTo", null, 0, 1, OperatorTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getOperatorTemplate_StoreRightTo(), ecorePackage.getEString(), "storeRightTo", null, 0, 1, OperatorTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEReference(getOperatorTemplate_OtSequence(), this.getSequence(), this.getSequence_OtContainer(), "otSequence", null, 0, 1, OperatorTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEReference(getOperatorTemplate_StoreOperatorTo(), this.getPropertyReference(), null, "storeOperatorTo", null, 0, 1, OperatorTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getOperatorTemplate_StoreLeftSideTo(), this.getPropertyReference(), null, "storeLeftSideTo", null, 0, 1, OperatorTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getOperatorTemplate_StoreRightSideTo(), this.getPropertyReference(), null, "storeRightSideTo", null, 0, 1, OperatorTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4002,14 +3976,14 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
         initEClass(sequenceEClass, Sequence.class, "Sequence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getSequence_Elements(), this.getSequenceElement(), this.getSequenceElement_ElementSequence(), "elements", null, 0, -1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getSequence_TemplateContainer(), this.getClassTemplate(), this.getClassTemplate_TemplateSequence(), "templateContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEReference(getSequence_PrefixContainer(), this.getClassTemplate(), this.getClassTemplate_PrefixSequence(), "prefixContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getSequence_TemplateContainer(), this.getClassTemplate(), null, "templateContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getSequence_PrefixContainer(), this.getClassTemplate(), null, "prefixContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEReference(getSequence_FunctionContainer(), this.getFunctionTemplate(), this.getFunctionTemplate_FunctionSequence(), "functionContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEReference(getSequence_BlockContainer(), this.getBlock(), this.getBlock_BlockSequence(), "blockContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEReference(getSequence_ThenContainer(), this.getConditionalElement(), this.getConditionalElement_ThenSequence(), "thenContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEReference(getSequence_ElseContainer(), this.getConditionalElement(), this.getConditionalElement_ElseSequence(), "elseContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEReference(getSequence_SeparatorContainer(), this.getSeparatorPArg(), this.getSeparatorPArg_SeparatorSequence(), "separatorContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEReference(getSequence_OtContainer(), this.getOperatorTemplate(), this.getOperatorTemplate_OtSequence(), "otContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getSequence_OtContainer(), this.getOperatorTemplate(), null, "otContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(sequenceElementEClass, SequenceElement.class, "SequenceElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getSequenceElement_ElementSequence(), this.getSequence(), this.getSequence_Elements(), "elementSequence", null, 0, 1, SequenceElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -4187,7 +4161,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEAttribute(getQueryPArg_Query(), ecorePackage.getEString(), "query", null, 1, 1, QueryPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(queryByIdentifierPArgEClass, QueryByIdentifierPArg.class, "QueryByIdentifierPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getQueryByIdentifierPArg_QueryByIdentifier(), ecorePackage.getEString(), "queryByIdentifier", null, 0, 1, QueryByIdentifierPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getQueryByIdentifierPArg_Query(), ecorePackage.getEString(), "query", null, 0, 1, QueryByIdentifierPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getQueryByIdentifierPArg_Feature(), ecorePackage.getEString(), "feature", null, 0, 1, QueryByIdentifierPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(filterPArgEClass, FilterPArg.class, "FilterPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -4208,6 +4182,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEAttribute(getContextTemplate_IsReferenceOnly(), ecorePackage.getEBoolean(), "isReferenceOnly", null, 1, 1, ContextTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getContextTemplate_ContextTags(), this.getContextTags(), null, "contextTags", null, 0, 1, ContextTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getContextTemplate_Scope(), this.getScopeArg(), null, "scope", null, 0, 1, ContextTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getContextTemplate_TemplateSequence(), this.getSequence(), null, "templateSequence", null, 1, 1, ContextTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(contextTagsEClass, ContextTags.class, "ContextTags", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getContextTags_Tags(), ecorePackage.getEString(), "tags", null, 0, -1, ContextTags.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

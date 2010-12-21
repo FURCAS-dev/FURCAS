@@ -15,7 +15,7 @@ package com.sap.furcas.metamodel.FURCAS.TCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg#getQueryByIdentifier <em>Query By Identifier</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg#getQuery <em>Query</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg#getFeature <em>Feature</em>}</li>
  * </ul>
  * </p>
@@ -26,30 +26,30 @@ package com.sap.furcas.metamodel.FURCAS.TCS;
  */
 public interface QueryByIdentifierPArg extends PropertyArg {
     /**
-     * Returns the value of the '<em><b>Query By Identifier</b></em>' attribute.
+     * Returns the value of the '<em><b>Query</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Query By Identifier</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Query By Identifier</em>' attribute.
-     * @see #setQueryByIdentifier(String)
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getQueryByIdentifierPArg_QueryByIdentifier()
+     * @return the value of the '<em>Query</em>' attribute.
+     * @see #setQuery(String)
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getQueryByIdentifierPArg_Query()
      * @model
      * @generated
      */
-    String getQueryByIdentifier();
+    String getQuery();
 
     /**
-     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg#getQueryByIdentifier <em>Query By Identifier</em>}' attribute.
+     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg#getQuery <em>Query</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Query By Identifier</em>' attribute.
-     * @see #getQueryByIdentifier()
+     * @param value the new value of the '<em>Query</em>' attribute.
+     * @see #getQuery()
      * @generated
      */
-    void setQueryByIdentifier(String value);
+    void setQuery(String value);
 
     /**
      * Returns the value of the '<em><b>Feature</b></em>' attribute.
