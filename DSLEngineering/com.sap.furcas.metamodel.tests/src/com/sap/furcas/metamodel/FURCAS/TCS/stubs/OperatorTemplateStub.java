@@ -46,7 +46,7 @@ public class OperatorTemplateStub extends TemplateStub implements OperatorTempla
      * @see TCS.OperatorTemplate#getOtSequence()
      */
     @Override
-    public Sequence getOtSequence() {
+    public Sequence getTemplateSequence() {
         // TODO Auto-generated method stub
         return null;
     }
@@ -55,7 +55,7 @@ public class OperatorTemplateStub extends TemplateStub implements OperatorTempla
      * @see TCS.OperatorTemplate#setOtSequence(TCS.Sequence)
      */
     @Override
-    public void setOtSequence(Sequence value) {
+    public void setTemplateSequence(Sequence value) {
         // TODO Auto-generated method stub
         
     }

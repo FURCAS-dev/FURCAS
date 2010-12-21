@@ -130,8 +130,8 @@ public class OperatorTemplateHandler<Type extends Object> {
 		    initString.append(") : null;\n\n");
 		}
 
-        if( template.getOtSequence() != null) {
-            Sequence sequence = template.getOtSequence();
+        if( template.getTemplateSequence() != null) {
+            Sequence sequence = template.getTemplateSequence();
             String rulefragment = ruleBodyBufferFactory.getNewRuleBodyFragment(sequence);
             rulebody.append(rulefragment);
         }

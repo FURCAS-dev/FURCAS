@@ -209,10 +209,10 @@ public class TcsUtil {
 
                         for (OperatorTemplate ot : findOperatorTemplatesByOperatorLiteralValue(operatorValue,
                                 (EClass) getType(prop), syntax)) {
-                            if (ot.getOtSequence() != null) {
+                            if (ot.getTemplateSequence() != null) {
                                 addAllIfNotNull(
                                         results,
-                                        getPossibleFirstAtomicSequenceElements(ot.getOtSequence(), classTemplateMap,
+                                        getPossibleFirstAtomicSequenceElements(ot.getTemplateSequence(), classTemplateMap,
                                                 new HashSet<Template>(), syntax));
                             } else {
                                 otWithoutSequenceFound = true;
@@ -1962,7 +1962,7 @@ public class TcsUtil {
 
     private static Sequence getTemplateSequence(ContextTemplate base) {
         Sequence sequence = (base instanceof ClassTemplate ? ((ClassTemplate) base).getTemplateSequence() :
-            (base instanceof OperatorTemplate ? ((OperatorTemplate) base).getOtSequence() : null));
+            (base instanceof OperatorTemplate ? ((OperatorTemplate) base).getTemplateSequence() : null));
         return sequence;
     }
     

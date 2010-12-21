@@ -725,13 +725,22 @@ public interface TCSPackage extends EPackage {
         int CONTEXT_TEMPLATE__SCOPE = TEMPLATE_FEATURE_COUNT + 4;
 
 								/**
+     * The feature id for the '<em><b>Template Sequence</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CONTEXT_TEMPLATE__TEMPLATE_SEQUENCE = TEMPLATE_FEATURE_COUNT + 5;
+
+                                /**
      * The number of structural features of the '<em>Context Template</em>' class.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int CONTEXT_TEMPLATE_FEATURE_COUNT = TEMPLATE_FEATURE_COUNT + 5;
+        int CONTEXT_TEMPLATE_FEATURE_COUNT = TEMPLATE_FEATURE_COUNT + 6;
 
         /**
      * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.ClassTemplateImpl <em>Class Template</em>}' class.
@@ -885,7 +894,7 @@ public interface TCSPackage extends EPackage {
      * @generated
      * @ordered
      */
-        int CLASS_TEMPLATE__TEMPLATE_SEQUENCE = CONTEXT_TEMPLATE_FEATURE_COUNT + 0;
+        int CLASS_TEMPLATE__TEMPLATE_SEQUENCE = CONTEXT_TEMPLATE__TEMPLATE_SEQUENCE;
 
         /**
      * The feature id for the '<em><b>Modifiers</b></em>' attribute list.
@@ -894,7 +903,7 @@ public interface TCSPackage extends EPackage {
      * @generated
      * @ordered
      */
-        int CLASS_TEMPLATE__MODIFIERS = CONTEXT_TEMPLATE_FEATURE_COUNT + 1;
+        int CLASS_TEMPLATE__MODIFIERS = CONTEXT_TEMPLATE_FEATURE_COUNT + 0;
 
         /**
      * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -903,7 +912,7 @@ public interface TCSPackage extends EPackage {
      * @generated
      * @ordered
      */
-        int CLASS_TEMPLATE__IS_ABSTRACT = CONTEXT_TEMPLATE_FEATURE_COUNT + 2;
+        int CLASS_TEMPLATE__IS_ABSTRACT = CONTEXT_TEMPLATE_FEATURE_COUNT + 1;
 
         /**
      * The feature id for the '<em><b>Is Deep</b></em>' attribute.
@@ -912,16 +921,7 @@ public interface TCSPackage extends EPackage {
      * @generated
      * @ordered
      */
-        int CLASS_TEMPLATE__IS_DEEP = CONTEXT_TEMPLATE_FEATURE_COUNT + 3;
-
-        /**
-     * The feature id for the '<em><b>Prefix Sequence</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-        int CLASS_TEMPLATE__PREFIX_SEQUENCE = CONTEXT_TEMPLATE_FEATURE_COUNT + 4;
+        int CLASS_TEMPLATE__IS_DEEP = CONTEXT_TEMPLATE_FEATURE_COUNT + 2;
 
         /**
      * The feature id for the '<em><b>Is Operatored</b></em>' attribute.
@@ -930,7 +930,7 @@ public interface TCSPackage extends EPackage {
      * @generated
      * @ordered
      */
-        int CLASS_TEMPLATE__IS_OPERATORED = CONTEXT_TEMPLATE_FEATURE_COUNT + 5;
+        int CLASS_TEMPLATE__IS_OPERATORED = CONTEXT_TEMPLATE_FEATURE_COUNT + 3;
 
         /**
      * The feature id for the '<em><b>Operator List</b></em>' reference.
@@ -939,7 +939,7 @@ public interface TCSPackage extends EPackage {
      * @generated
      * @ordered
      */
-        int CLASS_TEMPLATE__OPERATOR_LIST = CONTEXT_TEMPLATE_FEATURE_COUNT + 6;
+        int CLASS_TEMPLATE__OPERATOR_LIST = CONTEXT_TEMPLATE_FEATURE_COUNT + 4;
 
         /**
      * The feature id for the '<em><b>Is Main</b></em>' attribute.
@@ -948,7 +948,7 @@ public interface TCSPackage extends EPackage {
      * @generated
      * @ordered
      */
-        int CLASS_TEMPLATE__IS_MAIN = CONTEXT_TEMPLATE_FEATURE_COUNT + 7;
+        int CLASS_TEMPLATE__IS_MAIN = CONTEXT_TEMPLATE_FEATURE_COUNT + 5;
 
         /**
      * The feature id for the '<em><b>Is Multi</b></em>' attribute.
@@ -957,7 +957,7 @@ public interface TCSPackage extends EPackage {
      * @generated
      * @ordered
      */
-        int CLASS_TEMPLATE__IS_MULTI = CONTEXT_TEMPLATE_FEATURE_COUNT + 8;
+        int CLASS_TEMPLATE__IS_MULTI = CONTEXT_TEMPLATE_FEATURE_COUNT + 6;
 
         /**
      * The feature id for the '<em><b>Is Non Primary</b></em>' attribute.
@@ -966,7 +966,7 @@ public interface TCSPackage extends EPackage {
      * @generated
      * @ordered
      */
-        int CLASS_TEMPLATE__IS_NON_PRIMARY = CONTEXT_TEMPLATE_FEATURE_COUNT + 9;
+        int CLASS_TEMPLATE__IS_NON_PRIMARY = CONTEXT_TEMPLATE_FEATURE_COUNT + 7;
 
         /**
      * The feature id for the '<em><b>Mode</b></em>' attribute.
@@ -975,7 +975,7 @@ public interface TCSPackage extends EPackage {
      * @generated
      * @ordered
      */
-        int CLASS_TEMPLATE__MODE = CONTEXT_TEMPLATE_FEATURE_COUNT + 10;
+        int CLASS_TEMPLATE__MODE = CONTEXT_TEMPLATE_FEATURE_COUNT + 8;
 
         /**
      * The number of structural features of the '<em>Class Template</em>' class.
@@ -984,7 +984,7 @@ public interface TCSPackage extends EPackage {
      * @generated
      * @ordered
      */
-        int CLASS_TEMPLATE_FEATURE_COUNT = CONTEXT_TEMPLATE_FEATURE_COUNT + 11;
+        int CLASS_TEMPLATE_FEATURE_COUNT = CONTEXT_TEMPLATE_FEATURE_COUNT + 9;
 
         /**
      * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.PrimitiveTemplateImpl <em>Primitive Template</em>}' class.
@@ -1295,6 +1295,15 @@ public interface TCSPackage extends EPackage {
         int OPERATOR_TEMPLATE__SCOPE = CONTEXT_TEMPLATE__SCOPE;
 
 								/**
+     * The feature id for the '<em><b>Template Sequence</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OPERATOR_TEMPLATE__TEMPLATE_SEQUENCE = CONTEXT_TEMPLATE__TEMPLATE_SEQUENCE;
+
+                                /**
      * The feature id for the '<em><b>Operators</b></em>' reference list.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1331,22 +1340,13 @@ public interface TCSPackage extends EPackage {
         int OPERATOR_TEMPLATE__STORE_RIGHT_TO = CONTEXT_TEMPLATE_FEATURE_COUNT + 3;
 
         /**
-     * The feature id for the '<em><b>Ot Sequence</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-        int OPERATOR_TEMPLATE__OT_SEQUENCE = CONTEXT_TEMPLATE_FEATURE_COUNT + 4;
-
-        /**
      * The feature id for the '<em><b>Store Operator To</b></em>' containment reference.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int OPERATOR_TEMPLATE__STORE_OPERATOR_TO = CONTEXT_TEMPLATE_FEATURE_COUNT + 5;
+        int OPERATOR_TEMPLATE__STORE_OPERATOR_TO = CONTEXT_TEMPLATE_FEATURE_COUNT + 4;
 
         /**
      * The feature id for the '<em><b>Store Left Side To</b></em>' containment reference.
@@ -1355,7 +1355,7 @@ public interface TCSPackage extends EPackage {
      * @generated
      * @ordered
      */
-        int OPERATOR_TEMPLATE__STORE_LEFT_SIDE_TO = CONTEXT_TEMPLATE_FEATURE_COUNT + 6;
+        int OPERATOR_TEMPLATE__STORE_LEFT_SIDE_TO = CONTEXT_TEMPLATE_FEATURE_COUNT + 5;
 
         /**
      * The feature id for the '<em><b>Store Right Side To</b></em>' containment reference.
@@ -1364,7 +1364,7 @@ public interface TCSPackage extends EPackage {
      * @generated
      * @ordered
      */
-        int OPERATOR_TEMPLATE__STORE_RIGHT_SIDE_TO = CONTEXT_TEMPLATE_FEATURE_COUNT + 7;
+        int OPERATOR_TEMPLATE__STORE_RIGHT_SIDE_TO = CONTEXT_TEMPLATE_FEATURE_COUNT + 6;
 
         /**
      * The number of structural features of the '<em>Operator Template</em>' class.
@@ -1373,7 +1373,7 @@ public interface TCSPackage extends EPackage {
      * @generated
      * @ordered
      */
-        int OPERATOR_TEMPLATE_FEATURE_COUNT = CONTEXT_TEMPLATE_FEATURE_COUNT + 8;
+        int OPERATOR_TEMPLATE_FEATURE_COUNT = CONTEXT_TEMPLATE_FEATURE_COUNT + 7;
 
         /**
      * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.EnumerationTemplateImpl <em>Enumeration Template</em>}' class.
@@ -2114,7 +2114,7 @@ public interface TCSPackage extends EPackage {
         int SEQUENCE__ELEMENTS = LOCATED_ELEMENT_FEATURE_COUNT + 0;
 
         /**
-     * The feature id for the '<em><b>Template Container</b></em>' container reference.
+     * The feature id for the '<em><b>Template Container</b></em>' reference.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
@@ -2123,7 +2123,7 @@ public interface TCSPackage extends EPackage {
         int SEQUENCE__TEMPLATE_CONTAINER = LOCATED_ELEMENT_FEATURE_COUNT + 1;
 
         /**
-     * The feature id for the '<em><b>Prefix Container</b></em>' container reference.
+     * The feature id for the '<em><b>Prefix Container</b></em>' reference.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
@@ -2177,7 +2177,7 @@ public interface TCSPackage extends EPackage {
         int SEQUENCE__SEPARATOR_CONTAINER = LOCATED_ELEMENT_FEATURE_COUNT + 7;
 
         /**
-     * The feature id for the '<em><b>Ot Container</b></em>' container reference.
+     * The feature id for the '<em><b>Ot Container</b></em>' reference.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
@@ -5908,13 +5908,13 @@ public interface TCSPackage extends EPackage {
     int QUERY_BY_IDENTIFIER_PARG__PROPERTY = PROPERTY_ARG__PROPERTY;
 
         /**
-     * The feature id for the '<em><b>Query By Identifier</b></em>' attribute.
+     * The feature id for the '<em><b>Query</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int QUERY_BY_IDENTIFIER_PARG__QUERY_BY_IDENTIFIER = PROPERTY_ARG_FEATURE_COUNT + 0;
+    int QUERY_BY_IDENTIFIER_PARG__QUERY = PROPERTY_ARG_FEATURE_COUNT + 0;
 
         /**
      * The feature id for the '<em><b>Feature</b></em>' attribute.
@@ -6402,7 +6402,7 @@ public interface TCSPackage extends EPackage {
         int SEQUENCE_IN_ALTERNATIVE__ELEMENTS = SEQUENCE__ELEMENTS;
 
         /**
-     * The feature id for the '<em><b>Template Container</b></em>' container reference.
+     * The feature id for the '<em><b>Template Container</b></em>' reference.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
@@ -6411,7 +6411,7 @@ public interface TCSPackage extends EPackage {
         int SEQUENCE_IN_ALTERNATIVE__TEMPLATE_CONTAINER = SEQUENCE__TEMPLATE_CONTAINER;
 
         /**
-     * The feature id for the '<em><b>Prefix Container</b></em>' container reference.
+     * The feature id for the '<em><b>Prefix Container</b></em>' reference.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
@@ -6465,7 +6465,7 @@ public interface TCSPackage extends EPackage {
         int SEQUENCE_IN_ALTERNATIVE__SEPARATOR_CONTAINER = SEQUENCE__SEPARATOR_CONTAINER;
 
         /**
-     * The feature id for the '<em><b>Ot Container</b></em>' container reference.
+     * The feature id for the '<em><b>Ot Container</b></em>' reference.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
@@ -7313,17 +7313,6 @@ public interface TCSPackage extends EPackage {
         EClass getClassTemplate();
 
         /**
-     * Returns the meta object for the containment reference '{@link com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate#getTemplateSequence <em>Template Sequence</em>}'.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Template Sequence</em>'.
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate#getTemplateSequence()
-     * @see #getClassTemplate()
-     * @generated
-     */
-        EReference getClassTemplate_TemplateSequence();
-
-        /**
      * Returns the meta object for the attribute list '{@link com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate#getModifiers <em>Modifiers</em>}'.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -7355,17 +7344,6 @@ public interface TCSPackage extends EPackage {
      * @generated
      */
         EAttribute getClassTemplate_IsDeep();
-
-        /**
-     * Returns the meta object for the containment reference '{@link com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate#getPrefixSequence <em>Prefix Sequence</em>}'.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Prefix Sequence</em>'.
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate#getPrefixSequence()
-     * @see #getClassTemplate()
-     * @generated
-     */
-        EReference getClassTemplate_PrefixSequence();
 
         /**
      * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate#isIsOperatored <em>Is Operatored</em>}'.
@@ -7562,17 +7540,6 @@ public interface TCSPackage extends EPackage {
      * @generated
      */
         EAttribute getOperatorTemplate_StoreRightTo();
-
-        /**
-     * Returns the meta object for the containment reference '{@link com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate#getOtSequence <em>Ot Sequence</em>}'.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Ot Sequence</em>'.
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate#getOtSequence()
-     * @see #getOperatorTemplate()
-     * @generated
-     */
-        EReference getOperatorTemplate_OtSequence();
 
         /**
      * Returns the meta object for the containment reference '{@link com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate#getStoreOperatorTo <em>Store Operator To</em>}'.
@@ -7918,10 +7885,10 @@ public interface TCSPackage extends EPackage {
         EReference getSequence_Elements();
 
         /**
-     * Returns the meta object for the container reference '{@link com.sap.furcas.metamodel.FURCAS.TCS.Sequence#getTemplateContainer <em>Template Container</em>}'.
+     * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.FURCAS.TCS.Sequence#getTemplateContainer <em>Template Container</em>}'.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @return the meta object for the container reference '<em>Template Container</em>'.
+     * @return the meta object for the reference '<em>Template Container</em>'.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Sequence#getTemplateContainer()
      * @see #getSequence()
      * @generated
@@ -7929,10 +7896,10 @@ public interface TCSPackage extends EPackage {
         EReference getSequence_TemplateContainer();
 
         /**
-     * Returns the meta object for the container reference '{@link com.sap.furcas.metamodel.FURCAS.TCS.Sequence#getPrefixContainer <em>Prefix Container</em>}'.
+     * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.FURCAS.TCS.Sequence#getPrefixContainer <em>Prefix Container</em>}'.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @return the meta object for the container reference '<em>Prefix Container</em>'.
+     * @return the meta object for the reference '<em>Prefix Container</em>'.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Sequence#getPrefixContainer()
      * @see #getSequence()
      * @generated
@@ -7995,10 +7962,10 @@ public interface TCSPackage extends EPackage {
         EReference getSequence_SeparatorContainer();
 
         /**
-     * Returns the meta object for the container reference '{@link com.sap.furcas.metamodel.FURCAS.TCS.Sequence#getOtContainer <em>Ot Container</em>}'.
+     * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.FURCAS.TCS.Sequence#getOtContainer <em>Ot Container</em>}'.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @return the meta object for the container reference '<em>Ot Container</em>'.
+     * @return the meta object for the reference '<em>Ot Container</em>'.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Sequence#getOtContainer()
      * @see #getSequence()
      * @generated
@@ -9269,15 +9236,15 @@ public interface TCSPackage extends EPackage {
     EClass getQueryByIdentifierPArg();
 
         /**
-     * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg#getQueryByIdentifier <em>Query By Identifier</em>}'.
+     * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg#getQuery <em>Query</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Query By Identifier</em>'.
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg#getQueryByIdentifier()
+     * @return the meta object for the attribute '<em>Query</em>'.
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg#getQuery()
      * @see #getQueryByIdentifierPArg()
      * @generated
      */
-    EAttribute getQueryByIdentifierPArg_QueryByIdentifier();
+    EAttribute getQueryByIdentifierPArg_Query();
 
         /**
      * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg#getFeature <em>Feature</em>}'.
@@ -9450,6 +9417,17 @@ public interface TCSPackage extends EPackage {
      * @generated
      */
         EReference getContextTemplate_Scope();
+
+        /**
+     * Returns the meta object for the containment reference '{@link com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate#getTemplateSequence <em>Template Sequence</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Template Sequence</em>'.
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate#getTemplateSequence()
+     * @see #getContextTemplate()
+     * @generated
+     */
+    EReference getContextTemplate_TemplateSequence();
 
         /**
      * Returns the meta object for class '{@link com.sap.furcas.metamodel.FURCAS.TCS.ContextTags <em>Context Tags</em>}'.
@@ -10108,14 +10086,6 @@ public interface TCSPackage extends EPackage {
                 EClass CLASS_TEMPLATE = eINSTANCE.getClassTemplate();
 
                 /**
-         * The meta object literal for the '<em><b>Template Sequence</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-                 * <!-- end-user-doc -->
-         * @generated
-         */
-                EReference CLASS_TEMPLATE__TEMPLATE_SEQUENCE = eINSTANCE.getClassTemplate_TemplateSequence();
-
-                /**
          * The meta object literal for the '<em><b>Modifiers</b></em>' attribute list feature.
          * <!-- begin-user-doc -->
                  * <!-- end-user-doc -->
@@ -10138,14 +10108,6 @@ public interface TCSPackage extends EPackage {
          * @generated
          */
                 EAttribute CLASS_TEMPLATE__IS_DEEP = eINSTANCE.getClassTemplate_IsDeep();
-
-                /**
-         * The meta object literal for the '<em><b>Prefix Sequence</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-                 * <!-- end-user-doc -->
-         * @generated
-         */
-                EReference CLASS_TEMPLATE__PREFIX_SEQUENCE = eINSTANCE.getClassTemplate_PrefixSequence();
 
                 /**
          * The meta object literal for the '<em><b>Is Operatored</b></em>' attribute feature.
@@ -10294,14 +10256,6 @@ public interface TCSPackage extends EPackage {
          * @generated
          */
                 EAttribute OPERATOR_TEMPLATE__STORE_RIGHT_TO = eINSTANCE.getOperatorTemplate_StoreRightTo();
-
-                /**
-         * The meta object literal for the '<em><b>Ot Sequence</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-                 * <!-- end-user-doc -->
-         * @generated
-         */
-                EReference OPERATOR_TEMPLATE__OT_SEQUENCE = eINSTANCE.getOperatorTemplate_OtSequence();
 
                 /**
          * The meta object literal for the '<em><b>Store Operator To</b></em>' containment reference feature.
@@ -10578,7 +10532,7 @@ public interface TCSPackage extends EPackage {
                 EReference SEQUENCE__ELEMENTS = eINSTANCE.getSequence_Elements();
 
                 /**
-         * The meta object literal for the '<em><b>Template Container</b></em>' container reference feature.
+         * The meta object literal for the '<em><b>Template Container</b></em>' reference feature.
          * <!-- begin-user-doc -->
                  * <!-- end-user-doc -->
          * @generated
@@ -10586,7 +10540,7 @@ public interface TCSPackage extends EPackage {
                 EReference SEQUENCE__TEMPLATE_CONTAINER = eINSTANCE.getSequence_TemplateContainer();
 
                 /**
-         * The meta object literal for the '<em><b>Prefix Container</b></em>' container reference feature.
+         * The meta object literal for the '<em><b>Prefix Container</b></em>' reference feature.
          * <!-- begin-user-doc -->
                  * <!-- end-user-doc -->
          * @generated
@@ -10634,7 +10588,7 @@ public interface TCSPackage extends EPackage {
                 EReference SEQUENCE__SEPARATOR_CONTAINER = eINSTANCE.getSequence_SeparatorContainer();
 
                 /**
-         * The meta object literal for the '<em><b>Ot Container</b></em>' container reference feature.
+         * The meta object literal for the '<em><b>Ot Container</b></em>' reference feature.
          * <!-- begin-user-doc -->
                  * <!-- end-user-doc -->
          * @generated
@@ -11716,12 +11670,12 @@ public interface TCSPackage extends EPackage {
         EClass QUERY_BY_IDENTIFIER_PARG = eINSTANCE.getQueryByIdentifierPArg();
 
                 /**
-         * The meta object literal for the '<em><b>Query By Identifier</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Query</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute QUERY_BY_IDENTIFIER_PARG__QUERY_BY_IDENTIFIER = eINSTANCE.getQueryByIdentifierPArg_QueryByIdentifier();
+        EAttribute QUERY_BY_IDENTIFIER_PARG__QUERY = eINSTANCE.getQueryByIdentifierPArg_Query();
 
                 /**
          * The meta object literal for the '<em><b>Feature</b></em>' attribute feature.
@@ -11858,6 +11812,14 @@ public interface TCSPackage extends EPackage {
          * @generated
          */
                 EReference CONTEXT_TEMPLATE__SCOPE = eINSTANCE.getContextTemplate_Scope();
+
+                /**
+         * The meta object literal for the '<em><b>Template Sequence</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference CONTEXT_TEMPLATE__TEMPLATE_SEQUENCE = eINSTANCE.getContextTemplate_TemplateSequence();
 
                 /**
          * The meta object literal for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.ContextTagsImpl <em>Context Tags</em>}' class.

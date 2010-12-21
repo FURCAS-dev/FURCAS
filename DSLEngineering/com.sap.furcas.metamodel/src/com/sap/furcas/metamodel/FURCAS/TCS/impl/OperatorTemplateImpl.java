@@ -34,7 +34,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.OperatorTemplateImpl#getSource <em>Source</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.OperatorTemplateImpl#getStoreOpTo <em>Store Op To</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.OperatorTemplateImpl#getStoreRightTo <em>Store Right To</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.OperatorTemplateImpl#getOtSequence <em>Ot Sequence</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.OperatorTemplateImpl#getStoreOperatorTo <em>Store Operator To</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.OperatorTemplateImpl#getStoreLeftSideTo <em>Store Left Side To</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.OperatorTemplateImpl#getStoreRightSideTo <em>Store Right Side To</em>}</li>
@@ -113,16 +112,6 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
      * @ordered
      */
         protected String storeRightTo = STORE_RIGHT_TO_EDEFAULT;
-
-        /**
-     * The cached value of the '{@link #getOtSequence() <em>Ot Sequence</em>}' containment reference.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @see #getOtSequence()
-     * @generated
-     * @ordered
-     */
-        protected Sequence otSequence;
 
         /**
      * The cached value of the '{@link #getStoreOperatorTo() <em>Store Operator To</em>}' containment reference.
@@ -246,49 +235,6 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
         storeRightTo = newStoreRightTo;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.OPERATOR_TEMPLATE__STORE_RIGHT_TO, oldStoreRightTo, storeRightTo));
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        public Sequence getOtSequence() {
-        return otSequence;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        public NotificationChain basicSetOtSequence(Sequence newOtSequence, NotificationChain msgs) {
-        Sequence oldOtSequence = otSequence;
-        otSequence = newOtSequence;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TCSPackage.OPERATOR_TEMPLATE__OT_SEQUENCE, oldOtSequence, newOtSequence);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        public void setOtSequence(Sequence newOtSequence) {
-        if (newOtSequence != otSequence) {
-            NotificationChain msgs = null;
-            if (otSequence != null)
-                msgs = ((InternalEObject)otSequence).eInverseRemove(this, TCSPackage.SEQUENCE__OT_CONTAINER, Sequence.class, msgs);
-            if (newOtSequence != null)
-                msgs = ((InternalEObject)newOtSequence).eInverseAdd(this, TCSPackage.SEQUENCE__OT_CONTAINER, Sequence.class, msgs);
-            msgs = basicSetOtSequence(newOtSequence, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.OPERATOR_TEMPLATE__OT_SEQUENCE, newOtSequence, newOtSequence));
     }
 
         /**
@@ -431,10 +377,6 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
         switch (featureID) {
             case TCSPackage.OPERATOR_TEMPLATE__OPERATORS:
                 return ((InternalEList<InternalEObject>)(InternalEList<?>)getOperators()).basicAdd(otherEnd, msgs);
-            case TCSPackage.OPERATOR_TEMPLATE__OT_SEQUENCE:
-                if (otSequence != null)
-                    msgs = ((InternalEObject)otSequence).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TCSPackage.OPERATOR_TEMPLATE__OT_SEQUENCE, null, msgs);
-                return basicSetOtSequence((Sequence)otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -449,8 +391,6 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
         switch (featureID) {
             case TCSPackage.OPERATOR_TEMPLATE__OPERATORS:
                 return ((InternalEList<?>)getOperators()).basicRemove(otherEnd, msgs);
-            case TCSPackage.OPERATOR_TEMPLATE__OT_SEQUENCE:
-                return basicSetOtSequence(null, msgs);
             case TCSPackage.OPERATOR_TEMPLATE__STORE_OPERATOR_TO:
                 return basicSetStoreOperatorTo(null, msgs);
             case TCSPackage.OPERATOR_TEMPLATE__STORE_LEFT_SIDE_TO:
@@ -477,8 +417,6 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
                 return getStoreOpTo();
             case TCSPackage.OPERATOR_TEMPLATE__STORE_RIGHT_TO:
                 return getStoreRightTo();
-            case TCSPackage.OPERATOR_TEMPLATE__OT_SEQUENCE:
-                return getOtSequence();
             case TCSPackage.OPERATOR_TEMPLATE__STORE_OPERATOR_TO:
                 return getStoreOperatorTo();
             case TCSPackage.OPERATOR_TEMPLATE__STORE_LEFT_SIDE_TO:
@@ -510,9 +448,6 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
                 return;
             case TCSPackage.OPERATOR_TEMPLATE__STORE_RIGHT_TO:
                 setStoreRightTo((String)newValue);
-                return;
-            case TCSPackage.OPERATOR_TEMPLATE__OT_SEQUENCE:
-                setOtSequence((Sequence)newValue);
                 return;
             case TCSPackage.OPERATOR_TEMPLATE__STORE_OPERATOR_TO:
                 setStoreOperatorTo((PropertyReference)newValue);
@@ -547,9 +482,6 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
             case TCSPackage.OPERATOR_TEMPLATE__STORE_RIGHT_TO:
                 setStoreRightTo(STORE_RIGHT_TO_EDEFAULT);
                 return;
-            case TCSPackage.OPERATOR_TEMPLATE__OT_SEQUENCE:
-                setOtSequence((Sequence)null);
-                return;
             case TCSPackage.OPERATOR_TEMPLATE__STORE_OPERATOR_TO:
                 setStoreOperatorTo((PropertyReference)null);
                 return;
@@ -579,8 +511,6 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
                 return STORE_OP_TO_EDEFAULT == null ? storeOpTo != null : !STORE_OP_TO_EDEFAULT.equals(storeOpTo);
             case TCSPackage.OPERATOR_TEMPLATE__STORE_RIGHT_TO:
                 return STORE_RIGHT_TO_EDEFAULT == null ? storeRightTo != null : !STORE_RIGHT_TO_EDEFAULT.equals(storeRightTo);
-            case TCSPackage.OPERATOR_TEMPLATE__OT_SEQUENCE:
-                return otSequence != null;
             case TCSPackage.OPERATOR_TEMPLATE__STORE_OPERATOR_TO:
                 return storeOperatorTo != null;
             case TCSPackage.OPERATOR_TEMPLATE__STORE_LEFT_SIDE_TO:

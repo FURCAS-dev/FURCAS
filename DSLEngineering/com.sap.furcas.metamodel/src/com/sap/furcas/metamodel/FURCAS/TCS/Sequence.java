@@ -52,56 +52,52 @@ public interface Sequence extends LocatedElement {
         EList<SequenceElement> getElements();
 
         /**
-     * Returns the value of the '<em><b>Template Container</b></em>' container reference.
-     * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate#getTemplateSequence <em>Template Sequence</em>}'.
+     * Returns the value of the '<em><b>Template Container</b></em>' reference.
      * <!-- begin-user-doc -->
          * <p>
          * If the meaning of the '<em>Template Container</em>' container reference isn't clear,
          * there really should be more of a description here...
          * </p>
          * <!-- end-user-doc -->
-     * @return the value of the '<em>Template Container</em>' container reference.
+     * @return the value of the '<em>Template Container</em>' reference.
      * @see #setTemplateContainer(ClassTemplate)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getSequence_TemplateContainer()
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate#getTemplateSequence
-     * @model opposite="templateSequence" transient="false" ordered="false"
+     * @model ordered="false"
      * @generated
      */
         ClassTemplate getTemplateContainer();
 
         /**
-     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.Sequence#getTemplateContainer <em>Template Container</em>}' container reference.
+     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.Sequence#getTemplateContainer <em>Template Container</em>}' reference.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Template Container</em>' container reference.
+     * @param value the new value of the '<em>Template Container</em>' reference.
      * @see #getTemplateContainer()
      * @generated
      */
         void setTemplateContainer(ClassTemplate value);
 
         /**
-     * Returns the value of the '<em><b>Prefix Container</b></em>' container reference.
-     * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate#getPrefixSequence <em>Prefix Sequence</em>}'.
+     * Returns the value of the '<em><b>Prefix Container</b></em>' reference.
      * <!-- begin-user-doc -->
          * <p>
          * If the meaning of the '<em>Prefix Container</em>' container reference isn't clear,
          * there really should be more of a description here...
          * </p>
          * <!-- end-user-doc -->
-     * @return the value of the '<em>Prefix Container</em>' container reference.
+     * @return the value of the '<em>Prefix Container</em>' reference.
      * @see #setPrefixContainer(ClassTemplate)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getSequence_PrefixContainer()
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate#getPrefixSequence
-     * @model opposite="prefixSequence" transient="false" ordered="false"
+     * @model ordered="false"
      * @generated
      */
         ClassTemplate getPrefixContainer();
 
         /**
-     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.Sequence#getPrefixContainer <em>Prefix Container</em>}' container reference.
+     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.Sequence#getPrefixContainer <em>Prefix Container</em>}' reference.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Prefix Container</em>' container reference.
+     * @param value the new value of the '<em>Prefix Container</em>' reference.
      * @see #getPrefixContainer()
      * @generated
      */
@@ -248,28 +244,26 @@ public interface Sequence extends LocatedElement {
         void setSeparatorContainer(SeparatorPArg value);
 
         /**
-     * Returns the value of the '<em><b>Ot Container</b></em>' container reference.
-     * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate#getOtSequence <em>Ot Sequence</em>}'.
+     * Returns the value of the '<em><b>Ot Container</b></em>' reference.
      * <!-- begin-user-doc -->
          * <p>
          * If the meaning of the '<em>Ot Container</em>' container reference isn't clear,
          * there really should be more of a description here...
          * </p>
          * <!-- end-user-doc -->
-     * @return the value of the '<em>Ot Container</em>' container reference.
+     * @return the value of the '<em>Ot Container</em>' reference.
      * @see #setOtContainer(OperatorTemplate)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getSequence_OtContainer()
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate#getOtSequence
-     * @model opposite="otSequence" transient="false" ordered="false"
+     * @model ordered="false"
      * @generated
      */
         OperatorTemplate getOtContainer();
 
         /**
-     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.Sequence#getOtContainer <em>Ot Container</em>}' container reference.
+     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.Sequence#getOtContainer <em>Ot Container</em>}' reference.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Ot Container</em>' container reference.
+     * @param value the new value of the '<em>Ot Container</em>' reference.
      * @see #getOtContainer()
      * @generated
      */

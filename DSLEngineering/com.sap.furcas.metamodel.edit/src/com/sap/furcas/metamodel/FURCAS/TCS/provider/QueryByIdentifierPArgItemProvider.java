@@ -61,26 +61,26 @@ public class QueryByIdentifierPArgItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addQueryByIdentifierPropertyDescriptor(object);
+            addQueryPropertyDescriptor(object);
             addFeaturePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This adds a property descriptor for the Query By Identifier feature.
+     * This adds a property descriptor for the Query feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addQueryByIdentifierPropertyDescriptor(Object object) {
+    protected void addQueryPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_QueryByIdentifierPArg_queryByIdentifier_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_QueryByIdentifierPArg_queryByIdentifier_feature", "_UI_QueryByIdentifierPArg_type"),
-                 TCSPackage.Literals.QUERY_BY_IDENTIFIER_PARG__QUERY_BY_IDENTIFIER,
+                 getString("_UI_QueryByIdentifierPArg_query_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_QueryByIdentifierPArg_query_feature", "_UI_QueryByIdentifierPArg_type"),
+                 TCSPackage.Literals.QUERY_BY_IDENTIFIER_PARG__QUERY,
                  true,
                  false,
                  false,
@@ -148,7 +148,7 @@ public class QueryByIdentifierPArgItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(QueryByIdentifierPArg.class)) {
-            case TCSPackage.QUERY_BY_IDENTIFIER_PARG__QUERY_BY_IDENTIFIER:
+            case TCSPackage.QUERY_BY_IDENTIFIER_PARG__QUERY:
             case TCSPackage.QUERY_BY_IDENTIFIER_PARG__FEATURE:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;

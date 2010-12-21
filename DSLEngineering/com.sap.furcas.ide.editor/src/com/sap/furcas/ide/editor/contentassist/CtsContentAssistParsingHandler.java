@@ -271,7 +271,7 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
             if (ot != null) {
                 logInfo("push parentTemplate");
                 currentParentTemplateStack.push(resolved);
-                pushNonEmptySequence(ot.getOtSequence());
+                pushNonEmptySequence(ot.getTemplateSequence());
             } else {
 
                 logError("resolved null Template " + createdElement);

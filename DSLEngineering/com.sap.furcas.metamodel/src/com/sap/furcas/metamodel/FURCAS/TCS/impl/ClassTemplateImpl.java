@@ -29,11 +29,9 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TemplateModifiers;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.ClassTemplateImpl#getTemplateSequence <em>Template Sequence</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.ClassTemplateImpl#getModifiers <em>Modifiers</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.ClassTemplateImpl#isIsAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.ClassTemplateImpl#isIsDeep <em>Is Deep</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.ClassTemplateImpl#getPrefixSequence <em>Prefix Sequence</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.ClassTemplateImpl#isIsOperatored <em>Is Operatored</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.ClassTemplateImpl#getOperatorList <em>Operator List</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.ClassTemplateImpl#isIsMain <em>Is Main</em>}</li>
@@ -46,16 +44,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TemplateModifiers;
  * @generated
  */
 public class ClassTemplateImpl extends ContextTemplateImpl implements ClassTemplate {
-        /**
-     * The cached value of the '{@link #getTemplateSequence() <em>Template Sequence</em>}' containment reference.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @see #getTemplateSequence()
-     * @generated
-     * @ordered
-     */
-        protected Sequence templateSequence;
-
         /**
      * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' attribute list.
      * <!-- begin-user-doc -->
@@ -105,16 +93,6 @@ public class ClassTemplateImpl extends ContextTemplateImpl implements ClassTempl
      * @ordered
      */
         protected boolean isDeep = IS_DEEP_EDEFAULT;
-
-        /**
-     * The cached value of the '{@link #getPrefixSequence() <em>Prefix Sequence</em>}' containment reference.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @see #getPrefixSequence()
-     * @generated
-     * @ordered
-     */
-        protected Sequence prefixSequence;
 
         /**
      * The default value of the '{@link #isIsOperatored() <em>Is Operatored</em>}' attribute.
@@ -250,49 +228,6 @@ public class ClassTemplateImpl extends ContextTemplateImpl implements ClassTempl
          * <!-- end-user-doc -->
      * @generated
      */
-        public Sequence getTemplateSequence() {
-        return templateSequence;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        public NotificationChain basicSetTemplateSequence(Sequence newTemplateSequence, NotificationChain msgs) {
-        Sequence oldTemplateSequence = templateSequence;
-        templateSequence = newTemplateSequence;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TCSPackage.CLASS_TEMPLATE__TEMPLATE_SEQUENCE, oldTemplateSequence, newTemplateSequence);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        public void setTemplateSequence(Sequence newTemplateSequence) {
-        if (newTemplateSequence != templateSequence) {
-            NotificationChain msgs = null;
-            if (templateSequence != null)
-                msgs = ((InternalEObject)templateSequence).eInverseRemove(this, TCSPackage.SEQUENCE__TEMPLATE_CONTAINER, Sequence.class, msgs);
-            if (newTemplateSequence != null)
-                msgs = ((InternalEObject)newTemplateSequence).eInverseAdd(this, TCSPackage.SEQUENCE__TEMPLATE_CONTAINER, Sequence.class, msgs);
-            msgs = basicSetTemplateSequence(newTemplateSequence, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CLASS_TEMPLATE__TEMPLATE_SEQUENCE, newTemplateSequence, newTemplateSequence));
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
         public EList<TemplateModifiers> getModifiers() {
         if (modifiers == null) {
             modifiers = new EDataTypeEList<TemplateModifiers>(TemplateModifiers.class, this, TCSPackage.CLASS_TEMPLATE__MODIFIERS);
@@ -340,49 +275,6 @@ public class ClassTemplateImpl extends ContextTemplateImpl implements ClassTempl
         isDeep = newIsDeep;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CLASS_TEMPLATE__IS_DEEP, oldIsDeep, isDeep));
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        public Sequence getPrefixSequence() {
-        return prefixSequence;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        public NotificationChain basicSetPrefixSequence(Sequence newPrefixSequence, NotificationChain msgs) {
-        Sequence oldPrefixSequence = prefixSequence;
-        prefixSequence = newPrefixSequence;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TCSPackage.CLASS_TEMPLATE__PREFIX_SEQUENCE, oldPrefixSequence, newPrefixSequence);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        public void setPrefixSequence(Sequence newPrefixSequence) {
-        if (newPrefixSequence != prefixSequence) {
-            NotificationChain msgs = null;
-            if (prefixSequence != null)
-                msgs = ((InternalEObject)prefixSequence).eInverseRemove(this, TCSPackage.SEQUENCE__PREFIX_CONTAINER, Sequence.class, msgs);
-            if (newPrefixSequence != null)
-                msgs = ((InternalEObject)newPrefixSequence).eInverseAdd(this, TCSPackage.SEQUENCE__PREFIX_CONTAINER, Sequence.class, msgs);
-            msgs = basicSetPrefixSequence(newPrefixSequence, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CLASS_TEMPLATE__PREFIX_SEQUENCE, newPrefixSequence, newPrefixSequence));
     }
 
         /**
@@ -534,54 +426,14 @@ public class ClassTemplateImpl extends ContextTemplateImpl implements ClassTempl
      * @generated
      */
         @Override
-        public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case TCSPackage.CLASS_TEMPLATE__TEMPLATE_SEQUENCE:
-                if (templateSequence != null)
-                    msgs = ((InternalEObject)templateSequence).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TCSPackage.CLASS_TEMPLATE__TEMPLATE_SEQUENCE, null, msgs);
-                return basicSetTemplateSequence((Sequence)otherEnd, msgs);
-            case TCSPackage.CLASS_TEMPLATE__PREFIX_SEQUENCE:
-                if (prefixSequence != null)
-                    msgs = ((InternalEObject)prefixSequence).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TCSPackage.CLASS_TEMPLATE__PREFIX_SEQUENCE, null, msgs);
-                return basicSetPrefixSequence((Sequence)otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case TCSPackage.CLASS_TEMPLATE__TEMPLATE_SEQUENCE:
-                return basicSetTemplateSequence(null, msgs);
-            case TCSPackage.CLASS_TEMPLATE__PREFIX_SEQUENCE:
-                return basicSetPrefixSequence(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case TCSPackage.CLASS_TEMPLATE__TEMPLATE_SEQUENCE:
-                return getTemplateSequence();
             case TCSPackage.CLASS_TEMPLATE__MODIFIERS:
                 return getModifiers();
             case TCSPackage.CLASS_TEMPLATE__IS_ABSTRACT:
                 return isIsAbstract();
             case TCSPackage.CLASS_TEMPLATE__IS_DEEP:
                 return isIsDeep();
-            case TCSPackage.CLASS_TEMPLATE__PREFIX_SEQUENCE:
-                return getPrefixSequence();
             case TCSPackage.CLASS_TEMPLATE__IS_OPERATORED:
                 return isIsOperatored();
             case TCSPackage.CLASS_TEMPLATE__OPERATOR_LIST:
@@ -608,9 +460,6 @@ public class ClassTemplateImpl extends ContextTemplateImpl implements ClassTempl
         @Override
         public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case TCSPackage.CLASS_TEMPLATE__TEMPLATE_SEQUENCE:
-                setTemplateSequence((Sequence)newValue);
-                return;
             case TCSPackage.CLASS_TEMPLATE__MODIFIERS:
                 getModifiers().clear();
                 getModifiers().addAll((Collection<? extends TemplateModifiers>)newValue);
@@ -620,9 +469,6 @@ public class ClassTemplateImpl extends ContextTemplateImpl implements ClassTempl
                 return;
             case TCSPackage.CLASS_TEMPLATE__IS_DEEP:
                 setIsDeep((Boolean)newValue);
-                return;
-            case TCSPackage.CLASS_TEMPLATE__PREFIX_SEQUENCE:
-                setPrefixSequence((Sequence)newValue);
                 return;
             case TCSPackage.CLASS_TEMPLATE__IS_OPERATORED:
                 setIsOperatored((Boolean)newValue);
@@ -654,9 +500,6 @@ public class ClassTemplateImpl extends ContextTemplateImpl implements ClassTempl
         @Override
         public void eUnset(int featureID) {
         switch (featureID) {
-            case TCSPackage.CLASS_TEMPLATE__TEMPLATE_SEQUENCE:
-                setTemplateSequence((Sequence)null);
-                return;
             case TCSPackage.CLASS_TEMPLATE__MODIFIERS:
                 getModifiers().clear();
                 return;
@@ -665,9 +508,6 @@ public class ClassTemplateImpl extends ContextTemplateImpl implements ClassTempl
                 return;
             case TCSPackage.CLASS_TEMPLATE__IS_DEEP:
                 setIsDeep(IS_DEEP_EDEFAULT);
-                return;
-            case TCSPackage.CLASS_TEMPLATE__PREFIX_SEQUENCE:
-                setPrefixSequence((Sequence)null);
                 return;
             case TCSPackage.CLASS_TEMPLATE__IS_OPERATORED:
                 setIsOperatored(IS_OPERATORED_EDEFAULT);
@@ -699,16 +539,12 @@ public class ClassTemplateImpl extends ContextTemplateImpl implements ClassTempl
         @Override
         public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case TCSPackage.CLASS_TEMPLATE__TEMPLATE_SEQUENCE:
-                return templateSequence != null;
             case TCSPackage.CLASS_TEMPLATE__MODIFIERS:
                 return modifiers != null && !modifiers.isEmpty();
             case TCSPackage.CLASS_TEMPLATE__IS_ABSTRACT:
                 return isAbstract != IS_ABSTRACT_EDEFAULT;
             case TCSPackage.CLASS_TEMPLATE__IS_DEEP:
                 return isDeep != IS_DEEP_EDEFAULT;
-            case TCSPackage.CLASS_TEMPLATE__PREFIX_SEQUENCE:
-                return prefixSequence != null;
             case TCSPackage.CLASS_TEMPLATE__IS_OPERATORED:
                 return isOperatored != IS_OPERATORED_EDEFAULT;
             case TCSPackage.CLASS_TEMPLATE__OPERATOR_LIST:

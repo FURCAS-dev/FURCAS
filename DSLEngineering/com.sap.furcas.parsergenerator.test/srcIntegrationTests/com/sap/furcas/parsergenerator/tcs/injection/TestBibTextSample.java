@@ -108,7 +108,6 @@ public class TestBibTextSample extends AbstractTCSInjectionTest {
         assertEquals(false, entrytemp.isIsContext());
         assertEquals(true, entrytemp.isIsAbstract());
         assertNull(entrytemp.getTemplateSequence());
-        assertNull(entrytemp.getPrefixSequence());
         assertNull(entrytemp.getOperatorList());
         // assertEquals(0, entrytemp.getModifiers().size());
 
@@ -126,7 +125,6 @@ public class TestBibTextSample extends AbstractTCSInjectionTest {
         assertEquals(false, arttemp.isIsContext());
         assertEquals(false, arttemp.isIsAbstract());
         assertEquals(4, arttemp.getTemplateSequence().getElements().size());
-        assertNull(arttemp.getPrefixSequence());
         assertNull(arttemp.getOperatorList());
         // assertEquals(0, arttemp.getModifiers().size());
     }
