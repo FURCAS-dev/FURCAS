@@ -8,7 +8,6 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
-import org.eclipse.ocl.examples.impactanalyzer.util.EcoreEnvironmentFactoryWithScopedExtentMap;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.AsPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
@@ -157,7 +156,11 @@ public class ShortPrettyPrinter {
 	}
 	AsPArg asParg = TcsUtil.getAsPArg(se);
         Template template = PrettyPrinterUtil.getAsTemplate(asParg);
-        return PrettyPrinterUtil.printUsingSerializer(newvalue, template);
+        if(newvalue.equals(token.getValue())) {
+            return newvalue;
+        } else {
+            return PrettyPrinterUtil.printUsingSerializer(newvalue, template);
+        }
     }
 
 	private String invertOclQuery(EObject self, LexedToken token, Property se,
