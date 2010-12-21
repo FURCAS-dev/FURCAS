@@ -22,7 +22,7 @@
                                 <groupId>org.sonatype.tycho</groupId>
                                 <artifactId>maven-osgi-test-plugin</artifactId>
                                 <configuration>
-                                        <argLine>-Xmx1024m -XX:+UseParallelGC</argLine>
+                                        <argLine>-Xmx2048m -XX:+UseParallelGC</argLine>
                                         <includes>
                                                 <include>**/*Test.java</include>
                                                 <include>**/Test*.java</include>
