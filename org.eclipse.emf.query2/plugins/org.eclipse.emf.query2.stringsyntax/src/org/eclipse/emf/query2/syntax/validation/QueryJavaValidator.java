@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage.Literals;
+import org.eclipse.emf.query2.syntax.Messages;
 import org.eclipse.emf.query2.syntax.query.AliasAttributeExpression;
 import org.eclipse.emf.query2.syntax.query.BooleanExpression;
 import org.eclipse.emf.query2.syntax.query.DoubleExpression;
@@ -36,26 +37,22 @@ public class QueryJavaValidator extends AbstractQueryJavaValidator {
 
 		if (lhsAttribute == null) {
 			if (operator != Operator.EQUAL) {
-				error("Only '=' operator allowed if no attribute or reference is specified on left hand side",
-						QueryPackage.EXPRESSION_WHERE_ENTRY__OPERATOR);
+				error(Messages.Query2StringSyntax_QueryJavaValidator_OnlyEqualsAllowed, QueryPackage.EXPRESSION_WHERE_ENTRY__OPERATOR);
 			}
 		}
 
 		else if (lhsAttribute instanceof EReference) {
 			if (rhs instanceof NullExpression) {
 				if (operator != Operator.EQUAL && operator != Operator.NOT_EQUAL) {
-					error("Only '=' or '!=' is allowed as operator if 'null' is specified on the right side",
-							QueryPackage.EXPRESSION_WHERE_ENTRY__OPERATOR);
+					error(Messages.Query2StringSyntax_QueryJavaValidator_OnlyEqualsAndNotEqualsAllowedIfNullIsOnRHS, QueryPackage.EXPRESSION_WHERE_ENTRY__OPERATOR);
 				}
 			} else if (rhs instanceof AliasAttributeExpression && ((AliasAttributeExpression) rhs).getAttribute() == null) {
 				if (operator != Operator.EQUAL && operator != Operator.NOT_EQUAL) {
-					error("Only '=' or '!=' is allowed as operator if an alias is specified on the right side",
-							QueryPackage.EXPRESSION_WHERE_ENTRY__OPERATOR);
+					error(Messages.Query2StringSyntax_QueryJavaValidator_OnlyEqualsAndNotEqualsAllowedIfAliasOnRHS, QueryPackage.EXPRESSION_WHERE_ENTRY__OPERATOR);
 				}
 			} else if (rhs instanceof QueryExpression) {
 				if (operator != Operator.IN && operator != Operator.NOT_IN) {
-					error("Only 'in' or 'not in' is allowed as operator for subqueries on the right side",
-							QueryPackage.EXPRESSION_WHERE_ENTRY__OPERATOR);
+					error(Messages.Query2StringSyntax_QueryJavaValidator_OnlyInAndNotInAllowedForQueriesOnRHS, QueryPackage.EXPRESSION_WHERE_ENTRY__OPERATOR);
 				}
 				MQLquery query = ((QueryExpression) rhs).getValue();
 				SelectEntry selectEntry = query.getSelectEntries().get(0);
@@ -64,18 +61,14 @@ public class QueryJavaValidator extends AbstractQueryJavaValidator {
 					EClass innerType = (EClass) type;
 					EClass referenceType = (EClass) lhsAttribute.getEType();
 					if (referenceType != innerType && !referenceType.getEAllSuperTypes().contains(innerType)) {
-						error("Result of nested query is incompatible with type of the given reference", query,
-								QueryPackage.MQ_LQUERY__SELECT_ENTRIES);
+						error(Messages.Query2StringSyntax_QueryJavaValidator_IncompatibleResults, query, QueryPackage.MQ_LQUERY__SELECT_ENTRIES);
 					}
 
 				} else {
-					error("Only instances of EClass are allowed as result of a nested query", query ,
-							QueryPackage.MQ_LQUERY__SELECT_ENTRIES);
+					error(Messages.Query2StringSyntax_QueryJavaValidator_OnlyEClassesAllowedAsResults, query, QueryPackage.MQ_LQUERY__SELECT_ENTRIES);
 				}
 			} else {
-				error(
-						"If a reference is specified on the left side of the operator only 'null', an alias or a subquery is allowed on the right side",
-						QueryPackage.EXPRESSION_WHERE_ENTRY__RHS);
+				error(Messages.Query2StringSyntax_QueryJavaValidator_ReferenceOnLHS, QueryPackage.EXPRESSION_WHERE_ENTRY__RHS);
 			}
 
 		} else {
@@ -96,15 +89,14 @@ public class QueryJavaValidator extends AbstractQueryJavaValidator {
 				checkStringOp(operator);
 			} else if (rhs instanceof NullExpression) {
 				if (lhsType != Literals.ESTRING && !(lhsType instanceof EClass)) {
-					error("Only attributes with type EString or references are allowed with a null check",
-							QueryPackage.EXPRESSION_WHERE_ENTRY__RHS);
+					error(Messages.Query2StringSyntax_QueryJavaValidator_EStringAttributesOrReferences, QueryPackage.EXPRESSION_WHERE_ENTRY__RHS);
 				}
 				checkBooleanOp(operator);
 			} else if (rhs instanceof BooleanExpression) {
 				checkType(lhsType, Literals.EBOOLEAN, QueryPackage.EXPRESSION_WHERE_ENTRY__RHS);
 				checkBooleanOp(operator);
 			} else {
-				throw new IllegalStateException("unknown type: " + rhs.toString());
+				throw new IllegalStateException(Messages.getString(Messages.Query2StringSyntax_QueryJavaValidator_UnknownType, new String[] { rhs.toString() }));
 			}
 		}
 
@@ -112,43 +104,40 @@ public class QueryJavaValidator extends AbstractQueryJavaValidator {
 
 	private void checkBooleanOp(Operator operator) {
 		if (operator != Operator.EQUAL && operator != Operator.NOT_EQUAL) {
-			error("Wrong comparison operator specified. Only '=' or '!=' is allowed", QueryPackage.EXPRESSION_WHERE_ENTRY__RHS);
+			error(Messages.Query2StringSyntax_QueryJavaValidator_WrongComparisonOperator, QueryPackage.EXPRESSION_WHERE_ENTRY__RHS);
 		}
 	}
 
 	private void checkStringOp(Operator operator) {
 		if (operator != Operator.LIKE && operator != Operator.NOT_LIKE && operator != Operator.EQUAL && operator != Operator.NOT_EQUAL) {
-			error("Wrong comparison operator specified. Only 'like', 'not like', '=' or '!=' are allowed",
-					QueryPackage.EXPRESSION_WHERE_ENTRY__RHS);
+			error(Messages.Query2StringSyntax_QueryJavaValidator_WrongComparisonOperatorOnlyLikeAndNotLikeAllowed, QueryPackage.EXPRESSION_WHERE_ENTRY__RHS);
 		}
-		if (operator==Operator.NOT_LIKE){
-			error("'not like' is not yet supported as an operator for strings", QueryPackage.EXPRESSION_WHERE_ENTRY__OPERATOR);
+		if (operator == Operator.NOT_LIKE) {
+			error(Messages.Query2StringSyntax_QueryJavaValidator_NotLikeNotSupportedForStrings, QueryPackage.EXPRESSION_WHERE_ENTRY__OPERATOR);
 		}
 	}
 
 	private void checkNumericOp(Operator operator) {
-		if (operator != Operator.LESS_THEN && operator != Operator.GREATER_THEN && operator != Operator.GREATER_EQUAL
-				&& operator != Operator.LESS_EQUAL && operator != Operator.EQUAL && operator != Operator.NOT_EQUAL) {
-			error("Wrong comparison operator specified. Only '<', '<=', '>', '>=', '=' or '!=' are allowed",
-					QueryPackage.EXPRESSION_WHERE_ENTRY__RHS);
+		if (operator != Operator.LESS_THEN && operator != Operator.GREATER_THEN && operator != Operator.GREATER_EQUAL && operator != Operator.LESS_EQUAL
+				&& operator != Operator.EQUAL && operator != Operator.NOT_EQUAL) {
+			error(Messages.Query2StringSyntax_QueryJavaValidator_WrongComparisonOperatorOnlyComparisonAllowed, QueryPackage.EXPRESSION_WHERE_ENTRY__RHS);
 		}
 	}
 
 	private void checkType(EClassifier left, EClassifier right, int id) {
 		if (left == Literals.EDOUBLE || left == Literals.EDOUBLE_OBJECT || left == Literals.EFLOAT || left == Literals.EFLOAT_OBJECT) {
-			if (right != Literals.EDOUBLE && right != Literals.EDOUBLE_OBJECT && right != Literals.EFLOAT
-					&& right != Literals.EFLOAT_OBJECT) {
-				error("Types are incompatible. Both must be assignable to float or double", id);
+			if (right != Literals.EDOUBLE && right != Literals.EDOUBLE_OBJECT && right != Literals.EFLOAT && right != Literals.EFLOAT_OBJECT) {
+				error(Messages.Query2StringSyntax_QueryJavaValidator_IncompatibleTypeOnlyFloatOrDoubleAllowed, id);
 			}
 		} else if (left == Literals.EINT || left == Literals.EINTEGER_OBJECT || left == Literals.ELONG || left == Literals.ELONG_OBJECT) {
 			if (right != Literals.EINT && right != Literals.EINTEGER_OBJECT && right != Literals.ELONG && right != Literals.ELONG_OBJECT) {
-				error("Types are incompatible. Both must be assignable to int or long", id);
+				error(Messages.Query2StringSyntax_QueryJavaValidator_IncompatibleTypeOnlyIntOrLong, id);
 			}
 		} else if (left == Literals.ESTRING && right != Literals.ESTRING) {
-			error("Types are incompatible. Both must be assignable to string", id);
+			error(Messages.Query2StringSyntax_QueryJavaValidator_IncompatibleTypeOnlyStringAllowed, id);
 		} else if (left instanceof EClass) {
 			if (left != right && !((EClass) left).getEAllSuperTypes().contains(right)) {
-				error("Only aliases with compatible type are allowed here", id);
+				error(Messages.Query2StringSyntax_QueryJavaValidator_IncompatibleAliasType, id);
 			}
 		}
 	}
@@ -156,7 +145,7 @@ public class QueryJavaValidator extends AbstractQueryJavaValidator {
 	@Check
 	public void checkNoTuplesInSubSelects(QueryExpression entry) {
 		if (entry.getValue().getSelectEntries().size() > 1) {
-			error("Only one select entry is allowed in a nested query", entry.getValue(), QueryPackage.MQ_LQUERY__SELECT_ENTRIES);
+			error(Messages.Query2StringSyntax_QueryJavaValidator_OnlyOneSelectEntryIsAllowed, entry.getValue(), QueryPackage.MQ_LQUERY__SELECT_ENTRIES);
 		}
 	}
 
@@ -172,8 +161,7 @@ public class QueryJavaValidator extends AbstractQueryJavaValidator {
 					continue;
 				}
 				if (awe.getLhs().getAlias() != fe) {
-					error("The current query can only execute where entries in an or subtree if they share the same alias", awe,
-							QueryPackage.OR_WHERE_ENTRY__ENTRIES);
+					error(Messages.Query2StringSyntax_QueryJavaValidator_QueryExecutionOnSameAlias, awe, QueryPackage.OR_WHERE_ENTRY__ENTRIES);
 				}
 			}
 
