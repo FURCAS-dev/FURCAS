@@ -110,6 +110,7 @@ import com.sap.ide.cts.parser.errorhandling.ErrorEntry;
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
 import com.sap.ide.cts.parser.incremental.MappingLinkRecoveringIncrementalParser;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
+import com.sap.ide.cts.parser.incremental.PartitionAssignmentHandler;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategyImpl;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRLexerAdapter;
@@ -1128,10 +1129,10 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
                                 .getChangedBlocks());
                     }
 
-                    // assign newly created block to partition
-                    if(!tbPartition.equals(newBlock.eResource())){
-                        tbPartition.getContents().add(newBlock);
-                    }
+//                    // assign newly created block to partition
+//                    if(!tbPartition.equals(newBlock.eResource())){
+//                        tbPartition.getContents().add(newBlock);
+//                    }
 
                     EObject result = null;
                     if (newBlock.getCorrespondingModelElements().size() > 0) {
@@ -1388,9 +1389,11 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
         reuseStrategy.setModelElementInvestigator(((ModelInjector) parser
                 .getInjector()).getModelAdapter());
         setParser(parser);
+        PartitionAssignmentHandler partitionHandler = ((CtsDocument) getDocumentProvider().getDocument(getEditorInput())).getPartitionHandler();
         incrementalParser = new MappingLinkRecoveringIncrementalParser(
                 getEditingDomain(), getParserFactory(), getLexer(), getParser(),
-                reuseStrategy, getAdditionalLookupURIS(), oppositeEndFinder);
+                reuseStrategy, getAdditionalLookupURIS(), oppositeEndFinder,
+                partitionHandler);
         shortPrettyPrinter = new ShortPrettyPrinter(new EMFModelAdapter(
                 parserFactory.getMetamodelPackage(getEditingDomain().getResourceSet()),
                 getEditingDomain().getResourceSet(), getAdditionalLookupURIS()));
