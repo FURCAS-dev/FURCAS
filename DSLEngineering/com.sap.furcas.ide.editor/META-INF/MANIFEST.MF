@@ -13,6 +13,7 @@ Require-Bundle: org.antlr,
  org.eclipse.jface.text,
  org.eclipse.core.resources,
  org.eclipse.emf.edit,
+ com.sap.ocl.oppositefinder.query2,
  com.sap.furcas.runtime.common,
  com.sap.furcas.runtime.tcs,
  com.sap.furcas.runtime.textblocks,
@@ -21,8 +22,7 @@ Require-Bundle: org.antlr,
  com.sap.furcas.metamodel.edit,
  com.sap.furcas.metamodel.editor,
  com.sap.furcas.modeladaptation.emf,
- com.sap.furcas.ide.parserfactory,
- com.sap.ocl.oppositefinder.query2
+ com.sap.furcas.ide.parserfactory
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.furcas.ide.editor,

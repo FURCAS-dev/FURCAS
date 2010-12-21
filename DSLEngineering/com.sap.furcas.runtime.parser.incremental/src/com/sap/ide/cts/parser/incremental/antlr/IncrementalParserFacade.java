@@ -26,6 +26,7 @@ import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.parser.textblocks.observer.ParserTextBlocksHandler;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
+import com.sap.ide.cts.parser.incremental.DefaultPartitionAssignmentHandlerImpl;
 import com.sap.ide.cts.parser.incremental.IncrementalParser;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategyImpl;
@@ -73,7 +74,7 @@ public class IncrementalParserFacade {
 
 		incrementalParser = new IncrementalParser(editingDomain, parserFactory,
 				incrementalLexer, domainParser, reuseStrategy,
-				additionalCRIScope, oppositeEndFinder);
+				additionalCRIScope, oppositeEndFinder, new DefaultPartitionAssignmentHandlerImpl());
 
 		// TODO use token wrapper factory here
 		this.injector = new ModelInjector(domainParser.getTokenNames());

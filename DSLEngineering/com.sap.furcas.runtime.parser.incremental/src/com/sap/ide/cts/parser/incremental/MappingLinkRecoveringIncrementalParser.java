@@ -44,9 +44,10 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
             ObservableInjectingParser batchParser,
             TextBlockReuseStrategy reuseStrategy,
             Set<URI> additionalCRIScope,
-            OppositeEndFinder oppositeEndFinder) {
+            OppositeEndFinder oppositeEndFinder,
+            PartitionAssignmentHandler partitionAssignmentHandler) {
         super(editingDomain, parserFactory, incrementalLexer, batchParser,
-                reuseStrategy, additionalCRIScope, oppositeEndFinder);
+                reuseStrategy, additionalCRIScope, oppositeEndFinder, partitionAssignmentHandler);
     }
 
     /**
