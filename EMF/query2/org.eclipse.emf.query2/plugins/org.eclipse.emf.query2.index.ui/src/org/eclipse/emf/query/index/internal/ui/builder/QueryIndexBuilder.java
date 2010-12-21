@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.query.index.ui.IndexFactory;
+import org.eclipse.emf.query.index.ui.Messages;
 import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
 import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
@@ -61,7 +62,10 @@ public class QueryIndexBuilder extends IncrementalProjectBuilder {
 		}
 
 		public boolean visit(IResource resource) {
-			monitor.beginTask("indexing resource " + resource.getFullPath().toString(), IProgressMonitor.UNKNOWN);
+			String resourcePath = resource.getFullPath().toString();
+			int totalWork = IProgressMonitor.UNKNOWN;
+			String taskName = Messages.getString(Messages.Query2IndexUI_QueryIndexBuilder_IndexingResource, new String[] { resourcePath });
+			monitor.beginTask(taskName, totalWork);
 			indexFile(resource);
 			monitor.done();
 			// return true to continue visiting children.
@@ -69,7 +73,7 @@ public class QueryIndexBuilder extends IncrementalProjectBuilder {
 		}
 	}
 
-	public static final String BUILDER_ID = "org.eclipse.emf.query2.index.ui.queryIndexBuilder";
+	public static final String BUILDER_ID = "org.eclipse.emf.query2.index.ui.queryIndexBuilder"; //$NON-NLS-1$
 
 	/*
 	 * (non-Javadoc)
@@ -115,7 +119,7 @@ public class QueryIndexBuilder extends IncrementalProjectBuilder {
 	private void indexFile(final IResource resource) {
 		Registry instance = Resource.Factory.Registry.INSTANCE;
 		// Put the XMI extension in the extension factory map.
-		instance.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
+		instance.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl()); //$NON-NLS-1$
 
 		final Set<String> extensions = instance.getExtensionToFactoryMap().keySet();
 

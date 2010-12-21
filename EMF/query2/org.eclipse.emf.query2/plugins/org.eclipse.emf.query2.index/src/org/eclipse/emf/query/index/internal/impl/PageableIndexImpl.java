@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.query.index.Messages;
 import org.eclipse.emf.query.index.event.IndexChangeListenerRegistry;
 import org.eclipse.emf.query.index.internal.IndexUpdaterInternal;
 import org.eclipse.emf.query.index.internal.PageFileProvider;
@@ -60,15 +61,15 @@ public class PageableIndexImpl implements PageableIndex {
 			this.tolerance = tolerance;
 
 			if (limit != DISABLED && pagingDirectory == null) {
-				throw new IllegalArgumentException("Base directory must be specified");
+				throw new IllegalArgumentException(Messages.Query2Index_PageableIndexImpl_UnspecifiedBaseDirectory);
 			}
 			if (limit != DISABLED && tolerance == DISABLED) {
-				throw new IllegalArgumentException("Tolerance must be set");
+				throw new IllegalArgumentException(Messages.Query2Index_PageableIndexImpl_UnsetTolerance);
 			}
 		}
 	}
 
-	private static final String DUMP_FILE_ID = "dumpfile";
+	private static final String DUMP_FILE_ID = "dumpfile"; //$NON-NLS-1$
 
 	private GlobalTables globalTables;
 
@@ -112,7 +113,7 @@ public class PageableIndexImpl implements PageableIndex {
 	}
 
 	public IndexChangeListenerRegistry getEventListenerRegistry() {
-		throw new UnsupportedOperationException("to implement");
+		throw new UnsupportedOperationException(Messages.Query2Index_PageableIndexImpl_ToImplement);
 	}
 
 	public void save() {

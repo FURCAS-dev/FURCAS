@@ -12,6 +12,7 @@ package org.eclipse.emf.query.index.internal.maps;
 
 import java.util.Iterator;
 
+import org.eclipse.emf.query.index.Messages;
 import org.eclipse.emf.query.index.internal.maps.SerializationStrategy.Channel;
 
 
@@ -251,7 +252,7 @@ public class SingleMap<K, E extends MapEntry> extends AbstractKeylessMapBase<K, 
 	public int getPosition(K key) {
 
 		if (key == null) {
-			throw new RuntimeException("parameter null");
+			throw new RuntimeException(Messages.Query2Index_SingleMap_NullParameter);
 		}
 		int keyNr = this.keyNr;
 		Object[] tab = this.table;
