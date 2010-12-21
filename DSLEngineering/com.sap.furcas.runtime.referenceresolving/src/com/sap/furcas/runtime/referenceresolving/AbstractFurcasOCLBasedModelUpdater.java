@@ -2,7 +2,9 @@ package com.sap.furcas.runtime.referenceresolving;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -80,8 +82,7 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
                     newValue = ((Collection<?>) newValue).isEmpty() ? null : ((Collection<?>) newValue).iterator()
                             .next();
                 }
-                EObject elementToUpdate = getElementToUpdate(eo);
-                if (elementToUpdate != null) {
+                for (EObject elementToUpdate : getElementsToUpdate(eo)) {
                     elementToUpdate.eSet(getPropertyToUpdate(), newValue);
                 }
             }
@@ -210,15 +211,20 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
      *            {@link SelfKind#FOREACH}. In the case of {@link SelfKind#CONTEXT}, a context stack is constructed
      *            starting at this text block, moving "up" the text blocks / template execution hierarchy.
      */
-    protected EObject getElementToUpdate(EObject self) {
+    protected Set<EObject> getElementsToUpdate(EObject self) {
         // Collection<TextBlock> inTextBlocks = getTextBlocksInChosenAlternativeForInjectorAction(injectorAction);
         switch (selfKind) {
         case SELF:
-            return self;
+            return Collections.singleton(self);
         case CONTEXT:
-            return getElementToUpdateFromContextElement(self);
+            return getElementsToUpdateFromContextElement(self);
         case FOREACH:
-            return getElementToUpdateFromForeachElement(self);
+            EObject result = getElementToUpdateFromForeachElement(self);
+            if (result == null) {
+                return Collections.emptySet();
+            } else {
+                return Collections.singleton(result);
+            }
         default:
             throw new RuntimeException("Unknown self kind: "+selfKind);
         }
@@ -257,11 +263,49 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
      * the execution of the template containing the {@link #getSequenceElement() sequence element} containing
      * the OCL expression.
      */
-    private EObject getElementToUpdateFromContextElement(EObject contextElement) {
-        // LocalContextBuilder contextBuilder = new LocalContextBuilder();
-        // TbParsingUtil.constructContext(inTextBlock, contextBuilder);
-        /* TODO really use */ contextTag.length();
-        return null; // FIXME need to port LocalContextBuilder to retrieve context from regularSelf and template
+    private Set<EObject> getElementsToUpdateFromContextElement(EObject contextElement) {
+        Set<EObject> result = new HashSet<EObject>();
+        Collection<EObject> textBlockDocumentingCreationOfContextElement = getOppositeEndFinder()
+        .navigateOppositePropertyWithBackwardScope(
+                TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(), contextElement);
+        for (EObject eo : textBlockDocumentingCreationOfContextElement) {
+            if (eo instanceof TextBlock) {
+                TextBlock textBlock = (TextBlock) eo;
+                Template template = textBlock.getType().getParseRule();
+                if (template instanceof ContextTemplate) {
+                    ContextTemplate contextTemplate = (ContextTemplate) template;
+                    if (contextTemplate.getContextTags() != null
+                            && contextTemplate.getContextTags().getTags().contains(contextTag)) {
+                        // the contextTemplate has the expected tag (e.g., "context(X)" if the
+                        // usage was "#context(X)")
+                        Set<TextBlock> textBlocksForSubordinateExecutionsOfSequenceElementHoldingTheOCLExpression = getSubordinateTextBlocksLeadingTo(
+                                textBlock, getSequenceElement().getParentTemplate());
+                        for (TextBlock tb : textBlocksForSubordinateExecutionsOfSequenceElementHoldingTheOCLExpression) {
+                            // add the first element from correspondingModelElements because that's the one
+                            // actually immediately created by the template holding the sequence element with
+                            // the OCL expression
+                            if (!tb.getCorrespondingModelElements().isEmpty()) {
+                                // TODO filter out those that didn't fire the sequenceElement
+                                result.add(tb.getCorrespondingModelElements().get(0));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    private Set<TextBlock> getSubordinateTextBlocksLeadingTo(TextBlock textBlock, Template templateHoldingSequenceElement) {
+        if (textBlock.getType().getParseRule() == templateHoldingSequenceElement) {
+            return Collections.singleton(textBlock);
+        } else {
+            Set<TextBlock> result = new HashSet<TextBlock>();
+            for (TextBlock subBlock : textBlock.getSubBlocks()) {
+                result.addAll(getSubordinateTextBlocksLeadingTo(subBlock, templateHoldingSequenceElement));
+            }
+            return result;
+        }
     }
 
     /**
