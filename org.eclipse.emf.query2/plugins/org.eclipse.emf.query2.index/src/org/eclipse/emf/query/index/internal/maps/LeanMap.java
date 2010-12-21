@@ -16,6 +16,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.RandomAccess;
 
+import org.eclipse.emf.query.index.Messages;
 import org.eclipse.emf.query.index.internal.maps.SerializationStrategy.Channel;
 
 /**
@@ -110,7 +111,7 @@ public class LeanMap<K, E> extends AbstractMapBase<K, E> {
 
 	@Override
 	public Iterator<E> iterator() {
-		throw new UnsupportedOperationException("to implement");
+		throw new UnsupportedOperationException(Messages.Query2Index_LeanMap_ToImplement);
 	}
 
 	public Collection<E> getAll(K key) {

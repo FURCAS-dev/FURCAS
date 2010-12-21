@@ -150,7 +150,7 @@ public class ResourceIndexer {
 	}
 
 	protected String getEObjectName(EObject element) {
-		EStructuralFeature nameFeature = element.eClass().getEStructuralFeature("name");
+		EStructuralFeature nameFeature = element.eClass().getEStructuralFeature("name"); //$NON-NLS-1$
 		if (nameFeature != null && nameFeature.getEType() instanceof EDataType) {
 			if (!nameFeature.isMany()) {
 				Object nameFeatureValue = element.eGet(nameFeature);
