@@ -13,7 +13,7 @@
   <packaging>eclipse-plugin</packaging>
 <!-- enable this again once we understand how to run tests in Maven that require certain
      projects to be checked out in the target workspace
-
+-->
   <packaging>eclipse-test-plugin</packaging>
 
         <build>
@@ -33,5 +33,5 @@
                 </plugins>
         </build>
 
--->
+<!-- -->
 </project>
