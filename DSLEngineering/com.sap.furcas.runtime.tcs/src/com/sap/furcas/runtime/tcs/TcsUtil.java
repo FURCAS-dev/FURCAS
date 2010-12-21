@@ -1908,7 +1908,7 @@ public class TcsUtil {
      *             during the descent
      */
     public static boolean wasExecuted(ContextTemplate base, EList<Integer> alternativeChoices, SequenceElement searchFor) {
-        Sequence sequence = getTemplateSequence(base);
+        Sequence sequence = base.getTemplateSequence();
         List<Integer> alternativeChoicesWithLeadingMinusOneRemoved = new LinkedList<Integer>(alternativeChoices);
         alternativeChoicesWithLeadingMinusOneRemoved.remove(0);
         return sequence != null && wasExecuted(sequence, alternativeChoicesWithLeadingMinusOneRemoved, searchFor);
@@ -1960,10 +1960,4 @@ public class TcsUtil {
         return subSequence;
     }
 
-    private static Sequence getTemplateSequence(ContextTemplate base) {
-        Sequence sequence = (base instanceof ClassTemplate ? ((ClassTemplate) base).getTemplateSequence() :
-            (base instanceof OperatorTemplate ? ((OperatorTemplate) base).getTemplateSequence() : null));
-        return sequence;
-    }
-    
 }
