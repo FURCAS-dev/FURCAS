@@ -31,7 +31,11 @@ syntax BibtexWithPropertyInitsWithContext {
 		;
 	
 	template RevenueLedger
-		: "humba" {{ revenueInEUR=lookIn("OCL:#context(author).oclAsType(BibText::Author).name.size()") }}
+		: [[
+		      "humba" {{ revenueInEUR=lookIn("OCL:#context(author).oclAsType(BibText::Author).name.size()") }}
+		   |
+		      "trala" {{ revenueInEUR=lookIn("OCL:#context(author).oclAsType(BibText::Author).name.size()*2") }}
+		  ]]
 		;
 	
 	template Year
