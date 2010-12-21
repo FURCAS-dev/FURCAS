@@ -6,7 +6,7 @@ import org.eclipse.xtext.ui.generator.*
 
 var grammarURI = "classpath:/org/eclipse/emf/query2/syntax/Query.xtext"
 var file.extensions = "query"
-var projectName = "org.eclipse.emf.query2.syntax"
+var projectName = "org.eclipse.emf.query2.stringsyntax"
 var runtimeProject = "../${projectName}"
 
 Workflow {

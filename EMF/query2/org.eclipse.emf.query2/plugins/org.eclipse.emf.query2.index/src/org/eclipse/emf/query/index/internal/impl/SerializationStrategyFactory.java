@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.query.index.Messages;
 import org.eclipse.emf.query.index.internal.EReferenceDescriptorInternal;
 import org.eclipse.emf.query.index.internal.maps.ListMap;
 import org.eclipse.emf.query.index.internal.maps.SerializationStrategy;
@@ -270,7 +271,7 @@ public class SerializationStrategyFactory {
 			int thirdByte = value >> 8 & 0xFF;
 			int fourthBtye = value & 0xFF;
 			if (firstByte > 0x3F) {
-				throw new RuntimeException("Unsupported value " + value); // FIXME
+				throw new RuntimeException(Messages.getString(Messages.Query2Index_SerializationStrategyFactory_UnsupportedValue, new String[] { Integer.toString(value) })); // FIXME
 				// not_very_nice
 			} else if (firstByte != 0 || secondByte > 0x3F) {
 				putByte((byte) (firstByte | 0xC0));
@@ -602,7 +603,7 @@ public class SerializationStrategyFactory {
 				assert tarRes != null;
 				break;
 			default:
-				throw new IllegalArgumentException("Unknown link kind " + kind);
+				throw new IllegalArgumentException(Messages.getString(Messages.Query2Index_SerializationStrategyFactory_UnknownLinkKind, new String[] { Byte.toString(kind) }));
 			}
 
 			return new ReferenceDescriptorImpl(eObjectMap.get(key), typeURI, tarRes, fragment);
@@ -680,7 +681,7 @@ public class SerializationStrategyFactory {
 				String reference = channel.getString();
 				return new IncomingReferenceDescriptorImpl(this.resDesc, key, tarRes, fragment, reference);
 			default:
-				throw new IllegalArgumentException("Unknown link type: " + linkType);
+				throw new IllegalArgumentException(Messages.getString(Messages.Query2Index_SerializationStrategyFactory_UnknownLinkType, new String[] { Byte.toString(linkType) }));
 			}
 
 		}

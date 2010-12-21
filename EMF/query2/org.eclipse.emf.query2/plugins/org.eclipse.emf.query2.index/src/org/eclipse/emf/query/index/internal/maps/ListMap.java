@@ -15,6 +15,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.query.index.Messages;
 import org.eclipse.emf.query.index.internal.maps.SerializationStrategy.Channel;
 
 /**
@@ -420,7 +421,7 @@ public class ListMap<K, E extends MapEntry> extends AbstractKeylessMapBase<K, E>
 
 	public <T extends MapEntry> void getPosition(T element, int[] output) {
 		if (element == null) {
-			throw new IllegalArgumentException("Argument must not be null");
+			throw new IllegalArgumentException(Messages.Query2Index_ListMap_NullArgument);
 		}
 		int keyNr = this.keyNr;
 		Object[] tab = this.table;
@@ -431,7 +432,7 @@ public class ListMap<K, E extends MapEntry> extends AbstractKeylessMapBase<K, E>
 		while (true) {
 			Object item = tab[i];
 			if (item == null) {
-				throw new IllegalArgumentException("Element not found");
+				throw new IllegalArgumentException(Messages.Query2Index_ListMap_ElementNotFound);
 			}
 			if (((E[]) item)[0].getKeyElement(keyNr) == keyElem) {
 				E[] elems = (E[]) item;

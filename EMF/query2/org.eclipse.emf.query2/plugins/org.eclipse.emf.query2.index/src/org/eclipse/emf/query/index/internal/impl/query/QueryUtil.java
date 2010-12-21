@@ -9,6 +9,8 @@
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 package org.eclipse.emf.query.index.internal.impl.query;
+
+
 /**
  * @author Martin Strenge - Initial API and implementation
  * @author Bernd Kolb - Initial API and implementation
@@ -21,7 +23,7 @@ public class QueryUtil {
 	public static boolean matchesGlobbing(String testString, String pattern) {
 		if (pattern == null)
 			return true;
-		if (testString == null || "".equals(pattern))
+		if (testString == null || "".equals(pattern)) //$NON-NLS-1$
 			return false;
 		int patternLength = pattern.length();
 		if (pattern.charAt(0) == WILDCARD) {
