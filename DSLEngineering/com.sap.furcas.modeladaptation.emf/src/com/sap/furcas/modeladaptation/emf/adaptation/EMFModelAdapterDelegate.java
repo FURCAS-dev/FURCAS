@@ -221,7 +221,7 @@ public class EMFModelAdapterDelegate {
         }
 
         EStructuralFeature feat = getFeatureByName(modelElement.eClass(), propertyName);
-        if (feat.getUpperBound() == 1) {
+        if (!feat.isMany()) {
             if (value instanceof Collection) {
                 if (((Collection<?>) value).size() != 1) {
                     throw new ModelAdapterException("Upper bound for feature " + propertyName + " of " + modelElement.eClass() + " is 1. " +

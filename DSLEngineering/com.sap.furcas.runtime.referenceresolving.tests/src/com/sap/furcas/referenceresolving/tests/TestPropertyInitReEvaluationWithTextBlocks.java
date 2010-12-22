@@ -80,6 +80,8 @@ public class TestPropertyInitReEvaluationWithTextBlocks extends AbstractBibtexTe
     public void removeModelFromResourceSet() {
         bibtexFile.eResource().getContents().remove(bibtexFile);
         resourceSet.getResources().remove(transientParsingResource);
+        // make sure the next parser run isn't obstructed by an already subscribed trigger manager:
+        triggerManager.removeFromObservedResourceSets(resourceSet);
     }
     
     @Test
@@ -133,7 +135,9 @@ public class TestPropertyInitReEvaluationWithTextBlocks extends AbstractBibtexTe
         @SuppressWarnings("unchecked")
         EList<EObject> johnsArticles = (EList<EObject>) johnDoe.eGet(authorClass.getEStructuralFeature("articles"));
         johnsArticles.add(newArticle);
-        testForeachPropertyInitValueInInitialModel();
+        @SuppressWarnings("unchecked")
+        EList<EObject> revenues = (EList<EObject>) johnDoe.eGet(authorClass.getEStructuralFeature("revenues"));
+        assertEquals(johnsArticles.size(), revenues.size());
     }
 
 }

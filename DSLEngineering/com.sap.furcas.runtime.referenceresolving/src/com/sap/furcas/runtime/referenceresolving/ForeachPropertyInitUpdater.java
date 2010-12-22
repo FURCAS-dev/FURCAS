@@ -177,6 +177,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                 // for which the foreach base expression evaluates to affectedContextObject and hence
                 // gives us the decisive clue on which element to update the property.
                 ImpactAnalyzer ia = getImpactAnalyzerForBaseExpression();
+                ia.toString(); // TODO remove this dummy usage again when I continue here...
                 System.err.println("TODO Impact Analysis for when clause not yet active: "+whenClause.getWhen());
             }
         }
