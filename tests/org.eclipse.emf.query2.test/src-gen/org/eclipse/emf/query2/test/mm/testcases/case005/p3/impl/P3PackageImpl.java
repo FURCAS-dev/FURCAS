@@ -493,7 +493,7 @@ public class P3PackageImpl extends EPackageImpl implements P3Package {
 		c5EClass.getESuperTypes().add(theP2Package.getB5());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(c5EClass, org.eclipse.emf.query2.test.mm.testcases.case005.p3.C5.class, "C5", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(c5EClass, org.eclipse.emf.query2.test.mm.testcases.case005.p3.C5.class, "C5", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
@@ -510,15 +510,15 @@ public class P3PackageImpl extends EPackageImpl implements P3Package {
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (c5EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case005.p3.C5",
-			 "metaObjectMofId", "45F120A54E0770A0032849662C0D9382410F039A",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case005.p3.C5", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A54E0770A0032849662C0D9382410F039A", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

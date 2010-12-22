@@ -36,7 +36,7 @@ public class Case008FactoryImpl extends EFactoryImpl implements Case008Factory {
 	 */
 	public static Case008Factory init() {
 		try {
-			Case008Factory theCase008Factory = (Case008Factory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case008"); 
+			Case008Factory theCase008Factory = (Case008Factory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case008"); //$NON-NLS-1$ 
 			if (theCase008Factory != null) {
 				return theCase008Factory;
 			}
@@ -71,7 +71,7 @@ public class Case008FactoryImpl extends EFactoryImpl implements Case008Factory {
 			case Case008Package.U8: return createU8();
 			case Case008Package.V8: return createV8();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -86,7 +86,7 @@ public class Case008FactoryImpl extends EFactoryImpl implements Case008Factory {
 			case Case008Package.E8:
 				return createE8FromString(eDataType, initialValue);
 			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -101,7 +101,7 @@ public class Case008FactoryImpl extends EFactoryImpl implements Case008Factory {
 			case Case008Package.E8:
 				return convertE8ToString(eDataType, instanceValue);
 			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -162,7 +162,7 @@ public class Case008FactoryImpl extends EFactoryImpl implements Case008Factory {
 	 */
 	public E8 createE8FromString(EDataType eDataType, String initialValue) {
 		E8 result = E8.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 

@@ -35,7 +35,7 @@ public class P1FactoryImpl extends EFactoryImpl implements P1Factory {
 	 */
 	public static P1Factory init() {
 		try {
-			P1Factory theP1Factory = (P1Factory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case005/p1"); 
+			P1Factory theP1Factory = (P1Factory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case005/p1"); //$NON-NLS-1$ 
 			if (theP1Factory != null) {
 				return theP1Factory;
 			}
@@ -66,7 +66,7 @@ public class P1FactoryImpl extends EFactoryImpl implements P1Factory {
 		switch (eClass.getClassifierID()) {
 			case P1Package.A5: return createA5();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

@@ -214,9 +214,9 @@ public class SuperStructure1Impl extends EObjectImpl implements SuperStructure1 
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (superField1From1: ");
+		result.append(" (superField1From1: "); //$NON-NLS-1$
 		result.append(superField1From1);
-		result.append(", superField2From1: ");
+		result.append(", superField2From1: "); //$NON-NLS-1$
 		result.append(superField2From1);
 		result.append(')');
 		return result.toString();

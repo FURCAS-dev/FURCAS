@@ -35,7 +35,7 @@ public class ClusteredFactoryImpl extends EFactoryImpl implements ClusteredFacto
 	 */
 	public static ClusteredFactory init() {
 		try {
-			ClusteredFactory theClusteredFactory = (ClusteredFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case007/clustered"); 
+			ClusteredFactory theClusteredFactory = (ClusteredFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case007/clustered"); //$NON-NLS-1$ 
 			if (theClusteredFactory != null) {
 				return theClusteredFactory;
 			}
@@ -68,7 +68,7 @@ public class ClusteredFactoryImpl extends EFactoryImpl implements ClusteredFacto
 			case ClusteredPackage.CLUSTERED_B: return createClusteredB();
 			case ClusteredPackage.CLUSTERED_AREFERENCES_CLUSTERED_B: return createClusteredAReferencesClusteredB();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
