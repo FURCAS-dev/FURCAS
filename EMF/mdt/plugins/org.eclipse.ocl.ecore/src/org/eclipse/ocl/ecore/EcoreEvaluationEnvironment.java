@@ -11,6 +11,7 @@
  *   IBM - Initial API and implementation
  *   C.Damus - 291365
  *   E.D.Willink - 322159
+ *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Bug 333032
  *
  * </copyright>
  *
@@ -83,6 +84,8 @@ public class EcoreEvaluationEnvironment
 
 	/**
 	 * Initializes me.
+	 * 
+	 * @deprecated A root evaluation environment should be created through the correspondent {@link EcoreEnvironmentFactory}
 	 */
 	public EcoreEvaluationEnvironment() {
 		this((EcoreEnvironmentFactory)null);
