@@ -184,7 +184,11 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
                         // it contains injectorAction
                         Template t = whenClause.getAs();
                         if (EcoreUtil.isAncestor(t, getSequenceElement())) {
-                            // yes, the self object led to the injector action firing
+                            // yes, the self object led to the injector action firing because
+                            // we excluded #foreach being nested inside semantic predicates which
+                            // would be the only way to create alternatives without concrete-syntactical
+                            // disambiguation. Remember that templates called by foreach(...) must not
+                            // make concrete-syntactical contributions.
                             result.add(foreachContext.getResultModelElement());
                             break; // continue with the next ForEachContext element
                         }
@@ -218,14 +222,15 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
                             && contextTemplate.getContextTags().getTags().contains(contextTag)) {
                         // the contextTemplate has the expected tag (e.g., "context(X)" if the
                         // usage was "#context(X)")
-                        Set<TextBlock> textBlocksForSubordinateExecutionsOfSequenceElementHoldingTheOCLExpression = getSubordinateTextBlocksLeadingTo(
-                                textBlock, getSequenceElement().getParentTemplate());
+                        Set<TextBlock> textBlocksForSubordinateExecutionsOfSequenceElementHoldingTheOCLExpression =
+                            getSubordinateTextBlocksLeadingTo(textBlock, getSequenceElement().getParentTemplate());
                         for (TextBlock tb : textBlocksForSubordinateExecutionsOfSequenceElementHoldingTheOCLExpression) {
                             // add the first element from correspondingModelElements because that's the one
                             // actually immediately created by the template holding the sequence element with
                             // the OCL expression
                             if (!tb.getCorrespondingModelElements().isEmpty()
-                                    && TcsUtil.wasExecuted((ContextTemplate) tb.getType().getParseRule(), tb.getParentAltChoices(), getSequenceElement())) {
+                                    && TcsUtil.wasExecuted((ContextTemplate) tb.getType().getParseRule(),
+                                            tb.getParentAltChoices(), getSequenceElement())) {
                                 result.add(tb.getCorrespondingModelElements().get(0));
                             }
                         }
