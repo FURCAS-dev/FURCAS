@@ -171,6 +171,7 @@ public class ContextTemplateItemProvider
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
             childrenFeatures.add(TCSPackage.Literals.CONTEXT_TEMPLATE__SCOPE);
+            childrenFeatures.add(TCSPackage.Literals.CONTEXT_TEMPLATE__TEMPLATE_SEQUENCE);
         }
         return childrenFeatures;
     }
@@ -231,6 +232,7 @@ public class ContextTemplateItemProvider
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
             case TCSPackage.CONTEXT_TEMPLATE__SCOPE:
+            case TCSPackage.CONTEXT_TEMPLATE__TEMPLATE_SEQUENCE:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -252,6 +254,16 @@ public class ContextTemplateItemProvider
             (createChildParameter
                 (TCSPackage.Literals.CONTEXT_TEMPLATE__SCOPE,
                  TCSFactory.eINSTANCE.createScopeArg()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (TCSPackage.Literals.CONTEXT_TEMPLATE__TEMPLATE_SEQUENCE,
+                 TCSFactory.eINSTANCE.createSequence()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (TCSPackage.Literals.CONTEXT_TEMPLATE__TEMPLATE_SEQUENCE,
+                 TCSFactory.eINSTANCE.createSequenceInAlternative()));
     }
 
 }

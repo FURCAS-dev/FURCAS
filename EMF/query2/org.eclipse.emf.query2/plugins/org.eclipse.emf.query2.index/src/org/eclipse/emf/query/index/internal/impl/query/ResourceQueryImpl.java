@@ -110,7 +110,7 @@ public class ResourceQueryImpl<T> implements ResourceQuery<T>, QueryInternal<T, 
 	}
 
 	private boolean isPattern(String s) {
-		return s.contains("*");
+		return s.contains("*"); //$NON-NLS-1$
 	}
 
 	public QueryResult<T> createQueryResult(QueryExecutorInternal queryExecutor, Iterable<? extends ResourceDescriptor> result) {

@@ -31,4 +31,8 @@ public class ExpressionWithContext {
     public EClass getContext() {
         return context;
     }
+    
+    public String toString() {
+        return "context "+context.getName()+": "+expression;
+    }
 }

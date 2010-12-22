@@ -12,6 +12,7 @@ package org.eclipse.emf.query.index.internal.impl;
 
 import java.io.File;
 
+import org.eclipse.emf.query.index.Messages;
 import org.eclipse.emf.query.index.internal.PageFileProvider;
 
 /**
@@ -37,9 +38,9 @@ public class PageFileProviderImpl implements PageFileProvider {
 
 	private File getFileForElement(String id) {
 		if (basePath == null) {
-			throw new IllegalStateException("Base path not set");
+			throw new IllegalStateException(Messages.Query2Index_PageFileProviderImpl_BasePathNotSet);
 		}
-		String path = basePath + id.replace(':', '_').replace('/', '_') + ".page";
+		String path = basePath + id.replace(':', '_').replace('/', '_') + ".page"; //$NON-NLS-1$
 		File file = new File(path);
 		return file;
 	}

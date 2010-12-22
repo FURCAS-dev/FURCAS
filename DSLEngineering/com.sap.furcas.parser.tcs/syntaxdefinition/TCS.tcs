@@ -150,7 +150,6 @@ syntax TCS {
                                 (isContext ? "context" (isDefined(contextTags) ? contextTags))
                                 (isAddToContext ? "addToContext")
                                 (isNonPrimary ? "nonPrimary")
-                                (isDefined(prefixSequence) ? "prefix" [ ":" [ prefixSequence ] {startNL = false} ])
                           )
                         (isDefined(templateSequence) ? [ ":" [ templateSequence ] {startNL = false} ";" ] : ";")
                         --this is an oppositeEnd for TextBlockDefinition:parseRule
@@ -170,7 +169,7 @@ syntax TCS {
                         (isReferenceOnly ? "referenceOnly" :
                                 (isContext ? "context" (isDefined(contextTags) ? contextTags))
                         )
-                        (isDefined(otSequence) ? [ ":" [ otSequence ] {startNL = false} ";" ] : ";")
+                        (isDefined(templateSequence) ? [ ":" [ templateSequence ] {startNL = false} ";" ] : ";")
                         --this is an oppositeEnd for TextBlockDefinition:parseRule
                         textBlockDefinition{forcedUpper=1}
                 ;
@@ -419,7 +418,7 @@ syntax TCS {
                 ;
                 
        	template TCS::QueryByIdentifierPArg
-                :       "queryByIdentifier" "=" queryByIdentifier{as = stringSymbol} "," "feature" "=" feature{as = identifierOrKeyword}
+                :       "queryByIdentifier" "=" query{as = stringSymbol} "," "feature" "=" feature{as = identifierOrKeyword}
                 ;
 
         template TCS::ModePArg

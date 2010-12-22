@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -14,6 +15,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -53,6 +55,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Block;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.CustomSeparator;
 import com.sap.furcas.metamodel.FURCAS.TCS.EndOfLineRule;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralMapping;
@@ -75,6 +78,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
+import com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Rule;
@@ -89,6 +93,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.TCS.Token;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
@@ -205,10 +210,10 @@ public class TcsUtil {
 
                         for (OperatorTemplate ot : findOperatorTemplatesByOperatorLiteralValue(operatorValue,
                                 (EClass) getType(prop), syntax)) {
-                            if (ot.getOtSequence() != null) {
+                            if (ot.getTemplateSequence() != null) {
                                 addAllIfNotNull(
                                         results,
-                                        getPossibleFirstAtomicSequenceElements(ot.getOtSequence(), classTemplateMap,
+                                        getPossibleFirstAtomicSequenceElements(ot.getTemplateSequence(), classTemplateMap,
                                                 new HashSet<Template>(), syntax));
                             } else {
                                 otWithoutSequenceFound = true;
@@ -792,6 +797,23 @@ public class TcsUtil {
         for (PropertyArg arg : p.getPropertyArgs()) {
             if (arg instanceof QueryPArg) {
                 return (QueryPArg) arg;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * returns the first {@link QueryByIdentifierPArg} of Property p. There should only be one. No error is thrown, if
+     * more than one exist.
+     * 
+     * @param p
+     *            Property
+     * @return first QueryPArg
+     */
+    public static QueryByIdentifierPArg getQueryByIdentifierPArg(Property p) {
+        for (PropertyArg arg : p.getPropertyArgs()) {
+            if (arg instanceof QueryByIdentifierPArg) {
+                return (QueryByIdentifierPArg) arg;
             }
         }
         return null;
@@ -1872,6 +1894,88 @@ public class TcsUtil {
         } else {
             return null;
         }
+    }
+
+    /**
+     * Given a record of which choices were made, in numerical form, as returned, e.g., by
+     * {@link TextBlock#getParentAltChoices()} including the leading -1, and given a base {@link ContextTemplate} from
+     * where to start, traverses through all {@link SequenceElement}s that were used according to
+     * <code>alternativeChoices</code> and looks for <code>searchFor</code>. Returns <code>true</code> if
+     * <code>searchFor</code> must have been executed based on what <code>alternativeChoices</code> tells;
+     * <code>false</code> otherwise.
+     * <p>
+     * 
+     * In case an alternative is reached but <code>alternativeChoices</code> has no further elements, an
+     * {@link IllegalArgumentException} is thrown.
+     * 
+     * @param base
+     *            the template with whose sequence to start. The sequence's contained elements are traversed in
+     *            depth-first order and at each choice, the first element of <code>alternativeChoices</code> is
+     *            consumed, and the descent continues with the respective alternative.
+     * 
+     * @param alternativeChoices
+     *            a list such as the one returned by {@link TextBlock#getParentAltChoices()} including the leading -1.
+     *            Must be non-<code>null</code> but may be empty. In case of an empty list, <code>base</code> is
+     *            returned immediately.
+     * 
+     * @param searchFor
+     *            the sequence element to search for
+     * 
+     * @throws IllegalArgumentException
+     *             in case <code>alternativeChoices</code> doesn't contain enough elements for the choices to be made
+     *             during the descent
+     */
+    public static boolean wasExecuted(ContextTemplate base, EList<Integer> alternativeChoices, SequenceElement searchFor) {
+        Sequence sequence = base.getTemplateSequence();
+        List<Integer> alternativeChoicesWithLeadingMinusOneRemoved = new LinkedList<Integer>(alternativeChoices);
+        alternativeChoicesWithLeadingMinusOneRemoved.remove(0);
+        return sequence != null && wasExecuted(sequence, alternativeChoicesWithLeadingMinusOneRemoved, searchFor);
+    }
+    
+    private static boolean wasExecuted(Sequence sequence, List<Integer> alternativeChoices, SequenceElement searchFor) {
+        boolean result = false;
+        for (SequenceElement element : sequence.getElements()) {
+            if (element == searchFor) {
+                result = true;
+            } else {
+                Sequence subSequence = getSubSequence(alternativeChoices, element);
+                if (subSequence != null) {
+                    result = wasExecuted(subSequence, alternativeChoices, searchFor);
+                }
+            }
+            if (result) {
+                break;
+            }
+        }
+        return result;
+    }
+
+    private static Sequence getSubSequence(List<Integer> alternativeChoices, SequenceElement element) {
+        Sequence subSequence;
+        if (element instanceof Alternative) {
+            subSequence = ((Alternative) element).getSequences().get(alternativeChoices.get(0));
+            alternativeChoices.remove(0);
+        } else if (element instanceof ConditionalElement) {
+            switch (alternativeChoices.get(0)) {
+            case 0:
+                subSequence = ((ConditionalElement) element).getThenSequence();
+                break;
+            case 1:
+                subSequence = ((ConditionalElement) element).getElseSequence();
+                break;
+            default:
+                throw new IllegalArgumentException("Choice "+alternativeChoices.get(0)+
+                        " not compatible with ConditionalElement. Expected 0 or 1.");
+            }
+            alternativeChoices.remove(0);
+        } else if (element instanceof Block) {
+            subSequence = ((Block) element).getBlockSequence();
+        } else if (element instanceof FunctionCall) {
+            subSequence = ((FunctionCall) element).getCalledFunction().getFunctionSequence();
+        } else {
+            subSequence = null;
+        }
+        return subSequence;
     }
 
 }

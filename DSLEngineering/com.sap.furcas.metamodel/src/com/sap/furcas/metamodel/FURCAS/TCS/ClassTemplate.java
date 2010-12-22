@@ -16,11 +16,9 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate#getTemplateSequence <em>Template Sequence</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate#getModifiers <em>Modifiers</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate#isIsAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate#isIsDeep <em>Is Deep</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate#getPrefixSequence <em>Prefix Sequence</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate#isIsOperatored <em>Is Operatored</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate#getOperatorList <em>Operator List</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate#isIsMain <em>Is Main</em>}</li>
@@ -35,34 +33,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface ClassTemplate extends ContextTemplate {
-        /**
-     * Returns the value of the '<em><b>Template Sequence</b></em>' containment reference.
-     * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.FURCAS.TCS.Sequence#getTemplateContainer <em>Template Container</em>}'.
-     * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Template Sequence</em>' containment reference isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
-     * @return the value of the '<em>Template Sequence</em>' containment reference.
-     * @see #setTemplateSequence(Sequence)
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getClassTemplate_TemplateSequence()
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.Sequence#getTemplateContainer
-     * @model opposite="templateContainer" containment="true" required="true" ordered="false"
-     * @generated
-     */
-        Sequence getTemplateSequence();
-
-        /**
-     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate#getTemplateSequence <em>Template Sequence</em>}' containment reference.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Template Sequence</em>' containment reference.
-     * @see #getTemplateSequence()
-     * @generated
-     */
-        void setTemplateSequence(Sequence value);
-
         /**
      * Returns the value of the '<em><b>Modifiers</b></em>' attribute list.
      * The list contents are of type {@link com.sap.furcas.metamodel.FURCAS.TCS.TemplateModifiers}.
@@ -132,34 +102,6 @@ public interface ClassTemplate extends ContextTemplate {
      * @generated
      */
         void setIsDeep(boolean value);
-
-        /**
-     * Returns the value of the '<em><b>Prefix Sequence</b></em>' containment reference.
-     * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.FURCAS.TCS.Sequence#getPrefixContainer <em>Prefix Container</em>}'.
-     * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Prefix Sequence</em>' containment reference isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
-     * @return the value of the '<em>Prefix Sequence</em>' containment reference.
-     * @see #setPrefixSequence(Sequence)
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getClassTemplate_PrefixSequence()
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.Sequence#getPrefixContainer
-     * @model opposite="prefixContainer" containment="true" required="true" ordered="false"
-     * @generated
-     */
-        Sequence getPrefixSequence();
-
-        /**
-     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate#getPrefixSequence <em>Prefix Sequence</em>}' containment reference.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Prefix Sequence</em>' containment reference.
-     * @see #getPrefixSequence()
-     * @generated
-     */
-        void setPrefixSequence(Sequence value);
 
         /**
      * Returns the value of the '<em><b>Is Operatored</b></em>' attribute.

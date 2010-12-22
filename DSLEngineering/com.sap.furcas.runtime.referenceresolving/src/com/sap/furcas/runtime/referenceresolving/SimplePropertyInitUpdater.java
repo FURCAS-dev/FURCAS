@@ -20,17 +20,16 @@ import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 public class SimplePropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdater {
     private LookupPropertyInit injectorAction;
 
-    protected SimplePropertyInitUpdater(LookupPropertyInit injectorAction, EPackage.Registry metamodelPackageRegistry, OppositeEndFinder oppositeEndFinder)
-            throws ParserException {
+    protected SimplePropertyInitUpdater(LookupPropertyInit injectorAction, EPackage.Registry metamodelPackageRegistry,
+            OppositeEndFinder oppositeEndFinder) throws ParserException {
         super(injectorAction.getPropertyReference().getStrucfeature(), metamodelPackageRegistry, oppositeEndFinder,
-                        new ExpressionWithContext(
-                                createOCLHelper(injectorAction.getValue(),
-                                        ((InjectorActionsBlock) injectorAction.eContainer()).getParentTemplate(), oppositeEndFinder)
-                                        .createQuery(ContextAndForeachHelper.prepareOclQuery(injectorAction.getValue())),
-                                (EClass) ContextAndForeachHelper.getParsingContext(injectorAction.getValue(),
-                                        ((InjectorActionsBlock) injectorAction.eContainer()).getParentTemplate())),
-                                        /* notifyNewContextElements */ true, getSelfKind(injectorAction.getValue()),
-                                        ContextAndForeachHelper.getContextTag(injectorAction.getValue()));
+                new ExpressionWithContext(createOCLHelper(injectorAction.getValue(),
+                        ((InjectorActionsBlock) injectorAction.eContainer()).getParentTemplate(), oppositeEndFinder)
+                        .createQuery(ContextAndForeachHelper.prepareOclQuery(injectorAction.getValue())),
+                        (EClass) ContextAndForeachHelper.getParsingContext(injectorAction.getValue(),
+                                ((InjectorActionsBlock) injectorAction.eContainer()).getParentTemplate())),
+                /* notifyNewContextElements */true, getSelfKind(injectorAction.getValue()), ContextAndForeachHelper
+                        .getContextTag(injectorAction.getValue()));
         this.injectorAction = injectorAction;
     }
     

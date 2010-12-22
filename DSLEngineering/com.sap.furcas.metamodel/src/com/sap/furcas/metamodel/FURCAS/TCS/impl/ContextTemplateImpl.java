@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import com.sap.furcas.metamodel.FURCAS.TCS.ContextTags;
 import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ScopeArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 /**
@@ -29,6 +30,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.ContextTemplateImpl#isIsReferenceOnly <em>Is Reference Only</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.ContextTemplateImpl#getContextTags <em>Context Tags</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.ContextTemplateImpl#getScope <em>Scope</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.ContextTemplateImpl#getTemplateSequence <em>Template Sequence</em>}</li>
  * </ul>
  * </p>
  *
@@ -114,6 +116,16 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
      * @ordered
      */
         protected ScopeArg scope;
+
+        /**
+     * The cached value of the '{@link #getTemplateSequence() <em>Template Sequence</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTemplateSequence()
+     * @generated
+     * @ordered
+     */
+    protected Sequence templateSequence;
 
         /**
      * <!-- begin-user-doc -->
@@ -280,6 +292,49 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
 
         /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Sequence getTemplateSequence() {
+        return templateSequence;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetTemplateSequence(Sequence newTemplateSequence, NotificationChain msgs) {
+        Sequence oldTemplateSequence = templateSequence;
+        templateSequence = newTemplateSequence;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TCSPackage.CONTEXT_TEMPLATE__TEMPLATE_SEQUENCE, oldTemplateSequence, newTemplateSequence);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setTemplateSequence(Sequence newTemplateSequence) {
+        if (newTemplateSequence != templateSequence) {
+            NotificationChain msgs = null;
+            if (templateSequence != null)
+                msgs = ((InternalEObject)templateSequence).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TCSPackage.CONTEXT_TEMPLATE__TEMPLATE_SEQUENCE, null, msgs);
+            if (newTemplateSequence != null)
+                msgs = ((InternalEObject)newTemplateSequence).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TCSPackage.CONTEXT_TEMPLATE__TEMPLATE_SEQUENCE, null, msgs);
+            msgs = basicSetTemplateSequence(newTemplateSequence, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CONTEXT_TEMPLATE__TEMPLATE_SEQUENCE, newTemplateSequence, newTemplateSequence));
+    }
+
+        /**
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -288,6 +343,8 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
         switch (featureID) {
             case TCSPackage.CONTEXT_TEMPLATE__SCOPE:
                 return basicSetScope(null, msgs);
+            case TCSPackage.CONTEXT_TEMPLATE__TEMPLATE_SEQUENCE:
+                return basicSetTemplateSequence(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -311,6 +368,8 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
                 return basicGetContextTags();
             case TCSPackage.CONTEXT_TEMPLATE__SCOPE:
                 return getScope();
+            case TCSPackage.CONTEXT_TEMPLATE__TEMPLATE_SEQUENCE:
+                return getTemplateSequence();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -337,6 +396,9 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
                 return;
             case TCSPackage.CONTEXT_TEMPLATE__SCOPE:
                 setScope((ScopeArg)newValue);
+                return;
+            case TCSPackage.CONTEXT_TEMPLATE__TEMPLATE_SEQUENCE:
+                setTemplateSequence((Sequence)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -365,6 +427,9 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
             case TCSPackage.CONTEXT_TEMPLATE__SCOPE:
                 setScope((ScopeArg)null);
                 return;
+            case TCSPackage.CONTEXT_TEMPLATE__TEMPLATE_SEQUENCE:
+                setTemplateSequence((Sequence)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -387,6 +452,8 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
                 return contextTags != null;
             case TCSPackage.CONTEXT_TEMPLATE__SCOPE:
                 return scope != null;
+            case TCSPackage.CONTEXT_TEMPLATE__TEMPLATE_SEQUENCE:
+                return templateSequence != null;
         }
         return super.eIsSet(featureID);
     }

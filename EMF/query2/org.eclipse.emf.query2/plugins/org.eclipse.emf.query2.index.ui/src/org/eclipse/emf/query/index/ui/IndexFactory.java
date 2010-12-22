@@ -39,7 +39,8 @@ public class IndexFactory {
 					try {
 						indexer.resourceChanged(updater, EPackage.Registry.INSTANCE.getEPackage(packUri).eResource());
 					} catch (Exception e) {
-						System.err.println("Error indexing uri: " + packUri);
+						System.err.println(Messages.getString(Messages.QueryIndexUI_IndexFactory_ErrorIndexingURI, new String[] { packUri }));
+
 						e.printStackTrace();
 					}
 				}
@@ -67,13 +68,13 @@ public class IndexFactory {
 	 */
 	private static String getDirectoryToDumpIndices() {
 		IPath baseDirectory = Activator.getDefault().getStateLocation().addTrailingSeparator();
-		
+
 		IPath indexDirectoryPath = new Path(baseDirectory.toString() + Path.SEPARATOR + "index" + Path.SEPARATOR); //$NON-NLS-1$
 		File indexDir = new File(indexDirectoryPath.toString());
-		if(!indexDir.exists()) {
+		if (!indexDir.exists()) {
 			indexDir.mkdir();
 		}
-		
+
 		return indexDirectoryPath.toString();
 	}
 
@@ -83,7 +84,8 @@ public class IndexFactory {
 	public static void dumpIndexes() {
 		long currentTimeMillis = System.currentTimeMillis();
 		index.save();
-		System.out.println("Time taken to load: "+ (System.currentTimeMillis() - currentTimeMillis));
+		long timeTakenToDumpIndices = System.currentTimeMillis() - currentTimeMillis;
+		System.out.println(Messages.getString(Messages.QueryIndexUI_IndexFactory_TimeTakenToDump, new String[] { Long.toString(timeTakenToDumpIndices) }));
 	}
 
 	/**
@@ -92,7 +94,8 @@ public class IndexFactory {
 	public static Index loadIndexes() {
 		long currentTimeMillis = System.currentTimeMillis();
 		index.load();
-		System.out.println("Time taken to load: "+ (System.currentTimeMillis() - currentTimeMillis));
+		long timeTakenToLoadIndices = System.currentTimeMillis() - currentTimeMillis;
+		System.out.println(Messages.getString(Messages.QueryIndexUI_IndexFactory_TimeTakenToLoad, new String[] { Long.toString(timeTakenToLoadIndices) }));
 		return index;
 	}
 }
