@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Bug 333032
  *
  * </copyright>
  *
@@ -45,7 +46,7 @@ import org.eclipse.ocl.ecore.parser.OCLAnalyzer;
 import org.eclipse.ocl.ecore.parser.OCLFactoryWithHistory;
 import org.eclipse.ocl.ecore.parser.ValidationVisitor;
 import org.eclipse.ocl.helper.OCLSyntaxHelper;
-import org.eclipse.ocl.parser.backtracking.OCLBacktrackingParser;
+import org.eclipse.ocl.parser.AbstractOCLParser;
 import org.eclipse.ocl.utilities.Visitor;
 
 
@@ -194,8 +195,7 @@ public class EcoreEnvironmentFactory
 	 */
 	@Override
 	public OCLAnalyzer createOCLAnalyzer(
-			Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env,
-			OCLBacktrackingParser parser) {
+			AbstractOCLParser parser) {
 		return new OCLAnalyzer(parser);
 	}
 
