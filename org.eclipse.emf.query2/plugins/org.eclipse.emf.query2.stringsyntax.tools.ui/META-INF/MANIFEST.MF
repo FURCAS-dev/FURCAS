@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: EMF Query2 String Syntax Tooling
+Bundle-Name: %Query2StringSyntaxToolsUI_Bundle_Vendor
 Bundle-SymbolicName: org.eclipse.emf.query2.stringsyntaxtools.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.eclipse.emf.query2.internal.ui.Activator
@@ -16,4 +16,4 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.query2.core;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Bundle-Vendor: Eclipse Modeling Project
+Bundle-Vendor: %Query2StringSyntaxToolsUI_Bundle_Vendor

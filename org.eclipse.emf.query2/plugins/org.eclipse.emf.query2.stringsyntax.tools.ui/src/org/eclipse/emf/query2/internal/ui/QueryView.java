@@ -150,12 +150,12 @@ public class QueryView extends ViewPart implements ISelectionProvider {
 	}
 
 	public QueryView() {
-		queryImage = Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/magnifying-glass.gif").createImage();
-		fileImage = Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/file.gif").createImage();
+		queryImage = Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/magnifying-glass.gif").createImage(); //$NON-NLS-1$
+		fileImage = Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/file.gif").createImage(); //$NON-NLS-1$
 		query = QueryFactory.eINSTANCE.createMQLquery();
 		FromEntry fromEntry = QueryFactory.eINSTANCE.createFromEntry();
 		query.getFromEntries().add(fromEntry);
-		fromEntry.setAlias("query");
+		fromEntry.setAlias("query"); //$NON-NLS-1$
 		fromEntry.setType(QueryPackage.Literals.NAMED_QUERY);
 		SelectEntry selectEntry = QueryFactory.eINSTANCE.createSelectEntry();
 		selectEntry.setSelect(fromEntry);
@@ -211,13 +211,13 @@ public class QueryView extends ViewPart implements ISelectionProvider {
 
 		for (int i = 0; i < resultSet.getSize(); i++) {
 			QueryContainer container;
-			URI uri = resultSet.getUri(i, "query");
+			URI uri = resultSet.getUri(i, "query"); //$NON-NLS-1$
 			URI trimFragment = uri.trimFragment();
 			if ((container = result.get(trimFragment)) == null) {
 				container = new QueryContainer(uri.lastSegment(), trimFragment);
 				result.put(trimFragment, container);
 			}
-			String name = (String) resultSet.getAttribute(i, "query", "name");
+			String name = (String) resultSet.getAttribute(i, "query", "name"); //$NON-NLS-1$ //$NON-NLS-2$
 			container.addChild(new QueryItem(name, uri));
 		}
 

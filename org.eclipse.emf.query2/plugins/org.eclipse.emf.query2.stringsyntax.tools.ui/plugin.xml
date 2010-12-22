@@ -7,14 +7,14 @@
             class="org.eclipse.emf.query2.internal.ui.QueryResultView"
             icon="icons/file.gif"
             id="org.eclipse.emf.query2.syntax.tools.ui.queryresultview"
-            name="Query Result View"
+            name="%Query2StringSyntaxToolsUI_QueryResultView"
             restorable="true">
       </view>
        <view
              class="org.eclipse.emf.query2.internal.ui.QueryView"
              icon="icons/magnifying-glass.gif"
              id="org.eclipse.emf.query2.syntax.tools.ui.queryview"
-             name="Query View"
+             name="%Query2StringSyntaxToolsUI_QueryView"
              restorable="true">
       </view>
    </extension>
@@ -22,27 +22,27 @@
          point="org.eclipse.ui.commands">
       <command
             id="org.eclipse.emf.query2.syntax.tools.ui.popup.openInEditor"
-            name="Open In Editor">
+            name="%Query2StringSyntaxToolsUI_OpenInEditorCommand">
       </command>
       <command
             id="org.eclipse.emf.query2.syntax.tools.ui.refreshQueryView"
-            name="Refresh Query View">
+            name="%Query2StringSyntaxToolsUI_RefreshQueryCommand">
          <commandParameter
                id="refreshDirty"
-               name="Refresh Dirty"
+               name="%Query2StringSyntaxToolsUI_RefreshDirtyCommandParam"
                optional="true">
          </commandParameter>
       </command>
       <command
             id="org.eclipse.emf.query2.syntax.tools.ui.runQuery"
-            name="Run Query">
+            name="%Query2StringSyntaxToolsUI_RunQueryCommand">
       </command>
       <command
             id="org.eclipse.emf.query2.syntax.tools.ui.runQueryWithDirtyIndex"
-            name="Run Query With Dirty State">
+            name="%Query2StringSyntaxToolsUI_RunQueryWithDirtyStateCommand">
             <commandParameter
                   id="runDirty"
-                  name="Run Dirty"
+                  name="%Query2StringSyntaxToolsUI_RunDirtyCommandParam"
                   optional="true">
          </commandParameter>
       </command>
@@ -134,19 +134,19 @@
          <command
                commandId="org.eclipse.emf.query2.syntax.tools.ui.popup.openInEditor"
                icon="icons/file.gif"
-               label="Open In Editor"
+               label="%Query2StringSyntaxToolsUI_OpenInEditorLabel"
                style="push">
          </command>
          <command
                commandId="org.eclipse.emf.query2.syntax.tools.ui.runQuery"
                icon="icons/run.gif"
-               label="Run Query"
+               label="%Query2StringSyntaxToolsUI_RunQueryLabel"
                style="push">
          </command>
          <command
                commandId="org.eclipse.emf.query2.syntax.tools.ui.runQueryWithDirtyIndex"
                icon="icons/runDirty.gif"
-               label="Run Query On Dirty State"
+               label="%Query2StringSyntaxToolsUI_RunOnDirtyStateLabel"
                style="push">
             <parameter
                   name="runDirty"
@@ -159,7 +159,7 @@
          <command
                commandId="org.eclipse.emf.query2.syntax.tools.ui.refreshQueryView"
                icon="icons/refresh.gif"
-               label="Refresh"
+               label="%Query2StringSyntaxToolsUI_RefreshLabel"
                style="push">
             <parameter
                   name="refreshDirty"
@@ -169,9 +169,9 @@
          <command
                commandId="org.eclipse.emf.query2.syntax.tools.ui.refreshQueryView"
                icon="icons/refreshDirty.gif"
-               label="Refresh dirty"
+               label="%Query2StringSyntaxToolsUI_RefreshDirtyLabel"
                style="push"
-               tooltip="Refresh dirty">
+               tooltip="%Query2StringSyntaxToolsUI_RefreshDirtyTooltip">
             <parameter
                   name="refreshDirty"
                   value="true">
@@ -183,9 +183,9 @@
          <command
                commandId="org.eclipse.emf.query2.syntax.tools.ui.runQuery"
                icon="icons/run.gif"
-               label="Run Query"
+               label="%Query2StringSyntaxToolsUI_RunQueryCommandLabel"
                style="push"
-               tooltip="Trigger expensive validation">
+               tooltip="%Query2StringSyntaxToolsUI_ValidationTooltip">
             <visibleWhen
                   checkEnabled="false">
                <reference
@@ -201,7 +201,7 @@
             class="org.eclipse.emf.query2.internal.ui.QueryPerspectiveFactory"
             icon="icons/magnifying-glass.gif"
             id="org.eclipse.emf.query2.syntax.tools.ui.queryperspective"
-            name="Query">
+            name="%Query2StringSyntaxToolsUI_QueryPerspective">
       </perspective>
    </extension>
    <extension
