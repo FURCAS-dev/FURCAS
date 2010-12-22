@@ -45,7 +45,7 @@ public class GeneratedmetamodelPackageImpl extends EPackageImpl implements Gener
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected String packageFilename = "generatedmetamodel.ecore";
+	protected String packageFilename = "generatedmetamodel.ecore"; //$NON-NLS-1$
 
 	/**
 	 * <!-- begin-user-doc -->

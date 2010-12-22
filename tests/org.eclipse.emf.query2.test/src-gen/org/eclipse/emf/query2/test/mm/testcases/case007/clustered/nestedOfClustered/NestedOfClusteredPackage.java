@@ -36,7 +36,7 @@ public interface NestedOfClusteredPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "nestedOfClustered";
+	String eNAME = "nestedOfClustered"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace URI.
@@ -44,7 +44,7 @@ public interface NestedOfClusteredPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://sap.com/moin/testcases/case007/clustered/nestedOfClustered";
+	String eNS_URI = "http://sap.com/moin/testcases/case007/clustered/nestedOfClustered"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -52,7 +52,7 @@ public interface NestedOfClusteredPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "case007clusterednestedOfClustered";
+	String eNS_PREFIX = "case007clusterednestedOfClustered"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance of the package.
