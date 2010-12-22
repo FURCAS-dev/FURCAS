@@ -36,7 +36,7 @@ public interface Case017Package extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "case017";
+	String eNAME = "case017"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace URI.
@@ -44,7 +44,7 @@ public interface Case017Package extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://sap.com/moin/testcases/case017";
+	String eNS_URI = "http://sap.com/moin/testcases/case017"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -52,7 +52,7 @@ public interface Case017Package extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "case017";
+	String eNS_PREFIX = "case017"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance of the package.
