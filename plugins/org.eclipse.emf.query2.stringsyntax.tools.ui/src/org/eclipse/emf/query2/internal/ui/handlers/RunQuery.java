@@ -25,6 +25,7 @@ import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.QueryProcessor;
 import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
+import org.eclipse.emf.query2.internal.ui.Messages;
 import org.eclipse.emf.query2.internal.ui.QueryResultView;
 import org.eclipse.emf.query2.syntax.query.NamedQuery;
 import org.eclipse.emf.query2.syntax.transformation.QueryTransformer;
@@ -88,7 +89,7 @@ public class RunQuery extends org.eclipse.core.commands.AbstractHandler {
 			Object element = strucSelection.getFirstElement();
 			final URI uri = (URI) element;
 			ResourceSet rs = new ResourceSetImpl();
-			String parameter = event.getParameter("runDirty");
+			String parameter = event.getParameter("runDirty"); //$NON-NLS-1$
 			if (Boolean.valueOf(parameter)) {
 				IEditorReference[] editorReferences = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getEditorReferences();
 				if (editorReferences != null) {
@@ -116,7 +117,7 @@ public class RunQuery extends org.eclipse.core.commands.AbstractHandler {
 			dialog.run(true, true, new IRunnableWithProgress() {
 
 				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
-					monitor.beginTask("Running query...", IProgressMonitor.UNKNOWN);
+					monitor.beginTask(Messages.Query2StringSyntaxToolsUI_RunQuery_RunningQuery, IProgressMonitor.UNKNOWN);
 					// converts the XText Query into AST
 					Query transform = QueryTransformer.transform(query.getQuery());
 					long start = System.currentTimeMillis();
@@ -135,14 +136,14 @@ public class RunQuery extends org.eclipse.core.commands.AbstractHandler {
 	}
 
 	private void setInputToView(final ResultSet result, final long duration, ResourceSet rs) {
-		UIJob uiJob = new UIJob("update query view") {
+		UIJob uiJob = new UIJob(Messages.Query2StringSyntaxToolsUI_RunQuery_UpdateQueryView) {
 
 			public IStatus runInUIThread(IProgressMonitor monitor) {
-				monitor.beginTask("Opening result view...", IProgressMonitor.UNKNOWN);
+				monitor.beginTask(Messages.Query2StringSyntaxToolsUI_RunQuery_OpeningResultView, IProgressMonitor.UNKNOWN);
 				QueryResultView queryResultView;
 				try {
 					queryResultView = (QueryResultView) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(
-							"org.eclipse.emf.query2.syntax.tools.ui.queryresultview");
+							"org.eclipse.emf.query2.syntax.tools.ui.queryresultview"); //$NON-NLS-1$
 					queryResultView.setInput(result, duration);
 				} catch (PartInitException e) {
 					e.printStackTrace();
