@@ -210,7 +210,7 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
                                 Collection<?> result = helper.evaluateForeachOcl(ro, ref, 
                                         batchParser.getInjector().getModelAdapter(), 
                                         ro);
-                                if(elementsEqual(result, fec.getContextElement())) {
+                                if(result.contains(fec.getContextElement())) {
                                     fec.setForeachPedicatePropertyInit((ForeachPredicatePropertyInit) ref.getQueryElement());
                                     textBlock.getAdditionalTemplates().add(
                                             fec.getForeachPedicatePropertyInit().getInjectorActionsBlock().getParentTemplate());
@@ -222,16 +222,6 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
                     }
                 }
             }
-        }
-
-        private boolean elementsEqual(Collection<?> one,
-                Collection<?> two) {
-            for (Object refObject : two) {
-                if(!one.contains(refObject)) {
-                    return false;
-                }
-            }
-            return true;
         }
 
         private TextBlockDefinition getTbDef(Template t) {

@@ -49,14 +49,14 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
         protected ForeachPredicatePropertyInit foreachPedicatePropertyInit;
 
         /**
-     * The cached value of the '{@link #getContextElement() <em>Context Element</em>}' reference list.
+     * The cached value of the '{@link #getContextElement() <em>Context Element</em>}' reference.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @see #getContextElement()
      * @generated
      * @ordered
      */
-        protected EList<EObject> contextElement;
+        protected EObject contextElement;
 
         /**
      * The cached value of the '{@link #getResultModelElement() <em>Result Model Element</em>}' reference.
@@ -140,11 +140,37 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
          * <!-- end-user-doc -->
      * @generated
      */
-        public EList<EObject> getContextElement() {
-        if (contextElement == null) {
-            contextElement = new EObjectResolvingEList<EObject>(EObject.class, this, TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_ELEMENT);
+        public EObject getContextElement() {
+        if (contextElement != null && contextElement.eIsProxy()) {
+            InternalEObject oldContextElement = (InternalEObject)contextElement;
+            contextElement = eResolveProxy(oldContextElement);
+            if (contextElement != oldContextElement) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_ELEMENT, oldContextElement, contextElement));
+            }
         }
         return contextElement;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EObject basicGetContextElement() {
+        return contextElement;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setContextElement(EObject newContextElement) {
+        EObject oldContextElement = contextElement;
+        contextElement = newContextElement;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_ELEMENT, oldContextElement, contextElement));
     }
 
         /**
@@ -235,7 +261,8 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
                 if (resolve) return getForeachPedicatePropertyInit();
                 return basicGetForeachPedicatePropertyInit();
             case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_ELEMENT:
-                return getContextElement();
+                if (resolve) return getContextElement();
+                return basicGetContextElement();
             case TextblocksPackage.FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT:
                 if (resolve) return getResultModelElement();
                 return basicGetResultModelElement();
@@ -259,8 +286,7 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
                 setForeachPedicatePropertyInit((ForeachPredicatePropertyInit)newValue);
                 return;
             case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_ELEMENT:
-                getContextElement().clear();
-                getContextElement().addAll((Collection<? extends EObject>)newValue);
+                setContextElement((EObject)newValue);
                 return;
             case TextblocksPackage.FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT:
                 setResultModelElement((EObject)newValue);
@@ -284,7 +310,7 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
                 setForeachPedicatePropertyInit((ForeachPredicatePropertyInit)null);
                 return;
             case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_ELEMENT:
-                getContextElement().clear();
+                setContextElement((EObject)null);
                 return;
             case TextblocksPackage.FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT:
                 setResultModelElement((EObject)null);
@@ -307,7 +333,7 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
             case TextblocksPackage.FOR_EACH_CONTEXT__FOREACH_PEDICATE_PROPERTY_INIT:
                 return foreachPedicatePropertyInit != null;
             case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_ELEMENT:
-                return contextElement != null && !contextElement.isEmpty();
+                return contextElement != null;
             case TextblocksPackage.FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT:
                 return resultModelElement != null;
             case TextblocksPackage.FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT:

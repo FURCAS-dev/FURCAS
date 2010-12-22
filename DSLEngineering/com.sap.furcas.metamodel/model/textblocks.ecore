@@ -90,8 +90,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ForEachContext">
     <eStructuralFeatures xsi:type="ecore:EReference" name="foreachPedicatePropertyInit"
         eType="ecore:EClass TCS.ecore#//ForeachPredicatePropertyInit"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contextElement" upperBound="-1"
-        eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contextElement" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resultModelElement" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceModelElement" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
   </eClassifiers>

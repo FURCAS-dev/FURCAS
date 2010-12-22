@@ -1,6 +1,7 @@
 package com.sap.furcas.referenceresolving.tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
 
@@ -12,11 +13,14 @@ import java.util.Iterator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 
 /**
@@ -138,6 +142,13 @@ public class TestPropertyInitReEvaluationWithTextBlocks extends AbstractBibtexTe
         @SuppressWarnings("unchecked")
         EList<EObject> revenues = (EList<EObject>) johnDoe.eGet(authorClass.getEStructuralFeature("revenues"));
         assertEquals(johnsArticles.size(), revenues.size());
+        // now ensure that a ForEachContext has been created for the RevenueLedger construction
+        OppositeEndFinder oppositeEndFinder = DefaultOppositeEndFinder.getInstance();
+        for (EObject revenueLedger : revenues) {
+            assertFalse("Expected to find a ForEachContext for produced RevenueLedger element "+revenueLedger,
+                    oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
+                    TextblocksPackage.eINSTANCE.getForEachContext_ResultModelElement(), revenueLedger).isEmpty());
+        }
     }
 
 }
