@@ -1,7 +1,6 @@
 package com.sap.furcas.referenceresolving.tests;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
 
@@ -20,6 +19,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 
@@ -145,9 +145,14 @@ public class TestPropertyInitReEvaluationWithTextBlocks extends AbstractBibtexTe
         // now ensure that a ForEachContext has been created for the RevenueLedger construction
         OppositeEndFinder oppositeEndFinder = DefaultOppositeEndFinder.getInstance();
         for (EObject revenueLedger : revenues) {
-            assertFalse("Expected to find a ForEachContext for produced RevenueLedger element "+revenueLedger,
-                    oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
-                    TextblocksPackage.eINSTANCE.getForEachContext_ResultModelElement(), revenueLedger).isEmpty());
+            assertEquals("Expected to find exactly one ForEachContext for produced RevenueLedger element "+revenueLedger,
+                    1, oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
+                    TextblocksPackage.eINSTANCE.getForEachContext_ResultModelElement(), revenueLedger).size());
+            EObject author = revenueLedger.eContainer();
+            TextBlock authorCreationRecord = (TextBlock) oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
+                    TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(), author).iterator().next();
+            assertEquals("Expected exactly as many ForEachContext records as we have RevenueLedger objects for author "+
+                    author, revenues.size(), authorCreationRecord.getForEachContext().size());
         }
     }
 

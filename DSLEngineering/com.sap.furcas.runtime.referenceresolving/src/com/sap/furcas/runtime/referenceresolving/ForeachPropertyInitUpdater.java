@@ -5,6 +5,7 @@ import java.lang.reflect.Modifier;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
@@ -17,6 +18,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
@@ -34,6 +36,7 @@ import com.sap.emf.ocl.trigger.ExpressionWithContext;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
 import com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic;
+import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext;
@@ -158,7 +161,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                     try {
                         // the getElementsToUpdate(affectedContextObject) is necessary because the foreach
                         // base expression may itself use #context or #foreach
-                        updateFeature(expression, getElementsToUpdate(affectedContextObject), oldValue, newValue);
+                        updateFeature(getElementsToUpdate(affectedContextObject), newValue);
                     } catch (ParserException e) {
                         throw new RuntimeException(e);
                     }
@@ -193,13 +196,31 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
         return impactAnalyzerForBaseExpression;
     }
 
-    private void updateFeature(OCLExpression expression, Set<EObject> elementsToUpdate, Object oldValue,
-            Object newValue) {
+    /**
+     * Receives the current value of the foreach base expression and the elements on which to update the feature
+     * indicated by {@link #foreachPredicatePropertyInit}.{@link ForeachPredicatePropertyInit#getPropertyReference()
+     * getPropertyReference()}. {@link PropertyReference#getStrucfeature() getStrucfeature()}.
+     * <p>
+     * 
+     * TODO The current implementation replaces all elements in the feature for each element in
+     * <code>elementToUpdate</code>. Future implementations will be more sophisticated and make an effort to replace
+     * only those elements that need replacement, particularly because they have to be produced by a different template
+     * than before.
+     * <p>
+     * 
+     * With the current coarse-grained replacement strategy, all {@link ForEachContext} elements attached to the
+     * {@link TextBlock} documenting the creation of each of the <code>elementsToUpdate</code> are removed first.
+     * Then, the new elements are produced using {@link #produceElement(Object, TextBlock, ResourceSet, OppositeEndFinder)}
+     * operation. As a record of this, a new {@link ForEachContext} element is created for each object creation.
+     * They are attached to the {@link TextBlock#getForEachContext()} collection of the text blocks documenting
+     * the creation of the <code>elementsToUpdate</code>.
+     */
+    private void updateFeature(Set<EObject> elementsToUpdate, Object newValueOfForeachBaseExpression) {
         Collection<?> foreachElements;
-        if (newValue instanceof Collection<?>) {
-            foreachElements = (Collection<?>) newValue;
+        if (newValueOfForeachBaseExpression instanceof Collection<?>) {
+            foreachElements = (Collection<?>) newValueOfForeachBaseExpression;
         } else {
-            foreachElements = Collections.singleton(newValue);
+            foreachElements = Collections.singleton(newValueOfForeachBaseExpression);
         }
         for (EObject elementToUpdate : elementsToUpdate) {
             Collection<EObject> textBlocks = getOppositeEndFinder().navigateOppositePropertyWithBackwardScope(
@@ -207,22 +228,34 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
             TextBlock textBlock = null;
             if (!textBlocks.isEmpty()) {
                 textBlock = (TextBlock) textBlocks.iterator().next();
+                // delete now obsolete ForEachContext elements
+                for (Iterator<ForEachContext> existingForeachContextIterator = textBlock.getForEachContext().iterator();
+                             existingForeachContextIterator.hasNext(); ) {
+                    ForEachContext existingForeachContext = existingForeachContextIterator.next();
+                    if (existingForeachContext.getForeachPedicatePropertyInit() == foreachPredicatePropertyInit) {
+                        existingForeachContextIterator.remove();
+                    }
+                }
             }
             Collection<Object> newFeatureValue = new BasicEList<Object>();
             for (Object foreachElement : foreachElements) {
                 EObject producedElement = produceElement(foreachElement, textBlock,
                         elementToUpdate.eResource().getResourceSet(), getOppositeEndFinder());
+                if (!(foreachPredicatePropertyInit.getPropertyReference().getStrucfeature() instanceof EReference) ||
+                        !((EReference) foreachPredicatePropertyInit.getPropertyReference().getStrucfeature()).isContainment()) {
+                    // assign to elementToUpdate's Resource as a default, in case it's not added to a containment reference
+                    elementToUpdate.eResource().getContents().add(producedElement);
+                }
                 newFeatureValue.add(producedElement);
-                // create ForEachContext elements documenting what just happened in the TextBlocks model
-                ForEachContext foreachContext = TextblocksFactory.eINSTANCE.createForEachContext();
-                foreachContext.setForeachPedicatePropertyInit(foreachPredicatePropertyInit);
-                foreachContext.setSourceModelElement(elementToUpdate);
-                foreachContext.setContextElement((EObject) foreachElement);
-                foreachContext.setResultModelElement(producedElement);
                 if (textBlock != null) {
+                    // create ForEachContext element documenting what just happened in the TextBlocks model
+                    ForEachContext foreachContext = TextblocksFactory.eINSTANCE.createForEachContext();
+                    foreachContext.setForeachPedicatePropertyInit(foreachPredicatePropertyInit);
+                    foreachContext.setSourceModelElement(elementToUpdate);
+                    foreachContext.setContextElement((EObject) foreachElement);
+                    foreachContext.setResultModelElement(producedElement);
                     textBlock.getForEachContext().add(foreachContext);
                 }
-
             }
             if (foreachPredicatePropertyInit.getPropertyReference().getStrucfeature().isMany()) {
                 elementToUpdate.eSet(foreachPredicatePropertyInit.getPropertyReference().getStrucfeature(), newFeatureValue);
@@ -257,10 +290,9 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
     }
 
     /**
-     * Executes the <code>template</code>'s parse rule. Tricky aspects are setting the #foreach and
-     * #context stack stuff.
-     * @param textBlock TODO
-     * @param resourceSet 
+     * Executes the <code>template</code>'s parse rule. Tricky aspects are setting the #foreach and #context stack
+     * stuff.
+     * 
      * @return the element produced
      */
     private EObject produceWith(Template template, Object foreachElement, TextBlock textBlock,
@@ -317,7 +349,6 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                 throw new ModelElementCreationException("Unable to create model element using parse rule " + ruleName
                         + ". Parse errors: " + parser.getInjector().getErrorList());
             }
-            // TODO assign to elementToUpdate's Resource as a default, in case it's not added to a containment reference
             return parseReturn;
         } catch (Exception e) {
             throw new RuntimeException(e);
