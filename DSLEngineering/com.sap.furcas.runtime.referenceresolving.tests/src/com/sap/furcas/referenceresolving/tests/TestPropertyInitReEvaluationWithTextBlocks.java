@@ -7,7 +7,9 @@ import static org.junit.Assert.assertSame;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -144,12 +146,13 @@ public class TestPropertyInitReEvaluationWithTextBlocks extends AbstractBibtexTe
         assertEquals(johnsArticles.size(), revenues.size());
         // now ensure that a ForEachContext has been created for the RevenueLedger construction
         OppositeEndFinder oppositeEndFinder = DefaultOppositeEndFinder.getInstance();
-        Iterator<EObject> johnsArticlesIterator = johnsArticles.iterator();
+        Set<EObject> johnsArticlesAsSet = new HashSet<EObject>(johnsArticles);
+        Set<EObject> revenueLedgerArticles = new HashSet<EObject>();
         for (EObject revenueLedger : revenues) {
-            EObject theArticle = johnsArticlesIterator.next();
-            assertSame(theArticle, revenueLedger.eGet(revenueLedger.eClass().getEStructuralFeature("article")));
-            assertEquals(((String) ((EObject) theArticle.eGet(articleClass.getEStructuralFeature("author"))).eGet(
-                    authorClass.getEStructuralFeature("name"))).length(), revenueLedger.eGet(
+            revenueLedgerArticles.add((EObject) revenueLedger.eGet(revenueLedger.eClass().getEStructuralFeature("article")));
+            assertEquals(
+                    ((String) ((EObject) ((EObject) revenueLedger.eGet(revenueLedger.eClass().getEStructuralFeature(
+                            "article"))).eGet(articleClass.getEStructuralFeature("author"))).eGet(                    authorClass.getEStructuralFeature("name"))).length(), revenueLedger.eGet(
                             revenueLedger.eClass().getEStructuralFeature("revenueInEUR")));
             assertEquals("Expected to find exactly one ForEachContext for produced RevenueLedger element "+revenueLedger,
                     1, oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
@@ -160,6 +163,7 @@ public class TestPropertyInitReEvaluationWithTextBlocks extends AbstractBibtexTe
             assertEquals("Expected exactly as many ForEachContext records as we have RevenueLedger objects for author "+
                     author, revenues.size(), authorCreationRecord.getForEachContext().size());
         }
+        assertEquals(johnsArticlesAsSet, revenueLedgerArticles);
     }
 
 }
