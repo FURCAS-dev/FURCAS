@@ -208,13 +208,8 @@ syntax TCS {
                   strucfeature{
                         refersTo = name, 
                         query = "OCL:let c:ecore::EClass = #context.oclAsType(FURCAS::TCS::Template).metaReference.oclAsType(ecore::EClass) in
-                        		     let result:ecore::EStructuralFeature = c.getEStructuralFeature(?) in
-                                         if (not result.oclIsInvalid()) then
-                                                 Bag{result}     
-                                         else    
-                                                Bag{}
-                                         endif",
-                        filter = "", invert = "name", as = identifierOrKeyword}
+                        		     c.eAllStructuralFeatures",
+                        filter = "->select(f | f.name = ?)", invert = "name", as = identifierOrKeyword}
                   : "->" name{as = identifierOrKeyword})
             ;
 
