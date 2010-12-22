@@ -144,7 +144,13 @@ public class TestPropertyInitReEvaluationWithTextBlocks extends AbstractBibtexTe
         assertEquals(johnsArticles.size(), revenues.size());
         // now ensure that a ForEachContext has been created for the RevenueLedger construction
         OppositeEndFinder oppositeEndFinder = DefaultOppositeEndFinder.getInstance();
+        Iterator<EObject> johnsArticlesIterator = johnsArticles.iterator();
         for (EObject revenueLedger : revenues) {
+            EObject theArticle = johnsArticlesIterator.next();
+            assertSame(theArticle, revenueLedger.eGet(revenueLedger.eClass().getEStructuralFeature("article")));
+            assertEquals(((String) ((EObject) theArticle.eGet(articleClass.getEStructuralFeature("author"))).eGet(
+                    authorClass.getEStructuralFeature("name"))).length(), revenueLedger.eGet(
+                            revenueLedger.eClass().getEStructuralFeature("revenueInEUR")));
             assertEquals("Expected to find exactly one ForEachContext for produced RevenueLedger element "+revenueLedger,
                     1, oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
                     TextblocksPackage.eINSTANCE.getForEachContext_ResultModelElement(), revenueLedger).size());
