@@ -36,7 +36,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="articles" ordered="false"
         upperBound="-1" eType="#//Article" eOpposite="#//Article/author"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="revenues" upperBound="-1"
-        eType="#//RevenueLedger"/>
+        eType="#//RevenueLedger" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RevenueLedger">
     <eStructuralFeatures xsi:type="ecore:EReference" name="article" lowerBound="1"
