@@ -31,6 +31,8 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
+import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
+import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.eclipse.ocl.ecore.utilities.VisitorExtension;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.OCLExpression;
@@ -85,6 +87,30 @@ public class EvaluationVisitorImpl
 				collection.add(result);
 			}
 			result = collection;
+		}
+		return result;
+	}
+
+	@Override
+	protected OCLExpression<EClassifier> getOperationBody(EOperation operation) {
+		OCLExpression<EClassifier> result = InvocationBehavior.INSTANCE.getCachedOperationBody(operation);
+		if (result == null) {
+			result = InvocationBehavior.INSTANCE.getOperationBody(OCL.newInstance(getEnvironment().getFactory()), operation);
+		}
+		if (result == null) {
+			result = super.getOperationBody(operation);
+		}
+		return result;
+	}
+
+	@Override
+	protected OCLExpression<EClassifier> getPropertyBody(EStructuralFeature property) {
+		OCLExpression<EClassifier> result = SettingBehavior.INSTANCE.getCachedFeatureBody(property);
+		if (result == null) {
+			result = SettingBehavior.INSTANCE.getFeatureBody(OCL.newInstance(getEnvironment().getFactory()), property);
+		}
+		if (result == null) {
+			result = super.getPropertyBody(property);
 		}
 		return result;
 	}

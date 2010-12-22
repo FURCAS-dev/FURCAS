@@ -185,6 +185,7 @@ public class CompanyValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(employee, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(employee, diagnostics, context);
 		if (result || diagnostics != null) result &= validateEmployee_mustHaveName(employee, diagnostics, context);
+		if (result || diagnostics != null) result &= validateEmployee_mustHaveNonEmptyName(employee, diagnostics, context);
 		if (result || diagnostics != null) result &= validateEmployee_noManagerImpliesDirectReports(employee, diagnostics, context);
 		return result;
 	}
@@ -213,6 +214,35 @@ public class CompanyValidator extends EObjectValidator {
 				 "http://www.eclipse.org/emf/2002/Ecore/OCL", //$NON-NLS-1$
 				 "mustHaveName", //$NON-NLS-1$
 				 EMPLOYEE__MUST_HAVE_NAME__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
+	}
+
+	/**
+	 * The cached validation expression for the mustHaveNonEmptyName constraint of '<em>Employee</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String EMPLOYEE__MUST_HAVE_NON_EMPTY_NAME__EEXPRESSION = "name->notEmpty() implies name.size() > 0"; //$NON-NLS-1$
+
+	/**
+	 * Validates the mustHaveNonEmptyName constraint of '<em>Employee</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateEmployee_mustHaveNonEmptyName(Employee employee, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(CompanyPackage.Literals.EMPLOYEE,
+				 employee,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL", //$NON-NLS-1$
+				 "mustHaveNonEmptyName", //$NON-NLS-1$
+				 EMPLOYEE__MUST_HAVE_NON_EMPTY_NAME__EEXPRESSION,
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);

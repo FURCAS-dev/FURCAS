@@ -16,11 +16,12 @@
  */
 package org.eclipse.ocl.ecore.delegate;
 
+import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Internal.SettingDelegate;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.ExpressionInOCL;
@@ -59,31 +60,63 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 		return SettingDelegate.Factory.class;
 	}
 
+	/**
+	 * Return the feature body associated with structuralFeature, if necessary using ocl to
+	 * create the relevant parsing environment for a textual definition..
+	 */
 	public OCLExpression getFeatureBody(OCL ocl, EStructuralFeature structuralFeature) {
-		String expr = EcoreUtil.getAnnotation(structuralFeature, OCLDelegateDomain.OCL_DELEGATE_URI, DERIVATION_CONSTRAINT_KEY);
+		OCLExpression result = getCachedFeatureBody(structuralFeature);
+		if (result != null){
+			return result;
+		}
+		String key = DERIVATION_CONSTRAINT_KEY;
+	    EAnnotation eAnnotation = structuralFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+	    if (eAnnotation == null) {
+	    	return null;
+	    }
+	    EMap<String, String> details = eAnnotation.getDetails();
+		String expr = details.get(key);
 		if (expr == null) {
-			expr = EcoreUtil.getAnnotation(structuralFeature, OCLDelegateDomain.OCL_DELEGATE_URI, INITIAL_CONSTRAINT_KEY);
+			key = INITIAL_CONSTRAINT_KEY;
+			expr = details.get(key);
 			if (expr == null) {
 				return null;
 			}
 		}
-		EClass context = structuralFeature.getEContainingClass();
-		OCL.Helper helper = ocl.createOCLHelper();
-		helper.setAttributeContext(context, structuralFeature);
-		Constraint constraint;
+		OCLExpression body = null;
 		try {
-			constraint = helper.createDerivedValueExpression(expr);
-		} catch (ParserException e) {
-			throw new OCLDelegateException(e.getLocalizedMessage(), e);
+			EClass context = structuralFeature.getEContainingClass();
+			OCL.Helper helper = ocl.createOCLHelper();
+			helper.setAttributeContext(context, structuralFeature);
+			Constraint constraint;
+			try {
+				constraint = helper.createDerivedValueExpression(expr);
+			} catch (ParserException e) {
+				throw new OCLDelegateException(e.getLocalizedMessage(), e);
+			}
+			if (constraint == null) {
+				return null;
+			}
+			ExpressionInOCL specification = (ExpressionInOCL) constraint.getSpecification();
+			if (specification == null) {
+				return null;
+			}
+			body = (OCLExpression) specification.getBodyExpression();
+			return body;
+		} finally {
+			cacheExpression(structuralFeature, body, key);
 		}
-		if (constraint == null) {
-			return null;
-		}
-		ExpressionInOCL specification = (ExpressionInOCL) constraint.getSpecification();
-		if (specification == null) {
-			return null;
-		}
-		return (OCLExpression) specification.getBodyExpression();
+	}
+
+	/**
+	 * Return any feature body already in the cache, saving the caller the overhead
+	 * of sertting up the redundant parsing environment needed for {@link getFeatureBody}
+	 * 
+	 * @since 3.1
+	 */
+	public OCLExpression getCachedFeatureBody(EStructuralFeature structuralFeature) {
+		OCLExpression result = getCachedExpression(structuralFeature, DERIVATION_CONSTRAINT_KEY, INITIAL_CONSTRAINT_KEY);
+		return result;
 	}
 	
 	public String getName() {

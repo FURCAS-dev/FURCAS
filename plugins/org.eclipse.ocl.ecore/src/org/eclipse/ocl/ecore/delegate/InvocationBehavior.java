@@ -16,10 +16,11 @@
  */
 package org.eclipse.ocl.ecore.delegate;
 
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EOperation.Internal.InvocationDelegate;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
@@ -67,28 +68,52 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 		return NAME;
 	}
 
+	/**
+	 * Return the operation body associated with operation, if necessary using ocl to
+	 * create the relevant parsing environment for a textual definition..
+	 */
 	public OCLExpression getOperationBody(OCL ocl, EOperation operation) {
+		OCLExpression result = getCachedOperationBody(operation);
+		if (result != null) {
+			return result;
+		}
 		String expr = EcoreUtil.getAnnotation(operation, OCLDelegateDomain.OCL_DELEGATE_URI, BODY_CONSTRAINT_KEY);
 		if (expr == null) {
 			return null;
 		}
-		EClass context = operation.getEContainingClass();
-		OCL.Helper helper = ocl.createOCLHelper();
-		helper.setOperationContext(context, operation);
-		Constraint constraint;
+		OCLExpression body = null;
 		try {
-			constraint = helper.createBodyCondition(expr);
-		} catch (ParserException e) {
-			throw new OCLDelegateException(e.getLocalizedMessage(), e);
+			EClass context = operation.getEContainingClass();
+			OCL.Helper helper = ocl.createOCLHelper();
+			helper.setOperationContext(context, operation);
+			Constraint constraint;
+			try {
+				constraint = helper.createBodyCondition(expr);
+			} catch (ParserException e) {
+				throw new OCLDelegateException(e.getLocalizedMessage(), e);
+			}
+			if (constraint == null) {
+				return null;
+			}
+			ExpressionInOCL specification = (ExpressionInOCL) constraint.getSpecification();
+			if (specification == null) {
+				return null;
+			}
+			body = (OCLExpression) specification.getBodyExpression();
+			return body;
+		} finally {
+			cacheExpression(operation, body, BODY_CONSTRAINT_KEY);
 		}
-		if (constraint == null) {
-			return null;
-		}
-		ExpressionInOCL specification = (ExpressionInOCL) constraint.getSpecification();
-		if (specification == null) {
-			return null;
-		}
-		return (OCLExpression) specification.getBodyExpression();
+	}
+
+	/**
+	 * Return any operation body already in the cache, saving the caller the overhead
+	 * of sertting up the redundant parsing environment needed for {@link getOperationBody}
+	 * 
+	 * @since 3.1
+	 */
+	public OCLExpression getCachedOperationBody(EOperation operation) {
+		return getCachedExpression(operation, BODY_CONSTRAINT_KEY);
 	}
 
 	public Class<InvocationDelegate.Factory.Registry> getRegistryClass() {
