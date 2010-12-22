@@ -8,7 +8,6 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
-import org.eclipse.ocl.examples.impactanalyzer.util.EcoreEnvironmentFactoryWithScopedExtentMap;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.AsPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
