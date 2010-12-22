@@ -354,7 +354,9 @@ public class EventManagerTableBased implements EventManager {
     }
 
     public void addToObservedResourceSets(ResourceSet resourceSet) {
-        resourceSet.eAdapters().add(adapter);
+        if (!resourceSet.eAdapters().contains(adapter)) {
+            resourceSet.eAdapters().add(adapter);
+        }
         resourceSets.put(resourceSet, null);
     }
 
