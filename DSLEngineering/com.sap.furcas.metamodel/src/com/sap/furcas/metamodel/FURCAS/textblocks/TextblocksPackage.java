@@ -1320,7 +1320,7 @@ public interface TextblocksPackage extends EPackage {
         int FOR_EACH_CONTEXT__FOREACH_PEDICATE_PROPERTY_INIT = 0;
 
         /**
-     * The feature id for the '<em><b>Context Element</b></em>' reference list.
+     * The feature id for the '<em><b>Context Element</b></em>' reference.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
@@ -2194,10 +2194,10 @@ public interface TextblocksPackage extends EPackage {
         EReference getForEachContext_ForeachPedicatePropertyInit();
 
         /**
-     * Returns the meta object for the reference list '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getContextElement <em>Context Element</em>}'.
+     * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getContextElement <em>Context Element</em>}'.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @return the meta object for the reference list '<em>Context Element</em>'.
+     * @return the meta object for the reference '<em>Context Element</em>'.
      * @see com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getContextElement()
      * @see #getForEachContext()
      * @generated
@@ -2597,7 +2597,7 @@ public interface TextblocksPackage extends EPackage {
                 EReference FOR_EACH_CONTEXT__FOREACH_PEDICATE_PROPERTY_INIT = eINSTANCE.getForEachContext_ForeachPedicatePropertyInit();
 
                 /**
-         * The meta object literal for the '<em><b>Context Element</b></em>' reference list feature.
+         * The meta object literal for the '<em><b>Context Element</b></em>' reference feature.
          * <!-- begin-user-doc -->
                  * <!-- end-user-doc -->
          * @generated

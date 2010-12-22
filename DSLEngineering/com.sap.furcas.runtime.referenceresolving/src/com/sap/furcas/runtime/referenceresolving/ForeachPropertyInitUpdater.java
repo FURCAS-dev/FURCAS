@@ -36,7 +36,9 @@ import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
 import com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksFactory;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.runtime.common.interfaces.IRuleName;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
@@ -208,8 +210,19 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
             }
             Collection<Object> newFeatureValue = new BasicEList<Object>();
             for (Object foreachElement : foreachElements) {
-                newFeatureValue.add(produceElement(foreachElement, textBlock,
-                        elementToUpdate.eResource().getResourceSet(), getOppositeEndFinder()));
+                EObject producedElement = produceElement(foreachElement, textBlock,
+                        elementToUpdate.eResource().getResourceSet(), getOppositeEndFinder());
+                newFeatureValue.add(producedElement);
+                // create ForEachContext elements documenting what just happened in the TextBlocks model
+                ForEachContext foreachContext = TextblocksFactory.eINSTANCE.createForEachContext();
+                foreachContext.setForeachPedicatePropertyInit(foreachPredicatePropertyInit);
+                foreachContext.setSourceModelElement(elementToUpdate);
+                foreachContext.setContextElement((EObject) foreachElement);
+                foreachContext.setResultModelElement(producedElement);
+                if (textBlock != null) {
+                    textBlock.getForEachContext().add(foreachContext);
+                }
+
             }
             if (foreachPredicatePropertyInit.getPropertyReference().getStrucfeature().isMany()) {
                 elementToUpdate.eSet(foreachPredicatePropertyInit.getPropertyReference().getStrucfeature(), newFeatureValue);
@@ -224,7 +237,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
         }
     }
 
-    private Object produceElement(Object foreachElement, TextBlock textBlock, ResourceSet resourceSet, OppositeEndFinder oppositeEndFinder) {
+    private EObject produceElement(Object foreachElement, TextBlock textBlock, ResourceSet resourceSet, OppositeEndFinder oppositeEndFinder) {
         Template template = null; // null means "don't produce"
         if (foreachElement instanceof Boolean) {
             if ((Boolean) foreachElement) {
@@ -236,7 +249,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
             // for other non-EObject, non-Boolean types produce using the template of the single when/as
             template = foreachPredicatePropertyInit.getPredicateSemantic().iterator().next().getAs();
         }
-        Object result = null;
+        EObject result = null;
         if (template != null) {
             result = produceWith(template, foreachElement, textBlock, resourceSet, oppositeEndFinder);
         }
@@ -250,7 +263,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
      * @param resourceSet 
      * @return the element produced
      */
-    private Object produceWith(Template template, Object foreachElement, TextBlock textBlock,
+    private EObject produceWith(Template template, Object foreachElement, TextBlock textBlock,
             ResourceSet resourceSet, OppositeEndFinder oppositeEndFinder) {
         IRuleName ruleNameFinder = parserFactory.getRuleNameFinder();
         String mode = null;
@@ -299,14 +312,12 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                 }
             }
             */
-            Object parseReturn = methodToCall.invoke(parser);
+            EObject parseReturn = (EObject) methodToCall.invoke(parser);
             if (parseReturn == null) {
                 throw new ModelElementCreationException("Unable to create model element using parse rule " + ruleName
                         + ". Parse errors: " + parser.getInjector().getErrorList());
             }
-            // TODO if parseReturn is a ModelElementProxy, resolve
             // TODO assign to elementToUpdate's Resource as a default, in case it's not added to a containment reference
-            // TODO create ForEachContext elements documenting what just happened in the TextBlocks model. See DelayedReferencesHelper.addForEachContext
             return parseReturn;
         } catch (Exception e) {
             throw new RuntimeException(e);
