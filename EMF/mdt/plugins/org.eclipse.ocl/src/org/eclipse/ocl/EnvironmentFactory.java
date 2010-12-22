@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2010 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,6 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
- *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Bug 333032
  *
  * </copyright>
  *
@@ -25,9 +24,9 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.helper.OCLSyntaxHelper;
-import org.eclipse.ocl.parser.AbstractOCLParser;
 import org.eclipse.ocl.parser.OCLAnalyzer;
 import org.eclipse.ocl.parser.OCLFactoryWithHistory;
+import org.eclipse.ocl.parser.backtracking.OCLBacktrackingParser;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.util.Adaptable;
 import org.eclipse.ocl.util.OCLUtil;
@@ -251,16 +250,17 @@ public interface EnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E
 		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment, String input);
 
 	/**
-	 * Creates an instance of the OCLAnalyzer that will use 
-	 * a given parser to perform syntactic and lexical analysis.
+	 * Creates an instance of the OCLAnalyzer that analyzes the
+	 * given parser's input on behalf of this environment.
 	 * 
+	 * @param environment an OCL environment (must not be <code>null</code>)
 	 * @param parser performing syntax analysis
 	 * 
 	 * @return an OCLAnalyzer instance for this environment
 	 * @since 3.1
 	 */
 	OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCLAnalyzer(
-		AbstractOCLParser parser);
+		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment, OCLBacktrackingParser parser);
 
 	/**
 	 * Creates an instance of the OCLFactoryWithHistory object for this environment.

@@ -57,7 +57,7 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 	public Class<ValidationDelegate.Factory> getFactoryClass() {
 		return ValidationDelegate.Factory.class;
 	}
-
+	
 	/**
 	 * @since 3.1
 	 */

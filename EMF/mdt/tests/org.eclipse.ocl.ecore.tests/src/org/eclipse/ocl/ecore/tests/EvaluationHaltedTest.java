@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2009, 2010 Borland Software Corporation and others.
+ * Copyright (c) 2009 Borland Software Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,7 +7,6 @@
  *
  * Contributors:
  *     Radek Dvorak - initial API and implementation
- *     Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Bug 333032
  *******************************************************************************/
 package org.eclipse.ocl.ecore.tests;
 
@@ -338,8 +337,8 @@ public class EvaluationHaltedTest
 
 		private Set<String> names = new HashSet<String>();
 
-		InterruptibleEvalEnv(InterruptibleEnvFactory factory){
-			super(factory);
+		InterruptibleEvalEnv() {
+			super();
 		}
 
 		InterruptibleEvalEnv(
@@ -423,7 +422,7 @@ public class EvaluationHaltedTest
 
 		@Override
 		public EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> createEvaluationEnvironment() {
-			return new InterruptibleEvalEnv(this);
+			return new InterruptibleEvalEnv();
 		}
 
 		@Override

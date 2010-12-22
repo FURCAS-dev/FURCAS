@@ -12,7 +12,6 @@
  *   Zeligsoft - Bug 248869
  *   Borland - Bug 242880
  *   E.D.Willink - Bug 295166
- *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Bug 333032
  *
  * </copyright>
  *
@@ -235,8 +234,8 @@ public class EcoreEnvironmentTest
 	}
 
 	class MyEvaluationEnvironment extends EcoreEvaluationEnvironment {
-	    MyEvaluationEnvironment(MyEnvironmentFactory factory) {
-	        super(factory);
+	    MyEvaluationEnvironment() {
+	        super();
 	    }
 
 	    MyEvaluationEnvironment(
@@ -287,7 +286,7 @@ public class EcoreEnvironmentTest
 	    @Override
         public EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject>
 	    createEvaluationEnvironment() {
-	        return new MyEvaluationEnvironment(this);
+	        return new MyEvaluationEnvironment();
 	    }
 
 	    @Override

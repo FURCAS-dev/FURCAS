@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.InvalidLiteralExp;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.impl.InvalidLiteralExpImpl;
 import org.eclipse.ocl.ecore.impl.NullLiteralExpImpl;
 
 /**
@@ -41,10 +42,10 @@ import org.eclipse.ocl.ecore.impl.NullLiteralExpImpl;
 public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 		implements DelegatedBehavior<E, R, F> {
 
+	private static class InvalidExpression extends InvalidLiteralExpImpl {}
 	private static class NullExpression extends NullLiteralExpImpl {}
 	
 	private static List<DelegatedBehavior<?, ?, ?>> delegatedBehaviors = null;
-	private static final InvalidLiteralExp INVALID_CONSTRAINT = org.eclipse.ocl.ecore.EcoreFactory.eINSTANCE.createInvalidLiteralExp();
 
 	public static List<DelegatedBehavior<?, ?, ?>> getDelegatedBehaviors() {
 		// FIXME Maybe use an extension point here (but need a common
@@ -99,7 +100,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 			indexOfKey = details.size()-1;
 		}
 		List<EObject> contents = a.getContents();
-		EObject cacheValue = expression != null ? expression : INVALID_CONSTRAINT;
+		EObject cacheValue = expression != null ? expression : new InvalidExpression();
 		if (indexOfKey < contents.size()) {
 			contents.set(indexOfKey, cacheValue);
 		}
@@ -110,15 +111,6 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 			contents.add(cacheValue);
 		}
     }
-
-    /**
-     * Remembers that the body of <code>modelElement</code> for annotation key <code>constraintKey</code>
-     * didn't compile properly. It is therefore cached as an {@link #INVALID_CONSTRAINT}.
-     * @since 3.1
-     */
-	protected void cacheInvalidExpression(EModelElement modelElement, String constraintKey) {
-		cacheExpression(modelElement, INVALID_CONSTRAINT, constraintKey);
-	}
 
 	/**
 	 * Looks for an {@link OCLExpression} element attached to the

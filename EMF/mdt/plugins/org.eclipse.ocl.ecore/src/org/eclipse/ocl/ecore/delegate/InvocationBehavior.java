@@ -69,23 +69,18 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 	}
 
 	/**
-	 * Throws an {@link IllegalArgumentException} in case a <code>null</code> {@link OCL} reference is passed
-	 * but a valid one is needed because nothing is found in the cache for the <code>operation</code>
-	 * requested. This behavior can be used to attempt a cache lookup without having to create a valid {@link OCL}
-	 * object. Catching the exception can then be used to try again with a valid {@link OCL} object.
+	 * Return the operation body associated with operation, if necessary using
+	 * <code>ocl</code> to create the relevant parsing environment for a textual
+	 * definition.
 	 */
 	public OCLExpression getOperationBody(OCL ocl, EOperation operation) {
-		OCLExpression result = getCachedExpression(operation, BODY_CONSTRAINT_KEY);
+		OCLExpression result = getCachedOperationBody(operation);
 		if (result != null) {
 			return result;
 		}
 		String expr = EcoreUtil.getAnnotation(operation, OCLDelegateDomain.OCL_DELEGATE_URI, BODY_CONSTRAINT_KEY);
 		if (expr == null) {
 			return null;
-		}
-		if (ocl == null) {
-			// now we would have needed, but it's not there
-			throw new IllegalArgumentException("Requiring a valid OCL object since operation body not found in cache"); //$NON-NLS-1$
 		}
 		OCLExpression body = null;
 		try {
@@ -110,6 +105,26 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 		} finally {
 			cacheExpression(operation, body, BODY_CONSTRAINT_KEY);
 		}
+	}
+
+	/**
+	 * Return any operation body already in the cache, saving the caller the overhead
+	 * of setting up the redundant parsing environment needed for {@link getOperationBody}
+	 * 
+	 * @since 3.1
+	 */
+	public OCLExpression getCachedOperationBody(EOperation operation) {
+		return getCachedExpression(operation, BODY_CONSTRAINT_KEY);
+	}
+	
+	/**
+	 * Tells if there is an uncompiled body expression for the <code>operation</code> in an
+	 * annotation that can be compiled by {@link #getOperationBody(OCL, EOperation)}. Probing
+	 * this saves callers the more expensive construction of an {@link OCL} object.
+	 * @since 3.1
+	 */
+	public boolean hasUncompiledOperationBody(EOperation operation) {
+		return EcoreUtil.getAnnotation(operation, OCLDelegateDomain.OCL_DELEGATE_URI, BODY_CONSTRAINT_KEY) != null;
 	}
 
 	public Class<InvocationDelegate.Factory.Registry> getRegistryClass() {
