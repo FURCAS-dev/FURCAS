@@ -69,8 +69,9 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 	}
 
 	/**
-	 * Return the operation body associated with operation, if necessary using ocl to
-	 * create the relevant parsing environment for a textual definition..
+	 * Return the operation body associated with operation, if necessary using
+	 * <code>ocl</code> to create the relevant parsing environment for a textual
+	 * definition.
 	 */
 	public OCLExpression getOperationBody(OCL ocl, EOperation operation) {
 		OCLExpression result = getCachedOperationBody(operation);
@@ -108,12 +109,22 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 
 	/**
 	 * Return any operation body already in the cache, saving the caller the overhead
-	 * of sertting up the redundant parsing environment needed for {@link getOperationBody}
+	 * of setting up the redundant parsing environment needed for {@link getOperationBody}
 	 * 
 	 * @since 3.1
 	 */
 	public OCLExpression getCachedOperationBody(EOperation operation) {
 		return getCachedExpression(operation, BODY_CONSTRAINT_KEY);
+	}
+	
+	/**
+	 * Tells if there is an uncompiled body expression for the <code>operation</code> in an
+	 * annotation that can be compiled by {@link #getOperationBody(OCL, EOperation)}. Probing
+	 * this saves callers the more expensive construction of an {@link OCL} object.
+	 * @since 3.1
+	 */
+	public boolean hasUncompiledOperationBody(EOperation operation) {
+		return EcoreUtil.getAnnotation(operation, OCLDelegateDomain.OCL_DELEGATE_URI, BODY_CONSTRAINT_KEY) != null;
 	}
 
 	public Class<InvocationDelegate.Factory.Registry> getRegistryClass() {

@@ -119,6 +119,16 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 		return result;
 	}
 	
+	/**
+	 * Tells if there is an uncompiled body expression for the <code>structuralFeature</code> in an
+	 * annotation that can be compiled by {@link #getFeatureBody(OCL, EStructuralFeature)}. Probing
+	 * this saves callers the more expensive construction of an {@link OCL} object.
+	 * @since 3.1
+	 */
+	public boolean hasUncompiledFeatureBody(EStructuralFeature structuralFeature) {
+		return structuralFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI) != null;
+	}
+
 	public String getName() {
 		return NAME;
 	}
