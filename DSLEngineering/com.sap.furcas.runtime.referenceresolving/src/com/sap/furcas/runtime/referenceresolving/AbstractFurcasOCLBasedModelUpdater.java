@@ -147,42 +147,52 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
         case CONTEXT:
             return getElementsToUpdateFromContextElement(self);
         case FOREACH:
-            EObject result = getElementToUpdateFromForeachElement(self);
-            if (result == null) {
-                return Collections.emptySet();
-            } else {
-                return Collections.singleton(result);
-            }
+            return getElementToUpdateFromForeachElement(self);
         default:
             throw new RuntimeException("Unknown self kind: "+selfKind);
         }
     }
 
-    private EObject getElementToUpdateFromForeachElement(EObject self) throws ParserException {
+    private Set<EObject> getElementToUpdateFromForeachElement(EObject self) throws ParserException {
+        Set<EObject> result = new HashSet<EObject>();
         OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(getOppositeEndFinder());
+        // The following call may return many objects because
+        //  1) a single template may use multiple foreach predicates whose foreach expressions produce
+        //     overlapping element sets
+        //  2) a single foreach expression may even produce multiple occurrences of the same element, e.g., in a bag
+        // Each result indicates one production of one new element. It may be possible that the same template
+        // gets executed more than once for the same foreach-element. Therefore, also the same injector action
+        // may get executed several times for the same #foreach element: once per invocation of its owning
+        // template for the same #foreach element.
         Collection<EObject> foreachContextsUsingSelfAsForeachElement = getOppositeEndFinder()
                 .navigateOppositePropertyWithBackwardScope(
                         TextblocksPackage.eINSTANCE.getForEachContext_ContextElement(), self);
+        Helper oclHelper = ocl.createOCLHelper();
         for (EObject eo : foreachContextsUsingSelfAsForeachElement) {
             ForEachContext foreachContext = (ForEachContext) eo;
             ForeachPredicatePropertyInit propInit = foreachContext.getForeachPedicatePropertyInit();
-            Helper oclHelper = ocl.createOCLHelper();
             oclHelper.setContext(self.eClass());
-            // now check which when-clause is chosen for the current foreach-element self
-            for (PredicateSemantic whenClause : propInit.getPredicateSemantic()) {
-                if (whenClause.getWhen() == null
-                        || (Boolean) ocl.evaluate(self, oclHelper.createQuery(whenClause.getWhen()))) {
-                    // now we know the when-clause; determine template for when-clause and check if
-                    // it contains injectorAction
-                    Template t = whenClause.getAs();
-                    if (EcoreUtil.isAncestor(t, getSequenceElement())) {
-                        // yes, the self object led to the injector action firing
-                        return foreachContext.getResultModelElement();
+            if (propInit.getPredicateSemantic().isEmpty()) {
+                // no when-clause; foreach produces an element in all cases
+                result.add(foreachContext.getResultModelElement());
+            } else {
+                // now check which when-clause is chosen for the current foreach-element self
+                for (PredicateSemantic whenClause : propInit.getPredicateSemantic()) {
+                    if (whenClause.getWhen() == null
+                            || (Boolean) ocl.evaluate(self, oclHelper.createQuery(whenClause.getWhen()))) {
+                        // now we know the when-clause; determine template for when-clause and check if
+                        // it contains injectorAction
+                        Template t = whenClause.getAs();
+                        if (EcoreUtil.isAncestor(t, getSequenceElement())) {
+                            // yes, the self object led to the injector action firing
+                            result.add(foreachContext.getResultModelElement());
+                            break; // continue with the next ForEachContext element
+                        }
                     }
                 }
             }
         }
-        return null;
+        return result;
     }
 
     /**

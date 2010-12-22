@@ -24,7 +24,6 @@ import java.util.regex.Pattern;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import antlr.Token;
@@ -449,8 +448,7 @@ public class DelayedReferencesHelper {
                 if (reference.getTextBlock() != null) {
                     addForEachContext((TextBlock) reference.getTextBlock(), (EObject) reference.getModelElement(),
                             (EObject) next, (ForeachPredicatePropertyInit) reference.getQueryElement(),
-                            (EObject) reference.getRealValue(), ((EObject) reference.getModelElement()).eResource()
-                                    .getResourceSet());
+                            (EObject) reference.getRealValue());
                 }
             }
         } finally {
@@ -464,7 +462,7 @@ public class DelayedReferencesHelper {
     }
 
     private static void addForEachContext(TextBlock contextBlock, EObject sourceModelElement, EObject currentForEachElement,
-            ForeachPredicatePropertyInit sequenceElement, EObject resultElement, ResourceSet rs) {
+            ForeachPredicatePropertyInit sequenceElement, EObject resultElement) {
         boolean forEachContextExists = false;
 
         // FIXME: The contextBlock may be null if there was a foreach that was
