@@ -1,10 +1,14 @@
 package com.sap.furcas.ide.editor.document;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.jface.text.IDocument;
@@ -100,8 +104,18 @@ public class CtsDocumentProvider extends AbstractDocumentProvider {
                     monitor.worked(50);
                 }
                 monitor.beginTask("Saving connection.", 100);
-                ctsDocument.getPartitionHandler().saveAllPartitions(null);
-                getEditingDomain().getCommandStack().flush();
+                
+              //inform about the upcoming content change
+                fireElementStateChanging(element);
+                
+                // Save only resources that have actually changed.
+                //
+                final Map<Object, Object> saveOptions = new HashMap<Object, Object>();
+                saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
+                ctsDocument.getPartitionHandler().saveAllPartitions(saveOptions);
+                ((BasicCommandStack) getEditingDomain().getCommandStack()).saveIsDone();
+                
+                fireElementDirtyStateChanged(element, false);
                 monitor.worked(100);
                 // } catch (NullPartitionNotEmptyException e) {
                 // throw new CoreException(new Status(Status.ERROR,
