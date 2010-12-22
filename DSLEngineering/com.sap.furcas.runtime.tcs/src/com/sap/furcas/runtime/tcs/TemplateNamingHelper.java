@@ -44,13 +44,11 @@ public class TemplateNamingHelper<Type extends Object> {
      * @return
      * @throws SyntaxElementException
      */
-    public String getRuleNameForMode(QualifiedNamedElement qNamedElement, String mode ) throws SyntaxElementException {
+    public String getRuleNameForMode(QualifiedNamedElement qNamedElement, String mode) throws SyntaxElementException {
         String result = getRuleName(qNamedElement);
         if (mode != null) {
-            if ( ! mode.trim().equals("")) {
-                {
-                    result += getModeSuffix(mode);
-                }
+            if (!mode.trim().equals("")) {
+                result += getModeSuffix(mode);
             }
         }
         return result;

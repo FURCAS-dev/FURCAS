@@ -5,7 +5,8 @@ Bundle-SymbolicName: com.sap.furcas.runtime.referenceresolving
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SAP
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: com.sap.emf.ocl.trigger,
+Require-Bundle: org.antlr;bundle-version="3.1.1",
+ com.sap.emf.ocl.trigger,
  org.eclipse.equinox.common;visibility:=reexport,
  org.eclipse.ocl.ecore,
  com.sap.furcas.runtime.textblocks,
@@ -18,6 +19,8 @@ Require-Bundle: com.sap.emf.ocl.trigger,
  org.eclipse.osgi,
  org.eclipse.ocl.examples.impactanalyzer,
  com.sap.furcas.runtime.parser,
- org.eclipse.ocl.examples.impactanalyzer.util
+ org.eclipse.ocl.examples.impactanalyzer.util,
+ com.sap.furcas.runtime.parser.incremental,
+ com.sap.furcas.ide.parserfactory
 Bundle-Activator: com.sap.furcas.runtime.referenceresolving.SyntaxRegistry
 Export-Package: com.sap.furcas.runtime.referenceresolving

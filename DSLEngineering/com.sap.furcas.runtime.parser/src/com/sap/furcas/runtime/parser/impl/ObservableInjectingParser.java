@@ -150,7 +150,7 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser
 	    return currentForeachElement;
 	}
 
-	protected void setCurrentForeachElement(Object currentForeachElement) {
+	public void setCurrentForeachElement(Object currentForeachElement) {
 	    this.currentForeachElement = currentForeachElement;
 	}
 
@@ -275,32 +275,30 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser
 		contextManager.addToContext(currentContext, me);
 	}
 
-	/**
+    /**
      * 
      */
-	protected final void leaveContext() {
-		try {
-			List<Object> elementsInContext = contextManager
-					.getElementsInContext(getCurrentContextElement());
-			if (elementsInContext != null) {
-				for (Object elementInContext : elementsInContext) {
-					onElementAddedToContext(elementInContext);
-				}
-			}
-			currentContextStack.pop();
-		} catch (EmptyStackException e) {
-			throw new RuntimeException(
-					"BUG: leave Context called more often than enterContext.");
-		}
-	}
+    public final void leaveContext() {
+        try {
+            List<Object> elementsInContext = contextManager.getElementsInContext(getCurrentContextElement());
+            if (elementsInContext != null) {
+                for (Object elementInContext : elementsInContext) {
+                    onElementAddedToContext(elementInContext);
+                }
+            }
+            currentContextStack.pop();
+        } catch (EmptyStackException e) {
+            throw new RuntimeException("BUG: leave Context called more often than enterContext.");
+        }
+    }
 
-	/**
-	 * convenience Method creating or resolving proxies having just one token.
-	 * 
-	 * @param object
-	 * @param token
-	 * @return
-	 */
+    /**
+     * convenience Method creating or resolving proxies having just one token.
+     * 
+     * @param object
+     * @param token
+     * @return
+     */
 	public final Object createOrResolve(Object object, Token token) {
 		if (resolveProxies) {
 			return createOrResolve(object, (ANTLR3LocationToken) token,

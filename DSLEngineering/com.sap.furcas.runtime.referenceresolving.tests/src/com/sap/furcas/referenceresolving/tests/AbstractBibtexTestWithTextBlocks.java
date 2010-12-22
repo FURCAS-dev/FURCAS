@@ -82,7 +82,8 @@ public abstract class AbstractBibtexTestWithTextBlocks extends GeneratedParserAn
         syntaxRegistry = SyntaxRegistry.getInstance();
         testMetamodelPackageRegistry = addMetamodelPackagesToLocalRegistry(testConfig.getResourceSet());
         triggerManager = syntaxRegistry.getTriggerManagerForSyntax(syntax, testMetamodelPackageRegistry,
-                DefaultOppositeEndFinder.getInstance(), /* progress monitor */ null);
+                DefaultOppositeEndFinder.getInstance(), /* progress monitor */ null,
+                incrementalParserFacade.getParserFactory());
     }
 
     private static EPackage.Registry addMetamodelPackagesToLocalRegistry(ResourceSet resourceSet) {
