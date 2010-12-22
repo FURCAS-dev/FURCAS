@@ -76,34 +76,6 @@ public class OCLValidationDelegate implements ValidationDelegate
 		return Boolean.TRUE.equals(result);
 	}
 
-	/**
-	 * @since 3.1
-	 *
-	protected Constraint createConstraint(EOperation context, String expression) {
-		OCL ocl = delegateDomain.getOCL();
-		Helper helper = ocl.createOCLHelper();
-		helper.setOperationContext(context.getEContainingClass(), context);
-		try {
-			return helper.createConstraint(ConstraintKind.BODYCONDITION, expression);
-		} catch (ParserException e) {
-			throw new OCLDelegateException(e.getLocalizedMessage(), e);
-		}
-	} */
-
-	/**
-	 * @since 3.1
-	 *
-	protected Constraint createConstraint(EClassifier eClassifier, String expression) {
-		OCL ocl = delegateDomain.getOCL();
-		Helper helper = ocl.createOCLHelper();
-		helper.setContext(eClassifier);
-		try {
-			return helper.createConstraint(ConstraintKind.INVARIANT, expression);
-		} catch (ParserException e) {
-			throw new OCLDelegateException(e.getLocalizedMessage(), e);
-		}
-	} */
-
 	protected OCLExpression createQuery(String expression) {
 		OCL ocl = delegateDomain.getOCL();
 		Helper helper = ocl.createOCLHelper();
