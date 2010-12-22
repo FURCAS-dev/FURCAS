@@ -52,7 +52,7 @@ public class EcoreEnvironmentFactoryWithScopedExtentMap extends EcoreEnvironment
      *            my package registry (must not be <code>null</code>)
      */
     public EcoreEnvironmentFactoryWithScopedExtentMap(EPackage.Registry reg) {
-        this(reg, new DefaultOppositeEndFinder(reg));
+        this(reg, DefaultOppositeEndFinder.getInstance(reg));
     }
     
     /**
