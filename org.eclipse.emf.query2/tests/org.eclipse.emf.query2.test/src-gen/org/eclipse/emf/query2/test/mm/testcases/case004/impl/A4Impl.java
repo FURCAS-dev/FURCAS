@@ -1085,27 +1085,27 @@ public class A4Impl extends EObjectImpl implements A4 {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (onePrimitive: ");
+		result.append(" (onePrimitive: "); //$NON-NLS-1$
 		result.append(onePrimitive);
-		result.append(", onePrimitiveOptional: ");
+		result.append(", onePrimitiveOptional: "); //$NON-NLS-1$
 		result.append(onePrimitiveOptional);
-		result.append(", onePrimitiveNotChangeable: ");
+		result.append(", onePrimitiveNotChangeable: "); //$NON-NLS-1$
 		result.append(onePrimitiveNotChangeable);
-		result.append(", manyPrimitive: ");
+		result.append(", manyPrimitive: "); //$NON-NLS-1$
 		result.append(manyPrimitive);
-		result.append(", manyPrimitiveDouble: ");
+		result.append(", manyPrimitiveDouble: "); //$NON-NLS-1$
 		result.append(manyPrimitiveDouble);
-		result.append(", manyPrimitiveUnique: ");
+		result.append(", manyPrimitiveUnique: "); //$NON-NLS-1$
 		result.append(manyPrimitiveUnique);
-		result.append(", manyPrimitiveOptional: ");
+		result.append(", manyPrimitiveOptional: "); //$NON-NLS-1$
 		result.append(manyPrimitiveOptional);
-		result.append(", manyPrimitiveNotChangeable: ");
+		result.append(", manyPrimitiveNotChangeable: "); //$NON-NLS-1$
 		result.append(manyPrimitiveNotChangeable);
-		result.append(", manyPrimitiveOrdered: ");
+		result.append(", manyPrimitiveOrdered: "); //$NON-NLS-1$
 		result.append(manyPrimitiveOrdered);
-		result.append(", manyPrimitiveOrderedUnique: ");
+		result.append(", manyPrimitiveOrderedUnique: "); //$NON-NLS-1$
 		result.append(manyPrimitiveOrderedUnique);
-		result.append(", manyPrimitiveOrderedNotChangeable: ");
+		result.append(", manyPrimitiveOrderedNotChangeable: "); //$NON-NLS-1$
 		result.append(manyPrimitiveOrderedNotChangeable);
 		result.append(')');
 		return result.toString();

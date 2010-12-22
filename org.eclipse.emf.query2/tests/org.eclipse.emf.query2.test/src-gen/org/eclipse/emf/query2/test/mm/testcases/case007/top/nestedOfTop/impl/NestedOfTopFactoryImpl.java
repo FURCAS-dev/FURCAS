@@ -35,7 +35,7 @@ public class NestedOfTopFactoryImpl extends EFactoryImpl implements NestedOfTopF
 	 */
 	public static NestedOfTopFactory init() {
 		try {
-			NestedOfTopFactory theNestedOfTopFactory = (NestedOfTopFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case007/top/nestedOfTop"); 
+			NestedOfTopFactory theNestedOfTopFactory = (NestedOfTopFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case007/top/nestedOfTop"); //$NON-NLS-1$ 
 			if (theNestedOfTopFactory != null) {
 				return theNestedOfTopFactory;
 			}
@@ -68,7 +68,7 @@ public class NestedOfTopFactoryImpl extends EFactoryImpl implements NestedOfTopF
 			case NestedOfTopPackage.NESTED_OF_TOP_B: return createNestedOfTopB();
 			case NestedOfTopPackage.NESTED_OF_TOP_AREFERENCES_NESTED_OF_TOP_B: return createNestedOfTopAReferencesNestedOfTopB();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

@@ -454,17 +454,17 @@ public class SubStructure2Impl extends SuperStructure1Impl implements SubStructu
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (superField1From2: ");
+		result.append(" (superField1From2: "); //$NON-NLS-1$
 		result.append(superField1From2);
-		result.append(", subField1: ");
+		result.append(", subField1: "); //$NON-NLS-1$
 		result.append(subField1);
-		result.append(", subField2: ");
+		result.append(", subField2: "); //$NON-NLS-1$
 		result.append(subField2);
-		result.append(", subField3: ");
+		result.append(", subField3: "); //$NON-NLS-1$
 		result.append(subField3);
-		result.append(", subField4: ");
+		result.append(", subField4: "); //$NON-NLS-1$
 		result.append(subField4);
-		result.append(", subField5: ");
+		result.append(", subField5: "); //$NON-NLS-1$
 		result.append(subField5);
 		result.append(')');
 		return result.toString();

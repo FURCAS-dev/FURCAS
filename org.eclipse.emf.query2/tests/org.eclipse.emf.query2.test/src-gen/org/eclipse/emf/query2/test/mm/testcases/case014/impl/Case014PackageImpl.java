@@ -486,21 +486,21 @@ public class Case014PackageImpl extends EPackageImpl implements Case014Package {
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(a14EClass, org.eclipse.emf.query2.test.mm.testcases.case014.A14.class, "A14", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(a14EClass, org.eclipse.emf.query2.test.mm.testcases.case014.A14.class, "A14", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		addEOperation(a14EClass, ecorePackage.getEString(), "operationJava", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEOperation(a14EClass, ecorePackage.getEString(), "operationJava", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		addEOperation(a14EClass, ecorePackage.getEInt(), "operationJavaReturnInt", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEOperation(a14EClass, ecorePackage.getEInt(), "operationJavaReturnInt", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		addEOperation(a14EClass, null, "operationJavaOnlyCommentAsCode", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(a14EClass, null, "operationJavaOnlyCommentAsCode", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		addEOperation(a14EClass, ecorePackage.getEString(), "operationJavaNoCode", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEOperation(a14EClass, ecorePackage.getEString(), "operationJavaNoCode", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		EOperation op = addEOperation(a14EClass, ecorePackage.getEString(), "operationOcl", 1, 1, !IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "stringP1", 1, 1, !IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, ecorePackage.getEInt(), "integerP1", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		EOperation op = addEOperation(a14EClass, ecorePackage.getEString(), "operationOcl", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEString(), "stringP1", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEInt(), "integerP1", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		addEOperation(a14EClass, ecorePackage.getEString(), "operationOclNoCode", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEOperation(a14EClass, ecorePackage.getEString(), "operationOclNoCode", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
@@ -517,15 +517,15 @@ public class Case014PackageImpl extends EPackageImpl implements Case014Package {
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (a14EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case014.A14",
-			 "metaObjectMofId", "45F120A536CD9526885E46A13391E616012F3472",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case014.A14", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A536CD9526885E46A13391E616012F3472", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

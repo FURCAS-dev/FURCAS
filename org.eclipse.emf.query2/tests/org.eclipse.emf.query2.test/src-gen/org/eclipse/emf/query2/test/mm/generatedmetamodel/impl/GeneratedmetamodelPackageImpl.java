@@ -14316,7 +14316,7 @@ public class GeneratedmetamodelPackageImpl extends EPackageImpl implements Gener
 
 		URL url = getClass().getResource(packageFilename);
 		if (url == null) {
-			throw new RuntimeException("Missing serialized package: " + packageFilename);
+			throw new RuntimeException("Missing serialized package: " + packageFilename); //$NON-NLS-1$
 		}
 		URI uri = URI.createURI(url.toString());
 		Resource resource = new EcoreResourceFactoryImpl().createResource(uri);
@@ -14359,7 +14359,7 @@ public class GeneratedmetamodelPackageImpl extends EPackageImpl implements Gener
 	@Override
 	protected void fixInstanceClass(EClassifier eClassifier) {
 		if (eClassifier.getInstanceClassName() == null) {
-			eClassifier.setInstanceClassName("org.eclipse.emf.query2.test.mm.generatedmetamodel." + eClassifier.getName());
+			eClassifier.setInstanceClassName("org.eclipse.emf.query2.test.mm.generatedmetamodel." + eClassifier.getName()); //$NON-NLS-1$
 			setGeneratedClassName(eClassifier);
 		}
 	}

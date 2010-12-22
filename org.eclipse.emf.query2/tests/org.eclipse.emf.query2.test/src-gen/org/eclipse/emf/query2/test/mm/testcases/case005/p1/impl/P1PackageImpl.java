@@ -502,8 +502,8 @@ public class P1PackageImpl extends EPackageImpl implements P1Package {
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(a5EClass, org.eclipse.emf.query2.test.mm.testcases.case005.p1.A5.class, "A5", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getA5_X(), theP2Package.getB5(), null, "X", null, 0, 1, org.eclipse.emf.query2.test.mm.testcases.case005.p1.A5.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(a5EClass, org.eclipse.emf.query2.test.mm.testcases.case005.p1.A5.class, "A5", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getA5_X(), theP2Package.getB5(), null, "X", null, 0, 1, org.eclipse.emf.query2.test.mm.testcases.case005.p1.A5.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
@@ -520,27 +520,27 @@ public class P1PackageImpl extends EPackageImpl implements P1Package {
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (a5EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case005.p1.A5",
-			 "metaObjectMofId", "45F120A5B59540790C3D4028147F97C97EB53C5B",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case005.p1.A5", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5B59540790C3D4028147F97C97EB53C5B", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA5_X(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case005.p1.Association1",
-			 "metaObjectMofId", "45F120A577C9AFF3347749E41D1DDF655E2D1C1B",
-			 "storedEnd", "1",
-			 "compositeEnd", "1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "1"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case005.p1.Association1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A577C9AFF3347749E41D1DDF655E2D1C1B", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

@@ -547,13 +547,13 @@ public class TextverticalizationfPackageImpl extends EPackageImpl implements Tex
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(textFEClass, TextF.class, "TextF", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTextF_MaxWidth(), ecorePackage.getEInt(), "maxWidth", null, 1, 1, TextF.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getTextF_OriginalText(), ecorePackage.getEString(), "originalText", null, 1, 1, TextF.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getTextF_ResName(), ecorePackage.getEString(), "resName", null, 1, 1, TextF.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getTextF_ResType(), ecorePackage.getEString(), "resType", null, 1, 1, TextF.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getTextF_Translate(), ecorePackage.getEBoolean(), "translate", null, 1, 1, TextF.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getTextF_TransUnitId(), ecorePackage.getEString(), "transUnitId", null, 1, 1, TextF.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(textFEClass, TextF.class, "TextF", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getTextF_MaxWidth(), ecorePackage.getEInt(), "maxWidth", null, 1, 1, TextF.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getTextF_OriginalText(), ecorePackage.getEString(), "originalText", null, 1, 1, TextF.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getTextF_ResName(), ecorePackage.getEString(), "resName", null, 1, 1, TextF.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getTextF_ResType(), ecorePackage.getEString(), "resType", null, 1, 1, TextF.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getTextF_Translate(), ecorePackage.getEBoolean(), "translate", null, 1, 1, TextF.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getTextF_TransUnitId(), ecorePackage.getEString(), "transUnitId", null, 1, 1, TextF.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		// Create annotations
 		// http://sap.com/MOIN
@@ -567,15 +567,15 @@ public class TextverticalizationfPackageImpl extends EPackageImpl implements Tex
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (textFEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0]",
-			 "metaObject", "testcasesfoundation.case005f.textverticalizationf.TextF",
-			 "metaObjectMofId", "4908664F4300FB55A5BE11DDC041001558C93B47",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcasesfoundation.case005f.textverticalizationf.TextF", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "4908664F4300FB55A5BE11DDC041001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 
