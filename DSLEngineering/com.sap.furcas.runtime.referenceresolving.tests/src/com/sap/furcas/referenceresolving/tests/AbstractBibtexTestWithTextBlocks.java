@@ -48,7 +48,6 @@ public abstract class AbstractBibtexTestWithTextBlocks extends GeneratedParserAn
     protected static IncrementalParserFacade incrementalParserFacade;
     protected TextBlocksModelElementFactory modelFactory;
     protected Resource transientParsingResource;
-    protected TextBlock currentVersionTb;
     protected EObject bibtexFile;
     protected static ResourceSet resourceSet;
     protected static EPackage.Registry testMetamodelPackageRegistry;
@@ -130,7 +129,7 @@ public abstract class AbstractBibtexTestWithTextBlocks extends GeneratedParserAn
         transientParsingResource.getContents().add(root);
         TextBlocksModel tbModel = new TextBlocksModel(root, null);
         tbModel.replace(0, 0, textToParse);
-        currentVersionTb = incrementalParserFacade.parseIncrementally(root);
+        TextBlock currentVersionTb = incrementalParserFacade.parseIncrementally(root);
         triggerManager.addToObservedResourceSets(resourceSet);
         EObject result = currentVersionTb.getCorrespondingModelElements().iterator().next();
         return result;

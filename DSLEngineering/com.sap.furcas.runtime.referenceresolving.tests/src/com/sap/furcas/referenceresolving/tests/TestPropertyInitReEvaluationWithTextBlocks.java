@@ -12,6 +12,7 @@ import java.util.Iterator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -75,6 +76,12 @@ public class TestPropertyInitReEvaluationWithTextBlocks extends AbstractBibtexTe
         }
     }
 
+    @After
+    public void removeModelFromResourceSet() {
+        bibtexFile.eResource().getContents().remove(bibtexFile);
+        resourceSet.getResources().remove(transientParsingResource);
+    }
+    
     @Test
     public void testInitialModel() {
         assertNotNull(bibtexFile);

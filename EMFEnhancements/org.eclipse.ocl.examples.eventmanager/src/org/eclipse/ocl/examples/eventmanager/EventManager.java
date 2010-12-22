@@ -65,7 +65,9 @@ public interface EventManager {
     
     /**
      * Adds <code>resourceSet</code> to the resource sets from which this event manager receives notifications
-     * that it dispatches to adapters subscribed to this event manager.
+     * that it dispatches to adapters subscribed to this event manager. If this event manager already
+     * does receive notifications from <code>resourceSet</code> it is not registered a second time. In
+     * particular, it won't receive the same notifications multiple times.
      * 
      * @see #removeFromObservedResourceSets(ResourceSet)
      */

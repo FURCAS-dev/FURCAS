@@ -303,6 +303,9 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                 throw new ModelElementCreationException("Unable to create model element using parse rule " + ruleName
                         + ". Parse errors: " + parser.getInjector().getErrorList());
             }
+            // TODO if parseReturn is a ModelElementProxy, resolve
+            // TODO assign to elementToUpdate's Resource as a default, in case it's not added to a containment reference
+            // TODO create ForEachContext elements documenting what just happened in the TextBlocks model. See DelayedReferencesHelper.addForEachContext
             return parseReturn;
         } catch (Exception e) {
             throw new RuntimeException(e);
