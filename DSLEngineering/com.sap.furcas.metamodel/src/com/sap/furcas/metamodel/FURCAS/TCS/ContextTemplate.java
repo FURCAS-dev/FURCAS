@@ -20,6 +20,7 @@ package com.sap.furcas.metamodel.FURCAS.TCS;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate#isIsReferenceOnly <em>Is Reference Only</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate#getContextTags <em>Context Tags</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate#getScope <em>Scope</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate#getTemplateSequence <em>Template Sequence</em>}</li>
  * </ul>
  * </p>
  *
@@ -157,5 +158,31 @@ public interface ContextTemplate extends Template {
      * @generated
      */
         void setScope(ScopeArg value);
+
+        /**
+     * Returns the value of the '<em><b>Template Sequence</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Template Sequence</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Template Sequence</em>' containment reference.
+     * @see #setTemplateSequence(Sequence)
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getContextTemplate_TemplateSequence()
+     * @model containment="true" required="true" ordered="false"
+     * @generated
+     */
+    Sequence getTemplateSequence();
+
+        /**
+     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate#getTemplateSequence <em>Template Sequence</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Template Sequence</em>' containment reference.
+     * @see #getTemplateSequence()
+     * @generated
+     */
+    void setTemplateSequence(Sequence value);
 
 } // ContextTemplate

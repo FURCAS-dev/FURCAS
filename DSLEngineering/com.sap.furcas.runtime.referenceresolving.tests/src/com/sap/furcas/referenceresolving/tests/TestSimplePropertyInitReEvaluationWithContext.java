@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
@@ -31,6 +30,7 @@ public class TestSimplePropertyInitReEvaluationWithContext extends AbstractBibte
     private static final File TCS = new File("fixtures/BibtexWithPropertyInitsWithContext.tcs");
 
     private EObject johnDoe;
+    private EObject janeDoll;
     private EObject article;
     private EClass authorClass;
     private EClass articleClass;
@@ -49,9 +49,10 @@ public class TestSimplePropertyInitReEvaluationWithContext extends AbstractBibte
     @Before
     public void setupInitialModel() throws IOException, UnknownProductionRuleException {
         String textToParse = "article{" + "  Testing, \"John Doe\"," + "  year = \"2002\"" + "}" +
-                             "author = \"John Doe\". humba " + "author = \"Jane Doll\". humba";
+                             "author = \"John Doe\". humba " + "author = \"Jane Doll\". trala";
         setupBibtexFileFromTextToParse(textToParse);
         johnDoe = null;
+        janeDoll = null;
         article = null;
         authorClass = null;
         articleClass = null;
@@ -66,7 +67,10 @@ public class TestSimplePropertyInitReEvaluationWithContext extends AbstractBibte
                 authorClass = entry.eClass();
                 if (entry.eGet(authorClass.getEStructuralFeature("name")).equals("John Doe")) {
                     johnDoe = entry;
+                } else if (entry.eGet(authorClass.getEStructuralFeature("name")).equals("Jane Doll")) {
+                    janeDoll = entry;
                 }
+
             } else if (entry.eClass().getName().equals("Article")) {
                 articleClass = entry.eClass();
                 article = entry;
@@ -101,10 +105,23 @@ public class TestSimplePropertyInitReEvaluationWithContext extends AbstractBibte
         }
     }
     
-    @Ignore("Still fails because #context determination so far still returns null") // TODO
+    @Test
     public void testChangeOfExpressionValueUsingHashContext() throws Exception {
         johnDoe.eSet(authorClass.getEStructuralFeature("name"), "The Only John Doe");
         testContextPropertyInitValueInInitialModel();
+    }
+
+    @Test
+    public void testChangeOfExpressionValueUsingHashContextInSecondAlternative() throws Exception {
+        janeDoll.eSet(authorClass.getEStructuralFeature("name"), "The Only Dane Doll");
+        @SuppressWarnings("unchecked")
+        EList<EObject> revenues = (EList<EObject>) janeDoll.eGet(authorClass.getEStructuralFeature("revenues"));
+        assertEquals(1, revenues.size());
+        for (EObject revenue : revenues) {
+            assertEquals(((String) janeDoll.eGet(
+                    authorClass.getEStructuralFeature("name"))).length()*2, revenue.eGet(
+                            revenue.eClass().getEStructuralFeature("revenueInEUR")));
+        }
     }
 
 }

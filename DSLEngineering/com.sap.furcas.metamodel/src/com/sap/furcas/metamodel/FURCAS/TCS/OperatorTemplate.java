@@ -20,7 +20,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate#getSource <em>Source</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate#getStoreOpTo <em>Store Op To</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate#getStoreRightTo <em>Store Right To</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate#getOtSequence <em>Ot Sequence</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate#getStoreOperatorTo <em>Store Operator To</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate#getStoreLeftSideTo <em>Store Left Side To</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate#getStoreRightSideTo <em>Store Right Side To</em>}</li>
@@ -127,34 +126,6 @@ public interface OperatorTemplate extends ContextTemplate {
      * @generated
      */
         void setStoreRightTo(String value);
-
-        /**
-     * Returns the value of the '<em><b>Ot Sequence</b></em>' containment reference.
-     * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.FURCAS.TCS.Sequence#getOtContainer <em>Ot Container</em>}'.
-     * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Ot Sequence</em>' containment reference isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
-     * @return the value of the '<em>Ot Sequence</em>' containment reference.
-     * @see #setOtSequence(Sequence)
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getOperatorTemplate_OtSequence()
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.Sequence#getOtContainer
-     * @model opposite="otContainer" containment="true" ordered="false"
-     * @generated
-     */
-        Sequence getOtSequence();
-
-        /**
-     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate#getOtSequence <em>Ot Sequence</em>}' containment reference.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Ot Sequence</em>' containment reference.
-     * @see #getOtSequence()
-     * @generated
-     */
-        void setOtSequence(Sequence value);
 
         /**
      * Returns the value of the '<em><b>Store Operator To</b></em>' containment reference.

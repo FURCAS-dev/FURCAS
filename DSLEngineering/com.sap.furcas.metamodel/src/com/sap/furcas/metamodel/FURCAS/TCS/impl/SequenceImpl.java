@@ -61,6 +61,34 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
         protected EList<SequenceElement> elements;
 
         /**
+     * The cached value of the '{@link #getTemplateContainer() <em>Template Container</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTemplateContainer()
+     * @generated
+     * @ordered
+     */
+    protected ClassTemplate templateContainer;
+        /**
+     * The cached value of the '{@link #getPrefixContainer() <em>Prefix Container</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getPrefixContainer()
+     * @generated
+     * @ordered
+     */
+    protected ClassTemplate prefixContainer;
+        /**
+     * The cached value of the '{@link #getOtContainer() <em>Ot Container</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getOtContainer()
+     * @generated
+     * @ordered
+     */
+    protected OperatorTemplate otContainer;
+
+        /**
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
@@ -97,18 +125,24 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
      * @generated
      */
         public ClassTemplate getTemplateContainer() {
-        if (eContainerFeatureID() != TCSPackage.SEQUENCE__TEMPLATE_CONTAINER) return null;
-        return (ClassTemplate)eContainer();
+        if (templateContainer != null && templateContainer.eIsProxy()) {
+            InternalEObject oldTemplateContainer = (InternalEObject)templateContainer;
+            templateContainer = (ClassTemplate)eResolveProxy(oldTemplateContainer);
+            if (templateContainer != oldTemplateContainer) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.SEQUENCE__TEMPLATE_CONTAINER, oldTemplateContainer, templateContainer));
+            }
+        }
+        return templateContainer;
     }
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetTemplateContainer(ClassTemplate newTemplateContainer, NotificationChain msgs) {
-        msgs = eBasicSetContainer((InternalEObject)newTemplateContainer, TCSPackage.SEQUENCE__TEMPLATE_CONTAINER, msgs);
-        return msgs;
+    public ClassTemplate basicGetTemplateContainer() {
+        return templateContainer;
     }
 
         /**
@@ -117,19 +151,10 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
      * @generated
      */
         public void setTemplateContainer(ClassTemplate newTemplateContainer) {
-        if (newTemplateContainer != eInternalContainer() || (eContainerFeatureID() != TCSPackage.SEQUENCE__TEMPLATE_CONTAINER && newTemplateContainer != null)) {
-            if (EcoreUtil.isAncestor(this, newTemplateContainer))
-                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-            NotificationChain msgs = null;
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            if (newTemplateContainer != null)
-                msgs = ((InternalEObject)newTemplateContainer).eInverseAdd(this, TCSPackage.CLASS_TEMPLATE__TEMPLATE_SEQUENCE, ClassTemplate.class, msgs);
-            msgs = basicSetTemplateContainer(newTemplateContainer, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.SEQUENCE__TEMPLATE_CONTAINER, newTemplateContainer, newTemplateContainer));
+        ClassTemplate oldTemplateContainer = templateContainer;
+        templateContainer = newTemplateContainer;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.SEQUENCE__TEMPLATE_CONTAINER, oldTemplateContainer, templateContainer));
     }
 
         /**
@@ -138,18 +163,24 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
      * @generated
      */
         public ClassTemplate getPrefixContainer() {
-        if (eContainerFeatureID() != TCSPackage.SEQUENCE__PREFIX_CONTAINER) return null;
-        return (ClassTemplate)eContainer();
+        if (prefixContainer != null && prefixContainer.eIsProxy()) {
+            InternalEObject oldPrefixContainer = (InternalEObject)prefixContainer;
+            prefixContainer = (ClassTemplate)eResolveProxy(oldPrefixContainer);
+            if (prefixContainer != oldPrefixContainer) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.SEQUENCE__PREFIX_CONTAINER, oldPrefixContainer, prefixContainer));
+            }
+        }
+        return prefixContainer;
     }
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetPrefixContainer(ClassTemplate newPrefixContainer, NotificationChain msgs) {
-        msgs = eBasicSetContainer((InternalEObject)newPrefixContainer, TCSPackage.SEQUENCE__PREFIX_CONTAINER, msgs);
-        return msgs;
+    public ClassTemplate basicGetPrefixContainer() {
+        return prefixContainer;
     }
 
         /**
@@ -158,19 +189,10 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
      * @generated
      */
         public void setPrefixContainer(ClassTemplate newPrefixContainer) {
-        if (newPrefixContainer != eInternalContainer() || (eContainerFeatureID() != TCSPackage.SEQUENCE__PREFIX_CONTAINER && newPrefixContainer != null)) {
-            if (EcoreUtil.isAncestor(this, newPrefixContainer))
-                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-            NotificationChain msgs = null;
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            if (newPrefixContainer != null)
-                msgs = ((InternalEObject)newPrefixContainer).eInverseAdd(this, TCSPackage.CLASS_TEMPLATE__PREFIX_SEQUENCE, ClassTemplate.class, msgs);
-            msgs = basicSetPrefixContainer(newPrefixContainer, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.SEQUENCE__PREFIX_CONTAINER, newPrefixContainer, newPrefixContainer));
+        ClassTemplate oldPrefixContainer = prefixContainer;
+        prefixContainer = newPrefixContainer;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.SEQUENCE__PREFIX_CONTAINER, oldPrefixContainer, prefixContainer));
     }
 
         /**
@@ -384,18 +406,24 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
      * @generated
      */
         public OperatorTemplate getOtContainer() {
-        if (eContainerFeatureID() != TCSPackage.SEQUENCE__OT_CONTAINER) return null;
-        return (OperatorTemplate)eContainer();
+        if (otContainer != null && otContainer.eIsProxy()) {
+            InternalEObject oldOtContainer = (InternalEObject)otContainer;
+            otContainer = (OperatorTemplate)eResolveProxy(oldOtContainer);
+            if (otContainer != oldOtContainer) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.SEQUENCE__OT_CONTAINER, oldOtContainer, otContainer));
+            }
+        }
+        return otContainer;
     }
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetOtContainer(OperatorTemplate newOtContainer, NotificationChain msgs) {
-        msgs = eBasicSetContainer((InternalEObject)newOtContainer, TCSPackage.SEQUENCE__OT_CONTAINER, msgs);
-        return msgs;
+    public OperatorTemplate basicGetOtContainer() {
+        return otContainer;
     }
 
         /**
@@ -404,19 +432,10 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
      * @generated
      */
         public void setOtContainer(OperatorTemplate newOtContainer) {
-        if (newOtContainer != eInternalContainer() || (eContainerFeatureID() != TCSPackage.SEQUENCE__OT_CONTAINER && newOtContainer != null)) {
-            if (EcoreUtil.isAncestor(this, newOtContainer))
-                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-            NotificationChain msgs = null;
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            if (newOtContainer != null)
-                msgs = ((InternalEObject)newOtContainer).eInverseAdd(this, TCSPackage.OPERATOR_TEMPLATE__OT_SEQUENCE, OperatorTemplate.class, msgs);
-            msgs = basicSetOtContainer(newOtContainer, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.SEQUENCE__OT_CONTAINER, newOtContainer, newOtContainer));
+        OperatorTemplate oldOtContainer = otContainer;
+        otContainer = newOtContainer;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.SEQUENCE__OT_CONTAINER, oldOtContainer, otContainer));
     }
 
         /**
@@ -430,14 +449,6 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
         switch (featureID) {
             case TCSPackage.SEQUENCE__ELEMENTS:
                 return ((InternalEList<InternalEObject>)(InternalEList<?>)getElements()).basicAdd(otherEnd, msgs);
-            case TCSPackage.SEQUENCE__TEMPLATE_CONTAINER:
-                if (eInternalContainer() != null)
-                    msgs = eBasicRemoveFromContainer(msgs);
-                return basicSetTemplateContainer((ClassTemplate)otherEnd, msgs);
-            case TCSPackage.SEQUENCE__PREFIX_CONTAINER:
-                if (eInternalContainer() != null)
-                    msgs = eBasicRemoveFromContainer(msgs);
-                return basicSetPrefixContainer((ClassTemplate)otherEnd, msgs);
             case TCSPackage.SEQUENCE__FUNCTION_CONTAINER:
                 if (eInternalContainer() != null)
                     msgs = eBasicRemoveFromContainer(msgs);
@@ -458,10 +469,6 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
                 if (eInternalContainer() != null)
                     msgs = eBasicRemoveFromContainer(msgs);
                 return basicSetSeparatorContainer((SeparatorPArg)otherEnd, msgs);
-            case TCSPackage.SEQUENCE__OT_CONTAINER:
-                if (eInternalContainer() != null)
-                    msgs = eBasicRemoveFromContainer(msgs);
-                return basicSetOtContainer((OperatorTemplate)otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -476,10 +483,6 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
         switch (featureID) {
             case TCSPackage.SEQUENCE__ELEMENTS:
                 return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
-            case TCSPackage.SEQUENCE__TEMPLATE_CONTAINER:
-                return basicSetTemplateContainer(null, msgs);
-            case TCSPackage.SEQUENCE__PREFIX_CONTAINER:
-                return basicSetPrefixContainer(null, msgs);
             case TCSPackage.SEQUENCE__FUNCTION_CONTAINER:
                 return basicSetFunctionContainer(null, msgs);
             case TCSPackage.SEQUENCE__BLOCK_CONTAINER:
@@ -490,8 +493,6 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
                 return basicSetElseContainer(null, msgs);
             case TCSPackage.SEQUENCE__SEPARATOR_CONTAINER:
                 return basicSetSeparatorContainer(null, msgs);
-            case TCSPackage.SEQUENCE__OT_CONTAINER:
-                return basicSetOtContainer(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -504,10 +505,6 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
         @Override
         public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
         switch (eContainerFeatureID()) {
-            case TCSPackage.SEQUENCE__TEMPLATE_CONTAINER:
-                return eInternalContainer().eInverseRemove(this, TCSPackage.CLASS_TEMPLATE__TEMPLATE_SEQUENCE, ClassTemplate.class, msgs);
-            case TCSPackage.SEQUENCE__PREFIX_CONTAINER:
-                return eInternalContainer().eInverseRemove(this, TCSPackage.CLASS_TEMPLATE__PREFIX_SEQUENCE, ClassTemplate.class, msgs);
             case TCSPackage.SEQUENCE__FUNCTION_CONTAINER:
                 return eInternalContainer().eInverseRemove(this, TCSPackage.FUNCTION_TEMPLATE__FUNCTION_SEQUENCE, FunctionTemplate.class, msgs);
             case TCSPackage.SEQUENCE__BLOCK_CONTAINER:
@@ -518,8 +515,6 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
                 return eInternalContainer().eInverseRemove(this, TCSPackage.CONDITIONAL_ELEMENT__ELSE_SEQUENCE, ConditionalElement.class, msgs);
             case TCSPackage.SEQUENCE__SEPARATOR_CONTAINER:
                 return eInternalContainer().eInverseRemove(this, TCSPackage.SEPARATOR_PARG__SEPARATOR_SEQUENCE, SeparatorPArg.class, msgs);
-            case TCSPackage.SEQUENCE__OT_CONTAINER:
-                return eInternalContainer().eInverseRemove(this, TCSPackage.OPERATOR_TEMPLATE__OT_SEQUENCE, OperatorTemplate.class, msgs);
         }
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
@@ -535,9 +530,11 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
             case TCSPackage.SEQUENCE__ELEMENTS:
                 return getElements();
             case TCSPackage.SEQUENCE__TEMPLATE_CONTAINER:
-                return getTemplateContainer();
+                if (resolve) return getTemplateContainer();
+                return basicGetTemplateContainer();
             case TCSPackage.SEQUENCE__PREFIX_CONTAINER:
-                return getPrefixContainer();
+                if (resolve) return getPrefixContainer();
+                return basicGetPrefixContainer();
             case TCSPackage.SEQUENCE__FUNCTION_CONTAINER:
                 return getFunctionContainer();
             case TCSPackage.SEQUENCE__BLOCK_CONTAINER:
@@ -549,7 +546,8 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
             case TCSPackage.SEQUENCE__SEPARATOR_CONTAINER:
                 return getSeparatorContainer();
             case TCSPackage.SEQUENCE__OT_CONTAINER:
-                return getOtContainer();
+                if (resolve) return getOtContainer();
+                return basicGetOtContainer();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -645,9 +643,9 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
             case TCSPackage.SEQUENCE__ELEMENTS:
                 return elements != null && !elements.isEmpty();
             case TCSPackage.SEQUENCE__TEMPLATE_CONTAINER:
-                return getTemplateContainer() != null;
+                return templateContainer != null;
             case TCSPackage.SEQUENCE__PREFIX_CONTAINER:
-                return getPrefixContainer() != null;
+                return prefixContainer != null;
             case TCSPackage.SEQUENCE__FUNCTION_CONTAINER:
                 return getFunctionContainer() != null;
             case TCSPackage.SEQUENCE__BLOCK_CONTAINER:
@@ -659,7 +657,7 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
             case TCSPackage.SEQUENCE__SEPARATOR_CONTAINER:
                 return getSeparatorContainer() != null;
             case TCSPackage.SEQUENCE__OT_CONTAINER:
-                return getOtContainer() != null;
+                return otContainer != null;
         }
         return super.eIsSet(featureID);
     }

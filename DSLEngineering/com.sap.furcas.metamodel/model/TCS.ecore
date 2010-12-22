@@ -50,16 +50,12 @@
         lowerBound="1" eType="#//Sequence" containment="true" eOpposite="#//Sequence/functionContainer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassTemplate" eSuperTypes="#//ContextTemplate">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="templateSequence" ordered="false"
-        lowerBound="1" eType="#//Sequence" containment="true" eOpposite="#//Sequence/templateContainer"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="modifiers" ordered="false"
         unique="false" upperBound="-1" eType="#//TemplateModifiers"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAbstract" ordered="false"
         unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDeep" ordered="false"
         unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="prefixSequence" ordered="false"
-        lowerBound="1" eType="#//Sequence" containment="true" eOpposite="#//Sequence/prefixContainer"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isOperatored" ordered="false"
         unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operatorList" ordered="false"
@@ -103,8 +99,6 @@
         unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="storeRightTo" ordered="false"
         unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="otSequence" ordered="false"
-        eType="#//Sequence" containment="true" eOpposite="#//Sequence/otContainer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="storeOperatorTo" eType="#//PropertyReference"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="storeLeftSideTo" eType="#//PropertyReference"
@@ -179,9 +173,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//SequenceElement" containment="true" eOpposite="#//SequenceElement/elementSequence"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="templateContainer" ordered="false"
-        eType="#//ClassTemplate" eOpposite="#//ClassTemplate/templateSequence"/>
+        eType="#//ClassTemplate"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="prefixContainer" ordered="false"
-        eType="#//ClassTemplate" eOpposite="#//ClassTemplate/prefixSequence"/>
+        eType="#//ClassTemplate"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="functionContainer" ordered="false"
         eType="#//FunctionTemplate" eOpposite="#//FunctionTemplate/functionSequence"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="blockContainer" ordered="false"
@@ -193,7 +187,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="separatorContainer" ordered="false"
         eType="#//SeparatorPArg" eOpposite="#//SeparatorPArg/separatorSequence"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="otContainer" ordered="false"
-        eType="#//OperatorTemplate" eOpposite="#//OperatorTemplate/otSequence"/>
+        eType="#//OperatorTemplate"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SequenceElement" abstract="true" eSuperTypes="#//LocatedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elementSequence" ordered="false"
@@ -410,7 +404,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="query" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QueryByIdentifierPArg" eSuperTypes="#//PropertyArg">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="queryByIdentifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="query" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="feature" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FilterPArg" eSuperTypes="#//PropertyArg">
@@ -442,6 +436,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="contextTags" eType="#//ContextTags"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="scope" eType="#//ScopeArg"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="templateSequence" ordered="false"
+        lowerBound="1" eType="#//Sequence" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ContextTags">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="tags" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

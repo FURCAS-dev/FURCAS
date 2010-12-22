@@ -322,7 +322,7 @@ public class PropertyTypeHandler<Type extends Object> {
         if (args.oclQueryByIdentifierPArg == null) {
             query = args.oclQueryPArg.getQuery() + (args.oclFilterPArg != null ? args.oclFilterPArg.getFilter() : "");
         } else {
-            query = args.oclQueryByIdentifierPArg.getQueryByIdentifier() + "->select(" +  args.oclQueryByIdentifierPArg.getFeature() + " = ?)";
+            query = args.oclQueryByIdentifierPArg.getQuery() + "->select(" +  args.oclQueryByIdentifierPArg.getFeature() + " = ?)";
         }
         String oclQuery = TcsUtil.escapeMultiLineOclQuery(query);
 

@@ -72,15 +72,15 @@ public class EObjectQueryImpl<EODType> implements EObjectQuery<EODType>, QueryIn
 	}
 
 	public void nameContains(String nameSegment) {
-		this.name = "*" + nameSegment + "*";
+		this.name = "*" + nameSegment + "*"; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	public void nameEndsWith(String nameEnd) {
-		this.name = "*" + nameEnd;
+		this.name = "*" + nameEnd; //$NON-NLS-1$
 	}
 
 	public void nameStartsWith(String nameStart) {
-		this.name = nameStart + "*";
+		this.name = nameStart + "*"; //$NON-NLS-1$
 	}
 
 	public ResourceQuery<ResourceDescriptor> resource() {

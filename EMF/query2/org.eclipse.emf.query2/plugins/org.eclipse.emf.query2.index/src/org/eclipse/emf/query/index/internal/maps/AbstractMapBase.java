@@ -12,6 +12,8 @@ package org.eclipse.emf.query.index.internal.maps;
 
 import java.util.Iterator;
 
+import org.eclipse.emf.query.index.Messages;
+
 /**
  * @author Martin Strenge - Initial API and implementation
  * @author Bernd Kolb - Initial API and implementation
@@ -242,7 +244,7 @@ public abstract class AbstractMapBase<K, E> implements Iterable<E>, Serializable
 	protected void removeFromTableWithoutResize(int pos) {
 
 		if (this.table[pos] == null) {
-			throw new RuntimeException("no element found for remove at " + pos);
+			throw new RuntimeException(Messages.getString(Messages.Query2Index_AbstractMapBase_NoElementFound, new String[] { Integer.toString(pos) }));
 		}
 		this.table[pos] = null;
 		--this.size;
@@ -306,7 +308,8 @@ public abstract class AbstractMapBase<K, E> implements Iterable<E>, Serializable
 			}
 		}
 		if (count != this.size) {
-			throw new RuntimeException("size counter differs is:" + count + ", exp:" + this.size);
+			throw new RuntimeException(Messages.getString(Messages.Query2Index_AbstractMapBase_SizeCounterDiffers,
+					new String[] { Integer.toString(count), Integer.toString(this.size) }));
 		}
 	}
 

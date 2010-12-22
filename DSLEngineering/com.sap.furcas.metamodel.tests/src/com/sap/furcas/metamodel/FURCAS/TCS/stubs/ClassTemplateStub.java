@@ -104,16 +104,6 @@ public class ClassTemplateStub extends TemplateStub implements ClassTemplate {
     /*
      * (non-Javadoc)
      * 
-     * @see TCS.ClassTemplate#getPrefixSequence()
-     */
-    @Override
-    public Sequence getPrefixSequence() {
-	return null;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
      * @see TCS.ClassTemplate#getTemplateSequence()
      */
     @Override
@@ -204,17 +194,6 @@ public class ClassTemplateStub extends TemplateStub implements ClassTemplate {
     @Override
     public void setOperatorList(OperatorList value) {
 	operatorList = value;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see TCS.ClassTemplate#setPrefixSequence(TCS.Sequence)
-     */
-    @Override
-    public void setPrefixSequence(Sequence value) {
-	fail("not implemented yet");
-
     }
 
     /*

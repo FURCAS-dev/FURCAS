@@ -369,7 +369,7 @@ public class CtsContentAssistUtil {
 		}
 		if (t instanceof OperatorTemplate) {
 			OperatorTemplate ot = (OperatorTemplate) t;
-			return ot.getOtSequence();
+			return ot.getTemplateSequence();
 		}
 
 		if (t instanceof FunctionTemplate) {

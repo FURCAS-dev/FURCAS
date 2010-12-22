@@ -10,10 +10,12 @@
   <groupId>com.sap.dsl</groupId>
   <artifactId>com.sap.runlet.interpreter.test</artifactId>
   <version>1.0.0-SNAPSHOT</version>
+<!--
   <packaging>eclipse-plugin</packaging>
+-->
 <!-- enable this again once we understand how to run tests in Maven that require certain
      projects to be checked out in the target workspace
-
+-->
   <packaging>eclipse-test-plugin</packaging>
 
         <build>
@@ -22,7 +24,7 @@
                                 <groupId>org.sonatype.tycho</groupId>
                                 <artifactId>maven-osgi-test-plugin</artifactId>
                                 <configuration>
-                                        <argLine>-Xmx1024m -XX:+UseParallelGC</argLine>
+                                        <argLine>-Xmx2048m -XX:+UseParallelGC</argLine>
                                         <includes>
                                                 <include>**/*Test.java</include>
                                                 <include>**/Test*.java</include>
@@ -33,5 +35,5 @@
                 </plugins>
         </build>
 
--->
+<!-- -->
 </project>

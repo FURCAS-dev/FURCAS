@@ -1,8 +1,9 @@
 package com.sap.furcas.runtime.referenceresolving;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -26,16 +27,12 @@ import com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionPackage;
-import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext;
-import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 import com.sap.furcas.runtime.parser.impl.ModelElementProxy;
-import com.sap.furcas.runtime.textblocks.TbUtil;
+import com.sap.furcas.runtime.tcs.TcsUtil;
 
 
 /**
@@ -70,7 +67,6 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
     public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects,
             OppositeEndFinder oppositeEndFinder) {
         OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(oppositeEndFinder);
-        // TODO use prepared expression and parameterize based on token value taken from text blocks model
         for (EObject eo : affectedContextObjects) {
             Object newValue = ocl.evaluate(eo, expression);
             // only assign if result was not "invalid"
@@ -80,90 +76,11 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
                     newValue = ((Collection<?>) newValue).isEmpty() ? null : ((Collection<?>) newValue).iterator()
                             .next();
                 }
-                EObject elementToUpdate = getElementToUpdate(eo);
-                if (elementToUpdate != null) {
+                for (EObject elementToUpdate : getElementsToUpdate(eo)) {
                     elementToUpdate.eSet(getPropertyToUpdate(), newValue);
                 }
             }
         }
-    }
-
-    private Collection<TextBlock> getTextBlocksUsingQueryElement(Template template) {
-        Collection<TextBlock> result = new HashSet<TextBlock>();
-        Collection<EObject> candidates = getOppositeEndFinder().navigateOppositePropertyWithBackwardScope(
-                TextblockdefinitionPackage.eINSTANCE.getTextBlockDefinition_ParseRule(), template);
-        if (candidates != null && !candidates.isEmpty()) {
-            TextBlockDefinition def = (TextBlockDefinition) candidates.iterator().next();
-            Collection<EObject> textBlockCandidates = getOppositeEndFinder().navigateOppositePropertyWithBackwardScope(
-                    TextblocksPackage.eINSTANCE.getTextBlock_Type(), def);
-            if (!textBlockCandidates.isEmpty()) {
-                for (EObject textBlock : textBlockCandidates) {
-                    result.add((TextBlock) textBlock);
-                }
-            }
-            Collection<EObject> additionalTextBlockCandidates = getOppositeEndFinder()
-                    .navigateOppositePropertyWithBackwardScope(
-                            TextblocksPackage.eINSTANCE.getTextBlock_AdditionalTemplates(), template);
-            for (EObject textBlock : additionalTextBlockCandidates) {
-                result.add((TextBlock) textBlock);
-            }
-        }
-        // now find all TextBlocks that reference the template in their
-        // "additionalTemplate"
-        result = TbUtil.filterVersionedTextBlockForNewest(result);
-        return result;
-    }
-
-    protected Collection<TextBlock> getTextBlocksInChosenAlternativeForInjectorAction(InjectorAction injectorAction) {
-        Collection<TextBlock> result = new ArrayList<TextBlock>();
-        if (injectorAction != null) {
-            InjectorActionsBlock injectorActionsBlock = injectorAction.getInjectorActionsBlock();
-            Template template = injectorActionsBlock.getParentTemplate();
-            // now find all TextBlocks referencing this template;
-            Collection<TextBlock> tbs = getTextBlocksUsingQueryElement(template);
-            for (TextBlock textBlock : tbs) {
-                // first check if the alternative in which the injector action
-                // resides was chosen during the parsing process
-                // TODO this is a workaround. to properly decide this we need to keep track of the alternative chosen at runtime of the parser
-                boolean wasInChosenAlternative = isInjectorActionInChosenAlternative(injectorActionsBlock, textBlock);
-
-                if (wasInChosenAlternative) {
-                    result.add(textBlock);
-                }
-            }
-        }
-        return result;
-    }
-
-    private boolean isInjectorActionInChosenAlternative(InjectorActionsBlock injectorActionsBlock, TextBlock textBlock) {
-        boolean wasInChosenAlternative = false;
-        if (textBlock.getTokens().isEmpty()) {
-            for (TextBlock tb : textBlock.getSubBlocks()) {
-                if (tb.getSequenceElement() != null
-                        && (tb.getSequenceElement().getElementSequence()
-                                .equals(injectorActionsBlock.getElementSequence()) || injectorActionsBlock
-                                .getElementSequence().eContainer() instanceof ContextTemplate)) {
-                    wasInChosenAlternative = true;
-                    break;
-                }
-            }
-        } else {
-            for (AbstractToken tok : textBlock.getTokens()) {
-                if (tok instanceof LexedToken) {
-                    LexedToken lt = (LexedToken) tok;
-                    // check if injector action was in chosen alternative or
-                    // directly in in the template
-                    if (lt.getSequenceElement() != null
-                            && (lt.getSequenceElement().getElementSequence()
-                                    .equals(injectorActionsBlock.getElementSequence()) || injectorActionsBlock
-                                    .getElementSequence().eContainer() instanceof ContextTemplate)) {
-                        wasInChosenAlternative = true;
-                        break;
-                    }
-                }
-            }
-        }
-        return wasInChosenAlternative;
     }
 
     protected static Helper createOCLHelper(String oclExpression, Template contextTemplate, 
@@ -190,35 +107,47 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
      * update. We distinguish the following cases:
      * 
      * <ul>
+     * 
      * <li>{@link SelfKind#SELF}: <code>self</code> is the element to update</li>
+     * 
      * <li>{@link SelfKind#CONTEXT}: <code>self</code> is the element referred to as <code>#context</code> in the
      * original OCL expression (before <code>#context</code> was replaced by <code>self</code>). From the
-     * <code>inTextBlock</code> we can TODO</li>
+     * <code>self</code> element we can determine the {@link TextBlock} and from it the {@link ContextTemplate} that
+     * created the element. The text blocks tree also tells us which production rules were triggered from there, using
+     * the template in which the OCL-expression injector action resides. But this is only necessary, not a sufficient
+     * criterion. We additionally have to check if for this innermost text block the
+     * {@link TextBlock#getParentAltChoices()} indicate that along nested alternatives the one was used that actually
+     * contains our {@link #getSequenceElement() sequence element}. See also
+     * {@link TcsUtil#wasExecuted(ContextTemplate, org.eclipse.emf.common.util.EList, SequenceElement)}.</li>
+     * 
      * <li>{@link SelfKind#FOREACH}: <code>self</code> is the element referred to as <code>#foreach</code> in the
      * original OCL expression, before <code>#foreach</code> was replaced by <code>self</code>. There must have been a
      * {@link ForEachContext} whose {@link ForEachContext#getContextElement()} contains <code>self</code>. Once we've
      * found this {@link ForEachContext}, we can fetch its {@link ForEachContext#getResultModelElement()}. This may be
      * the element to be updated, if its production was actually selected by the <code>when</code> clauses of the
-     * <code>foreach</code> clause whose execution is described by the {@link ForEachContext}.</ul>
+     * <code>foreach</code> clause whose execution is described by the {@link ForEachContext}.</li>
+     * 
+     * </ul>
      * 
      * @param self
      *            the context for the OCL expression as identified by the OCL impact analyzer; for the straightforward
      *            case where {@link #selfKind} is {@link SelfKind#SELF}, this is at the same time the result of this
      *            method; otherwise, the <code>inTextBlock</code> argument is used to compute the result
-     * @param inTextBlock
-     *            needed for the cases where {@link #selfKind} is either {@link SelfKind#CONTEXT} or
-     *            {@link SelfKind#FOREACH}. In the case of {@link SelfKind#CONTEXT}, a context stack is constructed
-     *            starting at this text block, moving "up" the text blocks / template execution hierarchy.
      */
-    protected EObject getElementToUpdate(EObject self) {
+    protected Set<EObject> getElementsToUpdate(EObject self) {
         // Collection<TextBlock> inTextBlocks = getTextBlocksInChosenAlternativeForInjectorAction(injectorAction);
         switch (selfKind) {
         case SELF:
-            return self;
+            return Collections.singleton(self);
         case CONTEXT:
-            return getElementToUpdateFromContextElement(self);
+            return getElementsToUpdateFromContextElement(self);
         case FOREACH:
-            return getElementToUpdateFromForeachElement(self);
+            EObject result = getElementToUpdateFromForeachElement(self);
+            if (result == null) {
+                return Collections.emptySet();
+            } else {
+                return Collections.singleton(result);
+            }
         default:
             throw new RuntimeException("Unknown self kind: "+selfKind);
         }
@@ -257,11 +186,49 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
      * the execution of the template containing the {@link #getSequenceElement() sequence element} containing
      * the OCL expression.
      */
-    private EObject getElementToUpdateFromContextElement(EObject contextElement) {
-        // LocalContextBuilder contextBuilder = new LocalContextBuilder();
-        // TbParsingUtil.constructContext(inTextBlock, contextBuilder);
-        /* TODO really use */ contextTag.length();
-        return null; // FIXME need to port LocalContextBuilder to retrieve context from regularSelf and template
+    private Set<EObject> getElementsToUpdateFromContextElement(EObject contextElement) {
+        Set<EObject> result = new HashSet<EObject>();
+        Collection<EObject> textBlockDocumentingCreationOfContextElement = getOppositeEndFinder()
+        .navigateOppositePropertyWithBackwardScope(
+                TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(), contextElement);
+        for (EObject eo : textBlockDocumentingCreationOfContextElement) {
+            if (eo instanceof TextBlock) {
+                TextBlock textBlock = (TextBlock) eo;
+                Template template = textBlock.getType().getParseRule();
+                if (template instanceof ContextTemplate) {
+                    ContextTemplate contextTemplate = (ContextTemplate) template;
+                    if (contextTemplate.getContextTags() != null
+                            && contextTemplate.getContextTags().getTags().contains(contextTag)) {
+                        // the contextTemplate has the expected tag (e.g., "context(X)" if the
+                        // usage was "#context(X)")
+                        Set<TextBlock> textBlocksForSubordinateExecutionsOfSequenceElementHoldingTheOCLExpression = getSubordinateTextBlocksLeadingTo(
+                                textBlock, getSequenceElement().getParentTemplate());
+                        for (TextBlock tb : textBlocksForSubordinateExecutionsOfSequenceElementHoldingTheOCLExpression) {
+                            // add the first element from correspondingModelElements because that's the one
+                            // actually immediately created by the template holding the sequence element with
+                            // the OCL expression
+                            if (!tb.getCorrespondingModelElements().isEmpty()
+                                    && TcsUtil.wasExecuted((ContextTemplate) tb.getType().getParseRule(), tb.getParentAltChoices(), getSequenceElement())) {
+                                result.add(tb.getCorrespondingModelElements().get(0));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    private Set<TextBlock> getSubordinateTextBlocksLeadingTo(TextBlock textBlock, Template templateHoldingSequenceElement) {
+        if (textBlock.getType().getParseRule() == templateHoldingSequenceElement) {
+            return Collections.singleton(textBlock);
+        } else {
+            Set<TextBlock> result = new HashSet<TextBlock>();
+            for (TextBlock subBlock : textBlock.getSubBlocks()) {
+                result.addAll(getSubordinateTextBlocksLeadingTo(subBlock, templateHoldingSequenceElement));
+            }
+            return result;
+        }
     }
 
     /**

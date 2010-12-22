@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.QueryByIdentifierPArgImpl#getQueryByIdentifier <em>Query By Identifier</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.QueryByIdentifierPArgImpl#getQuery <em>Query</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.QueryByIdentifierPArgImpl#getFeature <em>Feature</em>}</li>
  * </ul>
  * </p>
@@ -31,24 +31,24 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class QueryByIdentifierPArgImpl extends PropertyArgImpl implements QueryByIdentifierPArg {
     /**
-     * The default value of the '{@link #getQueryByIdentifier() <em>Query By Identifier</em>}' attribute.
+     * The default value of the '{@link #getQuery() <em>Query</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getQueryByIdentifier()
+     * @see #getQuery()
      * @generated
      * @ordered
      */
-    protected static final String QUERY_BY_IDENTIFIER_EDEFAULT = null;
+    protected static final String QUERY_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getQueryByIdentifier() <em>Query By Identifier</em>}' attribute.
+     * The cached value of the '{@link #getQuery() <em>Query</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getQueryByIdentifier()
+     * @see #getQuery()
      * @generated
      * @ordered
      */
-    protected String queryByIdentifier = QUERY_BY_IDENTIFIER_EDEFAULT;
+    protected String query = QUERY_EDEFAULT;
 
     /**
      * The default value of the '{@link #getFeature() <em>Feature</em>}' attribute.
@@ -94,8 +94,8 @@ public class QueryByIdentifierPArgImpl extends PropertyArgImpl implements QueryB
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getQueryByIdentifier() {
-        return queryByIdentifier;
+    public String getQuery() {
+        return query;
     }
 
     /**
@@ -103,11 +103,11 @@ public class QueryByIdentifierPArgImpl extends PropertyArgImpl implements QueryB
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setQueryByIdentifier(String newQueryByIdentifier) {
-        String oldQueryByIdentifier = queryByIdentifier;
-        queryByIdentifier = newQueryByIdentifier;
+    public void setQuery(String newQuery) {
+        String oldQuery = query;
+        query = newQuery;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.QUERY_BY_IDENTIFIER_PARG__QUERY_BY_IDENTIFIER, oldQueryByIdentifier, queryByIdentifier));
+            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.QUERY_BY_IDENTIFIER_PARG__QUERY, oldQuery, query));
     }
 
     /**
@@ -139,8 +139,8 @@ public class QueryByIdentifierPArgImpl extends PropertyArgImpl implements QueryB
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case TCSPackage.QUERY_BY_IDENTIFIER_PARG__QUERY_BY_IDENTIFIER:
-                return getQueryByIdentifier();
+            case TCSPackage.QUERY_BY_IDENTIFIER_PARG__QUERY:
+                return getQuery();
             case TCSPackage.QUERY_BY_IDENTIFIER_PARG__FEATURE:
                 return getFeature();
         }
@@ -155,8 +155,8 @@ public class QueryByIdentifierPArgImpl extends PropertyArgImpl implements QueryB
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case TCSPackage.QUERY_BY_IDENTIFIER_PARG__QUERY_BY_IDENTIFIER:
-                setQueryByIdentifier((String)newValue);
+            case TCSPackage.QUERY_BY_IDENTIFIER_PARG__QUERY:
+                setQuery((String)newValue);
                 return;
             case TCSPackage.QUERY_BY_IDENTIFIER_PARG__FEATURE:
                 setFeature((String)newValue);
@@ -173,8 +173,8 @@ public class QueryByIdentifierPArgImpl extends PropertyArgImpl implements QueryB
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case TCSPackage.QUERY_BY_IDENTIFIER_PARG__QUERY_BY_IDENTIFIER:
-                setQueryByIdentifier(QUERY_BY_IDENTIFIER_EDEFAULT);
+            case TCSPackage.QUERY_BY_IDENTIFIER_PARG__QUERY:
+                setQuery(QUERY_EDEFAULT);
                 return;
             case TCSPackage.QUERY_BY_IDENTIFIER_PARG__FEATURE:
                 setFeature(FEATURE_EDEFAULT);
@@ -191,8 +191,8 @@ public class QueryByIdentifierPArgImpl extends PropertyArgImpl implements QueryB
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case TCSPackage.QUERY_BY_IDENTIFIER_PARG__QUERY_BY_IDENTIFIER:
-                return QUERY_BY_IDENTIFIER_EDEFAULT == null ? queryByIdentifier != null : !QUERY_BY_IDENTIFIER_EDEFAULT.equals(queryByIdentifier);
+            case TCSPackage.QUERY_BY_IDENTIFIER_PARG__QUERY:
+                return QUERY_EDEFAULT == null ? query != null : !QUERY_EDEFAULT.equals(query);
             case TCSPackage.QUERY_BY_IDENTIFIER_PARG__FEATURE:
                 return FEATURE_EDEFAULT == null ? feature != null : !FEATURE_EDEFAULT.equals(feature);
         }
@@ -209,8 +209,8 @@ public class QueryByIdentifierPArgImpl extends PropertyArgImpl implements QueryB
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (queryByIdentifier: ");
-        result.append(queryByIdentifier);
+        result.append(" (query: ");
+        result.append(query);
         result.append(", feature: ");
         result.append(feature);
         result.append(')');
