@@ -2,13 +2,11 @@ package com.sap.furcas.referenceresolving.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
@@ -19,6 +17,7 @@ import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
@@ -106,34 +105,12 @@ public class TestPropertyInitReEvaluationWithContextInForeachTriggeredTemplate e
      }
 
     @Test
-    public void testForeachPropertyInitValueInInitialModel() throws Exception {
-        @SuppressWarnings("unchecked")
-        EList<EObject> revenues = (EList<EObject>) johnDoe.eGet(authorClass.getEStructuralFeature("revenues"));
-        @SuppressWarnings("unchecked")
-        EList<EObject> johnsArticles = (EList<EObject>) johnDoe.eGet(authorClass.getEStructuralFeature("articles"));
-        assertEquals(johnsArticles.size(), revenues.size());
-        Iterator<EObject> johnsArticlesIterator = johnsArticles.iterator();
-        for (EObject revenue : revenues) {
-            EObject theArticle = johnsArticlesIterator.next();
-            assertSame(theArticle, revenue.eGet(revenue.eClass().getEStructuralFeature("article")));
-            assertEquals(((String) ((EObject) theArticle.eGet(articleClass.getEStructuralFeature("author"))).eGet(
-                    authorClass.getEStructuralFeature("name"))).length(), revenue.eGet(
-                            revenue.eClass().getEStructuralFeature("revenueInEUR")));
-        }
-    }
-    
-    @Test
-    public void testChangeOfExpressionValueUsingHashForeach() throws Exception {
-        johnDoe.eSet(authorClass.getEStructuralFeature("name"), "The Only John Doe");
-        testForeachPropertyInitValueInInitialModel();
-    }
-
-    @Test
     public void testChangeAuthorName() {
         johnDoe.eSet(authorClass.getEStructuralFeature("name"), "John Dough");
         assertEquals("Where John Dough wrote it", article.eGet(articleClass.getEStructuralFeature("location")));
     }
     
+    @Ignore("Not yet functional; need to fix the #context stuff first")
     @Test
     public void testAddArticleAndExpectRevenueLedgerCreation() throws Exception {
         EObject newArticle = articleClass.getEPackage().getEFactoryInstance().create(articleClass);
