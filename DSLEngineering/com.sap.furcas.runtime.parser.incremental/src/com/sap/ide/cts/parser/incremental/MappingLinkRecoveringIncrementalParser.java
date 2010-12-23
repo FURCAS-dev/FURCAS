@@ -143,7 +143,7 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
         private void createTBProxy2ReferenceMap() {
             tBProxy2Reference = new HashMap<TextBlockProxy, List<DelayedReference>>();
             for (DelayedReference ref : batchParser.getDelayedReferences()) {
-                if(ref.getType() == DelayedReference.TYPE_SEMANTIC_PREDICATE) {
+                if(ref.getType() == DelayedReference.ReferenceType.TYPE_SEMANTIC_PREDICATE) {
                     List<DelayedReference> refs = tBProxy2Reference.get(ref.getTextBlock());
                     if(refs == null) {
                         refs = new ArrayList<DelayedReference>(3);

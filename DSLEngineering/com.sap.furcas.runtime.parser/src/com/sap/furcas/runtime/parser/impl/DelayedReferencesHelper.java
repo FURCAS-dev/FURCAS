@@ -96,12 +96,12 @@ public class DelayedReferencesHelper {
             contextElement = proxyContext.getRealObject();
         }
 
-        if (reference.getType() == DelayedReference.TYPE_SEMANTIC_PREDICATE) {
+        if (reference.getType() == DelayedReference.ReferenceType.TYPE_SEMANTIC_PREDICATE) {
             return setDelayedReferenceWithPredicate(reference, modelAdapter, contextManager, contextElement, parser);
-        } else if (reference.getType() == DelayedReference.SEMANTIC_DISAMBIGUATE) {
+        } else if (reference.getType() == DelayedReference.ReferenceType.SEMANTIC_DISAMBIGUATE) {
             return setDelayedReferenceWithSemanticDisambiguate(reference, modelAdapter, contextManager, contextElement, parser);
         }
-        if (reference.getOclQuery() != null && reference.getType() != DelayedReference.CONTEXT_LOOKUP) {
+        if (reference.getOclQuery() != null && reference.getType() != DelayedReference.ReferenceType.CONTEXT_LOOKUP) {
             return setDelayedReferenceWithQuery(reference, modelAdapter, contextManager, contextElement);
         } else {
             return setDelayedReferenceWithLookup(reference, modelAdapter, contextManager, contextElement);
@@ -957,7 +957,7 @@ public class DelayedReferencesHelper {
 
         Object candidate = null;
 
-        if (reference.getType() == DelayedReference.CONTEXT_LOOKUP) {
+        if (reference.getType() == DelayedReference.ReferenceType.CONTEXT_LOOKUP) {
             candidate = modelAdapter.setReferenceWithOCLQuery(contextElement, reference.getPropertyName(), reference.getKeyValue(),
                     reference.getOclQuery().replaceAll("self.", "#context"), reference.getTextBlock(),
                     reference.getCurrentForeachElement());

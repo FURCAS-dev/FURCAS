@@ -17,7 +17,6 @@ import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
@@ -110,7 +109,6 @@ public class TestPropertyInitReEvaluationWithContextInForeachTriggeredTemplate e
         assertEquals("Where John Dough wrote it", article.eGet(articleClass.getEStructuralFeature("location")));
     }
     
-    @Ignore("Not yet functional; need to fix the #context stuff first")
     @Test
     public void testAddArticleAndExpectRevenueLedgerCreation() throws Exception {
         EObject newArticle = articleClass.getEPackage().getEFactoryInstance().create(articleClass);

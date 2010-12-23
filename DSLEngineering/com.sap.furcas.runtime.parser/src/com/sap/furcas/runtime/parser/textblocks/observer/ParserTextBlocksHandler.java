@@ -548,7 +548,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                     (ANTLR3LocationToken) referenceLocation);
             if (contextBlock != null && modelElement instanceof EObject) {
 
-                if (reference.getType() == DelayedReference.TYPE_SEMANTIC_PREDICATE) {
+                if (reference.getType() == DelayedReference.ReferenceType.TYPE_SEMANTIC_PREDICATE) {
                     // this means we are in the resolving of a foreachproperty init
                     // thus we have to add the curently set template to the
                     // additionalTemplates of
