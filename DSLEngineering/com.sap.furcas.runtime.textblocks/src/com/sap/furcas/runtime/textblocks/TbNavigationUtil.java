@@ -95,7 +95,7 @@ public class TbNavigationUtil {
 	public static DocumentNode getNextInSubTree(DocumentNode node) {
 
 		// root node has no siblings
-		if (node.getParent() == null) {
+		if (node == null || node.getParent() == null) {
 			return null;
 		}
 

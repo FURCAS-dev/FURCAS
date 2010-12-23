@@ -933,7 +933,9 @@ public class TextBlocksModel {
 	DocumentNode parentBlock = curLeftNode.getParent();
 	while (parentBlock != null) {
 	    addRightSiblingsBeforeEndNode(results, curLeftNode, possibleSameLevelRightNode);
-	    if (curLeftNode.getParent() == possibleSameLevelRightNode.getParent()) {
+	    if (curLeftNode == null && possibleSameLevelRightNode == null ||
+	            curLeftNode != null && possibleSameLevelRightNode != null &&
+	            curLeftNode.getParent() == possibleSameLevelRightNode.getParent()) {
 		// found same level right node
 		if (possibleSameLevelRightNode == rightFloorToken) {
 		    // we are done
