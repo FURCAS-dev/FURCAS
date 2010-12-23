@@ -32,8 +32,8 @@ import com.google.inject.Injector;
 
 public class TestTransformation extends Assert {
 
-	private static final String RESOURCE = "/resource/";
-	private static final String PLUGIN = "/plugin/";
+	private static final String RESOURCE = "/resource/"; //$NON-NLS-1$
+	private static final String PLUGIN = "/plugin/"; //$NON-NLS-1$
 
 	private static Model model;
 
@@ -41,12 +41,12 @@ public class TestTransformation extends Assert {
 	
 	@BeforeClass
 	public static void setup() {
-		new org.eclipse.emf.mwe.utils.StandaloneSetup().setPlatformUri("..");
+		new org.eclipse.emf.mwe.utils.StandaloneSetup().setPlatformUri(".."); //$NON-NLS-1$
 		Injector injector = new QueryStandaloneSetup().createInjectorAndDoEMFRegistration();
 
 		XtextResourceSet set = injector.getInstance(XtextResourceSet.class);
 		set.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
-		URI resourceURI = URI.createURI("platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/test/testSimpleTrafo.query");
+		URI resourceURI = URI.createURI("platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/test/testSimpleTrafo.query"); //$NON-NLS-1$ //$NON-NLS-2$
 		URI normalized = set.getURIConverter().normalize(resourceURI);
 		LazyLinkingResource xtextResource = (LazyLinkingResource) set.getResource(normalized, true);
 		model = (Model) xtextResource.getContents().get(0);
@@ -68,124 +68,124 @@ public class TestTransformation extends Assert {
 	private String doTransformation(String queryName) {
 		MQLquery query = findQuery(queryName);
 		Query transform = QueryTransformer.transform(query);
-		String string = transform.toString().replaceAll("\\n", " ").trim();
+		String string = transform.toString().replaceAll("\\n", " ").trim(); //$NON-NLS-1$ //$NON-NLS-2$
 		return string;
 	}
 	
 	private String doTransformation(String queryName, Object[] parameters) {
 		MQLquery query = findQuery(queryName);
 		Query transform = QueryTransformer.transform(query, parameters);
-		String string = transform.toString().replaceAll("\\n", " ").trim();
+		String string = transform.toString().replaceAll("\\n", " ").trim(); //$NON-NLS-1$ //$NON-NLS-2$
 		return string;
 	}
 
 	@Test
 	public void testSelectEClass() throws Exception {
-		String string = doTransformation("SelectEClass");
-		assertEquals("select a from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a", string);
+		String string = doTransformation("SelectEClass"); //$NON-NLS-1$
+		assertEquals("select a from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a", string); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	@Test
 	public void testSelectEClassWhereNameEqualsEAttribute() {
-		String string = doTransformation("SelectEClassWhereNameEqualsEAttribute");
-		assertEquals("select a from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a "
-				+ "where for a(name EQUAL 'EAttribute')", string);
+		String string = doTransformation("SelectEClassWhereNameEqualsEAttribute"); //$NON-NLS-1$
+		assertEquals("select a from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a " //$NON-NLS-1$ //$NON-NLS-2$
+				+ "where for a(name EQUAL 'EAttribute')", string); //$NON-NLS-1$
 	}
 
 	@Test
 	public void testSelectAttrTwoWhereAnd() {
-		String string = doTransformation("SelectAttrTwoWhereAnd");
-		assertEquals("select a.name from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a "
-				+ "where for a(name EQUAL 'EAttribute') " + "where for a(abstract EQUAL true)", string);
+		String string = doTransformation("SelectAttrTwoWhereAnd"); //$NON-NLS-1$
+		assertEquals("select a.name from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a " //$NON-NLS-1$ //$NON-NLS-2$
+				+ "where for a(name EQUAL 'EAttribute') " + "where for a(abstract EQUAL true)", string); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	@Test
 	public void testSelectAttrWhereAttrLong() {
-		String string = doTransformation("SelectAttrWhereAttrLong");
+		String string = doTransformation("SelectAttrWhereAttrLong"); //$NON-NLS-1$
 		assertEquals(
-				"select a.lowerBound from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//ETypedElement as a "
-						+ "where for a(upperBound SMALLER 5)", string);
+				"select a.lowerBound from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//ETypedElement as a " //$NON-NLS-1$ //$NON-NLS-2$
+						+ "where for a(upperBound SMALLER 5)", string); //$NON-NLS-1$
 	}
 
 	@Test
 	public void testSelectAttrWhereAttrVar() {
-		String string = doTransformation("SelectAttrWhereAttrVar");
-		assertEquals("select a.lowerBound,        b.upperBound "
-				+ "from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//ETypedElement as a,      "
-				+ "type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//ETypedElement as b "
-				+ "where b.upperBound >= a.lowerBound", string);
+		String string = doTransformation("SelectAttrWhereAttrVar"); //$NON-NLS-1$
+		assertEquals("select a.lowerBound,        b.upperBound " //$NON-NLS-1$
+				+ "from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//ETypedElement as a,      " //$NON-NLS-1$ //$NON-NLS-2$
+				+ "type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//ETypedElement as b " //$NON-NLS-1$ //$NON-NLS-2$
+				+ "where b.upperBound >= a.lowerBound", string); //$NON-NLS-1$
 	}
 
 	@Test
 	public void testSelectAttrWhereAttrNull() {
-		String string = doTransformation("SelectAttrWhereAttrNull");
+		String string = doTransformation("SelectAttrWhereAttrNull"); //$NON-NLS-1$
 		assertEquals(
-				"select a.lowerBound from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//ETypedElement as a "
-						+ "where for a(eType EQUAL null)", string);
+				"select a.lowerBound from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//ETypedElement as a " //$NON-NLS-1$ //$NON-NLS-2$
+						+ "where for a(eType EQUAL null)", string); //$NON-NLS-1$
 	}
 
 	@Test
 	public void testSelectEClassWhereRefNull() {
-		String string = doTransformation("SelectEClassWhereRefNull");
-		assertEquals("select a from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a "
-				+ "where for a(eOperations EQUAL null)", string);
+		String string = doTransformation("SelectEClassWhereRefNull"); //$NON-NLS-1$
+		assertEquals("select a from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a " //$NON-NLS-1$ //$NON-NLS-2$
+				+ "where for a(eOperations EQUAL null)", string); //$NON-NLS-1$
 	}
 
 	@Test
 	public void testSelectAttrTwoWhereOr() {
-		String string = doTransformation("SelectAttrTwoWhereOr");
+		String string = doTransformation("SelectAttrTwoWhereOr"); //$NON-NLS-1$
 		assertEquals(
-				"select a.name from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', abstract EQUAL true))",
+				"select a.name from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', abstract EQUAL true))", //$NON-NLS-1$ //$NON-NLS-2$
 				string);
 	}
 
 	@Test
 	public void testSelectAttrThreeWhereOr() {
-		String string = doTransformation("SelectAttrThreeWhereOr");
+		String string = doTransformation("SelectAttrThreeWhereOr"); //$NON-NLS-1$
 		assertEquals(
-				"select a.name from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', abstract EQUAL true, abstract EQUAL true, interface EQUAL true))",
+				"select a.name from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', abstract EQUAL true, abstract EQUAL true, interface EQUAL true))", //$NON-NLS-1$ //$NON-NLS-2$
 				string);
 	}
 
 	@Test
 	public void testSelectAttrThreeWhereAnd() {
-		String string = doTransformation("SelectAttrThreeWhereAnd");
+		String string = doTransformation("SelectAttrThreeWhereAnd"); //$NON-NLS-1$
 		assertEquals(
-				"select a.name from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(name EQUAL 'EAttribute') where for a(abstract EQUAL true) where for a(abstract EQUAL true) where for a(interface EQUAL true)",
+				"select a.name from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(name EQUAL 'EAttribute') where for a(abstract EQUAL true) where for a(abstract EQUAL true) where for a(interface EQUAL true)", //$NON-NLS-1$ //$NON-NLS-2$
 				string);
 	}
 
 	@Test
 	public void testSelectAttrThreeWhereOrAnd() {
-		String string = doTransformation("SelectAttrThreeWhereOrAnd");
+		String string = doTransformation("SelectAttrThreeWhereOrAnd"); //$NON-NLS-1$
 		assertEquals(
-				"select a.name from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', and (abstract EQUAL true, interface EQUAL true)))",
+				"select a.name from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', and (abstract EQUAL true, interface EQUAL true)))", //$NON-NLS-1$ //$NON-NLS-2$
 				string);
 	}
 
 	@Test
 	public void testSelectPar() {
-		String string = doTransformation("SelectPar");
+		String string = doTransformation("SelectPar"); //$NON-NLS-1$
 		assertEquals(
-				"select a.name from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', abstract EQUAL true)) where for a(interface EQUAL true)",
+				"select a.name from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', abstract EQUAL true)) where for a(interface EQUAL true)", //$NON-NLS-1$ //$NON-NLS-2$
 				string);
 	}
 	
 	@Test
 	public void testSelectPar2() {
-		String string = doTransformation("SelectPar2");
+		String string = doTransformation("SelectPar2"); //$NON-NLS-1$
 		assertEquals(
-				"select a.name from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', and (abstract EQUAL true, interface EQUAL true)))",
+				"select a.name from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', and (abstract EQUAL true, interface EQUAL true)))", //$NON-NLS-1$ //$NON-NLS-2$
 				string);
 	}
 
 
 	@Test
 	public void testSelectPar2AsParameter() {
-		Object[] parameters = new Object[] { "EAttribute", true, true } ;
-		String string = doTransformation("SelectPar2AsParameter", parameters);
+		Object[] parameters = new Object[] { "EAttribute", true, true } ; //$NON-NLS-1$
+		String string = doTransformation("SelectPar2AsParameter", parameters); //$NON-NLS-1$
 		assertEquals(
-				"select a.name from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', and (abstract EQUAL true, interface EQUAL true)))",
+				"select a.name from type: platform:"+loadLocation+"org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', and (abstract EQUAL true, interface EQUAL true)))", //$NON-NLS-1$ //$NON-NLS-2$
 				string);
 	}
 	
@@ -193,8 +193,8 @@ public class TestTransformation extends Assert {
 	public void testSimpleTransformation() throws Exception {
 		MQLquery query = QueryFactory.eINSTANCE.createMQLquery();
 
-		String fromAlias1 = "selectAlias";
-		String fromAlias2 = "fromAlias";
+		String fromAlias1 = "selectAlias"; //$NON-NLS-1$
+		String fromAlias2 = "fromAlias"; //$NON-NLS-1$
 
 		// FROM ENTRIES
 		FromEntry fromEntry1 = QueryFactory.eINSTANCE.createFromEntry();
