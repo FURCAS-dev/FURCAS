@@ -2,6 +2,7 @@ package org.eclipse.emf.query2.syntax.parser.antlr.internal;
 
 // Hack: Use our own Lexer superclass by means of import. 
 // Currently there is no other way to specify the superclass for the lexer.
+import org.eclipse.emf.query2.syntax.Messages;
 import org.eclipse.xtext.parser.antlr.Lexer;
 
 
@@ -57,7 +58,7 @@ public class InternalQueryLexer extends Lexer {
     public InternalQueryLexer(CharStream input) {
         super(input);
     }
-    public String getGrammarFileName() { return "../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g"; }
+    public String getGrammarFileName() { return "../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g"; } //$NON-NLS-1$
 
     // $ANTLR start T11
     public final void mT11() throws RecognitionException {
@@ -66,7 +67,7 @@ public class InternalQueryLexer extends Lexer {
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:10:5: ( 'import' )
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:10:7: 'import'
             {
-            match("import"); 
+            match("import");  //$NON-NLS-1$
 
 
             }
@@ -103,7 +104,7 @@ public class InternalQueryLexer extends Lexer {
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:12:5: ( 'from' )
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:12:7: 'from'
             {
-            match("from"); 
+            match("from");  //$NON-NLS-1$
 
 
             }
@@ -140,7 +141,7 @@ public class InternalQueryLexer extends Lexer {
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:14:5: ( 'select' )
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:14:7: 'select'
             {
-            match("select"); 
+            match("select");  //$NON-NLS-1$
 
 
             }
@@ -159,7 +160,7 @@ public class InternalQueryLexer extends Lexer {
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:15:5: ( 'where' )
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:15:7: 'where'
             {
-            match("where"); 
+            match("where");  //$NON-NLS-1$
 
 
             }
@@ -196,7 +197,7 @@ public class InternalQueryLexer extends Lexer {
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:17:5: ( 'withoutsubtypes' )
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:17:7: 'withoutsubtypes'
             {
-            match("withoutsubtypes"); 
+            match("withoutsubtypes");  //$NON-NLS-1$
 
 
             }
@@ -251,7 +252,7 @@ public class InternalQueryLexer extends Lexer {
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:20:5: ( 'as' )
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:20:7: 'as'
             {
-            match("as"); 
+            match("as");  //$NON-NLS-1$
 
 
             }
@@ -270,7 +271,7 @@ public class InternalQueryLexer extends Lexer {
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:21:5: ( 'not' )
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:21:7: 'not'
             {
-            match("not"); 
+            match("not");  //$NON-NLS-1$
 
 
             }
@@ -289,7 +290,7 @@ public class InternalQueryLexer extends Lexer {
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:22:5: ( 'in' )
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:22:7: 'in'
             {
-            match("in"); 
+            match("in");  //$NON-NLS-1$
 
 
             }
@@ -308,7 +309,7 @@ public class InternalQueryLexer extends Lexer {
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:23:5: ( 'resources' )
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:23:7: 'resources'
             {
-            match("resources"); 
+            match("resources");  //$NON-NLS-1$
 
 
             }
@@ -327,7 +328,7 @@ public class InternalQueryLexer extends Lexer {
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:24:5: ( 'elements' )
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:24:7: 'elements'
             {
-            match("elements"); 
+            match("elements");  //$NON-NLS-1$
 
 
             }
@@ -346,7 +347,7 @@ public class InternalQueryLexer extends Lexer {
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:25:5: ( 'or' )
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:25:7: 'or'
             {
-            match("or"); 
+            match("or");  //$NON-NLS-1$
 
 
             }
@@ -365,7 +366,7 @@ public class InternalQueryLexer extends Lexer {
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:26:5: ( 'and' )
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:26:7: 'and'
             {
-            match("and"); 
+            match("and");  //$NON-NLS-1$
 
 
             }
@@ -438,7 +439,7 @@ public class InternalQueryLexer extends Lexer {
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:30:5: ( 'null' )
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:30:7: 'null'
             {
-            match("null"); 
+            match("null");  //$NON-NLS-1$
 
 
             }
@@ -457,7 +458,7 @@ public class InternalQueryLexer extends Lexer {
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:31:5: ( 'true' )
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:31:7: 'true'
             {
-            match("true"); 
+            match("true");  //$NON-NLS-1$
 
 
             }
@@ -476,7 +477,7 @@ public class InternalQueryLexer extends Lexer {
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:32:5: ( 'false' )
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:32:7: 'false'
             {
-            match("false"); 
+            match("false");  //$NON-NLS-1$
 
 
             }
@@ -531,7 +532,7 @@ public class InternalQueryLexer extends Lexer {
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:35:5: ( '<=' )
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:35:7: '<='
             {
-            match("<="); 
+            match("<=");  //$NON-NLS-1$
 
 
             }
@@ -550,7 +551,7 @@ public class InternalQueryLexer extends Lexer {
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:36:5: ( '>=' )
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:36:7: '>='
             {
-            match(">="); 
+            match(">=");  //$NON-NLS-1$
 
 
             }
@@ -587,7 +588,7 @@ public class InternalQueryLexer extends Lexer {
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:38:5: ( '!=' )
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:38:7: '!='
             {
-            match("!="); 
+            match("!=");  //$NON-NLS-1$
 
 
             }
@@ -606,7 +607,7 @@ public class InternalQueryLexer extends Lexer {
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:39:5: ( 'like' )
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:39:7: 'like'
             {
-            match("like"); 
+            match("like");  //$NON-NLS-1$
 
 
             }
@@ -625,7 +626,7 @@ public class InternalQueryLexer extends Lexer {
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:40:5: ( 'not like' )
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:40:7: 'not like'
             {
-            match("not like"); 
+            match("not like");  //$NON-NLS-1$
 
 
             }
@@ -644,7 +645,7 @@ public class InternalQueryLexer extends Lexer {
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:41:5: ( 'not in' )
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:41:7: 'not in'
             {
-            match("not in"); 
+            match("not in");  //$NON-NLS-1$
 
 
             }
@@ -932,7 +933,7 @@ public class InternalQueryLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1826:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )", 11, 0, input);
+                    new NoViableAltException("1826:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )", 11, 0, input); //$NON-NLS-1$
 
                 throw nvae;
             }
@@ -1081,7 +1082,7 @@ public class InternalQueryLexer extends Lexer {
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1828:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1828:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
-            match("/*"); 
+            match("/*");  //$NON-NLS-1$
 
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1828:24: ( options {greedy=false; } : . )*
             loop12:
@@ -1120,7 +1121,7 @@ public class InternalQueryLexer extends Lexer {
                 }
             } while (true);
 
-            match("*/"); 
+            match("*/");  //$NON-NLS-1$
 
 
             }
@@ -1139,7 +1140,7 @@ public class InternalQueryLexer extends Lexer {
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1830:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1830:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
-            match("//"); 
+            match("//");  //$NON-NLS-1$
 
             // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g:1830:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop13:
@@ -1563,175 +1564,175 @@ public class InternalQueryLexer extends Lexer {
 
     protected DFA17 dfa17 = new DFA17(this);
     static final String DFA17_eotS =
-        "\1\uffff\1\32\1\uffff\1\32\1\uffff\2\32\3\uffff\5\32\3\uffff\1\32"+
-        "\1\56\1\60\2\uffff\1\32\1\uffff\1\62\4\uffff\1\66\6\32\1\75\5\32"+
-        "\1\103\1\32\4\uffff\1\32\5\uffff\6\32\1\uffff\1\114\1\116\3\32\1"+
-        "\uffff\4\32\1\126\3\32\3\uffff\1\134\2\32\1\137\1\140\1\32\1\142"+
-        "\1\uffff\1\32\1\144\1\32\3\uffff\2\32\2\uffff\1\150\1\uffff\1\151"+
-        "\1\uffff\3\32\2\uffff\5\32\1\162\1\32\1\164\1\uffff\1\32\1\uffff"+
-        "\4\32\1\172\1\uffff";
+        "\1\uffff\1\32\1\uffff\1\32\1\uffff\2\32\3\uffff\5\32\3\uffff\1\32"+ //$NON-NLS-1$
+        "\1\56\1\60\2\uffff\1\32\1\uffff\1\62\4\uffff\1\66\6\32\1\75\5\32"+ //$NON-NLS-1$
+        "\1\103\1\32\4\uffff\1\32\5\uffff\6\32\1\uffff\1\114\1\116\3\32\1"+ //$NON-NLS-1$
+        "\uffff\4\32\1\126\3\32\3\uffff\1\134\2\32\1\137\1\140\1\32\1\142"+ //$NON-NLS-1$
+        "\1\uffff\1\32\1\144\1\32\3\uffff\2\32\2\uffff\1\150\1\uffff\1\151"+ //$NON-NLS-1$
+        "\1\uffff\3\32\2\uffff\5\32\1\162\1\32\1\164\1\uffff\1\32\1\uffff"+ //$NON-NLS-1$
+        "\4\32\1\172\1\uffff"; //$NON-NLS-1$
     static final String DFA17_eofS =
-        "\173\uffff";
+        "\173\uffff"; //$NON-NLS-1$
     static final String DFA17_minS =
-        "\1\11\1\155\1\uffff\1\141\1\uffff\1\145\1\150\3\uffff\1\156\1\157"+
-        "\1\145\1\154\1\162\3\uffff\1\162\2\75\2\uffff\1\151\1\60\1\56\2"+
-        "\uffff\1\52\1\uffff\1\60\1\160\1\154\1\157\1\154\1\145\1\164\1\60"+
-        "\1\144\1\164\1\154\1\163\1\145\1\60\1\165\4\uffff\1\153\5\uffff"+
-        "\1\157\1\163\1\155\1\145\1\162\1\150\1\uffff\1\60\1\40\1\154\1\157"+
-        "\1\155\1\uffff\2\145\1\162\1\145\1\60\1\143\1\145\1\157\1\uffff"+
-        "\1\151\1\uffff\1\60\1\165\1\145\2\60\1\164\1\60\1\uffff\1\164\1"+
-        "\60\1\165\3\uffff\1\162\1\156\2\uffff\1\60\1\uffff\1\60\1\uffff"+
-        "\1\164\1\143\1\164\2\uffff\1\163\1\145\1\163\1\165\1\163\1\60\1"+
-        "\142\1\60\1\uffff\1\164\1\uffff\1\171\1\160\1\145\1\163\1\60\1\uffff";
+        "\1\11\1\155\1\uffff\1\141\1\uffff\1\145\1\150\3\uffff\1\156\1\157"+ //$NON-NLS-1$
+        "\1\145\1\154\1\162\3\uffff\1\162\2\75\2\uffff\1\151\1\60\1\56\2"+ //$NON-NLS-1$
+        "\uffff\1\52\1\uffff\1\60\1\160\1\154\1\157\1\154\1\145\1\164\1\60"+ //$NON-NLS-1$
+        "\1\144\1\164\1\154\1\163\1\145\1\60\1\165\4\uffff\1\153\5\uffff"+ //$NON-NLS-1$
+        "\1\157\1\163\1\155\1\145\1\162\1\150\1\uffff\1\60\1\40\1\154\1\157"+ //$NON-NLS-1$
+        "\1\155\1\uffff\2\145\1\162\1\145\1\60\1\143\1\145\1\157\1\uffff"+ //$NON-NLS-1$
+        "\1\151\1\uffff\1\60\1\165\1\145\2\60\1\164\1\60\1\uffff\1\164\1"+ //$NON-NLS-1$
+        "\60\1\165\3\uffff\1\162\1\156\2\uffff\1\60\1\uffff\1\60\1\uffff"+ //$NON-NLS-1$
+        "\1\164\1\143\1\164\2\uffff\1\163\1\145\1\163\1\165\1\163\1\60\1"+ //$NON-NLS-1$
+        "\142\1\60\1\uffff\1\164\1\uffff\1\171\1\160\1\145\1\163\1\60\1\uffff"; //$NON-NLS-1$
     static final String DFA17_maxS =
-        "\1\175\1\156\1\uffff\1\162\1\uffff\1\145\1\151\3\uffff\1\163\1\165"+
-        "\1\145\1\154\1\162\3\uffff\1\162\2\75\2\uffff\1\151\2\71\2\uffff"+
-        "\1\57\1\uffff\1\172\1\160\1\154\1\157\1\154\1\145\1\164\1\172\1"+
-        "\144\1\164\1\154\1\163\1\145\1\172\1\165\4\uffff\1\153\5\uffff\1"+
-        "\157\1\163\1\155\1\145\1\162\1\150\1\uffff\2\172\1\154\1\157\1\155"+
-        "\1\uffff\2\145\1\162\1\145\1\172\1\143\1\145\1\157\1\uffff\1\154"+
-        "\1\uffff\1\172\1\165\1\145\2\172\1\164\1\172\1\uffff\1\164\1\172"+
-        "\1\165\3\uffff\1\162\1\156\2\uffff\1\172\1\uffff\1\172\1\uffff\1"+
-        "\164\1\143\1\164\2\uffff\1\163\1\145\1\163\1\165\1\163\1\172\1\142"+
-        "\1\172\1\uffff\1\164\1\uffff\1\171\1\160\1\145\1\163\1\172\1\uffff";
+        "\1\175\1\156\1\uffff\1\162\1\uffff\1\145\1\151\3\uffff\1\163\1\165"+ //$NON-NLS-1$
+        "\1\145\1\154\1\162\3\uffff\1\162\2\75\2\uffff\1\151\2\71\2\uffff"+ //$NON-NLS-1$
+        "\1\57\1\uffff\1\172\1\160\1\154\1\157\1\154\1\145\1\164\1\172\1"+ //$NON-NLS-1$
+        "\144\1\164\1\154\1\163\1\145\1\172\1\165\4\uffff\1\153\5\uffff\1"+ //$NON-NLS-1$
+        "\157\1\163\1\155\1\145\1\162\1\150\1\uffff\2\172\1\154\1\157\1\155"+ //$NON-NLS-1$
+        "\1\uffff\2\145\1\162\1\145\1\172\1\143\1\145\1\157\1\uffff\1\154"+ //$NON-NLS-1$
+        "\1\uffff\1\172\1\165\1\145\2\172\1\164\1\172\1\uffff\1\164\1\172"+ //$NON-NLS-1$
+        "\1\165\3\uffff\1\162\1\156\2\uffff\1\172\1\uffff\1\172\1\uffff\1"+ //$NON-NLS-1$
+        "\164\1\143\1\164\2\uffff\1\163\1\145\1\163\1\165\1\163\1\172\1\142"+ //$NON-NLS-1$
+        "\1\172\1\uffff\1\164\1\uffff\1\171\1\160\1\145\1\163\1\172\1\uffff"; //$NON-NLS-1$
     static final String DFA17_acceptS =
-        "\2\uffff\1\2\1\uffff\1\4\2\uffff\1\7\1\11\1\12\5\uffff\1\22\1\23"+
-        "\1\24\3\uffff\1\34\1\35\3\uffff\1\43\1\44\1\uffff\1\47\17\uffff"+
-        "\1\32\1\30\1\33\1\31\1\uffff\1\41\1\42\1\46\1\45\1\15\6\uffff\1"+
-        "\13\5\uffff\1\20\10\uffff\1\21\1\uffff\1\14\7\uffff\1\3\3\uffff"+
-        "\1\40\1\37\1\25\2\uffff\1\26\1\36\1\uffff\1\27\1\uffff\1\6\3\uffff"+
-        "\1\1\1\5\10\uffff\1\17\1\uffff\1\16\5\uffff\1\10";
+        "\2\uffff\1\2\1\uffff\1\4\2\uffff\1\7\1\11\1\12\5\uffff\1\22\1\23"+ //$NON-NLS-1$
+        "\1\24\3\uffff\1\34\1\35\3\uffff\1\43\1\44\1\uffff\1\47\17\uffff"+ //$NON-NLS-1$
+        "\1\32\1\30\1\33\1\31\1\uffff\1\41\1\42\1\46\1\45\1\15\6\uffff\1"+ //$NON-NLS-1$
+        "\13\5\uffff\1\20\10\uffff\1\21\1\uffff\1\14\7\uffff\1\3\3\uffff"+ //$NON-NLS-1$
+        "\1\40\1\37\1\25\2\uffff\1\26\1\36\1\uffff\1\27\1\uffff\1\6\3\uffff"+ //$NON-NLS-1$
+        "\1\1\1\5\10\uffff\1\17\1\uffff\1\16\5\uffff\1\10"; //$NON-NLS-1$
     static final String DFA17_specialS =
-        "\173\uffff}>";
+        "\173\uffff}>"; //$NON-NLS-1$
     static final String[] DFA17_transitionS = {
-            "\2\35\2\uffff\1\35\22\uffff\1\35\1\26\1\33\4\uffff\1\33\1\17"+
-            "\1\20\2\uffff\1\4\1\30\1\7\1\34\12\31\1\2\1\uffff\1\23\1\25"+
-            "\1\24\1\21\1\uffff\32\32\3\uffff\2\32\1\uffff\1\12\3\32\1\15"+
-            "\1\3\2\32\1\1\2\32\1\27\1\32\1\13\1\16\2\32\1\14\1\5\1\22\2"+
-            "\32\1\6\3\32\1\10\1\uffff\1\11",
-            "\1\37\1\36",
-            "",
-            "\1\40\20\uffff\1\41",
-            "",
-            "\1\42",
-            "\1\43\1\44",
-            "",
-            "",
-            "",
-            "\1\46\4\uffff\1\45",
-            "\1\47\5\uffff\1\50",
-            "\1\51",
-            "\1\52",
-            "\1\53",
-            "",
-            "",
-            "",
-            "\1\54",
-            "\1\55",
-            "\1\57",
-            "",
-            "",
-            "\1\61",
-            "\12\31",
-            "\1\63\1\uffff\12\31",
-            "",
-            "",
-            "\1\65\4\uffff\1\64",
-            "",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\1\67",
-            "\1\70",
-            "\1\71",
-            "\1\72",
-            "\1\73",
-            "\1\74",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\1\76",
-            "\1\77",
-            "\1\100",
-            "\1\101",
-            "\1\102",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\1\104",
-            "",
-            "",
-            "",
-            "",
-            "\1\105",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\106",
-            "\1\107",
-            "\1\110",
-            "\1\111",
-            "\1\112",
-            "\1\113",
-            "",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\1\115\17\uffff\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32"+
-            "\32",
-            "\1\117",
-            "\1\120",
-            "\1\121",
-            "",
-            "\1\122",
-            "\1\123",
-            "\1\124",
-            "\1\125",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\1\127",
-            "\1\130",
-            "\1\131",
-            "",
-            "\1\132\2\uffff\1\133",
-            "",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\1\135",
-            "\1\136",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\1\141",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "",
-            "\1\143",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\1\145",
-            "",
-            "",
-            "",
-            "\1\146",
-            "\1\147",
-            "",
-            "",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "",
-            "\1\152",
-            "\1\153",
-            "\1\154",
-            "",
-            "",
-            "\1\155",
-            "\1\156",
-            "\1\157",
-            "\1\160",
-            "\1\161",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\1\163",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "",
-            "\1\165",
-            "",
-            "\1\166",
-            "\1\167",
-            "\1\170",
-            "\1\171",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            ""
+            "\2\35\2\uffff\1\35\22\uffff\1\35\1\26\1\33\4\uffff\1\33\1\17"+ //$NON-NLS-1$
+            "\1\20\2\uffff\1\4\1\30\1\7\1\34\12\31\1\2\1\uffff\1\23\1\25"+ //$NON-NLS-1$
+            "\1\24\1\21\1\uffff\32\32\3\uffff\2\32\1\uffff\1\12\3\32\1\15"+ //$NON-NLS-1$
+            "\1\3\2\32\1\1\2\32\1\27\1\32\1\13\1\16\2\32\1\14\1\5\1\22\2"+ //$NON-NLS-1$
+            "\32\1\6\3\32\1\10\1\uffff\1\11", //$NON-NLS-1$
+            "\1\37\1\36", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "\1\40\20\uffff\1\41", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "\1\42", //$NON-NLS-1$
+            "\1\43\1\44", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "\1\46\4\uffff\1\45", //$NON-NLS-1$
+            "\1\47\5\uffff\1\50", //$NON-NLS-1$
+            "\1\51", //$NON-NLS-1$
+            "\1\52", //$NON-NLS-1$
+            "\1\53", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "\1\54", //$NON-NLS-1$
+            "\1\55", //$NON-NLS-1$
+            "\1\57", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "\1\61", //$NON-NLS-1$
+            "\12\31", //$NON-NLS-1$
+            "\1\63\1\uffff\12\31", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "\1\65\4\uffff\1\64", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32", //$NON-NLS-1$
+            "\1\67", //$NON-NLS-1$
+            "\1\70", //$NON-NLS-1$
+            "\1\71", //$NON-NLS-1$
+            "\1\72", //$NON-NLS-1$
+            "\1\73", //$NON-NLS-1$
+            "\1\74", //$NON-NLS-1$
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32", //$NON-NLS-1$
+            "\1\76", //$NON-NLS-1$
+            "\1\77", //$NON-NLS-1$
+            "\1\100", //$NON-NLS-1$
+            "\1\101", //$NON-NLS-1$
+            "\1\102", //$NON-NLS-1$
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32", //$NON-NLS-1$
+            "\1\104", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "\1\105", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "\1\106", //$NON-NLS-1$
+            "\1\107", //$NON-NLS-1$
+            "\1\110", //$NON-NLS-1$
+            "\1\111", //$NON-NLS-1$
+            "\1\112", //$NON-NLS-1$
+            "\1\113", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32", //$NON-NLS-1$
+            "\1\115\17\uffff\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32"+ //$NON-NLS-1$
+            "\32", //$NON-NLS-1$
+            "\1\117", //$NON-NLS-1$
+            "\1\120", //$NON-NLS-1$
+            "\1\121", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "\1\122", //$NON-NLS-1$
+            "\1\123", //$NON-NLS-1$
+            "\1\124", //$NON-NLS-1$
+            "\1\125", //$NON-NLS-1$
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32", //$NON-NLS-1$
+            "\1\127", //$NON-NLS-1$
+            "\1\130", //$NON-NLS-1$
+            "\1\131", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "\1\132\2\uffff\1\133", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32", //$NON-NLS-1$
+            "\1\135", //$NON-NLS-1$
+            "\1\136", //$NON-NLS-1$
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32", //$NON-NLS-1$
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32", //$NON-NLS-1$
+            "\1\141", //$NON-NLS-1$
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "\1\143", //$NON-NLS-1$
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32", //$NON-NLS-1$
+            "\1\145", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "\1\146", //$NON-NLS-1$
+            "\1\147", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "\1\152", //$NON-NLS-1$
+            "\1\153", //$NON-NLS-1$
+            "\1\154", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "\1\155", //$NON-NLS-1$
+            "\1\156", //$NON-NLS-1$
+            "\1\157", //$NON-NLS-1$
+            "\1\160", //$NON-NLS-1$
+            "\1\161", //$NON-NLS-1$
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32", //$NON-NLS-1$
+            "\1\163", //$NON-NLS-1$
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "\1\165", //$NON-NLS-1$
+            "", //$NON-NLS-1$
+            "\1\166", //$NON-NLS-1$
+            "\1\167", //$NON-NLS-1$
+            "\1\170", //$NON-NLS-1$
+            "\1\171", //$NON-NLS-1$
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32", //$NON-NLS-1$
+            "" //$NON-NLS-1$
     };
 
     static final short[] DFA17_eot = DFA.unpackEncodedString(DFA17_eotS);
@@ -1764,7 +1765,7 @@ public class InternalQueryLexer extends Lexer {
             this.transition = DFA17_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | RULE_SINGED_LONG | RULE_SIGNED_DOUBLE | RULE_ID | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS );";
+            return "1:1: Tokens : ( T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | RULE_SINGED_LONG | RULE_SIGNED_DOUBLE | RULE_ID | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS );"; //$NON-NLS-1$
         }
     }
  

@@ -37,78 +37,78 @@ public class QueryParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getScopeClauseAccess().getAlternatives(), "rule__ScopeClause__Alternatives");
-					put(grammarAccess.getConcreteWhereEntryAccess().getAlternatives(), "rule__ConcreteWhereEntry__Alternatives");
-					put(grammarAccess.getExpressionAccess().getAlternatives(), "rule__Expression__Alternatives");
-					put(grammarAccess.getBooleanExpressionAccess().getAlternatives(), "rule__BooleanExpression__Alternatives");
-					put(grammarAccess.getOperatorAccess().getAlternatives(), "rule__Operator__Alternatives");
-					put(grammarAccess.getModelAccess().getGroup(), "rule__Model__Group__0");
-					put(grammarAccess.getImportAccess().getGroup(), "rule__Import__Group__0");
-					put(grammarAccess.getNamedQueryAccess().getGroup(), "rule__NamedQuery__Group__0");
-					put(grammarAccess.getMQLqueryAccess().getGroup(), "rule__MQLquery__Group__0");
-					put(grammarAccess.getMQLqueryAccess().getGroup_2(), "rule__MQLquery__Group_2__0");
-					put(grammarAccess.getMQLqueryAccess().getGroup_5(), "rule__MQLquery__Group_5__0");
-					put(grammarAccess.getMQLqueryAccess().getGroup_6(), "rule__MQLquery__Group_6__0");
-					put(grammarAccess.getSelectEntryAccess().getGroup(), "rule__SelectEntry__Group__0");
-					put(grammarAccess.getSelectEntryAccess().getGroup_1(), "rule__SelectEntry__Group_1__0");
-					put(grammarAccess.getFromEntryAccess().getGroup(), "rule__FromEntry__Group__0");
-					put(grammarAccess.getFromEntryAccess().getGroup_1(), "rule__FromEntry__Group_1__0");
-					put(grammarAccess.getFromEntryAccess().getGroup_1_1(), "rule__FromEntry__Group_1_1__0");
-					put(grammarAccess.getFromEntryAccess().getGroup_1_1_2(), "rule__FromEntry__Group_1_1_2__0");
-					put(grammarAccess.getResourceScopeAccess().getGroup(), "rule__ResourceScope__Group__0");
-					put(grammarAccess.getResourceScopeAccess().getGroup_5(), "rule__ResourceScope__Group_5__0");
-					put(grammarAccess.getElementScopeAccess().getGroup(), "rule__ElementScope__Group__0");
-					put(grammarAccess.getElementScopeAccess().getGroup_5(), "rule__ElementScope__Group_5__0");
-					put(grammarAccess.getWhereEntryAccess().getGroup(), "rule__WhereEntry__Group__0");
-					put(grammarAccess.getWhereEntryAccess().getGroup_1(), "rule__WhereEntry__Group_1__0");
-					put(grammarAccess.getWhereEntryAccess().getGroup_1_1(), "rule__WhereEntry__Group_1_1__0");
-					put(grammarAccess.getAndWhereEntryAccess().getGroup(), "rule__AndWhereEntry__Group__0");
-					put(grammarAccess.getAndWhereEntryAccess().getGroup_1(), "rule__AndWhereEntry__Group_1__0");
-					put(grammarAccess.getAndWhereEntryAccess().getGroup_1_1(), "rule__AndWhereEntry__Group_1_1__0");
-					put(grammarAccess.getParWhereEntryAccess().getGroup(), "rule__ParWhereEntry__Group__0");
-					put(grammarAccess.getExpressionWhereEntryAccess().getGroup(), "rule__ExpressionWhereEntry__Group__0");
-					put(grammarAccess.getAliasAttributeExpressionAccess().getGroup(), "rule__AliasAttributeExpression__Group__0");
-					put(grammarAccess.getAliasAttributeExpressionAccess().getGroup_1(), "rule__AliasAttributeExpression__Group_1__0");
-					put(grammarAccess.getQueryExpressionAccess().getGroup(), "rule__QueryExpression__Group__0");
-					put(grammarAccess.getModelAccess().getImportsAssignment_0(), "rule__Model__ImportsAssignment_0");
-					put(grammarAccess.getModelAccess().getDefaultQueryAssignment_1(), "rule__Model__DefaultQueryAssignment_1");
-					put(grammarAccess.getModelAccess().getNamedQueriesAssignment_2(), "rule__Model__NamedQueriesAssignment_2");
-					put(grammarAccess.getImportAccess().getImpURIAssignment_1(), "rule__Import__ImpURIAssignment_1");
-					put(grammarAccess.getNamedQueryAccess().getNameAssignment_0(), "rule__NamedQuery__NameAssignment_0");
-					put(grammarAccess.getNamedQueryAccess().getQueryAssignment_2(), "rule__NamedQuery__QueryAssignment_2");
-					put(grammarAccess.getMQLqueryAccess().getFromEntriesAssignment_1(), "rule__MQLquery__FromEntriesAssignment_1");
-					put(grammarAccess.getMQLqueryAccess().getFromEntriesAssignment_2_1(), "rule__MQLquery__FromEntriesAssignment_2_1");
-					put(grammarAccess.getMQLqueryAccess().getSelectEntriesAssignment_4(), "rule__MQLquery__SelectEntriesAssignment_4");
-					put(grammarAccess.getMQLqueryAccess().getSelectEntriesAssignment_5_1(), "rule__MQLquery__SelectEntriesAssignment_5_1");
-					put(grammarAccess.getMQLqueryAccess().getWhereEntryAssignment_6_1(), "rule__MQLquery__WhereEntryAssignment_6_1");
-					put(grammarAccess.getSelectEntryAccess().getSelectAssignment_0(), "rule__SelectEntry__SelectAssignment_0");
-					put(grammarAccess.getSelectEntryAccess().getAttributeAssignment_1_1(), "rule__SelectEntry__AttributeAssignment_1_1");
-					put(grammarAccess.getFromEntryAccess().getTypeAssignment_0(), "rule__FromEntry__TypeAssignment_0");
-					put(grammarAccess.getFromEntryAccess().getWithoutsubtypesAssignment_1_0(), "rule__FromEntry__WithoutsubtypesAssignment_1_0");
-					put(grammarAccess.getFromEntryAccess().getWithoutsubtypesTypesAssignment_1_1_1(), "rule__FromEntry__WithoutsubtypesTypesAssignment_1_1_1");
-					put(grammarAccess.getFromEntryAccess().getWithoutsubtypesTypesAssignment_1_1_2_1(), "rule__FromEntry__WithoutsubtypesTypesAssignment_1_1_2_1");
-					put(grammarAccess.getFromEntryAccess().getAliasAssignment_3(), "rule__FromEntry__AliasAssignment_3");
-					put(grammarAccess.getFromEntryAccess().getScopeClauseAssignment_4(), "rule__FromEntry__ScopeClauseAssignment_4");
-					put(grammarAccess.getResourceScopeAccess().getNotInAssignment_0(), "rule__ResourceScope__NotInAssignment_0");
-					put(grammarAccess.getResourceScopeAccess().getUrisAssignment_4(), "rule__ResourceScope__UrisAssignment_4");
-					put(grammarAccess.getResourceScopeAccess().getUrisAssignment_5_1(), "rule__ResourceScope__UrisAssignment_5_1");
-					put(grammarAccess.getElementScopeAccess().getNotInAssignment_0(), "rule__ElementScope__NotInAssignment_0");
-					put(grammarAccess.getElementScopeAccess().getUrisAssignment_4(), "rule__ElementScope__UrisAssignment_4");
-					put(grammarAccess.getElementScopeAccess().getUrisAssignment_5_1(), "rule__ElementScope__UrisAssignment_5_1");
-					put(grammarAccess.getWhereEntryAccess().getEntriesAssignment_1_1_1(), "rule__WhereEntry__EntriesAssignment_1_1_1");
-					put(grammarAccess.getAndWhereEntryAccess().getEntriesAssignment_1_1_1(), "rule__AndWhereEntry__EntriesAssignment_1_1_1");
-					put(grammarAccess.getExpressionWhereEntryAccess().getLhsAssignment_0(), "rule__ExpressionWhereEntry__LhsAssignment_0");
-					put(grammarAccess.getExpressionWhereEntryAccess().getOperatorAssignment_1(), "rule__ExpressionWhereEntry__OperatorAssignment_1");
-					put(grammarAccess.getExpressionWhereEntryAccess().getRhsAssignment_2(), "rule__ExpressionWhereEntry__RhsAssignment_2");
-					put(grammarAccess.getAliasAttributeExpressionAccess().getAliasAssignment_0(), "rule__AliasAttributeExpression__AliasAssignment_0");
-					put(grammarAccess.getAliasAttributeExpressionAccess().getAttributeAssignment_1_1(), "rule__AliasAttributeExpression__AttributeAssignment_1_1");
-					put(grammarAccess.getReplacableValueAccess().getValueAssignment(), "rule__ReplacableValue__ValueAssignment");
-					put(grammarAccess.getDoubleExpressionAccess().getValueAssignment(), "rule__DoubleExpression__ValueAssignment");
-					put(grammarAccess.getLongExpressionAccess().getValueAssignment(), "rule__LongExpression__ValueAssignment");
-					put(grammarAccess.getStringExpressionAccess().getValueAssignment(), "rule__StringExpression__ValueAssignment");
-					put(grammarAccess.getNullExpressionAccess().getValueAssignment(), "rule__NullExpression__ValueAssignment");
-					put(grammarAccess.getBooleanExpressionAccess().getTrueAssignment_0(), "rule__BooleanExpression__TrueAssignment_0");
-					put(grammarAccess.getQueryExpressionAccess().getValueAssignment_1(), "rule__QueryExpression__ValueAssignment_1");
+					put(grammarAccess.getScopeClauseAccess().getAlternatives(), "rule__ScopeClause__Alternatives"); //$NON-NLS-1$
+					put(grammarAccess.getConcreteWhereEntryAccess().getAlternatives(), "rule__ConcreteWhereEntry__Alternatives"); //$NON-NLS-1$
+					put(grammarAccess.getExpressionAccess().getAlternatives(), "rule__Expression__Alternatives"); //$NON-NLS-1$
+					put(grammarAccess.getBooleanExpressionAccess().getAlternatives(), "rule__BooleanExpression__Alternatives"); //$NON-NLS-1$
+					put(grammarAccess.getOperatorAccess().getAlternatives(), "rule__Operator__Alternatives"); //$NON-NLS-1$
+					put(grammarAccess.getModelAccess().getGroup(), "rule__Model__Group__0"); //$NON-NLS-1$
+					put(grammarAccess.getImportAccess().getGroup(), "rule__Import__Group__0"); //$NON-NLS-1$
+					put(grammarAccess.getNamedQueryAccess().getGroup(), "rule__NamedQuery__Group__0"); //$NON-NLS-1$
+					put(grammarAccess.getMQLqueryAccess().getGroup(), "rule__MQLquery__Group__0"); //$NON-NLS-1$
+					put(grammarAccess.getMQLqueryAccess().getGroup_2(), "rule__MQLquery__Group_2__0"); //$NON-NLS-1$
+					put(grammarAccess.getMQLqueryAccess().getGroup_5(), "rule__MQLquery__Group_5__0"); //$NON-NLS-1$
+					put(grammarAccess.getMQLqueryAccess().getGroup_6(), "rule__MQLquery__Group_6__0"); //$NON-NLS-1$
+					put(grammarAccess.getSelectEntryAccess().getGroup(), "rule__SelectEntry__Group__0"); //$NON-NLS-1$
+					put(grammarAccess.getSelectEntryAccess().getGroup_1(), "rule__SelectEntry__Group_1__0"); //$NON-NLS-1$
+					put(grammarAccess.getFromEntryAccess().getGroup(), "rule__FromEntry__Group__0"); //$NON-NLS-1$
+					put(grammarAccess.getFromEntryAccess().getGroup_1(), "rule__FromEntry__Group_1__0"); //$NON-NLS-1$
+					put(grammarAccess.getFromEntryAccess().getGroup_1_1(), "rule__FromEntry__Group_1_1__0"); //$NON-NLS-1$
+					put(grammarAccess.getFromEntryAccess().getGroup_1_1_2(), "rule__FromEntry__Group_1_1_2__0"); //$NON-NLS-1$
+					put(grammarAccess.getResourceScopeAccess().getGroup(), "rule__ResourceScope__Group__0"); //$NON-NLS-1$
+					put(grammarAccess.getResourceScopeAccess().getGroup_5(), "rule__ResourceScope__Group_5__0"); //$NON-NLS-1$
+					put(grammarAccess.getElementScopeAccess().getGroup(), "rule__ElementScope__Group__0"); //$NON-NLS-1$
+					put(grammarAccess.getElementScopeAccess().getGroup_5(), "rule__ElementScope__Group_5__0"); //$NON-NLS-1$
+					put(grammarAccess.getWhereEntryAccess().getGroup(), "rule__WhereEntry__Group__0"); //$NON-NLS-1$
+					put(grammarAccess.getWhereEntryAccess().getGroup_1(), "rule__WhereEntry__Group_1__0"); //$NON-NLS-1$
+					put(grammarAccess.getWhereEntryAccess().getGroup_1_1(), "rule__WhereEntry__Group_1_1__0"); //$NON-NLS-1$
+					put(grammarAccess.getAndWhereEntryAccess().getGroup(), "rule__AndWhereEntry__Group__0"); //$NON-NLS-1$
+					put(grammarAccess.getAndWhereEntryAccess().getGroup_1(), "rule__AndWhereEntry__Group_1__0"); //$NON-NLS-1$
+					put(grammarAccess.getAndWhereEntryAccess().getGroup_1_1(), "rule__AndWhereEntry__Group_1_1__0"); //$NON-NLS-1$
+					put(grammarAccess.getParWhereEntryAccess().getGroup(), "rule__ParWhereEntry__Group__0"); //$NON-NLS-1$
+					put(grammarAccess.getExpressionWhereEntryAccess().getGroup(), "rule__ExpressionWhereEntry__Group__0"); //$NON-NLS-1$
+					put(grammarAccess.getAliasAttributeExpressionAccess().getGroup(), "rule__AliasAttributeExpression__Group__0"); //$NON-NLS-1$
+					put(grammarAccess.getAliasAttributeExpressionAccess().getGroup_1(), "rule__AliasAttributeExpression__Group_1__0"); //$NON-NLS-1$
+					put(grammarAccess.getQueryExpressionAccess().getGroup(), "rule__QueryExpression__Group__0"); //$NON-NLS-1$
+					put(grammarAccess.getModelAccess().getImportsAssignment_0(), "rule__Model__ImportsAssignment_0"); //$NON-NLS-1$
+					put(grammarAccess.getModelAccess().getDefaultQueryAssignment_1(), "rule__Model__DefaultQueryAssignment_1"); //$NON-NLS-1$
+					put(grammarAccess.getModelAccess().getNamedQueriesAssignment_2(), "rule__Model__NamedQueriesAssignment_2"); //$NON-NLS-1$
+					put(grammarAccess.getImportAccess().getImpURIAssignment_1(), "rule__Import__ImpURIAssignment_1"); //$NON-NLS-1$
+					put(grammarAccess.getNamedQueryAccess().getNameAssignment_0(), "rule__NamedQuery__NameAssignment_0"); //$NON-NLS-1$
+					put(grammarAccess.getNamedQueryAccess().getQueryAssignment_2(), "rule__NamedQuery__QueryAssignment_2"); //$NON-NLS-1$
+					put(grammarAccess.getMQLqueryAccess().getFromEntriesAssignment_1(), "rule__MQLquery__FromEntriesAssignment_1"); //$NON-NLS-1$
+					put(grammarAccess.getMQLqueryAccess().getFromEntriesAssignment_2_1(), "rule__MQLquery__FromEntriesAssignment_2_1"); //$NON-NLS-1$
+					put(grammarAccess.getMQLqueryAccess().getSelectEntriesAssignment_4(), "rule__MQLquery__SelectEntriesAssignment_4"); //$NON-NLS-1$
+					put(grammarAccess.getMQLqueryAccess().getSelectEntriesAssignment_5_1(), "rule__MQLquery__SelectEntriesAssignment_5_1"); //$NON-NLS-1$
+					put(grammarAccess.getMQLqueryAccess().getWhereEntryAssignment_6_1(), "rule__MQLquery__WhereEntryAssignment_6_1"); //$NON-NLS-1$
+					put(grammarAccess.getSelectEntryAccess().getSelectAssignment_0(), "rule__SelectEntry__SelectAssignment_0"); //$NON-NLS-1$
+					put(grammarAccess.getSelectEntryAccess().getAttributeAssignment_1_1(), "rule__SelectEntry__AttributeAssignment_1_1"); //$NON-NLS-1$
+					put(grammarAccess.getFromEntryAccess().getTypeAssignment_0(), "rule__FromEntry__TypeAssignment_0"); //$NON-NLS-1$
+					put(grammarAccess.getFromEntryAccess().getWithoutsubtypesAssignment_1_0(), "rule__FromEntry__WithoutsubtypesAssignment_1_0"); //$NON-NLS-1$
+					put(grammarAccess.getFromEntryAccess().getWithoutsubtypesTypesAssignment_1_1_1(), "rule__FromEntry__WithoutsubtypesTypesAssignment_1_1_1"); //$NON-NLS-1$
+					put(grammarAccess.getFromEntryAccess().getWithoutsubtypesTypesAssignment_1_1_2_1(), "rule__FromEntry__WithoutsubtypesTypesAssignment_1_1_2_1"); //$NON-NLS-1$
+					put(grammarAccess.getFromEntryAccess().getAliasAssignment_3(), "rule__FromEntry__AliasAssignment_3"); //$NON-NLS-1$
+					put(grammarAccess.getFromEntryAccess().getScopeClauseAssignment_4(), "rule__FromEntry__ScopeClauseAssignment_4"); //$NON-NLS-1$
+					put(grammarAccess.getResourceScopeAccess().getNotInAssignment_0(), "rule__ResourceScope__NotInAssignment_0"); //$NON-NLS-1$
+					put(grammarAccess.getResourceScopeAccess().getUrisAssignment_4(), "rule__ResourceScope__UrisAssignment_4"); //$NON-NLS-1$
+					put(grammarAccess.getResourceScopeAccess().getUrisAssignment_5_1(), "rule__ResourceScope__UrisAssignment_5_1"); //$NON-NLS-1$
+					put(grammarAccess.getElementScopeAccess().getNotInAssignment_0(), "rule__ElementScope__NotInAssignment_0"); //$NON-NLS-1$
+					put(grammarAccess.getElementScopeAccess().getUrisAssignment_4(), "rule__ElementScope__UrisAssignment_4"); //$NON-NLS-1$
+					put(grammarAccess.getElementScopeAccess().getUrisAssignment_5_1(), "rule__ElementScope__UrisAssignment_5_1"); //$NON-NLS-1$
+					put(grammarAccess.getWhereEntryAccess().getEntriesAssignment_1_1_1(), "rule__WhereEntry__EntriesAssignment_1_1_1"); //$NON-NLS-1$
+					put(grammarAccess.getAndWhereEntryAccess().getEntriesAssignment_1_1_1(), "rule__AndWhereEntry__EntriesAssignment_1_1_1"); //$NON-NLS-1$
+					put(grammarAccess.getExpressionWhereEntryAccess().getLhsAssignment_0(), "rule__ExpressionWhereEntry__LhsAssignment_0"); //$NON-NLS-1$
+					put(grammarAccess.getExpressionWhereEntryAccess().getOperatorAssignment_1(), "rule__ExpressionWhereEntry__OperatorAssignment_1"); //$NON-NLS-1$
+					put(grammarAccess.getExpressionWhereEntryAccess().getRhsAssignment_2(), "rule__ExpressionWhereEntry__RhsAssignment_2"); //$NON-NLS-1$
+					put(grammarAccess.getAliasAttributeExpressionAccess().getAliasAssignment_0(), "rule__AliasAttributeExpression__AliasAssignment_0"); //$NON-NLS-1$
+					put(grammarAccess.getAliasAttributeExpressionAccess().getAttributeAssignment_1_1(), "rule__AliasAttributeExpression__AttributeAssignment_1_1"); //$NON-NLS-1$
+					put(grammarAccess.getReplacableValueAccess().getValueAssignment(), "rule__ReplacableValue__ValueAssignment"); //$NON-NLS-1$
+					put(grammarAccess.getDoubleExpressionAccess().getValueAssignment(), "rule__DoubleExpression__ValueAssignment"); //$NON-NLS-1$
+					put(grammarAccess.getLongExpressionAccess().getValueAssignment(), "rule__LongExpression__ValueAssignment"); //$NON-NLS-1$
+					put(grammarAccess.getStringExpressionAccess().getValueAssignment(), "rule__StringExpression__ValueAssignment"); //$NON-NLS-1$
+					put(grammarAccess.getNullExpressionAccess().getValueAssignment(), "rule__NullExpression__ValueAssignment"); //$NON-NLS-1$
+					put(grammarAccess.getBooleanExpressionAccess().getTrueAssignment_0(), "rule__BooleanExpression__TrueAssignment_0"); //$NON-NLS-1$
+					put(grammarAccess.getQueryExpressionAccess().getValueAssignment_1(), "rule__QueryExpression__ValueAssignment_1"); //$NON-NLS-1$
 				}
 			};
 		}
@@ -128,7 +128,7 @@ public class QueryParser extends AbstractContentAssistParser {
 	
 	@Override
 	protected String[] getInitialHiddenTokens() {
-		return new String[] { "RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT" };
+		return new String[] { "RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 	
 	public QueryGrammarAccess getGrammarAccess() {

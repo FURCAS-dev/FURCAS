@@ -10,17 +10,12 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.eclipse.emf.query2.syntax.query.FromEntry;
 import org.eclipse.emf.query2.syntax.query.QueryPackage;
 import org.eclipse.emf.query2.syntax.query.ScopeClause;
@@ -422,9 +417,9 @@ public class FromEntryImpl extends MinimalEObjectImpl.Container implements FromE
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (withoutsubtypes: ");
+    result.append(" (withoutsubtypes: "); //$NON-NLS-1$
     result.append(withoutsubtypes);
-    result.append(", alias: ");
+    result.append(", alias: "); //$NON-NLS-1$
     result.append(alias);
     result.append(')');
     return result.toString();

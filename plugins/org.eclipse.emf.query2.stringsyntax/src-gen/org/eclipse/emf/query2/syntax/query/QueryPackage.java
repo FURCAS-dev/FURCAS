@@ -35,7 +35,7 @@ public interface QueryPackage extends EPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  String eNAME = "query";
+  String eNAME = "query"; //$NON-NLS-1$
 
   /**
    * The package namespace URI.
@@ -43,7 +43,7 @@ public interface QueryPackage extends EPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  String eNS_URI = "http://www.eclipse.org/emf/query2/Query";
+  String eNS_URI = "http://www.eclipse.org/emf/query2/Query"; //$NON-NLS-1$
 
   /**
    * The package namespace name.
@@ -51,7 +51,7 @@ public interface QueryPackage extends EPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  String eNS_PREFIX = "query";
+  String eNS_PREFIX = "query"; //$NON-NLS-1$
 
   /**
    * The singleton instance of the package.
