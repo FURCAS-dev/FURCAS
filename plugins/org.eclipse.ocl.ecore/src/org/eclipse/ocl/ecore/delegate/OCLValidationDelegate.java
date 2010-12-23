@@ -27,6 +27,7 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.internal.OCLEcorePlugin;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.osgi.util.NLS;
@@ -93,30 +94,43 @@ public class OCLValidationDelegate implements ValidationDelegate
 
 	public boolean validate(EClass eClass, EObject eObject,
 			Map<Object, Object> context, EOperation invariant, String expression) {
-		OCLExpression query = ValidationBehavior.INSTANCE.getCachedExpression(invariant, InvocationBehavior.BODY_CONSTRAINT_KEY);
+		OCLEcorePlugin pluginInstance = OCLEcorePlugin.getInstance();
+		OCLExpression query = pluginInstance.getCachedOperationBody(invariant);
 		if (query == null) {
-			query = createQuery(expression);
-			ValidationBehavior.INSTANCE.cacheExpression(invariant, query, InvocationBehavior.BODY_CONSTRAINT_KEY);
+			query = ValidationBehavior.INSTANCE.getCachedExpression(invariant,
+				InvocationBehavior.BODY_CONSTRAINT_KEY);
+			if (query == null) {
+				query = createQuery(expression);
+			}
+			pluginInstance.cacheOperationBody(invariant, query);
 		}
 		return check(eObject, invariant.getName(), query);
 	}
 
 	public boolean validate(EClass eClass, EObject eObject,
 			Map<Object, Object> context, String constraint, String expression) {
-		OCLExpression query = ValidationBehavior.INSTANCE.getCachedExpression(eClass, constraint);
+		OCLEcorePlugin pluginInstance = OCLEcorePlugin.getInstance();
+		OCLExpression query = pluginInstance.getCachedInvariantBody(eClass, constraint);
 		if (query == null) {
-			query = createQuery(expression);
-			ValidationBehavior.INSTANCE.cacheExpression(eClass, query, constraint);
+			query = ValidationBehavior.INSTANCE.getCachedExpression(eClass, constraint);
+			if (query == null) {
+				query = createQuery(expression);
+			}
+			pluginInstance.cacheInvariantBody(eClass, constraint, query);
 		}
 		return check(eObject, constraint, query);
 	}
 
 	public boolean validate(EDataType eDataType, Object value,
 			Map<Object, Object> context, String constraint, String expression) {
-		OCLExpression query = ValidationBehavior.INSTANCE.getCachedExpression(eDataType, constraint);
+		OCLEcorePlugin pluginInstance = OCLEcorePlugin.getInstance();
+		OCLExpression query = pluginInstance.getCachedInvariantBody(eDataType, constraint);
 		if (query == null) {
-			query = createQuery(expression);
-			ValidationBehavior.INSTANCE.cacheExpression(eDataType, query, constraint);
+			query = ValidationBehavior.INSTANCE.getCachedExpression(eDataType, constraint);
+			if (query == null) {
+				query = createQuery(expression);
+			}
+			pluginInstance.cacheInvariantBody(eDataType, constraint, query);
 		}
 		return check(value, constraint, query);
 	}
