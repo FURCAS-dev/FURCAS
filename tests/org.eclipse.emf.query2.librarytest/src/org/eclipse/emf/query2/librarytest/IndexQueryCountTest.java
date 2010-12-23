@@ -15,7 +15,7 @@ public class IndexQueryCountTest extends QueryTestCase {
 
 			public void execute(QueryExecutor queryExecutor) {
 				EObjectOfTypeCountQuery query = new EObjectOfTypeCountQuery();
-				query.eClassUri(URI.createURI("http://eclipse.org/modeling/emf/query/1.0.0#//Book"));
+				query.eClassUri(URI.createURI("http://eclipse.org/modeling/emf/query/1.0.0#//Book")); //$NON-NLS-1$
 
 				QueryResult<Integer> result = queryExecutor.execute(query);
 
@@ -28,7 +28,7 @@ public class IndexQueryCountTest extends QueryTestCase {
 
 			public void execute(QueryExecutor queryExecutor) {
 				EObjectOfTypeCountQuery query = new EObjectOfTypeCountQuery();
-				query.eClassUri(URI.createURI("http://eclipse.org/modeling/emf/query/1.0.0#//Book"));
+				query.eClassUri(URI.createURI("http://eclipse.org/modeling/emf/query/1.0.0#//Book")); //$NON-NLS-1$
 
 				QueryResult<Integer> result = queryExecutor.execute(query);
 
@@ -36,6 +36,6 @@ public class IndexQueryCountTest extends QueryTestCase {
 			}
 		});
 		time = System.nanoTime() - time;
-		System.out.println("time: " + time + ", size: " + command.getResult());
+		System.out.println("time: " + time + ", size: " + command.getResult()); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 }
