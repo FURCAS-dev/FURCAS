@@ -85,7 +85,7 @@ public class QueryRegressionTest extends QueryTestCase {
 	@Ignore
 	public void testQueryWithInconsistency() throws Exception {
 
-		throw new RuntimeException("test not migrated yet");
+		throw new RuntimeException("test not migrated yet"); //$NON-NLS-1$
 
 		// Resource res1 =
 		// this.testClient1.getOrCreateResourceStable("res_inc_chain_1.xmi");
@@ -153,8 +153,8 @@ public class QueryRegressionTest extends QueryTestCase {
 	public void testNullReference() throws Exception {
 
 		QueryProcessor mql = this.getMQLProcessor();
-		Resource res = this.testClient1.getOrCreateResourceStable("jojoWhassaaap.xmi");
-		Resource res1 = this.testClient1.getOrCreateResourceStable("beforejuergen1b.xmi");
+		Resource res = this.testClient1.getOrCreateResourceStable("jojoWhassaaap.xmi"); //$NON-NLS-1$
+		Resource res1 = this.testClient1.getOrCreateResourceStable("beforejuergen1b.xmi"); //$NON-NLS-1$
 		TypeScopeProvider qsp = mql.getInclusiveQueryScopeProvider(new URI[] { res.getURI(), res1.getURI() });
 
 		URI uriA1 = EcoreUtil.getURI(Case001Package.Literals.A1);
@@ -172,25 +172,25 @@ public class QueryRegressionTest extends QueryTestCase {
 		// resourceSetIndexImpl.index(res);
 		// resourceSetIndexImpl.index(res1);
 
-		ResultSet rs = mql.execute("select a " //
-				+ "from [" + uriA1 + "] as a " //
-				+ "where a.bs = null", this.getQueryContext(qsp)); //
+		ResultSet rs = mql.execute("select a " // //$NON-NLS-1$
+				+ "from [" + uriA1 + "] as a " // //$NON-NLS-1$ //$NON-NLS-2$
+				+ "where a.bs = null", this.getQueryContext(qsp)); // //$NON-NLS-1$
 
 		System.out.println(rs.toString());
 
 		URI uriElementA = EcoreUtil.getURI(a);
 		URI uriElementA2 = EcoreUtil.getURI(a2);
 
-		assertTrue("unexpected size: " + rs.getSize(), rs.getSize() > 0);
-		assertTrue("unexpected list: " + uriElementA2 + " --- " + Arrays.asList(rs.getUris("a")), Arrays.asList(rs.getUris("a")).contains(uriElementA2));
-		assertFalse("unexpected list: " + uriElementA + " --- " + Arrays.asList(rs.getUris("a")), Arrays.asList(rs.getUris("a")).contains(uriElementA));
+		assertTrue("unexpected size: " + rs.getSize(), rs.getSize() > 0); //$NON-NLS-1$
+		assertTrue("unexpected list: " + uriElementA2 + " --- " + Arrays.asList(rs.getUris("a")), Arrays.asList(rs.getUris("a")).contains(uriElementA2)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+		assertFalse("unexpected list: " + uriElementA + " --- " + Arrays.asList(rs.getUris("a")), Arrays.asList(rs.getUris("a")).contains(uriElementA)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 	}
 
 	@Test
 	public void testNullReferenceWithoutInstancesOfNullReferencedType() throws Exception {
 
 		QueryProcessor mql = this.getMQLProcessor();
-		Resource res = this.testClient1.getOrCreateResourceStable("beforejuergen1.xmi");
+		Resource res = this.testClient1.getOrCreateResourceStable("beforejuergen1.xmi"); //$NON-NLS-1$
 		TypeScopeProvider qspOld = mql.getInclusiveQueryScopeProvider(new URI[] { res.getURI() });
 		QueryContext qsp = this.getQueryContext(qspOld);
 
@@ -204,17 +204,17 @@ public class QueryRegressionTest extends QueryTestCase {
 		IndexSetupManager.index(getDefaultIndexStore(), res);
 
 		// just verify execution without errors:
-		ResultSet rs = mql.execute("select a " //
-				+ "from [" + uriA1 + "] as a " //
-				+ "where a.bs in (select b from [" + uriB1 + "] as b)", qsp);
+		ResultSet rs = mql.execute("select a " // //$NON-NLS-1$
+				+ "from [" + uriA1 + "] as a " // //$NON-NLS-1$ //$NON-NLS-2$
+				+ "where a.bs in (select b from [" + uriB1 + "] as b)", qsp); //$NON-NLS-1$ //$NON-NLS-2$
 		//
 
-		rs = mql.execute("select a " //
-				+ "from [" + uriA1 + "] as a " //
-				+ "where a.bs = null", qsp); //
+		rs = mql.execute("select a " // //$NON-NLS-1$
+				+ "from [" + uriA1 + "] as a " // //$NON-NLS-1$ //$NON-NLS-2$
+				+ "where a.bs = null", qsp); // //$NON-NLS-1$
 
-		assertTrue("unexpected size: " + rs.getSize(), rs.getSize() > 0);
-		assertTrue("unexpected list: " + uriA + " --- " + Arrays.asList(rs.getUris("a")), Arrays.asList(rs.getUris("a")).contains(uriA));
+		assertTrue("unexpected size: " + rs.getSize(), rs.getSize() > 0); //$NON-NLS-1$
+		assertTrue("unexpected list: " + uriA + " --- " + Arrays.asList(rs.getUris("a")), Arrays.asList(rs.getUris("a")).contains(uriA)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 
 	}
 
@@ -232,35 +232,35 @@ public class QueryRegressionTest extends QueryTestCase {
 		URI dataTypeUri = EcoreUtil.getURI(EcorePackage.Literals.EDATA_TYPE);
 		URI classUri = EcoreUtil.getURI(EcorePackage.Literals.ECLASS);
 
-		String query0 = "select ne from [" + namedElementUri + "] as ne";
+		String query0 = "select ne from [" + namedElementUri + "] as ne"; //$NON-NLS-1$ //$NON-NLS-2$
 		ResultSet resultSet0 = processor.execute(query0, qsp);
 		int sizeOfAllNamedElements = resultSet0.getSize();
 
-		String query1 = "select clf from [" + classifierUri + "] as clf";
+		String query1 = "select clf from [" + classifierUri + "] as clf"; //$NON-NLS-1$ //$NON-NLS-2$
 		ResultSet resultSet1 = processor.execute(query1, qsp);
 		int sizeOfAllClassifiers = resultSet1.getSize();
 
-		String query2 = "select pck from [" + packageUri + "] as pck";
+		String query2 = "select pck from [" + packageUri + "] as pck"; //$NON-NLS-1$ //$NON-NLS-2$
 		ResultSet resultSet2 = processor.execute(query2, qsp);
 		int sizeOfAllPackages = resultSet2.getSize();
 
-		String query9 = "select te from [" + typedElementUri + "] as te";
+		String query9 = "select te from [" + typedElementUri + "] as te"; //$NON-NLS-1$ //$NON-NLS-2$
 		ResultSet resultSet9 = processor.execute(query9, qsp);
 		int sizeOfAllTypedElements = resultSet9.getSize();
 
-		String query3 = "select dt from [" + dataTypeUri + "] as dt";
+		String query3 = "select dt from [" + dataTypeUri + "] as dt"; //$NON-NLS-1$ //$NON-NLS-2$
 		ResultSet resultSet3 = processor.execute(query3, qsp);
 		int sizeOfAllDatatypes = resultSet3.getSize();
 
-		String query7 = "select cl from [" + classUri + "] as cl";
+		String query7 = "select cl from [" + classUri + "] as cl"; //$NON-NLS-1$ //$NON-NLS-2$
 		ResultSet resultSet7 = processor.execute(query7, qsp);
 		int sizeOfAllClasses = resultSet7.getSize();
 
-		String query4 = "select ne from [" + namedElementUri + "] withoutsubtypes {[" + classifierUri + "]} as ne";
+		String query4 = "select ne from [" + namedElementUri + "] withoutsubtypes {[" + classifierUri + "]} as ne"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		ResultSet resultSet4 = processor.execute(query4, qsp);
 		int sizeOfAllNamedElementsMinusClassifiers = resultSet4.getSize();
 
-		String query5 = "select ne from [" + namedElementUri + "] withoutsubtypes {[" + classifierUri + "], [" + packageUri + "]} as ne";
+		String query5 = "select ne from [" + namedElementUri + "] withoutsubtypes {[" + classifierUri + "], [" + packageUri + "]} as ne"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ResultSet resultSet5 = processor.execute(query5, qsp);
 		int sizeOfAllNamedElementsMinusClassifiersAndPackages = resultSet5.getSize();
 
@@ -272,7 +272,7 @@ public class QueryRegressionTest extends QueryTestCase {
 		// int sizeOfAllNamedElementsMinusClassifiersAndPackagesAndTypedElements
 		// = resultSet6.getSize();
 
-		String query8 = "select ne from [" + namedElementUri + "] withoutsubtypes {[" + classifierUri + "], [" + packageUri + "], [" + typedElementUri + "]} as ne";
+		String query8 = "select ne from [" + namedElementUri + "] withoutsubtypes {[" + classifierUri + "], [" + packageUri + "], [" + typedElementUri + "]} as ne"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
 		ResultSet resultSet8 = processor.execute(query8, qsp);
 		int sizeOfAllNamedElementsMinusClassifiersAndPackagesAndTypedElements = resultSet8.getSize();
 
@@ -289,7 +289,7 @@ public class QueryRegressionTest extends QueryTestCase {
 
 		QueryProcessor mql = this.getMQLProcessor();
 
-		Resource res = this.testClient1.getOrCreateResourceStable("mql_constants_test.xmi");
+		Resource res = this.testClient1.getOrCreateResourceStable("mql_constants_test.xmi"); //$NON-NLS-1$
 		TypeScopeProvider qspOld = mql.getInclusivePartitionScopeProvider(res.getURI());
 		QueryContext qsp = this.getQueryContext(qspOld);
 
@@ -305,66 +305,66 @@ public class QueryRegressionTest extends QueryTestCase {
 		res.getContents().add(d4);
 		URI UriD4Instance = EcoreUtil.getURI(d4);
 
-		String queryDouble = "select d4 from [" + uriD4 + "] as d4 where d4.attributeDouble = 0.0";
-		String queryDouble2 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeDouble < " + (((Number) Float.MAX_VALUE).doubleValue() * 2.0d);
-		String queryDouble3 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeDouble < " + Double.POSITIVE_INFINITY;
-		String queryDouble4 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeDouble > " + Double.NEGATIVE_INFINITY;
-		String queryFloat = "select d4 from [" + uriD4 + "] as d4 where d4.attributeFloat = 0.0";
-		String queryFloat2 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeFloat = " + (((Number) Float.MAX_VALUE).doubleValue() * 2.0d);
-		String queryFloat3 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeFloat < " + Float.POSITIVE_INFINITY;
-		String queryFloat4 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeFloat > " + Float.NEGATIVE_INFINITY;
-		String queryFloat5 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeFloat = " + -(((Number) Float.MAX_VALUE).doubleValue() * 2.0d);
-		String queryLong = "select d4 from [" + uriD4 + "] as d4 where d4.attributeLong = 0";
-		String queryLong2 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeLong < " + (Long.MAX_VALUE);
-		String queryInt = "select d4 from [" + uriD4 + "] as d4 where d4.attributeInteger = 0";
-		String queryInt2 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeInteger = " + Long.MAX_VALUE;
+		String queryDouble = "select d4 from [" + uriD4 + "] as d4 where d4.attributeDouble = 0.0"; //$NON-NLS-1$ //$NON-NLS-2$
+		String queryDouble2 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeDouble < " + (((Number) Float.MAX_VALUE).doubleValue() * 2.0d); //$NON-NLS-1$ //$NON-NLS-2$
+		String queryDouble3 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeDouble < " + Double.POSITIVE_INFINITY; //$NON-NLS-1$ //$NON-NLS-2$
+		String queryDouble4 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeDouble > " + Double.NEGATIVE_INFINITY; //$NON-NLS-1$ //$NON-NLS-2$
+		String queryFloat = "select d4 from [" + uriD4 + "] as d4 where d4.attributeFloat = 0.0"; //$NON-NLS-1$ //$NON-NLS-2$
+		String queryFloat2 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeFloat = " + (((Number) Float.MAX_VALUE).doubleValue() * 2.0d); //$NON-NLS-1$ //$NON-NLS-2$
+		String queryFloat3 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeFloat < " + Float.POSITIVE_INFINITY; //$NON-NLS-1$ //$NON-NLS-2$
+		String queryFloat4 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeFloat > " + Float.NEGATIVE_INFINITY; //$NON-NLS-1$ //$NON-NLS-2$
+		String queryFloat5 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeFloat = " + -(((Number) Float.MAX_VALUE).doubleValue() * 2.0d); //$NON-NLS-1$ //$NON-NLS-2$
+		String queryLong = "select d4 from [" + uriD4 + "] as d4 where d4.attributeLong = 0"; //$NON-NLS-1$ //$NON-NLS-2$
+		String queryLong2 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeLong < " + (Long.MAX_VALUE); //$NON-NLS-1$ //$NON-NLS-2$
+		String queryInt = "select d4 from [" + uriD4 + "] as d4 where d4.attributeInteger = 0"; //$NON-NLS-1$ //$NON-NLS-2$
+		String queryInt2 = "select d4 from [" + uriD4 + "] as d4 where d4.attributeInteger = " + Long.MAX_VALUE; //$NON-NLS-1$ //$NON-NLS-2$
 
 		// expected exceptions
 		try {
 			mql.execute(queryFloat2, qsp);
-			fail("Did expect exception");
+			fail("Did expect exception"); //$NON-NLS-1$
 		} catch (QueryFormatException e) {
 			// expected
 		}
 
 		try {
 			mql.execute(queryFloat3, qsp);
-			fail("Did expect exception");
+			fail("Did expect exception"); //$NON-NLS-1$
 		} catch (QueryFormatException e) {
 			// expected
 		}
 
 		try {
 			mql.execute(queryFloat4, qsp);
-			fail("Did expect exception");
+			fail("Did expect exception"); //$NON-NLS-1$
 		} catch (QueryFormatException e) {
 			// expected
 		}
 
 		try {
 			mql.execute(queryFloat5, qsp);
-			fail("Did expect exception");
+			fail("Did expect exception"); //$NON-NLS-1$
 		} catch (QueryFormatException e) {
 			// expected
 		}
 
 		try {
 			mql.execute(queryDouble3, qsp);
-			fail("Did expect exception");
+			fail("Did expect exception"); //$NON-NLS-1$
 		} catch (QueryFormatException e) {
 			// expected
 		}
 
 		try {
 			mql.execute(queryDouble4, qsp);
-			fail("Did expect exception");
+			fail("Did expect exception"); //$NON-NLS-1$
 		} catch (QueryFormatException e) {
 			// expected
 		}
 
 		try {
 			mql.execute(queryInt2, qsp);
-			fail("Did expect exception");
+			fail("Did expect exception"); //$NON-NLS-1$
 		} catch (QueryFormatException e) {
 			// expected
 		}
@@ -385,12 +385,12 @@ public class QueryRegressionTest extends QueryTestCase {
 			assertFalse(rsLong2.isEmpty());
 			assertFalse(rsInt.isEmpty());
 
-			assertTrue(Arrays.asList(rsDouble.getUris("d4")).contains(UriD4Instance));
-			assertTrue(Arrays.asList(rsDouble2.getUris("d4")).contains(UriD4Instance));
-			assertTrue(Arrays.asList(rsFloat.getUris("d4")).contains(UriD4Instance));
-			assertTrue(Arrays.asList(rsLong.getUris("d4")).contains(UriD4Instance));
-			assertTrue(Arrays.asList(rsLong2.getUris("d4")).contains(UriD4Instance));
-			assertTrue(Arrays.asList(rsInt.getUris("d4")).contains(UriD4Instance));
+			assertTrue(Arrays.asList(rsDouble.getUris("d4")).contains(UriD4Instance)); //$NON-NLS-1$
+			assertTrue(Arrays.asList(rsDouble2.getUris("d4")).contains(UriD4Instance)); //$NON-NLS-1$
+			assertTrue(Arrays.asList(rsFloat.getUris("d4")).contains(UriD4Instance)); //$NON-NLS-1$
+			assertTrue(Arrays.asList(rsLong.getUris("d4")).contains(UriD4Instance)); //$NON-NLS-1$
+			assertTrue(Arrays.asList(rsLong2.getUris("d4")).contains(UriD4Instance)); //$NON-NLS-1$
+			assertTrue(Arrays.asList(rsInt.getUris("d4")).contains(UriD4Instance)); //$NON-NLS-1$
 
 		} catch (QueryFormatException e) {
 			e.printStackTrace();
@@ -406,7 +406,7 @@ public class QueryRegressionTest extends QueryTestCase {
 
 		QueryProcessor mql = this.getMQLProcessor();
 
-		Resource res = this.testClient1.getOrCreateResourceStable("QueryRegressionTests_objValueComp.xmi");
+		Resource res = this.testClient1.getOrCreateResourceStable("QueryRegressionTests_objValueComp.xmi"); //$NON-NLS-1$
 		TypeScopeProvider qspOld = mql.getInclusivePartitionScopeProvider(res.getURI());
 		QueryContext qsp = this.getQueryContext(qspOld);
 
@@ -414,7 +414,7 @@ public class QueryRegressionTest extends QueryTestCase {
 		URI uriB2 = EcoreUtil.getURI(Case001Package.Literals.B1);
 
 		String query = "select a, b " // //$NON-NLS-1$
-				+ "from [" + uriA1 + "] as a, [" + uriB2 + "] as b " // //$NON-NLS-1$
+				+ "from [" + uriA1 + "] as a, [" + uriB2 + "] as b " // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				+ "where a.bs = b"; //  //$NON-NLS-1$
 
 		ResultSet rsBefore = mql.execute(query, qsp);
@@ -455,7 +455,7 @@ public class QueryRegressionTest extends QueryTestCase {
 
 		QueryProcessor mql = this.getMQLProcessor();
 
-		Resource res = this.testClient1.getOrCreateResourceStable("QueryRegressionTests_objValueCompAndAttrComp.xmi");
+		Resource res = this.testClient1.getOrCreateResourceStable("QueryRegressionTests_objValueCompAndAttrComp.xmi"); //$NON-NLS-1$
 		TypeScopeProvider qspOld = mql.getInclusivePartitionScopeProvider(res.getURI());
 		QueryContext qsp = this.getQueryContext(qspOld);
 
@@ -463,7 +463,7 @@ public class QueryRegressionTest extends QueryTestCase {
 		URI uriB4 = EcoreUtil.getURI(Case004Package.Literals.B4);
 
 		String query = "select a " // //$NON-NLS-1$
-				+ "from [" + uriA4 + "] as a, [" + uriB4 + "] as b " // //$NON-NLS-1$
+				+ "from [" + uriA4 + "] as a, [" + uriB4 + "] as b " // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				+ "where a.manyBs = b " // //$NON-NLS-1$
 				+ "where for b(onePrimitive like '*_*')"; //  //$NON-NLS-1$
 
@@ -527,7 +527,7 @@ public class QueryRegressionTest extends QueryTestCase {
 	public void testUriAcceptance() throws Exception {
 		try {
 			QueryProcessor mql = this.getMQLProcessor();
-			String query = "select a from [" + EcoreUtil.getURI(Case004Package.Literals.A4) + "] as a in elements{[http://a@b.c:80/as düf~4_sa\u0123s%20ac\\]d\\\\fd#fragment]}";
+			String query = "select a from [" + EcoreUtil.getURI(Case004Package.Literals.A4) + "] as a in elements{[http://a@b.c:80/as düf~4_sa\u0123s%20ac\\]d\\\\fd#fragment]}"; //$NON-NLS-1$ //$NON-NLS-2$
 			System.out.println(query);
 			mql.execute(query, this.getQueryContext(null));
 		} catch (QueryFormatException e) {
@@ -540,7 +540,7 @@ public class QueryRegressionTest extends QueryTestCase {
 	public void testNotInEmptySubquery() throws Exception {
 		QueryProcessor mql = this.getMQLProcessor();
 
-		Resource res = this.testClient1.getOrCreateResourceStable("QueryRegressionTests_testNotInEmptySubquery.xmi");
+		Resource res = this.testClient1.getOrCreateResourceStable("QueryRegressionTests_testNotInEmptySubquery.xmi"); //$NON-NLS-1$
 		TypeScopeProvider qspOld = mql.getInclusivePartitionScopeProvider(res.getURI());
 		QueryContext qsp = this.getQueryContext(qspOld);
 
@@ -555,12 +555,12 @@ public class QueryRegressionTest extends QueryTestCase {
 		IndexSetupManager.index(getDefaultIndexStore(), res);
 		res.unload();
 
-		String query = String.format("select a from [%s] as a where a.manyBs not in (select b from [%s] as b)", uriA4, uriB4);
+		String query = String.format("select a from [%s] as a where a.manyBs not in (select b from [%s] as b)", uriA4, uriB4); //$NON-NLS-1$
 
 		ResultSet rs = mql.execute(query, qsp);
 
 		assertEquals(1, rs.getSize());
-		assertEquals(EcoreUtil.getURI(a_1), rs.getUri(0, "a"));
+		assertEquals(EcoreUtil.getURI(a_1), rs.getUri(0, "a")); //$NON-NLS-1$
 
 		IndexSetupManager.delete(getDefaultIndexStore(), res.getURI());
 
@@ -571,7 +571,7 @@ public class QueryRegressionTest extends QueryTestCase {
 	public void testUnassignedEObject() throws Exception {
 		QueryProcessor mql = this.getMQLProcessor();
 
-		Resource res = this.testClient1.getOrCreateResourceStable("QueryRegressionTests_testUnassignedEObject.xmi");
+		Resource res = this.testClient1.getOrCreateResourceStable("QueryRegressionTests_testUnassignedEObject.xmi"); //$NON-NLS-1$
 		TypeScopeProvider qspOld = mql.getInclusivePartitionScopeProvider(res.getURI());
 		QueryContext qsp = this.getQueryContext(qspOld);
 
@@ -587,7 +587,7 @@ public class QueryRegressionTest extends QueryTestCase {
 		res.getContents().add(b2fake);
 		c2.setB(b2);
 
-		String query = String.format("select c from [%s] as c, [%s] as b where c.b = b", uriC2, uriB2);
+		String query = String.format("select c from [%s] as c, [%s] as b where c.b = b", uriC2, uriB2); //$NON-NLS-1$
 
 		ResultSet rs = mql.execute(query, qsp);
 

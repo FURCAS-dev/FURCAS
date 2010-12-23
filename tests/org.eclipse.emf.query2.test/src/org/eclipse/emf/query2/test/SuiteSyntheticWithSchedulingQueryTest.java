@@ -43,7 +43,7 @@ public class SuiteSyntheticWithSchedulingQueryTest extends BaseSyntheticQueryTes
 		instSize = 10;
 		partSize = 10;
 
-		partitionNameAppendix = "";
+		partitionNameAppendix = ""; //$NON-NLS-1$
 		partitionScope = null;
 		partitionScopeInclusive = true;
 
@@ -76,164 +76,164 @@ public class SuiteSyntheticWithSchedulingQueryTest extends BaseSyntheticQueryTes
 	@Test
 	public void test_basic_get_attributes_ast() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.basic_get_attributes_ast());
+		assertTrue("ResultSet is not correct", super.basic_get_attributes_ast()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_basic_get_attributes_limited() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.basic_get_attributes_limited());
+		assertTrue("ResultSet is not correct", super.basic_get_attributes_limited()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_basic_get_attributes_with_comparison() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.basic_get_attributes_with_comparison());
+		assertTrue("ResultSet is not correct", super.basic_get_attributes_with_comparison()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_basic_get_attributes_with_reflect_element() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.basic_get_attributes_with_reflect_element());
+		assertTrue("ResultSet is not correct", super.basic_get_attributes_with_reflect_element()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_where_not_like() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.where_not_like());
+		assertTrue("ResultSet is not correct", super.where_not_like()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_where_not_like_and_not_null_check() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.where_not_like_and_not_null_check());
+		assertTrue("ResultSet is not correct", super.where_not_like_and_not_null_check()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_double_assoc_ast() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.double_assoc_ast());
+		assertTrue("ResultSet is not correct", super.double_assoc_ast()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_double_assoc_with_comparison() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.double_assoc_with_comparison());
+		assertTrue("ResultSet is not correct", super.double_assoc_with_comparison()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_double_assoc_variant() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.double_assoc_variant());
+		assertTrue("ResultSet is not correct", super.double_assoc_variant()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_double_paired_assocs() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.double_paired_assocs());
+		assertTrue("ResultSet is not correct", super.double_paired_assocs()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_nested_query_with_reference_ast() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.nested_query_with_reference_ast());
+		assertTrue("ResultSet is not correct", super.nested_query_with_reference_ast()); //$NON-NLS-1$
 	}
 
 	@Test
 	@Ignore("Unnecessary")
 	public void test_nested_query_with_reference_in_other_direction() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.nested_query_with_reference_in_other_direction());
+		assertTrue("ResultSet is not correct", super.nested_query_with_reference_in_other_direction()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_nested_query_with_reference_variant() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.nested_query_with_reference_variant());
+		assertTrue("ResultSet is not correct", super.nested_query_with_reference_variant()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_nested_query_with_reference_and_not() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.nested_query_with_reference_and_not());
+		assertTrue("ResultSet is not correct", super.nested_query_with_reference_and_not()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_complex_assoc_linear_ast() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.complex_assoc_linear_ast());
+		assertTrue("ResultSet is not correct", super.complex_assoc_linear_ast()); //$NON-NLS-1$
 	}
 
 	@Test @Ignore
 	public void test_complex_assoc_grid_ast() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.complex_assoc_grid_ast());
+		assertTrue("ResultSet is not correct", super.complex_assoc_grid_ast()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_where_with_three_comparisons_limited() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.where_with_three_comparisons_limited());
+		assertTrue("ResultSet is not correct", super.where_with_three_comparisons_limited()); //$NON-NLS-1$
 	}
 
 	@Test @Ignore
 	public void test_complex_assoc_grid_with_attr_comparisons() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.complex_assoc_grid_with_attr_comparisons());
+		assertTrue("ResultSet is not correct", super.complex_assoc_grid_with_attr_comparisons()); //$NON-NLS-1$
 	}
 
 	@Test @Ignore
 	public void test_complex_grid_assoc_with_string_comparisons() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.complex_grid_assoc_with_string_comparisons());
+		assertTrue("ResultSet is not correct", super.complex_grid_assoc_with_string_comparisons()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_complex_assoc_linear_with_many_selections_limited() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.complex_assoc_linear_with_many_selections_limited());
+		assertTrue("ResultSet is not correct", super.complex_assoc_linear_with_many_selections_limited()); //$NON-NLS-1$
 	}
 
 	@Test @Ignore
 	public void test_complex_assoc_grid_with_structureTypes() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.complex_assoc_grid_with_structureTypes());
+		assertTrue("ResultSet is not correct", super.complex_assoc_grid_with_structureTypes()); //$NON-NLS-1$
 	}
 
 	@Test @Ignore
 	public void test_complex_grid_assoc_with_fixed_set_ast() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.complex_grid_assoc_with_fixed_set_ast());
+		assertTrue("ResultSet is not correct", super.complex_grid_assoc_with_fixed_set_ast()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_select_multivalued_attributes_ast() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.select_multivalued_attributes_ast());
+		assertTrue("ResultSet is not correct", super.select_multivalued_attributes_ast()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_assoc_with_struct_ast() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.assoc_with_struct_ast());
+		assertTrue("ResultSet is not correct", super.assoc_with_struct_ast()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_assoc_with_nested_struct_ast() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.assoc_with_nested_struct_ast());
+		assertTrue("ResultSet is not correct", super.assoc_with_nested_struct_ast()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_assoc_with_class_typed_ast() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.assoc_with_class_typed_ast());
+		assertTrue("ResultSet is not correct", super.assoc_with_class_typed_ast()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_assoc_with_dirty_partition_ast() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.assoc_with_dirty_partition_ast());
+		assertTrue("ResultSet is not correct", super.assoc_with_dirty_partition_ast()); //$NON-NLS-1$
 	}
 
 	@Test
@@ -246,96 +246,96 @@ public class SuiteSyntheticWithSchedulingQueryTest extends BaseSyntheticQueryTes
 	@Test
 	public void test_complex_assoc_linear_with_many_selections_ast() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.complex_assoc_linear_with_many_selections_ast());
+		assertTrue("ResultSet is not correct", super.complex_assoc_linear_with_many_selections_ast()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_partition_scope_in_query_ast() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.partition_scope_in_query_ast());
+		assertTrue("ResultSet is not correct", super.partition_scope_in_query_ast()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_assoc_with_two_comparisons_ast() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.assoc_with_two_comparisons_ast());
+		assertTrue("ResultSet is not correct", super.assoc_with_two_comparisons_ast()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_assoc_with_two_comparisons_variant() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.assoc_with_two_comparisons_variant());
+		assertTrue("ResultSet is not correct", super.assoc_with_two_comparisons_variant()); //$NON-NLS-1$
 	}
 
 	@Test
 	@Ignore("Ignored because of the exclusive/inclusive scope discussion.")
 	public void test_execute_with_exclusive_scope_ast() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.execute_with_exclusive_scope_ast());
+		assertTrue("ResultSet is not correct", super.execute_with_exclusive_scope_ast()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_assoc_to_subclass_of_reflect_element_ast() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.assoc_to_subclass_of_reflect_element_ast());
+		assertTrue("ResultSet is not correct", super.assoc_to_subclass_of_reflect_element_ast()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_assoc_to_reflect_element() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.assoc_to_reflect_element());
+		assertTrue("ResultSet is not correct", super.assoc_to_reflect_element()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_assoc_with_multiple_selection_ast() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.assoc_with_multiple_selection_ast());
+		assertTrue("ResultSet is not correct", super.assoc_with_multiple_selection_ast()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_enum_comparisons_ast() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.enum_comparisons_ast());
+		assertTrue("ResultSet is not correct", super.enum_comparisons_ast()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_dirty_dominant_simple_scheduling() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.enforced_simple_scheduling());
+		assertTrue("ResultSet is not correct", super.enforced_simple_scheduling()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_dirty_dominant_simple_scheduling_2() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.enforced_simple_scheduling_2());
+		assertTrue("ResultSet is not correct", super.enforced_simple_scheduling_2()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_dirty_dominant_simple_scheduling_3() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.enforced_simple_scheduling_3());
+		assertTrue("ResultSet is not correct", super.enforced_simple_scheduling_3()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_dirty_dominant_scheduling() throws Exception {
-		assertTrue("ResultSet is not correct", super.enforced_scheduling());
+		assertTrue("ResultSet is not correct", super.enforced_scheduling()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_dirty_dominant_scheduling_2() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.enforced_scheduling_2());
+		assertTrue("ResultSet is not correct", super.enforced_scheduling_2()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_dirty_dominant_scheduling_3() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.enforced_scheduling_3());
+		assertTrue("ResultSet is not correct", super.enforced_scheduling_3()); //$NON-NLS-1$
 	}
 
 	@Test
 	public void test_reflect_element_compared_with_fixed_set() throws Exception {
 
-		assertTrue("ResultSet is not correct", super.reflect_element_compared_with_fixed_set());
+		assertTrue("ResultSet is not correct", super.reflect_element_compared_with_fixed_set()); //$NON-NLS-1$
 	}
 }
