@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %plugin.name
+Bundle-Name: %Query2Index_Bundle_Name
 Bundle-SymbolicName: org.eclipse.emf.query2.index
 Bundle-Version: 1.0.0.qualifier
-Bundle-Vendor: %provider.name
+Bundle-Vendor: %Query2Index_Bundle_Vendor
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.4.2",
  org.eclipse.core.runtime;bundle-version="3.5.0"

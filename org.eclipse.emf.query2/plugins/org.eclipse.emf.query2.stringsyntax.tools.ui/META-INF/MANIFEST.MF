@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %Query2StringSyntaxToolsUI_Bundle_Vendor
+Bundle-Name: %Query2StringSyntaxToolsUI_Bundle_Name
 Bundle-SymbolicName: org.eclipse.emf.query2.stringsyntaxtools.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.eclipse.emf.query2.internal.ui.Activator
