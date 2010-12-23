@@ -1,7 +1,5 @@
 package com.sap.furcas.runtime.textblocks;
 
-import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getParentBlock;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -256,7 +254,7 @@ public class TbUtil {
 	Map<Integer, DocumentNode> levelMap = new HashMap<Integer, DocumentNode>();
 	levelMap.put(level, node);
 
-	TextBlock parent = getParentBlock(node);
+	TextBlock parent = node.getParent();
 	Integer curParentLevel = level - 1;
 	while (parent != null) {
 	    levelMap.put(curParentLevel, parent);
@@ -294,7 +292,7 @@ public class TbUtil {
 	    return false;
 	}
 
-	TextBlock loopParentBlock = TbNavigationUtil.getParentBlock(node);
+	TextBlock loopParentBlock = node.getParent();
 
 	while (loopParentBlock != null) {
 	    // could be infinite loop with cylces, but model prevents cycles

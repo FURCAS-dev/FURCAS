@@ -52,6 +52,7 @@ import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.impl.DelegationParsingObserver;
 import com.sap.furcas.runtime.parser.impl.ForeachParsingObserver;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.parser.textblocks.TbParsingUtil;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
 
@@ -242,11 +243,9 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                 TextBlock textBlock = (TextBlock) textBlocks.iterator().next();
                 if (foreachWasExecutedFor(textBlock)) {
                     // TODO this would be the place where to identify changes and carefully replace/remove/add only single elements
-                    deleteObsoleteForeachContexts(textBlock);
                     Collection<Object> newFeatureValue = new BasicEList<Object>();
                     for (Object foreachElement : foreachElements) {
-                        EObject producedElement = produceElement(foreachElement, textBlock, elementToUpdate.eResource()
-                                .getResourceSet(), getOppositeEndFinder());
+                        EObject producedElement = produceElement(foreachElement, textBlock, elementToUpdate, getOppositeEndFinder());
                         if (!(foreachPredicatePropertyInit.getPropertyReference().getStrucfeature() instanceof EReference)
                                 || !((EReference) foreachPredicatePropertyInit.getPropertyReference().getStrucfeature())
                                         .isContainment()) {
@@ -255,8 +254,6 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                             elementToUpdate.eResource().getContents().add(producedElement);
                         }
                         newFeatureValue.add(producedElement);
-                        ForEachContext foreachContext = createForeachContext(elementToUpdate, foreachElement, producedElement);
-                        textBlock.getForEachContext().add(foreachContext);
                     }
                     if (foreachPredicatePropertyInit.getPropertyReference().getStrucfeature().isMany()) {
                         elementToUpdate.eSet(foreachPredicatePropertyInit.getPropertyReference().getStrucfeature(),
@@ -275,12 +272,18 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
         }
     }
 
-    private void deleteObsoleteForeachContexts(TextBlock textBlock) {
+    private void addForeachContext(TextBlock textBlock, Object foreachElement, EObject elementToUpdate, EObject producedElement) {
+        ForEachContext foreachContext = createForeachContext(elementToUpdate, foreachElement, producedElement);
+        textBlock.getForEachContext().add(foreachContext);
+    }
+
+    private void deleteObsoleteForeachContexts(TextBlock textBlock, Object foreachElement) {
         // delete now obsolete ForEachContext elements
         for (Iterator<ForEachContext> existingForeachContextIterator = textBlock.getForEachContext()
                 .iterator(); existingForeachContextIterator.hasNext();) {
             ForEachContext existingForeachContext = existingForeachContextIterator.next();
-            if (existingForeachContext.getForeachPedicatePropertyInit() == foreachPredicatePropertyInit) {
+            if (existingForeachContext.getForeachPedicatePropertyInit() == foreachPredicatePropertyInit &&
+                    existingForeachContext.getContextElement() == foreachElement) {
                 existingForeachContextIterator.remove();
             }
         }
@@ -291,6 +294,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
         ForEachContext foreachContext = TextblocksFactory.eINSTANCE.createForEachContext();
         foreachContext.setForeachPedicatePropertyInit(foreachPredicatePropertyInit);
         foreachContext.setSourceModelElement(elementToUpdate);
+        // TODO this cast is probably not safe, particularly if the foreach base expression return an non-EObject type such as Boolean or Integer or String
         foreachContext.setContextElement((EObject) foreachElement);
         foreachContext.setResultModelElement(producedElement);
         return foreachContext;
@@ -306,7 +310,8 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                 textBlock.getParentAltChoices(), getSequenceElement());
     }
 
-    private EObject produceElement(Object foreachElement, TextBlock textBlock, ResourceSet resourceSet, OppositeEndFinder oppositeEndFinder) {
+    private EObject produceElement(Object foreachElement, TextBlock textBlock, EObject elementToUpdate,
+            OppositeEndFinder oppositeEndFinder) {
         Template template = null; // null means "don't produce"
         if (foreachElement instanceof Boolean) {
             if ((Boolean) foreachElement) {
@@ -320,7 +325,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
         }
         EObject result = null;
         if (template != null) {
-            result = produceWith(template, foreachElement, textBlock, resourceSet, oppositeEndFinder);
+            result = produceWith(template, foreachElement, textBlock, elementToUpdate, oppositeEndFinder);
         }
         return result;
     }
@@ -333,14 +338,15 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
      * @return the element produced
      */
     private EObject produceWith(Template template, Object foreachElement, TextBlock textBlock,
-            ResourceSet resourceSet, OppositeEndFinder oppositeEndFinder) {
+            EObject elementToUpdate, OppositeEndFinder oppositeEndFinder) {
         IRuleName ruleNameFinder = parserFactory.getRuleNameFinder();
         String mode = null;
         try {
             String ruleName = ruleNameFinder.getRuleName(template, mode);
             Lexer lexer = parserFactory.createLexer(
                     new ANTLRStringStream(getRootBlock(textBlock).getCachedString()));
-            ObservableInjectingParser parser = parserFactory.createParser(new CommonTokenStream(lexer), resourceSet);
+            ObservableInjectingParser parser = parserFactory.createParser(new CommonTokenStream(lexer),
+                    elementToUpdate.eResource().getResourceSet());
             DelegationParsingObserver delegator = new DelegationParsingObserver();
             IParsingObserver originalObserver = parser.getObserver();
             if (originalObserver != null) {
@@ -355,38 +361,15 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                 throw new UnknownProductionRuleException(ruleName + " is not a production rule in generated Parser.");
             }
             parser.setCurrentForeachElement(foreachElement);
-            // TODO do the context setup magic...
-            /*
-            if (parser.getContextManager().getContextForElement(reference.getContextElement()) == null) {
-                parser.addContext(proxyForContextElement);
-                if (proxyForContextElement.getRealObject() != null && reference.getContextElement() instanceof EObject) {
-                    parser.getContextManager().notifyProxyResolvedWith(proxyForContextElement, reference.getContextElement(),
-                    // no creation context element needs to be provided here because the proxy has just been created and has not been
-                    // added to any other context
-                    null);
-                }
-            } else {
-                parser.getCurrentContextStack().push(proxyForContextElement); // the Context object was already created elsewhere
-            }
-            if (reference.hasContext() && foreachElement instanceof EObject) {
-                ResolvedModelElementProxy proxyForNext = new ResolvedModelElementProxy(foreachElement);
-                if (parser.getContextManager().getContextForElement(foreachElement) == null) {
-                    parser.addContext(proxyForNext);
-                    parser.getContextManager().notifyProxyResolvedWith(proxyForNext, foreachElement,
-                    // no creation context element needs to be provided here because the proxy has just been created and has not been
-                    // added to any other context
-                     null);
-                } else {
-                    parser.getCurrentContextStack().push(proxyForNext); // the Context object was already created elsewhere
-                }
-            }
-            */
+            TbParsingUtil.constructContext(textBlock, parser);
+            deleteObsoleteForeachContexts(textBlock, foreachElement); // must be deleted AFTER ContextBuilder was constructed because it requires the ForEachContext elements
             EObject parseReturn = (EObject) methodToCall.invoke(parser);
             if (parseReturn == null) {
                 throw new ModelElementCreationException("Unable to create model element using parse rule " + ruleName
                         + ". Parse errors: " + parser.getInjector().getErrorList());
             }
             parser.setDelayedReferencesAfterParsing(); // TODO instead of using DelayedReference stuff, migrate to model updaters
+            addForeachContext(textBlock, foreachElement, elementToUpdate, parseReturn);
             return parseReturn;
         } catch (Exception e) {
             throw new RuntimeException(e);

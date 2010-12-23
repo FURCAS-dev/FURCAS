@@ -381,9 +381,7 @@ public class DelayedReferencesHelper {
         } else {
             proxyForContextElement = new ResolvedModelElementProxy(reference.getContextElement());
         }
-
         parser.setCurrentForeachElement(next);
-
         if (parser.getContextManager().getContextForElement(reference.getContextElement()) == null) {
             parser.addContext(proxyForContextElement);
             if (proxyForContextElement.getRealObject() != null && reference.getContextElement() instanceof EObject) {
@@ -394,29 +392,8 @@ public class DelayedReferencesHelper {
                  */
                 null);
             }
-
         } else {
-            parser.getCurrentContextStack().push(proxyForContextElement); // the
-                                                                          // Context
-                                                                          // object
-                                                                          // was
-                                                                          // already
-                                                                          // created
-                                                                          // elsewhere
-        }
-
-        if (reference.hasContext() && next instanceof EObject) {
-            ResolvedModelElementProxy proxyForNext = new ResolvedModelElementProxy(next);
-            if (parser.getContextManager().getContextForElement(next) == null) {
-                parser.addContext(proxyForNext);
-                parser.getContextManager().notifyProxyResolvedWith(proxyForNext, next,
-                /*
-                 * no creation context element needs to be provided here because the proxy has just been created and has not been
-                 * added to any other context
-                 */null);
-            } else {
-                parser.getCurrentContextStack().push(proxyForNext); // the Context object was already created elsewhere
-            }
+            parser.getCurrentContextStack().push(proxyForContextElement); // the Context object was already created elsewhere
         }
         try {
             Object parseReturn = methodToCall.invoke(parser);
@@ -452,9 +429,6 @@ public class DelayedReferencesHelper {
                 }
             }
         } finally {
-            if (reference.hasContext() && next instanceof EObject) {
-                parser.leaveContext();
-            }
             parser.getCurrentContextStack().pop();
             parser.setObserver(originalObserver);
             parser.setResolveProxies(originalResolveProxiesValue);

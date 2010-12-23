@@ -1,7 +1,6 @@
 package com.sap.ide.cts.parser.incremental;
 
 import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getNextInSubTree;
-import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getParentBlock;
 import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getSubNodeAt;
 import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getSubNodes;
 import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.isLastInSubTree;
@@ -65,13 +64,13 @@ public abstract class IncrementalRecognizer {
 	
 	
 	protected DocumentNode nextSubtree(DocumentNode node) {
-		TextBlock parent = getParentBlock(node);
+		TextBlock parent = node.getParent();
 		if (parent == null) {
 			// node is the root node so there is no further subtree
 			return eosRef;
 		}
 		if (isLastInSubTree(node)) {
-			while (getParentBlock(parent) != null && isLastInSubTree(parent)) {
+			while (parent.getParent() != null && isLastInSubTree(parent)) {
 				// its the last element, so traverse to the next subtree and
 				// find the first leaf there
 				parent = parent.getParent();

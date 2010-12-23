@@ -122,7 +122,7 @@ public class InjectorActionsHandler<Type> {
 
 	/**
 	 * adds "{setProperty(propName, value);}" for a primitive template and"{setRef(ret, propName, TypeOfProperty, null, null, value, null, null, false, null);}"
-	 * if llookup init
+	 * if lookup init
 	 * 
 	 * @param block
 	 * @param buffer

@@ -3,7 +3,6 @@
  */
 package com.sap.furcas.runtime.textblocks.modifcation;
 
-import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getParentBlock;
 import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getSubNodesSize;
 import static com.sap.furcas.runtime.textblocks.TbUtil.getNewestVersion;
 import static com.sap.furcas.runtime.textblocks.TbUtil.getRelativeOffsetFromNode;
@@ -143,12 +142,12 @@ public class TbChangeUtil {
 	public static void updateOffsets(DocumentNode workingCopy, int lengthToAdd)
 			throws IllegalArgumentException {
 	    	updateOffsetsWithinTextBlock(workingCopy, lengthToAdd);
-		workingCopy = getParentBlock(workingCopy);
-		TextBlock parentBlock = getParentBlock(workingCopy);
+		workingCopy = workingCopy.getParent();
+		TextBlock parentBlock = workingCopy.getParent();
 		while (parentBlock != null) {
 			updateOffsetsWithinTextBlock(workingCopy, lengthToAdd);
-			workingCopy = getParentBlock(workingCopy);
-			parentBlock = getParentBlock(workingCopy);
+			workingCopy = workingCopy.getParent();
+			parentBlock = workingCopy.getParent();
 		}
 	}
 	
@@ -162,7 +161,7 @@ public class TbChangeUtil {
 	 */
 	public static void updateOffsetsWithinTextBlock(DocumentNode workingCopy, int lengthToAdd)
 			throws IllegalArgumentException {
-		TextBlock parentBlock = getParentBlock(workingCopy);
+		TextBlock parentBlock = workingCopy.getParent();
 		// first update adjacent tokens
 		List<AbstractToken> siblingTokens = parentBlock.getTokens();
 		for (AbstractToken token : siblingTokens) {
@@ -220,7 +219,7 @@ if (isRightOf(tb, workingCopy) && !tb.equals(workingCopy)) {
 //							+ node.getLength() + "<" + (-lengthToAdd));
 //		}
 		node.setLength(newLength);
-		TextBlock parent = TbNavigationUtil.getParentBlock(node);
+		TextBlock parent = node.getParent();
 		if (parent != null) {
 		    updateLengthAscending(parent, lengthToAdd);
 		}
@@ -340,7 +339,7 @@ if (isRightOf(tb, workingCopy) && !tb.equals(workingCopy)) {
 	 */
 	public static void removeNode(DocumentNode node) {
 		if (node != null) {
-			TextBlock parent = getParentBlock(node);
+			TextBlock parent = node.getParent();
 			EcoreUtil.delete(node);
 			removeTextBlockIfEmpty(parent);
 		}

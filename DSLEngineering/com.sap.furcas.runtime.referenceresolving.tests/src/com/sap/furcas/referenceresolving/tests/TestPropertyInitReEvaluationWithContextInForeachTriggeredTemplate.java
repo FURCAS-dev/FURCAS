@@ -2,6 +2,7 @@ package com.sap.furcas.referenceresolving.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
@@ -126,8 +127,8 @@ public class TestPropertyInitReEvaluationWithContextInForeachTriggeredTemplate e
         for (EObject revenueLedger : revenues) {
             revenueLedgerArticles.add((EObject) revenueLedger.eGet(revenueLedger.eClass().getEStructuralFeature("article")));
             assertEquals(
-                    ((String) ((EObject) ((EObject) revenueLedger.eGet(revenueLedger.eClass().getEStructuralFeature(
-                            "article"))).eGet(articleClass.getEStructuralFeature("author"))).eGet(                    authorClass.getEStructuralFeature("name"))).length(), revenueLedger.eGet(
+                    ((Collection<?>) bibtexFile.eGet(bibtexFile.eClass().getEStructuralFeature("entries"))).size(),
+                    revenueLedger.eGet(
                             revenueLedger.eClass().getEStructuralFeature("revenueInEUR")));
             assertEquals("Expected to find exactly one ForEachContext for produced RevenueLedger element "+revenueLedger,
                     1, oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
@@ -138,7 +139,8 @@ public class TestPropertyInitReEvaluationWithContextInForeachTriggeredTemplate e
             assertEquals("Expected exactly as many ForEachContext records as we have RevenueLedger objects for author "+
                     author, revenues.size(), authorCreationRecord.getForEachContext().size());
         }
-        assertEquals(johnsArticlesAsSet, revenueLedgerArticles);
+        assertEquals("Mapping should have put ->first() of John's articles in here, no more, no less", 1, revenueLedgerArticles.size());
+        assertTrue(johnsArticlesAsSet.containsAll(revenueLedgerArticles));
     }
 
 }

@@ -247,11 +247,11 @@ public class DelayedReference implements Cloneable {
      * {@link ObservableInjectingParser#setModeRef(Object, String, String, String)}
      */
 
-    public DelayedReference(Object referenceContextObject, Object currentForeachElement,
-            ReferenceType type, Object modelElement, String propertyName,
-            String oclQuery, String mode,
-            List<PredicateSemantic> list, IRuleName ruleNameFinder,
-            ANTLR3LocationToken token, boolean hasContext, boolean isOptional) {
+    public DelayedReference(Object referenceContextObject, ReferenceType type,
+            Object modelElement, String propertyName, String oclQuery,
+            String mode, List<PredicateSemantic> list,
+            IRuleName ruleNameFinder, ANTLR3LocationToken token,
+            boolean hasContext, boolean isOptional) {
         super();
         this.referenceContextObject = referenceContextObject;
         this.modelElement = modelElement;
