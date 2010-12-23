@@ -83,28 +83,25 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 			return null;
 		}
 		OCLExpression body = null;
+		EClass context = operation.getEContainingClass();
+		OCL.Helper helper = ocl.createOCLHelper();
+		helper.setOperationContext(context, operation);
+		Constraint constraint;
 		try {
-			EClass context = operation.getEContainingClass();
-			OCL.Helper helper = ocl.createOCLHelper();
-			helper.setOperationContext(context, operation);
-			Constraint constraint;
-			try {
-				constraint = helper.createBodyCondition(expr);
-			} catch (ParserException e) {
-				throw new OCLDelegateException(e.getLocalizedMessage(), e);
-			}
-			if (constraint == null) {
-				return null;
-			}
-			ExpressionInOCL specification = (ExpressionInOCL) constraint.getSpecification();
-			if (specification == null) {
-				return null;
-			}
-			body = (OCLExpression) specification.getBodyExpression();
-			return body;
-		} finally {
-			cacheExpression(operation, body, BODY_CONSTRAINT_KEY);
+			constraint = helper.createBodyCondition(expr);
+		} catch (ParserException e) {
+			throw new OCLDelegateException(e.getLocalizedMessage(), e);
 		}
+		if (constraint == null) {
+			return null;
+		}
+		ExpressionInOCL specification = (ExpressionInOCL) constraint
+			.getSpecification();
+		if (specification == null) {
+			return null;
+		}
+		body = (OCLExpression) specification.getBodyExpression();
+		return body;
 	}
 
 	/**
