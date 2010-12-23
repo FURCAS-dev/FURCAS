@@ -33,7 +33,6 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.ecore.delegate.SettingBehavior;
-import org.eclipse.ocl.ecore.impl.NullLiteralExpImpl;
 import org.eclipse.ocl.ecore.internal.OCLEcorePlugin;
 import org.eclipse.ocl.ecore.utilities.VisitorExtension;
 import org.eclipse.ocl.expressions.CollectionKind;
@@ -52,13 +51,6 @@ public class EvaluationVisitorImpl
 		EEnumLiteral, EParameter, EObject,
 		CallOperationAction, SendSignalAction, Constraint,
 		EClass, EObject> implements VisitorExtension<Object> {
-
-	/**
-	 * An "identifying" class that helps distinguish between the case where an operation or property
-	 * isn't found in the expression cache and hasn't been looked up elsewhere yet from the case where
-	 * we looked around for a definition but couldn't find one 
-	 */
-	private static class NullExpression extends NullLiteralExpImpl {}
 
 	public EvaluationVisitorImpl(
 			Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env,
@@ -118,9 +110,9 @@ public class EvaluationVisitorImpl
 			if (result != null) {
 				pluginInstance.cacheOperationBody(operation, result);
 			} else {
-				pluginInstance.cacheOperationBody(operation, new NullExpression());
+				pluginInstance.cacheOperationHasNoOCLBody(operation);
 			}
-		} else if (result instanceof NullExpression) {
+		} else if (pluginInstance.featureHasNonOCLDefinition(result)) {
 			result = null;
 		}
 		return result;
@@ -141,9 +133,9 @@ public class EvaluationVisitorImpl
 			if (result != null) {
 				pluginInstance.cachePropertyBody(property, result);
 			} else {
-				pluginInstance.cachePropertyBody(property, new NullExpression());
+				pluginInstance.cachePropertyHasNoOCLBody(property);
 			}
-		} else if (result instanceof NullExpression) {
+		} else if (pluginInstance.featureHasNonOCLDefinition(result)) {
 			result = null;
 		}
 		return result;
