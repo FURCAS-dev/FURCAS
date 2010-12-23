@@ -96,12 +96,15 @@ public class ContextAndForeachHelper {
         URI uriContextTags = EcoreUtil.getURI(TCSPackage.eINSTANCE.getContextTags());
         ResultSet templatesClasses;
         if (contextTag == null || contextTag.length() == 0) {
-            templatesClasses = mql.execute("select me from [" + uriEClassifier + "] as me," + "[" + uriContextTemplate + "] as ct," + "\""
-                    + EcoreUtil.getID((cs)) + "\" as cs " + "where ct.concreteSyntax=cs " + "where ct.metaReference=me "
+            templatesClasses = mql.execute("select me from [" + uriEClassifier + "] as me," + "[" + uriContextTemplate + "] as ct," +
+                     "["+EcoreUtil.getURI(cs.eClass()) +"] as cs in elements {["+EcoreUtil.getURI((cs)) + "]} "
+                    + "where ct.concreteSyntax=cs " + "where ct.metaReference=me "
                     + "where ct.contextTags=null " + "where ct.isContext=true", context);
         } else {
             templatesClasses = mql.execute("select me from [" + uriEClassifier + "] as me," + "[" + uriContextTemplate + "] as ct,"
-                    + "[" + uriContextTags + "] as tags," + "\"" + EcoreUtil.getID((cs)) + "\" as cs " + "where ct.concreteSyntax=cs "
+                    + "[" + uriContextTags + "] as tags,"
+                    + "["+EcoreUtil.getURI(cs.eClass()) +"] as cs in elements {["+EcoreUtil.getURI((cs)) + "]} "
+                    + "where ct.concreteSyntax=cs "
                     + "where ct.metaReference=me " + "where ct.contextTags=tags " + "where ct.isContext=true "
                     + "where tags.tags='" + contextTag + "'", context);
         }
