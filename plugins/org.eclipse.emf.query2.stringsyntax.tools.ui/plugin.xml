@@ -4,6 +4,7 @@
    <extension
          point="org.eclipse.ui.views">
       <view
+            category="org.eclipse.emf.query2.stringsyntax.tools.ui.emfQueryCategory"
             class="org.eclipse.emf.query2.internal.ui.QueryResultView"
             icon="icons/file.gif"
             id="org.eclipse.emf.query2.syntax.tools.ui.queryresultview"
@@ -11,12 +12,17 @@
             restorable="true">
       </view>
        <view
+             category="org.eclipse.emf.query2.stringsyntax.tools.ui.emfQueryCategory"
              class="org.eclipse.emf.query2.internal.ui.QueryView"
              icon="icons/magnifying-glass.gif"
              id="org.eclipse.emf.query2.syntax.tools.ui.queryview"
              name="%Query2StringSyntaxToolsUI_QueryView"
              restorable="true">
       </view>
+       <category
+             id="org.eclipse.emf.query2.stringsyntax.tools.ui.emfQueryCategory"
+             name="%Query2StringSyntaxToolsUI_Query2Category">
+       </category>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
