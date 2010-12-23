@@ -35,8 +35,8 @@ public class QueryActivator extends AbstractUIPlugin {
 		INSTANCE = this;
 		try {
 			
-			injectors.put("org.eclipse.emf.query2.syntax.Query", Guice.createInjector(
-				Modules.override(Modules.override(getRuntimeModule("org.eclipse.emf.query2.syntax.Query")).with(getUiModule("org.eclipse.emf.query2.syntax.Query"))).with(getSharedStateModule())
+			injectors.put("org.eclipse.emf.query2.syntax.Query", Guice.createInjector( //$NON-NLS-1$
+				Modules.override(Modules.override(getRuntimeModule("org.eclipse.emf.query2.syntax.Query")).with(getUiModule("org.eclipse.emf.query2.syntax.Query"))).with(getSharedStateModule()) //$NON-NLS-1$ //$NON-NLS-2$
 			));
 			
 		} catch (Exception e) {
@@ -51,7 +51,7 @@ public class QueryActivator extends AbstractUIPlugin {
 	
 	protected Module getRuntimeModule(String grammar) {
 		
-		if ("org.eclipse.emf.query2.syntax.Query".equals(grammar)) {
+		if ("org.eclipse.emf.query2.syntax.Query".equals(grammar)) { //$NON-NLS-1$
 		  return new org.eclipse.emf.query2.syntax.QueryRuntimeModule();
 		}
 		
@@ -59,7 +59,7 @@ public class QueryActivator extends AbstractUIPlugin {
 	}
 	protected Module getUiModule(String grammar) {
 		
-		if ("org.eclipse.emf.query2.syntax.Query".equals(grammar)) {
+		if ("org.eclipse.emf.query2.syntax.Query".equals(grammar)) { //$NON-NLS-1$
 		  return new org.eclipse.emf.query2.syntax.ui.QueryUiModule(this);
 		}
 		
