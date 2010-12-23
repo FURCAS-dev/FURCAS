@@ -14,20 +14,20 @@ import org.eclipse.emf.query.index.test._querynew.Query.SimpleResourceClasses;
 public class CheckQueriesOnIndex {
 
 	public void test() {
-		SimpleResourceClasses resources = resources("*");
-		EObjectClass ofTypeURI = eobject("f*").ofType("uri");
+		SimpleResourceClasses resources = resources("*"); //$NON-NLS-1$
+		EObjectClass ofTypeURI = eobject("f*").ofType("uri"); //$NON-NLS-1$ //$NON-NLS-2$
 		select(resources.containing(ofTypeURI));
 
 		// select(resources("*").containing(eobject("f*").ofType("uri").in(resources().containing(eobject("*")))));
 
-		select(resource("uri"));
+		select(resource("uri")); //$NON-NLS-1$
 
 		select(ofTypeURI);
 
-		select(eobjects().ofType("uri").in(resource("res")));
+		select(eobjects().ofType("uri").in(resource("res"))); //$NON-NLS-1$ //$NON-NLS-2$
 
-		select(references().from(resource("res")));
+		select(references().from(resource("res"))); //$NON-NLS-1$
 
-		select(reference("refUri").from(eobjects().ofType("uri")).to(resource("res")));
+		select(reference("refUri").from(eobjects().ofType("uri")).to(resource("res")));  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
 	}
 }
