@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Library.java,v 1.1 2010/12/07 13:18:53 akrsharma Exp $
+ * $Id: Library.java,v 1.2 2010/12/23 10:00:01 akrsharma Exp $
  */
 package library;
 
@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link library.Library#getBooks <em>Books</em>}</li>
  *   <li>{@link library.Library#getLocation <em>Location</em>}</li>
+ *   <li>{@link library.Library#getCapacity <em>Capacity</em>}</li>
  * </ul>
  * </p>
  *
@@ -68,5 +69,32 @@ public interface Library extends EObject {
 	 * @generated
 	 */
 	void setLocation(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Capacity</b></em>' attribute.
+	 * The default value is <code>"100000"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Capacity</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Capacity</em>' attribute.
+	 * @see #setCapacity(int)
+	 * @see library.LibraryPackage#getLibrary_Capacity()
+	 * @model default="100000"
+	 * @generated
+	 */
+	int getCapacity();
+
+	/**
+	 * Sets the value of the '{@link library.Library#getCapacity <em>Capacity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Capacity</em>' attribute.
+	 * @see #getCapacity()
+	 * @generated
+	 */
+	void setCapacity(int value);
 
 } // Library

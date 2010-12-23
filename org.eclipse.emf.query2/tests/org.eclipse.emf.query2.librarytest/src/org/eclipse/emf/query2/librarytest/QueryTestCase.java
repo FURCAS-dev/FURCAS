@@ -48,7 +48,7 @@ public class QueryTestCase extends Assert {
 
 	static {
 
-		System.out.println("Start indexing");
+		System.out.println("Start indexing"); //$NON-NLS-1$
 		final Counter c = new Counter();
 		DEFAULT_INDEX.executeUpdateCommand(new UpdateCommandAdapter() {
 
@@ -71,7 +71,7 @@ public class QueryTestCase extends Assert {
 			}
 		});
 
-		System.out.println("\nIndexing finished. Indexed " + c.getCount() + " files");
+		System.out.println("\nIndexing finished. Indexed " + c.getCount() + " files"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	public static Index getDefaultIndexStore() {
