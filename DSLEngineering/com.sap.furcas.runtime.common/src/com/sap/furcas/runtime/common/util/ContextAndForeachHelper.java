@@ -6,17 +6,9 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.query.index.ui.IndexFactory;
-import org.eclipse.emf.query2.QueryContext;
-import org.eclipse.emf.query2.QueryProcessor;
-import org.eclipse.emf.query2.QueryProcessorFactory;
-import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
@@ -27,7 +19,7 @@ import org.eclipse.ocl.ecore.TypeType;
 
 import com.sap.emf.ocl.prepared.PreparedOCLExpression;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
-import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 
 /**
@@ -71,46 +63,31 @@ public class ContextAndForeachHelper {
             + oclAsTypePatternSuffix);
 
     /**
-     * For a given context tag and a concrete syntax determines the meta-classes for which templates exist that use this tag for
-     * declaring a context. The common generalization of all such classes will be returned. This may be <tt>Reflect::Element</tt>
-     * if no other common generalization exists.
+     * For a given context tag and a concrete syntax determines the meta-classes for which templates exist that use this
+     * tag for declaring a context. The common generalization of all such classes will be returned. This may be
+     * <tt>EObject</tt> if no other common generalization exists.
      * <p>
      * 
-     * This implementation currently uses MQL to find the classes for which templates (class or operator) exist that declare a
-     * context with the <tt>contextTag</tt> among the tags.
+     * This implementation currently uses EMF query2 MQL to find the classes for which templates (class or operator)
+     * exist that declare a context with the <tt>contextTag</tt> among the tags.
      * 
      * @param cs
      *            the concrete syntax in which to search for the use of the <tt>contextTag</tt>
      * @param contextTag
      *            may be <tt>null</tt> or an empty string which means the untagged context
-     * @return the common generalization of all classes for which a template is defined as context using <tt>contextTag</tt> as
-     *         the tag for the context declaration; <tt>null</tt> if no such template exists; <tt>Reflect::Element</tt> if no
-     *         other common generalization exists
+     * @return the common generalization of all classes for which a template is defined as context using
+     *         <tt>contextTag</tt> as the tag for the context declaration; <tt>null</tt> if no such template exists;
+     *         <tt>Reflect::Element</tt> if no other common generalization exists
      */
     public static EClass getCommonBaseClassForContextTag(ConcreteSyntax cs, String contextTag) {
-        QueryProcessor mql = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
-        ResourceSet rs = cs.eResource().getResourceSet();
-        QueryContext context = EcoreHelper.getQueryContext(rs);
-        URI uriEClassifier = EcoreUtil.getURI(EcorePackage.eINSTANCE.getEClassifier());
-        URI uriContextTemplate = EcoreUtil.getURI(TCSPackage.eINSTANCE.getContextTemplate());
-        URI uriContextTags = EcoreUtil.getURI(TCSPackage.eINSTANCE.getContextTags());
-        ResultSet templatesClasses;
-        if (contextTag == null || contextTag.length() == 0) {
-            templatesClasses = mql.execute("select me from [" + uriEClassifier + "] as me," + "[" + uriContextTemplate + "] as ct," +
-                     "["+EcoreUtil.getURI(cs.eClass()) +"] as cs in elements {["+EcoreUtil.getURI((cs)) + "]} "
-                    + "where ct.concreteSyntax=cs " + "where ct.metaReference=me "
-                    + "where ct.contextTags=null " + "where ct.isContext=true", context);
-        } else {
-            templatesClasses = mql.execute("select me from [" + uriEClassifier + "] as me," + "[" + uriContextTemplate + "] as ct,"
-                    + "[" + uriContextTags + "] as tags,"
-                    + "["+EcoreUtil.getURI(cs.eClass()) +"] as cs in elements {["+EcoreUtil.getURI((cs)) + "]} "
-                    + "where ct.concreteSyntax=cs "
-                    + "where ct.metaReference=me " + "where ct.contextTags=tags " + "where ct.isContext=true "
-                    + "where tags.tags='" + contextTag + "'", context);
-        }
         Set<EClass> metaReferences = new HashSet<EClass>();
-        for (URI uri : templatesClasses.getUris("me")) {
-            metaReferences.add((EClass) rs.getEObject(uri, true));
+        for (Template t : cs.getTemplates()) {
+            if (t instanceof ContextTemplate) {
+                ContextTemplate ct = (ContextTemplate) t;
+                if (ct.isIsContext() && matchesContextTag(contextTag, ct)) {
+                    metaReferences.add((EClass) ct.getMetaReference());
+                }
+            }
         }
         boolean needReflectElement = false;
         EClass commonGeneralization = null;
@@ -142,6 +119,12 @@ public class ContextAndForeachHelper {
             commonGeneralization = org.eclipse.ocl.ecore.EcorePackage.eINSTANCE.getAnyType();
         }
         return commonGeneralization;
+    }
+
+    private static boolean matchesContextTag(String contextTag, ContextTemplate ct) {
+        boolean emptyContextTag = contextTag == null || contextTag.length() == 0;
+        return (emptyContextTag && (ct.getContextTags() == null || ct.getContextTags().getTags().isEmpty())) ||
+                (!emptyContextTag && ct.getContextTags() != null && ct.getContextTags().getTags().contains(contextTag));
     }
 
     /**
