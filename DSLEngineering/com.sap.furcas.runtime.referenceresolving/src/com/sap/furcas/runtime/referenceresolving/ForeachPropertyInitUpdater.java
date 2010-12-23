@@ -241,14 +241,8 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
             if (!textBlocks.isEmpty()) {
                 TextBlock textBlock = (TextBlock) textBlocks.iterator().next();
                 if (foreachWasExecutedFor(textBlock)) {
-                    // delete now obsolete ForEachContext elements
-                    for (Iterator<ForEachContext> existingForeachContextIterator = textBlock.getForEachContext()
-                            .iterator(); existingForeachContextIterator.hasNext();) {
-                        ForEachContext existingForeachContext = existingForeachContextIterator.next();
-                        if (existingForeachContext.getForeachPedicatePropertyInit() == foreachPredicatePropertyInit) {
-                            existingForeachContextIterator.remove();
-                        }
-                    }
+                    // TODO this would be the place where to identify changes and carefully replace/remove/add only single elements
+                    deleteObsoleteForeachContexts(textBlock);
                     Collection<Object> newFeatureValue = new BasicEList<Object>();
                     for (Object foreachElement : foreachElements) {
                         EObject producedElement = produceElement(foreachElement, textBlock, elementToUpdate.eResource()
@@ -257,17 +251,11 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                                 || !((EReference) foreachPredicatePropertyInit.getPropertyReference().getStrucfeature())
                                         .isContainment()) {
                             // assign to elementToUpdate's Resource as a default, in case it's not added to a
-                            // containment
-                            // reference
+                            // containment reference
                             elementToUpdate.eResource().getContents().add(producedElement);
                         }
                         newFeatureValue.add(producedElement);
-                        // create ForEachContext element documenting what just happened in the TextBlocks model
-                        ForEachContext foreachContext = TextblocksFactory.eINSTANCE.createForEachContext();
-                        foreachContext.setForeachPedicatePropertyInit(foreachPredicatePropertyInit);
-                        foreachContext.setSourceModelElement(elementToUpdate);
-                        foreachContext.setContextElement((EObject) foreachElement);
-                        foreachContext.setResultModelElement(producedElement);
+                        ForEachContext foreachContext = createForeachContext(elementToUpdate, foreachElement, producedElement);
                         textBlock.getForEachContext().add(foreachContext);
                     }
                     if (foreachPredicatePropertyInit.getPropertyReference().getStrucfeature().isMany()) {
@@ -285,6 +273,27 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                 }
             }
         }
+    }
+
+    private void deleteObsoleteForeachContexts(TextBlock textBlock) {
+        // delete now obsolete ForEachContext elements
+        for (Iterator<ForEachContext> existingForeachContextIterator = textBlock.getForEachContext()
+                .iterator(); existingForeachContextIterator.hasNext();) {
+            ForEachContext existingForeachContext = existingForeachContextIterator.next();
+            if (existingForeachContext.getForeachPedicatePropertyInit() == foreachPredicatePropertyInit) {
+                existingForeachContextIterator.remove();
+            }
+        }
+    }
+
+    private ForEachContext createForeachContext(EObject elementToUpdate, Object foreachElement, EObject producedElement) {
+        // create ForEachContext element documenting what just happened in the TextBlocks model
+        ForEachContext foreachContext = TextblocksFactory.eINSTANCE.createForEachContext();
+        foreachContext.setForeachPedicatePropertyInit(foreachPredicatePropertyInit);
+        foreachContext.setSourceModelElement(elementToUpdate);
+        foreachContext.setContextElement((EObject) foreachElement);
+        foreachContext.setResultModelElement(producedElement);
+        return foreachContext;
     }
 
     /**
