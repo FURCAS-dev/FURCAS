@@ -326,8 +326,9 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
     }
 
     /**
-     * Executes the <code>template</code>'s parse rule. Tricky aspects are setting the #foreach and #context stack
-     * stuff.
+     * Executes the <code>template</code>'s parse rule. The
+     * {@link ObservableInjectingParser#setCurrentForeachElement(Object) foreach element} on the parser can easily be
+     * set to <code>foreachElement</code>. Tricky is establishing the #context stack.
      * 
      * @return the element produced
      */
