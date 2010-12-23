@@ -715,7 +715,8 @@ public class IncrementalParser extends IncrementalRecognizer {
             UnknownProductionRuleException {
 
         // reconstruct the context
-        TbParsingUtil.constructContext(root, batchParser);
+        // TODO is it correct to use the parent block to start looking for contexts or should the search start at root?
+        TbParsingUtil.constructContext(root.getParent(), batchParser);
 
         String ruleName = null;
         if (root.getType() == null || root.getType().getParseRule() == null) {

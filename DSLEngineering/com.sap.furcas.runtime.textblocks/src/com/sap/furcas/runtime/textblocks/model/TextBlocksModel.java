@@ -4,7 +4,6 @@
 package com.sap.furcas.runtime.textblocks.model;
 
 import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getLevel;
-import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getParentBlock;
 import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getSubNodeAt;
 import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getSubNodes;
 import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.isFirstInSubTree;
@@ -931,10 +930,10 @@ public class TextBlocksModel {
 	DocumentNode possibleSameLevelRightNode = rightNodeLevelMap.get(curLeftLevel);
 
 	// ascend
-	DocumentNode parentBlock = getParentBlock(curLeftNode);
+	DocumentNode parentBlock = curLeftNode.getParent();
 	while (parentBlock != null) {
 	    addRightSiblingsBeforeEndNode(results, curLeftNode, possibleSameLevelRightNode);
-	    if (getParentBlock(curLeftNode) == getParentBlock(possibleSameLevelRightNode)) {
+	    if (curLeftNode.getParent() == possibleSameLevelRightNode.getParent()) {
 		// found same level right node
 		if (possibleSameLevelRightNode == rightFloorToken) {
 		    // we are done
@@ -945,7 +944,7 @@ public class TextBlocksModel {
 	    }
 
 	    curLeftNode = parentBlock;
-	    parentBlock = getParentBlock(parentBlock);
+	    parentBlock = parentBlock.getParent();
 	    curLeftLevel--;
 	    possibleSameLevelRightNode = rightNodeLevelMap.get(curLeftLevel);
 	}
@@ -971,9 +970,9 @@ public class TextBlocksModel {
 
 	// no deeper parent, last block
 	if (!isFirstInSubTree(rightFloorToken)) {
-	    DocumentNode firstSubNode = getSubNodeAt(TbNavigationUtil.getParentBlock(rightFloorToken), 0);
+	    DocumentNode firstSubNode = getSubNodeAt(rightFloorToken.getParent(), 0);
 	    if (firstSubNode instanceof Bostoken) {
-		firstSubNode = getSubNodeAt(TbNavigationUtil.getParentBlock(rightFloorToken), 1);
+		firstSubNode = getSubNodeAt(rightFloorToken.getParent(), 1);
 	    }
 	    results.add(firstSubNode);
 	    addRightSiblingsBeforeEndNode(results, firstSubNode, rightFloorToken);
@@ -1002,7 +1001,7 @@ public class TextBlocksModel {
 	    return;
 	}
 
-	List<? extends DocumentNode> subNodes = getSubNodes(getParentBlock(start));
+	List<? extends DocumentNode> subNodes = getSubNodes(start.getParent());
 	int index = subNodes.indexOf(start) + 1;
 	while (index < subNodes.size()) {
 	    DocumentNode nextNode = subNodes.get(index);

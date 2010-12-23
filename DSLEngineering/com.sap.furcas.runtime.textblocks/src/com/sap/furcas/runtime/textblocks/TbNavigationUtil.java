@@ -95,11 +95,11 @@ public class TbNavigationUtil {
 	public static DocumentNode getNextInSubTree(DocumentNode node) {
 
 		// root node has no siblings
-		if (getParentBlock(node) == null) {
+		if (node.getParent() == null) {
 			return null;
 		}
 
-		TextBlock textBlock = getParentBlock(node);
+		TextBlock textBlock = node.getParent();
 		List<TextBlock> subBlocks = textBlock.getSubBlocks();
 		List<AbstractToken> tokens = textBlock.getTokens();
 
@@ -219,7 +219,7 @@ public class TbNavigationUtil {
 	}
 
 	public static int getSubNodesIndex(DocumentNode searchNode) {
-		TextBlock parent = getParentBlock(searchNode);
+		TextBlock parent = searchNode.getParent();
 
 		if (parent == null) {
 			// this is the root node
@@ -395,11 +395,11 @@ public class TbNavigationUtil {
 	 *         elements, <code>false</code> else.
 	 */
 	public static boolean isLastInSubTree(DocumentNode node) {
-		if (getParentBlock(node) == null) {
+		if (node.getParent() == null) {
 			return true;
 		}
 
-		TextBlock textBlock = getParentBlock(node);
+		TextBlock textBlock = node.getParent();
 		List<TextBlock> subBlocks = textBlock.getSubBlocks();
 		List<AbstractToken> tokens = textBlock.getTokens();
 
@@ -497,186 +497,163 @@ public class TbNavigationUtil {
 		}
 	}
 
-	/**
-	 * 
-	 * @param node
-	 * @return <code>true</code> if node is the first in its parents child
-	 *         elements, <code>false</code> else.
-	 */
-	public static boolean isFirstInSubTree(DocumentNode node) {
-		if ( /* root is always first in subtree */getParentBlock(node) == null) {
-			return true;
-		} else {
-			TextBlock parent = getParentBlock(node);
-			DocumentNode first = getSubNodeAt(parent, 0);
-			// getSubNodesIndex(node) == 0;
-			return node.equals(first);
-		}
-	}
+    /**
+     * 
+     * @param node
+     * @return <code>true</code> if node is the first in its parents child elements, <code>false</code> else.
+     */
+    public static boolean isFirstInSubTree(DocumentNode node) {
+        if ( /* root is always first in subtree */node.getParent() == null) {
+            return true;
+        } else {
+            TextBlock parent = node.getParent();
+            DocumentNode first = getSubNodeAt(parent, 0);
+            // getSubNodesIndex(node) == 0;
+            return node.equals(first);
+        }
+    }
 
-	/**
-	 * Resolves to either {@link TextBlock#getParentBlock()}} or
-	 * {@link AbstractToken#getParentBlock()} depending on the type of
-	 * <tt>node</tt>.
-	 * 
-	 * @param node
-	 * @return
-	 */
-	public static TextBlock getParentBlock(DocumentNode node) {
-		if (node instanceof TextBlock) {
-			return ((TextBlock) node).getParent();
-		} else if (node instanceof AbstractToken) {
-			return ((AbstractToken) node).getParent();
-		} else {
-			return null;
-		}
-	}
+    /**
+     * Fetches the previous sibling element within a subtree for element <code>node</code>
+     * 
+     * @param node
+     * @return
+     */
+    public static DocumentNode getPreviousInSubTree(DocumentNode node) {
+        TextBlock parent = getParent(node);
+        if (parent == null) {
+            return null;
+        }
+        int nodeIndex = getSubNodesIndex(node);
+        return getSubNodeAt(parent, nodeIndex - 1);
+    }
 
-	/**
-	 * Fetches the previous sibling element within a subtree for element
-	 * <code>node</code>
-	 * 
-	 * @param node
-	 * @return
-	 */
-	public static DocumentNode getPreviousInSubTree(DocumentNode node) {
-		TextBlock parent = getParent(node);
-		if (parent == null) {
-			return null;
-		}
-		int nodeIndex = getSubNodesIndex(node);
-		return getSubNodeAt(parent, nodeIndex - 1);
-	}
+    private static TextBlock getParent(DocumentNode node) {
+        if (node instanceof TextBlock) {
+            TextBlock tb = (TextBlock) node;
+            return tb.getParent();
+        } else {
+            AbstractToken tok = (AbstractToken) node;
+            return tok.getParent();
+        }
+    }
 
-	private static TextBlock getParent(DocumentNode node) {
-		if (node instanceof TextBlock) {
-			TextBlock tb = (TextBlock) node;
-			return tb.getParent();
-		} else {
-			AbstractToken tok = (AbstractToken) node;
-			return tok.getParent();
-		}
-	}
+    public static boolean isToken(DocumentNode node) {
+        return node instanceof AbstractToken;
+    }
 
-	public static boolean isToken(DocumentNode node) {
-		return node instanceof AbstractToken;
-	}
+    /**
+     * Replaces the subtree represented by <code>previousParentBlock</code> with the subtree represented by
+     * <code>currentTextBlock</code>
+     * 
+     * Cannot replace the root node.
+     * 
+     * @param previousParentBlock
+     *            subtree to be replaced
+     * @param currentTextBlock
+     *            subtree that will be used in the new version
+     * 
+     * @exception IllegalArgumentException
+     *                cannot replace a root textblock
+     */
+    public static void replaceSubTree(TextBlock previous, TextBlock current) throws IllegalArgumentException {
+        TextBlock parent = previous.getParent();
 
-	/**
-	 * Replaces the subtree represented by <code>previousParentBlock</code>
-	 * with the subtree represented by <code>currentTextBlock</code>
-	 * 
-	 * Cannot replace the root node.
-	 * 
-	 * @param previousParentBlock
-	 *            subtree to be replaced
-	 * @param currentTextBlock
-	 *            subtree that will be used in the new version
-	 * 
-	 * @exception IllegalArgumentException
-	 *                cannot replace a root textblock
-	 */
-	public static void replaceSubTree(TextBlock previous, TextBlock current)
-			throws IllegalArgumentException {
-		TextBlock parent = previous.getParent();
+        if (parent != null) {
+            int oldIndex = parent.getSubNodes().indexOf(previous);
+            parent.getSubNodes().remove(previous);
+            parent.getSubNodes().add(oldIndex, current);
+        } else {
+            throw new IllegalArgumentException("cannot replace a root textblock");
+        }
+    }
 
-		if (parent != null) {
-			int oldIndex = parent.getSubNodes().indexOf(previous);
-			parent.getSubNodes().remove(previous);
-			parent.getSubNodes().add(oldIndex, current);
-		} else {
-			throw new IllegalArgumentException(
-					"cannot replace a root textblock");
-		}
-	}
+    public static int getLevel(DocumentNode node) {
+        // root Block is level 0
+        int level = 0;
+        TextBlock parent = node.getParent();
+        while (parent != null) {
+            level++;
+            parent = parent.getParent();
+        }
 
-	public static int getLevel(DocumentNode node) {
-		// root Block is level 0
-		int level = 0;
-		TextBlock parent = getParentBlock(node);
-		while (parent != null) {
-			level++;
-			parent = parent.getParent();
-		}
+        return level;
+    }
 
-		return level;
-	}
+    /**
+     * Retrieves the right adjecent textblock of the given textblock. If no further block exists <code>null</code> is
+     * returned;
+     * 
+     * @param currentTextBlock
+     * @return
+     */
+    public static TextBlock nextBlockInSubTree(TextBlock currentTextBlock) {
+        TextBlock parent = currentTextBlock.getParent();
+        if (parent == null) {
+            return null;
+        }
+        List<TextBlock> subBlocks = parent.getSubBlocks();
+        int indexOf = subBlocks.indexOf(currentTextBlock);
+        if (indexOf == subBlocks.size() - 1) {
+            // it is the last block
+            return null;
+        }
+        return subBlocks.get(indexOf + 1);
 
-	/**
-	 * Retrieves the right adjecent textblock of the given textblock. If no
-	 * further block exists <code>null</code> is returned;
-	 * 
-	 * @param currentTextBlock
-	 * @return
-	 */
-	public static TextBlock nextBlockInSubTree(TextBlock currentTextBlock) {
-		TextBlock parent = currentTextBlock.getParent();
-		if (parent == null) {
-			return null;
-		}
-		List<TextBlock> subBlocks = parent.getSubBlocks();
-		int indexOf = subBlocks.indexOf(currentTextBlock);
-		if (indexOf == subBlocks.size() - 1) {
-			// it is the last block
-			return null;
-		}
-		return subBlocks.get(indexOf + 1);
+    }
 
-	}
-	
-	/**
-	 * Retrieves the left adjecent textblock of the given textblock. If no
-	 * further block exists <code>null</code> is returned;
-	 * 
-	 * @param currentTextBlock
-	 * @return
-	 */
-	public static TextBlock previousBlockInSubTree(TextBlock currentTextBlock) {
-		TextBlock parent = currentTextBlock.getParent();
-		if (parent == null) {
-			return null;
-		}
-		List<TextBlock> subBlocks = parent.getSubBlocks();
-		int indexOf = subBlocks.indexOf(currentTextBlock);
-		if (indexOf == 0) {
-			// it is the last block
-			return null;
-		}
-		return subBlocks.get(indexOf - 1);
+    /**
+     * Retrieves the left adjecent textblock of the given textblock. If no further block exists <code>null</code> is
+     * returned;
+     * 
+     * @param currentTextBlock
+     * @return
+     */
+    public static TextBlock previousBlockInSubTree(TextBlock currentTextBlock) {
+        TextBlock parent = currentTextBlock.getParent();
+        if (parent == null) {
+            return null;
+        }
+        List<TextBlock> subBlocks = parent.getSubBlocks();
+        int indexOf = subBlocks.indexOf(currentTextBlock);
+        if (indexOf == 0) {
+            // it is the last block
+            return null;
+        }
+        return subBlocks.get(indexOf - 1);
 
-	}
+    }
 
-	/**
-	 * Navigates to the ultra root of the given node. TODO: Once added to the MM
-	 * UltraRoot has to be checked here
-	 * 
-	 * @param node
-	 * @return
-	 */
-	public static TextBlock getUltraRoot(DocumentNode node) {
-		if (node instanceof AbstractToken) {
-			return getUltraRoot(((AbstractToken) node).getParent());
-		} else if (node instanceof TextBlock) {
-			if (isUltraRoot((TextBlock)node)) {
-				return (TextBlock) node;
-			}else {
-				return getUltraRoot(((TextBlock) node).getParent());
-			}
-		} else {
-			throw new RuntimeException(
-					node
-							+ "can not be asked for UltraRoot, only TextBlocks and AbstractTokens can have that.");
-		}
-	}
+    /**
+     * Navigates to the ultra root of the given node. TODO: Once added to the MM UltraRoot has to be checked here
+     * 
+     * @param node
+     * @return
+     */
+    public static TextBlock getUltraRoot(DocumentNode node) {
+        if (node instanceof AbstractToken) {
+            return getUltraRoot(((AbstractToken) node).getParent());
+        } else if (node instanceof TextBlock) {
+            if (isUltraRoot((TextBlock) node)) {
+                return (TextBlock) node;
+            } else {
+                return getUltraRoot(((TextBlock) node).getParent());
+            }
+        } else {
+            throw new RuntimeException(node
+                    + "can not be asked for UltraRoot, only TextBlocks and AbstractTokens can have that.");
+        }
+    }
 
-	/**
-	 * Checks if the given {@link TextBlock} is the root of a textblock tree.
-	 * @param node
-	 * @return
-	 */
-	public static boolean isUltraRoot(TextBlock node) {
-		// TODO If parent instance of UltraRoot if there will be an extra class for this kind of element
-		return node.getParent() == null;
-	}
+    /**
+     * Checks if the given {@link TextBlock} is the root of a textblock tree.
+     * 
+     * @param node
+     * @return
+     */
+    public static boolean isUltraRoot(TextBlock node) {
+        // TODO If parent instance of UltraRoot if there will be an extra class for this kind of element
+        return node.getParent() == null;
+    }
 
 }

@@ -3,7 +3,6 @@
  */
 package com.sap.furcas.runtime.parser.textblocks.observer;
 
-import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getParentBlock;
 import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getSubNodeAt;
 import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getSubNodes;
 import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getSubNodesSize;
@@ -492,7 +491,7 @@ public class TokenRelocationUtil {
     }
 
 	public static void makeOffsetAbsolute(DocumentNode node) {
-		if(node.isOffsetRelative() && getParentBlock(node) != null) {
+		if(node.isOffsetRelative() && node.getParent() != null) {
 			node.setOffset(getAbsoluteOffset(node));
 			node.setOffsetRelative(false);
 		}

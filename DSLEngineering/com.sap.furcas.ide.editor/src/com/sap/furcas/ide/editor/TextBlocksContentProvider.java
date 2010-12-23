@@ -22,7 +22,7 @@ public class TextBlocksContentProvider implements ITreeContentProvider {
 	@Override
 	public Object getParent(Object element) {
 		if (element instanceof DocumentNode) {
-			return TbNavigationUtil.getParentBlock((DocumentNode) element);
+			return ((DocumentNode) element).getParent();
 		} else {
 			return null;
 		}
