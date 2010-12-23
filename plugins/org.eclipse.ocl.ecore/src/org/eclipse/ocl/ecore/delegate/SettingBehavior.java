@@ -84,28 +84,25 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 			}
 		}
 		OCLExpression body = null;
+		EClass context = structuralFeature.getEContainingClass();
+		OCL.Helper helper = ocl.createOCLHelper();
+		helper.setAttributeContext(context, structuralFeature);
+		Constraint constraint;
 		try {
-			EClass context = structuralFeature.getEContainingClass();
-			OCL.Helper helper = ocl.createOCLHelper();
-			helper.setAttributeContext(context, structuralFeature);
-			Constraint constraint;
-			try {
-				constraint = helper.createDerivedValueExpression(expr);
-			} catch (ParserException e) {
-				throw new OCLDelegateException(e.getLocalizedMessage(), e);
-			}
-			if (constraint == null) {
-				return null;
-			}
-			ExpressionInOCL specification = (ExpressionInOCL) constraint.getSpecification();
-			if (specification == null) {
-				return null;
-			}
-			body = (OCLExpression) specification.getBodyExpression();
-			return body;
-		} finally {
-			cacheExpression(structuralFeature, body, key);
+			constraint = helper.createDerivedValueExpression(expr);
+		} catch (ParserException e) {
+			throw new OCLDelegateException(e.getLocalizedMessage(), e);
 		}
+		if (constraint == null) {
+			return null;
+		}
+		ExpressionInOCL specification = (ExpressionInOCL) constraint
+			.getSpecification();
+		if (specification == null) {
+			return null;
+		}
+		body = (OCLExpression) specification.getBodyExpression();
+		return body;
 	}
 
 	/**

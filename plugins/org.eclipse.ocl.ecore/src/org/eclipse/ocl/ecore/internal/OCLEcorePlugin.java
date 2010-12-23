@@ -20,6 +20,8 @@
  */
 package org.eclipse.ocl.ecore.internal;
 
+import java.util.WeakHashMap;
+
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
@@ -27,9 +29,14 @@ import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+import org.eclipse.ocl.ecore.EvaluationVisitorImpl;
+import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.OperationCallExp;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -56,6 +63,12 @@ public class OCLEcorePlugin
 
 	//The shared Eclipse plug-in instance
 	private static Implementation plugin;
+	
+	private WeakHashMap<EOperation, OCLExpression> operationBodyCache =
+		new WeakHashMap<EOperation, OCLExpression>();
+
+	private WeakHashMap<EStructuralFeature, OCLExpression> propertyBodyCache =
+		new WeakHashMap<EStructuralFeature, OCLExpression>();
 
 	/**
 	 * The constructor.
@@ -345,4 +358,33 @@ public class OCLEcorePlugin
 			}
 		};
 	}
+
+	public OCLExpression getCachedOperationBody(EOperation operation) {
+		return operationBodyCache.get(operation);
+	}
+	
+	/**
+	 * Caches the <code>body</code> expression for use in the {@link EvaluationVisitorImpl}
+	 * during evaluating {@link OperationCallExp} expressions calling <code>operation</code>.
+	 * The cache only weakly references <code>operation</code> so that when it otherwise
+	 * becomes eligible for garbage collection it may get implicitly removed from the cache.
+	 */
+	public void cacheOperationBody(EOperation operation, OCLExpression body) {
+		operationBodyCache.put(operation, body);
+	}
+	
+	public OCLExpression getCachedPropertyBody(EStructuralFeature property) {
+		return propertyBodyCache.get(property);
+	}
+	
+	/**
+	 * Caches the <code>body</code> expression for use in the {@link EvaluationVisitorImpl}
+	 * during evaluating {@link OperationCallExp} expressions calling <code>operation</code>.
+	 * The cache only weakly references <code>operation</code> so that when it otherwise
+	 * becomes eligible for garbage collection it may get implicitly removed from the cache.
+	 */
+	public void cachePropertyBody(EStructuralFeature property, OCLExpression body) {
+		propertyBodyCache.put(property, body);
+	}
+	
 }

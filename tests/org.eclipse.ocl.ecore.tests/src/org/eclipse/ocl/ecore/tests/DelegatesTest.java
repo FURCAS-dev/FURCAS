@@ -81,6 +81,7 @@ import org.eclipse.ocl.ecore.delegate.OCLValidationDelegateFactory;
 import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.eclipse.ocl.ecore.delegate.ValidationBehavior;
 import org.eclipse.ocl.ecore.delegate.ValidationDelegate;
+import org.eclipse.ocl.ecore.internal.OCLEcorePlugin;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.osgi.util.NLS;
 
@@ -618,12 +619,14 @@ public class DelegatesTest extends AbstractTestSuite
 		NullLiteralExp nullLiteralExp = EcoreFactory.eINSTANCE.createNullLiteralExp();
 		EAnnotation directReportsAnn = directReportsRef.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
 		assertTrue(directReportsAnn.getDetails().containsKey(SettingBehavior.DERIVATION_CONSTRAINT_KEY));
-		EObject oldFirstContents = directReportsAnn.getContents().get(0);
+		assertTrue(directReportsAnn.getContents().isEmpty());
 		try {
-			directReportsAnn.getContents().set(0, nullLiteralExp);
+			directReportsAnn.getContents().add(nullLiteralExp);
+			// ensure that the plugin cache doesn't have an expression cached:
+			OCLEcorePlugin.getInstance().cachePropertyBody(directReportsRef, null);
 			assertNull(ocl.evaluate(manager, expr));
 		} finally {
-			directReportsAnn.getContents().set(0, oldFirstContents);
+			directReportsAnn.getContents().clear();
 		}
 	}
 
@@ -819,6 +822,10 @@ public class DelegatesTest extends AbstractTestSuite
 	/**
 	 * Caches an operation AST in the annotation used by the {@link InvocationBehavior} implementation
 	 * and ensures that it's used by the delegate as well as the {@link EvaluationVisitorImpl}.
+	 * Implicitly, the test ensures that no modification is applied to the original textual annotation,
+	 * so that the annotation's contents are <em>not</em> used to cache the compiled AST because that
+	 * may make some clients expecting the metamodel resources to remain unchanged angry.
+	 * 
 	 * @throws ParserException 
 	 * @throws InvocationTargetException 
 	 */
@@ -836,12 +843,14 @@ public class DelegatesTest extends AbstractTestSuite
 		falseLiteralExp.setBooleanSymbol(false);
 		EAnnotation reportsToAnn = reportsToOp.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
 		assertTrue(reportsToAnn.getDetails().containsKey(InvocationBehavior.BODY_CONSTRAINT_KEY));
-		EObject oldFirstContents = reportsToAnn.getContents().get(0);
+		assertTrue(reportsToAnn.getContents().isEmpty());
 		try {
-			reportsToAnn.getContents().set(0, falseLiteralExp);
+			reportsToAnn.getContents().add(falseLiteralExp);
+			// ensure that the plugin cache doesn't have an expression cached:
+			OCLEcorePlugin.getInstance().cacheOperationBody(reportsToOp, null);
 			assertFalse((Boolean) ocl.evaluate(employee, expr));
 		} finally {
-			reportsToAnn.getContents().set(0, oldFirstContents);
+			reportsToAnn.getContents().clear();
 		}
 	}
 	
