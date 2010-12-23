@@ -347,7 +347,7 @@ if (ref.getModelElement().equals(object)) {
             	tempResolvedDelayedReferenceList.add(ref);
             }
             // Those with a context lookup will be handled below
-} else if(ref.getType() == DelayedReference.SEMANTIC_DISAMBIGUATE) {
+} else if(ref.getType() == DelayedReference.ReferenceType.SEMANTIC_DISAMBIGUATE) {
             tempResolvedDelayedReferenceList.add(ref);
 }
 // TODO what if the context-Proxy gets resolved before the
@@ -721,7 +721,7 @@ unResolvedDelayedReferenceList.remove(delayedReference);
                     continue;
                 }
                 
-                if (reference.getType() == DelayedReference.TYPE_SEMANTIC_PREDICATE && resolvedReferences.contains(reference)) {
+                if (reference.getType() == DelayedReference.ReferenceType.TYPE_SEMANTIC_PREDICATE && resolvedReferences.contains(reference)) {
                     // resolve foreach properties only once. Otherwise delayed references for the individual foreach
                     // elements would be created over and over again
                     // FIXME: this is buggy if the actual value of the predicate used in the for changes over the course
@@ -867,7 +867,7 @@ unResolvedDelayedReferenceList.remove(delayedReference);
 					List<SemanticDisambRuleData> preds, boolean hasContext, ANTLR3LocationToken firstToken) {
 		ANTLR3LocationToken lastToken = (ANTLR3LocationToken) input.LT(-1);
 		DelayedReference ref = new DelayedReference(getCurrentContextElement(),
-				DelayedReference.SEMANTIC_DISAMBIGUATE,
+				DelayedReference.ReferenceType.SEMANTIC_DISAMBIGUATE,
 				proxy,
 				element,
 				opTemplateLefthand,
@@ -1055,7 +1055,7 @@ unResolvedDelayedReferenceList.remove(delayedReference);
 			String mode, String query, List<PredicateSemantic> preds, IRuleName ruleNameFinder, boolean hasContext) {
 		ANTLR3LocationToken lastToken = (ANTLR3LocationToken) input.LT(-1);
 		DelayedReference ref = new DelayedReference(getCurrentContextElement(),
-				getCurrentForeachElement(), DelayedReference.TYPE_SEMANTIC_PREDICATE, object,
+				getCurrentForeachElement(), DelayedReference.ReferenceType.TYPE_SEMANTIC_PREDICATE, object,
 				propertyName, query, mode, preds, ruleNameFinder, lastToken, 
 				hasContext, /*isOptional: ForEach is always considered optional as 
 				 * error reporting will be done based on metamodel constraints.*/
