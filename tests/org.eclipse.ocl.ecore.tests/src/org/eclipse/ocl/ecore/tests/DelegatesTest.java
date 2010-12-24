@@ -899,7 +899,7 @@ public class DelegatesTest extends AbstractTestSuite
 	public void test_validationEvaluatingToWrongType() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationEvaluatingToWrongType"), null);
-		String message = NLS.bind(OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, "evaluatingToWrongType");
+		String message = NLS.bind(OCLMessages.InvariantConstraintBoolean_ERROR_, "ValidationEvaluatingToWrongType");
 		validateWithError("evaluatingToWrongType", "_UI_ConstraintDelegateException_diagnostic", badClassInstance,
 			"evaluatingToWrongType", EObjectValidator.getObjectLabel(badClassInstance, context), message);
 	}

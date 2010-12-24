@@ -27,6 +27,7 @@ import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.ExpressionInOCL;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.internal.OCLEcorePlugin;
 
 /**
  * @since 3.0
@@ -70,8 +71,10 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 			return result;
 		}
 		String key = DERIVATION_CONSTRAINT_KEY;
+		OCLEcorePlugin pluginInstance = OCLEcorePlugin.getInstance();
 	    EAnnotation eAnnotation = structuralFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
 	    if (eAnnotation == null) {
+			pluginInstance.cachePropertyHasNoOCLBody(structuralFeature);
 	    	return null;
 	    }
 	    EMap<String, String> details = eAnnotation.getDetails();
@@ -102,6 +105,7 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 			return null;
 		}
 		body = (OCLExpression) specification.getBodyExpression();
+		pluginInstance.cachePropertyBody(structuralFeature, body);
 		return body;
 	}
 
@@ -112,7 +116,16 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 	 * @since 3.1
 	 */
 	public OCLExpression getCachedFeatureBody(EStructuralFeature structuralFeature) {
-		OCLExpression result = getCachedExpression(structuralFeature, DERIVATION_CONSTRAINT_KEY, INITIAL_CONSTRAINT_KEY);
+		OCLEcorePlugin pluginInstance = OCLEcorePlugin.getInstance();
+		OCLExpression result = pluginInstance.getCachedPropertyBody(structuralFeature);
+		if (result == null) {
+			result = getCachedExpression(structuralFeature, DERIVATION_CONSTRAINT_KEY, INITIAL_CONSTRAINT_KEY);
+			if (result != null) {
+				pluginInstance.cachePropertyBody(structuralFeature, result);
+			}
+		} else if (pluginInstance.featureHasNonOCLDefinition(result)) {
+			result = null; // clients can find that out by asking hasUncomiledOperationBody
+		}
 		return result;
 	}
 	

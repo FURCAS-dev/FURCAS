@@ -33,7 +33,6 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.ecore.delegate.SettingBehavior;
-import org.eclipse.ocl.ecore.internal.OCLEcorePlugin;
 import org.eclipse.ocl.ecore.utilities.VisitorExtension;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.OCLExpression;
@@ -94,49 +93,32 @@ public class EvaluationVisitorImpl
 
 	@Override
 	protected OCLExpression<EClassifier> getOperationBody(EOperation operation) {
-		OCLEcorePlugin pluginInstance = OCLEcorePlugin.getInstance();
-		org.eclipse.ocl.ecore.OCLExpression result = pluginInstance.getCachedOperationBody(operation);
+		OCLExpression<EClassifier> result = InvocationBehavior.INSTANCE
+			.getCachedOperationBody(operation);
+		if (result == null
+			&& InvocationBehavior.INSTANCE
+				.hasUncompiledOperationBody(operation)) {
+			result = InvocationBehavior.INSTANCE.getOperationBody(
+				OCL.newInstance(getEnvironment().getFactory()), operation);
+		}
 		if (result == null) {
-			result = InvocationBehavior.INSTANCE.getCachedOperationBody(operation);
-			if (result == null
-				&& InvocationBehavior.INSTANCE
-					.hasUncompiledOperationBody(operation)) {
-				result = InvocationBehavior.INSTANCE.getOperationBody(
-					OCL.newInstance(getEnvironment().getFactory()), operation);
-			}
-			if (result == null) {
-				result = (org.eclipse.ocl.ecore.OCLExpression) super.getOperationBody(operation);
-			}
-			if (result != null) {
-				pluginInstance.cacheOperationBody(operation, result);
-			} else {
-				pluginInstance.cacheOperationHasNoOCLBody(operation);
-			}
-		} else if (pluginInstance.featureHasNonOCLDefinition(result)) {
-			result = null;
+			result = super.getOperationBody(operation);
 		}
 		return result;
 	}
 
 	@Override
-	protected OCLExpression<EClassifier> getPropertyBody(EStructuralFeature property) {
-		OCLEcorePlugin pluginInstance = OCLEcorePlugin.getInstance();
-		org.eclipse.ocl.ecore.OCLExpression result = pluginInstance.getCachedPropertyBody(property);
+	protected OCLExpression<EClassifier> getPropertyBody(
+			EStructuralFeature property) {
+		OCLExpression<EClassifier> result = SettingBehavior.INSTANCE
+			.getCachedFeatureBody(property);
+		if (result == null
+			&& SettingBehavior.INSTANCE.hasUncompiledFeatureBody(property)) {
+			result = SettingBehavior.INSTANCE.getFeatureBody(
+				OCL.newInstance(getEnvironment().getFactory()), property);
+		}
 		if (result == null) {
-			result = SettingBehavior.INSTANCE.getCachedFeatureBody(property);
-			if (result == null && SettingBehavior.INSTANCE.hasUncompiledFeatureBody(property)) {
-				result = SettingBehavior.INSTANCE.getFeatureBody(OCL.newInstance(getEnvironment().getFactory()), property);
-			}
-			if (result == null) {
-				result = (org.eclipse.ocl.ecore.OCLExpression) super.getPropertyBody(property);
-			}
-			if (result != null) {
-				pluginInstance.cachePropertyBody(property, result);
-			} else {
-				pluginInstance.cachePropertyHasNoOCLBody(property);
-			}
-		} else if (pluginInstance.featureHasNonOCLDefinition(result)) {
-			result = null;
+			result = super.getPropertyBody(property);
 		}
 		return result;
 	}
