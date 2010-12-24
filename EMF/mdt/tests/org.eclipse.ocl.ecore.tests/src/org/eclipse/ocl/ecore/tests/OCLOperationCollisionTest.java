@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008 Obeo, Zeligsoft Inc., and others.
+ * Copyright (c) 2008, 2010 Obeo, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *     Zeligsoft - Bug 243079 (fix test so that it will work)
+ *     Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Bug 333032
  *******************************************************************************/
 package org.eclipse.ocl.ecore.tests;
 
@@ -126,7 +127,7 @@ public class OCLOperationCollisionTest
 
 		@Override
 		public EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> createEvaluationEnvironment() {
-			return new MyEvaluationEnvironment();
+			return new MyEvaluationEnvironment(this);
 		}
 
 		@Override
@@ -149,8 +150,8 @@ public class OCLOperationCollisionTest
 		/**
 		 * Default constructor.
 		 */
-		public MyEvaluationEnvironment() {
-			super();
+		public MyEvaluationEnvironment(MyEnvironmentFactory factory) {
+			super(factory);
 		}
 
 		/**
