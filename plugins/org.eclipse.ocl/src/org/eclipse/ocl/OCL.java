@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2007, 2009 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2007, 2010 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,10 +13,11 @@
  *   Zeligsoft - Bug 251349
  *   E.D.Willink - Bug 259818
  *   Radek Dvorak - Bug 261128
+ *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Bug 333032
  *
  * </copyright>
  *
- * $Id: OCL.java,v 1.15 2010/12/15 17:33:43 ewillink Exp $
+ * $Id: OCL.java,v 1.16 2010/12/24 10:18:07 asanchez Exp $
  */
 package org.eclipse.ocl;
 
@@ -265,7 +266,7 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 			OCLBacktrackingParser parser = new OCLBacktrackingParser(lexer);
 			parser.setDefaultRepairCount(parserRepairCount);
 			lexer.lexer(parser.getIPrsStream());
-			analyzer = rootEnvironment.getFactory().createOCLAnalyzer(rootEnvironment, parser);
+			analyzer = rootEnvironment.getFactory().createOCLAnalyzer(parser);
 		} else {
 			analyzer = rootEnvironment.getFactory().createOCLAnalyzer(rootEnvironment, input);
 		}
