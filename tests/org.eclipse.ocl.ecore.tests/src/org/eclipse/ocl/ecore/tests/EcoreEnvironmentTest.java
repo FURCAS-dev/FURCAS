@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEnvironmentTest.java,v 1.10 2010/02/09 21:04:27 ewillink Exp $
+ * $Id: EcoreEnvironmentTest.java,v 1.11 2010/12/24 10:18:04 asanchez Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
