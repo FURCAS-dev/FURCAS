@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2009 IBM Corporation, Borland Software Corp., and others.
+ * Copyright (c) 2005, 2010 IBM Corporation, Borland Software Corp., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,10 +11,11 @@
  *   IBM - Initial API and implementation
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
  *   Borland - Bug 265066
+ *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Bug 333032
  *   
  * </copyright>
  *
- * $Id: AbstractEnvironmentFactory.java,v 1.7 2010/12/15 17:33:43 ewillink Exp $
+ * $Id: AbstractEnvironmentFactory.java,v 1.8 2010/12/24 10:18:07 asanchez Exp $
  */
 package org.eclipse.ocl;
 
@@ -25,10 +26,10 @@ import java.util.Set;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.helper.OCLSyntaxHelper;
 import org.eclipse.ocl.internal.evaluation.TracingEvaluationVisitor;
+import org.eclipse.ocl.parser.AbstractOCLParser;
 import org.eclipse.ocl.parser.OCLAnalyzer;
 import org.eclipse.ocl.parser.OCLFactoryWithHistory;
 import org.eclipse.ocl.parser.ValidationVisitor;
-import org.eclipse.ocl.parser.backtracking.OCLBacktrackingParser;
 import org.eclipse.ocl.util.Adaptable;
 import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.utilities.OCLFactory;
@@ -229,8 +230,7 @@ public abstract class AbstractEnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SS
 	 * @since 3.1
 	 */
 	public OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCLAnalyzer(
-		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
-			OCLBacktrackingParser parser) {
+		AbstractOCLParser parser) {
 		return new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(parser);
 	}
 
