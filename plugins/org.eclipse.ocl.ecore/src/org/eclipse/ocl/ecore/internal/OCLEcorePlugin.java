@@ -20,16 +20,28 @@
  */
 package org.eclipse.ocl.ecore.internal;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.WeakHashMap;
+
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+import org.eclipse.ocl.ecore.EvaluationVisitorImpl;
+import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.delegate.OCLValidationDelegate;
+import org.eclipse.ocl.ecore.impl.NullLiteralExpImpl;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -56,6 +68,24 @@ public class OCLEcorePlugin
 
 	//The shared Eclipse plug-in instance
 	private static Implementation plugin;
+	
+	private WeakHashMap<EOperation, OCLExpression> operationBodyCache =
+		new WeakHashMap<EOperation, OCLExpression>();
+
+	private WeakHashMap<EStructuralFeature, OCLExpression> propertyBodyCache =
+		new WeakHashMap<EStructuralFeature, OCLExpression>();
+
+	private WeakHashMap<EClassifier, Map<String, OCLExpression>> invariantBodyCache =
+		new WeakHashMap<EClassifier, Map<String, OCLExpression>>();
+
+	/**
+	 * An "identifying" class that helps distinguish between the case where an operation or property
+	 * isn't found in the expression cache and hasn't been looked up elsewhere yet from the case where
+	 * we looked around for a definition but couldn't find one 
+	 */
+	private static class NullExpression extends NullLiteralExpImpl {}
+	
+	private NullExpression theNullExpression = new NullExpression();
 
 	/**
 	 * The constructor.
@@ -344,5 +374,146 @@ public class OCLEcorePlugin
 				};
 			}
 		};
+	}
+
+	/**
+	 * Looks for a cached OCL body for <code>operation</code>.
+	 * 
+	 * @return <code>null</code> in case nothing is currently known by the cache
+	 *         about <code>operation</code>. If
+	 *         {@link #featureHasNonOCLDefinition(OCLExpression)} returns
+	 *         <code>true</code> for the result then this means that an attempt
+	 *         was made before to locate an OCL body for <code>operation</code>,
+	 *         but none was found.
+	 */
+	public OCLExpression getCachedOperationBody(EOperation operation) {
+		return operationBodyCache.get(operation);
+	}
+	
+	/**
+	 * Caches the <code>body</code> expression for use in the
+	 * {@link EvaluationVisitorImpl} during evaluating {@link OperationCallExp}
+	 * expressions calling <code>operation</code>. The cache only weakly
+	 * references <code>operation</code> so that when it otherwise becomes
+	 * eligible for garbage collection it may get implicitly removed from the
+	 * cache.
+	 */
+	public void cacheOperationBody(EOperation operation, OCLExpression body) {
+		operationBodyCache.put(operation, body);
+	}
+
+	/**
+	 * Records in the cache otherwise operated by
+	 * {@link #getCachedOperationBody(EOperation)} and
+	 * {@link #cacheOperationBody(EOperation, OCLExpression)} that for
+	 * <code>operation</code> there was no OCL body found. Afterwards, responses
+	 * from {@link #getCachedOperationBody(EOperation)} will return a special
+	 * {@link OCLExpression} that, when tested with
+	 * {@link #featureHasNonOCLDefinition(OCLExpression)}, returns
+	 * <code>true</code>
+	 */
+	public void cacheOperationHasNoOCLBody(EOperation operation) {
+		cacheOperationBody(operation, theNullExpression);
+	}
+
+	/**
+	 * Looks for a cached OCL body for <code>property</code>.
+	 * 
+	 * @return <code>null</code> in case nothing is currently known by the cache
+	 *         about <code>property</code>. If
+	 *         {@link #featureHasNonOCLDefinition(OCLExpression)} returns
+	 *         <code>true</code> for the result then this means that an attempt
+	 *         was made before to locate an OCL body for <code>property</code>,
+	 *         but none was found.
+	 */
+	public OCLExpression getCachedPropertyBody(EStructuralFeature property) {
+		return propertyBodyCache.get(property);
+	}
+	
+	/**
+	 * Caches the <code>body</code> expression for use in the
+	 * {@link EvaluationVisitorImpl} during evaluating {@link OperationCallExp}
+	 * expressions calling <code>operation</code>. The cache only weakly
+	 * references <code>operation</code> so that when it otherwise becomes
+	 * eligible for garbage collection it may get implicitly removed from the
+	 * cache.
+	 */
+	public void cachePropertyBody(EStructuralFeature property, OCLExpression body) {
+		propertyBodyCache.put(property, body);
+	}
+	
+	/**
+	 * Records in the cache otherwise operated by
+	 * {@link #getCachedPropertyBody(EStructuralFeature)} and
+	 * {@link #cachePropertyBody(EStructuralFeature, OCLExpression)} that for
+	 * <code>property</code> there was no OCL body found. Afterwards, responses
+	 * from {@link #getCachedPropertyBody(EStructuralFeature)} will return a
+	 * special {@link OCLExpression} that, when tested with
+	 * {@link #featureHasNonOCLDefinition(OCLExpression)}, returns
+	 * <code>true</code>
+	 */
+	public void cachePropertyHasNoOCLBody(EStructuralFeature property) {
+		cachePropertyBody(property, theNullExpression);
+	}
+
+	/**
+	 * Looks for a cached OCL body for the constraint named
+	 * <code>constraintName</code> on type <code>classifier</code>.
+	 * 
+	 * @return <code>null</code> in case nothing is currently known by the cache
+	 *         about the constraint named <code>constraintName</code> on type
+	 *         <code>classifier</code>. If
+	 *         {@link #featureHasNonOCLDefinition(OCLExpression)} returns
+	 *         <code>true</code> for the result then this means that an attempt
+	 *         was made before to locate the respective OCL body, but none was
+	 *         found.
+	 */
+	public OCLExpression getCachedInvariantBody(EClassifier classifier, String constraintName) {
+		Map<String, OCLExpression> constraints = invariantBodyCache.get(classifier);
+		OCLExpression result = null;
+		if (constraints != null) {
+			result = constraints.get(constraintName);
+		}
+		return result;
+	}
+	
+	/**
+	 * Caches the <code>body</code> expression for use in the
+	 * {@link OCLValidationDelegate} during validation. The cache only weakly
+	 * references <code>classifier</code> so that when it otherwise becomes
+	 * eligible for garbage collection it may get implicitly removed from the
+	 * cache.
+	 */
+	public void cacheInvariantBody(EClassifier classifier, String constraintName, OCLExpression body) {
+		Map<String, OCLExpression> constraints = invariantBodyCache.get(classifier);
+		if (constraints == null) {
+			constraints = new HashMap<String, OCLExpression>();
+			invariantBodyCache.put(classifier, constraints);
+		}
+		constraints.put(constraintName, body);
+	}
+
+	/**
+	 * Records in the cache otherwise operated by
+	 * {@link #getCachedInvariantBody(EClassifier, String)} and
+	 * {@link #cacheInvariantBody(EClassifier, String, OCLExpression)} that for
+	 * <code>classifier</code> for the constraint named <code>constraintName</code>
+	 * there was no OCL body found. Afterwards, responses from
+	 * {@link #getCachedInvariantBody(EClassifier, constraintName)} will return a
+	 * special {@link OCLExpression} that, when tested with
+	 * {@link #featureHasNonOCLDefinition(OCLExpression)}, returns
+	 * <code>true</code>
+	 */
+	public void cacheInvariantHasNoOCLBody(EClassifier classifier, String constraintName) {
+		cacheInvariantBody(classifier, constraintName, theNullExpression);
+	}
+	
+	/**
+	 * Checks if the response from {@link #getCachedOperationBody(EOperation)}
+	 * or {@link #getCachedPropertyBody(EStructuralFeature)} indicates that
+	 * there is no OCL-defined body for the respective feature.
+	 */
+	public boolean featureHasNonOCLDefinition(OCLExpression cacheResponse) {
+		return cacheResponse == theNullExpression;
 	}
 }
