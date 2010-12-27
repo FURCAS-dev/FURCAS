@@ -7,7 +7,7 @@
 package com.sap.furcas.metamodel.FURCAS.TCS.provider;
 
 
-import com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 import java.util.Collection;
@@ -27,12 +27,12 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg} object.
+ * This is the item provider adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class QueryByIdentifierPArgItemProvider
+public class FilterByIdentifierPArgItemProvider
     extends PropertyArgItemProvider
     implements
         IEditingDomainItemProvider,
@@ -46,7 +46,7 @@ public class QueryByIdentifierPArgItemProvider
      * <!-- end-user-doc -->
      * @generated
      */
-    public QueryByIdentifierPArgItemProvider(AdapterFactory adapterFactory) {
+    public FilterByIdentifierPArgItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -61,26 +61,26 @@ public class QueryByIdentifierPArgItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addQueryPropertyDescriptor(object);
-            addFeaturePropertyDescriptor(object);
+            addFilterPropertyDescriptor(object);
+            addCriterionPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This adds a property descriptor for the Query feature.
+     * This adds a property descriptor for the Filter feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addQueryPropertyDescriptor(Object object) {
+    protected void addFilterPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_QueryByIdentifierPArg_query_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_QueryByIdentifierPArg_query_feature", "_UI_QueryByIdentifierPArg_type"),
-                 TCSPackage.Literals.QUERY_BY_IDENTIFIER_PARG__QUERY,
+                 getString("_UI_FilterByIdentifierPArg_filter_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FilterByIdentifierPArg_filter_feature", "_UI_FilterByIdentifierPArg_type"),
+                 TCSPackage.Literals.FILTER_BY_IDENTIFIER_PARG__FILTER,
                  true,
                  false,
                  false,
@@ -90,19 +90,19 @@ public class QueryByIdentifierPArgItemProvider
     }
 
     /**
-     * This adds a property descriptor for the Feature feature.
+     * This adds a property descriptor for the Criterion feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addFeaturePropertyDescriptor(Object object) {
+    protected void addCriterionPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_QueryByIdentifierPArg_feature_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_QueryByIdentifierPArg_feature_feature", "_UI_QueryByIdentifierPArg_type"),
-                 TCSPackage.Literals.QUERY_BY_IDENTIFIER_PARG__FEATURE,
+                 getString("_UI_FilterByIdentifierPArg_criterion_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FilterByIdentifierPArg_criterion_feature", "_UI_FilterByIdentifierPArg_type"),
+                 TCSPackage.Literals.FILTER_BY_IDENTIFIER_PARG__CRITERION,
                  true,
                  false,
                  false,
@@ -112,14 +112,14 @@ public class QueryByIdentifierPArgItemProvider
     }
 
     /**
-     * This returns QueryByIdentifierPArg.gif.
+     * This returns FilterByIdentifierPArg.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/QueryByIdentifierPArg"));
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/FilterByIdentifierPArg"));
     }
 
     /**
@@ -130,10 +130,10 @@ public class QueryByIdentifierPArgItemProvider
      */
     @Override
     public String getText(Object object) {
-        String label = ((QueryByIdentifierPArg)object).getLocation();
+        String label = ((FilterByIdentifierPArg)object).getLocation();
         return label == null || label.length() == 0 ?
-            getString("_UI_QueryByIdentifierPArg_type") :
-            getString("_UI_QueryByIdentifierPArg_type") + " " + label;
+            getString("_UI_FilterByIdentifierPArg_type") :
+            getString("_UI_FilterByIdentifierPArg_type") + " " + label;
     }
 
     /**
@@ -147,9 +147,9 @@ public class QueryByIdentifierPArgItemProvider
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
-        switch (notification.getFeatureID(QueryByIdentifierPArg.class)) {
-            case TCSPackage.QUERY_BY_IDENTIFIER_PARG__QUERY:
-            case TCSPackage.QUERY_BY_IDENTIFIER_PARG__FEATURE:
+        switch (notification.getFeatureID(FilterByIdentifierPArg.class)) {
+            case TCSPackage.FILTER_BY_IDENTIFIER_PARG__FILTER:
+            case TCSPackage.FILTER_BY_IDENTIFIER_PARG__CRITERION:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }

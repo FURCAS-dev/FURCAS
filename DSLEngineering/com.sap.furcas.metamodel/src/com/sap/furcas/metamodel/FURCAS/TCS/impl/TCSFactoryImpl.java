@@ -204,7 +204,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
             case TCSPackage.FORCED_UPPER_PARG: return createForcedUpperPArg();
             case TCSPackage.INJECTOR_ACTIONS_BLOCK: return createInjectorActionsBlock();
             case TCSPackage.QUERY_PARG: return createQueryPArg();
-            case TCSPackage.QUERY_BY_IDENTIFIER_PARG: return createQueryByIdentifierPArg();
+            case TCSPackage.FILTER_BY_IDENTIFIER_PARG: return createFilterByIdentifierPArg();
             case TCSPackage.FILTER_PARG: return createFilterPArg();
             case TCSPackage.PROPERTY_REFERENCE: return createPropertyReference();
             case TCSPackage.CONTEXT_TEMPLATE: return createContextTemplate();
@@ -878,9 +878,9 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public QueryByIdentifierPArg createQueryByIdentifierPArg() {
-        QueryByIdentifierPArgImpl queryByIdentifierPArg = new QueryByIdentifierPArgImpl();
-        return queryByIdentifierPArg;
+    public FilterByIdentifierPArg createFilterByIdentifierPArg() {
+        FilterByIdentifierPArgImpl filterByIdentifierPArg = new FilterByIdentifierPArgImpl();
+        return filterByIdentifierPArg;
     }
 
         /**

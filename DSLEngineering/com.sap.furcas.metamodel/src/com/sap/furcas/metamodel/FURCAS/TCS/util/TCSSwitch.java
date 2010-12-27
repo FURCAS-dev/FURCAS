@@ -761,11 +761,11 @@ public class TCSSwitch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case TCSPackage.QUERY_BY_IDENTIFIER_PARG: {
-                QueryByIdentifierPArg queryByIdentifierPArg = (QueryByIdentifierPArg)theEObject;
-                T result = caseQueryByIdentifierPArg(queryByIdentifierPArg);
-                if (result == null) result = casePropertyArg(queryByIdentifierPArg);
-                if (result == null) result = caseLocatedElement(queryByIdentifierPArg);
+            case TCSPackage.FILTER_BY_IDENTIFIER_PARG: {
+                FilterByIdentifierPArg filterByIdentifierPArg = (FilterByIdentifierPArg)theEObject;
+                T result = caseFilterByIdentifierPArg(filterByIdentifierPArg);
+                if (result == null) result = casePropertyArg(filterByIdentifierPArg);
+                if (result == null) result = caseLocatedElement(filterByIdentifierPArg);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -2019,17 +2019,17 @@ public class TCSSwitch<T> {
     }
 
         /**
-     * Returns the result of interpreting the object as an instance of '<em>Query By Identifier PArg</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Filter By Identifier PArg</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Query By Identifier PArg</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Filter By Identifier PArg</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseQueryByIdentifierPArg(QueryByIdentifierPArg object) {
+    public T caseFilterByIdentifierPArg(FilterByIdentifierPArg object) {
         return null;
     }
 
