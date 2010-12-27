@@ -6,7 +6,7 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -17,65 +17,65 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Query By Identifier PArg</b></em>'.
+ * An implementation of the model object '<em><b>Filter By Identifier PArg</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.QueryByIdentifierPArgImpl#getQuery <em>Query</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.QueryByIdentifierPArgImpl#getFeature <em>Feature</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.FilterByIdentifierPArgImpl#getFilter <em>Filter</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.FilterByIdentifierPArgImpl#getCriterion <em>Criterion</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class QueryByIdentifierPArgImpl extends PropertyArgImpl implements QueryByIdentifierPArg {
+public class FilterByIdentifierPArgImpl extends PropertyArgImpl implements FilterByIdentifierPArg {
     /**
-     * The default value of the '{@link #getQuery() <em>Query</em>}' attribute.
+     * The default value of the '{@link #getFilter() <em>Filter</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getQuery()
+     * @see #getFilter()
      * @generated
      * @ordered
      */
-    protected static final String QUERY_EDEFAULT = null;
+    protected static final String FILTER_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getQuery() <em>Query</em>}' attribute.
+     * The cached value of the '{@link #getFilter() <em>Filter</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getQuery()
+     * @see #getFilter()
      * @generated
      * @ordered
      */
-    protected String query = QUERY_EDEFAULT;
+    protected String filter = FILTER_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getFeature() <em>Feature</em>}' attribute.
+     * The default value of the '{@link #getCriterion() <em>Criterion</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFeature()
+     * @see #getCriterion()
      * @generated
      * @ordered
      */
-    protected static final String FEATURE_EDEFAULT = null;
+    protected static final String CRITERION_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getFeature() <em>Feature</em>}' attribute.
+     * The cached value of the '{@link #getCriterion() <em>Criterion</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFeature()
+     * @see #getCriterion()
      * @generated
      * @ordered
      */
-    protected String feature = FEATURE_EDEFAULT;
+    protected String criterion = CRITERION_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected QueryByIdentifierPArgImpl() {
+    protected FilterByIdentifierPArgImpl() {
         super();
     }
 
@@ -86,7 +86,7 @@ public class QueryByIdentifierPArgImpl extends PropertyArgImpl implements QueryB
      */
     @Override
     protected EClass eStaticClass() {
-        return TCSPackage.Literals.QUERY_BY_IDENTIFIER_PARG;
+        return TCSPackage.Literals.FILTER_BY_IDENTIFIER_PARG;
     }
 
     /**
@@ -94,8 +94,8 @@ public class QueryByIdentifierPArgImpl extends PropertyArgImpl implements QueryB
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getQuery() {
-        return query;
+    public String getFilter() {
+        return filter;
     }
 
     /**
@@ -103,11 +103,11 @@ public class QueryByIdentifierPArgImpl extends PropertyArgImpl implements QueryB
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setQuery(String newQuery) {
-        String oldQuery = query;
-        query = newQuery;
+    public void setFilter(String newFilter) {
+        String oldFilter = filter;
+        filter = newFilter;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.QUERY_BY_IDENTIFIER_PARG__QUERY, oldQuery, query));
+            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.FILTER_BY_IDENTIFIER_PARG__FILTER, oldFilter, filter));
     }
 
     /**
@@ -115,8 +115,8 @@ public class QueryByIdentifierPArgImpl extends PropertyArgImpl implements QueryB
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getFeature() {
-        return feature;
+    public String getCriterion() {
+        return criterion;
     }
 
     /**
@@ -124,11 +124,11 @@ public class QueryByIdentifierPArgImpl extends PropertyArgImpl implements QueryB
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setFeature(String newFeature) {
-        String oldFeature = feature;
-        feature = newFeature;
+    public void setCriterion(String newCriterion) {
+        String oldCriterion = criterion;
+        criterion = newCriterion;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.QUERY_BY_IDENTIFIER_PARG__FEATURE, oldFeature, feature));
+            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.FILTER_BY_IDENTIFIER_PARG__CRITERION, oldCriterion, criterion));
     }
 
     /**
@@ -139,10 +139,10 @@ public class QueryByIdentifierPArgImpl extends PropertyArgImpl implements QueryB
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case TCSPackage.QUERY_BY_IDENTIFIER_PARG__QUERY:
-                return getQuery();
-            case TCSPackage.QUERY_BY_IDENTIFIER_PARG__FEATURE:
-                return getFeature();
+            case TCSPackage.FILTER_BY_IDENTIFIER_PARG__FILTER:
+                return getFilter();
+            case TCSPackage.FILTER_BY_IDENTIFIER_PARG__CRITERION:
+                return getCriterion();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -155,11 +155,11 @@ public class QueryByIdentifierPArgImpl extends PropertyArgImpl implements QueryB
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case TCSPackage.QUERY_BY_IDENTIFIER_PARG__QUERY:
-                setQuery((String)newValue);
+            case TCSPackage.FILTER_BY_IDENTIFIER_PARG__FILTER:
+                setFilter((String)newValue);
                 return;
-            case TCSPackage.QUERY_BY_IDENTIFIER_PARG__FEATURE:
-                setFeature((String)newValue);
+            case TCSPackage.FILTER_BY_IDENTIFIER_PARG__CRITERION:
+                setCriterion((String)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -173,11 +173,11 @@ public class QueryByIdentifierPArgImpl extends PropertyArgImpl implements QueryB
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case TCSPackage.QUERY_BY_IDENTIFIER_PARG__QUERY:
-                setQuery(QUERY_EDEFAULT);
+            case TCSPackage.FILTER_BY_IDENTIFIER_PARG__FILTER:
+                setFilter(FILTER_EDEFAULT);
                 return;
-            case TCSPackage.QUERY_BY_IDENTIFIER_PARG__FEATURE:
-                setFeature(FEATURE_EDEFAULT);
+            case TCSPackage.FILTER_BY_IDENTIFIER_PARG__CRITERION:
+                setCriterion(CRITERION_EDEFAULT);
                 return;
         }
         super.eUnset(featureID);
@@ -191,10 +191,10 @@ public class QueryByIdentifierPArgImpl extends PropertyArgImpl implements QueryB
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case TCSPackage.QUERY_BY_IDENTIFIER_PARG__QUERY:
-                return QUERY_EDEFAULT == null ? query != null : !QUERY_EDEFAULT.equals(query);
-            case TCSPackage.QUERY_BY_IDENTIFIER_PARG__FEATURE:
-                return FEATURE_EDEFAULT == null ? feature != null : !FEATURE_EDEFAULT.equals(feature);
+            case TCSPackage.FILTER_BY_IDENTIFIER_PARG__FILTER:
+                return FILTER_EDEFAULT == null ? filter != null : !FILTER_EDEFAULT.equals(filter);
+            case TCSPackage.FILTER_BY_IDENTIFIER_PARG__CRITERION:
+                return CRITERION_EDEFAULT == null ? criterion != null : !CRITERION_EDEFAULT.equals(criterion);
         }
         return super.eIsSet(featureID);
     }
@@ -209,12 +209,12 @@ public class QueryByIdentifierPArgImpl extends PropertyArgImpl implements QueryB
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (query: ");
-        result.append(query);
-        result.append(", feature: ");
-        result.append(feature);
+        result.append(" (filter: ");
+        result.append(filter);
+        result.append(", criterion: ");
+        result.append(criterion);
         result.append(')');
         return result.toString();
     }
 
-} //QueryByIdentifierPArgImpl
+} //FilterByIdentifierPArgImpl
