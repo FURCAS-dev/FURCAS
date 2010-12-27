@@ -34,7 +34,7 @@ public enum EnumTp implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LABEL1(0, "Label1", "Label1"),
+	LABEL1(0, "Label1", "Label1"),  //$NON-NLS-1$//$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Label2</b></em>' literal object.
@@ -44,7 +44,7 @@ public enum EnumTp implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LABEL2(1, "Label2", "Label2"),
+	LABEL2(1, "Label2", "Label2"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Label3</b></em>' literal object.
@@ -54,7 +54,7 @@ public enum EnumTp implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LABEL3(2, "Label3", "Label3"),
+	LABEL3(2, "Label3", "Label3"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Label4</b></em>' literal object.
@@ -64,7 +64,7 @@ public enum EnumTp implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LABEL4(3, "Label4", "Label4"),
+	LABEL4(3, "Label4", "Label4"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Label5</b></em>' literal object.
@@ -74,7 +74,7 @@ public enum EnumTp implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LABEL5(4, "Label5", "Label5"),
+	LABEL5(4, "Label5", "Label5"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Label6</b></em>' literal object.
@@ -84,7 +84,7 @@ public enum EnumTp implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LABEL6(5, "Label6", "Label6"),
+	LABEL6(5, "Label6", "Label6"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Label7</b></em>' literal object.
@@ -94,7 +94,7 @@ public enum EnumTp implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LABEL7(6, "Label7", "Label7"),
+	LABEL7(6, "Label7", "Label7"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Label8</b></em>' literal object.
@@ -104,7 +104,7 @@ public enum EnumTp implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LABEL8(7, "Label8", "Label8"),
+	LABEL8(7, "Label8", "Label8"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Label9</b></em>' literal object.
@@ -114,7 +114,7 @@ public enum EnumTp implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LABEL9(8, "Label9", "Label9"),
+	LABEL9(8, "Label9", "Label9"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Label10</b></em>' literal object.
@@ -124,7 +124,7 @@ public enum EnumTp implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LABEL10(9, "Label10", "Label10");
+	LABEL10(9, "Label10", "Label10"); //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Label1</b></em>' literal value.
