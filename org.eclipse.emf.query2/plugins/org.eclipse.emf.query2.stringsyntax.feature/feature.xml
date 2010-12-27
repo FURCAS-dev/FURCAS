@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.emf.query2.stringsyntax.feature"
-      label="EMF Query2 String Syntax Feature"
+      label="%featureName"
       version="1.0.0.qualifier"
-      provider-name="Eclipse Modeling Project">
+      provider-name="%providerName">
 
    <description url="http://www.eclipse.org/modeling/emf/">
       %description
