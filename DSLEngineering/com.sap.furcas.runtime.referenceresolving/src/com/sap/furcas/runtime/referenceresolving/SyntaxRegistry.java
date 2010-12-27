@@ -112,7 +112,7 @@ public class SyntaxRegistry implements BundleActivator {
                 monitor.worked(1);
             }
             Template template = property.getParentTemplate();
-            if (template != null && template instanceof ClassTemplate && TcsUtil.getQueryByIdentifierPArg(property) != null) {
+            if (template != null && template instanceof ClassTemplate && TcsUtil.getFilterByIdentifierPArg(property) != null) {
                 triggerManager.register(new OCLQueryPropertyUpdater(property, metamodelPackageRegistry, oppositeEndFinder));
             }
         }
