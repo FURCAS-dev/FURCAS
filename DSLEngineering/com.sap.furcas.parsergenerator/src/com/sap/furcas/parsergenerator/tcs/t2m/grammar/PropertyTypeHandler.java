@@ -10,6 +10,7 @@ package com.sap.furcas.parsergenerator.tcs.t2m.grammar;
 
 import static com.sap.furcas.parsergenerator.util.StringConcatUtil.concatBuf;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -24,6 +25,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.CreateAsPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.CreateInPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.DisambiguatePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg;
@@ -36,7 +38,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
 import com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement;
-import com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg;
@@ -136,18 +137,10 @@ public class PropertyTypeHandler<Type extends Object> {
                     propertyOwnerTypeTemplate, resolutionHelper, metaLookup);
 
             StringBuilder repeatablePart = new StringBuilder();
-            if (args.refersTo != null) { // need resolving of reference
-                if (args.oclQueryPArg != null) {
-                    addQueriedReferenceCode(prop, repeatablePart, metaModelTypeOfProperty, propertyName, args);
-                } else {
-                    addRefersToCode(prop, repeatablePart, metaModelTypeOfProperty, propertyName, args);
-                }
-            } else if (args.asPArg != null && args.oclQueryPArg != null) {
-                // it is also allowed to use the query arg while specifying a
-                // template for parsing the written reference value.
+            if (args.oclQueryPArg != null) {
                 addQueriedReferenceCode(prop, repeatablePart, metaModelTypeOfProperty, propertyName, args);
-            } else if (args.oclQueryByIdentifierPArg != null) {
-                addQueriedReferenceCode(prop, repeatablePart, metaModelTypeOfProperty, propertyName, args);
+            } else if (args.refersTo != null) { // need resolving of reference
+               addRefersToCode(prop, repeatablePart, metaModelTypeOfProperty, propertyName, args);
             } else { // property not to be referenced but used within
                 repeatablePart.append(" temp=");
                 if (args.asPArg != null) {
@@ -233,9 +226,14 @@ public class PropertyTypeHandler<Type extends Object> {
      * @param args
      */
     private void validateArgs(PropertyArgs args) {
+        // TODO do not hard code check for "?".
+        if (args.oclQueryPArg != null && args.oclQueryPArg.getQuery().contains("?")) {
+            errorBucket.addWarning("Usage of '?' directly within queries is discouraged. " +
+            	"Use the filter mechanism instead.", args.oclQueryPArg);
+        }
         if (args.refersTo == null) {
             if (args.oclQueryPArg != null && args.asPArg == null) {
-                errorBucket.addWarning("Query only possible with refersTo or as", args.oclQueryPArg);
+                errorBucket.addWarning("Query only possible with refersTo or as.", args.oclQueryPArg);
             }
             if (args.autoCreatePArg != null) {
                 errorBucket.addWarning("AutoCreate only possible with refersTo", args.autoCreatePArg);
@@ -252,7 +250,12 @@ public class PropertyTypeHandler<Type extends Object> {
             if (args.importContextPArg != null) {
                 errorBucket.addWarning("ImportContext only possible with refersTo", args.importContextPArg);
             }
+            if (args.oclFilterPArg != null && args.oclFilterByIdentifierPArg != null) {
+                errorBucket.addWarning("Cannot use both OCL filter mechanisms simulatenously. " +
+                        "Generic filter/invert combination is ignored.", args.asPArg);
+            }
         } else {
+            errorBucket.addWarning("RefersTo is deprecated. Use As instead.", args.refersTo);
             if (args.oclQueryPArg != null) {
                 if (args.autoCreatePArg != null) {
                     errorBucket.addWarning("AutoCreate ignored when query is given", args.autoCreatePArg);
@@ -276,7 +279,12 @@ public class PropertyTypeHandler<Type extends Object> {
             if (args.modePArg != null) {
                 errorBucket.addWarning("Mode only possible without refersTo", args.modePArg);
             }
-
+            if (args.oclQueryPArg != null && args.asPArg == null) {
+                errorBucket.addError("OCL query filer/invert only possible without refersTo", args.refersTo);
+            }
+            if (args.oclFilterByIdentifierPArg != null) {
+                errorBucket.addError("OCL identifier-based query filter only possible without refersTo", args.refersTo);
+            }
         }
     }
 
@@ -317,12 +325,13 @@ public class PropertyTypeHandler<Type extends Object> {
         // creates the bit that sets the temp from above as reference to
         // modelElement "ret" of this rule
         
-        // TODO: cleanup required: remove oclQueryPArg handling
+        // TODO: cleanup required: remove oclQueryPArg handling.
+        // As of now, if we have both filter mechanism defined, then the byIdentifierFilter is preferred.
         String query = null;
-        if (args.oclQueryByIdentifierPArg == null) {
+        if (args.oclFilterByIdentifierPArg == null) {
             query = args.oclQueryPArg.getQuery() + (args.oclFilterPArg != null ? args.oclFilterPArg.getFilter() : "");
         } else {
-            query = args.oclQueryByIdentifierPArg.getQuery() + "->select(" +  args.oclQueryByIdentifierPArg.getFeature() + " = ?)";
+            query = args.oclQueryPArg.getQuery() + "->select(" + args.oclFilterByIdentifierPArg.getFilter() + " = " +  args.oclFilterByIdentifierPArg.getCriterion() + ")";
         }
         String oclQuery = TcsUtil.escapeMultiLineOclQuery(query);
 
@@ -446,6 +455,16 @@ public class PropertyTypeHandler<Type extends Object> {
                 }
                 ruleBodyPart.append(asRule);
             }
+            
+        } else if (args.oclFilterByIdentifierPArg != null) {
+            // The queryByIdentifier feature only works together with strings. We thus have to use
+            // the default string template for serializing.
+            // TODO: find a way to retrieve it in a metamodel independent way. (we should not hardcode EString here!)
+            List<String> qualifiedNameOfString = new ArrayList<String>();
+            qualifiedNameOfString.add("ecore"); qualifiedNameOfString.add("EString");
+            ResolvedNameAndReferenceBean<Type> metaModelTypeOfString = metaLookup.resolveReference(qualifiedNameOfString);
+            PrimitiveTemplate propertyPrimitiveTemplate = syntaxLookup.getDefaultPrimitiveTemplateRule(metaModelTypeOfString);
+            ruleBodyPart.append(propertyPrimitiveTemplate.getTemplateName());
         } else {
             PrimitiveTemplate propertyPrimitiveTemplate = syntaxLookup.getDefaultPrimitiveTemplateRule(metaModelTypeOfPropertyReference);
             // if this is null, then there is no primitive template for this, so
@@ -457,12 +476,7 @@ public class PropertyTypeHandler<Type extends Object> {
             if (isPrimitive) { // if primitive use the default primitive template
                 ruleBodyPart.append(propertyPrimitiveTemplate.getTemplateName());
             } else {
-                String propertyName = null;
-                if (args.oclQueryByIdentifierPArg == null) {
-                    propertyName = args.refersTo.getPropertyName();
-                } else {
-                    propertyName = args.oclQueryByIdentifierPArg.getFeature();
-                }
+                String propertyName = args.refersTo.getPropertyName();
                 ResolvedNameAndReferenceBean<Type> referredFeatureType = metaLookup.getFeatureClassReference(metaModelTypeOfPropertyReference, propertyName);
                 if (referredFeatureType == null) {
                     errorBucket.addError("Type " + metaModelTypeOfPropertyReference + " has no feature " + propertyName, prop);
@@ -735,19 +749,14 @@ public class PropertyTypeHandler<Type extends Object> {
      */
     protected static final class PropertyArgs {
 
-        /** The separator. */
         public SeparatorPArg separator;
 
-        /** The refers to. */
         public RefersToPArg refersTo;
 
-        /** The forced lower. */
         public ForcedLowerPArg forcedLower;
 
-        /** The forced upper. */
         public ForcedUpperPArg forcedUpper;
 
-        /** The as p arg. */
         public AsPArg asPArg;
 
         public LookInPArg lookInPArg;
@@ -764,13 +773,13 @@ public class PropertyTypeHandler<Type extends Object> {
 
         public PartialPArg partialPArg;
 
-        private QueryPArg oclQueryPArg;
+        public QueryPArg oclQueryPArg;
 
-        private FilterPArg oclFilterPArg;
+        public FilterPArg oclFilterPArg;
 
-        private QueryByIdentifierPArg oclQueryByIdentifierPArg;
+        public FilterByIdentifierPArg oclFilterByIdentifierPArg;
 
-        private DisambiguatePArg disambiguatePArg;
+        public DisambiguatePArg disambiguatePArg;
         
 
         /**
@@ -854,11 +863,11 @@ public class PropertyTypeHandler<Type extends Object> {
                         throw new SyntaxElementException("Double definition of filterParg", oclFilterPArg);
                     }
                     oclFilterPArg = (FilterPArg) propertyArg;
-                } else if (propertyArg instanceof QueryByIdentifierPArg) {
-                    if (oclQueryByIdentifierPArg != null) {
-                        throw new SyntaxElementException("Double definition of queryByIdentifierPArg", oclQueryByIdentifierPArg);
+                } else if (propertyArg instanceof FilterByIdentifierPArg) {
+                    if (oclFilterByIdentifierPArg != null) {
+                        throw new SyntaxElementException("Double definition of filterByIdentifierPArg", oclFilterByIdentifierPArg);
                     }
-                    oclQueryByIdentifierPArg = (QueryByIdentifierPArg) propertyArg;
+                    oclFilterByIdentifierPArg = (FilterByIdentifierPArg) propertyArg;
                 } else if (propertyArg instanceof DisambiguatePArg) {
                     if (disambiguatePArg != null) {
                         throw new SyntaxElementException("Double definition of disambiguateParg", oclQueryPArg);

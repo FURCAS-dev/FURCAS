@@ -19,7 +19,7 @@ syntax QueryByIdentifierFeatureTestSyntax {
     ;
 
   template Usage 
-    : "use" boundDefinition{queryByIdentifier="OCL:self.parentList.definitions", feature=name} ";"
+    : "use" boundDefinition{query="OCL:self.parentList.definitions", "name"="?"} ";"
     ;
 
   omitted token COMMENT : endOfLine(start = "//");

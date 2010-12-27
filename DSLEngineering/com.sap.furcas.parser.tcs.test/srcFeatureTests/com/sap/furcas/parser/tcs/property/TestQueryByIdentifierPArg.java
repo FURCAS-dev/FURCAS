@@ -28,8 +28,8 @@ import com.sap.furcas.test.fixture.FeatureFixtureData;
 import com.sap.furcas.test.testutils.ResourceTestHelper;
 
 /**
- * A test for the queryByIdentifier property argument, which can be used to
- * query for elements by an identifier (e.g., find a declaration by its name).
+ * A test for the combination of query and filterByIdentifier property arguments,
+ * which can be used to query for elements by an identifier (e.g., find a declaration by its name).
  * 
  * @author Stephan Erb
  */

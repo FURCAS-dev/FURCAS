@@ -7,7 +7,7 @@ import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.emf.ocl.trigger.ExpressionWithContext;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
-import com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 import com.sap.furcas.runtime.tcs.TcsUtil;
@@ -46,7 +46,7 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
     }
 
     private static String getExpressionString(Property propertyInit) {
-        QueryByIdentifierPArg qarg = TcsUtil.getQueryByIdentifierPArg(propertyInit);
+        FilterByIdentifierPArg qarg = TcsUtil.getFilterByIdentifierPArg(propertyInit);
         if (qarg == null) {
             throw new RuntimeException("Didn't find a query argument in rule for property "+propertyInit.getPropertyReference().getStrucfeature());
         }

@@ -78,7 +78,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
-import com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Rule;
@@ -803,17 +803,17 @@ public class TcsUtil {
     }
 
     /**
-     * returns the first {@link QueryByIdentifierPArg} of Property p. There should only be one. No error is thrown, if
+     * returns the first {@link FilterByIdentifierPArg} of Property p. There should only be one. No error is thrown, if
      * more than one exist.
      * 
      * @param p
      *            Property
      * @return first QueryPArg
      */
-    public static QueryByIdentifierPArg getQueryByIdentifierPArg(Property p) {
+    public static FilterByIdentifierPArg getFilterByIdentifierPArg(Property p) {
         for (PropertyArg arg : p.getPropertyArgs()) {
-            if (arg instanceof QueryByIdentifierPArg) {
-                return (QueryByIdentifierPArg) arg;
+            if (arg instanceof FilterByIdentifierPArg) {
+                return (FilterByIdentifierPArg) arg;
             }
         }
         return null;
