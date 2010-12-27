@@ -79,13 +79,13 @@ public class IndexQueryServiceTestCase extends QueryTestCase {
 	public void testGetLinkedPartitions() {
 
 		final Resource notLinkedResource = this.testClient1.getOrCreateResourceStable(this.getClass().getName()
-				+ ".testGetLinkedPartitions_notLinked.xmi");
+				+ ".testGetLinkedPartitions_notLinked.xmi"); //$NON-NLS-1$
 		final Resource linkTargetResource = this.testClient1.getOrCreateResourceStable(this.getClass().getName()
-				+ ".testGetLinkedPartitions_target.xmi");
+				+ ".testGetLinkedPartitions_target.xmi"); //$NON-NLS-1$
 		final Resource invalidLinkTargetResource = this.testClient1.getOrCreateResourceStable(this.getClass().getName()
-				+ ".testGetLinkedPartitions_invalidTarget.xmi");
+				+ ".testGetLinkedPartitions_invalidTarget.xmi"); //$NON-NLS-1$
 		final Resource linkSourceResource = this.testClient1.getOrCreateResourceStable(this.getClass().getName()
-				+ ".testGetLinkedPartitions_source.xmi");
+				+ ".testGetLinkedPartitions_source.xmi"); //$NON-NLS-1$
 
 		B2 b1 = Case002Factory.eINSTANCE.createB2();
 		B2 b2 = Case002Factory.eINSTANCE.createB2();

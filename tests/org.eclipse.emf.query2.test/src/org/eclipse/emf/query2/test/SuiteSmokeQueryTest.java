@@ -36,7 +36,7 @@ public class SuiteSmokeQueryTest extends BaseSyntheticQueryTest {
         instSize = 8;
         partSize = 8;
 
-        partitionNameAppendix = "";
+        partitionNameAppendix = ""; //$NON-NLS-1$
         partitionScope = null;
         partitionScopeInclusive = true;
 
@@ -68,7 +68,7 @@ public class SuiteSmokeQueryTest extends BaseSyntheticQueryTest {
 
         boolean correct = super.basic_get_attributes_ast( );
 
-        assertTrue( "ResultSet is not correct", correct );
+        assertTrue( Messages.Query2CoreTest_SuiteSmokeQueryTest_IncorrectResultSet, correct );
     }
 
     @Test
@@ -76,7 +76,7 @@ public class SuiteSmokeQueryTest extends BaseSyntheticQueryTest {
 
         boolean correct = super.basic_get_mris_ast( );
 
-        assertTrue( "ResultSet is of wrong size", correct );
+        assertTrue( Messages.Query2CoreTest_SuiteSmokeQueryTest_WrongResultSetSize, correct );
     }
 
     @Test
@@ -84,6 +84,6 @@ public class SuiteSmokeQueryTest extends BaseSyntheticQueryTest {
 
         boolean correct = super.complex_assoc_grid_ast( );
 
-        assertTrue( "ResultSet is not correct", correct );
+        assertTrue( Messages.Query2CoreTest_SuiteSmokeQueryTest_IncorrectResultSet, correct );
     }
 }
