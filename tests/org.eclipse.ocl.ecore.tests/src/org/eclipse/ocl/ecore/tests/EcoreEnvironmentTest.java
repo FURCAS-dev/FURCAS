@@ -12,10 +12,11 @@
  *   Zeligsoft - Bug 248869
  *   Borland - Bug 242880
  *   E.D.Willink - Bug 295166
+ *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Bug 333032
  *
  * </copyright>
  *
- * $Id: EcoreEnvironmentTest.java,v 1.10 2010/02/09 21:04:27 ewillink Exp $
+ * $Id: EcoreEnvironmentTest.java,v 1.11 2010/12/24 10:18:04 asanchez Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -234,8 +235,8 @@ public class EcoreEnvironmentTest
 	}
 
 	class MyEvaluationEnvironment extends EcoreEvaluationEnvironment {
-	    MyEvaluationEnvironment() {
-	        super();
+	    MyEvaluationEnvironment(MyEnvironmentFactory factory) {
+	        super(factory);
 	    }
 
 	    MyEvaluationEnvironment(
@@ -286,7 +287,7 @@ public class EcoreEnvironmentTest
 	    @Override
         public EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject>
 	    createEvaluationEnvironment() {
-	        return new MyEvaluationEnvironment();
+	        return new MyEvaluationEnvironment(this);
 	    }
 
 	    @Override
