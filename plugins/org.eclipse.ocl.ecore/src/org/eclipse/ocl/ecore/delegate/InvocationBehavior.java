@@ -27,7 +27,6 @@ import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.ExpressionInOCL;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
-import org.eclipse.ocl.ecore.internal.OCLEcorePlugin;
 
 /**
  * @since 3.0
@@ -79,10 +78,9 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 		if (result != null) {
 			return result;
 		}
-		OCLEcorePlugin pluginInstance = OCLEcorePlugin.getInstance();
 		String expr = EcoreUtil.getAnnotation(operation, OCLDelegateDomain.OCL_DELEGATE_URI, BODY_CONSTRAINT_KEY);
 		if (expr == null) {
-			pluginInstance.cacheOperationHasNoOCLBody(operation);
+			cacheThatItHasNoOCLBody(operation);
 			return null;
 		}
 		OCLExpression body = null;
@@ -104,7 +102,7 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 			return null;
 		}
 		body = (OCLExpression) specification.getBodyExpression();
-		pluginInstance.cacheOperationBody(operation, body);
+		cacheOCLExpression(operation, body);
 		return body;
 	}
 
@@ -115,14 +113,13 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 	 * @since 3.1
 	 */
 	public OCLExpression getCachedOperationBody(EOperation operation) {
-		OCLEcorePlugin pluginInstance = OCLEcorePlugin.getInstance();
-		OCLExpression result = pluginInstance.getCachedOperationBody(operation);
+		OCLExpression result = getCachedOCLExpression(operation);
 		if (result == null) {
 			result = getCachedExpression(operation, BODY_CONSTRAINT_KEY);
 			if (result != null) {
-				pluginInstance.cacheOperationBody(operation, result);
+				cacheOCLExpression(operation, result);
 			}
-		} else if (pluginInstance.featureHasNonOCLDefinition(result)) {
+		} else if (hasNoOCLDefinition(result)) {
 			result = null; // clients can find that out by asking hasUncomiledOperationBody
 		}
 		return result;
