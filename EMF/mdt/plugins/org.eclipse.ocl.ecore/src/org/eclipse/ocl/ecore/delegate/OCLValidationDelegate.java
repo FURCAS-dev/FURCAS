@@ -27,7 +27,6 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
-import org.eclipse.ocl.ecore.internal.OCLEcorePlugin;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.osgi.util.NLS;
@@ -98,7 +97,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 			delegateDomain.getOCL(), invariant);
 		if (query == null) {
 			query = createQuery(expression);
-			OCLEcorePlugin.getInstance().cacheOperationBody(invariant, query);
+			InvocationBehavior.INSTANCE.cacheOCLExpression(invariant, query);
 		}
 		return check(eObject, invariant.getName(), query);
 	}
@@ -109,7 +108,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 			constraint, delegateDomain.getOCL());
 		if (query == null) {
 			query = createQuery(expression);
-			OCLEcorePlugin.INSTANCE.cacheInvariantBody(eClass, constraint, query);
+			ValidationBehavior.INSTANCE.cacheInvariantBody(eClass, constraint, query);
 		}
 		return check(eObject, constraint, query);
 	}
@@ -120,7 +119,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 			eDataType, constraint);
 		if (query == null) {
 			query = createQuery(expression);
-			OCLEcorePlugin.getInstance().cacheInvariantBody(eDataType, constraint, query);
+			ValidationBehavior.INSTANCE.cacheInvariantBody(eDataType, constraint, query);
 		}
 		return check(value, constraint, query);
 	}
