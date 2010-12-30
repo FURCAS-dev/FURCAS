@@ -77,7 +77,7 @@ public class PageableIndexImpl implements PageableIndex {
 
 	private PageFileProvider chProv;
 
-	private String masterDumpFilePath;
+	private boolean dumpFileExists=false;
 
 	public PageableIndexImpl(Options options) {
 		rwLock = new ReentrantReadWriteLock();
@@ -136,11 +136,10 @@ public class PageableIndexImpl implements PageableIndex {
 
 	public void load() {
 		this.rwLock.writeLock().lock();
-		masterDumpFilePath = null;
 		try {
 			File inputFile = this.chProv.getInputFile(DUMP_FILE_ID);
-			masterDumpFilePath = inputFile.getPath();
 			if (inputFile.exists()) {
+				dumpFileExists=true;
 				FileInputStream fis = new FileInputStream(inputFile);
 				SerializationStrategyFactory factory = new SerializationStrategyFactory(fis);
 				this.globalTables.resourceIndex.deserialize(factory.createResourceMapStrategy(this.globalTables.resourceIndex));
@@ -165,9 +164,7 @@ public class PageableIndexImpl implements PageableIndex {
 	}
 
 	public boolean isDumpExists() {
-		File file = new File(masterDumpFilePath);
-		boolean indicesExists = file.exists();
-		return indicesExists;
+		return dumpFileExists;
 	}
 
 }
