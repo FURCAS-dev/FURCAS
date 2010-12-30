@@ -5,9 +5,9 @@ Bundle-SymbolicName: org.eclipse.emf.query2.core
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.emf.ecore;bundle-version="[2.4.0,3.0.0)",
- net.sourceforge.lpg.lpgjavaruntime;bundle-version="1.1.0",
  org.eclipse.core.runtime;bundle-version="[3.4.0,4.0.0)",
- org.eclipse.emf.query2.index;bundle-version="1.0.0"
+ org.eclipse.emf.query2.index;bundle-version="1.0.0",
+ lpg.runtime.java;bundle-version="2.0.17"
 Export-Package: org.eclipse.emf.query2,
  org.eclipse.emf.query2.exception,
  org.eclipse.emf.query2.internal.index;x-friends:="org.eclipse.emf.query2.test",
