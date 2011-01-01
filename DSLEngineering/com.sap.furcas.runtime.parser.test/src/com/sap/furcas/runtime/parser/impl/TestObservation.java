@@ -13,7 +13,7 @@ import java.io.InputStream;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.sap.furcas.parser.tcs.TCSParserFactory;
+import com.sap.furcas.parser.tcs.TCSParserFacadeFactory;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.testbase.StubModelAdapter;
@@ -27,7 +27,7 @@ public class TestObservation {
 
     @Test
     public void testTcsParserWithBibText() throws Exception {
-        ParserFacade facade = TCSParserFactory.INSTANCE.createTCSParserFacade();
+        ParserFacade facade = TCSParserFacadeFactory.INSTANCE.createTCSParserFacade();
         File syntaxDefFile = ScenarioFixtureData.BIBTEXT_TCS;
         InputStream in = new FileInputStream(syntaxDefFile);
         StubModelAdapter modelHandler = new StubModelAdapter();
@@ -50,7 +50,7 @@ public class TestObservation {
 
     @Test
     public void testTcsParserWithTCS() throws Exception {
-        ParserFacade facade = TCSParserFactory.INSTANCE.createTCSParserFacade();
+        ParserFacade facade = TCSParserFacadeFactory.INSTANCE.createTCSParserFacade();
         File syntaxDefFile = ScenarioFixtureData.TCS_OBSOLETE_TCS;
         InputStream in = new FileInputStream(syntaxDefFile);
         IModelAdapter modelHandler = new StubModelAdapter();
@@ -72,7 +72,7 @@ public class TestObservation {
 
     @Test
     public void testTcsParserWithTCSSeparator() throws Exception {
-        ParserFacade facade = TCSParserFactory.INSTANCE.createTCSParserFacade();
+        ParserFacade facade = TCSParserFacadeFactory.INSTANCE.createTCSParserFacade();
 
         String input = "syntax test{template ->name1::name2::name3;}";
         InputStream in = new ByteArrayInputStream(input.getBytes());
@@ -86,7 +86,7 @@ public class TestObservation {
 
     @Test
     public void testTcsParserWithTCSDelegationObserver() throws Exception {
-        ParserFacade facade = TCSParserFactory.INSTANCE.createTCSParserFacade();
+        ParserFacade facade = TCSParserFacadeFactory.INSTANCE.createTCSParserFacade();
         File syntaxDefFile = ScenarioFixtureData.TCS_OBSOLETE_TCS;
         InputStream in = new FileInputStream(syntaxDefFile);
         IModelAdapter modelHandler = new StubModelAdapter();
@@ -120,7 +120,7 @@ public class TestObservation {
             System.arraycopy(oldBytes, 0, loopBytes, 0, j);
             ByteArrayInputStream in = new ByteArrayInputStream(loopBytes);
 
-            ParserFacade facade = TCSParserFactory.INSTANCE.createTCSParserFacade();
+            ParserFacade facade = TCSParserFacadeFactory.INSTANCE.createTCSParserFacade();
 
             IModelAdapter modelHandler = new StubModelAdapter();
             ConsistencyChecksObserver testObserver = new ConsistencyChecksObserver();
@@ -134,7 +134,7 @@ public class TestObservation {
 
     @Test
     public void testTcsParserWithATL() throws Exception {
-        ParserFacade facade = TCSParserFactory.INSTANCE.createTCSParserFacade();
+        ParserFacade facade = TCSParserFacadeFactory.INSTANCE.createTCSParserFacade();
         File syntaxDefFile = ScenarioFixtureData.ATL_TCS;
         InputStream in = new FileInputStream(syntaxDefFile);
         IModelAdapter modelHandler = new StubModelAdapter();

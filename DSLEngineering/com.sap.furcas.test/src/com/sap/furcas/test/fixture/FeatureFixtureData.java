@@ -20,4 +20,7 @@ public class FeatureFixtureData {
     public static final File FOREACH_PREDICATE_PROPERTY_INIT_METAMODEL = new File("../com.sap.furcas.test/featureFixtures/ForeachPredicatePropertyInit.ecore");
     public static final File FOREACH_PREDICATE_PROPERTY_INIT_TCS = new File("../com.sap.furcas.test/featureFixtures/ForeachPredicatePropertyInit.tcs");
 
+    // PrimitiveTemplate Tests
+    public static final File PRIMITIVE_TEMPLATE_METAMODEL = new File("../com.sap.furcas.test/featureFixtures/PrimitiveTemplate.ecore");
+    public static final File PRIMITIVE_TEMPLATE_TCS = new File("../com.sap.furcas.test/featureFixtures/PrimitiveTemplate.tcs");
 }

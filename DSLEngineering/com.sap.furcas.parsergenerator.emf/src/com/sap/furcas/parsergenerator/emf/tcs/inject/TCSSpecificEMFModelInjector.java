@@ -15,7 +15,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import com.sap.furcas.parser.tcs.TCSParserFactory;
+import com.sap.furcas.parser.tcs.TCSParserFacadeFactory;
 import com.sap.furcas.runtime.parser.IParsingObserver;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
 import com.sap.furcas.runtime.parser.ParserFacade;
@@ -39,7 +39,7 @@ public class TCSSpecificEMFModelInjector {
     public static ModelInjectionResult parseSyntaxDefinition(InputStream in, ResourceSet resourceSet, Set<URI> referenceScope,
 	    IParsingObserver observer) throws InvalidParserImplementationException, IOException, UnknownProductionRuleException {
         
-        ParserFacade tcsParserFacade = TCSParserFactory.INSTANCE.createTCSParserFacade();
+        ParserFacade tcsParserFacade = TCSParserFacadeFactory.INSTANCE.createTCSParserFacade();
 	return parseSyntaxDefinition(in, resourceSet, referenceScope, observer, tcsParserFacade);
     }
 

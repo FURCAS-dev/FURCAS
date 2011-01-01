@@ -129,7 +129,7 @@ public class TestTCSObsolete extends GeneratedParserBasedTest {
         assertEquals(69, stubModelHandler.getElementsbyType("TCS::ClassTemplate").size());
         assertEquals(5, stubModelHandler.getElementsbyType("TCS::PrimitiveTemplate").size());
         assertEquals(1, stubModelHandler.getElementsbyType("TCS::ConcreteSyntax").size());
-        assertEquals(145, stubModelHandler.getElementsbyType("TCS::Sequence").size());
+        assertEquals(169, stubModelHandler.getElementsbyType("TCS::Sequence").size());
     }
 
     @Test
@@ -144,6 +144,7 @@ public class TestTCSObsolete extends GeneratedParserBasedTest {
 
     private static StubModelAdapter getModifiedAdapterStub() {
         return new StubModelAdapter() {
+            @Override
             public Object createElement(List<String> typeName) {
                 if (StringListHelper.list("TCS", "Symbol").equals(typeName)) {
                     // Literal extends symbol, but StubModelHandler is unable to deal with Subtypes.

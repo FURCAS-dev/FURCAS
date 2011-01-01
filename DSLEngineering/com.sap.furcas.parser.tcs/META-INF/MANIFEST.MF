@@ -9,7 +9,9 @@ Require-Bundle: org.junit,
  org.eclipse.core.resources;bundle-version="3.6.0",
  com.sap.furcas.runtime.common,
  com.sap.furcas.runtime.tcs,
- com.sap.furcas.runtime.parser
+ com.sap.furcas.runtime.parser,
+ com.sap.furcas.runtime.parser.incremental,
+ com.sap.furcas.ide.parserfactory
 Bundle-ClassPath: .
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: SAP
