@@ -23,15 +23,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.WeakHashMap;
 
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -47,11 +47,19 @@ import org.eclipse.ocl.util.CollectionUtil;
  * {@link EcoreEnvironment#PROPERTY_OPPOSITE_ROLE_NAME_KEY} on an
  * {@link EAnnotation} with {@link EAnnotation#getSource() source}
  * {@link EMOFExtendedMetaData#EMOF_PACKAGE_NS_URI_2_0} are retrieved by
- * scanning and caching the Ecore packages registered in the {@link #registry}
- * which has to be passed to the constructor. Upon each request, the
- * implementation checks for Ecore packages that were added to the registry and
- * need caching.
+ * scanning and caching the Ecore packages that this opposite end finder is
+ * aware of at the time of the request. The set of those packages is taken to be
+ * the set of {@link EPackage}s resolved by an {@link EPackage.Registry}
+ * provided to {@link #getInstance(Registry)}, or the default
+ * {@link EPackage.Registry} otherwise. In particular, this won't load any Ecore
+ * bundles not yet loaded.
  * <p>
+ * 
+ * This also means that with this implementation of the {@link OppositeEndFinder}
+ * interface it is necessary to resolve a package in the registry on which this
+ * opposite end finder is based before issuing a request expecting to find
+ * hidden opposites from that package. This can, e.g., be triggered by calling
+ * {@link EPackage.Registry#getEPackage(String)} for the package's URI.<p>
  * 
  * Navigation across those references is performed either by
  * {@link EObject#eContainer()} in case of containment references or by looking
@@ -61,7 +69,12 @@ import org.eclipse.ocl.util.CollectionUtil;
  * performed successfully. Note also that this will only consider references
  * that have been currently loaded which can give rather random results. For
  * more predictable results, an implementation should be used that relies on a
- * well-defined query scope and a corresponding query engine.
+ * well-defined query scope and a corresponding query engine.<p>
+ * 
+ * Instances of this class are cached in a {@link WeakHashMap}, keyed by the
+ * {@link EPackage.Registry} object used for {@link #getInstance(Registry)}.
+ * This means that if the registry gets eligible for garbage collection then
+ * so will this opposite end finder.<p>
  * 
  * @author Axel Uhl
  * @since 3.1
@@ -70,50 +83,64 @@ import org.eclipse.ocl.util.CollectionUtil;
 public class DefaultOppositeEndFinder
 		implements OppositeEndFinder {
 
-	private final EPackage.Registry registry;
-
-	/**
-	 * Attaches to an {@link EPackage} to indicate that the {@link EReference}s defined by that
-	 * package and defining a "hidden" opposite have been cached as {@link OppositeEndCacheAdapter}
-	 * adapters in the referenced classes.
-	 */
-	private class PackagesHiddenOppositesHaveBeenCached extends AdapterImpl {}
-
-	/**
-	 * Attaches to {@link EClass}es to store the "hidden" opposite ends
-	 */
-	private class OppositeEndCacheAdapter extends AdapterImpl {
-		private final Map<String, Set<EReference>> hiddenOpposites = new HashMap<String, Set<EReference>>();
-		
-		public Set<EReference> get(String oppositeEndName) {
-			return hiddenOpposites.get(oppositeEndName);
-		}
-		
-		public void add(String oppositeEndName, EReference ref) {
-			Set<EReference> refSet = hiddenOpposites.get(oppositeEndName);
-			if (refSet == null) {
-				refSet = new HashSet<EReference>();
-				hiddenOpposites.put(oppositeEndName, refSet);
-			}
-			refSet.add(ref);
-		}
-		
-		public Map<String, Set<EReference>> getAll() {
-			return Collections.unmodifiableMap(hiddenOpposites);
-		}
-	}
+	private static WeakHashMap<Registry, DefaultOppositeEndFinder> instances =
+		new WeakHashMap<Registry, DefaultOppositeEndFinder>();
 	
+	/**
+	 * The set of packages for which the hidden opposites are already cached in
+	 * {@link #oppositeCache}.
+	 */
+	private final Set<EPackage> packages;
+	
+	private final Map<EClass, Map<String, Set<EReference>>> oppositeCache;
+
+	/**
+	 * The package registry in which before each request the set of packages already
+	 * resolved is compared to {@link #packages}. Packages that got resolved in the
+	 * registry but weren't cached yet are cached before executing the request.
+	 */
+	private final Registry registry;
+
+	/**
+	 * Scans all packages from the default {@link EPackage.Registry} that have already been
+	 * loaded. While this is convenient, please keep in mind that this may be fairly random a
+	 * definition of a package set as loading of packages happens on demand. You will get more
+	 * predictable results using {@link #getInstance(Set<EPackage>)}.
+	 */
 	public static DefaultOppositeEndFinder getInstance() {
 		return getInstance(EPackage.Registry.INSTANCE);
 	}
 	
+	/**
+	 * Scans all packages from the <code>registry</code> specified that have already been
+	 * loaded. While this is convenient, please keep in mind that this may be fairly random a
+	 * definition of a package set as loading of packages happens on demand. You will get more
+	 * predictable results using {@link #getInstance(Set<EPackage>)}.
+	 */
 	public static DefaultOppositeEndFinder getInstance(EPackage.Registry registry) {
-		DefaultOppositeEndFinder result = new DefaultOppositeEndFinder(registry);
+		DefaultOppositeEndFinder result = instances.get(registry);
+		if (result == null) {
+			result = new DefaultOppositeEndFinder(registry);
+			instances.put(registry, result);
+		}
 		return result;
 	}
+	
+	private Set<EPackage> getLoadedPackages() {
+		for (Object key : registry.values()) {
+			// if it's not a package descriptor indicating a not yet loaded package, add it
+			if (key instanceof EPackage) {
+				packages.add((EPackage) key);
+				cachePackage((EPackage) key);
+			}
+		}
+		return packages;
+	}
 
-	protected DefaultOppositeEndFinder(EPackage.Registry registry) {
+	protected DefaultOppositeEndFinder(Registry registry) {
 		this.registry = registry;
+		this.packages = new HashSet<EPackage>();
+		this.oppositeCache = new HashMap<EClass, Map<String,Set<EReference>>>();
 	}
 
 	public void findOppositeEnds(EClassifier classifier, String name,
@@ -121,7 +148,7 @@ public class DefaultOppositeEndFinder
 		if (classifier instanceof EClass) {
 			EClass eClass = (EClass) classifier;
 			updateOppositeCache();
-			OppositeEndCacheAdapter oppositesOnEClass = getOppositeCache(eClass);
+			Map<String, Set<EReference>> oppositesOnEClass = oppositeCache.get(eClass);
 			if (oppositesOnEClass != null) {
 				Set<EReference> refs = oppositesOnEClass.get(name);
 				if (refs != null) {
@@ -146,11 +173,10 @@ public class DefaultOppositeEndFinder
 		if (classifier instanceof EClass) {
 			EClass eClass = (EClass) classifier;
 			updateOppositeCache();
-			OppositeEndCacheAdapter oppositesOnEClass = getOppositeCache(eClass);
-			if (oppositesOnEClass != null) {
-				Map<String, Set<EReference>> opposites = oppositesOnEClass.getAll();
-				for (String oppositeName : opposites.keySet()) {
-					Set<EReference> refs = opposites.get(oppositeName);
+			Map<String, Set<EReference>> oppositesOnClass = oppositeCache.get(eClass);
+			if (oppositesOnClass != null) {
+				for (String oppositeName : oppositesOnClass.keySet()) {
+					Set<EReference> refs = oppositesOnClass.get(oppositeName);
 					if (refs.size() > 0) {
 						result.put(oppositeName, refs.iterator().next());
 					}
@@ -173,40 +199,19 @@ public class DefaultOppositeEndFinder
 		return result;
 	}
 
-	private void updateOppositeCache() {
-		Set<String> registryKeys = new HashSet<String>(registry.keySet()); // avoid concurrent modifications
-		for (String packageUri : registryKeys) {
-			try {
-				// This loads all packages in the registry; if you want a smarter implementation,
-				// please consider using a smarter implementation; this is a "default" implementation only.
-				EPackage ePackage = registry.getEPackage(packageUri);
-				boolean packageIsAlreadyCached = false;
-				// avoid multiple threads interfering during package's hidden opposites caching
-				synchronized (ePackage) {
-					for (Adapter a : ePackage.eAdapters()) {
-						if (a instanceof PackagesHiddenOppositesHaveBeenCached) {
-							packageIsAlreadyCached = true;
-							break;
-						}
-					}
-					if (!packageIsAlreadyCached) {
-						cachePackage(ePackage);
-					}
-				}
-			} catch (Exception e) {
-				// TODO problem resolving the packageUri into an EPackage; could be
-				// that the package class doesn't exist in generated form;
-				// ignore those for now (although it should somehow be possible
-				// to instantiate this package dynamically)
-				OCLEcorePlugin.warning(OCLStatusCodes.IGNORED_EXCEPTION_WARNING,
-					"couldn't resolve Ecore package with URI " + packageUri + ": " + e.getMessage(), //$NON-NLS-1$ //$NON-NLS-2$
-					e);
+	/**
+	 * Lazily initialize the opposite cache for the {@link #packages} for which this opposite
+	 * end finder is responsible
+	 */
+	private synchronized void updateOppositeCache() {
+		for (EPackage ePackage : getLoadedPackages()) {
+			if (!packages.contains(ePackage)) {
+				cachePackage(ePackage);
 			}
 		}
 	}
 
 	private void cachePackage(EPackage ePackage) {
-		ePackage.eAdapters().add(new PackagesHiddenOppositesHaveBeenCached());
 		for (EClassifier c : ePackage.getEClassifiers()) {
 			if (c instanceof EClass) {
 				EClass eClass = (EClass) c;
@@ -226,26 +231,17 @@ public class DefaultOppositeEndFinder
 	}
 
 	private void cache(EClass c, String oppositeName, EReference ref) {
-		OppositeEndCacheAdapter cache = getOppositeCache(c);
+		Map<String, Set<EReference>> cache = oppositeCache.get(c);
 		if (cache == null) {
-			cache = new OppositeEndCacheAdapter();
-			c.eAdapters().add(cache);
+			cache = new HashMap<String, Set<EReference>>();
+			oppositeCache.put(c, cache);
 		}
 		Set<EReference> set = cache.get(oppositeName);
-		if (set == null || !set.contains(ref)) {
-			cache.add(oppositeName, ref);
+		if (set == null) {
+			set = new HashSet<EReference>();
+			cache.put(oppositeName, set);
 		}
-	}
-
-	private OppositeEndCacheAdapter getOppositeCache(EClass c) {
-		OppositeEndCacheAdapter adapter = null;
-		for (Adapter a : c.eAdapters()) {
-			if (a instanceof OppositeEndCacheAdapter) {
-				adapter = (OppositeEndCacheAdapter) a;
-				break;
-			}
-		}
-		return adapter;
+		set.add(ref);
 	}
 
 	/**
