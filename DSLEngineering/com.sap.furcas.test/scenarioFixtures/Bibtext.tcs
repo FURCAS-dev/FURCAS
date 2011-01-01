@@ -2,34 +2,31 @@ syntax Bibtext {
 
 	-- simple basic syntax containing articles and authors, used as Hello Word example
 
-	primitiveTemplate identifier for ->String default using NAME:
+	primitiveTemplate identifier for PrimitiveTypes::String default using NAME:
 		value = "unescapeString(%token%)";
 
-
-	
-	
-	template ->BibTextFile main context
-		: [->entries] -- entries each in new line
+	template BibTextFile main context
+		: [entries] -- entries each in new line
 		;
 		
-	template ->BibTextEntry abstract;
+	template BibTextEntry abstract;
 	
-	template ->Article
+	template Article
 		: "article" "{"
 		[
-		->key "," ->author{refersTo=name} "," ->attributes{separator = ","}
+		key "," author{refersTo=name} "," attributes{separator = ","}
 		]
 		"}"
 		;
 	
-	template ->Attribute abstract;
+	template Attribute abstract;
 	
-	template ->Author addToContext
-		: "author" "=" ->name "."
+	template Author addToContext
+		: "author" "=" name "."
 		;
 	
-	template ->Year
-		: "year" "=" ->value
+	template Year
+		: "year" "=" value
 		;
 		
 

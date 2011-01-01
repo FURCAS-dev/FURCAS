@@ -60,6 +60,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.CustomSeparator;
 import com.sap.furcas.metamodel.FURCAS.TCS.EndOfLineRule;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralMapping;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg;
@@ -78,7 +79,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
-import com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Rule;
@@ -1741,7 +1741,7 @@ public class TcsUtil {
         return null;
     }
 
-    public static Object executeOclQuery(EObject element, String oclQuery, EObject contextObject, EObject foreachObject,
+    public static Collection<?> executeOclQuery(EObject element, String oclQuery, EObject contextObject, EObject foreachObject,
             String keyValue) throws ModelAdapterException {
         if (oclQuery != null) {
 
@@ -1753,20 +1753,15 @@ public class TcsUtil {
         return null;
     }
 
-    public static boolean isPropValueAndOclResultEqual(Object propValue, Object oclResult) {
-        // oclHelper.findElementWithOCLQuery returns null for empty
-        // collections
-        if (propValue == null || (propValue instanceof Collection<?> && ((Collection<?>) propValue).size() == 0)) {
-            if (oclResult != null) {
-                return false;
-            }
+    public static boolean isPropValueAndOclResultEqual(Object propValue, Collection<?> oclResult) {
+        // oclHelper.findElementWithOCLQuery returns null for empty collections
+        if (propValue == null) {
+            return oclResult == null;
+        } else if (oclResult.size() == 1 && propValue.equals(oclResult.iterator().next())) {
+            return true;
         } else {
-            if (!propValue.equals(oclResult)) {
-                return false;
-            }
+            return propValue.equals(oclResult);
         }
-
-        return true;
     }
 
     public static String getContextTag(String oclQuery) {

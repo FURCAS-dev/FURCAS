@@ -36,7 +36,7 @@ syntax TCSObsolete {
 	template ->Template abstract;
 
 	function reference(->QualifiedNamedElement)
-		: "->" ->names{separator="::"}
+		: [["->" | ]] ->names{separator="::"}
 		;
 
 	template ->PrimitiveTemplate
@@ -85,9 +85,9 @@ syntax TCSObsolete {
 	template ->OperatorTemplate
 		:	"operatorTemplate" $reference "("
 				"operators" "=" ->operators{refersTo = name}
-				"," "source" "=" "->" ->source
-				(isDefined(->storeOpTo) ? "," "storeOpTo" "=" "->" ->storeOpTo)
-				(isDefined(->storeRightTo) ? "," "storeRightTo" "=" "->" ->storeRightTo)
+				"," "source" "=" [["->" | ]] ->source
+				(isDefined(->storeOpTo) ? "," "storeOpTo" "=" [["->" | ]] ->storeOpTo)
+				(isDefined(->storeRightTo) ? "," "storeRightTo" "=" [["->" | ]] ->storeRightTo)
 				(isDefined(->disambiguate) ? "," "disambiguate" "=" ->disambiguate{as = stringSymbol})
 				(isDefined(->disambiguateV3) ? "," "disambiguateV3" "=" ->disambiguateV3{as = stringSymbol})
 			")"
@@ -121,7 +121,7 @@ syntax TCSObsolete {
 		;
 
 	template ->Property
-		:	"->" ->name{as = identifierOrKeyword} (isDefined(->propertyArgs) ? "{" ->propertyArgs{separator = ","} "}")
+		:	[["->" | ]] ->name{as = identifierOrKeyword} (isDefined(->propertyArgs) ? "{" ->propertyArgs{separator = ","} "}")
 		;
 
 	template ->CustomSeparator
@@ -137,7 +137,7 @@ syntax TCSObsolete {
 		;
 
 	template ->PropertyInit
-		:	"{{" "->" ->name "=" ->value "}}"
+		:	"{{" [["->" | ]] ->name "=" ->value "}}"
 		;
 
 	template ->Alternative
@@ -294,19 +294,19 @@ syntax TCSObsolete {
 	template ->AtomExp abstract;
 
 	template ->EqualsExp
-		:	"->" ->propertyName{as = identifierOrKeyword} "=" ->value
+		:	[["->" | ]] ->propertyName{as = identifierOrKeyword} "=" ->value
 		;
 
 	template ->BooleanPropertyExp
-		:	"->" ->propertyName{as = identifierOrKeyword}
+		:	[["->" | ]] ->propertyName{as = identifierOrKeyword}
 		;
 
 	template ->IsDefinedExp
-		:	"isDefined" "(" "->" ->propertyName{as = identifierOrKeyword} ")"
+		:	"isDefined" "(" [["->" | ]] ->propertyName{as = identifierOrKeyword} ")"
 		;
 
 	template ->OneExp
-		:	"one" "(" "->" ->propertyName{as = identifierOrKeyword} ")"
+		:	"one" "(" [["->" | ]] ->propertyName{as = identifierOrKeyword} ")"
 		;
 --@end Expressions
 
@@ -390,11 +390,11 @@ syntax TCSObsolete {
 	template ->Mapping abstract;
 	
 	template ->SimpleMapping
-		:	->key "->" ->value
+		:	->key [["->" | ]] ->value
 		;
 		
 	template ->WildcardMapping
-		:	"." "->" "."
+		:	"." [["->" | ]] "."
 		;
 		
 	template ->OctalMapping

@@ -2,43 +2,41 @@ syntax BibtextWithFunction {
 
 	-- variant of the BibText Syntax including Function Templates for testing of that feature
 
-	primitiveTemplate identifier for ->String default using NAME:
+	primitiveTemplate identifier for PrimitiveTypes::String default using NAME:
 		value = "unescapeString(%token%)";
-
-
 	
-	function addKey(->BibTextEntry)
+	function addKey(BibTextEntry)
 		: ->key ","
 		;
 		
 	-- chaining of functions!
-	function addKeyAndAuthor(->Article)
-		: $addKey ->author{refersTo=name} ","
+	function addKeyAndAuthor(Article)
+		: $addKey author{refersTo=name} ","
 		;
 		
 	
-	template ->BibTextFile main context
-		: [->entries] -- entries each in new line
+	template BibTextFile main context
+		: [entries] -- entries each in new line
 		;
 		
-	template ->BibTextEntry abstract;
+	template BibTextEntry abstract;
 	
-	template ->Article
+	template Article
 		: "article" "{"
 		[
-		$addKeyAndAuthor ->attributes{separator = ","}
+			$addKeyAndAuthor attributes{separator = ","}
 		]
 		"}"
 		;
 	
-	template ->Attribute abstract;
+	template Attribute abstract;
 	
-	template ->Author addToContext
-		: "author" "=" $addKey ->name "."
+	template Author addToContext
+		: "author" "=" $addKey name "."
 		;
 	
-	template ->Year
-		: "year" "=" ->value
+	template Year
+		: "year" "=" value
 		;
 		
 
@@ -86,103 +84,8 @@ syntax BibtextWithFunction {
 -- END Operator table
 
 
--- BEGIN Lexer
--- Specifies the lexical entities.
--- Only needs modification when default lexer is not satisfactory.
--- Generally modified along with Primitive templates.
-	token COMMENT	: endOfLine(start = "--");
+token COMMENT	: endOfLine(start = "--");
 
-	lexer = "
-%options testLiterals = false;
 
-NL
-	:	(	'\\r' '\\n'
-		|	'\\n' '\\r'	//Improbable
-		|	'\\r'
-		|	'\\n'
-		)
-	{newline();}
-	;
-
-WS
-	:	(	' '
-		|	'\\t'
-		)
-	;
-
-%protected
-DIGIT
-	:	'0'..'9'
-	;
-
-%protected
-ALPHA
-	:	'a'..'z'
-	|	'A'..'Z'
-	|	'_'
-	//For Unicode compatibility (from 0000 to 00ff)
-	|	'\\u00C0' .. '\\u00D6'
-	|	'\\u00D8' .. '\\u00F6'
-	|	'\\u00F8' .. '\\u00FF'
-	;
-
-%protected
-SNAME
-	:	(ALPHA) (ALPHA | DIGIT)*
-;
-
-NAME
-	:	(
-			SNAME
-		|	'\"'!
-			(	ESC
-			|	'\\n' {newline();}
-			|	~('\\\\'|'\\\"'|'\\n')
-			)*
-			'\"'!
-		)
-	;
-
-%protected
-ESC
-	:	'\\\\'!
-		(	'n' 
-		|	'r' 
-		|	't' 
-		|	'b' 
-		|	'f' 
-		|	'\"' 
-		|	'\\'' 
-		|	'\\\\' 
-		|	(
-				('0'..'3')
-				(
-				:	('0'..'7')
-					(
-					:	'0'..'7'
-					)?
-				)?
-			|	('4'..'7')
-				(
-				:	('0'..'7')
-				)?
-			)
-				{
-				}
-		)
-	;
-
-STRING
-	:	'\\''!
-		(	ESC
-		|	'\\n' {newline();}
-		|	~('\\\\'|'\\''|'\\n')
-		)*
-		'\\''!
-			{setText(unescapeString(getText(), 1));}
-	;
-
-	";
--- END Lexer
 
 }

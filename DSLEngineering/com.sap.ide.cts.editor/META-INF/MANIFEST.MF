@@ -33,8 +33,5 @@ Export-Package: com.sap.ide.cts.editor.action,
  com.sap.ide.cts.editor.contentassist,
  com.sap.ide.cts.editor.contentassist.modeladapter,
  com.sap.ide.cts.editor.deepcopy,
- com.sap.ide.cts.editor.junitcreate,
- com.sap.ide.cts.editor.prettyprint,
- com.sap.ide.cts.editor.prettyprint.imported,
- com.sap.ide.cts.editor.prettyprint.textblocks
+ com.sap.ide.cts.editor.junitcreate
 Bundle-Activator: com.sap.ide.cts.editor.CtsActivator

@@ -53,6 +53,8 @@
     <module>com.sap.furcas.runtime.tcs</module>
     <module>com.sap.furcas.runtime.textblocks</module>
     <module>com.sap.furcas.runtime.textblocks.test</module>
+    <module>com.sap.furcas.runtime.unparser</module>
+    <module>com.sap.furcas.runtime.unparser.test</module>
     <module>com.sap.furcas.test</module>
     <module>com.sap.furcas.utils</module>
     <module>com.sap.furcas.workspacesetup</module>

@@ -1,0 +1,160 @@
+syntax PrimitiveTemplate { 
+
+	primitiveTemplate integerSymbol for ecore::EIntegerObject default using INT
+	:	value = "Integer.valueOf(%token%)"
+	;
+	
+	primitiveTemplate intSymbol for ecore::EInt default using INT
+	:	value = "Integer.valueOf(%token%)"
+	;
+	
+	primitiveTemplate doubleSymbol for ecore::EDouble default using FLOAT
+	:	value = "Double.valueOf(%token%)"
+	;
+
+	primitiveTemplate identifier for ecore::EString default using NAME
+	:	value = "unescapeString(%token%)"
+	;
+	
+	primitiveTemplate stringSymbol for ecore::EString using STRING
+    :	value = "unescapeString(%token%)",
+		serializer="\"%value%\""
+	;
+	
+
+	template Main main
+	:	attributeEIntegerObject
+		attributeEInt
+		attributeEDouble
+		attributeEStringAsIdentifier{as=identifier} 
+		attributeEStringAsString{as=stringSymbol}
+	;
+
+	
+	token COMMENT	: endOfLine(start = "--");
+	
+	
+        lexer = "
+%options testLiterals = false;
+
+NL
+        :       (       '\\r' '\\n'
+                |       '\\n' '\\r'     //Improbable
+                |       '\\r'
+                |       '\\n'
+                )
+        {newline();$channel=HIDDEN;}
+        ;
+
+WS
+        :       (       ' '
+                |       '\\t'
+                ){$channel=HIDDEN;}
+        ;
+
+%protected
+DIGIT
+        :       '0'..'9'
+        ;
+
+%protected
+ALPHA
+        :       'a'..'z'
+        |       'A'..'Z'
+        |       '_'
+        //For Unicode compatibility (from 0000 to 00ff)
+        |       '\\u00C0' .. '\\u00D6'
+        |       '\\u00D8' .. '\\u00F6'
+        |       '\\u00F8' .. '\\u00FF'
+        ;
+        
+
+
+
+%protected
+SNAME
+        :       
+//      (~ORKEYWORD)=> 
+        (ALPHA) (ALPHA | DIGIT)* 
+;
+
+//QNAME_OR_NAME :
+//         ( ORKEYWORD COLON ) => ORKEYWORD { _type = ORKEYWORD; }
+//         |    ( SNAME DLCOLON SNAME ) => QNAME { _type = QNAME; }
+//         |    (~ORKEYWORD COLON | SNAME COLON ~(COLON) ) => NAME { _type = NAME; }
+//         |    ( ~ORKEYWORD | SNAME ~COLON ) => NAME { _type = NAME; }
+//         |    ( '\\'' SNAME) => NAME { _type = NAME; }
+//;
+
+//%protected 
+//ORKEYWORD :
+//      'orKeyword'
+//;
+
+//%protected
+NAME
+        :       (   
+                        SNAME
+                |       '\\''!  // exclamation marks means to exclude the char from the token (in theory)
+                        (       ESC
+                        |       '\\n' {newline();}
+                        |       ~('\\\\'|'\\''|'\\n') // means any other character
+                        )*
+                        '\\''!
+                )
+        ;
+
+//%protected
+//QNAME
+//        : SNAME DLCOLON SNAME (DLCOLON SNAME )*
+//        ;
+
+INT
+        :       (DIGIT)+
+        ;
+
+        FLOAT   :       DIGIT+ '.' DIGIT*       ;
+
+%protected
+ESC
+        :       '\\\\'!
+                (       'n' 
+                |       'r' 
+                |       't' 
+                |       'b' 
+                |       'f' 
+                |       '\"' 
+                |       '\\'' 
+                |       '\\\\' 
+                |       (
+                                ('0'..'3')
+                                (
+                                :       ('0'..'7')
+                                        (
+                                        :       '0'..'7'
+                                        )?
+                                )?
+                        |       ('4'..'7')
+                                (
+                                :       ('0'..'7')
+                                )?
+                        )
+                                {
+                                }
+                )
+        ;
+
+STRING
+        :       '\"'!
+                (       ESC
+                |       '\\n' {newline();}
+                |       ~('\\\\'|'\\\"'|'\\n')  // means any other character
+                )*
+                '\"'!
+        ;
+
+        ";
+
+
+}
+  
