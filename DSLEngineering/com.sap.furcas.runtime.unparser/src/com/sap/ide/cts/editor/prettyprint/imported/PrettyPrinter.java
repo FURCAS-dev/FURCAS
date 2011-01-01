@@ -18,8 +18,6 @@ import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintDebugHelper
 import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintDebugHelper.debugPropertyInitException;
 import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintDebugHelper.debugWhiteSpace;
 import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintHelper.findSupertypeTemplate;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintHelper.getBlockArgument;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintHelper.getPropertyArgument;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,17 +38,21 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.CustomSeparator;
+import com.sap.furcas.metamodel.FURCAS.TCS.EndNLBArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralMapping;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.FunctionCall;
+import com.sap.furcas.metamodel.FURCAS.TCS.IndentIncrBArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
+import com.sap.furcas.metamodel.FURCAS.TCS.Literal;
 import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit;
-import com.sap.furcas.metamodel.FURCAS.TCS.ModePArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.NbNLBArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Operator;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.PartialPArg;
@@ -58,16 +60,19 @@ import com.sap.furcas.metamodel.FURCAS.TCS.PrimitivePropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
+import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceInAlternative;
+import com.sap.furcas.metamodel.FURCAS.TCS.StartNLBArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.StartNbNLBArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.unparser.extraction.TCSExtractorStream;
-import com.sap.ide.cts.editor.prettyprint.MOINImportedModelAdapter;
 import com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintExceptions.ForcedBoundsException;
 import com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintExceptions.NoTemplateMatchFoundException;
 import com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintExceptions.PropertyInitException;
@@ -159,7 +164,7 @@ public class PrettyPrinter {
     private PrettyPrintContext currentContext;
     private final Map<Integer, PrettyPrintContext> backtrackingContextBackup = new HashMap<Integer, PrettyPrintContext>();
 
-    private boolean serializeComments = PrettyPrintConstants.SERIALIZE_COMMENTS;
+    private final boolean serializeComments = PrettyPrintConstants.SERIALIZE_COMMENTS;
 
     private final PrettyPrintingPolicy policy;
     private final PrettyPrintingTracer tracer;
@@ -292,84 +297,34 @@ public class PrettyPrinter {
 	    currentContext.getVisitedModelElements().add(ame);
 	}
 
-	String typeName = MOINImportedModelAdapter.getTypeName(ame);
-	debug("processing " + typeName);
+	debug("processing " + EMFModelInspector.getTypeName(ame));
 	if (template == null) {
-	    template = findTemplate(ame, mode, typeName);
+	    template = findTemplate(ame, mode, EMFModelInspector.getTypeName(ame));
 	}
 	
-	String templateTypeName = MOINImportedModelAdapter.getTypeName(template);
-	debug("Applying template type " + templateTypeName);
+	debug("Applying template type " + EMFModelInspector.getTypeName(template));
 	if (template instanceof ClassTemplate) {
 	    debug("with mode: " + ((ClassTemplate) template).getMode());
 	}
 
 	printer.useDefaultSeparator();
-	serializeBeforeComments(ame);
-	if (templateTypeName.equals("FURCAS::TCS::ClassTemplate")) {
-	    serializeClassTemplate(ame, template);
-	} else if (templateTypeName.equals("FURCAS::TCS::OperatorTemplate")) {
-	    serializeOperatorTemplate(ame, template);
+	if (template instanceof ClassTemplate) {
+	    serializeClassTemplate(ame, (ClassTemplate) template);
+	} else if (template instanceof OperatorTemplate) {
+	    serializeOperatorTemplate(ame, (OperatorTemplate) template);
 	} else {
-	    error("unsupported template type: " + templateTypeName);
+	    error("unsupported template type: " + EMFModelInspector.getTypeName(template));
 	}
-	serializeAfterComments(ame);
 	printer.resetSeparator();
 
 	// remove element so it can be prettyprinted in other places
 	currentContext.getVisitedModelElements().remove(ame);
     }
     
-    private void serializeBeforeComments(EObject ame) {
-	if (serializeComments) {
-	    try {
-		boolean first = true;
-		boolean nl = false;
-		for (Iterator<?> i = MOINImportedModelAdapter.getCol(ame, "commentsBefore"); i.hasNext();) {
-		    String c = MOINImportedModelAdapter.nextString(i);
-		    if (c.equals("\n")) {
-			nl = true;
-		    } else {
-			debug("printing comment: \"" + c + "\"");
-			if (first && !nl) {
-			    printer.printComment(c);
-			    // out.print("SHOULD-BE-NONL");
-			} else {
-			    printer.printComment(c);
-			}
-			printer.printCustomWhiteSpace(LINE_FEED + currentContext.getCurIndent());
-			first = false;
-		    }
-		}
-	    } catch (Exception e) {
-		error("Warning: could not get comments of " + ame + ", disabling further comments serialization");
-		serializeComments = false;
-	    }
-	}
-    }
-    
-    private void serializeAfterComments(EObject ame) {
-	if (serializeComments) {
-	    try {
-		for (Iterator<?> i = MOINImportedModelAdapter.getCol(ame, "commentsAfter"); i.hasNext();) {
-		    String c = MOINImportedModelAdapter.nextString(i);
-		    if (c.equals("\n")) {
-
-		    } else {
-			printer.printComment(c);
-			printer.printCustomWhiteSpace(LINE_FEED + currentContext.getCurIndent());
-		    }
-		}
-	    } catch (Exception e) {
-		error("Warning: could not get comments of " + ame + ", disabling further comments serialization");
-		serializeComments = false;
-	    }
-	}
-    }
     
     private Template findTemplate(EObject ame, String mode, String typeName) throws NoTemplateMatchFoundException {
 	Template template = null;
-	ClassTemplate ct = TcsUtil.resolveClassTemplate(MOINImportedModelAdapter.getQualifiedName(ame), mode, classTemplateMap);
+	ClassTemplate ct = TcsUtil.resolveClassTemplate(TcsUtil.getQualifiedName(ame.eClass()), mode, classTemplateMap);
 	if (ct != null && !ct.isIsAbstract()) {
 	    template = ct;
 	}
@@ -393,13 +348,13 @@ public class PrettyPrinter {
 	return template;
     }
     
-    private void serializeClassTemplate(EObject ame, Template template) throws SyntaxMismatchException {
+    private void serializeClassTemplate(EObject ame, ClassTemplate template) throws SyntaxMismatchException {
 	currentContext.getPriorities().push(Integer.MAX_VALUE);
-	currentContext.getClassTemplates().push((ClassTemplate) template);
+	currentContext.getClassTemplates().push(template);
 	currentContext.getParentEObjects().push(ame);
 	int handle = printer.startClassTemplateForObject(ame, template);
 
-	serializeSequence(ame, MOINImportedModelAdapter.getME(template, "templateSequence"));
+	serializeSequence(ame, template.getTemplateSequence());
 
 	printer.endClassTemplate(handle);
 	currentContext.getParentEObjects().pop();
@@ -407,19 +362,18 @@ public class PrettyPrinter {
 	currentContext.getPriorities().pop();
     }
 
-    private void serializeOperatorTemplate(EObject ame, Template template) throws SyntaxMismatchException {
+    private void serializeOperatorTemplate(EObject ame, OperatorTemplate template) throws SyntaxMismatchException {
 	int handle = printer.startClassTemplateForObject(ame, template);
-	OperatorTemplate ot = (OperatorTemplate) template;
-	String sourcePropName = TcsUtil.getPropertyName(ot.getStoreLeftSideTo());
-	String opPropName = TcsUtil.getPropertyName(ot.getStoreOperatorTo());
-	String rightPropName = TcsUtil.getPropertyName(ot.getStoreRightSideTo());
+	String sourcePropName = TcsUtil.getPropertyName(template.getStoreLeftSideTo());
+	String opPropName = TcsUtil.getPropertyName(template.getStoreOperatorTo());
+	String rightPropName = TcsUtil.getPropertyName(template.getStoreRightSideTo());
 	debug("OperatorTemplate: left = " + sourcePropName + " ; operator = " + opPropName + " ; right = " + rightPropName);
 
 	Object r = null;
 	boolean isPostfix = false; // only valid for unary operators
 	boolean isUnary = false;
 	if (rightPropName != null) {
-	    r = MOINImportedModelAdapter.get(ame, rightPropName);
+	    r = EMFModelInspector.get(ame, rightPropName);
 	    if (r instanceof Collection<?>) {
 		isUnary = (((Collection<?>) r).size() == 0);
 	    } else {
@@ -430,23 +384,22 @@ public class PrettyPrinter {
 	}
 	debug("rightPropName = " + rightPropName + " ; isUnary = " + isUnary);
 
-	Object operator = null;
+	Operator operator = null;
 	if (opPropName != null) {
-	    String op = MOINImportedModelAdapter.getString(ame, opPropName);
+	    String op = EMFModelInspector.getString(ame, opPropName);
 	    if (op == null) {
-		throw new RuntimeException("Property " + opPropName + " has not been set in " + ame + " ("
-			+ MOINImportedModelAdapter.getMetaobject(ame) + ")");
+		throw new RuntimeException("Property " + opPropName + " has not been set in " + ame);
 	    }
-	    for (Iterator<?> i = MOINImportedModelAdapter.getCol(template, "operators"); i.hasNext() && (operator == null);) {
-		Object opme = i.next();
-		Object literal = MOINImportedModelAdapter.getME((EObject) opme, "literal");
+	    for (Iterator<Operator> i = template.getOperators().iterator(); i.hasNext() && (operator == null);) {
+	        Operator opme = i.next();
+		Literal literal = opme.getLiteral();
 		String opmes = null;
 		if (literal == null) {
 		    opmes = "";
 		} else {
-		    opmes = MOINImportedModelAdapter.getString((EObject) literal, "value");
+		    opmes = literal.getValue();
 		}
-		int arity = MOINImportedModelAdapter.getInt((EObject) opme, "arity");
+		int arity = opme.getArity();
 		if (op.equals(opmes)) {
 		    if (rightPropName != null) {
 			if ((isUnary && (arity == 1)) || ((!isUnary) && (arity == 2))) {
@@ -454,7 +407,7 @@ public class PrettyPrinter {
 			}
 		    } else {
 			operator = opme;
-			isPostfix = MOINImportedModelAdapter.getBool((EObject) opme, "isPostfix");
+			isPostfix = opme.isPostfix();
 		    }
 		}
 	    }
@@ -462,26 +415,26 @@ public class PrettyPrinter {
 		System.err.println("Error: could not find operator \"" + op + "\"");
 	    }
 	} else {
-	    operator = MOINImportedModelAdapter.getCol(template, "operators").next();
-	    isUnary = MOINImportedModelAdapter.getInt((EObject) operator, "arity") == 1;
+	    operator = template.getOperators().iterator().next();
+	    isUnary = operator.getArity() == 1;
 	    if (isUnary) {
-		isPostfix = MOINImportedModelAdapter.getBool((EObject) operator, "postfix");
+		isPostfix = operator.isPostfix();
 	    }
 	}
 	int curPrio = currentContext.getPriorities().peek().intValue();
-	Operator op = (Operator) operator;
+	Operator op = operator;
 	int priority = ((Priority) op.eContainer()).getValue();
 	boolean paren = priority > curPrio;
 	currentContext.getPriorities().push(priority);
-	EObject literal = MOINImportedModelAdapter.getME((EObject) operator, "literal");
+	Literal literal = operator.getLiteral();
 	debug("PRIORITY = " + priority + " ; CURPRIO = " + curPrio + " ; OPERATOR = "
-		+ ((literal != null) ? MOINImportedModelAdapter.getString(literal, "value") : "") + " ; paren = " + paren);
+		+ ((literal != null) ? literal.getValue() : "") + " ; paren = " + paren);
 
 	if (paren) {
 	    printer.printSymbol("(");
 	}
 
-	EObject source = MOINImportedModelAdapter.getME(ame, sourcePropName);
+	EObject source = (EObject) EMFModelInspector.get(ame, sourcePropName);
 	if (isUnary) {
 	    if (isPostfix) {
 		serialize(source);
@@ -501,7 +454,7 @@ public class PrettyPrinter {
 	    }
 	}
 
-	EObject seq = MOINImportedModelAdapter.getME(template, "templateSequence");
+	Sequence seq = template.getTemplateSequence();
 	if (rightPropName == null) {
 	    currentContext.getPriorities().push(Integer.MAX_VALUE);
 	    serializeSequence(ame, seq);
@@ -592,25 +545,19 @@ public class PrettyPrinter {
     private void serializePrimitiveTemplate(Object value, String as) {
 	if (value instanceof String) {
 	    // TODO what about serializer attribute?
-	    EObject template = primitiveTemplates.get(as);
-	    if (template != null && template instanceof PrimitiveTemplate) {
-		PrimitiveTemplate primitive = (PrimitiveTemplate) template;
-	        if (primitive.getSerializer() != null && !primitive.getSerializer().equals("")) {
-	            printer.printCustomStringLiteral(primitive.getSerializer().replaceAll("%value%",
+	    PrimitiveTemplate template = primitiveTemplates.get(as);
+	    if (template != null) {
+	        if (template.getSerializer() != null && !template.getSerializer().equals("")) {
+	            printer.printCustomStringLiteral(template.getSerializer().replaceAll("%value%",
 	                   Matcher.quoteReplacement(((String) value).replaceAll("\"", "\\\\\\\""))), "");
 		} else {
 		    printer.printDefault((String) value);
 		}
-	    }
-	    // TODO what about tokens and token attribute?
-	    else if ("stringSymbol".equals(as)) {
+	    } else if ("stringSymbol".equals(as)) {
+	        // TODO what about tokens and token attribute?
 		printer.printStringLiteral((String) value);
 	    } else {
-		boolean orKeyword = false;
-		if (template != null) {
-		    orKeyword = MOINImportedModelAdapter.getBoolUndefinedIsFalse(template, "orKeyword");
-		}
-		printer.printIdentifier((String) value, orKeyword);
+                printer.printIdentifier((String) value, /*orKeyword*/ false);
 	    }
 	} else if (value instanceof Integer) {
 	    printer.printIntegerLiteral((Integer) value);
@@ -621,16 +568,15 @@ public class PrettyPrinter {
 	}
     }
 
-
     private void serializeProperty(Object element, Object value, Property property, boolean checkBounds)
 	    throws SyntaxMismatchException {
 	if (checkBounds) {
 	    validateBounds(element, property, value);
 	}
 
-	RefersToPArg refersToPArg = (RefersToPArg) getPropertyArgument(property, "RefersTo");
-	AsPArg asPArg = (AsPArg) getPropertyArgument(property, "As");
-	EObject query = getPropertyArgument(property, "Query");
+	RefersToPArg refersToPArg = TcsUtil.getRefersToPArg(property);
+	AsPArg asPArg = TcsUtil.getAsPArg(property);
+	QueryPArg query = TcsUtil.getQueryPArg(property);
 	String primitiveTemplateName = null;
 
 	if (asPArg != null) {
@@ -645,9 +591,10 @@ public class PrettyPrinter {
 	    return;
 	}
 	if (value instanceof Collection) {
-	    EObject sep = getPropertyArgument(property, "Separator");
-	    if (sep != null) {
-		sep = MOINImportedModelAdapter.getME(sep, "separatorSequence");
+	    SeparatorPArg separator = TcsUtil.getSeparatorPArg(property);
+	    Sequence sep = null; 
+	    if (separator != null) {
+		sep = separator.getSeparatorSequence();
 	    }
 	    boolean first = true;
 	    for (Iterator<?> i = ((Collection<?>) value).iterator(); i.hasNext();) {
@@ -689,24 +636,19 @@ public class PrettyPrinter {
 	    printer.printIndentationIfNeeded();
 
 	    if (asPArg != null && query != null) {
-		FilterPArg filter = (FilterPArg) getPropertyArgument(property, "Filter");
+		FilterPArg filter = TcsUtil.getFilterPArg(property);
 		String invertQuery = filter.getInvert();
 		try {
 		    TCSSpecificOCLEvaluator oclEvaluator = new TCSSpecificOCLEvaluator();
 		    String refValue = (String) oclEvaluator.findElementsWithOCLQuery(valueME, /*keyValue*/ null, invertQuery).iterator().next();       
 		    this.serializePrimitiveTemplate(refValue, primitiveTemplateName);
 		} catch (Exception e) {
-		    String defaultName = (String) valueME.eGet(valueME.eClass().getEStructuralFeature("name"));
+		    String defaultName = EMFModelInspector.getString(valueME, "name");
 		    this.serializePrimitiveTemplate(defaultName, primitiveTemplateName);
 		}
 	    } else if (refersToPArg == null) {
-		ModePArg modeArg = (ModePArg) getPropertyArgument(property, "Mode");
-		String mode = null;
-		if (modeArg != null) {
-		    mode = modeArg.getMode();
-		}
-
-		serialize(valueME, mode, null);
+		String mode = TcsUtil.getMode(property);
+		serialize(valueME, mode, /*template*/ null);
 	    } else {
 		// TODO hack to add autocreated instances of FURCAS::TCS::Keyword to
 		// the keywords list
@@ -714,10 +656,10 @@ public class PrettyPrinter {
 		    printer.addAutoCreatedKeyword((Keyword) value);
 		}
 
-		Object v = MOINImportedModelAdapter.get(valueME, MOINImportedModelAdapter.getString(refersToPArg, "propertyName"));
+		Object v = EMFModelInspector.get(valueME, refersToPArg.getPropertyName());
 		serializePrimitiveTemplate(v, primitiveTemplateName);
 	    }
-	} else if (MOINImportedModelAdapter.isPrimitive(value)) {
+	} else if (EMFModelInspector.isPrimitive(value)) {
 	    printer.printIndentationIfNeeded();
 	    serializePrimitiveTemplate(value, primitiveTemplateName);
 	} else {
@@ -734,7 +676,7 @@ public class PrettyPrinter {
 	// instead of  throwing an exception
 
 	int handle = 0;
-	PartialPArg partialArg = (PartialPArg) getPropertyArgument(property, "Partial");
+	PartialPArg partialArg = TcsUtil.getPartialPArg(property);
 	if (partialArg != null) {
 	    handle = createSafePoint();
 	}
@@ -755,11 +697,10 @@ public class PrettyPrinter {
 	}
     }
 
-    private void serializeSequence(Object ame, EObject seq) throws SyntaxMismatchException {
-	if (seq != null) {
-	    for (Iterator<?> i = MOINImportedModelAdapter.getCol(seq, "elements"); i.hasNext();) {
-		Object e = i.next();
-		serializeSequenceElement(ame, (SequenceElement) e);
+    private void serializeSequence(Object ame, Sequence sequence) throws SyntaxMismatchException {
+	if (sequence != null) {
+	    for (SequenceElement element : sequence.getElements()) {
+		serializeSequenceElement(ame, element);
 	    }
 	}
     }
@@ -767,26 +708,25 @@ public class PrettyPrinter {
     private void serializeSequenceElement(Object element, SequenceElement seqElem) throws SyntaxMismatchException {
 	printer.enterSequenceElement(seqElem);
 	
-	String tn = MOINImportedModelAdapter.getTypeName(seqElem);
-	debug("serializing seq elem " + tn);
-	if (tn.equals("FURCAS::TCS::Property")) {
+	debug("serializing seq elem " + EMFModelInspector.getTypeName(seqElem));
+	if (seqElem instanceof Property) {
 	    serializeSEProperty(element, (Property) seqElem);
-	} else if (tn.equals("FURCAS::TCS::LiteralRef")) {
+	} else if (seqElem instanceof LiteralRef) {
 	    serializeSELiteralRef((LiteralRef) seqElem);
-	} else if (tn.equals("FURCAS::TCS::Alternative")) {
+	} else if (seqElem instanceof Alternative) {
 	    serializeSEAlternative(element, (Alternative) seqElem);
-	} else if (tn.equals("FURCAS::TCS::Block")) {
+	} else if (seqElem instanceof Block) {
 	    serializeSEBlock(element, (Block) seqElem);
-	} else if (tn.equals("FURCAS::TCS::FunctionCall")) {
-	    serializeSequence(element, MOINImportedModelAdapter.getME(MOINImportedModelAdapter.getME(seqElem, "calledFunction"), "functionSequence"));
-	} else if (tn.equals("FURCAS::TCS::ConditionalElement")) {
+	} else if (seqElem instanceof FunctionCall) {
+	    serializeSequence(element, ((FunctionCall) seqElem).getCalledFunction().getFunctionSequence());
+	} else if (seqElem instanceof ConditionalElement) {
 	    serializeSEConditional(element, (ConditionalElement) seqElem);
-	} else if (tn.equals("FURCAS::TCS::CustomSeparator")) {
+	} else if (seqElem instanceof CustomSeparator) {
 	    serializeSECustomSeparator((CustomSeparator) seqElem);
-	} else if (tn.equals("FURCAS::TCS::InjectorActionsBlock")) {
+	} else if (seqElem instanceof InjectorActionsBlock) {
 	    serializeSEInjectorActionsBlock(element, (InjectorActionsBlock) seqElem);
 	} else {
-	    error("unsupported: " + tn);
+	    error("unsupported: " + EMFModelInspector.getTypeName(seqElem));
 	}
 	printer.exitSequenceElement();
     }
@@ -851,16 +791,15 @@ public class PrettyPrinter {
 	return list.indexOf(choice);
     }
 
-    private void serializeSEConditional(Object element, ConditionalElement seqElem) throws SyntaxMismatchException {
-	EObject condition = MOINImportedModelAdapter.getME(seqElem, "condition");
-	if (TCSConditionEvaluator.eval(element, condition)) {
-	    EObject tseq = MOINImportedModelAdapter.getME(seqElem, "thenSequence");
+    private void serializeSEConditional(Object element, ConditionalElement conditionalElement) throws SyntaxMismatchException {
+	if (TCSConditionEvaluator.eval(element, conditionalElement.getCondition())) {
+	    Sequence tseq = conditionalElement.getThenSequence();
 	    if (tseq != null) {
 		printer.printIndentationIfNeeded();
 		serializeSequence(element, tseq);
 	    }
 	} else {
-	    EObject eseq = MOINImportedModelAdapter.getME(seqElem, "elseSequence");
+	    Sequence eseq = conditionalElement.getElseSequence();
 	    debug("ELSE SEQ = " + eseq);
 	    if (eseq != null) {
 		printer.printIndentationIfNeeded();
@@ -869,33 +808,33 @@ public class PrettyPrinter {
 	}
     }
 
-    private void serializeSEBlock(Object element, Block seqElem) throws SyntaxMismatchException {
+    private void serializeSEBlock(Object element, Block block) throws SyntaxMismatchException {
 	debugWhiteSpace("<block>");
-	Object nbNLBArg = getBlockArgument(seqElem, "NbNL");
-	Object startNbNLBArg = getBlockArgument(seqElem, "StartNbNL");
-	Object indentIncrBArg = getBlockArgument(seqElem, "IndentIncr");
-	Object startNLBArg = getBlockArgument(seqElem, "StartNL"); 
-	Object endNLBArg = getBlockArgument(seqElem, "EndNL");
+	NbNLBArg nbNLBArg = TcsUtil.getNbNLBArg(block);
+	StartNbNLBArg startNbNLBArg = TcsUtil.getStartNbNLBArg(block);
+	IndentIncrBArg indentIncrBArg = TcsUtil.getIndentIncrBArg(block);
+	StartNLBArg startNLBArg = TcsUtil.getStartNLBArg(block);
+	EndNLBArg endNLBArg = TcsUtil.getEndNLBArg(block);
 	int indentIncr = 1; // how much to increase the indentation level
 	int nbNL = 1; // number of new lines before each element in the block
 	boolean startNL = true; // start to print block on a new line
 	boolean endNL = true; // print empty, indented line after the block content was printed
 
 	if (nbNLBArg != null) {
-	    nbNL = MOINImportedModelAdapter.getInt((EObject) nbNLBArg, "value");
+	    nbNL = nbNLBArg.getValue();
 	}
 	int startNbNL = nbNL; // by default, startNbNL = nbNL // says how many lines we want at the beginning of the block
 	if (startNbNLBArg != null) {
-	    startNbNL = MOINImportedModelAdapter.getInt((EObject) startNbNLBArg, "value");
+	    startNbNL = startNbNLBArg.getValue();
 	}
 	if (indentIncrBArg != null) {
-	    indentIncr = MOINImportedModelAdapter.getInt((EObject) indentIncrBArg, "value");
+	    indentIncr = indentIncrBArg.getValue();
 	}
 	if (startNLBArg != null) {
-	    startNL = MOINImportedModelAdapter.getBool((EObject) startNLBArg, "value");
+	    startNL = startNLBArg.isValue();
 	}
 	if (endNLBArg != null) {
-	    endNL = MOINImportedModelAdapter.getBool((EObject) endNLBArg, "value");
+	    endNL = endNLBArg.isValue();
 	}
 	debug("nbNL = " + nbNL + " ; indentIncr = " + indentIncr);
 	currentContext.incIndentLevel(indentIncr);
@@ -923,7 +862,7 @@ public class PrettyPrinter {
 	    debugWhiteSpace("<AfterNonStartNLWS/>");
 	}
 	debugWhiteSpace("<blockContent>");
-	serializeSequence(element, MOINImportedModelAdapter.getME(seqElem, "blockSequence"));
+	serializeSequence(element, block.getBlockSequence());
 	debugWhiteSpace("</blockContent>");
 
 	currentContext.decIndentLevel(indentIncr);
@@ -957,7 +896,7 @@ public class PrettyPrinter {
     }
 
     private void serializeSECustomSeparator(CustomSeparator seqElem) {
-	String name = MOINImportedModelAdapter.getString(seqElem, "name");
+	String name = seqElem.getName();
 	if (name.equals("no_space")) {
 	    currentContext.setTypeLast(TYPE_SYMBOL + SYMBOL_RIGHT_NONE);
 	} else if (name.equals("space")) {
@@ -972,8 +911,8 @@ public class PrettyPrinter {
     private void validateBounds(Object element, Property p, Object propValue) throws ForcedBoundsException {
 
 	// check for forced upper and forced lower validity of model element
-	ForcedLowerPArg lowerArg = (ForcedLowerPArg) getPropertyArgument(p, "ForcedLower");
-	ForcedUpperPArg upperArg = (ForcedUpperPArg) getPropertyArgument(p, "ForcedUpper");
+	ForcedLowerPArg lowerArg = TcsUtil.getForcedLowerPArg(p);
+	ForcedUpperPArg upperArg = TcsUtil.getForcedUpperPArg(p);
 
 	if (lowerArg != null) {
 

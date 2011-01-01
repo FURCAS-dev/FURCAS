@@ -3,7 +3,6 @@ package com.sap.ide.cts.editor.prettyprint.imported;
 import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintConstants.TYPE_SYMBOL;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +13,6 @@ import org.eclipse.emf.ecore.EObject;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.tcs.TcsUtil;
-import com.sap.ide.cts.editor.prettyprint.MOINImportedModelAdapter;
 
 public class PrettyPrintHelper {
 
@@ -51,28 +49,6 @@ public class PrettyPrintHelper {
 //	    Map<List<String>, Map<String, ClassTemplate>> classTemplateMap, Connection conn) {
 //	return findSupertypeTemplate((EClass) conn.getElement(r.refMetaObjectMri()), mode, classTemplateMap);
 //    }
-
-    public static EObject getBlockArgument(EObject ame, String name) {
-	EObject ret = null;
-	for (Iterator<?> i = MOINImportedModelAdapter.getCol(ame, "blockArgs"); i.hasNext() && (ret == null);) {
-	    Object arg = i.next();
-	    if (MOINImportedModelAdapter.getTypeName((EObject) arg).equals("FURCAS::TCS::" + name + "BArg")) {
-		ret = (EObject) arg;
-	    }
-	}
-	return ret;
-    }
-
-    public static EObject getPropertyArgument(EObject ame, String name) {
-	EObject ret = null;
-	for (Iterator<?> i = MOINImportedModelAdapter.getCol(ame, "propertyArgs"); i.hasNext() && (ret == null);) {
-	    Object arg = i.next();
-	    if (MOINImportedModelAdapter.getTypeName((EObject) arg).equals("FURCAS::TCS::" + name + "PArg")) {
-		ret = (EObject) arg;
-	    }
-	}
-	return ret;
-    }
 
     public static boolean isInstanceOf(EObject element, List<String> type) {
 	EClass m = element.eClass();

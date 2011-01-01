@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
@@ -52,11 +51,13 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
 import com.sap.furcas.metamodel.FURCAS.TCS.AsPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Associativity;
 import com.sap.furcas.metamodel.FURCAS.TCS.Block;
+import com.sap.furcas.metamodel.FURCAS.TCS.BlockArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.CustomSeparator;
+import com.sap.furcas.metamodel.FURCAS.TCS.EndNLBArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.EndOfLineRule;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralMapping;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
@@ -66,15 +67,18 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.FunctionCall;
 import com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.IndentIncrBArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
 import com.sap.furcas.metamodel.FURCAS.TCS.Literal;
 import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
 import com.sap.furcas.metamodel.FURCAS.TCS.ModePArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.NbNLBArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Operator;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.PartialPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg;
@@ -87,6 +91,8 @@ import com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.SimplePattern;
+import com.sap.furcas.metamodel.FURCAS.TCS.StartNLBArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.StartNbNLBArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.StringPattern;
 import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSFactory;
@@ -693,21 +699,8 @@ public class TcsUtil {
      *            the type to compute its qualified name from.
      * @return the Qualified name of the given type as list of strings.
      */
-    private static List<String> getQualifiedName(EClassifier type) {
-        List<String> names = new ArrayList<String>(3);
-        names.add(type.getName());
-        EObject parent = type.eContainer();
-        while (parent != null) {
-            if (parent instanceof ENamedElement) {
-                names.add(0, ((ENamedElement) parent).getName());
-                parent = parent.eContainer();
-            } else {
-                // There is an element which is not a ENamedElement
-                // in the containment hierarchy, break qname building here
-                break;
-            }
-        }
-        return names;
+    public static List<String> getQualifiedName(EClassifier type) {
+        return EcoreHelper.getQualifiedName(type);
     }
 
     public static boolean isOperatored(Property p, Map<List<String>, Map<String, ClassTemplate>> classTemplateMap) {
@@ -726,7 +719,52 @@ public class TcsUtil {
 
         return false;
     }
-
+    
+    public static NbNLBArg getNbNLBArg(Block block) {
+        for (BlockArg arg : block.getBlockArgs()) {
+            if (arg instanceof NbNLBArg) {
+                return (NbNLBArg) arg;
+            }
+        }
+        return null;
+    }
+    
+    public static StartNbNLBArg getStartNbNLBArg(Block block) {
+        for (BlockArg arg : block.getBlockArgs()) {
+            if (arg instanceof StartNbNLBArg) {
+                return (StartNbNLBArg) arg;
+            }
+        }
+        return null;
+    }
+    
+    public static IndentIncrBArg getIndentIncrBArg(Block block) {
+        for (BlockArg arg : block.getBlockArgs()) {
+            if (arg instanceof IndentIncrBArg) {
+                return (IndentIncrBArg) arg;
+            }
+        }
+        return null;
+    }
+    
+    public static StartNLBArg getStartNLBArg(Block block) {
+        for (BlockArg arg : block.getBlockArgs()) {
+            if (arg instanceof StartNLBArg) {
+                return (StartNLBArg) arg;
+            }
+        }
+        return null;
+    }
+    
+    public static EndNLBArg getEndNLBArg(Block block) {
+        for (BlockArg arg : block.getBlockArgs()) {
+            if (arg instanceof EndNLBArg) {
+                return (EndNLBArg) arg;
+            }
+        }
+        return null;
+    }
+    
     public static boolean containsRefersToArg(Property p) {
         return getRefersToPArg(p) != null;
     }
@@ -746,6 +784,23 @@ public class TcsUtil {
         for (PropertyArg arg : p.getPropertyArgs()) {
             if (arg instanceof SeparatorPArg) {
                 return (SeparatorPArg) arg;
+            }
+        }
+
+        return null;
+    }
+    
+    /**
+     * returns the first PartialPArg of Property p. There should only be one. No error is thrown, if more than one exist.
+     * 
+     * @param p
+     *            Property
+     * @return first SeparatorPArg
+     */
+    public static PartialPArg getPartialPArg(Property p) {
+        for (PropertyArg arg : p.getPropertyArgs()) {
+            if (arg instanceof PartialPArg) {
+                return (PartialPArg) arg;
             }
         }
 
@@ -835,7 +890,7 @@ public class TcsUtil {
         return null;
     }
 
-    static ForcedUpperPArg getForcedUpperPArg(Property p) {
+    public static ForcedUpperPArg getForcedUpperPArg(Property p) {
         for (PropertyArg arg : p.getPropertyArgs()) {
             if (arg instanceof ForcedUpperPArg) {
                 return (ForcedUpperPArg) arg;
@@ -845,7 +900,7 @@ public class TcsUtil {
         return null;
     }
 
-    static ForcedLowerPArg getForcedLowerPArg(Property p) {
+    public static ForcedLowerPArg getForcedLowerPArg(Property p) {
         for (PropertyArg arg : p.getPropertyArgs()) {
             if (arg instanceof ForcedLowerPArg) {
                 return (ForcedLowerPArg) arg;
@@ -855,7 +910,7 @@ public class TcsUtil {
         return null;
     }
 
-    static ModePArg getModePArg(Property p) {
+    public static ModePArg getModePArg(Property p) {
         for (PropertyArg arg : p.getPropertyArgs()) {
             if (arg instanceof ModePArg) {
                 return (ModePArg) arg;
