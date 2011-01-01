@@ -7,7 +7,6 @@ Bundle-Vendor: SAP
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: com.sap.furcas.unparser.extraction,
  com.sap.furcas.unparser.extraction.textblocks,
- com.sap.ide.cts.editor.prettyprint,
  com.sap.ide.cts.editor.prettyprint.imported,
  com.sap.ide.cts.editor.prettyprint.textblocks
 Require-Bundle: org.antlr,

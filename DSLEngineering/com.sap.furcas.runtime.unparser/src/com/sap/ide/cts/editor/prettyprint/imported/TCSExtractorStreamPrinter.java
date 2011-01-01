@@ -34,13 +34,13 @@ import org.eclipse.emf.ecore.EObject;
 import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
+import com.sap.furcas.metamodel.FURCAS.TCS.Literal;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.SpaceKind;
 import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.unparser.extraction.TCSExtractorStream;
 import com.sap.furcas.unparser.extraction.TCSExtractorStreamDebuggingDecorator;
-import com.sap.ide.cts.editor.prettyprint.MOINImportedModelAdapter;
 
 /**
  * Helper class used by the {@link PrettyPrinter} to print information into
@@ -191,15 +191,11 @@ public class TCSExtractorStreamPrinter {
 	tracer.notifyPrintedToken();
     }
 
-    public void printLiteral(EObject literal) {
-	String s = MOINImportedModelAdapter.getString(literal, "value");
-	String ltn = MOINImportedModelAdapter.getTypeName(literal);
-	if (ltn != null) {
-	    if (ltn.equals("TCS::Keyword")) {
-		printKeyword(s);
-	    } else {
-		printSymbol(s);
-	    }
+    public void printLiteral(Literal literal) {
+        if (literal instanceof Keyword) {
+            printKeyword(literal.getValue());
+        } else {
+            printSymbol(literal.getValue());
 	}
     }
 

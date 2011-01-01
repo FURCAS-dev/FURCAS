@@ -3,19 +3,24 @@ package com.sap.ide.cts.editor.prettyprint.imported;
 import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintHelper.isInstanceOf;
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.AndExp;
+import com.sap.furcas.metamodel.FURCAS.TCS.AtomExp;
 import com.sap.furcas.metamodel.FURCAS.TCS.BooleanPropertyExp;
+import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralVal;
 import com.sap.furcas.metamodel.FURCAS.TCS.EqualsExp;
 import com.sap.furcas.metamodel.FURCAS.TCS.InstanceOfExp;
+import com.sap.furcas.metamodel.FURCAS.TCS.IntegerVal;
 import com.sap.furcas.metamodel.FURCAS.TCS.IsDefinedExp;
+import com.sap.furcas.metamodel.FURCAS.TCS.NegativeIntegerVal;
 import com.sap.furcas.metamodel.FURCAS.TCS.OneExp;
+import com.sap.furcas.metamodel.FURCAS.TCS.StringVal;
+import com.sap.furcas.metamodel.FURCAS.TCS.Value;
 import com.sap.furcas.runtime.tcs.TcsUtil;
-import com.sap.ide.cts.editor.prettyprint.MOINImportedModelAdapter;
 
 public class TCSConditionEvaluator {
 
@@ -23,29 +28,28 @@ public class TCSConditionEvaluator {
     public static boolean eval(Object context, EObject condition) {
 	boolean ret = true;
 
-	String ctn = MOINImportedModelAdapter.getTypeName(condition);
-	if (ctn.equals("FURCAS::TCS::AndExp")) {
+	if (condition instanceof AndExp) {
 	    ret = true;
-	    for (Iterator<?> i = MOINImportedModelAdapter.getCol(condition, "expressions"); i.hasNext();) {
-		ret &= eval(context, (EObject) i.next());
+	    for (AtomExp exp : ((AndExp) condition).getExpressions()) {
+		ret &= eval(context, exp);
 	    }
-	} else if (ctn.equals("FURCAS::TCS::BooleanPropertyExp")) {
+	} else if (condition instanceof BooleanPropertyExp) {
 	    BooleanPropertyExp booleanPropertyExp = (BooleanPropertyExp) condition;
 	    String propName = TcsUtil.getPropertyName(booleanPropertyExp.getPropertyReference());
 // FIXME: Structure types not yet supported
 //	    if (context instanceof RefStruct) {
 //		ret = MOINImportedModelAdapter.getBool((RefStruct) context, propName);
 //	    } else if (context instanceof EObject) {
-		ret = MOINImportedModelAdapter.getBool((EObject) context, propName);
+		ret = EMFModelInspector.getBool((EObject) context, propName);
 //	    }
-	} else if (ctn.equals("FURCAS::TCS::IsDefinedExp")) {
+	} else if (condition instanceof IsDefinedExp) {
 	    IsDefinedExp isDefinedExp = (IsDefinedExp) condition;
 	    String propName = TcsUtil.getPropertyName(isDefinedExp.getPropertyReference());
 	    Object val = null;
 //	    if (context instanceof RefStruct) {
 //		val = MOINImportedModelAdapter.get((RefStruct) context, propName);
 //	    } else if (context instanceof EObject) {
-		val = MOINImportedModelAdapter.get((EObject) context, propName);
+		val = EMFModelInspector.get((EObject) context, propName);
 //	    }
 	    if (val == null) {
 		ret = false;
@@ -55,7 +59,7 @@ public class TCSConditionEvaluator {
 		ret = true;
 	    }
 
-	} else if (ctn.equals("FURCAS::TCS::OneExp")) {
+	} else if (condition instanceof OneExp) {
 	    OneExp oneExp = (OneExp) condition;
 	    String propName = TcsUtil.getPropertyName(oneExp.getPropertyReference());
 
@@ -64,7 +68,7 @@ public class TCSConditionEvaluator {
 //	    if (context instanceof RefStruct) {
 //		val = MOINImportedModelAdapter.get((RefStruct) context, propName);
 //	    } else if (context instanceof EObject) {
-		val = MOINImportedModelAdapter.get((EObject) context, propName);
+		val = EMFModelInspector.get((EObject) context, propName);
 //	    }
 	    if (val == null) {
 		ret = false;
@@ -73,7 +77,7 @@ public class TCSConditionEvaluator {
 	    } else {
 		ret = true;
 	    }
-	} else if (ctn.equals("FURCAS::TCS::InstanceOfExp")) {
+	} else if (condition instanceof InstanceOfExp) {
 	    InstanceOfExp ioExp = (InstanceOfExp) condition;
 
 	    Object referredObject = null;
@@ -94,57 +98,56 @@ public class TCSConditionEvaluator {
 		// TODO handle primitive types as well?
 		System.out.println("TODO NEED HANDLING IN PP");
 	    }
-	} else if (ctn.equals("FURCAS::TCS::EqualsExp")) {
+	} else if (condition instanceof EqualsExp) {
 	    EqualsExp equalsExp = (EqualsExp) condition;
 	    String propName = TcsUtil.getPropertyName(equalsExp.getPropertyReference());
-	    EObject value = MOINImportedModelAdapter.getME(condition, "value");
-	    String vtn = MOINImportedModelAdapter.getTypeName(value);
-	    if (vtn.equals("FURCAS::TCS::IntegerVal")) {
-		int lv = MOINImportedModelAdapter.getInt(value, "symbol");
+	    Value value = equalsExp.getValue();
+	    if (value instanceof IntegerVal) {
+		int lv = ((IntegerVal) value).getSymbol();
 		int pv = 0;
 // FIXME: Structure types not yet supported
 //		if (context instanceof RefStruct) {
 //		    pv = MOINImportedModelAdapter.getInt((RefStruct) context, propName);
 //		} else if (context instanceof EObject) {
-		    pv = MOINImportedModelAdapter.getInt((EObject) context, propName);
+		    pv = EMFModelInspector.getInteger((EObject) context, propName);
 //		}
 		ret = (lv == pv);
-	    } else if (vtn.equals("FURCAS::TCS::NegativeIntegerVal")) {
-		int lv = -MOINImportedModelAdapter.getInt(value, "symbol");
+	    } else if (value instanceof NegativeIntegerVal) {
+		int lv = - ((NegativeIntegerVal) value).getSymbol();
 		int pv = 0;
 // FIXME: Structure types not yet supported
 //		if (context instanceof RefStruct) {
 //		    pv = MOINImportedModelAdapter.getInt((RefStruct) context, propName);
 //		} else if (context instanceof EObject) {
-		    pv = MOINImportedModelAdapter.getInt((EObject) context, propName);
+                    pv = EMFModelInspector.getInteger((EObject) context, propName);
 //		}
 		ret = (lv == pv);
-	    } else if (vtn.equals("FURCAS::TCS::StringVal")) {
-		String lv = MOINImportedModelAdapter.getString(value, "symbol");
+	    } else if (value instanceof StringVal) {
+		String lv = ((StringVal) value).getSymbol();
 		List<String> pv = null;
 // FIXME: Structure types not yet supported
 //		if (context instanceof RefStruct) {
 //		    pv = (List<String>) MOINImportedModelAdapter.get((RefStruct) context, propName);
 //		} else if (context instanceof EObject) {
-		    pv = (List<String>) MOINImportedModelAdapter.get((EObject) context, propName);
+		    pv = (List<String>) EMFModelInspector.get((EObject) context, propName);
 //		}
 		ret = (lv.equals(TcsUtil.joinNameList(pv)));
-	    } else if (vtn.equals("FURCAS::TCS::EnumLiteralVal")) {
-		String lv = MOINImportedModelAdapter.getString(value, "name");
+	    } else if (value instanceof EnumLiteralVal) {
+		String lv = value.getName();
 
 		EEnumLiteral pv = null;
 // FIXME: Structure types not yet supported
 //		if (context instanceof RefStruct) {
 //		    pv = (RefEnum) MOINImportedModelAdapter.get((RefStruct) context, propName);
 //		} else if (context instanceof EObject) {
-		    pv = (EEnumLiteral) MOINImportedModelAdapter.get((EObject) context, propName);
+		    pv = (EEnumLiteral) EMFModelInspector.get((EObject) context, propName);
 //		}
 		ret = (lv.equals(pv.toString()));
 	    } else {
-		throw new IllegalArgumentException(vtn + " unsupported.");
+		throw new IllegalArgumentException(EMFModelInspector.getTypeName(value) + " unsupported.");
 	    }
 	} else {
-	    throw new IllegalArgumentException(ctn + " unsupported.");
+	    throw new IllegalArgumentException(EMFModelInspector.getTypeName(condition) + " unsupported.");
 	}
 	return ret;
     }
