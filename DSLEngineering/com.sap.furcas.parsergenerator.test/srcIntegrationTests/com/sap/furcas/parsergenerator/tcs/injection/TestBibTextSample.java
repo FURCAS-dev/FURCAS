@@ -1,11 +1,10 @@
 package com.sap.furcas.parsergenerator.tcs.injection;
 
-import static org.junit.Assert.assertArrayEquals;
+import static com.sap.furcas.test.testutils.StringListHelper.list;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -27,13 +26,14 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.TCS.Token;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
+import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 public class TestBibTextSample extends AbstractTCSInjectionTest {
 
     @BeforeClass
     public static void doSetUp() throws Exception {
-        setup(ScenarioFixtureData.BIBTEXT_TCS);
+        setup(ScenarioFixtureData.BIBTEXT_TCS, ScenarioFixtureData.BIBTEXT_METAMODEL, ScenarioFixtureData.BIBTEXT1_METAMODEL);
     }
 
     @Test
@@ -53,8 +53,7 @@ public class TestBibTextSample extends AbstractTCSInjectionTest {
         // have to assume order of templates to keep testing code simple
         Template identifier = templates.get(0);
         assertNotNull(identifier.getNames());
-        // assertNotNull(identifier.getMetaReference().getQualifiedName());
-        assertArrayEquals(new String[] { "String" }, identifier.getNames().toArray());
+        assertNotNull(identifier.getMetaReference());
         PrimitiveTemplate idtemp = (PrimitiveTemplate) identifier;
         assertEquals("NAME", idtemp.getTokenName());
         assertEquals("identifier", idtemp.getTemplateName());
@@ -75,7 +74,7 @@ public class TestBibTextSample extends AbstractTCSInjectionTest {
 
         // have to assume order of templates to keep testing code simple
         Template file = templates.get(1);
-        assertEquals(list("BibTextFile"), file.getNames());
+        assertEquals(list("BibText", "BibTextFile"), TcsUtil.getQualifiedName(file));
         ClassTemplate filetemp = (ClassTemplate) file;
         assertEquals(true, filetemp.isIsMain());
         assertEquals(true, filetemp.isIsContext());
@@ -92,7 +91,7 @@ public class TestBibTextSample extends AbstractTCSInjectionTest {
         Block block = (Block) blocks.getElementSequence().getElements().get(0);
         SequenceElement entries = block.getBlockSequence().getElements().get(0);
         Property property = (Property) entries;
-        assertEquals("entries", property.getPropertyReference().getName());
+        assertEquals("entries", property.getPropertyReference().getStrucfeature().getName());
         assertEquals(0, property.getPropertyArgs().size());
     }
 
@@ -102,7 +101,7 @@ public class TestBibTextSample extends AbstractTCSInjectionTest {
 
         // have to assume order of templates to keep testing code simple
         Template entry = templates.get(2);
-        assertEquals(list("BibTextEntry"), entry.getNames());
+        assertEquals(list("BibText", "BibTextEntry"), TcsUtil.getQualifiedName(entry));
         ClassTemplate entrytemp = (ClassTemplate) entry;
         assertEquals(false, entrytemp.isIsMain());
         assertEquals(false, entrytemp.isIsContext());
@@ -119,7 +118,7 @@ public class TestBibTextSample extends AbstractTCSInjectionTest {
 
         // have to assume order of templates to keep testing code simple
         Template art = templates.get(3);
-        assertEquals(list("Article"), art.getNames());
+        assertEquals(list("BibText", "Article"), TcsUtil.getQualifiedName(art));
         ClassTemplate arttemp = (ClassTemplate) art;
         assertEquals(false, arttemp.isIsMain());
         assertEquals(false, arttemp.isIsContext());
@@ -159,13 +158,13 @@ public class TestBibTextSample extends AbstractTCSInjectionTest {
         List<SequenceElement> seqElements = sequence.getBlockSequence().getElements();
         assertEquals(5, seqElements.size());
         Property key = (Property) seqElements.get(0);
-        assertEquals("key", key.getPropertyReference().getName());
+        assertEquals("key", key.getPropertyReference().getStrucfeature().getName());
 
         LiteralRef litRef = (LiteralRef) seqElements.get(1);
         assertEquals(coma, litRef.getReferredLiteral());
 
         Property author = (Property) seqElements.get(2);
-        assertEquals("author", author.getPropertyReference().getName());
+        assertEquals("author", author.getPropertyReference().getStrucfeature().getName());
         List<PropertyArg> propargs = author.getPropertyArgs();
         assertEquals(1, propargs.size());
         PropertyArg refersTo = propargs.get(0);
@@ -247,12 +246,6 @@ public class TestBibTextSample extends AbstractTCSInjectionTest {
         List<Token> tokens = syntax.getTokens();
         assertNotNull(tokens);
         assertEquals(1, tokens.size());
-    }
-
-    private static List<String> list(String entry) {
-        ArrayList<String> list = new ArrayList<String>();
-        list.add(entry);
-        return list;
     }
 
 }
