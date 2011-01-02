@@ -1,17 +1,16 @@
-package com.sap.furcas.runtime.parser.testbase;
+package com.sap.furcas.runtime.parser.testbase.stubs;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class StubModel {
 
     private final HashMap<String, List<StubModelElement>> elementListMap = new HashMap<String, List<StubModelElement>>();
 
     public StubModelElement create(String type) {
-        // System.out.println("--Creating object of type " + type);
         StubModelElement element = new StubModelElement(type);
         addToList(type, element);
         return element;
@@ -26,7 +25,7 @@ public class StubModel {
         elementsOfType.add(element);
     }
 
-    public Set<StubModelElement> getElementsByType(String typeName) {
+    public Collection<StubModelElement> getElementsOfType(String typeName) {
         List<StubModelElement> list = elementListMap.get(typeName);
         if (list != null) {
             return new HashSet<StubModelElement>(list);
@@ -35,12 +34,7 @@ public class StubModel {
         }
     }
 
-    // public Object newModelElement(Object arg0) {
-    // return create(arg0.getName());
-    // }
-
     public Object newModelElement(String typeName) {
-
         return create(typeName);
     }
 

@@ -16,7 +16,7 @@ import org.junit.Test;
 import com.sap.furcas.parser.tcs.TCSParserFacadeFactory;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ParserFacade;
-import com.sap.furcas.runtime.parser.testbase.StubModelAdapter;
+import com.sap.furcas.runtime.parser.testbase.stubs.StubModelAdapter;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
 import com.sap.furcas.utils.projects.FileReadHelper;
 

@@ -141,4 +141,9 @@ public interface IBareModelAdapter extends IModelElementInvestigator { // extend
      * Queries for a modelElement of the given type having the attributes specified.
      */
     public Collection<Object> queryElement(List<String> type, Map<String, List<Object>> attributes) throws ModelAdapterException;
+    
+    /**
+     * Return all modelElements of the given type with are known to this model adapter instance.
+     */
+    public Collection<Object> getElementsOfType(List<String> list) throws ModelAdapterException; 
 }

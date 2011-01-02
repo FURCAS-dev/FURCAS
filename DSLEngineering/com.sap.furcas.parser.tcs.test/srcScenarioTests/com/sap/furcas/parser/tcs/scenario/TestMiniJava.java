@@ -7,26 +7,18 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
-import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
 import com.sap.furcas.runtime.parser.ParserFacade;
-import com.sap.furcas.runtime.parser.impl.DefaultTextAwareModelAdapter;
+import com.sap.furcas.runtime.parser.testbase.EMFParsingHelper;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
-import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 /**
@@ -40,22 +32,16 @@ public class TestMiniJava extends GeneratedParserBasedTest {
     private static final File TCS = ScenarioFixtureData.MINI_JAVA_TCS;
     private static final File[] METAMODELS = { ScenarioFixtureData.MINI_JAVA_METAMODEL};
     private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
+    private static final String PACKAGE_URI = ScenarioFixtureData.MINI_JAVA_PACKAGE_URI;
     
-    private static ParsingHelper parsingHelper;
-    
-    private static EPackage rootPackage;
-    private static Set<URI> referenceScope;
-    private static ResourceSet resourceSet;
+    private static EMFParsingHelper parsingHelper;
 
     @BeforeClass
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
         TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
         ParserFacade facade = generateParserForLanguage(syntaxBean, testConfig, new ClassLookupImpl());
-        parsingHelper = new ParsingHelper(facade);
-        rootPackage = findPackage("MiniJava", testConfig.getSourceConfiguration().getResourceSet());
-        resourceSet = testConfig.getSourceConfiguration().getResourceSet();
-        referenceScope = testConfig.getSourceConfiguration().getReferenceScope();
+        parsingHelper = new EMFParsingHelper(facade, testConfig, PACKAGE_URI);
     }
 
     /**
@@ -63,8 +49,7 @@ public class TestMiniJava extends GeneratedParserBasedTest {
      */
     @Test
     public void testParseSimpleSample() throws Exception {
-        IModelAdapter modelAdapter = createNewEMFModelAdapter();
-        ModelParsingResult result = parsingHelper.parseFile("MiniJava_TestSimple.sam", DSLSAMPLEDIR, /*expected errors*/ 0, modelAdapter);
+        ModelParsingResult result = parsingHelper.parseFile("MiniJava_TestSimple.sam", DSLSAMPLEDIR, /*expected errors*/ 0);
         
         // Check we have one class and three methods.
         EObject compilationUnit = (EObject) result.getParsedModelElement();
@@ -82,12 +67,10 @@ public class TestMiniJava extends GeneratedParserBasedTest {
      */
     @Test
     public void testParseWithMissingImportedPackage() throws Exception {
-        IModelAdapter modelAdapter = createNewEMFModelAdapter();
-        
         // Expect three errors:
         //      unable to resolve two imports
         //      unable to resolve two attribute type
-        ModelParsingResult result = parsingHelper.parseFile("MiniJava_TestImportPackage.sam", DSLSAMPLEDIR, /*expected errors*/ 4, modelAdapter);
+        ModelParsingResult result = parsingHelper.parseFile("MiniJava_TestImportPackage.sam", DSLSAMPLEDIR, /*expected errors*/ 4);
         
         EObject compilationUnit = (EObject) result.getParsedModelElement();
         EObject clazz = (EObject) compilationUnit.eGet(compilationUnit.eClass().getEStructuralFeature("containedClass"));
@@ -122,14 +105,12 @@ public class TestMiniJava extends GeneratedParserBasedTest {
     @Ignore("Fails for unknown reason (Unclear if we have a bug in our code of the ecore or tcs is flawed)")
     @Test
     public void testParseWithResolvableImportedClass() throws Exception {
-        IModelAdapter modelAdapter = createNewEMFModelAdapter();
-        
         // the pre-requisites
-        parsingHelper.parseFile("MiniJava_ImportedPackage_ClassA.sam", DSLSAMPLEDIR, /*expected errors*/ 0, modelAdapter);
-        parsingHelper.parseFile("MiniJava_ImportedPackage_ClassB.sam", DSLSAMPLEDIR, /*expected errors*/ 0, modelAdapter);
+        parsingHelper.parseFile("MiniJava_ImportedPackage_ClassA.sam", DSLSAMPLEDIR, /*expected errors*/ 0);
+        parsingHelper.parseFile("MiniJava_ImportedPackage_ClassB.sam", DSLSAMPLEDIR, /*expected errors*/ 0);
         
         // the class containing the imports to be resolved
-        ModelParsingResult result = parsingHelper.parseFile("MiniJava_TestImportPackage.sam", DSLSAMPLEDIR, /*expected errors*/ 0, modelAdapter);
+        ModelParsingResult result = parsingHelper.parseFile("MiniJava_TestImportPackage.sam", DSLSAMPLEDIR, /*expected errors*/ 0);
         
         // make sure that the package and subsequently all types have been resolved
         EObject compilationUnit = (EObject) result.getParsedModelElement();
@@ -154,23 +135,5 @@ public class TestMiniJava extends GeneratedParserBasedTest {
         EObject attribute2 = (EObject) ((List<?>) attributes).get(0);
         assertTrue("Type should be set", attribute2.eIsSet(attribute2.eClass().getEStructuralFeature("type")));
     }
-
-    private IModelAdapter createNewEMFModelAdapter() {
-        return new DefaultTextAwareModelAdapter(new EMFModelAdapter(rootPackage, resourceSet, referenceScope));
-    }
     
-    /**
-     * Finds an EPackage in the {@link #resourceSet} by the <code>name</code> specified 
-     */
-    private static EPackage findPackage(String name, ResourceSet resourceSet) {
-        for (Resource r : resourceSet.getResources()) {
-            for (EObject c : r.getContents()) {
-                if (c instanceof EPackage && ((EPackage) c).getName().equals(name)) {
-                    return (EPackage) c;
-                }
-            }
-        }
-        return null;
-    }
-
 }

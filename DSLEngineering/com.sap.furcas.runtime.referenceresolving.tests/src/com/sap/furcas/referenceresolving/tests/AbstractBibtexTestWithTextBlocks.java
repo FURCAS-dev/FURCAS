@@ -43,7 +43,7 @@ import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 public abstract class AbstractBibtexTestWithTextBlocks extends GeneratedParserAndFactoryBasedTest {
     
     private static final File[] METAMODELS = { ScenarioFixtureData.BIBTEXT_METAMODEL, ScenarioFixtureData.BIBTEXT1_METAMODEL };
-    private static final String MM_PACKAGE_NAME = "BibText";
+    private static final String MM_PACKAGE_URI = ScenarioFixtureData.BIBTEXT_PACKAGE_URI;
 
     protected static IncrementalParserFacade incrementalParserFacade;
     protected TextBlocksModelElementFactory modelFactory;
@@ -66,7 +66,7 @@ public abstract class AbstractBibtexTestWithTextBlocks extends GeneratedParserAn
      *            definition file
      */
     public static void setupParser(File TCS, String LANGUAGE) throws Exception {
-        GeneratedParserAndFactoryTestConfiguration testConfig = new GeneratedParserAndFactoryTestConfiguration(LANGUAGE, TCS, MM_PACKAGE_NAME, METAMODELS);
+        GeneratedParserAndFactoryTestConfiguration testConfig = new GeneratedParserAndFactoryTestConfiguration(LANGUAGE, TCS, MM_PACKAGE_URI, METAMODELS);
         resourceSet = testConfig.getSourceConfiguration().getResourceSet();
         EditingDomain editingDomain = new AdapterFactoryEditingDomain(new AdapterFactoryImpl(),
                 new BasicCommandStack(), resourceSet);
@@ -79,7 +79,7 @@ public abstract class AbstractBibtexTestWithTextBlocks extends GeneratedParserAn
         resourceSet.eAdapters().add(crossRefAdapter);
         crossRefAdapter.setTarget(resourceSet);
         syntaxRegistry = SyntaxRegistry.getInstance();
-        testMetamodelPackageRegistry = addMetamodelPackagesToLocalRegistry(testConfig.getResourceSet());
+        testMetamodelPackageRegistry = addMetamodelPackagesToLocalRegistry(resourceSet);
         triggerManager = syntaxRegistry.getTriggerManagerForSyntax(syntax, testMetamodelPackageRegistry,
                 DefaultOppositeEndFinder.getInstance(), /* progress monitor */ null,
                 incrementalParserFacade.getParserFactory());

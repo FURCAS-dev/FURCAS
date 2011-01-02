@@ -1,4 +1,4 @@
-package com.sap.furcas.runtime.parser.testbase;
+package com.sap.furcas.runtime.parser.testbase.stubs;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,10 +1,11 @@
 package com.sap.furcas.parser.tcs.scenario;
 
+import static com.sap.furcas.test.testutils.StringListHelper.list;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
-import java.util.Set;
+import java.util.Collection;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -15,11 +16,10 @@ import com.sap.furcas.runtime.parser.ModelParsingResult;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
-import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
-import com.sap.furcas.runtime.parser.testbase.StubModelAdapter;
-import com.sap.furcas.runtime.parser.testbase.StubModelElement;
+import com.sap.furcas.runtime.parser.testbase.stubs.StubModelAdapter;
+import com.sap.furcas.runtime.parser.testbase.stubs.StubModelElement;
+import com.sap.furcas.runtime.parser.testbase.stubs.StubParsingHelper;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
-
 /**
  * Simple Test for the custom BibText language
  */
@@ -30,14 +30,14 @@ public class TestBibTextGeneration extends GeneratedParserBasedTest {
     private static final File[] METAMODELS = { ScenarioFixtureData.BIBTEXT_METAMODEL, ScenarioFixtureData.BIBTEXT1_METAMODEL };
     private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
 
-    private static ParsingHelper parsingHelper;
+    private static StubParsingHelper parsingHelper;
 
     @BeforeClass
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
         TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
         ParserFacade facade = generateParserForLanguage(syntaxBean, testConfig, new ClassLookupImpl());
-        parsingHelper = new ParsingHelper(facade);
+        parsingHelper = new StubParsingHelper(facade);
     }
 
     /**
@@ -49,13 +49,13 @@ public class TestBibTextGeneration extends GeneratedParserBasedTest {
     public void testReferences() throws Exception {
         String sample = "article{" + "  Testing, \"John Doe\"," + "  year = \"2002\"" + "}" + "author = \"John Doe\".";
         StubModelAdapter stubModelHandler = parsingHelper.parseString(sample, 0);
-        Set<StubModelElement> authors = stubModelHandler.getElementsbyType("BibText::Author");
+        Collection<StubModelElement> authors = stubModelHandler.getElementsOfType("BibText::Author");
         assertEquals(1, authors.size());
         StubModelElement johnDoe = authors.iterator().next();
 
-        Set<StubModelElement> articles = stubModelHandler.getElementsbyType("BibText::Article");
+        Collection<Object> articles = stubModelHandler.getElementsOfType(list("BibText::Article"));
         assertEquals(1, articles.size());
-        StubModelElement article = articles.iterator().next();
+        StubModelElement article = (StubModelElement) articles.iterator().next();
 
         // now check the reference was set using the right property name
         // assertNotNull(johnDoe.get("articles")); StubModelHandler not powerful enough
@@ -68,10 +68,10 @@ public class TestBibTextGeneration extends GeneratedParserBasedTest {
     public void testSample1() throws Exception {
         StubModelAdapter stubModelHandler = parsingHelper.parseFile("BibTextSample01.sam", DSLSAMPLEDIR, 0);
 
-        Set<StubModelElement> authors = stubModelHandler.getElementsbyType("BibText::Author");
+        Collection<StubModelElement> authors = stubModelHandler.getElementsOfType("BibText::Author");
         assertEquals(3, authors.size());
 
-        Set<StubModelElement> articles = stubModelHandler.getElementsbyType("BibText::Article");
+        Collection<StubModelElement> articles = stubModelHandler.getElementsOfType("BibText::Article");
         assertEquals(3, articles.size());
     }
 
@@ -80,10 +80,10 @@ public class TestBibTextGeneration extends GeneratedParserBasedTest {
 
         StubModelAdapter stubModelHandler = parsingHelper.parseFile("BibTextSample02.sam", DSLSAMPLEDIR, 1);
 
-        Set<StubModelElement> authors = stubModelHandler.getElementsbyType("BibText::Author");
+        Collection<StubModelElement> authors = stubModelHandler.getElementsOfType("BibText::Author");
         assertEquals(3, authors.size());
 
-        Set<StubModelElement> articles = stubModelHandler.getElementsbyType("BibText::Article");
+        Collection<StubModelElement> articles = stubModelHandler.getElementsOfType("BibText::Article");
         assertEquals(3, articles.size());
     }
 

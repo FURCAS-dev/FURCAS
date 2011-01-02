@@ -3,7 +3,7 @@ package com.sap.furcas.parser.tcs.scenario;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
-import java.util.Set;
+import java.util.Collection;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -12,9 +12,9 @@ import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
-import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
-import com.sap.furcas.runtime.parser.testbase.StubModelAdapter;
-import com.sap.furcas.runtime.parser.testbase.StubModelElement;
+import com.sap.furcas.runtime.parser.testbase.stubs.StubModelAdapter;
+import com.sap.furcas.runtime.parser.testbase.stubs.StubModelElement;
+import com.sap.furcas.runtime.parser.testbase.stubs.StubParsingHelper;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 /**
@@ -27,27 +27,27 @@ public class TestExpression extends GeneratedParserBasedTest {
     private static final File[] METAMODELS = { ScenarioFixtureData.EXPRESSION_METAMODEL };
     private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
 
-    private static ParsingHelper parsingHelper;
+    private static StubParsingHelper parsingHelper;
 
     @BeforeClass
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
         TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
         ParserFacade facade = generateParserForLanguage(syntaxBean, testConfig, new ClassLookupImpl());
-        parsingHelper = new ParsingHelper(facade);
+        parsingHelper = new StubParsingHelper(facade);
     }
 
     @Test
     public void testSample1() throws Exception {
 
         StubModelAdapter stubModelHandler = parsingHelper.parseFile("ExpressionSample01.sam", DSLSAMPLEDIR, 0);
-        Set<StubModelElement> values = stubModelHandler.getElementsbyType("expression::ExpressionList");
+        Collection<StubModelElement> values = stubModelHandler.getElementsOfType("expression::ExpressionList");
         assertEquals(1, values.size());
 
-        values = stubModelHandler.getElementsbyType("expression::BinaryExpression");
+        values = stubModelHandler.getElementsOfType("expression::BinaryExpression");
         assertEquals(6, values.size());
 
-        values = stubModelHandler.getElementsbyType("expression::ValueExpression");
+        values = stubModelHandler.getElementsOfType("expression::ValueExpression");
         assertEquals(9, values.size());
     }
 

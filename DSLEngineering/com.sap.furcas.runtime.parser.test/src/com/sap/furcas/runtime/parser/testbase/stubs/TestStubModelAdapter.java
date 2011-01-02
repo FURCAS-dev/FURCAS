@@ -1,4 +1,4 @@
-package com.sap.furcas.runtime.parser.testbase;
+package com.sap.furcas.runtime.parser.testbase.stubs;
 
 import static com.sap.furcas.test.testutils.StringListHelper.list;
 import static org.junit.Assert.assertEquals;
@@ -6,7 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Set;
+import java.util.Collection;
 
 import org.junit.Test;
 
@@ -23,22 +23,22 @@ public class TestStubModelAdapter {
 
         Object object = handler.createElement(list("test"));
         assertNotNull(object);
-        Set<StubModelElement> objects = handler.getElementsbyType("test");
+        Collection<StubModelElement> objects = handler.getElementsOfType("test");
         assertNotNull(objects);
         assertEquals(1, objects.size());
         assertTrue(objects.contains(object));
 
         Object object2 = handler.createElement(list("test"));
-        objects = handler.getElementsbyType("test");
+        objects = handler.getElementsOfType("test");
         assertNotNull(objects);
         assertEquals(2, objects.size());
         assertTrue(objects.contains(object));
         assertTrue(objects.contains(object2));
 
-        objects = handler.getElementsbyType("test");
+        objects = handler.getElementsOfType("test");
         assertNotNull(objects);
         assertEquals(2, objects.size());
-        objects = handler.getElementsbyType("test2");
+        objects = handler.getElementsOfType("test2");
         assertNull("No such element was created", objects);
     }
 

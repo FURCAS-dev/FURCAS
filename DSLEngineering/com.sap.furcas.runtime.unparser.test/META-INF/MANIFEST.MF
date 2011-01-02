@@ -5,9 +5,11 @@ Bundle-SymbolicName: com.sap.furcas.runtime.unparser.test
 Bundle-Version: 1.0.0
 Bundle-Vendor: SAP
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: com.sap.ide.cts.editor.prettyprint,
- com.sap.ide.cts.editor.prettyprint.fixtures,
- com.sap.ide.cts.editor.prettyprint.fixtures.syntax
+Export-Package: com.sap.furcas.unparser,
+ com.sap.furcas.unparser.extraction,
+ com.sap.furcas.unparser.extraction.textblocks,
+ com.sap.furcas.unparser.testutils,
+ com.sap.ide.cts.editor.prettyprint
 Require-Bundle: org.antlr,
  org.junit;bundle-version="4.8.1",
  org.eclipse.core.resources;bundle-version="3.6.0",

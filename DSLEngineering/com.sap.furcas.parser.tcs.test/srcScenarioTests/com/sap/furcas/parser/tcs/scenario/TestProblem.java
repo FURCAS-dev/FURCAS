@@ -4,8 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
 
 import java.io.File;
+import java.util.Collection;
 import java.util.Iterator;
-import java.util.Set;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -14,9 +14,9 @@ import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
-import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
-import com.sap.furcas.runtime.parser.testbase.StubModelAdapter;
-import com.sap.furcas.runtime.parser.testbase.StubModelElement;
+import com.sap.furcas.runtime.parser.testbase.stubs.StubModelAdapter;
+import com.sap.furcas.runtime.parser.testbase.stubs.StubModelElement;
+import com.sap.furcas.runtime.parser.testbase.stubs.StubParsingHelper;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 /**
@@ -28,14 +28,14 @@ public class TestProblem extends GeneratedParserBasedTest {
     private static final File TCS = ScenarioFixtureData.PROBLEM_TCS;
     private static final File[] METAMODELS = { ScenarioFixtureData.PROBLEM_METAMODEL };
 
-    private static ParsingHelper parsingHelper;
+    private static StubParsingHelper parsingHelper;
 
     @BeforeClass
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
         TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
         ParserFacade facade = generateParserForLanguage(syntaxBean, testConfig, new ClassLookupImpl());
-        parsingHelper = new ParsingHelper(facade);
+        parsingHelper = new StubParsingHelper(facade);
     }
 
     /**
@@ -48,7 +48,7 @@ public class TestProblem extends GeneratedParserBasedTest {
         String sample = "error 'testerror' at 'somewhere';\n" + "warning 'testwarning' at 'somewhereelse';\n";
         StubModelAdapter stubModelHandler = parsingHelper.parseString(sample, 0);
 
-        Set<StubModelElement> problems = stubModelHandler.getElementsbyType("Problem::Problem");
+        Collection<StubModelElement> problems = stubModelHandler.getElementsOfType("Problem::Problem");
         assertEquals(2, problems.size());
 
         Iterator<StubModelElement> it = problems.iterator();
