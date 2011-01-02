@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package com.sap.ide.cts.editor.prettyprint.textblocks;
+package com.sap.furcas.unparser.textblocks;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,8 +20,8 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceInAlternative;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
-import com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintingPolicy;
-import com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintingTracer;
+import com.sap.furcas.unparser.PrettyPrintingPolicy;
+import com.sap.furcas.unparser.PrettyPrintingTracer;
 
 /**
  * A thin wrapper around the {@link TextBlockPrettyPrintingTraverser},

@@ -8,9 +8,9 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package com.sap.ide.cts.editor.prettyprint.imported;
+package com.sap.furcas.unparser;
 
-import com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintExceptions.SyntaxMismatchException;
+import com.sap.furcas.unparser.PrettyPrintExceptions.SyntaxMismatchException;
 
 public class PrettyPrintDebugHelper {
     

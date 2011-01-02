@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package com.sap.ide.cts.editor.prettyprint.textblocks;
+package com.sap.furcas.unparser.textblocks;
 
 import java.util.ArrayList;
 import java.util.Collection;

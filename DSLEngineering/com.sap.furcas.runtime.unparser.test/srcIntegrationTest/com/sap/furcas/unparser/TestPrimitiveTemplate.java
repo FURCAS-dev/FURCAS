@@ -24,9 +24,9 @@ import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
 import com.sap.furcas.test.fixture.FeatureFixtureData;
+import com.sap.furcas.unparser.SyntaxAndModelMismatchException;
 import com.sap.furcas.unparser.testutils.PrettyPrintAssertionUtil;
 import com.sap.furcas.unparser.testutils.PrettyPrintTestHelper;
-import com.sap.ide.cts.editor.prettyprint.imported.SyntaxAndModelMismatchException;
 
 
 /**

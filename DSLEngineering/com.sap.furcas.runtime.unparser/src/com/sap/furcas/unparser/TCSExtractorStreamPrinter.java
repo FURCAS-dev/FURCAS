@@ -9,29 +9,29 @@
  *     INRIA - initial API and implementation
  *     SAP AG - API and implementation enhancements
  ******************************************************************************/
-package com.sap.ide.cts.editor.prettyprint.imported;
+package com.sap.furcas.unparser;
 
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintConstants.DEBUG_STREAM_CONSOLE_DUMP;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintConstants.IDENTIFIER_ESCAPING_END;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintConstants.IDENTIFIER_ESCAPING_START;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintConstants.KEYWORDS_CHECK_IGNORE_CASE;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintConstants.STRING_DELIMITER;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintConstants.SYMBOL_BOTH_SPACE;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintConstants.SYMBOL_LEFT_NONE;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintConstants.SYMBOL_LEFT_SPACE;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintConstants.SYMBOL_RIGHT_NONE;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintConstants.SYMBOL_RIGHT_SPACE;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintConstants.TYPE_BOOL;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintConstants.TYPE_COMMENT;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintConstants.TYPE_IDENT;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintConstants.TYPE_INT;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintConstants.TYPE_KEYWORD;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintConstants.TYPE_REAL;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintConstants.TYPE_SPACE;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintConstants.TYPE_STRING;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintConstants.TYPE_SYMBOL;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintDebugHelper.debug;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintHelper.isSymbol;
+import static com.sap.furcas.unparser.PrettyPrintConstants.DEBUG_STREAM_CONSOLE_DUMP;
+import static com.sap.furcas.unparser.PrettyPrintConstants.IDENTIFIER_ESCAPING_END;
+import static com.sap.furcas.unparser.PrettyPrintConstants.IDENTIFIER_ESCAPING_START;
+import static com.sap.furcas.unparser.PrettyPrintConstants.KEYWORDS_CHECK_IGNORE_CASE;
+import static com.sap.furcas.unparser.PrettyPrintConstants.STRING_DELIMITER;
+import static com.sap.furcas.unparser.PrettyPrintConstants.SYMBOL_BOTH_SPACE;
+import static com.sap.furcas.unparser.PrettyPrintConstants.SYMBOL_LEFT_NONE;
+import static com.sap.furcas.unparser.PrettyPrintConstants.SYMBOL_LEFT_SPACE;
+import static com.sap.furcas.unparser.PrettyPrintConstants.SYMBOL_RIGHT_NONE;
+import static com.sap.furcas.unparser.PrettyPrintConstants.SYMBOL_RIGHT_SPACE;
+import static com.sap.furcas.unparser.PrettyPrintConstants.TYPE_BOOL;
+import static com.sap.furcas.unparser.PrettyPrintConstants.TYPE_COMMENT;
+import static com.sap.furcas.unparser.PrettyPrintConstants.TYPE_IDENT;
+import static com.sap.furcas.unparser.PrettyPrintConstants.TYPE_INT;
+import static com.sap.furcas.unparser.PrettyPrintConstants.TYPE_KEYWORD;
+import static com.sap.furcas.unparser.PrettyPrintConstants.TYPE_REAL;
+import static com.sap.furcas.unparser.PrettyPrintConstants.TYPE_SPACE;
+import static com.sap.furcas.unparser.PrettyPrintConstants.TYPE_STRING;
+import static com.sap.furcas.unparser.PrettyPrintConstants.TYPE_SYMBOL;
+import static com.sap.furcas.unparser.PrettyPrintDebugHelper.debug;
+import static com.sap.furcas.unparser.PrettyPrintHelper.isSymbol;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;

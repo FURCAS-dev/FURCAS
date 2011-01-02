@@ -9,15 +9,15 @@
  *     INRIA - initial API and implementation
  *     SAP AG - API and implementation enhancements
  ******************************************************************************/
-package com.sap.ide.cts.editor.prettyprint.imported;
+package com.sap.furcas.unparser;
 
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintConstants.LINE_FEED;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintConstants.SYMBOL_RIGHT_NONE;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintConstants.TYPE_SYMBOL;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintDebugHelper.debug;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintDebugHelper.debugPropertyInitException;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintDebugHelper.debugWhiteSpace;
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintHelper.findSupertypeTemplate;
+import static com.sap.furcas.unparser.PrettyPrintConstants.LINE_FEED;
+import static com.sap.furcas.unparser.PrettyPrintConstants.SYMBOL_RIGHT_NONE;
+import static com.sap.furcas.unparser.PrettyPrintConstants.TYPE_SYMBOL;
+import static com.sap.furcas.unparser.PrettyPrintDebugHelper.debug;
+import static com.sap.furcas.unparser.PrettyPrintDebugHelper.debugPropertyInitException;
+import static com.sap.furcas.unparser.PrettyPrintDebugHelper.debugWhiteSpace;
+import static com.sap.furcas.unparser.PrettyPrintHelper.findSupertypeTemplate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -72,11 +72,11 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.furcas.runtime.tcs.TcsUtil;
+import com.sap.furcas.unparser.PrettyPrintExceptions.ForcedBoundsException;
+import com.sap.furcas.unparser.PrettyPrintExceptions.NoTemplateMatchFoundException;
+import com.sap.furcas.unparser.PrettyPrintExceptions.PropertyInitException;
+import com.sap.furcas.unparser.PrettyPrintExceptions.SyntaxMismatchException;
 import com.sap.furcas.unparser.extraction.TCSExtractorStream;
-import com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintExceptions.ForcedBoundsException;
-import com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintExceptions.NoTemplateMatchFoundException;
-import com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintExceptions.PropertyInitException;
-import com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintExceptions.SyntaxMismatchException;
 
 /**
  * @author Fr�d�ric Jouault

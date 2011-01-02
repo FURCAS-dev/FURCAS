@@ -5,10 +5,10 @@ Bundle-SymbolicName: com.sap.furcas.runtime.unparser
 Bundle-Version: 1.0.0
 Bundle-Vendor: SAP
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: com.sap.furcas.unparser.extraction,
+Export-Package: com.sap.furcas.unparser,
+ com.sap.furcas.unparser.extraction,
  com.sap.furcas.unparser.extraction.textblocks,
- com.sap.ide.cts.editor.prettyprint.imported,
- com.sap.ide.cts.editor.prettyprint.textblocks
+ com.sap.furcas.unparser.textblocks
 Require-Bundle: org.antlr,
  org.eclipse.core.resources;bundle-version="3.6.0",
  org.eclipse.emf.ecore,
