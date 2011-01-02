@@ -2,7 +2,7 @@ package com.sap.ide.cts.editor.prettyprint;
 
 
 
-public class CtsPrettyPrinterTestBase { 
+public abstract class CtsPrettyPrinterTestBase { 
 //extends ConcreteSyntaxBasedTest {
 
 //	protected String languageName;
