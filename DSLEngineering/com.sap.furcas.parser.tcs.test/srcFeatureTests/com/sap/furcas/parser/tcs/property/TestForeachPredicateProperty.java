@@ -5,28 +5,20 @@ import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
 import java.util.Collection;
-import java.util.Set;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.parser.tcs.scenario.ClassLookupImpl;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
-import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
 import com.sap.furcas.runtime.parser.ParserFacade;
-import com.sap.furcas.runtime.parser.impl.DefaultTextAwareModelAdapter;
+import com.sap.furcas.runtime.parser.testbase.EMFParsingHelper;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
-import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
 import com.sap.furcas.test.fixture.FeatureFixtureData;
 
 /**
@@ -49,12 +41,9 @@ public class TestForeachPredicateProperty extends GeneratedParserBasedTest {
     private static final String LANGUAGE = "ForeachPredicatePropertyInit";
     private static final File TCS = FeatureFixtureData.FOREACH_PREDICATE_PROPERTY_INIT_TCS;
     private static final File METAMODEL = FeatureFixtureData.FOREACH_PREDICATE_PROPERTY_INIT_METAMODEL;
+    private static final String PACKAGE_URI =  FeatureFixtureData.FOREACH_PREDICATE_PROPERTY_INIT_PACKAGE_URI;
 
-    private static ParsingHelper parsingHelper;
-    
-    private static EPackage rootPackage;
-    private static Set<URI> referenceScope;
-    private static ResourceSet resourceSet;
+    private static EMFParsingHelper parsingHelper;
     
     private EObject johnDoe = null;
     private EObject janeDoll = null;
@@ -64,21 +53,15 @@ public class TestForeachPredicateProperty extends GeneratedParserBasedTest {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODEL);
         TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
         ParserFacade facade = generateParserForLanguage(syntaxBean, testConfig, new ClassLookupImpl());
-        parsingHelper = new ParsingHelper(facade);
-        
-        resourceSet = testConfig.getSourceConfiguration().getResourceSet();
-        referenceScope = testConfig.getSourceConfiguration().getReferenceScope();
-        rootPackage = findPackage("ForeachPredicatePropertyInit");
+        parsingHelper = new EMFParsingHelper(facade, testConfig, PACKAGE_URI);
     }
 
     @Before
     public void initializeModel() throws Exception {
-        IModelAdapter modelAdapter = createNewEMFModelAdapter();
-
         String sample = "article{" + "  Testing, \"John Doe\"," + "}" + "author = \"John Doe\"."
                 + "author = \"Jane Doll\".";
 
-        ModelParsingResult parsingResult = parsingHelper.parseString(sample, /*expected errors*/ 0, modelAdapter);
+        ModelParsingResult parsingResult = parsingHelper.parseString(sample, /*expected errors*/ 0);
 
         EObject bibTexFile = (EObject) parsingResult.getParsedModelElement();
         assertNotNull(bibTexFile);
@@ -123,24 +106,6 @@ public class TestForeachPredicateProperty extends GeneratedParserBasedTest {
         int revenueInEUR = (Integer) revenueLedger.eGet(revenueLedger.eClass().getEStructuralFeature("revenueInEUR"));
         assertEquals("John Doe".length(), revenueInEUR);
 
-    }
-
-    private IModelAdapter createNewEMFModelAdapter() {
-        return new DefaultTextAwareModelAdapter(new EMFModelAdapter(rootPackage, resourceSet, referenceScope));
-    }
-
-    /**
-     * Finds an EPackage in the {@link #resourceSet} by the <code>name</code> specified
-     */
-    private static EPackage findPackage(String name) {
-        for (Resource r : resourceSet.getResources()) {
-            for (EObject c : r.getContents()) {
-                if (c instanceof EPackage && ((EPackage) c).getName().equals(name)) {
-                    return (EPackage) c;
-                }
-            }
-        }
-        return null;
     }
 
 }

@@ -3,27 +3,19 @@ package com.sap.furcas.parser.tcs.scenario;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
-import java.util.Collections;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
-import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
 import com.sap.furcas.runtime.parser.ParserFacade;
-import com.sap.furcas.runtime.parser.impl.DefaultTextAwareModelAdapter;
+import com.sap.furcas.runtime.parser.testbase.EMFParsingHelper;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
-import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
-import com.sap.furcas.test.testutils.ResourceTestHelper;
 
 /**
  * A simple expression language with a built-in calculator.
@@ -47,17 +39,16 @@ public class TestSynthesizedAttributeGrammar extends GeneratedParserBasedTest {
     private static final String LANGUAGE = "ExpressionWithSynthesizedAttributes";
     private static final File TCS = ScenarioFixtureData.EXPRESSION_WITH_SYNTHESIZED_ATTRIBUTE_TCS;
     private static final File[] METAMODELS = { ScenarioFixtureData.EXPRESSION_WITH_SYNTHESIZED_ATTRIBUTE_METAMODEL };
-
-    private static ParsingHelper parsingHelper;
-    private static EPackage rootPackage;
+    private static final String PACKAGE_URI = ScenarioFixtureData.EXPRESSION_WITH_SYNTHESIZED_ATTRIBUTE_METAMODEL_PACKAGE_URI;
+    
+    private static EMFParsingHelper parsingHelper;
 
     @BeforeClass
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
         TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
         ParserFacade facade = generateParserForLanguage(syntaxBean, testConfig, new ClassLookupImpl());
-        parsingHelper = new ParsingHelper(facade);
-        rootPackage = findPackage("expression", testConfig.getSourceConfiguration().getResourceSet());
+        parsingHelper = new EMFParsingHelper(facade, testConfig, PACKAGE_URI);
     }
 
     @Test
@@ -118,30 +109,11 @@ public class TestSynthesizedAttributeGrammar extends GeneratedParserBasedTest {
     }
 
     private int calculate(String expressionToCalculate) throws Exception {
-        IModelAdapter modelAdapter = createNewEMFModelAdapter();
-        ModelParsingResult result = parsingHelper.parseString(expressionToCalculate, /*expected errors*/ 0, modelAdapter);
+        ModelParsingResult result = parsingHelper.parseString(expressionToCalculate, /*expected errors*/ 0);
         EObject exprStatement = (EObject) result.getParsedModelElement();
         
         EObject expression = (EObject) exprStatement.eGet(exprStatement.eClass().getEStructuralFeature("expression"));
         return (Integer) expression.eGet(expression.eClass().getEStructuralFeature("calculatedValue"));
     }
     
-    private IModelAdapter createNewEMFModelAdapter() {
-        return new DefaultTextAwareModelAdapter(
-                new EMFModelAdapter(rootPackage, ResourceTestHelper.createResourceSet(), Collections.singleton(rootPackage.eResource().getURI())));
-    }
-    
-    /**
-     * Finds an EPackage in the {@link #resourceSet} by the <code>name</code> specified 
-     */
-    private static EPackage findPackage(String name, ResourceSet resourceSet) {
-        for (Resource r : resourceSet.getResources()) {
-            for (EObject c : r.getContents()) {
-                if (c instanceof EPackage && ((EPackage) c).getName().equals(name)) {
-                    return (EPackage) c;
-                }
-            }
-        }
-        return null;
-    }
 }

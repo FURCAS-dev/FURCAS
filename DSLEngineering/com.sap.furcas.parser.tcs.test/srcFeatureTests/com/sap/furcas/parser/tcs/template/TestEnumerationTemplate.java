@@ -10,7 +10,7 @@ import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
-import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
+import com.sap.furcas.runtime.parser.testbase.stubs.StubParsingHelper;
 import com.sap.furcas.test.fixture.FeatureFixtureData;
 
 /**
@@ -27,8 +27,8 @@ public class TestEnumerationTemplate extends GeneratedParserBasedTest {
     private static final File autoEnumTCS = FeatureFixtureData.ENUM_FEATURE_AUTO_TCS;
     private static final File METAMODEL = FeatureFixtureData.ENUM_FEATURE_METAMODEL;
 
-    private static ParsingHelper mappedEnumParsingHelper;
-    private static ParsingHelper autoEnumParsingHelper;
+    private static StubParsingHelper mappedEnumParsingHelper;
+    private static StubParsingHelper autoEnumParsingHelper;
     
 
     @BeforeClass
@@ -36,12 +36,12 @@ public class TestEnumerationTemplate extends GeneratedParserBasedTest {
         GeneratedParserTestConfiguration mappedEnumTestConfig = new GeneratedParserTestConfiguration(LANGUAGE_MAPPEDENUM, mappedEnumTCS, METAMODEL);
         TCSSyntaxContainerBean mappedEnumSyntaxBean = parseSyntax(mappedEnumTestConfig);
         ParserFacade mappedEnumFacade = generateParserForLanguage(mappedEnumSyntaxBean, mappedEnumTestConfig, new ClassLookupImpl());
-        mappedEnumParsingHelper = new ParsingHelper(mappedEnumFacade);
+        mappedEnumParsingHelper = new StubParsingHelper(mappedEnumFacade);
         
         GeneratedParserTestConfiguration autoEnumTestConfig = new GeneratedParserTestConfiguration(LANGUAGE_AUTOENUM, autoEnumTCS, METAMODEL);
         TCSSyntaxContainerBean autoEnumSyntaxBean = parseSyntax(autoEnumTestConfig);
         ParserFacade autoEnumFacade = generateParserForLanguage(autoEnumSyntaxBean, autoEnumTestConfig, new ClassLookupImpl());
-        autoEnumParsingHelper = new ParsingHelper(autoEnumFacade);
+        autoEnumParsingHelper = new StubParsingHelper(autoEnumFacade);
         
     }
     

@@ -255,6 +255,7 @@ public class EMFModelAdapter implements IBareModelAdapter {
         }
     }
     
+    @Override
     public Collection<Object> getElementsOfType(List<String> list) throws ModelAdapterException {
         assertIsValidTypeName(list);
         try {

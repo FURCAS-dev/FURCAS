@@ -1,12 +1,13 @@
-package com.sap.furcas.runtime.parser.testbase;
+package com.sap.furcas.runtime.parser.testbase.stubs;
 
 import static org.junit.Assert.fail;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -23,7 +24,6 @@ public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
     protected StubModel model = new StubModel();
     public String stringLiteralType = "FURCAS::TCS::Literal";
     public Map<String, List<String>> supertypes = new HashMap<String, List<String>>();
-    public String oclQuery;
     public Object queryResult;
 
     /*
@@ -48,7 +48,6 @@ public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
 
     @Override
     public Object createElement(List<String> typeName) {
-        // System.out.println("Created" + typeName);
         return model.create(QualifiedNamesHelper.getQualifiedString(typeName));
     }
 
@@ -56,9 +55,23 @@ public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
     public Object get(Object ame_, String propertyName) {
         return ((StubModelElement) ame_).get(propertyName);
     }
+    
+    @Override
+    public Collection<Object> getElementsOfType(List<String> list) throws ModelAdapterException {
+        StringBuilder buf = new StringBuilder();
+        Iterator<String> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            String part = iterator.next();
+            buf.append(part);
+            if (iterator.hasNext()) {
+                buf.append("::");
+            }
+        }
+        return new ArrayList<Object>(getElementsOfType(buf.toString()));
+    }
 
-    public Set<StubModelElement> getElementsbyType(String type) {
-        return model.getElementsByType(type);
+    public Collection<StubModelElement> getElementsOfType(String type) {
+        return model.getElementsOfType(type);
     }
 
     public String getString(Object ame, String propName) {
@@ -142,7 +155,7 @@ public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
             String targetKeyName, Object targetKeyValue) throws ModelAdapterException {
         Object val = null;
         String targetType = QualifiedNamesHelper.getQualifiedString(targetTypeList);
-        Set<StubModelElement> list = model.getElementsByType(targetType);
+        Collection<StubModelElement> list = model.getElementsOfType(targetType);
         if (list != null) {
             for (Object object : list) {
                 StubModelElement element = (StubModelElement) object;
@@ -195,7 +208,6 @@ public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
     @Override
     public Object setReferenceWithOCLQuery(Object modelElement, String propertyName, Object keyValue, String oclQuery,
             Object contextObject, Object currentForeachElement) {
-        this.oclQuery = oclQuery;
         ((StubModelElement) modelElement).set(propertyName, queryResult);
         return queryResult;
     }
@@ -212,7 +224,7 @@ public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
         Object val = null;
         String targetType = QualifiedNamesHelper.getQualifiedString(valueTypeName);
         StubModelElement contextModelElement = (StubModelElement) contextObject;
-        Set<StubModelElement> list = model.getElementsByType(targetType);
+        Collection<StubModelElement> list = model.getElementsOfType(targetType);
         if (list != null) {
             for (Object object : list) {
                 StubModelElement element = (StubModelElement) object;

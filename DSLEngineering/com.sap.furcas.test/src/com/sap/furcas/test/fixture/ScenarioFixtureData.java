@@ -6,6 +6,7 @@ public class ScenarioFixtureData {
     
     public static final File ATL_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/ATL.ecore");
     public static final File BIBTEXT_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/BibText.ecore");
+    public static final String BIBTEXT_PACKAGE_URI = "http://www.furcas.org/TCS/scenariotests/BibText";
     public static final File BIBTEXT1_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/BibText1.ecore");
     public static final File BIBTEXT_REFER_SUBTYPE_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/BibTextReferSubType.ecore");
     public static final File BIBTEXT_UPPER_LOWER_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/BibTextUpperLower.ecore");
@@ -29,8 +30,10 @@ public class ScenarioFixtureData {
     public static final File XPATH1_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/XPath1.ecore");
     public static final File XPATH_REDUCED_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/XPathReduced.ecore");
     public static final File MINI_JAVA_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/MiniJava.ecore");
+    public static final String MINI_JAVA_PACKAGE_URI = "http://www.furcas.org/example/minijava";
     public static final File EXPRESSION_WITH_SYNTHESIZED_ATTRIBUTE_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/ExpressionWithSynthesizedAttributes.ecore");
-    
+    public static final String EXPRESSION_WITH_SYNTHESIZED_ATTRIBUTE_METAMODEL_PACKAGE_URI = "http://www.furcas.org/TCS/scenariotests/ExpressionWithSynthesizedAttributeGrammar";
+
     public static final File ATL_TCS = new File("../com.sap.furcas.test/scenarioFixtures/ATL.tcs");
     public static final File BIBTEXT_TCS = new File("../com.sap.furcas.test/scenarioFixtures/Bibtext.tcs");
     public static final File BIBTEXT_FORCED_LOWER_TCS = new File("../com.sap.furcas.test/scenarioFixtures/BibtextForcedLower.tcs");

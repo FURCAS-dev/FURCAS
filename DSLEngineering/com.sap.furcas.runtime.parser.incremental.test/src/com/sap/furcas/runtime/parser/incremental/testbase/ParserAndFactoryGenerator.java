@@ -116,7 +116,7 @@ public class ParserAndFactoryGenerator extends ParserGenerator {
             out.println("       public EPackage"
                     + " getMetamodelPackage(ResourceSet connection) {");
             out.println("           EPackage pck = EPackage.Registry.INSTANCE.getEPackage(\""
-                    + testConfig.getMetamodelPackageName() + "\");");
+                    + testConfig.getMetamodelPackageURI() + "\");");
             out.println("               return pck;");
             out.println("       } ");
 
