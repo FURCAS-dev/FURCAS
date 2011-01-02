@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package com.sap.ide.cts.editor.prettyprint.textblocks;
+package com.sap.furcas.unparser.textblocks;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -35,8 +35,8 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
-import com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintingPolicy;
-import com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintingTracer;
+import com.sap.furcas.unparser.PrettyPrintingPolicy;
+import com.sap.furcas.unparser.PrettyPrintingTracer;
 
 /**
  * This is a tracer which gathers information during pretty printing

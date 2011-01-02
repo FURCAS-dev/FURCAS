@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
-import com.sap.ide.cts.editor.prettyprint.imported.PrettyPrinter;
+import com.sap.furcas.unparser.PrettyPrinter;
 
 /**
  * This class serves as the result object of the {@link PrettyPrinter}.

@@ -9,9 +9,9 @@
  *     INRIA - initial API and implementation
  *     SAP AG - API and implementation enhancements
  ******************************************************************************/
-package com.sap.ide.cts.editor.prettyprint.imported;
+package com.sap.furcas.unparser;
 
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintConstants.INDENTATION_PRIMITIVE;
+import static com.sap.furcas.unparser.PrettyPrintConstants.INDENTATION_PRIMITIVE;
 
 import java.util.HashSet;
 import java.util.Iterator;

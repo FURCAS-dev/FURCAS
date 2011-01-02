@@ -9,9 +9,9 @@
  *     INRIA - initial API and implementation
  *     SAP AG - API and implementation enhancements
  ******************************************************************************/
-package com.sap.ide.cts.editor.prettyprint.imported;
+package com.sap.furcas.unparser;
 
-import static com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintConstants.TYPE_SYMBOL;
+import static com.sap.furcas.unparser.PrettyPrintConstants.TYPE_SYMBOL;
 
 import java.util.ArrayList;
 import java.util.List;

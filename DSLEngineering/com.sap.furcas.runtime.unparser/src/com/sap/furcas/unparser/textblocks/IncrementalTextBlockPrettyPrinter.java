@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package com.sap.ide.cts.editor.prettyprint.textblocks;
+package com.sap.furcas.unparser.textblocks;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -19,11 +19,11 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
+import com.sap.furcas.unparser.PrettyPrintContext;
+import com.sap.furcas.unparser.PrettyPrinter;
+import com.sap.furcas.unparser.SyntaxAndModelMismatchException;
 import com.sap.furcas.unparser.extraction.TCSExtractorStream;
 import com.sap.furcas.unparser.extraction.textblocks.TextBlockTCSExtractorStream;
-import com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintContext;
-import com.sap.ide.cts.editor.prettyprint.imported.PrettyPrinter;
-import com.sap.ide.cts.editor.prettyprint.imported.SyntaxAndModelMismatchException;
 
 
 

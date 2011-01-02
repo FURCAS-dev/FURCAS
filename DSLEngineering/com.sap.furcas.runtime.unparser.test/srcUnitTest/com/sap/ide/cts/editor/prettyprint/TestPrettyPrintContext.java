@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintContext;
+import com.sap.furcas.unparser.PrettyPrintContext;
 
 
 public class TestPrettyPrintContext {
