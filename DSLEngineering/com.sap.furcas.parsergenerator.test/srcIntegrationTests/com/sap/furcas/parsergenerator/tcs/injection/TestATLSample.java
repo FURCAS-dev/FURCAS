@@ -27,7 +27,7 @@ public class TestATLSample extends AbstractTCSInjectionTest {
 
     @BeforeClass
     public static void doSetUp() throws Exception {
-        setup(ScenarioFixtureData.ATL_TCS);
+        setup(ScenarioFixtureData.ATL_TCS, ScenarioFixtureData.ATL_METAMODEL);
     }
 
     @Test
