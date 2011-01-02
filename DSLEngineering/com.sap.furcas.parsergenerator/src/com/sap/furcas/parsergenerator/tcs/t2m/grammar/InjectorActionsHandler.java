@@ -172,11 +172,9 @@ public class InjectorActionsHandler<Type> {
 			if (value.startsWith(OCL_QUERY_PREFIX)
 					|| value.startsWith(MQL_QUERY_PREFIX)) {
 
-				List<String> oclErrors = metaLookup.validateOclQuery(block
-						.getParentTemplate(), value.replaceFirst("OCL:", ""),
-						block.getParentTemplate().getMetaReference());
+				List<String> oclErrors = metaLookup.validateOclQuery(block.getParentTemplate(), value);
 				for (String error : oclErrors) {
-					errorBucket.addError(error, propInit);
+					errorBucket.addError(error + " in OCL query " + value, propInit);
 				}
 
 				String javaQuery = TcsUtil.escapeMultiLineOclQuery(value);
@@ -193,11 +191,9 @@ public class InjectorActionsHandler<Type> {
 		} else if (propInit instanceof ForeachPredicatePropertyInit) {
 			String mode = ((ForeachPredicatePropertyInit) propInit).getMode();
 
-			List<String> oclErrors = metaLookup.validateOclQuery(block
-					.getParentTemplate(), value.replaceFirst("OCL:", ""), block
-					.getParentTemplate().getMetaReference());
+			List<String> oclErrors = metaLookup.validateOclQuery(block.getParentTemplate(), value);
 			for (String error : oclErrors) {
-				errorBucket.addError(error, propInit);
+                                errorBucket.addError(error + " in OCL query " + value, propInit);
 			}
 
 			String javaQuery = TcsUtil.escapeMultiLineOclQuery(value);
@@ -216,16 +212,14 @@ public class InjectorActionsHandler<Type> {
 					localMode = next.getMode();
 				}
 				if (next.getWhen() != null) {
-					String javaQueryWhen = TcsUtil.escapeMultiLineOclQuery(next.getWhen());
+					String oclQueryWhen = TcsUtil.escapeMultiLineOclQuery(next.getWhen());
 					buffer.append("list.add(new PredicateSemantic(\""
-							+ javaQueryWhen + "\", \""
+							+ oclQueryWhen + "\", \""
 							+ finder.getRuleName(next.getAs(), localMode)
 							+ "\"));\n");
-					oclErrors = metaLookup.validateOclQuery(block
-							.getParentTemplate(), next.getWhen().replaceFirst("OCL:", ""), block
-							.getParentTemplate().getMetaReference());
+					oclErrors = metaLookup.validateOclQuery(block.getParentTemplate(), next.getWhen());
 					for (String error : oclErrors) {
-						errorBucket.addError(error, propInit);
+	                                        errorBucket.addError(error + " in OCL query " + value, propInit);
 					}
 				} else {
 					buffer.append("list.add(new PredicateSemantic(null, \""

@@ -20,10 +20,12 @@ import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
+import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 
 
 /**
@@ -148,36 +150,10 @@ public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup
     }
     
     @Override
-    public List<String> validateOclQuery(Object template, String query, Object context) {
-         return Collections.emptyList();
-
+    public List<String> validateOclQuery(Template template, String queryToValidate) {
+        TCSSpecificOCLEvaluator evaluator = new TCSSpecificOCLEvaluator();
+        return evaluator.validateOclQuery(template, queryToValidate);
     }
-    
-//    private List<String> xvalidateOclQuery(Template template, String query, EObject context) {
-//            try {
-//                EClassifier parsingContext = ContextAndForeachHelper.getParsingContext(query, template);
-//                
-//                OCL ocl = OCL.newInstance(new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider()));
-//                Helper oclHelper = ocl.createOCLHelper();
-//                
-//                oclHelper.setContext(parsingContext);
-//                oclHelper.setValidating(true);
-//                query = ContextAndForeachHelper.prepareOclQuery(query, "__TEMP__");
-//                oclHelper.createQuery(query);
-//                Diagnostic diagnostic = oclHelper.getProblems();
-//                
-//                if (diagnostic == null) {
-//                    return Collections.emptyList();
-//                } else {
-//                    return Collections.singletonList(diagnostic.getMessage());
-//                }
-//
-//            } catch (ParserException e) {
-//                return Collections.singletonList(e.getDiagnostic().getMessage());
-//            } catch (RuntimeException e) {
-//                return Collections.singletonList(e.getMessage());
-//            }
-//    }
     
     private ResultSet executeQuery(String query) {
         try {

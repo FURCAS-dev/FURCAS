@@ -23,6 +23,7 @@ import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.junit.Test;
 
 import com.sap.furcas.emf.stubs.EcoreAnyStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.exceptions.NameResolutionFailedException;
 import com.sap.furcas.runtime.common.interfaces.MultiplicityBean;
@@ -262,7 +263,7 @@ public class TestAbstractEcoreMetaModelLookup {
         }
 
         @Override
-        public EList<String> validateOclQuery(Object template, String query, Object context) {
+        public EList<String> validateOclQuery(Template template, String queryToValidate) {
             return new BasicEList<String>();
         }
 

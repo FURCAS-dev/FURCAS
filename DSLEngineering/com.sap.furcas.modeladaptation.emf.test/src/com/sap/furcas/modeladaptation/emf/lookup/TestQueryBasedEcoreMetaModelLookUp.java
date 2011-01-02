@@ -3,6 +3,7 @@ package com.sap.furcas.modeladaptation.emf.lookup;
 import static com.sap.furcas.test.testutils.ResolutionBeanHelper.refM;
 import static com.sap.furcas.test.testutils.StringListHelper.list;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -13,10 +14,11 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.emf.stubs.EcoreAnyStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.ClassTemplateStub;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.furcas.test.testutils.ResourceTestHelper;
@@ -32,7 +34,6 @@ public class TestQueryBasedEcoreMetaModelLookUp {
     }
 
     @Test
-    @Ignore("Ignored to make Maven build work")
     public void testFilterEClassifierList() throws Exception {
         List<String> qualifiedNameOfType = StringListHelper.list("package", "rightclass");
         List<EClassifier> expectedResult = new ArrayList<EClassifier>();
@@ -95,14 +96,12 @@ public class TestQueryBasedEcoreMetaModelLookUp {
     }
 
     @Test
-    @Ignore("Ignored to make Maven build work")
     public void testHasFeature() throws Exception {
         assertNotNull(lookup.getMultiplicity(refM("FURCAS", "TCS", "ConcreteSyntax"), "k"));
         assertNull(lookup.getMultiplicity(refM("FURCAS", "TCS", "Template"), "something"));
     }
 
     @Test
-    @Ignore("Ignored to make Maven build work")
     public void testGetDirectSubTypes() throws Exception {
         List<ResolvedNameAndReferenceBean<EObject>> subTypes = new ArrayList<ResolvedNameAndReferenceBean<EObject>>();
         subTypes.add(refM("FURCAS", "TCS", "FunctionTemplate"));
@@ -115,7 +114,6 @@ public class TestQueryBasedEcoreMetaModelLookUp {
     }
 
     @Test
-    @Ignore("Ignored to make Maven build work")
     public void testHasFeatureForAssociationEnds() throws Exception {
         assertNotNull(lookup.getMultiplicity(refM("FURCAS", "TCS", "Template"), "concreteSyntax"));
         assertNull(lookup.getMultiplicity(refM("FURCAS", "TCS", "Template"), "entriesXYZ"));
@@ -145,5 +143,17 @@ public class TestQueryBasedEcoreMetaModelLookUp {
         assertEquals(2, literals.size());
         assertTrue(literals.contains("right"));
         assertTrue(literals.contains("left"));
+    }
+    
+    @Test
+    public void testValidateOCLQuery() throws Exception {
+        ClassTemplateStub template = new ClassTemplateStub();
+        template.metaReference = TCSPackage.eINSTANCE.getConcreteSyntax();
+        
+        assertTrue("Should yield no errors, as a ConcreteSyntax has a 'keywords' attribute",
+             lookup.validateOclQuery(template, "self.keywords").isEmpty());;
+             
+        assertFalse("Should fail. A ConcreteSyntax has no such feature.",
+             lookup.validateOclQuery(template, "self.someThingThatDoesNotExistForSure").isEmpty());;
     }
 }
