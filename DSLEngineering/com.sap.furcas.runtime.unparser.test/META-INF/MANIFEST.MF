@@ -24,7 +24,8 @@ Require-Bundle: org.antlr,
  com.sap.furcas.test,
  com.sap.furcas.runtime.textblocks.test,
  com.sap.furcas.runtime.parser.test,
- com.sap.furcas.parsergenerator
+ com.sap.furcas.parsergenerator,
+ com.sap.furcas.ide.parserfactory
 Bundle-ClassPath: generationTemp/,
  .
 
