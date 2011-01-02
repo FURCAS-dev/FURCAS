@@ -23,7 +23,8 @@ Require-Bundle: org.antlr,
  com.sap.furcas.modeladaptation.emf,
  com.sap.furcas.test,
  com.sap.furcas.runtime.textblocks.test,
- com.sap.furcas.runtime.parser.test
+ com.sap.furcas.runtime.parser.test,
+ com.sap.furcas.parsergenerator
 Bundle-ClassPath: generationTemp/,
  .
 
