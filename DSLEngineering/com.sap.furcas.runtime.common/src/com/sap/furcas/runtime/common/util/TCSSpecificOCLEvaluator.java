@@ -12,13 +12,17 @@ package com.sap.furcas.runtime.common.util;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
@@ -46,6 +50,7 @@ public class TCSSpecificOCLEvaluator {
     public TCSSpecificOCLEvaluator(QueryContextProvider queryContext) {
         ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(new Query2OppositeEndFinder(queryContext));
         oclHelper = ocl.createOCLHelper();
+        oclHelper.setValidating(true);
     }
 
     /**
@@ -92,6 +97,27 @@ public class TCSSpecificOCLEvaluator {
                     + e.getDiagnostic().getMessage(), e);
         }
     }
+    
+    public List<String> validateOclQuery(Template template, String queryToValidate) {
+        try {
+            EClassifier parsingContext = ContextAndForeachHelper.getParsingContext(queryToValidate, template);
+            queryToValidate = ContextAndForeachHelper.prepareOclQuery(queryToValidate, "__DUMMY__");
+
+            oclHelper.setContext(parsingContext);
+            oclHelper.createQuery(queryToValidate);
+
+            Diagnostic diagnostic = oclHelper.getProblems();
+            if (diagnostic == null) {
+                return Collections.emptyList();
+            } else {
+                return Collections.singletonList(diagnostic.getMessage());
+            }
+        } catch (ParserException e) {
+            return Collections.singletonList(e.getDiagnostic().getMessage());
+        } catch (RuntimeException e) {
+            return Collections.singletonList(e.getMessage());
+        }
+}
 
     private EObject determineObjectForSelf(EObject sourceModelElement, String oclQuery, EObject foreachObject, EObject contextRefObject) throws ModelAdapterException {
         EObject objectForSelf;

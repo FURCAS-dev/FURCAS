@@ -347,14 +347,12 @@ public class PropertyTypeHandler<Type extends Object> {
                 ruleBodyPart.append(concatBuf(" {setOclRef(ret, \"", propertyName, "\", null, temp, \"" + oclQuery + "\");}"));
             }
         }
-
     }
 
     private void validateOclQuery(Property prop, PropertyArgs args, String query) {
-        Object context = prop.getParentTemplate().getMetaReference();
-        List<String> oclErrors = metaLookup.validateOclQuery(prop.getParentTemplate(), query, context);
+        List<String> oclErrors = metaLookup.validateOclQuery(prop.getParentTemplate(), query);
         for (String error : oclErrors) {
-            errorBucket.addError(error, args.oclQueryPArg);
+            errorBucket.addError(error + " in OCL query/filter " + query, args.oclQueryPArg);
         }
     }
 

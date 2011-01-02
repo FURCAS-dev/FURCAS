@@ -13,7 +13,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
@@ -76,7 +75,6 @@ public class TestFileBasedEcoreMetaModelLookup {
     }
 
     @Test
-    @Ignore("Ignored to make Maven build work")
     public void testFeatureClassNameWithBibText() throws Exception {
         FileBasedEcoreMetaModelLookUp lookup = new FileBasedEcoreMetaModelLookUp(ScenarioFixtureData.BIBTEXT_METAMODEL, ScenarioFixtureData.BIBTEXT1_METAMODEL);
         assertEquals(refE("BibText", "Author"), lookup.getFeatureClassReference(refE("BibText", "Article"), "author"));
@@ -111,7 +109,6 @@ public class TestFileBasedEcoreMetaModelLookup {
         assertEquals(list(), lookup.getDirectSubTypes(refE("BibText", "Author")));
     }
 
-    // TODO test with more packages, change above when BibText has packages
     @Test
     public void testSubTypesWithXPath() throws Exception {
         FileBasedEcoreMetaModelLookUp lookup = new FileBasedEcoreMetaModelLookUp(ScenarioFixtureData.XPATH1_METAMODEL, ScenarioFixtureData.XPATH_METAMODEL);
