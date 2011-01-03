@@ -42,7 +42,6 @@ public class SourceCodeFactory {
         String path = "/resources/" + filename;
         InputStream iS = getClass().getResourceAsStream(path);
         return convertStreamToString(iS);
-
     }
 
     /**
@@ -57,7 +56,6 @@ public class SourceCodeFactory {
     public String convertStreamToString(InputStream is) throws CodeGenerationException {
         if (is != null) {
             Writer writer = new StringWriter();
-
             char[] buffer = new char[1024];
             Reader reader;
             try {
@@ -102,7 +100,7 @@ public class SourceCodeFactory {
             is.close();
             out.close();
         } catch (IOException e) {
-            System.err.println("Error Writing/Reading Streams.");
+            System.err.println("Error Writing/Reading Streams."); //TODO
         }
     }
 
@@ -132,16 +130,24 @@ public class SourceCodeFactory {
      *            User input
      * @return The content of the build.properties file.
      * @throws CodeGenerationException
+     * 
+     * TODO rename
      */
-    public String createBuildProbCode() throws CodeGenerationException {
-        StringTemplate template = null;
-        String templateString = null;
+    public String createBuildProbCode(ProjectInfo pi) throws CodeGenerationException {
+    	String filename = "buildprob.txt";
+        return createFileContents(pi, filename);
+    }
 
-        templateString = readFile("buildprob.txt");
+	private String createFileContents(ProjectInfo pi, String filename)
+			throws CodeGenerationException {
+		StringTemplate template = null;
+        String templateString = null;
+		templateString = readFile(filename);
         template = new StringTemplate(templateString);
+        setTemplateAtts(template, pi);
 
         return template.toString();
-    }
+	}
 
     /**
      * Creates an editor class from the resources/editor.txt file
@@ -152,14 +158,8 @@ public class SourceCodeFactory {
      * @throws CodeGenerationException
      */
     public String createEditorCode(ProjectInfo pi) throws CodeGenerationException {
-        StringTemplate template = null;
-        String templateString = null;
-
-        templateString = readFile("editor.txt");
-        template = new StringTemplate(templateString);
-        setTemplateAtts(template, pi);
-
-        return template.toString();
+        String filename = "editor.txt";
+        return createFileContents(pi, filename);
     }
 
     /**
