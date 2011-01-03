@@ -31,6 +31,11 @@
         eType="#//Token" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lexer" ordered="false"
         unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uuid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This attribute is used to uniquely identify a snapshot of a syntax. It should be set/re-set when generating a parser from the syntax. As there is some indeterminism in the ANTLR parser generator we cannot rely that even an unmodified syntax will produce the same parser. To handle migration of existing TextBlocks models we need to detect if a parser was generated from exactly one specific syntax snapshot."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Template" abstract="true" eSuperTypes="#//QualifiedNamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="concreteSyntax" ordered="false"

@@ -18,12 +18,14 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import com.sap.furcas.ide.dslproject.Activator;
 import com.sap.furcas.ide.dslproject.Constants;
 import com.sap.furcas.ide.dslproject.conf.IProjectMetaRefConf;
 import com.sap.furcas.ide.dslproject.conf.ReferenceScopeBean;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
 import com.sap.furcas.parsergenerator.GrammarGenerationTargetConfiguration;
@@ -172,18 +174,58 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
             try {
                 GrammarGenerationSourceConfiguration sourceConfig = new GrammarGenerationSourceConfiguration(
                         refScopeBean.getResourceSet(), refScopeBean.getReferenceScope());
+                TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
+                
+                //first check if the .tcs file is a model file
+                boolean hasModelContents = false;
+                URI modelFileURI = URI.createPlatformResourceURI(resource.getFullPath().toString(), true);
+                Resource mappingResource = null;
+                try {
+                    mappingResource = refScopeBean.getResourceSet().getResource(modelFileURI, true);
+                    hasModelContents = true;
+                } catch (Exception ex) {
+                    //load failed, so it seems to be a plain text file
+                    hasModelContents = false;
+                }
+                
+                if(!hasModelContents) {
+                    //.TCS is a plain text file, so determine the corresponding model file
+                    modelFileURI = URI.createPlatformResourceURI(project.getFullPath() + File.separator + "mappings" + File.separator + getFileNameBase(syntaxDefFile) + "." + "tcs", true);
+                    try {
+                        mappingResource = refScopeBean.getResourceSet().getResource(modelFileURI, true);
+                    } catch (Exception ex) {
+                        //mappingResource remains set to null
+                    }
+                }
+                
                 
                 IFile grammarFile = getGrammarFile(syntaxDefFile);
-                URI createFileURI = URI.createPlatformResourceURI(project.getFullPath() + File.separator + "mappings" + File.separator + getFileNameBase(syntaxDefFile) + "." + "tcs", true);
-                Resource mappingResource =  refScopeBean.getResourceSet().createResource(createFileURI);
-                GrammarGenerationTargetConfiguration targetConfig = new GrammarGenerationTargetConfiguration(
-                        getPackageName(grammarFile), convertIFileToFile(grammarFile), mappingResource);
-
-                TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
-                monitor.subTask("Parsing Syntax: " +  syntaxDefFile.getName());
-                TCSSyntaxContainerBean syntaxBean = generator.parseSyntax(sourceConfig, convertIFileToFile(syntaxDefFile), targetConfig,
-                        new ResourceMarkingGenerationErrorHandler(
-                                syntaxDefFile));
+                TCSSyntaxContainerBean syntaxBean = null;
+                GrammarGenerationTargetConfiguration targetConfig = null;
+                if(mappingResource == null || mappingResource.getTimeStamp() < resource.getLocalTimeStamp()) {
+                    if(mappingResource == null) {
+                        mappingResource = refScopeBean.getResourceSet().createResource(modelFileURI);
+                    }
+                    targetConfig = new GrammarGenerationTargetConfiguration(
+                            getPackageName(grammarFile), convertIFileToFile(grammarFile), mappingResource);
+                    monitor.subTask("Parsing Syntax: " +  syntaxDefFile.getName());
+                    //this will hopefully replace all /resource/ uris with /plugin/,
+                    //FIXME: unfortunately it doesn't, see https://bugzilla.furcas.org/cgi-bin/bugzilla3/show_bug.cgi?id=88
+    //                targetConfig.getMappingResource().getResourceSet().getURIConverter().getURIMap().putAll(
+    //                        EcorePlugin.computePlatformURIMap());
+                    syntaxBean = generator.parseSyntax(sourceConfig, convertIFileToFile(syntaxDefFile), targetConfig,
+                            new ResourceMarkingGenerationErrorHandler(
+                                    syntaxDefFile));
+                } else {
+                    targetConfig = new GrammarGenerationTargetConfiguration(
+                            getPackageName(grammarFile), convertIFileToFile(grammarFile), mappingResource);
+                    EObject cs =  mappingResource.getContents().iterator().next();
+                    if(! (cs instanceof ConcreteSyntax)) {
+                        Activator.logger.displayError("Exprected mapping resource: " + mappingResource.getURI() + " to contain Concrete Sytnax element but found: " + cs.eClass().getName());
+                    }
+                    syntaxBean = new TCSSyntaxContainerBean();
+                    syntaxBean.setSyntax((ConcreteSyntax) cs);
+                }
                 if(syntaxBean != null) {
                     monitor.subTask("Generating Grammar: " +  grammarFile.getName());
                     generator.generateGrammarFromSyntax(syntaxBean, sourceConfig, targetConfig, new ResourceMarkingGenerationErrorHandler(

@@ -15,6 +15,7 @@ import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.furcas.ide.editor.CtsActivator;
 import com.sap.furcas.ide.editor.FurcasDocumentSetupParticpant;
+import com.sap.furcas.ide.editor.recovery.ModelEditorInputRecoveryStrategy;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
@@ -79,7 +80,7 @@ public class CtsDocument extends AbstractDocument {
      */
     public void completeInit(ConcreteSyntax concreteSyntax, ClassTemplate rootTemplate,
 	    ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory,
-	    /*ModelEditorInputRecoveryStrategy recoveryStrategy,*/ ObservableInjectingParser observableInjectingParser, IProgressMonitor monitor) {
+	    ModelEditorInputRecoveryStrategy recoveryStrategy, ObservableInjectingParser observableInjectingParser, IProgressMonitor monitor) {
 
 	syntax = concreteSyntax;
 //	GlobalDelayedReferenceResolver.getInstance().registerReferenceForIncrementalEvaluation(syntax, syntax.get___Connection(),
@@ -98,7 +99,7 @@ public class CtsDocument extends AbstractDocument {
 	    }
 	} else {
 	    rootObject = inputObject;
-	    rootBlock = determineRootBlockForRootObject(concreteSyntax, rootTemplate, parserFactory, /*recoveryStrategy,*/
+	    rootBlock = determineRootBlockForRootObject(concreteSyntax, rootTemplate, parserFactory, recoveryStrategy,
 		    inputObject);
 	}
 
@@ -143,7 +144,7 @@ public class CtsDocument extends AbstractDocument {
      */
     private TextBlock determineRootBlockForRootObject(ConcreteSyntax concreteSyntax, ClassTemplate rootTemplate,
 	    ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory,
-	    /*ModelEditorInputRecoveryStrategy recoveryStrategy,*/ EObject inputObject) {
+	    ModelEditorInputRecoveryStrategy recoveryStrategy, EObject inputObject) {
 
 	TextblocksPackage tbPackage = TextblocksPackage.eINSTANCE;
 	TextBlock rootBlock = null;
@@ -152,8 +153,8 @@ public class CtsDocument extends AbstractDocument {
             //into the resource set
 	    rootBlock = TbModelInitializationUtil.getRootBlockForRootObject(inputObject, oppositeEndFinder, rootTemplate);
 	} catch (TextBlockMappingBrokenException e) {
-//	    TextBlock blockInError = e.getBlock();
-	    //rootBlock = recoveryStrategy.recoverBrokenTextBlockMapping(inputObject, blockInError, rootTemplate);
+	    TextBlock blockInError = e.getBlock();
+	    rootBlock = recoveryStrategy.recoverBrokenTextBlockMapping(inputObject, blockInError, rootTemplate);
 	}
 
 	if (rootBlock == null) {

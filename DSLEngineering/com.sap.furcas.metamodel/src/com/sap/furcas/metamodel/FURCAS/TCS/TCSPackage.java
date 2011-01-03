@@ -271,13 +271,22 @@ public interface TCSPackage extends EPackage {
         int CONCRETE_SYNTAX__LEXER = NAMED_ELEMENT_FEATURE_COUNT + 6;
 
         /**
+     * The feature id for the '<em><b>Uuid</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CONCRETE_SYNTAX__UUID = NAMED_ELEMENT_FEATURE_COUNT + 7;
+
+        /**
      * The number of structural features of the '<em>Concrete Syntax</em>' class.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int CONCRETE_SYNTAX_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 7;
+        int CONCRETE_SYNTAX_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 8;
 
         /**
      * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.QualifiedNamedElementImpl <em>Qualified Named Element</em>}' class.
@@ -7206,6 +7215,17 @@ public interface TCSPackage extends EPackage {
         EAttribute getConcreteSyntax_Lexer();
 
         /**
+     * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax#getUuid <em>Uuid</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Uuid</em>'.
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax#getUuid()
+     * @see #getConcreteSyntax()
+     * @generated
+     */
+    EAttribute getConcreteSyntax_Uuid();
+
+        /**
      * Returns the meta object for class '{@link com.sap.furcas.metamodel.FURCAS.TCS.Template <em>Template</em>}'.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -9998,6 +10018,14 @@ public interface TCSPackage extends EPackage {
          * @generated
          */
                 EAttribute CONCRETE_SYNTAX__LEXER = eINSTANCE.getConcreteSyntax_Lexer();
+
+                /**
+         * The meta object literal for the '<em><b>Uuid</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CONCRETE_SYNTAX__UUID = eINSTANCE.getConcreteSyntax_Uuid();
 
                 /**
          * The meta object literal for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.TemplateImpl <em>Template</em>}' class.
