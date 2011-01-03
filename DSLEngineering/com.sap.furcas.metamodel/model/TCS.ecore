@@ -408,9 +408,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="QueryPArg" eSuperTypes="#//PropertyArg">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="query" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="QueryByIdentifierPArg" eSuperTypes="#//PropertyArg">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="query" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="feature" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FilterByIdentifierPArg" eSuperTypes="#//PropertyArg">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="filter" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="criterion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FilterPArg" eSuperTypes="#//PropertyArg">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="filter" lowerBound="1"
@@ -476,8 +476,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mode" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PredicateSemantic">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="when" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="as" eType="#//Template"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="when" eType="ecore:EClass platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.ecore#//ecore/OCLExpression"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mode" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="foreachParent" lowerBound="1"
         eType="#//ForeachPredicatePropertyInit" eOpposite="#//ForeachPredicatePropertyInit/predicateSemantic"/>

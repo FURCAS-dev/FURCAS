@@ -9,7 +9,6 @@ import java.util.Set;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -38,7 +37,7 @@ public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup
     private final QueryProcessor queryProcessor;
 
     public QueryBasedEcoreMetaModelLookUp(ResourceSet resourceSet, Set<URI> referenceScope) {
-    	super(new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE)); // FIXME inject OppositeEndFinder
+    	super(DefaultOppositeEndFinder.getInstance()); // FIXME inject OppositeEndFinder
         this.resourceSet = resourceSet;
         this.referenceScope = referenceScope;
         

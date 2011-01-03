@@ -7,7 +7,6 @@
 package com.sap.furcas.metamodel.FURCAS.TCS;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.ecore.OCLExpression;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,8 +16,8 @@ import org.eclipse.ocl.ecore.OCLExpression;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic#getAs <em>As</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic#getWhen <em>When</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic#getAs <em>As</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic#getMode <em>Mode</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic#getForeachParent <em>Foreach Parent</em>}</li>
  * </ul>
@@ -56,30 +55,30 @@ public interface PredicateSemantic extends EObject {
         void setAs(Template value);
 
         /**
-     * Returns the value of the '<em><b>When</b></em>' reference.
+     * Returns the value of the '<em><b>When</b></em>' attribute.
      * <!-- begin-user-doc -->
          * <p>
          * If the meaning of the '<em>When</em>' reference isn't clear,
          * there really should be more of a description here...
          * </p>
          * <!-- end-user-doc -->
-     * @return the value of the '<em>When</em>' reference.
-     * @see #setWhen(OCLExpression)
+     * @return the value of the '<em>When</em>' attribute.
+     * @see #setWhen(String)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getPredicateSemantic_When()
      * @model
      * @generated
      */
-        OCLExpression getWhen();
+        String getWhen();
 
         /**
-     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic#getWhen <em>When</em>}' reference.
+     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic#getWhen <em>When</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @param value the new value of the '<em>When</em>' reference.
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>When</em>' attribute.
      * @see #getWhen()
      * @generated
      */
-        void setWhen(OCLExpression value);
+    void setWhen(String value);
 
         /**
      * Returns the value of the '<em><b>Mode</b></em>' attribute.

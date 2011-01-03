@@ -1,0 +1,18 @@
+article{
+  Testing, "John Doe",
+  year = "2002"
+}
+author = "John Doe".
+
+article{
+  Testing2, "John Dome",
+  year = "2002"
+}
+
+article{
+  Testing, "John Dome",
+  year = "2002"
+}
+
+author = "John Dome".
+author = "Jane Doe".

@@ -10,7 +10,7 @@ import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
-import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
+import com.sap.furcas.runtime.parser.testbase.stubs.StubParsingHelper;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 @Ignore("Already ignored in the moin codebase. Furthermore, not even included in the test suite.")
@@ -21,14 +21,14 @@ public class TestPartial extends GeneratedParserBasedTest {
     private static final File[] METAMODELS = { ScenarioFixtureData.XPATH1_METAMODEL };
     private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
 
-    private static ParsingHelper parsingHelper;
+    private static StubParsingHelper parsingHelper;
 
     @BeforeClass
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
         TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
         ParserFacade facade = generateParserForLanguage(syntaxBean, testConfig, new ClassLookupImpl());
-        parsingHelper = new ParsingHelper(facade);
+        parsingHelper = new StubParsingHelper(facade);
     }
 
     @Test

@@ -111,7 +111,7 @@ public class TbReplacingHelper {
             }
             if (relativeOffset <= difference) {
                 node.setOffset(0);                
-                extendLeftToOffsetAscending(TbNavigationUtil.getParentBlock(node), replacedRegionAbsoluteOffset);
+                extendLeftToOffsetAscending(node.getParent(), replacedRegionAbsoluteOffset);
             } else {
                 node.setOffset(node.getOffset() - difference);
             }

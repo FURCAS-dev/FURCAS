@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
 
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
@@ -29,7 +28,7 @@ public class TriggerManagerImpl implements TriggerManager {
     private final Collection<AdapterForExpression> strongAdapterReferences;
     
     TriggerManagerImpl() {
-        this(new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE));
+        this(DefaultOppositeEndFinder.getInstance());
     }
     
     public TriggerManagerImpl(OppositeEndFinder oppositeEndFinder) {
@@ -37,7 +36,7 @@ public class TriggerManagerImpl implements TriggerManager {
     }
 
     public TriggerManagerImpl(ActivationOption impactAnalysisConfiguration) {
-        this(new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE), impactAnalysisConfiguration);
+        this(DefaultOppositeEndFinder.getInstance(), impactAnalysisConfiguration);
     }
 
     public TriggerManagerImpl(OppositeEndFinder oppositeEndFinder, ActivationOption impactAnalysisConfiguration) {

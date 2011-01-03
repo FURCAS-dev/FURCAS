@@ -144,7 +144,7 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
         private void createTBProxy2ReferenceMap() {
             tBProxy2Reference = new HashMap<TextBlockProxy, List<DelayedReference>>();
             for (DelayedReference ref : batchParser.getDelayedReferences()) {
-                if(ref.getType() == DelayedReference.TYPE_SEMANTIC_PREDICATE) {
+                if(ref.getType() == DelayedReference.ReferenceType.TYPE_SEMANTIC_PREDICATE) {
                     List<DelayedReference> refs = tBProxy2Reference.get(ref.getTextBlock());
                     if(refs == null) {
                         refs = new ArrayList<DelayedReference>(3);
@@ -211,7 +211,7 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
                                 Collection<?> result = helper.evaluateForeachOcl(ro, ref, 
                                         batchParser.getInjector().getModelAdapter(), 
                                         ro);
-                                if(elementsEqual(result, fec.getContextElement())) {
+                                if(result.contains(fec.getContextElement())) {
                                     fec.setForeachPedicatePropertyInit((ForeachPredicatePropertyInit) ref.getQueryElement());
                                     textBlock.getAdditionalTemplates().add(
                                             fec.getForeachPedicatePropertyInit().getInjectorActionsBlock().getParentTemplate());
@@ -223,16 +223,6 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
                     }
                 }
             }
-        }
-
-        private boolean elementsEqual(Collection<?> one,
-                Collection<?> two) {
-            for (Object refObject : two) {
-                if(!one.contains(refObject)) {
-                    return false;
-                }
-            }
-            return true;
         }
 
         private TextBlockDefinition getTbDef(Template t) {

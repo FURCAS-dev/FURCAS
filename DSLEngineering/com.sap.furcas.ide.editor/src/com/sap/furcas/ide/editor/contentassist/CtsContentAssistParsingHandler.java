@@ -34,6 +34,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.parser.IParsingObserver;
 import com.sap.furcas.runtime.parser.impl.DelayedReference;
+import com.sap.furcas.runtime.tcs.TcsDebugUtil;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 
 /**

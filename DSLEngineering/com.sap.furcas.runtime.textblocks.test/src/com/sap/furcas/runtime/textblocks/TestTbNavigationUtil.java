@@ -177,11 +177,10 @@ public class TestTbNavigationUtil extends FixtureProvidingTextBlockTest {
 
     @Test
     public void testGetParentBlock() {
-	assertEquals(main, TbNavigationUtil.getParentBlock(left));
-	assertEquals(left, TbNavigationUtil.getParentBlock(leftLeft));
-	assertEquals(null, TbNavigationUtil.getParentBlock(main));
-	assertEquals(middle, TbNavigationUtil.getParentBlock(lexed3));
-	assertEquals(null, TbNavigationUtil.getParentBlock(null));
+	assertEquals(main, left.getParent());
+	assertEquals(left, leftLeft.getParent());
+	assertEquals(null, main.getParent());
+	assertEquals(middle, lexed3.getParent());
     }
 
     @Test

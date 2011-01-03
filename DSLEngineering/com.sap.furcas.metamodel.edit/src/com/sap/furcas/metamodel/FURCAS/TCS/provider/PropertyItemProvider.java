@@ -241,7 +241,7 @@ public class PropertyItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (TCSPackage.Literals.PROPERTY__PROPERTY_ARGS,
-                 TCSFactory.eINSTANCE.createQueryByIdentifierPArg()));
+                 TCSFactory.eINSTANCE.createFilterByIdentifierPArg()));
 
         newChildDescriptors.add
             (createChildParameter

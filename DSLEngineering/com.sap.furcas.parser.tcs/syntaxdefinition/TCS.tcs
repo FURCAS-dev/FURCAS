@@ -205,7 +205,6 @@ syntax TCS {
             -- for reference, need to look in metareference modelElement of the template this property belongs to       
                   (isDefined(strucfeature) ? 
                   strucfeature{
-                        refersTo = name, 
                         query = "OCL:let c:ecore::EClass = #context.oclAsType(FURCAS::TCS::Template).metaReference.oclAsType(ecore::EClass) in
                         		     c.eAllStructuralFeatures",
                         filter = "->select(f | f.name = ?)", invert = "name", as = identifierOrKeyword}
@@ -417,8 +416,8 @@ syntax TCS {
                 :       "filter" "=" filter{as = stringSymbol} (isDefined(invert) ? "," "invert" "=" invert{as = stringSymbol})
                 ;
                 
-       	template TCS::QueryByIdentifierPArg
-                :       "queryByIdentifier" "=" query{as = stringSymbol} "," "feature" "=" feature{as = identifierOrKeyword}
+       	template TCS::FilterByIdentifierPArg
+                :      filter{as = stringSymbol} "=" criterion{as = stringSymbol} 
                 ;
 
         template TCS::ModePArg

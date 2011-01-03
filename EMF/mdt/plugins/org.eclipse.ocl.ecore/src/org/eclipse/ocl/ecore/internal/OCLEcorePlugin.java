@@ -56,7 +56,7 @@ public class OCLEcorePlugin
 
 	//The shared Eclipse plug-in instance
 	private static Implementation plugin;
-
+	
 	/**
 	 * The constructor.
 	 */
@@ -345,4 +345,5 @@ public class OCLEcorePlugin
 			}
 		};
 	}
+
 }

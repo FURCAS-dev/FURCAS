@@ -24,7 +24,7 @@ public class TestEnumSample extends AbstractTCSInjectionTest {
 
     @BeforeClass
     public static void doSetUp() throws Exception {
-        setup(ScenarioFixtureData.ENUMTEST_TCS);
+        setup(ScenarioFixtureData.ENUMTEST_TCS, ScenarioFixtureData.ENUMERATION_METAMODEL);
     }
 
     @Test

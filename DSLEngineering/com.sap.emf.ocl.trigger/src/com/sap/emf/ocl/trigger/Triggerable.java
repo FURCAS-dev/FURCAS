@@ -2,6 +2,7 @@ package com.sap.emf.ocl.trigger;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
@@ -18,21 +19,24 @@ import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
  *
  */
 public interface Triggerable {
-    void notify(OCLExpression expression, Collection<EObject> affectedContextObjects, OppositeEndFinder oppositeEndFinder);
+    void notify(OCLExpression expression, Collection<EObject> affectedContextObjects,
+            OppositeEndFinder oppositeEndFinder, Notification change);
 
     /**
-     * The {@link #notify(OCLExpression, Collection, OppositeEndFinder)} operation will be called when any of the
+     * The {@link #notify(OCLExpression, Collection, OppositeEndFinder, Notification)} operation will be called when any of the
      * {@link OCLExpression expressions} returned by this method may have changed its value anywhere in the scope observed by the
      * {@link TriggerManager} with which this {@link Triggerable} gets {@link TriggerManager#register(Triggerable) registered}.
      * They receive notifications also for new context elements being created if {@link #notifyOnNewContextElements} returns
-     * <code>true</code>.
+     * <code>true</code>. The expressions returned by this method must make use of the <code>self</code> variable because
+     * otherwise their context type cannot be inferred. For expressions not using <code>self</code>, consider returning
+     * them from {@link #getTriggerExpressionsWithContext()}.
      * 
      * @return a non-<code>null</code> collection
      */
     Collection<OCLExpression> getTriggerExpressionsWithoutContext();
 
     /**
-     * The {@link #notify(OCLExpression, Collection, OppositeEndFinder)} operation will be called when any of the
+     * The {@link #notify(OCLExpression, Collection, OppositeEndFinder, Notification)} operation will be called when any of the
      * {@link OCLExpression expressions} returned by this method may have changed its value anywhere in the scope observed by the
      * {@link TriggerManager} with which this {@link Triggerable} gets {@link TriggerManager#register(Triggerable) registered}.
      * They receive notifications also for new context elements being created if {@link #notifyOnNewContextElements} returns
@@ -47,7 +51,7 @@ public interface Triggerable {
     Collection<ExpressionWithContext> getTriggerExpressionsWithContext();
     
     /**
-     * If <code>true</code> is returned, {@link #notify(OCLExpression, Collection, OppositeEndFinder)} will also be called
+     * If <code>true</code> is returned, {@link #notify(OCLExpression, Collection, OppositeEndFinder, Notification)} will also be called
      * if for any context type of any of the expressions returned from {@link #getTriggerExpressionsWithContext()} or
      * {@link #getTriggerExpressionsWithoutContext()} (or any of the context type's subtypes) a new element is added to
      * the resource set observed by the {@link TriggerManager} with which this {@link Triggerable} is registered.

@@ -24,12 +24,9 @@ syntax People {
 		
 	template City context addToContext
 		: name "(" persons{separator=","} ")"
-		  (isDefined(representative) ? "representative:" 
-		  	representative{
-		  			filter = "->select(p | p.name = 'hugo')", invert = "self.name",
-		  			refersTo = name,
-		  			query = "OCL:#context(nationTag).capital.persons"
-		  		})
+		  (isDefined(representative) ?
+		  	"representative:" representative{query="OCL:#context(nationTag).capital.persons", "name"="?", as=identifier}
+		  )
 		;
 		
 	template Person
@@ -46,7 +43,7 @@ syntax People {
 				")"
 			)	
 			(isDefined(spouse) ? 
-				"spouse:" spouse{as=identifier, query="OCL:Person.allInstances()", filter="->select(p|p.name=?)"}
+				"spouse:" spouse{query="OCL:Person.allInstances()", "name"="?", as=identifier}
 			)
 			{{male = 'true', age='42', height='1.83', codeName='"Viper"', embassy=lookIn("currentlyIn.nation.capital"), embassy2=lookIn("OCL:currentlyIn.nation.capital")}} -- nonsense defaults
 		;

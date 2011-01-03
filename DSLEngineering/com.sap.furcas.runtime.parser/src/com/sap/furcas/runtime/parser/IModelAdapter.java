@@ -151,5 +151,10 @@ public interface IModelAdapter extends IModelElementInvestigator { // extends In
      * Used to fetch the search scope where to find the mapping model for the given <tt>languageId</tt>.
      */
     public Collection<URI> getPRIPartitions(ResourceSet rs, String languageId);
+    
+    /**
+     * Return all modelElements of the given type with are known to this model adapter instance.
+     */
+    public Collection<Object> getElementsOfType(List<String> list) throws ModelAdapterException; 
 
 }

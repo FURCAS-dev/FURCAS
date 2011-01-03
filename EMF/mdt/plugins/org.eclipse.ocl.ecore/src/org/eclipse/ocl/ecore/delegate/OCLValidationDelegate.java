@@ -76,34 +76,6 @@ public class OCLValidationDelegate implements ValidationDelegate
 		return Boolean.TRUE.equals(result);
 	}
 
-	/**
-	 * @since 3.1
-	 *
-	protected Constraint createConstraint(EOperation context, String expression) {
-		OCL ocl = delegateDomain.getOCL();
-		Helper helper = ocl.createOCLHelper();
-		helper.setOperationContext(context.getEContainingClass(), context);
-		try {
-			return helper.createConstraint(ConstraintKind.BODYCONDITION, expression);
-		} catch (ParserException e) {
-			throw new OCLDelegateException(e.getLocalizedMessage(), e);
-		}
-	} */
-
-	/**
-	 * @since 3.1
-	 *
-	protected Constraint createConstraint(EClassifier eClassifier, String expression) {
-		OCL ocl = delegateDomain.getOCL();
-		Helper helper = ocl.createOCLHelper();
-		helper.setContext(eClassifier);
-		try {
-			return helper.createConstraint(ConstraintKind.INVARIANT, expression);
-		} catch (ParserException e) {
-			throw new OCLDelegateException(e.getLocalizedMessage(), e);
-		}
-	} */
-
 	protected OCLExpression createQuery(String expression) {
 		OCL ocl = delegateDomain.getOCL();
 		Helper helper = ocl.createOCLHelper();
@@ -121,30 +93,33 @@ public class OCLValidationDelegate implements ValidationDelegate
 
 	public boolean validate(EClass eClass, EObject eObject,
 			Map<Object, Object> context, EOperation invariant, String expression) {
-		OCLExpression query = ValidationBehavior.INSTANCE.getCachedExpression(invariant, InvocationBehavior.BODY_CONSTRAINT_KEY);
+		OCLExpression query = InvocationBehavior.INSTANCE.getOperationBody(
+			delegateDomain.getOCL(), invariant);
 		if (query == null) {
 			query = createQuery(expression);
-			ValidationBehavior.INSTANCE.cacheExpression(invariant, query, InvocationBehavior.BODY_CONSTRAINT_KEY);
+			InvocationBehavior.INSTANCE.cacheOCLExpression(invariant, query);
 		}
 		return check(eObject, invariant.getName(), query);
 	}
 
 	public boolean validate(EClass eClass, EObject eObject,
 			Map<Object, Object> context, String constraint, String expression) {
-		OCLExpression query = ValidationBehavior.INSTANCE.getCachedExpression(eClass, constraint);
+		OCLExpression query = ValidationBehavior.INSTANCE.getInvariant(eClass,
+			constraint, delegateDomain.getOCL());
 		if (query == null) {
 			query = createQuery(expression);
-			ValidationBehavior.INSTANCE.cacheExpression(eClass, query, constraint);
+			ValidationBehavior.INSTANCE.cacheInvariantBody(eClass, constraint, query);
 		}
 		return check(eObject, constraint, query);
 	}
 
 	public boolean validate(EDataType eDataType, Object value,
 			Map<Object, Object> context, String constraint, String expression) {
-		OCLExpression query = ValidationBehavior.INSTANCE.getCachedExpression(eDataType, constraint);
+		OCLExpression query = ValidationBehavior.INSTANCE.getCachedExpression(
+			eDataType, constraint);
 		if (query == null) {
 			query = createQuery(expression);
-			ValidationBehavior.INSTANCE.cacheExpression(eDataType, query, constraint);
+			ValidationBehavior.INSTANCE.cacheInvariantBody(eDataType, constraint, query);
 		}
 		return check(value, constraint, query);
 	}

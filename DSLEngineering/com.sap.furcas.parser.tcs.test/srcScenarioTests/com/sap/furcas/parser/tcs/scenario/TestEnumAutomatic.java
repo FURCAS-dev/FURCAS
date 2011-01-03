@@ -3,7 +3,7 @@ package com.sap.furcas.parser.tcs.scenario;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
-import java.util.Set;
+import java.util.Collection;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -12,9 +12,9 @@ import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
-import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
-import com.sap.furcas.runtime.parser.testbase.StubModelAdapter;
-import com.sap.furcas.runtime.parser.testbase.StubModelElement;
+import com.sap.furcas.runtime.parser.testbase.stubs.StubModelAdapter;
+import com.sap.furcas.runtime.parser.testbase.stubs.StubModelElement;
+import com.sap.furcas.runtime.parser.testbase.stubs.StubParsingHelper;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 /**
@@ -26,14 +26,14 @@ public class TestEnumAutomatic extends GeneratedParserBasedTest {
     private static final File TCS = ScenarioFixtureData.ENUMTEST_AUTOMATIC_TCS;
     private static final File[] METAMODELS = { ScenarioFixtureData.ENUMERATION_METAMODEL };
 
-    private static ParsingHelper parsingHelper;
+    private static StubParsingHelper parsingHelper;
 
     @BeforeClass
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
         TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
         ParserFacade facade = generateParserForLanguage(syntaxBean, testConfig, new ClassLookupImpl());
-        parsingHelper = new ParsingHelper(facade);
+        parsingHelper = new StubParsingHelper(facade);
     }
 
     /**
@@ -46,7 +46,7 @@ public class TestEnumAutomatic extends GeneratedParserBasedTest {
 
         StubModelAdapter stubModelHandler = parsingHelper.parseString("mars with speed slow", 0);
 
-        Set<StubModelElement> expressions = stubModelHandler.getElementsbyType("enumtest::PlanetExpression");
+        Collection<StubModelElement> expressions = stubModelHandler.getElementsOfType("enumtest::PlanetExpression");
         assertEquals(1, expressions.size());
         StubModelElement element = expressions.iterator().next();
         StubModelElement planet = (StubModelElement) element.get("planet");

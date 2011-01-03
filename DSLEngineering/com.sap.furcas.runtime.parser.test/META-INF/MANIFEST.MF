@@ -13,8 +13,10 @@ Require-Bundle: org.junit;bundle-version="4.8.1",
  com.sap.furcas.runtime.common,
  com.sap.furcas.runtime.parser,
  com.sap.furcas.utils,
- com.sap.furcas.parser.tcs
+ com.sap.furcas.parser.tcs,
+ com.sap.furcas.modeladaptation.emf
 Export-Package: com.sap.furcas.runtime.parser.testbase,
+ com.sap.furcas.runtime.parser.testbase.stubs,
  com.sun.tools.javac
 Bundle-ClassPath: lib/tools.jar,
  .

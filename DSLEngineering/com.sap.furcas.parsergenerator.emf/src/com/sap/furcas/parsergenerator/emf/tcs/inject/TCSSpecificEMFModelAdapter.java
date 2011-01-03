@@ -205,4 +205,9 @@ public class TCSSpecificEMFModelAdapter implements IBareModelAdapter {
         adapter.unset(modelElement, prop, value);
     }
 
+    @Override
+    public Collection<Object> getElementsOfType(List<String> list) throws ModelAdapterException {
+        return adapter.getElementsOfType(list);
+    }
+
 }

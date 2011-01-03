@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -65,7 +66,7 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
      */
     @Override
     public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects,
-            OppositeEndFinder oppositeEndFinder) {
+            OppositeEndFinder oppositeEndFinder, Notification change) {
         OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(oppositeEndFinder);
         for (EObject eo : affectedContextObjects) {
             Object newValue = ocl.evaluate(eo, expression);
@@ -76,8 +77,12 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
                     newValue = ((Collection<?>) newValue).isEmpty() ? null : ((Collection<?>) newValue).iterator()
                             .next();
                 }
-                for (EObject elementToUpdate : getElementsToUpdate(eo)) {
-                    elementToUpdate.eSet(getPropertyToUpdate(), newValue);
+                try {
+                    for (EObject elementToUpdate : getElementsToUpdate(eo)) {
+                        elementToUpdate.eSet(getPropertyToUpdate(), newValue);
+                    }
+                } catch (ParserException e) {
+                    throw new RuntimeException(e);
                 }
             }
         }
@@ -134,7 +139,7 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
      *            case where {@link #selfKind} is {@link SelfKind#SELF}, this is at the same time the result of this
      *            method; otherwise, the <code>inTextBlock</code> argument is used to compute the result
      */
-    protected Set<EObject> getElementsToUpdate(EObject self) {
+    protected Set<EObject> getElementsToUpdate(EObject self) throws ParserException {
         // Collection<TextBlock> inTextBlocks = getTextBlocksInChosenAlternativeForInjectorAction(injectorAction);
         switch (selfKind) {
         case SELF:
@@ -142,40 +147,56 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
         case CONTEXT:
             return getElementsToUpdateFromContextElement(self);
         case FOREACH:
-            EObject result = getElementToUpdateFromForeachElement(self);
-            if (result == null) {
-                return Collections.emptySet();
-            } else {
-                return Collections.singleton(result);
-            }
+            return getElementToUpdateFromForeachElement(self);
         default:
             throw new RuntimeException("Unknown self kind: "+selfKind);
         }
     }
 
-    private EObject getElementToUpdateFromForeachElement(EObject self) {
+    private Set<EObject> getElementToUpdateFromForeachElement(EObject self) throws ParserException {
+        Set<EObject> result = new HashSet<EObject>();
         OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(getOppositeEndFinder());
+        // The following call may return many objects because
+        //  1) a single template may use multiple foreach predicates whose foreach expressions produce
+        //     overlapping element sets
+        //  2) a single foreach expression may even produce multiple occurrences of the same element, e.g., in a bag
+        // Each result indicates one production of one new element. It may be possible that the same template
+        // gets executed more than once for the same foreach-element. Therefore, also the same injector action
+        // may get executed several times for the same #foreach element: once per invocation of its owning
+        // template for the same #foreach element.
         Collection<EObject> foreachContextsUsingSelfAsForeachElement = getOppositeEndFinder()
                 .navigateOppositePropertyWithBackwardScope(
                         TextblocksPackage.eINSTANCE.getForEachContext_ContextElement(), self);
+        Helper oclHelper = ocl.createOCLHelper();
         for (EObject eo : foreachContextsUsingSelfAsForeachElement) {
             ForEachContext foreachContext = (ForEachContext) eo;
             ForeachPredicatePropertyInit propInit = foreachContext.getForeachPedicatePropertyInit();
-            // now check which when-clause is chosen for the current foreach-element self
-            for (PredicateSemantic whenClause : propInit.getPredicateSemantic()) {
-                OCLExpression whenExpression = whenClause.getWhen();
-                if (whenExpression == null || (Boolean) ocl.evaluate(self, whenExpression)) {
-                    // now we know the when-clause; determine template for when-clause and check if
-                    // it contains injectorAction
-                    Template t = whenClause.getAs();
-                    if (EcoreUtil.isAncestor(t, getSequenceElement())) {
-                        // yes, the self object led to the injector action firing
-                        return foreachContext.getResultModelElement();
+            oclHelper.setContext(self.eClass());
+            if (propInit.getPredicateSemantic().isEmpty()) {
+                // no when-clause; foreach produces an element in all cases
+                result.add(foreachContext.getResultModelElement());
+            } else {
+                // now check which when-clause is chosen for the current foreach-element self
+                for (PredicateSemantic whenClause : propInit.getPredicateSemantic()) {
+                    if (whenClause.getWhen() == null
+                            || (Boolean) ocl.evaluate(self, oclHelper.createQuery(whenClause.getWhen()))) {
+                        // now we know the when-clause; determine template for when-clause and check if
+                        // it contains injectorAction
+                        Template t = whenClause.getAs();
+                        if (EcoreUtil.isAncestor(t, getSequenceElement())) {
+                            // yes, the self object led to the injector action firing because
+                            // we excluded #foreach being nested inside semantic predicates which
+                            // would be the only way to create alternatives without concrete-syntactical
+                            // disambiguation. Remember that templates called by foreach(...) must not
+                            // make concrete-syntactical contributions.
+                            result.add(foreachContext.getResultModelElement());
+                            break; // continue with the next ForEachContext element
+                        }
                     }
                 }
             }
         }
-        return null;
+        return result;
     }
 
     /**
@@ -201,14 +222,15 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
                             && contextTemplate.getContextTags().getTags().contains(contextTag)) {
                         // the contextTemplate has the expected tag (e.g., "context(X)" if the
                         // usage was "#context(X)")
-                        Set<TextBlock> textBlocksForSubordinateExecutionsOfSequenceElementHoldingTheOCLExpression = getSubordinateTextBlocksLeadingTo(
-                                textBlock, getSequenceElement().getParentTemplate());
+                        Set<TextBlock> textBlocksForSubordinateExecutionsOfSequenceElementHoldingTheOCLExpression =
+                            getSubordinateTextBlocksLeadingTo(textBlock, getSequenceElement().getParentTemplate());
                         for (TextBlock tb : textBlocksForSubordinateExecutionsOfSequenceElementHoldingTheOCLExpression) {
                             // add the first element from correspondingModelElements because that's the one
                             // actually immediately created by the template holding the sequence element with
                             // the OCL expression
                             if (!tb.getCorrespondingModelElements().isEmpty()
-                                    && TcsUtil.wasExecuted((ContextTemplate) tb.getType().getParseRule(), tb.getParentAltChoices(), getSequenceElement())) {
+                                    && TcsUtil.wasExecuted((ContextTemplate) tb.getType().getParseRule(),
+                                            tb.getParentAltChoices(), getSequenceElement())) {
                                 result.add(tb.getCorrespondingModelElements().get(0));
                             }
                         }

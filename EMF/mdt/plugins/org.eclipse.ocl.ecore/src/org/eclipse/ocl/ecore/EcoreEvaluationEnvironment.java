@@ -11,10 +11,11 @@
  *   IBM - Initial API and implementation
  *   C.Damus - 291365
  *   E.D.Willink - 322159
+ *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Bug 333032
  *
  * </copyright>
  *
- * $Id: EcoreEvaluationEnvironment.java,v 1.12 2010/12/15 17:32:43 ewillink Exp $
+ * $Id: EcoreEvaluationEnvironment.java,v 1.13 2010/12/24 10:18:06 asanchez Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -83,6 +84,8 @@ public class EcoreEvaluationEnvironment
 
 	/**
 	 * Initializes me.
+	 * 
+	 * @deprecated A root evaluation environment should be created through the correspondent {@link EcoreEnvironmentFactory}
 	 */
 	public EcoreEvaluationEnvironment() {
 		this((EcoreEnvironmentFactory)null);
@@ -99,7 +102,7 @@ public class EcoreEvaluationEnvironment
         	this.oppositeEndFinder = factory.getOppositeEndFinder();
         }
         else {
-        	this.oppositeEndFinder = new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE);
+        	this.oppositeEndFinder = DefaultOppositeEndFinder.getInstance();
         }
     }
 

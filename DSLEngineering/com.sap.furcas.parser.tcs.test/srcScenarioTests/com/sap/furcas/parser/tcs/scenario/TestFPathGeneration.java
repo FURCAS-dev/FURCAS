@@ -3,7 +3,7 @@ package com.sap.furcas.parser.tcs.scenario;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
-import java.util.Set;
+import java.util.Collection;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -12,9 +12,9 @@ import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
-import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
-import com.sap.furcas.runtime.parser.testbase.StubModelAdapter;
-import com.sap.furcas.runtime.parser.testbase.StubModelElement;
+import com.sap.furcas.runtime.parser.testbase.stubs.StubModelAdapter;
+import com.sap.furcas.runtime.parser.testbase.stubs.StubModelElement;
+import com.sap.furcas.runtime.parser.testbase.stubs.StubParsingHelper;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 /**
@@ -26,14 +26,14 @@ public class TestFPathGeneration extends GeneratedParserBasedTest {
     private static final File TCS = ScenarioFixtureData.FPATH_TCS;
     private static final File[] METAMODELS = { ScenarioFixtureData.FPATH1_METAMODEL, ScenarioFixtureData.FPATH_METAMODEL };
 
-    private static ParsingHelper parsingHelper;
+    private static StubParsingHelper parsingHelper;
 
     @BeforeClass
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
         TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
         ParserFacade facade = generateParserForLanguage(syntaxBean, testConfig, new ClassLookupImpl());
-        parsingHelper = new ParsingHelper(facade);
+        parsingHelper = new StubParsingHelper(facade);
     }
 
     @Test
@@ -43,11 +43,11 @@ public class TestFPathGeneration extends GeneratedParserBasedTest {
         StubModelAdapter stubModelHandler = parsingHelper.parseString(sample, 0);
 
         // some asserts to make sure something reasonable has been parsed
-        Set<StubModelElement> functions = stubModelHandler.getElementsbyType("FPath::FunctionCallExp");
+        Collection<StubModelElement> functions = stubModelHandler.getElementsOfType("FPath::FunctionCallExp");
         assertEquals(1, functions.size());
         StubModelElement function = functions.iterator().next();
         assertEquals("myFunction", function.get("name"));
-        Set<StubModelElement> vars = stubModelHandler.getElementsbyType("FPath::VariableExp");
+        Collection<StubModelElement> vars = stubModelHandler.getElementsOfType("FPath::VariableExp");
         assertEquals(3, vars.size());
 
     }
@@ -58,13 +58,13 @@ public class TestFPathGeneration extends GeneratedParserBasedTest {
         StubModelAdapter stubModelHandler = parsingHelper.parseString(sample, 0);
 
         // some asserts to make sure something reasonable has been parsed
-        Set<StubModelElement> functions = stubModelHandler.getElementsbyType("FPath::FunctionCallExp");
+        Collection<StubModelElement> functions = stubModelHandler.getElementsOfType("FPath::FunctionCallExp");
         assertEquals(3, functions.size()); // functions: size, required, bound
 
-        Set<StubModelElement> vars = stubModelHandler.getElementsbyType("FPath::VariableExp");
+        Collection<StubModelElement> vars = stubModelHandler.getElementsOfType("FPath::VariableExp");
         assertEquals(1, vars.size());
 
-        Set<StubModelElement> binOps = stubModelHandler.getElementsbyType("FPath::BinaryOperatorExp");
+        Collection<StubModelElement> binOps = stubModelHandler.getElementsOfType("FPath::BinaryOperatorExp");
         assertEquals(2, binOps.size()); // and, >
 
     }
@@ -74,7 +74,7 @@ public class TestFPathGeneration extends GeneratedParserBasedTest {
         String sample = "$itf/sibling::*/interface::*[provided(.)][subtype(., $itf)]";
         StubModelAdapter stubModelHandler = parsingHelper.parseString(sample, 0);
 
-        Set<StubModelElement> functions = stubModelHandler.getElementsbyType("FPath::Step");
+        Collection<StubModelElement> functions = stubModelHandler.getElementsOfType("FPath::Step");
         assertEquals(2, functions.size()); // functions: size, required, bound
 
     }

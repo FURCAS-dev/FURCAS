@@ -5871,14 +5871,14 @@ public interface TCSPackage extends EPackage {
         int QUERY_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 1;
 
         /**
-     * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.QueryByIdentifierPArgImpl <em>Query By Identifier PArg</em>}' class.
+     * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.FilterByIdentifierPArgImpl <em>Filter By Identifier PArg</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.QueryByIdentifierPArgImpl
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getQueryByIdentifierPArg()
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.FilterByIdentifierPArgImpl
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getFilterByIdentifierPArg()
      * @generated
      */
-    int QUERY_BY_IDENTIFIER_PARG = 73;
+    int FILTER_BY_IDENTIFIER_PARG = 73;
 
         /**
      * The feature id for the '<em><b>Location</b></em>' attribute.
@@ -5887,7 +5887,7 @@ public interface TCSPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int QUERY_BY_IDENTIFIER_PARG__LOCATION = PROPERTY_ARG__LOCATION;
+    int FILTER_BY_IDENTIFIER_PARG__LOCATION = PROPERTY_ARG__LOCATION;
 
         /**
      * The feature id for the '<em><b>Comments Before</b></em>' attribute list.
@@ -5896,7 +5896,7 @@ public interface TCSPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int QUERY_BY_IDENTIFIER_PARG__COMMENTS_BEFORE = PROPERTY_ARG__COMMENTS_BEFORE;
+    int FILTER_BY_IDENTIFIER_PARG__COMMENTS_BEFORE = PROPERTY_ARG__COMMENTS_BEFORE;
 
         /**
      * The feature id for the '<em><b>Comments After</b></em>' attribute list.
@@ -5905,7 +5905,7 @@ public interface TCSPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int QUERY_BY_IDENTIFIER_PARG__COMMENTS_AFTER = PROPERTY_ARG__COMMENTS_AFTER;
+    int FILTER_BY_IDENTIFIER_PARG__COMMENTS_AFTER = PROPERTY_ARG__COMMENTS_AFTER;
 
         /**
      * The feature id for the '<em><b>Property</b></em>' container reference.
@@ -5914,34 +5914,34 @@ public interface TCSPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int QUERY_BY_IDENTIFIER_PARG__PROPERTY = PROPERTY_ARG__PROPERTY;
+    int FILTER_BY_IDENTIFIER_PARG__PROPERTY = PROPERTY_ARG__PROPERTY;
 
         /**
-     * The feature id for the '<em><b>Query</b></em>' attribute.
+     * The feature id for the '<em><b>Filter</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int QUERY_BY_IDENTIFIER_PARG__QUERY = PROPERTY_ARG_FEATURE_COUNT + 0;
+    int FILTER_BY_IDENTIFIER_PARG__FILTER = PROPERTY_ARG_FEATURE_COUNT + 0;
 
         /**
-     * The feature id for the '<em><b>Feature</b></em>' attribute.
+     * The feature id for the '<em><b>Criterion</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int QUERY_BY_IDENTIFIER_PARG__FEATURE = PROPERTY_ARG_FEATURE_COUNT + 1;
+    int FILTER_BY_IDENTIFIER_PARG__CRITERION = PROPERTY_ARG_FEATURE_COUNT + 1;
 
         /**
-     * The number of structural features of the '<em>Query By Identifier PArg</em>' class.
+     * The number of structural features of the '<em>Filter By Identifier PArg</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int QUERY_BY_IDENTIFIER_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 2;
+    int FILTER_BY_IDENTIFIER_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 2;
 
         /**
      * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.FilterPArgImpl <em>Filter PArg</em>}' class.
@@ -6320,22 +6320,22 @@ public interface TCSPackage extends EPackage {
         int PREDICATE_SEMANTIC = 84;
 
         /**
+     * The feature id for the '<em><b>When</b></em>' attribute.
+     * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+        int PREDICATE_SEMANTIC__WHEN = 0;
+
+        /**
      * The feature id for the '<em><b>As</b></em>' reference.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int PREDICATE_SEMANTIC__AS = 0;
-
-        /**
-     * The feature id for the '<em><b>When</b></em>' reference.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-        int PREDICATE_SEMANTIC__WHEN = 1;
+        int PREDICATE_SEMANTIC__AS = 1;
 
         /**
      * The feature id for the '<em><b>Mode</b></em>' attribute.
@@ -9246,36 +9246,36 @@ public interface TCSPackage extends EPackage {
     EAttribute getQueryPArg_Query();
 
         /**
-     * Returns the meta object for class '{@link com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg <em>Query By Identifier PArg</em>}'.
+     * Returns the meta object for class '{@link com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg <em>Filter By Identifier PArg</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Query By Identifier PArg</em>'.
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg
+     * @return the meta object for class '<em>Filter By Identifier PArg</em>'.
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg
      * @generated
      */
-    EClass getQueryByIdentifierPArg();
+    EClass getFilterByIdentifierPArg();
 
         /**
-     * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg#getQuery <em>Query</em>}'.
+     * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg#getFilter <em>Filter</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Query</em>'.
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg#getQuery()
-     * @see #getQueryByIdentifierPArg()
+     * @return the meta object for the attribute '<em>Filter</em>'.
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg#getFilter()
+     * @see #getFilterByIdentifierPArg()
      * @generated
      */
-    EAttribute getQueryByIdentifierPArg_Query();
+    EAttribute getFilterByIdentifierPArg_Filter();
 
         /**
-     * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg#getFeature <em>Feature</em>}'.
+     * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg#getCriterion <em>Criterion</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Feature</em>'.
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg#getFeature()
-     * @see #getQueryByIdentifierPArg()
+     * @return the meta object for the attribute '<em>Criterion</em>'.
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg#getCriterion()
+     * @see #getFilterByIdentifierPArg()
      * @generated
      */
-    EAttribute getQueryByIdentifierPArg_Feature();
+    EAttribute getFilterByIdentifierPArg_Criterion();
 
         /**
      * Returns the meta object for class '{@link com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg <em>Filter PArg</em>}'.
@@ -9630,15 +9630,15 @@ public interface TCSPackage extends EPackage {
         EReference getPredicateSemantic_As();
 
         /**
-     * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic#getWhen <em>When</em>}'.
+     * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic#getWhen <em>When</em>}'.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>When</em>'.
+     * @return the meta object for the attribute '<em>When</em>'.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic#getWhen()
      * @see #getPredicateSemantic()
      * @generated
      */
-        EReference getPredicateSemantic_When();
+        EAttribute getPredicateSemantic_When();
 
         /**
      * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic#getMode <em>Mode</em>}'.
@@ -11688,30 +11688,30 @@ public interface TCSPackage extends EPackage {
         EAttribute QUERY_PARG__QUERY = eINSTANCE.getQueryPArg_Query();
 
                 /**
-         * The meta object literal for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.QueryByIdentifierPArgImpl <em>Query By Identifier PArg</em>}' class.
+         * The meta object literal for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.FilterByIdentifierPArgImpl <em>Filter By Identifier PArg</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.QueryByIdentifierPArgImpl
-         * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getQueryByIdentifierPArg()
+         * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.FilterByIdentifierPArgImpl
+         * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getFilterByIdentifierPArg()
          * @generated
          */
-        EClass QUERY_BY_IDENTIFIER_PARG = eINSTANCE.getQueryByIdentifierPArg();
+        EClass FILTER_BY_IDENTIFIER_PARG = eINSTANCE.getFilterByIdentifierPArg();
 
                 /**
-         * The meta object literal for the '<em><b>Query</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Filter</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute QUERY_BY_IDENTIFIER_PARG__QUERY = eINSTANCE.getQueryByIdentifierPArg_Query();
+        EAttribute FILTER_BY_IDENTIFIER_PARG__FILTER = eINSTANCE.getFilterByIdentifierPArg_Filter();
 
                 /**
-         * The meta object literal for the '<em><b>Feature</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Criterion</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute QUERY_BY_IDENTIFIER_PARG__FEATURE = eINSTANCE.getQueryByIdentifierPArg_Feature();
+        EAttribute FILTER_BY_IDENTIFIER_PARG__CRITERION = eINSTANCE.getFilterByIdentifierPArg_Criterion();
 
                 /**
          * The meta object literal for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.FilterPArgImpl <em>Filter PArg</em>}' class.
@@ -12000,12 +12000,12 @@ public interface TCSPackage extends EPackage {
                 EReference PREDICATE_SEMANTIC__AS = eINSTANCE.getPredicateSemantic_As();
 
                 /**
-         * The meta object literal for the '<em><b>When</b></em>' reference feature.
+         * The meta object literal for the '<em><b>When</b></em>' attribute feature.
          * <!-- begin-user-doc -->
                  * <!-- end-user-doc -->
          * @generated
          */
-                EReference PREDICATE_SEMANTIC__WHEN = eINSTANCE.getPredicateSemantic_When();
+                EAttribute PREDICATE_SEMANTIC__WHEN = eINSTANCE.getPredicateSemantic_When();
 
                 /**
          * The meta object literal for the '<em><b>Mode</b></em>' attribute feature.

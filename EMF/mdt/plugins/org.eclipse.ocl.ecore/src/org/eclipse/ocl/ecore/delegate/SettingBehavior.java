@@ -61,19 +61,18 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 	}
 
 	/**
-	 * Throws an {@link IllegalArgumentException} in case a <code>null</code> {@link OCL} reference is passed
-	 * but a valid one is needed because nothing is found in the cache for the <code>structuralFeature</code>
-	 * requested. This behavior can be used to attempt a cache lookup without having to create a valid {@link OCL}
-	 * object. Catching the exception can then be used to try again with a valid {@link OCL} object.
+	 * Return the feature body associated with structuralFeature, if necessary using ocl to
+	 * create the relevant parsing environment for a textual definition..
 	 */
 	public OCLExpression getFeatureBody(OCL ocl, EStructuralFeature structuralFeature) {
-		OCLExpression result = getCachedExpression(structuralFeature, DERIVATION_CONSTRAINT_KEY, INITIAL_CONSTRAINT_KEY);
+		OCLExpression result = getCachedFeatureBody(structuralFeature);
 		if (result != null){
 			return result;
 		}
 		String key = DERIVATION_CONSTRAINT_KEY;
 	    EAnnotation eAnnotation = structuralFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
 	    if (eAnnotation == null) {
+			cacheThatItHasNoOCLBody(structuralFeature);
 	    	return null;
 	    }
 	    EMap<String, String> details = eAnnotation.getDetails();
@@ -85,35 +84,58 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 				return null;
 			}
 		}
-		if (ocl == null) {
-			// now we would have needed, but it's not there
-			throw new IllegalArgumentException("Requiring a valid OCL object since feature body not found in cache"); //$NON-NLS-1$
-		}
 		OCLExpression body = null;
+		EClass context = structuralFeature.getEContainingClass();
+		OCL.Helper helper = ocl.createOCLHelper();
+		helper.setAttributeContext(context, structuralFeature);
+		Constraint constraint;
 		try {
-			EClass context = structuralFeature.getEContainingClass();
-			OCL.Helper helper = ocl.createOCLHelper();
-			helper.setAttributeContext(context, structuralFeature);
-			Constraint constraint;
-			try {
-				constraint = helper.createDerivedValueExpression(expr);
-			} catch (ParserException e) {
-				throw new OCLDelegateException(e.getLocalizedMessage(), e);
-			}
-			if (constraint == null) {
-				return null;
-			}
-			ExpressionInOCL specification = (ExpressionInOCL) constraint.getSpecification();
-			if (specification == null) {
-				return null;
-			}
-			body = (OCLExpression) specification.getBodyExpression();
-			return body;
-		} finally {
-			cacheExpression(structuralFeature, body, key);
+			constraint = helper.createDerivedValueExpression(expr);
+		} catch (ParserException e) {
+			throw new OCLDelegateException(e.getLocalizedMessage(), e);
 		}
+		if (constraint == null) {
+			return null;
+		}
+		ExpressionInOCL specification = (ExpressionInOCL) constraint
+			.getSpecification();
+		if (specification == null) {
+			return null;
+		}
+		body = (OCLExpression) specification.getBodyExpression();
+		cacheOCLExpression(structuralFeature, body);
+		return body;
+	}
+
+	/**
+	 * Return any feature body already in the cache, saving the caller the overhead
+	 * of sertting up the redundant parsing environment needed for {@link getFeatureBody}
+	 * 
+	 * @since 3.1
+	 */
+	public OCLExpression getCachedFeatureBody(EStructuralFeature structuralFeature) {
+		OCLExpression result = getCachedOCLExpression(structuralFeature);
+		if (result == null) {
+			result = getCachedExpression(structuralFeature, DERIVATION_CONSTRAINT_KEY, INITIAL_CONSTRAINT_KEY);
+			if (result != null) {
+				cacheOCLExpression(structuralFeature, result);
+			}
+		} else if (hasNoOCLDefinition(result)) {
+			result = null; // clients can find that out by asking hasUncomiledOperationBody
+		}
+		return result;
 	}
 	
+	/**
+	 * Tells if there is an uncompiled body expression for the <code>structuralFeature</code> in an
+	 * annotation that can be compiled by {@link #getFeatureBody(OCL, EStructuralFeature)}. Probing
+	 * this saves callers the more expensive construction of an {@link OCL} object.
+	 * @since 3.1
+	 */
+	public boolean hasUncompiledFeatureBody(EStructuralFeature structuralFeature) {
+		return structuralFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI) != null;
+	}
+
 	public String getName() {
 		return NAME;
 	}

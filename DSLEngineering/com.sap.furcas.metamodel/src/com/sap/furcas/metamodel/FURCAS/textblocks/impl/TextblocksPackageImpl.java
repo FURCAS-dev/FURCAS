@@ -800,7 +800,7 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
 
         initEClass(forEachContextEClass, ForEachContext.class, "ForEachContext", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getForEachContext_ForeachPedicatePropertyInit(), theTCSPackage.getForeachPredicatePropertyInit(), null, "foreachPedicatePropertyInit", null, 0, 1, ForEachContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getForEachContext_ContextElement(), theEcorePackage_1.getEObject(), null, "contextElement", null, 0, -1, ForEachContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getForEachContext_ContextElement(), theEcorePackage_1.getEObject(), null, "contextElement", null, 0, 1, ForEachContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getForEachContext_ResultModelElement(), theEcorePackage_1.getEObject(), null, "resultModelElement", null, 0, 1, ForEachContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getForEachContext_SourceModelElement(), theEcorePackage_1.getEObject(), null, "sourceModelElement", null, 0, 1, ForEachContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
