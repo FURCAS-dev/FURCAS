@@ -92,7 +92,7 @@ public class DefaultPartitionAssignmentHandlerImpl implements PartitionAssignmen
 	
 	@Override
         public void assignToDefaultTextBlocksPartition(EObject element) {
-            if(element != null && element.eResource() != defaultTextBlocksPartition) {
+            if(element != null && !element.eResource().equals(defaultTextBlocksPartition)) {
                 defaultTextBlocksPartition.getContents().add(element);
             }
         }
