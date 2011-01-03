@@ -134,7 +134,7 @@ public class WizardProjectHelper {
     private static void createManifestAndBuildProps(final ProjectInfo pi, final IProgressMonitor progressMonitor, IProject project)
             throws CodeGenerationException {
         SourceCodeFactory scf = new SourceCodeFactory();
-        createFile("build.properties", project, scf.createBuildProbCode(), progressMonitor);
+        createFile("build.properties", project, scf.createBuildPropCode(pi), progressMonitor);
         IFolder metaInf = project.getFolder("META-INF");
         try {
             metaInf.create(false, true, new SubProgressMonitor(progressMonitor, 1));

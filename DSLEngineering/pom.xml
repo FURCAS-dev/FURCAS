@@ -22,8 +22,8 @@
     <module>bibtex.test</module>
     -->
     <module>bibtex.metamodel</module>
-	<module>bibtex.metamodel.edit</module>
-	<module>bibtex.metamodel.editor</module>
+    <module>bibtex.metamodel.edit</module>
+    <module>bibtex.metamodel.editor</module>
     <module>com.sap.emf.ocl.trigger</module>
     <module>com.sap.emf.ocl.trigger.tests</module>
     <module>com.sap.furcas.ide.dslproject</module>
