@@ -133,8 +133,8 @@ public class SourceCodeFactory {
      * 
      * TODO rename
      */
-    public String createBuildProbCode(ProjectInfo pi) throws CodeGenerationException {
-    	String filename = "buildprob.txt";
+    public String createBuildPropCode(ProjectInfo pi) throws CodeGenerationException {
+    	String filename = "buildprop.txt";
         return createFileContents(pi, filename);
     }
 
@@ -171,14 +171,8 @@ public class SourceCodeFactory {
      * @throws CodeGenerationException
      */
     public String createGenmodelCode(ProjectInfo pi) throws CodeGenerationException {
-        StringTemplate template = null;
-        String templateString = null;
-
-        templateString = readFile("genmodel.txt");
-        template = new StringTemplate(templateString);
-        setTemplateAtts(template, pi);
-
-        return template.toString();
+    	String filename = "genmodel.txt";
+        return createFileContents(pi, filename);
     }
 
     /**
@@ -190,14 +184,8 @@ public class SourceCodeFactory {
      * @throws CodeGenerationException
      */
     public String createMapperCode(ProjectInfo pi) throws CodeGenerationException {
-        StringTemplate template = null;
-        String templateString = null;
-
-        templateString = readFile("mapper.txt");
-        template = new StringTemplate(templateString);
-        setTemplateAtts(template, pi);
-
-        return template.toString();
+    	String filename = "mapper.txt";
+        return createFileContents(pi, filename);
     }
 
     /**
@@ -209,14 +197,8 @@ public class SourceCodeFactory {
      * @throws CodeGenerationException
      */
     public String createActivator(ProjectInfo pi) throws CodeGenerationException {
-        StringTemplate template = null;
-        String templateString = null;
-
-        templateString = readFile("activator.txt");
-        template = new StringTemplate(templateString);
-        setTemplateAtts(template, pi);
-
-        return template.toString();
+    	String filename = "activator.txt";
+        return createFileContents(pi, filename);
     }
 
     /**
@@ -228,14 +210,8 @@ public class SourceCodeFactory {
      * @throws CodeGenerationException
      */
     public String createPluginXML(ProjectInfo pi) throws CodeGenerationException {
-        StringTemplate template = null;
-        String templateString = null;
-
-        templateString = readFile("pluginxml.txt");
-        template = new StringTemplate(templateString);
-        setTemplateAtts(template, pi);
-
-        return template.toString();
+    	String filename = "pluginxml.txt";
+        return createFileContents(pi, filename);
     }
 
 
@@ -249,14 +225,8 @@ public class SourceCodeFactory {
      * @throws CodeGenerationException
      */
     public String createSampleTCS(ProjectInfo pi) throws CodeGenerationException {
-        StringTemplate template = null;
-        String templateString = null;
-
-        templateString = readFile("tcs.txt");
-        template = new StringTemplate(templateString);
-        setTemplateAtts(template, pi);
-
-        return template.toString();
+    	String filename = "tcs.txt";
+        return createFileContents(pi, filename);
     }
 
     /**
@@ -268,13 +238,8 @@ public class SourceCodeFactory {
      * @throws CodeGenerationException 
      */
     public String createParserFactory(ProjectInfo pi) throws CodeGenerationException {
-        StringTemplate template = null;
-        String templateString = null;
-        templateString = readFile("parserfactory.txt");
-        template = new StringTemplate(templateString);
-        setTemplateAtts(template, pi);
-
-        return template.toString();
+    	String filename = "parserfactory.txt";
+        return createFileContents(pi, filename);
     }
 
     /**
