@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Test
+Bundle-SymbolicName: org.eclipse.emf.query2.globalization.test
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.eclipse.emf.query2.globalization.test.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ org.junit4;bundle-version="4.0.0",
+ org.eclipse.emf.query2.core;bundle-version="1.0.0",
+ org.eclipse.core.resources;bundle-version="3.5.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
