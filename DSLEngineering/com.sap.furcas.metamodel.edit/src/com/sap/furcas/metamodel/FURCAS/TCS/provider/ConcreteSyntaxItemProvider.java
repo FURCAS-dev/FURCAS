@@ -64,6 +64,7 @@ public class ConcreteSyntaxItemProvider
 
             addKPropertyDescriptor(object);
             addLexerPropertyDescriptor(object);
+            addUuidPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -104,6 +105,28 @@ public class ConcreteSyntaxItemProvider
                  getString("_UI_ConcreteSyntax_lexer_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_ConcreteSyntax_lexer_feature", "_UI_ConcreteSyntax_type"),
                  TCSPackage.Literals.CONCRETE_SYNTAX__LEXER,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+        /**
+     * This adds a property descriptor for the Uuid feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addUuidPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_ConcreteSyntax_uuid_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_ConcreteSyntax_uuid_feature", "_UI_ConcreteSyntax_type"),
+                 TCSPackage.Literals.CONCRETE_SYNTAX__UUID,
                  true,
                  false,
                  false,
@@ -185,6 +208,7 @@ public class ConcreteSyntaxItemProvider
         switch (notification.getFeatureID(ConcreteSyntax.class)) {
             case TCSPackage.CONCRETE_SYNTAX__K:
             case TCSPackage.CONCRETE_SYNTAX__LEXER:
+            case TCSPackage.CONCRETE_SYNTAX__UUID:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
             case TCSPackage.CONCRETE_SYNTAX__TEMPLATES:

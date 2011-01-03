@@ -85,6 +85,8 @@ import com.sap.furcas.ide.editor.document.CtsDocument;
 import com.sap.furcas.ide.editor.document.ModelEditorInput;
 import com.sap.furcas.ide.editor.matching.CtsStaticMatcher;
 import com.sap.furcas.ide.editor.preferences.PreferenceInitializer;
+import com.sap.furcas.ide.editor.recovery.ModelEditorInputRecoveryStrategy;
+import com.sap.furcas.ide.editor.recovery.TbRecoverUtil;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.provider.TCSItemProviderAdapterFactory;
@@ -626,14 +628,14 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
             CtsDocument document = (CtsDocument) getDocumentProvider()
                     .getDocument(wrappedInput);
             document.completeInit(syntax, rootTemplate, getParserFactory(),
-                    /*getRecoveryStrategy(),*/ getParser(), null);
+                    getRecoveryStrategy(), getParser(), null);
 
             registerNameChangeListenerForInput(document.getRootObject());
 
             TextBlock rootBlock = document.getRootBlock();
             setModel(rootBlock);
-//            TbRecoverUtil.checkAndMigrateTokenIds(rootBlock, getParser(),
-//                    getLexer(), shortPrettyPrinter, false);
+            TbRecoverUtil.checkAndMigrateTokenIds(rootBlock, getParser(),
+                    getLexer(), shortPrettyPrinter, false);
             tbPartition = rootBlock.eResource();
         } finally {
 //            editingDomain.getCommandStack().closeGroup();
@@ -646,46 +648,47 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
         return id == null || EcoreUtil.getURI(syntax).equals(id);
     }
 
-//    /**
-//     * This needs much more work. But so far:
-//     * 
-//     * Dependencies from CtsDocument, which required to know its editor, pulled
-//     * up and encapsulated into this strategy.
-//     * 
-//     * @return a strategy to help CtsDocuments get a valid rootBlock
-//     */
-//    public ModelEditorInputRecoveryStrategy getRecoveryStrategy() {
-//        return new ModelEditorInputRecoveryStrategy() {
-//
-//            @Override
-//            public TextBlock recoverBrokenTextBlockMapping(EObject rootObject,
-//                    TextBlock blockInError, ClassTemplate rootTemplate) {
-//                assert blockInError.getType() == null : "Mapping which is supposed to be broken is still valid.";
-//                TextBlock rootBlock = null;
-//
-//                // might be a valid textblock but with a broken reference to the
-//                // mapping
-//                boolean recoverLink = MessageDialog
-//                        .openQuestion(
-//                                CtsActivator.getDefault().getWorkbench()
-//                                        .getActiveWorkbenchWindow().getShell(),
-//                                "Mapping Link Broken",
-//                                "The link from the current document to the mapping definition is broken."
-//                                        + "Would you like to try to recover this connection?\n"
-//                                        + "Otherwise this will cause all elements in defined in the"
-//                                        + "document to be re-created upon changes to the document!");
-//                if (recoverLink) {
-//                    if (!TbRecoverUtil.recoverTextBlockFromBrokenMapping(
-//                            blockInError, rootTemplate, getIncrementalParser(),
-//                            getParser(), getLexer(), shortPrettyPrinter)) {
-//                        String title = "Mapping Link Recovery Failed";
-//                        String error = "The link from the current document to the mapping definition is broken."
-//                                + "Recovery failed!\n"
-//                                + "This will cause all elements in defined in the"
-//                                + "document to be re-created upon changes to the document!";
-//                        String oldClass = blockInError.getCachedString();
-//                        String newClass = "";
-//                        try {
+    /**
+     * This needs much more work. But so far:
+     * 
+     * Dependencies from CtsDocument, which required to know its editor, pulled
+     * up and encapsulated into this strategy.
+     * 
+     * @return a strategy to help CtsDocuments get a valid rootBlock
+     */
+    public ModelEditorInputRecoveryStrategy getRecoveryStrategy() {
+        return new ModelEditorInputRecoveryStrategy() {
+
+            @Override
+            public TextBlock recoverBrokenTextBlockMapping(EObject rootObject,
+                    TextBlock blockInError, ClassTemplate rootTemplate) {
+                assert blockInError.getType() == null : "Mapping which is supposed to be broken is still valid.";
+                TextBlock rootBlock = null;
+
+                // might be a valid textblock but with a broken reference to the
+                // mapping
+                boolean recoverLink = MessageDialog
+                        .openQuestion(
+                                CtsActivator.getDefault().getWorkbench()
+                                        .getActiveWorkbenchWindow().getShell(),
+                                "Mapping Link Broken",
+                                "The link from the current document to the mapping definition is broken."
+                                        + "Would you like to try to recover this connection?\n"
+                                        + "Otherwise this will cause all elements in defined in the"
+                                        + "document to be re-created upon changes to the document!");
+                if (recoverLink) {
+                    if (!TbRecoverUtil.recoverTextBlockFromBrokenMapping(
+                            blockInError, rootTemplate, getIncrementalParser(),
+                            getParser(), getLexer(), shortPrettyPrinter)) {
+                        String title = "Mapping Link Recovery Failed";
+                        String error = "The link from the current document to the mapping definition is broken."
+                                + "Recovery failed!\n"
+                                + "This will cause all elements in defined in the"
+                                + "document to be re-created upon changes to the document!";
+                        String oldClass = blockInError.getCachedString();
+                        String newClass = "";
+                        try {
+                            //FIXME once PrettyPrinter is migrated
 //                            IncrementalTextBlockPrettyPrinter pp = new IncrementalTextBlockPrettyPrinter(
 //                                    /* readOnly */true);
 //                            ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -695,11 +698,11 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
 //                                    rootTemplate.getConcretesyntax(),
 //                                    rootTemplate, target);
 //                            newClass = stream.toString();
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                            newClass = "Error occurred while pretty printing: "
-//                                    + e.getMessage();
-//                        }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            newClass = "Error occurred while pretty printing: "
+                                    + e.getMessage();
+                        }
 //                        PrettyPrintPreviewDialog dialog = new PrettyPrintPreviewDialog(
 //                                title, error, oldClass, newClass);
 //                        boolean startPrettyPrinter = dialog.open();
@@ -712,17 +715,17 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
 //                        } else {
 //                            rootBlock = blockInError;
 //                        }
-//                    } else {
-//                        rootBlock = blockInError;
-//                    }
-//                } else {
-//                    // just do nothing then
-//                    rootBlock = blockInError;
-//                }
-//                return rootBlock;
-//            }
-//        };
-//    }
+                    } else {
+                        rootBlock = blockInError;
+                    }
+                } else {
+                    // just do nothing then
+                    rootBlock = blockInError;
+                }
+                return rootBlock;
+            }
+        };
+    }
 
     private void registerNameChangeListenerForInput(EObject inputObject) {
 //        Entry<Attribute, String> nameAttribute = ModelManager.getInstance()

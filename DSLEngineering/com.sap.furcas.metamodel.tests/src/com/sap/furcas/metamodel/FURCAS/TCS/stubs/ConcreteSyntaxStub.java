@@ -140,5 +140,16 @@ public class ConcreteSyntaxStub extends LocatedElementStub implements ConcreteSy
 	return TCSPackage.eINSTANCE.getConcreteSyntax();
     }
 
+    @Override
+    public String getUuid() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void setUuid(String value) {
+        // TODO Auto-generated method stub
+        
+    }
 
 }

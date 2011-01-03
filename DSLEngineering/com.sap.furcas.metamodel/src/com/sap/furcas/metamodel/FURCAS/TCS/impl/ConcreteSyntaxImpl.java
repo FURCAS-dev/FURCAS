@@ -40,6 +40,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Token;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.ConcreteSyntaxImpl#getOperatorLists <em>Operator Lists</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.ConcreteSyntaxImpl#getTokens <em>Tokens</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.ConcreteSyntaxImpl#getLexer <em>Lexer</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.ConcreteSyntaxImpl#getUuid <em>Uuid</em>}</li>
  * </ul>
  * </p>
  *
@@ -144,6 +145,26 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
      * @ordered
      */
         protected String lexer = LEXER_EDEFAULT;
+
+        /**
+     * The default value of the '{@link #getUuid() <em>Uuid</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getUuid()
+     * @generated
+     * @ordered
+     */
+    protected static final String UUID_EDEFAULT = null;
+
+        /**
+     * The cached value of the '{@link #getUuid() <em>Uuid</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getUuid()
+     * @generated
+     * @ordered
+     */
+    protected String uuid = UUID_EDEFAULT;
 
         /**
      * <!-- begin-user-doc -->
@@ -293,6 +314,27 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
 
         /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getUuid() {
+        return uuid;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setUuid(String newUuid) {
+        String oldUuid = uuid;
+        uuid = newUuid;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CONCRETE_SYNTAX__UUID, oldUuid, uuid));
+    }
+
+        /**
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -350,6 +392,8 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
                 return getTokens();
             case TCSPackage.CONCRETE_SYNTAX__LEXER:
                 return getLexer();
+            case TCSPackage.CONCRETE_SYNTAX__UUID:
+                return getUuid();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -389,6 +433,9 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
             case TCSPackage.CONCRETE_SYNTAX__LEXER:
                 setLexer((String)newValue);
                 return;
+            case TCSPackage.CONCRETE_SYNTAX__UUID:
+                setUuid((String)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -422,6 +469,9 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
             case TCSPackage.CONCRETE_SYNTAX__LEXER:
                 setLexer(LEXER_EDEFAULT);
                 return;
+            case TCSPackage.CONCRETE_SYNTAX__UUID:
+                setUuid(UUID_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -448,6 +498,8 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
                 return tokens != null && !tokens.isEmpty();
             case TCSPackage.CONCRETE_SYNTAX__LEXER:
                 return LEXER_EDEFAULT == null ? lexer != null : !LEXER_EDEFAULT.equals(lexer);
+            case TCSPackage.CONCRETE_SYNTAX__UUID:
+                return UUID_EDEFAULT == null ? uuid != null : !UUID_EDEFAULT.equals(uuid);
         }
         return super.eIsSet(featureID);
     }
@@ -466,6 +518,8 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
         if (kESet) result.append(k); else result.append("<unset>");
         result.append(", lexer: ");
         result.append(lexer);
+        result.append(", uuid: ");
+        result.append(uuid);
         result.append(')');
         return result.toString();
     }
