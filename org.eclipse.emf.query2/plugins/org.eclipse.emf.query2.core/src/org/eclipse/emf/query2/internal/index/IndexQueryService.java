@@ -84,7 +84,7 @@ public class IndexQueryService {
 		if (eClassUris.length == 0) { // query for EObject (i.e. reflect
 			// element)
 			if (!isInclusiveScope) {
-				throw new IllegalArgumentException("Query2Core_IndexQueryService_EObjectWithoutInclusiveScope"); //$NON-NLS-1$
+				throw new IllegalArgumentException(Messages.Query2Core_IndexQueryService_EObjectWithoutInclusiveScope); 
 			}
 			for (URI scopeURI : scope) {
 				final EObjectQuery<EObjectDescriptor> eObjectQuery = IndexQueryFactory.createEObjectQuery();
@@ -326,7 +326,7 @@ public class IndexQueryService {
 		if (o instanceof EClass)
 			return (EClass) o;
 		else
-			throw new IllegalArgumentException(Messages.getString("Query2Core_IndexQueryService_UnIdentifiableClass", new String[]{eClassUri.toString()})); //$NON-NLS-1$
+			throw new IllegalArgumentException(Messages.getString(Messages.Query2Core_IndexQueryService_UnIdentifiableClass, new String[]{eClassUri.toString()})); 
 	}
 
 }

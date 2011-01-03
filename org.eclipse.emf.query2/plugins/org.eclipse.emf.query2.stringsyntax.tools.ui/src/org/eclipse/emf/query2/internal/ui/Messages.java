@@ -1,8 +1,5 @@
 package org.eclipse.emf.query2.internal.ui;
 
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
-
 import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
@@ -13,7 +10,6 @@ public class Messages extends NLS {
 	public static String Query2StringSyntaxToolsUI_RunQuery_OpeningResultView;
 	public static String Query2StringSyntaxToolsUI_RunQuery_RunningQuery;
 	public static String Query2StringSyntaxToolsUI_RunQuery_UpdateQueryView;
-	private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
 	
 	static {
 		// initialize resource bundle
@@ -23,14 +19,7 @@ public class Messages extends NLS {
 	private Messages() {
 	}
 	
-	public static String getString(String key, String params[]) {
-		try {
-			String value = RESOURCE_BUNDLE.getString(key);
-			if(value!=null)
-			value = NLS.bind(key,params);
-				return value;
-		} catch (MissingResourceException e) {
-			return '!' + key + '!';
-		}
+	public static String getString(String parameterizedString, String params[]) {
+		return NLS.bind(parameterizedString, params);
 	}
 }
