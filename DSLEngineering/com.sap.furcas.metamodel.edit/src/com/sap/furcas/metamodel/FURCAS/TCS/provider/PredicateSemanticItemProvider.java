@@ -66,8 +66,8 @@ public class PredicateSemanticItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addAsPropertyDescriptor(object);
             addWhenPropertyDescriptor(object);
+            addAsPropertyDescriptor(object);
             addModePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
@@ -112,7 +112,7 @@ public class PredicateSemanticItemProvider
                  true,
                  false,
                  true,
-                 null,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -158,7 +158,7 @@ public class PredicateSemanticItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((PredicateSemantic)object).getMode();
+        String label = ((PredicateSemantic)object).getWhen();
         return label == null || label.length() == 0 ?
             getString("_UI_PredicateSemantic_type") :
             getString("_UI_PredicateSemantic_type") + " " + label;

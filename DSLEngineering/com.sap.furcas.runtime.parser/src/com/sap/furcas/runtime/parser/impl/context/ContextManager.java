@@ -16,7 +16,7 @@ import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 
 /**
  * keeps track of modelElements being contexts for each other in a text file with regards to a context path.
- * manages the context as a set of trees (set of roots with childs) and is aware of context elements being 
+ * manages the context as a set of trees (set of roots with children) and is aware of context elements being 
  * proxies at first, and later modelElements.
  * The interface allows passing anything of Type Object, but the objects passed should really only be Objects
  * which a ModelAdapter can deal with when passed in findCandidatesInContext(). 

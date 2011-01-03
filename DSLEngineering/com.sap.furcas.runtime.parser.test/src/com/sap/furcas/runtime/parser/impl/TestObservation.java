@@ -13,10 +13,10 @@ import java.io.InputStream;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.sap.furcas.parser.tcs.TCSParserFactory;
+import com.sap.furcas.parser.tcs.TCSParserFacadeFactory;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ParserFacade;
-import com.sap.furcas.runtime.parser.testbase.StubModelAdapter;
+import com.sap.furcas.runtime.parser.testbase.stubs.StubModelAdapter;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
 import com.sap.furcas.utils.projects.FileReadHelper;
 
@@ -27,7 +27,7 @@ public class TestObservation {
 
     @Test
     public void testTcsParserWithBibText() throws Exception {
-        ParserFacade facade = TCSParserFactory.INSTANCE.createTCSParserFacade();
+        ParserFacade facade = TCSParserFacadeFactory.INSTANCE.createTCSParserFacade();
         File syntaxDefFile = ScenarioFixtureData.BIBTEXT_TCS;
         InputStream in = new FileInputStream(syntaxDefFile);
         StubModelAdapter modelHandler = new StubModelAdapter();
@@ -37,11 +37,11 @@ public class TestObservation {
         facade.parseProductionRule(in, modelHandler, null, null, testObserver);
 
         assertEquals(0, testObserver.errorsInRule.size());
-        assertEquals(122, testObserver.tokensConsumed.size());
+        assertEquals(111, testObserver.tokensConsumed.size());
         assertEquals(0, testObserver.errorTokensConsumed.size());
         assertEquals(0, testObserver.ruleContextStack.size());
         assertEquals(0, testObserver.sequenceContextStack.size());
-        assertEquals(57, testObserver.elementsResolved.size());
+        assertEquals(65, testObserver.elementsResolved.size());
         assertEquals(11, testObserver.outOfContextResolved.size());
         assertEquals(0, testObserver.sequenceElementsEnteredNotLeft);
         assertEquals(0, testObserver.injectorActionsEnteredNotleft);
@@ -50,7 +50,7 @@ public class TestObservation {
 
     @Test
     public void testTcsParserWithTCS() throws Exception {
-        ParserFacade facade = TCSParserFactory.INSTANCE.createTCSParserFacade();
+        ParserFacade facade = TCSParserFacadeFactory.INSTANCE.createTCSParserFacade();
         File syntaxDefFile = ScenarioFixtureData.TCS_OBSOLETE_TCS;
         InputStream in = new FileInputStream(syntaxDefFile);
         IModelAdapter modelHandler = new StubModelAdapter();
@@ -60,11 +60,11 @@ public class TestObservation {
         facade.parseProductionRule(in, modelHandler, null, null, testObserver);
 
         assertEquals(0, testObserver.errorsInRule.size());
-        assertEquals(1700, testObserver.tokensConsumed.size());
+        assertEquals(1736, testObserver.tokensConsumed.size());
         assertEquals(0, testObserver.errorTokensConsumed.size());
         assertEquals(0, testObserver.ruleContextStack.size());
         assertEquals(0, testObserver.sequenceContextStack.size());
-        assertEquals(1072, testObserver.elementsResolved.size());
+        assertEquals(1108, testObserver.elementsResolved.size());
         assertEquals(253, testObserver.outOfContextResolved.size());
         assertEquals(0, testObserver.sequenceElementsEnteredNotLeft);
         assertEquals(0, testObserver.injectorActionsEnteredNotleft);
@@ -72,7 +72,7 @@ public class TestObservation {
 
     @Test
     public void testTcsParserWithTCSSeparator() throws Exception {
-        ParserFacade facade = TCSParserFactory.INSTANCE.createTCSParserFacade();
+        ParserFacade facade = TCSParserFacadeFactory.INSTANCE.createTCSParserFacade();
 
         String input = "syntax test{template ->name1::name2::name3;}";
         InputStream in = new ByteArrayInputStream(input.getBytes());
@@ -86,7 +86,7 @@ public class TestObservation {
 
     @Test
     public void testTcsParserWithTCSDelegationObserver() throws Exception {
-        ParserFacade facade = TCSParserFactory.INSTANCE.createTCSParserFacade();
+        ParserFacade facade = TCSParserFacadeFactory.INSTANCE.createTCSParserFacade();
         File syntaxDefFile = ScenarioFixtureData.TCS_OBSOLETE_TCS;
         InputStream in = new FileInputStream(syntaxDefFile);
         IModelAdapter modelHandler = new StubModelAdapter();
@@ -98,11 +98,11 @@ public class TestObservation {
         facade.parseProductionRule(in, modelHandler, null, null, delegationObserver);
 
         assertEquals(0, testObserver.errorsInRule.size());
-        assertEquals(1700, testObserver.tokensConsumed.size());
+        assertEquals(1736, testObserver.tokensConsumed.size());
         assertEquals(0, testObserver.errorTokensConsumed.size());
         assertEquals(0, testObserver.ruleContextStack.size());
         assertEquals(0, testObserver.sequenceContextStack.size());
-        assertEquals(1072, testObserver.elementsResolved.size());
+        assertEquals(1108, testObserver.elementsResolved.size());
         assertEquals(253, testObserver.outOfContextResolved.size());
         assertEquals(0, testObserver.sequenceElementsEnteredNotLeft);
         assertEquals(0, testObserver.injectorActionsEnteredNotleft);
@@ -120,7 +120,7 @@ public class TestObservation {
             System.arraycopy(oldBytes, 0, loopBytes, 0, j);
             ByteArrayInputStream in = new ByteArrayInputStream(loopBytes);
 
-            ParserFacade facade = TCSParserFactory.INSTANCE.createTCSParserFacade();
+            ParserFacade facade = TCSParserFacadeFactory.INSTANCE.createTCSParserFacade();
 
             IModelAdapter modelHandler = new StubModelAdapter();
             ConsistencyChecksObserver testObserver = new ConsistencyChecksObserver();
@@ -134,7 +134,7 @@ public class TestObservation {
 
     @Test
     public void testTcsParserWithATL() throws Exception {
-        ParserFacade facade = TCSParserFactory.INSTANCE.createTCSParserFacade();
+        ParserFacade facade = TCSParserFacadeFactory.INSTANCE.createTCSParserFacade();
         File syntaxDefFile = ScenarioFixtureData.ATL_TCS;
         InputStream in = new FileInputStream(syntaxDefFile);
         IModelAdapter modelHandler = new StubModelAdapter();

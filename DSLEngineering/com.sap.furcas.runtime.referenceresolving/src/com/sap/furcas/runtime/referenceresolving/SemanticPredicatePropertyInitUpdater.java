@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -56,7 +57,8 @@ public class SemanticPredicatePropertyInitUpdater extends AbstractFurcasOCLBased
     }
 
     @Override
-    public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects, OppositeEndFinder oppositeEndFinder) {
+    public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects,
+            OppositeEndFinder oppositeEndFinder, Notification change) {
         // TODO Implement SemanticPredicatePropertyInitUpdater.notify(...)
 
     }

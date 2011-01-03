@@ -3,6 +3,7 @@ package com.sap.emf.ocl.trigger;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
@@ -30,7 +31,7 @@ public class AbstractOCLBasedModelUpdater extends AbstractTriggerable implements
      */
     @Override
     public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects,
-            OppositeEndFinder oppositeEndFinder) {
+            OppositeEndFinder oppositeEndFinder, Notification change) {
         OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(metamodelPackageRegistry, oppositeEndFinder);
         for (EObject eo : affectedContextObjects) {
             Object newValue = ocl.evaluate(eo, expression);

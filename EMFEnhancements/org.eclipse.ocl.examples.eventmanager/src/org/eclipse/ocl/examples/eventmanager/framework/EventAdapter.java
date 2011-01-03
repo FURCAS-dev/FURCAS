@@ -13,6 +13,8 @@ package org.eclipse.ocl.examples.eventmanager.framework;
 import java.lang.ref.WeakReference;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.ocl.examples.eventmanager.EventManager;
 
@@ -35,6 +37,18 @@ public class EventAdapter extends EContentAdapter {
         this.eventManager = new WeakReference<EventManager>(eventManager);
     }
     
+    /**
+     * Avoid duplicate adapter entry which would otherwise happen because objects may be "physically" contained in
+     * a {@link Resource}'s {@link Resource#getContents() contents} but also be "logically" contained in another
+     * {@link EObject} by means of a containment reference.
+     */
+    @Override
+    protected void addAdapter(Notifier notifier) {
+        if (!notifier.eAdapters().contains(this)) {
+            notifier.eAdapters().add(this);
+        }
+    }
+
     @Override
     public void notifyChanged(Notification notification) {
         super.notifyChanged(notification);

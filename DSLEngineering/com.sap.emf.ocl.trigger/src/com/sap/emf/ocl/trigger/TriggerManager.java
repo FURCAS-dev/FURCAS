@@ -13,7 +13,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 public interface TriggerManager {
     /**
      * Adds <code>resourceSet</code> to the resource sets from which this trigger manager receives notifications
-     * that it dispatches to {@link Triggerable}s subscribed to this manager.
+     * that it dispatches to {@link Triggerable}s subscribed to this manager. If this trigger manager is
+     * already receiving notifications from <code>resourceSet</code> it won't be added a second time. In
+     * particular, it won't receive duplicate notifications.
      * 
      * @see #removeFromObservedResourceSets(ResourceSet)
      */

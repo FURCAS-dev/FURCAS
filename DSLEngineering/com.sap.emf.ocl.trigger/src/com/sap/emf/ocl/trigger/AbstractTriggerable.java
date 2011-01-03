@@ -8,7 +8,7 @@ import org.eclipse.ocl.ecore.OCLExpression;
 /**
  * A simple abstract implementation of the {@link Triggerable} interface that can be constructed with a combination
  * of {@link OCLExpression}s and {@link ExpressionWithContext}s for whose value changes to listen. Subclasses then
- * only have to implement the {@link Triggerable#notify(OCLExpression, Collection, com.sap.emf.ocl.hiddenopposites.OppositeEndFinder)}
+ * only have to implement the {@link Triggerable#notify(OCLExpression, Collection, com.sap.emf.ocl.hiddenopposites.OppositeEndFinder, Notification)}
  * operation that tells what to do upon an expression changing its value.
  */
 public abstract class AbstractTriggerable implements Triggerable {
@@ -26,7 +26,7 @@ public abstract class AbstractTriggerable implements Triggerable {
         if (triggerExpressions == null) {
             throw new RuntimeException("triggerExpressions argument must not be null");
         }
-        this.triggerExpressionsWithContext = triggerExpressions;
+        this.triggerExpressionsWithContext = Collections.unmodifiableCollection(triggerExpressions);
         this.triggerExpressionsWithoutContext = Collections.emptySet();
         notifyOnNewContextElements = false;
     }
@@ -42,11 +42,11 @@ public abstract class AbstractTriggerable implements Triggerable {
         if (triggerExpressionsWithContext == null) {
             triggerExpressionsWithContext = Collections.emptySet();
         }
-        this.triggerExpressionsWithContext = triggerExpressionsWithContext;
+        this.triggerExpressionsWithContext = Collections.unmodifiableCollection(triggerExpressionsWithContext);
         if (triggerExpressionsWithoutContext == null) {
             triggerExpressionsWithoutContext = Collections.emptySet();
         }
-        this.triggerExpressionsWithoutContext = triggerExpressionsWithoutContext;
+        this.triggerExpressionsWithoutContext = Collections.unmodifiableCollection(triggerExpressionsWithoutContext);
         notifyOnNewContextElements = false;
     }
 
@@ -60,7 +60,7 @@ public abstract class AbstractTriggerable implements Triggerable {
         if (triggerExpressions == null) {
             throw new RuntimeException("triggerExpressions argument must not be null");
         }
-        this.triggerExpressionsWithContext = triggerExpressions;
+        this.triggerExpressionsWithContext = Collections.unmodifiableCollection(triggerExpressions);
         this.triggerExpressionsWithoutContext = Collections.emptySet();
         this.notifyOnNewContextElements = notifyOnNewContextElements;
     }
@@ -78,19 +78,25 @@ public abstract class AbstractTriggerable implements Triggerable {
         if (triggerExpressionsWithContext == null) {
             triggerExpressionsWithContext = Collections.emptySet();
         }
-        this.triggerExpressionsWithContext = triggerExpressionsWithContext;
+        this.triggerExpressionsWithContext = Collections.unmodifiableCollection(triggerExpressionsWithContext);
         if (triggerExpressionsWithoutContext == null) {
             triggerExpressionsWithoutContext = Collections.emptySet();
         }
-        this.triggerExpressionsWithoutContext = triggerExpressionsWithoutContext;
+        this.triggerExpressionsWithoutContext = Collections.unmodifiableCollection(triggerExpressionsWithoutContext);
         this.notifyOnNewContextElements = notifyOnNewContextElements;
     }
 
+    /**
+     * Returns an unmodifiable collection
+     */
     @Override
     public Collection<ExpressionWithContext> getTriggerExpressionsWithContext() {
         return triggerExpressionsWithContext;
     }
 
+    /**
+     * Returns an unmodifiable collection
+     */
     @Override
     public Collection<OCLExpression> getTriggerExpressionsWithoutContext() {
         return triggerExpressionsWithoutContext;

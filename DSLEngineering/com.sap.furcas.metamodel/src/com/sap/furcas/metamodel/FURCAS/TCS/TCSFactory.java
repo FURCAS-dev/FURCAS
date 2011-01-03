@@ -566,13 +566,13 @@ public interface TCSFactory extends EFactory {
         QueryPArg createQueryPArg();
 
         /**
-     * Returns a new object of class '<em>Query By Identifier PArg</em>'.
+     * Returns a new object of class '<em>Filter By Identifier PArg</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Query By Identifier PArg</em>'.
+     * @return a new object of class '<em>Filter By Identifier PArg</em>'.
      * @generated
      */
-    QueryByIdentifierPArg createQueryByIdentifierPArg();
+    FilterByIdentifierPArg createFilterByIdentifierPArg();
 
         /**
      * Returns a new object of class '<em>Filter PArg</em>'.

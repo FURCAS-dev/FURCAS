@@ -26,7 +26,7 @@ public class TestLOTOSSample extends AbstractTCSInjectionTest {
 
     @BeforeClass
     public static void doSetUp() throws Exception {
-        setup(ScenarioFixtureData.LOTOS_TCS);
+        setup(ScenarioFixtureData.LOTOS_TCS, ScenarioFixtureData.LOTOS_METAMODEL);
     }
 
     @Test

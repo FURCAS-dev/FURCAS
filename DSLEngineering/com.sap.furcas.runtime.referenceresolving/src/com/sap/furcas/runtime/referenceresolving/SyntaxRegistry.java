@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.WeakHashMap;
 
+import org.antlr.runtime.Lexer;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -23,14 +24,18 @@ import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.tcs.TcsUtil;
+import com.sap.ide.cts.parser.incremental.ParserFactory;
 
 public class SyntaxRegistry implements BundleActivator {
     private static SyntaxRegistry instance;
     private final WeakHashMap<ConcreteSyntax, TriggerManager> triggerManagersForSyntax;
+    private final WeakHashMap<ConcreteSyntax, ParserFactory<? extends ObservableInjectingParser, ? extends Lexer>> parserFactoriesForSyntax;
     
     public SyntaxRegistry() {
         triggerManagersForSyntax = new WeakHashMap<ConcreteSyntax, TriggerManager>();
+        parserFactoriesForSyntax = new WeakHashMap<ConcreteSyntax, ParserFactory<? extends ObservableInjectingParser, ? extends Lexer>>();
     }
     
     @Override
@@ -56,29 +61,33 @@ public class SyntaxRegistry implements BundleActivator {
      * @param metamodelPackageRegistry TODO
      * @param monitor
      *            optional; may be <code>null</code>
-     * 
+     * @param parserFactory TODO
      * @return a {@link TriggerManager} object. Clients should hold on to it as
      *         long as they wish the triggers to be executed as this registry
      *         only weakly references it.
      */
     public TriggerManager getTriggerManagerForSyntax(ConcreteSyntax syntax, Registry metamodelPackageRegistry,
-            OppositeEndFinder oppositeEndFinder, IProgressMonitor monitor) throws ParserException {
+            OppositeEndFinder oppositeEndFinder, IProgressMonitor monitor,
+            ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) throws ParserException {
         TriggerManager triggerManager = triggerManagersForSyntax.get(syntax);
         if (triggerManager == null) {
+            parserFactoriesForSyntax.put(syntax, parserFactory);
             triggerManager = TriggerManagerFactory.INSTANCE.createTriggerManager(oppositeEndFinder);
             triggerManagersForSyntax.put(syntax, triggerManager);
-            fillTriggerManagerForSyntax(triggerManager, syntax, metamodelPackageRegistry, oppositeEndFinder, monitor);
+            fillTriggerManagerForSyntax(triggerManager, syntax, parserFactory, metamodelPackageRegistry, oppositeEndFinder, monitor);
         }
         return triggerManager;
     }
 
-    private void fillTriggerManagerForSyntax(TriggerManager triggerManager, ConcreteSyntax syntax, Registry metamodelPackageRegistry,
-            OppositeEndFinder oppositeEndFinder, IProgressMonitor monitor) throws ParserException {
+    private void fillTriggerManagerForSyntax(TriggerManager triggerManager, ConcreteSyntax syntax,
+            ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory,
+            Registry metamodelPackageRegistry, OppositeEndFinder oppositeEndFinder, IProgressMonitor monitor)
+            throws ParserException {
         // fetch all InjectorAction and Property elements from the syntax
         Collection<InjectorAction> injectorActions = getInjectorActions(syntax);
         Collection<Property> propertyInits = getPropertiesWithQuery(syntax);
         initMonitor(syntax, monitor, injectorActions.size()+propertyInits.size());
-        registerInjectorActions(injectorActions, triggerManager, metamodelPackageRegistry, oppositeEndFinder, monitor);
+        registerInjectorActions(injectorActions, triggerManager, parserFactory, metamodelPackageRegistry, oppositeEndFinder, monitor);
         registerPropertiesWithQuery(propertyInits, triggerManager, metamodelPackageRegistry, oppositeEndFinder, monitor);
         if (monitor != null) {
             monitor.done();
@@ -103,14 +112,16 @@ public class SyntaxRegistry implements BundleActivator {
                 monitor.worked(1);
             }
             Template template = property.getParentTemplate();
-            if (template != null && template instanceof ClassTemplate && TcsUtil.getQueryByIdentifierPArg(property) != null) {
+            if (template != null && template instanceof ClassTemplate && TcsUtil.getFilterByIdentifierPArg(property) != null) {
                 triggerManager.register(new OCLQueryPropertyUpdater(property, metamodelPackageRegistry, oppositeEndFinder));
             }
         }
     }
 
     private void registerInjectorActions(Collection<InjectorAction> injectorActions, TriggerManager triggerManager,
-            EPackage.Registry metamodelPackageRegistry, OppositeEndFinder oppositeEndFinder, IProgressMonitor monitor) throws ParserException {
+            ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory,
+            EPackage.Registry metamodelPackageRegistry, OppositeEndFinder oppositeEndFinder, IProgressMonitor monitor)
+            throws ParserException {
         if (monitor != null) {
             monitor.subTask("PropertyInits");
         }
@@ -121,7 +132,7 @@ public class SyntaxRegistry implements BundleActivator {
             if (injectorAction instanceof LookupPropertyInit) {
                 triggerManager.register(new SimplePropertyInitUpdater((LookupPropertyInit) injectorAction, metamodelPackageRegistry, oppositeEndFinder));
             } else if (injectorAction instanceof ForeachPredicatePropertyInit) {
-                triggerManager.register(new ForeachPropertyInitUpdater((ForeachPredicatePropertyInit) injectorAction, metamodelPackageRegistry, oppositeEndFinder));
+                triggerManager.register(new ForeachPropertyInitUpdater((ForeachPredicatePropertyInit) injectorAction, metamodelPackageRegistry, parserFactory, oppositeEndFinder));
             }
         }
     }

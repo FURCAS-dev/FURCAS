@@ -406,7 +406,4 @@ public class SyntaxLookup {
         return false;
     }
 
-//    public Alternative getAlternative(SequenceInAlternative sequenceInAlternative) {
-//	return alternativeSequenceAssoc.getAlternative(sequenceInAlternative);
-//    }
 }

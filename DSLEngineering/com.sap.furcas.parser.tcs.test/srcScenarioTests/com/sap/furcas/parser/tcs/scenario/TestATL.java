@@ -1,17 +1,20 @@
 package com.sap.furcas.parser.tcs.scenario;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
+import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
-import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
-import com.sap.furcas.runtime.parser.testbase.StubModelAdapter;
+import com.sap.furcas.runtime.parser.testbase.stubs.StubModelAdapter;
+import com.sap.furcas.runtime.parser.testbase.stubs.StubParsingHelper;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
 import com.sap.furcas.test.testutils.StringListHelper;
 
@@ -25,21 +28,26 @@ public class TestATL extends GeneratedParserBasedTest {
     private static final File[] METAMODELS = { ScenarioFixtureData.ATL_METAMODEL };
     private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
     
-    private static ParsingHelper parsingHelper;
+    private static StubParsingHelper parsingHelper;
     
     @BeforeClass
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
         TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
         ParserFacade facade = generateParserForLanguage(syntaxBean, testConfig, new ClassLookupImpl());
-        parsingHelper = new ParsingHelper(facade);
+        parsingHelper = new StubParsingHelper(facade);
     }
 
     @Test
     @Ignore("Already broken in the moin codebase. Was not even included in the test suite.")
     public void testSample1() throws Exception {
-        StubModelAdapter stubModelHandler = getATLMetaConfiguredStubAdapter();
-        parsingHelper.parseFile("ATLSample.sam", DSLSAMPLEDIR, 0, stubModelHandler);
+        parseFile("ATLSample.sam", 0);
+    }
+    
+    public void parseFile(String dslSampleFile, int expectedErrors) throws Exception {
+        InputStream charStream = new FileInputStream(DSLSAMPLEDIR + dslSampleFile);
+        IModelAdapter modelAdapter = getATLMetaConfiguredStubAdapter();
+        parsingHelper.parseStream(charStream, expectedErrors, modelAdapter);
     }
 
     private StubModelAdapter getATLMetaConfiguredStubAdapter() {
@@ -51,5 +59,7 @@ public class TestATL extends GeneratedParserBasedTest {
 
         return adapter;
     }
+    
+
 
 }

@@ -58,7 +58,7 @@ public class IncrementalParserFacade {
 			IModelAdapter modelAdapter, EditingDomain editingDomain,
 			Set<URI> additionalCRIScope, OppositeEndFinder oppositeEndFinder) {
 		this.parserFactory = parserFactory;
-		// TODO use token wrapper factory her
+		// TODO use token wrapper factory here
 		TextBlockReuseStrategyImpl reuseStrategy = new TextBlockReuseStrategyImpl(
 				parserFactory.createLexer(null), modelAdapter);
 		Lexer domainLexer = parserFactory.createLexer(null);

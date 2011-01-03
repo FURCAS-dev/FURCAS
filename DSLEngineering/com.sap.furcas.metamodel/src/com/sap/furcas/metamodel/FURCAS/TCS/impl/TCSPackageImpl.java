@@ -88,7 +88,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.PropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyVal;
 import com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement;
-import com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToKeyPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
@@ -648,7 +648,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    private EClass queryByIdentifierPArgEClass = null;
+    private EClass filterByIdentifierPArgEClass = null;
 
         /**
      * <!-- begin-user-doc -->
@@ -2845,8 +2845,8 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EClass getQueryByIdentifierPArg() {
-        return queryByIdentifierPArgEClass;
+    public EClass getFilterByIdentifierPArg() {
+        return filterByIdentifierPArgEClass;
     }
 
         /**
@@ -2854,8 +2854,8 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getQueryByIdentifierPArg_Query() {
-        return (EAttribute)queryByIdentifierPArgEClass.getEStructuralFeatures().get(0);
+    public EAttribute getFilterByIdentifierPArg_Filter() {
+        return (EAttribute)filterByIdentifierPArgEClass.getEStructuralFeatures().get(0);
     }
 
         /**
@@ -2863,8 +2863,8 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getQueryByIdentifierPArg_Feature() {
-        return (EAttribute)queryByIdentifierPArgEClass.getEStructuralFeatures().get(1);
+    public EAttribute getFilterByIdentifierPArg_Criterion() {
+        return (EAttribute)filterByIdentifierPArgEClass.getEStructuralFeatures().get(1);
     }
 
         /**
@@ -3161,7 +3161,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * @generated
      */
         public EReference getPredicateSemantic_As() {
-        return (EReference)predicateSemanticEClass.getEStructuralFeatures().get(0);
+        return (EReference)predicateSemanticEClass.getEStructuralFeatures().get(1);
     }
 
         /**
@@ -3169,8 +3169,8 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        public EReference getPredicateSemantic_When() {
-        return (EReference)predicateSemanticEClass.getEStructuralFeatures().get(1);
+        public EAttribute getPredicateSemantic_When() {
+        return (EAttribute)predicateSemanticEClass.getEStructuralFeatures().get(0);
     }
 
         /**
@@ -3686,9 +3686,9 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         queryPArgEClass = createEClass(QUERY_PARG);
         createEAttribute(queryPArgEClass, QUERY_PARG__QUERY);
 
-        queryByIdentifierPArgEClass = createEClass(QUERY_BY_IDENTIFIER_PARG);
-        createEAttribute(queryByIdentifierPArgEClass, QUERY_BY_IDENTIFIER_PARG__QUERY);
-        createEAttribute(queryByIdentifierPArgEClass, QUERY_BY_IDENTIFIER_PARG__FEATURE);
+        filterByIdentifierPArgEClass = createEClass(FILTER_BY_IDENTIFIER_PARG);
+        createEAttribute(filterByIdentifierPArgEClass, FILTER_BY_IDENTIFIER_PARG__FILTER);
+        createEAttribute(filterByIdentifierPArgEClass, FILTER_BY_IDENTIFIER_PARG__CRITERION);
 
         filterPArgEClass = createEClass(FILTER_PARG);
         createEAttribute(filterPArgEClass, FILTER_PARG__FILTER);
@@ -3732,8 +3732,8 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         createEAttribute(foreachPredicatePropertyInitEClass, FOREACH_PREDICATE_PROPERTY_INIT__MODE);
 
         predicateSemanticEClass = createEClass(PREDICATE_SEMANTIC);
+        createEAttribute(predicateSemanticEClass, PREDICATE_SEMANTIC__WHEN);
         createEReference(predicateSemanticEClass, PREDICATE_SEMANTIC__AS);
-        createEReference(predicateSemanticEClass, PREDICATE_SEMANTIC__WHEN);
         createEAttribute(predicateSemanticEClass, PREDICATE_SEMANTIC__MODE);
         createEReference(predicateSemanticEClass, PREDICATE_SEMANTIC__FOREACH_PARENT);
 
@@ -3875,7 +3875,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         forcedUpperPArgEClass.getESuperTypes().add(this.getPropertyArg());
         injectorActionsBlockEClass.getESuperTypes().add(this.getSequenceElement());
         queryPArgEClass.getESuperTypes().add(this.getPropertyArg());
-        queryByIdentifierPArgEClass.getESuperTypes().add(this.getPropertyArg());
+        filterByIdentifierPArgEClass.getESuperTypes().add(this.getPropertyArg());
         filterPArgEClass.getESuperTypes().add(this.getPropertyArg());
         oclPArgEClass.getESuperTypes().add(this.getPropertyArg());
         contextTemplateEClass.getESuperTypes().add(this.getTemplate());
@@ -4171,9 +4171,9 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEClass(queryPArgEClass, QueryPArg.class, "QueryPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getQueryPArg_Query(), ecorePackage.getEString(), "query", null, 1, 1, QueryPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(queryByIdentifierPArgEClass, QueryByIdentifierPArg.class, "QueryByIdentifierPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getQueryByIdentifierPArg_Query(), ecorePackage.getEString(), "query", null, 0, 1, QueryByIdentifierPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getQueryByIdentifierPArg_Feature(), ecorePackage.getEString(), "feature", null, 0, 1, QueryByIdentifierPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(filterByIdentifierPArgEClass, FilterByIdentifierPArg.class, "FilterByIdentifierPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getFilterByIdentifierPArg_Filter(), ecorePackage.getEString(), "filter", null, 0, 1, FilterByIdentifierPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getFilterByIdentifierPArg_Criterion(), ecorePackage.getEString(), "criterion", null, 0, 1, FilterByIdentifierPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(filterPArgEClass, FilterPArg.class, "FilterPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getFilterPArg_Filter(), theEcorePackage_1.getEString(), "filter", null, 1, 1, FilterPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4217,8 +4217,8 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEAttribute(getForeachPredicatePropertyInit_Mode(), theEcorePackage_1.getEString(), "mode", null, 0, 1, ForeachPredicatePropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(predicateSemanticEClass, PredicateSemantic.class, "PredicateSemantic", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getPredicateSemantic_When(), theEcorePackage_1.getEString(), "when", null, 0, 1, PredicateSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getPredicateSemantic_As(), this.getTemplate(), null, "as", null, 0, 1, PredicateSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getPredicateSemantic_When(), theEcorePackage.getOCLExpression(), null, "when", null, 0, 1, PredicateSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getPredicateSemantic_Mode(), theEcorePackage_1.getEString(), "mode", null, 0, 1, PredicateSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getPredicateSemantic_ForeachParent(), this.getForeachPredicatePropertyInit(), this.getForeachPredicatePropertyInit_PredicateSemantic(), "foreachParent", null, 1, 1, PredicateSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

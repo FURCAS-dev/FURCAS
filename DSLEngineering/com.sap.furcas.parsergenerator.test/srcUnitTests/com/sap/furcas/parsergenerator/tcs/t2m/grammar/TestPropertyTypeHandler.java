@@ -24,13 +24,14 @@ import com.sap.furcas.metamodel.FURCAS.TCS.AutoCreateKind;
 import com.sap.furcas.metamodel.FURCAS.TCS.AutoCreatePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.CreateAsPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.CreateInPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ImportContextPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookInPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ModePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
@@ -97,7 +98,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, new SemanticErrorBucket());
 
         PropertyTypeHandler.PropertyArgs args = new PropertyTypeHandler.PropertyArgs(argsList);
         StringBuilder repeatablePart = new StringBuilder("repeatableBit");
@@ -146,7 +147,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, new SemanticErrorBucket());
 
         PropertyTypeHandler.PropertyArgs args = new PropertyTypeHandler.PropertyArgs(argsList);
         StringBuilder repeatablePart = new StringBuilder("repeatableBit");
@@ -350,7 +351,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, new SemanticErrorBucket());
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -369,7 +370,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, new SemanticErrorBucket());
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -422,7 +423,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, new SemanticErrorBucket());
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -447,7 +448,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, new SemanticErrorBucket());
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -472,7 +473,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, new SemanticErrorBucket());
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -505,7 +506,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, new SemanticErrorBucket());
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -532,7 +533,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, new SemanticErrorBucket());
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -567,7 +568,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, new SemanticErrorBucket());
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -603,7 +604,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, new SemanticErrorBucket());
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -637,7 +638,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, new SemanticErrorBucket());
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -672,7 +673,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, new SemanticErrorBucket());
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -707,7 +708,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, new SemanticErrorBucket());
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -796,7 +797,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, new SemanticErrorBucket());
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -821,7 +822,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, new SemanticErrorBucket());
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -849,7 +850,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, new SemanticErrorBucket());
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -889,7 +890,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, new SemanticErrorBucket());
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -929,7 +930,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, new SemanticErrorBucket());
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -958,7 +959,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, new SemanticErrorBucket());
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -984,7 +985,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, new SemanticErrorBucket());
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -1010,22 +1011,30 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, new SemanticErrorBucket());
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
 
         PropertyStub prop = getMockProperty("PropertyName", "ParentClass", "FeatureTypeName", metaLookupStub, false, false);
 
-        QueryByIdentifierPargStub queryBy = new QueryByIdentifierPargStub();
-        queryBy.featureName = "ArgFeatureName";
-        queryBy.oclQuery = "OCL:self.fooFeature";
-        prop.args.add(queryBy);
+        PrimitiveTemplateStub primitiveTemplate = new PrimitiveTemplateStub();
+        primitiveTemplate.setTemplateName("DefaultPrimitiveTemplate");
+        syntaxLookupStub.defaultPrimitiveTemplate = primitiveTemplate;
+        
+        QueryPargStub query = new QueryPargStub();
+        query.query = "OCL:self.fooFeature";
+        prop.args.add(query);
+        
+        FilterByIdentifierPargStub filterBy = new FilterByIdentifierPargStub();
+        filterBy.filter = "ArgFeatureName";
+        filterBy.criterion = "pre?post"; 
+        prop.args.add(filterBy);
 
         propHandler.addElement(prop, buf);
 
         assertEquals(
-                "( temp=FeatureTypeName {setOclRef(ret, \"PropertyName\", null, temp, \"OCL:self.fooFeature->select(ArgFeatureName = ?)\");})",
+                "( temp=DefaultPrimitiveTemplate {setOclRef(ret, \"PropertyName\", null, temp, \"OCL:self.fooFeature->select(ArgFeatureName = pre?post)\");})",
                 buf.getResult());
     }
     
@@ -1036,17 +1045,21 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, new SemanticErrorBucket());
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
 
         PropertyStub prop = getMockProperty("PropertyName", "ParentClass", "FeatureTypeName", metaLookupStub, false, false);
 
-        QueryByIdentifierPargStub queryBy = new QueryByIdentifierPargStub();
-        queryBy.featureName = "ArgFeatureName";
-        queryBy.oclQuery = "OCL:self.fooFeature";
-        prop.args.add(queryBy);
+        QueryPargStub query = new QueryPargStub();
+        query.query = "OCL:self.fooFeature";
+        prop.args.add(query);
+        
+        FilterByIdentifierPargStub filterBy = new FilterByIdentifierPargStub();
+        filterBy.filter = "ArgFeatureName";
+        filterBy.criterion = "?"; 
+        prop.args.add(filterBy);
         
         // Provide a specific primitive template that we want to use for serializing
         AsPargStub asPArg = new AsPargStub();
@@ -1127,6 +1140,20 @@ public class TestPropertyTypeHandler {
         argsList.add(new CreateInPArgStub());
         args = new PropertyTypeHandler.PropertyArgs(argsList);
         assertNotNull(args.createInPArg);
+        
+        argsList = new ArrayList<PropertyArg>();
+        args = new PropertyTypeHandler.PropertyArgs(argsList);
+        assertNull(args.oclQueryPArg);
+        argsList.add(new QueryPargStub());
+        args = new PropertyTypeHandler.PropertyArgs(argsList);
+        assertNotNull(args.oclQueryPArg);
+        
+        argsList = new ArrayList<PropertyArg>();
+        args = new PropertyTypeHandler.PropertyArgs(argsList);
+        assertNull(args.oclFilterByIdentifierPArg);
+        argsList.add(new FilterByIdentifierPargStub());
+        args = new PropertyTypeHandler.PropertyArgs(argsList);
+        assertNotNull(args.oclFilterByIdentifierPArg);
     }
 
     /**
@@ -1142,7 +1169,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, new SemanticErrorBucket());
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -1342,31 +1369,42 @@ public class TestPropertyTypeHandler {
         }
     }
     
-    class QueryByIdentifierPargStub extends PargStub implements QueryByIdentifierPArg {
+    class QueryPargStub extends PargStub implements QueryPArg {
 
-        public String featureName;
-        public String oclQuery;
+        public String query;
         
         @Override
         public String getQuery() {
-            return oclQuery;
+            return query;
         }
 
         @Override
         public void setQuery(String value) {
-            oclQuery = value;
+            query = value;
         }
+    }
+    
+    class FilterByIdentifierPargStub extends PargStub implements FilterByIdentifierPArg {
 
-        @Override
-        public String getFeature() {
-            return featureName;
-        }
-
-        @Override
-        public void setFeature(String value) {
-            featureName = featureName;
-        }
+        public String criterion;
+        public String filter;
         
+        @Override
+        public String getFilter() {
+            return filter;
+        }
+        @Override
+        public void setFilter(String value) {
+            filter = value;
+        }
+        @Override
+        public String getCriterion() {
+            return criterion;
+        }
+        @Override
+        public void setCriterion(String value) {
+            criterion = value;
+        }
     }
 
     class PargStub extends LocatedElementStub implements PropertyArg {

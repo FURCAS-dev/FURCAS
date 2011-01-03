@@ -22,12 +22,12 @@ import org.eclipse.ocl.examples.impactanalyzer.util.Tuple.Pair;
 
 public class IteratorSourcePropagationStrategy extends DeltaPropagationStrategyWithTargetExpressionAndPartialEvaluator {
 
-    public IteratorSourcePropagationStrategy(IteratorExp loopExp, PartialEvaluator evaluator) {
+    public IteratorSourcePropagationStrategy(IteratorExp loopExp, PartialEvaluatorImpl evaluator) {
         super(loopExp, evaluator);
     }
 
     public Collection<Pair<OCLExpression, Collection<Object>>> mapDelta(OCLExpression sourceOfIterator, Collection<Object> delta) {
-        return PartialEvaluator.getResultCollectionFromSingleDelta(getPropagatesTo(), OclHelper.flatten(
+        return PartialEvaluatorImpl.getResultCollectionFromSingleDelta(getPropagatesTo(), OclHelper.flatten(
                 getEvaluator().evaluate(null, (CallExp) getPropagatesTo(), delta)));
     }
 

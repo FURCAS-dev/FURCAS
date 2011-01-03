@@ -96,12 +96,12 @@ public class DelayedReferencesHelper {
             contextElement = proxyContext.getRealObject();
         }
 
-        if (reference.getType() == DelayedReference.TYPE_SEMANTIC_PREDICATE) {
+        if (reference.getType() == DelayedReference.ReferenceType.TYPE_SEMANTIC_PREDICATE) {
             return setDelayedReferenceWithPredicate(reference, modelAdapter, contextManager, contextElement, parser);
-        } else if (reference.getType() == DelayedReference.SEMANTIC_DISAMBIGUATE) {
+        } else if (reference.getType() == DelayedReference.ReferenceType.SEMANTIC_DISAMBIGUATE) {
             return setDelayedReferenceWithSemanticDisambiguate(reference, modelAdapter, contextManager, contextElement, parser);
         }
-        if (reference.getOclQuery() != null && reference.getType() != DelayedReference.CONTEXT_LOOKUP) {
+        if (reference.getOclQuery() != null && reference.getType() != DelayedReference.ReferenceType.CONTEXT_LOOKUP) {
             return setDelayedReferenceWithQuery(reference, modelAdapter, contextManager, contextElement);
         } else {
             return setDelayedReferenceWithLookup(reference, modelAdapter, contextManager, contextElement);
@@ -180,7 +180,7 @@ public class DelayedReferencesHelper {
                                     ((TextBlock) reference.getTextBlock()).getForEachContext())) {
                                 if (fec.getForeachPedicatePropertyInit().equals(reference.getQueryElement())
                                         && reference.getModelElement().equals(fec.getSourceModelElement())) {
-                                    if (!fec.getContextElement().contains(next)) {
+                                    if (fec.getContextElement() != next) {
                                         // element was responsible for creating
                                         // this result but
                                         // is not in the foreach anymore thus
@@ -188,35 +188,35 @@ public class DelayedReferencesHelper {
                                         EcoreUtil.delete(fec.getResultModelElement(), true);
                                         EcoreUtil.delete(fec, true);
                                     } else {
-                                        for (EObject ce : fec.getContextElement()) {
-                                            if (ce.equals(next)) {
-                                                // the current FEC was created
-                                                // for this object
-                                                // thus we need to check if the
-                                                // type fits
-                                                if (fec.getResultModelElement() == null) {
-                                                    EcoreUtil.delete(fec, true);
+                                        EObject ce = fec.getContextElement();
+                                        if (ce.equals(next)) {
+                                            // the current FEC was created
+                                            // for this object
+                                            // thus we need to check if the
+                                            // type fits
+                                            if (fec.getResultModelElement() == null) {
+                                                EcoreUtil.delete(fec, true);
+                                            } else {
+                                                if (fec.getResultModelElement().eClass()
+                                                        .equals(tmpl.getMetaReference())) {
+                                                    // we can reuse the
+                                                    // element as the type
+                                                    // fits,
+                                                    // TODO check how we can
+                                                    // incrementally decide
+                                                    // which attributes
+                                                    // of the element should
+                                                    // be set or if we need
+                                                    // to reset all the
+                                                    // attributes in order
+                                                    // to let them be set
+                                                    // new
+                                                    reusableElementsByForeachElement.put((EObject) next,
+                                                            fec.getResultModelElement());
                                                 } else {
-                                                    if (fec.getResultModelElement().eClass().equals(tmpl.getMetaReference())) {
-                                                        // we can reuse the
-                                                        // element as the type
-                                                        // fits,
-                                                        // TODO check how we can
-                                                        // incrementally decide
-                                                        // which attributes
-                                                        // of the element should
-                                                        // be set or if we need
-                                                        // to reset all the
-                                                        // attributes in order
-                                                        // to let them be set
-                                                        // new
-                                                        reusableElementsByForeachElement.put((EObject) next,
-                                                                fec.getResultModelElement());
-                                                    } else {
-                                                        EcoreUtil.delete(fec.getResultModelElement(), true);
-                                                        EcoreUtil.delete(fec, true);
-                                                        break;
-                                                    }
+                                                    EcoreUtil.delete(fec.getResultModelElement(), true);
+                                                    EcoreUtil.delete(fec, true);
+                                                    break;
                                                 }
                                             }
                                         }
@@ -382,9 +382,7 @@ public class DelayedReferencesHelper {
         } else {
             proxyForContextElement = new ResolvedModelElementProxy(reference.getContextElement());
         }
-
         parser.setCurrentForeachElement(next);
-
         if (parser.getContextManager().getContextForElement(reference.getContextElement()) == null) {
             parser.addContext(proxyForContextElement);
             if (proxyForContextElement.getRealObject() != null && reference.getContextElement() instanceof EObject) {
@@ -395,29 +393,8 @@ public class DelayedReferencesHelper {
                  */
                 null);
             }
-
         } else {
-            parser.getCurrentContextStack().push(proxyForContextElement); // the
-                                                                          // Context
-                                                                          // object
-                                                                          // was
-                                                                          // already
-                                                                          // created
-                                                                          // elsewhere
-        }
-
-        if (reference.hasContext() && next instanceof EObject) {
-            ResolvedModelElementProxy proxyForNext = new ResolvedModelElementProxy(next);
-            if (parser.getContextManager().getContextForElement(next) == null) {
-                parser.addContext(proxyForNext);
-                parser.getContextManager().notifyProxyResolvedWith(proxyForNext, next,
-                /*
-                 * no creation context element needs to be provided here because the proxy has just been created and has not been
-                 * added to any other context
-                 */null);
-            } else {
-                parser.getCurrentContextStack().push(proxyForNext); // the Context object was already created elsewhere
-            }
+            parser.getCurrentContextStack().push(proxyForContextElement); // the Context object was already created elsewhere
         }
         try {
             Object parseReturn = methodToCall.invoke(parser);
@@ -453,9 +430,6 @@ public class DelayedReferencesHelper {
                 }
             }
         } finally {
-            if (reference.hasContext() && next instanceof EObject) {
-                parser.leaveContext();
-            }
             parser.getCurrentContextStack().pop();
             parser.setObserver(originalObserver);
             parser.setResolveProxies(originalResolveProxiesValue);
@@ -474,8 +448,8 @@ public class DelayedReferencesHelper {
         for (ForEachContext forEachContext : contextBlock.getForEachContext()) {
             if (forEachContext.getForeachPedicatePropertyInit().equals(sequenceElement)) {
                 if (forEachContext.getSourceModelElement().equals(sourceModelElement)) {
-                    if (!forEachContext.getContextElement().contains(currentForEachElement)) {
-                        forEachContext.getContextElement().add(currentForEachElement);
+                    if (forEachContext.getContextElement() != currentForEachElement) {
+                        forEachContext.setContextElement(currentForEachElement);
                         forEachContext.setResultModelElement(resultElement);
                     }
                     forEachContextExists = true;
@@ -486,7 +460,7 @@ public class DelayedReferencesHelper {
             ForEachContext newContext = TextblocksFactory.eINSTANCE.createForEachContext();
             newContext.setForeachPedicatePropertyInit(sequenceElement);
             newContext.setSourceModelElement(sourceModelElement);
-            newContext.getContextElement().add(currentForEachElement);
+            newContext.setContextElement(currentForEachElement);
             newContext.setResultModelElement(resultElement);
             contextBlock.getForEachContext().add(newContext);
         }
@@ -958,7 +932,7 @@ public class DelayedReferencesHelper {
 
         Object candidate = null;
 
-        if (reference.getType() == DelayedReference.CONTEXT_LOOKUP) {
+        if (reference.getType() == DelayedReference.ReferenceType.CONTEXT_LOOKUP) {
             candidate = modelAdapter.setReferenceWithOCLQuery(contextElement, reference.getPropertyName(), reference.getKeyValue(),
                     reference.getOclQuery().replaceAll("self.", "#context"), reference.getTextBlock(),
                     reference.getCurrentForeachElement());

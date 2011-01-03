@@ -13,8 +13,8 @@ import com.sap.furcas.runtime.common.util.QualifiedNamesHelper;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
-import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
-import com.sap.furcas.runtime.parser.testbase.StubModelAdapter;
+import com.sap.furcas.runtime.parser.testbase.stubs.StubModelAdapter;
+import com.sap.furcas.runtime.parser.testbase.stubs.StubParsingHelper;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
 import com.sap.furcas.test.testutils.StringListHelper;
 
@@ -29,14 +29,14 @@ public class TestTCSObsolete extends GeneratedParserBasedTest {
     private static final File[] METAMODELS = { ScenarioFixtureData.TCS_METAMODEL };
     private static final String DSLSAMPLEDIR = "../com.sap.furcas.test/scenarioFixtures/";
 
-    private static ParsingHelper parsingHelper;
+    private static StubParsingHelper parsingHelper;
 
     @BeforeClass
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
         TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
         ParserFacade facade = generateParserForLanguage(syntaxBean, testConfig, new ClassLookupImpl());
-        parsingHelper = new ParsingHelper(facade);
+        parsingHelper = new StubParsingHelper(facade);
     }
 
     @Test
@@ -46,10 +46,10 @@ public class TestTCSObsolete extends GeneratedParserBasedTest {
                 + "    ;\n" + "    \n" + "}";
 
         StubModelAdapter stubModelHandler = parsingHelper.parseString(sample, 0);
-        assertEquals(1, stubModelHandler.getElementsbyType("TCS::ClassTemplate").size());
-        assertEquals(1, stubModelHandler.getElementsbyType("TCS::PrimitiveTemplate").size());
-        assertEquals(1, stubModelHandler.getElementsbyType("TCS::ConcreteSyntax").size());
-        assertEquals(2, stubModelHandler.getElementsbyType("TCS::Sequence").size());
+        assertEquals(1, stubModelHandler.getElementsOfType("TCS::ClassTemplate").size());
+        assertEquals(1, stubModelHandler.getElementsOfType("TCS::PrimitiveTemplate").size());
+        assertEquals(1, stubModelHandler.getElementsOfType("TCS::ConcreteSyntax").size());
+        assertEquals(2, stubModelHandler.getElementsOfType("TCS::Sequence").size());
     }
 
     @Test
@@ -65,85 +65,86 @@ public class TestTCSObsolete extends GeneratedParserBasedTest {
     public void testBibTextTCS() throws Exception {
         StubModelAdapter stubModelHandler = getModifiedAdapterStub();
         parsingHelper.parseFile("Bibtext.tcs", DSLSAMPLEDIR, 0, stubModelHandler);
-        assertEquals(6, stubModelHandler.getElementsbyType("TCS::ClassTemplate").size());
-        assertEquals(1, stubModelHandler.getElementsbyType("TCS::PrimitiveTemplate").size());
-        assertEquals(1, stubModelHandler.getElementsbyType("TCS::ConcreteSyntax").size());
-        assertEquals(7, stubModelHandler.getElementsbyType("TCS::Sequence").size());
+        assertEquals(6, stubModelHandler.getElementsOfType("TCS::ClassTemplate").size());
+        assertEquals(1, stubModelHandler.getElementsOfType("TCS::PrimitiveTemplate").size());
+        assertEquals(1, stubModelHandler.getElementsOfType("TCS::ConcreteSyntax").size());
+        assertEquals(7, stubModelHandler.getElementsOfType("TCS::Sequence").size());
     }
 
     @Test
     public void testBibTextLowerTCS() throws Exception {
         StubModelAdapter stubModelHandler = getModifiedAdapterStub();
         parsingHelper.parseFile("BibtextForcedLower.tcs", DSLSAMPLEDIR, 0, stubModelHandler);
-        assertEquals(6, stubModelHandler.getElementsbyType("TCS::ClassTemplate").size());
-        assertEquals(1, stubModelHandler.getElementsbyType("TCS::PrimitiveTemplate").size());
-        assertEquals(1, stubModelHandler.getElementsbyType("TCS::ConcreteSyntax").size());
-        assertEquals(7, stubModelHandler.getElementsbyType("TCS::Sequence").size());
+        assertEquals(6, stubModelHandler.getElementsOfType("TCS::ClassTemplate").size());
+        assertEquals(1, stubModelHandler.getElementsOfType("TCS::PrimitiveTemplate").size());
+        assertEquals(1, stubModelHandler.getElementsOfType("TCS::ConcreteSyntax").size());
+        assertEquals(7, stubModelHandler.getElementsOfType("TCS::Sequence").size());
     }
 
     @Test
     public void testBibTextFunctionsTCS() throws Exception {
         StubModelAdapter stubModelHandler = getModifiedAdapterStub();
         parsingHelper.parseFile("BibtextWithFunction.tcs", DSLSAMPLEDIR, 0, stubModelHandler);
-        assertEquals(6, stubModelHandler.getElementsbyType("TCS::ClassTemplate").size());
-        assertEquals(1, stubModelHandler.getElementsbyType("TCS::PrimitiveTemplate").size());
-        assertEquals(1, stubModelHandler.getElementsbyType("TCS::ConcreteSyntax").size());
-        assertEquals(2, stubModelHandler.getElementsbyType("TCS::FunctionTemplate").size());
+        assertEquals(6, stubModelHandler.getElementsOfType("TCS::ClassTemplate").size());
+        assertEquals(1, stubModelHandler.getElementsOfType("TCS::PrimitiveTemplate").size());
+        assertEquals(1, stubModelHandler.getElementsOfType("TCS::ConcreteSyntax").size());
+        assertEquals(2, stubModelHandler.getElementsOfType("TCS::FunctionTemplate").size());
     }
 
     @Test
     public void testEnumTCS() throws Exception {
         StubModelAdapter stubModelHandler = getModifiedAdapterStub();
         parsingHelper.parseFile("EnumTest.tcs", DSLSAMPLEDIR, 0, stubModelHandler);
-        assertEquals(4, stubModelHandler.getElementsbyType("TCS::ClassTemplate").size());
-        assertEquals(1, stubModelHandler.getElementsbyType("TCS::PrimitiveTemplate").size());
-        assertEquals(1, stubModelHandler.getElementsbyType("TCS::ConcreteSyntax").size());
-        assertEquals(4, stubModelHandler.getElementsbyType("TCS::Sequence").size());
+        assertEquals(4, stubModelHandler.getElementsOfType("TCS::ClassTemplate").size());
+        assertEquals(1, stubModelHandler.getElementsOfType("TCS::PrimitiveTemplate").size());
+        assertEquals(1, stubModelHandler.getElementsOfType("TCS::ConcreteSyntax").size());
+        assertEquals(4, stubModelHandler.getElementsOfType("TCS::Sequence").size());
     }
 
     @Test
     public void testExpression() throws Exception {
         StubModelAdapter stubModelHandler = getModifiedAdapterStub();
         parsingHelper.parseFile("Expression.tcs", DSLSAMPLEDIR, 0, stubModelHandler);
-        assertEquals(6, stubModelHandler.getElementsbyType("TCS::ClassTemplate").size());
-        assertEquals(2, stubModelHandler.getElementsbyType("TCS::PrimitiveTemplate").size());
-        assertEquals(1, stubModelHandler.getElementsbyType("TCS::ConcreteSyntax").size());
-        assertEquals(12, stubModelHandler.getElementsbyType("TCS::Sequence").size());
+        assertEquals(6, stubModelHandler.getElementsOfType("TCS::ClassTemplate").size());
+        assertEquals(2, stubModelHandler.getElementsOfType("TCS::PrimitiveTemplate").size());
+        assertEquals(1, stubModelHandler.getElementsOfType("TCS::ConcreteSyntax").size());
+        assertEquals(12, stubModelHandler.getElementsOfType("TCS::Sequence").size());
     }
 
     @Test
     public void testFPath() throws Exception {
         StubModelAdapter stubModelHandler = getModifiedAdapterStub();
         parsingHelper.parseFile("FPath.tcs", DSLSAMPLEDIR, 0, stubModelHandler);
-        assertEquals(10, stubModelHandler.getElementsbyType("TCS::ClassTemplate").size());
-        assertEquals(3, stubModelHandler.getElementsbyType("TCS::PrimitiveTemplate").size());
-        assertEquals(1, stubModelHandler.getElementsbyType("TCS::ConcreteSyntax").size());
-        assertEquals(13, stubModelHandler.getElementsbyType("TCS::Sequence").size());
-        assertEquals(1, stubModelHandler.getElementsbyType("TCS::EnumerationTemplate").size());
+        assertEquals(10, stubModelHandler.getElementsOfType("TCS::ClassTemplate").size());
+        assertEquals(3, stubModelHandler.getElementsOfType("TCS::PrimitiveTemplate").size());
+        assertEquals(1, stubModelHandler.getElementsOfType("TCS::ConcreteSyntax").size());
+        assertEquals(13, stubModelHandler.getElementsOfType("TCS::Sequence").size());
+        assertEquals(1, stubModelHandler.getElementsOfType("TCS::EnumerationTemplate").size());
     }
 
     @Test
     public void testTCS() throws Exception {
         StubModelAdapter stubModelHandler = getModifiedAdapterStub();
         parsingHelper.parseFile("TCSObsolete.tcs", DSLSAMPLEDIR, 0, stubModelHandler);
-        assertEquals(69, stubModelHandler.getElementsbyType("TCS::ClassTemplate").size());
-        assertEquals(5, stubModelHandler.getElementsbyType("TCS::PrimitiveTemplate").size());
-        assertEquals(1, stubModelHandler.getElementsbyType("TCS::ConcreteSyntax").size());
-        assertEquals(145, stubModelHandler.getElementsbyType("TCS::Sequence").size());
+        assertEquals(69, stubModelHandler.getElementsOfType("TCS::ClassTemplate").size());
+        assertEquals(5, stubModelHandler.getElementsOfType("TCS::PrimitiveTemplate").size());
+        assertEquals(1, stubModelHandler.getElementsOfType("TCS::ConcreteSyntax").size());
+        assertEquals(169, stubModelHandler.getElementsOfType("TCS::Sequence").size());
     }
 
     @Test
     public void testXPath() throws Exception {
         StubModelAdapter stubModelHandler = getModifiedAdapterStub();
         parsingHelper.parseFile("XPath.tcs", DSLSAMPLEDIR, 0, stubModelHandler);
-        assertEquals(28, stubModelHandler.getElementsbyType("TCS::ClassTemplate").size());
-        assertEquals(4, stubModelHandler.getElementsbyType("TCS::PrimitiveTemplate").size());
-        assertEquals(1, stubModelHandler.getElementsbyType("TCS::ConcreteSyntax").size());
-        assertEquals(36, stubModelHandler.getElementsbyType("TCS::Sequence").size());
+        assertEquals(28, stubModelHandler.getElementsOfType("TCS::ClassTemplate").size());
+        assertEquals(4, stubModelHandler.getElementsOfType("TCS::PrimitiveTemplate").size());
+        assertEquals(1, stubModelHandler.getElementsOfType("TCS::ConcreteSyntax").size());
+        assertEquals(36, stubModelHandler.getElementsOfType("TCS::Sequence").size());
     }
 
     private static StubModelAdapter getModifiedAdapterStub() {
         return new StubModelAdapter() {
+            @Override
             public Object createElement(List<String> typeName) {
                 if (StringListHelper.list("TCS", "Symbol").equals(typeName)) {
                     // Literal extends symbol, but StubModelHandler is unable to deal with Subtypes.

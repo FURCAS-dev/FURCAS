@@ -35,16 +35,19 @@ public class DelayedReference implements Cloneable {
 
     /** The Constant AUTOCREATE_MISSING. */
     public static final String AUTOCREATE_MISSING = "ifmissing";
-
-    /** Constant for reference type default */
-    public static final int TYPE_DEFAULT = 0;
     
-    /** Constant for reference type semantic predicate */
-    public static final int TYPE_SEMANTIC_PREDICATE = 1;
-
-    public static final int CONTEXT_LOOKUP = 2;
-    
-    public static final int SEMANTIC_DISAMBIGUATE = 3;
+    public enum ReferenceType {
+        /**
+         * Constant for reference type OCL
+         */
+        TYPE_OCL, 
+        /** Constant for reference type default */
+        TYPE_DEFAULT,
+        /** Constant for reference type semantic predicate */
+        TYPE_SEMANTIC_PREDICATE,
+        CONTEXT_LOOKUP,
+        SEMANTIC_DISAMBIGUATE
+    }
 
     /** The current context. */
     private Object referenceContextObject;
@@ -111,7 +114,7 @@ public class DelayedReference implements Cloneable {
      * indicates the type of this reference expected to be one of the type
      * constants defined in this class
      */
-    private int type;
+    private final ReferenceType type;
 
     private List<PredicateSemantic> predicateActionList;
     private boolean isGenericReference = false;
@@ -183,7 +186,7 @@ public class DelayedReference implements Cloneable {
         this.createIn = createIn;
         this.isOptional = isOptional;
         this.token = token;
-        this.type = -1;
+        this.type = ReferenceType.TYPE_OCL;
     }
 
     /**
@@ -236,7 +239,7 @@ public class DelayedReference implements Cloneable {
         this.oclQuery = oclQuery;
         this.token = token;
         this.isOptional = isOptional;
-        this.type = -1;
+        this.type = ReferenceType.TYPE_OCL;
     }
 
     /**
@@ -244,11 +247,11 @@ public class DelayedReference implements Cloneable {
      * {@link ObservableInjectingParser#setModeRef(Object, String, String, String)}
      */
 
-    public DelayedReference(Object referenceContextObject, Object currentForeachElement,
-            int type, Object modelElement, String propertyName,
-            String oclQuery, String mode,
-            List<PredicateSemantic> list, IRuleName ruleNameFinder,
-            ANTLR3LocationToken token, boolean hasContext, boolean isOptional) {
+    public DelayedReference(Object referenceContextObject, ReferenceType type,
+            Object modelElement, String propertyName, String oclQuery,
+            String mode, List<PredicateSemantic> list,
+            IRuleName ruleNameFinder, ANTLR3LocationToken token,
+            boolean hasContext, boolean isOptional) {
         super();
         this.referenceContextObject = referenceContextObject;
         this.modelElement = modelElement;
@@ -264,8 +267,9 @@ public class DelayedReference implements Cloneable {
     }
     
     public DelayedReference(Object currentContextElement,
-			int type, Object modelElement, Object semanticObject,
-			Object opTemplateLefthand, String opName, List<SemanticDisambRuleData> ruleData, ANTLR3LocationToken lastToken, ANTLR3LocationToken firstToken,
+                        ReferenceType type, Object modelElement, Object semanticObject,
+			Object opTemplateLefthand, String opName, List<SemanticDisambRuleData> ruleData,
+			ANTLR3LocationToken lastToken, ANTLR3LocationToken firstToken,
 			boolean hasContext2, boolean isOptional) {
 		super();
 		this.referenceContextObject = currentContextElement;
@@ -476,7 +480,7 @@ public class DelayedReference implements Cloneable {
     @Override
     public String toString() {
         String result = modelElement != null && modelElement.getClass() != null ? modelElement.getClass().getName() : "<generic>";
-        if(getType() == DelayedReference.TYPE_SEMANTIC_PREDICATE) {
+        if(getType() == DelayedReference.ReferenceType.TYPE_SEMANTIC_PREDICATE) {
             result += " [FOR_EACH_PROPERTY_INIT] ";
         }
         result += '.'
@@ -542,12 +546,8 @@ public class DelayedReference implements Cloneable {
         this.mode = mode;
     }
 
-    public int getType() {
+    public ReferenceType getType() {
         return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
     }
 
     public List<PredicateSemantic> getPredicateActionList() {
@@ -651,6 +651,6 @@ public class DelayedReference implements Cloneable {
     
 	public boolean isSemanticDisambiguatedOperatorRule()
 	{
-		return type == SEMANTIC_DISAMBIGUATE && opTemplateLefthand != null;
+		return type == ReferenceType.SEMANTIC_DISAMBIGUATE && opTemplateLefthand != null;
 	}
 }

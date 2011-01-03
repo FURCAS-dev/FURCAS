@@ -122,13 +122,17 @@ public class WorkspaceSetup implements IWorkbenchWindowActionDelegate {
         }
     }
 
+    @SuppressWarnings("unused")
     private String extractWorkspace(String path) {
         try {
             // remove path/to/working/set/
             path = path.replace(parentPom, "").substring(1);
 
             String[] segments = path.split(Pattern.quote(File.separator));
-            if (segments.length > 2) {
+            
+            // switch the following lines to change the workingset names
+            // if(segments.length > 2) {
+            if (false) {
                 // like EMF/query2/org.eclipse.emf.query2
                 return segments[0] + "-" + segments[1];
             } else {

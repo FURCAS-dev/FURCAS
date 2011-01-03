@@ -17,7 +17,7 @@ import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.impl.DefaultTextAwareModelAdapter;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
-import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
+import com.sap.furcas.runtime.parser.testbase.stubs.StubParsingHelper;
 import com.sap.furcas.test.testutils.ResourceTestHelper;
 
 /**
@@ -39,7 +39,7 @@ public class TCSBootstrappingTest extends GeneratedParserBasedTest {
     private static final File TCS = TCSSyntaxDefinition.TCS_TCS;
     private static final File[] METAMODELS = { }; // keep empty. The FURCAS metamodel is added by the testConfig
 
-    private static ParsingHelper parsingHelper;
+    private static StubParsingHelper parsingHelper;
     private static IModelAdapter modelAdapter;
 
     @BeforeClass
@@ -52,14 +52,14 @@ public class TCSBootstrappingTest extends GeneratedParserBasedTest {
         };
         TCSSyntaxContainerBean syntaxBeanyntaxBean = parseSyntax(testConfig);
         ParserFacade facade = generateParserForLanguage(syntaxBeanyntaxBean, testConfig, new ClassLookupImpl());
-        parsingHelper = new ParsingHelper(facade);
+        parsingHelper = new StubParsingHelper(facade);
         modelAdapter = new DefaultTextAwareModelAdapter(new EMFModelAdapter(FURCASPackage.eINSTANCE, testConfig
                 .getSourceConfiguration().getResourceSet(), testConfig.getSourceConfiguration().getReferenceScope()));
     }
 
     @Test
     public void testParseTCSTCSWithoutErrors() throws Exception {
-        parsingHelper.parseStream(/* expected errors */ 0, new FileInputStream(TCS), modelAdapter);
+        parsingHelper.parseStream(new FileInputStream(TCS), /* expected errors */ 0, modelAdapter);
     }
 
 }

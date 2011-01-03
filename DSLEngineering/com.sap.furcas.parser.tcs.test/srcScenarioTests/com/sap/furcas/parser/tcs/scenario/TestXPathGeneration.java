@@ -9,7 +9,7 @@ import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
-import com.sap.furcas.runtime.parser.testbase.ParsingHelper;
+import com.sap.furcas.runtime.parser.testbase.stubs.StubParsingHelper;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 /**
@@ -22,19 +22,19 @@ public class TestXPathGeneration extends GeneratedParserBasedTest {
     private static final File[] METAMODELS = { ScenarioFixtureData.XPATH1_METAMODEL, ScenarioFixtureData.XPATH_METAMODEL };
     private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
     
-    private static ParsingHelper parsingHelper;
+    private static StubParsingHelper parsingHelper;
 
     @BeforeClass
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
         TCSSyntaxContainerBean syntaxBeanyntaxBean = parseSyntax(testConfig);
         ParserFacade facade = generateParserForLanguage(syntaxBeanyntaxBean, testConfig, new ClassLookupImpl());
-        parsingHelper = new ParsingHelper(facade);
+        parsingHelper = new StubParsingHelper(facade);
     }
 
     @Test
     public void testSample1() throws Exception {
-        parsingHelper.parseFile("XPathSample01.sam", DSLSAMPLEDIR);
+        parsingHelper.parseFile("XPathSample01.sam", DSLSAMPLEDIR, 0);
     }
 
     @Test

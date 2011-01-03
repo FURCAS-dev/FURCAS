@@ -247,4 +247,9 @@ public class DefaultTextAwareModelAdapter implements IModelAdapter {
         return TcsUtil.getSyntaxPartitions(conn, languageId);
     }
 
+    @Override
+    public Collection<Object> getElementsOfType(List<String> list) throws ModelAdapterException {
+        return modelAdapter.getElementsOfType(list);
+    }
+
 }

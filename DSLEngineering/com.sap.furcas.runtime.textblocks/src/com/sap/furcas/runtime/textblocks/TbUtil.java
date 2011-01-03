@@ -1,7 +1,5 @@
 package com.sap.furcas.runtime.textblocks;
 
-import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getParentBlock;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -13,17 +11,14 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
-import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
-import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksFactory;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.textblocks.shortprettyprint.ShortPrettyPrinter;
 
@@ -259,7 +254,7 @@ public class TbUtil {
 	Map<Integer, DocumentNode> levelMap = new HashMap<Integer, DocumentNode>();
 	levelMap.put(level, node);
 
-	TextBlock parent = getParentBlock(node);
+	TextBlock parent = node.getParent();
 	Integer curParentLevel = level - 1;
 	while (parent != null) {
 	    levelMap.put(curParentLevel, parent);
@@ -297,7 +292,7 @@ public class TbUtil {
 	    return false;
 	}
 
-	TextBlock loopParentBlock = TbNavigationUtil.getParentBlock(node);
+	TextBlock loopParentBlock = node.getParent();
 
 	while (loopParentBlock != null) {
 	    // could be infinite loop with cylces, but model prevents cycles
@@ -421,31 +416,6 @@ public class TbUtil {
                 }
             }
             return tbs;
-        }
-
-        public static void addForEachContext(TextBlock contextBlock, EObject sourceModelElement,
-            EObject currentForEachElement, ForeachPredicatePropertyInit sequenceElement, EObject resultElement) {
-            boolean forEachContextExists = false;
-            for (ForEachContext forEachContext : contextBlock.getForEachContext()) {
-                if(forEachContext.getForeachPedicatePropertyInit().equals(sequenceElement)) {
-                    if(forEachContext.getSourceModelElement().equals(sourceModelElement)) {
-                        if(!forEachContext.getContextElement().contains(currentForEachElement)) {
-                            forEachContext.getContextElement().add(currentForEachElement);
-                            forEachContext.setResultModelElement(resultElement);
-                        }
-                        forEachContextExists = true;
-                    }
-                }
-            }
-            if(!forEachContextExists) {
-                ForEachContext newContext = TextblocksFactory.eINSTANCE.createForEachContext();
-                newContext.setForeachPedicatePropertyInit(sequenceElement);
-                newContext.setSourceModelElement(sourceModelElement);
-                newContext.getContextElement().add(currentForEachElement);
-                newContext.setResultModelElement(resultElement);
-                contextBlock.getForEachContext().add(newContext);
-            }
-
         }
 
 }

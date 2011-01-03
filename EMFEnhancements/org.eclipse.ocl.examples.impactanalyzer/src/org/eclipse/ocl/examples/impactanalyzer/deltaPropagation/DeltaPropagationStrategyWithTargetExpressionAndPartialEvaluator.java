@@ -14,14 +14,14 @@ import org.eclipse.ocl.ecore.OCLExpression;
 
 public abstract class DeltaPropagationStrategyWithTargetExpressionAndPartialEvaluator extends
         DeltaPropagationStrategyWithTargetExpression {
-    private final PartialEvaluator evaluator;
+    private final PartialEvaluatorImpl evaluator;
 
-    protected DeltaPropagationStrategyWithTargetExpressionAndPartialEvaluator(OCLExpression propagatesTo, PartialEvaluator evaluator) {
+    protected DeltaPropagationStrategyWithTargetExpressionAndPartialEvaluator(OCLExpression propagatesTo, PartialEvaluatorImpl evaluator) {
         super(propagatesTo);
         this.evaluator = evaluator;
     }
     
-    protected PartialEvaluator getEvaluator() {
+    protected PartialEvaluatorImpl getEvaluator() {
         return evaluator;
     }
 

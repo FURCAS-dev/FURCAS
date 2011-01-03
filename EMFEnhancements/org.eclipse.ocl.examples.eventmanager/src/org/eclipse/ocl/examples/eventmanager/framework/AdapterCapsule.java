@@ -133,8 +133,7 @@ public class AdapterCapsule {
                 // VetoExceptions are OK, so pass them on to the next exception block
                 throw e;
             } catch (Exception e) {
-                //TODO
-                e.printStackTrace();
+                throw new RuntimeException(e);
             }
         }else{
             //ERROR The deferredNotifier must handle other types of invocation!!!

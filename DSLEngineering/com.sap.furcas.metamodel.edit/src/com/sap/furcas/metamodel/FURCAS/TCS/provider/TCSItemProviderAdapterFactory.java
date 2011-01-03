@@ -1455,26 +1455,26 @@ public class TCSItemProviderAdapterFactory extends TCSAdapterFactory implements 
     }
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg} instances.
+     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected QueryByIdentifierPArgItemProvider queryByIdentifierPArgItemProvider;
+    protected FilterByIdentifierPArgItemProvider filterByIdentifierPArgItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.QueryByIdentifierPArg}.
+     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
-    public Adapter createQueryByIdentifierPArgAdapter() {
-        if (queryByIdentifierPArgItemProvider == null) {
-            queryByIdentifierPArgItemProvider = new QueryByIdentifierPArgItemProvider(this);
+    public Adapter createFilterByIdentifierPArgAdapter() {
+        if (filterByIdentifierPArgItemProvider == null) {
+            filterByIdentifierPArgItemProvider = new FilterByIdentifierPArgItemProvider(this);
         }
 
-        return queryByIdentifierPArgItemProvider;
+        return filterByIdentifierPArgItemProvider;
     }
 
         /**
@@ -2033,7 +2033,7 @@ public class TCSItemProviderAdapterFactory extends TCSAdapterFactory implements 
         if (forcedUpperPArgItemProvider != null) forcedUpperPArgItemProvider.dispose();
         if (injectorActionsBlockItemProvider != null) injectorActionsBlockItemProvider.dispose();
         if (queryPArgItemProvider != null) queryPArgItemProvider.dispose();
-        if (queryByIdentifierPArgItemProvider != null) queryByIdentifierPArgItemProvider.dispose();
+        if (filterByIdentifierPArgItemProvider != null) filterByIdentifierPArgItemProvider.dispose();
         if (filterPArgItemProvider != null) filterPArgItemProvider.dispose();
         if (propertyReferenceItemProvider != null) propertyReferenceItemProvider.dispose();
         if (contextTemplateItemProvider != null) contextTemplateItemProvider.dispose();

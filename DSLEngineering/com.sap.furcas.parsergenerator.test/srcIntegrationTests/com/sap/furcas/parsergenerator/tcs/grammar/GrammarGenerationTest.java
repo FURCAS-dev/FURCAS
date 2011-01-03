@@ -5,23 +5,22 @@ import static org.junit.Assert.assertTrue;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.OutputStream;
-import java.util.Collections;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
-import com.sap.furcas.modeladaptation.emf.lookup.FileBasedEcoreMetaModelLookUp;
+import com.sap.furcas.modeladaptation.emf.lookup.FileResourceHelper;
+import com.sap.furcas.modeladaptation.emf.lookup.QueryBasedEcoreMetaModelLookUp;
 import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.parsergenerator.tcs.generator.SyntaxParser;
 import com.sap.furcas.parsergenerator.tcs.t2m.ModelBasedTCSGrammarGenerator;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ObservationDirectivesHelper;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
+import com.sap.furcas.test.testutils.ResourceTestHelper;
 
 /**
  * Simple test case that assures we can generate an ANTLR grammar from a given syntax definition.
@@ -37,20 +36,20 @@ public class GrammarGenerationTest {
     public void testBibTextGrammarGeneration() throws Exception {
 
         // this test relies on the contents of the BibText sample file
-        File sample = ScenarioFixtureData.BIBTEXT_TCS;
-        assertTrue(sample.exists());
-
+        File tcs = ScenarioFixtureData.BIBTEXT_TCS;
+        File[] metamodel = { ScenarioFixtureData.BIBTEXT_METAMODEL, ScenarioFixtureData.BIBTEXT1_METAMODEL };
+        ResourceSet resourceSet = FileResourceHelper.loadResourceSet(metamodel);
+        Set<URI> referenceScope = ResourceTestHelper.createEcoreReferenceScope();
+        
         OutputStream out = new ByteArrayOutputStream();
 
-        GrammarGenerationSourceConfiguration sourceConfiguration = new GrammarGenerationSourceConfiguration(
-                createResourceSet(), createReferenceScope());
+        GrammarGenerationSourceConfiguration sourceConfiguration = new GrammarGenerationSourceConfiguration(resourceSet, referenceScope);
 
-        TCSSyntaxContainerBean syntaxBean = SyntaxParser.parse(sourceConfiguration,sample);
+        TCSSyntaxContainerBean syntaxBean = SyntaxParser.parse(sourceConfiguration, tcs);
         ModelBasedTCSGrammarGenerator modelBasedGenerator = new ModelBasedTCSGrammarGenerator(out,
-                new FileBasedEcoreMetaModelLookUp(ScenarioFixtureData.BIBTEXT_METAMODEL, ScenarioFixtureData.BIBTEXT1_METAMODEL), "generated",
-                syntaxBean);
+                new QueryBasedEcoreMetaModelLookUp(resourceSet), "generated", syntaxBean);
 
-        modelBasedGenerator.generateGrammar(createResourceSet(), createReferenceScope(), null);
+        modelBasedGenerator.generateGrammar(resourceSet, referenceScope, null);
         out.flush();
 
         String grammar = out.toString();
@@ -69,19 +68,20 @@ public class GrammarGenerationTest {
     public void testExpressionGrammarGeneration() throws Exception {
 
         // this test relies on the contents of the Expression sample file
-        File sample = ScenarioFixtureData.EXPRESSION_TCS;
-        assertTrue(sample.exists());
+        File tcs = ScenarioFixtureData.EXPRESSION_TCS;
+        File[] metamodel = { ScenarioFixtureData.EXPRESSION_METAMODEL };
+        ResourceSet resourceSet = FileResourceHelper.loadResourceSet(metamodel);
+        Set<URI> referenceScope = ResourceTestHelper.createEcoreReferenceScope();
 
         OutputStream out = new ByteArrayOutputStream();
 
-        GrammarGenerationSourceConfiguration sourceConfiguration = new GrammarGenerationSourceConfiguration(
-                createResourceSet(), createReferenceScope());
+        GrammarGenerationSourceConfiguration sourceConfiguration = new GrammarGenerationSourceConfiguration(resourceSet, referenceScope);
 
-        TCSSyntaxContainerBean syntaxBean = SyntaxParser.parse(sourceConfiguration,sample);
+        TCSSyntaxContainerBean syntaxBean = SyntaxParser.parse(sourceConfiguration,tcs);
         ModelBasedTCSGrammarGenerator modelBasedGenerator = new ModelBasedTCSGrammarGenerator(out,
-                new FileBasedEcoreMetaModelLookUp(ScenarioFixtureData.EXPRESSION_METAMODEL), "generated", syntaxBean);
+                new QueryBasedEcoreMetaModelLookUp(resourceSet), "generated", syntaxBean);
 
-        modelBasedGenerator.generateGrammar(createResourceSet(), createReferenceScope(), null);
+        modelBasedGenerator.generateGrammar(resourceSet, referenceScope, null);
         out.flush();
 
         String grammar = out.toString();
@@ -100,17 +100,5 @@ public class GrammarGenerationTest {
         assertTrue(grammar.indexOf("(LPAREN ret=expression_expression RPAREN))") > -1);
 
         out.close();
-    }
-
-    private static Set<URI> createReferenceScope() {
-        Set<URI> referenceScope = Collections.emptySet();
-        return referenceScope;
-    }
-
-    private static ResourceSet createResourceSet() {
-        ResourceSet resourceSet = new ResourceSetImpl();
-        resourceSet.getPackageRegistry().put(FURCASPackage.eNS_URI, FURCASPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put(FURCASPackage.eNAME, FURCASPackage.eINSTANCE);
-        return resourceSet;
     }
 }

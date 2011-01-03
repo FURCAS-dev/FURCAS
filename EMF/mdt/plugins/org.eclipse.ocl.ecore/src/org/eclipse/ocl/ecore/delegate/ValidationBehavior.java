@@ -16,8 +16,9 @@
  */
 package org.eclipse.ocl.ecore.delegate;
 
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -27,6 +28,8 @@ import org.eclipse.ocl.ecore.ExpressionInOCL;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.delegate.ValidationDelegate.Factory;
+import org.eclipse.ocl.ecore.internal.OCLExpressionCacheAdapter;
+import org.eclipse.ocl.ecore.internal.OCLInvariantCacheAdapter;
 
 /**
  * @since 3.0
@@ -57,47 +60,115 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 	public Class<ValidationDelegate.Factory> getFactoryClass() {
 		return ValidationDelegate.Factory.class;
 	}
+	
+	/**
+	 * Return any operation body already in the cache, saving the caller the overhead
+	 * of setting up the redundant parsing environment needed for {@link getOperationBody}
+	 * 
+	 * @since 3.1
+	 */
+	public OCLExpression getCachedInvariant(EClassifier cls, String constraintName) {
+		OCLExpression result = getCachedInvariantBody(cls, constraintName);
+		if (result == null) {
+			result = getCachedExpression(cls, constraintName);
+			if (result != null) {
+				cacheInvariantBody(cls, constraintName, result);
+			}
+		} else if (hasNoOCLDefinition(result)) {
+			result = null; // clients can find that out by asking hasUncomiledInvariantBody
+		}
+		return result;
+	}
 
+	/**
+	 * Looks for an {@link OCLInvariantCacheAdapter} attached to
+	 * <code>cls</code>. If such an adapter is found, its
+	 * {@link OCLInvariantCacheAdapter#get(String) expression for constraint
+	 * <code>constraintName</code>} is returned; otherwise, <code>null</code> is
+	 * returned. A special expression may be returned indicating that for
+	 * <code>cls</code> no OCL expression exists for the constraint named
+	 * <code>constraintName</code> and that an unsuccessful attempt to obtain
+	 * one has been made before. To check for this case, callers shall use
+	 * {@link #hasNoOCLDefinition(OCLExpression)}. If it returns
+	 * <code>true</code>, no expression could be found.
+	 * @since 3.1
+	 */
+	public OCLExpression getCachedInvariantBody(EClassifier cls, String constraintName) {
+		for (Adapter a : cls.eAdapters()) {
+			if (a instanceof OCLInvariantCacheAdapter) {
+				return ((OCLInvariantCacheAdapter) a).get(constraintName);
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Creates an {@link OCLInvariantCacheAdapter} for expression <code>e</code> and adds
+	 * it to <code>n</code>'s adapter list so that {@link #getCachedOCLExpression(Notifier)}
+	 * will return <code>e</code> when called for <code>n</code>. To achieve this, any other
+	 * {@link OCLExpressionCacheAdapter} in <code>n</code>'s adapter list is removed.
+	 * @since 3.1
+	 */
+	public void cacheInvariantBody(EClassifier cls, String constraintName, OCLExpression e) {
+		OCLInvariantCacheAdapter adapter = null;
+		for (Adapter a : cls.eAdapters()) {
+			if (a instanceof OCLInvariantCacheAdapter) {
+				adapter = (OCLInvariantCacheAdapter) a;
+				break;
+			}
+		}
+		if (adapter == null) {
+			adapter = new OCLInvariantCacheAdapter();
+			cls.eAdapters().add(adapter);
+		}
+		adapter.put(constraintName, e);
+	}
+	
 	/**
 	 * @since 3.1
 	 */
-	public OCLExpression getInvariant(EModelElement cls, String constraintName, OCL ocl) {
-		OCLExpression result = getCachedExpression(cls, constraintName);
+	public OCLExpression getInvariant(EClassifier cls, String constraintName, OCL ocl) {
+		OCLExpression result = getCachedInvariant(cls, constraintName);
 		if (result != null) {
-			return result;
+			if (hasNoOCLDefinition(result)) {
+				return null;
+			} else {
+				return result;
+			}
 		}
 		OCLExpression invariant = null;
+		OCL.Helper helper = ocl.createOCLHelper();
+		helper.setContext(cls);
+		String expr = EcoreUtil.getAnnotation(cls,
+			OCLDelegateDomain.OCL_DELEGATE_URI, constraintName);
+		if (expr == null) {
+			cacheInvariantHasNoOCLBody(cls, constraintName);
+			return null;
+		}
+		Constraint constraint;
 		try {
-			OCL.Helper helper = ocl.createOCLHelper();
-			if (!(cls instanceof EClassifier)) {
-				return null;
-			}
-			helper.setContext((EClassifier) cls);
-			String expr = EcoreUtil.getAnnotation(cls, OCLDelegateDomain.OCL_DELEGATE_URI, constraintName);
-			if (expr == null) {
-				return null;
-			}
-			Constraint constraint;
-			try {
-				constraint = helper.createInvariant(expr);
-			} catch (ParserException e) {
-				throw new OCLDelegateException(e.getLocalizedMessage(), e);
-			}
-			if (constraint == null) {
-				return null;
-			}
-			ExpressionInOCL specification = (ExpressionInOCL) constraint.getSpecification();
-			if (specification == null) {
-				return null;
-			}
-			invariant = (OCLExpression) specification.getBodyExpression();
-			return invariant;
+			constraint = helper.createInvariant(expr);
+		} catch (ParserException e) {
+			throw new OCLDelegateException(e.getLocalizedMessage(), e);
 		}
-		finally {
-			cacheExpression(cls, invariant, constraintName);
+		if (constraint == null) {
+			return null;
 		}
+		ExpressionInOCL specification = (ExpressionInOCL) constraint
+			.getSpecification();
+		if (specification == null) {
+			return null;
+		}
+		invariant = (OCLExpression) specification.getBodyExpression();
+		cacheInvariantBody(cls, constraintName, invariant);
+		return invariant;
 	}
 	
+	private void cacheInvariantHasNoOCLBody(EClassifier cls,
+			String constraintName) {
+		cacheInvariantBody(cls, constraintName, new NullExpression());
+	}
+
 	public String getName() {
 		return NAME;
 	}
