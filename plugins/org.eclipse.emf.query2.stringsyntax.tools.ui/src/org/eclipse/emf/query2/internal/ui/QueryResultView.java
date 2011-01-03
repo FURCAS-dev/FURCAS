@@ -421,7 +421,7 @@ public class QueryResultView extends ViewPart {
 					column.pack();
 				}
 			}
-			statusLabel.setText(Messages.getString(Messages.Query2StringSyntaxToolsUI_QueryResultView_StatusLabelText, new String[]{Integer.toString(resultSize),Long.toString(duration)})); 
+			statusLabel.setText(Messages.getString(Messages.Query2StringSyntaxToolsUI_QueryResultView_StatusLabelText, new String[]{Integer.toString(resultSize),Long.toString(duration)}));
 		}
 
 	}
