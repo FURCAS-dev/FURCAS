@@ -65,7 +65,7 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
         transientParsingResource = ResourceTestHelper.createTransientResource(resourceSet);
         
         incrementalParserFacade = generateParserAndParserFactoryForLanguage(syntaxBean, testConfig,
-                editingDomain, oppositeEndFinder, new TestPartitionAssignmentHandler(transientParsingResource),
+                editingDomain, oppositeEndFinder, new MockPartitionAssignmentHandler(transientParsingResource),
                 new ClassLookupImpl());
         
         ECrossReferenceAdapter crossRefAdapter = new ECrossReferenceAdapter();
