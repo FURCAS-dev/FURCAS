@@ -8,13 +8,13 @@ import org.eclipse.emf.ecore.resource.Resource;
 
 import com.sap.ide.cts.parser.incremental.PartitionAssignmentHandler;
 
-public class TestPartitionAssignmentHandler implements
+public class MockPartitionAssignmentHandler implements
         PartitionAssignmentHandler {
     
     private final Resource partition;
 
     
-    public TestPartitionAssignmentHandler(Resource partition) {
+    public MockPartitionAssignmentHandler(Resource partition) {
         super();
         this.partition = partition;
     }
