@@ -35,13 +35,13 @@ import org.osgi.framework.BundleContext;
 public class DumpingAndLoadingOfIndicesTest extends Assert {
 
 	@Test
-	public void testIndexesDumpedAndLoadedOnProperShutdownOfIDE() throws Exception {
+	public void testDumpingOfIndicesOnIDEShutDownAndLoadingOfDumpedIndicesFromMemoryAtIDEStartUp() throws Exception {
 		Index index = IndexFactory.getInstance();
 		ResourceSet rs = new ResourceSetImpl();
 
 		List<URI> resourceURIs = new ArrayList<URI>();
 
-		System.out.print("Creating resources"); //$NON-NLS-1$
+		System.out.print(Messages.Query2IndexUITest_DumpingAndLoadingOfIndicesTest_CreatingResources);
 		long time = System.currentTimeMillis();
 
 		final Resource r1 = rs.createResource(URI.createFileURI(getDirectoryToDumpIndices() + "/r1.xmi")); //$NON-NLS-1$

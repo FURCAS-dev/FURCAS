@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: EMF Query2 Index UI Tests
+Bundle-Name: %Query2IndexUITest_Bundle_Name
 Bundle-SymbolicName: org.eclipse.emf.query2.index.ui.test
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Bundle-Vendor: EMF Modeling Project
+Bundle-Vendor: %Query2IndexUITest_Bundle_Vendor
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.junit4;bundle-version="4.5.0",
  org.eclipse.emf.query2.index;bundle-version="1.0.0",
