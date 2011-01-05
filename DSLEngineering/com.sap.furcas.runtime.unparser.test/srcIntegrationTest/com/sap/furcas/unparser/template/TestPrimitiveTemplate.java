@@ -1,6 +1,7 @@
-package com.sap.furcas.unparser;
+package com.sap.furcas.unparser.template;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.eclipse.emf.ecore.EObject;
 import org.junit.BeforeClass;
@@ -10,23 +11,29 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
 import com.sap.furcas.runtime.parser.ParserFacade;
+import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.testbase.EMFParsingHelper;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
-import com.sap.furcas.test.fixture.ScenarioFixtureData;
+import com.sap.furcas.test.fixture.FeatureFixtureData;
+import com.sap.furcas.unparser.SyntaxAndModelMismatchException;
 import com.sap.furcas.unparser.testutils.PrettyPrintAssertionUtil;
 import com.sap.furcas.unparser.testutils.PrettyPrintTestHelper;
 
-/**
- * Simple Test for the custom BibText language
- */
-public class TestFunctionTemplate extends GeneratedParserBasedTest {
 
-    private static final String LANGUAGE = "BibtextWithFunction";
-    private static final File TCS = ScenarioFixtureData.BIBTEXT_WITH_FUNCTION_TCS;
-    private static final File[] METAMODELS = { ScenarioFixtureData.BIBTEXT_METAMODEL, ScenarioFixtureData.BIBTEXT1_METAMODEL };
-    private static final String PACKAGE_URI = ScenarioFixtureData.BIBTEXT_PACKAGE_URI;
-    private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
+/**
+ * A testcase based on {@linkplain TestSynthesizedAttributeGrammar} asserting that the pretty printer
+ * can serialize OperatorTemplates. 
+ * 
+ * @author Stephan Erb
+ * 
+ */
+public class TestPrimitiveTemplate extends GeneratedParserBasedTest {
+
+    private static final String LANGUAGE = "PrimitiveTemplate";
+    private static final File TCS = FeatureFixtureData.PRIMITIVE_TEMPLATE_TCS;
+    private static final File[] METAMODELS = { FeatureFixtureData.PRIMITIVE_TEMPLATE_METAMODEL };
+    private static final String PACKAGE_URI = FeatureFixtureData.PRIMITIVE_PACKAGE_URI;
 
     private static EMFParsingHelper parsingHelper;
     private static ConcreteSyntax syntax;
@@ -43,12 +50,18 @@ public class TestFunctionTemplate extends GeneratedParserBasedTest {
 
     @Test
     public void testParseAndReprint() throws Exception {
-        ModelParsingResult result = parsingHelper.parseFile("FunctionTemplateBibTextSample.sam", DSLSAMPLEDIR, /*expected errors*/ 0);
+        reprintAndAssertIsEqual("1 2 0.333 foo \"bar\"");
+    }
+            
+    private void reprintAndAssertIsEqual(String text) throws IOException, UnknownProductionRuleException, SyntaxAndModelMismatchException {
+        String printed = parseAndReprintString(text);
+        PrettyPrintAssertionUtil.assertEqualsIgnoreWhitespaces(text, printed);
+    }
         
-        String expected = PrettyPrintTestHelper.readFile(DSLSAMPLEDIR + "FunctionTemplateBibTextSample.sam");
+    private String parseAndReprintString(String text) throws IOException, UnknownProductionRuleException, SyntaxAndModelMismatchException {
+        ModelParsingResult result = parsingHelper.parseString(text, /*expected errors*/ 0);
         String printed = PrettyPrintTestHelper.prettyPrintString((EObject) result.getParsedModelElement(), syntax);
-        
-        PrettyPrintAssertionUtil.assertEqualsIgnoreWhitespaces(expected, printed);
+        return printed;
     }
     
 }

@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Test
+Bundle-SymbolicName: com.sap.furcas.runtime.tcs.test
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: SAP
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.junit4;bundle-version="4.8.1",
+ com.sap.furcas.test,
+ com.sap.furcas.metamodel
+Export-Package: com.sap.furcas.runtime.tcs.testbase

@@ -51,6 +51,7 @@
     <module>com.sap.furcas.runtime.referenceresolving</module>
     <module>com.sap.furcas.runtime.referenceresolving.tests</module>
     <module>com.sap.furcas.runtime.tcs</module>
+    <module>com.sap.furcas.runtime.tcs.test</module>
     <module>com.sap.furcas.runtime.textblocks</module>
     <module>com.sap.furcas.runtime.textblocks.test</module>
     <module>com.sap.furcas.runtime.unparser</module>

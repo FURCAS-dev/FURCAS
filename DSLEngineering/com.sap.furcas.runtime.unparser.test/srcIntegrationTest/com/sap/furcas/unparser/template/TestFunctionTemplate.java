@@ -1,4 +1,4 @@
-package com.sap.furcas.unparser;
+package com.sap.furcas.unparser.template;
 
 import java.io.File;
 
@@ -20,10 +20,10 @@ import com.sap.furcas.unparser.testutils.PrettyPrintTestHelper;
 /**
  * Simple Test for the custom BibText language
  */
-public class TestClassTemplate extends GeneratedParserBasedTest {
+public class TestFunctionTemplate extends GeneratedParserBasedTest {
 
-    private static final String LANGUAGE = "Bibtext";
-    private static final File TCS = ScenarioFixtureData.BIBTEXT_TCS;
+    private static final String LANGUAGE = "BibtextWithFunction";
+    private static final File TCS = ScenarioFixtureData.BIBTEXT_WITH_FUNCTION_TCS;
     private static final File[] METAMODELS = { ScenarioFixtureData.BIBTEXT_METAMODEL, ScenarioFixtureData.BIBTEXT1_METAMODEL };
     private static final String PACKAGE_URI = ScenarioFixtureData.BIBTEXT_PACKAGE_URI;
     private static final String DSLSAMPLEDIR = "./scenarioTestSample/";
@@ -43,9 +43,9 @@ public class TestClassTemplate extends GeneratedParserBasedTest {
 
     @Test
     public void testParseAndReprint() throws Exception {
-        ModelParsingResult result = parsingHelper.parseFile("ClassTemplateBibTextSample.sam", DSLSAMPLEDIR, /*expected errors*/ 0);
+        ModelParsingResult result = parsingHelper.parseFile("FunctionTemplateBibTextSample.sam", DSLSAMPLEDIR, /*expected errors*/ 0);
         
-        String expected = PrettyPrintTestHelper.readFile(DSLSAMPLEDIR + "ClassTemplateBibTextSample.sam");
+        String expected = PrettyPrintTestHelper.readFile(DSLSAMPLEDIR + "FunctionTemplateBibTextSample.sam");
         String printed = PrettyPrintTestHelper.prettyPrintString((EObject) result.getParsedModelElement(), syntax);
         
         PrettyPrintAssertionUtil.assertEqualsIgnoreWhitespaces(expected, printed);

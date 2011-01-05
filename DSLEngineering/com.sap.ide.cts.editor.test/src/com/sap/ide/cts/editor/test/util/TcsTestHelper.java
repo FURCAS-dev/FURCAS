@@ -1,13 +1,11 @@
 package com.sap.ide.cts.editor.test.util;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
+import generated.TCSParser;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -66,42 +64,6 @@ public class TcsTestHelper {
 			e.printStackTrace();
 			fail("error creating syntax");
 			return null;
-		}
-	}
-
-	public static void assertByLines(String output, String referenceOutput) {
-		BufferedReader actualOutputStream = new BufferedReader(
-				new StringReader(output));
-
-		BufferedReader referenceOutputStream = new BufferedReader(
-				new StringReader(referenceOutput));
-
-		String refLine;
-		String actualLine;
-		int line = 0;
-		try {
-			refLine = referenceOutputStream.readLine();
-			actualLine = actualOutputStream.readLine();
-
-			while (refLine != null) {
-				assertEquals("error in line " + line
-						+ ":\n actual output was \n" + output
-						+ "\n reference output was \n " + referenceOutput
-						+ "\n", refLine, actualLine);
-				refLine = referenceOutputStream.readLine();
-				actualLine = actualOutputStream.readLine();
-				line++;
-			}
-
-			if (actualLine != null) {
-				fail("error in line " + line + ":\n actual output was \n"
-						+ output + "\n reference output was \n "
-						+ referenceOutput + "\n");
-			}
-
-		} catch (IOException e) {
-			e.printStackTrace();
-			fail("error comparing streams");
 		}
 	}
 
