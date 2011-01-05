@@ -33,11 +33,14 @@ public interface Index {
 
 	void executeUpdateCommand(UpdateCommand command);
 
+	/**
+	 * Saves the Indices into memory
+	 */
 	void save();
 
 	/**
-	 * @return Path of master dump file
-	 */ 
+	 * Loads the Indices from memory
+	 */
 	void load();
 	
 	/**

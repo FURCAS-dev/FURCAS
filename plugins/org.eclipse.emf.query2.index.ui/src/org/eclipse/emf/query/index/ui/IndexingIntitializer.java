@@ -17,12 +17,13 @@ import org.eclipse.ui.IStartup;
 public class IndexingIntitializer implements IStartup {
 
 	public void earlyStartup() {
-		// Check whether master dump file for indices exist or not. If the file does not exist then start a full build, otherwise a incremental build
+		// Check whether master dump file for indices exist or not. If the file
+		// does not exist then start a full build, otherwise a incremental build
 		// can be run.
-		Index index = IndexFactory.loadIndexes();
-		
+		Index index = IndexFactory.getInstance();
 		boolean indexFileExists = index.isDumpExists();
 		if (indexFileExists) {
+			IndexFactory.loadIndexes();
 			buildIndexes(QueryIndexBuilder.INCREMENTAL_BUILD);
 		} else {
 			buildIndexes(QueryIndexBuilder.FULL_BUILD);
@@ -38,15 +39,18 @@ public class IndexingIntitializer implements IStartup {
 	 *            Build
 	 */
 	private void buildIndexes(int buildKind) {
-		IProject[] projects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
+		IProject[] projects = ResourcesPlugin.getWorkspace().getRoot()
+				.getProjects();
 		for (int i = 0; i < projects.length; i++) {
 			try {
 				IProject iProject = projects[i];
 				if (iProject.isOpen()) {
-					String[] natureIds = iProject.getDescription().getNatureIds();
+					String[] natureIds = iProject.getDescription()
+							.getNatureIds();
 					for (int j = 0; j < natureIds.length; j++) {
 						if (QueryIndexNature.NATURE_ID.equals(natureIds[j])) {
-							iProject.refreshLocal(IResource.DEPTH_INFINITE, null);
+							iProject.refreshLocal(IResource.DEPTH_INFINITE,
+									null);
 							iProject.build(buildKind, new NullProgressMonitor());
 
 						}
