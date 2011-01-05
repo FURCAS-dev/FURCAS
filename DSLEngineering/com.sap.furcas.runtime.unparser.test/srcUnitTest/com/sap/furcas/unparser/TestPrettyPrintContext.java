@@ -1,4 +1,4 @@
-package com.sap.ide.cts.editor.prettyprint;
+package com.sap.furcas.unparser;
 
 import static org.junit.Assert.assertEquals;
 

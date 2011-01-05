@@ -8,8 +8,8 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: com.sap.furcas.unparser,
  com.sap.furcas.unparser.extraction,
  com.sap.furcas.unparser.extraction.textblocks,
- com.sap.furcas.unparser.testutils,
- com.sap.ide.cts.editor.prettyprint
+ com.sap.furcas.unparser.template,
+ com.sap.furcas.unparser.testutils
 Require-Bundle: org.antlr,
  org.junit;bundle-version="4.8.1",
  org.eclipse.core.resources;bundle-version="3.6.0",
