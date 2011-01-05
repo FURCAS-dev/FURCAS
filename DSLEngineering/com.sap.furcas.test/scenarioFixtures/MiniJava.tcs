@@ -38,14 +38,14 @@ syntax MiniJava {
         
         template FieldDeclaration :
                 visibility  
-                [[ "void" | type {query="OCL:self.parentClass.compilationUnit.imports.importedClass", "name"="?"} ]]
+                [[ "void" | type {query="OCL:self.owningClass.compilationUnit.imports.importedClass", "name"="?"} ]]
                 name
                 ";"                
         ;
         
         template MethodDeclaration :
                 visibility  
-                [[ "void" | type {query="OCL:self.parentClass.compilationUnit.imports.importedClass", "name"="?"} ]]
+                [[ "void" | type {query="OCL:self.owningClass.compilationUnit.imports.importedClass", "name"="?"} ]]
                 name "(" parameters{separator=","} ")"
                 "{"
                         body
@@ -53,7 +53,7 @@ syntax MiniJava {
         ;
         
         template Parameter :
-                type {query="OCL:self.parentClass.compilationUnit.imports.importedClass", "name"="?"}
+                type {query="OCL:self.owningDeclaration.owningClass.compilationUnit.imports.importedClass", "name"="?"}
                 name
         ;
         

@@ -17,7 +17,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassDeclaration" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
-        eType="#//MemberDeclaration" containment="true" eOpposite="#//MemberDeclaration/parentClass"/>
+        eType="#//MemberDeclaration" containment="true" eOpposite="#//MemberDeclaration/owningClass"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="#//Visibility"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="compilationUnit" eType="#//CompilationUnit"
         eOpposite="#//CompilationUnit/containedClass"/>
@@ -28,10 +28,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FieldDeclaration" eSuperTypes="#//MemberDeclaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="MemberDeclaration" abstract="true" eSuperTypes="#//TypedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parentClass" eType="#//ClassDeclaration"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" eType="#//ClassDeclaration"
         eOpposite="#//ClassDeclaration/members"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
-        eType="#//Parameter" containment="true"/>
+        eType="#//Parameter" containment="true" eOpposite="#//Parameter/owningDeclaration"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="#//Visibility"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MethodDeclaration" eSuperTypes="#//MemberDeclaration">
@@ -46,7 +46,10 @@
     <eLiterals name="public"/>
     <eLiterals name="protected"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Parameter" eSuperTypes="#//TypedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Parameter" eSuperTypes="#//TypedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningDeclaration" eType="#//MemberDeclaration"
+        eOpposite="#//MemberDeclaration/parameters"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypedElement" abstract="true" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//ClassDeclaration"/>
   </eClassifiers>
