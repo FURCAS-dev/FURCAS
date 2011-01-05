@@ -1042,6 +1042,15 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
         /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getConcreteSyntax_Uuid() {
+        return (EAttribute)concreteSyntaxEClass.getEStructuralFeatures().get(7);
+    }
+
+        /**
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -3415,6 +3424,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         createEReference(concreteSyntaxEClass, CONCRETE_SYNTAX__OPERATOR_LISTS);
         createEReference(concreteSyntaxEClass, CONCRETE_SYNTAX__TOKENS);
         createEAttribute(concreteSyntaxEClass, CONCRETE_SYNTAX__LEXER);
+        createEAttribute(concreteSyntaxEClass, CONCRETE_SYNTAX__UUID);
 
         templateEClass = createEClass(TEMPLATE);
         createEReference(templateEClass, TEMPLATE__CONCRETE_SYNTAX);
@@ -3899,6 +3909,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEReference(getConcreteSyntax_OperatorLists(), this.getOperatorList(), null, "operatorLists", null, 0, -1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getConcreteSyntax_Tokens(), this.getToken(), null, "tokens", null, 0, -1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getConcreteSyntax_Lexer(), ecorePackage.getEString(), "lexer", null, 1, 1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEAttribute(getConcreteSyntax_Uuid(), ecorePackage.getEString(), "uuid", null, 0, 1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(templateEClass, Template.class, "Template", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getTemplate_ConcreteSyntax(), this.getConcreteSyntax(), this.getConcreteSyntax_Templates(), "concreteSyntax", null, 1, 1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -4278,7 +4289,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * @generated
      */
     protected void createEmofAnnotations() {
-        String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml";		
+        String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml";			
         addAnnotation
           (getQualifiedNamedElement_MetaReference(), 
            source, 

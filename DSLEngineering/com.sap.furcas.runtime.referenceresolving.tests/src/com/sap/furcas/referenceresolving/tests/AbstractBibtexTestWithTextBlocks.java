@@ -30,6 +30,7 @@ import com.sap.furcas.runtime.textblocks.testutils.TestSourceTextBlockCreator;
 import com.sap.furcas.runtime.textblocks.testutils.TextBlocksModelElementFactory;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
 import com.sap.furcas.test.testutils.ResourceTestHelper;
+import com.sap.ide.cts.parser.incremental.DefaultPartitionAssignmentHandlerImpl;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 
 /**
@@ -74,7 +75,7 @@ public abstract class AbstractBibtexTestWithTextBlocks extends GeneratedParserAn
         TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
         syntax = syntaxBean.getSyntax();
         incrementalParserFacade = generateParserAndParserFactoryForLanguage(syntaxBean, testConfig,
-                editingDomain, oppositeEndFinder, new ClassLookupImpl());
+                editingDomain, oppositeEndFinder, new DefaultPartitionAssignmentHandlerImpl(), new ClassLookupImpl());
         ECrossReferenceAdapter crossRefAdapter = new ECrossReferenceAdapter();
         resourceSet.eAdapters().add(crossRefAdapter);
         crossRefAdapter.setTarget(resourceSet);

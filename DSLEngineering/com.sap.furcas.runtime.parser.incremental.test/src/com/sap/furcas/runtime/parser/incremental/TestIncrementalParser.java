@@ -47,7 +47,7 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
     private static IncrementalParserFacade incrementalParserFacade;
     
     private TextBlocksModelElementFactory modelFactory;
-    private Resource transientParsingResource;
+    private static Resource transientParsingResource;
     private static ResourceSet resourceSet;
 
     @BeforeClass
@@ -61,8 +61,12 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
         OppositeEndFinder oppositeEndFinder = DefaultOppositeEndFinder.getInstance();
         
         TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
+        
+        transientParsingResource = ResourceTestHelper.createTransientResource(resourceSet);
+        
         incrementalParserFacade = generateParserAndParserFactoryForLanguage(syntaxBean, testConfig,
-                editingDomain, oppositeEndFinder, new ClassLookupImpl());
+                editingDomain, oppositeEndFinder, new MockPartitionAssignmentHandler(transientParsingResource),
+                new ClassLookupImpl());
         
         ECrossReferenceAdapter crossRefAdapter = new ECrossReferenceAdapter();
         resourceSet.eAdapters().add(crossRefAdapter);
@@ -73,12 +77,12 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
     @Before
     public void setup() {
         modelFactory = new EMFTextBlocksModelElementFactory();
-        transientParsingResource = ResourceTestHelper.createTransientResource(resourceSet);
     }
     
     @After
     public void cleanup() throws Exception {
-        transientParsingResource.delete(/*options*/ null);
+        transientParsingResource.getContents().clear();
+        //transientParsingResource.delete(/*options*/ null);
     }
 
     @Test

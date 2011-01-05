@@ -12,6 +12,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
+
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
@@ -177,10 +179,13 @@ public class ANTLRGrammarGenerator {
         // TODO: Do not generate on validation errors?
 
         writer.setGrammarName(syntax.getName());
-        // FIXME: currently no id is defined / generated // EcoreUtil.getID(syntax)
         // this should really be a UUID so that we can identify if the syntax was newly 
         // generated. THis change in UUID is used to trigger the migration algorithms.
-        writer.setSyntaxUUID(syntax.getName());
+        // until TCS elements will all be identified by their UUIDs we will use the
+        // special UUID attribute to store a randomly generated UUID. See documentation
+        // of ConcreteSyntax:getUuid()
+        syntax.setUuid(EcoreUtil.generateUUID());
+        writer.setSyntaxUUID(syntax.getUuid());
 
         String lexerString = syntax.getLexer();
         if (lexerString == null) {

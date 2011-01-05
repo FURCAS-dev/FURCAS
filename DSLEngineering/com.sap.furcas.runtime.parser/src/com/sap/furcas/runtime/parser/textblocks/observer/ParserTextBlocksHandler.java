@@ -16,9 +16,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.query.index.ui.IndexFactory;
 import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.ResultSet;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
@@ -42,6 +42,7 @@ import com.sap.furcas.runtime.parser.impl.ModelElementProxy;
 import com.sap.furcas.runtime.parser.textblocks.ITextBlocksTokenStream;
 import com.sap.furcas.runtime.parser.textblocks.ParsingTextblocksActivator;
 import com.sap.furcas.runtime.textblocks.TbUtil;
+import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
 /**
  * This class handles the connection between the parser and the textblocks
@@ -86,6 +87,8 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	private final Collection<URI> mappingDefinitionPartitions;
 
 	private final Set<URI> queryScope;
+	
+	private final OppositeEndFinder oppositeEndFinder;
 
 
 	/**
@@ -116,6 +119,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 		this.metamodelContainerQueryScope = EcoreHelper.getQueryContext(moinConnection, this.queryScope);
 		this.input = input;
 		this.traverser = new TextBlockTraverser();
+		this.oppositeEndFinder = Query2OppositeEndFinder.getInstance();
 	}
 	
 	public void setConnection(ResourceSet conn) {
@@ -649,10 +653,11 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	 */
 	private TextBlock getTextBlockForElementAt(EObject element, ANTLR3LocationToken referenceToken) {
 		TextBlock tb = null;
-		Collection<EObject> nodes = org.eclipse.emf.query2.EcoreHelper.getInstance()
-			.reverseNavigate(element, 
-				TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(),
-				EcoreHelper.getQueryContext(resourceSet), resourceSet, false, IndexFactory.getInstance());
+                Collection<EObject> nodes = oppositeEndFinder
+                    .navigateOppositePropertyWithBackwardScope(
+                        TextblocksPackage.eINSTANCE
+                                .getDocumentNode_CorrespondingModelElements(),
+                                element);
 
 		for (EObject eObject : nodes) {
 		    DocumentNode node = (DocumentNode) eObject;

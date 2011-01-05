@@ -5,7 +5,6 @@ import java.util.HashSet;
 
 import org.antlr.runtime.Lexer;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
@@ -152,7 +151,6 @@ public class TbModelInitializationUtil {
             ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) {
 
         TextBlock rootBlock = null;
-        Resource partitionForTextBlocks = getPartitionForTextBlocks(rootObject);
 
         // TextBlockTCSExtractorStream target = new
         // TextBlockTCSExtractorStream(tbPackage, partitionForTextBlocks,
@@ -189,18 +187,8 @@ public class TbModelInitializationUtil {
      * @return
      */
     public static TextBlock createNewTextBlockForModel(EObject rootObject) {
-        Resource partitionForTextBlocks = getPartitionForTextBlocks(rootObject);
-        TextBlock rootBlock = createNewTextBlockModel(rootObject,
-                partitionForTextBlocks);
+        TextBlock rootBlock = createNewTextBlockModel(rootObject);
         return rootBlock;
-    }
-
-    /**
-     * TODO this has to be adapted if there is going to be an extra partition
-     * for model elements
-     */
-    private static Resource getPartitionForTextBlocks(EObject modelElement) {
-        return (modelElement).eResource();
     }
 
     /**
@@ -210,11 +198,9 @@ public class TbModelInitializationUtil {
      * @param partitionForTextBlocks
      * @return
      */
-    private static TextBlock createNewTextBlockModel(EObject rootObject,
-            Resource partitionForTextBlocks) {
+    private static TextBlock createNewTextBlockModel(EObject rootObject) {
         TextblocksFactory tbFactory = TextblocksFactory.eINSTANCE;
         TextBlock rootBlock = tbFactory.createTextBlock();
-        partitionForTextBlocks.getContents().add(rootBlock);
         rootBlock.getCorrespondingModelElements().add(rootObject);
         Bostoken bosToken = ANTLRIncrementalLexerAdapter.createBOSToken(
                 tbFactory, Version.REFERENCE,

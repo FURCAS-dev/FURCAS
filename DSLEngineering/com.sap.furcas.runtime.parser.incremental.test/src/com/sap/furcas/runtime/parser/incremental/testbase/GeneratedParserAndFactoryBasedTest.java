@@ -8,6 +8,7 @@ import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.common.exceptions.ParserGeneratorInvocationException;
 import com.sap.furcas.runtime.parser.testbase.ClassLookup;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
+import com.sap.ide.cts.parser.incremental.PartitionAssignmentHandler;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 
 /**
@@ -23,6 +24,7 @@ public abstract class GeneratedParserAndFactoryBasedTest extends GeneratedParser
 
     protected static IncrementalParserFacade generateParserAndParserFactoryForLanguage(TCSSyntaxContainerBean syntaxBean,
             GeneratedParserAndFactoryTestConfiguration testConfig, EditingDomain editingDomain, OppositeEndFinder oppositeEndFinder,
+            PartitionAssignmentHandler partitionAssignmentHandler,
             ClassLookup classLookup) throws GrammarGenerationException, ParserGeneratorInvocationException, InstantiationException, IllegalAccessException {
 
         ParserAndFactoryGenerator generator = new ParserAndFactoryGenerator(testConfig);
@@ -33,7 +35,7 @@ public abstract class GeneratedParserAndFactoryBasedTest extends GeneratedParser
             generator.compileParser();
             generator.compileParserFactory();
 
-            return generator.loadIncrementalParserFacade(classLookup, editingDomain, oppositeEndFinder);
+            return generator.loadIncrementalParserFacade(classLookup, editingDomain, oppositeEndFinder, partitionAssignmentHandler);
         } finally {
             generator.cleanUp();
         }

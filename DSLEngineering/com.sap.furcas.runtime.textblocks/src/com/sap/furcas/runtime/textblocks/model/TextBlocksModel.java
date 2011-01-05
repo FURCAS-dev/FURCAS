@@ -434,7 +434,7 @@ public class TextBlocksModel {
 		    if (tok instanceof LexedToken) {
 			String newValue = shortPrettyPrinter.resynchronizeToEditableState(tok);
 			// TODO check what to do with the empty string case!
-			if (!newValue.equals(tok.getValue()) && !newValue.equals("")) {
+			if (newValue != null && !newValue.equals(tok.getValue()) && !newValue.equals("")) {
 			    int length = tok.getLength();
 			    int offset = TbUtil.getAbsoluteOffset(tok);
 			    if (newValue.length() != length) {

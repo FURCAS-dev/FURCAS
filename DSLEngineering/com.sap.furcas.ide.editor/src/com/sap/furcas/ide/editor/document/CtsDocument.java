@@ -15,6 +15,7 @@ import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.furcas.ide.editor.CtsActivator;
 import com.sap.furcas.ide.editor.FurcasDocumentSetupParticpant;
+import com.sap.furcas.ide.editor.recovery.ModelEditorInputRecoveryStrategy;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
@@ -22,7 +23,9 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.textblocks.TbUtil;
+import com.sap.ide.cts.parser.incremental.DefaultPartitionAssignmentHandlerImpl;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
+import com.sap.ide.cts.parser.incremental.PartitionAssignmentHandler;
 import com.sap.ide.cts.parser.incremental.TextBlockMappingBrokenException;
 import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
@@ -43,17 +46,19 @@ public class CtsDocument extends AbstractDocument {
     private boolean completelyItitialized = false;
     private FurcasDocumentSetupParticpant furcasDocumentSetupParticpant;
     private ConcreteSyntax syntax;
-    private final Resource resource;
     private final EditingDomain editingDomain;
     private final OppositeEndFinder oppositeEndFinder;
     private final ModelEditorInput modelEditorInput;
+    private final PartitionAssignmentHandler partitionHandler;
     /**
      * Creates a new empty document.
      */
     public CtsDocument(ModelEditorInput modelEditorInput, EditingDomain editingDomain) {
 	super();
         this.modelEditorInput = modelEditorInput;
-	this.resource = modelEditorInput.getEObject().eResource();
+        this.partitionHandler = new DefaultPartitionAssignmentHandlerImpl();
+	Resource defaultResource = modelEditorInput.getEObject().eResource();
+	this.partitionHandler.setDefaultPartition(defaultResource);
         this.editingDomain = editingDomain;
         this.oppositeEndFinder = Query2OppositeEndFinder.getInstance();
 	completeInitialization();
@@ -75,7 +80,7 @@ public class CtsDocument extends AbstractDocument {
      */
     public void completeInit(ConcreteSyntax concreteSyntax, ClassTemplate rootTemplate,
 	    ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory,
-	    /*ModelEditorInputRecoveryStrategy recoveryStrategy,*/ ObservableInjectingParser observableInjectingParser, IProgressMonitor monitor) {
+	    ModelEditorInputRecoveryStrategy recoveryStrategy, ObservableInjectingParser observableInjectingParser, IProgressMonitor monitor) {
 
 	syntax = concreteSyntax;
 //	GlobalDelayedReferenceResolver.getInstance().registerReferenceForIncrementalEvaluation(syntax, syntax.get___Connection(),
@@ -84,7 +89,7 @@ public class CtsDocument extends AbstractDocument {
 //			parserFactory.getRuleNameFinder(), monitor);
 
 	//TODO this needs to be done on a specifically designated sub element
-	EObject inputObject = resource.getContents().iterator().next();
+	EObject inputObject = partitionHandler.getDefaultPartition().getContents().iterator().next();
 	if (inputObject instanceof TextBlock) {
 	    if (TbUtil.isTextBlockOfType(rootTemplate, (TextBlock) inputObject)) {
 		rootBlock = (TextBlock) inputObject;
@@ -94,7 +99,7 @@ public class CtsDocument extends AbstractDocument {
 	    }
 	} else {
 	    rootObject = inputObject;
-	    rootBlock = determineRootBlockForRootObject(concreteSyntax, rootTemplate, parserFactory, /*recoveryStrategy,*/
+	    rootBlock = determineRootBlockForRootObject(concreteSyntax, rootTemplate, parserFactory, recoveryStrategy,
 		    inputObject);
 	}
 
@@ -104,7 +109,7 @@ public class CtsDocument extends AbstractDocument {
 	    return;
 	}
 
-	ResourceSet rs = resource.getResourceSet();
+	ResourceSet rs = editingDomain.getResourceSet();
 	EPackage metamodelPackage = parserFactory.getMetamodelPackage(rs);
 	TextBlocksModelStore textBlocksModelStore = new TextBlocksModelStore(editingDomain, rootBlock, new EMFModelAdapter(metamodelPackage,
 		rs, null));
@@ -139,27 +144,30 @@ public class CtsDocument extends AbstractDocument {
      */
     private TextBlock determineRootBlockForRootObject(ConcreteSyntax concreteSyntax, ClassTemplate rootTemplate,
 	    ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory,
-	    /*ModelEditorInputRecoveryStrategy recoveryStrategy,*/ EObject inputObject) {
+	    ModelEditorInputRecoveryStrategy recoveryStrategy, EObject inputObject) {
 
-	ResourceSet con = resource.getResourceSet();
 	TextblocksPackage tbPackage = TextblocksPackage.eINSTANCE;
 	TextBlock rootBlock = null;
 	try {
+	  //note: ensure that if exists the textblock partition belonging to the model partition is loaded
+            //into the resource set
 	    rootBlock = TbModelInitializationUtil.getRootBlockForRootObject(inputObject, oppositeEndFinder, rootTemplate);
 	} catch (TextBlockMappingBrokenException e) {
 	    TextBlock blockInError = e.getBlock();
-	    //rootBlock = recoveryStrategy.recoverBrokenTextBlockMapping(inputObject, blockInError, rootTemplate);
+	    rootBlock = recoveryStrategy.recoverBrokenTextBlockMapping(inputObject, blockInError, rootTemplate);
 	}
 
 	if (rootBlock == null) {
 	    // no root node found, so create a new one
 	    rootBlock = TbModelInitializationUtil.initilizeTextBlocksFromModel(inputObject, tbPackage, concreteSyntax,
 	            editingDomain, parserFactory);
+	    partitionHandler.assignToDefaultTextBlocksPartition(rootBlock);
 	}
 
 	if (rootBlock == null) {
 	    // pretty printer failed, just create a new TB Model
 	    rootBlock = TbModelInitializationUtil.createNewTextBlockForModel(inputObject);
+	    partitionHandler.assignToDefaultTextBlocksPartition(rootBlock);
 	}
 	return rootBlock;
     }
@@ -240,6 +248,10 @@ public class CtsDocument extends AbstractDocument {
 
     public void reduceToMinimalState() {
 	((TextBlocksModelStore) getStore()).reduceToMinimalState();
+    }
+
+    public PartitionAssignmentHandler getPartitionHandler() {
+        return partitionHandler;
     }
 
 }
