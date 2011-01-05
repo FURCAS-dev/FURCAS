@@ -41,6 +41,7 @@ import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParserGenerator;
 import com.sap.furcas.runtime.parser.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.furcas.runtime.tcs.RuleNameFinder;
+import com.sap.ide.cts.parser.incremental.PartitionAssignmentHandler;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRParserFactory;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 import com.sun.tools.javac.Main;
@@ -172,7 +173,7 @@ public class ParserAndFactoryGenerator extends ParserGenerator {
     }
 
     public IncrementalParserFacade loadIncrementalParserFacade(ClassLookup classLookup, EditingDomain editingDomain,
-            OppositeEndFinder oppositeEndFinder) throws ParserGeneratorInvocationException, InstantiationException,
+            OppositeEndFinder oppositeEndFinder, PartitionAssignmentHandler partitionAssignmentHandler) throws ParserGeneratorInvocationException, InstantiationException,
             IllegalAccessException {
 
         AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory =
@@ -184,7 +185,7 @@ public class ParserAndFactoryGenerator extends ParserGenerator {
         IModelAdapter modelAdapter = new TextBlocksAwareModelAdapter(new EMFModelAdapter(
             parserFactory.getMetamodelPackage(resourceSet),resourceSet, referenceScope));
 
-        return new IncrementalParserFacade(parserFactory, modelAdapter, editingDomain, referenceScope, oppositeEndFinder);
+        return new IncrementalParserFacade(parserFactory, modelAdapter, editingDomain, referenceScope, oppositeEndFinder, partitionAssignmentHandler);
     }
 
     @SuppressWarnings("unchecked")

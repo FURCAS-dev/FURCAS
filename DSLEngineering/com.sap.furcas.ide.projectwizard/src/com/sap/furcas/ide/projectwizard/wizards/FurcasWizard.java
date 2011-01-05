@@ -105,7 +105,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
     public FurcasWizard() {
         super();
         setNeedsProgressMonitor(true);
-        setWindowTitle("Furcas DSL Engineering Project Creator");
+        setWindowTitle(Messages.FurcasWizard_1);
     }
 
     /**
@@ -125,13 +125,15 @@ public class FurcasWizard extends Wizard implements INewWizard {
     protected ImageDescriptor getDefaultImageDescriptor() {
         cL = this.getClass().getClassLoader();
         ImageDescriptor iD = null;
-        URL url = cL.getResource("icons/furcasdeath.gif");
+        URL url = cL.getResource("icons/furcasdeath.gif"); //$NON-NLS-1$
         iD = ImageDescriptor.createFromURL(url);
         return iD;
     }
 
     /**
      * This method is called, when pressing the finish button in the wizard. It calls the doFinish method.
+     * {@link #doFinish(ProjectInfo, IProgressMonitor) doFinish}
+     * TODO
      */
     @Override
     public boolean performFinish() {
@@ -149,11 +151,11 @@ public class FurcasWizard extends Wizard implements INewWizard {
         try {
             getContainer().run(true, false, op);
         } catch (InvocationTargetException e) {
-            MessageDialog.openError(getShell(), "Error",
-                    "InvocationTargetException while in main process of creation" + e.getMessage());
+            MessageDialog.openError(getShell(), "Error", //$NON-NLS-1$
+                    Messages.FurcasWizard_3 + e.getMessage());
         } catch (InterruptedException e) {
-            MessageDialog.openError(getShell(), "Error",
-                    "InterruptedException while in main process of creation" + e.getMessage());
+            MessageDialog.openError(getShell(), "Error", //$NON-NLS-1$
+                    Messages.FurcasWizard_5 + e.getMessage());
         }
 
         return true;
@@ -164,8 +166,8 @@ public class FurcasWizard extends Wizard implements INewWizard {
      * This method actually does all the work, after the Finish button is pressed. First it creates a new instance of the {@link}
      * CreateProject class and calls its <code>run()</code> method. This leads to the creation of the Language Project with all
      * its generated files, packages, folders and code. Afterwards {@link}createMMProject() creates another project for the
-     * MetaModel and doAdditional() creates the new .ecore file. loadmm() leads to loading an existing Metamodel into the new one.
-     * But those steps only happen if the user wants to create a fresh Metamodel project. Afterwords the method
+     * MetaModel and doAdditional() creates the new .ecore file. loadmm() leads to loading an existing metamodel into the new one.
+     * But those steps only happen if the user wants to create a fresh metamodel project. Afterwards the method
      * <code>generateSpecific()</code> generates all the MetaModel related files and coding into the Language Project.
      * 
      * @param pi
@@ -174,7 +176,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
      *            The progress monitor.
      */
     public void doFinish(final ProjectInfo pi, IProgressMonitor monitor) {
-        new UIJob("creating FURCAS projects...") {
+        new UIJob(Messages.FurcasWizard_0) {
             @Override
             public IStatus runInUIThread(IProgressMonitor monitor) {
 
@@ -192,7 +194,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
     public void deleteJunk(ProjectInfo pi, IProgressMonitor monitor) {
         if (!pi.isLoadMetamodel()) {
             IWorkspace workspace = ResourcesPlugin.getWorkspace();
-            IProject metamodelProject = workspace.getRoot().getProject(pi.getProjectName() + ".metamodel");
+            IProject metamodelProject = workspace.getRoot().getProject(pi.getProjectName() + ".metamodel"); //$NON-NLS-1$
             try {
                 metamodelProject.delete(true, new SubProgressMonitor(monitor, 1));
             } catch (CoreException e) {
@@ -233,7 +235,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
                     CreateMMProject.create(getFurcasWizard(), progressMonitor, pi);
                 } catch (CodeGenerationException e) {
                     getFurcasWizard().setHadError(true);
-                    MessageDialog.openError(getShell(), "Error", e.getMessage());
+                    MessageDialog.openError(getShell(), "Error", e.getMessage()); //$NON-NLS-1$
                 }
 
             }
@@ -263,10 +265,10 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 IEditorDescriptor defaultEditor = workbench.getEditorRegistry().getDefaultEditor(
                         modelFile.getFullPath().toString());
                 wpage.openEditor(new FileEditorInput(modelFile),
-                        defaultEditor == null ? "org.eclipse.emf.ecore.presentation.EcoreEditorID" : defaultEditor.getId());
+                        defaultEditor == null ? "org.eclipse.emf.ecore.presentation.EcoreEditorID" : defaultEditor.getId()); //$NON-NLS-1$
             } catch (PartInitException exception) {
                 MessageDialog.openError(workbenchWindow.getShell(),
-                        EcoreEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
+                        EcoreEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage()); //$NON-NLS-1$
             }
 
         } else {
@@ -293,8 +295,8 @@ public class FurcasWizard extends Wizard implements INewWizard {
      * Get the model file.
      */
     public IFile getModelFile() {
-        Path path = new Path(page.getProjectInfo().getProjectName() + ".metamodel/model/"
-                + CreateProject.capitalizeFirstChar(page.getProjectInfo().getLanguageName()) + ".ecore");
+        Path path = new Path(page.getProjectInfo().getProjectName() + ".metamodel/model/" //$NON-NLS-1$
+                + CreateProject.capitalizeFirstChar(page.getProjectInfo().getLanguageName()) + ".ecore"); //$NON-NLS-1$
 
         return ResourcesPlugin.getWorkspace().getRoot().getFile(path);
     }
@@ -317,7 +319,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 // instantiates the configuration take a look at EcoreMetaProjectConf for more details
                 // uses the new PRI list in the ReferenceScope to load the referenced metamodel from registered packages
                 //
-                conf = new EcoreMetaProjectConf(project, "", pi.getNsURI());
+                conf = new EcoreMetaProjectConf(project, "", pi.getNsURI()); //$NON-NLS-1$
             } else {
                 // instantiates the configuration, take a look at EcoreMetaProjectConf for more details
                 // uses the ResourceSet in the ReferenceScope to load the referenced metamodel in the workspace
@@ -329,21 +331,21 @@ public class FurcasWizard extends Wizard implements INewWizard {
             try {
                 ProjectMetaRefConfFactory.configure(project, conf);
             } catch (CoreException e) {
-                throw new CodeGenerationException("Failed configure the metamodel connection for the project", e.getCause());
+                throw new CodeGenerationException(Messages.FurcasWizard_14, e.getCause());
             }
 
             // Builds, refreshs, cleans the project to make sure, that all files will be found and generated
             //
-            monitor.subTask("Refreshing, Rebuilding, Cleaning the project");
+            monitor.subTask(Messages.FurcasWizard_15);
             try {
                 project.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
-                IFolder folder = project.getFolder("generated").getFolder("generated");
+                IFolder folder = project.getFolder("generated").getFolder("generated"); //$NON-NLS-1$ //$NON-NLS-2$
                 folder.refreshLocal(1, new NullProgressMonitor());
                 project.build(IncrementalProjectBuilder.CLEAN_BUILD, monitor);
                 project.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
 
             } catch (CoreException e) {
-                throw new CodeGenerationException("Failed to build, refresh or clean Workspace", e.getCause());
+                throw new CodeGenerationException(Messages.FurcasWizard_18, e.getCause());
             } 
 
         }
@@ -366,25 +368,24 @@ public class FurcasWizard extends Wizard implements INewWizard {
     @Override
     public void init(IWorkbench workbench, IStructuredSelection selection) {
         this.workbench = workbench;
-        setWindowTitle(EcoreEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
+        setWindowTitle(EcoreEditorPlugin.INSTANCE.getString("_UI_Wizard_label")); //$NON-NLS-1$
         setDefaultPageImageDescriptor(getDefaultImageDescriptor());
     }
 
-    /**
-     * @param pi
-     * @param monitor
-     */
+
     public void structuredProcess(final ProjectInfo pi, IProgressMonitor monitor) {
         CreateProject cP = new CreateProject(pi, getShell(), getFurcasWizard());
+        // All in one try block, add comments
+        //
         try {
             cP.run(monitor);
         } catch (InvocationTargetException e) {
             hadError = true;
-            MessageDialog.openError(getShell(), "Error",
-                    "InvocationTargetException while creating language project:" + e.getMessage());
+            MessageDialog.openError(getShell(), "Error", //$NON-NLS-1$
+                    Messages.FurcasWizard_21 + e.getMessage());
         } catch (InterruptedException e) {
             hadError = true;
-            MessageDialog.openError(getShell(), "Error", e.getMessage());
+            MessageDialog.openError(getShell(), "Error", e.getMessage()); //$NON-NLS-1$
         }
         IProject project = cP.project;
 
@@ -393,14 +394,14 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 doAdditional(pi);
             } catch (CodeGenerationException e) {
                 hadError = true;
-                MessageDialog.openError(getShell(), "Error", e.getMessage());
+                MessageDialog.openError(getShell(), "Error", e.getMessage()); //$NON-NLS-1$
             } catch (InvocationTargetException e) {
                 hadError = true;
-                MessageDialog.openError(getShell(), "Error",
-                        "InvocationTargetException while creating metamodel project:" + e.getMessage());
+                MessageDialog.openError(getShell(), "Error", //$NON-NLS-1$
+                        Messages.FurcasWizard_25 + e.getMessage());
             } catch (InterruptedException e) {
                 hadError = true;
-                MessageDialog.openError(getShell(), "Error", e.getMessage());
+                MessageDialog.openError(getShell(), "Error", e.getMessage()); //$NON-NLS-1$
             }
         }
         if (!hadError) {
@@ -408,7 +409,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 generateSpecific(project, pi, monitor);
             } catch (CodeGenerationException e) {
                 hadError = true;
-                MessageDialog.openError(getShell(), "Error", e.getMessage());
+                MessageDialog.openError(getShell(), "Error", e.getMessage()); //$NON-NLS-1$
             }
         }
         if (hadError) {

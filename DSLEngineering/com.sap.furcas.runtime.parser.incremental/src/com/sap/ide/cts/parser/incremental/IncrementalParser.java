@@ -98,8 +98,10 @@ public class IncrementalParser extends IncrementalRecognizer {
             ParserFactory<?, ?> parserFactory,
             IncrementalLexer incrementalLexer,
             ObservableInjectingParser batchParser,
-            TextBlockReuseStrategy reuseStrategy, Set<URI> additionalCRIScope,
-            OppositeEndFinder oppositeEndFinder) {
+            TextBlockReuseStrategy reuseStrategy,
+            Set<URI> additionalCRIScope,
+            OppositeEndFinder oppositeEndFinder,
+            PartitionAssignmentHandler partitionAssignmentHandler) {
         super(editingDomain);
         this.parserFactory = parserFactory;
         this.additionalCRIScope = additionalCRIScope;
@@ -112,7 +114,7 @@ public class IncrementalParser extends IncrementalRecognizer {
                 .getTokenStream();
         this.batchParser = batchParser;
         this.oppositeEndFinder = oppositeEndFinder;
-        this.partitionHandler = new DefaultPartitionAssignmentHandlerImpl();
+        this.partitionHandler = partitionAssignmentHandler;
         this.referenceHandler = new ReferenceHandlerImpl(batchParser,
                 tbtokenStream);
         this.modelElementFactory = new ModelElementFromTextBlocksFactoryImpl(
@@ -122,7 +124,6 @@ public class IncrementalParser extends IncrementalRecognizer {
         this.reuseStrategy = reuseStrategy;
         this.reuseStrategy.setReferenceHandler(getReferenceHandler());
         this.reuseStrategy.setTextBlockFactory(tbFactory);
-
     }
 
     public TextBlock incrementalParse(TextBlock root) {
@@ -457,7 +458,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 
         TokenRelocationUtil.makeRelativeOffsetRecursively(resultBean.textBlock);
         result = resultBean.textBlock;
-        partitionHandler.assignToPartition(result, oldVersion);
+        partitionHandler.assignToDefaultTextBlocksPartition(result);
         if (resultBean.reuseType
                 .equals(TextBlockReuseStrategy.ReuseType.DELETE)) {
             // the element that was created for the new textblock has to be

@@ -23,6 +23,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax#getOperatorLists <em>Operator Lists</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax#getTokens <em>Tokens</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax#getLexer <em>Lexer</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax#getUuid <em>Uuid</em>}</li>
  * </ul>
  * </p>
  *
@@ -191,5 +192,30 @@ public interface ConcreteSyntax extends NamedElement {
      * @generated
      */
         void setLexer(String value);
+
+        /**
+     * Returns the value of the '<em><b>Uuid</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * This attribute is used to uniquely identify a snapshot of a syntax. It should be set/re-set when generating a parser from the syntax. As there is some indeterminism in the ANTLR parser generator we cannot rely that even an unmodified syntax will produce the same parser. To handle migration of existing TextBlocks models we need to detect if a parser was generated from exactly one specific syntax snapshot.
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Uuid</em>' attribute.
+     * @see #setUuid(String)
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getConcreteSyntax_Uuid()
+     * @model
+     * @generated
+     */
+    String getUuid();
+
+        /**
+     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax#getUuid <em>Uuid</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Uuid</em>' attribute.
+     * @see #getUuid()
+     * @generated
+     */
+    void setUuid(String value);
 
 } // ConcreteSyntax

@@ -41,7 +41,7 @@ public class ModelEditorInput implements IEditorInput {
     @Override
     public String getName() {
         EStructuralFeature nameFeat = eObject.eClass().getEStructuralFeature("name");
-        if(nameFeat != null) {
+        if(nameFeat != null && eObject.eGet(nameFeat) != null) {
             return (String) eObject.eGet(nameFeat);
         } else if(EcoreUtil.getID(eObject) != null) {
             return EcoreUtil.getID(eObject);

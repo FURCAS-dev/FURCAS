@@ -1,5 +1,8 @@
 package com.sap.ide.cts.parser.incremental;
 
+import java.io.IOException;
+import java.util.Map;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
@@ -28,4 +31,28 @@ public interface PartitionAssignmentHandler {
 	 * {@link #setDefaultPartition(Resource)}.
 	 */
 	void assignToDefaultPartition(EObject element);
+
+	/**
+	 * Assigns the given element to the default textblocks partition. Notice, however
+	 * that if the element is not an element of the TextBlocks metamodel the element will
+	 * NOT be added.
+	 * 
+	 * @param element the textblocks element to add to the default textblocks partition.
+	 */
+        void assignToDefaultTextBlocksPartition(EObject element);
+
+        /**
+         * Returns the default model element resource set by {@link #setDefaultPartition(Resource)}.
+         * 
+         * @return the default model {@link Resource}
+         */
+        Resource getDefaultPartition();
+
+        /**
+         * Saves all handled partitions.
+         * 
+         * @param options the options to use when saving the handled partitions.
+         * @throws IOException re-throws any exception that occurs when saving the partitions.
+         */
+        void saveAllPartitions(Map<?,?> options) throws IOException;
 }

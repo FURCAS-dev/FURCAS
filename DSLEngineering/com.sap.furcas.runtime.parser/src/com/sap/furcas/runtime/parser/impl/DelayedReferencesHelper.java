@@ -163,7 +163,8 @@ public class DelayedReferencesHelper {
                             } else {
                                 // handle the base types
                                 if (!(next instanceof String) || !(next instanceof Number)) {
-                                    reportProblem("The OCL element " + next + " cannot be used.", reference.getToken());
+                                    reportProblem("The OCL element " + next + " cannot be used, as it is neither of type String nor a Number",
+                                            reference.getToken());
                                     return false;
                                 }
                             }
@@ -171,7 +172,7 @@ public class DelayedReferencesHelper {
                             ruleName = activePredicateSemantic.getAs();
                         }
                         if (ruleName == null) {
-                            reportProblem("At least one as parameter is needet in that case.", reference.getToken());
+                            reportProblem("At least one as parameter is needed in that case.", reference.getToken());
                             return false;
                         }
                         if (reference.getTextBlock() != null) {

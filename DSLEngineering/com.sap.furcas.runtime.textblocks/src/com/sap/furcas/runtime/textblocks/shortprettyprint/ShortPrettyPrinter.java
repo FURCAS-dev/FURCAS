@@ -156,7 +156,11 @@ public class ShortPrettyPrinter {
 	}
 	AsPArg asParg = TcsUtil.getAsPArg(se);
         Template template = PrettyPrinterUtil.getAsTemplate(asParg);
-        return PrettyPrinterUtil.printUsingSerializer(newvalue, template);
+        if(newvalue.equals(token.getValue())) {
+            return newvalue;
+        } else {
+            return PrettyPrinterUtil.printUsingSerializer(newvalue, template);
+        }
     }
 
 	private String invertOclQuery(EObject self, LexedToken token, Property se,
