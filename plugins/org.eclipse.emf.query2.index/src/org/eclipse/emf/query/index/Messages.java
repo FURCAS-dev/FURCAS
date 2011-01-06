@@ -3,7 +3,7 @@ package org.eclipse.emf.query.index;
 import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.emf.query.index.messages"; //$NON-NLS-1$
+	public static final String BUNDLE_NAME = "org.eclipse.emf.query.index.messages"; //$NON-NLS-1$
 	public static String Query2Index_AbstractMapBase_NoElementFound;
 	public static String Query2Index_AbstractMapBase_SizeCounterDiffers;
 	public static String Query2Index_IndexUpdaterImpl_ResourceAlreadyInUse;
