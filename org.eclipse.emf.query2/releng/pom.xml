@@ -38,6 +38,7 @@
 		<module>../tests/org.eclipse.emf.query2.test</module>
 		<module>../tests/org.eclipse.emf.query2.librarytest</module>
 		<module>../tests/org.eclipse.emf.query2.syntax.test</module>
+		<module>../tests/org.eclipse.emf.query2.globalization.test</module>
 
 		<!-- test features -->
 		<module>../tests/org.eclipse.emf.query2.test.feature</module>

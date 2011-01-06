@@ -64,4 +64,11 @@ Martin Strenge - initial API, implementation and documentation
          version="0.0.0"
          unpack="false"/>
 
+   <plugin
+         id="org.eclipse.emf.query2.globalization.test"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>
