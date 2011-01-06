@@ -17,3 +17,4 @@ Require-Bundle: org.eclipse.ui,
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: %Query2StringSyntaxToolsUI_Bundle_Vendor
+Export-Package: org.eclipse.emf.query2.internal.ui

@@ -6,7 +6,7 @@ import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
 	
-	private static final String BUNDLE_NAME = "org.eclipse.emf.query2.messages"; //$NON-NLS-1$
+	public static final String BUNDLE_NAME = "org.eclipse.emf.query2.messages"; //$NON-NLS-1$
 	private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
 	
 	public static String IndexQueryService_EObjectWithoutInclusiveScope;
