@@ -164,8 +164,6 @@ public class PrettyPrinter {
     private PrettyPrintContext currentContext;
     private final Map<Integer, PrettyPrintContext> backtrackingContextBackup = new HashMap<Integer, PrettyPrintContext>();
 
-    private final boolean serializeComments = PrettyPrintConstants.SERIALIZE_COMMENTS;
-
     private final PrettyPrintingPolicy policy;
     private final PrettyPrintingTracer tracer;
     
@@ -962,14 +960,13 @@ public class PrettyPrinter {
 
 	    String oclQuery = p.getValue();
 	    EObject contextObject = computeContextObject(oclQuery);
-	    EObject foreachObject = computeForeachObject(oclQuery);
 
 	    Collection<?> expectedValue = null;
 	    try {
 		if (element instanceof EObject) {
 		    // keyValue is always null for LookUpPropertyInits
 		    // in QueryPArg it denotes the RefersToPArg propertyValue
-		    expectedValue = TcsUtil.executeOclQuery((EObject) element, oclQuery, contextObject, foreachObject, null);
+		    expectedValue = TcsUtil.executeOclQuery((EObject) element, oclQuery, contextObject, /*foreachObject*/ null, null);
 		}
 	    } catch (ModelAdapterException e) {
 		throw new PropertyInitException(element, p, currentContext);
@@ -989,11 +986,6 @@ public class PrettyPrinter {
     private EObject computeContextObject(String oclQuery) {
 	String tag = TcsUtil.getContextTag(oclQuery);
 	return PrettyPrintContext.getContextElement(currentContext, tag);
-    }
-
-    private EObject computeForeachObject(String oclQuery) {
-	// TODO Auto-generated method stub
-	return null;
     }
 
     private void validatePrimitivePropertyInit(Object element, PrimitivePropertyInit p) throws PropertyInitException {
