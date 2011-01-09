@@ -1,7 +1,0 @@
-syntax Test{
-
-  template->A
-    :"autocreated"
-    ;
-  
-}

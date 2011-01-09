@@ -137,11 +137,7 @@ public class TCSExtractorStreamPrinter {
 	}
 	return keywords;
     }
-    
-    public void addAutoCreatedKeyword(Keyword value) {
-	keywords.add((value).getValue());
-    }
-        
+            
     public void printBooleanLiteral(boolean v) {
 	tracer.notifyAboutToPrintToken();
 	printSeperatorForDisambiguationIfNeeded();
