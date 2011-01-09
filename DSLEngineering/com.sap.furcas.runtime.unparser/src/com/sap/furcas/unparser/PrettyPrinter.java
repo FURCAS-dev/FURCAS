@@ -70,6 +70,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.StartNLBArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.StartNbNLBArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
+import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.unparser.PrettyPrintExceptions.ForcedBoundsException;
@@ -623,14 +624,13 @@ public class PrettyPrinter {
 //	    }
 //
 //	    serializeStruct(s, mode, property.get___Connection());
-// TODO: Not yet ported to EMF.
-//	} else if (value instanceof EEnum) {
-//	    EEnum e = (EEnum) value;
-//	    String enumName = TcsUtil.joinNameList(e.refTypeName());
-//	    @SuppressWarnings("unchecked")
-//	    Map<String, SequenceElement> mappings = (Map<String, SequenceElement>) nonClassTemplates.get(enumName);
-//	    SequenceElement seqElem = mappings.get(MOINImportedModelAdapter.getEnumLiteralName(e));
-//	    serializeSequenceElement(element, seqElem);
+	} else if (value instanceof Enum) {
+	    EEnum eenum = (EEnum) TcsUtil.getType(property);
+	    String enumName = TcsUtil.joinNameList(EcoreHelper.getQualifiedName(eenum));
+	    String enumLiteral = value.toString();
+	    @SuppressWarnings("unchecked")
+            Map<String, SequenceElement> mappings = (Map<String, SequenceElement>) nonClassTemplates.get(enumName);
+	    serializeSequenceElement(element, mappings.get(enumLiteral));
 	} else if (value instanceof EObject) {
 	    EObject valueME = (EObject) value;
 	    printer.printIndentationIfNeeded();
