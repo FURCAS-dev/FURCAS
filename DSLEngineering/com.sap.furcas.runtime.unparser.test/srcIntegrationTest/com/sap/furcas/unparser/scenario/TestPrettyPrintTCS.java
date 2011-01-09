@@ -10,9 +10,6 @@ import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
-import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
-import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
-import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
 import com.sap.furcas.metamodel.FURCAS.TCS.SpaceKind;
 import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSFactory;
@@ -25,7 +22,6 @@ import com.sap.furcas.parsergenerator.TCSParserGeneratorFactory;
 import com.sap.furcas.runtime.common.exceptions.ParserGeneratorInvocationException;
 import com.sap.furcas.runtime.common.exceptions.ParserInvokationException;
 import com.sap.furcas.test.testutils.ResourceTestHelper;
-import com.sap.furcas.unparser.SyntaxAndModelMismatchException;
 import com.sap.furcas.unparser.testutils.PrettyPrintAssertionUtil;
 import com.sap.furcas.unparser.testutils.PrettyPrintTestHelper;
 
@@ -99,34 +95,6 @@ public class TestPrettyPrintTCS {
 
         TextBlock output = PrettyPrintTestHelper.prettyPrintTextBlock(concreteSyntax, syntax, new TCSParserFactory());
         assertEqualsByLines(output, readFile("fixtureData/TCS_SyntaxWithSymbols.out"));
-    }
-
-    /**
-     * Test how a keyword that is referenced in the syntax, but not in
-     * ConcreteSyntax.keywords (as it was autocreated) is prettyprinted.
-     * 
-     * @throws SyntaxAndModelMismatchException
-     */
-    @Test
-    public void testAutocreatedKeyword() throws Exception {
-        ConcreteSyntax concreteSyntax = modelFactory.createConcreteSyntax();
-        concreteSyntax.setName("Test");
-
-        Keyword notLinkedToSyntax = modelFactory.createKeyword();
-        notLinkedToSyntax.setValue("autocreated");
-
-        ClassTemplate template = modelFactory.createClassTemplate();
-        template.getNames().add("A");
-        Sequence sequence = modelFactory.createSequence();
-        LiteralRef ref = modelFactory.createLiteralRef();
-        ref.setReferredLiteral(notLinkedToSyntax);
-        ref.setParentTemplate(template);
-        sequence.getElements().add(ref);
-        template.setTemplateSequence(sequence);
-        concreteSyntax.getTemplates().add(template);
-
-        TextBlock output = PrettyPrintTestHelper.prettyPrintTextBlock(concreteSyntax, syntax, new TCSParserFactory());
-        assertEqualsByLines(output, readFile("fixtureData/TCS_AutocreatedKeyword.out"));
     }
 
 }

@@ -48,7 +48,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.FunctionCall;
 import com.sap.furcas.metamodel.FURCAS.TCS.IndentIncrBArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
-import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
 import com.sap.furcas.metamodel.FURCAS.TCS.Literal;
 import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit;
@@ -650,12 +649,6 @@ public class PrettyPrinter {
 		String mode = TcsUtil.getMode(property);
 		serialize(valueME, mode, /*template*/ null);
 	    } else {
-		// TODO hack to add autocreated instances of FURCAS::TCS::Keyword to
-		// the keywords list
-		if (valueME instanceof Keyword) {
-		    printer.addAutoCreatedKeyword((Keyword) value);
-		}
-
 		Object v = EMFModelInspector.get(valueME, refersToPArg.getPropertyName());
 		serializePrimitiveTemplate(v, primitiveTemplateName);
 	    }
