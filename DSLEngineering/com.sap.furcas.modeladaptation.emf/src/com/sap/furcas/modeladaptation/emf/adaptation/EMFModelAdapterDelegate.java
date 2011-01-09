@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -51,7 +50,6 @@ import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider;
-import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectDependencyQueryContextProvider;
 
 
 /**
@@ -71,7 +69,6 @@ public class EMFModelAdapterDelegate {
     private final QueryBasedEcoreMetaModelLookUp metamodelLookup;
 
     private final TCSSpecificOCLEvaluator oclEvaluator;
-
     private final Query2OppositeEndFinder oppositeEndFinder;
 
     /**
@@ -101,20 +98,10 @@ public class EMFModelAdapterDelegate {
         Set<URI> referenceScopeIncludingCreatedElements = new HashSet<URI>(localReferenceScope);
         referenceScopeIncludingCreatedElements.add(transientResource.getURI());
         modelLookup = new EcoreModelElementFinder(resourceSet, referenceScopeIncludingCreatedElements, metamodelLookup);
-        QueryContextProvider queryContext = new ProjectDependencyQueryContextProvider(getAdditionalScopeSeeds(
-                resourceSet, localReferenceScope));
-        this.oclEvaluator = new TCSSpecificOCLEvaluator(queryContext);
+        
+        QueryContextProvider queryContext = EcoreHelper.createProjectDependencyQueryContextProvider(resourceSet, localReferenceScope);
         this.oppositeEndFinder = new Query2OppositeEndFinder(queryContext);
-    }
-    
-    private Notifier[] getAdditionalScopeSeeds(ResourceSet resourceSet, Set<URI> referenceScope) {
-        Notifier[] result = new Notifier[referenceScope.size()+1];
-        int i=0;
-        for (URI uri : referenceScope) {
-            result[i++] = resourceSet.getResource(uri, /* loadOnDemand */ false);
-        }
-        result[i] = resourceSet;
-        return result;
+        this.oclEvaluator = new TCSSpecificOCLEvaluator(oppositeEndFinder);
     }
 
     private void assignToTransientResource(EObject eObject) {

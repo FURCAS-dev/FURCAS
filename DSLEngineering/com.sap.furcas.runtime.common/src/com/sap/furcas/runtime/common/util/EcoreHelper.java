@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
@@ -31,6 +32,8 @@ import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
 
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
+
+import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectDependencyQueryContextProvider;
 
 public class EcoreHelper {
 
@@ -108,6 +111,22 @@ public class EcoreHelper {
                 return rs;
             }
         };
+    }
+    
+    public static ProjectDependencyQueryContextProvider createProjectDependencyQueryContextProvider(ResourceSet resourceSet,
+            Set<URI> localReferenceScope) {
+        
+        return new ProjectDependencyQueryContextProvider(getAdditionalScopeSeeds(resourceSet, localReferenceScope));
+    }
+    
+    private static Notifier[] getAdditionalScopeSeeds(ResourceSet resourceSet, Set<URI> referenceScope) {
+        Notifier[] result = new Notifier[referenceScope.size()+1];
+        int i=0;
+        for (URI uri : referenceScope) {
+            result[i++] = resourceSet.getResource(uri, /* loadOnDemand */ false);
+        }
+        result[i] = resourceSet;
+        return result;
     }
 	
 

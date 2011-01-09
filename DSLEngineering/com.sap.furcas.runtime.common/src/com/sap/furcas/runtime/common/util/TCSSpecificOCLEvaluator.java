@@ -21,12 +21,12 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
-import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider;
 import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectDependencyQueryContextProvider;
 
 /**
@@ -42,15 +42,17 @@ public class TCSSpecificOCLEvaluator {
     
     private final OCL ocl;
     private final Helper oclHelper;
+    private final OppositeEndFinder oppositeEndFinder;
 
     public TCSSpecificOCLEvaluator() {
-        this(new ProjectDependencyQueryContextProvider());
+        this(new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider()));
     }
     
-    public TCSSpecificOCLEvaluator(QueryContextProvider queryContext) {
-        ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(new Query2OppositeEndFinder(queryContext));
-        oclHelper = ocl.createOCLHelper();
-        oclHelper.setValidating(true);
+    public TCSSpecificOCLEvaluator(OppositeEndFinder oppositeEndFinder) {
+        this.oppositeEndFinder = oppositeEndFinder;
+        this.ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(oppositeEndFinder);
+        this.oclHelper = ocl.createOCLHelper();
+        this.oclHelper.setValidating(true);
     }
 
     /**
@@ -100,7 +102,7 @@ public class TCSSpecificOCLEvaluator {
     
     public List<String> validateOclQuery(Template template, String queryToValidate) {
         try {
-            EClassifier parsingContext = ContextAndForeachHelper.getParsingContext(queryToValidate, template);
+            EClassifier parsingContext = ContextAndForeachHelper.getParsingContext(queryToValidate, template, oppositeEndFinder);
             queryToValidate = ContextAndForeachHelper.prepareOclQuery(queryToValidate, "__DUMMY__");
 
             oclHelper.setContext(parsingContext);

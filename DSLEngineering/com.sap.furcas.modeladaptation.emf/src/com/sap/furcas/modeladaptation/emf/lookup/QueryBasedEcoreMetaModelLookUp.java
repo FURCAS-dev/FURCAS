@@ -19,6 +19,7 @@ import org.eclipse.emf.query2.QueryProcessor;
 import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
@@ -26,6 +27,9 @@ import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
+import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
+
+import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider;
 
 
 /**
@@ -37,6 +41,7 @@ public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup
     private final Set<URI> referenceScope;
     
     private final QueryProcessor queryProcessor;
+    private final TCSSpecificOCLEvaluator oclEvaluator;
 
     public QueryBasedEcoreMetaModelLookUp(ResourceSet resourceSet, Set<URI> referenceScope) {
     	super(DefaultOppositeEndFinder.getInstance()); // FIXME inject OppositeEndFinder
@@ -44,6 +49,10 @@ public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup
         this.referenceScope = referenceScope;
         
         queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
+        
+        QueryContextProvider queryContext = EcoreHelper.createProjectDependencyQueryContextProvider(resourceSet, referenceScope);
+        OppositeEndFinder oppositeEndFinder = new Query2OppositeEndFinder(queryContext);
+        oclEvaluator = new TCSSpecificOCLEvaluator(oppositeEndFinder);
     }
     
     public QueryBasedEcoreMetaModelLookUp(ResourceSet resourceSet) {
@@ -151,8 +160,7 @@ public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup
     
     @Override
     public List<String> validateOclQuery(Template template, String queryToValidate) {
-        TCSSpecificOCLEvaluator evaluator = new TCSSpecificOCLEvaluator();
-        return evaluator.validateOclQuery(template, queryToValidate);
+        return oclEvaluator.validateOclQuery(template, queryToValidate);
     }
     
     private ResultSet executeQuery(String query) {

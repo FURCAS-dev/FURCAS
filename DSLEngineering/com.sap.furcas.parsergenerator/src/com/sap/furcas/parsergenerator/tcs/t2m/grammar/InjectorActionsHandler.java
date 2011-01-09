@@ -33,316 +33,230 @@ import com.sap.furcas.runtime.common.exceptions.NameResolutionFailedException;
 import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
-import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 import com.sap.furcas.runtime.tcs.MessageHelper;
 import com.sap.furcas.runtime.tcs.MetaModelElementResolutionHelper;
-import com.sap.furcas.runtime.tcs.MetamodelNameResolvingException;
 import com.sap.furcas.runtime.tcs.RuleNameFinder;
 import com.sap.furcas.runtime.tcs.SyntaxLookup;
 import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
-
 
 /**
  * handles separate Injector Actions which have no syntactic representation
  */
 public class InjectorActionsHandler<Type> {
 
-	private static final String MQL_QUERY_PREFIX = "MQL:";
+    private static final String OCL_QUERY_PREFIX = "OCL:";
+    private final SemanticErrorBucket errorBucket;
+    private final SyntaxLookup syntaxLookup;
+    private final MetaModelElementResolutionHelper<Type> resolutionHelper;
+    private final IMetaModelLookup<Type> metaLookup;
+    private final TemplateNamingHelper<Type> namingHelper;
 
-	private static final String OCL_QUERY_PREFIX = "OCL:";
+    /**
+     * @param handlerConfig
+     */
+    public InjectorActionsHandler(SyntaxElementHandlerConfigurationBean<Type> handlerConfig) {
+        errorBucket = handlerConfig.getErrorBucket();
+        syntaxLookup = handlerConfig.getSyntaxLookup();
+        metaLookup = handlerConfig.getMetaLookup();
+        resolutionHelper = handlerConfig.getResolutionHelper();
+        namingHelper = handlerConfig.getNamingHelper();
+    }
 
-	private final SemanticErrorBucket errorBucket;
+    public void addElement(InjectorActionsBlock block, RuleBodyStringBuffer buffer) throws MetaModelLookupException,
+            SyntaxElementException {
+        Collection<InjectorAction> actions = block.getInjectorActions();
+        if (actions == null || actions.size() == 0) {
+            return;
+        }
 
-	private final SyntaxLookup syntaxLookup;
+        Template propertyOwnerTypeTemplate = syntaxLookup.getEnclosingQualifiedElement(block);
 
-	private final MetaModelElementResolutionHelper<Type> resolutionHelper;
+        buffer.append('{');
+        for (Iterator<InjectorAction> iterator = actions.iterator(); iterator.hasNext();) {
+            InjectorAction injectorAction = iterator.next();
 
-	private final IMetaModelLookup<Type> metaLookup;
+            if (injectorAction instanceof PropertyInit) {
+                PropertyInit propInit = (PropertyInit) injectorAction;
+                addPropertyInitAction(block, buffer, propertyOwnerTypeTemplate, propInit);
 
-	private final TemplateNamingHelper<Type> namingHelper;
+            } else {
+                throw new RuntimeException("Unknown subclass of InjectorAction " + injectorAction.getClass());
+            }
+        }
+        buffer.append('}');
 
-	/**
-	 * @param handlerConfig
-	 */
-	public InjectorActionsHandler(
-			SyntaxElementHandlerConfigurationBean<Type> handlerConfig) {
-		errorBucket = handlerConfig.getErrorBucket();
-		syntaxLookup = handlerConfig.getSyntaxLookup();
-		metaLookup = handlerConfig.getMetaLookup();
-		resolutionHelper = handlerConfig.getResolutionHelper();
-		namingHelper = handlerConfig.getNamingHelper();
-	}
+    }
 
-	/**
-	 * Adds the element.
-	 * 
-	 * @param element
-	 *            the element
-	 * @param buffer
-	 *            the buffer
-	 * 
-	 * @throws SyntaxParsingException
-	 *             the syntax parsing exception
-	 * @throws MetaModelLookupException
-	 *             the meta model lookup exception
-	 * @throws SyntaxElementException
-	 */
-	public void addElement(InjectorActionsBlock block,
-			RuleBodyStringBuffer buffer) throws MetaModelLookupException,
-			SyntaxElementException {
-		Collection<InjectorAction> actions = block.getInjectorActions();
-		if (actions == null || actions.size() == 0) {
-			return;
-		}
+    /**
+     * adds "{setProperty(propName, value);}" for a primitive template and
+     * "{setRef(ret, propName, TypeOfProperty, null, null, value, null, null, false, null);}" if lookup init
+     */
+    private void addPropertyInitAction(InjectorActionsBlock block, RuleBodyStringBuffer buffer,
+            QualifiedNamedElement propertyOwnerTypeTemplate, PropertyInit propInit) throws MetaModelLookupException,
+            SyntaxElementException {
+        String propName = getPropertyName(propInit);
+        if (propName == null || propName.trim().equals("")) {
+            errorBucket.addError("Empty property name.", propInit);
+            return;
+        }
+        buffer.append(ObservationDirectivesHelper.getEnterInjectorActionNotification());
+        String value = propInit.getValue();
+        if (propInit instanceof PrimitivePropertyInit) {
+            // TODO refer to and use Primitive template transformer to create
+            // required
+            // datatype
+            buffer.append("setProperty(ret, \"" + propName + "\", " + value + ");");
+        } else if (propInit instanceof LookupPropertyInit) {
+            // //All property inits are now considered optional as their
+            // violation will be error handled through constraint checking.
+            boolean isOptional = true;
+            ResolvedNameAndReferenceBean<Type> metaModelTypeOfPropertyReference = TcsUtil.getReferencedType(block, buffer,
+                    propName, propertyOwnerTypeTemplate, resolutionHelper, metaLookup);
+            String resolvedTypeOfPropertyName = namingHelper.getMetaTypeListParameter(metaModelTypeOfPropertyReference);
+            
+            if (value.startsWith(OCL_QUERY_PREFIX)) {
+                validateOclQuery(block.getParentTemplate(), value, propInit);
+                String oclQuery = TcsUtil.escapeMultiLineOclQuery(value);
+                buffer.append("setOclRef(ret, \"" + propName + "\", null, null, \"" + oclQuery + "\", " + isOptional + ");");
+            } else {
+                buffer.append("setRef(ret, \"" + propName + "\", " + resolvedTypeOfPropertyName + ", null, null, \"" + value
+                        + "\", null, null, false, null, " + isOptional + ");");
+            }
 
-		Template propertyOwnerTypeTemplate = syntaxLookup
-				.getEnclosingQualifiedElement(block);
+        } else if (propInit instanceof ForeachPredicatePropertyInit) {
+            String mode = ((ForeachPredicatePropertyInit) propInit).getMode();
 
-		// get Type of this Property
+            buffer.append("\n{\n");
+            buffer.append("List<PredicateSemantic> list = new ArrayList<PredicateSemantic>();\n");
+            buffer.append("RuleNameFinder finder = new RuleNameFinder();\n");
+            Iterator<PredicateSemantic> semIt = ((ForeachPredicatePropertyInit) propInit).getPredicateSemantic().iterator();
+            RuleNameFinder finder = new RuleNameFinder();
 
-		buffer.append('{');
-		for (Iterator<InjectorAction> iterator = actions.iterator(); iterator
-				.hasNext();) {
-			InjectorAction injectorAction = iterator.next();
+            while (semIt.hasNext()) {
+                PredicateSemantic next = semIt.next();
+                String localMode = mode;
+                if (next.getMode() != null) {
+                    localMode = next.getMode();
+                }
+                if (next.getWhen() != null) {
+                    validateOclQuery(block.getParentTemplate(), next.getWhen(), propInit);
+                    String oclQueryWhen = TcsUtil.escapeMultiLineOclQuery(next.getWhen());
+                    buffer.append("list.add(new PredicateSemantic(\"" + oclQueryWhen + "\", \""
+                            + finder.getRuleName(next.getAs(), localMode) + "\"));\n");
+                } else {
+                    buffer.append("list.add(new PredicateSemantic(null, \"" + finder.getRuleName(next.getAs(), localMode)
+                            + "\"));\n");
+                }
+            }
+            boolean hasContext = false;
+            if (block.getParentTemplate() instanceof ClassTemplate) {
+                hasContext = ((ClassTemplate) block.getParentTemplate()).isIsContext();
+            }
+            validateOclQuery(block.getParentTemplate(), value, propInit);
+            String oclQuery = TcsUtil.escapeMultiLineOclQuery(value);
+            if (mode == null) {
+                buffer.append("setPredicateRef(ret,\"" + propName + "\",null,\"" + oclQuery + "\",list,finder," + hasContext
+                        + ");");
+            } else {
+                buffer.append("setPredicateRef(ret,\"" + propName + "\",\"" + mode + "\",\"" + oclQuery + "\",list,finder,"
+                        + hasContext + ");");
+            }
+            buffer.append("\n}\n");
+        }
+        buffer.append(ObservationDirectivesHelper.getExitInjectorActionNotification());
+    }
 
-			if (injectorAction instanceof PropertyInit) {
-				PropertyInit propInit = (PropertyInit) injectorAction;
-				addPropertyInitAction(block, buffer, propertyOwnerTypeTemplate,
-						propInit);
+    private void validateOclQuery(Template template, String query, PropertyInit propInit) {
+        List<String> oclErrors = metaLookup.validateOclQuery(template, query);
+        for (String error : oclErrors) {
+            errorBucket.addError(error + " in OCL query " + query, propInit);
+        }
+    }
 
-			} else {
-				throw new RuntimeException(
-						"Unknown subclass of InjectorAction "
-								+ injectorAction.getClass());
-			}
-		}
-		buffer.append('}');
+    /**
+     * @param propInit
+     * @return
+     */
+    private static String getPropertyName(PropertyInit propInit) {
+        PropertyReference propRef = propInit.getPropertyReference();
+        if (propRef != null) {
+            if (propRef.getName() != null) {
+                return propRef.getName();
+            } else {
+                EStructuralFeature strucFeat = propRef.getStrucfeature();
+                if (strucFeat != null) {
+                    return strucFeat.getName();
+                }
+            }
+        }
+        return null;
+    }
 
-	}
+    /**
+     * util method that looks up the type of a referenced object, and also
+     * considers the context of the current template sequence.
+     * 
+     * @param block
+     * @param buffer
+     * @param name
+     * @param propertyOwnerTypeTemplate
+     * @return
+     * @throws MetaModelLookupException
+     * @throws SyntaxElementException
+     */
+    protected ResolvedNameAndReferenceBean<Type> getReferencedType(InjectorActionsBlock block, RuleBodyStringBuffer buffer,
+            String name, QualifiedNamedElement propertyOwnerTypeTemplate) throws MetaModelLookupException, SyntaxElementException {
 
-	/**
-	 * adds "{setProperty(propName, value);}" for a primitive template and"{setRef(ret, propName, TypeOfProperty, null, null, value, null, null, false, null);}"
-	 * if lookup init
-	 * 
-	 * @param block
-	 * @param buffer
-	 * @param propertyOwnerTypeTemplate
-	 * @param propInit
-	 * @throws MetaModelLookupException
-	 * @throws SyntaxElementException
-	 * @throws MetamodelNameResolvingException
-	 */
-	private void addPropertyInitAction(InjectorActionsBlock block,
-			RuleBodyStringBuffer buffer,
-			QualifiedNamedElement propertyOwnerTypeTemplate,
-			PropertyInit propInit) throws MetaModelLookupException,
-			SyntaxElementException {
-		String propName = getPropertyName(propInit);
-		if (propName == null || propName.trim().equals("")) {
-			errorBucket.addError("Empty property name.", propInit);
-			return;
-		}
-		buffer.append(ObservationDirectivesHelper
-                        .getEnterInjectorActionNotification());
-		String value = propInit.getValue();
-		if (propInit instanceof PrimitivePropertyInit) {
-			// TODO refer to and use Primitive template transformer to create
-			// required
-			// datatype
-			buffer.append("setProperty(ret, \"" + propName + "\", " + value
-					+ ");");
-		} else if (propInit instanceof LookupPropertyInit) {
-			boolean isOptional = true;
-			// //All property inits are now considered optional as their
-			// violation
-			// will be error handled through constraint checking.
-			// try {
-			// isOptional = metaLookup.getMultiplicity(
-			// resolutionHelper.resolve(propertyOwnerTypeTemplate),
-			// propName).isOptional();
-			// } catch (NameResolutionFailedException e) {
-			// throw new SyntaxElementException(e.getMessage(), block, e);
-			// }
-			ResolvedNameAndReferenceBean<Type> metaModelTypeOfPropertyReference = TcsUtil
-					.getReferencedType(block, buffer, propName,
-							propertyOwnerTypeTemplate, resolutionHelper,
-							metaLookup);
-			String resolvedTypeOfPropertyName = namingHelper
-					.getMetaTypeListParameter(metaModelTypeOfPropertyReference);
-			if (value.startsWith(OCL_QUERY_PREFIX)
-					|| value.startsWith(MQL_QUERY_PREFIX)) {
+        // check for instanceof constraint context in current buffer
+        List<RuleBodyPropertyConstraint> constraints = buffer.getCurrentConstraints();
 
-				List<String> oclErrors = metaLookup.validateOclQuery(block.getParentTemplate(), value);
-				for (String error : oclErrors) {
-					errorBucket.addError(error + " in OCL query " + value, propInit);
-				}
+        ResolvedNameAndReferenceBean<Type> substitutePropertyType = null;
+        for (Iterator<RuleBodyPropertyConstraint> iterator = constraints.iterator(); iterator.hasNext();) {
+            RuleBodyPropertyConstraint ruleBodyPropertyConstraint = iterator.next();
+            if (ruleBodyPropertyConstraint instanceof PropertyInstanceOfConstraint) {
+                PropertyInstanceOfConstraint instOfConst = (PropertyInstanceOfConstraint) ruleBodyPropertyConstraint;
+                if (instOfConst.getPropertyName().equals(name)) {
+                    List<String> substitutePropertyTypeName = instOfConst.getTypename();
+                    substitutePropertyType = resolutionHelper.resolve(substitutePropertyTypeName);
+                    // the last in the list wins, that's fine, since they can
+                    // overrule each other.
+                }
+            }
+        }
 
-				String javaQuery = TcsUtil.escapeMultiLineOclQuery(value);
-				buffer.append("setOclRef(ret, \"" + propName
-						+ "\", null, null, \"" + javaQuery + "\", "
-						+ isOptional + ");");
-			} else {
-				buffer.append("setRef(ret, \"" + propName + "\", "
-						+ resolvedTypeOfPropertyName + ", null, null, \""
-						+ value + "\", null, null, false, null, " + isOptional
-						+ ");");
-			}
+        ResolvedNameAndReferenceBean<Type> metaElementRef;
+        try {
+            metaElementRef = resolutionHelper.resolve(propertyOwnerTypeTemplate);
+        } catch (NameResolutionFailedException e) {
+            throw new SyntaxElementException(e.getMessage(), block, e);
+        }
+        ResolvedNameAndReferenceBean<Type> realMetaModelTypeOfPropertyTemplate = metaLookup.getFeatureClassReference(
+                metaElementRef, name);
 
-		} else if (propInit instanceof ForeachPredicatePropertyInit) {
-			String mode = ((ForeachPredicatePropertyInit) propInit).getMode();
+        // realMetaModelTypeOfPropertyTemplate =
+        // syntaxLookup.getTCSTemplate(propertyTypeName);
 
-			List<String> oclErrors = metaLookup.validateOclQuery(block.getParentTemplate(), value);
-			for (String error : oclErrors) {
-                                errorBucket.addError(error + " in OCL query " + value, propInit);
-			}
+        if (realMetaModelTypeOfPropertyTemplate == null) {
+            throw new SyntaxElementException("Type " + MessageHelper.getTemplateName(propertyOwnerTypeTemplate)
+                    + " has no feature " + name, block);
+        }
 
-			String javaQuery = TcsUtil.escapeMultiLineOclQuery(value);
-			buffer.append("\n{\n");
-			buffer
-					.append("List<PredicateSemantic> list = new ArrayList<PredicateSemantic>();\n");
-			buffer.append("RuleNameFinder finder = new RuleNameFinder();\n");
-			Iterator<PredicateSemantic> semIt = ((ForeachPredicatePropertyInit) propInit)
-			.getPredicateSemantic().iterator();
-			RuleNameFinder finder = new RuleNameFinder();
+        ResolvedNameAndReferenceBean<Type> metaModelTypeOfProperty;
+        if (substitutePropertyType != null) {
+            // check in Metamodel that new ownername is subclass of previous
+            // one, else
+            // error
+            if (metaLookup.isSubTypeOf(substitutePropertyType, realMetaModelTypeOfPropertyTemplate)) {
+                metaModelTypeOfProperty = substitutePropertyType;
+            } else {
+                throw new SyntaxElementException("Conditional subtype " + substitutePropertyType + " of feature " + name
+                        + " is not a subtype of expected type " + realMetaModelTypeOfPropertyTemplate, block);
+            }
 
-			while (semIt.hasNext()) {
-				PredicateSemantic next = semIt.next();
-				String localMode = mode;
-				if (next.getMode() != null) {
-					localMode = next.getMode();
-				}
-				if (next.getWhen() != null) {
-					String oclQueryWhen = TcsUtil.escapeMultiLineOclQuery(next.getWhen());
-					buffer.append("list.add(new PredicateSemantic(\""
-							+ oclQueryWhen + "\", \""
-							+ finder.getRuleName(next.getAs(), localMode)
-							+ "\"));\n");
-					oclErrors = metaLookup.validateOclQuery(block.getParentTemplate(), next.getWhen());
-					for (String error : oclErrors) {
-	                                        errorBucket.addError(error + " in OCL query " + value, propInit);
-					}
-				} else {
-					buffer.append("list.add(new PredicateSemantic(null, \""
-							+ finder.getRuleName(next.getAs(), localMode)
-							+ "\"));\n");
-				}
-			}
-			boolean hasContext = false;
-			if (block.getParentTemplate() instanceof ClassTemplate) {
-				hasContext = ((ClassTemplate) block.getParentTemplate())
-						.isIsContext();
-			}
-			if (mode == null) {
-				buffer.append("setPredicateRef(ret,\"" + propName
-						+ "\",null,\"" + javaQuery + "\",list,finder,"
-						+ hasContext + ");");
-			} else {
-				buffer.append("setPredicateRef(ret,\"" + propName + "\",\""
-						+ mode + "\",\"" + javaQuery + "\",list,finder,"
-						+ hasContext + ");");
-			}
-			buffer.append("\n}\n");
-		}
-		buffer.append(ObservationDirectivesHelper
-				.getExitInjectorActionNotification());
-	}
+        } else {
+            metaModelTypeOfProperty = realMetaModelTypeOfPropertyTemplate;
+        }
 
-	/**
-	 * @param propInit
-	 * @return
-	 */
-	private static String getPropertyName(PropertyInit propInit) {
-		PropertyReference propRef = propInit.getPropertyReference();
-		if (propRef != null) {
-			if (propRef.getName() != null) {
-				return propRef.getName();
-			} else {
-				EStructuralFeature strucFeat = propRef.getStrucfeature();
-				if (strucFeat != null) {
-					return strucFeat.getName();
-				}
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * util method that looks up the type of a referenced object, and also
-	 * considers the context of the current template sequence.
-	 * 
-	 * @param block
-	 * @param buffer
-	 * @param name
-	 * @param propertyOwnerTypeTemplate
-	 * @return
-	 * @throws MetaModelLookupException
-	 * @throws SyntaxElementException
-	 */
-	protected ResolvedNameAndReferenceBean<Type> getReferencedType(
-			InjectorActionsBlock block, RuleBodyStringBuffer buffer,
-			String name, QualifiedNamedElement propertyOwnerTypeTemplate)
-			throws MetaModelLookupException, SyntaxElementException {
-
-		// check for instanceof constraint context in current buffer
-		List<RuleBodyPropertyConstraint> constraints = buffer
-				.getCurrentConstraints();
-
-		ResolvedNameAndReferenceBean<Type> substitutePropertyType = null;
-		for (Iterator<RuleBodyPropertyConstraint> iterator = constraints
-				.iterator(); iterator.hasNext();) {
-			RuleBodyPropertyConstraint ruleBodyPropertyConstraint = iterator
-					.next();
-			if (ruleBodyPropertyConstraint instanceof PropertyInstanceOfConstraint) {
-				PropertyInstanceOfConstraint instOfConst = (PropertyInstanceOfConstraint) ruleBodyPropertyConstraint;
-				if (instOfConst.getPropertyName().equals(name)) {
-					List<String> substitutePropertyTypeName = instOfConst
-							.getTypename();
-					substitutePropertyType = resolutionHelper
-							.resolve(substitutePropertyTypeName);
-					// the last in the list wins, that's fine, since they can
-					// overrule each other.
-				}
-			}
-		}
-
-		ResolvedNameAndReferenceBean<Type> metaElementRef;
-		try {
-			metaElementRef = resolutionHelper
-					.resolve(propertyOwnerTypeTemplate);
-		} catch (NameResolutionFailedException e) {
-			throw new SyntaxElementException(e.getMessage(), block, e);
-		}
-		ResolvedNameAndReferenceBean<Type> realMetaModelTypeOfPropertyTemplate = metaLookup
-				.getFeatureClassReference(metaElementRef, name);
-
-		// realMetaModelTypeOfPropertyTemplate =
-		// syntaxLookup.getTCSTemplate(propertyTypeName);
-
-		if (realMetaModelTypeOfPropertyTemplate == null) {
-			throw new SyntaxElementException("Type "
-					+ MessageHelper.getTemplateName(propertyOwnerTypeTemplate)
-					+ " has no feature " + name, block);
-		}
-
-		ResolvedNameAndReferenceBean<Type> metaModelTypeOfProperty;
-		if (substitutePropertyType != null) {
-			// check in Metamodel that new ownername is subclass of previous
-			// one, else
-			// error
-			if (metaLookup.isSubTypeOf(substitutePropertyType,
-					realMetaModelTypeOfPropertyTemplate)) {
-				metaModelTypeOfProperty = substitutePropertyType;
-			} else {
-				throw new SyntaxElementException("Conditional subtype "
-						+ substitutePropertyType + " of feature " + name
-						+ " is not a subtype of expected type "
-						+ realMetaModelTypeOfPropertyTemplate, block);
-			}
-
-		} else {
-			metaModelTypeOfProperty = realMetaModelTypeOfPropertyTemplate;
-		}
-
-		return metaModelTypeOfProperty;
-	}
+        return metaModelTypeOfProperty;
+    }
 }
