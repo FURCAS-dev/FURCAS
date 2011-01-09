@@ -16,6 +16,8 @@ import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.ecore.TypeType;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.emf.ocl.prepared.PreparedOCLExpression;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
@@ -126,16 +128,26 @@ public class ContextAndForeachHelper {
         return (emptyContextTag && (ct.getContextTags() == null || ct.getContextTags().getTags().isEmpty())) ||
                 (!emptyContextTag && ct.getContextTags() != null && ct.getContextTags().getTags().contains(contextTag));
     }
+    
+    /**
+     * <p>Based on the use of <code>self</code>, <code>#context</code> and <code>#foreach</code> and the template in whose context the
+     * expression occurs, determines the context type to be used for parsing the expression.
+     * <p/>
+     * Utilizes the {@link DefaultOppositeEndFinder}
+     */
+    public static EClassifier getParsingContext(String oclExpression, Template template) throws ParserException {
+        return getParsingContext(oclExpression, template, DefaultOppositeEndFinder.getInstance());
+    }
 
     /**
      * Based on the use of <code>self</code>, <code>#context</code> and <code>#foreach</code> and the template in whose context the
      * expression occurs, determines the context type to be used for parsing the expression.
      */
-    public static EClassifier getParsingContext(String oclExpression, Template template) throws ParserException {
+    public static EClassifier getParsingContext(String oclExpression, Template template, OppositeEndFinder oppositeEndFinder) throws ParserException {
         EClassifier parsingContext = null;
         if (!usesContext(oclExpression)) {
             if (usesForeach(oclExpression)) {
-                parsingContext = getForeachMetaObject(oclExpression);
+                parsingContext = getForeachMetaObject(oclExpression, oppositeEndFinder);
                 if (parsingContext == null) {
                     throw new RuntimeException(
                             "Expected to find type of #foreach variable after #foreach in parentheses but didn't: "+
@@ -145,7 +157,7 @@ public class ContextAndForeachHelper {
                 parsingContext = template.getMetaReference();
             }
         } else if (usesContextWithSubsequentCast(oclExpression)) {
-            parsingContext = getContextMetaObject(oclExpression);
+            parsingContext = getContextMetaObject(oclExpression, oppositeEndFinder);
             if (parsingContext == null) {
                 throw new RuntimeException("Didn't find type used in context casts in expression " + oclExpression);
             }
@@ -187,13 +199,13 @@ public class ContextAndForeachHelper {
      * @throws ParserException
      *             in case the type name can't be parsed by the OCL evaluator
      */
-    public static EClassifier getContextMetaObject(String oclExpression) throws ParserException {
+    public static EClassifier getContextMetaObject(String oclExpression, OppositeEndFinder oppositeEndFinder) throws ParserException {
         EClassifier result = null;
         Matcher matcher = oclAsTypePattern.matcher(oclExpression);
         if (matcher.find()) {
             if (matcher.groupCount() >= 3) {
                 String oclTypeName = matcher.group(3);
-                result = getTypeByNameUsingOCLTypeExp(oclTypeName);
+                result = getTypeByNameUsingOCLTypeExp(oclTypeName, oppositeEndFinder);
             }
         }
         return result;
@@ -206,21 +218,21 @@ public class ContextAndForeachHelper {
      * @throws ParserException
      *             in case the type name can't be parsed by the OCL evaluator
      */
-    private static EClassifier getForeachMetaObject(String oclExpression) throws ParserException {
+    private static EClassifier getForeachMetaObject(String oclExpression, OppositeEndFinder oppositeEndFinder) throws ParserException {
         EClassifier result = null;
         Matcher matcher = foreachPattern.matcher(oclExpression);
         if (matcher.find()) {
             if (matcher.groupCount() >= 1) {
                 String oclTypeName = matcher.group(1);
-                result = getTypeByNameUsingOCLTypeExp(oclTypeName);
+                result = getTypeByNameUsingOCLTypeExp(oclTypeName, oppositeEndFinder);
             }
         }
         return result;
     }
 
-    protected static EClassifier getTypeByNameUsingOCLTypeExp(String oclTypeName) throws ParserException {
+    protected static EClassifier getTypeByNameUsingOCLTypeExp(String oclTypeName, OppositeEndFinder oppositeEndFinder) throws ParserException {
         EClassifier result;
-        OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(); // TODO should use an injected OppositeEndFinder
+        OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(oppositeEndFinder);
         Helper helper = ocl.createOCLHelper();
         helper.setContext(EcorePackage.eINSTANCE.getEClassifier()); // EClassifier is a classifier that's always in scope
         TypeExp typeQuery = (TypeExp) helper.createQuery(oclTypeName);
