@@ -30,8 +30,8 @@ syntax ForeachPredicatePropertyInit {
 		;
 	
 	template RevenueLedger
-		: {{ article=lookIn("OCL:#foreach(BibText::Article)"),
-		     revenueInEUR=lookIn("OCL:#foreach(BibText::Article).author.name.size()") }}
+		: {{ article=lookIn("OCL:#foreach(ForeachPredicatePropertyInit::Article)"),
+		     revenueInEUR=lookIn("OCL:#foreach(ForeachPredicatePropertyInit::Article).author.name.size()") }}
 		;
 
 -- BEGIN Special symbols
