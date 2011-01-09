@@ -47,7 +47,7 @@ public class TestPrettyPrintTCS {
         concreteSyntax.setName("SimpleSyntax");
 
         TextBlock output = prettyPrintTextBlock(concreteSyntax, syntax, new TCSParserFactory());
-        PrettyPrintAssertionUtil.assertEqualsByLines(output, readFile("TCS_SyntaxOnly"));
+        PrettyPrintAssertionUtil.assertEqualsByLines(output, readFile("fixtureData/TCS_SyntaxOnly.out"));
     }
 
     @Test
@@ -64,7 +64,7 @@ public class TestPrettyPrintTCS {
         concreteSyntax.getTemplates().add(template);
 
         TextBlock output = prettyPrintTextBlock(concreteSyntax, syntax, new TCSParserFactory());
-        assertEqualsByLines(output, readFile("TCS_SyntaxWithMainClassTemplateMetaReference"));
+        assertEqualsByLines(output, readFile("fixtureData/TCS_SyntaxWithMainClassTemplateMetaReference.out"));
     }
 
     @Test
@@ -98,7 +98,7 @@ public class TestPrettyPrintTCS {
         concreteSyntax.getSymbols().add(sym);
 
         TextBlock output = PrettyPrintTestHelper.prettyPrintTextBlock(concreteSyntax, syntax, new TCSParserFactory());
-        assertEqualsByLines(output, readFile("TCS_SyntaxWithSymbols"));
+        assertEqualsByLines(output, readFile("fixtureData/TCS_SyntaxWithSymbols.out"));
     }
 
     /**
@@ -126,7 +126,7 @@ public class TestPrettyPrintTCS {
         concreteSyntax.getTemplates().add(template);
 
         TextBlock output = PrettyPrintTestHelper.prettyPrintTextBlock(concreteSyntax, syntax, new TCSParserFactory());
-        assertEqualsByLines(output, readFile("TCS_AutocreatedKeyword"));
+        assertEqualsByLines(output, readFile("fixtureData/TCS_AutocreatedKeyword.out"));
     }
 
 }
