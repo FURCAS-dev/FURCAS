@@ -76,14 +76,10 @@ syntax TCS {
                                 tokens
                                 (isDefined(lexer) ? "lexer" "=" lexer{as = stringSymbol} ";")
                         ] {nbNL = 2} "}"
-                        {{ keywords = lookIn("OCL:LiteralRef.allInstances()->select(
+                        {{ keywords <- lookIn("OCL:LiteralRef.allInstances()->select(
                                 lr | self.templates->includes(lr.parentTemplate)).referredLiteral->asSet()
                                 ->union(self.operatorLists.priorities.operators.literal->asSet())
-                                ->select(k | if k.oclIsTypeOf(Keyword) then
-                                                self.keywords->excludes(k.oclAsType(Keyword))
-                                        else 
-                                                false 
-                                        endif)") }}
+                                ->select(k | k.oclIsTypeOf(Keyword))") }}
                 ;
 
 
