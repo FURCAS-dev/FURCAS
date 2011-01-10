@@ -16,7 +16,6 @@ import static com.sap.furcas.unparser.PrettyPrintHelper.isInstanceOf;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.AndExp;
@@ -146,12 +145,12 @@ public class TCSConditionEvaluator {
 	    } else if (value instanceof EnumLiteralVal) {
 		String lv = value.getName();
 
-		EEnumLiteral pv = null;
+		Enum<?> pv = null;
 // FIXME: Structure types not yet supported
 //		if (context instanceof RefStruct) {
 //		    pv = (RefEnum) MOINImportedModelAdapter.get((RefStruct) context, propName);
 //		} else if (context instanceof EObject) {
-		    pv = (EEnumLiteral) EMFModelInspector.get((EObject) context, propName);
+		    pv = (Enum<?>) EMFModelInspector.get((EObject) context, propName);
 //		}
 		ret = (lv.equals(pv.toString()));
 	    } else {
