@@ -27,6 +27,8 @@ public class MessagePropertiesTest {
 	Class<?> query2IndexUI_MessagesClass = null;
 	PropertyResourceBundle query2StringSyntaxUITools_ResourceBundle = null;
 	Class<?> query2StringSyntaxUITools_MessagesClass = null;
+	PropertyResourceBundle query2StringSyntax_ResourceBundle = null;
+	Class<?> query2StringSyntax_MessagesClass = null;
 
 	/**
 	 * Initialize the messages class and resource bundle for each plugin
@@ -54,6 +56,10 @@ public class MessagePropertiesTest {
 		query2StringSyntaxUITools_MessagesClass = org.eclipse.emf.query2.internal.ui.Messages.class;
 		resourceBundleName = getResourceBundleName(query2StringSyntaxUITools_MessagesClass);
 		query2StringSyntaxUITools_ResourceBundle = (PropertyResourceBundle) ResourceBundle.getBundle(resourceBundleName);
+		
+		query2StringSyntax_MessagesClass = org.eclipse.emf.query2.syntax.Messages.class;
+		resourceBundleName = getResourceBundleName(query2StringSyntax_MessagesClass);
+		query2StringSyntax_ResourceBundle = (PropertyResourceBundle) ResourceBundle.getBundle(resourceBundleName);
 
 	}
 
@@ -108,6 +114,18 @@ public class MessagePropertiesTest {
 			String key = (String) propItr.next();
 			Assert.assertNotNull(query2StringSyntaxUITools_ResourceBundle.getObject(key));
 			Assert.assertFalse(query2StringSyntaxUITools_ResourceBundle.getObject(key).equals("")); //$NON-NLS-1$
+		}
+	}
+	
+	@Test
+	public void testforNullorEmptyMessageProperties_Query2StringSyntax() {
+
+		Set<String> propertyKeys = query2StringSyntax_ResourceBundle.keySet();
+		Iterator itr = propertyKeys.iterator();
+		for (Iterator propItr = itr; itr.hasNext();) {
+			String key = (String) propItr.next();
+			Assert.assertNotNull(query2StringSyntax_ResourceBundle.getObject(key));
+			Assert.assertFalse(query2StringSyntax_ResourceBundle.getObject(key).equals("")); //$NON-NLS-1$
 		}
 	}
 
@@ -219,6 +237,32 @@ public class MessagePropertiesTest {
 			}
 		}
 	}
+	
+	@Test
+	public void testQuery2StringSyntaxProperConversionFromParameterToString() throws IllegalArgumentException, IllegalAccessException, InvocationTargetException,
+			SecurityException, NoSuchFieldException, InstantiationException, NoSuchMethodException {
+
+		String key = null;
+		String expectedMessage = null;
+		String keyValue = null;
+		Set<String> propertyKeys = query2StringSyntax_ResourceBundle.keySet();
+		Iterator itr = propertyKeys.iterator();
+		for (Iterator propItr = itr; itr.hasNext();) {
+			key = (String) propItr.next();
+			keyValue = query2StringSyntax_ResourceBundle.getString(key);
+			if (keyValue.indexOf("{") != -1) { //$NON-NLS-1$
+				// For each key in properties file, if the key contains
+				// parameters, get dummy strings to substitute for parameters
+				String[] dummyParams = getDummyStringstoSubstitute(keyValue);
+				if (query2StringSyntax_MessagesClass != null) {
+					keyValue = getKeyValueFromPropertiesFile(key, query2StringSyntax_MessagesClass, dummyParams);
+					expectedMessage = getSubstitutedMessage(query2StringSyntax_ResourceBundle.getString(key), dummyParams);
+					Assert.assertEquals(expectedMessage, keyValue);
+
+				}
+			}
+		}
+	}
 
 	private String getKeyValueFromPropertiesFile(String key, Class messagesClass, String[] dummyParams) throws SecurityException, NoSuchMethodException, NoSuchFieldException,
 			IllegalArgumentException, IllegalAccessException {
@@ -280,11 +324,12 @@ public class MessagePropertiesTest {
 		int length = param.length;
 		for (int i = 0; i < length; i++) {
 			String tobeSubstituted = "{" + i + "}"; //$NON-NLS-1$ //$NON-NLS-2$
-			String substitutionApostrophe = "''" + tobeSubstituted + "''"; //$NON-NLS-1$ //$NON-NLS-2$
-			if (stringWithParameters.contains(substitutionApostrophe)) {
-				tobeSubstituted = substitutionApostrophe;
-				param[i] = "'" + param[i] + "'"; //$NON-NLS-1$ //$NON-NLS-2$
-			}
+			stringWithParameters = stringWithParameters.replaceAll("''","'"); //$NON-NLS-1$ //$NON-NLS-2$
+//			String substitutionApostrophe = "''" + tobeSubstituted + "''"; //$NON-NLS-1$ //$NON-NLS-2$
+//			if (stringWithParameters.contains(substitutionApostrophe)) {
+//				tobeSubstituted = substitutionApostrophe;
+//				param[i] = "'" + param[i] + "'"; //$NON-NLS-1$ //$NON-NLS-2$
+//			}
 			stringWithParameters = stringWithParameters.replace(tobeSubstituted, param[i]);
 		}
 		return stringWithParameters;
