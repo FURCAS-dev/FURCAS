@@ -10,7 +10,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;bundle-version="3.5.0",
  org.eclipse.emf.query2.index;bundle-version="1.0.0",
  org.eclipse.emf.query2.index.ui;bundle-version="1.0.0",
- org.eclipse.emf.query2.stringsyntaxtools.ui;bundle-version="1.0.0"
+ org.eclipse.emf.query2.stringsyntaxtools.ui;bundle-version="1.0.0",
+ org.eclipse.emf.query2.stringsyntax;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: %Query2_GlobalizationTest_Bundle-Vendor

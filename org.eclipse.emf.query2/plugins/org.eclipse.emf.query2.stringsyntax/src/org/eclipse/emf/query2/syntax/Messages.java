@@ -3,7 +3,7 @@ package org.eclipse.emf.query2.syntax;
 import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.emf.query2.syntax.messages"; //$NON-NLS-1$
+	public static final String BUNDLE_NAME = "org.eclipse.emf.query2.syntax.messages"; //$NON-NLS-1$
 
 	public static String Query2StringSyntax_QueryJavaValidator_EStringAttributesOrReferences;
 	public static String Query2StringSyntax_QueryJavaValidator_IncompatibleAliasType;
