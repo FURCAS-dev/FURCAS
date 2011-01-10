@@ -79,13 +79,31 @@ public class ObservationDirectivesHelper {
     public static String getEnterSequenceElementNotification(SequenceElement se) {
         if (doAddObserverParts >= ALL) {
         	if(doAddObserverParts >= ALL_WITH_MOFIDS && se != null) {
-        		 return "{_beforeSeqEl(\"" + EcoreUtil.getURI((EObject)se) + "\");}";
+        		 return "{_beforeSeqEl(\"" + getId(se) + "\");}";
         	} else {
         		return "{_beforeSeqEl();}";
         	}
         } else {
             return "";
         }
+    }
+
+    /**
+     * FIXME: This is a workaround for Bug #88 (https://bugzilla.furcas.org/cgi-bin/bugzilla3/show_bug.cgi?id=88).
+     * This will replace any URIs containing "platform:/resource/" with "platform:/plugin/" so that during runtime of the
+     * parser the correct element is found.
+     * 
+     * Get the ID of the {@link EObject} <code>se</code> as String.
+     *  
+     * @param eObject The element to get the ID from.
+     * @return the ID of <code>se</code>. 
+     */
+    private static String getId(EObject se) {
+        String uri = EcoreUtil.getURI(se).toString();
+        if(uri.startsWith("platform:/resource/")) {
+            uri = uri.replace("platform:/resource/", "platform:/plugin/");
+        }
+        return uri;
     }
 
     /**
