@@ -249,6 +249,9 @@ public class EmfHelper {
 			final Set<URI> priScope, final Set<EClass> mrisOfTypes, final Set<URI> elements) {
 
 		QueryCommandWithResult<List<EObject>> command;
+		if(this.getBackwardNavIndex()==null){
+			return null; //Null check handling has to be done in the callee.
+		}
 		this.getBackwardNavIndex().executeQueryCommand(command = new QueryCommandWithResult<List<EObject>>() {
 
 			
