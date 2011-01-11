@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.query2.EmfHelper;
 import org.eclipse.emf.query2.FromEntry;
 import org.eclipse.emf.query2.FromFixedSet;
 import org.eclipse.emf.query2.FromType;
@@ -88,14 +89,13 @@ import org.eclipse.emf.query2.internal.moinql.ast.TypeComparison;
 import org.eclipse.emf.query2.internal.moinql.ast.TypeReference;
 import org.eclipse.emf.query2.internal.moinql.ast.WhereClause;
 import org.eclipse.emf.query2.internal.moinql.ast.WithEntry;
+import org.eclipse.emf.query2.internal.report.ProcessErrorImpl;
+import org.eclipse.emf.query2.internal.report.ProcessWarningImpl;
 import org.eclipse.emf.query2.internal.shared.AuxServices;
 import org.eclipse.emf.query2.internal.shared.BugException;
-import org.eclipse.emf.query2.internal.shared.EmfHelper;
 import org.eclipse.emf.query2.internal.shared.UsageException;
 import org.eclipse.emf.query2.report.LocalizedProcessException;
-import org.eclipse.emf.query2.report.ProcessErrorImpl;
 import org.eclipse.emf.query2.report.ProcessReport;
-import org.eclipse.emf.query2.report.ProcessWarningImpl;
 
 
 /**
