@@ -23,6 +23,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query.index.query.QueryCommandWithResult;
 import org.eclipse.emf.query.index.query.QueryExecutor;
+import org.eclipse.emf.query2.EmfHelper;
 import org.eclipse.emf.query2.Query;
 import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.QueryExecutionException;
@@ -50,10 +51,9 @@ import org.eclipse.emf.query2.internal.moinql.preprocessor.ExpanderImpl;
 import org.eclipse.emf.query2.internal.moinql.preprocessor.FacilityAssigner;
 import org.eclipse.emf.query2.internal.moinql.preprocessor.FacilityAssignerImpl;
 import org.eclipse.emf.query2.internal.moinql.preprocessor.TypeCheckerImpl;
+import org.eclipse.emf.query2.internal.report.ProcessReportImpl;
 import org.eclipse.emf.query2.internal.shared.AuxServices;
-import org.eclipse.emf.query2.internal.shared.EmfHelper;
 import org.eclipse.emf.query2.report.ProcessReport;
-import org.eclipse.emf.query2.report.ProcessReportImpl;
 import org.eclipse.emf.query2.report.ProcessWarning;
 
 /**
