@@ -19,6 +19,8 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.Index;
+import org.eclipse.emf.query2.EmfHelper;
+import org.eclipse.emf.query2.IndexQueryService;
 import org.eclipse.emf.query2.internal.bql.api.SpiAbstractBasicQueryProcessor;
 import org.eclipse.emf.query2.internal.bql.api.SpiBasicQueryProcessor;
 import org.eclipse.emf.query2.internal.bql.api.SpiClusterExternalLinkExpression;
@@ -31,7 +33,6 @@ import org.eclipse.emf.query2.internal.bql.api.SpiSelectExpression;
 import org.eclipse.emf.query2.internal.bql.api.SpiSelectList;
 import org.eclipse.emf.query2.internal.fql.SpiFqlFromTypeCategory;
 import org.eclipse.emf.query2.internal.fql.SpiFqlQueryResultSet;
-import org.eclipse.emf.query2.internal.index.IndexQueryService;
 import org.eclipse.emf.query2.internal.index.SpiFacilityQueryClientScope;
 import org.eclipse.emf.query2.internal.index.SpiFacilityQueryServiceException;
 import org.eclipse.emf.query2.internal.logger.LogSeverity;
@@ -43,7 +44,6 @@ import org.eclipse.emf.query2.internal.messages.FQLTraceMessages;
 import org.eclipse.emf.query2.internal.moinql.ast.QueryResultSetImpl;
 import org.eclipse.emf.query2.internal.moinql.engine.CoreQueryClientScope;
 import org.eclipse.emf.query2.internal.shared.BugException;
-import org.eclipse.emf.query2.internal.shared.EmfHelper;
 
 /**
  * @author D045917
