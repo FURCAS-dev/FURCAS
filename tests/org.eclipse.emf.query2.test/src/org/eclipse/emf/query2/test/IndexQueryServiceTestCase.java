@@ -11,6 +11,7 @@
 package org.eclipse.emf.query2.test;
 
 import java.util.Collection;
+
 import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
@@ -19,7 +20,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query.index.Index;
-import org.eclipse.emf.query2.internal.index.IndexQueryService;
+import org.eclipse.emf.query2.IndexQueryService;
 import org.eclipse.emf.query2.test.mm.testcases.case002.B2;
 import org.eclipse.emf.query2.test.mm.testcases.case002.C2;
 import org.eclipse.emf.query2.test.mm.testcases.case002.Case002Factory;
