@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Testutils
 Bundle-SymbolicName: org.eclipse.ocl.examples.testutils
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 3.1.0.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.ocl.examples.testutils
 Require-Bundle: org.eclipse.ocl.examples.impactanalyzer.testmodel.company,
