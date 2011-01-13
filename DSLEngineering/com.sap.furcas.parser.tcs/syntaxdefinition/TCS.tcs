@@ -404,18 +404,18 @@ syntax TCS {
                 :       "createAs" "=" name{as = identifierOrKeyword, separator = "::"}
                 ;
 
-        template TCS::QueryPArg
-                :       "query" "=" query{as = stringSymbol}
+        template TCS::LookupScopePArg
+                :       [["query" | "lookupScope"]] "=" query{as = stringSymbol}
                 ;
                 
         template TCS::FilterPArg
                 :       "filter" "=" filter{as = stringSymbol} (isDefined(invert) ? "," "invert" "=" invert{as = stringSymbol})
                 ;
                 
-       	template TCS::FilterByIdentifierPArg
-                :      filter{as = stringSymbol} "=" criterion{as = stringSymbol} 
+       	template TCS::ReferenceByPArg
+                :      "referenceBy" "=" referenceBy{as = stringSymbol}
                 ;
-
+                                
         template TCS::ModePArg
                 :       "mode" "=" mode{as = identifierOrKeyword}
                 ;
