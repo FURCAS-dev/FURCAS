@@ -9,17 +9,18 @@ syntax ImpactAnalysisRenameTestSyntax {
     : value = "unescapeString(%token%)"
     ;
   
-  template DefinitionUsageList main
-    : "def" definitions{separator = ","} "{"
-      usages "}"
+  template StatementList main
+    : [statements] -- entries each in new line
     ;
+    
+  template Statement abstract;
 
   template Definition 
-    : name
+    : "def" name ";"
     ;
 
   template Usage 
-    : "use" boundDefinition{query="OCL:self.parentList.definitions", "name"="?"} ";"
+    : "use" boundDefinition{query="OCL:Definition.allInstances()", "name"="?"} ";"
     ;
 
   omitted token COMMENT : endOfLine(start = "//");
