@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -25,12 +27,12 @@ import com.sap.furcas.metamodel.FURCAS.TCS.CreateAsPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.CreateInPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.DisambiguatePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ImportContextPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookInPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ModePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.PartialPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
@@ -38,7 +40,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
 import com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement;
-import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
@@ -63,37 +65,26 @@ import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
 /**
  * The Class PropertyTypeHandler.
  * 
- * TODO: once queryByIdentifier is bootrapped and stable, entirely remove QueryPArg and InvertPArg
  */
 public class PropertyTypeHandler<Type extends Object> {
 
-    /** The meta lookup. */
     private IMetaModelLookup<Type> metaLookup;
-
-    /** The syntax lookup. */
     private SyntaxLookup syntaxLookup;
-
     private TemplateNamingHelper<Type> namingHelper;
-
     private SemanticErrorBucket errorBucket;
-
     private MetaModelElementResolutionHelper<Type> resolutionHelper;
 
     private boolean skipDelayedReferences = false;
-
+    
     /**
-     * Instantiates a new property type handler.
-     * 
-     * @param metaLookup
-     *            the meta lookup
-     * @param syntaxLookup
-     *            the syntax lookup
-     * @param namingHelper
-     * @param errorBucket
+     * The pattern to select a 'self' within an OCL entry.
      */
+    private static final String selfPatternAsString = "((\\W|\\A))(self)(\\W)";
+    private static final Pattern selfPattern = Pattern.compile(selfPatternAsString);
+    private static final String OCL_PREFIX = "OCL:";
+
     protected PropertyTypeHandler(IMetaModelLookup<Type> metaLookup, SyntaxLookup syntaxLookup,
             TemplateNamingHelper<Type> namingHelper, SemanticErrorBucket errorBucket) {
-        super();
         this.metaLookup = metaLookup;
         this.syntaxLookup = syntaxLookup;
         this.namingHelper = namingHelper;
@@ -101,140 +92,106 @@ public class PropertyTypeHandler<Type extends Object> {
         this.resolutionHelper = new MetaModelElementResolutionHelper<Type>(metaLookup);
     }
 
-    /**
-     * @param handlerConfig
-     */
     protected PropertyTypeHandler(SyntaxElementHandlerConfigurationBean<Type> handlerConfig) {
-        this(handlerConfig.getMetaLookup(), handlerConfig.getSyntaxLookup(), handlerConfig.getNamingHelper(), handlerConfig
-                .getErrorBucket());
+        this(handlerConfig.getMetaLookup(), handlerConfig.getSyntaxLookup(), handlerConfig.getNamingHelper(),
+                handlerConfig.getErrorBucket());
     }
 
-    /**
-     * Adds the element.
-     * 
-     * @param prop
-     *            the prop
-     * @param buffer
-     *            the buffer
-     * 
-     * @throws SyntaxParsingException
-     *             the syntax parsing exception
-     * @throws MetaModelLookupException
-     *             the meta model lookup exception
-     */
     public void addElement(Property prop, RuleBodyStringBuffer buffer) throws SyntaxElementException, MetaModelLookupException {
         try {
-            String propertyName = getPropertyName(prop);
-            PropertyArgs args = new PropertyArgs(prop.getPropertyArgs());
-
-            validateArgs(args);
+            StringBuilder ruleBodyPart = new StringBuilder();
 
             // get Owner of this property
             QualifiedNamedElement propertyOwnerTypeTemplate = syntaxLookup.getEnclosingQualifiedElement(prop);
 
             // get Type of this Property
+            String propertyName = getPropertyName(prop);
             ResolvedNameAndReferenceBean<Type> metaModelTypeOfProperty = TcsUtil.getReferencedType(prop, buffer, propertyName,
                     propertyOwnerTypeTemplate, resolutionHelper, metaLookup);
+            
+            PropertyArgs args = new PropertyArgs(prop.getPropertyArgs());
+            validateArgs(args);
 
-            StringBuilder repeatablePart = new StringBuilder();
-            if (args.oclQueryPArg != null) {
-                addQueriedReferenceCode(prop, repeatablePart, metaModelTypeOfProperty, propertyName, args);
-            } else if (args.refersTo != null) { // need resolving of reference
-               addRefersToCode(prop, repeatablePart, metaModelTypeOfProperty, propertyName, args);
-            } else { // property not to be referenced but used within
-                repeatablePart.append(" temp=");
+            if (args.lookupScopePArg != null) {
+                addQueriedReferenceCode(prop, ruleBodyPart, metaModelTypeOfProperty, propertyName, args);
+            } else if (args.refersTo != null) {
+               addRefersToCode(prop, ruleBodyPart, metaModelTypeOfProperty, propertyName, args);
+            } else {
+                // property not to be referenced but used within
+                ruleBodyPart.append(" temp=");
                 if (args.asPArg != null) {
-                    if (args.asPArg.getTemplate() != null) {
-                        Template asTemplate = args.asPArg.getTemplate();
-                        String ruleName = null;
-                        if (asTemplate instanceof ClassTemplate) {
-                            ClassTemplate cAsTemplate = (ClassTemplate) asTemplate;
-                            if (cAsTemplate.getMode() != null) {
-                                ruleName = namingHelper.getRuleNameForMode(cAsTemplate, cAsTemplate.getMode());
-                            } else {
-                                ruleName = namingHelper.getRuleName(cAsTemplate);
-                            }
-                        } else if (asTemplate instanceof PrimitiveTemplate) {
-                            PrimitiveTemplate pAsTemplate = (PrimitiveTemplate) asTemplate;
-                            ruleName = namingHelper.getRuleName(pAsTemplate);
-                        } else if (asTemplate instanceof EnumerationTemplate) {
-                            EnumerationTemplate eAsTemplate = (EnumerationTemplate) asTemplate;
-                            ruleName = namingHelper.getRuleName(eAsTemplate);
-                        }
-
-                        repeatablePart.append(ruleName);
-                    } else {
-                        repeatablePart.append(args.asPArg.getValue());
-                    }
+                    addAsTemplateCode(args, ruleBodyPart);
                 } else {
-                    // use type name for rule name, unless it is a DataType
-                    // (then use primitive template for that datatype)
-
-                    PrimitiveTemplate propertyPrimitiveTemplate = syntaxLookup
-                            .getDefaultPrimitiveTemplateRule(metaModelTypeOfProperty);
-                    if (propertyPrimitiveTemplate != null) {
-                        repeatablePart.append(namingHelper.getRuleName(propertyPrimitiveTemplate));
-                    } else {
-                        String propertyTemplateRule = namingHelper.buildRuleName(metaModelTypeOfProperty);
-                        String modeArg = args.modePArg != null ? args.modePArg.getMode() : null;
-                        if (syntaxLookup.getTCSTemplate(metaModelTypeOfProperty, modeArg) == null) {
-                            errorBucket.addError("Syntax does not define a rule for " + metaModelTypeOfProperty + " with mode "
-                                    + modeArg, prop);
-                        }
-                        repeatablePart.append(propertyTemplateRule);
-                    }
+                    addTypeDependentTemplateCode(prop, args, metaModelTypeOfProperty, ruleBodyPart);
                 }
                 if (args.modePArg != null) {
-                    repeatablePart.append(TemplateNamingHelper.getModeSuffix(args.modePArg.getMode()));
+                    ruleBodyPart.append(TemplateNamingHelper.getModeSuffix(args.modePArg.getMode()));
                 }
-                repeatablePart.append(" {setProperty(ret, \"").append(propertyName)
-                        .append("\", temp);\nsetParent(temp,ret,\"" + propertyName + "\");}");
+                ruleBodyPart.append(" {setProperty(ret, \"").append(propertyName).append("\", temp);\nsetParent(temp,ret,\"" + propertyName + "\");}");
             }
-
-            // treat multiplicity
-            MultiplicityBean multiplicity = null;
-            try {
-                ResolvedNameAndReferenceBean<Type> refBean = resolutionHelper.resolve(propertyOwnerTypeTemplate);
-                multiplicity = metaLookup.getMultiplicity(refBean, propertyName);
-            } catch (NameResolutionFailedException e) {
-                throw new SyntaxElementException("Type " + MessageHelper.getTemplateName(propertyOwnerTypeTemplate)
-                        + " could not be resolved.", e);
-            }
-            if (multiplicity == null) {
-                throw new SyntaxElementException("Type " + propertyOwnerTypeTemplate + ", feature " + propertyName
-                        + " returned null as multiplicity.", prop, null);
-            }
-
-            if (multiplicity.getUpperBound() > -1 && multiplicity.getLowerBound() > multiplicity.getUpperBound()) {
-                throw new SyntaxElementException("Multiplicity of  type " + propertyOwnerTypeTemplate + ", feature "
-                        + propertyName + " is inconsistent in metamodel, lower bound is greater than upper bound: "
-                        + multiplicity.getLowerBound() + ">" + multiplicity.getUpperBound(), prop, null);
-            }
-
-            addRepeatableWithMultiplicity(buffer, prop, repeatablePart, multiplicity, args);
+            handleMultiplicity(prop, buffer, propertyName, args, propertyOwnerTypeTemplate, ruleBodyPart);
 
         } catch (MetamodelNameResolvingException e) {
             throw new SyntaxElementException(e.getMessage(), prop, e);
-            // } catch (SyntaxElementException spe) {
-            // throw new
-            // SyntaxElementException("Exception while generating grammar for Property "
-            // + prop.getName(), prop, spe );
         }
     }
 
     /**
-     * @param args
+     * Use type name for rule name. If it is a DataTyp, then use primitive template for that datatype.
      */
+    private void addTypeDependentTemplateCode(Property prop, PropertyArgs args,
+            ResolvedNameAndReferenceBean<Type> metaModelTypeOfProperty, StringBuilder repeatablePart)
+            throws SyntaxElementException {
+        PrimitiveTemplate propertyPrimitiveTemplate = syntaxLookup.getDefaultPrimitiveTemplateRule(metaModelTypeOfProperty);
+        if (propertyPrimitiveTemplate != null) {
+            repeatablePart.append(namingHelper.getRuleName(propertyPrimitiveTemplate));
+        } else {
+            String propertyTemplateRule = namingHelper.buildRuleName(metaModelTypeOfProperty);
+            String modeArg = args.modePArg != null ? args.modePArg.getMode() : null;
+            if (syntaxLookup.getTCSTemplate(metaModelTypeOfProperty, modeArg) == null) {
+                errorBucket.addError("Syntax does not define a rule for " + metaModelTypeOfProperty + " with mode "
+                        + modeArg, prop);
+            }
+            repeatablePart.append(propertyTemplateRule);
+        }
+    }
+
+    private void addAsTemplateCode(PropertyArgs args, StringBuilder ruleBodyPart) throws SyntaxElementException {
+        if (args.asPArg.getTemplate() != null) {
+            Template asTemplate = args.asPArg.getTemplate();
+            String ruleName = null;
+            if (asTemplate instanceof ClassTemplate) {
+                ClassTemplate cAsTemplate = (ClassTemplate) asTemplate;
+                if (cAsTemplate.getMode() != null) {
+                    ruleName = namingHelper.getRuleNameForMode(cAsTemplate, cAsTemplate.getMode());
+                } else {
+                    ruleName = namingHelper.getRuleName(cAsTemplate);
+                }
+            } else if (asTemplate instanceof PrimitiveTemplate) {
+                PrimitiveTemplate pAsTemplate = (PrimitiveTemplate) asTemplate;
+                ruleName = namingHelper.getRuleName(pAsTemplate);
+            } else if (asTemplate instanceof EnumerationTemplate) {
+                EnumerationTemplate eAsTemplate = (EnumerationTemplate) asTemplate;
+                ruleName = namingHelper.getRuleName(eAsTemplate);
+            }
+
+            ruleBodyPart.append(ruleName);
+        } else {
+            ruleBodyPart.append(args.asPArg.getValue());
+        }
+    }
+
     private void validateArgs(PropertyArgs args) {
-        // TODO do not hard code check for "?".
-        if (args.oclQueryPArg != null && args.oclQueryPArg.getQuery().contains("?")) {
-            errorBucket.addWarning("Usage of '?' directly within queries is discouraged. " +
-            	"Use the filter mechanism instead.", args.oclQueryPArg);
+        if (args.refersTo != null) {
+            errorBucket.addWarning("RefersTo is deprecated. Please use referenceBy and lookupScope instead.", args.refersTo);
+            if (args.asPArg != null) {
+                errorBucket.addWarning("As only possible without refersTo", args.asPArg);
+                if (args.modePArg != null) {
+                    errorBucket.addWarning("Mode only possible without refersTo", args.modePArg);
+                }
+            }
         }
         if (args.refersTo == null) {
-            if (args.oclQueryPArg != null && args.asPArg == null) {
-                errorBucket.addWarning("Query only possible with refersTo or as.", args.oclQueryPArg);
-            }
             if (args.autoCreatePArg != null) {
                 errorBucket.addWarning("AutoCreate only possible with refersTo", args.autoCreatePArg);
             }
@@ -250,48 +207,18 @@ public class PropertyTypeHandler<Type extends Object> {
             if (args.importContextPArg != null) {
                 errorBucket.addWarning("ImportContext only possible with refersTo", args.importContextPArg);
             }
-            if (args.oclFilterPArg != null && args.oclFilterByIdentifierPArg != null) {
-                errorBucket.addWarning("Cannot use both OCL filter mechanisms simulatenously. " +
-                        "Generic filter/invert combination is ignored.", args.asPArg);
-            }
-        } else {
-            errorBucket.addWarning("RefersTo is deprecated. Use As instead.", args.refersTo);
-            if (args.oclQueryPArg != null) {
-                if (args.autoCreatePArg != null) {
-                    errorBucket.addWarning("AutoCreate ignored when query is given", args.autoCreatePArg);
-                }
-                if (args.createAsPArg != null) {
-                    errorBucket.addWarning("CreateAs ignored when query is given", args.createAsPArg);
-                }
-                if (args.createInPArg != null) {
-                    errorBucket.addWarning("CreateIn ignored when query is given", args.createInPArg);
-                }
-                if (args.lookInPArg != null) {
-                    errorBucket.addWarning("LookIn ignored when query is given", args.lookInPArg);
-                }
-                if (args.importContextPArg != null) {
-                    errorBucket.addWarning("ImportContext ignored when query is given", args.importContextPArg);
-                }
-            }
-            if (args.asPArg != null) {
-                errorBucket.addWarning("As only possible without refersTo", args.asPArg);
-            }
-            if (args.modePArg != null) {
-                errorBucket.addWarning("Mode only possible without refersTo", args.modePArg);
-            }
-            if (args.oclQueryPArg != null && args.asPArg == null) {
-                errorBucket.addError("OCL query filer/invert only possible without refersTo", args.refersTo);
-            }
-            if (args.oclFilterByIdentifierPArg != null) {
-                errorBucket.addError("OCL identifier-based query filter only possible without refersTo", args.refersTo);
-            }
+        }
+        if (args.oclFilterPArg != null) {
+            errorBucket.addWarning("The filter mechanism is depecated. Please use referenceBy and lookupScope instead.", args.oclFilterPArg);
+        }
+        if (args.referenceByPArg != null && args.lookupScopePArg == null) {
+            errorBucket.addError("ReferenceBy does only work when lookupScope is defined.", args.referenceByPArg);
+        }
+        if (args.lookupScopePArg != null && (args.referenceByPArg == null && args.oclFilterPArg == null)) {
+            errorBucket.addError("LookupScope does only work in concunction with referenceBy.", args.lookupScopePArg);
         }
     }
 
-    /**
-     * @param prop
-     * @return
-     */
     protected static String getPropertyName(Property prop) {
         PropertyReference propRef = prop.getPropertyReference();
         if (propRef != null) {
@@ -307,15 +234,6 @@ public class PropertyTypeHandler<Type extends Object> {
         return null;
     }
 
-    /**
-     * @param prop
-     * @param repeatablePart
-     * @param metaModelTypeOfProperty
-     * @param name
-     * @param args
-     * @throws SyntaxElementException
-     * @throws MetaModelLookupException
-     */
     private void addQueriedReferenceCode(Property prop, StringBuilder ruleBodyPart,
             ResolvedNameAndReferenceBean<Type> metaModelTypeOfPropertyListName, String propertyName, PropertyArgs args)
             throws SyntaxElementException, MetaModelLookupException {
@@ -325,18 +243,39 @@ public class PropertyTypeHandler<Type extends Object> {
         // creates the bit that sets the temp from above as reference to
         // modelElement "ret" of this rule
         
-        // TODO: cleanup required: remove oclQueryPArg handling.
-        // As of now, if we have both filter mechanism defined, then the byIdentifierFilter is preferred.
+        validateOclQuery(prop, args.lookupScopePArg, args.lookupScopePArg.getQuery());
+        
         String query = null;
-        if (args.oclFilterByIdentifierPArg == null) {
-            query = args.oclQueryPArg.getQuery() + (args.oclFilterPArg != null ? args.oclFilterPArg.getFilter() : "");
+        if (args.oclFilterPArg != null) {
+            query = args.lookupScopePArg.getQuery() + args.oclFilterPArg.getFilter();
+            validateOclQuery(prop, args.oclFilterPArg, query);
         } else {
-            query = args.oclQueryPArg.getQuery() + "->select(" + args.oclFilterByIdentifierPArg.getFilter() + " = " +  args.oclFilterByIdentifierPArg.getCriterion() + ")";
+            String referenceBy = args.referenceByPArg.getReferenceBy();
+            if (referenceBy.startsWith(OCL_PREFIX)) {
+                referenceBy = referenceBy.substring(OCL_PREFIX.length());
+                Matcher matcher = selfPattern.matcher(referenceBy);
+                if (matcher.find()) {
+                    String preSelf = matcher.group(1);
+                    String replacementForSelf = "candidate";
+                    while (referenceBy.contains(replacementForSelf)) {
+                        replacementForSelf = "_" + replacementForSelf;
+                    }
+                    String postSelf = matcher.group(4);
+                    referenceBy = matcher.replaceAll(preSelf + replacementForSelf + postSelf);
+                    query = args.lookupScopePArg.getQuery() + "->select(" + replacementForSelf + " | " + referenceBy + " = ?)";
+                } else {
+                    query = args.lookupScopePArg.getQuery() + "->select(" + referenceBy + " = ?)";
+                }
+                // TODO: validate the individual OCL query instead. For this to work however,
+                // we need to be able to infer the return-type of the lookupScope query.
+                validateOclQuery(prop, args.oclFilterPArg, query);
+            } else {
+                query = args.lookupScopePArg.getQuery() + "->select(" + referenceBy + " = ?)";
+                validateOclQuery(prop, args.oclFilterPArg, query);
+            }
         }
+        
         String oclQuery = TcsUtil.escapeMultiLineOclQuery(query);
-
-        validateOclQuery(prop, args, query);
-
         if (args.refersTo != null) {
             if (!skipDelayedReferences) {
                 ruleBodyPart.append(concatBuf(" {setOclRef(ret, \"", propertyName, "\", \"", args.refersTo.getPropertyName(),
@@ -349,17 +288,18 @@ public class PropertyTypeHandler<Type extends Object> {
         }
     }
 
-    private void validateOclQuery(Property prop, PropertyArgs args, String query) {
+    private void validateOclQuery(Property prop, PropertyArg argument, String query) {
         List<String> oclErrors = metaLookup.validateOclQuery(prop.getParentTemplate(), query);
         for (String error : oclErrors) {
-            errorBucket.addError(error + " in OCL query/filter " + query, args.oclQueryPArg);
+            errorBucket.addError(error + " in OCL query " + query, argument);
         }
     }
 
     /**
      * Adds to the rulepart the String "temp=\<rulename\>{setRef(ret,
-     * propertyTemplate, propertyType, refersTo.PropertyName, temp,...)". This
-     * means that an Object temp is created using either the parsing rule
+     * propertyTemplate, propertyType, refersTo.PropertyName, temp,...)".
+     * 
+     * This means that an Object temp is created using either the parsing rule
      * provided as AsPArg or inferred from the metamodel, and then this temp
      * object is used to reference a different object in a delayed way. Meaning
      * we create a delayed reference to be resolved after parsing, where we will
@@ -370,15 +310,6 @@ public class PropertyTypeHandler<Type extends Object> {
      * would set the property "Type" of the ModelElement Variable x to that
      * DataType, which has name = "String".
      * 
-     * @param prop
-     * @param ruleBodyPart
-     * @param metaModelTypeOfProperty
-     * @param refersTo
-     * @param asPArg
-     * @throws MetaModelLookupException
-     * @throws SyntaxParsingException
-     * @throws MetamodelNameResolvingException
-     * @throws SyntaxElementException
      */
     private void addRefersToCode(Property prop, StringBuilder ruleBodyPart,
             ResolvedNameAndReferenceBean<Type> metaModelTypeOfProperty, String propertyName, PropertyArgs args)
@@ -386,23 +317,19 @@ public class PropertyTypeHandler<Type extends Object> {
         // appends the temp = ... part
         appendRefersToTempPart(prop, ruleBodyPart, metaModelTypeOfProperty, args, false);
 
-        // now append the part that sets temp as reference of modelelement "ret"
-        // of this rule
+        // now append the part that sets temp as reference of modelelement "ret" of this rule
 
         String resolvedTypeOfPropertyName = namingHelper.getMetaTypeListParameter(metaModelTypeOfProperty);
 
         String lookIn = null; // may be null in the String allowed
         if (args.lookInPArg != null) {
             Collection<String> argPropertyName = args.lookInPArg.getPropertyName();
-
             lookIn = "\"" + createDotSeparatedList(argPropertyName) + "\"";
-
         }
         String autoCreate = "\"never\""; // default value
         if (args.autoCreatePArg != null) {
             AutoCreateKind value = args.autoCreatePArg.getValue();
             autoCreate = "\"" + value.toString() + "\"";
-
         }
         String createAs = null; // may be null in String allowed
         if (args.createAsPArg != null) {
@@ -414,7 +341,6 @@ public class PropertyTypeHandler<Type extends Object> {
         if (args.createInPArg != null) {
             Collection<String> argPropertyName = args.createInPArg.getPropertyName();
             createIn = "\"" + createDotSeparatedList(argPropertyName) + "\"";
-
         }
         if (!skipDelayedReferences) {
             ruleBodyPart.append(concatBuf(" {setRef(ret, \"", propertyName, "\", ", resolvedTypeOfPropertyName, ", \"",
@@ -423,15 +349,6 @@ public class PropertyTypeHandler<Type extends Object> {
         }
     }
 
-    /**
-     * @param prop
-     * @param ruleBodyPart
-     * @param metaModelTypeOfPropertyReference
-     * @param args
-     * @param refersTo
-     * @throws SyntaxElementException
-     * @throws MetaModelLookupException
-     */
     private void appendRefersToTempPart(Property prop, StringBuilder ruleBodyPart,
             ResolvedNameAndReferenceBean<Type> metaModelTypeOfPropertyReference, PropertyArgs args,
             boolean primitivesOnly) throws SyntaxElementException, MetaModelLookupException {
@@ -453,8 +370,7 @@ public class PropertyTypeHandler<Type extends Object> {
                 }
                 ruleBodyPart.append(asRule);
             }
-            
-        } else if (args.oclFilterByIdentifierPArg != null) {
+        } else if (args.referenceByPArg != null) {
             // The queryByIdentifier feature only works together with strings. We thus have to use
             // the default string template for serializing.
             // TODO: find a way to retrieve it in a metamodel independent way. (we should not hardcode EString here!)
@@ -502,10 +418,6 @@ public class PropertyTypeHandler<Type extends Object> {
         }
     }
 
-    /**
-     * @param argPropertyName
-     * @return
-     */
     private static String createDotSeparatedList(Collection<String> argPropertyName) {
         StringBuilder builder = new StringBuilder();
         for (Iterator<String> iterator = argPropertyName.iterator(); iterator.hasNext();) {
@@ -517,18 +429,34 @@ public class PropertyTypeHandler<Type extends Object> {
         }
         return builder.toString();
     }
+    
+    private void handleMultiplicity(Property prop, RuleBodyStringBuffer buffer, String propertyName, PropertyArgs args,
+            QualifiedNamedElement propertyOwnerTypeTemplate, StringBuilder ruleBodyPart) throws MetaModelLookupException,
+            SyntaxElementException {
+        MultiplicityBean multiplicity = null;
+        try {
+            ResolvedNameAndReferenceBean<Type> refBean = resolutionHelper.resolve(propertyOwnerTypeTemplate);
+            multiplicity = metaLookup.getMultiplicity(refBean, propertyName);
+        } catch (NameResolutionFailedException e) {
+            throw new SyntaxElementException("Type " + MessageHelper.getTemplateName(propertyOwnerTypeTemplate)
+                    + " could not be resolved.", e);
+        }
+        if (multiplicity == null) {
+            throw new SyntaxElementException("Type " + propertyOwnerTypeTemplate + ", feature " + propertyName
+                    + " returned null as multiplicity.", prop, null);
+        }
+
+        if (multiplicity.getUpperBound() > -1 && multiplicity.getLowerBound() > multiplicity.getUpperBound()) {
+            throw new SyntaxElementException("Multiplicity of  type " + propertyOwnerTypeTemplate + ", feature "
+                    + propertyName + " is inconsistent in metamodel, lower bound is greater than upper bound: "
+                    + multiplicity.getLowerBound() + ">" + multiplicity.getUpperBound(), prop, null);
+        }
+        addRepeatableWithMultiplicity(buffer, prop, ruleBodyPart, multiplicity, args);
+    }
 
     /**
-     * helper method to deal with multiplicity. Add the repeatable part to the
+     * Helper method to deal with multiplicity. Add the repeatable part to the
      * buffer, and indicates expected multiplicity of this part.
-     * 
-     * @param buffer
-     * @param repeatablePart
-     * @param multiplicity
-     * @param args
-     * @throws SyntaxParsingException
-     * @throws MetaModelLookupException
-     * @throws MetamodelNameResolvingException
      */
     protected void addRepeatableWithMultiplicity(RuleBodyStringBuffer buffer, Property prop, StringBuilder repeatablePart,
             MultiplicityBean multiplicity, PropertyArgs args) throws SyntaxElementException, MetaModelLookupException {
@@ -536,10 +464,8 @@ public class PropertyTypeHandler<Type extends Object> {
         if (prop != null && prop.getElementSequence() instanceof SequenceInAlternative
                 && ((SequenceInAlternative) prop.getElementSequence()).getAlternativeContainer().isIsMulti()) {
             if (multiplicity.getUpperBound() != -1) {
-                errorBucket
-                        .addError(
-                                "Alternative isMulti is only allows if all directly contained properties have an upper multiplicity of UNBOUNDED!",
-                                prop);
+                errorBucket.addError("Alternative isMulti is only allows if all directly contained" +
+                        "properties have an upper multiplicity of UNBOUNDED!", prop);
             }
             isInMulti = true;
         }
@@ -558,8 +484,7 @@ public class PropertyTypeHandler<Type extends Object> {
          * 
          */
         // but because of the separator, + is not really usable,
-        // (xyz)((separator)xyz)* must be used instead, and (()*)? instead of
-        // ()*
+        // (xyz)((separator)xyz)* must be used instead, and (()*)? instead of ()*
         boolean isMultiple = multiplicity.getUpperBound() > 1 || multiplicity.getUpperBound() < 0;
         boolean isOptional = multiplicity.isOptional();
 
@@ -647,8 +572,7 @@ public class PropertyTypeHandler<Type extends Object> {
 
                 buffer.append(')');
             } else { // lowerbound = 0 or 1
-                // TODO: Check for property Args that are being ignored (i.e.
-                // separator)
+                // TODO: Check for property Args that are being ignored (i.e. separator)
                 buffer.append('(');
                 if (lowerBound == 0) {
                     if (disambiguation != null) {
@@ -658,8 +582,7 @@ public class PropertyTypeHandler<Type extends Object> {
                     }
                 }
                 buffer.append(repeatablePart.toString());
-                // now either add unlimited optional part including the
-                // separator, or n times () () ()?
+                // now either add unlimited optional part including the separator, or n times () () ()?
                 if (!isInMulti) {
                     if (isUpperUnbounded) {
                         buffer.append(' ');
@@ -748,46 +671,29 @@ public class PropertyTypeHandler<Type extends Object> {
     protected static final class PropertyArgs {
 
         public SeparatorPArg separator;
-
-        public RefersToPArg refersTo;
-
+        
         public ForcedLowerPArg forcedLower;
-
         public ForcedUpperPArg forcedUpper;
 
         public AsPArg asPArg;
 
+        public RefersToPArg refersTo;
         public LookInPArg lookInPArg;
-
         public AutoCreatePArg autoCreatePArg;
-
         public CreateAsPArg createAsPArg;
-
         public CreateInPArg createInPArg;
-
         public ImportContextPArg importContextPArg;
 
         public ModePArg modePArg;
-
         public PartialPArg partialPArg;
-
-        public QueryPArg oclQueryPArg;
-
+        
+        public LookupScopePArg lookupScopePArg;
         public FilterPArg oclFilterPArg;
-
-        public FilterByIdentifierPArg oclFilterByIdentifierPArg;
-
+        public ReferenceByPArg referenceByPArg;
+        
         public DisambiguatePArg disambiguatePArg;
         
 
-        /**
-         * Instantiates a new property args.
-         * 
-         * @param prop
-         *            the prop
-         * @throws SyntaxParsingException
-         * @throws SyntaxElementException
-         */
         protected PropertyArgs(Collection<PropertyArg> args) throws SyntaxElementException {
             if (args == null) {
                 return;
@@ -851,24 +757,24 @@ public class PropertyTypeHandler<Type extends Object> {
                         throw new SyntaxElementException("Double definition of ImportContextPArg", propertyArg);
                     }
                     modePArg = (ModePArg) propertyArg;
-                } else if (propertyArg instanceof QueryPArg) {
-                    if (oclQueryPArg != null) {
-                        throw new SyntaxElementException("Double definition of queryParg", oclQueryPArg);
+                } else if (propertyArg instanceof LookupScopePArg) {
+                    if (lookupScopePArg != null) {
+                        throw new SyntaxElementException("Double definition of lookupScopePArg", lookupScopePArg);
                     }
-                    oclQueryPArg = (QueryPArg) propertyArg;
+                    lookupScopePArg = (LookupScopePArg) propertyArg;
                 } else if (propertyArg instanceof FilterPArg) {
                     if (oclFilterPArg != null) {
                         throw new SyntaxElementException("Double definition of filterParg", oclFilterPArg);
                     }
                     oclFilterPArg = (FilterPArg) propertyArg;
-                } else if (propertyArg instanceof FilterByIdentifierPArg) {
-                    if (oclFilterByIdentifierPArg != null) {
-                        throw new SyntaxElementException("Double definition of filterByIdentifierPArg", oclFilterByIdentifierPArg);
+                } else if (propertyArg instanceof ReferenceByPArg) {
+                    if (referenceByPArg != null) {
+                        throw new SyntaxElementException("Double definition of referenceByPArg", referenceByPArg);
                     }
-                    oclFilterByIdentifierPArg = (FilterByIdentifierPArg) propertyArg;
+                    referenceByPArg = (ReferenceByPArg) propertyArg;
                 } else if (propertyArg instanceof DisambiguatePArg) {
                     if (disambiguatePArg != null) {
-                        throw new SyntaxElementException("Double definition of disambiguateParg", oclQueryPArg);
+                        throw new SyntaxElementException("Double definition of disambiguateParg", disambiguatePArg);
                     }
                     disambiguatePArg = (DisambiguatePArg) propertyArg;
                 } else if (propertyArg instanceof PartialPArg) {
