@@ -557,22 +557,22 @@ public interface TCSFactory extends EFactory {
         InjectorActionsBlock createInjectorActionsBlock();
 
         /**
-     * Returns a new object of class '<em>Query PArg</em>'.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @return a new object of class '<em>Query PArg</em>'.
-     * @generated
-     */
-        QueryPArg createQueryPArg();
-
-        /**
-     * Returns a new object of class '<em>Filter By Identifier PArg</em>'.
+     * Returns a new object of class '<em>Lookup Scope PArg</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Filter By Identifier PArg</em>'.
+     * @return a new object of class '<em>Lookup Scope PArg</em>'.
      * @generated
      */
-    FilterByIdentifierPArg createFilterByIdentifierPArg();
+    LookupScopePArg createLookupScopePArg();
+
+        /**
+     * Returns a new object of class '<em>Reference By PArg</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Reference By PArg</em>'.
+     * @generated
+     */
+    ReferenceByPArg createReferenceByPArg();
 
         /**
      * Returns a new object of class '<em>Filter PArg</em>'.

@@ -55,7 +55,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
 import com.sap.furcas.metamodel.FURCAS.TCS.InstanceOfExp;
 import com.sap.furcas.metamodel.FURCAS.TCS.IntegerVal;
-import com.sap.furcas.metamodel.FURCAS.TCS.InvertPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.IsDefinedExp;
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
 import com.sap.furcas.metamodel.FURCAS.TCS.Literal;
@@ -63,6 +62,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
 import com.sap.furcas.metamodel.FURCAS.TCS.LocatedElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookInPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Mapping;
 import com.sap.furcas.metamodel.FURCAS.TCS.ModePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.MultiLineRule;
@@ -88,8 +88,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.PropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyVal;
 import com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement;
-import com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToKeyPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Rule;
@@ -638,17 +637,17 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass queryPArgEClass = null;
+    private EClass lookupScopePArgEClass = null;
 
         /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    private EClass filterByIdentifierPArgEClass = null;
+    private EClass referenceByPArgEClass = null;
 
         /**
      * <!-- begin-user-doc -->
@@ -1045,6 +1044,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public EAttribute getConcreteSyntax_Uuid() {
         return (EAttribute)concreteSyntaxEClass.getEStructuralFeatures().get(7);
     }
@@ -1094,7 +1094,8 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getTemplate_SemDisambiguate() {
+	@Override
+    public EAttribute getTemplate_SemDisambiguate() {
         return (EAttribute)templateEClass.getEStructuralFeatures().get(3);
     }
 
@@ -1103,7 +1104,8 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getTemplate_TextBlockDefinition() {
+	@Override
+    public EReference getTemplate_TextBlockDefinition() {
         return (EReference)templateEClass.getEStructuralFeatures().get(4);
     }
 
@@ -1262,6 +1264,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public EAttribute getPrimitiveTemplate_Default() {
         return (EAttribute)primitiveTemplateEClass.getEStructuralFeatures().get(1);
     }
@@ -1611,6 +1614,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public EAttribute getOperator_Postfix() {
         return (EAttribute)operatorEClass.getEStructuralFeatures().get(0);
     }
@@ -1900,6 +1904,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EReference getConditionalElement_Condition() {
         return (EReference)conditionalElementEClass.getEStructuralFeatures().get(0);
     }
@@ -1909,6 +1914,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EReference getConditionalElement_ThenSequence() {
         return (EReference)conditionalElementEClass.getEStructuralFeatures().get(1);
     }
@@ -1918,6 +1924,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EReference getConditionalElement_ElseSequence() {
         return (EReference)conditionalElementEClass.getEStructuralFeatures().get(2);
     }
@@ -1927,6 +1934,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getPrimitivePropertyInit() {
         return primitivePropertyInitEClass;
     }
@@ -1936,6 +1944,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getAlternative() {
         return alternativeEClass;
     }
@@ -1945,6 +1954,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EReference getAlternative_Sequences() {
         return (EReference)alternativeEClass.getEStructuralFeatures().get(0);
     }
@@ -1954,6 +1964,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EAttribute getAlternative_IsMulti() {
         return (EAttribute)alternativeEClass.getEStructuralFeatures().get(1);
     }
@@ -1963,6 +1974,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getFunctionCall() {
         return functionCallEClass;
     }
@@ -1972,6 +1984,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EReference getFunctionCall_CalledFunction() {
         return (EReference)functionCallEClass.getEStructuralFeatures().get(0);
     }
@@ -1981,6 +1994,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getPropertyArg() {
         return propertyArgEClass;
     }
@@ -1990,6 +2004,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EReference getPropertyArg_Property() {
         return (EReference)propertyArgEClass.getEStructuralFeatures().get(0);
     }
@@ -1999,6 +2014,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getRefersToPArg() {
         return refersToPArgEClass;
     }
@@ -2008,6 +2024,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EAttribute getRefersToPArg_PropertyName() {
         return (EAttribute)refersToPArgEClass.getEStructuralFeatures().get(0);
     }
@@ -2017,6 +2034,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getLookInPArg() {
         return lookInPArgEClass;
     }
@@ -2026,6 +2044,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EAttribute getLookInPArg_PropertyName() {
         return (EAttribute)lookInPArgEClass.getEStructuralFeatures().get(0);
     }
@@ -2035,6 +2054,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getCreateInPArg() {
         return createInPArgEClass;
     }
@@ -2044,6 +2064,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EAttribute getCreateInPArg_PropertyName() {
         return (EAttribute)createInPArgEClass.getEStructuralFeatures().get(0);
     }
@@ -2053,6 +2074,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getRefersToKeyPArg() {
         return refersToKeyPArgEClass;
     }
@@ -2062,6 +2084,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getSeparatorPArg() {
         return separatorPArgEClass;
     }
@@ -2071,6 +2094,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EReference getSeparatorPArg_SeparatorSequence() {
         return (EReference)separatorPArgEClass.getEStructuralFeatures().get(0);
     }
@@ -2080,6 +2104,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getAutoCreatePArg() {
         return autoCreatePArgEClass;
     }
@@ -2089,6 +2114,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EAttribute getAutoCreatePArg_Value() {
         return (EAttribute)autoCreatePArgEClass.getEStructuralFeatures().get(0);
     }
@@ -2098,6 +2124,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getImportContextPArg() {
         return importContextPArgEClass;
     }
@@ -2107,6 +2134,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getForcedLowerPArg() {
         return forcedLowerPArgEClass;
     }
@@ -2116,6 +2144,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EAttribute getForcedLowerPArg_Value() {
         return (EAttribute)forcedLowerPArgEClass.getEStructuralFeatures().get(0);
     }
@@ -2125,6 +2154,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getCreateAsPArg() {
         return createAsPArgEClass;
     }
@@ -2134,6 +2164,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EAttribute getCreateAsPArg_Name() {
         return (EAttribute)createAsPArgEClass.getEStructuralFeatures().get(0);
     }
@@ -2143,6 +2174,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getAsPArg() {
         return asPArgEClass;
     }
@@ -2152,6 +2184,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EReference getAsPArg_Template() {
         return (EReference)asPArgEClass.getEStructuralFeatures().get(0);
     }
@@ -2161,6 +2194,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EAttribute getAsPArg_Value() {
         return (EAttribute)asPArgEClass.getEStructuralFeatures().get(1);
     }
@@ -2170,6 +2204,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getModePArg() {
         return modePArgEClass;
     }
@@ -2179,6 +2214,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EAttribute getModePArg_Mode() {
         return (EAttribute)modePArgEClass.getEStructuralFeatures().get(0);
     }
@@ -2188,6 +2224,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getBlockArg() {
         return blockArgEClass;
     }
@@ -2197,6 +2234,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EReference getBlockArg_Block() {
         return (EReference)blockArgEClass.getEStructuralFeatures().get(0);
     }
@@ -2206,6 +2244,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getNbNLBArg() {
         return nbNLBArgEClass;
     }
@@ -2215,6 +2254,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public EAttribute getNbNLBArg_Value() {
         return (EAttribute)nbNLBArgEClass.getEStructuralFeatures().get(0);
     }
@@ -2224,6 +2264,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getIndentIncrBArg() {
         return indentIncrBArgEClass;
     }
@@ -2233,6 +2274,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public EAttribute getIndentIncrBArg_Value() {
         return (EAttribute)indentIncrBArgEClass.getEStructuralFeatures().get(0);
     }
@@ -2242,6 +2284,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getStartNLBArg() {
         return startNLBArgEClass;
     }
@@ -2251,6 +2294,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public EAttribute getStartNLBArg_Value() {
         return (EAttribute)startNLBArgEClass.getEStructuralFeatures().get(0);
     }
@@ -2260,6 +2304,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getStartNbNLBArg() {
         return startNbNLBArgEClass;
     }
@@ -2269,6 +2314,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public EAttribute getStartNbNLBArg_Value() {
         return (EAttribute)startNbNLBArgEClass.getEStructuralFeatures().get(0);
     }
@@ -2278,6 +2324,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getEndNLBArg() {
         return endNLBArgEClass;
     }
@@ -2287,6 +2334,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public EAttribute getEndNLBArg_Value() {
         return (EAttribute)endNLBArgEClass.getEStructuralFeatures().get(0);
     }
@@ -2296,6 +2344,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getExpression() {
         return expressionEClass;
     }
@@ -2305,6 +2354,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EReference getExpression_ConditionalElement() {
         return (EReference)expressionEClass.getEStructuralFeatures().get(0);
     }
@@ -2314,6 +2364,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getAndExp() {
         return andExpEClass;
     }
@@ -2323,6 +2374,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EReference getAndExp_Expressions() {
         return (EReference)andExpEClass.getEStructuralFeatures().get(0);
     }
@@ -2332,6 +2384,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getAtomExp() {
         return atomExpEClass;
     }
@@ -2341,6 +2394,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EReference getAtomExp_AndExp() {
         return (EReference)atomExpEClass.getEStructuralFeatures().get(0);
     }
@@ -2350,6 +2404,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EAttribute getAtomExp_PropertyName() {
         return (EAttribute)atomExpEClass.getEStructuralFeatures().get(1);
     }
@@ -2359,6 +2414,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EReference getAtomExp_PropertyReference() {
         return (EReference)atomExpEClass.getEStructuralFeatures().get(2);
     }
@@ -2368,6 +2424,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getEqualsExp() {
         return equalsExpEClass;
     }
@@ -2377,6 +2434,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EReference getEqualsExp_Value() {
         return (EReference)equalsExpEClass.getEStructuralFeatures().get(0);
     }
@@ -2386,6 +2444,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getBooleanPropertyExp() {
         return booleanPropertyExpEClass;
     }
@@ -2395,6 +2454,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getIsDefinedExp() {
         return isDefinedExpEClass;
     }
@@ -2404,6 +2464,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getOneExp() {
         return oneExpEClass;
     }
@@ -2413,6 +2474,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getValue() {
         return valueEClass;
     }
@@ -2422,6 +2484,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EAttribute getValue_Name() {
         return (EAttribute)valueEClass.getEStructuralFeatures().get(0);
     }
@@ -2431,6 +2494,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getPropertyVal() {
         return propertyValEClass;
     }
@@ -2440,6 +2504,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getToken() {
         return tokenEClass;
     }
@@ -2449,6 +2514,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EReference getToken_Pattern() {
         return (EReference)tokenEClass.getEStructuralFeatures().get(0);
     }
@@ -2458,6 +2524,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EAttribute getToken_Omitted() {
         return (EAttribute)tokenEClass.getEStructuralFeatures().get(1);
     }
@@ -2467,6 +2534,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getOrPattern() {
         return orPatternEClass;
     }
@@ -2476,6 +2544,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EReference getOrPattern_SimplePatterns() {
         return (EReference)orPatternEClass.getEStructuralFeatures().get(0);
     }
@@ -2485,6 +2554,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getSimplePattern() {
         return simplePatternEClass;
     }
@@ -2494,6 +2564,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getRulePattern() {
         return rulePatternEClass;
     }
@@ -2503,6 +2574,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EReference getRulePattern_Rule() {
         return (EReference)rulePatternEClass.getEStructuralFeatures().get(0);
     }
@@ -2512,6 +2584,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getRule() {
         return ruleEClass;
     }
@@ -2521,6 +2594,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getWordRule() {
         return wordRuleEClass;
     }
@@ -2530,6 +2604,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EReference getWordRule_Start() {
         return (EReference)wordRuleEClass.getEStructuralFeatures().get(0);
     }
@@ -2539,6 +2614,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EReference getWordRule_Part() {
         return (EReference)wordRuleEClass.getEStructuralFeatures().get(1);
     }
@@ -2548,6 +2624,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EReference getWordRule_End() {
         return (EReference)wordRuleEClass.getEStructuralFeatures().get(2);
     }
@@ -2557,6 +2634,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EReference getWordRule_Words() {
         return (EReference)wordRuleEClass.getEStructuralFeatures().get(3);
     }
@@ -2566,6 +2644,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getWord() {
         return wordEClass;
     }
@@ -2575,6 +2654,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EAttribute getWord_Token() {
         return (EAttribute)wordEClass.getEStructuralFeatures().get(0);
     }
@@ -2584,6 +2664,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getEndOfLineRule() {
         return endOfLineRuleEClass;
     }
@@ -2593,6 +2674,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EReference getEndOfLineRule_Start() {
         return (EReference)endOfLineRuleEClass.getEStructuralFeatures().get(0);
     }
@@ -2602,6 +2684,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EAttribute getEndOfLineRule_DropStart() {
         return (EAttribute)endOfLineRuleEClass.getEStructuralFeatures().get(1);
     }
@@ -2611,6 +2694,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getMultiLineRule() {
         return multiLineRuleEClass;
     }
@@ -2620,6 +2704,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EReference getMultiLineRule_Start() {
         return (EReference)multiLineRuleEClass.getEStructuralFeatures().get(0);
     }
@@ -2629,6 +2714,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EReference getMultiLineRule_End() {
         return (EReference)multiLineRuleEClass.getEStructuralFeatures().get(1);
     }
@@ -2638,6 +2724,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EReference getMultiLineRule_Esc() {
         return (EReference)multiLineRuleEClass.getEStructuralFeatures().get(2);
     }
@@ -2647,6 +2734,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EReference getMultiLineRule_EscMappings() {
         return (EReference)multiLineRuleEClass.getEStructuralFeatures().get(3);
     }
@@ -2656,6 +2744,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EAttribute getMultiLineRule_DropStart() {
         return (EAttribute)multiLineRuleEClass.getEStructuralFeatures().get(4);
     }
@@ -2665,6 +2754,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EAttribute getMultiLineRule_DropEnd() {
         return (EAttribute)multiLineRuleEClass.getEStructuralFeatures().get(5);
     }
@@ -2674,6 +2764,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getMapping() {
         return mappingEClass;
     }
@@ -2683,6 +2774,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getSimpleMapping() {
         return simpleMappingEClass;
     }
@@ -2692,6 +2784,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public EAttribute getSimpleMapping_Key() {
         return (EAttribute)simpleMappingEClass.getEStructuralFeatures().get(0);
     }
@@ -2701,6 +2794,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public EAttribute getSimpleMapping_Value() {
         return (EAttribute)simpleMappingEClass.getEStructuralFeatures().get(1);
     }
@@ -2710,6 +2804,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getWildcardMapping() {
         return wildcardMappingEClass;
     }
@@ -2719,6 +2814,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getOctalMapping() {
         return octalMappingEClass;
     }
@@ -2728,6 +2824,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getHexadecimalMapping() {
         return hexadecimalMappingEClass;
     }
@@ -2737,6 +2834,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getStringPattern() {
         return stringPatternEClass;
     }
@@ -2746,6 +2844,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getClassPattern() {
         return classPatternEClass;
     }
@@ -2824,11 +2923,11 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EClass getQueryPArg() {
-        return queryPArgEClass;
+    public EClass getLookupScopePArg() {
+        return lookupScopePArgEClass;
     }
 
         /**
@@ -2836,8 +2935,8 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getQueryPArg_Query() {
-        return (EAttribute)queryPArgEClass.getEStructuralFeatures().get(0);
+    public EAttribute getLookupScopePArg_Query() {
+        return (EAttribute)lookupScopePArgEClass.getEStructuralFeatures().get(0);
     }
 
         /**
@@ -2845,8 +2944,8 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EClass getFilterByIdentifierPArg() {
-        return filterByIdentifierPArgEClass;
+    public EClass getReferenceByPArg() {
+        return referenceByPArgEClass;
     }
 
         /**
@@ -2854,17 +2953,8 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getFilterByIdentifierPArg_Filter() {
-        return (EAttribute)filterByIdentifierPArgEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getFilterByIdentifierPArg_Criterion() {
-        return (EAttribute)filterByIdentifierPArgEClass.getEStructuralFeatures().get(1);
+    public EAttribute getReferenceByPArg_ReferenceBy() {
+        return (EAttribute)referenceByPArgEClass.getEStructuralFeatures().get(0);
     }
 
         /**
@@ -3683,12 +3773,11 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         createEReference(injectorActionsBlockEClass, INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS);
         createEReference(injectorActionsBlockEClass, INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS);
 
-        queryPArgEClass = createEClass(QUERY_PARG);
-        createEAttribute(queryPArgEClass, QUERY_PARG__QUERY);
+        lookupScopePArgEClass = createEClass(LOOKUP_SCOPE_PARG);
+        createEAttribute(lookupScopePArgEClass, LOOKUP_SCOPE_PARG__QUERY);
 
-        filterByIdentifierPArgEClass = createEClass(FILTER_BY_IDENTIFIER_PARG);
-        createEAttribute(filterByIdentifierPArgEClass, FILTER_BY_IDENTIFIER_PARG__FILTER);
-        createEAttribute(filterByIdentifierPArgEClass, FILTER_BY_IDENTIFIER_PARG__CRITERION);
+        referenceByPArgEClass = createEClass(REFERENCE_BY_PARG);
+        createEAttribute(referenceByPArgEClass, REFERENCE_BY_PARG__REFERENCE_BY);
 
         filterPArgEClass = createEClass(FILTER_PARG);
         createEAttribute(filterPArgEClass, FILTER_PARG__FILTER);
@@ -3874,8 +3963,8 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         qualifiedNamedElementEClass.getESuperTypes().add(this.getLocatedElement());
         forcedUpperPArgEClass.getESuperTypes().add(this.getPropertyArg());
         injectorActionsBlockEClass.getESuperTypes().add(this.getSequenceElement());
-        queryPArgEClass.getESuperTypes().add(this.getPropertyArg());
-        filterByIdentifierPArgEClass.getESuperTypes().add(this.getPropertyArg());
+        lookupScopePArgEClass.getESuperTypes().add(this.getPropertyArg());
+        referenceByPArgEClass.getESuperTypes().add(this.getPropertyArg());
         filterPArgEClass.getESuperTypes().add(this.getPropertyArg());
         oclPArgEClass.getESuperTypes().add(this.getPropertyArg());
         contextTemplateEClass.getESuperTypes().add(this.getTemplate());
@@ -4168,12 +4257,11 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEReference(getInjectorActionsBlock_PropertyInits(), this.getInjectorAction(), null, "propertyInits", null, 0, -1, InjectorActionsBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getInjectorActionsBlock_InjectorActions(), this.getInjectorAction(), this.getInjectorAction_InjectorActionsBlock(), "injectorActions", null, 0, -1, InjectorActionsBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(queryPArgEClass, QueryPArg.class, "QueryPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getQueryPArg_Query(), ecorePackage.getEString(), "query", null, 1, 1, QueryPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(lookupScopePArgEClass, LookupScopePArg.class, "LookupScopePArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getLookupScopePArg_Query(), ecorePackage.getEString(), "query", null, 1, 1, LookupScopePArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(filterByIdentifierPArgEClass, FilterByIdentifierPArg.class, "FilterByIdentifierPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getFilterByIdentifierPArg_Filter(), ecorePackage.getEString(), "filter", null, 0, 1, FilterByIdentifierPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getFilterByIdentifierPArg_Criterion(), ecorePackage.getEString(), "criterion", null, 0, 1, FilterByIdentifierPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(referenceByPArgEClass, ReferenceByPArg.class, "ReferenceByPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getReferenceByPArg_ReferenceBy(), ecorePackage.getEString(), "referenceBy", null, 1, 1, ReferenceByPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(filterPArgEClass, FilterPArg.class, "FilterPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getFilterPArg_Filter(), theEcorePackage_1.getEString(), "filter", null, 1, 1, FilterPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4295,7 +4383,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
            source, 
            new String[] {
              "Property.oppositeRoleName", "furcasTemplates"
-           });		
+           });				
         addAnnotation
           (getPropertyReference_Strucfeature(), 
            source, 
