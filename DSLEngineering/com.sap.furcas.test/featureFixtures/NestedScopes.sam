@@ -1,0 +1,9 @@
+	def a;
+	use a;
+	def b;
+	use b;
+	def c;
+	use c;
+	{ //block opens a nested scope
+		def d;
+	} // back to previous scope, d should not be visible here
