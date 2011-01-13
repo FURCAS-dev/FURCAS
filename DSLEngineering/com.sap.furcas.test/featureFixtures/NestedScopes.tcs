@@ -1,6 +1,6 @@
 /**
- * A simple language feature definition and usages.
- * Usages are bound to corresponding definition using the queryByIdentifier property argument.
+ * A simple language that allows nested definition and usages.
+ * Usages are bound to corresponding definition according to scope.
  *
  */
 syntax ImpactAnalysisRenameTestSyntax { 
@@ -10,7 +10,7 @@ syntax ImpactAnalysisRenameTestSyntax {
     ;
   
   template StatementList main
-    : [statements] -- entries each in new line
+    : [statements] -- statements each in new line
     ;
     
   template Statement abstract;
@@ -22,6 +22,12 @@ syntax ImpactAnalysisRenameTestSyntax {
   template Usage 
     : "use" boundDefinition{query="OCL:Definition.allInstances()", "name"="?"} ";"
     ;
+    
+  template Block
+  	: "{"
+  		[statementsInBlock]
+  	  "}"
+  	;
 
   omitted token COMMENT : endOfLine(start = "//");
 
