@@ -23,7 +23,8 @@ syntax MiniJava {
         ;
         
         template ClassImport :
-                "import" importedClass{query="OCL:MiniJava::ClassDeclaration.allInstances()", "name"="?"} ";"
+                "import" importedClass{	referenceBy="OCL:self.name",
+                						lookupScope="OCL:MiniJava::ClassDeclaration.allInstances()"} ";"
         ;
         
         template ClassDeclaration :
@@ -38,14 +39,16 @@ syntax MiniJava {
         
         template FieldDeclaration :
                 visibility  
-                [[ "void" | type {query="OCL:self.owningClass.compilationUnit.imports.importedClass", "name"="?"} ]]
+                [[ "void" | type {	referenceBy="OCL:self.name",
+                					lookupScope="OCL:self.owningClass.compilationUnit.imports.importedClass"} ]]
                 name
                 ";"                
         ;
         
         template MethodDeclaration :
                 visibility  
-                [[ "void" | type {query="OCL:self.owningClass.compilationUnit.imports.importedClass", "name"="?"} ]]
+                [[ "void" | type {	referenceBy="OCL:self.name",
+                					lookupScope="OCL:self.owningClass.compilationUnit.imports.importedClass"} ]]
                 name "(" parameters{separator=","} ")"
                 "{"
                         body
@@ -53,7 +56,8 @@ syntax MiniJava {
         ;
         
         template Parameter :
-                type {query="OCL:self.owningDeclaration.owningClass.compilationUnit.imports.importedClass", "name"="?"}
+                type {	referenceBy="OCL:self.name",
+                		lookupScope="OCL:self.owningDeclaration.owningClass.compilationUnit.imports.importedClass"}
                 name
         ;
         
