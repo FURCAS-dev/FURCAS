@@ -1,0 +1,5 @@
+def a,b,c {
+	use a;
+	use b;
+	use c;
+}
