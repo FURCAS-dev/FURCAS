@@ -278,7 +278,7 @@ public class IncrementalReferenceEvaluationRegistry {
 	Template template = property.getParentTemplate();
 	if (template != null && template.getMetaReference() instanceof EClass) {
 	    // TODO what about StructureTypes?
-	    QueryPArg qarg = TcsUtil.getQueryPArg(property);
+	    QueryPArg qarg = TcsUtil.getLookupScopePArg(property);
 	    // TODO still needed? if not, delete
 	    // RefersToParg refersToArg = TcsUtil.getRefersToParg(property);
 	    FilterPArg filter = TcsUtil.getFilterPArg(property);

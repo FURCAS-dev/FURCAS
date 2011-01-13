@@ -27,9 +27,9 @@ import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.FunctionCall;
 import com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
+import com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
-import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
@@ -476,7 +476,7 @@ public class CtsContentAssistUtil {
 
 			RefersToPArg refersToArg = TcsUtil.getRefersToPArg(prop);
 			FilterPArg filterArg = TcsUtil.getFilterPArg(prop);
-			QueryPArg queryArg = TcsUtil.getQueryPArg(prop);
+			LookupScopePArg queryArg = TcsUtil.getLookupScopePArg(prop);
 
 			if (filterArg != null) {
 				if (queryArg != null) {
@@ -593,7 +593,7 @@ public class CtsContentAssistUtil {
 
 	private static List<EObject> getQueryResult(ITextViewer viewer, int line,
 			int charPositionInLine, TextBlocksModel textBlocksModel, Property prop,
-			QueryPArg queryArg) {
+			LookupScopePArg queryArg) {
 	        TextBlocksModel currentTbModel = textBlocksModel;
 		List<EObject> oclElements = new ArrayList<EObject>();
 		TextBlock currentVersion = TbVersionUtil.getOtherVersion(currentTbModel.getRoot(),Version.CURRENT);

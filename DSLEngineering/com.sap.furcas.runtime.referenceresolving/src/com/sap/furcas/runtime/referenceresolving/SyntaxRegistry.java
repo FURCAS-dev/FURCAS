@@ -141,7 +141,7 @@ public class SyntaxRegistry implements BundleActivator {
         Collection<Property> result = getElementsOfType(syntax, Property.class);
         for (Iterator<Property> i = result.iterator(); i.hasNext(); ) {
             Property p = i.next();
-            if (TcsUtil.getQueryPArg(p) == null) {
+            if (TcsUtil.getLookupScopePArg(p) == null) {
                 i.remove();
             }
         }
