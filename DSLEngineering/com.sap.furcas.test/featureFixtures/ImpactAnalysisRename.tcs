@@ -1,0 +1,27 @@
+/**
+ * A simple language feature definition and usages.
+ * Usages are bound to corresponding definition using the queryByIdentifier property argument.
+ *
+ */
+syntax ImpactAnalysisRenameTestSyntax { 
+
+  primitiveTemplate identifier for ecore::EString default using NAME
+    : value = "unescapeString(%token%)"
+    ;
+  
+  template DefinitionUsageList main
+    : "def" definitions{separator = ","} "{"
+      usages "}"
+    ;
+
+  template Definition 
+    : name
+    ;
+
+  template Usage 
+    : "use" boundDefinition{query="OCL:self.parentList.definitions", "name"="?"} ";"
+    ;
+
+  omitted token COMMENT : endOfLine(start = "//");
+
+}

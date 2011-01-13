@@ -27,6 +27,11 @@ public class FeatureFixtureData {
     public static final File PRIMITIVE_TEMPLATE_METAMODEL = new File("../com.sap.furcas.test/featureFixtures/PrimitiveTemplate.ecore");
     public static final File PRIMITIVE_TEMPLATE_TCS = new File("../com.sap.furcas.test/featureFixtures/PrimitiveTemplate.tcs");
     public static final String PRIMITIVE_PACKAGE_URI = "http://www.furcas.org/TCS/featuretests/template/primitiveTemplate";
+    
+    // ImpactAnalysisRename Tests
+    public static final File IA_RENAME_METAMODEL = new File("../com.sap.furcas.test/featureFixtures/ImpactAnalysisRename.ecore");
+    public static final File IA_RENAME_TCS = new File("../com.sap.furcas.test/featureFixtures/ImpactAnalysisRename.tcs");
+    public static final String IA_RENAME_PACKAGE_URI = "http://www.furcas.org/TCS/featuretests/impactanalysis/rename";
 
 
     
