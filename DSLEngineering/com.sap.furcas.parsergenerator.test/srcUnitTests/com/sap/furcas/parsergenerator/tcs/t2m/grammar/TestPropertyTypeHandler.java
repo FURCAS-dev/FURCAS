@@ -24,14 +24,14 @@ import com.sap.furcas.metamodel.FURCAS.TCS.AutoCreateKind;
 import com.sap.furcas.metamodel.FURCAS.TCS.AutoCreatePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.CreateAsPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.CreateInPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ImportContextPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookInPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ModePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
@@ -1005,7 +1005,7 @@ public class TestPropertyTypeHandler {
     }
     
     @Test
-    public void testAddElementQueryByIdentifier() throws MetaModelLookupException, SyntaxElementException {
+    public void testAddElementReferenceByViaPropertyName() throws MetaModelLookupException, SyntaxElementException {
         SyntaxLookupStub syntaxLookupStub = getSyntaxStubWithPrimitiveTemplateStubs();
         MetaLookupStub metaLookupStub = new MetaLookupStub();
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
@@ -1022,24 +1022,23 @@ public class TestPropertyTypeHandler {
         primitiveTemplate.setTemplateName("DefaultPrimitiveTemplate");
         syntaxLookupStub.defaultPrimitiveTemplate = primitiveTemplate;
         
-        QueryPargStub query = new QueryPargStub();
+        LookupScopePargStub query = new LookupScopePargStub();
         query.query = "OCL:self.fooFeature";
         prop.args.add(query);
         
-        FilterByIdentifierPargStub filterBy = new FilterByIdentifierPargStub();
-        filterBy.filter = "ArgFeatureName";
-        filterBy.criterion = "pre?post"; 
-        prop.args.add(filterBy);
+        ReferenceByPArgStub referenceBy = new ReferenceByPArgStub();
+        referenceBy.referenceBy = "ArgFeatureName";
+        prop.args.add(referenceBy);
 
         propHandler.addElement(prop, buf);
 
         assertEquals(
-                "( temp=DefaultPrimitiveTemplate {setOclRef(ret, \"PropertyName\", null, temp, \"OCL:self.fooFeature->select(ArgFeatureName = pre?post)\");})",
+                "( temp=DefaultPrimitiveTemplate {setOclRef(ret, \"PropertyName\", null, temp, \"OCL:self.fooFeature->select(ArgFeatureName = ?)\");})",
                 buf.getResult());
     }
     
     @Test
-    public void testAddElementQueryByIdentifierAs() throws MetaModelLookupException, SyntaxElementException {
+    public void testAddElementReferenceByViaOCL() throws MetaModelLookupException, SyntaxElementException {
         SyntaxLookupStub syntaxLookupStub = getSyntaxStubWithPrimitiveTemplateStubs();
         MetaLookupStub metaLookupStub = new MetaLookupStub();
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
@@ -1052,14 +1051,46 @@ public class TestPropertyTypeHandler {
 
         PropertyStub prop = getMockProperty("PropertyName", "ParentClass", "FeatureTypeName", metaLookupStub, false, false);
 
-        QueryPargStub query = new QueryPargStub();
+        PrimitiveTemplateStub primitiveTemplate = new PrimitiveTemplateStub();
+        primitiveTemplate.setTemplateName("DefaultPrimitiveTemplate");
+        syntaxLookupStub.defaultPrimitiveTemplate = primitiveTemplate;
+        
+        LookupScopePargStub query = new LookupScopePargStub();
         query.query = "OCL:self.fooFeature";
         prop.args.add(query);
         
-        FilterByIdentifierPargStub filterBy = new FilterByIdentifierPargStub();
-        filterBy.filter = "ArgFeatureName";
-        filterBy.criterion = "?"; 
-        prop.args.add(filterBy);
+        ReferenceByPArgStub referenceBy = new ReferenceByPArgStub();
+        referenceBy.referenceBy = "OCL:self.random.ocl.expression";
+        prop.args.add(referenceBy);
+
+        propHandler.addElement(prop, buf);
+
+        assertEquals(
+                "( temp=DefaultPrimitiveTemplate {setOclRef(ret, \"PropertyName\", null, temp, \"OCL:self.fooFeature->select(candidate | candidate.random.ocl.expression = ?)\");})",
+                buf.getResult());
+    }
+    
+    @Test
+    public void testAddElementReferenceByWithAs() throws MetaModelLookupException, SyntaxElementException {
+        SyntaxLookupStub syntaxLookupStub = getSyntaxStubWithPrimitiveTemplateStubs();
+        MetaLookupStub metaLookupStub = new MetaLookupStub();
+        TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
+
+        // Class under test
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, new SemanticErrorBucket());
+
+        // result buffer
+        RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
+
+        PropertyStub prop = getMockProperty("PropertyName", "ParentClass", "FeatureTypeName", metaLookupStub, false, false);
+
+        LookupScopePargStub query = new LookupScopePargStub();
+        query.query = "OCL:self.fooFeature";
+        prop.args.add(query);
+        
+        ReferenceByPArgStub referenceBy = new ReferenceByPArgStub();
+        referenceBy.referenceBy = "ArgFeatureName";
+        prop.args.add(referenceBy);
         
         // Provide a specific primitive template that we want to use for serializing
         AsPargStub asPArg = new AsPargStub();
@@ -1143,17 +1174,17 @@ public class TestPropertyTypeHandler {
         
         argsList = new ArrayList<PropertyArg>();
         args = new PropertyTypeHandler.PropertyArgs(argsList);
-        assertNull(args.oclQueryPArg);
-        argsList.add(new QueryPargStub());
+        assertNull(args.lookupScopePArg);
+        argsList.add(new LookupScopePargStub());
         args = new PropertyTypeHandler.PropertyArgs(argsList);
-        assertNotNull(args.oclQueryPArg);
+        assertNotNull(args.lookupScopePArg);
         
         argsList = new ArrayList<PropertyArg>();
         args = new PropertyTypeHandler.PropertyArgs(argsList);
-        assertNull(args.oclFilterByIdentifierPArg);
-        argsList.add(new FilterByIdentifierPargStub());
+        assertNull(args.referenceByPArg);
+        argsList.add(new ReferenceByPArgStub());
         args = new PropertyTypeHandler.PropertyArgs(argsList);
-        assertNotNull(args.oclFilterByIdentifierPArg);
+        assertNotNull(args.referenceByPArg);
     }
 
     /**
@@ -1369,7 +1400,7 @@ public class TestPropertyTypeHandler {
         }
     }
     
-    class QueryPargStub extends PargStub implements QueryPArg {
+    class LookupScopePargStub extends PargStub implements LookupScopePArg {
 
         public String query;
         
@@ -1384,26 +1415,18 @@ public class TestPropertyTypeHandler {
         }
     }
     
-    class FilterByIdentifierPargStub extends PargStub implements FilterByIdentifierPArg {
+    class ReferenceByPArgStub extends PargStub implements ReferenceByPArg {
 
-        public String criterion;
-        public String filter;
-        
+        public String referenceBy;
+
         @Override
-        public String getFilter() {
-            return filter;
+        public String getReferenceBy() {
+            return referenceBy;
         }
+
         @Override
-        public void setFilter(String value) {
-            filter = value;
-        }
-        @Override
-        public String getCriterion() {
-            return criterion;
-        }
-        @Override
-        public void setCriterion(String value) {
-            criterion = value;
+        public void setReferenceBy(String value) {
+            referenceBy = value;            
         }
     }
 
