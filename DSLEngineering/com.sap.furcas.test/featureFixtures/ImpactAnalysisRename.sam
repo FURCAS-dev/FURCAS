@@ -1,5 +1,6 @@
-def a,b,c {
+	def a;
 	use a;
+	def b;
 	use b;
+	def c;
 	use c;
-}

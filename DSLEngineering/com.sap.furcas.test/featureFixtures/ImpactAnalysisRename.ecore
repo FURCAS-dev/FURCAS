@@ -3,19 +3,16 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ImpactAnalysisRename"
     nsURI="http://www.furcas.org/TCS/featuretests/impactanalysis/rename">
-  <eClassifiers xsi:type="ecore:EClass" name="Definition">
+  <eClassifiers xsi:type="ecore:EClass" name="Definition" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Usage">
+  <eClassifiers xsi:type="ecore:EClass" name="Usage" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="boundDefinition" lowerBound="1"
         eType="#//Definition"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parentList" eType="#//DefinitionUsageList"
-        eOpposite="#//DefinitionUsageList/usages"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DefinitionUsageList">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="definitions" upperBound="-1"
-        eType="#//Definition"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="usages" upperBound="-1"
-        eType="#//Usage" eOpposite="#//Usage/parentList"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StatementList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
+        eType="#//Statement"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Statement" abstract="true"/>
 </ecore:EPackage>
