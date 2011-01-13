@@ -1432,49 +1432,49 @@ public class TCSItemProviderAdapterFactory extends TCSAdapterFactory implements 
     }
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg} instances.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        protected QueryPArgItemProvider queryPArgItemProvider;
-
-        /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg}.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public Adapter createQueryPArgAdapter() {
-        if (queryPArgItemProvider == null) {
-            queryPArgItemProvider = new QueryPArgItemProvider(this);
-        }
-
-        return queryPArgItemProvider;
-    }
-
-        /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg} instances.
+     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected FilterByIdentifierPArgItemProvider filterByIdentifierPArgItemProvider;
+    protected LookupScopePArgItemProvider lookupScopePArgItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg}.
+     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
-    public Adapter createFilterByIdentifierPArgAdapter() {
-        if (filterByIdentifierPArgItemProvider == null) {
-            filterByIdentifierPArgItemProvider = new FilterByIdentifierPArgItemProvider(this);
+    public Adapter createLookupScopePArgAdapter() {
+        if (lookupScopePArgItemProvider == null) {
+            lookupScopePArgItemProvider = new LookupScopePArgItemProvider(this);
         }
 
-        return filterByIdentifierPArgItemProvider;
+        return lookupScopePArgItemProvider;
+    }
+
+        /**
+     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ReferenceByPArgItemProvider referenceByPArgItemProvider;
+
+        /**
+     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createReferenceByPArgAdapter() {
+        if (referenceByPArgItemProvider == null) {
+            referenceByPArgItemProvider = new ReferenceByPArgItemProvider(this);
+        }
+
+        return referenceByPArgItemProvider;
     }
 
         /**
@@ -2032,8 +2032,8 @@ public class TCSItemProviderAdapterFactory extends TCSAdapterFactory implements 
         if (qualifiedNamedElementItemProvider != null) qualifiedNamedElementItemProvider.dispose();
         if (forcedUpperPArgItemProvider != null) forcedUpperPArgItemProvider.dispose();
         if (injectorActionsBlockItemProvider != null) injectorActionsBlockItemProvider.dispose();
-        if (queryPArgItemProvider != null) queryPArgItemProvider.dispose();
-        if (filterByIdentifierPArgItemProvider != null) filterByIdentifierPArgItemProvider.dispose();
+        if (lookupScopePArgItemProvider != null) lookupScopePArgItemProvider.dispose();
+        if (referenceByPArgItemProvider != null) referenceByPArgItemProvider.dispose();
         if (filterPArgItemProvider != null) filterPArgItemProvider.dispose();
         if (propertyReferenceItemProvider != null) propertyReferenceItemProvider.dispose();
         if (contextTemplateItemProvider != null) contextTemplateItemProvider.dispose();

@@ -6,7 +6,6 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.util;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.*;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
@@ -50,7 +49,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
 import com.sap.furcas.metamodel.FURCAS.TCS.InstanceOfExp;
 import com.sap.furcas.metamodel.FURCAS.TCS.IntegerVal;
-import com.sap.furcas.metamodel.FURCAS.TCS.InvertPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.IsDefinedExp;
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
 import com.sap.furcas.metamodel.FURCAS.TCS.Literal;
@@ -58,6 +56,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
 import com.sap.furcas.metamodel.FURCAS.TCS.LocatedElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookInPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Mapping;
 import com.sap.furcas.metamodel.FURCAS.TCS.ModePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.MultiLineRule;
@@ -83,7 +82,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.PropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyVal;
 import com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement;
-import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToKeyPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Rule;
@@ -185,738 +184,1272 @@ public class TCSSwitch<T> {
             case TCSPackage.LOCATED_ELEMENT: {
                 LocatedElement locatedElement = (LocatedElement)theEObject;
                 T result = caseLocatedElement(locatedElement);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.NAMED_ELEMENT: {
                 NamedElement namedElement = (NamedElement)theEObject;
                 T result = caseNamedElement(namedElement);
-                if (result == null) result = caseLocatedElement(namedElement);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseLocatedElement(namedElement);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.CONCRETE_SYNTAX: {
                 ConcreteSyntax concreteSyntax = (ConcreteSyntax)theEObject;
                 T result = caseConcreteSyntax(concreteSyntax);
-                if (result == null) result = caseNamedElement(concreteSyntax);
-                if (result == null) result = caseLocatedElement(concreteSyntax);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseNamedElement(concreteSyntax);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(concreteSyntax);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.TEMPLATE: {
                 Template template = (Template)theEObject;
                 T result = caseTemplate(template);
-                if (result == null) result = caseQualifiedNamedElement(template);
-                if (result == null) result = caseLocatedElement(template);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseQualifiedNamedElement(template);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(template);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.FUNCTION_TEMPLATE: {
                 FunctionTemplate functionTemplate = (FunctionTemplate)theEObject;
                 T result = caseFunctionTemplate(functionTemplate);
-                if (result == null) result = caseTemplate(functionTemplate);
-                if (result == null) result = caseQualifiedNamedElement(functionTemplate);
-                if (result == null) result = caseLocatedElement(functionTemplate);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseTemplate(functionTemplate);
+                }
+                if (result == null) {
+                    result = caseQualifiedNamedElement(functionTemplate);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(functionTemplate);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.CLASS_TEMPLATE: {
                 ClassTemplate classTemplate = (ClassTemplate)theEObject;
                 T result = caseClassTemplate(classTemplate);
-                if (result == null) result = caseContextTemplate(classTemplate);
-                if (result == null) result = caseTemplate(classTemplate);
-                if (result == null) result = caseQualifiedNamedElement(classTemplate);
-                if (result == null) result = caseLocatedElement(classTemplate);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseContextTemplate(classTemplate);
+                }
+                if (result == null) {
+                    result = caseTemplate(classTemplate);
+                }
+                if (result == null) {
+                    result = caseQualifiedNamedElement(classTemplate);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(classTemplate);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.PRIMITIVE_TEMPLATE: {
                 PrimitiveTemplate primitiveTemplate = (PrimitiveTemplate)theEObject;
                 T result = casePrimitiveTemplate(primitiveTemplate);
-                if (result == null) result = caseTemplate(primitiveTemplate);
-                if (result == null) result = caseQualifiedNamedElement(primitiveTemplate);
-                if (result == null) result = caseLocatedElement(primitiveTemplate);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseTemplate(primitiveTemplate);
+                }
+                if (result == null) {
+                    result = caseQualifiedNamedElement(primitiveTemplate);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(primitiveTemplate);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.OPERATOR_TEMPLATE: {
                 OperatorTemplate operatorTemplate = (OperatorTemplate)theEObject;
                 T result = caseOperatorTemplate(operatorTemplate);
-                if (result == null) result = caseContextTemplate(operatorTemplate);
-                if (result == null) result = caseTemplate(operatorTemplate);
-                if (result == null) result = caseQualifiedNamedElement(operatorTemplate);
-                if (result == null) result = caseLocatedElement(operatorTemplate);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseContextTemplate(operatorTemplate);
+                }
+                if (result == null) {
+                    result = caseTemplate(operatorTemplate);
+                }
+                if (result == null) {
+                    result = caseQualifiedNamedElement(operatorTemplate);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(operatorTemplate);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.ENUMERATION_TEMPLATE: {
                 EnumerationTemplate enumerationTemplate = (EnumerationTemplate)theEObject;
                 T result = caseEnumerationTemplate(enumerationTemplate);
-                if (result == null) result = caseTemplate(enumerationTemplate);
-                if (result == null) result = caseQualifiedNamedElement(enumerationTemplate);
-                if (result == null) result = caseLocatedElement(enumerationTemplate);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseTemplate(enumerationTemplate);
+                }
+                if (result == null) {
+                    result = caseQualifiedNamedElement(enumerationTemplate);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(enumerationTemplate);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.ENUM_LITERAL_MAPPING: {
                 EnumLiteralMapping enumLiteralMapping = (EnumLiteralMapping)theEObject;
                 T result = caseEnumLiteralMapping(enumLiteralMapping);
-                if (result == null) result = caseLocatedElement(enumLiteralMapping);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseLocatedElement(enumLiteralMapping);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.LITERAL: {
                 Literal literal = (Literal)theEObject;
                 T result = caseLiteral(literal);
-                if (result == null) result = caseNamedElement(literal);
-                if (result == null) result = caseLocatedElement(literal);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseNamedElement(literal);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(literal);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.SYMBOL: {
                 Symbol symbol = (Symbol)theEObject;
                 T result = caseSymbol(symbol);
-                if (result == null) result = caseLiteral(symbol);
-                if (result == null) result = caseNamedElement(symbol);
-                if (result == null) result = caseLocatedElement(symbol);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseLiteral(symbol);
+                }
+                if (result == null) {
+                    result = caseNamedElement(symbol);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(symbol);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.KEYWORD: {
                 Keyword keyword = (Keyword)theEObject;
                 T result = caseKeyword(keyword);
-                if (result == null) result = caseLiteral(keyword);
-                if (result == null) result = caseNamedElement(keyword);
-                if (result == null) result = caseLocatedElement(keyword);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseLiteral(keyword);
+                }
+                if (result == null) {
+                    result = caseNamedElement(keyword);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(keyword);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.OPERATOR_LIST: {
                 OperatorList operatorList = (OperatorList)theEObject;
                 T result = caseOperatorList(operatorList);
-                if (result == null) result = caseLocatedElement(operatorList);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseLocatedElement(operatorList);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.PRIORITY: {
                 Priority priority = (Priority)theEObject;
                 T result = casePriority(priority);
-                if (result == null) result = caseLocatedElement(priority);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseLocatedElement(priority);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.OPERATOR: {
                 Operator operator = (Operator)theEObject;
                 T result = caseOperator(operator);
-                if (result == null) result = caseNamedElement(operator);
-                if (result == null) result = caseLocatedElement(operator);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseNamedElement(operator);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(operator);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.SEQUENCE: {
                 Sequence sequence = (Sequence)theEObject;
                 T result = caseSequence(sequence);
-                if (result == null) result = caseLocatedElement(sequence);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseLocatedElement(sequence);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.SEQUENCE_ELEMENT: {
                 SequenceElement sequenceElement = (SequenceElement)theEObject;
                 T result = caseSequenceElement(sequenceElement);
-                if (result == null) result = caseLocatedElement(sequenceElement);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseLocatedElement(sequenceElement);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.LITERAL_REF: {
                 LiteralRef literalRef = (LiteralRef)theEObject;
                 T result = caseLiteralRef(literalRef);
-                if (result == null) result = caseSequenceElement(literalRef);
-                if (result == null) result = caseLocatedElement(literalRef);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseSequenceElement(literalRef);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(literalRef);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.PROPERTY: {
                 Property property = (Property)theEObject;
                 T result = caseProperty(property);
-                if (result == null) result = caseSequenceElement(property);
-                if (result == null) result = caseLocatedElement(property);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseSequenceElement(property);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(property);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.CUSTOM_SEPARATOR: {
                 CustomSeparator customSeparator = (CustomSeparator)theEObject;
                 T result = caseCustomSeparator(customSeparator);
-                if (result == null) result = caseSequenceElement(customSeparator);
-                if (result == null) result = caseLocatedElement(customSeparator);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseSequenceElement(customSeparator);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(customSeparator);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.BLOCK: {
                 Block block = (Block)theEObject;
                 T result = caseBlock(block);
-                if (result == null) result = caseSequenceElement(block);
-                if (result == null) result = caseLocatedElement(block);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseSequenceElement(block);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(block);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.CONDITIONAL_ELEMENT: {
                 ConditionalElement conditionalElement = (ConditionalElement)theEObject;
                 T result = caseConditionalElement(conditionalElement);
-                if (result == null) result = caseSequenceElement(conditionalElement);
-                if (result == null) result = caseLocatedElement(conditionalElement);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseSequenceElement(conditionalElement);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(conditionalElement);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.PRIMITIVE_PROPERTY_INIT: {
                 PrimitivePropertyInit primitivePropertyInit = (PrimitivePropertyInit)theEObject;
                 T result = casePrimitivePropertyInit(primitivePropertyInit);
-                if (result == null) result = casePropertyInit(primitivePropertyInit);
-                if (result == null) result = caseInjectorAction(primitivePropertyInit);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = casePropertyInit(primitivePropertyInit);
+                }
+                if (result == null) {
+                    result = caseInjectorAction(primitivePropertyInit);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.ALTERNATIVE: {
                 Alternative alternative = (Alternative)theEObject;
                 T result = caseAlternative(alternative);
-                if (result == null) result = caseSequenceElement(alternative);
-                if (result == null) result = caseLocatedElement(alternative);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseSequenceElement(alternative);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(alternative);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.FUNCTION_CALL: {
                 FunctionCall functionCall = (FunctionCall)theEObject;
                 T result = caseFunctionCall(functionCall);
-                if (result == null) result = caseSequenceElement(functionCall);
-                if (result == null) result = caseLocatedElement(functionCall);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseSequenceElement(functionCall);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(functionCall);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.PROPERTY_ARG: {
                 PropertyArg propertyArg = (PropertyArg)theEObject;
                 T result = casePropertyArg(propertyArg);
-                if (result == null) result = caseLocatedElement(propertyArg);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseLocatedElement(propertyArg);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.REFERS_TO_PARG: {
                 RefersToPArg refersToPArg = (RefersToPArg)theEObject;
                 T result = caseRefersToPArg(refersToPArg);
-                if (result == null) result = casePropertyArg(refersToPArg);
-                if (result == null) result = caseLocatedElement(refersToPArg);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = casePropertyArg(refersToPArg);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(refersToPArg);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.LOOK_IN_PARG: {
                 LookInPArg lookInPArg = (LookInPArg)theEObject;
                 T result = caseLookInPArg(lookInPArg);
-                if (result == null) result = casePropertyArg(lookInPArg);
-                if (result == null) result = caseLocatedElement(lookInPArg);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = casePropertyArg(lookInPArg);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(lookInPArg);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.CREATE_IN_PARG: {
                 CreateInPArg createInPArg = (CreateInPArg)theEObject;
                 T result = caseCreateInPArg(createInPArg);
-                if (result == null) result = casePropertyArg(createInPArg);
-                if (result == null) result = caseLocatedElement(createInPArg);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = casePropertyArg(createInPArg);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(createInPArg);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.REFERS_TO_KEY_PARG: {
                 RefersToKeyPArg refersToKeyPArg = (RefersToKeyPArg)theEObject;
                 T result = caseRefersToKeyPArg(refersToKeyPArg);
-                if (result == null) result = casePropertyArg(refersToKeyPArg);
-                if (result == null) result = caseLocatedElement(refersToKeyPArg);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = casePropertyArg(refersToKeyPArg);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(refersToKeyPArg);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.SEPARATOR_PARG: {
                 SeparatorPArg separatorPArg = (SeparatorPArg)theEObject;
                 T result = caseSeparatorPArg(separatorPArg);
-                if (result == null) result = casePropertyArg(separatorPArg);
-                if (result == null) result = caseLocatedElement(separatorPArg);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = casePropertyArg(separatorPArg);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(separatorPArg);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.AUTO_CREATE_PARG: {
                 AutoCreatePArg autoCreatePArg = (AutoCreatePArg)theEObject;
                 T result = caseAutoCreatePArg(autoCreatePArg);
-                if (result == null) result = casePropertyArg(autoCreatePArg);
-                if (result == null) result = caseLocatedElement(autoCreatePArg);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = casePropertyArg(autoCreatePArg);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(autoCreatePArg);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.IMPORT_CONTEXT_PARG: {
                 ImportContextPArg importContextPArg = (ImportContextPArg)theEObject;
                 T result = caseImportContextPArg(importContextPArg);
-                if (result == null) result = casePropertyArg(importContextPArg);
-                if (result == null) result = caseLocatedElement(importContextPArg);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = casePropertyArg(importContextPArg);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(importContextPArg);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.FORCED_LOWER_PARG: {
                 ForcedLowerPArg forcedLowerPArg = (ForcedLowerPArg)theEObject;
                 T result = caseForcedLowerPArg(forcedLowerPArg);
-                if (result == null) result = casePropertyArg(forcedLowerPArg);
-                if (result == null) result = caseLocatedElement(forcedLowerPArg);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = casePropertyArg(forcedLowerPArg);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(forcedLowerPArg);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.CREATE_AS_PARG: {
                 CreateAsPArg createAsPArg = (CreateAsPArg)theEObject;
                 T result = caseCreateAsPArg(createAsPArg);
-                if (result == null) result = casePropertyArg(createAsPArg);
-                if (result == null) result = caseLocatedElement(createAsPArg);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = casePropertyArg(createAsPArg);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(createAsPArg);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.AS_PARG: {
                 AsPArg asPArg = (AsPArg)theEObject;
                 T result = caseAsPArg(asPArg);
-                if (result == null) result = casePropertyArg(asPArg);
-                if (result == null) result = caseLocatedElement(asPArg);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = casePropertyArg(asPArg);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(asPArg);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.MODE_PARG: {
                 ModePArg modePArg = (ModePArg)theEObject;
                 T result = caseModePArg(modePArg);
-                if (result == null) result = casePropertyArg(modePArg);
-                if (result == null) result = caseLocatedElement(modePArg);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = casePropertyArg(modePArg);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(modePArg);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.BLOCK_ARG: {
                 BlockArg blockArg = (BlockArg)theEObject;
                 T result = caseBlockArg(blockArg);
-                if (result == null) result = caseLocatedElement(blockArg);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseLocatedElement(blockArg);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.NB_NLB_ARG: {
                 NbNLBArg nbNLBArg = (NbNLBArg)theEObject;
                 T result = caseNbNLBArg(nbNLBArg);
-                if (result == null) result = caseBlockArg(nbNLBArg);
-                if (result == null) result = caseLocatedElement(nbNLBArg);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseBlockArg(nbNLBArg);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(nbNLBArg);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.INDENT_INCR_BARG: {
                 IndentIncrBArg indentIncrBArg = (IndentIncrBArg)theEObject;
                 T result = caseIndentIncrBArg(indentIncrBArg);
-                if (result == null) result = caseBlockArg(indentIncrBArg);
-                if (result == null) result = caseLocatedElement(indentIncrBArg);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseBlockArg(indentIncrBArg);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(indentIncrBArg);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.START_NLB_ARG: {
                 StartNLBArg startNLBArg = (StartNLBArg)theEObject;
                 T result = caseStartNLBArg(startNLBArg);
-                if (result == null) result = caseBlockArg(startNLBArg);
-                if (result == null) result = caseLocatedElement(startNLBArg);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseBlockArg(startNLBArg);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(startNLBArg);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.START_NB_NLB_ARG: {
                 StartNbNLBArg startNbNLBArg = (StartNbNLBArg)theEObject;
                 T result = caseStartNbNLBArg(startNbNLBArg);
-                if (result == null) result = caseBlockArg(startNbNLBArg);
-                if (result == null) result = caseLocatedElement(startNbNLBArg);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseBlockArg(startNbNLBArg);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(startNbNLBArg);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.END_NLB_ARG: {
                 EndNLBArg endNLBArg = (EndNLBArg)theEObject;
                 T result = caseEndNLBArg(endNLBArg);
-                if (result == null) result = caseBlockArg(endNLBArg);
-                if (result == null) result = caseLocatedElement(endNLBArg);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseBlockArg(endNLBArg);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(endNLBArg);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.EXPRESSION: {
                 Expression expression = (Expression)theEObject;
                 T result = caseExpression(expression);
-                if (result == null) result = caseLocatedElement(expression);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseLocatedElement(expression);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.AND_EXP: {
                 AndExp andExp = (AndExp)theEObject;
                 T result = caseAndExp(andExp);
-                if (result == null) result = caseExpression(andExp);
-                if (result == null) result = caseLocatedElement(andExp);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseExpression(andExp);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(andExp);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.ATOM_EXP: {
                 AtomExp atomExp = (AtomExp)theEObject;
                 T result = caseAtomExp(atomExp);
-                if (result == null) result = caseLocatedElement(atomExp);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseLocatedElement(atomExp);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.EQUALS_EXP: {
                 EqualsExp equalsExp = (EqualsExp)theEObject;
                 T result = caseEqualsExp(equalsExp);
-                if (result == null) result = caseAtomExp(equalsExp);
-                if (result == null) result = caseLocatedElement(equalsExp);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseAtomExp(equalsExp);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(equalsExp);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.BOOLEAN_PROPERTY_EXP: {
                 BooleanPropertyExp booleanPropertyExp = (BooleanPropertyExp)theEObject;
                 T result = caseBooleanPropertyExp(booleanPropertyExp);
-                if (result == null) result = caseAtomExp(booleanPropertyExp);
-                if (result == null) result = caseLocatedElement(booleanPropertyExp);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseAtomExp(booleanPropertyExp);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(booleanPropertyExp);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.IS_DEFINED_EXP: {
                 IsDefinedExp isDefinedExp = (IsDefinedExp)theEObject;
                 T result = caseIsDefinedExp(isDefinedExp);
-                if (result == null) result = caseAtomExp(isDefinedExp);
-                if (result == null) result = caseLocatedElement(isDefinedExp);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseAtomExp(isDefinedExp);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(isDefinedExp);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.ONE_EXP: {
                 OneExp oneExp = (OneExp)theEObject;
                 T result = caseOneExp(oneExp);
-                if (result == null) result = caseAtomExp(oneExp);
-                if (result == null) result = caseLocatedElement(oneExp);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseAtomExp(oneExp);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(oneExp);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.VALUE: {
                 Value value = (Value)theEObject;
                 T result = caseValue(value);
-                if (result == null) result = caseLocatedElement(value);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseLocatedElement(value);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.PROPERTY_VAL: {
                 PropertyVal propertyVal = (PropertyVal)theEObject;
                 T result = casePropertyVal(propertyVal);
-                if (result == null) result = caseValue(propertyVal);
-                if (result == null) result = caseLocatedElement(propertyVal);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseValue(propertyVal);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(propertyVal);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.TOKEN: {
                 Token token = (Token)theEObject;
                 T result = caseToken(token);
-                if (result == null) result = caseNamedElement(token);
-                if (result == null) result = caseLocatedElement(token);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseNamedElement(token);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(token);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.OR_PATTERN: {
                 OrPattern orPattern = (OrPattern)theEObject;
                 T result = caseOrPattern(orPattern);
-                if (result == null) result = caseLocatedElement(orPattern);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseLocatedElement(orPattern);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.SIMPLE_PATTERN: {
                 SimplePattern simplePattern = (SimplePattern)theEObject;
                 T result = caseSimplePattern(simplePattern);
-                if (result == null) result = caseNamedElement(simplePattern);
-                if (result == null) result = caseLocatedElement(simplePattern);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseNamedElement(simplePattern);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(simplePattern);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.RULE_PATTERN: {
                 RulePattern rulePattern = (RulePattern)theEObject;
                 T result = caseRulePattern(rulePattern);
-                if (result == null) result = caseSimplePattern(rulePattern);
-                if (result == null) result = caseNamedElement(rulePattern);
-                if (result == null) result = caseLocatedElement(rulePattern);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseSimplePattern(rulePattern);
+                }
+                if (result == null) {
+                    result = caseNamedElement(rulePattern);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(rulePattern);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.RULE: {
                 Rule rule = (Rule)theEObject;
                 T result = caseRule(rule);
-                if (result == null) result = caseLocatedElement(rule);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseLocatedElement(rule);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.WORD_RULE: {
                 WordRule wordRule = (WordRule)theEObject;
                 T result = caseWordRule(wordRule);
-                if (result == null) result = caseRule(wordRule);
-                if (result == null) result = caseLocatedElement(wordRule);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseRule(wordRule);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(wordRule);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.WORD: {
                 Word word = (Word)theEObject;
                 T result = caseWord(word);
-                if (result == null) result = caseNamedElement(word);
-                if (result == null) result = caseLocatedElement(word);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseNamedElement(word);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(word);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.END_OF_LINE_RULE: {
                 EndOfLineRule endOfLineRule = (EndOfLineRule)theEObject;
                 T result = caseEndOfLineRule(endOfLineRule);
-                if (result == null) result = caseRule(endOfLineRule);
-                if (result == null) result = caseLocatedElement(endOfLineRule);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseRule(endOfLineRule);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(endOfLineRule);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.MULTI_LINE_RULE: {
                 MultiLineRule multiLineRule = (MultiLineRule)theEObject;
                 T result = caseMultiLineRule(multiLineRule);
-                if (result == null) result = caseRule(multiLineRule);
-                if (result == null) result = caseLocatedElement(multiLineRule);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseRule(multiLineRule);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(multiLineRule);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.MAPPING: {
                 Mapping mapping = (Mapping)theEObject;
                 T result = caseMapping(mapping);
-                if (result == null) result = caseLocatedElement(mapping);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseLocatedElement(mapping);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.SIMPLE_MAPPING: {
                 SimpleMapping simpleMapping = (SimpleMapping)theEObject;
                 T result = caseSimpleMapping(simpleMapping);
-                if (result == null) result = caseMapping(simpleMapping);
-                if (result == null) result = caseLocatedElement(simpleMapping);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseMapping(simpleMapping);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(simpleMapping);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.WILDCARD_MAPPING: {
                 WildcardMapping wildcardMapping = (WildcardMapping)theEObject;
                 T result = caseWildcardMapping(wildcardMapping);
-                if (result == null) result = caseMapping(wildcardMapping);
-                if (result == null) result = caseLocatedElement(wildcardMapping);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseMapping(wildcardMapping);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(wildcardMapping);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.OCTAL_MAPPING: {
                 OctalMapping octalMapping = (OctalMapping)theEObject;
                 T result = caseOctalMapping(octalMapping);
-                if (result == null) result = caseMapping(octalMapping);
-                if (result == null) result = caseLocatedElement(octalMapping);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseMapping(octalMapping);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(octalMapping);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.HEXADECIMAL_MAPPING: {
                 HexadecimalMapping hexadecimalMapping = (HexadecimalMapping)theEObject;
                 T result = caseHexadecimalMapping(hexadecimalMapping);
-                if (result == null) result = caseMapping(hexadecimalMapping);
-                if (result == null) result = caseLocatedElement(hexadecimalMapping);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseMapping(hexadecimalMapping);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(hexadecimalMapping);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.STRING_PATTERN: {
                 StringPattern stringPattern = (StringPattern)theEObject;
                 T result = caseStringPattern(stringPattern);
-                if (result == null) result = caseSimplePattern(stringPattern);
-                if (result == null) result = caseNamedElement(stringPattern);
-                if (result == null) result = caseLocatedElement(stringPattern);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseSimplePattern(stringPattern);
+                }
+                if (result == null) {
+                    result = caseNamedElement(stringPattern);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(stringPattern);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.CLASS_PATTERN: {
                 ClassPattern classPattern = (ClassPattern)theEObject;
                 T result = caseClassPattern(classPattern);
-                if (result == null) result = caseSimplePattern(classPattern);
-                if (result == null) result = caseNamedElement(classPattern);
-                if (result == null) result = caseLocatedElement(classPattern);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseSimplePattern(classPattern);
+                }
+                if (result == null) {
+                    result = caseNamedElement(classPattern);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(classPattern);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.QUALIFIED_NAMED_ELEMENT: {
                 QualifiedNamedElement qualifiedNamedElement = (QualifiedNamedElement)theEObject;
                 T result = caseQualifiedNamedElement(qualifiedNamedElement);
-                if (result == null) result = caseLocatedElement(qualifiedNamedElement);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseLocatedElement(qualifiedNamedElement);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.FORCED_UPPER_PARG: {
                 ForcedUpperPArg forcedUpperPArg = (ForcedUpperPArg)theEObject;
                 T result = caseForcedUpperPArg(forcedUpperPArg);
-                if (result == null) result = casePropertyArg(forcedUpperPArg);
-                if (result == null) result = caseLocatedElement(forcedUpperPArg);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = casePropertyArg(forcedUpperPArg);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(forcedUpperPArg);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.INJECTOR_ACTIONS_BLOCK: {
                 InjectorActionsBlock injectorActionsBlock = (InjectorActionsBlock)theEObject;
                 T result = caseInjectorActionsBlock(injectorActionsBlock);
-                if (result == null) result = caseSequenceElement(injectorActionsBlock);
-                if (result == null) result = caseLocatedElement(injectorActionsBlock);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseSequenceElement(injectorActionsBlock);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(injectorActionsBlock);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
-            case TCSPackage.QUERY_PARG: {
-                QueryPArg queryPArg = (QueryPArg)theEObject;
-                T result = caseQueryPArg(queryPArg);
-                if (result == null) result = casePropertyArg(queryPArg);
-                if (result == null) result = caseLocatedElement(queryPArg);
-                if (result == null) result = defaultCase(theEObject);
+            case TCSPackage.LOOKUP_SCOPE_PARG: {
+                LookupScopePArg lookupScopePArg = (LookupScopePArg)theEObject;
+                T result = caseLookupScopePArg(lookupScopePArg);
+                if (result == null) {
+                    result = casePropertyArg(lookupScopePArg);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(lookupScopePArg);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
-            case TCSPackage.FILTER_BY_IDENTIFIER_PARG: {
-                FilterByIdentifierPArg filterByIdentifierPArg = (FilterByIdentifierPArg)theEObject;
-                T result = caseFilterByIdentifierPArg(filterByIdentifierPArg);
-                if (result == null) result = casePropertyArg(filterByIdentifierPArg);
-                if (result == null) result = caseLocatedElement(filterByIdentifierPArg);
-                if (result == null) result = defaultCase(theEObject);
+            case TCSPackage.REFERENCE_BY_PARG: {
+                ReferenceByPArg referenceByPArg = (ReferenceByPArg)theEObject;
+                T result = caseReferenceByPArg(referenceByPArg);
+                if (result == null) {
+                    result = casePropertyArg(referenceByPArg);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(referenceByPArg);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.FILTER_PARG: {
                 FilterPArg filterPArg = (FilterPArg)theEObject;
                 T result = caseFilterPArg(filterPArg);
-                if (result == null) result = casePropertyArg(filterPArg);
-                if (result == null) result = caseLocatedElement(filterPArg);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = casePropertyArg(filterPArg);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(filterPArg);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.OCL_PARG: {
                 OclPArg oclPArg = (OclPArg)theEObject;
                 T result = caseOclPArg(oclPArg);
-                if (result == null) result = casePropertyArg(oclPArg);
-                if (result == null) result = caseLocatedElement(oclPArg);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = casePropertyArg(oclPArg);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(oclPArg);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.PROPERTY_REFERENCE: {
                 PropertyReference propertyReference = (PropertyReference)theEObject;
                 T result = casePropertyReference(propertyReference);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.CONTEXT_TEMPLATE: {
                 ContextTemplate contextTemplate = (ContextTemplate)theEObject;
                 T result = caseContextTemplate(contextTemplate);
-                if (result == null) result = caseTemplate(contextTemplate);
-                if (result == null) result = caseQualifiedNamedElement(contextTemplate);
-                if (result == null) result = caseLocatedElement(contextTemplate);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseTemplate(contextTemplate);
+                }
+                if (result == null) {
+                    result = caseQualifiedNamedElement(contextTemplate);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(contextTemplate);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.CONTEXT_TAGS: {
                 ContextTags contextTags = (ContextTags)theEObject;
                 T result = caseContextTags(contextTags);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.INJECTOR_ACTION: {
                 InjectorAction injectorAction = (InjectorAction)theEObject;
                 T result = caseInjectorAction(injectorAction);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.PROPERTY_INIT: {
                 PropertyInit propertyInit = (PropertyInit)theEObject;
                 T result = casePropertyInit(propertyInit);
-                if (result == null) result = caseInjectorAction(propertyInit);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseInjectorAction(propertyInit);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.OCL_PROPERTY_INIT: {
                 OclPropertyInit oclPropertyInit = (OclPropertyInit)theEObject;
                 T result = caseOclPropertyInit(oclPropertyInit);
-                if (result == null) result = casePropertyInit(oclPropertyInit);
-                if (result == null) result = caseInjectorAction(oclPropertyInit);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = casePropertyInit(oclPropertyInit);
+                }
+                if (result == null) {
+                    result = caseInjectorAction(oclPropertyInit);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.SCOPE_ARG: {
                 ScopeArg scopeArg = (ScopeArg)theEObject;
                 T result = caseScopeArg(scopeArg);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT: {
                 ForeachPredicatePropertyInit foreachPredicatePropertyInit = (ForeachPredicatePropertyInit)theEObject;
                 T result = caseForeachPredicatePropertyInit(foreachPredicatePropertyInit);
-                if (result == null) result = casePropertyInit(foreachPredicatePropertyInit);
-                if (result == null) result = caseInjectorAction(foreachPredicatePropertyInit);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = casePropertyInit(foreachPredicatePropertyInit);
+                }
+                if (result == null) {
+                    result = caseInjectorAction(foreachPredicatePropertyInit);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.PREDICATE_SEMANTIC: {
                 PredicateSemantic predicateSemantic = (PredicateSemantic)theEObject;
                 T result = casePredicateSemantic(predicateSemantic);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.SEQUENCE_IN_ALTERNATIVE: {
                 SequenceInAlternative sequenceInAlternative = (SequenceInAlternative)theEObject;
                 T result = caseSequenceInAlternative(sequenceInAlternative);
-                if (result == null) result = caseSequence(sequenceInAlternative);
-                if (result == null) result = caseLocatedElement(sequenceInAlternative);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseSequence(sequenceInAlternative);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(sequenceInAlternative);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.PARTIAL_PARG: {
                 PartialPArg partialPArg = (PartialPArg)theEObject;
                 T result = casePartialPArg(partialPArg);
-                if (result == null) result = casePropertyArg(partialPArg);
-                if (result == null) result = caseLocatedElement(partialPArg);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = casePropertyArg(partialPArg);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(partialPArg);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.DISAMBIGUATE_PARG: {
                 DisambiguatePArg disambiguatePArg = (DisambiguatePArg)theEObject;
                 T result = caseDisambiguatePArg(disambiguatePArg);
-                if (result == null) result = casePropertyArg(disambiguatePArg);
-                if (result == null) result = caseLocatedElement(disambiguatePArg);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = casePropertyArg(disambiguatePArg);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(disambiguatePArg);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.INSTANCE_OF_EXP: {
                 InstanceOfExp instanceOfExp = (InstanceOfExp)theEObject;
                 T result = caseInstanceOfExp(instanceOfExp);
-                if (result == null) result = caseAtomExp(instanceOfExp);
-                if (result == null) result = caseLocatedElement(instanceOfExp);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseAtomExp(instanceOfExp);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(instanceOfExp);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.ENUM_LITERAL_VAL: {
                 EnumLiteralVal enumLiteralVal = (EnumLiteralVal)theEObject;
                 T result = caseEnumLiteralVal(enumLiteralVal);
-                if (result == null) result = caseValue(enumLiteralVal);
-                if (result == null) result = caseLocatedElement(enumLiteralVal);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseValue(enumLiteralVal);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(enumLiteralVal);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.STRING_VAL: {
                 StringVal stringVal = (StringVal)theEObject;
                 T result = caseStringVal(stringVal);
-                if (result == null) result = caseValue(stringVal);
-                if (result == null) result = caseLocatedElement(stringVal);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseValue(stringVal);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(stringVal);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.INTEGER_VAL: {
                 IntegerVal integerVal = (IntegerVal)theEObject;
                 T result = caseIntegerVal(integerVal);
-                if (result == null) result = caseValue(integerVal);
-                if (result == null) result = caseLocatedElement(integerVal);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseValue(integerVal);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(integerVal);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.NEGATIVE_INTEGER_VAL: {
                 NegativeIntegerVal negativeIntegerVal = (NegativeIntegerVal)theEObject;
                 T result = caseNegativeIntegerVal(negativeIntegerVal);
-                if (result == null) result = caseValue(negativeIntegerVal);
-                if (result == null) result = caseLocatedElement(negativeIntegerVal);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseValue(negativeIntegerVal);
+                }
+                if (result == null) {
+                    result = caseLocatedElement(negativeIntegerVal);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case TCSPackage.LOOKUP_PROPERTY_INIT: {
                 LookupPropertyInit lookupPropertyInit = (LookupPropertyInit)theEObject;
                 T result = caseLookupPropertyInit(lookupPropertyInit);
-                if (result == null) result = casePropertyInit(lookupPropertyInit);
-                if (result == null) result = caseInjectorAction(lookupPropertyInit);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = casePropertyInit(lookupPropertyInit);
+                }
+                if (result == null) {
+                    result = caseInjectorAction(lookupPropertyInit);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             default: return defaultCase(theEObject);
@@ -2004,32 +2537,32 @@ public class TCSSwitch<T> {
     }
 
         /**
-     * Returns the result of interpreting the object as an instance of '<em>Query PArg</em>'.
-     * <!-- begin-user-doc -->
-         * This implementation returns null;
-         * returning a non-null result will terminate the switch.
-         * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Query PArg</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-        public T caseQueryPArg(QueryPArg object) {
-        return null;
-    }
-
-        /**
-     * Returns the result of interpreting the object as an instance of '<em>Filter By Identifier PArg</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Lookup Scope PArg</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Filter By Identifier PArg</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Lookup Scope PArg</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseFilterByIdentifierPArg(FilterByIdentifierPArg object) {
+    public T caseLookupScopePArg(LookupScopePArg object) {
+        return null;
+    }
+
+        /**
+     * Returns the result of interpreting the object as an instance of '<em>Reference By PArg</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Reference By PArg</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseReferenceByPArg(ReferenceByPArg object) {
         return null;
     }
 
