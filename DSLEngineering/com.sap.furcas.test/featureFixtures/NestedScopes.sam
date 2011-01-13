@@ -1,3 +1,5 @@
+// simple exaple for nested scopes
+
 	def a;
 	use a;
 	def b;
@@ -6,4 +8,5 @@
 	use c;
 	{ //block opens a nested scope
 		def d;
+		use d;
 	} // back to previous scope, d should not be visible here
