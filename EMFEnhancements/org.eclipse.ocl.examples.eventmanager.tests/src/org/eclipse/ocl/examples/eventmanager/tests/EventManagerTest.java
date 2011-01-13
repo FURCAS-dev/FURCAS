@@ -24,8 +24,8 @@ import org.eclipse.ocl.examples.eventmanager.filters.ClassFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.ContainmentFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.OrFilter;
-import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationHelper;
-import org.eclipse.ocl.examples.impactanalyzer.testutils.BaseDepartmentTest;
+import org.eclipse.ocl.examples.testutils.BaseDepartmentTest;
+import org.eclipse.ocl.examples.testutils.NotificationHelper;
 import org.junit.Test;
 
 import company.CompanyFactory;

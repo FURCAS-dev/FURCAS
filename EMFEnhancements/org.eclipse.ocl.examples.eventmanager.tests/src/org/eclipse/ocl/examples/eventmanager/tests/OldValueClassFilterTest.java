@@ -15,7 +15,7 @@ import junit.textui.TestRunner;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.eventmanager.filters.OldValueClassFilter;
-import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationHelper;
+import org.eclipse.ocl.examples.testutils.NotificationHelper;
 
 import company.CompanyFactory;
 import company.Employee;

@@ -15,8 +15,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import junit.framework.TestCase;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -30,6 +28,7 @@ import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.ExpressionInOCL;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.EnvironmentFactory;
+import org.eclipse.ocl.examples.testutils.BaseDepartmentTest;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -48,7 +47,7 @@ import company.impl.FreelanceImpl;
  * This is the super class for all tests based on the Department model.
  */
 @Ignore
-public class BaseDepartmentTest extends TestCase {
+public class BaseDepartmentTestWithOCL extends BaseDepartmentTest {
 
     protected ResourceSet rs = null;
     /**
