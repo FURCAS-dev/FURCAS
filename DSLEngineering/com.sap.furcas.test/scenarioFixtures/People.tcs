@@ -25,7 +25,7 @@ syntax People {
 	template City context addToContext
 		: name "(" persons{separator=","} ")"
 		  (isDefined(representative) ?
-		  	"representative:" representative{query="OCL:#context(nationTag).capital.persons", "name"="?", as=identifier}
+		  	"representative:" representative{referenceBy="name", as=identifier, lookupScope="OCL:#context(nationTag).capital.persons"}
 		  )
 		;
 		
@@ -43,7 +43,7 @@ syntax People {
 				")"
 			)	
 			(isDefined(spouse) ? 
-				"spouse:" spouse{query="OCL:Person.allInstances()", "name"="?", as=identifier}
+				"spouse:" spouse{referenceBy="name", as=identifier, lookupScope="OCL:Person.allInstances()"}
 			)
 			{{male = 'true', age='42', height='1.83', codeName='"Viper"', embassy=lookIn("currentlyIn.nation.capital"), embassy2=lookIn("OCL:currentlyIn.nation.capital")}} -- nonsense defaults
 		;
