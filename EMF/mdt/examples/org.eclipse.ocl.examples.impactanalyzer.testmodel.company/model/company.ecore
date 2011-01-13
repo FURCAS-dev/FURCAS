@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="company"
+    nsURI="http:///company.ecore" nsPrefix="company">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Employee">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+      <details key="UniqueNames" value="Employee.allInstances()->forAll(e | e &lt;> self implies e.name &lt;> self.name)"/>
+      <details key="BossIsOldest" value="self.age &lt;= self.employer.boss.age"/>
+      <details key="divBossSecretary" value="if self.directed->isEmpty() then&#xD;&#xA;self.secretary.oclIsUndefined()&#xD;&#xA;else&#xD;&#xA;not self.secretary.oclIsUndefined()&#xD;&#xA;endif"/>
+      <details key="secretaryOlderThanBoss" value="if self.directed->notEmpty() and&#xD;&#xA;not self.secretary.oclIsUndefined() then&#xD;&#xA;self.age &lt; self.secretary.age &#xD;&#xA;else true&#xD;&#xA;endif"/>
+      <details key="Boss10YearsOlderThanEmployee" value="self.age + 10 &lt;= self.employer.boss.age"/>
+      <details key="Secretary10YearsOlderThanBoss" value="if self.directed->notEmpty() and&#xD;&#xA;not self.secretary.oclIsUndefined() then&#xD;&#xA;self.age + 10 &lt; self.secretary.age &#xD;&#xA;else true&#xD;&#xA;endif"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="UniqueNames BossIsOldest divBossSecretary secretaryOlderThanBoss Boss10YearsOlderThanEmployee Secretary10YearsOlderThanBoss"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType primitivetypes.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="age" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="salary" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="employer" eType="#//Department"
+        resolveProxies="false" eOpposite="#//Department/employee"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="managed" eType="#//Department"
+        resolveProxies="false" eOpposite="#//Department/boss"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="directed" eType="#//Division"
+        resolveProxies="false" eOpposite="#//Division/director"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="secretary" eType="#//Employee"
+        containment="true" resolveProxies="false">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+        <details key="Property.oppositeRoleName" value="secretary2boss"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="intern" eType="#//Student">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+        <details key="Property.oppositeRoleName" value="student2employee"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Department">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+      <details key="NotBossFreelance" value="not (self.boss.oclIsTypeOf(Freelance))"/>
+      <details key="OldEmployee" value="self.employee->exists(e | e.age > 45)"/>
+      <details key="MaxJuniors" value="self.employee->select(e|e.age &lt; 25)->size()&#xD;&#xA;&lt;self.maxJuniors"/>
+      <details key="BossHighestSalary" value="self.employee->select(e|e.salary >= self.boss.salary)->size() &lt;= 1"/>
+      <details key="boss10YearsOlderThanJunior" value="let t:Tuple(boss:Employee,junior:Employee)=&#xD;&#xA;Tuple{boss=self.boss, junior=self.employee->sortedBy(age)->first()} in&#xD;&#xA;t.boss.age > t.junior.age + 10"/>
+      <details key="BudgetRestriction" value="self.calcExpenses() &lt;= self.budget"/>
+      <details key="MaxJuniorsWarning" value="if self.maxJuniors > 1&#xD;&#xA;then&#xD;&#xA;self.employee->select(e|e.age &lt; 25)->size()&#xD;&#xA;&lt;self.maxJuniors - 1&#xD;&#xA;else&#xD;&#xA;true&#xD;&#xA;endif"/>
+      <details key="departmentMustHaveDivision" value="self.department2division->notEmpty()"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="NotBossFreelance OldEmployee MaxJuniors BossHighestSalary boss10YearsOlderThanJunior BudgetRestriction MaxJuniorsWarning departmentMustHaveDivision"/>
+    </eAnnotations>
+    <eOperations name="calcExpenses" eType="ecore:EDataType primitivetypes.ecore#//Integer">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="body" value="self.employee->iterate(e ; s : Integer = 0 | s + e.salary) + self.boss.salary"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="sumBudget" eType="ecore:EDataType primitivetypes.ecore#//Integer">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="body" value="if self.subDepartment->size() >= 1 then&#xD;&#xA;&#x9;self.subDepartment->iterate(department; return : Integer = 0 | return + department.sumBudget()) + self.budget&#xD;&#xA;else&#xD;&#xA;&#x9;self.budget&#xD;&#xA;endif "/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType primitivetypes.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxJuniors" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="budget" eType="ecore:EDataType primitivetypes.ecore#//Integer"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="employee" upperBound="-1"
+        eType="#//Employee" containment="true" resolveProxies="false" eOpposite="#//Employee/employer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boss" eType="#//Employee"
+        resolveProxies="false" eOpposite="#//Employee/managed"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subDepartment" upperBound="-1"
+        eType="#//Department" containment="true" resolveProxies="false" eOpposite="#//Department/parentDepartment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parentDepartment" eType="#//Department"
+        resolveProxies="false" eOpposite="#//Department/subDepartment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="employeeOfTheMonth" unique="false"
+        upperBound="-1" eType="#//Employee"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Freelance" eSuperTypes="#//Employee">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+      <details key="ValidAssignment" value="self.assignment >= 5 and self.assignment &lt;= 30"/>
+      <details key="ValidAssignmentWarning" value="self.assignment >= 5 and self.assignment &lt;= 40"/>
+      <details key="StudentAndFreelancesAge" value="self.age &lt; 40"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ValidAssignment ValidAssignmentWarning StudentAndFreelancesAge"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="assignment" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Division">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+      <details key="nasty" value="self.department->collect(d| &#xD;&#xA;d.employee->including(d.boss)).salary->sum() &lt; budget"/>
+      <details key="limitEmployeesOfTheMonth" value="self.employeesOfTheMonth->size() &lt;= self.department->size()"/>
+      <details key="nestedDerivation" value="self.numberEmployeesOfTheMonth &lt;= self.department->size()"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="nasty limitEmployeesOfTheMonth nestedDerivation"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType primitivetypes.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="department" upperBound="-1"
+        eType="#//Department" containment="true" resolveProxies="false">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+        <details key="Property.oppositeRoleName" value="department2division"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="director" eType="#//Employee"
+        containment="true" resolveProxies="false" eOpposite="#//Employee/directed"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="budget" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="employeesOfTheMonth" unique="false"
+        upperBound="-1" eType="#//Employee" changeable="false" volatile="true" transient="true"
+        derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="derivation" value="self.department.employeeOfTheMonth"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberEmployeesOfTheMonth"
+        ordered="false" eType="ecore:EDataType primitivetypes.ecore#//Integer" changeable="false"
+        volatile="true" transient="true" defaultValueLiteral="" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="derivation" value="self.employeesOfTheMonth->size()"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="company" eType="#//Company"
+        eOpposite="#//Company/division"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Student" eSuperTypes="#//Employee">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+      <details key="StudentAndFreelancesAge" value="self.age &lt; 40"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="StudentAndFreelancesAge"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Company">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+      <details key="eotmDeltaMax" value="self.eotmDelta &lt;= 5"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="eotmDeltaMax"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="division" eType="#//Division"
+        eOpposite="#//Division/company"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="eotmDelta" eType="ecore:EDataType primitivetypes.ecore#//Integer"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="derivation" value="let maxEOTMDivision:Division=self.division->sortedBy(i | i.numberEmployeesOfTheMonth)->last() in let minEOTMDivision:Division=self.division->sortedBy(i | i.numberEmployeesOfTheMonth)->first() in maxEOTMDivision.numberEmployeesOfTheMonth - minEOTMDivision.numberEmployeesOfTheMonth"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+</ecore:EPackage>
