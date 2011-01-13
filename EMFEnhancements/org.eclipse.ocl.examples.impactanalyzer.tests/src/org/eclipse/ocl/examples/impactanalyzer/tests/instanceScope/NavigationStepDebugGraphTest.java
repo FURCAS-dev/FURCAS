@@ -22,7 +22,7 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationHelper;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OCLFactoryImpl;
-import org.eclipse.ocl.examples.impactanalyzer.testutils.BaseDepartmentTest;
+import org.eclipse.ocl.examples.impactanalyzer.testutils.BaseDepartmentTestWithOCL;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,7 +32,7 @@ import company.Department;
 import company.impl.DepartmentImpl;
 
 
-public class NavigationStepDebugGraphTest extends BaseDepartmentTest  {
+public class NavigationStepDebugGraphTest extends BaseDepartmentTestWithOCL  {
     
     private Department dep1;
     private Department dep2;

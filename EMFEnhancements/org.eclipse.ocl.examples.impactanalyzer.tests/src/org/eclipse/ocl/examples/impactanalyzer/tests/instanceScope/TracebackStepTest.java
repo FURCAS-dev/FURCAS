@@ -25,14 +25,14 @@ import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationHelper;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.OptimizationActivation;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OCLFactoryImpl;
-import org.eclipse.ocl.examples.impactanalyzer.testutils.BaseDepartmentTest;
+import org.eclipse.ocl.examples.impactanalyzer.testutils.BaseDepartmentTestWithOCL;
 import org.junit.Test;
 
 import data.classes.ClassesFactory;
 import data.classes.ClassesPackage;
 import data.classes.SapClass;
 
-public class TracebackStepTest extends BaseDepartmentTest {
+public class TracebackStepTest extends BaseDepartmentTestWithOCL {
     private EPackage cp;
     private ResourceSetImpl rs;
     private boolean oldTracebackStepISAActive;

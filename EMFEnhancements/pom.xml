@@ -28,7 +28,6 @@
     <module>de.hpi.sam.activityDiagram</module>
     <module>org.eclipse.ocl.examples.impactanalyzer.testmodel.company</module>
     <module>org.eclipse.ocl.examples.impactanalyzer.testmodel.ngpm</module>
-    <module>org.eclipse.ocl.examples.eventmanager</module>
     <module>org.eclipse.ocl.examples.eventmanager.tests</module>
     <module>org.eclipse.ocl.examples.impactanalyzer</module>
     <module>org.eclipse.ocl.examples.impactanalyzer.benchmark</module>
@@ -43,6 +42,7 @@
     <module>de.hpi.sam.bp2009.solution.scopeProvider</module>
     <module>de.hpi.sam.bp2009.solution.scopeProvider.tests</module>
     <module>org.eclipse.ocl.examples.impactanalyzer.testutils</module>
+    <module>org.eclipse.ocl.examples.testutils</module>
     <module>de.hpi.sam.petriNet</module>
     <module>EMFEnhancements-Feature</module>
   </modules>

@@ -32,7 +32,7 @@ import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationHelper;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.OptimizationActivation;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OCLFactoryImpl;
-import org.eclipse.ocl.examples.impactanalyzer.testutils.BaseDepartmentTest;
+import org.eclipse.ocl.examples.impactanalyzer.testutils.BaseDepartmentTestWithOCL;
 import org.junit.Test;
 
 import data.classes.Association;
@@ -54,7 +54,7 @@ import dataaccess.expressions.literals.LiteralsPackage;
 import dataaccess.expressions.literals.ObjectLiteral;
 import dataaccess.expressions.literals.StringLiteral;
 
-public class OclIaTest extends BaseDepartmentTest {
+public class OclIaTest extends BaseDepartmentTestWithOCL {
 
     private static final String testAnalysisOfRecursiveOperationWithSelf = "context dataaccess::expressions::MethodCallExpression \n"
             + "inv testAnalysisOfRecursiveOperationWithSelf: \n"

@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications;
+package org.eclipse.ocl.examples.testutils;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
@@ -22,10 +22,6 @@ import org.eclipse.emf.ecore.impl.EEnumImpl;
 import org.eclipse.emf.ecore.impl.EEnumLiteralImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-
-import data.classes.ClassTypeDefinition;
-import data.classes.SapClass;
-import data.classes.TypeDefinition;
 
 public class NotificationHelper {
     public static class TestAdapter extends AdapterImpl {
@@ -52,7 +48,7 @@ public class NotificationHelper {
         }
     }// TestAdapter
 
-    private static Notification getNotificationfrom(TestAdapter adapter) {
+    protected static Notification getNotificationfrom(TestAdapter adapter) {
         Notification noti = adapter.getNoti();
         // this adapter removes itself once a notification is caught
         if (adapter.getTarget() != null) {
@@ -210,13 +206,6 @@ public class NotificationHelper {
         return getNotificationfrom(myTestA);
     }
 
-    public static Notification createChangeLowerMultiplicityNotification(TypeDefinition notifier, int value) {
-        TestAdapter myTestA = new TestAdapter();
-        notifier.eAdapters().add(myTestA);
-        notifier.setLowerMultiplicity(value);
-        return getNotificationfrom(myTestA);
-    }
-
     public static Notification createNewElementAddToResourceNotification(EObject objectToAdd, Resource target) {
         TestAdapter myTestA = new TestAdapter();
         target.eAdapters().add(myTestA);
@@ -224,10 +213,4 @@ public class NotificationHelper {
         return getNotificationfrom(myTestA);
     }
 
-    public static Notification createChangeClazzNotification(ClassTypeDefinition notifier, SapClass value) {
-        TestAdapter myTestA = new TestAdapter();
-        notifier.eAdapters().add(myTestA);
-        notifier.setClazz(value);
-        return getNotificationfrom(myTestA);
-    }
 }
