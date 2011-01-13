@@ -574,7 +574,7 @@ public class PrettyPrinter {
 
 	RefersToPArg refersToPArg = TcsUtil.getRefersToPArg(property);
 	AsPArg asPArg = TcsUtil.getAsPArg(property);
-	QueryPArg query = TcsUtil.getQueryPArg(property);
+	QueryPArg query = TcsUtil.getLookupScopePArg(property);
 	String primitiveTemplateName = null;
 
 	if (asPArg != null) {

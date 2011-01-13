@@ -61,7 +61,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.EndNLBArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.EndOfLineRule;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralMapping;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg;
@@ -73,6 +72,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
 import com.sap.furcas.metamodel.FURCAS.TCS.Literal;
 import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
+import com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ModePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.NbNLBArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Operator;
@@ -83,7 +83,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
-import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Rule;
 import com.sap.furcas.metamodel.FURCAS.TCS.RulePattern;
@@ -842,33 +842,33 @@ public class TcsUtil {
     }
 
     /**
-     * returns the first {@link QueryPArg} of Property p. There should only be one. No error is thrown, if more than one exist.
+     * returns the first {@link LookupScopePArg} of Property p. There should only be one. No error is thrown, if more than one exist.
      * 
      * @param p
      *            Property
      * @return first QueryPArg
      */
-    public static QueryPArg getQueryPArg(Property p) {
+    public static LookupScopePArg getLookupScopePArg(Property p) {
         for (PropertyArg arg : p.getPropertyArgs()) {
-            if (arg instanceof QueryPArg) {
-                return (QueryPArg) arg;
+            if (arg instanceof LookupScopePArg) {
+                return (LookupScopePArg) arg;
             }
         }
         return null;
     }
 
     /**
-     * returns the first {@link FilterByIdentifierPArg} of Property p. There should only be one. No error is thrown, if
+     * returns the first {@link ReferenceByPArg} of Property p. There should only be one. No error is thrown, if
      * more than one exist.
      * 
      * @param p
      *            Property
      * @return first QueryPArg
      */
-    public static FilterByIdentifierPArg getFilterByIdentifierPArg(Property p) {
+    public static ReferenceByPArg getFilterByIdentifierPArg(Property p) {
         for (PropertyArg arg : p.getPropertyArgs()) {
-            if (arg instanceof FilterByIdentifierPArg) {
-                return (FilterByIdentifierPArg) arg;
+            if (arg instanceof ReferenceByPArg) {
+                return (ReferenceByPArg) arg;
             }
         }
         return null;
@@ -1637,20 +1637,7 @@ public class TcsUtil {
     }
 
     public static boolean containsQueryArg(Property p) {
-        return getQueryPArg(p) != null;
-    }
-
-    public static String getQuery(Property se) {
-        QueryPArg arg = getQueryPArg(se);
-        if (arg != null) {
-            StringBuffer query = new StringBuffer(arg.getQuery());
-            FilterPArg filterPArg = getFilterPArg(se);
-            if (filterPArg != null) {
-                query.append(filterPArg.getFilter());
-            }
-            return query.toString();
-        }
-        return null;
+        return getLookupScopePArg(p) != null;
     }
 
     // public static boolean isStructureTypeTemplate(Template parseRule) {
