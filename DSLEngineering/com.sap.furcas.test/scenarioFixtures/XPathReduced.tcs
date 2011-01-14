@@ -1,28 +1,28 @@
 syntax XPathReduced {
 
-	primitiveTemplate identifier for ->String default using NAME:
+	primitiveTemplate identifier for String default using NAME:
 		value = "unescapeString(%token%)";
 
-	primitiveTemplate stringSymbol for ->String using STRING:
+	primitiveTemplate stringSymbol for String using STRING:
 		value = "unescapeString(%token%)",
 		serializer="'\'' + %value%.toCString() + '\''";
 
-	primitiveTemplate integerSymbol for ->Integer default using INT:
+	primitiveTemplate integerSymbol for Integer default using INT:
 		value = "Integer.valueOf(%token%)";
 
-	primitiveTemplate floatSymbol for ->Double default using FLOAT:
+	primitiveTemplate floatSymbol for Double default using FLOAT:
 		value = "Double.valueOf(%token%)";
 
 -- Expressions
-	template ->Expression main abstract operatored;
+	template Expression main abstract operatored;
 
-	template ->VariableExp
-		:	"$" ->name
+	template VariableExp
+		:	"$" name
 		;
 
 
 	
-	operatorTemplate ->OperatorCallExp(operators =
+	operatorTemplate OperatorCallExp(operators =
 			opUnion
 
 			opMinus1
@@ -42,18 +42,18 @@ syntax XPathReduced {
 			opAnd
 
 			opOr,
-			source = ->'left', storeOpTo = ->name, storeRightTo = ->'right');
+			source = 'left', storeOpTo = name, storeRightTo = 'right');
 
 	
 
-	template ->LiteralExp abstract;
+	template LiteralExp abstract;
 
-	template ->IntegerExp
-		:	->symbol
+	template IntegerExp
+		:	symbol
 		;
 
-	template ->StringExp
-		:	->symbol{as = stringSymbol}
+	template StringExp
+		:	symbol{as = stringSymbol}
 		;
 -- End Expressions
 

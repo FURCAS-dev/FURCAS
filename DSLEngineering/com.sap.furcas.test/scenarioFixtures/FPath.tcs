@@ -14,74 +14,75 @@ syntax FPath {
 -- Specifies representation of primitive types.
 -- Only needs modification when default lexer is not satisfactory.
 -- Generally modified along with the lexer.
-	primitiveTemplate identifier for ->String default using NAME:
+
+	primitiveTemplate identifier for String default using NAME:
 		value = "unescapeString(%token%)";
 
-	primitiveTemplate stringSymbol for ->String using STRING:
+	primitiveTemplate stringSymbol for String using STRING:
 		value = "unescapeString(%token%)",
 		serializer="'\'' + %value%.toCString() + '\''";
 
-	primitiveTemplate floatSymbol for ->Double default using FLOAT:
+	primitiveTemplate floatSymbol for Double default using FLOAT:
 		value = "Double.valueOf(%token%)";
 -- END Primitive templates
 
 -- BEGIN Class templates
 -- Specifies representation of classes.
 -- This is the main section to work on.
-	template ->Expression main abstract operatored;
+	template Expression main abstract operatored;
 	
-	template ->ContextExp
+	template ContextExp
 		:	"."
 		;
 		
-	template ->VariableExp
-		:	"$" ->name
+	template VariableExp
+		:	"$" name
 		;
 
-	template ->FunctionCallExp
-		:	->name "(" ->arguments{separator = ","} ")"
+	template FunctionCallExp
+		:	name "(" arguments{separator = ","} ")"
 		;
 
-	template ->NumberExp
-		:	->'value'
+	template NumberExp
+		:	'value'
 		;
 
-	template ->StringExp
-		:	->'value'{as = stringSymbol}
+	template StringExp
+		:	'value'{as = stringSymbol}
 		;
 
-	operatorTemplate ->PathExp(operators = opSlash, source = ->initialNodeSet)
-		:	->steps{separator = "/"}
+	operatorTemplate PathExp(operators = opSlash, source = initialNodeSet)
+		:	steps{separator = "/"}
 		;
 
-	operatorTemplate ->BinaryOperatorExp(operators =
+	operatorTemplate BinaryOperatorExp(operators =
 			opMul opDiv
 			opPlus opMinus2
 			opLt opGt opLe opGe opEq opNe
 			opAnd opOr
-			, source = ->'left', storeOpTo = ->operator, storeRightTo = ->'right'
+			, source = 'left', storeOpTo = operator, storeRightTo = 'right'
 		);
 
-	operatorTemplate ->UnaryOperatorExp(operators =
+	operatorTemplate UnaryOperatorExp(operators =
 			opNot opMinus1
-			, source = ->operand, storeOpTo = ->operator
+			, source = operand, storeOpTo = operator
 		);
 		
-	template ->Step
-		:	->axis "::" ->test (isDefined(->predicates) ? "[" ->predicates{separator = "]" "["} "]")
+	template Step
+		:	axis "::" test (isDefined(predicates) ? "[" predicates{separator = "]" "["} "]")
 		;
 
-	template ->Test abstract;
+	template Test abstract;
 	
-	template ->WildcardTest
+	template WildcardTest
 		:	"*"
 		;
 
-	template ->NameTest
-		:	->name
+	template NameTest
+		:	name
 		;
 
-	enumerationTemplate ->Axis
+	enumerationTemplate Axis
 		:	#component				= "component",
 			#'internal-interface'	= "internal-interface",
 			#interface				= "interface",

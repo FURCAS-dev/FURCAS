@@ -3,78 +3,78 @@
 -- @description	This TCS model defines the syntax of SQL DDL.
 syntax SQLDDL {
 
-	primitiveTemplate identifier for ->String default using NAME:
+	primitiveTemplate identifier for String default using NAME:
 		value = "unescapeString(%token%)";
 
-	primitiveTemplate stringSymbol for ->String using STRING:
+	primitiveTemplate stringSymbol for String using STRING:
 		value = "unescapeString(%token%)",
-		serializer="'\'' + %value%.toCString() + '\''";
+		serializer="'\''%value%'\''";
 
-	primitiveTemplate integerSymbol for ->Integer default using INT:
+	primitiveTemplate integerSymbol for Integer default using INT:
 		value = "Integer.valueOf(%token%)";
 
-	primitiveTemplate floatSymbol for ->Double default using FLOAT:
+	primitiveTemplate floatSymbol for Double default using FLOAT:
 		value = "Double.valueOf(%token%)";
 
-	template ->Database main context
-		:	->tables
+	template Database main context
+		:	tables
 		;
 
-	template ->Table context addToContext
-		:	"CREATE" "TABLE" ->name "(" [
-				->elements{separator = ","}
-			] ")" ->parameters ";"
+	template Table context addToContext
+		:	"CREATE" "TABLE" name "(" [
+				elements{separator = ","}
+			] ")" parameters ";"
 		;
 
 -- @end Table Elements
-	template ->TableElement abstract;
+	template TableElement abstract;
 
-	template ->Column addToContext
-		:	->name ->type
-			(->canBeNull ? : "NOT" "NULL")
-			(isDefined(->default) ? "default" ->default{as = stringSymbol})
+	template Column addToContext
+		:	name type
+			(canBeNull ? : "NOT" "NULL")
+			(isDefined(default) ? "default" default{as = stringSymbol})
 		;
 
-	template ->Key abstract;
+	template Key abstract;
 
-	template ->SimpleKey
-		:	(->isUnique ? "UNIQUE")
-			"KEY" (isDefined(->name) ? ->name) "(" ->columns{refersTo = name, separator = ","} ")"
+	template SimpleKey
+		:	(isUnique ? "UNIQUE")
+			"KEY" (isDefined(name) ? name) "(" columns{refersTo = name, separator = ","} ")"
 		;
 
-	template ->PrimaryKey
-		:	"PRIMARY" (->isUnique ? "UNIQUE")
-			"KEY" (isDefined(->name) ? ->name) "(" ->columns{refersTo = name, separator = ","} ")"
+	template PrimaryKey
+		:	"PRIMARY" (isUnique ? "UNIQUE")
+			"KEY" (isDefined(name) ? name) "(" columns{refersTo = name, separator = ","} ")"
 		;
 
-	template ->ForeignKey
-		:	"FOREIGN" (->isUnique ? "UNIQUE")
-			"KEY" (isDefined(->name) ? ->name) "(" ->columns{refersTo = name, separator = ","} ")"
-			"REFERENCES" ->referencedTable{refersTo = name} "(" ->referencedColumns{separator = ",", refersTo = name, lookIn = referencedTable} ")"
+	template ForeignKey
+		:	"FOREIGN" (isUnique ? "UNIQUE")
+			"KEY" (isDefined(name) ? name) "(" columns{refersTo = name, separator = ","} ")"
+			"REFERENCES" referencedTable{refersTo = name} "(" referencedColumns{separator = ",", refersTo = name, lookIn = referencedTable} ")"
 		;
 -- @begin Table Elements
 
-	template ->Type
-		:	->name (isDefined(->length) ? "(" ->length{separator = ","} ")") (->isUnsigned ? "unsigned")
+	template Type
+		:	name (isDefined(length) ? "(" length{separator = ","} ")") (isUnsigned ? "unsigned")
 		;
 
-	template ->Parameter
-		: ->name (isDefined(->value) ? "=" ->value)
+	template Parameter
+		: name (isDefined(value) ? "=" value)
 		;
 
 -- @begin Values
-	template ->Value abstract;
+	template Value abstract;
 
-	template ->IntegerVal
-		:	->value
+	template IntegerVal
+		:	value
 		;
 
-	template ->NullVal
+	template NullVal
 		:	"NULL"
 		;
 
-	template ->StringVal
-		:	->value{as = stringSymbol}
+	template StringVal
+		:	value{as = stringSymbol}
 		;
 -- @end Values
 

@@ -14,20 +14,20 @@
 --	- disambiguation information is typically used with ANTLRv2
 syntax OCL {
 
-	primitiveTemplate identifier for ->String default using NAME:
+	primitiveTemplate identifier for String default using NAME:
 		value = "unescapeString(%token%)";
 
-	primitiveTemplate identifierOrKeyword for ->String using NAME orKeyword:
+	primitiveTemplate identifierOrKeyword for String using NAME orKeyword:
 		value = "unescapeString(%token%)";
 
-	primitiveTemplate stringSymbol for ->String using STRING:
+	primitiveTemplate stringSymbol for String using STRING:
 		value = "unescapeString(%token%)",
 		serializer="'\'' + %value%.toCString() + '\''";
 
-	primitiveTemplate integerSymbol for ->Integer default using INT:
+	primitiveTemplate integerSymbol for Integer default using INT:
 		value = "Integer.valueOf(%token%)";
 
-	primitiveTemplate floatSymbol for ->Double default using FLOAT:
+	primitiveTemplate floatSymbol for Double default using FLOAT:
 		value = "Double.valueOf(%token%)";
 
 
@@ -35,239 +35,239 @@ syntax OCL {
 -- @begin Helpers
 
 
-	template ->OclFeatureDefinition
-		:	(isDefined(->context_) ? ->context_) "def" <no_space> ":" ->feature
+	template OclFeatureDefinition
+		:	(isDefined(context_) ? context_) "def" <no_space> ":" feature
 		;
 
-	template ->OclContextDefinition
-		:	"context" ->context_
+	template OclContextDefinition
+		:	"context" context_
 		;
 
-	template ->OclFeature abstract;
+	template OclFeature abstract;
 
-	template ->Operation context
-		:	->name "(" ->parameters{separator = ","} ")" ":" ->returnType "="
-			[ ->body ] {endNL = false}
+	template Operation context
+		:	name "(" parameters{separator = ","} ")" ":" returnType "="
+			[ body ] {endNL = false}
 		;
 
-	template ->Parameter addToContext
-		:	->varName ":" ->type
+	template Parameter addToContext
+		:	varName ":" type
 		;
 
-	template ->Attribute
-		:	->name ":" ->type "="
-			[ ->initExpression ] {endNL = false}
+	template Attribute
+		:	name ":" type "="
+			[ initExpression ] {endNL = false}
 		;
 -- @end Helpers
 
 
 
 -- @begin Models
-	template ->OclModel
-		:	->name ":" ->metamodel{refersTo = name, lookIn = #all, autoCreate = ifmissing}
+	template OclModel
+		:	name ":" metamodel{refersTo = name, lookIn = #all, autoCreate = ifmissing}
 		;
 
-	template ->OclModelElement
-		:	->model{refersTo = name, lookIn = #all, autoCreate = ifmissing} "!" ->name
+	template OclModelElement
+		:	model{refersTo = name, lookIn = #all, autoCreate = ifmissing} "!" name
 		;
 -- @end Models
 
 
 -- @begin OCL
-	template ->OclExpression main abstract operatored;
+	template OclExpression main abstract operatored;
 
 -- @begin operatored
-	operatorTemplate ->IteratorExp(operators = opRarrow, source = ->'source', disambiguate = "NAME LPAREN NAME (PIPE | ((COMA NAME)+ PIPE))") context
-		:	->name "(" ->iterators{separator = ","} "|" [
-				->body
+	operatorTemplate IteratorExp(operators = opRarrow, source = 'source', disambiguate = "NAME LPAREN NAME (PIPE | ((COMA NAME)+ PIPE))") context
+		:	name "(" iterators{separator = ","} "|" [
+				body
 			] ")"
 		;
 
-	operatorTemplate ->IterateExp(operators = opRarrow, source = ->'source') context
-		:	"iterate" "(" ->iterators{separator = ","} ";" ->result "|" [
-				->body
+	operatorTemplate IterateExp(operators = opRarrow, source = 'source') context
+		:	"iterate" "(" iterators{separator = ","} ";" result "|" [
+				body
 			] ")"
 		;
 
-	operatorTemplate ->CollectionOperationCallExp(operators = opRarrow, source = ->'source')
-			-- operationName cannot be {as = identifierOrKeyword} because of ->iterate
-		:	->operationName "(" ->arguments{separator = ","} ")"
+	operatorTemplate CollectionOperationCallExp(operators = opRarrow, source = 'source')
+			-- operationName cannot be {as = identifierOrKeyword} because of iterate
+		:	operationName "(" arguments{separator = ","} ")"
 		;
 
 
-	operatorTemplate ->OperationCallExp(operators = opPoint, source = ->'source', disambiguate = "NAME LPAREN", disambiguateV3 = "NAME LPAREN")
-		:	->operationName{as = identifierOrKeyword} "(" ->arguments{separator = ","} ")"
+	operatorTemplate OperationCallExp(operators = opPoint, source = 'source', disambiguate = "NAME LPAREN", disambiguateV3 = "NAME LPAREN")
+		:	operationName{as = identifierOrKeyword} "(" arguments{separator = ","} ")"
 		;
 
-	operatorTemplate ->NavigationOrAttributeCallExp(operators = opPoint, source = ->'source')
-		:	->name{as = identifierOrKeyword}
+	operatorTemplate NavigationOrAttributeCallExp(operators = opPoint, source = 'source')
+		:	name{as = identifierOrKeyword}
 		;
 
-	operatorTemplate ->OperatorCallExp(operators =
+	operatorTemplate OperatorCallExp(operators =
 			opNot opMinus1
 			opStar opSlash opDiv opMod
 			opPlus opMinus2
 			opEq opGt opLt opGe opLe opNe
 			opAnd opOr opXor opImplies
-		, source = ->'source', storeOpTo = ->operationName, storeRightTo = ->arguments);
+		, source = 'source', storeOpTo = operationName, storeRightTo = arguments);
 -- @end operatored
 
-	template ->Iterator addToContext
-		:	->varName
+	template Iterator addToContext
+		:	varName
 		;
 
 -- @begin values
-	template ->OclUndefinedExp
+	template OclUndefinedExp
 		:	"OclUndefined"
 		;
 
-	template ->PrimitiveExp abstract;
+	template PrimitiveExp abstract;
 	
-	template ->NumericExp abstract;
+	template NumericExp abstract;
 
-	template ->BooleanExp
-		:	(->booleanSymbol ? "true" : "false")
+	template BooleanExp
+		:	(booleanSymbol ? "true" : "false")
 		;
 
-	template ->IntegerExp
-		:	->integerSymbol
+	template IntegerExp
+		:	integerSymbol
 		;
 
-	template ->RealExp
-		:	->realSymbol
+	template RealExp
+		:	realSymbol
 		;
 
-	template ->StringExp
-		:	->stringSymbol{as = stringSymbol}
+	template StringExp
+		:	stringSymbol{as = stringSymbol}
 		;
 -- @end values
 
-	template ->IfExp
-		:	"if" ->condition "then" [
-				->thenExpression
+	template IfExp
+		:	"if" condition "then" [
+				thenExpression
 			] "else" [
-				->elseExpression
+				elseExpression
 			] "endif"
 		;
 
-	template ->VariableExp(disambiguate = "NAME ~(EXCL)")
-		:	->referredVariable{refersTo = varName, autoCreate = ifmissing}
+	template VariableExp(disambiguate = "NAME ~(EXCL)")
+		:	referredVariable{refersTo = varName, autoCreate = ifmissing}
 		;
 
-	template ->SuperExp
+	template SuperExp
 		:	"super"
 		;
 
-	template ->LetExp context nonPrimary
-		:	"let" ->variable "in"
-			[ ->in_ ] {indentIncr = 0, endNL = false}
+	template LetExp context nonPrimary
+		:	"let" variable "in"
+			[ in_ ] {indentIncr = 0, endNL = false}
 		;
 
-	template ->VariableDeclaration addToContext
-		:	->varName ":" ->type "=" ->initExpression
+	template VariableDeclaration addToContext
+		:	varName ":" type "=" initExpression
 		;
 
 
-	template ->EnumLiteralExp
-		:	"#" ->name
+	template EnumLiteralExp
+		:	"#" name
 		;
 
 -- @begin CollectionExps
-	template ->CollectionExp abstract;
+	template CollectionExp abstract;
 
-	template ->BagExp
-		:	"Bag" "{" ->elements{separator = ","} "}"
+	template BagExp
+		:	"Bag" "{" elements{separator = ","} "}"
 		;
 
-	template ->SetExp
-		:	"Set" "{" ->elements{separator = ","} "}"
+	template SetExp
+		:	"Set" "{" elements{separator = ","} "}"
 		;
 
-	template ->OrderedSetExp
-		:	"OrderedSet" "{" ->elements{separator = ","} "}"
+	template OrderedSetExp
+		:	"OrderedSet" "{" elements{separator = ","} "}"
 		;
 
-	template ->SequenceExp
-		:	"Sequence" "{" ->elements{separator = ","} "}"
+	template SequenceExp
+		:	"Sequence" "{" elements{separator = ","} "}"
 		;
 -- @end CollectionExps
 
-	template ->MapExp
-		:	"Map" "{" ->elements{separator = ","} "}"
+	template MapExp
+		:	"Map" "{" elements{separator = ","} "}"
 		;
 
-	template ->MapElement
-		:	"(" ->key "," ->'value' ")"
+	template MapElement
+		:	"(" key "," 'value' ")"
 		;
 
-	template ->TupleExp
-		:	"Tuple" "{" ->tuplePart{separator= ","} "}"
+	template TupleExp
+		:	"Tuple" "{" tuplePart{separator= ","} "}"
 		;
 
-	template ->TuplePart
-		:	->varName{as = identifierOrKeyword} (isDefined(->type) ? ":" ->type) "=" ->initExpression
+	template TuplePart
+		:	varName{as = identifierOrKeyword} (isDefined(type) ? ":" type) "=" initExpression
 		;
 
 
 -- @begin OclType
-	template ->OclType abstract
+	template OclType abstract
 		:	"OclType"
 		;
 
-	template ->OclAnyType abstract
+	template OclAnyType abstract
 		:	"OclAny"
 		;
 
-	template ->TupleType
-		:	"TupleType" "(" ->attributes{separator = ","} ")"
+	template TupleType
+		:	"TupleType" "(" attributes{separator = ","} ")"
 		;
 
-	template ->TupleTypeAttribute
-		:	->name ":" ->type
+	template TupleTypeAttribute
+		:	name ":" type
 		;
 
-	template ->MapType
-		:	"Map" "(" ->keyType "," ->valueType ")"
+	template MapType
+		:	"Map" "(" keyType "," valueType ")"
 		;
 
-	template ->Primitive abstract;
+	template Primitive abstract;
 
-	template ->NumericType abstract;
+	template NumericType abstract;
 
-	template ->IntegerType
+	template IntegerType
 		:	"Integer"
 		;
 
-	template ->RealType
+	template RealType
 		:	"Real"
 		;
 
-	template ->BooleanType
+	template BooleanType
 		:	"Boolean"
 		;
 
-	template ->StringType
+	template StringType
 		:	"String"
 		;
 
-	template ->CollectionType abstract
-		:	"Collection" "(" ->elementType ")"
+	template CollectionType abstract
+		:	"Collection" "(" elementType ")"
 		;
 
-	template ->BagType
-		:	"Bag" "(" ->elementType ")"
+	template BagType
+		:	"Bag" "(" elementType ")"
 		;
 
-	template ->SetType
-		:	"Set" "(" ->elementType ")"
+	template SetType
+		:	"Set" "(" elementType ")"
 		;
 
-	template ->OrderedSetType
-		:	"OrderedSet" "(" ->elementType ")"
+	template OrderedSetType
+		:	"OrderedSet" "(" elementType ")"
 		;
 
-	template ->SequenceType
-		:	"Sequence" "(" ->elementType ")"
+	template SequenceType
+		:	"Sequence" "(" elementType ")"
 		;
 
 -- @end OclTypes

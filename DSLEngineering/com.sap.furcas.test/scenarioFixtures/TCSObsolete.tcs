@@ -5,417 +5,417 @@
 
 syntax TCSObsolete {
 
-	primitiveTemplate identifier for ->String default using NAME:
+	primitiveTemplate identifier for String default using NAME:
 		value = "unescapeString(%token%)";
 
-	primitiveTemplate identifierOrKeyword for ->String using NAME orKeyword:
+	primitiveTemplate identifierOrKeyword for String using NAME orKeyword:
 		value = "unescapeString(%token%)";
 
-	primitiveTemplate stringSymbol for ->String using STRING:
+	primitiveTemplate stringSymbol for String using STRING:
 		value = "unescapeString(%token%)",
 		serializer="'\\\"' + %value%.toCString() + '\\\"'";
 
-	primitiveTemplate integerSymbol for ->Integer default using INT:
+	primitiveTemplate integerSymbol for Integer default using INT:
 		value = "Integer.valueOf(%token%)";
 
-	primitiveTemplate floatSymbol for ->Double default using FLOAT:
+	primitiveTemplate floatSymbol for Double default using FLOAT:
 		value = "Double.valueOf(%token%)";
 
-	template ->ConcreteSyntax main context
-		:	"syntax" ->name (isDefined(->k) ?  "(" "k" "=" ->k ")") "{" [
-				->templates
-				(isDefined(->keywords) ? "keywords" "{" [ ->keywords ] "}")
-				(isDefined(->symbols) ? "symbols" "{" [ ->symbols ] "}")
-				->operatorLists
-				->tokens
-				(isDefined(->lexer) ? "lexer" "=" ->lexer{as = stringSymbol} ";")
+	template ConcreteSyntax main context
+		:	"syntax" name (isDefined(k) ?  "(" "k" "=" k ")") "{" [
+				templates
+				(isDefined(keywords) ? "keywords" "{" [ keywords ] "}")
+				(isDefined(symbols) ? "symbols" "{" [ symbols ] "}")
+				operatorLists
+				tokens
+				(isDefined(lexer) ? "lexer" "=" lexer{as = stringSymbol} ";")
 			] {nbNL = 2} "}"
 		;
 
 -- @begin Templates
-	template ->Template abstract;
+	template Template abstract;
 
-	function reference(->QualifiedNamedElement)
-		: [["->" | ]] ->names{separator="::"}
+	function reference(QualifiedNamedElement)
+		: [["->" | ]] names{separator="::"}
 		;
 
-	template ->PrimitiveTemplate
-		:	"primitiveTemplate" ->templateName "for" $reference 
-				(->isDefault ? "default")
-				"using" ->tokenName
-				(->orKeyword ? "orKeyword")
+	template PrimitiveTemplate
+		:	"primitiveTemplate" templateName "for" $reference 
+				(isDefault ? "default")
+				"using" tokenName
+				(orKeyword ? "orKeyword")
 			":"
-				"value" "=" ->value{as = stringSymbol}
-				(isDefined(->serializer) ?
-					"," "serializer" "=" ->serializer{as = stringSymbol}
+				"value" "=" value{as = stringSymbol}
+				(isDefined(serializer) ?
+					"," "serializer" "=" serializer{as = stringSymbol}
 				)
 			";"
 		;
 
-	template ->EnumerationTemplate
-		:	"enumerationTemplate" $reference (->automatic ? "auto")
-			(isDefined(->mappings) ?
+	template EnumerationTemplate
+		:	"enumerationTemplate" $reference (automatic ? "auto")
+			(isDefined(mappings) ?
 					[ ":" [
-						->mappings{separator = ","}
+						mappings{separator = ","}
 					] {startNL = false} ";" ]
 				:
 					";"
 			)
 		;
 
-	template ->EnumLiteralMapping
-		:	->literal "=" ->element
+	template EnumLiteralMapping
+		:	literal "=" element
 		;
 
-	template ->ClassTemplate
+	template ClassTemplate
 		:	"template" $reference
-			(isDefined(->mode) ? "#" ->mode)
-			(isDefined(->disambiguate) ? "(" "disambiguate" "=" ->disambiguate{as = stringSymbol} ")")
-			(->isMulti ? "multi")
-			(->isMain ? "main")
-			(->isAbstract ? (->isDeep ? "deep") "abstract")
-			(->isOperatored ? "operatored" (isDefined(->operatorList) ? "(" ->operatorList{refersTo = name} ")"))
-			(->isContext ? "context")
-			(->isAddToContext ? "addToContext")
-			(->isNonPrimary ? "nonPrimary")
-			(isDefined(->prefixSequence) ? "prefix" [ ":" [ ->prefixSequence ] {startNL = false} ])
-			(isDefined(->templateSequence) ? [ ":" [ ->templateSequence ] {startNL = false} ";" ] : ";")
+			(isDefined(mode) ? "#" mode)
+			(isDefined(disambiguate) ? "(" "disambiguate" "=" disambiguate{as = stringSymbol} ")")
+			(isMulti ? "multi")
+			(isMain ? "main")
+			(isAbstract ? (isDeep ? "deep") "abstract")
+			(isOperatored ? "operatored" (isDefined(operatorList) ? "(" operatorList{refersTo = name} ")"))
+			(isContext ? "context")
+			(isAddToContext ? "addToContext")
+			(isNonPrimary ? "nonPrimary")
+			(isDefined(prefixSequence) ? "prefix" [ ":" [ prefixSequence ] {startNL = false} ])
+			(isDefined(templateSequence) ? [ ":" [ templateSequence ] {startNL = false} ";" ] : ";")
 		;
 
-	template ->OperatorTemplate
+	template OperatorTemplate
 		:	"operatorTemplate" $reference "("
-				"operators" "=" ->operators{refersTo = name}
-				"," "source" "=" [["->" | ]] ->source
-				(isDefined(->storeOpTo) ? "," "storeOpTo" "=" [["->" | ]] ->storeOpTo)
-				(isDefined(->storeRightTo) ? "," "storeRightTo" "=" [["->" | ]] ->storeRightTo)
-				(isDefined(->disambiguate) ? "," "disambiguate" "=" ->disambiguate{as = stringSymbol})
-				(isDefined(->disambiguateV3) ? "," "disambiguateV3" "=" ->disambiguateV3{as = stringSymbol})
+				"operators" "=" operators{refersTo = name}
+				"," "source" "=" [["->" | ]] source
+				(isDefined(storeOpTo) ? "," "storeOpTo" "=" [["->" | ]] storeOpTo)
+				(isDefined(storeRightTo) ? "," "storeRightTo" "=" [["->" | ]] storeRightTo)
+				(isDefined(disambiguate) ? "," "disambiguate" "=" disambiguate{as = stringSymbol})
+				(isDefined(disambiguateV3) ? "," "disambiguateV3" "=" disambiguateV3{as = stringSymbol})
 			")"
-			(->isContext ? "context")
-			(isDefined(->otSequence) ? [ ":" [ ->otSequence ] {startNL = false} ";" ] : ";")
+			(isContext ? "context")
+			(isDefined(otSequence) ? [ ":" [ otSequence ] {startNL = false} ";" ] : ";")
 		;
 
-	template ->FunctionTemplate addToContext
-		:	"function" ->functionName "(" $reference ")"
+	template FunctionTemplate addToContext
+		:	"function" functionName "(" $reference ")"
 				[ ":"
-					[ ->functionSequence ] {startNL = false}
+					[ functionSequence ] {startNL = false}
 				";" ]
 		;
 -- @end Templates
 
-	template ->Sequence
-		:	->elements
+	template Sequence
+		:	elements
 		;
 
 -- @begin Sequence Elements
-	template ->SequenceElement abstract;
+	template SequenceElement abstract;
 
-	template ->LiteralRef
+	template LiteralRef
 		:
 -- COMMENT FOR EXTRACTOR
 --			[[
-				->referredLiteral{refersTo = value, lookIn = #all, as = stringSymbol, autoCreate = ifmissing, createAs = Keyword}
+				referredLiteral{refersTo = value, lookIn = #all, as = stringSymbol, autoCreate = ifmissing, createAs = Keyword}
 --			|
---				"@" ->referredLiteral{refersTo = name}
+--				"@" referredLiteral{refersTo = name}
 --			]]
 		;
 
-	template ->Property
-		:	[["->" | ]] ->name{as = identifierOrKeyword} (isDefined(->propertyArgs) ? "{" ->propertyArgs{separator = ","} "}")
+	template Property
+		:	[["->" | ]] name{as = identifierOrKeyword} (isDefined(propertyArgs) ? "{" propertyArgs{separator = ","} "}")
 		;
 
-	template ->CustomSeparator
-		:	"<" ->name ">"
+	template CustomSeparator
+		:	"<" name ">"
 		;
 
-	template ->Block
-		:	"[" ->blockSequence "]" (isDefined(->blockArgs) ? "{" ->blockArgs{separator = ","} "}")
+	template Block
+		:	"[" blockSequence "]" (isDefined(blockArgs) ? "{" blockArgs{separator = ","} "}")
 		;
 
-	template ->ConditionalElement
-		:	"(" ->condition "?" ->thenSequence (isDefined(->elseSequence) ? ":" ->elseSequence) ")"
+	template ConditionalElement
+		:	"(" condition "?" thenSequence (isDefined(elseSequence) ? ":" elseSequence) ")"
 		;
 
-	template ->PropertyInit
-		:	"{{" [["->" | ]] ->name "=" ->value "}}"
+	template PropertyInit
+		:	"{{" [["->" | ]] name "=" value "}}"
 		;
 
-	template ->Alternative
-		:	"[[" ->sequences{separator = "|"} "]]" (->isMulti ? "*")
+	template Alternative
+		:	"[[" sequences{separator = "|"} "]]" (isMulti ? "*")
 		;
 
-	template ->FunctionCall
-		:	"$" ->calledFunction{refersTo = functionName}
+	template FunctionCall
+		:	"$" calledFunction{refersTo = functionName}
 		;
 -- @end Sequence Elements
 
 
 -- @begin Property Arguments
-	template ->PropertyArg abstract;
+	template PropertyArg abstract;
 
-	template ->RefersToPArg
-		:	"refersTo" "=" ->propertyName{as = identifierOrKeyword}
+	template RefersToPArg
+		:	"refersTo" "=" propertyName{as = identifierOrKeyword}
 		;
 
-	template ->LookInPArg
-		:	"lookIn" "=" (->propertyName = "#all" ? "#" "all" : ->propertyName{as = identifierOrKeyword, separator = "."})
+	template LookInPArg
+		:	"lookIn" "=" (propertyName = "#all" ? "#" "all" : propertyName{as = identifierOrKeyword, separator = "."})
 		;
 
-	template ->CreateInPArg
-		:	"createIn" "=" ->propertyName{as = identifierOrKeyword, separator = "."}
+	template CreateInPArg
+		:	"createIn" "=" propertyName{as = identifierOrKeyword, separator = "."}
 		;
 
-	template ->AsPArg
-		:	"as" "=" ->value
+	template AsPArg
+		:	"as" "=" value
 		;
 
-	template ->RefersToKeyPArg
-		:	"refersToKey" "=" (->value ? "true" : "false")
+	template RefersToKeyPArg
+		:	"refersToKey" "=" (value ? "true" : "false")
 		;
 
-	template ->SeparatorPArg
-		:	"separator" "=" ->separatorSequence
+	template SeparatorPArg
+		:	"separator" "=" separatorSequence
 		;
 
-	template ->AutoCreatePArg
-		:	"autoCreate" "=" ->value
+	template AutoCreatePArg
+		:	"autoCreate" "=" value
 		;
 
-	enumerationTemplate ->AutoCreateKind
+	enumerationTemplate AutoCreateKind
 		:	#always		= "always",
 			#ifmissing	= "ifmissing",
 			#never		= "never"
 		;
 
-	template ->ImportContextPArg
+	template ImportContextPArg
 		:	"importContext"
 		;
 
-	template ->ForcedLowerPArg
-		:	"forcedLower" "=" ->value
+	template ForcedLowerPArg
+		:	"forcedLower" "=" value
 		;
 
-	template ->CreateAsPArg
-		:	"createAs" "=" ->name{as = identifierOrKeyword}
+	template CreateAsPArg
+		:	"createAs" "=" name{as = identifierOrKeyword}
 		;
 
-	template ->ModePArg
-		:	"mode" "=" ->mode{as = identifierOrKeyword}
+	template ModePArg
+		:	"mode" "=" mode{as = identifierOrKeyword}
 		;
 -- @end Property Arguments
 
 
 -- @begin Block Arguments
-	template ->BlockArg abstract;
+	template BlockArg abstract;
 
-	template ->NbNLBArg
-		:	"nbNL" "=" ->value
+	template NbNLBArg
+		:	"nbNL" "=" value
 		;
 
-	template ->IndentIncrBArg
-		:	"indentIncr" "=" ->value
+	template IndentIncrBArg
+		:	"indentIncr" "=" value
 		;
 
-	template ->StartNLBArg
-		:	"startNL" "=" (->value ? "true" : "false")
+	template StartNLBArg
+		:	"startNL" "=" (value ? "true" : "false")
 		;
 
-	template ->StartNbNLBArg
-		:	"startNbNL" "=" ->value
+	template StartNbNLBArg
+		:	"startNbNL" "=" value
 		;
 
-	template ->EndNLBArg
-		:	"endNL" "=" (->value ? "true" : "false")
+	template EndNLBArg
+		:	"endNL" "=" (value ? "true" : "false")
 		;
 -- @end Block Arguments
 
 
 -- @begin Literals
---	template ->Literal abstract;
+--	template Literal abstract;
 
-	template ->Symbol addToContext
-		:	->name "=" ->value{as = stringSymbol} (isDefined(->spaces) ? ":" ->spaces{separator = ","}) ";"
+	template Symbol addToContext
+		:	name "=" value{as = stringSymbol} (isDefined(spaces) ? ":" spaces{separator = ","}) ";"
 		;
 
-	enumerationTemplate ->SpaceKind
+	enumerationTemplate SpaceKind
 		:	#leftSpace	=	"leftSpace",
 			#leftNone	=	"leftNone",
 			#rightSpace	=	"rightSpace",
 			#rightNone	=	"rightNone"
 		;
 
-	template ->Keyword addToContext
-		:	->name "=" ->value{as = stringSymbol} ";"
+	template Keyword addToContext
+		:	name "=" value{as = stringSymbol} ";"
 		;
 -- @end Literals
 
 -- @begin Operators
-	template ->OperatorList addToContext
-		:	"operators" (isDefined(->name) ? ->name) "{" [
-				->priorities
+	template OperatorList addToContext
+		:	"operators" (isDefined(name) ? name) "{" [
+				priorities
 			] "}"
 		;
 
-	template ->Priority
-		:	"priority" ->value
-			(->associativity = #left ?
+	template Priority
+		:	"priority" value
+			(associativity = #left ?
 					-- nothing
 				:
-					"," ->associativity
+					"," associativity
 			)
 			"{" [
-				->operators
+				operators
 			] "}"
 		;
 		
-	template ->Operator addToContext
-		:	(->isPostfix ? "postfix") ->name "="
-			(isDefined(->literal) ? [[
-				->literal{refersTo = name}
+	template Operator addToContext
+		:	(isPostfix ? "postfix") name "="
+			(isDefined(literal) ? [[
+				literal{refersTo = name}
 			|
-				->literal{refersTo = value, lookIn = #all, as = stringSymbol, autoCreate = ifmissing, createAs = Keyword}
+				literal{refersTo = value, lookIn = #all, as = stringSymbol, autoCreate = ifmissing, createAs = Keyword}
 			]])
-			"," ->arity ";"
+			"," arity ";"
 		;
 
-	enumerationTemplate ->Associativity
+	enumerationTemplate Associativity
 		:	#left		= "left",
 			#right		= "right"
 		;
 -- @end Operators
 
 -- @begin Expressions
-	template ->Expression abstract;
+	template Expression abstract;
 
-	template ->AndExp
-		:	->expressions{separator = "and"}
+	template AndExp
+		:	expressions{separator = "and"}
 		;
 
-	template ->AtomExp abstract;
+	template AtomExp abstract;
 
-	template ->EqualsExp
-		:	[["->" | ]] ->propertyName{as = identifierOrKeyword} "=" ->value
+	template EqualsExp
+		:	[["->" | ]] propertyName{as = identifierOrKeyword} "=" value
 		;
 
-	template ->BooleanPropertyExp
-		:	[["->" | ]] ->propertyName{as = identifierOrKeyword}
+	template BooleanPropertyExp
+		:	[["->" | ]] propertyName{as = identifierOrKeyword}
 		;
 
-	template ->IsDefinedExp
-		:	"isDefined" "(" [["->" | ]] ->propertyName{as = identifierOrKeyword} ")"
+	template IsDefinedExp
+		:	"isDefined" "(" [["->" | ]] propertyName{as = identifierOrKeyword} ")"
 		;
 
-	template ->OneExp
-		:	"one" "(" [["->" | ]] ->propertyName{as = identifierOrKeyword} ")"
+	template OneExp
+		:	"one" "(" [["->" | ]] propertyName{as = identifierOrKeyword} ")"
 		;
 --@end Expressions
 
 -- @begin Values
-	template ->Value abstract;
+	template Value abstract;
 
-	template ->StringVal
-		:	->symbol{as = stringSymbol}
+	template StringVal
+		:	symbol{as = stringSymbol}
 		;
 	
-	template ->IntegerVal
-		:	->symbol
+	template IntegerVal
+		:	symbol
 		;
 	
-	template ->NegativeIntegerVal
-		:	"-" ->symbol
+	template NegativeIntegerVal
+		:	"-" symbol
 		;
 
-	template ->EnumLiteralVal
-		:	"#" ->name{as = identifierOrKeyword}
+	template EnumLiteralVal
+		:	"#" name{as = identifierOrKeyword}
 		;
 -- @end Values
 
 
 -- @begin Tokens
-	template ->Token
-		:	"token" ->name ":" ->pattern ";"
+	template Token
+		:	"token" name ":" pattern ";"
 		;
 
-	template ->OrPattern
-		:	->simplePatterns{separator = "|"}
+	template OrPattern
+		:	simplePatterns{separator = "|"}
 		;
 
 -- @begin SimplePatterns
-	template ->SimplePattern abstract;
+	template SimplePattern abstract;
 
-	template ->RulePattern
---		:	->name "(" arguments{separator = ","} ")"
-		:	->rule
+	template RulePattern
+--		:	name "(" arguments{separator = ","} ")"
+		:	rule
 		;
 
 -- @begin Rules
-	template ->Rule abstract;
+	template Rule abstract;
 
-	template ->WordRule
+	template WordRule
 		:	"word" "("
-				"start" "=" ->start ","
-				"part" "=" ->part
-				(isDefined(->end) ?
-					"," "end" "=" ->end
+				"start" "=" start ","
+				"part" "=" part
+				(isDefined(end) ?
+					"," "end" "=" end
 				)
-				(isDefined(->words) ?
-					"," "words" "=" "(" ->words{separator = ","} ")"
+				(isDefined(words) ?
+					"," "words" "=" "(" words{separator = ","} ")"
 				)
 			")"
 		;
 
-	template ->Word
-		:	->name{as = stringSymbol} ":" ->token
+	template Word
+		:	name{as = stringSymbol} ":" token
 		;
 
-	template ->EndOfLineRule
+	template EndOfLineRule
 		:	"endOfLine" "("
-				"start" "=" (->dropStart ? "drop") ->start
+				"start" "=" (dropStart ? "drop") start
 			")"
 		;
 
-	template ->MultiLineRule
+	template MultiLineRule
 		:	"multiLine" "("
-				"start" "=" (->dropStart ? "drop") ->start ","
-				"end" "=" (->dropEnd ? "drop") ->end
-				(isDefined(->esc) ?
-					"," "esc" "=" ->esc
-					(isDefined(->escMappings) ?
-						"," "(" ->escMappings{separator = ","} ")"
+				"start" "=" (dropStart ? "drop") start ","
+				"end" "=" (dropEnd ? "drop") end
+				(isDefined(esc) ?
+					"," "esc" "=" esc
+					(isDefined(escMappings) ?
+						"," "(" escMappings{separator = ","} ")"
 					)
 				)
 			")"
 		;
 	
-	template ->Mapping abstract;
+	template Mapping abstract;
 	
-	template ->SimpleMapping
-		:	->key [["->" | ]] ->value
+	template SimpleMapping
+		:	key [["->" | ]] value
 		;
 		
-	template ->WildcardMapping
+	template WildcardMapping
 		:	"." [["->" | ]] "."
 		;
 		
-	template ->OctalMapping
+	template OctalMapping
 		:	"octal"
 		;
 		
-	template ->HexadecimalMapping
+	template HexadecimalMapping
 		:	"hex"
 		;
 -- @end Rules
 
---	template ->RuleArgument
---		:	->name "=" ->value
+--	template RuleArgument
+--		:	name "=" value
 --		;
 
-	template ->StringPattern
-		:	->name{as = stringSymbol}
+	template StringPattern
+		:	name{as = stringSymbol}
 		;
 
-	template ->ClassPattern
-		:	"[" ->name "]"
+	template ClassPattern
+		:	"[" name "]"
 		;
 -- @end SimplePatterns
 -- @end Tokens
