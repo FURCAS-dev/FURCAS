@@ -10,7 +10,6 @@ syntax MiniJava {
         primitiveTemplate packageName for EString using PACKAGE_NAME:
                 value = "%token%";
 
-
 		template Package :
 			name{as=packageName}
 			-- a package owns compilation units. However, we do not represent this in the concrete syntax
