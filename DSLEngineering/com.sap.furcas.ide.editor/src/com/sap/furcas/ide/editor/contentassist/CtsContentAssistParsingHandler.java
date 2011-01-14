@@ -34,6 +34,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.parser.IParsingObserver;
 import com.sap.furcas.runtime.parser.impl.DelayedReference;
+import com.sap.furcas.runtime.tcs.PropertyArgumentUtil;
 import com.sap.furcas.runtime.tcs.TcsDebugUtil;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 
@@ -433,7 +434,7 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
 
     boolean isParentProperty(Property p) {
         return !TcsUtil.isAtomic(p, classTemplateMap)
-                || TcsUtil.containsSeparatorArg(p) || TcsUtil.isEnumeration(p);
+                || PropertyArgumentUtil.containsSeparatorArg(p) || TcsUtil.isEnumeration(p);
     }
 
     @Override
@@ -582,7 +583,7 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
         try {
             Property prop = currentParentPropertyStack.peek();
             if (prop != null) {
-                SeparatorPArg sepArg = TcsUtil.getSeparatorPArg(prop);
+                SeparatorPArg sepArg = PropertyArgumentUtil.getSeparatorPArg(prop);
                 if (sepArg != null) {
                     pushNonEmptySequence(sepArg.getSeparatorSequence());
                 } else {

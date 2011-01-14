@@ -25,7 +25,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
-import com.sap.furcas.runtime.tcs.TcsUtil;
+import com.sap.furcas.runtime.tcs.PropertyArgumentUtil;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
 
 public class SyntaxRegistry implements BundleActivator {
@@ -112,7 +112,7 @@ public class SyntaxRegistry implements BundleActivator {
                 monitor.worked(1);
             }
             Template template = property.getParentTemplate();
-            if (template != null && template instanceof ClassTemplate && TcsUtil.getFilterByIdentifierPArg(property) != null) {
+            if (template != null && template instanceof ClassTemplate && PropertyArgumentUtil.getReferenceByPArg(property) != null) {
                 triggerManager.register(new OCLQueryPropertyUpdater(property, metamodelPackageRegistry, oppositeEndFinder));
             }
         }
@@ -141,7 +141,7 @@ public class SyntaxRegistry implements BundleActivator {
         Collection<Property> result = getElementsOfType(syntax, Property.class);
         for (Iterator<Property> i = result.iterator(); i.hasNext(); ) {
             Property p = i.next();
-            if (TcsUtil.getLookupScopePArg(p) == null) {
+            if (PropertyArgumentUtil.getLookupScopePArg(p) == null) {
                 i.remove();
             }
         }

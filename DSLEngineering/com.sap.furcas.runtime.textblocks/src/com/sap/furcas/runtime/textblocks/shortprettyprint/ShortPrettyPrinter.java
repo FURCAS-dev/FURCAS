@@ -21,7 +21,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
-import com.sap.furcas.runtime.tcs.TcsUtil;
+import com.sap.furcas.runtime.tcs.PropertyArgumentUtil;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 
 public class ShortPrettyPrinter {
@@ -41,7 +41,7 @@ public class ShortPrettyPrinter {
 	    while (tok != null) {
 		if (tok instanceof LexedToken) {
 		    if (((LexedToken) tok).getSequenceElement() instanceof Property
-			    && TcsUtil
+			    && PropertyArgumentUtil
 				    .containsRefersToArg((Property) ((LexedToken) tok)
 					    .getSequenceElement())) {
 			// remember value as secondary id for resolving
@@ -84,21 +84,21 @@ public class ShortPrettyPrinter {
 
     private String handlePropertyElement(Property se, LexedToken token) {
 	String newvalue = token.getValue();
-	if (TcsUtil.containsRefersToArg(se) || TcsUtil.getFilterPArg(se) != null) {
+	if (PropertyArgumentUtil.containsRefersToArg(se) || PropertyArgumentUtil.getFilterPArg(se) != null) {
 	    // the new value comes from the value of the referenced element;
 	    for (EObject referencedObject : token
 		    .getReferencedElements()) {
 	        if(referencedObject != null &&
 	                referencedObject.eClass().equals(se.getPropertyReference().getStrucfeature().getEType())
 	        		|| referencedObject.eClass().getEAllSuperTypes().contains(se.getPropertyReference().getStrucfeature().getEType())) {
-        		RefersToPArg refersToArg = TcsUtil.getRefersToPArg(se);
+        		RefersToPArg refersToArg = PropertyArgumentUtil.getRefersToPArg(se);
         		try {
-        		    if (TcsUtil.getFilterPArg(se) != null) {
+        		    if (PropertyArgumentUtil.getFilterPArg(se) != null) {
         			// if the string given in the token is changed
         			// within the query to do the matching
         			// with the target element we need to invert this
         			// change to get the actual value
-        		        AsPArg asParg = TcsUtil.getAsPArg(se);
+        		        AsPArg asParg = PropertyArgumentUtil.getAsPArg(se);
         		        Template template = PrettyPrinterUtil.getAsTemplate(asParg);
         			return PrettyPrinterUtil.printUsingSerializer(invertOclQuery(referencedObject, token, se,
         				newvalue), template);
@@ -112,7 +112,7 @@ public class ShortPrettyPrinter {
         			newvalue = value.toString();
         		    }
         		    
-        		    AsPArg asParg = TcsUtil.getAsPArg(se);
+        		    AsPArg asParg = PropertyArgumentUtil.getAsPArg(se);
                             Template template = PrettyPrinterUtil.getAsTemplate(asParg);
                             return PrettyPrinterUtil.printUsingSerializer(newvalue, template);
         		} catch (ModelAdapterException e) {
@@ -154,7 +154,7 @@ public class ShortPrettyPrinter {
                 // continue;
             }
 	}
-	AsPArg asParg = TcsUtil.getAsPArg(se);
+	AsPArg asParg = PropertyArgumentUtil.getAsPArg(se);
         Template template = PrettyPrinterUtil.getAsTemplate(asParg);
         if(newvalue.equals(token.getValue())) {
             return newvalue;
@@ -170,7 +170,7 @@ public class ShortPrettyPrinter {
 		// to be able to invert the query.
 		// this implementation just checks if there are any prefixes or
 		// postfixes that can be removed.
-		FilterPArg filterParg = TcsUtil.getFilterPArg(se);
+		FilterPArg filterParg = PropertyArgumentUtil.getFilterPArg(se);
 		if (filterParg != null && filterParg.getInvert() != null) {
 			String query = filterParg.getInvert();
 			
