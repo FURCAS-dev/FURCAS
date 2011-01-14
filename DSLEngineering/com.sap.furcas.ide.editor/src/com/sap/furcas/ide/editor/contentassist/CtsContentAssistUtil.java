@@ -23,13 +23,13 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralMapping;
-import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.FunctionCall;
 import com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
+import com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
@@ -476,15 +476,15 @@ public class CtsContentAssistUtil {
 			}
 
 			RefersToPArg refersToArg = PropertyArgumentUtil.getRefersToPArg(prop);
-			FilterPArg filterArg = PropertyArgumentUtil.getFilterPArg(prop);
+			ReferenceByPArg referenceByArg = PropertyArgumentUtil.getReferenceByPArg(prop);
 			LookupScopePArg queryArg = PropertyArgumentUtil.getLookupScopePArg(prop);
 
-			if (filterArg != null) {
+			if (referenceByArg != null) {
 				if (queryArg != null) {
 					// first execute query, then apply invert OCL expression to
 					// each result to generate proposal strings
 
-					String invert = filterArg.getInvert();
+					String invert = PropertyArgumentUtil.getReferenceByAsOCL(referenceByArg);
 					if (invert != null) {
 						// if invert is null, we don't really know how to derive
 						// the proposal string as the filter could be any OCL

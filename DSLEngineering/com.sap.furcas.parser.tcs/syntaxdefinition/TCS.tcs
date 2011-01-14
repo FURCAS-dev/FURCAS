@@ -373,13 +373,9 @@ syntax TCS {
                 ;
 
         template TCS::LookupScopePArg
-                :       [["query" | "lookupScope"]] "=" query{as = stringSymbol}
+                :       "lookupScope" "=" query{as = stringSymbol}
                 ;
-                
-        template TCS::FilterPArg
-                :       "filter" "=" filter{as = stringSymbol} (isDefined(invert) ? "," "invert" "=" invert{as = stringSymbol})
-                ;
-                
+                                
        	template TCS::ReferenceByPArg
                 :      "referenceBy" "=" referenceBy{as = stringSymbol}
                 ;

@@ -60,11 +60,11 @@ public class TestObservation {
         facade.parseProductionRule(in, modelHandler, null, null, testObserver);
 
         assertEquals(0, testObserver.errorsInRule.size());
-        assertEquals(1736, testObserver.tokensConsumed.size());
+        assertEquals(1511, testObserver.tokensConsumed.size());
         assertEquals(0, testObserver.errorTokensConsumed.size());
         assertEquals(0, testObserver.ruleContextStack.size());
         assertEquals(0, testObserver.sequenceContextStack.size());
-        assertEquals(1108, testObserver.elementsResolved.size());
+        assertEquals(1186, testObserver.elementsResolved.size());
         assertEquals(253, testObserver.outOfContextResolved.size());
         assertEquals(0, testObserver.sequenceElementsEnteredNotLeft);
         assertEquals(0, testObserver.injectorActionsEnteredNotleft);
@@ -98,11 +98,11 @@ public class TestObservation {
         facade.parseProductionRule(in, modelHandler, null, null, delegationObserver);
 
         assertEquals(0, testObserver.errorsInRule.size());
-        assertEquals(1736, testObserver.tokensConsumed.size());
+        assertEquals(1511, testObserver.tokensConsumed.size());
         assertEquals(0, testObserver.errorTokensConsumed.size());
         assertEquals(0, testObserver.ruleContextStack.size());
         assertEquals(0, testObserver.sequenceContextStack.size());
-        assertEquals(1108, testObserver.elementsResolved.size());
+        assertEquals(1186, testObserver.elementsResolved.size());
         assertEquals(253, testObserver.outOfContextResolved.size());
         assertEquals(0, testObserver.sequenceElementsEnteredNotLeft);
         assertEquals(0, testObserver.injectorActionsEnteredNotleft);
@@ -144,11 +144,11 @@ public class TestObservation {
         facade.parseProductionRule(in, modelHandler, null, null, testObserver);
 
         assertEquals(0, testObserver.errorsInRule.size());
-        assertEquals(1986, testObserver.tokensConsumed.size());
+        assertEquals(1731, testObserver.tokensConsumed.size());
         assertEquals(0, testObserver.errorTokensConsumed.size());
         assertEquals(0, testObserver.ruleContextStack.size());
         assertEquals(0, testObserver.sequenceContextStack.size());
-        assertEquals(1074, testObserver.elementsResolved.size());
+        assertEquals(1159, testObserver.elementsResolved.size());
         assertEquals(234, testObserver.outOfContextResolved.size());
         assertEquals(0, testObserver.sequenceElementsEnteredNotLeft);
         assertEquals(0, testObserver.injectorActionsEnteredNotleft);

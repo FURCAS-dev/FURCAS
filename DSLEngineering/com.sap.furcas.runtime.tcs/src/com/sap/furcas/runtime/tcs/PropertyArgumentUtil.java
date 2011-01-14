@@ -14,7 +14,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.AsPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg;
@@ -130,20 +129,6 @@ public class PropertyArgumentUtil {
                 return (AsPArg) arg;
             }
         }
-    
-        return null;
-    }
-
-    /**
-     * Returns the first FilterPArg of Property p. There should only be one.
-     * No error is thrown, if more than one exist.
-     */
-    public static FilterPArg getFilterPArg(Property p) {
-        for (PropertyArg arg : p.getPropertyArgs()) {
-            if (arg instanceof FilterPArg) {
-                return (FilterPArg) arg;
-            }
-        }
         return null;
     }
 
@@ -157,7 +142,6 @@ public class PropertyArgumentUtil {
                 return (PartialPArg) arg;
             }
         }
-    
         return null;
     }
 
@@ -171,7 +155,6 @@ public class PropertyArgumentUtil {
                 return (ForcedUpperPArg) arg;
             }
         }
-    
         return null;
     }
 
@@ -185,7 +168,6 @@ public class PropertyArgumentUtil {
                 return (ForcedLowerPArg) arg;
             }
         }
-    
         return null;
     }
 
@@ -199,7 +181,6 @@ public class PropertyArgumentUtil {
                 return (ModePArg) arg;
             }
         }
-    
         return null;
     }
 
@@ -213,7 +194,6 @@ public class PropertyArgumentUtil {
                 return (SeparatorPArg) arg;
             }
         }
-    
         return null;
     }
 

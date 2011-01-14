@@ -41,7 +41,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.CustomSeparator;
 import com.sap.furcas.metamodel.FURCAS.TCS.EndNLBArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralMapping;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.FunctionCall;
@@ -60,6 +59,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.PrimitivePropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
+import com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
@@ -633,16 +633,15 @@ public class PrettyPrinter {
 	    EObject valueME = (EObject) value;
 	    printer.printIndentationIfNeeded();
 
-	    if (asPArg != null && scope != null) {
-		FilterPArg filter = PropertyArgumentUtil.getFilterPArg(property);
-		String invertQuery = filter.getInvert();
+	    if (scope != null) {
+	        ReferenceByPArg referenceBy = PropertyArgumentUtil.getReferenceByPArg(property);
+		String invertQuery = PropertyArgumentUtil.getReferenceByAsOCL(referenceBy);
 		try {
 		    TCSSpecificOCLEvaluator oclEvaluator = new TCSSpecificOCLEvaluator();
 		    String refValue = (String) oclEvaluator.findElementsWithOCLQuery(valueME, /*keyValue*/ null, invertQuery).iterator().next();       
 		    this.serializePrimitiveTemplate(refValue, primitiveTemplateName);
-		} catch (Exception e) {
-		    String defaultName = EMFModelInspector.getString(valueME, "name");
-		    this.serializePrimitiveTemplate(defaultName, primitiveTemplateName);
+		} catch (ModelAdapterException e) {
+		    error("Unable to serialize referenced model element: " + e.getMessage());
 		}
 	    } else if (refersToPArg == null) {
 		String mode = TcsUtil.getMode(property);

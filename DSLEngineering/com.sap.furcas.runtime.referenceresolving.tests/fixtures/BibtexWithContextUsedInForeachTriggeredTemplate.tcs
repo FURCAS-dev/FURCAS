@@ -14,8 +14,7 @@ syntax BibtexWithContextUsedInForeachTriggeredTemplate {
 	template Article context
 		: "article" "{"
 		[
-		--key "," author{as=identifier, query="bibtexFile.entries->select(oclIsKindOf(Author))",
-		--                              filter="->select(oclAsType(Author).name=?)"}
+		--key "," author{referenceBy="name", as=identifier, lookupScope="OCL:bibtexFile.entries->select(oclIsKindOf(Author)).oclAsType(Author)"}
 		key "," author{refersTo=name}
 		    "," attributes{separator = ","}
 		]

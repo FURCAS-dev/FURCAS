@@ -36,7 +36,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralVal;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.EqualsExp;
 import com.sap.furcas.metamodel.FURCAS.TCS.Expression;
-import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
@@ -458,10 +457,6 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseReferenceByPArg(ReferenceByPArg object) {
                 return createReferenceByPArgAdapter();
-            }
-            @Override
-            public Adapter caseFilterPArg(FilterPArg object) {
-                return createFilterPArgAdapter();
             }
             @Override
             public Adapter caseOclPArg(OclPArg object) {

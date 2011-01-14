@@ -575,15 +575,6 @@ public interface TCSFactory extends EFactory {
     ReferenceByPArg createReferenceByPArg();
 
         /**
-     * Returns a new object of class '<em>Filter PArg</em>'.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @return a new object of class '<em>Filter PArg</em>'.
-     * @generated
-     */
-        FilterPArg createFilterPArg();
-
-        /**
      * Returns a new object of class '<em>Property Reference</em>'.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->

@@ -36,7 +36,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralVal;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.EqualsExp;
 import com.sap.furcas.metamodel.FURCAS.TCS.Expression;
-import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
@@ -1196,20 +1195,6 @@ public class TCSSwitch<T> {
                 }
                 if (result == null) {
                     result = caseLocatedElement(referenceByPArg);
-                }
-                if (result == null) {
-                    result = defaultCase(theEObject);
-                }
-                return result;
-            }
-            case TCSPackage.FILTER_PARG: {
-                FilterPArg filterPArg = (FilterPArg)theEObject;
-                T result = caseFilterPArg(filterPArg);
-                if (result == null) {
-                    result = casePropertyArg(filterPArg);
-                }
-                if (result == null) {
-                    result = caseLocatedElement(filterPArg);
                 }
                 if (result == null) {
                     result = defaultCase(theEObject);
@@ -2563,21 +2548,6 @@ public class TCSSwitch<T> {
      * @generated
      */
     public T caseReferenceByPArg(ReferenceByPArg object) {
-        return null;
-    }
-
-        /**
-     * Returns the result of interpreting the object as an instance of '<em>Filter PArg</em>'.
-     * <!-- begin-user-doc -->
-         * This implementation returns null;
-         * returning a non-null result will terminate the switch.
-         * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Filter PArg</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-        public T caseFilterPArg(FilterPArg object) {
         return null;
     }
 

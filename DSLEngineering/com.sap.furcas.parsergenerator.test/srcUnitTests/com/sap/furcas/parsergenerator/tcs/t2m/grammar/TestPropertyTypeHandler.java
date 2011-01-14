@@ -1033,7 +1033,7 @@ public class TestPropertyTypeHandler {
         propHandler.addElement(prop, buf);
 
         assertEquals(
-                "( temp=DefaultPrimitiveTemplate {setOclRef(ret, \"PropertyName\", null, temp, \"OCL:self.fooFeature->select(ArgFeatureName = ?)\");})",
+                "( temp=DefaultPrimitiveTemplate {setOclRef(ret, \"PropertyName\", null, temp, \"OCL:self.fooFeature->select(candidate | candidate.ArgFeatureName = ?)\");})",
                 buf.getResult());
     }
     
@@ -1102,7 +1102,7 @@ public class TestPropertyTypeHandler {
         propHandler.addElement(prop, buf);
 
         assertEquals(
-                "( temp=SpecificPrimitiveTemplate {setOclRef(ret, \"PropertyName\", null, temp, \"OCL:self.fooFeature->select(ArgFeatureName = ?)\");})",
+                "( temp=SpecificPrimitiveTemplate {setOclRef(ret, \"PropertyName\", null, temp, \"OCL:self.fooFeature->select(candidate | candidate.ArgFeatureName = ?)\");})",
                 buf.getResult());
     }
 
