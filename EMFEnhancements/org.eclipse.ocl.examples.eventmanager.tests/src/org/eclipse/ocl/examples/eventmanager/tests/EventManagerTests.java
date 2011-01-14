@@ -10,12 +10,13 @@
  ******************************************************************************/
 package org.eclipse.ocl.examples.eventmanager.tests;
 
-import org.eclipse.ocl.examples.eventmanager.tests.framework.CompositeSetTest;
-import org.eclipse.ocl.examples.eventmanager.tests.framework.IncludeSubclassesTest;
-
 import junit.framework.Test;
 import junit.framework.TestSuite;
 import junit.textui.TestRunner;
+
+import org.eclipse.ocl.examples.eventmanager.tests.framework.CompositeSetTest;
+import org.eclipse.ocl.examples.eventmanager.tests.framework.IncludeSubclassesTest;
+import org.eclipse.ocl.examples.eventmanager.tests.framework.RecursiveContaimentNotificationCreatorTest;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,6 +53,7 @@ public class EventManagerTests extends TestSuite {
 		suite.addTestSuite(ContainmentFilterTest.class);
 		suite.addTestSuite(IncludeSubclassesTest.class);
 		suite.addTestSuite(CompositeSetTest.class);
+		suite.addTestSuite(RecursiveContaimentNotificationCreatorTest.class);
 		return suite;
 	}
 

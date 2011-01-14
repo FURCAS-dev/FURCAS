@@ -11,7 +11,7 @@
 package org.eclipse.ocl.examples.eventmanager.tests;
 
 import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
-import org.eclipse.ocl.examples.impactanalyzer.testutils.BaseDepartmentTest;
+import org.eclipse.ocl.examples.testutils.BaseDepartmentTest;
 
 
 /**
