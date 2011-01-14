@@ -9,7 +9,8 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.ocl.ecore,
  org.eclipse.ocl.examples.impactanalyzer.testmodel.company,
  org.eclipse.ocl.examples.impactanalyzer.util,
- org.junit4;bundle-version="4.8.1"
+ org.junit4;bundle-version="4.8.1",
+ org.eclipse.ocl.examples.testutils
 Export-Package: org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.model,
  org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications,
  org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl,

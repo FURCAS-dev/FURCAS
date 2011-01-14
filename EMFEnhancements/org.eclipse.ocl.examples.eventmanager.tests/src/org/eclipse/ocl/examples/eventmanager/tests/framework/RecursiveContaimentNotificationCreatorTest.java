@@ -15,8 +15,8 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
-import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationHelper;
-import org.eclipse.ocl.examples.impactanalyzer.testutils.BaseDepartmentTest;
+import org.eclipse.ocl.examples.testutils.BaseDepartmentTest;
+import org.eclipse.ocl.examples.testutils.NotificationHelper;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +26,7 @@ import company.Division;
 import company.Employee;
 
 
-public class RecursiveContaimentNotificationCreatorTest extends BaseDepartmentTest{
+public class RecursiveContaimentNotificationCreatorTest extends BaseDepartmentTest {
 
     @Before
     public void setUp() {

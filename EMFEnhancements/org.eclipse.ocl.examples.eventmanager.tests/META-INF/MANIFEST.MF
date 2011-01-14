@@ -14,6 +14,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.junit4,
  org.eclipse.ocl.examples.impactanalyzer.testmodel.company,
- org.eclipse.ocl.examples.impactanalyzer.testutils,
+ org.eclipse.ocl.examples.testutils,
  org.eclipse.ocl.ecore
 Bundle-ActivationPolicy: lazy
