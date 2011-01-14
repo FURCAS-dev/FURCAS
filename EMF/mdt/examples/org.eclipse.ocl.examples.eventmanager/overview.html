@@ -1,0 +1,77 @@
+A Registration represents an AndFilter with only elementary or negated
+elementary filters. (In a future version, a Registration can represent
+multiple equal such AndFilters.)
+
+A Registration is entered into all tables for whose type its AndFilter
+contains an elementary filter.
+
+Each table maps a value for the filter criterion to a YesSet and a
+NoSet. The YesSet contains all Registrations where a non-negated
+elementary filter for the key criterion occurred. The NoSet contains
+all Registrations where a negated elementary filter for the key
+criterion occurred.
+
+When an event occurs, it matches a Registration if and only if all
+(negated and non-negated) elementary filters of the registration are
+matched. This means that:
+
+ - if a Registration is in table t's YesSet, it MUST be matched by the
+   event e (R1). This in particular requires that e affects t.
+
+ - if a Registration is in a table t's NoSet, it MUST NOT be matched by
+   the event e (R2). This is in particular the case if e does not
+   affect t.
+
+Formally, we can define a test function that for a given Registration
+r and a given event e determines if the Registration if matched by the
+event:
+
+   matches(r, e) := tables->forAll(t |
+                       (t.allYes->includes(r) implies
+                         (t.yes(e)->includes(r) and t.affectedBy(e)))
+                  and  (t.allNo->includes(r) implies
+                         (not t.affectedBy(e) or not t.no(e)->includes(r))))
+
+Transformed:
+
+   matches(r, e) := tables->forAll(t | matches(t, r, e))
+   matches(t, r, e) :=
+		(not t.allYes->includes(r) or t.yes(e)->includes(r) and t.affectedBy(e))
+	and	(not t.allNo->includes(r) or not (t.no(e)->includes(r) and t.affectedBy(e)))
+
+which shows that registrations neither in the allYes nor allNo of a
+table t are matched by that table.
+
+Thinking in sets, the set of registrations matching e is the
+intersection of the sets of registrations matched by each table. The
+problem with this definition is only that the "universe" of all
+registrations to be considered is the union of all allYes and allNo
+sets of all tables, computing which would be inefficient.
+
+
+The challenge now is to compute all r for a given event e for which
+matches(r, e) holds. Fast operations (O(1)) are t.allNo, t.allYes,
+t.yes(e), t.no(e), also t.affectedBy(e). The number of Registrations r
+may be large, and so may be t.allYes, t.allNo, t.yes(e) and t.no(e),
+although typically t.allNo is fairly small, and so is t.no(e),
+particularly in the context of the OCL impact analysis.
+
+We also know that the union of t.allYes->union(t.allNo) over all
+tables t results in the complete set of all Registrations. In other
+words, each Registration to be considered is in the allYes or allNo
+set of at least one table. The number of tables is constant and fairly
+small (usually <10).
+
+We are looking for a function
+
+    registrations(e) := all registrations r such that matches(r, e)
+
+that can be computed efficiently.
+
+
+
+TODO Special handling for multi-registrations, such as for multiple
+classes in the class filter table: In this case the Registration is
+matched if any of the multiple criteria are matched by the event. TODO
+What happens for a negated filter that would expand to multiple
+criteria?

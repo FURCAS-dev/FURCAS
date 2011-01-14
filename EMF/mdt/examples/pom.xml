@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.sap.dsl</groupId>
+  <artifactId>mdt.examples</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <parent>
+    <groupId>com.sap.dsl</groupId>
+    <artifactId>mdt</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+  <modules>
+    <module>org.eclipse.ocl.examples.eventmanager</module>
+    <module>org.eclipse.ocl.examples.eventmanager.tests</module>
+    <module>org.eclipse.ocl.examples.testutils</module>
+    <module>org.eclipse.ocl.examples.impactanalyzer.testmodel.company</module>
+  </modules>
+
+</project>
