@@ -14,8 +14,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -59,6 +57,7 @@ import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 import com.sap.furcas.runtime.tcs.MessageHelper;
 import com.sap.furcas.runtime.tcs.MetaModelElementResolutionHelper;
 import com.sap.furcas.runtime.tcs.MetamodelNameResolvingException;
+import com.sap.furcas.runtime.tcs.PropertyArgumentUtil;
 import com.sap.furcas.runtime.tcs.SyntaxLookup;
 import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
 
@@ -76,13 +75,6 @@ public class PropertyTypeHandler<Type extends Object> {
 
     private boolean skipDelayedReferences = false;
     
-    /**
-     * The pattern to select a 'self' within an OCL entry.
-     */
-    private static final String selfPatternAsString = "((\\W|\\A))(self)(\\W)";
-    private static final Pattern selfPattern = Pattern.compile(selfPatternAsString);
-    private static final String OCL_PREFIX = "OCL:";
-
     protected PropertyTypeHandler(IMetaModelLookup<Type> metaLookup, SyntaxLookup syntaxLookup,
             TemplateNamingHelper<Type> namingHelper, SemanticErrorBucket errorBucket) {
         this.metaLookup = metaLookup;
@@ -250,29 +242,10 @@ public class PropertyTypeHandler<Type extends Object> {
             query = args.lookupScopePArg.getQuery() + args.oclFilterPArg.getFilter();
             validateOclQuery(prop, args.oclFilterPArg, query);
         } else {
-            String referenceBy = args.referenceByPArg.getReferenceBy();
-            if (referenceBy.startsWith(OCL_PREFIX)) {
-                referenceBy = referenceBy.substring(OCL_PREFIX.length());
-                Matcher matcher = selfPattern.matcher(referenceBy);
-                if (matcher.find()) {
-                    String preSelf = matcher.group(1);
-                    String replacementForSelf = "candidate";
-                    while (referenceBy.contains(replacementForSelf)) {
-                        replacementForSelf = "_" + replacementForSelf;
-                    }
-                    String postSelf = matcher.group(4);
-                    referenceBy = matcher.replaceAll(preSelf + replacementForSelf + postSelf);
-                    query = args.lookupScopePArg.getQuery() + "->select(" + replacementForSelf + " | " + referenceBy + " = ?)";
-                } else {
-                    query = args.lookupScopePArg.getQuery() + "->select(" + referenceBy + " = ?)";
-                }
-                // TODO: validate the individual OCL query instead. For this to work however,
-                // we need to be able to infer the return-type of the lookupScope query.
-                validateOclQuery(prop, args.oclFilterPArg, query);
-            } else {
-                query = args.lookupScopePArg.getQuery() + "->select(" + referenceBy + " = ?)";
-                validateOclQuery(prop, args.oclFilterPArg, query);
-            }
+            query = PropertyArgumentUtil.getCombinedReferenceByLookupOCLQuery(args.referenceByPArg, args.lookupScopePArg);
+            // TODO: validate the individual OCL query instead. For this to work however,
+            // we need to be able to infer the return-type of the lookupScope query.
+            validateOclQuery(prop, args.oclFilterPArg, query);
         }
         
         String oclQuery = TcsUtil.escapeMultiLineOclQuery(query);

@@ -37,6 +37,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
+import com.sap.furcas.runtime.tcs.PropertyArgumentUtil;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
@@ -474,9 +475,9 @@ public class CtsContentAssistUtil {
 				}
 			}
 
-			RefersToPArg refersToArg = TcsUtil.getRefersToPArg(prop);
-			FilterPArg filterArg = TcsUtil.getFilterPArg(prop);
-			LookupScopePArg queryArg = TcsUtil.getLookupScopePArg(prop);
+			RefersToPArg refersToArg = PropertyArgumentUtil.getRefersToPArg(prop);
+			FilterPArg filterArg = PropertyArgumentUtil.getFilterPArg(prop);
+			LookupScopePArg queryArg = PropertyArgumentUtil.getLookupScopePArg(prop);
 
 			if (filterArg != null) {
 				if (queryArg != null) {
@@ -547,7 +548,7 @@ public class CtsContentAssistUtil {
 					EStructuralFeature propFeature = TcsUtil
 							.getStructuralFeature(prop);
 					if (propFeature != null) {
-						String featureName = TcsUtil.getRefersToPArg(prop)
+						String featureName = PropertyArgumentUtil.getRefersToPArg(prop)
 								.getPropertyName();
 						List<String> propValues = TcsUtil.queryPropertyValues(
 								propFeature.getEType(), featureName,

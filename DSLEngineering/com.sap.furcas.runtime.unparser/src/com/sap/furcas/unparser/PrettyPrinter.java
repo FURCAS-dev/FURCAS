@@ -71,6 +71,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
+import com.sap.furcas.runtime.tcs.PropertyArgumentUtil;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.unparser.PrettyPrintExceptions.ForcedBoundsException;
 import com.sap.furcas.unparser.PrettyPrintExceptions.NoTemplateMatchFoundException;
@@ -572,9 +573,9 @@ public class PrettyPrinter {
 	    validateBounds(element, property, value);
 	}
 
-	RefersToPArg refersToPArg = TcsUtil.getRefersToPArg(property);
-	AsPArg asPArg = TcsUtil.getAsPArg(property);
-	LookupScopePArg scope = TcsUtil.getLookupScopePArg(property);
+	RefersToPArg refersToPArg = PropertyArgumentUtil.getRefersToPArg(property);
+	AsPArg asPArg = PropertyArgumentUtil.getAsPArg(property);
+	LookupScopePArg scope = PropertyArgumentUtil.getLookupScopePArg(property);
 	String primitiveTemplateName = null;
 
 	if (asPArg != null) {
@@ -589,7 +590,7 @@ public class PrettyPrinter {
 	    return;
 	}
 	if (value instanceof Collection) {
-	    SeparatorPArg separator = TcsUtil.getSeparatorPArg(property);
+	    SeparatorPArg separator = PropertyArgumentUtil.getSeparatorPArg(property);
 	    Sequence sep = null; 
 	    if (separator != null) {
 		sep = separator.getSeparatorSequence();
@@ -633,7 +634,7 @@ public class PrettyPrinter {
 	    printer.printIndentationIfNeeded();
 
 	    if (asPArg != null && scope != null) {
-		FilterPArg filter = TcsUtil.getFilterPArg(property);
+		FilterPArg filter = PropertyArgumentUtil.getFilterPArg(property);
 		String invertQuery = filter.getInvert();
 		try {
 		    TCSSpecificOCLEvaluator oclEvaluator = new TCSSpecificOCLEvaluator();
@@ -667,7 +668,7 @@ public class PrettyPrinter {
 	// instead of  throwing an exception
 
 	int handle = 0;
-	PartialPArg partialArg = TcsUtil.getPartialPArg(property);
+	PartialPArg partialArg = PropertyArgumentUtil.getPartialPArg(property);
 	if (partialArg != null) {
 	    handle = createSafePoint();
 	}
@@ -902,8 +903,8 @@ public class PrettyPrinter {
     private void validateBounds(Object element, Property p, Object propValue) throws ForcedBoundsException {
 
 	// check for forced upper and forced lower validity of model element
-	ForcedLowerPArg lowerArg = TcsUtil.getForcedLowerPArg(p);
-	ForcedUpperPArg upperArg = TcsUtil.getForcedUpperPArg(p);
+	ForcedLowerPArg lowerArg = PropertyArgumentUtil.getForcedLowerPArg(p);
+	ForcedUpperPArg upperArg = PropertyArgumentUtil.getForcedUpperPArg(p);
 
 	if (lowerArg != null) {
 

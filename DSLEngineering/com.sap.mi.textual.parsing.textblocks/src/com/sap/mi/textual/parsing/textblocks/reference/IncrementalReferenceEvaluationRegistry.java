@@ -35,7 +35,7 @@ import com.sap.furcas.runtime.common.interfaces.IRuleName;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 import com.sap.furcas.runtime.parser.impl.DelayedReference;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
-import com.sap.furcas.runtime.tcs.TcsUtil;
+import com.sap.furcas.runtime.tcs.PropertyArgumentUtil;
 
 
 /**
@@ -278,10 +278,10 @@ public class IncrementalReferenceEvaluationRegistry {
 	Template template = property.getParentTemplate();
 	if (template != null && template.getMetaReference() instanceof EClass) {
 	    // TODO what about StructureTypes?
-	    QueryPArg qarg = TcsUtil.getLookupScopePArg(property);
+	    QueryPArg qarg = PropertyArgumentUtil.getLookupScopePArg(property);
 	    // TODO still needed? if not, delete
 	    // RefersToParg refersToArg = TcsUtil.getRefersToParg(property);
-	    FilterPArg filter = TcsUtil.getFilterPArg(property);
+	    FilterPArg filter = PropertyArgumentUtil.getFilterPArg(property);
 	    if (qarg != null) {
 		try {
 		    String query = qarg.getQuery();
