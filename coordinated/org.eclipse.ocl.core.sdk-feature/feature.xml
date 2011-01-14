@@ -28,8 +28,8 @@ Contributors:
    </license>
 
    <url>
-      <update label="%updateSiteName" url="http://download.eclipse.org/modeling/mdt/ocl/updates/"/>
-      <discovery label="%updateSiteName" url="http://download.eclipse.org/modeling/mdt/ocl/updates/"/>
+      <update label="%updateSiteName" url="http://www.eclipse.org/modeling/updates"/>
+      <discovery label="%updateSiteName" url="http://www.eclipse.org/modeling/updates"/>
    </url>
 
    <includes
