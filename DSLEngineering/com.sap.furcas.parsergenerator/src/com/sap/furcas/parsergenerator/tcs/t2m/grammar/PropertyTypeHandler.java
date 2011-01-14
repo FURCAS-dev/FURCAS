@@ -25,7 +25,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.CreateAsPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.CreateInPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.DisambiguatePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ImportContextPArg;
@@ -200,13 +199,10 @@ public class PropertyTypeHandler<Type extends Object> {
                 errorBucket.addWarning("ImportContext only possible with refersTo", args.importContextPArg);
             }
         }
-        if (args.oclFilterPArg != null) {
-            errorBucket.addWarning("The filter mechanism is depecated. Please use referenceBy and lookupScope instead.", args.oclFilterPArg);
-        }
         if (args.referenceByPArg != null && args.lookupScopePArg == null) {
             errorBucket.addError("ReferenceBy does only work when lookupScope is defined.", args.referenceByPArg);
         }
-        if (args.lookupScopePArg != null && (args.referenceByPArg == null && args.oclFilterPArg == null)) {
+        if (args.lookupScopePArg != null && (args.referenceByPArg == null)) {
             errorBucket.addError("LookupScope does only work in concunction with referenceBy.", args.lookupScopePArg);
         }
     }
@@ -237,16 +233,10 @@ public class PropertyTypeHandler<Type extends Object> {
         
         validateOclQuery(prop, args.lookupScopePArg, args.lookupScopePArg.getQuery());
         
-        String query = null;
-        if (args.oclFilterPArg != null) {
-            query = args.lookupScopePArg.getQuery() + args.oclFilterPArg.getFilter();
-            validateOclQuery(prop, args.oclFilterPArg, query);
-        } else {
-            query = PropertyArgumentUtil.getCombinedReferenceByLookupOCLQuery(args.referenceByPArg, args.lookupScopePArg);
-            // TODO: validate the individual OCL query instead. For this to work however,
-            // we need to be able to infer the return-type of the lookupScope query.
-            validateOclQuery(prop, args.oclFilterPArg, query);
-        }
+        String query = PropertyArgumentUtil.getCombinedReferenceByLookupOCLQuery(args.referenceByPArg, args.lookupScopePArg);
+        // TODO: validate the individual OCL query instead. For this to work however,
+        // we need to be able to infer the return-type of the lookupScope query.
+        validateOclQuery(prop, args.referenceByPArg, query);
         
         String oclQuery = TcsUtil.escapeMultiLineOclQuery(query);
         if (args.refersTo != null) {
@@ -661,7 +651,6 @@ public class PropertyTypeHandler<Type extends Object> {
         public PartialPArg partialPArg;
         
         public LookupScopePArg lookupScopePArg;
-        public FilterPArg oclFilterPArg;
         public ReferenceByPArg referenceByPArg;
         
         public DisambiguatePArg disambiguatePArg;
@@ -735,11 +724,6 @@ public class PropertyTypeHandler<Type extends Object> {
                         throw new SyntaxElementException("Double definition of lookupScopePArg", lookupScopePArg);
                     }
                     lookupScopePArg = (LookupScopePArg) propertyArg;
-                } else if (propertyArg instanceof FilterPArg) {
-                    if (oclFilterPArg != null) {
-                        throw new SyntaxElementException("Double definition of filterParg", oclFilterPArg);
-                    }
-                    oclFilterPArg = (FilterPArg) propertyArg;
                 } else if (propertyArg instanceof ReferenceByPArg) {
                     if (referenceByPArg != null) {
                         throw new SyntaxElementException("Double definition of referenceByPArg", referenceByPArg);

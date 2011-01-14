@@ -10,9 +10,9 @@ import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.AsPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
+import com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
@@ -84,7 +84,7 @@ public class ShortPrettyPrinter {
 
     private String handlePropertyElement(Property se, LexedToken token) {
 	String newvalue = token.getValue();
-	if (PropertyArgumentUtil.containsRefersToArg(se) || PropertyArgumentUtil.getFilterPArg(se) != null) {
+	if (PropertyArgumentUtil.containsRefersToArg(se) || PropertyArgumentUtil.getReferenceByPArg(se) != null) {
 	    // the new value comes from the value of the referenced element;
 	    for (EObject referencedObject : token
 		    .getReferencedElements()) {
@@ -93,7 +93,7 @@ public class ShortPrettyPrinter {
 	        		|| referencedObject.eClass().getEAllSuperTypes().contains(se.getPropertyReference().getStrucfeature().getEType())) {
         		RefersToPArg refersToArg = PropertyArgumentUtil.getRefersToPArg(se);
         		try {
-        		    if (PropertyArgumentUtil.getFilterPArg(se) != null) {
+        		    if (PropertyArgumentUtil.getReferenceByPArg(se) != null) {
         			// if the string given in the token is changed
         			// within the query to do the matching
         			// with the target element we need to invert this
@@ -170,9 +170,9 @@ public class ShortPrettyPrinter {
 		// to be able to invert the query.
 		// this implementation just checks if there are any prefixes or
 		// postfixes that can be removed.
-		FilterPArg filterParg = PropertyArgumentUtil.getFilterPArg(se);
-		if (filterParg != null && filterParg.getInvert() != null) {
-			String query = filterParg.getInvert();
+		ReferenceByPArg referenceByPArg = PropertyArgumentUtil.getReferenceByPArg(se);
+		if (referenceByPArg != null) {
+			String query = PropertyArgumentUtil.getReferenceByAsOCL(referenceByPArg);
 			
 			// FIXME how to properly organize the dependencies?
 			
