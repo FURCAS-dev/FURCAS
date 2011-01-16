@@ -20,7 +20,7 @@ syntax ImpactAnalysisRenameTestSyntax {
     ;
 
   template Usage 
-    : "use" boundDefinition{query="OCL:Definition.allInstances()", "name"="?"} ";"
+    : "use" boundDefinition{referenceBy="name", lookupScope="OCL:self.getDeclarationsInScope()"} ";"
     ;
     
   template Block
