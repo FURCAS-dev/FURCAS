@@ -15,10 +15,6 @@ public class ResolvedNameAndReferenceBean<EType> {
     private List<String> operators;
     
     
-    /**
-     * @param name
-     * @param reference
-     */
     public ResolvedNameAndReferenceBean(List<String> name, EType reference) {
         super();
         if (name == null && reference == null) {
@@ -28,12 +24,11 @@ public class ResolvedNameAndReferenceBean<EType> {
         this.reference = reference;
     }
 
-    public ResolvedNameAndReferenceBean(List<String> names, EType reference,
-            List<String> ops) {
+    public ResolvedNameAndReferenceBean(List<String> names, EType reference, List<String> ops) {
         this(names, reference);
         this.operators = ops;
     }
-
+    
     public List<String> getNames() {
         return names;
     }

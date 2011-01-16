@@ -111,7 +111,7 @@ public class PredicateSemanticItemProvider
                  TCSPackage.Literals.PREDICATE_SEMANTIC__WHEN,
                  true,
                  false,
-                 true,
+                 false,
                  ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
@@ -176,6 +176,7 @@ public class PredicateSemanticItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(PredicateSemantic.class)) {
+            case TCSPackage.PREDICATE_SEMANTIC__WHEN:
             case TCSPackage.PREDICATE_SEMANTIC__MODE:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;

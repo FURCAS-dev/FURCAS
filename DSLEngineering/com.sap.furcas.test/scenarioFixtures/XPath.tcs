@@ -1,51 +1,51 @@
 syntax XPath {
 
-	primitiveTemplate identifier for ->String default using NAME:
+	primitiveTemplate identifier for String default using NAME:
 		value = "unescapeString(%token%)";
 
-	primitiveTemplate stringSymbol for ->String using STRING:
+	primitiveTemplate stringSymbol for String using STRING:
 		value = "unescapeString(%token%)",
 		serializer="'\'' + %value%.toCString() + '\''";
 
-	primitiveTemplate integerSymbol for ->Integer default using INT:
+	primitiveTemplate integerSymbol for Integer default using INT:
 		value = "Integer.valueOf(%token%)";
 
-	primitiveTemplate floatSymbol for ->Double default using FLOAT:
+	primitiveTemplate floatSymbol for Double default using FLOAT:
 		value = "Double.valueOf(%token%)";
 
 -- Expressions
-	template ->Expression main abstract operatored;
+	template Expression main abstract operatored;
 
-	template ->VariableExp
-		:	"$" ->name
+	template VariableExp
+		:	"$" name
 		;
 
-	template ->PathExpression
+	template PathExpression
 		:
---			(->isAbsolute ? "/")
---			->steps{separator = "/"}
+--			(isAbsolute ? "/")
+--			steps{separator = "/"}
 
-			(->isAbsolute ?
-					"/" ->steps{separator = "/"}
+			(isAbsolute ?
+					"/" steps{separator = "/"}
 				:
-					->steps{separator = "/", forcedLower = 1}
+					steps{separator = "/", forcedLower = 1}
 			)
 		;
 
-	template ->Step(disambiguate = "(step)=>")
+	template Step(disambiguate = "(step)=>")
 		:	
-				[[	->axis ->nodeTest
+				[[	axis nodeTest
 				|	"."	--	{{axis <- new SelfAxis, nodeTest <- new IsNodeTest}}	-- self::node()
 				|	".."	--	{{axis <-  new ParentAxis, nodeTest <- new IsNodeTest}}	-- parent::node()
 				]]
-				->predicates
+				predicates
 		;
 
-	template ->Predicate
-		:	"[" ->expression "]"
+	template Predicate
+		:	"[" expression "]"
 		;
 
-	operatorTemplate ->OperatorCallExp(operators =
+	operatorTemplate OperatorCallExp(operators =
 			opUnion
 
 			opMinus1
@@ -65,102 +65,102 @@ syntax XPath {
 			opAnd
 
 			opOr,
-			source = ->'left', storeOpTo = ->name, storeRightTo = ->'right');
+			source = 'left', storeOpTo = name, storeRightTo = 'right');
 
-	template ->FunctionCallExp(disambiguate = "NAME LPAREN")
-		:	->name "(" ->arguments{separator = ","} ")"
+	template FunctionCallExp(disambiguate = "NAME LPAREN")
+		:	name "(" arguments{separator = ","} ")"
 		;
 
-	template ->LiteralExp abstract;
+	template LiteralExp abstract;
 
-	template ->IntegerExp
-		:	->symbol
+	template IntegerExp
+		:	symbol
 		;
 
-	template ->StringExp
-		:	->symbol{as = stringSymbol}
+	template StringExp
+		:	symbol{as = stringSymbol}
 		;
 -- End Expressions
 
 
 -- NodeTests
-	template ->NodeTest abstract;
+	template NodeTest abstract;
 
-	template ->NameTest
-		:	->name
+	template NameTest
+		:	name
 		;
 
-	template ->WildCardTest
+	template WildCardTest
 		:	"*"
 		;
 
-	template ->IsNodeTest
+	template IsNodeTest
 		:	"node" "(" ")"
 		;
 
-	template ->IsTextTest
+	template IsTextTest
 		:	"text" "(" ")"
 		;
 -- End NodeTests
 
 
 -- Axes
-	template ->Axis abstract;
+	template Axis abstract;
 
-	template ->AncestorAxis
+	template AncestorAxis
 		:	"ancestor" "::"
 		;
 	
-	template ->AncestorOrSelfAxis
+	template AncestorOrSelfAxis
 		:	"ancestor-or-self" "::"
 		;
 
-	template ->AttributeAxis
+	template AttributeAxis
 		:	[[	"attribute" "::"
 			|	"@"
 			]]
 		;
 
-	template ->ChildAxis
+	template ChildAxis
 		:	[[	"child"	"::"
 			|	-- *nothing* is equivalent to child::
 			]]
 
 		;
 
-	template ->DescendantAxis
+	template DescendantAxis
 		:	"descendant" "::"
 		;
 
-	template ->DescendantOrSelfAxis
+	template DescendantOrSelfAxis
 		:	"descendant-or-self" "::"
 		;
 
-	template ->FollowingAxis
+	template FollowingAxis
 		:	"following" "::"
 		;
 
-	template ->FollowingSiblingAxis
+	template FollowingSiblingAxis
 		:	"following-sibling" "::"
 		;
 
-	template ->NamespaceAxis
+	template NamespaceAxis
 		:	"namespace" "::"
 		;
 
-	template ->ParentAxis
+	template ParentAxis
 		:	"parent" "::"
 		;
 
-	template ->PrecedingAxis
+	template PrecedingAxis
 		:	"preceding" "::"
 		;
 
-	template ->PrecedingSiblingAxis
+	template PrecedingSiblingAxis
 		:	"preceding-sibling" "::"
 		;
 
-	template ->SelfAxis
+	template SelfAxis
 		:	"self" "::"
 		;
 -- End Axes

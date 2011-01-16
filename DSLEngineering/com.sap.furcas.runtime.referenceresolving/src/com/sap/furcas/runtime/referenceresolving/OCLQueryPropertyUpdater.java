@@ -6,11 +6,11 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.emf.ocl.trigger.ExpressionWithContext;
+import com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
-import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
-import com.sap.furcas.runtime.tcs.TcsUtil;
+import com.sap.furcas.runtime.tcs.PropertyArgumentUtil;
 
 /**
  * Represents an OCL "query" used to find an existing element in the model to assign to a property. The query is based on a
@@ -46,7 +46,7 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
     }
 
     private static String getExpressionString(Property propertyInit) {
-        QueryPArg qarg = TcsUtil.getQueryPArg(propertyInit);
+        LookupScopePArg qarg = PropertyArgumentUtil.getLookupScopePArg(propertyInit);
         if (qarg == null) {
             throw new RuntimeException("Didn't find a query argument in rule for property "+propertyInit.getPropertyReference().getStrucfeature());
         }

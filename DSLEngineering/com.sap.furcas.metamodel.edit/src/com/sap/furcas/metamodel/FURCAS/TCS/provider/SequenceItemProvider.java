@@ -13,6 +13,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -60,8 +61,77 @@ public class SequenceItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
+            addTemplateContainerPropertyDescriptor(object);
+            addPrefixContainerPropertyDescriptor(object);
+            addOtContainerPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
+    }
+
+        /**
+     * This adds a property descriptor for the Template Container feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addTemplateContainerPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_Sequence_templateContainer_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_Sequence_templateContainer_feature", "_UI_Sequence_type"),
+                 TCSPackage.Literals.SEQUENCE__TEMPLATE_CONTAINER,
+                 true,
+                 false,
+                 true,
+                 null,
+                 null,
+                 null));
+    }
+
+        /**
+     * This adds a property descriptor for the Prefix Container feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addPrefixContainerPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_Sequence_prefixContainer_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_Sequence_prefixContainer_feature", "_UI_Sequence_type"),
+                 TCSPackage.Literals.SEQUENCE__PREFIX_CONTAINER,
+                 true,
+                 false,
+                 true,
+                 null,
+                 null,
+                 null));
+    }
+
+        /**
+     * This adds a property descriptor for the Ot Container feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addOtContainerPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_Sequence_otContainer_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_Sequence_otContainer_feature", "_UI_Sequence_type"),
+                 TCSPackage.Literals.SEQUENCE__OT_CONTAINER,
+                 true,
+                 false,
+                 true,
+                 null,
+                 null,
+                 null));
     }
 
         /**

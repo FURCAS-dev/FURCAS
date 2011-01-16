@@ -7,9 +7,9 @@
 package com.sap.furcas.metamodel.FURCAS.TCS.provider;
 
 
-import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
-
+import com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -27,37 +27,37 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg} object.
+ * This is the item provider adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class QueryPArgItemProvider
-        extends PropertyArgItemProvider
-        implements
-                IEditingDomainItemProvider,
-                IStructuredItemContentProvider,
-                ITreeItemContentProvider,
-                IItemLabelProvider,
-                IItemPropertySource {
-        /**
+public class LookupScopePArgItemProvider
+    extends PropertyArgItemProvider
+    implements
+        IEditingDomainItemProvider,
+        IStructuredItemContentProvider,
+        ITreeItemContentProvider,
+        IItemLabelProvider,
+        IItemPropertySource {
+    /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public QueryPArgItemProvider(AdapterFactory adapterFactory) {
+    public LookupScopePArgItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
-        /**
+    /**
      * This returns the property descriptors for the adapted class.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+    @Override
+    public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
@@ -66,7 +66,7 @@ public class QueryPArgItemProvider
         return itemPropertyDescriptors;
     }
 
-        /**
+    /**
      * This adds a property descriptor for the Query feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -77,9 +77,9 @@ public class QueryPArgItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_QueryPArg_query_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_QueryPArg_query_feature", "_UI_QueryPArg_type"),
-                 TCSPackage.Literals.QUERY_PARG__QUERY,
+                 getString("_UI_LookupScopePArg_query_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_LookupScopePArg_query_feature", "_UI_LookupScopePArg_type"),
+                 TCSPackage.Literals.LOOKUP_SCOPE_PARG__QUERY,
                  true,
                  false,
                  false,
@@ -88,59 +88,59 @@ public class QueryPArgItemProvider
                  null));
     }
 
-        /**
-     * This returns QueryPArg.gif.
+    /**
+     * This returns LookupScopePArg.gif.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/QueryPArg"));
+    @Override
+    public Object getImage(Object object) {
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/LookupScopePArg"));
     }
 
-        /**
+    /**
      * This returns the label text for the adapted class.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String getText(Object object) {
-        String label = ((QueryPArg)object).getLocation();
+    @Override
+    public String getText(Object object) {
+        String label = ((LookupScopePArg)object).getLocation();
         return label == null || label.length() == 0 ?
-            getString("_UI_QueryPArg_type") :
-            getString("_UI_QueryPArg_type") + " " + label;
+            getString("_UI_LookupScopePArg_type") :
+            getString("_UI_LookupScopePArg_type") + " " + label;
     }
 
-        /**
+    /**
      * This handles model notifications by calling {@link #updateChildren} to update any cached
      * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void notifyChanged(Notification notification) {
+    @Override
+    public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
-        switch (notification.getFeatureID(QueryPArg.class)) {
-            case TCSPackage.QUERY_PARG__QUERY:
+        switch (notification.getFeatureID(LookupScopePArg.class)) {
+            case TCSPackage.LOOKUP_SCOPE_PARG__QUERY:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }
         super.notifyChanged(notification);
     }
 
-        /**
+    /**
      * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
      * that can be created under this object.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+    @Override
+    protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
     }
 
