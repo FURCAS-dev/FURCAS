@@ -7,7 +7,7 @@
 package com.sap.furcas.metamodel.FURCAS.TCS.provider;
 
 
-import com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 import java.util.Collection;
@@ -27,12 +27,12 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg} object.
+ * This is the item provider adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class FilterByIdentifierPArgItemProvider
+public class ReferenceByPArgItemProvider
     extends PropertyArgItemProvider
     implements
         IEditingDomainItemProvider,
@@ -46,7 +46,7 @@ public class FilterByIdentifierPArgItemProvider
      * <!-- end-user-doc -->
      * @generated
      */
-    public FilterByIdentifierPArgItemProvider(AdapterFactory adapterFactory) {
+    public ReferenceByPArgItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -61,26 +61,25 @@ public class FilterByIdentifierPArgItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addFilterPropertyDescriptor(object);
-            addCriterionPropertyDescriptor(object);
+            addReferenceByPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This adds a property descriptor for the Filter feature.
+     * This adds a property descriptor for the Reference By feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addFilterPropertyDescriptor(Object object) {
+    protected void addReferenceByPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_FilterByIdentifierPArg_filter_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_FilterByIdentifierPArg_filter_feature", "_UI_FilterByIdentifierPArg_type"),
-                 TCSPackage.Literals.FILTER_BY_IDENTIFIER_PARG__FILTER,
+                 getString("_UI_ReferenceByPArg_referenceBy_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_ReferenceByPArg_referenceBy_feature", "_UI_ReferenceByPArg_type"),
+                 TCSPackage.Literals.REFERENCE_BY_PARG__REFERENCE_BY,
                  true,
                  false,
                  false,
@@ -90,36 +89,14 @@ public class FilterByIdentifierPArgItemProvider
     }
 
     /**
-     * This adds a property descriptor for the Criterion feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addCriterionPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_FilterByIdentifierPArg_criterion_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_FilterByIdentifierPArg_criterion_feature", "_UI_FilterByIdentifierPArg_type"),
-                 TCSPackage.Literals.FILTER_BY_IDENTIFIER_PARG__CRITERION,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-    }
-
-    /**
-     * This returns FilterByIdentifierPArg.gif.
+     * This returns ReferenceByPArg.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/FilterByIdentifierPArg"));
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/ReferenceByPArg"));
     }
 
     /**
@@ -130,10 +107,10 @@ public class FilterByIdentifierPArgItemProvider
      */
     @Override
     public String getText(Object object) {
-        String label = ((FilterByIdentifierPArg)object).getLocation();
+        String label = ((ReferenceByPArg)object).getLocation();
         return label == null || label.length() == 0 ?
-            getString("_UI_FilterByIdentifierPArg_type") :
-            getString("_UI_FilterByIdentifierPArg_type") + " " + label;
+            getString("_UI_ReferenceByPArg_type") :
+            getString("_UI_ReferenceByPArg_type") + " " + label;
     }
 
     /**
@@ -147,9 +124,8 @@ public class FilterByIdentifierPArgItemProvider
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
-        switch (notification.getFeatureID(FilterByIdentifierPArg.class)) {
-            case TCSPackage.FILTER_BY_IDENTIFIER_PARG__FILTER:
-            case TCSPackage.FILTER_BY_IDENTIFIER_PARG__CRITERION:
+        switch (notification.getFeatureID(ReferenceByPArg.class)) {
+            case TCSPackage.REFERENCE_BY_PARG__REFERENCE_BY:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }

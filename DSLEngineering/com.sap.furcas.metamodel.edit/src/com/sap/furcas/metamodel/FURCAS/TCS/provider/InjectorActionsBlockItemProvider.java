@@ -61,31 +61,8 @@ public class InjectorActionsBlockItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addInjectorActionsPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
-    }
-
-        /**
-     * This adds a property descriptor for the Injector Actions feature.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        protected void addInjectorActionsPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_InjectorActionsBlock_injectorActions_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_InjectorActionsBlock_injectorActions_feature", "_UI_InjectorActionsBlock_type"),
-                 TCSPackage.Literals.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS,
-                 true,
-                 false,
-                 true,
-                 null,
-                 null,
-                 null));
     }
 
         /**
@@ -101,6 +78,7 @@ public class InjectorActionsBlockItemProvider
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
             childrenFeatures.add(TCSPackage.Literals.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS);
+            childrenFeatures.add(TCSPackage.Literals.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS);
         }
         return childrenFeatures;
     }
@@ -156,6 +134,7 @@ public class InjectorActionsBlockItemProvider
 
         switch (notification.getFeatureID(InjectorActionsBlock.class)) {
             case TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS:
+            case TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -192,6 +171,49 @@ public class InjectorActionsBlockItemProvider
             (createChildParameter
                 (TCSPackage.Literals.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS,
                  TCSFactory.eINSTANCE.createLookupPropertyInit()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (TCSPackage.Literals.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS,
+                 TCSFactory.eINSTANCE.createPrimitivePropertyInit()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (TCSPackage.Literals.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS,
+                 TCSFactory.eINSTANCE.createOclPropertyInit()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (TCSPackage.Literals.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS,
+                 TCSFactory.eINSTANCE.createForeachPredicatePropertyInit()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (TCSPackage.Literals.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS,
+                 TCSFactory.eINSTANCE.createLookupPropertyInit()));
+    }
+
+        /**
+     * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+        Object childFeature = feature;
+        Object childObject = child;
+
+        boolean qualify =
+            childFeature == TCSPackage.Literals.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS ||
+            childFeature == TCSPackage.Literals.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS;
+
+        if (qualify) {
+            return getString
+                ("_UI_CreateChild_text2",
+                 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+        }
+        return super.getCreateChildText(owner, feature, child, selection);
     }
 
 }

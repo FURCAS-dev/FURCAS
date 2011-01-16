@@ -6,7 +6,6 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.util;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.*;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
@@ -37,7 +36,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralVal;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.EqualsExp;
 import com.sap.furcas.metamodel.FURCAS.TCS.Expression;
-import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
@@ -50,7 +48,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
 import com.sap.furcas.metamodel.FURCAS.TCS.InstanceOfExp;
 import com.sap.furcas.metamodel.FURCAS.TCS.IntegerVal;
-import com.sap.furcas.metamodel.FURCAS.TCS.InvertPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.IsDefinedExp;
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
 import com.sap.furcas.metamodel.FURCAS.TCS.Literal;
@@ -58,6 +55,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
 import com.sap.furcas.metamodel.FURCAS.TCS.LocatedElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookInPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Mapping;
 import com.sap.furcas.metamodel.FURCAS.TCS.ModePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.MultiLineRule;
@@ -83,7 +81,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.PropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyVal;
 import com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement;
-import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToKeyPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Rule;
@@ -453,16 +451,12 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
                 return createInjectorActionsBlockAdapter();
             }
             @Override
-            public Adapter caseQueryPArg(QueryPArg object) {
-                return createQueryPArgAdapter();
+            public Adapter caseLookupScopePArg(LookupScopePArg object) {
+                return createLookupScopePArgAdapter();
             }
             @Override
-            public Adapter caseFilterByIdentifierPArg(FilterByIdentifierPArg object) {
-                return createFilterByIdentifierPArgAdapter();
-            }
-            @Override
-            public Adapter caseFilterPArg(FilterPArg object) {
-                return createFilterPArgAdapter();
+            public Adapter caseReferenceByPArg(ReferenceByPArg object) {
+                return createReferenceByPArgAdapter();
             }
             @Override
             public Adapter caseOclPArg(OclPArg object) {
@@ -1569,30 +1563,30 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
     }
 
         /**
-     * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg <em>Query PArg</em>}'.
-     * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg
-     * @generated
-     */
-        public Adapter createQueryPArgAdapter() {
-        return null;
-    }
-
-        /**
-     * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg <em>Filter By Identifier PArg</em>}'.
+     * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg <em>Lookup Scope PArg</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg
      * @generated
      */
-    public Adapter createFilterByIdentifierPArgAdapter() {
+    public Adapter createLookupScopePArgAdapter() {
+        return null;
+    }
+
+        /**
+     * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg <em>Reference By PArg</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg
+     * @generated
+     */
+    public Adapter createReferenceByPArgAdapter() {
         return null;
     }
 

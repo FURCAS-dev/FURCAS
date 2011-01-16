@@ -20,17 +20,17 @@ import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.test.fixture.FeatureFixtureData;
 
 /**
- * A test for the combination of query and filterByIdentifier property arguments,
+ * A test for the combination of lookupScope and referenceBy property arguments,
  * which can be used to query for elements by an identifier (e.g., find a declaration by its name).
  * 
  * @author Stephan Erb
  */
-public class TestQueryByIdentifierPArg extends GeneratedParserBasedTest {
+public class TestReferenceByPArg extends GeneratedParserBasedTest {
 
     private static final String LANGUAGE = "QueryByIdentifierFeatureTestSyntax";
     private static final File TCS = FeatureFixtureData.PARG_QUERY_BY_IDENTIFIER_TCS;
-    private static final File METAMODEL = FeatureFixtureData.PARG_QUERY_BY_IDENTIFIER_METAMODEL;
-    private static final String PACKAGE_URI = FeatureFixtureData.PARG_QUERY_BY_IDENTIFIER_PACKAGE_URI;
+    private static final File METAMODEL = FeatureFixtureData.PARG_REFERENCE_BY_IDENTIFIER_METAMODEL;
+    private static final String PACKAGE_URI = FeatureFixtureData.PARG_REFERENCE_BY_IDENTIFIER_PACKAGE_URI;
 
     private static EMFParsingHelper parsingHelper;
     
@@ -48,7 +48,7 @@ public class TestQueryByIdentifierPArg extends GeneratedParserBasedTest {
      */
     @Test
     public void testResolvableBindings() throws Exception {
-        ModelParsingResult result = parsingHelper.parseFile("PropertyArgument_QueryByIdentifier_WellDefined.sam", FeatureFixtureData.EXAMPLE_FOLDER,
+        ModelParsingResult result = parsingHelper.parseFile("PropertyArgument_ReferenceByIdentifier_WellDefined.sam", FeatureFixtureData.EXAMPLE_FOLDER,
                 /* expected errors */ 0);
         
         // Make sure all references have been resolved as expected
@@ -66,7 +66,7 @@ public class TestQueryByIdentifierPArg extends GeneratedParserBasedTest {
      */
     @Test
     public void testUnResolvableBindings() throws Exception {
-        ModelParsingResult result = parsingHelper.parseFile("PropertyArgument_QueryByIdentifier_UnDefined.sam", FeatureFixtureData.EXAMPLE_FOLDER,
+        ModelParsingResult result = parsingHelper.parseFile("PropertyArgument_ReferenceByIdentifier_UnDefined.sam", FeatureFixtureData.EXAMPLE_FOLDER,
                 /* expected errors */ 2);
         
         // Make sure none of the references has been resolved

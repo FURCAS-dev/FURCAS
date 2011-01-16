@@ -5807,78 +5807,78 @@ public interface TCSPackage extends EPackage {
         int OCL_PARG = 75;
 
         /**
-     * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.QueryPArgImpl <em>Query PArg</em>}' class.
+     * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.LookupScopePArgImpl <em>Lookup Scope PArg</em>}' class.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.QueryPArgImpl
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getQueryPArg()
+     * <!-- end-user-doc -->
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.LookupScopePArgImpl
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getLookupScopePArg()
      * @generated
      */
-        int QUERY_PARG = 72;
+    int LOOKUP_SCOPE_PARG = 72;
 
         /**
      * The feature id for the '<em><b>Location</b></em>' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int QUERY_PARG__LOCATION = PROPERTY_ARG__LOCATION;
+    int LOOKUP_SCOPE_PARG__LOCATION = PROPERTY_ARG__LOCATION;
 
         /**
      * The feature id for the '<em><b>Comments Before</b></em>' attribute list.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int QUERY_PARG__COMMENTS_BEFORE = PROPERTY_ARG__COMMENTS_BEFORE;
+    int LOOKUP_SCOPE_PARG__COMMENTS_BEFORE = PROPERTY_ARG__COMMENTS_BEFORE;
 
         /**
      * The feature id for the '<em><b>Comments After</b></em>' attribute list.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int QUERY_PARG__COMMENTS_AFTER = PROPERTY_ARG__COMMENTS_AFTER;
+    int LOOKUP_SCOPE_PARG__COMMENTS_AFTER = PROPERTY_ARG__COMMENTS_AFTER;
 
         /**
      * The feature id for the '<em><b>Property</b></em>' container reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int QUERY_PARG__PROPERTY = PROPERTY_ARG__PROPERTY;
+    int LOOKUP_SCOPE_PARG__PROPERTY = PROPERTY_ARG__PROPERTY;
 
         /**
      * The feature id for the '<em><b>Query</b></em>' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int QUERY_PARG__QUERY = PROPERTY_ARG_FEATURE_COUNT + 0;
+    int LOOKUP_SCOPE_PARG__QUERY = PROPERTY_ARG_FEATURE_COUNT + 0;
 
         /**
-     * The number of structural features of the '<em>Query PArg</em>' class.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-        int QUERY_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 1;
-
-        /**
-     * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.FilterByIdentifierPArgImpl <em>Filter By Identifier PArg</em>}' class.
+     * The number of structural features of the '<em>Lookup Scope PArg</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.FilterByIdentifierPArgImpl
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getFilterByIdentifierPArg()
+     * @generated
+     * @ordered
+     */
+    int LOOKUP_SCOPE_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 1;
+
+        /**
+     * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.ReferenceByPArgImpl <em>Reference By PArg</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.ReferenceByPArgImpl
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getReferenceByPArg()
      * @generated
      */
-    int FILTER_BY_IDENTIFIER_PARG = 73;
+    int REFERENCE_BY_PARG = 73;
 
         /**
      * The feature id for the '<em><b>Location</b></em>' attribute.
@@ -5887,7 +5887,7 @@ public interface TCSPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int FILTER_BY_IDENTIFIER_PARG__LOCATION = PROPERTY_ARG__LOCATION;
+    int REFERENCE_BY_PARG__LOCATION = PROPERTY_ARG__LOCATION;
 
         /**
      * The feature id for the '<em><b>Comments Before</b></em>' attribute list.
@@ -5896,7 +5896,7 @@ public interface TCSPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int FILTER_BY_IDENTIFIER_PARG__COMMENTS_BEFORE = PROPERTY_ARG__COMMENTS_BEFORE;
+    int REFERENCE_BY_PARG__COMMENTS_BEFORE = PROPERTY_ARG__COMMENTS_BEFORE;
 
         /**
      * The feature id for the '<em><b>Comments After</b></em>' attribute list.
@@ -5905,7 +5905,7 @@ public interface TCSPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int FILTER_BY_IDENTIFIER_PARG__COMMENTS_AFTER = PROPERTY_ARG__COMMENTS_AFTER;
+    int REFERENCE_BY_PARG__COMMENTS_AFTER = PROPERTY_ARG__COMMENTS_AFTER;
 
         /**
      * The feature id for the '<em><b>Property</b></em>' container reference.
@@ -5914,34 +5914,25 @@ public interface TCSPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int FILTER_BY_IDENTIFIER_PARG__PROPERTY = PROPERTY_ARG__PROPERTY;
+    int REFERENCE_BY_PARG__PROPERTY = PROPERTY_ARG__PROPERTY;
 
         /**
-     * The feature id for the '<em><b>Filter</b></em>' attribute.
+     * The feature id for the '<em><b>Reference By</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int FILTER_BY_IDENTIFIER_PARG__FILTER = PROPERTY_ARG_FEATURE_COUNT + 0;
+    int REFERENCE_BY_PARG__REFERENCE_BY = PROPERTY_ARG_FEATURE_COUNT + 0;
 
         /**
-     * The feature id for the '<em><b>Criterion</b></em>' attribute.
+     * The number of structural features of the '<em>Reference By PArg</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int FILTER_BY_IDENTIFIER_PARG__CRITERION = PROPERTY_ARG_FEATURE_COUNT + 1;
-
-        /**
-     * The number of structural features of the '<em>Filter By Identifier PArg</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int FILTER_BY_IDENTIFIER_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 2;
+    int REFERENCE_BY_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 1;
 
         /**
      * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.FilterPArgImpl <em>Filter PArg</em>}' class.
@@ -9225,57 +9216,46 @@ public interface TCSPackage extends EPackage {
         EReference getInjectorActionsBlock_InjectorActions();
 
         /**
-     * Returns the meta object for class '{@link com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg <em>Query PArg</em>}'.
+     * Returns the meta object for class '{@link com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg <em>Lookup Scope PArg</em>}'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Query PArg</em>'.
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Lookup Scope PArg</em>'.
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg
      * @generated
      */
-        EClass getQueryPArg();
+    EClass getLookupScopePArg();
 
         /**
-     * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg#getQuery <em>Query</em>}'.
+     * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg#getQuery <em>Query</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Query</em>'.
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg#getQuery()
-     * @see #getQueryPArg()
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg#getQuery()
+     * @see #getLookupScopePArg()
      * @generated
      */
-    EAttribute getQueryPArg_Query();
+    EAttribute getLookupScopePArg_Query();
 
         /**
-     * Returns the meta object for class '{@link com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg <em>Filter By Identifier PArg</em>}'.
+     * Returns the meta object for class '{@link com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg <em>Reference By PArg</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Filter By Identifier PArg</em>'.
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg
+     * @return the meta object for class '<em>Reference By PArg</em>'.
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg
      * @generated
      */
-    EClass getFilterByIdentifierPArg();
+    EClass getReferenceByPArg();
 
         /**
-     * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg#getFilter <em>Filter</em>}'.
+     * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg#getReferenceBy <em>Reference By</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Filter</em>'.
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg#getFilter()
-     * @see #getFilterByIdentifierPArg()
+     * @return the meta object for the attribute '<em>Reference By</em>'.
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg#getReferenceBy()
+     * @see #getReferenceByPArg()
      * @generated
      */
-    EAttribute getFilterByIdentifierPArg_Filter();
-
-        /**
-     * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg#getCriterion <em>Criterion</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Criterion</em>'.
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg#getCriterion()
-     * @see #getFilterByIdentifierPArg()
-     * @generated
-     */
-    EAttribute getFilterByIdentifierPArg_Criterion();
+    EAttribute getReferenceByPArg_ReferenceBy();
 
         /**
      * Returns the meta object for class '{@link com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg <em>Filter PArg</em>}'.
@@ -11670,14 +11650,14 @@ public interface TCSPackage extends EPackage {
                 EReference INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS = eINSTANCE.getInjectorActionsBlock_InjectorActions();
 
                 /**
-         * The meta object literal for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.QueryPArgImpl <em>Query PArg</em>}' class.
+         * The meta object literal for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.LookupScopePArgImpl <em>Lookup Scope PArg</em>}' class.
          * <!-- begin-user-doc -->
-                 * <!-- end-user-doc -->
-         * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.QueryPArgImpl
-         * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getQueryPArg()
+         * <!-- end-user-doc -->
+         * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.LookupScopePArgImpl
+         * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getLookupScopePArg()
          * @generated
          */
-                EClass QUERY_PARG = eINSTANCE.getQueryPArg();
+        EClass LOOKUP_SCOPE_PARG = eINSTANCE.getLookupScopePArg();
 
                 /**
          * The meta object literal for the '<em><b>Query</b></em>' attribute feature.
@@ -11685,33 +11665,25 @@ public interface TCSPackage extends EPackage {
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute QUERY_PARG__QUERY = eINSTANCE.getQueryPArg_Query();
+        EAttribute LOOKUP_SCOPE_PARG__QUERY = eINSTANCE.getLookupScopePArg_Query();
 
                 /**
-         * The meta object literal for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.FilterByIdentifierPArgImpl <em>Filter By Identifier PArg</em>}' class.
+         * The meta object literal for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.ReferenceByPArgImpl <em>Reference By PArg</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.FilterByIdentifierPArgImpl
-         * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getFilterByIdentifierPArg()
+         * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.ReferenceByPArgImpl
+         * @see com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl#getReferenceByPArg()
          * @generated
          */
-        EClass FILTER_BY_IDENTIFIER_PARG = eINSTANCE.getFilterByIdentifierPArg();
+        EClass REFERENCE_BY_PARG = eINSTANCE.getReferenceByPArg();
 
                 /**
-         * The meta object literal for the '<em><b>Filter</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute FILTER_BY_IDENTIFIER_PARG__FILTER = eINSTANCE.getFilterByIdentifierPArg_Filter();
-
-                /**
-         * The meta object literal for the '<em><b>Criterion</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Reference By</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute FILTER_BY_IDENTIFIER_PARG__CRITERION = eINSTANCE.getFilterByIdentifierPArg_Criterion();
+        EAttribute REFERENCE_BY_PARG__REFERENCE_BY = eINSTANCE.getReferenceByPArg_ReferenceBy();
 
                 /**
          * The meta object literal for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.FilterPArgImpl <em>Filter PArg</em>}' class.

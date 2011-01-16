@@ -41,7 +41,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.CustomSeparator;
 import com.sap.furcas.metamodel.FURCAS.TCS.EndNLBArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralMapping;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.FunctionCall;
@@ -51,6 +50,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
 import com.sap.furcas.metamodel.FURCAS.TCS.Literal;
 import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.NbNLBArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Operator;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
@@ -59,7 +59,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.PrimitivePropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
-import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
@@ -71,6 +71,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
+import com.sap.furcas.runtime.tcs.PropertyArgumentUtil;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.unparser.PrettyPrintExceptions.ForcedBoundsException;
 import com.sap.furcas.unparser.PrettyPrintExceptions.NoTemplateMatchFoundException;
@@ -572,9 +573,9 @@ public class PrettyPrinter {
 	    validateBounds(element, property, value);
 	}
 
-	RefersToPArg refersToPArg = TcsUtil.getRefersToPArg(property);
-	AsPArg asPArg = TcsUtil.getAsPArg(property);
-	QueryPArg query = TcsUtil.getQueryPArg(property);
+	RefersToPArg refersToPArg = PropertyArgumentUtil.getRefersToPArg(property);
+	AsPArg asPArg = PropertyArgumentUtil.getAsPArg(property);
+	LookupScopePArg scope = PropertyArgumentUtil.getLookupScopePArg(property);
 	String primitiveTemplateName = null;
 
 	if (asPArg != null) {
@@ -589,7 +590,7 @@ public class PrettyPrinter {
 	    return;
 	}
 	if (value instanceof Collection) {
-	    SeparatorPArg separator = TcsUtil.getSeparatorPArg(property);
+	    SeparatorPArg separator = PropertyArgumentUtil.getSeparatorPArg(property);
 	    Sequence sep = null; 
 	    if (separator != null) {
 		sep = separator.getSeparatorSequence();
@@ -632,16 +633,15 @@ public class PrettyPrinter {
 	    EObject valueME = (EObject) value;
 	    printer.printIndentationIfNeeded();
 
-	    if (asPArg != null && query != null) {
-		FilterPArg filter = TcsUtil.getFilterPArg(property);
-		String invertQuery = filter.getInvert();
+	    if (scope != null) {
+	        ReferenceByPArg referenceBy = PropertyArgumentUtil.getReferenceByPArg(property);
+		String invertQuery = PropertyArgumentUtil.getReferenceByAsOCL(referenceBy);
 		try {
 		    TCSSpecificOCLEvaluator oclEvaluator = new TCSSpecificOCLEvaluator();
 		    String refValue = (String) oclEvaluator.findElementsWithOCLQuery(valueME, /*keyValue*/ null, invertQuery).iterator().next();       
 		    this.serializePrimitiveTemplate(refValue, primitiveTemplateName);
-		} catch (Exception e) {
-		    String defaultName = EMFModelInspector.getString(valueME, "name");
-		    this.serializePrimitiveTemplate(defaultName, primitiveTemplateName);
+		} catch (ModelAdapterException e) {
+		    error("Unable to serialize referenced model element: " + e.getMessage());
 		}
 	    } else if (refersToPArg == null) {
 		String mode = TcsUtil.getMode(property);
@@ -667,7 +667,7 @@ public class PrettyPrinter {
 	// instead of  throwing an exception
 
 	int handle = 0;
-	PartialPArg partialArg = TcsUtil.getPartialPArg(property);
+	PartialPArg partialArg = PropertyArgumentUtil.getPartialPArg(property);
 	if (partialArg != null) {
 	    handle = createSafePoint();
 	}
@@ -902,8 +902,8 @@ public class PrettyPrinter {
     private void validateBounds(Object element, Property p, Object propValue) throws ForcedBoundsException {
 
 	// check for forced upper and forced lower validity of model element
-	ForcedLowerPArg lowerArg = TcsUtil.getForcedLowerPArg(p);
-	ForcedUpperPArg upperArg = TcsUtil.getForcedUpperPArg(p);
+	ForcedLowerPArg lowerArg = PropertyArgumentUtil.getForcedLowerPArg(p);
+	ForcedUpperPArg upperArg = PropertyArgumentUtil.getForcedUpperPArg(p);
 
 	if (lowerArg != null) {
 

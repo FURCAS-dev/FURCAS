@@ -14,9 +14,9 @@ public class FeatureFixtureData {
     public static final String ENUM_FEATURE_PACKAGE_URI = "http://www.furcas.org/TCS/featuretests/template/EnumerationTemplate";
     
     // QueryByIdentifierPArg Tests
-    public static final File PARG_QUERY_BY_IDENTIFIER_METAMODEL = new File("../com.sap.furcas.test/featureFixtures/PropertyArgument_QueryByIdentifier.ecore");
-    public static final File PARG_QUERY_BY_IDENTIFIER_TCS = new File("../com.sap.furcas.test/featureFixtures/PropertyArgument_QueryByIdentifier.tcs");
-    public static final String PARG_QUERY_BY_IDENTIFIER_PACKAGE_URI = "http://www.furcas.org/TCS/featuretests/property/queryByIdentifier";
+    public static final File PARG_REFERENCE_BY_IDENTIFIER_METAMODEL = new File("../com.sap.furcas.test/featureFixtures/PropertyArgument_ReferenceByIdentifier.ecore");
+    public static final File PARG_QUERY_BY_IDENTIFIER_TCS = new File("../com.sap.furcas.test/featureFixtures/PropertyArgument_ReferenceByIdentifier.tcs");
+    public static final String PARG_REFERENCE_BY_IDENTIFIER_PACKAGE_URI = "http://www.furcas.org/TCS/featuretests/property/referenceByIdentifier";
     
     //ForeachInOCLExpr Tests
     public static final File FOREACH_PREDICATE_PROPERTY_INIT_METAMODEL = new File("../com.sap.furcas.test/featureFixtures/ForeachPredicatePropertyInit.ecore");

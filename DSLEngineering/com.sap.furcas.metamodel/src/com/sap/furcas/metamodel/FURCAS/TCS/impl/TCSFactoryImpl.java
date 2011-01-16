@@ -6,7 +6,6 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.*;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -38,7 +37,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralMapping;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralVal;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.EqualsExp;
-import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
@@ -50,12 +48,12 @@ import com.sap.furcas.metamodel.FURCAS.TCS.IndentIncrBArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
 import com.sap.furcas.metamodel.FURCAS.TCS.InstanceOfExp;
 import com.sap.furcas.metamodel.FURCAS.TCS.IntegerVal;
-import com.sap.furcas.metamodel.FURCAS.TCS.InvertPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.IsDefinedExp;
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
 import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookInPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ModePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.MultiLineRule;
 import com.sap.furcas.metamodel.FURCAS.TCS.NbNLBArg;
@@ -76,7 +74,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyVal;
 import com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement;
-import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToKeyPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RulePattern;
@@ -203,9 +201,8 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
             case TCSPackage.QUALIFIED_NAMED_ELEMENT: return createQualifiedNamedElement();
             case TCSPackage.FORCED_UPPER_PARG: return createForcedUpperPArg();
             case TCSPackage.INJECTOR_ACTIONS_BLOCK: return createInjectorActionsBlock();
-            case TCSPackage.QUERY_PARG: return createQueryPArg();
-            case TCSPackage.FILTER_BY_IDENTIFIER_PARG: return createFilterByIdentifierPArg();
-            case TCSPackage.FILTER_PARG: return createFilterPArg();
+            case TCSPackage.LOOKUP_SCOPE_PARG: return createLookupScopePArg();
+            case TCSPackage.REFERENCE_BY_PARG: return createReferenceByPArg();
             case TCSPackage.PROPERTY_REFERENCE: return createPropertyReference();
             case TCSPackage.CONTEXT_TEMPLATE: return createContextTemplate();
             case TCSPackage.CONTEXT_TAGS: return createContextTags();
@@ -278,6 +275,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public ConcreteSyntax createConcreteSyntax() {
         ConcreteSyntaxImpl concreteSyntax = new ConcreteSyntaxImpl();
         return concreteSyntax;
@@ -288,6 +286,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public FunctionTemplate createFunctionTemplate() {
         FunctionTemplateImpl functionTemplate = new FunctionTemplateImpl();
         return functionTemplate;
@@ -298,6 +297,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public ClassTemplate createClassTemplate() {
         ClassTemplateImpl classTemplate = new ClassTemplateImpl();
         return classTemplate;
@@ -308,6 +308,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public PrimitiveTemplate createPrimitiveTemplate() {
         PrimitiveTemplateImpl primitiveTemplate = new PrimitiveTemplateImpl();
         return primitiveTemplate;
@@ -318,6 +319,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public OperatorTemplate createOperatorTemplate() {
         OperatorTemplateImpl operatorTemplate = new OperatorTemplateImpl();
         return operatorTemplate;
@@ -328,6 +330,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EnumerationTemplate createEnumerationTemplate() {
         EnumerationTemplateImpl enumerationTemplate = new EnumerationTemplateImpl();
         return enumerationTemplate;
@@ -338,6 +341,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EnumLiteralMapping createEnumLiteralMapping() {
         EnumLiteralMappingImpl enumLiteralMapping = new EnumLiteralMappingImpl();
         return enumLiteralMapping;
@@ -348,6 +352,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public Symbol createSymbol() {
         SymbolImpl symbol = new SymbolImpl();
         return symbol;
@@ -358,6 +363,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public Keyword createKeyword() {
         KeywordImpl keyword = new KeywordImpl();
         return keyword;
@@ -368,6 +374,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public OperatorList createOperatorList() {
         OperatorListImpl operatorList = new OperatorListImpl();
         return operatorList;
@@ -378,6 +385,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public Priority createPriority() {
         PriorityImpl priority = new PriorityImpl();
         return priority;
@@ -388,6 +396,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public Operator createOperator() {
         OperatorImpl operator = new OperatorImpl();
         return operator;
@@ -398,6 +407,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public Sequence createSequence() {
         SequenceImpl sequence = new SequenceImpl();
         return sequence;
@@ -408,6 +418,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public LiteralRef createLiteralRef() {
         LiteralRefImpl literalRef = new LiteralRefImpl();
         return literalRef;
@@ -418,6 +429,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public Property createProperty() {
         PropertyImpl property = new PropertyImpl();
         return property;
@@ -428,6 +440,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public CustomSeparator createCustomSeparator() {
         CustomSeparatorImpl customSeparator = new CustomSeparatorImpl();
         return customSeparator;
@@ -438,6 +451,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public Block createBlock() {
         BlockImpl block = new BlockImpl();
         return block;
@@ -448,6 +462,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public ConditionalElement createConditionalElement() {
         ConditionalElementImpl conditionalElement = new ConditionalElementImpl();
         return conditionalElement;
@@ -458,6 +473,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public PrimitivePropertyInit createPrimitivePropertyInit() {
         PrimitivePropertyInitImpl primitivePropertyInit = new PrimitivePropertyInitImpl();
         return primitivePropertyInit;
@@ -468,6 +484,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public Alternative createAlternative() {
         AlternativeImpl alternative = new AlternativeImpl();
         return alternative;
@@ -478,6 +495,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public FunctionCall createFunctionCall() {
         FunctionCallImpl functionCall = new FunctionCallImpl();
         return functionCall;
@@ -488,6 +506,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public RefersToPArg createRefersToPArg() {
         RefersToPArgImpl refersToPArg = new RefersToPArgImpl();
         return refersToPArg;
@@ -498,6 +517,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public LookInPArg createLookInPArg() {
         LookInPArgImpl lookInPArg = new LookInPArgImpl();
         return lookInPArg;
@@ -508,6 +528,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public CreateInPArg createCreateInPArg() {
         CreateInPArgImpl createInPArg = new CreateInPArgImpl();
         return createInPArg;
@@ -518,6 +539,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public RefersToKeyPArg createRefersToKeyPArg() {
         RefersToKeyPArgImpl refersToKeyPArg = new RefersToKeyPArgImpl();
         return refersToKeyPArg;
@@ -528,6 +550,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public SeparatorPArg createSeparatorPArg() {
         SeparatorPArgImpl separatorPArg = new SeparatorPArgImpl();
         return separatorPArg;
@@ -538,6 +561,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public AutoCreatePArg createAutoCreatePArg() {
         AutoCreatePArgImpl autoCreatePArg = new AutoCreatePArgImpl();
         return autoCreatePArg;
@@ -548,6 +572,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public ImportContextPArg createImportContextPArg() {
         ImportContextPArgImpl importContextPArg = new ImportContextPArgImpl();
         return importContextPArg;
@@ -558,6 +583,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public ForcedLowerPArg createForcedLowerPArg() {
         ForcedLowerPArgImpl forcedLowerPArg = new ForcedLowerPArgImpl();
         return forcedLowerPArg;
@@ -568,6 +594,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public CreateAsPArg createCreateAsPArg() {
         CreateAsPArgImpl createAsPArg = new CreateAsPArgImpl();
         return createAsPArg;
@@ -578,6 +605,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public AsPArg createAsPArg() {
         AsPArgImpl asPArg = new AsPArgImpl();
         return asPArg;
@@ -588,6 +616,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public ModePArg createModePArg() {
         ModePArgImpl modePArg = new ModePArgImpl();
         return modePArg;
@@ -598,6 +627,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public NbNLBArg createNbNLBArg() {
         NbNLBArgImpl nbNLBArg = new NbNLBArgImpl();
         return nbNLBArg;
@@ -608,6 +638,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public IndentIncrBArg createIndentIncrBArg() {
         IndentIncrBArgImpl indentIncrBArg = new IndentIncrBArgImpl();
         return indentIncrBArg;
@@ -618,6 +649,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public StartNLBArg createStartNLBArg() {
         StartNLBArgImpl startNLBArg = new StartNLBArgImpl();
         return startNLBArg;
@@ -628,6 +660,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public StartNbNLBArg createStartNbNLBArg() {
         StartNbNLBArgImpl startNbNLBArg = new StartNbNLBArgImpl();
         return startNbNLBArg;
@@ -638,6 +671,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EndNLBArg createEndNLBArg() {
         EndNLBArgImpl endNLBArg = new EndNLBArgImpl();
         return endNLBArg;
@@ -648,6 +682,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public AndExp createAndExp() {
         AndExpImpl andExp = new AndExpImpl();
         return andExp;
@@ -658,6 +693,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EqualsExp createEqualsExp() {
         EqualsExpImpl equalsExp = new EqualsExpImpl();
         return equalsExp;
@@ -668,6 +704,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public BooleanPropertyExp createBooleanPropertyExp() {
         BooleanPropertyExpImpl booleanPropertyExp = new BooleanPropertyExpImpl();
         return booleanPropertyExp;
@@ -678,6 +715,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public IsDefinedExp createIsDefinedExp() {
         IsDefinedExpImpl isDefinedExp = new IsDefinedExpImpl();
         return isDefinedExp;
@@ -688,6 +726,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public OneExp createOneExp() {
         OneExpImpl oneExp = new OneExpImpl();
         return oneExp;
@@ -698,6 +737,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public PropertyVal createPropertyVal() {
         PropertyValImpl propertyVal = new PropertyValImpl();
         return propertyVal;
@@ -708,6 +748,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public Token createToken() {
         TokenImpl token = new TokenImpl();
         return token;
@@ -718,6 +759,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public OrPattern createOrPattern() {
         OrPatternImpl orPattern = new OrPatternImpl();
         return orPattern;
@@ -728,6 +770,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public RulePattern createRulePattern() {
         RulePatternImpl rulePattern = new RulePatternImpl();
         return rulePattern;
@@ -738,6 +781,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public WordRule createWordRule() {
         WordRuleImpl wordRule = new WordRuleImpl();
         return wordRule;
@@ -748,6 +792,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public Word createWord() {
         WordImpl word = new WordImpl();
         return word;
@@ -758,6 +803,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EndOfLineRule createEndOfLineRule() {
         EndOfLineRuleImpl endOfLineRule = new EndOfLineRuleImpl();
         return endOfLineRule;
@@ -768,6 +814,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public MultiLineRule createMultiLineRule() {
         MultiLineRuleImpl multiLineRule = new MultiLineRuleImpl();
         return multiLineRule;
@@ -778,6 +825,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public SimpleMapping createSimpleMapping() {
         SimpleMappingImpl simpleMapping = new SimpleMappingImpl();
         return simpleMapping;
@@ -788,6 +836,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public WildcardMapping createWildcardMapping() {
         WildcardMappingImpl wildcardMapping = new WildcardMappingImpl();
         return wildcardMapping;
@@ -798,6 +847,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public OctalMapping createOctalMapping() {
         OctalMappingImpl octalMapping = new OctalMappingImpl();
         return octalMapping;
@@ -808,6 +858,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public HexadecimalMapping createHexadecimalMapping() {
         HexadecimalMappingImpl hexadecimalMapping = new HexadecimalMappingImpl();
         return hexadecimalMapping;
@@ -818,6 +869,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public StringPattern createStringPattern() {
         StringPatternImpl stringPattern = new StringPatternImpl();
         return stringPattern;
@@ -828,6 +880,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public ClassPattern createClassPattern() {
         ClassPatternImpl classPattern = new ClassPatternImpl();
         return classPattern;
@@ -838,6 +891,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public QualifiedNamedElement createQualifiedNamedElement() {
         QualifiedNamedElementImpl qualifiedNamedElement = new QualifiedNamedElementImpl();
         return qualifiedNamedElement;
@@ -848,6 +902,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public ForcedUpperPArg createForcedUpperPArg() {
         ForcedUpperPArgImpl forcedUpperPArg = new ForcedUpperPArgImpl();
         return forcedUpperPArg;
@@ -858,6 +913,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public InjectorActionsBlock createInjectorActionsBlock() {
         InjectorActionsBlockImpl injectorActionsBlock = new InjectorActionsBlockImpl();
         return injectorActionsBlock;
@@ -865,12 +921,13 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public QueryPArg createQueryPArg() {
-        QueryPArgImpl queryPArg = new QueryPArgImpl();
-        return queryPArg;
+    @Override
+    public LookupScopePArg createLookupScopePArg() {
+        LookupScopePArgImpl lookupScopePArg = new LookupScopePArgImpl();
+        return lookupScopePArg;
     }
 
         /**
@@ -878,9 +935,10 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public FilterByIdentifierPArg createFilterByIdentifierPArg() {
-        FilterByIdentifierPArgImpl filterByIdentifierPArg = new FilterByIdentifierPArgImpl();
-        return filterByIdentifierPArg;
+    @Override
+    public ReferenceByPArg createReferenceByPArg() {
+        ReferenceByPArgImpl referenceByPArg = new ReferenceByPArgImpl();
+        return referenceByPArg;
     }
 
         /**
@@ -888,16 +946,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
-        public FilterPArg createFilterPArg() {
-        FilterPArgImpl filterPArg = new FilterPArgImpl();
-        return filterPArg;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
+        @Override
         public PropertyReference createPropertyReference() {
         PropertyReferenceImpl propertyReference = new PropertyReferenceImpl();
         return propertyReference;
@@ -908,6 +957,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public ContextTemplate createContextTemplate() {
         ContextTemplateImpl contextTemplate = new ContextTemplateImpl();
         return contextTemplate;
@@ -918,6 +968,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public ContextTags createContextTags() {
         ContextTagsImpl contextTags = new ContextTagsImpl();
         return contextTags;
@@ -928,6 +979,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public OclPropertyInit createOclPropertyInit() {
         OclPropertyInitImpl oclPropertyInit = new OclPropertyInitImpl();
         return oclPropertyInit;
@@ -938,6 +990,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public ScopeArg createScopeArg() {
         ScopeArgImpl scopeArg = new ScopeArgImpl();
         return scopeArg;
@@ -948,6 +1001,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public ForeachPredicatePropertyInit createForeachPredicatePropertyInit() {
         ForeachPredicatePropertyInitImpl foreachPredicatePropertyInit = new ForeachPredicatePropertyInitImpl();
         return foreachPredicatePropertyInit;
@@ -958,6 +1012,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public PredicateSemantic createPredicateSemantic() {
         PredicateSemanticImpl predicateSemantic = new PredicateSemanticImpl();
         return predicateSemantic;
@@ -968,6 +1023,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public SequenceInAlternative createSequenceInAlternative() {
         SequenceInAlternativeImpl sequenceInAlternative = new SequenceInAlternativeImpl();
         return sequenceInAlternative;
@@ -978,6 +1034,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public PartialPArg createPartialPArg() {
         PartialPArgImpl partialPArg = new PartialPArgImpl();
         return partialPArg;
@@ -988,6 +1045,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public DisambiguatePArg createDisambiguatePArg() {
         DisambiguatePArgImpl disambiguatePArg = new DisambiguatePArgImpl();
         return disambiguatePArg;
@@ -998,6 +1056,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public InstanceOfExp createInstanceOfExp() {
         InstanceOfExpImpl instanceOfExp = new InstanceOfExpImpl();
         return instanceOfExp;
@@ -1008,6 +1067,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EnumLiteralVal createEnumLiteralVal() {
         EnumLiteralValImpl enumLiteralVal = new EnumLiteralValImpl();
         return enumLiteralVal;
@@ -1018,6 +1078,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public StringVal createStringVal() {
         StringValImpl stringVal = new StringValImpl();
         return stringVal;
@@ -1028,6 +1089,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public IntegerVal createIntegerVal() {
         IntegerValImpl integerVal = new IntegerValImpl();
         return integerVal;
@@ -1038,6 +1100,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public NegativeIntegerVal createNegativeIntegerVal() {
         NegativeIntegerValImpl negativeIntegerVal = new NegativeIntegerValImpl();
         return negativeIntegerVal;
@@ -1048,6 +1111,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public LookupPropertyInit createLookupPropertyInit() {
         LookupPropertyInitImpl lookupPropertyInit = new LookupPropertyInitImpl();
         return lookupPropertyInit;
@@ -1060,7 +1124,9 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
      */
         public TemplateModifiers createTemplateModifiersFromString(EDataType eDataType, String initialValue) {
         TemplateModifiers result = TemplateModifiers.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        if (result == null) {
+            throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        }
         return result;
     }
 
@@ -1080,7 +1146,9 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
      */
         public SpaceKind createSpaceKindFromString(EDataType eDataType, String initialValue) {
         SpaceKind result = SpaceKind.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        if (result == null) {
+            throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        }
         return result;
     }
 
@@ -1100,7 +1168,9 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
      */
         public Associativity createAssociativityFromString(EDataType eDataType, String initialValue) {
         Associativity result = Associativity.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        if (result == null) {
+            throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        }
         return result;
     }
 
@@ -1120,7 +1190,9 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
      */
         public AutoCreateKind createAutoCreateKindFromString(EDataType eDataType, String initialValue) {
         AutoCreateKind result = AutoCreateKind.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        if (result == null) {
+            throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        }
         return result;
     }
 
@@ -1140,7 +1212,9 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
      */
         public ScopeKind createScopeKindFromString(EDataType eDataType, String initialValue) {
         ScopeKind result = ScopeKind.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        if (result == null) {
+            throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        }
         return result;
     }
 
@@ -1158,6 +1232,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public TCSPackage getTCSPackage() {
         return (TCSPackage)getEPackage();
     }

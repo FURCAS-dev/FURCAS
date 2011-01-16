@@ -85,7 +85,7 @@ public class TCSSpecificOCLEvaluator {
 
             Object result = ocl.evaluate(objectForSelf, exp);
             if (ocl.isInvalid(result)) {
-                throw new ModelAdapterException("Cannot evaluate OCLExpression:" + queryToExecute + " Reason: "
+                throw new ModelAdapterException("Cannot evaluate OCLExpression:" + queryToExecute + " Reason: Result is invalid "
                         + (ocl.getEvaluationProblems() == null ? "" : ocl.getEvaluationProblems().getMessage()));
             }
             if (result instanceof Collection<?>) {

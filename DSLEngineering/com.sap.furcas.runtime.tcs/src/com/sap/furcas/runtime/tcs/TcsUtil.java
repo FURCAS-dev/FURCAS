@@ -48,7 +48,6 @@ import org.eclipse.emf.query2.WhereRelationReference;
 import org.eclipse.emf.query2.WhereString;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
-import com.sap.furcas.metamodel.FURCAS.TCS.AsPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Associativity;
 import com.sap.furcas.metamodel.FURCAS.TCS.Block;
 import com.sap.furcas.metamodel.FURCAS.TCS.BlockArg;
@@ -61,9 +60,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.EndNLBArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.EndOfLineRule;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralMapping;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.FilterByIdentifierPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.FunctionCall;
 import com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate;
@@ -78,13 +74,9 @@ import com.sap.furcas.metamodel.FURCAS.TCS.NbNLBArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Operator;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.PartialPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
-import com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
-import com.sap.furcas.metamodel.FURCAS.TCS.QueryPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Rule;
 import com.sap.furcas.metamodel.FURCAS.TCS.RulePattern;
 import com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg;
@@ -187,7 +179,7 @@ public class TcsUtil {
             if (current instanceof Property) {
                 Property prop = (Property) current;
 
-                SeparatorPArg sepArg = TcsUtil.getSeparatorPArg(prop);
+                SeparatorPArg sepArg = PropertyArgumentUtil.getSeparatorPArg(prop);
                 if (sepArg != null) {
                     // add separator sequence proposals as well
                     Sequence sepSeq = sepArg.getSeparatorSequence();
@@ -434,7 +426,7 @@ public class TcsUtil {
     }
 
     private static boolean containsForcedUpperArgOfOne(Property prop) {
-        ForcedUpperPArg upperArg = getForcedUpperPArg(prop);
+        ForcedUpperPArg upperArg = PropertyArgumentUtil.getForcedUpperPArg(prop);
         if (upperArg != null && upperArg.getValue() == 1) {
             return true;
         }
@@ -443,7 +435,7 @@ public class TcsUtil {
     }
 
     private static boolean containsForcedLowerArg(Property prop) {
-        return (getForcedLowerPArg(prop) != null);
+        return (PropertyArgumentUtil.getForcedLowerPArg(prop) != null);
 
     }
 
@@ -662,7 +654,7 @@ public class TcsUtil {
     }
 
     public static String getMode(Property p) {
-        ModePArg modeArg = getModePArg(p);
+        ModePArg modeArg = PropertyArgumentUtil.getModePArg(p);
         if (modeArg != null) {
             return modeArg.getMode();
         }
@@ -674,7 +666,7 @@ public class TcsUtil {
         ETypedElement s = getStructuralFeature(p);
         if (s != null) {
             if (s instanceof EReference) {
-                if (!containsRefersToArg(p) && !containsAsArg(p)) {
+                if (!PropertyArgumentUtil.containsRefersToArg(p) && !PropertyArgumentUtil.containsAsArg(p)) {
                     return false;
                 }
 
@@ -765,165 +757,6 @@ public class TcsUtil {
         return null;
     }
     
-    public static boolean containsRefersToArg(Property p) {
-        return getRefersToPArg(p) != null;
-    }
-
-    public static boolean containsAsArg(Property p) {
-        return getAsPArg(p) != null;
-    }
-
-    /**
-     * returns the first SeparatorPArg of Property p. There should only be one. No error is thrown, if more than one exist.
-     * 
-     * @param p
-     *            Property
-     * @return first SeparatorPArg
-     */
-    public static SeparatorPArg getSeparatorPArg(Property p) {
-        for (PropertyArg arg : p.getPropertyArgs()) {
-            if (arg instanceof SeparatorPArg) {
-                return (SeparatorPArg) arg;
-            }
-        }
-
-        return null;
-    }
-    
-    /**
-     * returns the first PartialPArg of Property p. There should only be one. No error is thrown, if more than one exist.
-     * 
-     * @param p
-     *            Property
-     * @return first SeparatorPArg
-     */
-    public static PartialPArg getPartialPArg(Property p) {
-        for (PropertyArg arg : p.getPropertyArgs()) {
-            if (arg instanceof PartialPArg) {
-                return (PartialPArg) arg;
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * returns the first AsPArg of Property p. There should only be one. No error is thrown, if more than one exist.
-     * 
-     * @param p
-     *            Property
-     * @return first RefersToPArg
-     */
-    public static AsPArg getAsPArg(Property p) {
-        for (PropertyArg arg : p.getPropertyArgs()) {
-            if (arg instanceof AsPArg) {
-                return (AsPArg) arg;
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * returns the first RefersToPArg of Property p. There should only be one. No error is thrown, if more than one exist.
-     * 
-     * @param p
-     *            Property
-     * @return first RefersToPArg
-     */
-    public static RefersToPArg getRefersToPArg(Property p) {
-        for (PropertyArg arg : p.getPropertyArgs()) {
-            if (arg instanceof RefersToPArg) {
-                return (RefersToPArg) arg;
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * returns the first {@link QueryPArg} of Property p. There should only be one. No error is thrown, if more than one exist.
-     * 
-     * @param p
-     *            Property
-     * @return first QueryPArg
-     */
-    public static QueryPArg getQueryPArg(Property p) {
-        for (PropertyArg arg : p.getPropertyArgs()) {
-            if (arg instanceof QueryPArg) {
-                return (QueryPArg) arg;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * returns the first {@link FilterByIdentifierPArg} of Property p. There should only be one. No error is thrown, if
-     * more than one exist.
-     * 
-     * @param p
-     *            Property
-     * @return first QueryPArg
-     */
-    public static FilterByIdentifierPArg getFilterByIdentifierPArg(Property p) {
-        for (PropertyArg arg : p.getPropertyArgs()) {
-            if (arg instanceof FilterByIdentifierPArg) {
-                return (FilterByIdentifierPArg) arg;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * returns the first {@link FilterPArg} of Property p. There should only be one. No error is thrown, if more than one exist.
-     * 
-     * @param p
-     *            Property
-     * @return first FilterPArg
-     */
-    public static FilterPArg getFilterPArg(Property p) {
-        for (PropertyArg arg : p.getPropertyArgs()) {
-            if (arg instanceof FilterPArg) {
-                return (FilterPArg) arg;
-            }
-        }
-        return null;
-    }
-
-    public static ForcedUpperPArg getForcedUpperPArg(Property p) {
-        for (PropertyArg arg : p.getPropertyArgs()) {
-            if (arg instanceof ForcedUpperPArg) {
-                return (ForcedUpperPArg) arg;
-            }
-        }
-
-        return null;
-    }
-
-    public static ForcedLowerPArg getForcedLowerPArg(Property p) {
-        for (PropertyArg arg : p.getPropertyArgs()) {
-            if (arg instanceof ForcedLowerPArg) {
-                return (ForcedLowerPArg) arg;
-            }
-        }
-
-        return null;
-    }
-
-    public static ModePArg getModePArg(Property p) {
-        for (PropertyArg arg : p.getPropertyArgs()) {
-            if (arg instanceof ModePArg) {
-                return (ModePArg) arg;
-            }
-        }
-
-        return null;
-    }
-
-    public static boolean containsSeparatorArg(Property p) {
-        return getSeparatorPArg(p) != null;
-    }
-
     public static Collection<ClassTemplate> getClassTemplates(EClass type, String mode,
             Map<List<String>, Map<String, ClassTemplate>> classTemplateMap, ResourceSet connection) {
         Assert.isLegal(classTemplateMap != null, "could not resolve class template for Reference, classTemplateMap is null");
@@ -1635,28 +1468,6 @@ public class TcsUtil {
         }
         return injectorActions;
     }
-
-    public static boolean containsQueryArg(Property p) {
-        return getQueryPArg(p) != null;
-    }
-
-    public static String getQuery(Property se) {
-        QueryPArg arg = getQueryPArg(se);
-        if (arg != null) {
-            StringBuffer query = new StringBuffer(arg.getQuery());
-            FilterPArg filterPArg = getFilterPArg(se);
-            if (filterPArg != null) {
-                query.append(filterPArg.getFilter());
-            }
-            return query.toString();
-        }
-        return null;
-    }
-
-    // public static boolean isStructureTypeTemplate(Template parseRule) {
-    // return parseRule.getMetaReference() != null
-    // && parseRule.getMetaReference() instanceof StructureType;
-    // }
 
     public static boolean isReferenceOnly(Template template) {
         if (template instanceof ClassTemplate) {
