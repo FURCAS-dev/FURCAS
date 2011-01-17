@@ -11,6 +11,7 @@
 package org.eclipse.emf.query2.test;
 
 import org.eclipse.emf.common.util.URI;
+
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -20,7 +21,7 @@ import org.eclipse.emf.query2.QueryProcessor;
 import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.emf.query2.TypeScopeProvider;
-import org.eclipse.emf.query2.internal.moinql.controller.QueryProcessorImpl;
+
 import org.eclipse.emf.query2.test.mm.testcases.case001.A1;
 import org.eclipse.emf.query2.test.mm.testcases.case001.B1;
 import org.eclipse.emf.query2.test.mm.testcases.case001.Case001Factory;

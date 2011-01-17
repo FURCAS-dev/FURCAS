@@ -11,6 +11,7 @@
 package org.eclipse.emf.query2.test;
 
 import org.eclipse.emf.common.util.URI;
+
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -19,7 +20,7 @@ import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.QueryFormatException;
 import org.eclipse.emf.query2.QueryProcessor;
 import org.eclipse.emf.query2.QueryProcessorFactory;
-import org.eclipse.emf.query2.internal.moinql.controller.QueryProcessorImpl;
+
 import org.eclipse.emf.query2.test.mm.Company.CompanyPackage;
 import org.eclipse.emf.query2.test.mm.generatedmetamodel.GeneratedmetamodelPackage;
 import org.eclipse.emf.query2.test.setup.DefaultTestClientImpl;
