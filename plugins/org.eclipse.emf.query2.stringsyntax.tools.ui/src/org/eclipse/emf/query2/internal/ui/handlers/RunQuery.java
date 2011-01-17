@@ -1,6 +1,7 @@
 package org.eclipse.emf.query2.internal.ui.handlers;
 
 import java.lang.reflect.InvocationTargetException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,12 +15,13 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.query.index.Index;
+import org.eclipse.emf.query.index.IndexFactory;
 import org.eclipse.emf.query.index.query.IndexQueryFactory;
 import org.eclipse.emf.query.index.query.QueryCommand;
 import org.eclipse.emf.query.index.query.QueryExecutor;
 import org.eclipse.emf.query.index.query.ResourceQuery;
 import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
-import org.eclipse.emf.query.index.ui.IndexFactory;
+
 import org.eclipse.emf.query2.Query;
 import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.QueryProcessor;
