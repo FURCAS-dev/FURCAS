@@ -84,7 +84,7 @@ public class IndexQueryService {
 		if (eClassUris.length == 0) { // query for EObject (i.e. reflect
 			// element)
 			if (!isInclusiveScope) {
-				throw new IllegalArgumentException("Query for EObject not allowed without inclusive scope");
+				throw new IllegalArgumentException(Messages.IndexQueryService_EObjectWithoutInclusiveScope);
 			}
 			for (URI scopeURI : scope) {
 				final EObjectQuery<EObjectDescriptor> eObjectQuery = IndexQueryFactory.createEObjectQuery();
@@ -131,7 +131,7 @@ public class IndexQueryService {
 	}
 
 	/**
-	 * Returns all partitions that are linked from the given partition
+	 * Returns all partitions that are linked from the given partitions
 	 * <code>fromPri</code> by links of the given association
 	 * <code>association</code> which are stored in the partition
 	 * <code>fromPRI</code>.
@@ -326,7 +326,7 @@ public class IndexQueryService {
 		if (o instanceof EClass)
 			return (EClass) o;
 		else
-			throw new IllegalArgumentException("URI does not identify a class: " + eClassUri.toString());
+			throw new IllegalArgumentException(Messages.getString(Messages.IndexQueryService_UnIdentifiableURI, new String[]{eClassUri.toString()}));
 	}
 
 }
