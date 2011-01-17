@@ -33,12 +33,12 @@ public class EObjectOfTypeCountQuery implements QueryInternal<Integer, Integer> 
 		return resQuery;
 	}
 
-	@Override
+	
 	public QueryResult<Integer> createQueryResult(QueryExecutorInternal queryExecutor, Iterable<? extends Integer> result) {
 		return new QueryResultImpl<Integer, Integer>(queryExecutor, result);
 	}
 
-	@Override
+	
 	public QueryResult<Integer> execute(QueryExecutorInternal queryExecutor, final GlobalTables globalTables) {
 		final Iterator<URI> resourceScope = this.getResourceScope(globalTables).iterator();
 		int size = 0;

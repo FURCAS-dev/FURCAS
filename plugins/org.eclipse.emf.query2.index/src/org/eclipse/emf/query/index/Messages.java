@@ -4,6 +4,7 @@ import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
 	public static final String BUNDLE_NAME = "org.eclipse.emf.query.index.messages"; //$NON-NLS-1$
+	public static String QueryIndexUI_IndexFactory_ErrorIndexingURI;
 	public static String Query2Index_AbstractMapBase_NoElementFound;
 	public static String Query2Index_AbstractMapBase_SizeCounterDiffers;
 	public static String Query2Index_IndexUpdaterImpl_ResourceAlreadyInUse;
@@ -23,6 +24,8 @@ public class Messages extends NLS {
 	public static String Query2Index_SerializationStrategyFactory_UnknownLinkType;
 	public static String Query2Index_SerializationStrategyFactory_UnsupportedValue;
 	public static String Query2Index_SingleMap_NullParameter;
+	public static String QueryIndexUI_IndexFactory_TimeTakenToDump;
+	public static String QueryIndexUI_IndexFactory_TimeTakenToLoad;
 	
 	
 	static {
