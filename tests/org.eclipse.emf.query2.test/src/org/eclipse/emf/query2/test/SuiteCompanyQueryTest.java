@@ -11,6 +11,7 @@
 package org.eclipse.emf.query2.test;
 
 import java.io.IOException;
+
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Collections;
@@ -24,8 +25,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query.index.Index;
-import org.eclipse.emf.query.index.internal.impl.GlobalTables;
-import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl;
+
 import org.eclipse.emf.query2.FromEntry;
 import org.eclipse.emf.query2.FromFixedSet;
 import org.eclipse.emf.query2.FromType;
@@ -45,7 +45,7 @@ import org.eclipse.emf.query2.WhereEntry;
 import org.eclipse.emf.query2.WhereInt;
 import org.eclipse.emf.query2.WhereNestedReference;
 import org.eclipse.emf.query2.WhereRelationReference;
-import org.eclipse.emf.query2.internal.moinql.controller.QueryProcessorImpl;
+
 import org.eclipse.emf.query2.test.mm.Company.CompanyFactory;
 import org.eclipse.emf.query2.test.mm.Company.CompanyPackage;
 import org.eclipse.emf.query2.test.mm.Company.Department;

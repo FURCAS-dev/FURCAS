@@ -11,6 +11,7 @@
 package org.eclipse.emf.query2.test;
 
 import java.io.IOException;
+
 import java.util.Arrays;
 
 import org.eclipse.emf.common.util.URI;
@@ -25,7 +26,7 @@ import org.eclipse.emf.query2.QueryProcessor;
 import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.emf.query2.TypeScopeProvider;
-import org.eclipse.emf.query2.internal.moinql.controller.QueryProcessorImpl;
+
 import org.eclipse.emf.query2.test.mm.testcases.case001.A1;
 import org.eclipse.emf.query2.test.mm.testcases.case001.B1;
 import org.eclipse.emf.query2.test.mm.testcases.case001.Case001Factory;
