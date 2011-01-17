@@ -1,6 +1,7 @@
 package org.eclipse.emf.query2.internal.ui;
 
 import java.util.ArrayList;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -14,11 +15,12 @@ import org.eclipse.emf.query.index.query.QueryCommand;
 import org.eclipse.emf.query.index.query.QueryExecutor;
 import org.eclipse.emf.query.index.query.ResourceQuery;
 import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
-import org.eclipse.emf.query.index.ui.IndexFactory;
+
 import org.eclipse.emf.query2.Query;
 import org.eclipse.emf.query2.QueryContext;
+import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
-import org.eclipse.emf.query2.internal.moinql.controller.QueryProcessorImpl;
+
 import org.eclipse.emf.query2.syntax.query.FromEntry;
 import org.eclipse.emf.query2.syntax.query.MQLquery;
 import org.eclipse.emf.query2.syntax.query.QueryFactory;
@@ -43,6 +45,7 @@ import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
+import org.eclipse.emf.query.index.IndexFactory;
 import org.eclipse.xtext.concurrent.IUnitOfWork;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
@@ -207,7 +210,7 @@ public class QueryView extends ViewPart implements ISelectionProvider {
 		}
 		Query transform = QueryTransformer.transform(query);
 		Map<URI, QueryContainer> result = new HashMap<URI, QueryContainer>();
-		final ResultSet resultSet = new QueryProcessorImpl(IndexFactory.getInstance()).execute(transform, getQueryContext(rs[0]));
+		final ResultSet resultSet =QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance()).execute(transform, getQueryContext(rs[0]));
 
 		for (int i = 0; i < resultSet.getSize(); i++) {
 			QueryContainer container;
