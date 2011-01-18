@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Query2Index_Bundle_Name
-Bundle-SymbolicName: org.eclipse.emf.query2.index
+Bundle-SymbolicName: org.eclipse.emf.query2.index;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: %Query2Index_Bundle_Vendor
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
@@ -19,3 +19,5 @@ Export-Package: org.eclipse.emf.query.index,
  org.eclipse.emf.query.index.query,
  org.eclipse.emf.query.index.query.descriptors,
  org.eclipse.emf.query.index.update
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.eclipse.emf.query.index.Activator
