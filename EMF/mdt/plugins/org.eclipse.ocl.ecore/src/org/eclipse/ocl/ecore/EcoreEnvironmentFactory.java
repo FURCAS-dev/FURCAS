@@ -40,7 +40,7 @@ import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
 import org.eclipse.ocl.ecore.internal.evaluation.TracingEvaluationVisitor;
-import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.ocl.ecore.opposites.EcoreEnvironmentFactoryWithHiddenOpposites;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.ecore.parser.OCLAnalyzer;
 import org.eclipse.ocl.ecore.parser.OCLFactoryWithHistory;
@@ -61,8 +61,7 @@ public class EcoreEnvironmentFactory
 	extends AbstractEnvironmentFactory<
 		EPackage, EClassifier, EOperation, EStructuralFeature,
 		EEnumLiteral, EParameter,
-		EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
-	implements EcoreEnvironmentFactoryInterface {
+		EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> {
 	
 	/**
      * A convenient shared instance of the environment factory, that creates
@@ -226,10 +225,15 @@ public class EcoreEnvironmentFactory
 	}
 
 	/**
+	 * Returns a <code>null</code> opposite end finder. This means that by default no hidden opposites
+	 * will be found and no CPU cycles will be used even for looking them up.<p>
+	 * 
+	 * Subclasses can redefine this accordingly. See, e.g., {@link EcoreEnvironmentFactoryWithHiddenOpposites}.
+	 * 
 	 * @since 3.1
 	 */
     protected OppositeEndFinder createOppositeEndFinder(EPackage.Registry registry) {
-		return DefaultOppositeEndFinder.getInstance(registry);
+		return null;
 	}
 
 	/**
