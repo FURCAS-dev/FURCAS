@@ -44,10 +44,10 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
+import org.eclipse.ocl.ecore.opposites.EcoreEnvironmentFactoryWithHiddenOpposites;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.tests.TestReflection;
@@ -105,7 +105,7 @@ EEnumLiteral, EObject, CallOperationAction, SendSignalAction, Constraint>
 	}
 
 	public OCL createOCL(ResourceSet resourceSet) {
-		return OCL.newInstance(new EcoreEnvironmentFactory(resourceSet.getPackageRegistry()));
+		return OCL.newInstance(new EcoreEnvironmentFactoryWithHiddenOpposites(resourceSet.getPackageRegistry()));
 	}
 
 	public EAttribute createOwnedAttribute(EClass aClass, String name, EClassifier type) {

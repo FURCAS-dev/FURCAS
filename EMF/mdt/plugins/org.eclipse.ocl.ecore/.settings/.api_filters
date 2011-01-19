@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <component id="org.eclipse.ocl.ecore" version="2">
-    <resource path="src/org/eclipse/ocl/ecore/EcoreEnvironmentFactoryInterface.java" type="org.eclipse.ocl.ecore.EcoreEnvironmentFactoryInterface">
-        <filter id="574619656">
-            <message_arguments>
-                <message_argument value="EnvironmentFactory&lt;PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E&gt;"/>
-                <message_argument value="EcoreEnvironmentFactoryInterface"/>
-            </message_arguments>
-        </filter>
-    </resource>
     <resource path="src/org/eclipse/ocl/ecore/EcoreFactory.java" type="org.eclipse.ocl.ecore.EcoreFactory">
         <filter id="403804204">
             <message_arguments>
