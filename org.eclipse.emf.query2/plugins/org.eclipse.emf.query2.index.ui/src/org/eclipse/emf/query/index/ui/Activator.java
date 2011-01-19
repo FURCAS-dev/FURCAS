@@ -1,5 +1,6 @@
 package org.eclipse.emf.query.index.ui;
 
+import org.eclipse.emf.query.index.IndexFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
