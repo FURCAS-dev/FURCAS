@@ -12,6 +12,7 @@ import com.sap.furcas.runtime.parser.testbase.EMFParsingHelper;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.test.fixture.FeatureFixtureData;
+import com.sap.furcas.test.fixture.ReferenceResolvingFixtureData;
 
 /**
  * Tests NestedScopes TCS and metamodel, which will be used to test impact analysis
@@ -24,9 +25,9 @@ import com.sap.furcas.test.fixture.FeatureFixtureData;
 public class TestRenameWithNestedScopes  extends GeneratedParserBasedTest{
     
     private static final String LANGUAGE = "ImpactAnalysisRenameTestSyntax";
-    private static final File TCS = FeatureFixtureData.NESTED_SCOPES_TCS;
-    private static final File METAMODEL = FeatureFixtureData.NESTED_SCOPES_METAMODEL;
-    private static final String PACKAGE_URI = FeatureFixtureData.NESTED_SCOPES_PACKAGE_URI;
+    private static final File TCS = ReferenceResolvingFixtureData.NESTED_SCOPES_TCS;
+    private static final File METAMODEL = ReferenceResolvingFixtureData.NESTED_SCOPES_METAMODEL;
+    private static final String PACKAGE_URI = ReferenceResolvingFixtureData.NESTED_SCOPES_PACKAGE_URI;
     
     private static EMFParsingHelper parsingHelper;
     
@@ -44,7 +45,7 @@ public class TestRenameWithNestedScopes  extends GeneratedParserBasedTest{
      */
     @Test
     public void testResolvableBindings() throws Exception {
-        ModelParsingResult result = parsingHelper.parseFile("NestedScopes.sam", FeatureFixtureData.EXAMPLE_FOLDER,
+        ModelParsingResult result = parsingHelper.parseFile("NestedScopes.sam", ReferenceResolvingFixtureData.EXAMPLE_FOLDER,
                 /* expected errors */ 0);
         
         //TODO: Make sure all references have been resolved as expected
