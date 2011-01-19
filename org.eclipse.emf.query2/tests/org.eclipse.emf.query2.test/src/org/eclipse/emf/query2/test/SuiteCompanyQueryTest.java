@@ -148,7 +148,7 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 		return new QueryContext() {
 
 			public URI[] getResourceScope() {
-				return scopeProvider.getPartitionScope();
+				return scopeProvider.getResourceScope();
 			}
 
 			public ResourceSet getResourceSet() {
