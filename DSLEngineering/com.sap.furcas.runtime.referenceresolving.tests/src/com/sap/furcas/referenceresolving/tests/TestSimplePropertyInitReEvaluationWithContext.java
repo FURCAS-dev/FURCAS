@@ -15,6 +15,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
+import com.sap.furcas.test.fixture.ReferenceResolvingFixtureData;
 
 /**
  * A test case that use a FURCAS mapping specification (".tcs" file) and based on this produce lexer and
@@ -27,7 +28,7 @@ import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 public class TestSimplePropertyInitReEvaluationWithContext extends AbstractBibtexTestWithTextBlocks {
     
     private static final String LANGUAGE = "BibtexWithPropertyInitsWithContext";
-    private static final File TCS = new File("fixtures/BibtexWithPropertyInitsWithContext.tcs");
+    private static final File TCS = ReferenceResolvingFixtureData.BIBTEX_WITH_PROPERTY_INITS_WITH_CONTEX_TCS;
 
     private EObject johnDoe;
     private EObject janeDoll;

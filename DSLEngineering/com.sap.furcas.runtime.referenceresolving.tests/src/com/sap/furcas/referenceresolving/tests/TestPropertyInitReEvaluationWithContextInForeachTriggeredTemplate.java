@@ -23,6 +23,7 @@ import org.junit.Test;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
+import com.sap.furcas.test.fixture.ReferenceResolvingFixtureData;
 
 /**
  * A test case that use a FURCAS mapping specification (".tcs" file) and based on this produce lexer and
@@ -35,7 +36,7 @@ import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 public class TestPropertyInitReEvaluationWithContextInForeachTriggeredTemplate extends AbstractBibtexTestWithTextBlocks {
     
     private static final String LANGUAGE = "BibtexWithContextUsedInForeachTriggeredTemplate";
-    private static final File TCS = new File("fixtures/BibtexWithContextUsedInForeachTriggeredTemplate.tcs");
+    private static final File TCS = ReferenceResolvingFixtureData.PROPINIT_REEVAL_WITH_CONTEXT_IN_FOREACH_TCS;
 
     private EObject johnDoe;
     private EObject article;

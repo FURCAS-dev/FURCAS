@@ -28,11 +28,4 @@ public class FeatureFixtureData {
     public static final File PRIMITIVE_TEMPLATE_TCS = new File("../com.sap.furcas.test/featureFixtures/PrimitiveTemplate.tcs");
     public static final String PRIMITIVE_PACKAGE_URI = "http://www.furcas.org/TCS/featuretests/template/primitiveTemplate";
     
-    // NestedScopes Tests
-    public static final File NESTED_SCOPES_METAMODEL = new File("../com.sap.furcas.test/featureFixtures/NestedScopes.ecore");
-    public static final File NESTED_SCOPES_TCS = new File("../com.sap.furcas.test/featureFixtures/NestedScopes.tcs");
-    public static final String NESTED_SCOPES_PACKAGE_URI = "http://www.furcas.org/TCS/referenceresolving/tests/nestedScopes";
-
-
-    
 }
