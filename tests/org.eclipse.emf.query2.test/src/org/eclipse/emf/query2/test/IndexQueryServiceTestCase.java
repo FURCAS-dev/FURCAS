@@ -12,6 +12,7 @@ package org.eclipse.emf.query2.test;
 
 import java.util.Collection;
 
+
 import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
@@ -108,25 +109,25 @@ public class IndexQueryServiceTestCase extends QueryTestCase {
 		// we are looking for C2->B2 but not E2->B
 		URI referenceURI = EcoreUtil.getURI(Case002Package.Literals.C2__B);
 
-		Set<URI> result1 = IndexQueryService.getLinkedPartitions(this.index, null, linkSourceResource.getURI(), referenceURI);
+		Set<URI> result1 = IndexQueryService.getLinkedResources(this.index, null, linkSourceResource.getURI(), referenceURI);
 		assertFalse(result1.contains(notLinkedResource.getURI()));
 		assertFalse(result1.contains(invalidLinkTargetResource.getURI()));
 		assertTrue(result1.contains(linkTargetResource.getURI()));
 		result1 = null;
 
-		Set<URI> result2 = IndexQueryService.getLinkedPartitions(this.index, null, linkTargetResource.getURI(), referenceURI);
+		Set<URI> result2 = IndexQueryService.getLinkedResources(this.index, null, linkTargetResource.getURI(), referenceURI);
 		assertFalse(result2.contains(notLinkedResource.getURI()));
 		assertFalse(result2.contains(invalidLinkTargetResource.getURI()));
 		assertFalse(result2.contains(linkSourceResource.getURI()));
 		result2 = null;
 
-		Set<URI> result3 = IndexQueryService.getLinkedPartitions(this.index, null, notLinkedResource.getURI(), referenceURI);
+		Set<URI> result3 = IndexQueryService.getLinkedResources(this.index, null, notLinkedResource.getURI(), referenceURI);
 		assertFalse(result3.contains(linkSourceResource.getURI()));
 		assertFalse(result3.contains(invalidLinkTargetResource.getURI()));
 		assertFalse(result3.contains(linkTargetResource.getURI()));
 		result3 = null;
 
-		Set<URI> result4 = IndexQueryService.getLinkedPartitions(this.index, null, invalidLinkTargetResource.getURI(), referenceURI);
+		Set<URI> result4 = IndexQueryService.getLinkedResources(this.index, null, invalidLinkTargetResource.getURI(), referenceURI);
 		assertFalse(result4.contains(notLinkedResource.getURI()));
 		assertFalse(result4.contains(linkSourceResource.getURI()));
 		assertFalse(result4.contains(linkTargetResource.getURI()));

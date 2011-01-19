@@ -513,7 +513,7 @@ public class QueryRegressionTest extends QueryTestCase {
 		return new QueryContext() {
 
 			public URI[] getResourceScope() {
-				return scopeProvider.getPartitionScope();
+				return scopeProvider.getResourceScope();
 			}
 
 			public ResourceSet getResourceSet() {
