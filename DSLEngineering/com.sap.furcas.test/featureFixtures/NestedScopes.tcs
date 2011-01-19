@@ -8,10 +8,6 @@ syntax ImpactAnalysisRenameTestSyntax {
   primitiveTemplate identifier for ecore::EString default using NAME
     : value = "unescapeString(%token%)"
     ;
-  
-  template StatementList main
-    : [statements] -- statements each in new line
-    ;
     
   template Statement abstract;
 
@@ -23,9 +19,9 @@ syntax ImpactAnalysisRenameTestSyntax {
     : "use" boundDefinition{referenceBy="name", lookupScope="OCL:self.getDeclarationsInScope()"} ";"
     ;
     
-  template Block
+  template Block main
   	: "{"
-  		[statementsInBlock]
+  		statementsInBlock
   	  "}"
   	;
 
