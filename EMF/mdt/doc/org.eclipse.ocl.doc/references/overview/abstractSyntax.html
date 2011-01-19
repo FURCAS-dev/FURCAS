@@ -148,7 +148,10 @@ points to the forward reference, and its semantics are to navigate this referenc
 property call syntax, such as <em class="CodeName">self.x</em> can be used, where <em class="CodeName">x</em>
 is not the name of a forward reference on <em class="CodeName">self</em>'s class but rather
 an annotated name on a reference using <em class="CodeName">self</em>'s class or any of its
-base classes as its type.<p>
+base classes as its type. To enable this feature, use the special environment factory class
+<em class="CodeName">EcoreEnvironmentFactoryWithHiddenOpposites</em> when initializing the
+OCL environment, e.g., by passing such an object to the <em class="CodeName">OCL.newInstance(...)</em>
+method.<p>
 
 <p>The name for the reverse navigation can be specified by an
 <a href="../javadoc/org/eclipse/emf/ecore/EAnnotation.html"><em class="CodeName">EAnnotation</em></a> with
