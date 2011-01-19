@@ -52,7 +52,6 @@ import org.eclipse.ocl.ecore.internal.OCLFactoryImpl;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.internal.TypeResolverImpl;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
-import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.Variable;
@@ -131,8 +130,8 @@ public class EcoreEnvironment
 	factory;
 	
 	private TypeResolver<EClassifier, EOperation, EStructuralFeature> typeResolver;
-	
-	private final OppositeEndFinder oppositeEndFinder;
+
+	private OppositeEndFinder oppositeEndFinder;
 
 	/**
 	 * Initializes me with a package registry for package look-ups.
@@ -142,7 +141,6 @@ public class EcoreEnvironment
 	protected EcoreEnvironment(EPackage.Registry reg) {
 		registry = reg;
 		typeResolver = createTypeResolver();
-		oppositeEndFinder = createOppositeEndFinder();
 	}
 	
     /**
@@ -155,7 +153,6 @@ public class EcoreEnvironment
 	protected EcoreEnvironment(EPackage.Registry reg, Resource resource) {
 		registry = reg;
 		typeResolver = createTypeResolver(resource);
-		oppositeEndFinder = createOppositeEndFinder();
 	}
 
     /**
@@ -178,7 +175,6 @@ public class EcoreEnvironment
 		} else {
 			registry = EPackage.Registry.INSTANCE;
 			typeResolver = createTypeResolver();
-			oppositeEndFinder = createOppositeEndFinder();
 		}
 	}
 
@@ -212,7 +208,9 @@ public class EcoreEnvironment
 	
 	/**
 	 * Sets the factory that created me.  This method should only be invoked
-	 * by that factory.
+	 * by that factory. If the factory is an {@link EcoreEnvironmentFactory},
+	 * its {@link EcoreEnvironmentFactory#getOppositeEndFinder() opposite end finder}
+	 * will be used as this environment's {@link #oppositeEndFinder opposite end finder}.
 	 * 
 	 * @param factory my originating factory
 	 */
@@ -222,6 +220,9 @@ public class EcoreEnvironment
 			EObject, CallOperationAction, SendSignalAction, Constraint,
 			EClass, EObject> factory) {
 		this.factory = factory;
+		if (factory instanceof EcoreEnvironmentFactory) {
+			oppositeEndFinder = ((EcoreEnvironmentFactory)factory).getOppositeEndFinder();
+		}
 	}
 	
     // implements the inherited specification
@@ -253,16 +254,6 @@ public class EcoreEnvironment
         return UMLReflectionImpl.INSTANCE;
     }
 
-	private OppositeEndFinder createOppositeEndFinder() {
-		EnvironmentFactory<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> factory = getFactory();
-		if (factory instanceof EcoreEnvironmentFactoryInterface) {
-			return ((EcoreEnvironmentFactoryInterface)factory).getOppositeEndFinder();
-		}
-		else {
-			return DefaultOppositeEndFinder.getInstance(registry);
-		}
-	}
-	
 	/**
 	 * Creates a new type resolver for use with this environment, persisted
 	 * in a default resource.
