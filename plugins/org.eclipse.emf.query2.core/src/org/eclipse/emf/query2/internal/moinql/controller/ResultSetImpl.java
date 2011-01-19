@@ -153,7 +153,9 @@ public class ResultSetImpl implements ResultSet {
 		}
 		throw new QueryResultException(ApiMessages.QUERY_RESULT_OUT_OF_BOUNDS);
 	}
-
+	/**
+	 * Returns an array of URIs for the given alias
+	 */
 	public URI[] getUris(String alias) throws QueryResultException {
 
 		URI[] resultMRI = new URI[this.resultSetSize];
@@ -171,7 +173,9 @@ public class ResultSetImpl implements ResultSet {
 
 		return resultMRI;
 	}
-
+	/**
+	 * Returns the attribute by the given name from the given alias
+	 */
 	public Object getAttribute(int position, String alias, String attrName) throws QueryResultException {
 
 		// check for index out of bounds
@@ -193,7 +197,9 @@ public class ResultSetImpl implements ResultSet {
 		// index out of bounds
 		throw new QueryResultException(ApiMessages.QUERY_RESULT_OUT_OF_BOUNDS);
 	}
-
+	/**
+	 * Returns the attributes from the given alias
+	 */
 	public Object[] getAttributes(int position, String alias) throws QueryResultException {
 
 		// check for index out of bounds

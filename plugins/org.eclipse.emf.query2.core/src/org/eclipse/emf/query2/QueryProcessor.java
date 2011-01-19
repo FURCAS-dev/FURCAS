@@ -126,77 +126,70 @@ public interface QueryProcessor {
 
 	/**
 	 * This provides a standard scope provider where the scope is defined by
-	 * union of the provided partitions and cris and the inclusion flag
+	 * given set of URIs and the inclusion flag
 	 * indicates whether the query should be calculated inside the provided
 	 * scope or outside the provided scope.
 	 * 
 	 * @param scopeInclusive
 	 *            indicates whether the scope should include the provided
-	 *            partitions and containers
-	 * @param partitionScope
-	 *            the partitions to be considered in the scope (may be null)
-	 * @param containerScope
-	 *            the containers to be considered in the scope (may be null)
+	 *            resources
+	 * @param resourceScope
+	 *            the resources to be considered in the scope (may be null)
+	 
 	 * @return the query scope provider
 	 */
-	TypeScopeProvider getQueryScopeProvider(boolean scopeInclusive, Set<URI> partitionScope);
+	TypeScopeProvider getQueryScopeProvider(boolean scopeInclusive, Set<URI> resourceScope);
 
 	/**
 	 * This provides a standard scope provider where the scope is defined by
-	 * union of the provided partitions and container names and the inclusion
+	 * given array of URIs and the inclusion
 	 * flag indicates whether the query should be calculated inside the provided
-	 * scope or outside the provided scope. Note that the container names are
-	 * expanded over all facilities and data areas
+	 * scope or outside the provided scope. 
 	 * 
 	 * @param scopeInclusive
 	 *            indicates whether the scope should include the provided
-	 *            partitions and containers
-	 * @param partitionScope
-	 *            the partitions to be considered in the scope (may be null)
-	 * @param containerScope
-	 *            the containers to be considered in the scope (may be null),
-	 *            encoded as strings, so they are expanded over all facilities
-	 *            and data areas
+	 *            resources and containers
+	 * @param resourceScope
+	 *            the resources to be considered in the scope (may be null)
+	 
 	 * @return the query scope provider
 	 */
-	TypeScopeProvider getQueryScopeProvider(boolean scopeInclusive, URI[] partitionScope);
+	TypeScopeProvider getQueryScopeProvider(boolean scopeInclusive, URI[] resourceScope);
 
 	/**
 	 * This provides a standard scope provider where the scope is defined by
-	 * union of the provided partitions and cris and the query will be executed
+	 * given array of URIs  and the query will be executed
 	 * inside the provided scope.
 	 * 
-	 * @param partitionScope
-	 *            the partitions to be considered in the scope (may be null)
-	 * @param containerScope
-	 *            the containers to be considered in the scope (may be null)
+	 * @param resourceScope
+	 *            the resources to be considered in the scope (may be null)
+	
 	 * @return the inclusive query scope provider
 	 */
-	TypeScopeProvider getInclusiveQueryScopeProvider(URI[] partitionScope);
+	TypeScopeProvider getInclusiveQueryScopeProvider(URI[] resourceScope);
 
 	/**
 	 * This provides a standard scope provider where the scope is defined by
-	 * union of the provided partitions and cris and the query will be executed
+	 * the given set of URIs and the query will be executed
 	 * inside the provided scope.
 	 * 
-	 * @param partitionScope
-	 *            the partitions to be considered in the scope (may be null)
-	 * @param containerScope
-	 *            the containers to be considered in the scope (may be null)
+	 * @param resourceScope
+	 *            the resources to be considered in the scope (may be null)
+	 
 	 * @return the inclusive query scope provider
 	 */
-	TypeScopeProvider getInclusiveQueryScopeProvider(Set<URI> partitionScope);
+	TypeScopeProvider getInclusiveQueryScopeProvider(Set<URI> resourceScope);
 
 	/**
 	 * This provides a standard scope provider where the scope is defined by the
-	 * provided partitions and the query will be executed inside the provided
+	 * given URIs and the query will be executed inside the provided
 	 * scope.
 	 * 
-	 * @param partitionScope
-	 *            the partitions to be considered in the scope (may be null)
-	 * @return the inclusive partition scope provider
+	 * @param resourceScope
+	 *            the resources to be considered in the scope (may be null)
+	 * @return the inclusive scope provider
 	 */
-	TypeScopeProvider getInclusivePartitionScopeProvider(URI... partitionScope);
+	TypeScopeProvider getInclusivePartitionScopeProvider(URI... resourceScope);
 
 	/**
 	 * Returns the currently set maximum result set size after which the query

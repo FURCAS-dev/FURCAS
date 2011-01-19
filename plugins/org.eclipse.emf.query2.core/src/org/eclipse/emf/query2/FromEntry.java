@@ -20,8 +20,8 @@ import org.eclipse.emf.common.util.URI;
 
 /**
  * Each from-entry is used in a query to define a type from where instances are
- * taken. Optionally, a scope is provided to include or exclude partitions or
- * container names. By default, the sub-types of a type are also considered. The
+ * taken. Optionally, a scope is provided to include or exclude resources.
+ * By default, the sub-types of a type are also considered. The
  * <i>withoutSubtypes</i> flag has to be set to true if no sub-types should be
  * considered!
  */
@@ -30,13 +30,13 @@ abstract public class FromEntry extends QueryElement {
 	protected String aliasName;
 
 	/*
-	 * Optionally includes and exclude lists of PRIs exist to reduce scoping. By
+	 * Optionally includes and exclude lists of URIs exist to reduce scoping. By
 	 * default, the list is empty
 	 */
-	protected URI[] partitionScope = new URI[0];
+	protected URI[] resourceScope = new URI[0];
 
 	/*
-	 * When the partitionScope is empty, and included is false, we will assume
+	 * When the resourceScope is empty, and included is false, we will assume
 	 * that the entire ClientScope is considered. This is the default for a
 	 * FromEntry.
 	 */
@@ -76,7 +76,7 @@ abstract public class FromEntry extends QueryElement {
 	 * partitions or containers.
 	 * 
 	 * @return true if the scope of this from-entry is reduced to the included
-	 *         partitions or containers.
+	 *        resources.
 	 */
 	public boolean isIncluded() {
 
@@ -88,16 +88,16 @@ abstract public class FromEntry extends QueryElement {
 	}
 
 	/**
-	 * Returns partitions of the scope of this from-entry.
+	 * Returns resources of the scope of this from-entry.
 	 * 
-	 * @return partitions of the scope of this from-entry.
+	 * @return resources of the scope of this from-entry.
 	 */
 	public URI[] getPartitionScope() {
 
 		if (scopeProvider == null) {
-			return this.partitionScope;
+			return this.resourceScope;
 		} else {
-			return scopeProvider.getPartitionScope();
+			return scopeProvider.getResourceScope();
 		}
 	}
 
@@ -152,25 +152,25 @@ abstract public class FromEntry extends QueryElement {
 		sb.append(" as "); //$NON-NLS-1$
 		sb.append(this.aliasName);
 
-		if (this.partitionScope.length > 0) {
+		if (this.resourceScope.length > 0) {
 			sb.append('\n');
 			char[] whiteSpace = new char[ident];
 			Arrays.fill(whiteSpace, ' ');
 			sb.append(whiteSpace);
 			if (this.included) {
-				sb.append("in partitions {"); //$NON-NLS-1$
+				sb.append("in resources {"); //$NON-NLS-1$
 			} else {
-				sb.append("not in partitions {"); //$NON-NLS-1$
+				sb.append("not in resources {"); //$NON-NLS-1$
 			}
 
-			sb.append(this.partitionScope[0].toString());
+			sb.append(this.resourceScope[0].toString());
 
-			for (int i = 1; i < this.partitionScope.length; i++) {
+			for (int i = 1; i < this.resourceScope.length; i++) {
 				sb.append(",\n"); //$NON-NLS-1$
 				char[] whiteSpaceN = new char[ident + (this.included ? 15 : 19)];
 				Arrays.fill(whiteSpaceN, ' ');
 				sb.append(whiteSpaceN);
-				sb.append(this.partitionScope[i].toString());
+				sb.append(this.resourceScope[i].toString());
 			}
 
 			sb.append("}"); //$NON-NLS-1$

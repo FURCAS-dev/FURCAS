@@ -15,7 +15,7 @@ package org.eclipse.emf.query2;
 
 /**
  * A select alias is a type of select-entry, which only refers to an alias of a
- * from-entry. It specifies a column which will contain the {@link MRI}s of the
+ * from-entry. It specifies a column which will contain the {@link URI}s of the
  * found model elements.
  */
 final public class SelectAlias extends SelectEntry {

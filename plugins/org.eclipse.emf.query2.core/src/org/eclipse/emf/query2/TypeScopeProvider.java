@@ -35,12 +35,12 @@ public interface TypeScopeProvider {
 	boolean isInclusiveScope();
 
 	/**
-	 * The partition scope eventually is encoded as an array as PRIs. The array
+	 * The resource scope eventually is encoded as an array as URIs. The array
 	 * should not be null!
 	 * 
-	 * @return the set of partitions (as PRIs) to be considered in the scope
+	 * @return the set of resources (as URIs) to be considered in the scope
 	 */
-	URI[] getPartitionScope();
+	URI[] getResourceScope();
 
 	//    /**
 	//     * The container scope eventually is encoded as an array as CRIs. The array
