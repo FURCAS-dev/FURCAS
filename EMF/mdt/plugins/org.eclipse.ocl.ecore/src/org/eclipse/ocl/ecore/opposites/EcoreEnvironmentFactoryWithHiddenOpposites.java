@@ -16,6 +16,17 @@ import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 
 
 /**
+ * An environment factory which can be used to provide a non-<code>null</code>
+ * {@link OppositeEndFinder} to the OCL environment. This enables lookup and
+ * evaluation of so-called "hidden opposites" which are represented by
+ * annotations with key "Property.oppositeRoleName" on the forward reference
+ * and which allow for querying the opposite direction by simple dotted syntax
+ * and by cleanly providing a scope for the opposite lookup.<p>
+ * 
+ * If no {@link OppositeEndFinder} is provided to a constructor, a
+ * {@link DefaultOppositeEndFinder} is used that is either specific to the
+ * {@link EPackage.Registry registry} provided or that is aligned with the
+ * default {@link EPackage.Registry#INSTANCE package registry}.
  * 
  * @author Axel Uhl (auhl)
  * @since 3.1
@@ -49,7 +60,7 @@ public class EcoreEnvironmentFactoryWithHiddenOpposites
      * Initializes me with the default <code>EPackage.Registry</code> that the environments I create will use to look up
      * packages. The {@link OppositeEndFinder} object specified is used. Callers should ensure that the
      * <code>oppositeEndFinder</code> is consistent with the default {@link EPackage.Registry}. Otherwise,
-     * use {@link #EcoreEnvironmentFactoryWithScopedExtentMap(Registry, OppositeEndFinder)} and specify the
+     * use {@link #EcoreEnvironmentFactoryWithHiddenOpposites(Registry, OppositeEndFinder)} and specify the
      * particular package registry used by your opposite end finder.
      */
     public EcoreEnvironmentFactoryWithHiddenOpposites(OppositeEndFinder oppositeEndFinder) {
