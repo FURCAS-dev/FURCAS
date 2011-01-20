@@ -24,6 +24,11 @@ import org.eclipse.ocl.ecore.OCLExpression;
  */
 public class OCLExpressionCacheAdapter
 		extends AdapterImpl {
+	@Override
+	public boolean isAdapterForType(Object type) {
+		return type == OCLExpressionCacheAdapter.class;
+	}
+
 	private final OCLExpression expression;
 	
 	public OCLExpressionCacheAdapter(OCLExpression expression) {

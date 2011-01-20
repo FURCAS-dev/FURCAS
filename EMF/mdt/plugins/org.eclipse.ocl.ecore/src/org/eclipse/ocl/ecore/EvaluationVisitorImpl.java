@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
+import org.eclipse.ocl.ecore.delegate.OCLInvocationDelegate;
 import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.eclipse.ocl.ecore.utilities.VisitorExtension;
 import org.eclipse.ocl.expressions.CollectionKind;
@@ -91,6 +92,13 @@ public class EvaluationVisitorImpl
 		return result;
 	}
 
+	/**
+	 * Tries to fetch an operation body from where the
+	 * {@link OCLInvocationDelegate OCL invocation delegate} stores it. If nothing
+	 * is found, this method delegates to the base class implementation which then
+	 * performs the usual search in the OCL_NAMESPACE_URI annotation and the
+	 * environment's body condition cache.
+	 */
 	@Override
 	protected OCLExpression<EClassifier> getOperationBody(EOperation operation) {
 		OCLExpression<EClassifier> result = InvocationBehavior.INSTANCE
