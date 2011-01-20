@@ -229,7 +229,7 @@ public class EcoreEnvironmentFactory
 	 * @since 3.1
 	 */
     protected OppositeEndFinder createOppositeEndFinder(EPackage.Registry registry) {
-		return DefaultOppositeEndFinder.getInstance(registry);
+		return new DefaultOppositeEndFinder(registry);
 	}
 
 	/**

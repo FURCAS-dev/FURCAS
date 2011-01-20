@@ -23,7 +23,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.WeakHashMap;
 
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -94,23 +93,16 @@ public class DefaultOppositeEndFinder
 	 */
 	private Set<EPackage> cachedPackages;
 
-	private static WeakHashMap<EPackage.Registry, DefaultOppositeEndFinder> instancesByRegistry =
-		new WeakHashMap<EPackage.Registry, DefaultOppositeEndFinder>();
+	private static DefaultOppositeEndFinder instance;
 
 	public static DefaultOppositeEndFinder getInstance() {
-		return getInstance(EPackage.Registry.INSTANCE);
-	}
-	
-	public static DefaultOppositeEndFinder getInstance(EPackage.Registry registry) {
-		DefaultOppositeEndFinder result = instancesByRegistry.get(registry);
-		if (result == null) {
-			result = new DefaultOppositeEndFinder(registry);
-			instancesByRegistry.put(registry, result);
+		if (instance == null) {
+			instance = new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE);
 		}
-		return result;
+		return instance;
 	}
 
-	protected DefaultOppositeEndFinder(EPackage.Registry registry) {
+	public DefaultOppositeEndFinder(EPackage.Registry registry) {
 		this.registry = registry;
 		cachedPackages = new HashSet<EPackage>();
 		oppositeCache = new HashMap<EClass, Map<String, Set<EReference>>>();
