@@ -115,8 +115,8 @@ public class OCLValidationDelegate implements ValidationDelegate
 
 	public boolean validate(EDataType eDataType, Object value,
 			Map<Object, Object> context, String constraint, String expression) {
-		OCLExpression query = ValidationBehavior.INSTANCE.getCachedExpression(
-			eDataType, constraint);
+		OCLExpression query = ValidationBehavior.INSTANCE.getInvariant(
+			eDataType, constraint, delegateDomain.getOCL());
 		if (query == null) {
 			query = createQuery(expression);
 			ValidationBehavior.INSTANCE.cacheInvariantBody(eDataType, constraint, query);

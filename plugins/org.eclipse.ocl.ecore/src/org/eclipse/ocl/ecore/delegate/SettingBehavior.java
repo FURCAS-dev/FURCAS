@@ -115,12 +115,7 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 	 */
 	public OCLExpression getCachedFeatureBody(EStructuralFeature structuralFeature) {
 		OCLExpression result = getCachedOCLExpression(structuralFeature);
-		if (result == null) {
-			result = getCachedExpression(structuralFeature, DERIVATION_CONSTRAINT_KEY, INITIAL_CONSTRAINT_KEY);
-			if (result != null) {
-				cacheOCLExpression(structuralFeature, result);
-			}
-		} else if (hasNoOCLDefinition(result)) {
+		if (result != null && hasNoOCLDefinition(result)) {
 			result = null; // clients can find that out by asking hasUncomiledOperationBody
 		}
 		return result;

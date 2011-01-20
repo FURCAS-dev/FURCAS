@@ -114,12 +114,7 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 	 */
 	public OCLExpression getCachedOperationBody(EOperation operation) {
 		OCLExpression result = getCachedOCLExpression(operation);
-		if (result == null) {
-			result = getCachedExpression(operation, BODY_CONSTRAINT_KEY);
-			if (result != null) {
-				cacheOCLExpression(operation, result);
-			}
-		} else if (hasNoOCLDefinition(result)) {
+		if (result == null && hasNoOCLDefinition(result)) {
 			result = null; // clients can find that out by asking hasUncomiledOperationBody
 		}
 		return result;

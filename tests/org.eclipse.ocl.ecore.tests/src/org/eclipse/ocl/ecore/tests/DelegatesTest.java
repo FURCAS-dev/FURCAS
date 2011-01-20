@@ -616,14 +616,14 @@ public class DelegatesTest extends AbstractTestSuite
 		NullLiteralExp nullLiteralExp = EcoreFactory.eINSTANCE.createNullLiteralExp();
 		EAnnotation directReportsAnn = directReportsRef.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
 		assertTrue(directReportsAnn.getDetails().containsKey(SettingBehavior.DERIVATION_CONSTRAINT_KEY));
-		assertTrue(directReportsAnn.getContents().isEmpty());
+		String derivationExpression =  directReportsAnn.getDetails().get(SettingBehavior.DERIVATION_CONSTRAINT_KEY);
 		try {
-			directReportsAnn.getContents().add(nullLiteralExp);
+			directReportsAnn.getDetails().remove(SettingBehavior.DERIVATION_CONSTRAINT_KEY);
 			// ensure that the plugin cache doesn't have an expression cached:
-			SettingBehavior.INSTANCE.cacheOCLExpression(directReportsRef, null);
+			SettingBehavior.INSTANCE.cacheOCLExpression(directReportsRef, nullLiteralExp);
 			assertNull(ocl.evaluate(manager, expr));
 		} finally {
-			directReportsAnn.getContents().clear();
+			directReportsAnn.getDetails().put(SettingBehavior.DERIVATION_CONSTRAINT_KEY, derivationExpression);
 			SettingBehavior.INSTANCE.cacheOCLExpression(directReportsRef, null);
 		}
 	}
@@ -638,24 +638,28 @@ public class DelegatesTest extends AbstractTestSuite
 		// first ensure that contents are padded up to where we need it:
 		assertTrue("Expecting \"Amy\" to be a valid name",
 			CompanyValidator.INSTANCE.validateEmployee_mustHaveName((Employee) employee("Amy"), diagnostics, context));
-		int posOfMustHaveName = annotation.getDetails().indexOfKey("mustHaveName");
+		final String constraintName = "mustHaveName";
+		String mustHaveNameConstraint = annotation.getDetails().get(constraintName);
 		Helper helper = OCL.newInstance().createOCLHelper();
 		helper.setContext(employeeClass);
 		OCLExpression query = helper.createQuery("false"); // a constraint always returning false
-		while (annotation.getContents().size() <= posOfMustHaveName) { // pad if necessary
-			annotation.getContents().add(EcoreFactory.eINSTANCE.createNullLiteralExp());
+		try {
+			annotation.getDetails().remove(constraintName);
+			ValidationBehavior.INSTANCE.cacheInvariantBody(employeeClass,
+				constraintName, query);
+			assertFalse(
+				"Expected the always-false cached constraint to be used",
+				CompanyValidator.INSTANCE.validateEmployee_mustHaveName(
+					(Employee) employee("Amy"), diagnostics, context));
+		} finally {
+			// restore annotation detail
+			annotation.getDetails().put(constraintName, mustHaveNameConstraint);
 		}
-		annotation.getContents().set(posOfMustHaveName, query);
-		ValidationBehavior.INSTANCE.cacheInvariantBody(employeeClass, "mustHaveName", null); // force lookup in annotation
-		assertFalse("Expected the always-false cached constraint to be used",
-			CompanyValidator.INSTANCE.validateEmployee_mustHaveName((Employee) employee("Amy"), diagnostics, context));
 	}
 	
 	public void test_invariantCachingForFirst() {
 		initPackageRegistrations();
 		initModel(COMPANY_XMI);
-		EAnnotation annotation = employeeClass.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
-		annotation.getContents().clear(); // remove any previously cached compiled OCL Constraint
 		DiagnosticChain diagnostics = new BasicDiagnostic();
 		ValidationBehavior.INSTANCE.cacheInvariantBody(employeeClass, "mustHaveName", null);
 		CompanyValidator.INSTANCE.validateEmployee_mustHaveName((Employee) employee("Amy"), diagnostics, context);
@@ -667,8 +671,6 @@ public class DelegatesTest extends AbstractTestSuite
 	public void test_invariantCachingForSecond() {
 		initPackageRegistrations();
 		initModel(COMPANY_XMI);
-		EAnnotation annotation = employeeClass.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
-		annotation.getContents().clear(); // remove any previously cached compiled OCL Constraint
 		DiagnosticChain diagnostics = new BasicDiagnostic();
 		ValidationBehavior.INSTANCE.cacheInvariantBody(employeeClass, "mustHaveNonEmptyName", null);
 		CompanyValidator.INSTANCE.validateEmployee_mustHaveNonEmptyName((Employee) employee("Amy"), diagnostics, context);
@@ -779,7 +781,7 @@ public class DelegatesTest extends AbstractTestSuite
 		assertNull(body);
 		// and again, now reading from cache
 		OCLExpression bodyStillNull = InvocationBehavior.INSTANCE.getOperationBody((OCL) ocl, o);;
-		assertNull(bodyStillNull);
+		assertTrue(bodyStillNull == null || InvocationBehavior.INSTANCE.hasNoOCLDefinition(bodyStillNull));
 	}
 	
 	/**
@@ -807,13 +809,15 @@ public class DelegatesTest extends AbstractTestSuite
 		EAnnotation reportsToAnn = reportsToOp.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
 		assertTrue(reportsToAnn.getDetails().containsKey(InvocationBehavior.BODY_CONSTRAINT_KEY));
 		assertTrue(reportsToAnn.getContents().isEmpty());
+		String body = reportsToAnn.getDetails().get(InvocationBehavior.BODY_CONSTRAINT_KEY);
 		try {
-			reportsToAnn.getContents().add(falseLiteralExp);
+			reportsToAnn.getDetails().remove(InvocationBehavior.BODY_CONSTRAINT_KEY);
 			// ensure that the plugin cache doesn't have an expression cached:
-			InvocationBehavior.INSTANCE.cacheOCLExpression(reportsToOp, null);
+			InvocationBehavior.INSTANCE.cacheOCLExpression(reportsToOp, falseLiteralExp);
 			assertFalse((Boolean) ocl.evaluate(employee, expr));
 		} finally {
-			reportsToAnn.getContents().clear();
+			reportsToAnn.getDetails().put(InvocationBehavior.BODY_CONSTRAINT_KEY, body);
+			InvocationBehavior.INSTANCE.cacheOCLExpression(reportsToOp, null);
 		}
 	}
 	
