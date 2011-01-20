@@ -23,6 +23,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.WeakHashMap;
 
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -107,18 +108,22 @@ public class DefaultOppositeEndFinder
 	 * predictable results using {@link #getInstance(Set<EPackage>)}.
 	 */
 	public static DefaultOppositeEndFinder getInstance() {
-		if (instance == null) {
-			instance = new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE);
+		return getInstance(EPackage.Registry.INSTANCE);
+	}
+	
 	/**
 	 * Scans all packages from the <code>registry</code> specified that have already been
 	 * loaded. While this is convenient, please keep in mind that this may be fairly random a
 	 * definition of a package set as loading of packages happens on demand. You will get more
 	 * predictable results using {@link #getInstance(Set<EPackage>)}.
 	 */
+	public static DefaultOppositeEndFinder getInstance(EPackage.Registry registry) {
 		DefaultOppositeEndFinder result = instances.get(registry);
+		if (result == null) {
+			result = new DefaultOppositeEndFinder(registry);
 			instances.put(registry, result);
 		}
-		return instance;
+		return result;
 	}
 	
 	private Set<EPackage> getLoadedPackages() {
