@@ -28,7 +28,6 @@ import org.eclipse.ocl.ecore.ExpressionInOCL;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.delegate.ValidationDelegate.Factory;
-import org.eclipse.ocl.ecore.internal.OCLExpressionCacheAdapter;
 import org.eclipse.ocl.ecore.internal.OCLInvariantCacheAdapter;
 
 /**
@@ -69,12 +68,7 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 	 */
 	public OCLExpression getCachedInvariant(EClassifier cls, String constraintName) {
 		OCLExpression result = getCachedInvariantBody(cls, constraintName);
-		if (result == null) {
-			result = getCachedExpression(cls, constraintName);
-			if (result != null) {
-				cacheInvariantBody(cls, constraintName, result);
-			}
-		} else if (hasNoOCLDefinition(result)) {
+		if (result != null && hasNoOCLDefinition(result)) {
 			result = null; // clients can find that out by asking hasUncomiledInvariantBody
 		}
 		return result;
@@ -94,34 +88,36 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 	 * @since 3.1
 	 */
 	public OCLExpression getCachedInvariantBody(EClassifier cls, String constraintName) {
-		for (Adapter a : cls.eAdapters()) {
-			if (a instanceof OCLInvariantCacheAdapter) {
-				return ((OCLInvariantCacheAdapter) a).get(constraintName);
-			}
+		Adapter a = EcoreUtil.getExistingAdapter(cls, OCLInvariantCacheAdapter.class);
+		if (a != null) {
+			return ((OCLInvariantCacheAdapter) a).get(constraintName);
+		} else {
+			return null;
 		}
-		return null;
 	}
 	
 	/**
 	 * Creates an {@link OCLInvariantCacheAdapter} for expression <code>e</code> and adds
 	 * it to <code>n</code>'s adapter list so that {@link #getCachedOCLExpression(Notifier)}
 	 * will return <code>e</code> when called for <code>n</code>. To achieve this, any other
-	 * {@link OCLExpressionCacheAdapter} in <code>n</code>'s adapter list is removed.
+	 * {@link OCLInvariantCacheAdapter} in <code>n</code>'s adapter list is removed.
+	 * 
+	 * @param e if <code>null</code>, the respective cache entry for <code>constraintName</code>
+	 * is removed.
+	 * 
 	 * @since 3.1
 	 */
 	public void cacheInvariantBody(EClassifier cls, String constraintName, OCLExpression e) {
-		OCLInvariantCacheAdapter adapter = null;
-		for (Adapter a : cls.eAdapters()) {
-			if (a instanceof OCLInvariantCacheAdapter) {
-				adapter = (OCLInvariantCacheAdapter) a;
-				break;
-			}
-		}
+		Adapter adapter = EcoreUtil.getExistingAdapter(cls, OCLInvariantCacheAdapter.class);
 		if (adapter == null) {
 			adapter = new OCLInvariantCacheAdapter();
 			cls.eAdapters().add(adapter);
 		}
-		adapter.put(constraintName, e);
+		if (e == null) {
+			((OCLInvariantCacheAdapter) adapter).remove(constraintName);
+		} else {
+			((OCLInvariantCacheAdapter) adapter).put(constraintName, e);
+		}
 	}
 	
 	/**
