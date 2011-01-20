@@ -102,7 +102,7 @@ public class EcoreEvaluationEnvironment
         	this.oppositeEndFinder = factory.getOppositeEndFinder();
         }
         else {
-        	this.oppositeEndFinder = new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE);
+        	this.oppositeEndFinder = DefaultOppositeEndFinder.getInstance();
         }
     }
 
