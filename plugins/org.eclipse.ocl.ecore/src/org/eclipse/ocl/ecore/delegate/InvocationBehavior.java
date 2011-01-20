@@ -96,8 +96,7 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 		if (constraint == null) {
 			return null;
 		}
-		ExpressionInOCL specification = (ExpressionInOCL) constraint
-			.getSpecification();
+		ExpressionInOCL specification = (ExpressionInOCL) constraint.getSpecification();
 		if (specification == null) {
 			return null;
 		}

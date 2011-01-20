@@ -259,7 +259,7 @@ public class EcoreEnvironment
 			return ((EcoreEnvironmentFactoryInterface)factory).getOppositeEndFinder();
 		}
 		else {
-			return DefaultOppositeEndFinder.getInstance(registry);
+			return new DefaultOppositeEndFinder(registry);
 		}
 	}
 	
