@@ -23,15 +23,12 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.ocl.ecore.InvalidLiteralExp;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.impl.NullLiteralExpImpl;
 import org.eclipse.ocl.ecore.internal.OCLExpressionCacheAdapter;
@@ -67,43 +64,6 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 	};
 
 	/**
-	 * Looks for an {@link OCLExpression} element attached to the
-	 * {@link OCLDelegateDomain#OCL_DELEGATE_URI} annotation of
-	 * <code>modelElement</code> at the same position at which the
-	 * {@link OCLDelegateDomain#OCL_DELEGATE_URI} annotation holds a detail
-	 * using any of the <code>constraintKeys</code>. For example, if there is a
-	 * detail at position 3 with key "body" and "body" is part of
-	 * <code>constraintKeys</code> then the contents element at position 3 of
-	 * the {@link OCLDelegateDomain#OCL_DELEGATE_URI} annotation is returned if it is
-	 * a {@link OCLEXpression} element.
-	 * 
-	 * @param modelElement from which to return a cached expression
-	 * @param constraintKeys the prioritised list of constraintKeys for to find a cached expression
-	 * @return null if none of the constraintKeys are known, or
-	 * if no constraint is associated with the first known constraintKey
-	 * else an {@link InvalidLiteralExp} if a null constraint was cached against
-	 * the first known constraintKey, else the cached expression.
-	 * 
-	 * @since 3.1
-	 */
-	protected OCLExpression getCachedExpression(EModelElement modelElement, String... constraintKeys) {
-		EAnnotation anno = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
-		if (anno != null) {
-			// find the position of the first constraintKey that is a key in details 
-			EList<EObject> contents = anno.getContents();
-			EMap<String, String> details = anno.getDetails();
-			for (String constraintKey : constraintKeys) {
-				int pos = details.indexOfKey(constraintKey);
-				if ((0 <= pos) && (pos < contents.size())) {
-					EObject contentElement = contents.get(pos);
-					return (OCLExpression) contentElement;
-				}
-			}
-		}
-		return null;
-    }
-
-	/**
 	 * Looks for an {@link OCLExpressionCacheAdapter} attached to <code>n</code>.
 	 * If such an adapter is found, its
 	 * {@link OCLExpressionCacheAdapter#getExpression() expression} is returned;
@@ -116,12 +76,12 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 	 * @since 3.1
 	 */
 	public OCLExpression getCachedOCLExpression(Notifier n) {
-		for (Adapter a : n.eAdapters()) {
-			if (a instanceof OCLExpressionCacheAdapter) {
-				return ((OCLExpressionCacheAdapter) a).getExpression();
-			}
+		Adapter a = EcoreUtil.getExistingAdapter(n, OCLExpressionCacheAdapter.class);
+		if (a != null) {
+			return ((OCLExpressionCacheAdapter) a).getExpression();
+		} else {
+			return null;
 		}
-		return null;
 	}
 	
 	/**
@@ -129,6 +89,10 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 	 * it to <code>n</code>'s adapter list so that {@link #getCachedOCLExpression(Notifier)}
 	 * will return <code>e</code> when called for <code>n</code>. To achieve this, any other
 	 * {@link OCLExpressionCacheAdapter} in <code>n</code>'s adapter list is removed.
+	 * 
+	 * @param e if <code>null</code>, any existing cache entry is removed and no new entry
+	 * is created. {@link #getCachedOCLExpression(Notifier)} will then return <code>null</code>. 
+	 * 
 	 * @since 3.1
 	 */
 	public void cacheOCLExpression(Notifier n, OCLExpression e) {
@@ -137,8 +101,11 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 				i.remove();
 			}
 		}
-		OCLExpressionCacheAdapter newAdapter = new OCLExpressionCacheAdapter(e);
-		n.eAdapters().add(newAdapter);
+		if (e != null) {
+			OCLExpressionCacheAdapter newAdapter = new OCLExpressionCacheAdapter(
+				e);
+			n.eAdapters().add(newAdapter);
+		}
 	}
 	
 	/**

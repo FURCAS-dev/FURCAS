@@ -28,6 +28,11 @@ import org.eclipse.ocl.ecore.OCLExpression;
  */
 public class OCLInvariantCacheAdapter
 		extends AdapterImpl {
+	@Override
+	public boolean isAdapterForType(Object type) {
+		return type == OCLInvariantCacheAdapter.class;
+	}
+
 	private final Map<String, OCLExpression> invariants = new HashMap<String, OCLExpression>();
 	
 	public OCLInvariantCacheAdapter() {
@@ -44,5 +49,14 @@ public class OCLInvariantCacheAdapter
 	 */
 	public OCLExpression get(String constraintName) {
 		return invariants.get(constraintName);
+	}
+	
+	/**
+	 * Removes any cache entry for the constraint named <code>constraintName</code> and
+	 * returns any expression previously cached under that constraint name if any, or
+	 * <code>null</code> otherwise.
+	 */
+	public OCLExpression remove(String constraintName) {
+		return invariants.remove(constraintName);
 	}
 }
