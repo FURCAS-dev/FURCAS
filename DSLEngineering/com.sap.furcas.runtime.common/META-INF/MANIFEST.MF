@@ -14,7 +14,8 @@ Require-Bundle: org.antlr;bundle-version="3.1.1",
  com.sap.furcas.metamodel;visibility:=reexport,
  com.sap.ocl.oppositefinder.query2,
  de.hpi.sam.bp2009.solution.queryContextScopeProvider
-Export-Package: com.sap.furcas.parsergenerator,
+Export-Package: 
+ com.sap.furcas.parsergenerator,
  com.sap.furcas.runtime.common.exceptions,
  com.sap.furcas.runtime.common.implementation;uses:="com.sap.furcas.textual.common.interfaces",
  com.sap.furcas.runtime.common.interfaces;uses:="com.sap.furcas.metamodel.TCS",

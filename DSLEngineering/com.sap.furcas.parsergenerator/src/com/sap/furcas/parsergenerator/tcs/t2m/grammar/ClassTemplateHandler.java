@@ -60,6 +60,8 @@ public class ClassTemplateHandler<Type extends Object> {
 
     private MetaModelElementResolutionHelper<Type> resolutionHelper;
 
+	private final ImportedTemplatesReceiver importedTemplatesReceiver;
+
     /**
      * Instantiates a new class template handler.
      * 
@@ -73,7 +75,9 @@ public class ClassTemplateHandler<Type extends Object> {
      */
     protected ClassTemplateHandler(ANTLR3GrammarWriter writer,
             OperatorHandler operatorHandler, IMetaModelLookup<Type> metaLookup,
-            SyntaxLookup syntaxLookup, TemplateNamingHelper<Type> namingHelper, SemanticErrorBucket errorBucket, MetaModelElementResolutionHelper<Type> resHelper) {
+            SyntaxLookup syntaxLookup, TemplateNamingHelper<Type> namingHelper,
+            SemanticErrorBucket errorBucket, MetaModelElementResolutionHelper<Type> resHelper,
+            ImportedTemplatesReceiver importedTemplatesReceiver) {
         super();
         this.writer = writer;
         this.operatorHandler = operatorHandler;
@@ -82,22 +86,27 @@ public class ClassTemplateHandler<Type extends Object> {
         this.syntaxLookup = syntaxLookup;
         this.errorBucket = errorBucket;
         this.resolutionHelper = resHelper;
+        this.importedTemplatesReceiver = importedTemplatesReceiver;
     }
 
     /**
      * @param operatorHandler2
      * @param handlerConfig
+     * @param antlrGrammarGenerator 
      */
     protected ClassTemplateHandler(OperatorHandler operatorHandler,
-            SyntaxElementHandlerConfigurationBean<Type> handlerConfig) {
+            SyntaxElementHandlerConfigurationBean<Type> handlerConfig, 
+            ImportedTemplatesReceiver importedTemplatesReceiver) {
         this(handlerConfig.getWriter(),
                 operatorHandler,
                 handlerConfig.getMetaLookup(),
                 handlerConfig.getSyntaxLookup(),
                 handlerConfig.getNamingHelper(),                
                 handlerConfig.getErrorBucket(),
-                handlerConfig.getResolutionHelper()
+                handlerConfig.getResolutionHelper(),
+                importedTemplatesReceiver
                 );
+		
     }
 
     /**
@@ -175,7 +184,7 @@ public class ClassTemplateHandler<Type extends Object> {
                     List<ResolvedNameAndReferenceBean<Type>> subtypes = null;
                     ResolvedNameAndReferenceBean<Type> resolvedBean = resolutionHelper.resolve(template);
                     subtypes = metaLookup.getDirectSubTypes(resolvedBean);
-                    if(TcsUtil.areSubTypesWithTemplates(subtypes, template.getMode(), syntaxLookup) &&
+                    if(TcsUtil.areSubTypesWithTemplates(template,subtypes, template.getMode(), syntaxLookup) &&
                 	    !template.isIsReferenceOnly()) {
                 	//We have a concrete class with additional subclasses
                 	//first we need to create a rule for the concrete classes case
@@ -321,7 +330,7 @@ public class ClassTemplateHandler<Type extends Object> {
         
         if (template.isIsOperatored()) {
             if (templateMode != null) {
-                // TODO implement this by adding mode wherever subtemplates are being invoked
+                // TODO implement this by adding mode wherever sub-templates are being invoked
                 throw new RuntimeException("Operatored classtemplates with mode not implemented yet");
             }
             hasAddedSubTemplates = addOperatoredRules(template,
@@ -330,27 +339,30 @@ public class ClassTemplateHandler<Type extends Object> {
         } else { // not operatored
             List<ResolvedNameAndReferenceBean<Type>> subtypes = null;
             try {
+            	
                 ResolvedNameAndReferenceBean<Type> resolvedBean = resolutionHelper.resolve(template);
-                subtypes = metaLookup.getDirectSubTypes(resolvedBean);
+                subtypes = metaLookup.getDirectSubTypes(resolvedBean); 
             } catch (NameResolutionFailedException e) {
                 errorBucket.addError(e.getMessage(), template);
             }
-
+            
             // rulebody is one of the subtypes of the abstract template
             rulebody.append("("); // b1
 
             boolean isFirstAlternative = true;
 
-            //get the templates for the direct subtypes
             if (subtypes != null) {
             	List<Template> templates = new ArrayList<Template>(subtypes.size());
                 for (Iterator<ResolvedNameAndReferenceBean<Type>> iterator = subtypes.iterator(); iterator.hasNext();) {
                     try {
                         ResolvedNameAndReferenceBean<Type> subTypeName = iterator.next();
                         Collection<Template> subtemps = null;
+                        
+                        subtemps = syntaxLookup.getTCSTemplate(template, subTypeName, templateMode);
 
-                        subtemps = syntaxLookup.getTCSTemplate(subTypeName, templateMode);
-
+                        for (Template subTemp : subtemps) {
+							importedTemplatesReceiver.addAdditionallyImportedTemplate(subTemp);
+						}
                         if (subtemps != null) {
                             templates.addAll(subtemps);
                         } else {
@@ -512,7 +524,7 @@ public class ClassTemplateHandler<Type extends Object> {
             List<ClassTemplate> nonPrimaries = writePrimaryRule(template,
                     templateRulename);
             
-            List<ClassTemplate> primaries = syntaxLookup.getPrimaries(subtypes, metaLookup);
+            List<ClassTemplate> primaries = syntaxLookup.getPrimaries(template,subtypes, metaLookup);
             
             boolean hasPrimaries = subtypes != null && primaries.size() > 0;
             
@@ -565,12 +577,14 @@ public class ClassTemplateHandler<Type extends Object> {
             errorBucket.addError(e1.getMessage(), template);
         }
         
-        List<ClassTemplate> nonPrimaries = syntaxLookup.getNonPrimaries(subtypes);
+        List<ClassTemplate> nonPrimaries = syntaxLookup.getNonPrimaries(template,subtypes);
+        
         try {
-            List<ClassTemplate> primaries = syntaxLookup.getPrimaries(subtypes, metaLookup);
+            List<ClassTemplate> primaries = syntaxLookup.getPrimaries(template,subtypes, metaLookup);
             if(primaries.size() == 0){
                 errorBucket.addError("No template for concrete subclass found to be able to terminate operator this template", template);
             }
+            
             if (subtypes != null && primaries.size() > 0) {
                 StringBuilder rulebody = new StringBuilder();
                 rulebody.append('(');

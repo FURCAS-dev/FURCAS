@@ -65,7 +65,7 @@ public class TestClassTemplateHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
         MetaModelElementResolutionHelperStub resolutionHelperStub = new MetaModelElementResolutionHelperStub();
         // Class under test
-        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub);
+        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub, null);
 
 
         ClassTemplateStub template = new ClassTemplateStub();
@@ -105,7 +105,7 @@ public class TestClassTemplateHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
         MetaModelElementResolutionHelperStub resolutionHelperStub = new MetaModelElementResolutionHelperStub();
         // Class under test
-        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub);
+        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub,null);
 
 
         ClassTemplateStub template = new ClassTemplateStub();
@@ -147,7 +147,7 @@ public class TestClassTemplateHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
         MetaModelElementResolutionHelperStub resolutionHelperStub = new MetaModelElementResolutionHelperStub();
         // Class under test
-        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub);
+        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub,null);
 
 
         ClassTemplateStub template = new ClassTemplateStub();
@@ -189,7 +189,7 @@ public class TestClassTemplateHandler {
         ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
         MetaModelElementResolutionHelperStub resolutionHelperStub = new MetaModelElementResolutionHelperStub();
         // Class under test
-        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub);
+        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub,null);
 
 
         ClassTemplateStub template = new ClassTemplateStub();
@@ -241,7 +241,7 @@ public class TestClassTemplateHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
         MetaModelElementResolutionHelperStub resolutionHelperStub = new MetaModelElementResolutionHelperStub();
         // Class under test
-        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub);
+        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub,null);
 
 
         ClassTemplateStub template = new ClassTemplateStub();
@@ -286,7 +286,7 @@ public class TestClassTemplateHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
         MetaModelElementResolutionHelperStub resolutionHelperStub = new MetaModelElementResolutionHelperStub();
         // Class under test
-        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub);
+        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub,null);
 
 
         ClassTemplateStub template = new ClassTemplateStub();
@@ -332,7 +332,7 @@ public class TestClassTemplateHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
         MetaModelElementResolutionHelperStub resolutionHelperStub = new MetaModelElementResolutionHelperStub();
         // Class under test
-        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub);
+        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub,null);
 
 
         ClassTemplateStub template = new ClassTemplateStub();
@@ -379,7 +379,7 @@ public class TestClassTemplateHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
         MetaModelElementResolutionHelperStub resolutionHelperStub = new MetaModelElementResolutionHelperStub();
         // Class under test
-        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub);
+        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub,null);
 
 
         ClassTemplateStub template = new ClassTemplateStub();
@@ -424,7 +424,7 @@ public class TestClassTemplateHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
         MetaModelElementResolutionHelperStub resolutionHelperStub = new MetaModelElementResolutionHelperStub();
         // Class under test
-        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub);
+        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub,null);
 
 
         ClassTemplateStub template = new ClassTemplateStub();
@@ -471,7 +471,7 @@ public class TestClassTemplateHandler {
         ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
         MetaModelElementResolutionHelperStub resolutionHelperStub = new MetaModelElementResolutionHelperStub();
         // Class under test
-        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub);
+        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub,null);
 
 
         ClassTemplateStub template = new ClassTemplateStub();
@@ -522,7 +522,7 @@ public class TestClassTemplateHandler {
         ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
         MetaModelElementResolutionHelperStub resolutionHelperStub = new MetaModelElementResolutionHelperStub();
         // Class under test
-        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub);
+        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub,null);
 
         ClassTemplateStub template = new ClassTemplateStub();
         template.names = StringListHelper.list("test", "class");
@@ -563,7 +563,7 @@ public class TestClassTemplateHandler {
         ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
         MetaModelElementResolutionHelperStub resolutionHelperStub = new MetaModelElementResolutionHelperStub();
         // Class under test
-        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub);
+        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub,null);
 
 
         ClassTemplateStub template = new ClassTemplateStub();
@@ -605,7 +605,7 @@ public class TestClassTemplateHandler {
         ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
         MetaModelElementResolutionHelperStub resolutionHelperStub = new MetaModelElementResolutionHelperStub();
         // Class under test
-        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub);
+        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub,null);
 
 
         ClassTemplateStub template = new ClassTemplateStub();
@@ -680,7 +680,7 @@ public class TestClassTemplateHandler {
         ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
         MetaModelElementResolutionHelperStub resolutionHelperStub = new MetaModelElementResolutionHelperStub();
         // Class under test
-        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub);
+        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub,null);
 
 
         ClassTemplateStub template = new ClassTemplateStub();
@@ -731,7 +731,7 @@ public class TestClassTemplateHandler {
         ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
         MetaModelElementResolutionHelperStub resolutionHelperStub = new MetaModelElementResolutionHelperStub();
         // Class under test
-        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub);
+        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub,null);
 
 
         ClassTemplateStub template = new ClassTemplateStub();
@@ -771,7 +771,7 @@ public class TestClassTemplateHandler {
     public void testAddElementSemanticDisambiguate() throws Exception {
     	SyntaxLookupStub syntaxLookupStub = new SyntaxLookupStub() {
 			@Override
-			public Collection<Template> getTCSTemplate(
+			public Collection<Template> getTCSTemplate(Template template,
 					ResolvedNameAndReferenceBean<?> refBean, String mode) {
 				return Collections.singleton(subtemplates.get(refBean.getNames().get(0)));
 			}
@@ -784,7 +784,7 @@ public class TestClassTemplateHandler {
         // Class under test
         ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, 
         		operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, 
-        		null, resolutionHelperStub);
+        		null, resolutionHelperStub,null);
 
 
         ClassTemplateStub template = new ClassTemplateStub();
@@ -853,7 +853,7 @@ public class TestClassTemplateHandler {
         ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
         MetaModelElementResolutionHelperStub resolutionHelperStub = new MetaModelElementResolutionHelperStub();
         // Class under test
-        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub);
+        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub,null);
 
 
         ClassTemplateStub template = new ClassTemplateStub();
@@ -905,7 +905,7 @@ public class TestClassTemplateHandler {
         ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
         MetaModelElementResolutionHelperStub resolutionHelperStub = new MetaModelElementResolutionHelperStub();
         // Class under test
-        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub);
+        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub,null);
 
 
         ClassTemplateStub template = new ClassTemplateStub();
@@ -960,7 +960,7 @@ public class TestClassTemplateHandler {
         ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
         MetaModelElementResolutionHelperStub resolutionHelperStub = new MetaModelElementResolutionHelperStub();
         // Class under test
-        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub);
+        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub,null);
 
 
         ClassTemplateStub template = new ClassTemplateStub();
@@ -1038,7 +1038,7 @@ public class TestClassTemplateHandler {
         ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
         MetaModelElementResolutionHelperStub resolutionHelperStub = new MetaModelElementResolutionHelperStub();
         // Class under test
-        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub);
+        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub,null);
 
 
         ClassTemplateStub template = new ClassTemplateStub();
@@ -1117,7 +1117,7 @@ public class TestClassTemplateHandler {
         ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
         MetaModelElementResolutionHelperStub resolutionHelperStub = new MetaModelElementResolutionHelperStub();
         // Class under test
-        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub);
+        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub,null);
 
 
         ClassTemplateStub template = new ClassTemplateStub();
@@ -1196,7 +1196,7 @@ public class TestClassTemplateHandler {
         ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
         MetaModelElementResolutionHelperStub resolutionHelperStub = new MetaModelElementResolutionHelperStub();
         // Class under test
-        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub);
+        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub,null);
 
 
         ClassTemplateStub template = new ClassTemplateStub();
@@ -1242,7 +1242,7 @@ public class TestClassTemplateHandler {
         ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
         MetaModelElementResolutionHelperStub resolutionHelperStub = new MetaModelElementResolutionHelperStub();
         // Class under test
-        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub);
+        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub,null);
 
 
         ClassTemplateStub template = new ClassTemplateStub();
@@ -1317,7 +1317,7 @@ public class TestClassTemplateHandler {
         ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
         MetaModelElementResolutionHelperStub resolutionHelperStub = new MetaModelElementResolutionHelperStub();
         // Class under test
-        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub);
+        ClassTemplateHandler classhandler = new ClassTemplateHandler(writerStub, operatorHandlerStub, metaLookupStub, syntaxLookupStub, namingStub, null, resolutionHelperStub,null);
 
 
         ClassTemplateStub template = new ClassTemplateStub();

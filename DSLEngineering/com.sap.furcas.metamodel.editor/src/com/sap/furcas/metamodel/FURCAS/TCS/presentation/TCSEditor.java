@@ -127,6 +127,7 @@ import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.provider.TCSItemProviderAdapterFactory;
+import com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.provider.InterfaceconfigurationItemProviderAdapterFactory;
 import com.sap.furcas.metamodel.FURCAS.presentation.FURCASEditorPlugin;
 import com.sap.furcas.metamodel.FURCAS.provider.FURCASItemProviderAdapterFactory;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.provider.TextblockdefinitionItemProviderAdapterFactory;
@@ -667,6 +668,7 @@ public class TCSEditor
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new FURCASItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new TCSItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new InterfaceconfigurationItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new TextblocksItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new TextblockdefinitionItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());

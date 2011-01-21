@@ -15,6 +15,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import com.sap.furcas.parser.tcs.SyntaxConfigurationParserFactory;
 import com.sap.furcas.parser.tcs.TCSParserFactory;
 import com.sap.furcas.runtime.parser.IParsingObserver;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
@@ -24,29 +25,37 @@ import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.impl.DefaultTextAwareModelAdapter;
 
 /**
- * Parses a TCS file and injects the syntax definition into an EMF runtime model.
+ * Parses a TCS file and injects the syntax definition into an EMF runtime
+ * model.
  * 
  * @author C5107456
  */
 public class TCSSpecificEMFModelInjector {
-    // This file is a specific non-generic Injector, as the ModelHandler used
-    // can only inject models that are instances of the TCS Syntax definition
-    // metamodel.
+	// This file is a specific non-generic Injector, as the ModelHandler used
+	// can only inject models that are instances of the TCS Syntax definition
+	// metamodel.
 
-    /**
-     * Parse the syntax definition using the stable version of the TCSParser and TCSLexer.
-     */
-    public static ModelInjectionResult parseSyntaxDefinition(InputStream in, ResourceSet resourceSet, Set<URI> referenceScope,
-	    IParsingObserver observer) throws InvalidParserImplementationException, IOException, UnknownProductionRuleException {
-        
-        ParserFacade tcsParserFacade = TCSParserFactory.INSTANCE.createTCSParserFacade();
-	return parseSyntaxDefinition(in, resourceSet, referenceScope, observer, tcsParserFacade);
-    }
+	/**
+	 * Parse the syntax definition using the stable version of the TCSParser and
+	 * TCSLexer.
+	 */
+	public static ModelInjectionResult parseSyntaxDefinition(InputStream in,
+			ResourceSet resourceSet, Set<URI> referenceScope,
+			IParsingObserver observer)
+			throws InvalidParserImplementationException, IOException,
+			UnknownProductionRuleException {
 
-    /**
-     * Parse the syntax definition using the given version of the TCSParser and TCSLexer.
-     */
-    public static ModelInjectionResult parseSyntaxDefinition(InputStream in, ResourceSet resourceSet, Set<URI> referenceScope,
+		ParserFacade tcsParserFacade = TCSParserFactory.INSTANCE
+				.createTCSParserFacade();
+		return parseSyntaxDefinition(in, resourceSet, referenceScope, observer,
+				tcsParserFacade);
+	}
+
+	/**
+	 * Parse the syntax definition using the given version of the TCSParser and
+	 * TCSLexer.
+	 */
+	public static ModelInjectionResult parseSyntaxDefinition(InputStream in, ResourceSet resourceSet, Set<URI> referenceScope,
 	    IParsingObserver observer, ParserFacade tcsParserFacade) throws IOException, UnknownProductionRuleException {
         
 	// use a model Handler that is implemented in EMF and only handles TCS models
@@ -59,7 +68,35 @@ public class TCSSpecificEMFModelInjector {
 	} finally {
 	    handler.close();
 	}
-
+	}	
+	   /**
+     * Parse the syntax definition of the interface configuration using the stable version of the SyntaxConfigurationParser and SyntaxConfigurationLexer.
+     */
+    public static ModelInjectionResult parseSyntaxDefinitionForConfiguration(InputStream syntaxConfiguration, ResourceSet resourceSet, Set<URI> referenceScopes,
+	    IParsingObserver observer) throws InvalidParserImplementationException, IOException, UnknownProductionRuleException {
+        
+        ParserFacade syntaxConfigurationParserFacade = SyntaxConfigurationParserFactory.INSTANCE.createSyntaxConfigurationParserFacade();
+	return parseSyntaxDefinitionForConfiguration(syntaxConfiguration, resourceSet, referenceScopes, observer, syntaxConfigurationParserFacade);
     }
 
+    /**
+	 * Parse the syntax definition of interface configuration using the given version of the SyntaxConfigurationParser and
+	 * SyntaxConfigurationLexer.
+	 */
+	public static ModelInjectionResult parseSyntaxDefinitionForConfiguration(InputStream in, ResourceSet resourceSet, Set<URI> referenceScope,
+	    IParsingObserver observer, ParserFacade syntaxConfigurationParserFacade) throws IOException, UnknownProductionRuleException {
+        
+	// use a model Handler that is implemented in EMF and only handles TCS models
+	TCSSpecificEMFModelAdapter handler = new TCSSpecificEMFModelAdapter(resourceSet, referenceScope);
+	
+	try {
+	    DefaultTextAwareModelAdapter handlerWrapper = new DefaultTextAwareModelAdapter(handler);
+	    ModelParsingResult result = syntaxConfigurationParserFacade.parseProductionRule(in, handlerWrapper, null, null, observer);
+	    return new ModelInjectionResult(handler, result);
+	} finally {
+	    handler.close();
+	}
+	
+
+    }
 }

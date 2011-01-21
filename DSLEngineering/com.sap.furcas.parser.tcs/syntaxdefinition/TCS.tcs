@@ -68,11 +68,18 @@ syntax TCS {
 
         -- the root element of any syntax definition
         template TCS::ConcreteSyntax main context
-                : --(isDefined(requiredElements) ? requiredElements )
-                 (isDefined(imports) ? imports )     
-                -- (isDefined(interfaceDeclarations) ? interfaceDeclarations ) 
+                :(isDefined(imports) ? imports )    
+                (isDefined(requiredTemplates) ? "requires" requiredTemplates{separator = ","} ";") 
                  "syntax" name (isDefined(k) ?  "(" "k" "=" k ")") "{" [
-                                templates
+                 				[[
+                 					(templates instanceOf PrimitiveTemplate ? templates{forcedLower=1})
+                 					|
+                 					(templates instanceOf ContextTemplate ? templates{forcedLower=1})
+                 					|
+                 					(templates instanceOf EnumerationTemplate ? templates{forcedLower=1})
+                 					|
+                 					(templates instanceOf FunctionTemplate ? templates{forcedLower=1})
+                 				]]*
                                 (isDefined(keywords) ? "keywords" "{" [ keywords ] "}")
                                 (isDefined(symbols) ? "symbols" "{" [ symbols ] "}")
                                 operatorLists
@@ -80,7 +87,6 @@ syntax TCS {
                                 (isDefined(lexer) ? "lexer" "=" lexer{as = stringSymbol} ";")
                         ] {nbNL = 2} "}"
                 ;
-
 
         -- utility for all qualified meta references
         function reference(TCS::QualifiedNamedElement)
@@ -97,7 +103,7 @@ syntax TCS {
         template TCS::ContextTemplate abstract;
 
         template TCS::PrimitiveTemplate
-                :       (isDefined(templateVisibility) ? "public" )
+                :       (isDefined(templateVisibility) ? templateVisibility )
                         "primitiveTemplate" templateName "for" $reference
                                 (default ? "default")
                                 "using" tokenName
@@ -113,7 +119,7 @@ syntax TCS {
                 ;
 
         template TCS::EnumerationTemplate context addToContext
-                :       (isDefined(templateVisibility) ? "public" )
+                :       (isDefined(templateVisibility) ? templateVisibility)
                 	"enumerationTemplate" $reference (automatic ? "auto")
                         (isDefined(mappings) ?
                                         [ ":" [
@@ -131,7 +137,7 @@ syntax TCS {
                 ;
 
         template TCS::ClassTemplate context addToContext
-                :   (isDefined(templateVisibility) ? "public" )    
+                :   (isDefined(templateVisibility) ? templateVisibility )    
                 	"template" $reference
                         (isReferenceOnly 
                           ? "referenceOnly" -- Reference Templates do not have other classTemplate attributes 
@@ -153,9 +159,17 @@ syntax TCS {
                         --this is an oppositeEnd for TextBlockDefinition:parseRule
                         textBlockDefinition{forcedUpper=1}
                 ;
+                
+        template TCS::RequiredInterfaceTemplate context addToContext
+         		: $reference
+         		(isDefined(mode) ? "#" mode{as = identifierOrKeyword}) 
+                --(isDefined(disambiguate) ? "(" "disambiguate" "=" disambiguate{as = stringSymbol} ")")
+                --(isDefined(disambiguateV3) ? "(" "disambiguateV3" "=" disambiguateV3{as = stringSymbol} ")")
+                --(isDefined(semDisambiguate) ? "(" "semDisambiguate" "=" semDisambiguate{as = stringSymbol} ")")
+                ;
 
         template TCS::OperatorTemplate context addToContext
-                :       (isDefined(templateVisibility) ? "public" )
+                :       (isDefined(templateVisibility) ? templateVisibility )
                 		"operatorTemplate" $reference "("
                                 "operators" "=" operators{refersTo = name}
                                 "," "source" "=" storeLeftSideTo
@@ -174,7 +188,7 @@ syntax TCS {
                 ;
 
         template TCS::FunctionTemplate context addToContext
-                :       (isDefined(templateVisibility) ? "public" )
+                :       (isDefined(templateVisibility) ? templateVisibility )
                 		"function" functionName "(" $reference ")"
                                 [ ":"
                                         [ functionSequence ] {startNL = false}
@@ -186,53 +200,28 @@ syntax TCS {
                 ;
 -- @end Templates 
   
---@the import concept 
+-- @the import concept 
 		template ImportDeclaration abstract;
 				 
 		template ConcreteSyntaxImport 
-				: (isPartImport ? "partial") "to_import" concreteSyntax { refersTo = name, 
+				: (isPartImport ? "partial") "imports" concreteSyntax { refersTo = name, 
 				query = "OCL:ConcreteSyntax.allInstances()->select(cs | cs.name = ? )"} ";" 
 				;
 		
-                template TemplateImport
-                        : (isPartImport ? "partial") "to_import" concreteSyntax { refersTo = name,
-                        query = "OCL:ConcreteSyntax.allInstances()->select(cs | cs.name = ?)"}
-                        template { as = identifierOrKeyword, query = "OCL:self.concreteSyntax.templates
-                                        ->select(t | t.metaReference.name = ? and 
-                                        	if(not self.mode.oclIsUndefined()) then
-                                            	t.oclAsType(FURCAS::TCS::ClassTemplate).mode = self.mode
-                                            else
-                                            	t.oclAsType(FURCAS::TCS::ClassTemplate).mode.oclIsUndefined()
-                                            endif)"}
-                         (isDefined(mode) ?  "#" mode ) ";" 
-                         ;
+        template TemplateImport
+                : (isPartImport ? "partial") "imports" concreteSyntax { refersTo = name,
+                query = "OCL:ConcreteSyntax.allInstances()->select(cs | cs.name = ?)"}
+                template { as = identifierOrKeyword, query = "OCL:self.concreteSyntax.templates
+                ->select(t | t.metaReference.name = ? and 
+                if(not self.mode.oclIsUndefined()) then
+                t.oclAsType(FURCAS::TCS::ClassTemplate).mode = self.mode
+                else
+                t.oclAsType(FURCAS::TCS::ClassTemplate).mode.oclIsUndefined()
+                endif)"}
+                (isDefined(mode) ?  "#" mode ) ";" 
+                ;
 
 --@ end of the import concept
-
---@the interface concept
-
---		template InterfaceDefinition abstract;
-		
---		template Interface
---				: "required" 
---                template { as = identifierOrKeyword, query = "OCL:  let templates = providingSyntax.templates 
---				in templates ->select(t |  t.metaReference.name = ? 
---				and if t.oclIsTypeOf(TCS::ClassTemplate)
---                then t.oclAsType(TCS::ClassTemplate).mode = self.mode else true  endif )"}
---                (isDefined(mode) ?  "#" mode ) ";" 
-				
---		template ProvidedInterface
---				:"provided" template { as = identifierOrKeyword, query = "OCL:self.concreteSyntax.templates
---               ->select(t | t.metaReference.name = ? and if t.oclIsTypeOf(TCS::ClassTemplate)
---                then t.oclAsType(TCS::ClassTemplate).mode = self.mode else true  endif)"}
---                 (isDefined(mode) ?  "#" mode ) ";" 
---                 ;
-
-
-
-
---@the end of interface concept
-
 
 
         template TCS::Sequence
@@ -441,6 +430,11 @@ syntax TCS {
                 :       #always         = "always",
                         #ifmissing      = "ifmissing",
                         #never          = "never"
+                ;
+                
+          enumerationTemplate TCS::VisibilityEnum
+                :       #private         = "private",
+                        #public          = "public"
                 ;
 
         template TCS::ImportContextPArg

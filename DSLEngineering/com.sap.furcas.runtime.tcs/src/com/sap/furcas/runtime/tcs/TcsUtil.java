@@ -1742,12 +1742,12 @@ public class TcsUtil {
      * @return
      * @throws SyntaxElementException
      */
-    public static <Type> boolean areSubTypesWithTemplates(List<ResolvedNameAndReferenceBean<Type>> subtypes, String mode,
+    public static <Type> boolean areSubTypesWithTemplates( Template parentTemplate, List<ResolvedNameAndReferenceBean<Type>> subtypes, String mode,
             SyntaxLookup syntaxLookup) throws SyntaxElementException {
         for (ResolvedNameAndReferenceBean<Type> subTypeName : subtypes) {
             Collection<Template> subtemps = null;
 
-            subtemps = syntaxLookup.getTCSTemplate(subTypeName, mode);
+            subtemps = syntaxLookup.getTCSTemplate(parentTemplate,subTypeName, mode);
             if (subtemps != null && subtemps.size() > 0) {
                 return true;
             }

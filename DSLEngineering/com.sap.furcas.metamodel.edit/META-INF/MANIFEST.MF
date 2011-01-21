@@ -9,6 +9,7 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: com.sap.furcas.metamodel.FURCAS.TCS.provider,
+ com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.provider,
  com.sap.furcas.metamodel.FURCAS.provider,
  com.sap.furcas.metamodel.FURCAS.textblockdefinition.provider,
  com.sap.furcas.metamodel.FURCAS.textblocks.provider

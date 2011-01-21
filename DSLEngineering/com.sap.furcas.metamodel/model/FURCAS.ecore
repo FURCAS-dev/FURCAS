@@ -5,6 +5,7 @@
     nsURI="http://www.furcas.org" nsPrefix="com.sap.furcas">
   <eClassifiers xsi:type="ecore:EClass" name="EmptyDummyClassToWorkaroundGeneratorBug"/>
   <eSubpackages href="TCS.ecore#/"/>
+  <eSubpackages href="InterfaceConfiguration.ecore#/"/>
   <eSubpackages href="textblocks.ecore#/"/>
   <eSubpackages href="textblockdefinition.ecore#/"/>
 </ecore:EPackage>

@@ -97,7 +97,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null,null);
 
         PropertyTypeHandler.PropertyArgs args = new PropertyTypeHandler.PropertyArgs(argsList);
         StringBuilder repeatablePart = new StringBuilder("repeatableBit");
@@ -146,7 +146,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null,null);
 
         PropertyTypeHandler.PropertyArgs args = new PropertyTypeHandler.PropertyArgs(argsList);
         StringBuilder repeatablePart = new StringBuilder("repeatableBit");
@@ -350,7 +350,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null,null);
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -369,7 +369,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null,null);
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -422,7 +422,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null,null);
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -447,7 +447,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null,null);
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -472,7 +472,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null,null);
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -505,7 +505,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null,null);
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -532,7 +532,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null,null);
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -567,7 +567,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null,null);
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -603,7 +603,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null,null);
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -637,7 +637,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null,null);
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -672,7 +672,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null,null);
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -707,7 +707,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null,null);
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -791,7 +791,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null,null);
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -816,7 +816,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null,null);
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -844,7 +844,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null,null);
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -884,7 +884,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null,null);
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -924,7 +924,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null,null);
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -953,7 +953,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null,null);
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -979,7 +979,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null,null);
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
@@ -1078,7 +1078,7 @@ public class TestPropertyTypeHandler {
         TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
 
         // Class under test
-        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null);
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, null,null);
 
         // result buffer
         RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();

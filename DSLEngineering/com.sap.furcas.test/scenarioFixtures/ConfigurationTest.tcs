@@ -1,0 +1,1 @@
+Configuration Test{bind BibtextInterfaceTest:BibTextEntry to BibtextImported:BibTextEntry;}

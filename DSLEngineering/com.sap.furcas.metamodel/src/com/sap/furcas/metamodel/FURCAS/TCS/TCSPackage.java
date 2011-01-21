@@ -280,13 +280,22 @@ public interface TCSPackage extends EPackage {
     int CONCRETE_SYNTAX__IMPORTS = NAMED_ELEMENT_FEATURE_COUNT + 7;
 
         /**
+	 * The feature id for the '<em><b>Required Templates</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_SYNTAX__REQUIRED_TEMPLATES = NAMED_ELEMENT_FEATURE_COUNT + 8;
+
+								/**
 	 * The number of structural features of the '<em>Concrete Syntax</em>' class.
 	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-        int CONCRETE_SYNTAX_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 8;
+        int CONCRETE_SYNTAX_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 9;
 
         /**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.QualifiedNamedElementImpl <em>Qualified Named Element</em>}' class.
@@ -7483,6 +7492,17 @@ public interface TCSPackage extends EPackage {
     EReference getConcreteSyntax_Imports();
 
         /**
+	 * Returns the meta object for the reference list '{@link com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax#getRequiredTemplates <em>Required Templates</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Required Templates</em>'.
+	 * @see com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax#getRequiredTemplates()
+	 * @see #getConcreteSyntax()
+	 * @generated
+	 */
+	EReference getConcreteSyntax_RequiredTemplates();
+
+								/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.FURCAS.TCS.Template <em>Template</em>}'.
 	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -10391,6 +10411,14 @@ public interface TCSPackage extends EPackage {
         EReference CONCRETE_SYNTAX__IMPORTS = eINSTANCE.getConcreteSyntax_Imports();
 
                 /**
+		 * The meta object literal for the '<em><b>Required Templates</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONCRETE_SYNTAX__REQUIRED_TEMPLATES = eINSTANCE.getConcreteSyntax_RequiredTemplates();
+
+																/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.TemplateImpl <em>Template</em>}' class.
 		 * <!-- begin-user-doc -->
                  * <!-- end-user-doc -->

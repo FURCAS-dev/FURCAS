@@ -27,6 +27,10 @@
   <children xmi:type="notation:Node" xmi:id="_TBg8sAHaEeCapfJmRY5HUA" type="1001">
     <children xmi:type="notation:Node" xmi:id="_TBg8swHaEeCapfJmRY5HUA" type="4001"/>
     <children xmi:type="notation:Node" xmi:id="_TBg8tAHaEeCapfJmRY5HUA" type="5001">
+      <children xmi:type="notation:Node" xmi:id="_rkgQYQgnEeCQjPvc-UdK1A" type="2001">
+        <element xmi:type="ecore:EAttribute" href="TCS.ecore#//TemplateImport/mode"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_rkgQYggnEeCQjPvc-UdK1A"/>
+      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_TBg8tQHaEeCapfJmRY5HUA"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_TBg8tgHaEeCapfJmRY5HUA"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_TBg8twHaEeCapfJmRY5HUA"/>
@@ -216,20 +220,6 @@
     <styles xmi:type="notation:FontStyle" xmi:id="_PTjIQgbfEeCQLfybl58Vaw" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
     <element xmi:type="ecore:EReference" href="TCS.ecore#//TemplateImport/template"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_PTjIQwbfEeCQLfybl58Vaw" points="[-32, -20, 700, 451]$[-731, -471, 1, 0]"/>
-  </edges>
-  <edges xmi:type="notation:Edge" xmi:id="_WSM8cAbfEeCQLfybl58Vaw" type="3002" source="_R5N34AHaEeCapfJmRY5HUA" target="_FXyCsQbfEeCQLfybl58Vaw">
-    <children xmi:type="notation:Node" xmi:id="_WSOKkAbfEeCQLfybl58Vaw" type="4011">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_WSOKkQbfEeCQLfybl58Vaw" x="-10" y="-10"/>
-    </children>
-    <children xmi:type="notation:Node" xmi:id="_WSOKkgbfEeCQLfybl58Vaw" type="4012">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_WSOKkwbfEeCQLfybl58Vaw" x="10" y="10"/>
-    </children>
-    <styles xmi:type="notation:ConnectorStyle" xmi:id="_WSM8cQbfEeCQLfybl58Vaw" lineColor="4210752"/>
-    <styles xmi:type="notation:FontStyle" xmi:id="_WSM8cgbfEeCQLfybl58Vaw" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
-    <element xmi:type="ecore:EReference" href="TCS.ecore#//ConcreteSyntax/requiredTemplate"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_WSM8cwbfEeCQLfybl58Vaw" points="[-1, 11, 1, -335]$[-1, 340, 1, -6]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WSTqIAbfEeCQLfybl58Vaw" id="(0.4222222222222222,0.8382352941176471)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WSURMAbfEeCQLfybl58Vaw" id="(0.33707865168539325,0.13725490196078433)"/>
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_aRpNgAbfEeCQLfybl58Vaw" type="3003" source="_FXyCsQbfEeCQLfybl58Vaw" target="_PSbG4AbfEeCQLfybl58Vaw">
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_aRp0kAbfEeCQLfybl58Vaw" routing="Rectilinear" lineColor="4210752"/>

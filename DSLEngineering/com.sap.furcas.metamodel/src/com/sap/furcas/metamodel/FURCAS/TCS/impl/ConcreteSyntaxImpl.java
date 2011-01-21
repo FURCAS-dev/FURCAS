@@ -16,12 +16,14 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.ImportDeclaration;
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
+import com.sap.furcas.metamodel.FURCAS.TCS.RequiredInterfaceTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
@@ -42,6 +44,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Token;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.ConcreteSyntaxImpl#getTokens <em>Tokens</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.ConcreteSyntaxImpl#getLexer <em>Lexer</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.ConcreteSyntaxImpl#getImports <em>Imports</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.ConcreteSyntaxImpl#getRequiredTemplates <em>Required Templates</em>}</li>
  * </ul>
  * </p>
  *
@@ -158,6 +161,16 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
     protected EList<ImportDeclaration> imports;
 
         /**
+	 * The cached value of the '{@link #getRequiredTemplates() <em>Required Templates</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRequiredTemplates()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<RequiredInterfaceTemplate> requiredTemplates;
+
+								/**
 	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
 	 * @generated
@@ -317,6 +330,18 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
 
         /**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<RequiredInterfaceTemplate> getRequiredTemplates() {
+		if (requiredTemplates == null) {
+			requiredTemplates = new EObjectResolvingEList<RequiredInterfaceTemplate>(RequiredInterfaceTemplate.class, this, TCSPackage.CONCRETE_SYNTAX__REQUIRED_TEMPLATES);
+		}
+		return requiredTemplates;
+	}
+
+								/**
+	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -378,6 +403,8 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
 				return getLexer();
 			case TCSPackage.CONCRETE_SYNTAX__IMPORTS:
 				return getImports();
+			case TCSPackage.CONCRETE_SYNTAX__REQUIRED_TEMPLATES:
+				return getRequiredTemplates();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -421,6 +448,10 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
 				getImports().clear();
 				getImports().addAll((Collection<? extends ImportDeclaration>)newValue);
 				return;
+			case TCSPackage.CONCRETE_SYNTAX__REQUIRED_TEMPLATES:
+				getRequiredTemplates().clear();
+				getRequiredTemplates().addAll((Collection<? extends RequiredInterfaceTemplate>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -457,6 +488,9 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
 			case TCSPackage.CONCRETE_SYNTAX__IMPORTS:
 				getImports().clear();
 				return;
+			case TCSPackage.CONCRETE_SYNTAX__REQUIRED_TEMPLATES:
+				getRequiredTemplates().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -485,6 +519,8 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
 				return LEXER_EDEFAULT == null ? lexer != null : !LEXER_EDEFAULT.equals(lexer);
 			case TCSPackage.CONCRETE_SYNTAX__IMPORTS:
 				return imports != null && !imports.isEmpty();
+			case TCSPackage.CONCRETE_SYNTAX__REQUIRED_TEMPLATES:
+				return requiredTemplates != null && !requiredTemplates.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

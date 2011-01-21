@@ -33,9 +33,9 @@
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="forEachContext" upperBound="-1"
         eType="#//ForEachContext" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cachedString" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cachedString" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="complete" lowerBound="1"
-        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="additionalTemplates" upperBound="-1"
         eType="ecore:EClass TCS.ecore#//Template"/>
@@ -49,7 +49,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OmittedToken" eSuperTypes="#//AbstractToken"/>
   <eClassifiers xsi:type="ecore:EClass" name="LexedToken" eSuperTypes="#//AbstractToken">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UnlexedToken" eSuperTypes="#//AbstractToken"/>
   <eClassifiers xsi:type="ecore:EClass" name="DocumentNode" abstract="true">
@@ -59,13 +59,13 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//TextBlock"
         eOpposite="#//TextBlock/subNodes"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="correspondingModelElements"
-        upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject">
+        upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
         <details key="Property.oppositeRoleName" value="correspondingDocumentNode"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="referencedElements" upperBound="-1"
-        eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject">
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
         <details key="Property.oppositeRoleName" value="referencingDocumentNode"/>
       </eAnnotations>
@@ -75,7 +75,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="otherVersions" upperBound="2"
         eType="#//DocumentNode"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="offsetRelative" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="offsetRelative" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="startRow" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="startColumn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="endRow" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -91,9 +91,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="foreachPedicatePropertyInit"
         eType="ecore:EClass TCS.ecore#//ForeachPredicatePropertyInit"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contextElement" upperBound="-1"
-        eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="resultModelElement" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceModelElement" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resultModelElement" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceModelElement" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Eostoken" eSuperTypes="#//AbstractToken"/>
   <eClassifiers xsi:type="ecore:EClass" name="Bostoken" eSuperTypes="#//AbstractToken"/>

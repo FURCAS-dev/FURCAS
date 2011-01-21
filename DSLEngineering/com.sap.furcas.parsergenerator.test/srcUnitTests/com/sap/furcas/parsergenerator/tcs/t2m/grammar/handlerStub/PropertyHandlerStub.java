@@ -22,7 +22,7 @@ public class PropertyHandlerStub extends PropertyTypeHandler {
      * @param syntaxLookup
      */
     public PropertyHandlerStub() {
-        super(new MetaLookupStub(), null, null, null);
+        super(new MetaLookupStub(), null, null, null, null);
     }
     
     @Override

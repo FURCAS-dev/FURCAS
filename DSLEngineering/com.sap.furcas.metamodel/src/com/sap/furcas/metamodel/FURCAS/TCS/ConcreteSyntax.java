@@ -24,6 +24,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax#getTokens <em>Tokens</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax#getLexer <em>Lexer</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax#getImports <em>Imports</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax#getRequiredTemplates <em>Required Templates</em>}</li>
  * </ul>
  * </p>
  *
@@ -208,5 +209,21 @@ public interface ConcreteSyntax extends NamedElement {
 	 * @generated
 	 */
     EList<ImportDeclaration> getImports();
+
+								/**
+	 * Returns the value of the '<em><b>Required Templates</b></em>' reference list.
+	 * The list contents are of type {@link com.sap.furcas.metamodel.FURCAS.TCS.RequiredInterfaceTemplate}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Required Templates</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Required Templates</em>' reference list.
+	 * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getConcreteSyntax_RequiredTemplates()
+	 * @model
+	 * @generated
+	 */
+	EList<RequiredInterfaceTemplate> getRequiredTemplates();
 
 } // ConcreteSyntax

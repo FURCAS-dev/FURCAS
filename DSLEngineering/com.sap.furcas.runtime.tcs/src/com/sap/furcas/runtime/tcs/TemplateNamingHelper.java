@@ -273,7 +273,7 @@ public class TemplateNamingHelper<Type extends Object> {
             ResolvedNameAndReferenceBean<Type> resolvedBean = resolutionHelper.resolve(template);
             subtypes = this.resolutionHelper.getMetaLookup().getDirectSubTypes(resolvedBean);
             String ruleNameForTemplate = getRuleNameForTemplate(template);
-            if(TcsUtil.areSubTypesWithTemplates(subtypes, TcsUtil.getTemplateMode(template), syntaxLookup)) {
+            if(TcsUtil.areSubTypesWithTemplates(template,subtypes, TcsUtil.getTemplateMode(template), syntaxLookup)) {
     	    	return ruleNameForTemplate + "__impl";
             } else {
                 return ruleNameForTemplate;

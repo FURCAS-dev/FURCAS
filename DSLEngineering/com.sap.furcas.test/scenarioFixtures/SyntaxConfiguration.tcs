@@ -1,0 +1,97 @@
+syntax SyntaxConfiguration {
+
+		primitiveTemplate identifier for ecore::EString default using NAME :
+                value = "unescapeString(%token%)";
+
+        primitiveTemplate identifierOrKeyword for ecore::EString using NAME orKeyword:
+                value = "unescapeString(%token%)";
+                
+		primitiveTemplate plainStringSymbol for ecore::EString using STRING:
+                value = "unescapeString(%token%)";
+
+        primitiveTemplate integerSymbol for ecore::EIntegerObject default using INT:
+                value = "Integer.valueOf(%token%)";
+		
+		template Configuration main
+					:"Configuration" name "{"
+					 	[bindings {separator = ","}]
+					"}"
+					;
+		
+		template Binding
+					:
+					"bind" requireingSyntax { refersTo = name, 
+					query = "OCL:TCS::ConcreteSyntax.allInstances()->select(cs | cs.name = ? )"}
+					":" 
+					requiredTemplate { as = identifierOrKeyword, query = "OCL:  requireingSyntax.requiredTemplates ->select(t | t.oclIsTypeOf(TCS::RequiredInterfaceTemplate) and t.metaReference.name = ? and
+					if(not self.mode.oclIsUndefined()) then
+                                            	t.oclAsType(FURCAS::TCS::RequiredInterfaceTemplate).mode = self.mode
+                                            else
+                                            	t.oclAsType(FURCAS::TCS::RequiredInterfaceTemplate).mode.oclIsUndefined()
+                                            endif)"}
+                	(isDefined(mode) ?  "#" mode ) 
+					"to" 
+					providingSyntax  { refersTo = name, 
+					query = "OCL:TCS::ConcreteSyntax.allInstances()->select(cs | cs.name = ? )"}
+					":" 
+					providedTemplate { as = identifierOrKeyword, query = "OCL:  providingSyntax.templates ->select(t |  t.metaReference.name = ? and
+					if(not self.mode.oclIsUndefined()) then
+                                            	t.oclAsType(FURCAS::TCS::ClassTemplate).mode = self.mode
+                                            else
+                                            	t.oclAsType(FURCAS::TCS::ClassTemplate).mode.oclIsUndefined()
+                                            endif)" }
+                	(isDefined(mode) ?  "#" mode ) ";"
+                	;
+					
+							
+symbols {
+                lsquare         = "[";
+                rsquare         = "]";
+                dlsquare        = "[[";
+                drsquare        = "]]";
+                excl            = "!";
+                coma            = ",";
+                lparen          = "(";
+                rparen          = ")";
+                lcurly          = "{";
+                rcurly          = "}";
+                dlcurly         = "{{";
+                drcurly         = "}}";
+                semi            = ";";
+                colon           = ":";
+                dlcolon         = "::";         
+                pipe            = "|";
+                sharp           = "#";
+                qmark           = "?";
+                dollar          = "$";
+                arobas          = "@";
+                
+                -- operator symbols
+                point           = ".";
+                rarrow          = "->";
+                minus           = "-";
+                star            = "*";
+                slash           = "/";
+                plus            = "+";
+                eq              = "=";
+                gt              = ">";
+                lt              = "<";
+                ge              = ">=";
+                le              = "<=";
+                ne              = "<>";
+                larrow          = "<-";
+        }
+        
+        -- operator for left recursive qualified names
+        operators DBLCOLON{
+                priority 0 {
+                        opDlColon = dlcolon, 2;
+                }
+        }
+
+        omitted token COMMENT   : endOfLine(start = "--");
+        omitted token MULTI_LINE_COMMENT        : multiLine(start = "/**", end = "*/");
+
+    
+
+}

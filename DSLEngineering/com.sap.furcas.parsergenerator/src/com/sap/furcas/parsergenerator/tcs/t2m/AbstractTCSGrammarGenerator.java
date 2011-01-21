@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
+import com.sap.furcas.parsergenerator.TCSSyntaxContainerBeanWithConfig;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ANTLR3GrammarWriter;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ANTLRGrammarGenerator;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.GenerationReport;
@@ -73,7 +74,6 @@ public abstract class AbstractTCSGrammarGenerator {
             IOException, ModelAdapterException, GrammarGenerationException {
         return generateGrammar(resourceSet, referenceScope, paserSuperClass, null);
     }
-
     /**
      * validates the syntax, then generates ANTLR3 grammar and writes it to OutputStream.
      * 
@@ -100,14 +100,41 @@ public abstract class AbstractTCSGrammarGenerator {
 
         ANTLR3GrammarWriter writer = new ANTLR3GrammarWriter();
         ANTLRGrammarGenerator mapper = new ANTLRGrammarGenerator();
-        GenerationReport report = mapper.generateGrammar(writer, lookup, bean, new SyntaxDefinitionValidation(), paserSuperClass);
+        if (bean instanceof TCSSyntaxContainerBeanWithConfig) {
+        	 GenerationReport report = mapper.generateGrammar(writer, lookup, (TCSSyntaxContainerBeanWithConfig)bean, new SyntaxDefinitionValidation(), paserSuperClass);
+        	 writer.setTargetPackage(targetPackage);
+             out.write(writer.getOutput().getBytes());
 
-        writer.setTargetPackage(targetPackage);
-        out.write(writer.getOutput().getBytes());
+             return report;
+		} else {
+			 GenerationReport report = mapper.generateGrammar(writer, lookup, bean, new SyntaxDefinitionValidation(), paserSuperClass);writer.setTargetPackage(targetPackage);
+		        out.write(writer.getOutput().getBytes());
 
-        return report;
+		        return report;
+		}
+        
     }
-
+    
+//    public GenerationReport generateGrammarWithConfig(ResourceSet resourceSet, Set<URI> referenceScope,
+//            Class<? extends ObservableInjectingParser> paserSuperClass, String languageId) throws ParserInvokationException,
+//            SyntaxParsingException, IOException, ModelAdapterException, GrammarGenerationException {
+//
+//        if (resourceSet.getPackageRegistry().getEFactory(TextblocksPackage.eNS_URI) == null) {
+//            throw new IllegalArgumentException("TCS Metamodel not registered for connection");
+//        }
+//
+//        TCSSyntaxContainerBeanWithConfig bean = doGetSyntaxDef(resourceSet, referenceScope, languageId);
+//
+//        ANTLR3GrammarWriter writer = new ANTLR3GrammarWriter();
+//        ANTLRGrammarGenerator mapper = new ANTLRGrammarGenerator();
+//        GenerationReport report = mapper.generateGrammar(writer, lookup, bean, new SyntaxDefinitionValidation(), paserSuperClass);
+//
+//        writer.setTargetPackage(targetPackage);
+//        out.write(writer.getOutput().getBytes());
+//
+//        return report;
+//    }
+    
     /**
      * Do get syntax def.
      * 
@@ -123,9 +150,10 @@ public abstract class AbstractTCSGrammarGenerator {
      *             the model handler exception
      * @throws ParserInvokationException
      */
-    protected abstract TCSSyntaxContainerBean doGetSyntaxDef(ResourceSet resourceSet, Set<URI> metamodelURIs)
+    protected abstract TCSSyntaxContainerBean doGetSyntaxDef( ResourceSet resourceSet, Set<URI> metamodelURIs)
             throws SyntaxParsingException, IOException, ModelAdapterException, ParserInvokationException;
 
+    
     /**
      * Do get syntax def for the given languageid.
      * 
@@ -144,5 +172,6 @@ public abstract class AbstractTCSGrammarGenerator {
      */
     protected abstract TCSSyntaxContainerBean doGetSyntaxDef(ResourceSet resourceSet, Set<URI> metamodelURIs, String languageId)
             throws SyntaxParsingException, IOException, ModelAdapterException, ParserInvokationException;
+
 
 }

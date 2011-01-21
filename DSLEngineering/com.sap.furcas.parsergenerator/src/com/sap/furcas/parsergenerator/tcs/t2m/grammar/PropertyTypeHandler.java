@@ -10,7 +10,9 @@ package com.sap.furcas.parsergenerator.tcs.t2m.grammar;
 
 import static com.sap.furcas.parsergenerator.util.StringConcatUtil.concatBuf;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -76,7 +78,11 @@ public class PropertyTypeHandler<Type extends Object> {
 	private MetaModelElementResolutionHelper<Type> resolutionHelper;
 
 	private boolean skipDelayedReferences = false;
-	
+
+	private ImportedTemplatesReceiver importedTemplatesReceiver;
+
+	private HashSet<Property> propertyList = new HashSet<Property>();
+
 	/**
 	 * Instantiates a new property type handler.
 	 * 
@@ -89,7 +95,8 @@ public class PropertyTypeHandler<Type extends Object> {
 	 */
 	protected PropertyTypeHandler(IMetaModelLookup<Type> metaLookup,
 			SyntaxLookup syntaxLookup, TemplateNamingHelper<Type> namingHelper,
-			SemanticErrorBucket errorBucket) {
+			SemanticErrorBucket errorBucket,
+			ImportedTemplatesReceiver importedTemplatesReceiver) {
 		super();
 		this.metaLookup = metaLookup;
 		this.syntaxLookup = syntaxLookup;
@@ -97,15 +104,18 @@ public class PropertyTypeHandler<Type extends Object> {
 		this.errorBucket = errorBucket;
 		this.resolutionHelper = new MetaModelElementResolutionHelper<Type>(
 				metaLookup);
+		this.importedTemplatesReceiver = importedTemplatesReceiver;
 	}
 
 	/**
 	 * @param handlerConfig
 	 */
 	protected PropertyTypeHandler(
-			SyntaxElementHandlerConfigurationBean<Type> handlerConfig) {
+			SyntaxElementHandlerConfigurationBean<Type> handlerConfig,
+			ImportedTemplatesReceiver importedTemplatesReceiver) {
 		this(handlerConfig.getMetaLookup(), handlerConfig.getSyntaxLookup(),
-				handlerConfig.getNamingHelper(), handlerConfig.getErrorBucket());
+				handlerConfig.getNamingHelper(),
+				handlerConfig.getErrorBucket(), importedTemplatesReceiver);
 	}
 
 	/**
@@ -156,30 +166,30 @@ public class PropertyTypeHandler<Type extends Object> {
 			} else { // property not to be referenced but used within
 				repeatablePart.append(" temp=");
 				if (args.asPArg != null) {
-                		    if (args.asPArg.getTemplate() != null) {
-                			Template asTemplate = args.asPArg.getTemplate();
-                			String ruleName = null;
-                			if (asTemplate instanceof ClassTemplate) {
-                			    ClassTemplate cAsTemplate = (ClassTemplate) asTemplate;
-                			    if (cAsTemplate.getMode() != null) {
-                				ruleName = namingHelper.getRuleNameForMode(
-                					cAsTemplate, cAsTemplate.getMode());
-                			    } else {
-                				ruleName = namingHelper
-                					.getRuleName(cAsTemplate);
-                			    }
-                			} else if (asTemplate instanceof PrimitiveTemplate) {
-                			    PrimitiveTemplate pAsTemplate = (PrimitiveTemplate) asTemplate;
-                			    ruleName = namingHelper.getRuleName(pAsTemplate);
-                			} else if (asTemplate instanceof EnumerationTemplate) {
-                			    EnumerationTemplate eAsTemplate = (EnumerationTemplate) asTemplate;
-                			    ruleName = namingHelper.getRuleName(eAsTemplate);
-                			}
-                
-                			repeatablePart.append(ruleName);
-                		    } else {
-                			repeatablePart.append(args.asPArg.getValue());
-                		    }
+					if (args.asPArg.getTemplate() != null) {
+						Template asTemplate = args.asPArg.getTemplate();
+						String ruleName = null;
+						if (asTemplate instanceof ClassTemplate) {
+							ClassTemplate cAsTemplate = (ClassTemplate) asTemplate;
+							if (cAsTemplate.getMode() != null) {
+								ruleName = namingHelper.getRuleNameForMode(
+										cAsTemplate, cAsTemplate.getMode());
+							} else {
+								ruleName = namingHelper
+										.getRuleName(cAsTemplate);
+							}
+						} else if (asTemplate instanceof PrimitiveTemplate) {
+							PrimitiveTemplate pAsTemplate = (PrimitiveTemplate) asTemplate;
+							ruleName = namingHelper.getRuleName(pAsTemplate);
+						} else if (asTemplate instanceof EnumerationTemplate) {
+							EnumerationTemplate eAsTemplate = (EnumerationTemplate) asTemplate;
+							ruleName = namingHelper.getRuleName(eAsTemplate);
+						}
+
+						repeatablePart.append(ruleName);
+					} else {
+						repeatablePart.append(args.asPArg.getValue());
+					}
 				} else {
 					// use type name for rule name, unless it is a DataType
 					// (then use primitive template for that datatype)
@@ -194,14 +204,31 @@ public class PropertyTypeHandler<Type extends Object> {
 								.buildRuleName(metaModelTypeOfProperty);
 						String modeArg = args.modePArg != null ? args.modePArg
 								.getMode() : null;
-						Collection<Template> tcsTemplate = syntaxLookup.getTCSTemplate(
-								        metaModelTypeOfProperty, modeArg);
+						Collection<Template> tcsTemplate = syntaxLookup
+								.getTCSTemplate(prop.getParentTemplate(),
+										metaModelTypeOfProperty, modeArg);
 						if (tcsTemplate == null || tcsTemplate.isEmpty()) {
 							errorBucket.addError(
 									"Syntax does not define a rule for "
 											+ metaModelTypeOfProperty
 											+ " with mode " + modeArg, prop);
 						}
+
+						Collection<Template> subtypesOProperty = new HashSet<Template>();
+						// get the sub-types referenced to the property prop
+						subtypesOProperty = getSubtypeOfProperty(prop,
+								metaModelTypeOfProperty, args);
+						if (subtypesOProperty != null
+								&& subtypesOProperty.size() > 0) {
+							tcsTemplate.addAll(subtypesOProperty);
+						}
+						// FIXME what happens if more than one template is
+						// returned here?
+						for (Template importedTemplate : tcsTemplate) {
+							importedTemplatesReceiver
+									.addAdditionallyImportedTemplate(importedTemplate);
+						}
+
 						repeatablePart.append(propertyTemplateRule);
 					}
 				}
@@ -209,9 +236,11 @@ public class PropertyTypeHandler<Type extends Object> {
 					repeatablePart.append(TemplateNamingHelper
 							.getModeSuffix(args.modePArg.getMode()));
 				}
-				repeatablePart.append(" {setProperty(ret, \"").append(
-                        propertyName).append("\", temp);\nsetParent(temp,ret,\""+
-                        propertyName+"\");}");
+				repeatablePart
+						.append(" {setProperty(ret, \"")
+						.append(propertyName)
+						.append("\", temp);\nsetParent(temp,ret,\""
+								+ propertyName + "\");}");
 			}
 
 			// treat multiplicity
@@ -222,10 +251,10 @@ public class PropertyTypeHandler<Type extends Object> {
 				multiplicity = metaLookup
 						.getMultiplicity(refBean, propertyName);
 			} catch (NameResolutionFailedException e) {
-				throw new SyntaxElementException("Type "
-						+ MessageHelper
-								.getTemplateName(propertyOwnerTypeTemplate)
-						+ " could not be resolved.", e);
+				throw new SyntaxElementException(
+						"Type "
+								+ MessageHelper.getTemplateName(propertyOwnerTypeTemplate)
+								+ " could not be resolved.", e);
 			}
 			if (multiplicity == null) {
 				throw new SyntaxElementException("Type "
@@ -246,9 +275,15 @@ public class PropertyTypeHandler<Type extends Object> {
 								+ multiplicity.getLowerBound() + ">"
 								+ multiplicity.getUpperBound(), prop, null);
 			}
+//			if (propertyList.size() > 0 && propertyList.contains(prop)) {
+//				addRepeatableWithMultiplicity(buffer, prop, repeatablePart,
+//						multiplicity, args);
+//			}else {
+				addRepeatableWithMultiplicity(buffer, prop, repeatablePart,
+						multiplicity, args);
+//			}
 
-			addRepeatableWithMultiplicity(buffer, prop, repeatablePart,
-					multiplicity, args);
+//			propertyList.add(prop);
 
 		} catch (MetamodelNameResolvingException e) {
 			throw new SyntaxElementException(e.getMessage(), prop, e);
@@ -257,6 +292,53 @@ public class PropertyTypeHandler<Type extends Object> {
 			// SyntaxElementException("Exception while generating grammar for Property "
 			// + prop.getName(), prop, spe );
 		}
+	}
+
+	/**
+	 * to get the sub-types of an property, to get the transitive Templates that
+	 * are reference to an property
+	 * 
+	 * @param prop
+	 * @param metaModelTypeOfProperty
+	 * @return
+	 * @throws MetaModelLookupException
+	 * @throws SyntaxElementException
+	 */
+	private Collection<Template> getSubtypeOfProperty(Property prop,
+			ResolvedNameAndReferenceBean<Type> metaModelTypeOfProperty,
+			PropertyArgs args) throws MetaModelLookupException,
+			SyntaxElementException {
+		Collection<Template> tcsTemplate = new HashSet<Template>();
+		List<ResolvedNameAndReferenceBean<Type>> subtypes = new ArrayList<ResolvedNameAndReferenceBean<Type>>();
+		try {
+			subtypes = metaLookup.getDirectSubTypes(metaModelTypeOfProperty);
+		} catch (NameResolutionFailedException e) {
+			errorBucket.addError("error by getting subtype of"
+					+ metaModelTypeOfProperty, e.getMessage());
+		}
+		if (subtypes != null && subtypes.size() > 0) {
+			for (ResolvedNameAndReferenceBean<Type> resolvedNameAndReferenceBean : subtypes) {
+
+				PrimitiveTemplate propertyPrimitiveTemplate2 = syntaxLookup
+						.getDefaultPrimitiveTemplateRule(resolvedNameAndReferenceBean);
+				if (propertyPrimitiveTemplate2 == null) {
+					String modeArg2 = args.modePArg != null ? args.modePArg
+							.getMode() : null;
+
+					Collection<Template> tcsTemplate2 = syntaxLookup
+							.getTCSTemplate(prop.getParentTemplate(),
+									resolvedNameAndReferenceBean, modeArg2);
+					if (tcsTemplate2 != null && !tcsTemplate2.isEmpty()) {
+						// errorBucket.addError(
+						// "Syntax does not define a rule for "
+						// + resolvedNameAndReferenceBean
+						// + " with mode " + modeArg2, prop);
+						tcsTemplate.addAll(tcsTemplate2);
+					}
+				}
+			}
+		}
+		return tcsTemplate;
 	}
 
 	/**
@@ -377,30 +459,33 @@ public class PropertyTypeHandler<Type extends Object> {
 		String javaQuery = query.replaceAll("\\\"", "\\\\\"");
 		javaQuery = javaQuery.replaceAll("\r\n", "\"+\"");
 		javaQuery = javaQuery.replaceAll("\n", "\"+\"");
-		
+
 		validateOclQuery(prop, args, query);
-		
+
 		if (args.refersTo != null) {
-			if(!skipDelayedReferences) {
-				ruleBodyPart.append(concatBuf(" {setOclRef(ret, \"", propertyName,
-					"\", \"", args.refersTo.getPropertyName(), "\", temp, \""
-							+ javaQuery + "\");}"));
+			if (!skipDelayedReferences) {
+				ruleBodyPart.append(concatBuf(" {setOclRef(ret, \"",
+						propertyName, "\", \"",
+						args.refersTo.getPropertyName(), "\", temp, \""
+								+ javaQuery + "\");}"));
 			}
 		} else {
-			if(!skipDelayedReferences) {
-				ruleBodyPart.append(concatBuf(" {setOclRef(ret, \"", propertyName,
-					"\", null, temp, \"" + javaQuery + "\");}"));
+			if (!skipDelayedReferences) {
+				ruleBodyPart.append(concatBuf(" {setOclRef(ret, \"",
+						propertyName, "\", null, temp, \"" + javaQuery
+								+ "\");}"));
 			}
 		}
 
 	}
 
 	private void validateOclQuery(Property prop, PropertyArgs args, String query) {
-	    Object context = prop.getParentTemplate().getMetaReference();
-	    List<String> oclErrors = metaLookup.validateOclQuery(prop.getParentTemplate(), query, context);
-	    for (String error : oclErrors) {
-		errorBucket.addError(error, args.oclQueryPArg);
-	    }
+		Object context = prop.getParentTemplate().getMetaReference();
+		List<String> oclErrors = metaLookup.validateOclQuery(
+				prop.getParentTemplate(), query, context);
+		for (String error : oclErrors) {
+			errorBucket.addError(error, args.oclQueryPArg);
+		}
 	}
 
 	/**
@@ -472,12 +557,13 @@ public class PropertyTypeHandler<Type extends Object> {
 			createIn = "\"" + createDotSeparatedList(argPropertyName) + "\"";
 
 		}
-		if(!skipDelayedReferences) {
-			ruleBodyPart.append(concatBuf(" {setRef(ret, \"", propertyName, "\", ",
-				resolvedTypeOfPropertyName, ", \"", refersTo.getPropertyName(),
-				"\", temp, " + lookIn + ", " + autoCreate + ", " + createAs
-						+ ", " + (args.importContextPArg != null) + ", "
-						+ createIn + ");}"));
+		if (!skipDelayedReferences) {
+			ruleBodyPart.append(concatBuf(" {setRef(ret, \"", propertyName,
+					"\", ", resolvedTypeOfPropertyName, ", \"",
+					refersTo.getPropertyName(), "\", temp, " + lookIn + ", "
+							+ autoCreate + ", " + createAs + ", "
+							+ (args.importContextPArg != null) + ", "
+							+ createIn + ");}"));
 		}
 	}
 
@@ -509,23 +595,25 @@ public class PropertyTypeHandler<Type extends Object> {
 		// what Parser rule to call to create the key value for the referred
 		// object
 		if (asPArg != null) {
-			//now obsolete as we use direct reference to template
-//            String asRule = asPArg.getValue();
-//            if ( !syntaxLookup.hasPrimitiveRule(asRule) ) {
-//                errorBucket.addError("Unknown As reference " + asPArg, asPArg);
-//            }
-//                    if(asPArg.getTemplate() == null) {
-//                	errorBucket.addError("Unknown As reference " + asPArg, asPArg);
-//                    }
-                    if(asPArg.getTemplate() != null) {
-                	ruleBodyPart.append(namingHelper.getRuleNameForTemplate(asPArg.getTemplate()));
-                    } else {
-                	String asRule = asPArg.getValue();
-                	if ( !syntaxLookup.hasPrimitiveRule(asRule) ) {
-                	  	errorBucket.addError("Unknown As reference " + asPArg, asPArg);
-                      	}
-                	ruleBodyPart.append(asRule);
-                    }
+			// now obsolete as we use direct reference to template
+			// String asRule = asPArg.getValue();
+			// if ( !syntaxLookup.hasPrimitiveRule(asRule) ) {
+			// errorBucket.addError("Unknown As reference " + asPArg, asPArg);
+			// }
+			// if(asPArg.getTemplate() == null) {
+			// errorBucket.addError("Unknown As reference " + asPArg, asPArg);
+			// }
+			if (asPArg.getTemplate() != null) {
+				ruleBodyPart.append(namingHelper.getRuleNameForTemplate(asPArg
+						.getTemplate()));
+			} else {
+				String asRule = asPArg.getValue();
+				if (!syntaxLookup.hasPrimitiveRule(asRule)) {
+					errorBucket.addError("Unknown As reference " + asPArg,
+							asPArg);
+				}
+				ruleBodyPart.append(asRule);
+			}
 		} else {
 			PrimitiveTemplate propertyPrimitiveTemplate = syntaxLookup
 					.getDefaultPrimitiveTemplateRule(metaModelTypeOfPropertyReference);
@@ -541,8 +629,8 @@ public class PropertyTypeHandler<Type extends Object> {
 			} else {
 				ResolvedNameAndReferenceBean<Type> referredFeatureType = metaLookup
 						.getFeatureClassReference(
-								metaModelTypeOfPropertyReference, refersTo
-										.getPropertyName());
+								metaModelTypeOfPropertyReference,
+								refersTo.getPropertyName());
 				if (referredFeatureType == null) {
 					errorBucket.addError("Type "
 							+ metaModelTypeOfPropertyReference
@@ -559,21 +647,22 @@ public class PropertyTypeHandler<Type extends Object> {
 						String calledRuleName = namingHelper
 								.buildRuleName(referredFeatureType);
 						// TODO: check if we need to consider mode here
-						Collection<Template> checkTemplates = syntaxLookup.getTCSTemplate(
-								referredFeatureType, null);
+						Collection<Template> checkTemplates = syntaxLookup
+								.getTCSTemplate(prop.getParentTemplate(),
+										referredFeatureType, null);
 						if (checkTemplates == null) {
 							errorBucket.addError(
 									"Syntax does not define a rule for "
 											+ referredFeatureType, prop);
 						}
 						for (Template checkTemplate : checkTemplates) {
-                                                    
-        						if (primitivesOnly
-        								&& !(checkTemplate instanceof PrimitiveTemplate)) {
-        							errorBucket.addError(
-        									"Query only possible for primitive feature references "
-        											+ referredFeatureType, prop);
-        						}
+
+							if (primitivesOnly
+									&& !(checkTemplate instanceof PrimitiveTemplate)) {
+								errorBucket.addError(
+										"Query only possible for primitive feature references "
+												+ referredFeatureType, prop);
+							}
 						}
 						ruleBodyPart.append(calledRuleName);
 					}
@@ -619,7 +708,8 @@ public class PropertyTypeHandler<Type extends Object> {
 		boolean isInMulti = false;
 		if (prop != null
 				&& prop.getElementSequence() instanceof SequenceInAlternative
-				&& ((SequenceInAlternative) prop.getElementSequence()).getAlternativeContainer().isIsMulti()) {
+				&& ((SequenceInAlternative) prop.getElementSequence())
+						.getAlternativeContainer().isIsMulti()) {
 			if (multiplicity.getUpperBound() != -1) {
 				errorBucket
 						.addError(
@@ -1009,9 +1099,9 @@ public class PropertyTypeHandler<Type extends Object> {
 			}
 		}
 	}
-	
+
 	public void setSkipDelayedReferences(boolean skipDelayedReferences) {
 		this.skipDelayedReferences = skipDelayedReferences;
 	}
-	
+
 }

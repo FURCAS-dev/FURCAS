@@ -5,16 +5,13 @@ syntax BibtextImported {
 	primitiveTemplate identifier for String default using NAME:
 		value = "unescapeString(%token%)";
 
-
-	
-	
 	template BibTextFile main context
 		: [entries{forcedLower=3}] -- entries each in new line
 		;
 		
-	template BibTextEntry abstract;
+	public template BibTextEntry abstract;
 	
-	template Article
+	public template Article 
 		: "article" "{"
 		[
 		key "," author{refersTo=name} "," attributes{separator = ","}
@@ -22,13 +19,13 @@ syntax BibtextImported {
 		"}"
 		;
 	
-	template Attribute abstract;
+	public template Attribute abstract;
 	
-	template Author addToContext
+	public template Author addToContext
 		: "author" "=" name "."
 		;
 	
-	template Year
+	public template Year
 		: "year" "=" value
 		;
 		

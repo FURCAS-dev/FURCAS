@@ -161,6 +161,7 @@ import com.sap.furcas.metamodel.FURCAS.provider.FURCASItemProviderAdapterFactory
 
 import com.sap.furcas.metamodel.FURCAS.TCS.provider.TCSItemProviderAdapterFactory;
 
+//import com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.provider.InterfaceconfigurationItemProviderAdapterFactory;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.provider.TextblockdefinitionItemProviderAdapterFactory;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.provider.TextblocksItemProviderAdapterFactory;
@@ -710,6 +711,7 @@ public class FURCASEditor
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new FURCASItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new TCSItemProviderAdapterFactory());
+//		adapterFactory.addAdapterFactory(new InterfaceconfigurationItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new TextblocksItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new TextblockdefinitionItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());

@@ -18,6 +18,8 @@ import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl;
 import com.sap.furcas.metamodel.FURCAS.impl.FURCASPackageImpl;
+import com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.InterfaceconfigurationPackage;
+import com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.impl.InterfaceconfigurationPackageImpl;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.FormatPolicy;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionFactory;
@@ -98,18 +100,21 @@ public class TextblockdefinitionPackageImpl extends EPackageImpl implements Text
 		// Obtain or create and register interdependencies
 		FURCASPackageImpl theFURCASPackage = (FURCASPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FURCASPackage.eNS_URI) instanceof FURCASPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FURCASPackage.eNS_URI) : FURCASPackage.eINSTANCE);
 		TCSPackageImpl theTCSPackage = (TCSPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TCSPackage.eNS_URI) instanceof TCSPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TCSPackage.eNS_URI) : TCSPackage.eINSTANCE);
+		InterfaceconfigurationPackageImpl theInterfaceconfigurationPackage = (InterfaceconfigurationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(InterfaceconfigurationPackage.eNS_URI) instanceof InterfaceconfigurationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(InterfaceconfigurationPackage.eNS_URI) : InterfaceconfigurationPackage.eINSTANCE);
 		TextblocksPackageImpl theTextblocksPackage = (TextblocksPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TextblocksPackage.eNS_URI) instanceof TextblocksPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TextblocksPackage.eNS_URI) : TextblocksPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theTextblockdefinitionPackage.createPackageContents();
 		theFURCASPackage.createPackageContents();
 		theTCSPackage.createPackageContents();
+		theInterfaceconfigurationPackage.createPackageContents();
 		theTextblocksPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theTextblockdefinitionPackage.initializePackageContents();
 		theFURCASPackage.initializePackageContents();
 		theTCSPackage.initializePackageContents();
+		theInterfaceconfigurationPackage.initializePackageContents();
 		theTextblocksPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed

@@ -6,7 +6,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Configuration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="bindings" lowerBound="1"
         upperBound="-1" eType="#//Binding" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Binding">
     <eStructuralFeatures xsi:type="ecore:EReference" name="requireingSyntax" lowerBound="1"
@@ -14,9 +14,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="providingSyntax" lowerBound="1"
         eType="ecore:EClass TCS.ecore#//ConcreteSyntax"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="requiredTemplate" lowerBound="1"
-        eType="ecore:EClass TCS.ecore#//Template"/>
+        eType="ecore:EClass TCS.ecore#//RequiredInterfaceTemplate"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="providedTemplate" lowerBound="1"
         eType="ecore:EClass TCS.ecore#//Template"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mode" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

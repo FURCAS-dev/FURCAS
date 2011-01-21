@@ -29,6 +29,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.stubs.ConcreteSyntaxStub;
 import com.sap.furcas.metamodel.FURCAS.TCS.stubs.LiteralStub;
 import com.sap.furcas.metamodel.FURCAS.TCS.stubs.OperatorListStub;
 import com.sap.furcas.metamodel.FURCAS.TCS.stubs.PrimitiveTemplateStub;
+import com.sap.furcas.metamodel.FURCAS.TCS.stubs.TemplateStub;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.MetaModelElementResolutionHelperStub;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
@@ -149,9 +150,10 @@ public class TestSyntaxLookup {
         Set<Keyword> keywords = new HashSet<Keyword>();
         List<Template> importedTemplates = new ArrayList<Template>();
         List<ConcreteSyntax> importedConcreteSyntaxs = new ArrayList<ConcreteSyntax>();
+        TemplateStub template = new TemplateStub();
         
         SyntaxLookup lookup = new SyntaxLookup(syntax, importedConcreteSyntaxs,importedTemplates,keywords,  namingHelper);
-        assertEquals(0, lookup.getTCSTemplate(refE("test"), null).size());
+        assertEquals(0, lookup.getTCSTemplate(null,refE("test"), null).size());
         
         PrimitiveTemplateStub pStub = new PrimitiveTemplateStub();
         pStub.names = list("match");
@@ -159,7 +161,7 @@ public class TestSyntaxLookup {
         syntax.templates.add(pStub);
         
         // template names don't match, so still return null
-        assertEquals(pStub, lookup.getTCSTemplate(refE("match"), null).iterator().next());
+        assertEquals(pStub, lookup.getTCSTemplate(null,refE("match"), null).iterator().next());
     }
     
     /**
@@ -183,14 +185,14 @@ public class TestSyntaxLookup {
         
         SyntaxLookup lookup = new SyntaxLookup(syntax, importedConcreteSyntaxs,importedTemplates,keywords, namingHelper);
         
-        assertEquals(0, lookup.getTCSTemplate(refE("test"), null).size());
+        assertEquals(0, lookup.getTCSTemplate(null,refE("test"), null).size());
         
         PrimitiveTemplateStub pStub = new PrimitiveTemplateStub();
         pStub.names = list("package", "test");
         syntax.templates = new BasicEList<Template>();
         syntax.templates.add(pStub);
         
-        assertEquals(pStub, lookup.getTCSTemplate(refE("package", "test"), null).iterator().next());
+        assertEquals(pStub, lookup.getTCSTemplate(null,refE("package", "test"), null).iterator().next());
         
         syntax.importedConcreteSyntaxs = new BasicEList<ConcreteSyntax>();
         syntax.importedConcreteSyntaxs.add(syntax1);
@@ -199,7 +201,7 @@ public class TestSyntaxLookup {
         pStub.names = list("package2", "test2");
         syntax.templates = new BasicEList<Template>();
         syntax.templates.add(pStub2);
-        assertEquals(pStub2, lookup.getTCSTemplate(refE("package2", "test2"), null).iterator().next());
+        assertEquals(pStub2, lookup.getTCSTemplate(null,refE("package2", "test2"), null).iterator().next());
     }
 
     /**

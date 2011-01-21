@@ -72,7 +72,7 @@ public class SyntaxLookupStub extends SyntaxLookup {
     }
 
     @Override
-    public Collection<Template> getTCSTemplate(ResolvedNameAndReferenceBean<?> refBean, String mode) {
+    public Collection<Template> getTCSTemplate(Template typeTemplate, ResolvedNameAndReferenceBean<?> refBean, String mode) {
         return Collections.singleton(typeTemplate);
     }
 
@@ -88,14 +88,14 @@ public class SyntaxLookupStub extends SyntaxLookup {
 
 
 	@Override
-	public <Type> List<ClassTemplate> getNonPrimaries(
+	public <Type> List<ClassTemplate> getNonPrimaries(Template typeTemplate,
 		List<ResolvedNameAndReferenceBean<Type>> subtypes) {
 	    return nonPrimaries;
 	}
 
 
 	@Override
-	public <Type> List<ClassTemplate> getPrimaries(
+	public <Type> List<ClassTemplate> getPrimaries(Template typeTemplate,
 		List<ResolvedNameAndReferenceBean<Type>> subtypes, IMetaModelLookup<Type> metaLookup) {
 	    return primaries;
 	}

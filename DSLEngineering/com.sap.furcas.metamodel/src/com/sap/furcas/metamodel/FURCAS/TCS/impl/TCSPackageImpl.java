@@ -123,6 +123,8 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Word;
 import com.sap.furcas.metamodel.FURCAS.TCS.WordRule;
 import com.sap.furcas.metamodel.FURCAS.TCS.*;
 import com.sap.furcas.metamodel.FURCAS.impl.FURCASPackageImpl;
+import com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.InterfaceconfigurationPackage;
+import com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.impl.InterfaceconfigurationPackageImpl;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionPackage;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.impl.TextblockdefinitionPackageImpl;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
@@ -908,18 +910,21 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
 		// Obtain or create and register interdependencies
 		FURCASPackageImpl theFURCASPackage = (FURCASPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FURCASPackage.eNS_URI) instanceof FURCASPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FURCASPackage.eNS_URI) : FURCASPackage.eINSTANCE);
+		InterfaceconfigurationPackageImpl theInterfaceconfigurationPackage = (InterfaceconfigurationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(InterfaceconfigurationPackage.eNS_URI) instanceof InterfaceconfigurationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(InterfaceconfigurationPackage.eNS_URI) : InterfaceconfigurationPackage.eINSTANCE);
 		TextblocksPackageImpl theTextblocksPackage = (TextblocksPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TextblocksPackage.eNS_URI) instanceof TextblocksPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TextblocksPackage.eNS_URI) : TextblocksPackage.eINSTANCE);
 		TextblockdefinitionPackageImpl theTextblockdefinitionPackage = (TextblockdefinitionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TextblockdefinitionPackage.eNS_URI) instanceof TextblockdefinitionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TextblockdefinitionPackage.eNS_URI) : TextblockdefinitionPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theTCSPackage.createPackageContents();
 		theFURCASPackage.createPackageContents();
+		theInterfaceconfigurationPackage.createPackageContents();
 		theTextblocksPackage.createPackageContents();
 		theTextblockdefinitionPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theTCSPackage.initializePackageContents();
 		theFURCASPackage.initializePackageContents();
+		theInterfaceconfigurationPackage.initializePackageContents();
 		theTextblocksPackage.initializePackageContents();
 		theTextblockdefinitionPackage.initializePackageContents();
 
@@ -1082,6 +1087,15 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 	}
 
         /**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConcreteSyntax_RequiredTemplates() {
+		return (EReference)concreteSyntaxEClass.getEStructuralFeatures().get(8);
+	}
+
+								/**
 	 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
 	 * @generated
@@ -3550,6 +3564,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 		createEReference(concreteSyntaxEClass, CONCRETE_SYNTAX__TOKENS);
 		createEAttribute(concreteSyntaxEClass, CONCRETE_SYNTAX__LEXER);
 		createEReference(concreteSyntaxEClass, CONCRETE_SYNTAX__IMPORTS);
+		createEReference(concreteSyntaxEClass, CONCRETE_SYNTAX__REQUIRED_TEMPLATES);
 
 		templateEClass = createEClass(TEMPLATE);
 		createEReference(templateEClass, TEMPLATE__CONCRETE_SYNTAX);
@@ -4050,6 +4065,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 		initEReference(getConcreteSyntax_Tokens(), this.getToken(), null, "tokens", null, 0, -1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConcreteSyntax_Lexer(), ecorePackage.getEString(), "lexer", null, 1, 1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getConcreteSyntax_Imports(), this.getImportDeclaration(), null, "imports", null, 0, -1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConcreteSyntax_RequiredTemplates(), this.getRequiredInterfaceTemplate(), null, "requiredTemplates", null, 0, -1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(templateEClass, Template.class, "Template", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTemplate_ConcreteSyntax(), this.getConcreteSyntax(), this.getConcreteSyntax_Templates(), "concreteSyntax", null, 1, 1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -4394,10 +4410,10 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
 		initEClass(templateImportEClass, TemplateImport.class, "TemplateImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTemplateImport_Template(), this.getTemplate(), null, "template", null, 1, 1, TemplateImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTemplateImport_Mode(), ecorePackage.getEString(), "mode", null, 0, 1, TemplateImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTemplateImport_Mode(), theEcorePackage_1.getEString(), "mode", null, 0, 1, TemplateImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(requiredInterfaceTemplateEClass, RequiredInterfaceTemplate.class, "RequiredInterfaceTemplate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getRequiredInterfaceTemplate_Mode(), ecorePackage.getEString(), "mode", null, 0, 1, RequiredInterfaceTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRequiredInterfaceTemplate_Mode(), theEcorePackage_1.getEString(), "mode", null, 0, 1, RequiredInterfaceTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(templateModifiersEEnum, TemplateModifiers.class, "TemplateModifiers");

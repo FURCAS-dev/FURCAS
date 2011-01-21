@@ -1,4 +1,4 @@
-partial to_import  BibtextImported Year;
+partial imports  BibtextImported Year;
 syntax BibtextImport {   
 
 	-- simple basic syntax with an import containing articles and authors, and the imported template Year

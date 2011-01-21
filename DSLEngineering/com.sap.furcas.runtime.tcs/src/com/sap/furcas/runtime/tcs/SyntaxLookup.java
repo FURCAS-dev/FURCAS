@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.ImportDeclaration;
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
 import com.sap.furcas.metamodel.FURCAS.TCS.LocatedElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
@@ -30,6 +31,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.TCS.TemplateImport;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.exceptions.NameResolutionFailedException;
 import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
@@ -41,30 +43,28 @@ import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
  * 
  * @author C5107456
  */
-public class SyntaxLookup {
+public class SyntaxLookup  {
 
 	/** The syntax. */
 	private final ConcreteSyntax syntax;
 
 	/** the list of imported syntaxes */
-	private final List<ConcreteSyntax> importedSyntaxes;
+	private final Collection<ConcreteSyntax> importedSyntaxes;
 
 	/** the list of imported templates */
-	private final List<Template> importedTemplates;
+	private final Collection<Template> importedTemplates;
 
 	/** The keyword set. */
 	private Set<Keyword> keywordSet = new HashSet<Keyword>();
 
 	/** The Symbol set. */
-	private final List<Symbol> symbolList = new ArrayList<Symbol>();
+	private final Collection<Symbol> symbolList = new HashSet<Symbol>();
 
 	private final MetaModelElementResolutionHelper<?> resolutionHelper;
 
 	private List<PrimitiveTemplate> primitiveTemplates;
 
 	private final Map<QualifiedNamedElement, List<String>> qualifiednamesCache = new HashMap<QualifiedNamedElement, List<String>>();
-
-	// private AlternativeSequence alternativeSequenceAssoc;
 
 	SemanticErrorBucket errorBucket = new SemanticErrorBucket();
 
@@ -77,24 +77,23 @@ public class SyntaxLookup {
 	 *            the imported syntaxes
 	 * @param importedTemplates
 	 *            the imported templates
-	 * @param keywordParam 
+	 * @param keywordParam
 	 * @param keywordSet
 	 *            the keyword set
 	 * @param resolutionHelper
 	 * 
 	 */
 	public SyntaxLookup(ConcreteSyntax syntax,
-			List<ConcreteSyntax> importedSyntaxes,
-			List<Template> importedTemplates,
-			Set<Keyword> keywordParam, MetaModelElementResolutionHelper<?> resolutionHelper) {
+			Collection<ConcreteSyntax> importedSyntaxes,
+			Collection<Template> importedTemplates, Set<Keyword> keywordParam,
+			MetaModelElementResolutionHelper<?> resolutionHelper) {
 		super();
 		this.syntax = syntax;
 		this.importedSyntaxes = importedSyntaxes;
 		this.importedTemplates = importedTemplates;
 
-		
 		if (syntax != null) {
-			if (keywordParam != null ) {
+			if (keywordParam != null) {
 				this.keywordSet = keywordParam;
 			}
 			this.keywordSet.addAll(syntax.getKeywords()); // declared vs.
@@ -107,7 +106,7 @@ public class SyntaxLookup {
 			// .refImmediatePackage()).getAlternativeSequence();
 			// }
 		}
-		// to add the keyword of the imported syntaxes to the main keywordSet.
+		// to add the keywords of the imported syntaxes to the main keywordSet.
 		// the symbols of the imported syntaxes are supposed to be the same as
 		// the symbols of the concrete syntaxes of imported templates
 		addImportedKeywordsAndSymbolList(importedSyntaxes, importedTemplates);
@@ -120,12 +119,11 @@ public class SyntaxLookup {
 	}
 
 	private void addImportedKeywordsAndSymbolList(
-			List<ConcreteSyntax> importedSyntaxes,
-			List<Template> importedTemplates) {
+			Collection<ConcreteSyntax> importedSyntaxes,
+			Collection<Template> importedTemplates) {
 		if (importedSyntaxes != null && importedSyntaxes.size() > 0) {
 			for (ConcreteSyntax imported_syntax : importedSyntaxes) {
 				if (imported_syntax != null) {
-					// TODO test if the keyword already exist
 					for (Keyword keyword : imported_syntax.getKeywords()) {
 						if (this.keywordSet != null) {
 							if (this.keywordSet.contains(keyword)) {
@@ -187,8 +185,8 @@ public class SyntaxLookup {
 	}
 
 	private void initializePrimitiveTemplatesList(ConcreteSyntax syntax,
-			List<ConcreteSyntax> importedSyntaxes,
-			List<Template> importedTemplates) {
+			Collection<ConcreteSyntax> importedSyntaxes,
+			Collection<Template> importedTemplates) {
 		primitiveTemplates = new ArrayList<PrimitiveTemplate>();
 
 		if (syntax != null) {
@@ -205,8 +203,8 @@ public class SyntaxLookup {
 	}
 
 	private void addImportedPrimitiveTemplates(
-			List<ConcreteSyntax> importedSyntaxes,
-			List<Template> importedTemplates) {
+			Collection<ConcreteSyntax> importedSyntaxes,
+			Collection<Template> importedTemplates) {
 		if (importedSyntaxes != null && importedSyntaxes.size() > 0) {
 			for (ConcreteSyntax concreteSyntax : importedSyntaxes) {
 				if (concreteSyntax != null) {
@@ -335,17 +333,20 @@ public class SyntaxLookup {
 	 * @return the TCS template
 	 * @throws SyntaxElementException
 	 */
-	public Collection<Template> getTCSTemplate(
+
+	public Collection<Template> getTCSTemplate(Template parentTemplate,
 			ResolvedNameAndReferenceBean<?> resolvedName, String mode)
 			throws SyntaxElementException {
-		Collection<Template> returnTemplate = new ArrayList<Template>(1);
+		HashSet<Template> returnTemplate = new HashSet<Template>(1);
 
-		Collection<Template> templates = new ArrayList<Template>();
+		HashSet<Template> templates = new HashSet<Template>();
 		templates.addAll(syntax.getTemplates());
 		if ((importedSyntaxes != null && importedSyntaxes.size() > 0)
 				|| (importedTemplates != null && importedTemplates.size() > 0)) {
-			//to add the templates of the imported templates or/and the imported syntaxes
-			templates.addAll(getAllImportedTemplates(templates));
+			// to add the templates of the imported templates or/and the
+			// imported syntaxes
+			templates
+					.addAll(getAllImportedTemplates(parentTemplate, templates));
 		}
 
 		// loop over all templates and return the first with the same name.
@@ -401,7 +402,7 @@ public class SyntaxLookup {
 	}
 
 	private Collection<Template> getAllImportedTemplates(
-			Collection<Template> templates) {
+			Template parentTemplate, HashSet<Template> templates) {
 
 		if (importedSyntaxes != null && importedSyntaxes.size() > 0) {
 			for (ConcreteSyntax imported_syntax : importedSyntaxes) {
@@ -421,6 +422,36 @@ public class SyntaxLookup {
 
 		// add the imported templates
 		if (importedTemplates != null && importedTemplates.size() > 0) {
+			
+			if (parentTemplate != null) {
+				if (importedTemplates.contains(parentTemplate) || !syntax.getTemplates().contains(parentTemplate)) {
+					//template is either imported or transitively referenced by a non-partial import.
+					HashSet<Template> listOfRecursiveTemplate = new HashSet<Template>();
+					// to get the recursiv imported templates (isPartImport ==
+					// false)
+					listOfRecursiveTemplate = getRecursivTemplate(
+							parentTemplate, templates);
+					
+					if (listOfRecursiveTemplate != null
+							&& listOfRecursiveTemplate.size() > 0) {
+						for (Template template1 : listOfRecursiveTemplate) {
+							if (templates.contains(template1)) {
+								errorBucket.addWarning(
+										"The template already exists in the mapping",
+										template1);
+							} else {
+								templates.add(template1);
+							}
+						}
+						
+					}
+
+				}
+			}else {
+				errorBucket.addWarning(
+						"The parent Template for this subtype is null",
+						parentTemplate);
+			}
 			for (Template template : importedTemplates) {
 				if (templates.contains(template)) {
 					errorBucket.addWarning(
@@ -431,17 +462,51 @@ public class SyntaxLookup {
 				}
 			}
 		}
+
 		return templates;
 	}
 
-	public <Type> List<ClassTemplate> getNonPrimaries(
+	private HashSet<Template> getRecursivTemplate(Template parentTemplate,
+			HashSet<Template> templates) {
+		HashSet<Template> recursivTemplate = new HashSet<Template>();
+		Boolean isPartimport = false;
+
+		for (ImportDeclaration importDeclaration : syntax.getImports()) {
+			if (importDeclaration instanceof TemplateImport) {
+				if (((TemplateImport) importDeclaration).getTemplate().equals(
+						parentTemplate)) {
+					isPartimport = ((TemplateImport) importDeclaration)
+							.isIsPartImport();
+				}
+
+			}
+		}
+		// hold the concrete syntax if the Template if it is not a part
+		// import or parent is transitively imported
+		if (!isPartimport || !syntax.getTemplates().contains(parentTemplate)) {
+			for (Template template : parentTemplate.getConcreteSyntax()
+					.getTemplates()) {
+				if (templates.contains(template)) {
+					errorBucket.addWarning(
+							"The template already exists in the mapping",
+							template);
+				} else {
+					recursivTemplate.add(template);
+				}
+			}
+		}
+
+		return recursivTemplate;
+	}
+
+	public <Type> List<ClassTemplate> getNonPrimaries(Template parentTemplate,
 			List<ResolvedNameAndReferenceBean<Type>> subtypes)
 			throws SyntaxElementException {
 		ArrayList<ClassTemplate> nonPrimaries = new ArrayList<ClassTemplate>();
 		for (ResolvedNameAndReferenceBean<Type> subType : subtypes) {
 			Collection<Template> subtemps = null;
 
-			subtemps = getTCSTemplate(subType, null);
+			subtemps = getTCSTemplate(parentTemplate, subType, null);
 
 			for (Template subtemp : subtemps) {
 				if (subtemp instanceof ClassTemplate) {
@@ -458,7 +523,7 @@ public class SyntaxLookup {
 		return nonPrimaries;
 	}
 
-	public <Type> List<ClassTemplate> getPrimaries(
+	public <Type> List<ClassTemplate> getPrimaries(Template parentTemplate,
 			List<ResolvedNameAndReferenceBean<Type>> subtypes,
 			IMetaModelLookup<Type> metaLookup) throws SyntaxElementException,
 			NameResolutionFailedException, MetaModelLookupException {
@@ -466,7 +531,7 @@ public class SyntaxLookup {
 		if (subtypes != null) {
 			for (ResolvedNameAndReferenceBean<Type> subType : subtypes) {
 				Collection<Template> subtemps = null;
-				subtemps = getTCSTemplate(subType, null);
+				subtemps = getTCSTemplate(parentTemplate, subType, null);
 				for (Template subtemp : subtemps) {
 
 					if (subtemp != null && subtemp instanceof ClassTemplate) {
@@ -484,7 +549,7 @@ public class SyntaxLookup {
 						List<ResolvedNameAndReferenceBean<Type>> subsubtypes = metaLookup
 								.getDirectSubTypes(subType);
 						List<ClassTemplate> subsubtypesPrimaries = getPrimaries(
-								subsubtypes, metaLookup);
+								parentTemplate, subsubtypes, metaLookup);
 						primaries.addAll(subsubtypesPrimaries);
 					}
 				}
@@ -648,9 +713,4 @@ public class SyntaxLookup {
 		}
 		return false;
 	}
-
-	// public Alternative getAlternative(SequenceInAlternative
-	// sequenceInAlternative) {
-	// return alternativeSequenceAssoc.getAlternative(sequenceInAlternative);
-	// }
 }

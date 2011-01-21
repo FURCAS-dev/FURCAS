@@ -13,6 +13,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.ImportDeclaration;
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
+import com.sap.furcas.metamodel.FURCAS.TCS.RequiredInterfaceTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
@@ -35,7 +36,7 @@ public class ConcreteSyntaxStub extends LocatedElementStub implements ConcreteSy
     //public List<InterfaceDeclaration> interfaceDeclarations = new ArrayList<InterfaceDeclaration>();
     public EList<Template> importedTemplates = new BasicEList<Template>();
     public EList<ConcreteSyntax> importedConcreteSyntaxs =  new BasicEList<ConcreteSyntax>();
-    //private Collection<RequiredInterface> requiredElement;
+    public EList<RequiredInterfaceTemplate> requiredElement = new BasicEList<RequiredInterfaceTemplate>();
 
     /* (non-Javadoc)
      * @see TCS.ConcreteSyntax#getK()
@@ -151,4 +152,10 @@ public class ConcreteSyntaxStub extends LocatedElementStub implements ConcreteSy
         fail("not implemented yet");
         return importDeclarations;
     }
+
+	@Override
+	public EList<RequiredInterfaceTemplate> getRequiredTemplates() {
+		fail("not implemented yet");
+		return requiredElement;
+	}
 }
