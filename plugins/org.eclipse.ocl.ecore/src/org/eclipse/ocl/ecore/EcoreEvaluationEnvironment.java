@@ -48,6 +48,7 @@ import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.LazyExtentMap;
 import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.ecore.internal.OCLEcorePlugin;
+|1|2NqmZEfb4tUBLhjoExayTTRSU7I=|pOHCUF2I91M2/CgxVh5BSpzmI2g= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEAumNzaHOCg36iCHk83pM+KwVbE3OoGEatGfIw7NpCxWbogGwha3RDbIAqNFLGe4enfPJJIZvaGxzL/uxRlEhhO2ser91tNXPDKyOxh65H1Roa047Jxhzi8kXB9zmL+uBWvzUnqTHQEqQRSZ9S3DHDb3Itl5DcakR1tu9GzOzUFYE=
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.internal.OCLStatusCodes;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
@@ -64,6 +65,9 @@ import org.eclipse.ocl.util.UnicodeSupport;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 /**
+|1|2NqmZEfb4tUBLhjoExayTTRSU7I=|pOHCUF2I91M2/CgxVh5BSpzmI2g= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEAumNzaHOCg36iCHk83pM+KwVbE3OoGEatGfIw7NpCxWbogGwha3RDbIAqNFLGe4enfPJJIZvaGxzL/uxRlEhhO2ser91tNXPDKyOxh65H1Roa047Jxhzi8kXB9zmL+uBWvzUnqTHQEqQRSZ9S3DHDb3Itl5DcakR1tu9GzOzUFYE=
+|1|2NqmZEfb4tUBLhjoExayTTRSU7I=|pOHCUF2I91M2/CgxVh5BSpzmI2g= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEAumNzaHOCg36iCHk83pM+KwVbE3OoGEatGfIw7NpCxWbogGwha3RDbIAqNFLGe4enfPJJIZvaGxzL/uxRlEhhO2ser91tNXPDKyOxh65H1Roa047Jxhzi8kXB9zmL+uBWvzUnqTHQEqQRSZ9S3DHDb3Itl5DcakR1tu9GzOzUFYE=
+|1|2NqmZEfb4tUBLhjoExayTTRSU7I=|pOHCUF2I91M2/CgxVh5BSpzmI2g= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEAumNzaHOCg36iCHk83pM+KwVbE3OoGEatGfIw7NpCxWbogGwha3RDbIAqNFLGe4enfPJJIZvaGxzL/uxRlEhhO2ser91tNXPDKyOxh65H1Roa047Jxhzi8kXB9zmL+uBWvzUnqTHQEqQRSZ9S3DHDb3Itl5DcakR1tu9GzOzUFYE=
  * Implementation of the {@link EvaluationEnvironment} for evaluation of OCL
  * expressions on instances of Ecore models (i.e., on M0 models).
  * 
@@ -99,10 +103,7 @@ public class EcoreEvaluationEnvironment
 		super();
         this.factory = factory;
         if (factory != null) {
-        	this.oppositeEndFinder = factory.getOppositeEndFinder();
-        }
-        else {
-        	this.oppositeEndFinder = new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE);
+            this.oppositeEndFinder = factory.getOppositeEndFinder();
         }
     }
 
@@ -536,7 +537,11 @@ public class EcoreEvaluationEnvironment
                 }
             }
         } else {
-            result = oppositeEndFinder.navigateOppositePropertyWithForwardScope(property, (EObject) target);
+            if (oppositeEndFinder != null) {
+                result = oppositeEndFinder.navigateOppositePropertyWithForwardScope(property, (EObject) target);
+            } else {
+                result = null;
+            }
         }
         return result;
     }
