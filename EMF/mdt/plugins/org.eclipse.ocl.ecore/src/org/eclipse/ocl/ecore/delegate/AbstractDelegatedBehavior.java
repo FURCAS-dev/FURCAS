@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractDelegatedBehavior.java,v 1.3 2010/04/08 06:27:21 ewillink Exp $
+ * $Id: AbstractDelegatedBehavior.java,v 1.4 2011/01/23 22:18:53 auhl Exp $
  */
 package org.eclipse.ocl.ecore.delegate;
 
