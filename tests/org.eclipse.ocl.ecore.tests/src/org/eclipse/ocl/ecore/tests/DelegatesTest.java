@@ -14,7 +14,7 @@
  * 
  * </copyright>
  *
- * $Id: DelegatesTest.java,v 1.5 2010/12/09 17:16:15 ewillink Exp $
+ * $Id: DelegatesTest.java,v 1.6 2011/01/23 22:20:00 auhl Exp $
  */
 package org.eclipse.ocl.ecore.tests;
 
@@ -27,12 +27,15 @@ import java.util.Map;
 
 import noreflectioncompany.NoreflectioncompanyPackage;
 
+import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -53,8 +56,19 @@ import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
+import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.BooleanLiteralExp;
+import org.eclipse.ocl.ecore.EcoreFactory;
+import org.eclipse.ocl.ecore.EvaluationVisitorImpl;
+import org.eclipse.ocl.ecore.NullLiteralExp;
+import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.OCL.Helper;
+import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.delegate.DelegateDomain;
 import org.eclipse.ocl.ecore.delegate.DelegateResourceSetAdapter;
+import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomainFactory;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateException;
@@ -62,11 +76,15 @@ import org.eclipse.ocl.ecore.delegate.OCLInvocationDelegateFactory;
 import org.eclipse.ocl.ecore.delegate.OCLQueryDelegateFactory;
 import org.eclipse.ocl.ecore.delegate.OCLSettingDelegateFactory;
 import org.eclipse.ocl.ecore.delegate.OCLValidationDelegateFactory;
+import org.eclipse.ocl.ecore.delegate.SettingBehavior;
+import org.eclipse.ocl.ecore.delegate.ValidationBehavior;
 import org.eclipse.ocl.ecore.delegate.ValidationDelegate;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.osgi.util.NLS;
 
 import company.CompanyPackage;
+import company.Employee;
+import company.util.CompanyValidator;
 
 
 
@@ -522,6 +540,25 @@ public class DelegatesTest extends AbstractTestSuite
 			OCLMessages.OCLParseErrorCodes_DELETION, "2:9:2:12", "\"null\"");
 	}
 
+	/**
+	 * Ensures that {@link InvocationBehavior#getOperationBody(OCL, EOperation)}
+	 * consistently returns <code>null</code> for stdlib operations that don't
+	 * have a body defined at all instead of returning an <code>invalid</code> literal.
+	 * @throws ParserException 
+	 */
+	public void test_attributeNotDefinedInOCLRemainsNull() throws ParserException {
+		helper.setContext(EcorePackage.eINSTANCE.getEClassifier());
+		OCLExpression expr = (OCLExpression) helper.createQuery("self.name");
+		assertTrue(expr instanceof PropertyCallExp);
+		PropertyCallExp pce = (PropertyCallExp) expr;
+		EStructuralFeature p = pce.getReferredProperty();
+		OCLExpression body = SettingBehavior.INSTANCE.getFeatureBody((OCL) ocl, p);
+		assertNull(body);
+		// and again, now reading from cache
+		OCLExpression bodyStillNull = SettingBehavior.INSTANCE.getFeatureBody((OCL) ocl, p);
+		assertNull(bodyStillNull);
+	}
+
 	public void test_constraintValidation() {
 		doTest_constraintValidation(COMPANY_XMI);
 		assertEquals(!eclipseIsRunning, usedLocalRegistry);
@@ -555,6 +592,92 @@ public class DelegatesTest extends AbstractTestSuite
 		doTest_eReferenceDerivation(COMPANY_XMI);
 	}
 
+	/**
+	 * Caches an operation AST in the annotation used by the {@link SettingBehavior} implementation
+	 * and ensures that it's used by the delegate as well as the {@link EvaluationVisitorImpl}
+	 * @throws ParserException 
+	 * @throws InvocationTargetException 
+	 */
+	public void test_eReferenceDerivationUsedFromCache() throws ParserException, InvocationTargetException {
+		initModel(COMPANY_XMI);
+		EObject company = companyFactory.create(companyClass);
+		EObject manager = companyFactory.create(employeeClass);
+		manager.eSet(employeeClass.getEStructuralFeature("company"), company);
+		EObject employee = companyFactory.create(employeeClass);
+		employee.eSet(employeeClass.getEStructuralFeature("company"), company);
+		employee.eSet(employeeClass.getEStructuralFeature("manager"), manager);
+		OCL ocl = OCL.newInstance();
+		Helper helper = ocl.createOCLHelper();
+		helper.setContext(employeeClass);
+		OCLExpression expr = helper.createQuery("self.directReports");
+		assertTrue(((Collection<?>) ocl.evaluate(manager, expr)).contains(employee));
+		EStructuralFeature directReportsRef = employeeClass.getEStructuralFeature("directReports");
+		// Now cache a NullLiteralExp as the derivation expression for directReports:
+		NullLiteralExp nullLiteralExp = EcoreFactory.eINSTANCE.createNullLiteralExp();
+		EAnnotation directReportsAnn = directReportsRef.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		assertTrue(directReportsAnn.getDetails().containsKey(SettingBehavior.DERIVATION_CONSTRAINT_KEY));
+		String derivationExpression =  directReportsAnn.getDetails().get(SettingBehavior.DERIVATION_CONSTRAINT_KEY);
+		try {
+			directReportsAnn.getDetails().remove(SettingBehavior.DERIVATION_CONSTRAINT_KEY);
+			// ensure that the plugin cache doesn't have an expression cached:
+			SettingBehavior.INSTANCE.cacheOCLExpression(directReportsRef, nullLiteralExp);
+			assertNull(ocl.evaluate(manager, expr));
+		} finally {
+			directReportsAnn.getDetails().put(SettingBehavior.DERIVATION_CONSTRAINT_KEY, derivationExpression);
+			SettingBehavior.INSTANCE.cacheOCLExpression(directReportsRef, null);
+		}
+	}
+
+	public void test_invariantCacheBeingUsed() throws ParserException {
+		initPackageRegistrations();
+		initModel(COMPANY_XMI);
+		EAnnotation annotation = employeeClass.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		
+		DiagnosticChain diagnostics = new BasicDiagnostic();
+		// first ensure that contents are padded up to where we need it:
+		assertTrue("Expecting \"Amy\" to be a valid name",
+			CompanyValidator.INSTANCE.validateEmployee_mustHaveName((Employee) employee("Amy"), diagnostics, context));
+		final String constraintName = "mustHaveName";
+		String mustHaveNameConstraint = annotation.getDetails().get(constraintName);
+		Helper helper = OCL.newInstance().createOCLHelper();
+		helper.setContext(employeeClass);
+		OCLExpression query = helper.createQuery("false"); // a constraint always returning false
+		try {
+			annotation.getDetails().remove(constraintName);
+			ValidationBehavior.INSTANCE.cacheOCLExpression(employeeClass,
+				constraintName, query);
+			assertFalse(
+				"Expected the always-false cached constraint to be used",
+				CompanyValidator.INSTANCE.validateEmployee_mustHaveName(
+					(Employee) employee("Amy"), diagnostics, context));
+		} finally {
+			// restore annotation detail
+			annotation.getDetails().put(constraintName, mustHaveNameConstraint);
+		}
+	}
+	
+	public void test_invariantCachingForFirst() {
+		initPackageRegistrations();
+		initModel(COMPANY_XMI);
+		DiagnosticChain diagnostics = new BasicDiagnostic();
+		ValidationBehavior.INSTANCE.cacheOCLExpression(employeeClass, "mustHaveName", null);
+		CompanyValidator.INSTANCE.validateEmployee_mustHaveName((Employee) employee("Amy"), diagnostics, context);
+		OCLExpression cached = ValidationBehavior.INSTANCE.getCachedOCLExpression(employeeClass, "mustHaveName");
+		assertTrue("Expected to find compiled expression in cache",
+			cached != null && !ValidationBehavior.isNoOCLDefinition(cached));
+	}
+	
+	public void test_invariantCachingForSecond() {
+		initPackageRegistrations();
+		initModel(COMPANY_XMI);
+		DiagnosticChain diagnostics = new BasicDiagnostic();
+		ValidationBehavior.INSTANCE.cacheOCLExpression(employeeClass, "mustHaveNonEmptyName", null);
+		CompanyValidator.INSTANCE.validateEmployee_mustHaveNonEmptyName((Employee) employee("Amy"), diagnostics, context);
+		OCLExpression cached = ValidationBehavior.INSTANCE.getCachedOCLExpression(employeeClass, "mustHaveNonEmptyName");
+		assertTrue("Expected to find compiled expression in cache",
+			cached != null && !ValidationBehavior.isNoOCLDefinition(cached));
+	}
+	
 	public void test_invariantValidation() {
 		doTest_invariantValidation(COMPANY_XMI, true);
 		assertEquals(!eclipseIsRunning, usedLocalRegistry);
@@ -641,6 +764,84 @@ public class DelegatesTest extends AbstractTestSuite
 			OCLMessages.OCLParseErrorCodes_DELETION, "2:5:2:6", "\"in\"");
 	}
 
+	/**
+	 * Ensures that {@link InvocationBehavior#getOperationBody(OCL, EOperation)}
+	 * consistently returns <code>null</code> for stdlib operations that don't
+	 * have a body defined at all instead of returning an <code>invalid</code> literal.
+	 * @throws ParserException 
+	 */
+	public void test_operationDefinedInStdlibBodyRemainsNull() throws ParserException {
+		helper.setContext(EcorePackage.eINSTANCE.getEClassifier());
+		OCLExpression expr = (OCLExpression) helper.createQuery("'abc'.oclAsType(String)");
+		assertTrue(expr instanceof OperationCallExp);
+		OperationCallExp oce = (OperationCallExp) expr;
+		EOperation o = oce.getReferredOperation();
+		OCLExpression body = InvocationBehavior.INSTANCE.getOperationBody((OCL) ocl, o);
+		assertNull(body);
+		// and again, now reading from cache
+		OCLExpression bodyStillNull = InvocationBehavior.INSTANCE.getOperationBody((OCL) ocl, o);;
+		assertTrue(bodyStillNull == null || InvocationBehavior.isNoOCLDefinition(bodyStillNull));
+	}
+	
+	/**
+	 * Caches an operation AST in the annotation used by the {@link InvocationBehavior} implementation
+	 * and ensures that it's used by the delegate as well as the {@link EvaluationVisitorImpl}.
+	 * Implicitly, the test ensures that no modification is applied to the original textual annotation,
+	 * so that the annotation's contents are <em>not</em> used to cache the compiled AST because that
+	 * may make some clients expecting the metamodel resources to remain unchanged angry.
+	 * 
+	 * @throws ParserException 
+	 * @throws InvocationTargetException 
+	 */
+	public void test_operationUsedFromCache() throws ParserException, InvocationTargetException {
+		initModel(COMPANY_XMI);
+		EObject manager = companyFactory.create(employeeClass);
+		EObject employee = companyFactory.create(employeeClass);
+		employee.eSet(employeeClass.getEStructuralFeature("manager"), manager);
+		helper.setContext(employeeClass);
+		OCLExpression expr = (OCLExpression) helper.createQuery("self.reportsTo(self.manager)");
+		assertTrue((Boolean) ocl.evaluate(employee, expr)); // by the default impl, employee reports to manager
+		EOperation reportsToOp = employeeClass.getEOperation(CompanyPackage.EMPLOYEE___REPORTS_TO__EMPLOYEE);
+		// Now cache a BooleanLiteralExp with the "false" literal as the implementation for reportsTo:
+		BooleanLiteralExp falseLiteralExp = EcoreFactory.eINSTANCE.createBooleanLiteralExp();
+		falseLiteralExp.setBooleanSymbol(false);
+		EAnnotation reportsToAnn = reportsToOp.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		assertTrue(reportsToAnn.getDetails().containsKey(InvocationBehavior.BODY_CONSTRAINT_KEY));
+		String body = reportsToAnn.getDetails().get(InvocationBehavior.BODY_CONSTRAINT_KEY);
+		try {
+			reportsToAnn.getDetails().remove(InvocationBehavior.BODY_CONSTRAINT_KEY);
+			// ensure that the plugin cache doesn't have an expression cached:
+			InvocationBehavior.INSTANCE.cacheOCLExpression(reportsToOp, falseLiteralExp);
+			assertFalse((Boolean) ocl.evaluate(employee, expr));
+		} finally {
+			reportsToAnn.getDetails().put(InvocationBehavior.BODY_CONSTRAINT_KEY, body);
+			InvocationBehavior.INSTANCE.cacheOCLExpression(reportsToOp, null);
+		}
+	}
+	
+	public void test_performanceOfCacheRetrieval() throws ParserException {
+		initModel(COMPANY_XMI);
+		EObject manager = companyFactory.create(employeeClass);
+		EObject employee = companyFactory.create(employeeClass);
+		employee.eSet(employeeClass.getEStructuralFeature("manager"), manager);
+		OCL ocl = OCL.newInstance();
+		Helper helper = ocl.createOCLHelper();
+		helper.setContext(employeeClass);
+		String expression = "self.reportsTo(self.manager)";
+		OCLExpression expr = helper.createQuery(expression);
+		final int TIMES = 1;
+		final int REPEAT = 1;
+		for (int r = 0; r < REPEAT; r++) {
+			long start = System.currentTimeMillis();
+			for (int i = 0; i < TIMES; i++) {
+				ocl.evaluate(employee, expr);
+			}
+			long end = System.currentTimeMillis();
+			System.out.println("Executing " + expression + " " + TIMES
+				+ " times took " + (end - start) + "ms");
+		}
+	}
+
 	public void test_queryExecution() {
 		doTest_queryExecution(COMPANY_XMI);
 		assertEquals(!eclipseIsRunning, usedLocalRegistry);
@@ -700,7 +901,7 @@ public class DelegatesTest extends AbstractTestSuite
 	public void test_validationEvaluatingToWrongType() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationEvaluatingToWrongType"), null);
-		String message = NLS.bind(OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, "evaluatingToWrongType");
+		String message = NLS.bind(OCLMessages.InvariantConstraintBoolean_ERROR_, "ValidationEvaluatingToWrongType");
 		validateWithError("evaluatingToWrongType", "_UI_ConstraintDelegateException_diagnostic", badClassInstance,
 			"evaluatingToWrongType", EObjectValidator.getObjectLabel(badClassInstance, context), message);
 	}
