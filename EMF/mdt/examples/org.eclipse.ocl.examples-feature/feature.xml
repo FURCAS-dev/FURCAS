@@ -23,8 +23,8 @@ http://www.eclipse.org/legal/epl-v10.html
    </license>
 
    <url>
-      <update label="%updateSiteName" url="http://download.eclipse.org/modeling/mdt/ocl/updates/"/>
-      <discovery label="%updateSiteName" url="http://download.eclipse.org/modeling/mdt/ocl/updates/"/>
+      <update label="%updateSiteName" url="http://www.eclipse.org/modeling/updates"/>
+      <discovery label="%updateSiteName" url="http://www.eclipse.org/modeling/updates"/>
    </url>
 
    <includes
@@ -225,6 +225,13 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <plugin
          id="org.eclipse.ocl.examples.xtext.oclstdlib.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.examples.eventmanager"
          download-size="0"
          install-size="0"
          version="0.0.0"

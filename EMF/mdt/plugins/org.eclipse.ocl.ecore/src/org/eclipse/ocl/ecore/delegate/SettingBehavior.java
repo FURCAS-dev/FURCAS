@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SettingBehavior.java,v 1.2 2010/04/08 06:27:21 ewillink Exp $
+ * $Id: SettingBehavior.java,v 1.3 2011/01/23 22:18:53 auhl Exp $
  */
 package org.eclipse.ocl.ecore.delegate;
 

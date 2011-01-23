@@ -14,7 +14,7 @@
  * 
  * </copyright>
  *
- * $Id: DelegatesTest.java,v 1.5 2010/12/09 17:16:15 ewillink Exp $
+ * $Id: DelegatesTest.java,v 1.6 2011/01/23 22:20:00 auhl Exp $
  */
 package org.eclipse.ocl.ecore.tests;
 

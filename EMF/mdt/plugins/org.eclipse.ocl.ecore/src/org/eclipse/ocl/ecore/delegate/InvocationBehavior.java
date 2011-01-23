@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InvocationBehavior.java,v 1.3 2010/12/15 17:49:34 ewillink Exp $
+ * $Id: InvocationBehavior.java,v 1.4 2011/01/23 22:18:53 auhl Exp $
  */
 package org.eclipse.ocl.ecore.delegate;
 
