@@ -108,7 +108,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 			constraint, delegateDomain.getOCL());
 		if (query == null) {
 			query = createQuery(expression);
-			ValidationBehavior.INSTANCE.cacheInvariantBody(eClass, constraint, query);
+			ValidationBehavior.INSTANCE.cacheOCLExpression(eClass, constraint, query);
 		}
 		return check(eObject, constraint, query);
 	}
@@ -119,7 +119,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 			eDataType, constraint, delegateDomain.getOCL());
 		if (query == null) {
 			query = createQuery(expression);
-			ValidationBehavior.INSTANCE.cacheInvariantBody(eDataType, constraint, query);
+			ValidationBehavior.INSTANCE.cacheOCLExpression(eDataType, constraint, query);
 		}
 		return check(value, constraint, query);
 	}
