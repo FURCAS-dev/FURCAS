@@ -17,6 +17,7 @@
 package org.eclipse.ocl.ecore.delegate;
 
 
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EOperation.Internal.InvocationDelegate;
@@ -40,6 +41,35 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 	public boolean appliesTo(EOperation operation) {
       	String annotation = EcoreUtil.getAnnotation(operation, OCLDelegateDomain.OCL_DELEGATE_URI, BODY_CONSTRAINT_KEY);
 		return annotation != null;
+	}
+	
+	/**
+	 * Creates an {@link OCLExpressionCacheAdapter} for expression <code>e</code> and adds
+	 * it to <code>operation</code>'s adapter list so that {@link #getCachedOCLExpression(Notifier)}
+	 * will return <code>e</code> when called for <code>operation</code>. To achieve this, any other
+	 * {@link OCLExpressionCacheAdapter} in <code>operation</code>'s adapter list is removed.
+	 * 
+	 * @param e if <code>null</code>, any existing cache entry is removed and no new entry
+	 * is created. {@link #getCachedOCLExpression(Notifier)} will then return <code>null</code>. 
+	 * 
+	 * @since 3.1
+	 */
+	public void cacheOCLExpression(EOperation operation, OCLExpression e) {
+		ExpressionCacheAdapter.cacheOCLExpression(operation, e);
+	}
+
+	/**
+	 * Looks for an {@link OCLExpressionCacheAdapter} attached to <code>operation</code>.
+	 * If such an adapter is found, its cached expression is returned. The cached expression
+	 * may be a reserved expression indicating that no OCL expression exists and that an
+	 * unsuccessful attempt to obtain one has been made before.
+	 * {@link #isNoOCLDefinition(OCLExpression)} should be used to check for the reserved expression.
+	 * null is returned if no cached expression is available.
+	 * 
+	 * @since 3.1
+	 */
+	public OCLExpression getCachedOCLExpression(EOperation operation) {
+		return ExpressionCacheAdapter.getCachedOCLExpression(operation);
 	}
 
 	public InvocationDelegate.Factory getDefaultFactory() {
@@ -74,16 +104,15 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 	 * definition.
 	 */
 	public OCLExpression getOperationBody(OCL ocl, EOperation operation) {
-		OCLExpression result = getCachedOperationBody(operation);
+		OCLExpression result = ExpressionCacheAdapter.getCachedOCLExpression(operation);
 		if (result != null) {
-			return result;
+			return result != NO_OCL_DEFINITION ? result : null;
 		}
 		String expr = EcoreUtil.getAnnotation(operation, OCLDelegateDomain.OCL_DELEGATE_URI, BODY_CONSTRAINT_KEY);
 		if (expr == null) {
-			cacheThatItHasNoOCLBody(operation);
+			ExpressionCacheAdapter.cacheOCLExpression(operation, NO_OCL_DEFINITION);
 			return null;
 		}
-		OCLExpression body = null;
 		EClass context = operation.getEContainingClass();
 		OCL.Helper helper = ocl.createOCLHelper();
 		helper.setOperationContext(context, operation);
@@ -100,36 +129,22 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 		if (specification == null) {
 			return null;
 		}
-		body = (OCLExpression) specification.getBodyExpression();
-		cacheOCLExpression(operation, body);
+		OCLExpression body = (OCLExpression) specification.getBodyExpression();
+		ExpressionCacheAdapter.cacheOCLExpression(operation, body);
 		return body;
-	}
-
-	/**
-	 * Return any operation body already in the cache, saving the caller the overhead
-	 * of setting up the redundant parsing environment needed for {@link getOperationBody}
-	 * 
-	 * @since 3.1
-	 */
-	public OCLExpression getCachedOperationBody(EOperation operation) {
-		OCLExpression result = getCachedOCLExpression(operation);
-		if (result != null && hasNoOCLDefinition(result)) {
-			result = null; // clients can find that out by asking hasUncomiledOperationBody
-		}
-		return result;
-	}
-	
-	/**
-	 * Tells if there is an uncompiled body expression for the <code>operation</code> in an
-	 * annotation that can be compiled by {@link #getOperationBody(OCL, EOperation)}. Probing
-	 * this saves callers the more expensive construction of an {@link OCL} object.
-	 * @since 3.1
-	 */
-	public boolean hasUncompiledOperationBody(EOperation operation) {
-		return EcoreUtil.getAnnotation(operation, OCLDelegateDomain.OCL_DELEGATE_URI, BODY_CONSTRAINT_KEY) != null;
 	}
 
 	public Class<InvocationDelegate.Factory.Registry> getRegistryClass() {
 		return InvocationDelegate.Factory.Registry.class;
+	}
+	
+	/**
+	 * Tells if there is a textual expression for the <code>operation</code> in an
+	 * annotation that can be compiled by {@link #getOperationBody(OCL, EOperation)}. Probing
+	 * this saves callers the more expensive construction of an {@link OCL} object.
+	 * @since 3.1
+	 */
+	public boolean hasCompileableOperationBody(EOperation operation) {
+		return EcoreUtil.getAnnotation(operation, OCLDelegateDomain.OCL_DELEGATE_URI, BODY_CONSTRAINT_KEY) != null;
 	}
 }
