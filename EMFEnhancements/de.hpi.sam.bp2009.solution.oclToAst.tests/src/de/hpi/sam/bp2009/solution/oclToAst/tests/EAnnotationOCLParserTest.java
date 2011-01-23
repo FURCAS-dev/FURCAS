@@ -142,6 +142,7 @@ public class EAnnotationOCLParserTest {
                 instanceof OperationCallExp);
     }
 
+    @Ignore("astcaching needs to be reverted to the revision where it happened as Constraint for getDefinition(...)")
     @Test
     public void testInvocationDelegate_AST_Usage() {
         Department dep = CompanyFactory.eINSTANCE.createDepartment();
@@ -187,6 +188,7 @@ public class EAnnotationOCLParserTest {
         val.setValue(content);
     }
 
+    @Ignore("astcaching needs to be reverted to the revision where it happened as Constraint for getDefinition(...)")
     @Test
     public void testSettingDelegate_AST_Usage() {
         CompanyFactory compFac = CompanyFactory.eINSTANCE;
