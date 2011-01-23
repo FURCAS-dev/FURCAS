@@ -51,7 +51,6 @@ import org.eclipse.ocl.ecore.internal.OCLEcorePlugin;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.internal.OCLStatusCodes;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
-import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
@@ -100,6 +99,8 @@ public class EcoreEvaluationEnvironment
         this.factory = factory;
         if (factory != null) {
             this.oppositeEndFinder = factory.getOppositeEndFinder();
+        } else {
+        	this.oppositeEndFinder = null;
         }
     }
 
