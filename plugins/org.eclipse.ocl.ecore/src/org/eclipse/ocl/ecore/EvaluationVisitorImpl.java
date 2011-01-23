@@ -102,15 +102,18 @@ public class EvaluationVisitorImpl
 	@Override
 	protected OCLExpression<EClassifier> getOperationBody(EOperation operation) {
 		OCLExpression<EClassifier> result = InvocationBehavior.INSTANCE
-			.getCachedOperationBody(operation);
-		if (result == null
-			&& InvocationBehavior.INSTANCE
-				.hasUncompiledOperationBody(operation)) {
-			result = InvocationBehavior.INSTANCE.getOperationBody(
-				OCL.newInstance(getEnvironment().getFactory()), operation);
+			.getCachedOCLExpression(operation);
+		if (result == InvocationBehavior.NO_OCL_DEFINITION) {
+			result = null;
 		}
-		if (result == null) {
-			result = super.getOperationBody(operation);
+		else if (result == null) {
+			if (InvocationBehavior.INSTANCE.hasCompileableOperationBody(operation)) {
+				result = InvocationBehavior.INSTANCE.getOperationBody(
+					OCL.newInstance(getEnvironment().getFactory()), operation);
+			}
+			if (result == null) {
+				result = super.getOperationBody(operation);
+			}
 		}
 		return result;
 	}
@@ -119,14 +122,18 @@ public class EvaluationVisitorImpl
 	protected OCLExpression<EClassifier> getPropertyBody(
 			EStructuralFeature property) {
 		OCLExpression<EClassifier> result = SettingBehavior.INSTANCE
-			.getCachedFeatureBody(property);
-		if (result == null
-			&& SettingBehavior.INSTANCE.hasUncompiledFeatureBody(property)) {
-			result = SettingBehavior.INSTANCE.getFeatureBody(
-				OCL.newInstance(getEnvironment().getFactory()), property);
+			.getCachedOCLExpression(property);
+		if (result == SettingBehavior.NO_OCL_DEFINITION) {
+			result = null;
 		}
-		if (result == null) {
-			result = super.getPropertyBody(property);
+		else if (result == null) {
+			if (SettingBehavior.INSTANCE.hasCompileableFeatureBody(property)) {
+				result = SettingBehavior.INSTANCE.getFeatureBody(
+					OCL.newInstance(getEnvironment().getFactory()), property);
+			}
+			if (result == null) {
+				result = super.getPropertyBody(property);
+			}
 		}
 		return result;
 	}

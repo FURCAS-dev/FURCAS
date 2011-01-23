@@ -16,6 +16,7 @@
  */
 package org.eclipse.ocl.ecore.delegate;
 
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
@@ -37,6 +38,35 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 	public static final String DERIVATION_CONSTRAINT_KEY = "derivation"; //$NON-NLS-1$
 	public static final String INITIAL_CONSTRAINT_KEY = "initial"; //$NON-NLS-1$
 	public static final String NAME = "settingDelegates"; //$NON-NLS-1$
+	
+	/**
+	 * Creates an {@link OCLExpressionCacheAdapter} for expression <code>e</code> and adds
+	 * it to <code>property</code>'s adapter list so that {@link #getCachedOCLExpression(Notifier)}
+	 * will return <code>e</code> when called for <code>property</code>. To achieve this, any other
+	 * {@link OCLExpressionCacheAdapter} in <code>property</code>'s adapter list is removed.
+	 * 
+	 * @param e if <code>null</code>, any existing cache entry is removed and no new entry
+	 * is created. {@link #getCachedOCLExpression(Notifier)} will then return <code>null</code>. 
+	 * 
+	 * @since 3.1
+	 */
+	public void cacheOCLExpression(EStructuralFeature property, OCLExpression e) {
+		ExpressionCacheAdapter.cacheOCLExpression(property, e);
+	}
+
+	/**
+	 * Looks for an {@link OCLExpressionCacheAdapter} attached to <code>property</code>.
+	 * If such an adapter is found, its cached expression is returned. The cached expression
+	 * may be a reserved expression indicating that no OCL expression exists and that an
+	 * unsuccessful attempt to obtain one has been made before.
+	 * {@link #isNoOCLDefinition(OCLExpression)} should be used to check for the reserved expression.
+	 * null is returned if no cached expression is available.
+	 * 
+	 * @since 3.1
+	 */
+	public OCLExpression getCachedOCLExpression(EStructuralFeature property) {
+		return ExpressionCacheAdapter.getCachedOCLExpression(property);
+	}
 
 	public SettingDelegate.Factory getDefaultFactory() {
 		return SettingDelegate.Factory.Registry.INSTANCE.getFactory(getName());
@@ -65,26 +95,23 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 	 * create the relevant parsing environment for a textual definition..
 	 */
 	public OCLExpression getFeatureBody(OCL ocl, EStructuralFeature structuralFeature) {
-		OCLExpression result = getCachedFeatureBody(structuralFeature);
+		OCLExpression result = ExpressionCacheAdapter.getCachedOCLExpression(structuralFeature);
 		if (result != null){
-			return result;
+			return result != NO_OCL_DEFINITION ? result : null;
 		}
-		String key = DERIVATION_CONSTRAINT_KEY;
 	    EAnnotation eAnnotation = structuralFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
 	    if (eAnnotation == null) {
-			cacheThatItHasNoOCLBody(structuralFeature);
+			cacheOCLExpression(structuralFeature, NO_OCL_DEFINITION);
 	    	return null;
 	    }
 	    EMap<String, String> details = eAnnotation.getDetails();
-		String expr = details.get(key);
+		String expr = details.get(DERIVATION_CONSTRAINT_KEY);
 		if (expr == null) {
-			key = INITIAL_CONSTRAINT_KEY;
-			expr = details.get(key);
+			expr = details.get(INITIAL_CONSTRAINT_KEY);
 			if (expr == null) {
 				return null;
 			}
 		}
-		OCLExpression body = null;
 		EClass context = structuralFeature.getEContainingClass();
 		OCL.Helper helper = ocl.createOCLHelper();
 		helper.setAttributeContext(context, structuralFeature);
@@ -97,45 +124,30 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 		if (constraint == null) {
 			return null;
 		}
-		ExpressionInOCL specification = (ExpressionInOCL) constraint
-			.getSpecification();
+		ExpressionInOCL specification = (ExpressionInOCL) constraint.getSpecification();
 		if (specification == null) {
 			return null;
 		}
-		body = (OCLExpression) specification.getBodyExpression();
+		OCLExpression body = (OCLExpression) specification.getBodyExpression();
 		cacheOCLExpression(structuralFeature, body);
 		return body;
 	}
-
-	/**
-	 * Return any feature body already in the cache, saving the caller the overhead
-	 * of sertting up the redundant parsing environment needed for {@link getFeatureBody}
-	 * 
-	 * @since 3.1
-	 */
-	public OCLExpression getCachedFeatureBody(EStructuralFeature structuralFeature) {
-		OCLExpression result = getCachedOCLExpression(structuralFeature);
-		if (result != null && hasNoOCLDefinition(result)) {
-			result = null; // clients can find that out by asking hasUncomiledOperationBody
-		}
-		return result;
-	}
 	
-	/**
-	 * Tells if there is an uncompiled body expression for the <code>structuralFeature</code> in an
-	 * annotation that can be compiled by {@link #getFeatureBody(OCL, EStructuralFeature)}. Probing
-	 * this saves callers the more expensive construction of an {@link OCL} object.
-	 * @since 3.1
-	 */
-	public boolean hasUncompiledFeatureBody(EStructuralFeature structuralFeature) {
-		return structuralFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI) != null;
-	}
-
 	public String getName() {
 		return NAME;
 	}
 
 	public Class<SettingDelegate.Factory.Registry> getRegistryClass() {
 		return SettingDelegate.Factory.Registry.class;
+	}
+	
+	/**
+	 * Tells if there is a textual expression for the <code>structuralFeature</code> in an
+	 * annotation that can be compiled by {@link #getFeatureBody(OCL, EStructuralFeature)}. Probing
+	 * this saves callers the more expensive construction of an {@link OCL} object.
+	 * @since 3.1
+	 */
+	public boolean hasCompileableFeatureBody(EStructuralFeature structuralFeature) {
+		return structuralFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI) != null;
 	}
 }
