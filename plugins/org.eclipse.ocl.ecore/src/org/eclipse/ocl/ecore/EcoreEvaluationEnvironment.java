@@ -99,10 +99,7 @@ public class EcoreEvaluationEnvironment
 		super();
         this.factory = factory;
         if (factory != null) {
-        	this.oppositeEndFinder = factory.getOppositeEndFinder();
-        }
-        else {
-        	this.oppositeEndFinder = DefaultOppositeEndFinder.getInstance();
+            this.oppositeEndFinder = factory.getOppositeEndFinder();
         }
     }
 
@@ -515,12 +512,10 @@ public class EcoreEvaluationEnvironment
 	 * @since 3.1
 	 */
 	public Object navigateOppositeProperty(EReference property, Object target) throws IllegalArgumentException {
-        Object result;
+        Object result = null;
         if (property.isContainment()) {
             EObject resultCandidate = ((EObject) target).eContainer();
-            if (resultCandidate == null) {
-                result = null;
-            } else {
+            if (resultCandidate != null) {
                 // first check if the container is assignment-compatible to the property's owning type:
                 if (property.getEContainingClass().isInstance(resultCandidate)) {
                     Object propertyValue = resultCandidate.eGet(property);
@@ -528,15 +523,13 @@ public class EcoreEvaluationEnvironment
                             || (propertyValue instanceof Collection<?> && ((Collection<?>) propertyValue).contains(target))) {
                         // important to create a copy because, e.g., the partial evaluator may modify the resulting collection
                         result = CollectionUtil.createNewBag(Collections.singleton(resultCandidate));
-                    } else {
-                        result = null;
                     }
-                } else {
-                    result = null;
                 }
             }
         } else {
-            result = oppositeEndFinder.navigateOppositePropertyWithForwardScope(property, (EObject) target);
+            if (oppositeEndFinder != null) {
+                result = oppositeEndFinder.navigateOppositePropertyWithForwardScope(property, (EObject) target);
+            }
         }
         return result;
     }
