@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id: plugin.xml,v 1.2 2011/01/24 20:42:33 ewillink Exp $
+-->
+
+<plugin>
+   <extension-point id="standard_library" name="org.eclipse.ocl.examples.pivot.standard_library" schema="schema/standard_library.exsd"/>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/ocl/3.1.0/Pivot"
+            class="org.eclipse.ocl.examples.pivot.PivotPackage"
+            genModel="model/Pivot.merged.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.content_parser">
+      <parser
+            contentTypeIdentifier="org.eclipse.ocl.examples.pivot"
+            class="org.eclipse.ocl.examples.pivot.utilities.PivotResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.core.contenttype.contentTypes">
+      <content-type
+            base-type="org.eclipse.emf.ecore.xmi"
+            file-extensions="pivot"
+            id="org.eclipse.ocl.examples.pivot"
+            name="%_UI_Pivot_content_type"
+            priority="normal">
+         <describer class="org.eclipse.emf.ecore.xmi.impl.RootXMLContentHandlerImpl$Describer">
+            <parameter name="namespace" value="http://www.eclipse.org/ocl/3.1.0/Pivot"/>
+            <parameter name="kind" value="xmi"/>
+         </describer>
+      </content-type>
+   </extension>
+
+</plugin>
