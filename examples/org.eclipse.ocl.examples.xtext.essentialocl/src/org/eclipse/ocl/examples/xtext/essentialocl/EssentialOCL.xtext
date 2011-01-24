@@ -12,230 +12,211 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCL.xtext,v 1.6 2010/08/17 18:56:16 ewillink Exp $
+ * $Id: EssentialOCL.xtext,v 1.7 2011/01/24 21:31:47 ewillink Exp $
  */
-grammar org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL hidden(WS, ML_COMMENT, SL_COMMENT) //with org.eclipse.xtext.common.Terminals
-
+grammar org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL hidden(WS, DOCUMENTATION, ML_COMMENT, SL_COMMENT) //with org.eclipse.xtext.common.Terminals
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+import "platform:/resource/org.eclipse.ocl.examples.pivot/model/pivot.ecore" as pivot
 import "platform:/resource/org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore" as base
-import "platform:/resource/org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.ecore" 
+import "platform:/resource/org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.ecore"
 //generate essentialOCLCST "http://www.eclipse.org/ocl/3.0.0/EssentialOCLCST"
-
-Model returns ExpCS:
-	ExpCS
-;
+Model returns ContextCS:
+	name=('body' | 'der' | 'init' | 'inv' | 'post' | 'pre') ':' ownedExpression=ExpCS ';';
 
 terminal DOUBLE_QUOTED_STRING:
-	'"' ( '\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') | !('\\'|'"') )* '"'
-;
+	'"' ('\\' ('b' | 't' | 'n' | 'f' | 'r' | 'u' | '"' | "'" | '\\') | !('\\' | '"'))* '"';
 
-terminal SINGLE_QUOTED_STRING :
-	"'" ( '\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') | !('\\'|"'") )* "'"
-; 
-	
-terminal ID :
-	(('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*)
-| 	("_" SINGLE_QUOTED_STRING)
-;
+terminal SINGLE_QUOTED_STRING:
+	"'" ('\\' ('b' | 't' | 'n' | 'f' | 'r' | 'u' | '"' | "'" | '\\') | !('\\' | "'"))* "'";
 
-terminal INT:											// String to allow diverse re-use
-	('0'..'9')+
-;
+terminal ML_SINGLE_QUOTED_STRING:
+	"/'"->"'/";
 
-NUMBER_LITERAL returns BigNumber:					// Not terminal to allow parser backtracking to sort out "5..7"
-	INT ('.' INT)? (('e'|'E') ('+'|'-')? INT)?
-;
+terminal ID:
+	(('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*)
+	| ("_" SINGLE_QUOTED_STRING);
 
-terminal ML_COMMENT	: '/*' -> '*/';
-terminal SL_COMMENT : '--' !('\n'|'\r')* ('\r'? '\n')?;
-terminal WS			: (' '|'\t'|'\r'|'\n')+;
+terminal INT: // String to allow diverse re-use
+	('0'..'9')+;
 
-terminal ANY_OTHER: .;
+NUMBER_LITERAL returns BigNumber: // Not terminal to allow parser backtracking to sort out "5..7"
+	INT ('.' INT)? (('e' | 'E') ('+' | '-')? INT)?;
 
-EssentialOCLReservedKeywords: 
+terminal DOCUMENTATION:
+	'/**'->'**/';
+
+terminal ML_COMMENT:
+	'/*' !('*')->'*/';
+
+terminal SL_COMMENT:
+	'--' !('\n' | '\r')* ('\r'? '\n')?;
+
+terminal WS:
+	(' ' | '\t' | '\r' | '\n')+;
+
+terminal ANY_OTHER:
+	.;
+
+EssentialOCLReservedKeyword:
 	'and'
-|	'else'
-|	'endif'
-|	'if'
-|	'implies'
-|	'in'
-|	'let'
-|	'not'
-|	'or'
-|	'then'
-|	'xor'
-;
+	| 'else'
+	| 'endif'
+	| 'if'
+	| 'implies'
+	| 'in'
+	| 'let'
+	| 'not'
+	| 'or'
+	| 'then'
+	| 'xor';
 
-EssentialOCLRestrictedKeywords:
+EssentialOCLUnrestrictedIdentifier:
 	'e'
-|	'E'
-;
+	| 'E'
+	| 'body'
+	| 'der'
+	| 'init'
+	| 'inv'
+	| 'post'
+	| 'pre';
 
-RestrictedKeywords:					// Intended to be overridden
-	EssentialOCLRestrictedKeywords
-;
+EssentialOCLPrefixOperator:
+	'-' | 'not';
+
+EssentialOCLInfixOperator:
+	'*' | '/' | '+' | '-' | '>' | '<' | '>=' | '<=' | '=' | '<>' | 'and' | 'or' | 'xor' | 'implies';
+
+EssentialOCLNavigationOperator:
+	'.' | '->';
 
 Identifier:
 	ID
-|	RestrictedKeywords
-;
+	| EssentialOCLUnrestrictedIdentifier;
 
 StringLiteral:
-	SINGLE_QUOTED_STRING
-;
-//---------------------------------------------------------------------
+	SINGLE_QUOTED_STRING;
+
+PrefixOperator: // Intended to be overridden
+	EssentialOCLPrefixOperator;
+
+InfixOperator: // Intended to be overridden
+	EssentialOCLInfixOperator;
+
+NavigationOperator: // Intended to be overridden
+	EssentialOCLNavigationOperator;
+
+	//---------------------------------------------------------------------
 //  Names
 //---------------------------------------------------------------------
-/*  Temporary backward compatibility support for 7.4.8 conceptual usage 
-conceptualOperationName returns SimpleNameCS:
-	value='and'
-	| value='implies'
-	| value='not'
-	| value='or'
-	| value='xor'
-	| value='<'
-	| value='<='
-	| value='>='
-	| value='>'
-	| value='='
-	| value='<>'
-	| value='+'
-	| value='-'
-	| value='*'
-	| value='/';
-conceptualOperationNameCS returns SimpleNameCS:
-	conceptualOperationName; */
 
-/*tupleKeywordCS returns ecore::EString:
-	value='Tuple'; */
+EssentialOCLUnrestrictedName returns ecore::EString:
+	Identifier;
 
-/*restrictedKeywordCS returns ecore::EString: 
-	CollectionTypeIdentifierCS
-//  restrictedKeywordCS -> BooleanLiteralExpCS
-//  restrictedKeywordCS -> InvalidLiteralExpCS
-//  restrictedKeywordCS -> NullLiteralExpCS
-//-  restrictedKeywordCS -> selfKeywordCS
-|	primitiveTypeCS
-|	tupleKeywordCS; */
-    
-SimpleName returns ecore::EString:
-	Identifier
-;
+UnrestrictedName returns ecore::EString: // Intended to be overridden
+	EssentialOCLUnrestrictedName;
 
-//pathNameCS returns NameExpCS:
-//	(namespace=[NamespaceCS|Identifier] '::')* element=[NamedElementCS|Identifier]
-//
-//	ref=[ModelElementCS|PathName]
-//;
-        
-//---------------------------------------------------------------------
+EssentialOCLUnreservedName returns ecore::EString:
+	UnrestrictedName;
+
+UnreservedName returns ecore::EString: // Intended to be overridden
+	EssentialOCLUnreservedName;
+
+	//---------------------------------------------------------------------
 //  Types
 //---------------------------------------------------------------------
 PrimitiveTypeIdentifier:
 	'Boolean'
-|	'Integer'
-|	'Real'
-|	'String'
-|	'UnlimitedNatural'
-|	'OclAny'
-|	'OclInvalid'
-|	'OclVoid'
-;
+	| 'Integer'
+	| 'Real'
+	| 'String'
+	| 'UnlimitedNatural'
+	| 'OclAny'
+	| 'OclInvalid'
+	| 'OclVoid';
 
-PrimitiveTypeCS returns PrimitiveTypeCS:
-	name=PrimitiveTypeIdentifier
-;
-    
+PrimitiveTypeCS returns base::PrimitiveTypeRefCS:
+	name=PrimitiveTypeIdentifier;
+
 CollectionTypeIdentifier returns ecore::EString:
 	'Set'
-|	'Bag'
-|	'Sequence'
-|	'Collection'
-|	'OrderedSet'
-;
-
-TypeExpCS returns TypeExpCS:
-	PrimitiveTypeCS
-|	NameExpCS
-|	CollectionTypeCS
-|	TupleTypeCS
-;
+	| 'Bag'
+	| 'Sequence'
+	| 'Collection'
+	| 'OrderedSet';
 
 CollectionTypeCS returns CollectionTypeCS:
-	name=CollectionTypeIdentifier ('(' typeCS=TypeExpCS ')')?
-;
+	name=CollectionTypeIdentifier ('(' ownedType=TypeExpCS ')')?;
 
-TupleTypeCS returns TupleTypeCS:
-	name='Tuple' '(' (part+=tuplePartCS (',' part+=tuplePartCS)*)? ')'
-;
-        
-tuplePartCS returns VariableCS:
-	name=SimpleName ':' type=TypeExpCS
-;
+TupleTypeCS returns base::TupleTypeCS:
+	name='Tuple' ('(' (ownedParts+=tuplePartCS (',' ownedParts+=tuplePartCS)*)? ')')?;
 
-//---------------------------------------------------------------------
+tuplePartCS returns base::TuplePartCS:
+	name=UnrestrictedName ':' ownedType=TypeExpCS;
+
+	//---------------------------------------------------------------------
 //  Literals
 //---------------------------------------------------------------------
-// EnumLiteralExpCS is parsed as a PropertyCallExpCS[C]
-//  LiteralExpCS -> EnumLiteralExpCS
-//LiteralExpCS returns LiteralExpCS:
-//	CollectionLiteralExpCS
-//|	TupleLiteralExpCS
-//|	PrimitiveLiteralExpCS
-//|	primitiveTypeCS
-//|	NameExpCS
-////|	collectionTypeCS
-//|	TupleTypeCS
-//;
-
-CollectionLiteralExpCS returns LiteralExpCS:	// or CollectionTypeLiteral
-	CollectionTypeCS
-	({CollectionLiteralExpCS.typeCS=current} '{' (collectionLiteralParts+=CollectionLiteralPartCS
-	 (',' collectionLiteralParts+=CollectionLiteralPartCS)*)?
-	 '}')?
-;
+CollectionLiteralExpCS returns CollectionLiteralExpCS:
+	ownedType=CollectionTypeCS
+	'{' (ownedParts+=CollectionLiteralPartCS
+	(',' ownedParts+=CollectionLiteralPartCS)*)?
+	'}';
 
 CollectionLiteralPartCS returns CollectionLiteralPartCS:
-	expressionCS=ExpCS ('..' lastExpressionCS=ExpCS)?
-;
+	expressionCS=ExpCS ('..' lastExpressionCS=ExpCS)?;
 
 PrimitiveLiteralExpCS returns PrimitiveLiteralExpCS:
 	NumberLiteralExpCS
-|	StringLiteralExpCS
-|	BooleanLiteralExpCS
-|	InvalidLiteralExpCS
-|	NullLiteralExpCS
-;
+	| StringLiteralExpCS
+	| BooleanLiteralExpCS
+	| UnlimitedNaturalLiteralExpCS
+	| InvalidLiteralExpCS
+	| NullLiteralExpCS;
 
-TupleLiteralExpCS returns TupleLiteralExpCS: // or TupleTypeLiteral
-	{TupleLiteralExpCS} 'Tuple' ('{' part+=TupleLiteralPartCS (',' part+=TupleLiteralPartCS)* '}')?
-;
-	
-TupleLiteralPartCS returns VariableCS:
-	name=SimpleName (':' type=TypeExpCS)? '=' initExpression=ExpCS
-;
+TupleLiteralExpCS returns TupleLiteralExpCS:
+	'Tuple' '{' ownedParts+=TupleLiteralPartCS (',' ownedParts+=TupleLiteralPartCS)* '}';
+
+TupleLiteralPartCS returns TupleLiteralPartCS:
+	name=UnrestrictedName (':' ownedType=TypeExpCS)? '=' initExpression=ExpCS;
 
 NumberLiteralExpCS returns NumberLiteralExpCS:
-	name=NUMBER_LITERAL
-;
+	name=NUMBER_LITERAL;
 
 StringLiteralExpCS returns StringLiteralExpCS:
-	name+=StringLiteral+
-;
+	name+=StringLiteral+;
 
 BooleanLiteralExpCS returns BooleanLiteralExpCS:
 	name='true'
-|	name='false';
+	| name='false';
+
+UnlimitedNaturalLiteralExpCS returns UnlimitedNaturalLiteralExpCS:
+	{UnlimitedNaturalLiteralExpCS} '*';
 
 InvalidLiteralExpCS returns InvalidLiteralExpCS:
-	{InvalidLiteralExpCS} 'invalid'
-;
+	{InvalidLiteralExpCS} 'invalid';
 
 NullLiteralExpCS returns NullLiteralExpCS:
-	{NullLiteralExpCS} 'null'
-;
+	{NullLiteralExpCS} 'null';
 
-//---------------------------------------------------------------------
+TypeLiteralCS returns base::TypedRefCS:
+	PrimitiveTypeCS
+	| CollectionTypeCS
+	| TupleTypeCS;
+
+TypeLiteralExpCS returns TypeLiteralExpCS:
+	ownedType=TypeLiteralCS;
+
+	//TypeNameExpCS returns base::QualifiedTypeRefCS:
+TypeNameExpCS returns TypeNameExpCS:
+	(((namespace+=[pivot::Namespace|UnrestrictedName] '::' (namespace+=[pivot::Namespace|UnreservedName] '::')*)
+	element=[pivot::Type|UnreservedName])
+	| (element=[pivot::Type|UnrestrictedName]));
+
+TypeExpCS returns base::TypedRefCS:
+	TypeNameExpCS
+	| TypeLiteralCS;
+
+	//---------------------------------------------------------------------
 //  Expressions
 //---------------------------------------------------------------------
 // An OclExpressionCS comprising one or more LetExpCS is kept separate to ensure
@@ -244,152 +225,98 @@ NullLiteralExpCS returns NullLiteralExpCS:
 // is
 //   a = (64 / 16) / (let b : Integer in 8 / (let c : Integer in 4 ))
 ExpCS returns ExpCS:
-	impliesCS	
-|	LetExpCS
-;
+	InfixedExpCS;
 
-impliesCS returns ExpCS:
-	xorCS
-	({InfixExpCS.source=current} op='implies' argument=(xorCS|LetExpCS))*
-;
+InfixedExpCS returns ExpCS:
+	PrefixedExpCS
+	({InfixExpCS.ownedExpression+=current} (ownedOperator+=BinaryOperatorCS ownedExpression+=PrefixedExpCS)+)?;
 
-xorCS returns ExpCS:
-	orCS
-	({InfixExpCS.source=current} op='xor' argument=(orCS|LetExpCS))*
-;
+BinaryOperatorCS returns BinaryOperatorCS:
+	InfixOperatorCS | NavigationOperatorCS;
 
-orCS returns ExpCS:
-	andCS
-	({InfixExpCS.source=current} op='or' argument=(andCS|LetExpCS))*
-;
+InfixOperatorCS returns BinaryOperatorCS:
+	name=InfixOperator;
 
-andCS returns ExpCS:
-	equalityCS
-	({InfixExpCS.source=current} op='and' argument=(equalityCS|LetExpCS))*
-;
+NavigationOperatorCS returns NavigationOperatorCS:
+	name=NavigationOperator;
 
-equalityCS returns ExpCS:
-	relationalCS
-	({InfixExpCS.source=current} op=('='|'<>') argument=(relationalCS|LetExpCS))*
-;
+PrefixedExpCS returns ExpCS:
+	PrimaryExpCS
+	| ({PrefixExpCS} ownedOperator+=UnaryOperatorCS+ ownedExpression=PrimaryExpCS);
 
-relationalCS returns ExpCS:
-	additiveCS
-	({InfixExpCS.source=current} op=('>'|'<'|'>='|'<=') argument=(additiveCS|LetExpCS))*
-;
+UnaryOperatorCS returns UnaryOperatorCS:
+	name=PrefixOperator;
 
-additiveCS returns ExpCS:
-	multiplicativeCS
-	({InfixExpCS.source=current} op=('+'|'-') argument=(multiplicativeCS|LetExpCS))*
-;
-
-multiplicativeCS returns ExpCS:
-	unaryCS
-	({InfixExpCS.source=current} op=('*'|'/') argument=(unaryCS|LetExpCS))*
-;
-
-unaryCS returns ExpCS:
-	NavigationExpCS
-|	({PrefixExpCS} op=('-'|'not') source=unaryCS)
-;
-
-NavigationExpCS returns ExpCS:
-	SubNavigationExpCS
-	(
-		({InfixExpCS.source=current} op=('.'|'->') argument=NavigatingExpCS)
-//	|	({InfixExpCS.source=current} op='^' argument=NavigatingExpCS)
-//	|	({InfixExpCS.source=current} op='^^' argument=NavigatingExpCS)
-	)?
-;
-
-// Follows ., ->, ^
-NavigatingExpCS returns ExpCS:
-	SubNavigatingExpCS
-	(
-		({InfixExpCS.source=current} op=('.'|'->') argument=NavigatingExpCS)
-//	|	({InfixExpCS.source=current} op='^' argument=NavigatingExpCS)
-//	|	({InfixExpCS.source=current} op='^^' argument=NavigatingExpCS)
-	)?
-;
-
-// May be be followed by ., ->, ^
-SubNavigationExpCS returns ExpCS:
-	RoundBracketExpCS
-|	SquareBracketExpCS
-|	SelfExpCS
-|	PrimitiveLiteralExpCS
-|	TupleLiteralExpCS
-|	CollectionLiteralExpCS
-|	PreExpCS
-|	TypeExpCS
-|	IfExpCS
-|	'('{NestedExpCS} source=ExpCS ')'
-;
-
-// Follows ., ->, ^, May be be followed by ., ->, ^
-SubNavigatingExpCS returns ExpCS:
-	RoundBracketExpCS
-|	SquareBracketExpCS
-|	PreExpCS
-|	NameExpCS
-;
-
-iteratorVariableCS returns VariableCS:
-	name=SimpleName (':' type=TypeExpCS)?
-;
-
-iteratorAccumulatorCS returns VariableCS:
-	name=SimpleName ':' type=TypeExpCS '=' initExpression=ExpCS
-;
-
-RoundBracketExpCS returns RoundBracketExpCS:
-	name=NameExpCS ('@' pre?='pre')? '('
-		(variable1=iteratorVariableCS
-	        ((',' variable2=iteratorVariableCS)
-	        |(';' variable2=iteratorAccumulatorCS))?
-	        '|')?
-	    (arguments+=ExpCS (',' arguments+=ExpCS)*)?
-	')'
-;
-
-SquareBracketExpCS returns SquareBracketExpCS:
-	name=NameExpCS '[' arguments+=ExpCS (',' arguments+=ExpCS)* ']' ('@' pre?='pre')?
-;
-
-PreExpCS returns PreExpCS:
-	name=NameExpCS '@' 'pre'
-;
-    
-SelfExpCS returns SelfExpCS:
-	{SelfExpCS} 'self'
-;
+PrimaryExpCS returns ExpCS:
+	NavigatingExpCS
+	| SelfExpCS
+	| PrimitiveLiteralExpCS
+	| TupleLiteralExpCS
+	| CollectionLiteralExpCS
+	| TypeLiteralExpCS
+	| LetExpCS
+	| IfExpCS
+	| NestedExpCS;
 
 NameExpCS returns NameExpCS:
-	PathNameExpCS | SimpleNameExpCS
+	(((namespace+=[pivot::Namespace|UnrestrictedName] '::' (namespace+=[pivot::Namespace|UnreservedName] '::')*)
+	element=[pivot::NamedElement|UnreservedName])
+	| (element=[pivot::NamedElement|UnrestrictedName]));
+
+IndexExpCS returns NamedExpCS:
+	NameExpCS
+	({IndexExpCS.namedExp=current}
+	'[' firstIndexes+=ExpCS (',' firstIndexes+=ExpCS)* ']'
+	('[' secondIndexes+=ExpCS (',' secondIndexes+=ExpCS)* ']')?)?;
+
+NavigatingExpCS_Base returns NamedExpCS:
+	IndexExpCS
+	//	({PreExpCS.name=current} '@' 'pre')?	-- defined by Complete OCL
 ;
 
-PathNameExpCS returns PathNameExpCS:
-	namespace=[base::NamespaceCS|Identifier] '::' element=NameExpCS
-;
+// For Xtext 1.0.0, this rule is very sensitive to the 65536 byte limit, so
+//  keep it as simple as possible and avoid backtracking.
+NavigatingExpCS returns NamedExpCS:
+	NavigatingExpCS_Base
+	({NavigatingExpCS.namedExp=current}
+	'(' (argument+=NavigatingArgCS (argument+=NavigatingCommaArgCS)*
+	(argument+=NavigatingSemiArgCS (argument+=NavigatingCommaArgCS)*)?
+	(argument+=NavigatingBarArgCS (argument+=NavigatingCommaArgCS)*)?)?
+	')')?;
 
-SimpleNameExpCS returns SimpleNameExpCS:
-	element=[base::NamedElementCS|Identifier]
+NavigatingArgCS returns NavigatingArgCS:
+	name=NavigatingArgExpCS (':' ownedType=TypeExpCS)? ('=' init=ExpCS)?;
+
+NavigatingBarArgCS returns NavigatingArgCS:
+	prefix='|' name=NavigatingArgExpCS (':' ownedType=TypeExpCS)? ('=' init=ExpCS)?;
+
+NavigatingCommaArgCS returns NavigatingArgCS:
+	prefix=',' name=NavigatingArgExpCS (':' ownedType=TypeExpCS)? ('=' init=ExpCS)?;
+
+NavigatingSemiArgCS returns NavigatingArgCS:
+	prefix=';' name=NavigatingArgExpCS (':' ownedType=TypeExpCS)? ('=' init=ExpCS)?;
+
+NavigatingArgExpCS returns ExpCS: // Intended to be overridden
+	ExpCS
+	//	'?'	-- defined by Complete OCL
 ;
 
 IfExpCS returns IfExpCS:
 	'if' condition=ExpCS
 	'then' thenExpression=ExpCS
 	'else' elseExpression=ExpCS
-	'endif'
-;
+	'endif';
 
 LetExpCS returns LetExpCS:
-	'let'
-	variable+=LetVariableCS (',' variable+=LetVariableCS)*
-	'in' in=ExpCS
-;
+	'let' variable+=LetVariableCS (',' variable+=LetVariableCS)*
+	'in' in=ExpCS;
 
-LetVariableCS returns VariableCS:
-	name=SimpleName ':' type=TypeExpCS '=' initExpression=ExpCS
-;
+LetVariableCS returns LetVariableCS:
+	name=UnrestrictedName (':' ownedType=TypeExpCS)? '=' initExpression=ExpCS;
+
+NestedExpCS returns NestedExpCS:
+	'(' source=ExpCS ')';
+
+SelfExpCS returns SelfExpCS:
+	{SelfExpCS} 'self';
 		

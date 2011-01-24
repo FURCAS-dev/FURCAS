@@ -12,11 +12,11 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralPartCS.java,v 1.2 2010/05/03 05:38:30 ewillink Exp $
+ * $Id: CollectionLiteralPartCS.java,v 1.3 2011/01/24 21:31:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 
 
 
@@ -37,7 +37,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
  * @model
  * @generated
  */
-public interface CollectionLiteralPartCS extends ElementCS {
+public interface CollectionLiteralPartCS extends MonikeredElementCS {
 	/**
 	 * Returns the value of the '<em><b>Expression CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

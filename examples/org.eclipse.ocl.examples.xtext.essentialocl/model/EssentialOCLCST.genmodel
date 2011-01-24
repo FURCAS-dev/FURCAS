@@ -4,7 +4,7 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.ocl.examples.xtext.essentialocl/emf-gen"
     editDirectory="/org.eclipse.ocl.examples.xtext.essentialocl.edit/emf-gen" editorDirectory="/org.eclipse.ocl.examples.xtext.essentialocl.editor/emf-gen"
     modelPluginID="org.eclipse.ocl.examples.xtext.essentialocl" modelName="EssentialOCLCST"
-    nonNLSMarkers="true" testsDirectory="/org.eclipse.ocl.examples.xtext.essentialocl.tests/emf-gen"
+    nonNLSMarkers="true" codeFormatting="true" testsDirectory="/org.eclipse.ocl.examples.xtext.essentialocl.tests/emf-gen"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
     usedGenPackages="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.genmodel#//baseCST"
     classNamePattern="">
@@ -12,9 +12,6 @@
   <genPackages prefix="EssentialOCLCST" basePackage="org.eclipse.ocl.examples.xtext.essentialocl"
       disposableProviderFactory="true" generateExampleClass="false" ecorePackage="EssentialOCLCST.ecore#/">
     <genDataTypes ecoreDataType="EssentialOCLCST.ecore#//BigNumber"/>
-    <genClasses ecoreClass="EssentialOCLCST.ecore#//ArrowExpCS">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//ArrowExpCS/argument"/>
-    </genClasses>
     <genClasses ecoreClass="EssentialOCLCST.ecore#//BooleanLiteralExpCS">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EssentialOCLCST.ecore#//BooleanLiteralExpCS/name"/>
     </genClasses>
@@ -29,10 +26,6 @@
     <genClasses ecoreClass="EssentialOCLCST.ecore#//CollectionTypeCS">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//CollectionTypeCS/typeCS"/>
     </genClasses>
-    <genClasses ecoreClass="EssentialOCLCST.ecore#//DotExpCS">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//DotExpCS/argument"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="EssentialOCLCST.ecore#//ElementCS"/>
     <genClasses ecoreClass="EssentialOCLCST.ecore#//ExpCS"/>
     <genClasses ecoreClass="EssentialOCLCST.ecore#//IfExpCS">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//IfExpCS/condition"/>
@@ -40,7 +33,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//IfExpCS/elseExpression"/>
     </genClasses>
     <genClasses ecoreClass="EssentialOCLCST.ecore#//InfixExpCS">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EssentialOCLCST.ecore#//InfixExpCS/op"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//InfixExpCS/argument"/>
     </genClasses>
     <genClasses ecoreClass="EssentialOCLCST.ecore#//InvalidLiteralExpCS"/>
@@ -49,24 +41,24 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//LetExpCS/in"/>
     </genClasses>
     <genClasses ecoreClass="EssentialOCLCST.ecore#//LiteralExpCS"/>
-    <genClasses image="false" ecoreClass="EssentialOCLCST.ecore#//ModelElementCS">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//ModelElementCS/originalObject"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EssentialOCLCST.ecore#//ModelElementCS/originalXmiId"/>
+    <genClasses image="false" ecoreClass="EssentialOCLCST.ecore#//NameExpCS">
+      <genOperations ecoreOperation="EssentialOCLCST.ecore#//NameExpCS/getNamedElement"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="EssentialOCLCST.ecore#//NameExpCS"/>
-    <genClasses image="false" ecoreClass="EssentialOCLCST.ecore#//NamedElementCS">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EssentialOCLCST.ecore#//NamedElementCS/name"/>
+    <genClasses image="false" ecoreClass="EssentialOCLCST.ecore#//NamedExpCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//NamedExpCS/name"/>
+      <genOperations ecoreOperation="EssentialOCLCST.ecore#//NamedExpCS/isPre"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="EssentialOCLCST.ecore#//NamespaceCS"/>
     <genClasses ecoreClass="EssentialOCLCST.ecore#//NestedExpCS"/>
     <genClasses ecoreClass="EssentialOCLCST.ecore#//NullLiteralExpCS"/>
     <genClasses ecoreClass="EssentialOCLCST.ecore#//NumberLiteralExpCS">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EssentialOCLCST.ecore#//NumberLiteralExpCS/name"/>
     </genClasses>
-    <genClasses ecoreClass="EssentialOCLCST.ecore#//PathNameExpCS">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//PathNameExpCS/namespace"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//PathNameExpCS/element"/>
+    <genClasses image="false" ecoreClass="EssentialOCLCST.ecore#//OperatorExpCS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EssentialOCLCST.ecore#//OperatorExpCS/op"/>
+      <genOperations ecoreOperation="EssentialOCLCST.ecore#//OperatorExpCS/getArgumentParent"/>
     </genClasses>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//PathNameExpCS"/>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//PreExpCS"/>
     <genClasses ecoreClass="EssentialOCLCST.ecore#//PrefixExpCS">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EssentialOCLCST.ecore#//PrefixExpCS/op"/>
     </genClasses>
@@ -76,6 +68,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//RoundBracketExpCS/variable1"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//RoundBracketExpCS/variable2"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//RoundBracketExpCS/arguments"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EssentialOCLCST.ecore#//RoundBracketExpCS/pre"/>
     </genClasses>
     <genClasses ecoreClass="EssentialOCLCST.ecore#//SelfExpCS">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EssentialOCLCST.ecore#//SelfExpCS/name"/>
@@ -85,6 +78,7 @@
     </genClasses>
     <genClasses ecoreClass="EssentialOCLCST.ecore#//SquareBracketExpCS">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//SquareBracketExpCS/arguments"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EssentialOCLCST.ecore#//SquareBracketExpCS/pre"/>
     </genClasses>
     <genClasses image="false" ecoreClass="EssentialOCLCST.ecore#//SubExpCS">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//SubExpCS/source"/>
@@ -98,8 +92,7 @@
     <genClasses ecoreClass="EssentialOCLCST.ecore#//TupleTypeCS">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//TupleTypeCS/part"/>
     </genClasses>
-    <genClasses ecoreClass="EssentialOCLCST.ecore#//TypeCS"/>
-    <genClasses ecoreClass="EssentialOCLCST.ecore#//UnlimitedNaturalLiteralExpCS"/>
+    <genClasses image="false" ecoreClass="EssentialOCLCST.ecore#//TypeExpCS"/>
     <genClasses ecoreClass="EssentialOCLCST.ecore#//VariableCS">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//VariableCS/type"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//VariableCS/initExpression"/>

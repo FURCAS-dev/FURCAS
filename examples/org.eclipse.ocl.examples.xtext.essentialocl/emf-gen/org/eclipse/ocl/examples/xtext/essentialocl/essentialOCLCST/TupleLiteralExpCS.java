@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralExpCS.java,v 1.2 2010/05/21 20:12:10 ewillink Exp $
+ * $Id: TupleLiteralExpCS.java,v 1.3 2011/01/24 21:31:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +26,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralExpCS#getPart <em>Part</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralExpCS#getOwnedParts <em>Owned Parts</em>}</li>
  * </ul>
  * </p>
  *
@@ -35,21 +34,21 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
  * @model
  * @generated
  */
-public interface TupleLiteralExpCS extends ClassifierCS, LiteralExpCS {
+public interface TupleLiteralExpCS extends LiteralExpCS {
 	/**
-	 * Returns the value of the '<em><b>Part</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS}.
+	 * Returns the value of the '<em><b>Owned Parts</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralPartCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Part</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Owned Parts</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Part</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getTupleLiteralExpCS_Part()
+	 * @return the value of the '<em>Owned Parts</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getTupleLiteralExpCS_OwnedParts()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<VariableCS> getPart();
+	EList<TupleLiteralPartCS> getOwnedParts();
 
 } // TupleLiteralExpCS

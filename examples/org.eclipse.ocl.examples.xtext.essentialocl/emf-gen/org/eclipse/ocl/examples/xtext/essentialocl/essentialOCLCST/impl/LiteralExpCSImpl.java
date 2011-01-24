@@ -12,13 +12,15 @@
  *
  * </copyright>
  *
- * $Id: LiteralExpCSImpl.java,v 1.2 2010/05/03 05:37:55 ewillink Exp $
+ * $Id: LiteralExpCSImpl.java,v 1.3 2011/01/24 21:31:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,4 +51,9 @@ public class LiteralExpCSImpl extends ExpCSImpl implements LiteralExpCS {
 		return EssentialOCLCSTPackage.Literals.LITERAL_EXP_CS;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(EssentialOCLCSVisitor.class).visitLiteralExpCS(this);
+	}
 } //LiteralExpCSImpl

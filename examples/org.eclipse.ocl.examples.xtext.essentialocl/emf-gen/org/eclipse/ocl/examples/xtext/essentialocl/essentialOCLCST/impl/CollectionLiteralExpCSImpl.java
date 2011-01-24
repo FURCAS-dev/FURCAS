@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralExpCSImpl.java,v 1.2 2010/05/03 05:37:49 ewillink Exp $
+ * $Id: CollectionLiteralExpCSImpl.java,v 1.3 2011/01/24 21:31:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -26,10 +26,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
+import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,8 +40,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLC
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.CollectionLiteralExpCSImpl#getTypeCS <em>Type CS</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.CollectionLiteralExpCSImpl#getCollectionLiteralParts <em>Collection Literal Parts</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.CollectionLiteralExpCSImpl#getOwnedType <em>Owned Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.CollectionLiteralExpCSImpl#getOwnedParts <em>Owned Parts</em>}</li>
  * </ul>
  * </p>
  *
@@ -47,24 +49,23 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLC
  */
 public class CollectionLiteralExpCSImpl extends LiteralExpCSImpl implements CollectionLiteralExpCS {
 	/**
-	 * The cached value of the '{@link #getTypeCS() <em>Type CS</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTypeCS()
+	 * @see #getOwnedType()
 	 * @generated
 	 * @ordered
 	 */
-	protected CollectionTypeCS typeCS;
+	protected CollectionTypeCS ownedType;
 	/**
-	 * The cached value of the '{@link #getCollectionLiteralParts() <em>Collection Literal Parts</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedParts() <em>Owned Parts</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCollectionLiteralParts()
+	 * @see #getOwnedParts()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<CollectionLiteralPartCS> collectionLiteralParts;
-
+	protected EList<CollectionLiteralPartCS> ownedParts;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -89,8 +90,9 @@ public class CollectionLiteralExpCSImpl extends LiteralExpCSImpl implements Coll
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CollectionTypeCS getTypeCS() {
-		return typeCS;
+	public CollectionTypeCS getOwnedType()
+	{
+		return ownedType;
 	}
 
 	/**
@@ -98,11 +100,13 @@ public class CollectionLiteralExpCSImpl extends LiteralExpCSImpl implements Coll
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTypeCS(CollectionTypeCS newTypeCS, NotificationChain msgs) {
-		CollectionTypeCS oldTypeCS = typeCS;
-		typeCS = newTypeCS;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__TYPE_CS, oldTypeCS, newTypeCS);
+	public NotificationChain basicSetOwnedType(CollectionTypeCS newOwnedType, NotificationChain msgs)
+	{
+		CollectionTypeCS oldOwnedType = ownedType;
+		ownedType = newOwnedType;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__OWNED_TYPE, oldOwnedType, newOwnedType);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -113,18 +117,20 @@ public class CollectionLiteralExpCSImpl extends LiteralExpCSImpl implements Coll
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTypeCS(CollectionTypeCS newTypeCS) {
-		if (newTypeCS != typeCS) {
+	public void setOwnedType(CollectionTypeCS newOwnedType)
+	{
+		if (newOwnedType != ownedType)
+		{
 			NotificationChain msgs = null;
-			if (typeCS != null)
-				msgs = ((InternalEObject)typeCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__TYPE_CS, null, msgs);
-			if (newTypeCS != null)
-				msgs = ((InternalEObject)newTypeCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__TYPE_CS, null, msgs);
-			msgs = basicSetTypeCS(newTypeCS, msgs);
+			if (ownedType != null)
+				msgs = ((InternalEObject)ownedType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__OWNED_TYPE, null, msgs);
+			if (newOwnedType != null)
+				msgs = ((InternalEObject)newOwnedType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__OWNED_TYPE, null, msgs);
+			msgs = basicSetOwnedType(newOwnedType, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__TYPE_CS, newTypeCS, newTypeCS));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__OWNED_TYPE, newOwnedType, newOwnedType));
 	}
 
 	/**
@@ -132,11 +138,13 @@ public class CollectionLiteralExpCSImpl extends LiteralExpCSImpl implements Coll
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<CollectionLiteralPartCS> getCollectionLiteralParts() {
-		if (collectionLiteralParts == null) {
-			collectionLiteralParts = new EObjectContainmentEList<CollectionLiteralPartCS>(CollectionLiteralPartCS.class, this, EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS);
+	public EList<CollectionLiteralPartCS> getOwnedParts()
+	{
+		if (ownedParts == null)
+		{
+			ownedParts = new EObjectContainmentEList<CollectionLiteralPartCS>(CollectionLiteralPartCS.class, this, EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__OWNED_PARTS);
 		}
-		return collectionLiteralParts;
+		return ownedParts;
 	}
 
 	/**
@@ -146,11 +154,12 @@ public class CollectionLiteralExpCSImpl extends LiteralExpCSImpl implements Coll
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__TYPE_CS:
-				return basicSetTypeCS(null, msgs);
-			case EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS:
-				return ((InternalEList<?>)getCollectionLiteralParts()).basicRemove(otherEnd, msgs);
+		switch (featureID)
+		{
+			case EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__OWNED_TYPE:
+				return basicSetOwnedType(null, msgs);
+			case EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__OWNED_PARTS:
+				return ((InternalEList<?>)getOwnedParts()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -162,11 +171,12 @@ public class CollectionLiteralExpCSImpl extends LiteralExpCSImpl implements Coll
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__TYPE_CS:
-				return getTypeCS();
-			case EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS:
-				return getCollectionLiteralParts();
+		switch (featureID)
+		{
+			case EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__OWNED_TYPE:
+				return getOwnedType();
+			case EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__OWNED_PARTS:
+				return getOwnedParts();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -179,13 +189,14 @@ public class CollectionLiteralExpCSImpl extends LiteralExpCSImpl implements Coll
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__TYPE_CS:
-				setTypeCS((CollectionTypeCS)newValue);
+		switch (featureID)
+		{
+			case EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__OWNED_TYPE:
+				setOwnedType((CollectionTypeCS)newValue);
 				return;
-			case EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS:
-				getCollectionLiteralParts().clear();
-				getCollectionLiteralParts().addAll((Collection<? extends CollectionLiteralPartCS>)newValue);
+			case EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__OWNED_PARTS:
+				getOwnedParts().clear();
+				getOwnedParts().addAll((Collection<? extends CollectionLiteralPartCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -198,12 +209,13 @@ public class CollectionLiteralExpCSImpl extends LiteralExpCSImpl implements Coll
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__TYPE_CS:
-				setTypeCS((CollectionTypeCS)null);
+		switch (featureID)
+		{
+			case EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__OWNED_TYPE:
+				setOwnedType((CollectionTypeCS)null);
 				return;
-			case EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS:
-				getCollectionLiteralParts().clear();
+			case EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__OWNED_PARTS:
+				getOwnedParts().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -216,13 +228,19 @@ public class CollectionLiteralExpCSImpl extends LiteralExpCSImpl implements Coll
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__TYPE_CS:
-				return typeCS != null;
-			case EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS:
-				return collectionLiteralParts != null && !collectionLiteralParts.isEmpty();
+		switch (featureID)
+		{
+			case EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__OWNED_TYPE:
+				return ownedType != null;
+			case EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS__OWNED_PARTS:
+				return ownedParts != null && !ownedParts.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(EssentialOCLCSVisitor.class).visitCollectionLiteralExpCS(this);
+	}
 } //CollectionLiteralExpCSImpl

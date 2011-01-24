@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LetExpCSImpl.java,v 1.2 2010/05/03 05:37:47 ewillink Exp $
+ * $Id: LetExpCSImpl.java,v 1.3 2011/01/24 21:31:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -24,12 +24,14 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -54,7 +56,7 @@ public class LetExpCSImpl extends ExpCSImpl implements LetExpCS {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<VariableCS> variable;
+	protected EList<LetVariableCS> variable;
 
 	/**
 	 * The cached value of the '{@link #getIn() <em>In</em>}' containment reference.
@@ -90,9 +92,10 @@ public class LetExpCSImpl extends ExpCSImpl implements LetExpCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<VariableCS> getVariable() {
-		if (variable == null) {
-			variable = new EObjectContainmentEList<VariableCS>(VariableCS.class, this, EssentialOCLCSTPackage.LET_EXP_CS__VARIABLE);
+	public EList<LetVariableCS> getVariable() {
+		if (variable == null)
+		{
+			variable = new EObjectContainmentWithInverseEList<LetVariableCS>(LetVariableCS.class, this, EssentialOCLCSTPackage.LET_EXP_CS__VARIABLE, EssentialOCLCSTPackage.LET_VARIABLE_CS__LET_EXPRESSION);
 		}
 		return variable;
 	}
@@ -114,7 +117,8 @@ public class LetExpCSImpl extends ExpCSImpl implements LetExpCS {
 	public NotificationChain basicSetIn(ExpCS newIn, NotificationChain msgs) {
 		ExpCS oldIn = in;
 		in = newIn;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.LET_EXP_CS__IN, oldIn, newIn);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -127,7 +131,8 @@ public class LetExpCSImpl extends ExpCSImpl implements LetExpCS {
 	 * @generated
 	 */
 	public void setIn(ExpCS newIn) {
-		if (newIn != in) {
+		if (newIn != in)
+		{
 			NotificationChain msgs = null;
 			if (in != null)
 				msgs = ((InternalEObject)in).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSTPackage.LET_EXP_CS__IN, null, msgs);
@@ -145,9 +150,27 @@ public class LetExpCSImpl extends ExpCSImpl implements LetExpCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case EssentialOCLCSTPackage.LET_EXP_CS__VARIABLE:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getVariable()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case EssentialOCLCSTPackage.LET_EXP_CS__VARIABLE:
 				return ((InternalEList<?>)getVariable()).basicRemove(otherEnd, msgs);
 			case EssentialOCLCSTPackage.LET_EXP_CS__IN:
@@ -163,7 +186,8 @@ public class LetExpCSImpl extends ExpCSImpl implements LetExpCS {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case EssentialOCLCSTPackage.LET_EXP_CS__VARIABLE:
 				return getVariable();
 			case EssentialOCLCSTPackage.LET_EXP_CS__IN:
@@ -180,10 +204,11 @@ public class LetExpCSImpl extends ExpCSImpl implements LetExpCS {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case EssentialOCLCSTPackage.LET_EXP_CS__VARIABLE:
 				getVariable().clear();
-				getVariable().addAll((Collection<? extends VariableCS>)newValue);
+				getVariable().addAll((Collection<? extends LetVariableCS>)newValue);
 				return;
 			case EssentialOCLCSTPackage.LET_EXP_CS__IN:
 				setIn((ExpCS)newValue);
@@ -199,7 +224,8 @@ public class LetExpCSImpl extends ExpCSImpl implements LetExpCS {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case EssentialOCLCSTPackage.LET_EXP_CS__VARIABLE:
 				getVariable().clear();
 				return;
@@ -217,7 +243,8 @@ public class LetExpCSImpl extends ExpCSImpl implements LetExpCS {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case EssentialOCLCSTPackage.LET_EXP_CS__VARIABLE:
 				return variable != null && !variable.isEmpty();
 			case EssentialOCLCSTPackage.LET_EXP_CS__IN:
@@ -226,4 +253,9 @@ public class LetExpCSImpl extends ExpCSImpl implements LetExpCS {
 		return super.eIsSet(featureID);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(EssentialOCLCSVisitor.class).visitLetExpCS(this);
+	}
 } //LetExpCSImpl

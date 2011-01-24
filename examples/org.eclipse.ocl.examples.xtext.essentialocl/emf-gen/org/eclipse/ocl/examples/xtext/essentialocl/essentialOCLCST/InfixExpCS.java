@@ -12,9 +12,11 @@
  *
  * </copyright>
  *
- * $Id: InfixExpCS.java,v 1.2 2010/05/21 20:12:10 ewillink Exp $
+ * $Id: InfixExpCS.java,v 1.3 2011/01/24 21:31:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
+
+import org.eclipse.emf.common.util.EList;
 
 
 /**
@@ -25,7 +27,8 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS#getArgument <em>Argument</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS#getOwnedExpression <em>Owned Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS#getOwnedOperator <em>Owned Operator</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,31 +36,37 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
  * @model
  * @generated
  */
-public interface InfixExpCS extends OperatorExpCS {
+public interface InfixExpCS extends ExpCS {
 	/**
-	 * Returns the value of the '<em><b>Argument</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Expression</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Argument</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Owned Expression</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Argument</em>' containment reference.
-	 * @see #setArgument(ExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getInfixExpCS_Argument()
-	 * @model containment="true"
+	 * @return the value of the '<em>Owned Expression</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getInfixExpCS_OwnedExpression()
+	 * @model containment="true" lower="2"
 	 * @generated
 	 */
-	ExpCS getArgument();
+	EList<ExpCS> getOwnedExpression();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS#getArgument <em>Argument</em>}' containment reference.
+	 * Returns the value of the '<em><b>Owned Operator</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS}.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Operator</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Argument</em>' containment reference.
-	 * @see #getArgument()
+	 * @return the value of the '<em>Owned Operator</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getInfixExpCS_OwnedOperator()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	void setArgument(ExpCS value);
+	EList<BinaryOperatorCS> getOwnedOperator();
 
 } // BinaryExpressionCS

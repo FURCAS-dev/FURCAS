@@ -12,10 +12,12 @@
  *
  * </copyright>
  *
- * $Id: NamedExpCS.java,v 1.2 2010/05/21 20:12:10 ewillink Exp $
+ * $Id: NamedExpCS.java,v 1.3 2011/01/24 21:31:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
+
+import org.eclipse.ocl.examples.pivot.NamedElement;
 
 
 /**
@@ -23,44 +25,12 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
  * A representation of the model object '<em><b>Named Exp CS</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS#getName <em>Name</em>}</li>
- * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getNamedExpCS()
- * @model abstract="true"
+ * @model interface="true" abstract="true"
  * @generated
  */
 public interface NamedExpCS extends ExpCS {
-
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' containment reference.
-	 * @see #setName(NameExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getNamedExpCS_Name()
-	 * @model containment="true"
-	 * @generated
-	 */
-	NameExpCS getName();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS#getName <em>Name</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' containment reference.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(NameExpCS value);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -68,6 +38,14 @@ public interface NamedExpCS extends ExpCS {
 	 * @model kind="operation"
 	 * @generated
 	 */
-	boolean isPre();
+	NamedElement getNamedElement();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	SimpleNamedExpCS getSimpleNamedExp();
 
 } // NamedExpCS

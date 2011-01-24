@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLFormatter.java,v 1.3 2010/05/23 10:27:33 ewillink Exp $
+ * $Id: EssentialOCLFormatter.java,v 1.4 2011/01/24 21:31:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.formatting;
 
@@ -39,13 +39,13 @@ public class EssentialOCLFormatter extends AbstractEssentialOCLFormatter
 		configureCollectionTypeCS(c, f.getCollectionTypeCSAccess());
 		configureIfExpCS(c, f.getIfExpCSAccess());
 		configureLetExpCS(c, f.getLetExpCSAccess());
-	    configureNavigationExpCS(c, f.getNavigationExpCSAccess());
+//	    configureNavigationExpCS(c, f.getNavigationExpCSAccess());
 	    configureNavigatingExpCS(c, f.getNavigatingExpCSAccess());
-		configurePathNameExpCS(c, f.getPathNameExpCSAccess());
-		configurePreExpCS(c, f.getPreExpCSAccess());
-	    configureRoundBracketExpCS(c, f.getRoundBracketExpCSAccess());
-	    configureSquareBracketExpCS(c, f.getSquareBracketExpCSAccess());
-		configureSubNavigationExpCS(c, f.getSubNavigationExpCSAccess());
+//		configurePathNameExpCS(c, f.getPathNameExpCSAccess());
+//		configurePreExpCS(c, f.getPreExpCSAccess());
+//	    configureRoundBracketExpCS(c, f.getRoundBracketExpCSAccess());
+//	    configureSquareBracketExpCS(c, f.getSquareBracketExpCSAccess());
+//		configureSubNavigationExpCS(c, f.getSubNavigationExpCSAccess());
 	    configureTupleLiteralExpCS(c, f.getTupleLiteralExpCSAccess());
 	    configureTupleTypeCS(c, f.getTupleTypeCSAccess());
 	}
