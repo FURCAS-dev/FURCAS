@@ -631,7 +631,7 @@ public class AssociationTest
 		public AssocClassFruitEnvironment(
 				AssocClassFruitEnvironmentFactory factory,
 				Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
-			super(factory, parent);
+			super(parent);
 			
 	//		init();
 		}

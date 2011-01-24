@@ -195,33 +195,7 @@ public class EcoreEnvironment
      * as a package registry and a resource.
      * 
      * @param parent my parent environment
-     * @since 3.1
      */
-	protected EcoreEnvironment(EcoreEnvironmentFactory fac,
-			Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
-		super((EcoreEnvironment) parent);
-		factory = fac;
-		EcoreEnvironment eparent = (EcoreEnvironment) parent;
-		
-		if (eparent != null) {
-			registry = eparent.registry;
-			typeResolver = eparent.getTypeResolver();
-			oppositeEndFinder = eparent.oppositeEndFinder;
-		} else {
-			registry = fac.getEPackageRegistry();
-			typeResolver = createTypeResolver();
-			oppositeEndFinder = fac.getOppositeEndFinder();
-		}
-	}
-
-    /**
-     * Initializes me with a parent environment, from which I inherit such things
-     * as a package registry and a resource.
-     * 
-     * @param parent my parent environment
-     * @deprecated Use {@link #EcoreEnvironment(EcoreEnvironmentFactory, Environment)) instead
-     */
-	@Deprecated
 	protected EcoreEnvironment(
 			Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
 		
@@ -230,6 +204,7 @@ public class EcoreEnvironment
 		EcoreEnvironment eparent = (EcoreEnvironment) parent;
 		
 		if (eparent != null) {
+			factory = eparent.factory;
 			registry = eparent.registry;
 			typeResolver = eparent.getTypeResolver();
 			oppositeEndFinder = eparent.oppositeEndFinder;

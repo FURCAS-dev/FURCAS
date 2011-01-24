@@ -164,7 +164,7 @@ public class ValidationTest extends AbstractTestSuite {
 		public CustomFruitEnvironment(
 				CustomFruitEnvironmentFactory factory,
 				Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
-			super(factory, parent);
+			super(parent);
 		}
 		
         

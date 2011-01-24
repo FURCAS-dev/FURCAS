@@ -159,7 +159,7 @@ public class EcoreEnvironmentFactory
 				"Parent environment must be an Ecore environment: " + parent); //$NON-NLS-1$
 		}
 		
-		EcoreEnvironment result = new EcoreEnvironment(this, parent);
+		EcoreEnvironment result = new EcoreEnvironment(parent);
 		return result;
 	}
 
