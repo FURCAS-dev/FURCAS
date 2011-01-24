@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreLinkingService.java,v 1.8 2011/01/24 21:43:57 ewillink Exp $
+ * $Id: OCLinEcoreLinkingService.java,v 1.9 2011/01/24 22:28:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.services;
 

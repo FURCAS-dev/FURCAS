@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSTAdapterFactory.java,v 1.5 2011/01/24 21:43:57 ewillink Exp $
+ * $Id: OCLinEcoreCSTAdapterFactory.java,v 1.6 2011/01/24 22:28:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.util;
 

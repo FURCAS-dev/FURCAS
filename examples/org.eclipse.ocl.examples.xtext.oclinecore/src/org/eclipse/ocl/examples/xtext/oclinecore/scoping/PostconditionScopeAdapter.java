@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PostconditionScopeAdapter.java,v 1.4 2011/01/24 21:43:57 ewillink Exp $
+ * $Id: PostconditionScopeAdapter.java,v 1.5 2011/01/24 22:28:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
