@@ -12,9 +12,11 @@
  *
  * </copyright>
  *
- * $Id: InitCS.java,v 1.1 2010/04/13 06:38:25 ewillink Exp $
+ * $Id: InitCS.java,v 1.2 2011/01/24 21:08:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
+
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS;
 
 
 /**
@@ -27,5 +29,5 @@ package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
  * @model
  * @generated
  */
-public interface InitCS extends ConstraintCS {
+public interface InitCS extends ExpConstraintCS {
 } // InitCS

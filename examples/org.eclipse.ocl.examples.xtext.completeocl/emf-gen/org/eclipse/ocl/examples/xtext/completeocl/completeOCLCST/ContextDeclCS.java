@@ -12,11 +12,11 @@
  *
  * </copyright>
  *
- * $Id: ContextDeclCS.java,v 1.3 2010/05/16 19:26:03 ewillink Exp $
+ * $Id: ContextDeclCS.java,v 1.4 2011/01/24 21:08:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,6 +28,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
  * @model abstract="true"
  * @generated
  */
-public interface ContextDeclCS extends ElementCS {
+public interface ContextDeclCS extends ModelElementCS {
 
 } // ContextDeclCS

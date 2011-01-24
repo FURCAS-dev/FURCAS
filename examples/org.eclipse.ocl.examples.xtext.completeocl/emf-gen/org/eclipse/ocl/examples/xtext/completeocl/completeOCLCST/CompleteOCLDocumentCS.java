@@ -12,12 +12,12 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLDocumentCS.java,v 1.1 2010/05/03 05:58:31 ewillink Exp $
+ * $Id: CompleteOCLDocumentCS.java,v 1.2 2011/01/24 21:08:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,7 +36,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentCS;
  * @model
  * @generated
  */
-public interface CompleteOCLDocumentCS extends DocumentCS {
+public interface CompleteOCLDocumentCS extends RootPackageCS {
 	/**
 	 * Returns the value of the '<em><b>Packages</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS}.

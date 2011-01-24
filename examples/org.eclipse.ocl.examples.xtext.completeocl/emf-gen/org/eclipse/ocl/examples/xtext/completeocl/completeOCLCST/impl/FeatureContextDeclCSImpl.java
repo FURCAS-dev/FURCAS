@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: FeatureContextDeclCSImpl.java,v 1.1 2010/05/03 05:58:16 ewillink Exp $
+ * $Id: FeatureContextDeclCSImpl.java,v 1.2 2011/01/24 21:08:25 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
@@ -22,10 +22,12 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.FeatureContextDeclCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassCS;
+import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,7 +37,7 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassCS
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.FeatureContextDeclCSImpl#getClass_ <em>Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.FeatureContextDeclCSImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.FeatureContextDeclCSImpl#getOwnedType <em>Owned Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -50,17 +52,17 @@ public abstract class FeatureContextDeclCSImpl extends ContextDeclCSImpl impleme
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLinEcoreClassCS class_;
+	protected ClassCS class_;
 
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getType()
+	 * @see #getOwnedType()
 	 * @generated
 	 * @ordered
 	 */
-	protected TypeCS type;
+	protected TypedRefCS ownedType;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -86,11 +88,13 @@ public abstract class FeatureContextDeclCSImpl extends ContextDeclCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLinEcoreClassCS getClass_() {
-		if (class_ != null && class_.eIsProxy()) {
+	public ClassCS getClass_() {
+		if (class_ != null && class_.eIsProxy())
+		{
 			InternalEObject oldClass = (InternalEObject)class_;
-			class_ = (OCLinEcoreClassCS)eResolveProxy(oldClass);
-			if (class_ != oldClass) {
+			class_ = (ClassCS)eResolveProxy(oldClass);
+			if (class_ != oldClass)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CompleteOCLCSTPackage.FEATURE_CONTEXT_DECL_CS__CLASS, oldClass, class_));
 			}
@@ -103,7 +107,7 @@ public abstract class FeatureContextDeclCSImpl extends ContextDeclCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLinEcoreClassCS basicGetClass() {
+	public ClassCS basicGetClass() {
 		return class_;
 	}
 
@@ -112,8 +116,9 @@ public abstract class FeatureContextDeclCSImpl extends ContextDeclCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setClass(OCLinEcoreClassCS newClass) {
-		OCLinEcoreClassCS oldClass = class_;
+	public void setClass(ClassCS newClass)
+	{
+		ClassCS oldClass = class_;
 		class_ = newClass;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.FEATURE_CONTEXT_DECL_CS__CLASS, oldClass, class_));
@@ -124,8 +129,9 @@ public abstract class FeatureContextDeclCSImpl extends ContextDeclCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeCS getType() {
-		return type;
+	public TypedRefCS getOwnedType()
+	{
+		return ownedType;
 	}
 
 	/**
@@ -133,11 +139,13 @@ public abstract class FeatureContextDeclCSImpl extends ContextDeclCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetType(TypeCS newType, NotificationChain msgs) {
-		TypeCS oldType = type;
-		type = newType;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.FEATURE_CONTEXT_DECL_CS__TYPE, oldType, newType);
+	public NotificationChain basicSetOwnedType(TypedRefCS newOwnedType, NotificationChain msgs)
+	{
+		TypedRefCS oldOwnedType = ownedType;
+		ownedType = newOwnedType;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.FEATURE_CONTEXT_DECL_CS__OWNED_TYPE, oldOwnedType, newOwnedType);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -148,18 +156,20 @@ public abstract class FeatureContextDeclCSImpl extends ContextDeclCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(TypeCS newType) {
-		if (newType != type) {
+	public void setOwnedType(TypedRefCS newOwnedType)
+	{
+		if (newOwnedType != ownedType)
+		{
 			NotificationChain msgs = null;
-			if (type != null)
-				msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.FEATURE_CONTEXT_DECL_CS__TYPE, null, msgs);
-			if (newType != null)
-				msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.FEATURE_CONTEXT_DECL_CS__TYPE, null, msgs);
-			msgs = basicSetType(newType, msgs);
+			if (ownedType != null)
+				msgs = ((InternalEObject)ownedType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.FEATURE_CONTEXT_DECL_CS__OWNED_TYPE, null, msgs);
+			if (newOwnedType != null)
+				msgs = ((InternalEObject)newOwnedType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.FEATURE_CONTEXT_DECL_CS__OWNED_TYPE, null, msgs);
+			msgs = basicSetOwnedType(newOwnedType, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.FEATURE_CONTEXT_DECL_CS__TYPE, newType, newType));
+			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.FEATURE_CONTEXT_DECL_CS__OWNED_TYPE, newOwnedType, newOwnedType));
 	}
 
 	/**
@@ -169,9 +179,10 @@ public abstract class FeatureContextDeclCSImpl extends ContextDeclCSImpl impleme
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case CompleteOCLCSTPackage.FEATURE_CONTEXT_DECL_CS__TYPE:
-				return basicSetType(null, msgs);
+		switch (featureID)
+		{
+			case CompleteOCLCSTPackage.FEATURE_CONTEXT_DECL_CS__OWNED_TYPE:
+				return basicSetOwnedType(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -183,12 +194,13 @@ public abstract class FeatureContextDeclCSImpl extends ContextDeclCSImpl impleme
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.FEATURE_CONTEXT_DECL_CS__CLASS:
 				if (resolve) return getClass_();
 				return basicGetClass();
-			case CompleteOCLCSTPackage.FEATURE_CONTEXT_DECL_CS__TYPE:
-				return getType();
+			case CompleteOCLCSTPackage.FEATURE_CONTEXT_DECL_CS__OWNED_TYPE:
+				return getOwnedType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -200,12 +212,13 @@ public abstract class FeatureContextDeclCSImpl extends ContextDeclCSImpl impleme
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.FEATURE_CONTEXT_DECL_CS__CLASS:
-				setClass((OCLinEcoreClassCS)newValue);
+				setClass((ClassCS)newValue);
 				return;
-			case CompleteOCLCSTPackage.FEATURE_CONTEXT_DECL_CS__TYPE:
-				setType((TypeCS)newValue);
+			case CompleteOCLCSTPackage.FEATURE_CONTEXT_DECL_CS__OWNED_TYPE:
+				setOwnedType((TypedRefCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -218,12 +231,13 @@ public abstract class FeatureContextDeclCSImpl extends ContextDeclCSImpl impleme
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.FEATURE_CONTEXT_DECL_CS__CLASS:
-				setClass((OCLinEcoreClassCS)null);
+				setClass((ClassCS)null);
 				return;
-			case CompleteOCLCSTPackage.FEATURE_CONTEXT_DECL_CS__TYPE:
-				setType((TypeCS)null);
+			case CompleteOCLCSTPackage.FEATURE_CONTEXT_DECL_CS__OWNED_TYPE:
+				setOwnedType((TypedRefCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -236,13 +250,19 @@ public abstract class FeatureContextDeclCSImpl extends ContextDeclCSImpl impleme
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.FEATURE_CONTEXT_DECL_CS__CLASS:
 				return class_ != null;
-			case CompleteOCLCSTPackage.FEATURE_CONTEXT_DECL_CS__TYPE:
-				return type != null;
+			case CompleteOCLCSTPackage.FEATURE_CONTEXT_DECL_CS__OWNED_TYPE:
+				return ownedType != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(CompleteOCLCSVisitor.class).visitFeatureContextDeclCS(this);
+	}
 } //FeatureContextDeclCSImpl

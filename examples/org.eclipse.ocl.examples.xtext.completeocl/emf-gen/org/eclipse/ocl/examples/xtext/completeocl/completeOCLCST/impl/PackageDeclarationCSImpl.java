@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PackageDeclarationCSImpl.java,v 1.5 2010/05/24 08:58:29 ewillink Exp $
+ * $Id: PackageDeclarationCSImpl.java,v 1.6 2011/01/24 21:08:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -27,12 +27,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ElementCSImpl;
-import org.eclipse.ocl.examples.xtext.base.util.Signature;
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.MonikeredElementCSImpl;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS;
+import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,7 +48,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarat
  *
  * @generated
  */
-public class PackageDeclarationCSImpl extends ElementCSImpl implements PackageDeclarationCS {
+public class PackageDeclarationCSImpl extends MonikeredElementCSImpl implements PackageDeclarationCS {
 	/**
 	 * The cached value of the '{@link #getPackage() <em>Package</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -105,7 +105,8 @@ public class PackageDeclarationCSImpl extends ElementCSImpl implements PackageDe
 	public NotificationChain basicSetPackage(PackageRefCS newPackage, NotificationChain msgs) {
 		PackageRefCS oldPackage = package_;
 		package_ = newPackage;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__PACKAGE, oldPackage, newPackage);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -118,7 +119,8 @@ public class PackageDeclarationCSImpl extends ElementCSImpl implements PackageDe
 	 * @generated
 	 */
 	public void setPackage(PackageRefCS newPackage) {
-		if (newPackage != package_) {
+		if (newPackage != package_)
+		{
 			NotificationChain msgs = null;
 			if (package_ != null)
 				msgs = ((InternalEObject)package_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__PACKAGE, null, msgs);
@@ -137,7 +139,8 @@ public class PackageDeclarationCSImpl extends ElementCSImpl implements PackageDe
 	 * @generated
 	 */
 	public EList<ContextDeclCS> getContexts() {
-		if (contexts == null) {
+		if (contexts == null)
+		{
 			contexts = new EObjectContainmentEList<ContextDeclCS>(ContextDeclCS.class, this, CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__CONTEXTS);
 		}
 		return contexts;
@@ -150,7 +153,8 @@ public class PackageDeclarationCSImpl extends ElementCSImpl implements PackageDe
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__PACKAGE:
 				return basicSetPackage(null, msgs);
 			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__CONTEXTS:
@@ -166,7 +170,8 @@ public class PackageDeclarationCSImpl extends ElementCSImpl implements PackageDe
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__PACKAGE:
 				return getPackage();
 			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__CONTEXTS:
@@ -183,7 +188,8 @@ public class PackageDeclarationCSImpl extends ElementCSImpl implements PackageDe
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__PACKAGE:
 				setPackage((PackageRefCS)newValue);
 				return;
@@ -202,7 +208,8 @@ public class PackageDeclarationCSImpl extends ElementCSImpl implements PackageDe
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__PACKAGE:
 				setPackage((PackageRefCS)null);
 				return;
@@ -220,7 +227,8 @@ public class PackageDeclarationCSImpl extends ElementCSImpl implements PackageDe
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__PACKAGE:
 				return package_ != null;
 			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__CONTEXTS:
@@ -229,8 +237,9 @@ public class PackageDeclarationCSImpl extends ElementCSImpl implements PackageDe
 		return super.eIsSet(featureID);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
-		signature.appendElement(getPackage(), typeBindings);
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(CompleteOCLCSVisitor.class).visitPackageDeclarationCS(this);
 	}
 } //PackageDeclarationCSImpl

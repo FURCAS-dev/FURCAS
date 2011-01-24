@@ -12,17 +12,17 @@
  *
  * </copyright>
  *
- * $Id: ContextDeclCSImpl.java,v 1.3 2010/05/16 19:26:02 ewillink Exp $
+ * $Id: ContextDeclCSImpl.java,v 1.4 2011/01/24 21:08:25 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ElementCSImpl;
-
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ModelElementCSImpl;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS;
+import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,7 +33,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS;
  *
  * @generated
  */
-public abstract class ContextDeclCSImpl extends ElementCSImpl implements ContextDeclCS {
+public abstract class ContextDeclCSImpl extends ModelElementCSImpl implements ContextDeclCS {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -53,4 +53,9 @@ public abstract class ContextDeclCSImpl extends ElementCSImpl implements Context
 		return CompleteOCLCSTPackage.Literals.CONTEXT_DECL_CS;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(CompleteOCLCSVisitor.class).visitContextDeclCS(this);
+	}
 } //ContextDeclCSImpl

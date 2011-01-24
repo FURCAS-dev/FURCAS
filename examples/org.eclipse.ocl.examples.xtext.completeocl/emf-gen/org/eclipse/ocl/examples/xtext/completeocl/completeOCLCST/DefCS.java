@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: DefCS.java,v 1.2 2010/05/03 05:58:29 ewillink Exp $
+ * $Id: DefCS.java,v 1.3 2011/01/24 21:08:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 
 /**
@@ -31,7 +32,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#isStatic <em>Static</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#getConstrainedName <em>Constrained Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#getParameters <em>Parameters</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#getOwnedType <em>Owned Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -39,7 +40,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
  * @model
  * @generated
  */
-public interface DefCS extends NamedConstraintCS {
+public interface DefCS extends ExpConstraintCS {
 	/**
 	 * Returns the value of the '<em><b>Static</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -109,29 +110,29 @@ public interface DefCS extends NamedConstraintCS {
 	EList<VariableCS> getParameters();
 
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Owned Type</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' containment reference.
-	 * @see #setType(TypeCS)
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getDefCS_Type()
+	 * @return the value of the '<em>Owned Type</em>' containment reference.
+	 * @see #setOwnedType(TypedRefCS)
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getDefCS_OwnedType()
 	 * @model containment="true"
 	 * @generated
 	 */
-	TypeCS getType();
+	TypedRefCS getOwnedType();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#getType <em>Type</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#getOwnedType <em>Owned Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' containment reference.
-	 * @see #getType()
+	 * @param value the new value of the '<em>Owned Type</em>' containment reference.
+	 * @see #getOwnedType()
 	 * @generated
 	 */
-	void setType(TypeCS value);
+	void setOwnedType(TypedRefCS value);
 
 } // DefCS

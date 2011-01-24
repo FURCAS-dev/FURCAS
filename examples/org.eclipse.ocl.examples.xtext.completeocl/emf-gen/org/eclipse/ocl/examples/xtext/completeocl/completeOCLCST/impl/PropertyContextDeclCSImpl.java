@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyContextDeclCSImpl.java,v 1.5 2010/05/24 08:58:29 ewillink Exp $
+ * $Id: PropertyContextDeclCSImpl.java,v 1.6 2011/01/24 21:08:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -22,12 +22,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
-import org.eclipse.ocl.examples.xtext.base.util.Signature;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InitCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
+import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -111,7 +111,8 @@ public class PropertyContextDeclCSImpl extends FeatureContextDeclCSImpl implemen
 	public NotificationChain basicSetProperty(StructuralFeatureRefCS newProperty, NotificationChain msgs) {
 		StructuralFeatureRefCS oldProperty = property;
 		property = newProperty;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__PROPERTY, oldProperty, newProperty);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -124,7 +125,8 @@ public class PropertyContextDeclCSImpl extends FeatureContextDeclCSImpl implemen
 	 * @generated
 	 */
 	public void setProperty(StructuralFeatureRefCS newProperty) {
-		if (newProperty != property) {
+		if (newProperty != property)
+		{
 			NotificationChain msgs = null;
 			if (property != null)
 				msgs = ((InternalEObject)property).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__PROPERTY, null, msgs);
@@ -154,7 +156,8 @@ public class PropertyContextDeclCSImpl extends FeatureContextDeclCSImpl implemen
 	public NotificationChain basicSetInit(InitCS newInit, NotificationChain msgs) {
 		InitCS oldInit = init;
 		init = newInit;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__INIT, oldInit, newInit);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -167,7 +170,8 @@ public class PropertyContextDeclCSImpl extends FeatureContextDeclCSImpl implemen
 	 * @generated
 	 */
 	public void setInit(InitCS newInit) {
-		if (newInit != init) {
+		if (newInit != init)
+		{
 			NotificationChain msgs = null;
 			if (init != null)
 				msgs = ((InternalEObject)init).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__INIT, null, msgs);
@@ -197,7 +201,8 @@ public class PropertyContextDeclCSImpl extends FeatureContextDeclCSImpl implemen
 	public NotificationChain basicSetDer(DerCS newDer, NotificationChain msgs) {
 		DerCS oldDer = der;
 		der = newDer;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__DER, oldDer, newDer);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -210,7 +215,8 @@ public class PropertyContextDeclCSImpl extends FeatureContextDeclCSImpl implemen
 	 * @generated
 	 */
 	public void setDer(DerCS newDer) {
-		if (newDer != der) {
+		if (newDer != der)
+		{
 			NotificationChain msgs = null;
 			if (der != null)
 				msgs = ((InternalEObject)der).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__DER, null, msgs);
@@ -230,7 +236,8 @@ public class PropertyContextDeclCSImpl extends FeatureContextDeclCSImpl implemen
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__PROPERTY:
 				return basicSetProperty(null, msgs);
 			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__INIT:
@@ -248,7 +255,8 @@ public class PropertyContextDeclCSImpl extends FeatureContextDeclCSImpl implemen
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__PROPERTY:
 				return getProperty();
 			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__INIT:
@@ -266,7 +274,8 @@ public class PropertyContextDeclCSImpl extends FeatureContextDeclCSImpl implemen
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__PROPERTY:
 				setProperty((StructuralFeatureRefCS)newValue);
 				return;
@@ -287,7 +296,8 @@ public class PropertyContextDeclCSImpl extends FeatureContextDeclCSImpl implemen
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__PROPERTY:
 				setProperty((StructuralFeatureRefCS)null);
 				return;
@@ -308,7 +318,8 @@ public class PropertyContextDeclCSImpl extends FeatureContextDeclCSImpl implemen
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__PROPERTY:
 				return property != null;
 			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__INIT:
@@ -319,8 +330,9 @@ public class PropertyContextDeclCSImpl extends FeatureContextDeclCSImpl implemen
 		return super.eIsSet(featureID);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
-		signature.appendElement(getProperty(), typeBindings);
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(CompleteOCLCSVisitor.class).visitPropertyContextDeclCS(this);
 	}
 } //PropertyContextDeclCSImpl

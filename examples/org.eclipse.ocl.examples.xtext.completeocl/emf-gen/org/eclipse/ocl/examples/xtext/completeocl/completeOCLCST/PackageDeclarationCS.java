@@ -12,12 +12,12 @@
  *
  * </copyright>
  *
- * $Id: PackageDeclarationCS.java,v 1.3 2010/05/09 10:37:45 ewillink Exp $
+ * $Id: PackageDeclarationCS.java,v 1.4 2011/01/24 21:08:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS;
 
 /**
@@ -37,7 +37,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS;
  * @model
  * @generated
  */
-public interface PackageDeclarationCS extends ElementCS {
+public interface PackageDeclarationCS extends MonikeredElementCS {
 	/**
 	 * Returns the value of the '<em><b>Package</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

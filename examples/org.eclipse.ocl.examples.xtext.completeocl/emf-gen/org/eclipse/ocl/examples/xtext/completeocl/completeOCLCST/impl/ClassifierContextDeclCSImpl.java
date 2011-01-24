@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassifierContextDeclCSImpl.java,v 1.5 2010/05/24 08:58:29 ewillink Exp $
+ * $Id: ClassifierContextDeclCSImpl.java,v 1.6 2011/01/24 21:08:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -27,12 +27,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
-import org.eclipse.ocl.examples.xtext.base.util.Signature;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InvCS;
+import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -137,7 +137,8 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 	public NotificationChain basicSetClassifier(ClassifierRefCS newClassifier, NotificationChain msgs) {
 		ClassifierRefCS oldClassifier = classifier;
 		classifier = newClassifier;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CLASSIFIER, oldClassifier, newClassifier);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -150,7 +151,8 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 	 * @generated
 	 */
 	public void setClassifier(ClassifierRefCS newClassifier) {
-		if (newClassifier != classifier) {
+		if (newClassifier != classifier)
+		{
 			NotificationChain msgs = null;
 			if (classifier != null)
 				msgs = ((InternalEObject)classifier).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CLASSIFIER, null, msgs);
@@ -190,7 +192,8 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 	 * @generated
 	 */
 	public EList<InvCS> getInvs() {
-		if (invs == null) {
+		if (invs == null)
+		{
 			invs = new EObjectContainmentEList<InvCS>(InvCS.class, this, CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INVS);
 		}
 		return invs;
@@ -202,7 +205,8 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 	 * @generated
 	 */
 	public EList<DefCS> getDefs() {
-		if (defs == null) {
+		if (defs == null)
+		{
 			defs = new EObjectContainmentEList<DefCS>(DefCS.class, this, CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS__DEFS);
 		}
 		return defs;
@@ -215,7 +219,8 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CLASSIFIER:
 				return basicSetClassifier(null, msgs);
 			case CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INVS:
@@ -233,7 +238,8 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CLASSIFIER:
 				return getClassifier();
 			case CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME:
@@ -254,7 +260,8 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CLASSIFIER:
 				setClassifier((ClassifierRefCS)newValue);
 				return;
@@ -280,7 +287,8 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CLASSIFIER:
 				setClassifier((ClassifierRefCS)null);
 				return;
@@ -304,7 +312,8 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CLASSIFIER:
 				return classifier != null;
 			case CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME:
@@ -327,8 +336,9 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 		return super.toString();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
-		signature.appendElement(getClassifier(), typeBindings);
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(CompleteOCLCSVisitor.class).visitClassifierContextDeclCS(this);
 	}
 } //ClassifierContextDeclCSImpl

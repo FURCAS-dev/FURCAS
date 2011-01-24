@@ -5,24 +5,28 @@
     editDirectory="/org.eclipse.ocl.examples.xtext.completeocl.edit/emf-gen" editorDirectory="/org.eclipse.ocl.examples.xtext.completeocl.editor/emf-gen"
     modelPluginID="org.eclipse.ocl.examples.xtext.completeocl" forceOverwrite="true"
     modelName="CompleteOCL" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    testsDirectory="/org.eclipse.ocl.examples.xtext.completeocl.tests/emf-gen" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.ocl.examples.xtext.completeocl.edit"
-    editorPluginID="org.eclipse.ocl.examples.xtext.completeocl.editor" usedGenPackages="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.genmodel#//baseCST ../../org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.genmodel#//essentialOCLCST ../../org.eclipse.ocl.examples.xtext.oclinecore/model/OCLinEcoreCST.genmodel#//oclinEcoreCST">
+    codeFormatting="true" testsDirectory="/org.eclipse.ocl.examples.xtext.completeocl.tests/emf-gen"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    editPluginID="org.eclipse.ocl.examples.xtext.completeocl.edit" editorPluginID="org.eclipse.ocl.examples.xtext.completeocl.editor"
+    usedGenPackages="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.genmodel#//baseCST ../../org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.genmodel#//essentialOCLCST ../../org.eclipse.ocl.examples.xtext.oclinecore/model/OCLinEcoreCST.genmodel#//oclinEcoreCST">
   <foreignModel>CompleteOCLCST.ecore</foreignModel>
   <genPackages prefix="CompleteOCLCST" basePackage="org.eclipse.ocl.examples.xtext.completeocl"
       disposableProviderFactory="true" ecorePackage="CompleteOCLCST.ecore#/">
     <genClasses ecoreClass="CompleteOCLCST.ecore#//BodyCS"/>
     <genClasses ecoreClass="CompleteOCLCST.ecore#//ClassifierContextDeclCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//ClassifierContextDeclCS/classifier"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute CompleteOCLCST.ecore#//ClassifierContextDeclCS/selfName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//ClassifierContextDeclCS/invs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//ClassifierContextDeclCS/defs"/>
     </genClasses>
+    <genClasses ecoreClass="CompleteOCLCST.ecore#//CompleteOCLDocumentCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//CompleteOCLDocumentCS/packages"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//CompleteOCLDocumentCS/contexts"/>
+    </genClasses>
     <genClasses ecoreClass="CompleteOCLCST.ecore#//ConstraintCS">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//ConstraintCS/expression"/>
     </genClasses>
-    <genClasses ecoreClass="CompleteOCLCST.ecore#//ContextDeclCS">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//ContextDeclCS/contextName"/>
-    </genClasses>
+    <genClasses ecoreClass="CompleteOCLCST.ecore#//ContextDeclCS"/>
     <genClasses ecoreClass="CompleteOCLCST.ecore#//DefCS">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CompleteOCLCST.ecore#//DefCS/static"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute CompleteOCLCST.ecore#//DefCS/constrainedName"/>
@@ -30,14 +34,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//DefCS/type"/>
     </genClasses>
     <genClasses ecoreClass="CompleteOCLCST.ecore#//DerCS"/>
-    <genClasses ecoreClass="CompleteOCLCST.ecore#//DocumentCS">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//DocumentCS/imports"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//DocumentCS/packages"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//DocumentCS/contexts"/>
-    </genClasses>
-    <genClasses ecoreClass="CompleteOCLCST.ecore#//ImportCS">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CompleteOCLCST.ecore#//ImportCS/alias"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//ImportCS/package"/>
+    <genClasses image="false" ecoreClass="CompleteOCLCST.ecore#//FeatureContextDeclCS">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//FeatureContextDeclCS/class"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//FeatureContextDeclCS/type"/>
     </genClasses>
     <genClasses ecoreClass="CompleteOCLCST.ecore#//InitCS"/>
     <genClasses ecoreClass="CompleteOCLCST.ecore#//InvCS"/>
@@ -48,14 +47,13 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//OclMessageArgCS/type"/>
     </genClasses>
     <genClasses ecoreClass="CompleteOCLCST.ecore#//OclMessageCS">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//OclMessageCS/source"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CompleteOCLCST.ecore#//OclMessageCS/op"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CompleteOCLCST.ecore#//OclMessageCS/messageName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//OclMessageCS/arguments"/>
     </genClasses>
     <genClasses ecoreClass="CompleteOCLCST.ecore#//OperationContextDeclCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//OperationContextDeclCS/operation"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//OperationContextDeclCS/parameters"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//OperationContextDeclCS/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//OperationContextDeclCS/result"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//OperationContextDeclCS/pres"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//OperationContextDeclCS/posts"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//OperationContextDeclCS/bodies"/>
@@ -67,7 +65,7 @@
     <genClasses ecoreClass="CompleteOCLCST.ecore#//PostCS"/>
     <genClasses ecoreClass="CompleteOCLCST.ecore#//PreCS"/>
     <genClasses ecoreClass="CompleteOCLCST.ecore#//PropertyContextDeclCS">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//PropertyContextDeclCS/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//PropertyContextDeclCS/property"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//PropertyContextDeclCS/init"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCST.ecore#//PropertyContextDeclCS/der"/>
     </genClasses>

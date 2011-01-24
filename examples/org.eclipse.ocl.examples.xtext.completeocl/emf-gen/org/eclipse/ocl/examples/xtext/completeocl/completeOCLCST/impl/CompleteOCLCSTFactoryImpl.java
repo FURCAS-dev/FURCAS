@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTFactoryImpl.java,v 1.4 2010/05/16 19:26:02 ewillink Exp $
+ * $Id: CompleteOCLCSTFactoryImpl.java,v 1.5 2011/01/24 21:08:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -26,18 +26,16 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierConte
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTFactory;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InitCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InvCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.NamedConstraintCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageArgCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreExpCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
 
 /**
@@ -54,13 +52,16 @@ public class CompleteOCLCSTFactoryImpl extends EFactoryImpl implements CompleteO
 	 * @generated
 	 */
 	public static CompleteOCLCSTFactory init() {
-		try {
-			CompleteOCLCSTFactory theCompleteOCLCSTFactory = (CompleteOCLCSTFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/ocl/3.0.0/CompleteOCLCST"); 
-			if (theCompleteOCLCSTFactory != null) {
+		try
+		{
+			CompleteOCLCSTFactory theCompleteOCLCSTFactory = (CompleteOCLCSTFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/ocl/3.1.0/CompleteOCLCST"); 
+			if (theCompleteOCLCSTFactory != null)
+			{
 				return theCompleteOCLCSTFactory;
 			}
 		}
-		catch (Exception exception) {
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new CompleteOCLCSTFactoryImpl();
@@ -83,22 +84,21 @@ public class CompleteOCLCSTFactoryImpl extends EFactoryImpl implements CompleteO
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
+		switch (eClass.getClassifierID())
+		{
 			case CompleteOCLCSTPackage.BODY_CS: return createBodyCS();
 			case CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS: return createClassifierContextDeclCS();
 			case CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS: return createCompleteOCLDocumentCS();
-			case CompleteOCLCSTPackage.CONSTRAINT_CS: return createConstraintCS();
 			case CompleteOCLCSTPackage.DEF_CS: return createDefCS();
 			case CompleteOCLCSTPackage.DER_CS: return createDerCS();
 			case CompleteOCLCSTPackage.INIT_CS: return createInitCS();
 			case CompleteOCLCSTPackage.INV_CS: return createInvCS();
-			case CompleteOCLCSTPackage.NAMED_CONSTRAINT_CS: return createNamedConstraintCS();
 			case CompleteOCLCSTPackage.OCL_MESSAGE_ARG_CS: return createOclMessageArgCS();
-			case CompleteOCLCSTPackage.OCL_MESSAGE_CS: return createOclMessageCS();
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS: return createOperationContextDeclCS();
 			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS: return createPackageDeclarationCS();
 			case CompleteOCLCSTPackage.POST_CS: return createPostCS();
 			case CompleteOCLCSTPackage.PRE_CS: return createPreCS();
+			case CompleteOCLCSTPackage.PRE_EXP_CS: return createPreExpCS();
 			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS: return createPropertyContextDeclCS();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -210,6 +210,17 @@ public class CompleteOCLCSTFactoryImpl extends EFactoryImpl implements CompleteO
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public PreExpCS createPreExpCS()
+	{
+		PreExpCSImpl preExpCS = new PreExpCSImpl();
+		return preExpCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public PostCS createPostCS() {
 		PostCSImpl postCS = new PostCSImpl();
 		return postCS;
@@ -230,39 +241,9 @@ public class CompleteOCLCSTFactoryImpl extends EFactoryImpl implements CompleteO
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConstraintCS createConstraintCS() {
-		ConstraintCSImpl constraintCS = new ConstraintCSImpl();
-		return constraintCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NamedConstraintCS createNamedConstraintCS() {
-		NamedConstraintCSImpl namedConstraintCS = new NamedConstraintCSImpl();
-		return namedConstraintCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public OclMessageArgCS createOclMessageArgCS() {
 		OclMessageArgCSImpl oclMessageArgCS = new OclMessageArgCSImpl();
 		return oclMessageArgCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclMessageCS createOclMessageCS() {
-		OclMessageCSImpl oclMessageCS = new OclMessageCSImpl();
-		return oclMessageCS;
 	}
 
 	/**

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLDocumentCSImpl.java,v 1.1 2010/05/03 05:58:20 ewillink Exp $
+ * $Id: CompleteOCLDocumentCSImpl.java,v 1.2 2011/01/24 21:08:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -24,11 +24,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.examples.xtext.base.baseCST.impl.DocumentCSImpl;
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.RootPackageCSImpl;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS;
+import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -44,7 +46,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarat
  *
  * @generated
  */
-public class CompleteOCLDocumentCSImpl extends DocumentCSImpl implements CompleteOCLDocumentCS {
+public class CompleteOCLDocumentCSImpl extends RootPackageCSImpl implements CompleteOCLDocumentCS {
 	/**
 	 * The cached value of the '{@link #getPackages() <em>Packages</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -90,7 +92,8 @@ public class CompleteOCLDocumentCSImpl extends DocumentCSImpl implements Complet
 	 * @generated
 	 */
 	public EList<PackageDeclarationCS> getPackages() {
-		if (packages == null) {
+		if (packages == null)
+		{
 			packages = new EObjectContainmentEList<PackageDeclarationCS>(PackageDeclarationCS.class, this, CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS__PACKAGES);
 		}
 		return packages;
@@ -102,7 +105,8 @@ public class CompleteOCLDocumentCSImpl extends DocumentCSImpl implements Complet
 	 * @generated
 	 */
 	public EList<ContextDeclCS> getContexts() {
-		if (contexts == null) {
+		if (contexts == null)
+		{
 			contexts = new EObjectContainmentEList<ContextDeclCS>(ContextDeclCS.class, this, CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS__CONTEXTS);
 		}
 		return contexts;
@@ -115,7 +119,8 @@ public class CompleteOCLDocumentCSImpl extends DocumentCSImpl implements Complet
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS__PACKAGES:
 				return ((InternalEList<?>)getPackages()).basicRemove(otherEnd, msgs);
 			case CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS__CONTEXTS:
@@ -131,7 +136,8 @@ public class CompleteOCLDocumentCSImpl extends DocumentCSImpl implements Complet
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS__PACKAGES:
 				return getPackages();
 			case CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS__CONTEXTS:
@@ -148,7 +154,8 @@ public class CompleteOCLDocumentCSImpl extends DocumentCSImpl implements Complet
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS__PACKAGES:
 				getPackages().clear();
 				getPackages().addAll((Collection<? extends PackageDeclarationCS>)newValue);
@@ -168,7 +175,8 @@ public class CompleteOCLDocumentCSImpl extends DocumentCSImpl implements Complet
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS__PACKAGES:
 				getPackages().clear();
 				return;
@@ -186,7 +194,8 @@ public class CompleteOCLDocumentCSImpl extends DocumentCSImpl implements Complet
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS__PACKAGES:
 				return packages != null && !packages.isEmpty();
 			case CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS__CONTEXTS:
@@ -195,4 +204,9 @@ public class CompleteOCLDocumentCSImpl extends DocumentCSImpl implements Complet
 		return super.eIsSet(featureID);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(CompleteOCLCSVisitor.class).visitCompleteOCLDocumentCS(this);
+	}
 } //DocumentCSImpl
