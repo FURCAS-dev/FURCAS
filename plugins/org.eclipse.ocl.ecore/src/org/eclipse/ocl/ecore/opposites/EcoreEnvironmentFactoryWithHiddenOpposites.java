@@ -33,6 +33,11 @@ import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
  */
 public class EcoreEnvironmentFactoryWithHiddenOpposites
 		extends EcoreEnvironmentFactory {
+	
+	/**
+	 * A default instance that works with the default {@link EPackage.Registry#INSTANCE package registry}.
+	 */
+	public static final EcoreEnvironmentFactoryWithHiddenOpposites INSTANCE = new EcoreEnvironmentFactoryWithHiddenOpposites();
 
     private final OppositeEndFinder oppositeEndFinder;
     

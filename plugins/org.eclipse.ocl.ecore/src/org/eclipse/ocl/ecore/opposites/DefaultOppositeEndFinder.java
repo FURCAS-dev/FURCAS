@@ -83,8 +83,7 @@ import org.eclipse.ocl.util.CollectionUtil;
 public class DefaultOppositeEndFinder
 		implements OppositeEndFinder {
 
-	private static WeakHashMap<Registry, DefaultOppositeEndFinder> instances =
-		new WeakHashMap<Registry, DefaultOppositeEndFinder>();
+	private static DefaultOppositeEndFinder instanceForDefaultRegistry = null;
 	
 	/**
 	 * The set of packages for which the hidden opposites are already cached in
@@ -118,10 +117,14 @@ public class DefaultOppositeEndFinder
 	 * predictable results using {@link #getInstance(Set<EPackage>)}.
 	 */
 	public static DefaultOppositeEndFinder getInstance(EPackage.Registry registry) {
-		DefaultOppositeEndFinder result = instances.get(registry);
-		if (result == null) {
+		DefaultOppositeEndFinder result;
+		if (registry == EPackage.Registry.INSTANCE) {
+			if (instanceForDefaultRegistry == null) {
+				instanceForDefaultRegistry = new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE);
+			}
+			result = instanceForDefaultRegistry;
+		} else {
 			result = new DefaultOppositeEndFinder(registry);
-			instances.put(registry, result);
 		}
 		return result;
 	}
