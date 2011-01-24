@@ -137,19 +137,54 @@ public class EcoreEnvironment
 	 * Initializes me with a package registry for package look-ups.
 	 * 
 	 * @param reg a package registry
+	 * @deprecated Use {@link #EcoreEnvironment(EcoreEnvironmentFactory)} instead
 	 */
+	@Deprecated
 	protected EcoreEnvironment(EPackage.Registry reg) {
 		registry = reg;
 		typeResolver = createTypeResolver();
 	}
 	
+	/**
+	 * Initializes me from the factory provided from which registry and
+	 * opposite end finder (if any) are obtained consistently.
+	 * @since 3.1
+	 */
+	protected EcoreEnvironment(EcoreEnvironmentFactory fac) {
+		factory = fac;
+		registry = fac.getEPackageRegistry();
+		oppositeEndFinder = fac.getOppositeEndFinder();
+		typeResolver = createTypeResolver();
+	}
+
+	/**
+	 * Initializes me with an environment factory from which package registry
+	 * and opposite end finder (if any) are obtained consistently, and from a
+	 * resource in which I am persisted (and from which I load myself if it
+	 * already has content).
+	 * 
+	 * @param reg
+	 *            a package registry
+	 * @param resource
+	 *            a resource, which may or may not already have content
+	 * @since 3.1
+	 */
+	protected EcoreEnvironment(EcoreEnvironmentFactory fac, Resource resource) {
+		factory = fac;
+		registry = fac.getEPackageRegistry();
+		oppositeEndFinder = fac.getOppositeEndFinder();
+		typeResolver = createTypeResolver(resource);
+	}
+
     /**
      * Initializes me with a package registry and a resource in which I am
      * persisted (and from which I load myself if it already has content).
      * 
      * @param reg a package registry
      * @param resource a resource, which may or may not already have content
+	 * @deprecated Use {@link #EcoreEnvironment(EcoreEnvironmentFactory, Resource)} instead
      */
+	@Deprecated
 	protected EcoreEnvironment(EPackage.Registry reg, Resource resource) {
 		registry = reg;
 		typeResolver = createTypeResolver(resource);
@@ -160,7 +195,33 @@ public class EcoreEnvironment
      * as a package registry and a resource.
      * 
      * @param parent my parent environment
+     * @since 3.1
      */
+	protected EcoreEnvironment(EcoreEnvironmentFactory fac,
+			Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
+		super((EcoreEnvironment) parent);
+		factory = fac;
+		EcoreEnvironment eparent = (EcoreEnvironment) parent;
+		
+		if (eparent != null) {
+			registry = eparent.registry;
+			typeResolver = eparent.getTypeResolver();
+			oppositeEndFinder = eparent.oppositeEndFinder;
+		} else {
+			registry = fac.getEPackageRegistry();
+			typeResolver = createTypeResolver();
+			oppositeEndFinder = fac.getOppositeEndFinder();
+		}
+	}
+
+    /**
+     * Initializes me with a parent environment, from which I inherit such things
+     * as a package registry and a resource.
+     * 
+     * @param parent my parent environment
+     * @deprecated Use {@link #EcoreEnvironment(EcoreEnvironmentFactory, Environment)) instead
+     */
+	@Deprecated
 	protected EcoreEnvironment(
 			Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
 		
@@ -205,15 +266,21 @@ public class EcoreEnvironment
 		
 		return factory;
 	}
-	
+
 	/**
-	 * Sets the factory that created me.  This method should only be invoked
-	 * by that factory. If the factory is an {@link EcoreEnvironmentFactory},
-	 * its {@link EcoreEnvironmentFactory#getOppositeEndFinder() opposite end finder}
-	 * will be used as this environment's {@link #oppositeEndFinder opposite end finder}.
+	 * Sets the factory that created me. This method should only be invoked by
+	 * that factory. If the factory is an {@link EcoreEnvironmentFactory}, its
+	 * {@link EcoreEnvironmentFactory#getOppositeEndFinder() opposite end
+	 * finder} will be used as this environment's {@link #oppositeEndFinder
+	 * opposite end finder}.
 	 * 
-	 * @param factory my originating factory
+	 * @param factory
+	 *            my originating factory
+	 * @deprecated {@link #factory} will become final in future releases; use
+	 *             one of the constructors taking an
+	 *             {@link EcoreEnvironmentFactory} argument instead
 	 */
+	@Deprecated
 	protected void setFactory(EnvironmentFactory<
 			EPackage, EClassifier, EOperation, EStructuralFeature,
 			EEnumLiteral, EParameter,
