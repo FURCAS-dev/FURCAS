@@ -198,7 +198,7 @@ public class EcoreEnvironmentTest
 	    
 	    // this constructor is used to initialize child environments
 	    MyEnvironment(EcoreEnvironmentFactory factory, MyEnvironment parent) {
-	        super(factory, parent);
+	        super(parent);
 	        
 	        // get the parent's custom operations
 	        regexMatch = parent.regexMatch;
