@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreValueConverterService.java,v 1.2 2010/05/03 05:44:44 ewillink Exp $
+ * $Id: OCLinEcoreValueConverterService.java,v 1.3 2011/01/24 21:43:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.services;
 
@@ -21,7 +21,7 @@ import org.eclipse.xtext.conversion.IValueConverter;
 import org.eclipse.xtext.conversion.ValueConverter;
 import org.eclipse.xtext.conversion.ValueConverterException;
 import org.eclipse.xtext.conversion.impl.AbstractNullSafeConverter;
-import org.eclipse.xtext.parsetree.AbstractNode;
+import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.util.Strings;
 
 public class OCLinEcoreValueConverterService extends EssentialOCLValueConverterService
@@ -31,7 +31,7 @@ public class OCLinEcoreValueConverterService extends EssentialOCLValueConverterS
 		return new AbstractNullSafeConverter<Integer>() {
 			
 			@Override
-			public Integer internalToValue(String string, AbstractNode node) {
+			public Integer internalToValue(String string, INode node) {
 				if (Strings.isEmpty(string))
 					throw new ValueConverterException("Couldn't convert empty string to integer", node, null);
 				try {
@@ -53,7 +53,7 @@ public class OCLinEcoreValueConverterService extends EssentialOCLValueConverterS
 	public IValueConverter<String> UNQUOTED_STRING() {
 		return new AbstractNullSafeConverter<String>() {
 			@Override
-			protected String internalToValue(String string, AbstractNode node) {
+			protected String internalToValue(String string, INode node) {
 				try {
 					return Strings.convertFromJavaString(string.substring(1, string.length() - 1), false);
 				} catch(IllegalArgumentException e) {
@@ -68,12 +68,17 @@ public class OCLinEcoreValueConverterService extends EssentialOCLValueConverterS
 		};
 	}
 	
+	@ValueConverter(rule = "UnrestrictedName")
+	public IValueConverter<String> UnrestrictedName() {
+		return ID();
+	}
+	
 	@ValueConverter(rule = "UPPER")
 	public IValueConverter<Integer> UPPER() {
 		return new AbstractNullSafeConverter<Integer>() {
 			
 			@Override
-			public Integer internalToValue(String string, AbstractNode node) {
+			public Integer internalToValue(String string, INode node) {
 				if (Strings.isEmpty(string))
 					throw new ValueConverterException("Couldn't convert empty string to integer", node, null);
 				try {

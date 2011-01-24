@@ -5,52 +5,75 @@
     editDirectory="/org.eclipse.ocl.examples.xtext.oclinecore.edit/emf-gen" editorDirectory="/org.eclipse.ocl.examples.xtext.oclinecore.editor/emf-gen"
     modelPluginID="org.eclipse.ocl.examples.xtext.oclinecore" forceOverwrite="true"
     modelName="OCLinEcore" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    testsDirectory="/org.eclipse.ocl.examples.xtext.oclinecore.tests/emf-gen" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.ocl.examples.xtext.oclinecore.edit"
-    editorPluginID="org.eclipse.ocl.examples.xtext.oclinecore.editor" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.genmodel#//baseCST ../../org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.genmodel#//essentialOCLCST">
+    codeFormatting="true" testsDirectory="/org.eclipse.ocl.examples.xtext.oclinecore.tests/emf-gen"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    editPluginID="org.eclipse.ocl.examples.xtext.oclinecore.edit" editorPluginID="org.eclipse.ocl.examples.xtext.oclinecore.editor"
+    usedGenPackages="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.genmodel#//baseCST ../../org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.genmodel#//essentialOCLCST">
   <foreignModel>OCLinEcoreCST.ecore</foreignModel>
   <genPackages prefix="OCLinEcoreCST" basePackage="org.eclipse.ocl.examples.xtext.oclinecore"
       disposableProviderFactory="true" contentTypeIdentifier="org.eclipse.ocl.examples.xtext.oclinecore"
       ecorePackage="OCLinEcoreCST.ecore#/">
-    <genClasses ecoreClass="OCLinEcoreCST.ecore#//DocumentCS">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLinEcoreCST.ecore#//DocumentCS/imports"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLinEcoreCST.ecore#//DocumentCS/packages"/>
-    </genClasses>
-    <genClasses ecoreClass="OCLinEcoreCST.ecore#//ImportCS">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//ImportCS/importedNamespace"/>
+    <genClasses ecoreClass="OCLinEcoreCST.ecore#//AnnotationCS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//AnnotationCS/idSource"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//AnnotationCS/stringSource"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLinEcoreCST.ecore#//AnnotationCS/contents"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLinEcoreCST.ecore#//AnnotationCS/references"/>
     </genClasses>
     <genClasses ecoreClass="OCLinEcoreCST.ecore#//ConstraintCS">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//ConstraintCS/stereotype"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLinEcoreCST.ecore#//ConstraintCS/expr"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//ConstraintCS/exprString"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLinEcoreCST.ecore#//ConstraintCS/exprValue"/>
     </genClasses>
-    <genClasses ecoreClass="OCLinEcoreCST.ecore#//DetailCS">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//DetailCS/value"/>
+    <genClasses ecoreClass="OCLinEcoreCST.ecore#//DataTypeCS"/>
+    <genClasses image="false" ecoreClass="OCLinEcoreCST.ecore#//DataTypeOrEnumCS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//DataTypeOrEnumCS/serializable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//DataTypeOrEnumCS/notSerializable"/>
     </genClasses>
-    <genClasses ecoreClass="OCLinEcoreCST.ecore#//EAnnotationCS">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLinEcoreCST.ecore#//EAnnotationCS/details2"/>
+    <genClasses ecoreClass="OCLinEcoreCST.ecore#//DocumentationCS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//DocumentationCS/value"/>
     </genClasses>
-    <genClasses ecoreClass="OCLinEcoreCST.ecore#//EAttributeCS"/>
-    <genClasses ecoreClass="OCLinEcoreCST.ecore#//EClassifierCS">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLinEcoreCST.ecore#//EClassifierCS/constraints"/>
+    <genClasses ecoreClass="OCLinEcoreCST.ecore#//EnumCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLinEcoreCST.ecore#//EnumCS/literals"/>
     </genClasses>
-    <genClasses ecoreClass="OCLinEcoreCST.ecore#//EClassCS"/>
-    <genClasses ecoreClass="OCLinEcoreCST.ecore#//EDataTypeCS"/>
-    <genClasses ecoreClass="OCLinEcoreCST.ecore#//EEnumCS"/>
-    <genClasses ecoreClass="OCLinEcoreCST.ecore#//EEnumLiteralCS"/>
-    <genClasses ecoreClass="OCLinEcoreCST.ecore#//EModelElementCS"/>
-    <genClasses ecoreClass="OCLinEcoreCST.ecore#//ENamedElementCS"/>
-    <genClasses ecoreClass="OCLinEcoreCST.ecore#//EOperationCS">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLinEcoreCST.ecore#//EOperationCS/constraints"/>
+    <genClasses ecoreClass="OCLinEcoreCST.ecore#//OCLinEcoreAttributeCS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//OCLinEcoreAttributeCS/notId"/>
     </genClasses>
-    <genClasses ecoreClass="OCLinEcoreCST.ecore#//EPackageCS"/>
-    <genClasses ecoreClass="OCLinEcoreCST.ecore#//EParameterCS"/>
-    <genClasses ecoreClass="OCLinEcoreCST.ecore#//EReferenceCS"/>
-    <genClasses ecoreClass="OCLinEcoreCST.ecore#//EStructuralFeatureCS">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLinEcoreCST.ecore#//EStructuralFeatureCS/constraints"/>
+    <genClasses ecoreClass="OCLinEcoreCST.ecore#//OCLinEcoreClassCS"/>
+    <genClasses image="false" ecoreClass="OCLinEcoreCST.ecore#//OCLinEcoreClassifierCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLinEcoreCST.ecore#//OCLinEcoreClassifierCS/constraints"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//OCLinEcoreClassifierCS/instanceClassName"/>
     </genClasses>
-    <genClasses ecoreClass="OCLinEcoreCST.ecore#//ETypedElementCS">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//ETypedElementCS/multiplicity"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//ETypedElementCS/qualifiers"/>
+    <genClasses ecoreClass="OCLinEcoreCST.ecore#//OCLinEcoreDocumentCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLinEcoreCST.ecore#//OCLinEcoreDocumentCS/packages"/>
     </genClasses>
+    <genClasses ecoreClass="OCLinEcoreCST.ecore#//OCLinEcoreOperationCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLinEcoreCST.ecore#//OCLinEcoreOperationCS/constraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLinEcoreCST.ecore#//OCLinEcoreOperationCS/exceptions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//OCLinEcoreOperationCS/notUnique"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//OCLinEcoreOperationCS/notOrdered"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//OCLinEcoreOperationCS/notDerived"/>
+    </genClasses>
+    <genClasses ecoreClass="OCLinEcoreCST.ecore#//OCLinEcorePackageCS"/>
+    <genClasses ecoreClass="OCLinEcoreCST.ecore#//OCLinEcoreParameterCS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//OCLinEcoreParameterCS/notUnique"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//OCLinEcoreParameterCS/notOrdered"/>
+    </genClasses>
+    <genClasses ecoreClass="OCLinEcoreCST.ecore#//OCLinEcoreReferenceCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLinEcoreCST.ecore#//OCLinEcoreReferenceCS/keys"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//OCLinEcoreReferenceCS/notComposes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//OCLinEcoreReferenceCS/notResolve"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OCLinEcoreCST.ecore#//OCLinEcoreStructuralFeatureCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLinEcoreCST.ecore#//OCLinEcoreStructuralFeatureCS/constraints"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//OCLinEcoreStructuralFeatureCS/defaultValueLiteral"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//OCLinEcoreStructuralFeatureCS/notVolatile"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//OCLinEcoreStructuralFeatureCS/notTransient"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//OCLinEcoreStructuralFeatureCS/notUnsettable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//OCLinEcoreStructuralFeatureCS/notReadonly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//OCLinEcoreStructuralFeatureCS/notUnique"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//OCLinEcoreStructuralFeatureCS/notOrdered"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCST.ecore#//OCLinEcoreStructuralFeatureCS/notDerived"/>
+    </genClasses>
+    <genClasses ecoreClass="OCLinEcoreCST.ecore#//PostconditionCS"/>
   </genPackages>
 </genmodel:GenModel>

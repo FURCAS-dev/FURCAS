@@ -36,6 +36,5 @@ public class OCLinEcoreStandaloneSetupGenerated implements ISetup {
 
 
 
-
 	}
 }
