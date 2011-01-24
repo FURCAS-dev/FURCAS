@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AnnotationElementCS.java,v 1.1 2010/05/03 05:25:11 ewillink Exp $
+ * $Id: AnnotationElementCS.java,v 1.2 2011/01/24 20:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -27,7 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS#getDetails <em>Details</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS#getOwnedDetail <em>Owned Detail</em>}</li>
  * </ul>
  * </p>
  *
@@ -35,21 +35,21 @@ import org.eclipse.emf.common.util.EList;
  * @model abstract="true"
  * @generated
  */
-public interface AnnotationElementCS extends ModelElementCS {
+public interface AnnotationElementCS extends NamedElementCS {
 	/**
-	 * Returns the value of the '<em><b>Details</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Detail</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Details</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Owned Detail</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Details</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getAnnotationElementCS_Details()
+	 * @return the value of the '<em>Owned Detail</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getAnnotationElementCS_OwnedDetail()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<DetailCS> getDetails();
+	EList<DetailCS> getOwnedDetail();
 
 } // AnnotationElementCS

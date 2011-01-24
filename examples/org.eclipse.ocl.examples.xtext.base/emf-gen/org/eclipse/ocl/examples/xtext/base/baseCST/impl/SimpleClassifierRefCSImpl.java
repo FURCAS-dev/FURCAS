@@ -1,8 +1,18 @@
 /**
  * <copyright>
+ *
+ * Copyright (c) 2010 E.D.Willink and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   E.D.Willink - Initial API and implementation
+ *
  * </copyright>
  *
- * $Id: SimpleClassifierRefCSImpl.java,v 1.4 2010/05/24 08:59:31 ewillink Exp $
+ * $Id: SimpleClassifierRefCSImpl.java,v 1.5 2011/01/24 20:59:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -13,8 +23,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleClassifierRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
-import org.eclipse.ocl.examples.xtext.base.util.Signature;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -66,10 +75,12 @@ public class SimpleClassifierRefCSImpl extends ClassifierRefCSImpl implements Si
 	 */
 	@Override
 	public ClassifierCS getClassifier() {
-		if (classifier != null && classifier.eIsProxy()) {
+		if (classifier != null && classifier.eIsProxy())
+		{
 			InternalEObject oldClassifier = (InternalEObject)classifier;
 			classifier = (ClassifierCS)eResolveProxy(oldClassifier);
-			if (classifier != oldClassifier) {
+			if (classifier != oldClassifier)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BaseCSTPackage.SIMPLE_CLASSIFIER_REF_CS__CLASSIFIER, oldClassifier, classifier));
 			}
@@ -105,7 +116,8 @@ public class SimpleClassifierRefCSImpl extends ClassifierRefCSImpl implements Si
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.SIMPLE_CLASSIFIER_REF_CS__CLASSIFIER:
 				if (resolve) return getClassifier();
 				return basicGetClassifier();
@@ -120,7 +132,8 @@ public class SimpleClassifierRefCSImpl extends ClassifierRefCSImpl implements Si
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.SIMPLE_CLASSIFIER_REF_CS__CLASSIFIER:
 				setClassifier((ClassifierCS)newValue);
 				return;
@@ -135,7 +148,8 @@ public class SimpleClassifierRefCSImpl extends ClassifierRefCSImpl implements Si
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.SIMPLE_CLASSIFIER_REF_CS__CLASSIFIER:
 				setClassifier((ClassifierCS)null);
 				return;
@@ -150,7 +164,8 @@ public class SimpleClassifierRefCSImpl extends ClassifierRefCSImpl implements Si
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.SIMPLE_CLASSIFIER_REF_CS__CLASSIFIER:
 				return classifier != null;
 		}
@@ -158,7 +173,7 @@ public class SimpleClassifierRefCSImpl extends ClassifierRefCSImpl implements Si
 	}
 
 	@Override
-	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
-		signature.appendElement(getClassifier(), typeBindings);
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitSimpleClassifierRefCS(this);
 	}
 } //SimpleClassifierRefCSImpl

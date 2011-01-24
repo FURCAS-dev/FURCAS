@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: BoundDocumentCSImpl.java,v 1.1 2010/05/24 08:59:31 ewillink Exp $
+ * $Id: BoundDocumentCSImpl.java,v 1.2 2011/01/24 20:59:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BoundDocumentCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -50,4 +50,8 @@ public class BoundDocumentCSImpl extends PackageCSImpl implements BoundDocumentC
 		return BaseCSTPackage.Literals.BOUND_DOCUMENT_CS;
 	}
 
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitBoundDocumentCS(this);
+	}
 } //BoundDocumentCSImpl

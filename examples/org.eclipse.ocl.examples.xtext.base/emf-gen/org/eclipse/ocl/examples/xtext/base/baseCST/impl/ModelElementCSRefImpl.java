@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ModelElementCSRefImpl.java,v 1.3 2010/05/24 08:59:31 ewillink Exp $
+ * $Id: ModelElementCSRefImpl.java,v 1.4 2011/01/24 20:59:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -24,8 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
-import org.eclipse.ocl.examples.xtext.base.util.Signature;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -76,10 +75,12 @@ public class ModelElementCSRefImpl extends ElementCSImpl implements ModelElement
 	 * @generated
 	 */
 	public ModelElementCS getRef() {
-		if (ref != null && ref.eIsProxy()) {
+		if (ref != null && ref.eIsProxy())
+		{
 			InternalEObject oldRef = (InternalEObject)ref;
 			ref = (ModelElementCS)eResolveProxy(oldRef);
-			if (ref != oldRef) {
+			if (ref != oldRef)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BaseCSTPackage.MODEL_ELEMENT_CS_REF__REF, oldRef, ref));
 			}
@@ -115,7 +116,8 @@ public class ModelElementCSRefImpl extends ElementCSImpl implements ModelElement
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.MODEL_ELEMENT_CS_REF__REF:
 				if (resolve) return getRef();
 				return basicGetRef();
@@ -130,7 +132,8 @@ public class ModelElementCSRefImpl extends ElementCSImpl implements ModelElement
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.MODEL_ELEMENT_CS_REF__REF:
 				setRef((ModelElementCS)newValue);
 				return;
@@ -145,7 +148,8 @@ public class ModelElementCSRefImpl extends ElementCSImpl implements ModelElement
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.MODEL_ELEMENT_CS_REF__REF:
 				setRef((ModelElementCS)null);
 				return;
@@ -160,7 +164,8 @@ public class ModelElementCSRefImpl extends ElementCSImpl implements ModelElement
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.MODEL_ELEMENT_CS_REF__REF:
 				return ref != null;
 		}
@@ -168,7 +173,7 @@ public class ModelElementCSRefImpl extends ElementCSImpl implements ModelElement
 	}
 
 	@Override
-	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
-		signature.appendElement(getRef(), typeBindings);
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitModelElementCSRef(this);
 	}
 } //ModelElementCSRefImpl

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LibraryCS.java,v 1.1 2010/05/03 05:25:08 ewillink Exp $
+ * $Id: LibraryCS.java,v 1.2 2011/01/24 20:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -44,12 +44,12 @@ public interface LibraryCS extends NamespaceCS {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Package</em>' reference.
-	 * @see #setPackage(PackageCS)
+	 * @see #setPackage(org.eclipse.ocl.examples.pivot.Package)
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getLibraryCS_Package()
 	 * @model
 	 * @generated
 	 */
-	PackageCS getPackage();
+	org.eclipse.ocl.examples.pivot.Package getPackage();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS#getPackage <em>Package</em>}' reference.
@@ -59,6 +59,6 @@ public interface LibraryCS extends NamespaceCS {
 	 * @see #getPackage()
 	 * @generated
 	 */
-	void setPackage(PackageCS value);
+	void setPackage(org.eclipse.ocl.examples.pivot.Package value);
 
 } // LibraryCS

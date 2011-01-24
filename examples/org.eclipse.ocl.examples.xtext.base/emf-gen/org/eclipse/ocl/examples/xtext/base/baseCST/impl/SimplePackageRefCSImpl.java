@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SimplePackageRefCSImpl.java,v 1.4 2010/05/24 08:59:31 ewillink Exp $
+ * $Id: SimplePackageRefCSImpl.java,v 1.5 2011/01/24 20:59:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -24,8 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimplePackageRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
-import org.eclipse.ocl.examples.xtext.base.util.Signature;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -77,10 +76,12 @@ public class SimplePackageRefCSImpl extends PackageRefCSImpl implements SimplePa
 	 */
 	@Override
 	public PackageCS getPackage() {
-		if (package_ != null && package_.eIsProxy()) {
+		if (package_ != null && package_.eIsProxy())
+		{
 			InternalEObject oldPackage = (InternalEObject)package_;
 			package_ = (PackageCS)eResolveProxy(oldPackage);
-			if (package_ != oldPackage) {
+			if (package_ != oldPackage)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BaseCSTPackage.SIMPLE_PACKAGE_REF_CS__PACKAGE, oldPackage, package_));
 			}
@@ -116,7 +117,8 @@ public class SimplePackageRefCSImpl extends PackageRefCSImpl implements SimplePa
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.SIMPLE_PACKAGE_REF_CS__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
@@ -131,7 +133,8 @@ public class SimplePackageRefCSImpl extends PackageRefCSImpl implements SimplePa
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.SIMPLE_PACKAGE_REF_CS__PACKAGE:
 				setPackage((PackageCS)newValue);
 				return;
@@ -146,7 +149,8 @@ public class SimplePackageRefCSImpl extends PackageRefCSImpl implements SimplePa
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.SIMPLE_PACKAGE_REF_CS__PACKAGE:
 				setPackage((PackageCS)null);
 				return;
@@ -161,7 +165,8 @@ public class SimplePackageRefCSImpl extends PackageRefCSImpl implements SimplePa
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.SIMPLE_PACKAGE_REF_CS__PACKAGE:
 				return package_ != null;
 		}
@@ -169,7 +174,7 @@ public class SimplePackageRefCSImpl extends PackageRefCSImpl implements SimplePa
 	}
 
 	@Override
-	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
-		signature.appendElement(getPackage(), typeBindings);
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitSimplePackageRefCS(this);
 	}
 } //SimplePackageRefCSImpl

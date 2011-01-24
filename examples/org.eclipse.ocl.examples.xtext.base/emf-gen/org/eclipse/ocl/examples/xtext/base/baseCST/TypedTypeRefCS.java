@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: TypedTypeRefCS.java,v 1.2 2010/05/16 19:18:01 ewillink Exp $
+ * $Id: TypedTypeRefCS.java,v 1.3 2011/01/24 20:59:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST;
 
+import org.eclipse.ocl.examples.pivot.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,12 +44,12 @@ public interface TypedTypeRefCS extends ParameterizedTypeRefCS {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' reference.
-	 * @see #setType(TypeCS)
+	 * @see #setType(Type)
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getTypedTypeRefCS_Type()
 	 * @model
 	 * @generated
 	 */
-	TypeCS getType();
+	Type getType();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS#getType <em>Type</em>}' reference.
@@ -58,6 +59,6 @@ public interface TypedTypeRefCS extends ParameterizedTypeRefCS {
 	 * @see #getType()
 	 * @generated
 	 */
-	void setType(TypeCS value);
+	void setType(Type value);
 
 } // TypedTypeRefCS

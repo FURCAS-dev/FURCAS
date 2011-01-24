@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnumLiteralCSImpl.java,v 1.1 2010/05/03 05:25:13 ewillink Exp $
+ * $Id: EnumerationLiteralCSImpl.java,v 1.2 2011/01/24 20:59:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -20,7 +20,8 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.EnumLiteralCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationLiteralCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,13 +30,13 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.EnumLiteralCS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.EnumLiteralCSImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.EnumerationLiteralCSImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class EnumLiteralCSImpl extends NamedElementCSImpl implements EnumLiteralCS {
+public class EnumerationLiteralCSImpl extends NamedElementCSImpl implements EnumerationLiteralCS {
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -61,7 +62,7 @@ public class EnumLiteralCSImpl extends NamedElementCSImpl implements EnumLiteral
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EnumLiteralCSImpl() {
+	protected EnumerationLiteralCSImpl() {
 		super();
 	}
 
@@ -72,7 +73,7 @@ public class EnumLiteralCSImpl extends NamedElementCSImpl implements EnumLiteral
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return BaseCSTPackage.Literals.ENUM_LITERAL_CS;
+		return BaseCSTPackage.Literals.ENUMERATION_LITERAL_CS;
 	}
 
 	/**
@@ -93,7 +94,7 @@ public class EnumLiteralCSImpl extends NamedElementCSImpl implements EnumLiteral
 		int oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.ENUM_LITERAL_CS__VALUE, oldValue, value));
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.ENUMERATION_LITERAL_CS__VALUE, oldValue, value));
 	}
 
 	/**
@@ -103,8 +104,9 @@ public class EnumLiteralCSImpl extends NamedElementCSImpl implements EnumLiteral
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case BaseCSTPackage.ENUM_LITERAL_CS__VALUE:
+		switch (featureID)
+		{
+			case BaseCSTPackage.ENUMERATION_LITERAL_CS__VALUE:
 				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -117,8 +119,9 @@ public class EnumLiteralCSImpl extends NamedElementCSImpl implements EnumLiteral
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case BaseCSTPackage.ENUM_LITERAL_CS__VALUE:
+		switch (featureID)
+		{
+			case BaseCSTPackage.ENUMERATION_LITERAL_CS__VALUE:
 				setValue((Integer)newValue);
 				return;
 		}
@@ -132,8 +135,9 @@ public class EnumLiteralCSImpl extends NamedElementCSImpl implements EnumLiteral
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case BaseCSTPackage.ENUM_LITERAL_CS__VALUE:
+		switch (featureID)
+		{
+			case BaseCSTPackage.ENUMERATION_LITERAL_CS__VALUE:
 				setValue(VALUE_EDEFAULT);
 				return;
 		}
@@ -147,8 +151,9 @@ public class EnumLiteralCSImpl extends NamedElementCSImpl implements EnumLiteral
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case BaseCSTPackage.ENUM_LITERAL_CS__VALUE:
+		switch (featureID)
+		{
+			case BaseCSTPackage.ENUMERATION_LITERAL_CS__VALUE:
 				return value != VALUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -164,4 +169,8 @@ public class EnumLiteralCSImpl extends NamedElementCSImpl implements EnumLiteral
 		return super.toString();
 	}
 
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitEnumerationLiteralCS(this);
+	}
 } //EnumLiteralCSImpl

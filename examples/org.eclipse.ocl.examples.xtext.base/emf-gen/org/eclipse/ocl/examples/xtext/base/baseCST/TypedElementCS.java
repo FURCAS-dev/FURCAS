@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: TypedElementCS.java,v 1.1 2010/05/03 05:25:06 ewillink Exp $
+ * $Id: TypedElementCS.java,v 1.2 2011/01/24 20:59:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST;
 
 import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -28,14 +29,15 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getLower <em>Lower</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getMultiplicity <em>Multiplicity</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getQualifiers <em>Qualifiers</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getUpper <em>Upper</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getOwnedConstraint <em>Owned Constraint</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getQualifier <em>Qualifier</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getTypedElementCS()
- * @model interface="true" abstract="true"
+ * @model abstract="true"
  * @generated
  */
 public interface TypedElementCS extends NamedElementCS {
@@ -93,46 +95,30 @@ public interface TypedElementCS extends NamedElementCS {
 	void setMultiplicity(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Qualifiers</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
+	 * Returns the value of the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Qualifiers</em>' attribute list isn't clear,
+	 * If the meaning of the '<em>Owned Type</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Qualifiers</em>' attribute list.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getTypedElementCS_Qualifiers()
-	 * @model ordered="false"
-	 * @generated
-	 */
-	EList<String> getQualifiers();
-
-	/**
-	 * Returns the value of the '<em><b>Type</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Type</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' containment reference.
-	 * @see #setType(TypedRefCS)
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getTypedElementCS_Type()
+	 * @return the value of the '<em>Owned Type</em>' containment reference.
+	 * @see #setOwnedType(TypedRefCS)
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getTypedElementCS_OwnedType()
 	 * @model containment="true"
 	 * @generated
 	 */
-	TypedRefCS getType();
+	TypedRefCS getOwnedType();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getType <em>Type</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getOwnedType <em>Owned Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' containment reference.
-	 * @see #getType()
+	 * @param value the new value of the '<em>Owned Type</em>' containment reference.
+	 * @see #getOwnedType()
 	 * @generated
 	 */
-	void setType(TypedRefCS value);
+	void setOwnedType(TypedRefCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Upper</b></em>' attribute.
@@ -160,5 +146,37 @@ public interface TypedElementCS extends NamedElementCS {
 	 * @generated
 	 */
 	void setUpper(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Constraint</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Constraint</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Constraint</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getTypedElementCS_OwnedConstraint()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ConstraintCS> getOwnedConstraint();
+
+	/**
+	 * Returns the value of the '<em><b>Qualifier</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Qualifier</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Qualifier</em>' attribute list.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getTypedElementCS_Qualifier()
+	 * @model
+	 * @generated
+	 */
+	EList<String> getQualifier();
 
 } // TypedElementCS

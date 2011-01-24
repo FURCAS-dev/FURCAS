@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NamedElementCSImpl.java,v 1.5 2010/05/24 08:59:31 ewillink Exp $
+ * $Id: NamedElementCSImpl.java,v 1.6 2011/01/24 20:59:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -22,8 +22,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
-import org.eclipse.ocl.examples.xtext.base.util.Signature;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +37,7 @@ import org.eclipse.ocl.examples.xtext.base.util.Signature;
  *
  * @generated
  */
-public abstract class NamedElementCSImpl extends ModelElementCSImpl implements NamedElementCS {
+public abstract class NamedElementCSImpl extends MonikeredElementCSImpl implements NamedElementCS {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -106,7 +105,8 @@ public abstract class NamedElementCSImpl extends ModelElementCSImpl implements N
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.NAMED_ELEMENT_CS__NAME:
 				return getName();
 		}
@@ -120,7 +120,8 @@ public abstract class NamedElementCSImpl extends ModelElementCSImpl implements N
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.NAMED_ELEMENT_CS__NAME:
 				setName((String)newValue);
 				return;
@@ -135,7 +136,8 @@ public abstract class NamedElementCSImpl extends ModelElementCSImpl implements N
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.NAMED_ELEMENT_CS__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -150,7 +152,8 @@ public abstract class NamedElementCSImpl extends ModelElementCSImpl implements N
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.NAMED_ELEMENT_CS__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
@@ -168,8 +171,7 @@ public abstract class NamedElementCSImpl extends ModelElementCSImpl implements N
 	}
 
 	@Override
-	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
-		signature.appendParent(this, "::", typeBindings); //$NON-NLS-1$
-		signature.appendName(this);
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitNamedElementCS(this);
 	}
 } //NamedElementCSImpl

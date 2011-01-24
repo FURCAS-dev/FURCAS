@@ -12,19 +12,19 @@
  *
  * </copyright>
  *
- * $Id: ReferenceCSRefImpl.java,v 1.3 2010/05/24 08:59:31 ewillink Exp $
+ * $Id: ReferenceCSRefImpl.java,v 1.4 2011/01/24 20:59:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
-import org.eclipse.ocl.examples.xtext.base.util.Signature;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,7 +48,7 @@ public class ReferenceCSRefImpl extends ElementCSImpl implements ReferenceCSRef 
 	 * @generated
 	 * @ordered
 	 */
-	protected ReferenceCS ref;
+	protected Property ref;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -74,11 +74,13 @@ public class ReferenceCSRefImpl extends ElementCSImpl implements ReferenceCSRef 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReferenceCS getRef() {
-		if (ref != null && ref.eIsProxy()) {
+	public Property getRef() {
+		if (ref != null && ((EObject)ref).eIsProxy())
+		{
 			InternalEObject oldRef = (InternalEObject)ref;
-			ref = (ReferenceCS)eResolveProxy(oldRef);
-			if (ref != oldRef) {
+			ref = (Property)eResolveProxy(oldRef);
+			if (ref != oldRef)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BaseCSTPackage.REFERENCE_CS_REF__REF, oldRef, ref));
 			}
@@ -91,7 +93,7 @@ public class ReferenceCSRefImpl extends ElementCSImpl implements ReferenceCSRef 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReferenceCS basicGetRef() {
+	public Property basicGetRef() {
 		return ref;
 	}
 
@@ -100,8 +102,9 @@ public class ReferenceCSRefImpl extends ElementCSImpl implements ReferenceCSRef 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRef(ReferenceCS newRef) {
-		ReferenceCS oldRef = ref;
+	public void setRef(Property newRef)
+	{
+		Property oldRef = ref;
 		ref = newRef;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.REFERENCE_CS_REF__REF, oldRef, ref));
@@ -114,7 +117,8 @@ public class ReferenceCSRefImpl extends ElementCSImpl implements ReferenceCSRef 
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.REFERENCE_CS_REF__REF:
 				if (resolve) return getRef();
 				return basicGetRef();
@@ -129,9 +133,10 @@ public class ReferenceCSRefImpl extends ElementCSImpl implements ReferenceCSRef 
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.REFERENCE_CS_REF__REF:
-				setRef((ReferenceCS)newValue);
+				setRef((Property)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -144,9 +149,10 @@ public class ReferenceCSRefImpl extends ElementCSImpl implements ReferenceCSRef 
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.REFERENCE_CS_REF__REF:
-				setRef((ReferenceCS)null);
+				setRef((Property)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -159,7 +165,8 @@ public class ReferenceCSRefImpl extends ElementCSImpl implements ReferenceCSRef 
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.REFERENCE_CS_REF__REF:
 				return ref != null;
 		}
@@ -167,7 +174,7 @@ public class ReferenceCSRefImpl extends ElementCSImpl implements ReferenceCSRef 
 	}
 
 	@Override
-	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
-		signature.appendElement(getRef(), typeBindings);
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitReferenceCSRef(this);
 	}
 } //ReferenceCSRefImpl

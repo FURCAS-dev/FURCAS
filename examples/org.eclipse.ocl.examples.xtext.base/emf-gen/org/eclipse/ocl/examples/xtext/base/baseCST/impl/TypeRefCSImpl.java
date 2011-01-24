@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeRefCSImpl.java,v 1.1 2010/05/03 05:25:25 ewillink Exp $
+ * $Id: TypeRefCSImpl.java,v 1.2 2011/01/24 20:59:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -20,6 +20,7 @@ package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +31,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
  *
  * @generated
  */
-public abstract class TypeRefCSImpl extends ModelElementCSImpl implements TypeRefCS {
+public abstract class TypeRefCSImpl extends MonikeredElementCSImpl implements TypeRefCS {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -50,4 +51,8 @@ public abstract class TypeRefCSImpl extends ModelElementCSImpl implements TypeRe
 		return BaseCSTPackage.Literals.TYPE_REF_CS;
 	}
 
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitTypeRefCS(this);
+	}
 } //TypeCSRefImpl

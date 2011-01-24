@@ -12,9 +12,10 @@
  *
  * </copyright>
  *
- * $Id: ParameterCS.java,v 1.2 2010/05/22 18:49:59 ewillink Exp $
+ * $Id: ParameterCS.java,v 1.3 2011/01/24 20:59:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST;
+
 
 
 
@@ -38,7 +39,7 @@ public interface ParameterCS extends TypedElementCS {
 
 	/**
 	 * Returns the value of the '<em><b>Owner</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS#getParameters <em>Parameters</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS#getOwnedParameter <em>Owned Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owner</em>' container reference isn't clear,
@@ -48,8 +49,8 @@ public interface ParameterCS extends TypedElementCS {
 	 * @return the value of the '<em>Owner</em>' container reference.
 	 * @see #setOwner(OperationCS)
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getParameterCS_Owner()
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS#getParameters
-	 * @model opposite="parameters" transient="false"
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS#getOwnedParameter
+	 * @model opposite="ownedParameter" transient="false"
 	 * @generated
 	 */
 	OperationCS getOwner();

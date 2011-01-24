@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: QualifiedRefCS.java,v 1.1 2010/05/16 19:18:01 ewillink Exp $
+ * $Id: QualifiedRefCS.java,v 1.2 2011/01/24 20:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
 
+import org.eclipse.ocl.examples.pivot.Namespace;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,12 +46,12 @@ public interface QualifiedRefCS<E extends ElementCS> extends ModelElementCS {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Namespace</em>' reference.
-	 * @see #setNamespace(NamespaceCS)
+	 * @see #setNamespace(Namespace)
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getQualifiedRefCS_Namespace()
 	 * @model
 	 * @generated
 	 */
-	NamespaceCS getNamespace();
+	Namespace getNamespace();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS#getNamespace <em>Namespace</em>}' reference.
@@ -60,7 +61,7 @@ public interface QualifiedRefCS<E extends ElementCS> extends ModelElementCS {
 	 * @see #getNamespace()
 	 * @generated
 	 */
-	void setNamespace(NamespaceCS value);
+	void setNamespace(Namespace value);
 
 	/**
 	 * Returns the value of the '<em><b>Element</b></em>' containment reference.

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AttributeCSRefImpl.java,v 1.3 2010/05/24 08:59:31 ewillink Exp $
+ * $Id: AttributeCSRefImpl.java,v 1.4 2011/01/24 20:59:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -23,8 +23,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
-import org.eclipse.ocl.examples.xtext.base.util.Signature;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -75,10 +74,12 @@ public class AttributeCSRefImpl extends ElementCSImpl implements AttributeCSRef 
 	 * @generated
 	 */
 	public AttributeCS getRef() {
-		if (ref != null && ref.eIsProxy()) {
+		if (ref != null && ref.eIsProxy())
+		{
 			InternalEObject oldRef = (InternalEObject)ref;
 			ref = (AttributeCS)eResolveProxy(oldRef);
-			if (ref != oldRef) {
+			if (ref != oldRef)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BaseCSTPackage.ATTRIBUTE_CS_REF__REF, oldRef, ref));
 			}
@@ -114,7 +115,8 @@ public class AttributeCSRefImpl extends ElementCSImpl implements AttributeCSRef 
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.ATTRIBUTE_CS_REF__REF:
 				if (resolve) return getRef();
 				return basicGetRef();
@@ -129,7 +131,8 @@ public class AttributeCSRefImpl extends ElementCSImpl implements AttributeCSRef 
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.ATTRIBUTE_CS_REF__REF:
 				setRef((AttributeCS)newValue);
 				return;
@@ -144,7 +147,8 @@ public class AttributeCSRefImpl extends ElementCSImpl implements AttributeCSRef 
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.ATTRIBUTE_CS_REF__REF:
 				setRef((AttributeCS)null);
 				return;
@@ -159,7 +163,8 @@ public class AttributeCSRefImpl extends ElementCSImpl implements AttributeCSRef 
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.ATTRIBUTE_CS_REF__REF:
 				return ref != null;
 		}
@@ -167,7 +172,7 @@ public class AttributeCSRefImpl extends ElementCSImpl implements AttributeCSRef 
 	}
 
 	@Override
-	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
-		signature.appendElement(getRef(), typeBindings);
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitAttributeCSRef(this);
 	}
 } //AttributeCSRefImpl

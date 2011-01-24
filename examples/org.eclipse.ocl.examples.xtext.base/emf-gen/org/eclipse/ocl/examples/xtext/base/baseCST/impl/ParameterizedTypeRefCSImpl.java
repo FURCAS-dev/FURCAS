@@ -12,23 +12,21 @@
  *
  * </copyright>
  *
- * $Id: ParameterizedTypeRefCSImpl.java,v 1.2 2010/05/22 18:49:59 ewillink Exp $
+ * $Id: ParameterizedTypeRefCSImpl.java,v 1.3 2011/01/24 20:59:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
-import java.util.Collection;
-
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,7 +35,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ParameterizedTypeRefCSImpl#getTypeArguments <em>Type Arguments</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ParameterizedTypeRefCSImpl#getOwnedTemplateBinding <em>Owned Template Binding</em>}</li>
  * </ul>
  * </p>
  *
@@ -45,15 +43,14 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
  */
 public abstract class ParameterizedTypeRefCSImpl extends TypedRefCSImpl implements ParameterizedTypeRefCS {
 	/**
-	 * The cached value of the '{@link #getTypeArguments() <em>Type Arguments</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedTemplateBinding() <em>Owned Template Binding</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTypeArguments()
+	 * @see #getOwnedTemplateBinding()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TypeRefCS> typeArguments;
-
+	protected TemplateBindingCS ownedTemplateBinding;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,11 +75,44 @@ public abstract class ParameterizedTypeRefCSImpl extends TypedRefCSImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TypeRefCS> getTypeArguments() {
-		if (typeArguments == null) {
-			typeArguments = new EObjectContainmentEList<TypeRefCS>(TypeRefCS.class, this, BaseCSTPackage.PARAMETERIZED_TYPE_REF_CS__TYPE_ARGUMENTS);
+	public TemplateBindingCS getOwnedTemplateBinding() {
+		return ownedTemplateBinding;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedTemplateBinding(TemplateBindingCS newOwnedTemplateBinding, NotificationChain msgs) {
+		TemplateBindingCS oldOwnedTemplateBinding = ownedTemplateBinding;
+		ownedTemplateBinding = newOwnedTemplateBinding;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSTPackage.PARAMETERIZED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING, oldOwnedTemplateBinding, newOwnedTemplateBinding);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
-		return typeArguments;
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedTemplateBinding(TemplateBindingCS newOwnedTemplateBinding) {
+		if (newOwnedTemplateBinding != ownedTemplateBinding)
+		{
+			NotificationChain msgs = null;
+			if (ownedTemplateBinding != null)
+				msgs = ((InternalEObject)ownedTemplateBinding).eInverseRemove(this, BaseCSTPackage.TEMPLATE_BINDING_CS__OWNING_TEMPLATE_BINDABLE_ELEMENT, TemplateBindingCS.class, msgs);
+			if (newOwnedTemplateBinding != null)
+				msgs = ((InternalEObject)newOwnedTemplateBinding).eInverseAdd(this, BaseCSTPackage.TEMPLATE_BINDING_CS__OWNING_TEMPLATE_BINDABLE_ELEMENT, TemplateBindingCS.class, msgs);
+			msgs = basicSetOwnedTemplateBinding(newOwnedTemplateBinding, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.PARAMETERIZED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING, newOwnedTemplateBinding, newOwnedTemplateBinding));
 	}
 
 	/**
@@ -90,8 +120,24 @@ public abstract class ParameterizedTypeRefCSImpl extends TypedRefCSImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public abstract TypeCS getType();
+	public abstract Type getType();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID)
+		{
+			case BaseCSTPackage.PARAMETERIZED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING:
+				if (ownedTemplateBinding != null)
+					msgs = ((InternalEObject)ownedTemplateBinding).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.PARAMETERIZED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING, null, msgs);
+				return basicSetOwnedTemplateBinding((TemplateBindingCS)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -100,9 +146,10 @@ public abstract class ParameterizedTypeRefCSImpl extends TypedRefCSImpl implemen
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case BaseCSTPackage.PARAMETERIZED_TYPE_REF_CS__TYPE_ARGUMENTS:
-				return ((InternalEList<?>)getTypeArguments()).basicRemove(otherEnd, msgs);
+		switch (featureID)
+		{
+			case BaseCSTPackage.PARAMETERIZED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING:
+				return basicSetOwnedTemplateBinding(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -114,9 +161,10 @@ public abstract class ParameterizedTypeRefCSImpl extends TypedRefCSImpl implemen
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case BaseCSTPackage.PARAMETERIZED_TYPE_REF_CS__TYPE_ARGUMENTS:
-				return getTypeArguments();
+		switch (featureID)
+		{
+			case BaseCSTPackage.PARAMETERIZED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING:
+				return getOwnedTemplateBinding();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -126,13 +174,12 @@ public abstract class ParameterizedTypeRefCSImpl extends TypedRefCSImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case BaseCSTPackage.PARAMETERIZED_TYPE_REF_CS__TYPE_ARGUMENTS:
-				getTypeArguments().clear();
-				getTypeArguments().addAll((Collection<? extends TypeRefCS>)newValue);
+		switch (featureID)
+		{
+			case BaseCSTPackage.PARAMETERIZED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING:
+				setOwnedTemplateBinding((TemplateBindingCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -145,9 +192,10 @@ public abstract class ParameterizedTypeRefCSImpl extends TypedRefCSImpl implemen
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case BaseCSTPackage.PARAMETERIZED_TYPE_REF_CS__TYPE_ARGUMENTS:
-				getTypeArguments().clear();
+		switch (featureID)
+		{
+			case BaseCSTPackage.PARAMETERIZED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING:
+				setOwnedTemplateBinding((TemplateBindingCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -160,10 +208,21 @@ public abstract class ParameterizedTypeRefCSImpl extends TypedRefCSImpl implemen
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case BaseCSTPackage.PARAMETERIZED_TYPE_REF_CS__TYPE_ARGUMENTS:
-				return typeArguments != null && !typeArguments.isEmpty();
+		switch (featureID)
+		{
+			case BaseCSTPackage.PARAMETERIZED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING:
+				return ownedTemplateBinding != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitParameterizedTypeRefCS(this);
+	}
+	
+	@Override
+	public Type getPivot() {
+		return (Type) pivot;
 	}
 } //ParameterizedTypeRefCSImpl

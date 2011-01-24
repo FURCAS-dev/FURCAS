@@ -12,18 +12,20 @@
  *
  * </copyright>
  *
- * $Id: ImportCSImpl.java,v 1.1 2010/05/03 05:25:31 ewillink Exp $
+ * $Id: ImportCSImpl.java,v 1.2 2011/01/24 20:59:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -68,7 +70,7 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	 * @generated
 	 * @ordered
 	 */
-	protected NamespaceCS namespace;
+	protected Namespace namespace;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -115,11 +117,13 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NamespaceCS getNamespace() {
-		if (namespace != null && namespace.eIsProxy()) {
+	public Namespace getNamespace() {
+		if (namespace != null && ((EObject)namespace).eIsProxy())
+		{
 			InternalEObject oldNamespace = (InternalEObject)namespace;
-			namespace = (NamespaceCS)eResolveProxy(oldNamespace);
-			if (namespace != oldNamespace) {
+			namespace = (Namespace)eResolveProxy(oldNamespace);
+			if (namespace != oldNamespace)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BaseCSTPackage.IMPORT_CS__NAMESPACE, oldNamespace, namespace));
 			}
@@ -132,7 +136,7 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NamespaceCS basicGetNamespace() {
+	public Namespace basicGetNamespace() {
 		return namespace;
 	}
 
@@ -141,8 +145,9 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNamespace(NamespaceCS newNamespace) {
-		NamespaceCS oldNamespace = namespace;
+	public void setNamespace(Namespace newNamespace)
+	{
+		Namespace oldNamespace = namespace;
 		namespace = newNamespace;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.IMPORT_CS__NAMESPACE, oldNamespace, namespace));
@@ -155,7 +160,8 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.IMPORT_CS__URI:
 				return getUri();
 			case BaseCSTPackage.IMPORT_CS__NAMESPACE:
@@ -172,12 +178,13 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.IMPORT_CS__URI:
 				setUri((String)newValue);
 				return;
 			case BaseCSTPackage.IMPORT_CS__NAMESPACE:
-				setNamespace((NamespaceCS)newValue);
+				setNamespace((Namespace)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -190,12 +197,13 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.IMPORT_CS__URI:
 				setUri(URI_EDEFAULT);
 				return;
 			case BaseCSTPackage.IMPORT_CS__NAMESPACE:
-				setNamespace((NamespaceCS)null);
+				setNamespace((Namespace)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -208,7 +216,8 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.IMPORT_CS__URI:
 				return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
 			case BaseCSTPackage.IMPORT_CS__NAMESPACE:
@@ -227,4 +236,8 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 		return super.toString();
 	}
 
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitImportCS(this);
+	}
 } //ImportCSImpl

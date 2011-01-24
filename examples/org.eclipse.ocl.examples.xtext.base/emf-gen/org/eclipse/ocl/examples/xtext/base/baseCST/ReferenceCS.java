@@ -12,10 +12,12 @@
  *
  * </copyright>
  *
- * $Id: ReferenceCS.java,v 1.1 2010/05/03 05:24:48 ewillink Exp $
+ * $Id: ReferenceCS.java,v 1.2 2011/01/24 20:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
+
+import org.eclipse.emf.common.util.EList;
 
 
 /**
@@ -27,11 +29,12 @@ package org.eclipse.ocl.examples.xtext.base.baseCST;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS#getOpposite <em>Opposite</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS#getKeys <em>Keys</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getReferenceCS()
- * @model interface="true" abstract="true"
+ * @model
  * @generated
  */
 public interface ReferenceCS extends StructuralFeatureCS {
@@ -60,5 +63,21 @@ public interface ReferenceCS extends StructuralFeatureCS {
 	 * @generated
 	 */
 	void setOpposite(ReferenceCSRef value);
+
+	/**
+	 * Returns the value of the '<em><b>Keys</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCSRef}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Keys</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Keys</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getReferenceCS_Keys()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<AttributeCSRef> getKeys();
 
 } // ReferenceCS

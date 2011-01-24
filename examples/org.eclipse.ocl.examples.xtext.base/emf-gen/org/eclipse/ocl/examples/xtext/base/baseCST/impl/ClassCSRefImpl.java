@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassCSRefImpl.java,v 1.3 2010/05/24 08:59:31 ewillink Exp $
+ * $Id: ClassCSRefImpl.java,v 1.4 2011/01/24 20:59:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -20,11 +20,10 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCSRef;
-import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
-import org.eclipse.ocl.examples.xtext.base.util.Signature;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -75,10 +74,12 @@ public class ClassCSRefImpl extends ElementCSImpl implements ClassCSRef {
 	 * @generated
 	 */
 	public ClassCS getRef() {
-		if (ref != null && ref.eIsProxy()) {
+		if (ref != null && ref.eIsProxy())
+		{
 			InternalEObject oldRef = (InternalEObject)ref;
 			ref = (ClassCS)eResolveProxy(oldRef);
-			if (ref != oldRef) {
+			if (ref != oldRef)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BaseCSTPackage.CLASS_CS_REF__REF, oldRef, ref));
 			}
@@ -114,7 +115,8 @@ public class ClassCSRefImpl extends ElementCSImpl implements ClassCSRef {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.CLASS_CS_REF__REF:
 				if (resolve) return getRef();
 				return basicGetRef();
@@ -129,7 +131,8 @@ public class ClassCSRefImpl extends ElementCSImpl implements ClassCSRef {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.CLASS_CS_REF__REF:
 				setRef((ClassCS)newValue);
 				return;
@@ -144,7 +147,8 @@ public class ClassCSRefImpl extends ElementCSImpl implements ClassCSRef {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.CLASS_CS_REF__REF:
 				setRef((ClassCS)null);
 				return;
@@ -159,7 +163,8 @@ public class ClassCSRefImpl extends ElementCSImpl implements ClassCSRef {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.CLASS_CS_REF__REF:
 				return ref != null;
 		}
@@ -167,7 +172,7 @@ public class ClassCSRefImpl extends ElementCSImpl implements ClassCSRef {
 	}
 
 	@Override
-	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
-		signature.appendElement(getRef(), typeBindings);
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitClassCSRef(this);
 	}
 } //ClassCSRefImpl

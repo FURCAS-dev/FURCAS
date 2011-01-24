@@ -12,11 +12,11 @@
  *
  * </copyright>
  *
- * $Id: ReferenceCSRef.java,v 1.1 2010/05/03 05:24:51 ewillink Exp $
+ * $Id: ReferenceCSRef.java,v 1.2 2011/01/24 20:59:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST;
 
-
+import org.eclipse.ocl.examples.pivot.Property;
 
 /**
  * <!-- begin-user-doc -->
@@ -44,12 +44,12 @@ public interface ReferenceCSRef extends ElementCS {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Ref</em>' reference.
-	 * @see #setRef(ReferenceCS)
+	 * @see #setRef(Property)
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getReferenceCSRef_Ref()
 	 * @model
 	 * @generated
 	 */
-	ReferenceCS getRef();
+	Property getRef();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef#getRef <em>Ref</em>}' reference.
@@ -59,6 +59,6 @@ public interface ReferenceCSRef extends ElementCS {
 	 * @see #getRef()
 	 * @generated
 	 */
-	void setRef(ReferenceCS value);
+	void setRef(Property value);
 
 } // ReferenceCSRef

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTFactory.java,v 1.3 2010/05/24 08:59:31 ewillink Exp $
+ * $Id: BaseCSTFactory.java,v 1.4 2011/01/24 20:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -37,6 +37,24 @@ public interface BaseCSTFactory extends EFactory {
 	BaseCSTFactory eINSTANCE = org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTFactoryImpl.init();
 
 	/**
+	 * Returns a new object of class '<em>Annotation CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Annotation CS</em>'.
+	 * @generated
+	 */
+	AnnotationCS createAnnotationCS();
+
+	/**
+	 * Returns a new object of class '<em>Attribute CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attribute CS</em>'.
+	 * @generated
+	 */
+	AttributeCS createAttributeCS();
+
+	/**
 	 * Returns a new object of class '<em>Attribute CS Ref</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -44,24 +62,6 @@ public interface BaseCSTFactory extends EFactory {
 	 * @generated
 	 */
 	AttributeCSRef createAttributeCSRef();
-
-	/**
-	 * Returns a new object of class '<em>Bound Class CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Bound Class CS</em>'.
-	 * @generated
-	 */
-	BoundClassCS createBoundClassCS();
-
-	/**
-	 * Returns a new object of class '<em>Bound Classifier CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Bound Classifier CS</em>'.
-	 * @generated
-	 */
-	BoundClassifierCS createBoundClassifierCS();
 
 	/**
 	 * Returns a new object of class '<em>Bound Document CS</em>'.
@@ -73,13 +73,13 @@ public interface BaseCSTFactory extends EFactory {
 	BoundDocumentCS createBoundDocumentCS();
 
 	/**
-	 * Returns a new object of class '<em>Bound Operation CS</em>'.
+	 * Returns a new object of class '<em>Class CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Bound Operation CS</em>'.
+	 * @return a new object of class '<em>Class CS</em>'.
 	 * @generated
 	 */
-	BoundOperationCS createBoundOperationCS();
+	ClassCS createClassCS();
 
 	/**
 	 * Returns a new object of class '<em>Class CS Ref</em>'.
@@ -100,6 +100,24 @@ public interface BaseCSTFactory extends EFactory {
 	CollectionTypeRefCS createCollectionTypeRefCS();
 
 	/**
+	 * Returns a new object of class '<em>Constraint CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Constraint CS</em>'.
+	 * @generated
+	 */
+	ConstraintCS createConstraintCS();
+
+	/**
+	 * Returns a new object of class '<em>Data Type CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Data Type CS</em>'.
+	 * @generated
+	 */
+	DataTypeCS createDataTypeCS();
+
+	/**
 	 * Returns a new object of class '<em>Detail CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -109,13 +127,31 @@ public interface BaseCSTFactory extends EFactory {
 	DetailCS createDetailCS();
 
 	/**
-	 * Returns a new object of class '<em>Enum Literal CS</em>'.
+	 * Returns a new object of class '<em>Documentation CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Enum Literal CS</em>'.
+	 * @return a new object of class '<em>Documentation CS</em>'.
 	 * @generated
 	 */
-	EnumLiteralCS createEnumLiteralCS();
+	DocumentationCS createDocumentationCS();
+
+	/**
+	 * Returns a new object of class '<em>Enumeration CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Enumeration CS</em>'.
+	 * @generated
+	 */
+	EnumerationCS createEnumerationCS();
+
+	/**
+	 * Returns a new object of class '<em>Enumeration Literal CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Enumeration Literal CS</em>'.
+	 * @generated
+	 */
+	EnumerationLiteralCS createEnumerationLiteralCS();
 
 	/**
 	 * Returns a new object of class '<em>Import CS</em>'.
@@ -143,6 +179,15 @@ public interface BaseCSTFactory extends EFactory {
 	 * @generated
 	 */
 	ModelElementCSRef createModelElementCSRef();
+
+	/**
+	 * Returns a new object of class '<em>Operation CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Operation CS</em>'.
+	 * @generated
+	 */
+	OperationCS createOperationCS();
 
 	/**
 	 * Returns a new object of class '<em>Package CS</em>'.
@@ -217,6 +262,15 @@ public interface BaseCSTFactory extends EFactory {
 	QualifiedTypeRefCS createQualifiedTypeRefCS();
 
 	/**
+	 * Returns a new object of class '<em>Reference CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Reference CS</em>'.
+	 * @generated
+	 */
+	ReferenceCS createReferenceCS();
+
+	/**
 	 * Returns a new object of class '<em>Reference CS Ref</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -224,6 +278,15 @@ public interface BaseCSTFactory extends EFactory {
 	 * @generated
 	 */
 	ReferenceCSRef createReferenceCSRef();
+
+	/**
+	 * Returns a new object of class '<em>Root Package CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Root Package CS</em>'.
+	 * @generated
+	 */
+	RootPackageCS createRootPackageCS();
 
 	/**
 	 * Returns a new object of class '<em>Simple Classifier Ref CS</em>'.
@@ -262,22 +325,49 @@ public interface BaseCSTFactory extends EFactory {
 	SimpleStructuralFeatureRefCS createSimpleStructuralFeatureRefCS();
 
 	/**
-	 * Returns a new object of class '<em>Type Binding CS</em>'.
+	 * Returns a new object of class '<em>Template Binding CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Type Binding CS</em>'.
+	 * @return a new object of class '<em>Template Binding CS</em>'.
 	 * @generated
 	 */
-	TypeBindingCS createTypeBindingCS();
+	TemplateBindingCS createTemplateBindingCS();
 
 	/**
-	 * Returns a new object of class '<em>Type Bindings CS</em>'.
+	 * Returns a new object of class '<em>Template Parameter Substitution CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Type Bindings CS</em>'.
+	 * @return a new object of class '<em>Template Parameter Substitution CS</em>'.
 	 * @generated
 	 */
-	TypeBindingsCS createTypeBindingsCS();
+	TemplateParameterSubstitutionCS createTemplateParameterSubstitutionCS();
+
+	/**
+	 * Returns a new object of class '<em>Template Signature CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Template Signature CS</em>'.
+	 * @generated
+	 */
+	TemplateSignatureCS createTemplateSignatureCS();
+
+	/**
+	 * Returns a new object of class '<em>Tuple Part CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tuple Part CS</em>'.
+	 * @generated
+	 */
+	TuplePartCS createTuplePartCS();
+
+	/**
+	 * Returns a new object of class '<em>Tuple Type CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tuple Type CS</em>'.
+	 * @generated
+	 */
+	TupleTypeCS createTupleTypeCS();
 
 	/**
 	 * Returns a new object of class '<em>Type Parameter CS</em>'.

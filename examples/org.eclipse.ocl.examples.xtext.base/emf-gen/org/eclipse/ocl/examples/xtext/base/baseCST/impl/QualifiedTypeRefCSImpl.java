@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: QualifiedTypeRefCSImpl.java,v 1.4 2010/05/24 08:59:31 ewillink Exp $
+ * $Id: QualifiedTypeRefCSImpl.java,v 1.5 2011/01/24 20:59:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -20,16 +20,16 @@ package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.examples.pivot.Namespace;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
-import org.eclipse.ocl.examples.xtext.base.util.Signature;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -54,7 +54,7 @@ public class QualifiedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implement
 	 * @generated
 	 * @ordered
 	 */
-	protected NamespaceCS namespace;
+	protected Namespace namespace;
 
 	/**
 	 * The cached value of the '{@link #getElement() <em>Element</em>}' containment reference.
@@ -90,11 +90,13 @@ public class QualifiedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NamespaceCS getNamespace() {
-		if (namespace != null && namespace.eIsProxy()) {
+	public Namespace getNamespace() {
+		if (namespace != null && ((EObject)namespace).eIsProxy())
+		{
 			InternalEObject oldNamespace = (InternalEObject)namespace;
-			namespace = (NamespaceCS)eResolveProxy(oldNamespace);
-			if (namespace != oldNamespace) {
+			namespace = (Namespace)eResolveProxy(oldNamespace);
+			if (namespace != oldNamespace)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BaseCSTPackage.QUALIFIED_TYPE_REF_CS__NAMESPACE, oldNamespace, namespace));
 			}
@@ -107,7 +109,7 @@ public class QualifiedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NamespaceCS basicGetNamespace() {
+	public Namespace basicGetNamespace() {
 		return namespace;
 	}
 
@@ -116,8 +118,9 @@ public class QualifiedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNamespace(NamespaceCS newNamespace) {
-		NamespaceCS oldNamespace = namespace;
+	public void setNamespace(Namespace newNamespace)
+	{
+		Namespace oldNamespace = namespace;
 		namespace = newNamespace;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.QUALIFIED_TYPE_REF_CS__NAMESPACE, oldNamespace, namespace));
@@ -140,7 +143,8 @@ public class QualifiedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implement
 	public NotificationChain basicSetElement(ParameterizedTypeRefCS newElement, NotificationChain msgs) {
 		ParameterizedTypeRefCS oldElement = element;
 		element = newElement;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSTPackage.QUALIFIED_TYPE_REF_CS__ELEMENT, oldElement, newElement);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -153,7 +157,8 @@ public class QualifiedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implement
 	 * @generated
 	 */
 	public void setElement(ParameterizedTypeRefCS newElement) {
-		if (newElement != element) {
+		if (newElement != element)
+		{
 			NotificationChain msgs = null;
 			if (element != null)
 				msgs = ((InternalEObject)element).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.QUALIFIED_TYPE_REF_CS__ELEMENT, null, msgs);
@@ -173,7 +178,8 @@ public class QualifiedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implement
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__ELEMENT:
 				return basicSetElement(null, msgs);
 		}
@@ -187,7 +193,8 @@ public class QualifiedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implement
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__NAMESPACE:
 				if (resolve) return getNamespace();
 				return basicGetNamespace();
@@ -204,9 +211,10 @@ public class QualifiedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implement
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__NAMESPACE:
-				setNamespace((NamespaceCS)newValue);
+				setNamespace((Namespace)newValue);
 				return;
 			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__ELEMENT:
 				setElement((ParameterizedTypeRefCS)newValue);
@@ -222,9 +230,10 @@ public class QualifiedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implement
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__NAMESPACE:
-				setNamespace((NamespaceCS)null);
+				setNamespace((Namespace)null);
 				return;
 			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__ELEMENT:
 				setElement((ParameterizedTypeRefCS)null);
@@ -240,7 +249,8 @@ public class QualifiedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implement
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__NAMESPACE:
 				return namespace != null;
 			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__ELEMENT:
@@ -256,8 +266,10 @@ public class QualifiedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implement
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == QualifiedRefCS.class) {
-			switch (derivedFeatureID) {
+		if (baseClass == QualifiedRefCS.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__NAMESPACE: return BaseCSTPackage.QUALIFIED_REF_CS__NAMESPACE;
 				case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__ELEMENT: return BaseCSTPackage.QUALIFIED_REF_CS__ELEMENT;
 				default: return -1;
@@ -273,8 +285,10 @@ public class QualifiedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implement
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == QualifiedRefCS.class) {
-			switch (baseFeatureID) {
+		if (baseClass == QualifiedRefCS.class)
+		{
+			switch (baseFeatureID)
+			{
 				case BaseCSTPackage.QUALIFIED_REF_CS__NAMESPACE: return BaseCSTPackage.QUALIFIED_TYPE_REF_CS__NAMESPACE;
 				case BaseCSTPackage.QUALIFIED_REF_CS__ELEMENT: return BaseCSTPackage.QUALIFIED_TYPE_REF_CS__ELEMENT;
 				default: return -1;
@@ -284,13 +298,12 @@ public class QualifiedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implement
 	}
 
 	@Override
-	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
-		signature.appendElement(getElement(), typeBindings);
-		signature.appendTypeArguments(getTypeArguments(), typeBindings);
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitQualifiedTypeRefCS(this);
 	}
 
 	@Override
-	public TypeCS getType() {
-		return getElement().getType();
+	public Type getType() {
+		return element != null ? element.getType() : null;
 	}
 } //PrimitiveTypeRefCSImpl
