@@ -622,9 +622,7 @@ public class AssociationTest
 			new java.util.ArrayList<EStructuralFeature>(2);
 		
 		public AssocClassFruitEnvironment(AssocClassFruitEnvironmentFactory factory) {
-			super(resourceSet.getPackageRegistry());
-			
-			setFactory(factory);
+			super(factory);
 			setContextPackage(fruitPackage);
 			
 	//		init();
@@ -634,8 +632,6 @@ public class AssociationTest
 				AssocClassFruitEnvironmentFactory factory,
 				Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
 			super(parent);
-			
-			setFactory(factory);
 			
 	//		init();
 		}

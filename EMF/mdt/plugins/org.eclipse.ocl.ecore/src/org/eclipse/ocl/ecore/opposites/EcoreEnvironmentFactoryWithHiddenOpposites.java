@@ -33,6 +33,11 @@ import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
  */
 public class EcoreEnvironmentFactoryWithHiddenOpposites
 		extends EcoreEnvironmentFactory {
+	
+	/**
+	 * A default instance that works with the default {@link EPackage.Registry#INSTANCE package registry}.
+	 */
+	public static final EcoreEnvironmentFactoryWithHiddenOpposites INSTANCE = new EcoreEnvironmentFactoryWithHiddenOpposites();
 
     private final OppositeEndFinder oppositeEndFinder;
     
@@ -41,7 +46,7 @@ public class EcoreEnvironmentFactoryWithHiddenOpposites
      * Uses the result of {@link DefaultOppositeEndFinder#getInstance()} as opposite end finder.
      */
     public EcoreEnvironmentFactoryWithHiddenOpposites() {
-        this(EPackage.Registry.INSTANCE, DefaultOppositeEndFinder.getInstance());
+        this(EPackage.Registry.INSTANCE);
     }
 
     /**
@@ -54,17 +59,6 @@ public class EcoreEnvironmentFactoryWithHiddenOpposites
      */
     public EcoreEnvironmentFactoryWithHiddenOpposites(EPackage.Registry reg) {
         this(reg, DefaultOppositeEndFinder.getInstance(reg));
-    }
-    
-    /**
-     * Initializes me with the default <code>EPackage.Registry</code> that the environments I create will use to look up
-     * packages. The {@link OppositeEndFinder} object specified is used. Callers should ensure that the
-     * <code>oppositeEndFinder</code> is consistent with the default {@link EPackage.Registry}. Otherwise,
-     * use {@link #EcoreEnvironmentFactoryWithHiddenOpposites(Registry, OppositeEndFinder)} and specify the
-     * particular package registry used by your opposite end finder.
-     */
-    public EcoreEnvironmentFactoryWithHiddenOpposites(OppositeEndFinder oppositeEndFinder) {
-        this(EPackage.Registry.INSTANCE, oppositeEndFinder);
     }
     
     /**

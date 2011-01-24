@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CompanyPackageImpl.java,v 1.4 2010/08/24 16:16:55 ewillink Exp $
+ * $Id: CompanyPackageImpl.java,v 1.5 2011/01/23 22:20:00 auhl Exp $
  */
 package company.impl;
 
