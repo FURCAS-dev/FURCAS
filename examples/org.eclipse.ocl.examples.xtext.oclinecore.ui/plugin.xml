@@ -197,6 +197,10 @@
 	    name="%MF_SaveAsEcore_Command" description="%MF_SaveAsEcore_Description"/>
 	  <command id="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.SaveAsOCLinEcoreCommand"
 	    name="%MF_SaveAsOCLinEcore_Command" description="%MF_SaveAsOCLinEcore_Description"/>
+	  <command id="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.SaveAsPivotCommand"
+	    name="%MF_SaveAsPivot_Command" description="%MF_SaveAsPivot_Description"/>
+	  <command id="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.SaveAsUMLCommand"
+	    name="%MF_SaveAsUML_Command" description="%MF_SaveAsUML_Description"/>
 	  <command id="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.CreateDynamicInstanceCommand"
 	    name="%MF_CreateDynamicInstance_Command" description="%MF_CreateDynamicInstance_Description"/>
 	</extension>
@@ -205,6 +209,10 @@
 	    class="org.eclipse.ocl.examples.xtext.oclinecore.ui.commands.SaveAsEcoreHandler"/>
 	  <handler commandId="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.SaveAsOCLinEcoreCommand"
 	    class="org.eclipse.ocl.examples.xtext.oclinecore.ui.commands.SaveAsOCLinEcoreHandler"/>
+	  <handler commandId="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.SaveAsPivotCommand"
+	    class="org.eclipse.ocl.examples.xtext.oclinecore.ui.commands.SaveAsPivotHandler"/>
+	  <handler commandId="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.SaveAsUMLCommand"
+	    class="org.eclipse.ocl.examples.xtext.oclinecore.ui.commands.SaveAsUMLHandler"/>
 	  <handler commandId="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.CreateDynamicInstanceCommand"
 	    class="org.eclipse.ocl.examples.xtext.oclinecore.ui.commands.CreateDynamicInstanceHandler"/>
 	</extension>
@@ -233,6 +241,22 @@
 	    </command>
 	    <command commandId="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.SaveAsOCLinEcoreCommand"
 	      label="%MF_SaveAsOCLinEcore">
+            <visibleWhen checkEnabled="false">
+                <reference
+                    definitionId="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.Editor.opened">
+                </reference>
+            </visibleWhen>
+	    </command>
+	    <command commandId="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.SaveAsPivotCommand"
+	      label="%MF_SaveAsPivot">
+            <visibleWhen checkEnabled="false">
+                <reference
+                    definitionId="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.Editor.opened">
+                </reference>
+            </visibleWhen>
+	    </command>
+	    <command commandId="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.SaveAsUMLCommand"
+	      label="%MF_SaveAsUML">
             <visibleWhen checkEnabled="false">
                 <reference
                     definitionId="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.Editor.opened">

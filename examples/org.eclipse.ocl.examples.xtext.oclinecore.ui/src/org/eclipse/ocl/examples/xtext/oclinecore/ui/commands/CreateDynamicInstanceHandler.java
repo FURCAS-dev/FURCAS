@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CreateDynamicInstanceHandler.java,v 1.3 2010/08/17 16:17:47 ewillink Exp $
+ * $Id: CreateDynamicInstanceHandler.java,v 1.4 2011/01/24 21:56:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.commands;
 
@@ -39,17 +39,16 @@ import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.ISources;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
+import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.parser.IParseResult;
-import org.eclipse.xtext.parsetree.AbstractNode;
-import org.eclipse.xtext.parsetree.CompositeNode;
-import org.eclipse.xtext.parsetree.NodeUtil;
-import org.eclipse.xtext.parsetree.ParseTreeUtil;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
@@ -98,7 +97,7 @@ public class CreateDynamicInstanceHandler extends AbstractHandler
 	private EPackage findPackage(Resource resource, PackageCS csPackage) {
 		String name = csPackage.getName();
 		EObject eContainer = csPackage.eContainer();
-		if (eContainer instanceof DocumentCS) {
+		if (eContainer instanceof RootPackageCS) {
 			for (EObject eObject : resource.getContents()) {
 				if (eObject instanceof EPackage) {
 					EPackage ePackage = (EPackage)eObject;
@@ -138,9 +137,14 @@ public class CreateDynamicInstanceHandler extends AbstractHandler
 						IParseResult parseResult = xtextResource.getParseResult();
 						if (parseResult == null)
 							throw new NullPointerException("parseResult is null");
-						CompositeNode rootNode = parseResult.getRootNode();
-						AbstractNode lastVisibleNode = ParseTreeUtil.getLastCompleteNodeByOffset(rootNode, selection.getOffset());
-						EObject currentModel = NodeUtil.getNearestSemanticObject(lastVisibleNode);						
+						ICompositeNode rootNode = parseResult.getRootNode();
+//						INode lastVisibleNode = NodeModelUtils.getLastCompleteNodeByOffset(rootNode, selection.getOffset());
+//						EObject currentModel = NodeModelUtils.getNearestSemanticObject(lastVisibleNode);						
+						INode lastVisibleNode = NodeModelUtils.findLeafNodeAtOffset(rootNode, selection.getOffset());
+						if (lastVisibleNode == null) {
+							return null; 
+						}		
+						EObject currentModel = NodeModelUtils.findActualSemanticObjectFor(lastVisibleNode);						
 						if (!(currentModel instanceof ClassCS)) {
 							return null; 
 						}		

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreUiPluginHelper.java,v 1.2 2010/08/17 17:03:58 ewillink Exp $
+ * $Id: OCLinEcoreUiPluginHelper.java,v 1.3 2011/01/24 21:56:22 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui;
 

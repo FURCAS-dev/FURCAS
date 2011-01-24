@@ -12,15 +12,15 @@
  *
  * </copyright>
  *
- * $Id: SaveAsOCLinEcoreHandler.java,v 1.3 2011/01/24 21:56:21 ewillink Exp $
+ * $Id: SaveAsPivotHandler.java,v 1.2 2011/01/24 21:56:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.commands;
 
 import org.eclipse.ocl.examples.xtext.oclinecore.ui.model.OCLinEcoreDocumentProvider;
 
-public class SaveAsOCLinEcoreHandler extends AbstractSaveAsHandler
+public class SaveAsPivotHandler extends AbstractSaveAsHandler
 {
-	public SaveAsOCLinEcoreHandler() {
-		super(OCLinEcoreDocumentProvider.PERSIST_AS_OCLINECORE);
+	public SaveAsPivotHandler() {
+		super(OCLinEcoreDocumentProvider.PERSIST_AS_PIVOT);
 	}
 }
