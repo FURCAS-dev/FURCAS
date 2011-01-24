@@ -29,9 +29,9 @@ import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
  * 
  */
 
-public class TestRenameWithNestedScopes extends GeneratedParserBasedTest {
+public class TestNestedScopes extends GeneratedParserBasedTest {
 
-    private static final String LANGUAGE = "ImpactAnalysisRenameTestSyntax";
+    private static final String LANGUAGE = "NestedScopesTestSyntax";
     private static final File TCS =  new File("fixtures/NestedScopes.tcs");
     private static final File METAMODEL = new File("fixtures/NestedScopes.ecore");
     private static final String PACKAGE_URI = "http://www.furcas.org/TCS/referenceresolving/tests/nestedScopes";
@@ -150,8 +150,7 @@ public class TestRenameWithNestedScopes extends GeneratedParserBasedTest {
             if (statement.eClass().getName().equals(type)) {
                 definitions.add(statement);
             } else if (statement.eClass().getName().equals("Block")) {
-                Collection<?> statementsOfInnerBlock = (Collection<?>) statement.eGet(statement.eClass().getEStructuralFeature(
-                        "statementsInBlock"));
+                Collection<?> statementsOfInnerBlock = (Collection<?>) statement.eGet(statement.eClass().getEStructuralFeature("statementsInBlock"));
                 definitions.addAll((ArrayList<EObject>) collectAllElementsOfType(statementsOfInnerBlock, type));
             }
         }
