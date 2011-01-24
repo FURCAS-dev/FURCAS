@@ -540,7 +540,7 @@ public class MessagesTest
 		public MessagingFruitEnvironment(
 				MessagingFruitEnvironmentFactory factory,
 				Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent, AbstractTestSuite suite) {
-			super(factory, parent);
+			super(parent);
 			this.suite = suite;
 			
 			init();
