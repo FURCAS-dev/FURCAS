@@ -5,10 +5,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -20,11 +18,9 @@ import org.junit.Test;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
 import com.sap.furcas.runtime.parser.ParserFacade;
-import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.testbase.EMFParsingHelper;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
-import com.sap.furcas.test.fixture.FeatureFixtureData;
 
 /**
  * Tests NestedScopes TCS and metamodel, which will be used to test impact analysis behavior on renames.
@@ -36,9 +32,9 @@ import com.sap.furcas.test.fixture.FeatureFixtureData;
 public class TestRenameWithNestedScopes extends GeneratedParserBasedTest {
 
     private static final String LANGUAGE = "ImpactAnalysisRenameTestSyntax";
-    private static final File TCS = FeatureFixtureData.NESTED_SCOPES_TCS;
-    private static final File METAMODEL = FeatureFixtureData.NESTED_SCOPES_METAMODEL;
-    private static final String PACKAGE_URI = FeatureFixtureData.NESTED_SCOPES_PACKAGE_URI;
+    private static final File TCS =  new File("fixtures/NestedScopes.tcs");
+    private static final File METAMODEL = new File("fixtures/NestedScopes.ecore");
+    private static final String PACKAGE_URI = "http://www.furcas.org/TCS/referenceresolving/tests/nestedScopes";
 
     private static EMFParsingHelper parsingHelper;
 
