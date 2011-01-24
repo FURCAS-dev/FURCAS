@@ -1,0 +1,145 @@
+[comment encoding = UTF-8 /]
+[module generateOCLstdlib('http://www.eclipse.org/ocl/3.1.0/Pivot','http://www.eclipse.org/emf/2002/Ecore')/]
+[import generateOclCommon/]
+
+[template public generate(pkg : Package, javaPackage : String, javaClass : String, sourceFile : String, uri : String) ? (pkg.eContainer() = null)]
+[comment @main /]
+[file (javaClass + '.java', false, 'UTF-8')]
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2010 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ *
+ * This code is auto-generated
+ * from: [sourceFile/]
+ * by: org.eclipse.ocl.examples.build.acceleo.GenerateOCLstdlib
+ * defined by: org.eclipse.ocl.examples.build.acceleo.generateOCLstdlib.mtl
+ * invoked by: org.eclipse.ocl.examples.build.utilities.OCLstdlibCodeGenerator
+ * from: org.eclipse.ocl.examples.build.GenerateOCLstdlibModel.mwe2
+ *
+ * Do not edit it.
+ *
+ * ['$' + 'I' + 'd' + '$'/]
+ */
+package	[javaPackage/];
+
+import java.math.BigInteger;
+import java.util.Collections;
+
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
+import org.eclipse.ocl.examples.pivot.*;
+import org.eclipse.ocl.examples.pivot.Class;
+import org.eclipse.ocl.examples.pivot.Library;
+import org.eclipse.ocl.examples.pivot.Package;
+import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
+import org.eclipse.ocl.examples.pivot.utilities.PivotAliasCreator;
+import org.eclipse.ocl.examples.pivot.utilities.PivotManager;
+
+/**
+ * This is the [uri/] Standard Library
+ * auto-generated from [sourceFile/].
+ * It facilitates efficient library loading without the overheads of model reading.
+ * <p>
+ * This Standard Library may be registered as the definition of a Standard Library for
+ * the OCL evaluation framework by invoking {@link #install}.
+ * <p>
+ * The Standard Library is normally activated when the PivotManager attempts
+ * to locate a library type when its default Standard Library URI is the same
+ * as this Standard Library.
+ */
+@SuppressWarnings("nls")
+public class [javaClass/] extends XMLResourceImpl
+{
+	/**
+	 *	The static package-of-types pivot model of the Standard Library.
+	 */
+	public static final [javaClass/] INSTANCE = new [javaClass/]();
+	
+	/**
+	 *	The URI of this Standard Library.
+	 */
+	public static final String STDLIB_URI = "[uri/]";
+
+	/**
+	 * Install this library in the {@link StandardLibraryContribution#REGISTRY}.
+	 * This method may be invoked by standalone applications to replicate
+	 * the registration that should appear as a standard_library plugin
+	 * extension when running within Eclipse. 
+	 */
+	public static void install() {
+		StandardLibraryContribution.REGISTRY.put(STDLIB_URI, new Loader());
+	}
+	
+	/**
+	 * The Loader shares the Standard Library instance whenever this default library
+	 * is loaded from the registry of Standard Libraries populated by the standard_library 
+	 * extension point.
+	 */
+	public static class Loader implements StandardLibraryContribution
+	{
+		public StandardLibraryContribution getContribution() {
+			return this;
+		}
+		
+		public Resource getResource() {
+			return INSTANCE;
+		}
+	}
+	
+	private [javaClass/]() {
+		super(URI.createURI(STDLIB_URI));
+		getContents().add(create());
+		PivotAliasCreator.refreshPackageAliases(this);
+		PivotManager.setMonikerAsID(Collections.singletonList(this));
+	}
+
+	/**
+	 *	Create and return a package-of-packages-of-types pivot model of the OCL standard library.
+	 *  This static definition auto-generated from [sourceFile/]
+	 *  is used as the default when no overriding copy is registered. 
+	 */
+	public static Library create()
+	{
+		Library [pkg.getSymbolName()/] = PivotFactory.eINSTANCE.createLibrary(); // [pkg.moniker/]
+		[for (precedence : Precedence | pkg.ownedPrecedence)]
+		[declarePrecedence(precedence)/]
+		[/for]
+		[for (ownedType : Type | pkg.ownedType->sortedBy(name))]
+		[declareType(ownedType)/]
+		[/for]
+		[for (nestedPackage : Package | pkg.nestedPackage->sortedBy(name))]
+		[declarePackage(nestedPackage)/]
+		[/for]
+
+		[pkg.getSymbolName()/].setName("[pkg.name/]");
+		[if (pkg.nsPrefix <> null)]
+		[pkg.getSymbolName()/].setNsPrefix("[pkg.nsPrefix/]");
+		[/if]
+		[if (pkg.nsURI <> null)]
+		[pkg.getSymbolName()/].setNsURI("[pkg.nsURI/]");
+		[/if]
+		[for (precedence : Precedence | pkg.ownedPrecedence)]
+		[emitPrecedence(precedence)/]
+		[/for]
+	[for (ownedType : Type | pkg.ownedType->sortedBy(name))]
+		[emitType(ownedType)/]
+	[/for]
+	[for (nestedPackage : Package | pkg.nestedPackage->sortedBy(name))]
+		[emitPackage(nestedPackage)/]
+	[/for]
+		return [pkg.getSymbolName()/];
+	}
+}
+[/file]
+[/template]
