@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotFactory.java,v 1.2 2011/01/24 20:42:35 ewillink Exp $
+ * $Id: PivotFactory.java,v 1.3 2011/01/24 20:49:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 

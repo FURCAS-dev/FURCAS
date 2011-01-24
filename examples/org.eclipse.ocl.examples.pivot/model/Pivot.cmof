@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:cmof="http://schema.omg.org/spec/MOF/2.0/cmof.xml" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA http://schema.omg.org/spec/MOF/2.0/cmof.xml http://www.eclipse.org/uml2/3.0.0/UML">
+  <cmof:Package xmi:id="_0" name="pivot" uri="http://www.omg.org/spec/UML/20090901">
+    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_hBgywMitEd-sJIf4tYBt-g" receivingPackage="_0">
+      <mergedPackage xmi:type="cmof:Package" href="SubSuperstructure.cmof#_AD6JQMitEd-sJIf4tYBt-g"/>
+    </packageMerge>
+    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_packageMerge.2" receivingPackage="_0">
+      <mergedPackage xmi:type="cmof:Package" href="Infrastructure.cmof#Core-Basic"/>
+    </packageMerge>
+    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_yBGH0K5rEd-xTJkHwX_SlQ" receivingPackage="_0">
+      <mergedPackage xmi:type="cmof:Package" href="SubSuperstructure.cmof#_sBOM4K5nEd-xTJkHwX_SlQ"/>
+    </packageMerge>
+    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_qD4fcLB1Ed-sntd82PWy7Q" receivingPackage="_0">
+      <mergedPackage xmi:type="cmof:Package" href="SubSuperstructure.cmof#_97IzMLB0Ed-sntd82PWy7Q"/>
+    </packageMerge>
+    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_mHdz4YgKEd-aGOJuUCcZBA" receivingPackage="_0">
+      <mergedPackage xmi:type="cmof:Package" href="Infrastructure.cmof#Core-PrimitiveTypes"/>
+    </packageMerge>
+    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_ClmaQMf6Ed-sJIf4tYBt-g" receivingPackage="_0">
+      <mergedPackage xmi:type="cmof:Package" href="SubSuperstructure.cmof#_0lPd4Mf5Ed-sJIf4tYBt-g"/>
+    </packageMerge>
+    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_SuI5MPF9Ed-BXqn3guNB1A" receivingPackage="_0">
+      <mergedPackage xmi:type="cmof:Package" href="SubSuperstructure.cmof#_xg6fUPF8Ed-BXqn3guNB1A"/>
+    </packageMerge>
+    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_eosmUIqpEd-VzsYvPRGeYg" receivingPackage="_0">
+      <mergedPackage xmi:type="cmof:Package" href="SubSuperstructure.cmof#AuxiliaryConstructs-Templates"/>
+    </packageMerge>
+    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_LrJIcIqvEd-VzsYvPRGeYg" receivingPackage="_0">
+      <mergedPackage xmi:type="cmof:Package" href="OCL.cmof#_LrtloIquEd-VzsYvPRGeYg"/>
+    </packageMerge>
+    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_bwJE4Id0Ed-N4tjuug6Vsw" receivingPackage="_0">
+      <mergedPackage xmi:type="cmof:Package" href="OCL.cmof#Actions-CompleteActions"/>
+    </packageMerge>
+    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_FtL_cIqzEd-VzsYvPRGeYg" receivingPackage="_0">
+      <mergedPackage xmi:type="cmof:Package" href="OCL.cmof#_lHK24IqvEd-VzsYvPRGeYg"/>
+    </packageMerge>
+    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_N-eb4K5wEd-xTJkHwX_SlQ" receivingPackage="_0">
+      <mergedPackage xmi:type="cmof:Package" href="OCL.cmof#_ym0uQK5vEd-xTJkHwX_SlQ"/>
+    </packageMerge>
+    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_XuC-oIgHEd-aGOJuUCcZBA" receivingPackage="_0">
+      <mergedPackage xmi:type="cmof:Package" href="OCL.cmof#_IPg0EIgHEd-aGOJuUCcZBA"/>
+    </packageMerge>
+    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_bLKdYI9oEd-UToJjGuajxg" receivingPackage="_0">
+      <mergedPackage xmi:type="cmof:Package" href="OCL.cmof#_rMVQYI9nEd-UToJjGuajxg"/>
+    </packageMerge>
+    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_5iK5EIgKEd-aGOJuUCcZBA" receivingPackage="_0">
+      <mergedPackage xmi:type="cmof:Package" href="OCL.cmof#_tASF0IgKEd-aGOJuUCcZBA"/>
+    </packageMerge>
+    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_a2TJAIgHEd-aGOJuUCcZBA" receivingPackage="_0">
+      <mergedPackage xmi:type="cmof:Package" href="OCL.cmof#_HcoloIgHEd-aGOJuUCcZBA"/>
+    </packageMerge>
+    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_rvACUMowEd-ZL8lMORCEkg" receivingPackage="_0">
+      <mergedPackage xmi:type="cmof:Package" href="OCL.cmof#_ad68EMowEd-ZL8lMORCEkg"/>
+    </packageMerge>
+    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_lMbS4MpAEd-ZL8lMORCEkg" receivingPackage="_0">
+      <mergedPackage xmi:type="cmof:Package" href="MDTOCL.cmof#_peTNMMo_Ed-ZL8lMORCEkg"/>
+    </packageMerge>
+    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_LAonIBNMEeCpr6XKiuQP7w" receivingPackage="_0">
+      <mergedPackage xmi:type="cmof:Package" href="MDTOCL.cmof#_F95X8BNKEeCpr6XKiuQP7w"/>
+    </packageMerge>
+    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_lHxmwMerEd-sJIf4tYBt-g" receivingPackage="_0">
+      <mergedPackage xmi:type="cmof:Package" href="MDTOCL.cmof#_A11esMerEd-sJIf4tYBt-g"/>
+    </packageMerge>
+    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_E9CvYMpCEd-ZL8lMORCEkg" receivingPackage="_0">
+      <mergedPackage xmi:type="cmof:Package" href="MDTOCL.cmof#_431tkMpAEd-ZL8lMORCEkg"/>
+    </packageMerge>
+    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_PyUKkMinEd-sJIf4tYBt-g" receivingPackage="_0">
+      <mergedPackage xmi:type="cmof:Package" href="MDTOCL.cmof#_ReAs0MimEd-sJIf4tYBt-g"/>
+    </packageMerge>
+    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_9WAj4MlBEd-bx742yyafXQ" receivingPackage="_0">
+      <mergedPackage xmi:type="cmof:Package" href="MDTOCL.cmof#_t35skMlAEd-bx742yyafXQ"/>
+    </packageMerge>
+    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_71DXgMo-Ed-ZL8lMORCEkg" receivingPackage="_0">
+      <mergedPackage xmi:type="cmof:Package" href="MDTOCL.cmof#_MvNA8Mo-Ed-ZL8lMORCEkg"/>
+    </packageMerge>
+    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_liWfAO5wEd-sIMHRp27srQ" receivingPackage="_0">
+      <mergedPackage xmi:type="cmof:Package" href="MDTOCL.cmof#_-P7ogO5vEd-sIMHRp27srQ"/>
+    </packageMerge>
+    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_Lv4FUMimEd-sJIf4tYBt-g" receivingPackage="_0">
+      <mergedPackage xmi:type="cmof:Package" href="MDTOCL.cmof#_zNR5QMilEd-sJIf4tYBt-g"/>
+    </packageMerge>
+    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_l1kg4MerEd-sJIf4tYBt-g" receivingPackage="_0">
+      <mergedPackage xmi:type="cmof:Package" href="MDTOCL.cmof#_tG-HYMeqEd-sJIf4tYBt-g"/>
+    </packageMerge>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_FrcRQKd2Ed-p0fyBXlv83w" name="Operation">
+      <ownedRule xmi:type="cmof:Constraint" xmi:id="_S9UKUK31Ed-xTJkHwX_SlQ" name="testConstraint" namespace="_FrcRQKd2Ed-p0fyBXlv83w">
+        <specification xmi:type="cmof:OpaqueExpression" xmi:id="_doLxkK31Ed-xTJkHwX_SlQ" name="opaqueExpression1">
+          <language>OCL</language>
+          <body>self.ownedParameter->size() = 1</body>
+        </specification>
+      </ownedRule>
+    </ownedMember>
+    <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+      <profileApplication xmi:type="cmof:ProfileApplication" xmi:id="_mwJtgIenEd-N4tjuug6Vsw" applyingPackage="_0">
+        <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_mwJtgYenEd-N4tjuug6Vsw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
+          </eAnnotations>
+        </xmi:Extension>
+        <appliedProfile xmi:type="cmof:Profile" href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
+      </profileApplication>
+    </xmi:Extension>
+  </cmof:Package>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EPackage xmi:id="_5mpFcIdyEd-N4tjuug6Vsw" base_Package="_0" nsPrefix="pivot" nsURI="http://www.eclipse.org/ocl/3.1.0/Pivot" basePackage=""/>
+  </xmi:Extension>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EPackage xmi:id="_TPVhdod0Ed-N4tjuug6Vsw" base_Package="_0" nsPrefix="uml" nsURI="http://www.omg.org/spec/UML/20090901"/>
+  </xmi:Extension>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EPackage xmi:id="_U-GB8Id3Ed-N4tjuug6Vsw" base_Package="_0" nsPrefix="pivot" nsURI="http://org.eclipse.ocl/Pivot/20100704"/>
+  </xmi:Extension>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EPackage xmi:id="_q3AqoIemEd-N4tjuug6Vsw" nsPrefix="oclpivot" nsURI="http://org.eclipse.ocl/OCL/20100704/Pivot"/>
+  </xmi:Extension>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EPackage xmi:id="_sWEpoIemEd-N4tjuug6Vsw" nsPrefix="oclexp" nsURI="http://org.eclipse.ocl/OCL/20100704/Expression"/>
+  </xmi:Extension>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EPackage xmi:id="_n_43EIenEd-N4tjuug6Vsw" nsPrefix="ocltyp" nsURI="http://org.eclipse.ocl/OCL/20100704/Types"/>
+  </xmi:Extension>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EPackage xmi:id="_m7YDwIkgEd-C9fe6N-G3qw" nsPrefix="oclprim" nsURI="http://org.eclipse.ocl/OCL/20100704/Primitives"/>
+  </xmi:Extension>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EAttribute xmi:id="_2pU6sJv1Ed-z3OwhWUwlQQ" isTransient="true"/>
+  </xmi:Extension>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EClass xmi:id="_E-3sIJ0jEd-JkelcPbiG5Q" instanceClassName="org.eclipse.ocl.examples.pivot.utilities.INameableElement" className="INameableElement"/>
+  </xmi:Extension>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EClass xmi:id="_MO684J0kEd-JkelcPbiG5Q" instanceClassName="org.eclipse.ocl.examples.pivot.utilities.INameableElement" className="INameableElement"/>
+  </xmi:Extension>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EClass xmi:id="_LkkGYJ0mEd-JkelcPbiG5Q" instanceClassName="org.eclipse.ocl.examples.pivot.utilities.INameableElement"/>
+  </xmi:Extension>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EDataType xmi:id="_leEVYKd2Ed-p0fyBXlv83w" instanceClassName="java.lang.Class"/>
+  </xmi:Extension>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EReference xmi:id="_U0BTwKeTEd-p0fyBXlv83w" isTransient="true" isResolveProxies="false"/>
+  </xmi:Extension>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EReference xmi:id="_kot7kKeTEd-p0fyBXlv83w" isResolveProxies="false"/>
+  </xmi:Extension>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EDataType xmi:id="_mHEcALjCEd-IDaWL0FHlwg" instanceClassName="java.lang.Class&lt;?>"/>
+  </xmi:Extension>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EAttribute xmi:id="_yqM3UL2iEd-nQufuYygZtQ" isTransient="true"/>
+  </xmi:Extension>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EPackage xmi:id="_hn2o4sinEd-sJIf4tYBt-g" base_Package="_0" nsPrefix="pivot" nsURI="http://www.eclipse.org/ocl/3.1.0/Pivot"/>
+  </xmi:Extension>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EPackage xmi:id="_6wkKcMknEd-bx742yyafXQ" base_Package="_0" nsPrefix="pivot" nsURI="http://www.eclipse.org/ocl/3.1.0/Pivot"/>
+  </xmi:Extension>
+  <cmof:Tag xmi:id="_19" name="org.omg.xmi.nsPrefix" value="pivot" element="_0"/>
+  <cmof:Tag xmi:id="_20" name="org.omg.xmi.nsURI" value="http://www.eclipse.org/ocl/3.1.0/Pivot" element="_0"/>
+</xmi:XMI>
