@@ -305,7 +305,7 @@ public class EvaluationHaltedTest
 
 		// this constructor is used to initialize child environments
 		InterruptibleEnv(EcoreEnvironmentFactory factory, InterruptibleEnv parent) {
-			super(factory, parent);
+			super(parent);
 
 			// get the parent's custom operations
 			haltOperation = parent.haltOperation;
