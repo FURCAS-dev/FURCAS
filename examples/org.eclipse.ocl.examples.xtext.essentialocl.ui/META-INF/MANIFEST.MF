@@ -7,13 +7,13 @@ Bundle-Version: 3.1.0.qualifier
 Bundle-SymbolicName: org.eclipse.ocl.examples.xtext.essentialocl.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.ocl.examples.xtext.essentialocl;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
- org.eclipse.ocl.examples.xtext.oclstdlib.ui;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
  org.eclipse.ui;bundle-version="[3.6.0,4.0.0)";visibility:=reexport,
  org.eclipse.ui.editors;bundle-version="[3.6.0,4.0.0)";visibility:=reexport,
  org.eclipse.ui.ide;bundle-version="[3.6.0,4.0.0)";visibility:=reexport,
- org.eclipse.xtext.builder;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
- org.eclipse.xtext.ui;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
- org.eclipse.xtext.ui.shared;bundle-version="[1.0.0,2.0.0)";visibility:=reexport
+ org.eclipse.xtext.builder;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
+ org.eclipse.xtext.ui;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
+ org.eclipse.xtext.ui.shared;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
+ org.antlr.runtime
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Activator: org.eclipse.ocl.examples.xtext.essentialocl.ui.internal.EssentialOCLActivator
@@ -21,6 +21,9 @@ Export-Package: org.eclipse.ocl.examples.xtext.essentialocl.ui,
  org.eclipse.ocl.examples.xtext.essentialocl.ui.contentassist,
  org.eclipse.ocl.examples.xtext.essentialocl.ui.internal,
  org.eclipse.ocl.examples.xtext.essentialocl.ui.labeling,
+ org.eclipse.ocl.examples.xtext.essentialocl.ui.model,
  org.eclipse.ocl.examples.xtext.essentialocl.ui.outline,
  org.eclipse.ocl.examples.xtext.essentialocl.ui.quickfix,
- org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring
+ org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring,
+ org.eclipse.ocl.examples.xtext.essentialocl.ui.contentassist.antlr
+
