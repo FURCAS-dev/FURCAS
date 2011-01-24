@@ -12,22 +12,22 @@
  *
  * </copyright>
  *
- * $Id: LibClassifierCS.java,v 1.1 2010/05/16 19:20:25 ewillink Exp $
+ * $Id: LibAccumulatorCS.java,v 1.2 2011/01/24 22:28:25 ewillink Exp $
  */
-
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST;
 
-import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Lib Classifier CS</b></em>'.
+ * A representation of the model object '<em><b>Lib Accumulator CS</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage#getLibClassifierCS()
- * @model abstract="true"
+ * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage#getLibAccumulatorCS()
+ * @model
  * @generated
  */
-public interface LibClassifierCS extends ClassCS {
-} // LibClassifierCS
+public interface LibAccumulatorCS
+		extends ParameterCS {
+} // LibAccumulatorCS

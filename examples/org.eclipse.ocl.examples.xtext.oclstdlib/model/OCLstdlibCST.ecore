@@ -2,36 +2,45 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="oclstdlibCST"
-    nsURI="http://www.eclipse.org/ocl/3.0.0/OCLstdlibCST" nsPrefix="oclstdlibCST">
-  <eClassifiers xsi:type="ecore:EClass" name="LibBoundClassCS">
-    <eGenericSuperTypes eClassifier="#//LibClassifierCS"/>
-    <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//BoundElementCS">
-      <eTypeArguments eClassifier="#//LibClassCS"/>
-    </eGenericSuperTypes>
+    nsURI="http://www.eclipse.org/ocl/3.1.0/OCLstdlibCST" nsPrefix="oclstdlibCST">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="JavaImplementationCS" abstract="true"
+      interface="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" eType="ecore:EClass http://www.eclipse.org/xtext/common/JavaVMTypes#//JvmType"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LibClassCS" eSuperTypes="#//LibClassifierCS">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="class">
-      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
-        <eTypeArguments/>
-      </eGenericType>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="conformsTo" upperBound="-1"
-        eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//TypedRefCS"
-        containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LibAccumulatorCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//ParameterCS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LibClassCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//ClassCS">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="metaTypeName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LibClassifierCS" abstract="true" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//ClassCS"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LibDocumentCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//DocumentCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="packages" upperBound="-1"
-        eType="#//LibPackageCS" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LibConstraintCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.ecore#//ExpConstraintCS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LibIterationCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//OperationCS #//JavaImplementationCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedIterator" upperBound="-1"
+        eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//ParameterCS"
+        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAccumulator" upperBound="-1"
+        eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//ParameterCS"
+        containment="true" resolveProxies="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LibIterationCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//OperationCS">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="class" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LibIteratorCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//ParameterCS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LibOperationCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//OperationCS #//JavaImplementationCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="precedence" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Precedence"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="static" eType="ecore:EDataType ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Boolean"
+        defaultValueLiteral="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LibOperationCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//OperationCS">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="class" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LibPropertyCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//AttributeCS #//JavaImplementationCS">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="static" eType="ecore:EDataType ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Boolean"
+        defaultValueLiteral="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LibPackageCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//PackageCS"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LibPropertyCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//AttributeCS">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="class" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LibRootPackageCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//RootPackageCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPrecedence" upperBound="-1"
+        eType="#//PrecedenceCS" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrecedenceCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//NamedElementCS">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rightAssociative" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
   </eClassifiers>
 </ecore:EPackage>

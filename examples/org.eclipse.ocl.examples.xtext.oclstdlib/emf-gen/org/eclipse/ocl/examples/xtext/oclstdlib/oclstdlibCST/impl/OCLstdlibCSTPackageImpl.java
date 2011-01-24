@@ -12,28 +12,32 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTPackageImpl.java,v 1.4 2010/05/24 08:59:14 ewillink Exp $
+ * $Id: OCLstdlibCSTPackageImpl.java,v 1.5 2011/01/24 22:28:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibBoundClassCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.JavaImplementationCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibAccumulatorCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassifierCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibDocumentCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIteratorCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibOperationCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibPackageCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibPropertyCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibRootPackageCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTFactory;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.PrecedenceCS;
+import org.eclipse.xtext.common.types.TypesPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,55 +45,80 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage
  * <!-- end-user-doc -->
  * @generated
  */
-public class OCLstdlibCSTPackageImpl extends EPackageImpl implements OCLstdlibCSTPackage {
+public class OCLstdlibCSTPackageImpl
+		extends EPackageImpl
+		implements OCLstdlibCSTPackage {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass libBoundClassCSEClass = null;
+	private EClass libAccumulatorCSEClass = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass libClassCSEClass = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass libClassifierCSEClass = null;
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass libDocumentCSEClass = null;
+	private EClass libConstraintCSEClass = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass libIterationCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass libIteratorCSEClass = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass libOperationCSEClass = null;
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass libPackageCSEClass = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass libPropertyCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass libRootPackageCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass javaImplementationCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass precedenceCSEClass = null;
+
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
@@ -137,7 +166,8 @@ public class OCLstdlibCSTPackageImpl extends EPackageImpl implements OCLstdlibCS
 		isInited = true;
 
 		// Initialize simple dependencies
-		BaseCSTPackage.eINSTANCE.eClass();
+		EssentialOCLCSTPackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theOCLstdlibCSTPackage.createPackageContents();
@@ -159,8 +189,8 @@ public class OCLstdlibCSTPackageImpl extends EPackageImpl implements OCLstdlibCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getLibBoundClassCS() {
-		return libBoundClassCSEClass;
+	public EClass getLibAccumulatorCS() {
+		return libAccumulatorCSEClass;
 	}
 
 	/**
@@ -168,7 +198,8 @@ public class OCLstdlibCSTPackageImpl extends EPackageImpl implements OCLstdlibCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getLibClassCS() {
+	public EClass getLibClassCS()
+	{
 		return libClassCSEClass;
 	}
 
@@ -177,7 +208,8 @@ public class OCLstdlibCSTPackageImpl extends EPackageImpl implements OCLstdlibCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLibClassCS_Class() {
+	public EAttribute getLibClassCS_MetaTypeName()
+	{
 		return (EAttribute)libClassCSEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -186,35 +218,8 @@ public class OCLstdlibCSTPackageImpl extends EPackageImpl implements OCLstdlibCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLibClassCS_ConformsTo() {
-		return (EReference)libClassCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getLibClassifierCS() {
-		return libClassifierCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getLibDocumentCS() {
-		return libDocumentCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getLibDocumentCS_Packages() {
-		return (EReference)libDocumentCSEClass.getEStructuralFeatures().get(0);
+	public EClass getLibConstraintCS() {
+		return libConstraintCSEClass;
 	}
 
 	/**
@@ -231,8 +236,28 @@ public class OCLstdlibCSTPackageImpl extends EPackageImpl implements OCLstdlibCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLibIterationCS_Class() {
-		return (EAttribute)libIterationCSEClass.getEStructuralFeatures().get(0);
+	public EReference getLibIterationCS_OwnedIterator()
+	{
+		return (EReference)libIterationCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLibIterationCS_OwnedAccumulator()
+	{
+		return (EReference)libIterationCSEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLibIteratorCS() {
+		return libIteratorCSEClass;
 	}
 
 	/**
@@ -249,8 +274,8 @@ public class OCLstdlibCSTPackageImpl extends EPackageImpl implements OCLstdlibCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLibOperationCS_Class() {
-		return (EAttribute)libOperationCSEClass.getEStructuralFeatures().get(0);
+	public EReference getLibOperationCS_Precedence() {
+		return (EReference)libOperationCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -258,8 +283,8 @@ public class OCLstdlibCSTPackageImpl extends EPackageImpl implements OCLstdlibCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getLibPackageCS() {
-		return libPackageCSEClass;
+	public EAttribute getLibOperationCS_Static() {
+		return (EAttribute)libOperationCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -276,8 +301,62 @@ public class OCLstdlibCSTPackageImpl extends EPackageImpl implements OCLstdlibCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLibPropertyCS_Class() {
+	public EAttribute getLibPropertyCS_Static() {
 		return (EAttribute)libPropertyCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLibRootPackageCS() {
+		return libRootPackageCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLibRootPackageCS_OwnedPrecedence() {
+		return (EReference)libRootPackageCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getJavaImplementationCS() {
+		return javaImplementationCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getJavaImplementationCS_Implementation() {
+		return (EReference)javaImplementationCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPrecedenceCS() {
+		return precedenceCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPrecedenceCS_RightAssociative() {
+		return (EAttribute)precedenceCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -308,27 +387,34 @@ public class OCLstdlibCSTPackageImpl extends EPackageImpl implements OCLstdlibCS
 		isCreated = true;
 
 		// Create classes and their features
-		libBoundClassCSEClass = createEClass(LIB_BOUND_CLASS_CS);
+		javaImplementationCSEClass = createEClass(JAVA_IMPLEMENTATION_CS);
+		createEReference(javaImplementationCSEClass, JAVA_IMPLEMENTATION_CS__IMPLEMENTATION);
+
+		libAccumulatorCSEClass = createEClass(LIB_ACCUMULATOR_CS);
 
 		libClassCSEClass = createEClass(LIB_CLASS_CS);
-		createEAttribute(libClassCSEClass, LIB_CLASS_CS__CLASS);
-		createEReference(libClassCSEClass, LIB_CLASS_CS__CONFORMS_TO);
+		createEAttribute(libClassCSEClass, LIB_CLASS_CS__META_TYPE_NAME);
 
-		libClassifierCSEClass = createEClass(LIB_CLASSIFIER_CS);
-
-		libDocumentCSEClass = createEClass(LIB_DOCUMENT_CS);
-		createEReference(libDocumentCSEClass, LIB_DOCUMENT_CS__PACKAGES);
+		libConstraintCSEClass = createEClass(LIB_CONSTRAINT_CS);
 
 		libIterationCSEClass = createEClass(LIB_ITERATION_CS);
-		createEAttribute(libIterationCSEClass, LIB_ITERATION_CS__CLASS);
+		createEReference(libIterationCSEClass, LIB_ITERATION_CS__OWNED_ITERATOR);
+		createEReference(libIterationCSEClass, LIB_ITERATION_CS__OWNED_ACCUMULATOR);
+
+		libIteratorCSEClass = createEClass(LIB_ITERATOR_CS);
 
 		libOperationCSEClass = createEClass(LIB_OPERATION_CS);
-		createEAttribute(libOperationCSEClass, LIB_OPERATION_CS__CLASS);
-
-		libPackageCSEClass = createEClass(LIB_PACKAGE_CS);
+		createEReference(libOperationCSEClass, LIB_OPERATION_CS__PRECEDENCE);
+		createEAttribute(libOperationCSEClass, LIB_OPERATION_CS__STATIC);
 
 		libPropertyCSEClass = createEClass(LIB_PROPERTY_CS);
-		createEAttribute(libPropertyCSEClass, LIB_PROPERTY_CS__CLASS);
+		createEAttribute(libPropertyCSEClass, LIB_PROPERTY_CS__STATIC);
+
+		libRootPackageCSEClass = createEClass(LIB_ROOT_PACKAGE_CS);
+		createEReference(libRootPackageCSEClass, LIB_ROOT_PACKAGE_CS__OWNED_PRECEDENCE);
+
+		precedenceCSEClass = createEClass(PRECEDENCE_CS);
+		createEAttribute(precedenceCSEClass, PRECEDENCE_CS__RIGHT_ASSOCIATIVE);
 	}
 
 	/**
@@ -355,55 +441,84 @@ public class OCLstdlibCSTPackageImpl extends EPackageImpl implements OCLstdlibCS
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
+		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 		BaseCSTPackage theBaseCSTPackage = (BaseCSTPackage)EPackage.Registry.INSTANCE.getEPackage(BaseCSTPackage.eNS_URI);
+		EssentialOCLCSTPackage theEssentialOCLCSTPackage = (EssentialOCLCSTPackage)EPackage.Registry.INSTANCE.getEPackage(EssentialOCLCSTPackage.eNS_URI);
+		PivotPackage thePivotPackage = (PivotPackage)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		EGenericType g1 = createEGenericType(this.getLibClassifierCS());
-		libBoundClassCSEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theBaseCSTPackage.getBoundElementCS());
-		EGenericType g2 = createEGenericType(this.getLibClassCS());
-		g1.getETypeArguments().add(g2);
-		libBoundClassCSEClass.getEGenericSuperTypes().add(g1);
-		libClassCSEClass.getESuperTypes().add(this.getLibClassifierCS());
-		libClassifierCSEClass.getESuperTypes().add(theBaseCSTPackage.getClassCS());
-		libDocumentCSEClass.getESuperTypes().add(theBaseCSTPackage.getDocumentCS());
+		libAccumulatorCSEClass.getESuperTypes().add(theBaseCSTPackage.getParameterCS());
+		libClassCSEClass.getESuperTypes().add(theBaseCSTPackage.getClassCS());
+		libConstraintCSEClass.getESuperTypes().add(theEssentialOCLCSTPackage.getExpConstraintCS());
 		libIterationCSEClass.getESuperTypes().add(theBaseCSTPackage.getOperationCS());
+		libIterationCSEClass.getESuperTypes().add(this.getJavaImplementationCS());
+		libIteratorCSEClass.getESuperTypes().add(theBaseCSTPackage.getParameterCS());
 		libOperationCSEClass.getESuperTypes().add(theBaseCSTPackage.getOperationCS());
-		libPackageCSEClass.getESuperTypes().add(theBaseCSTPackage.getPackageCS());
+		libOperationCSEClass.getESuperTypes().add(this.getJavaImplementationCS());
 		libPropertyCSEClass.getESuperTypes().add(theBaseCSTPackage.getAttributeCS());
+		libPropertyCSEClass.getESuperTypes().add(this.getJavaImplementationCS());
+		libRootPackageCSEClass.getESuperTypes().add(theBaseCSTPackage.getRootPackageCS());
+		precedenceCSEClass.getESuperTypes().add(theBaseCSTPackage.getNamedElementCS());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(libBoundClassCSEClass, LibBoundClassCS.class, "LibBoundClassCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(javaImplementationCSEClass, JavaImplementationCS.class, "JavaImplementationCS", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getJavaImplementationCS_Implementation(), theTypesPackage.getJvmType(), null, "implementation", null, 0, 1, JavaImplementationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(libAccumulatorCSEClass, LibAccumulatorCS.class, "LibAccumulatorCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(libClassCSEClass, LibClassCS.class, "LibClassCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		g1 = createEGenericType(ecorePackage.getEJavaClass());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		initEAttribute(getLibClassCS_Class(), g1, "class", null, 0, 1, LibClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLibClassCS_ConformsTo(), theBaseCSTPackage.getTypedRefCS(), null, "conformsTo", null, 0, -1, LibClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLibClassCS_MetaTypeName(), ecorePackage.getEString(), "metaTypeName", null, 0, 1, LibClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(libClassifierCSEClass, LibClassifierCS.class, "LibClassifierCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(libDocumentCSEClass, LibDocumentCS.class, "LibDocumentCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLibDocumentCS_Packages(), this.getLibPackageCS(), null, "packages", null, 0, -1, LibDocumentCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(libConstraintCSEClass, LibConstraintCS.class, "LibConstraintCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(libIterationCSEClass, LibIterationCS.class, "LibIterationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLibIterationCS_Class(), ecorePackage.getEString(), "class", null, 0, 1, LibIterationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLibIterationCS_OwnedIterator(), theBaseCSTPackage.getParameterCS(), null, "ownedIterator", null, 0, -1, LibIterationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLibIterationCS_OwnedAccumulator(), theBaseCSTPackage.getParameterCS(), null, "ownedAccumulator", null, 0, -1, LibIterationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(libIteratorCSEClass, LibIteratorCS.class, "LibIteratorCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(libOperationCSEClass, LibOperationCS.class, "LibOperationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLibOperationCS_Class(), ecorePackage.getEString(), "class", null, 0, 1, LibOperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(libPackageCSEClass, LibPackageCS.class, "LibPackageCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getLibOperationCS_Precedence(), thePivotPackage.getPrecedence(), null, "precedence", null, 0, 1, LibOperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLibOperationCS_Static(), thePivotPackage.getBoolean(), "static", "false", 0, 1, LibOperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(libPropertyCSEClass, LibPropertyCS.class, "LibPropertyCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLibPropertyCS_Class(), ecorePackage.getEString(), "class", null, 0, 1, LibPropertyCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLibPropertyCS_Static(), thePivotPackage.getBoolean(), "static", "false", 0, 1, LibPropertyCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(libRootPackageCSEClass, LibRootPackageCS.class, "LibRootPackageCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getLibRootPackageCS_OwnedPrecedence(), this.getPrecedenceCS(), null, "ownedPrecedence", null, 0, -1, LibRootPackageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(precedenceCSEClass, PrecedenceCS.class, "PrecedenceCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPrecedenceCS_RightAssociative(), ecorePackage.getEBoolean(), "rightAssociative", "false", 0, 1, PrecedenceCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// http://www.eclipse.org/emf/2002/Ecore
+		createEcoreAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createEcoreAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore";		
+		addAnnotation
+		  (this, 
+		   source, 
+		   new String[] 
+		   {
+			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL",
+			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL",
+			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL"
+		   });
 	}
 
 } //OCLstdlibCSTPackageImpl

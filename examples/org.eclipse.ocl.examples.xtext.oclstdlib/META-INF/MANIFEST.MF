@@ -6,14 +6,18 @@ Bundle-Version: 3.1.0.qualifier
 Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.ocl.examples.xtext.oclstdlib; singleton:=true
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.ocl.examples.xtext.base;bundle-version="3.0.0";visibility:=reexport,
+Require-Bundle: org.eclipse.ocl.examples.xtext.essentialocl;bundle-version="[3.0.0,
+ 4.0.0)";visibility:=reexport,
  org.eclipse.xtext,
  org.eclipse.xtext.util,
  org.eclipse.emf.ecore,
  org.eclipse.emf.common,
- org.antlr.runtime
+ org.antlr.runtime,
+ org.eclipse.core.runtime,
+ org.eclipse.xtext.common.types
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.ocl.examples.xtext.oclstdlib,
+ org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot,
  org.eclipse.ocl.examples.xtext.oclstdlib.formatting,
  org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST,
  org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl,
@@ -23,5 +27,8 @@ Export-Package: org.eclipse.ocl.examples.xtext.oclstdlib,
  org.eclipse.ocl.examples.xtext.oclstdlib.parser.antlr.internal,
  org.eclipse.ocl.examples.xtext.oclstdlib.scoping,
  org.eclipse.ocl.examples.xtext.oclstdlib.services,
+ org.eclipse.ocl.examples.xtext.oclstdlib.util,
+ org.eclipse.ocl.examples.xtext.oclstdlib.utilities,
  org.eclipse.ocl.examples.xtext.oclstdlib.validation
 Import-Package: org.apache.log4j
+Bundle-Activator: org.eclipse.ocl.examples.xtext.oclstdlib.utilities.OCLstdlibPlugin$Implementation

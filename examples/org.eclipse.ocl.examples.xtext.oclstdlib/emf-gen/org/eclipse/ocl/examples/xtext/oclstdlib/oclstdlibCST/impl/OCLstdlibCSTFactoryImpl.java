@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTFactoryImpl.java,v 1.2 2010/05/16 19:20:25 ewillink Exp $
+ * $Id: OCLstdlibCSTFactoryImpl.java,v 1.3 2011/01/24 22:28:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl;
@@ -23,13 +23,16 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.*;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibAccumulatorCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIteratorCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibOperationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibPropertyCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibDocumentCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibRootPackageCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTFactory;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.PrecedenceCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,7 +40,10 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage
  * <!-- end-user-doc -->
  * @generated
  */
-public class OCLstdlibCSTFactoryImpl extends EFactoryImpl implements OCLstdlibCSTFactory {
+public class OCLstdlibCSTFactoryImpl
+		extends EFactoryImpl
+		implements OCLstdlibCSTFactory {
+
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
@@ -45,13 +51,16 @@ public class OCLstdlibCSTFactoryImpl extends EFactoryImpl implements OCLstdlibCS
 	 * @generated
 	 */
 	public static OCLstdlibCSTFactory init() {
-		try {
-			OCLstdlibCSTFactory theOCLstdlibCSTFactory = (OCLstdlibCSTFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/ocl/3.0.0/OCLstdlibCST"); 
-			if (theOCLstdlibCSTFactory != null) {
+		try
+		{
+			OCLstdlibCSTFactory theOCLstdlibCSTFactory = (OCLstdlibCSTFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/ocl/3.1.0/OCLstdlibCST"); 
+			if (theOCLstdlibCSTFactory != null)
+			{
 				return theOCLstdlibCSTFactory;
 			}
 		}
-		catch (Exception exception) {
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new OCLstdlibCSTFactoryImpl();
@@ -74,14 +83,17 @@ public class OCLstdlibCSTFactoryImpl extends EFactoryImpl implements OCLstdlibCS
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case OCLstdlibCSTPackage.LIB_BOUND_CLASS_CS: return createLibBoundClassCS();
+		switch (eClass.getClassifierID())
+		{
+			case OCLstdlibCSTPackage.LIB_ACCUMULATOR_CS: return createLibAccumulatorCS();
 			case OCLstdlibCSTPackage.LIB_CLASS_CS: return createLibClassCS();
-			case OCLstdlibCSTPackage.LIB_DOCUMENT_CS: return createLibDocumentCS();
+			case OCLstdlibCSTPackage.LIB_CONSTRAINT_CS: return createLibConstraintCS();
 			case OCLstdlibCSTPackage.LIB_ITERATION_CS: return createLibIterationCS();
+			case OCLstdlibCSTPackage.LIB_ITERATOR_CS: return createLibIteratorCS();
 			case OCLstdlibCSTPackage.LIB_OPERATION_CS: return createLibOperationCS();
-			case OCLstdlibCSTPackage.LIB_PACKAGE_CS: return createLibPackageCS();
 			case OCLstdlibCSTPackage.LIB_PROPERTY_CS: return createLibPropertyCS();
+			case OCLstdlibCSTPackage.LIB_ROOT_PACKAGE_CS: return createLibRootPackageCS();
+			case OCLstdlibCSTPackage.PRECEDENCE_CS: return createPrecedenceCS();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -92,9 +104,9 @@ public class OCLstdlibCSTFactoryImpl extends EFactoryImpl implements OCLstdlibCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LibBoundClassCS createLibBoundClassCS() {
-		LibBoundClassCSImpl libBoundClassCS = new LibBoundClassCSImpl();
-		return libBoundClassCS;
+	public LibAccumulatorCS createLibAccumulatorCS() {
+		LibAccumulatorCSImpl libAccumulatorCS = new LibAccumulatorCSImpl();
+		return libAccumulatorCS;
 	}
 
 	/**
@@ -102,7 +114,8 @@ public class OCLstdlibCSTFactoryImpl extends EFactoryImpl implements OCLstdlibCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LibClassCS createLibClassCS() {
+	public LibClassCS createLibClassCS()
+	{
 		LibClassCSImpl libClassCS = new LibClassCSImpl();
 		return libClassCS;
 	}
@@ -112,9 +125,9 @@ public class OCLstdlibCSTFactoryImpl extends EFactoryImpl implements OCLstdlibCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LibDocumentCS createLibDocumentCS() {
-		LibDocumentCSImpl libDocumentCS = new LibDocumentCSImpl();
-		return libDocumentCS;
+	public LibConstraintCS createLibConstraintCS() {
+		LibConstraintCSImpl libConstraintCS = new LibConstraintCSImpl();
+		return libConstraintCS;
 	}
 
 	/**
@@ -132,6 +145,16 @@ public class OCLstdlibCSTFactoryImpl extends EFactoryImpl implements OCLstdlibCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public LibIteratorCS createLibIteratorCS() {
+		LibIteratorCSImpl libIteratorCS = new LibIteratorCSImpl();
+		return libIteratorCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public LibOperationCS createLibOperationCS() {
 		LibOperationCSImpl libOperationCS = new LibOperationCSImpl();
 		return libOperationCS;
@@ -142,9 +165,9 @@ public class OCLstdlibCSTFactoryImpl extends EFactoryImpl implements OCLstdlibCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LibPackageCS createLibPackageCS() {
-		LibPackageCSImpl libPackageCS = new LibPackageCSImpl();
-		return libPackageCS;
+	public LibPropertyCS createLibPropertyCS() {
+		LibPropertyCSImpl libPropertyCS = new LibPropertyCSImpl();
+		return libPropertyCS;
 	}
 
 	/**
@@ -152,9 +175,19 @@ public class OCLstdlibCSTFactoryImpl extends EFactoryImpl implements OCLstdlibCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LibPropertyCS createLibPropertyCS() {
-		LibPropertyCSImpl libPropertyCS = new LibPropertyCSImpl();
-		return libPropertyCS;
+	public LibRootPackageCS createLibRootPackageCS() {
+		LibRootPackageCSImpl libRootPackageCS = new LibRootPackageCSImpl();
+		return libRootPackageCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PrecedenceCS createPrecedenceCS() {
+		PrecedenceCSImpl precedenceCS = new PrecedenceCSImpl();
+		return precedenceCS;
 	}
 
 	/**

@@ -12,24 +12,22 @@
  *
  * </copyright>
  *
- * $Id: LibBoundClassCS.java,v 1.1 2010/05/16 19:20:25 ewillink Exp $
+ * $Id: LibIteratorCS.java,v 1.2 2011/01/24 22:28:25 ewillink Exp $
  */
-
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST;
 
-import org.eclipse.ocl.examples.xtext.base.baseCST.BoundElementCS;
-
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Lib Parameterized Class CS</b></em>'.
+ * A representation of the model object '<em><b>Lib Iterator CS</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage#getLibBoundClassCS()
+ * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage#getLibIteratorCS()
  * @model
  * @generated
  */
-public interface LibBoundClassCS extends LibClassifierCS, BoundElementCS<LibClassCS> {
-
-} // LibParameterizedClassCS
+public interface LibIteratorCS
+		extends ParameterCS {
+} // LibIteratorCS

@@ -12,12 +12,14 @@
  *
  * </copyright>
  *
- * $Id: LibIterationCS.java,v 1.3 2010/05/09 10:29:25 ewillink Exp $
+ * $Id: LibIterationCS.java,v 1.4 2011/01/24 22:28:25 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +29,8 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS#getClass_ <em>Class</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS#getOwnedIterator <em>Owned Iterator</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS#getOwnedAccumulator <em>Owned Accumulator</em>}</li>
  * </ul>
  * </p>
  *
@@ -35,31 +38,39 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
  * @model
  * @generated
  */
-public interface LibIterationCS extends OperationCS {
+public interface LibIterationCS
+		extends OperationCS, JavaImplementationCS {
+
 	/**
-	 * Returns the value of the '<em><b>Class</b></em>' attribute.
+	 * Returns the value of the '<em><b>Owned Iterator</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Class</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Owned Iterator</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Class</em>' attribute.
-	 * @see #setClass(String)
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage#getLibIterationCS_Class()
-	 * @model
+	 * @return the value of the '<em>Owned Iterator</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage#getLibIterationCS_OwnedIterator()
+	 * @model containment="true"
 	 * @generated
 	 */
-	String getClass_();
+	EList<ParameterCS> getOwnedIterator();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS#getClass_ <em>Class</em>}' attribute.
+	 * Returns the value of the '<em><b>Owned Accumulator</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS}.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Accumulator</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Class</em>' attribute.
-	 * @see #getClass_()
+	 * @return the value of the '<em>Owned Accumulator</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage#getLibIterationCS_OwnedAccumulator()
+	 * @model containment="true"
 	 * @generated
 	 */
-	void setClass(String value);
+	EList<ParameterCS> getOwnedAccumulator();
 
 } // LibIterationCS

@@ -5,14 +5,14 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.1 2010/05/03 05:29:52 ewillink Exp $
+ $Id: plugin.xml,v 1.2 2011/01/24 22:28:26 ewillink Exp $
 -->
 
 <plugin>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://www.eclipse.org/ocl/3.0.0/OCLstdlibCST"
+            uri="http://www.eclipse.org/ocl/3.1.0/OCLstdlibCST"
             class="org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage"
             genModel="model/OCLstdlibCST.genmodel"/>
    </extension>
