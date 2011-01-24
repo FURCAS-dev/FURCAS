@@ -220,9 +220,8 @@ public class StatesTest
 		private EObject appleRotten;
 		
 		public StatefulFruitEnvironment(StatefulFruitEnvironmentFactory factory, AbstractTestSuite suite) {
-			super(resourceSet.getPackageRegistry());
+			super(factory);
 			this.suite = suite;
-			setFactory(factory);
 			setContextPackage(suite.fruitPackage);
 			
 			initStates();
@@ -231,9 +230,8 @@ public class StatesTest
 		public StatefulFruitEnvironment(
 				StatefulFruitEnvironmentFactory factory,
 				Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent, AbstractTestSuite suite) {
-			super(parent);
+			super(factory, parent);
 			this.suite = suite;
-			setFactory(factory);
 			
 			initStates();
 		}
