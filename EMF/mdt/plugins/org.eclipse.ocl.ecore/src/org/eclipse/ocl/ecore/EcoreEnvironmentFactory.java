@@ -95,16 +95,14 @@ public class EcoreEnvironmentFactory
     // implements the inherited specification
     public Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
 	createEnvironment() {
-		EcoreEnvironment result = new EcoreEnvironment(registry);
-		result.setFactory(this);
+		EcoreEnvironment result = new EcoreEnvironment(this);
 		return result;
 	}
 	
     // implements the inherited specification
     public Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
 	loadEnvironment(Resource resource) {
-		EcoreEnvironment result = new EcoreEnvironment(registry, resource);
-		result.setFactory(this);
+		EcoreEnvironment result = new EcoreEnvironment(this, resource);
 		return result;
 	}
 	
@@ -162,7 +160,6 @@ public class EcoreEnvironmentFactory
 		}
 		
 		EcoreEnvironment result = new EcoreEnvironment(parent);
-		result.setFactory(this);
 		return result;
 	}
 

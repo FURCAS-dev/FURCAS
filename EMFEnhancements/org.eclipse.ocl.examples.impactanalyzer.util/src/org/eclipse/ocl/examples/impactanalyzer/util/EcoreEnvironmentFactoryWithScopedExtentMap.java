@@ -62,7 +62,7 @@ public class EcoreEnvironmentFactoryWithScopedExtentMap extends EcoreEnvironment
      * particular package registry used by your opposite end finder.
      */
     public EcoreEnvironmentFactoryWithScopedExtentMap(OppositeEndFinder oppositeEndFinder) {
-        super(oppositeEndFinder);
+        super(EPackage.Registry.INSTANCE, oppositeEndFinder);
     }
     
     /**

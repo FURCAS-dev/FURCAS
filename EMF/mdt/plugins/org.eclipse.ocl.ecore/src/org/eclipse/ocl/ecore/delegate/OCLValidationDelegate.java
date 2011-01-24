@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLValidationDelegate.java,v 1.2 2010/04/08 06:27:21 ewillink Exp $
+ * $Id: OCLValidationDelegate.java,v 1.3 2011/01/23 22:18:53 auhl Exp $
  */
 package org.eclipse.ocl.ecore.delegate;
 
@@ -108,18 +108,18 @@ public class OCLValidationDelegate implements ValidationDelegate
 			constraint, delegateDomain.getOCL());
 		if (query == null) {
 			query = createQuery(expression);
-			ValidationBehavior.INSTANCE.cacheInvariantBody(eClass, constraint, query);
+			ValidationBehavior.INSTANCE.cacheOCLExpression(eClass, constraint, query);
 		}
 		return check(eObject, constraint, query);
 	}
 
 	public boolean validate(EDataType eDataType, Object value,
 			Map<Object, Object> context, String constraint, String expression) {
-		OCLExpression query = ValidationBehavior.INSTANCE.getCachedExpression(
-			eDataType, constraint);
+		OCLExpression query = ValidationBehavior.INSTANCE.getInvariant(
+			eDataType, constraint, delegateDomain.getOCL());
 		if (query == null) {
 			query = createQuery(expression);
-			ValidationBehavior.INSTANCE.cacheInvariantBody(eDataType, constraint, query);
+			ValidationBehavior.INSTANCE.cacheOCLExpression(eDataType, constraint, query);
 		}
 		return check(value, constraint, query);
 	}

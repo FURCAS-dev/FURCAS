@@ -20,6 +20,9 @@
     <module>org.eclipse.ocl.ecore.tests</module>
     <module>org.eclipse.ocl.standalone.ecore.tests</module>
     <module>org.eclipse.ocl.standalone.uml.tests</module>
+    <module>org.eclipse.ocl.examples.eventmanager.tests</module>
+    <module>org.eclipse.ocl.examples.testutils</module>
+    <module>org.eclipse.ocl.examples.impactanalyzer.testmodel.company</module>
   </modules>
 
 </project>

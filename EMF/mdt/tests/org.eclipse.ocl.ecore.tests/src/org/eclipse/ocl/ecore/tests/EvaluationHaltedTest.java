@@ -30,7 +30,6 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.ocl.Environment;
-import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.EvaluationHaltedException;
 import org.eclipse.ocl.EvaluationVisitor;
@@ -42,8 +41,8 @@ import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.EcoreEvaluationEnvironment;
 import org.eclipse.ocl.ecore.OCL;
-import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.OCL.Query;
+import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.util.OCLUtil;
 
 /**
@@ -299,24 +298,17 @@ public class EvaluationHaltedTest
 		EOperation haltOperation;
 
 		// this constructor is used to initialize the root environment
-		InterruptibleEnv(EPackage.Registry registry) {
-			super(registry);
-
+		InterruptibleEnv(EcoreEnvironmentFactory fac) {
+			super(fac);
 			defineHaltOperation();
 		}
 
 		// this constructor is used to initialize child environments
-		InterruptibleEnv(InterruptibleEnv parent) {
+		InterruptibleEnv(EcoreEnvironmentFactory factory, InterruptibleEnv parent) {
 			super(parent);
 
 			// get the parent's custom operations
 			haltOperation = parent.haltOperation;
-		}
-
-		@Override
-		protected void setFactory(
-				EnvironmentFactory<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> factory) {
-			super.setFactory(factory);
 		}
 
 		private void defineHaltOperation() {
@@ -401,9 +393,7 @@ public class EvaluationHaltedTest
 
 		@Override
 		public Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> createEnvironment() {
-			InterruptibleEnv result = new InterruptibleEnv(
-				getEPackageRegistry());
-			result.setFactory(this);
+			InterruptibleEnv result = new InterruptibleEnv(this);
 			return result;
 		}
 
@@ -415,9 +405,8 @@ public class EvaluationHaltedTest
 					"Parent environment must be my environment: " + parent);
 			}
 
-			InterruptibleEnv result = new InterruptibleEnv(
+			InterruptibleEnv result = new InterruptibleEnv(this,
 				(InterruptibleEnv) parent);
-			result.setFactory(this);
 			return result;
 		}
 

@@ -530,9 +530,8 @@ public class MessagesTest
 		private EList<EClassifier> signals = new BasicEList<EClassifier>();
 		
 		public MessagingFruitEnvironment(MessagingFruitEnvironmentFactory factory, AbstractTestSuite suite) {
-			super(resourceSet.getPackageRegistry());
+			super(factory);
 			this.suite = suite;
-			setFactory(factory);
 			setContextPackage(suite.fruitPackage);
 
 //			init();
@@ -543,7 +542,6 @@ public class MessagesTest
 				Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent, AbstractTestSuite suite) {
 			super(parent);
 			this.suite = suite;
-			setFactory(factory);
 			
 			init();
 		}
