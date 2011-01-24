@@ -3,7 +3,7 @@
  * Usages are bound to corresponding definition according to scope.
  *
  */
-syntax ImpactAnalysisRenameTestSyntax { 
+syntax NestedScopesTestSyntax { 
 
   primitiveTemplate identifier for ecore::EString default using NAME
     : value = "unescapeString(%token%)"
