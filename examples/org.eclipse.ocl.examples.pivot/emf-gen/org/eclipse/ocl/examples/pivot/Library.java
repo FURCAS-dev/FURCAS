@@ -12,24 +12,21 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveType.java,v 1.3 2011/01/24 20:49:35 ewillink Exp $
+ * $Id: Library.java,v 1.2 2011/01/24 20:49:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
+
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Primitive Type</b></em>'.
+ * A representation of the model object '<em><b>Library</b></em>'.
  * <!-- end-user-doc -->
  *
- * <!-- begin-model-doc -->
- * A primitive type is a data type implemented by the underlying infrastructure and made available for modeling.
- * <!-- end-model-doc -->
  *
- *
- * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPrimitiveType()
+ * @see org.eclipse.ocl.examples.pivot.PivotPackage#getLibrary()
  * @model
  * @generated
  */
-public interface PrimitiveType
-		extends DataType {
-} // PrimitiveType
+public interface Library extends org.eclipse.ocl.examples.pivot.Package
+{
+} // Library

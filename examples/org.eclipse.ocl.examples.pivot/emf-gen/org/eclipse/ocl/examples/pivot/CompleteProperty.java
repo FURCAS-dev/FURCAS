@@ -12,32 +12,29 @@
  *
  * </copyright>
  *
- * $Id: CompleteOperation.java,v 1.3 2011/01/24 20:49:35 ewillink Exp $
+ * $Id: CompleteProperty.java,v 1.2 2011/01/24 20:49:36 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
-import org.eclipse.emf.common.util.EList;
-
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Complete Operation</b></em>'.
+ * A representation of the model object '<em><b>Complete Property</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteOperation#getModel <em>Model</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteOperation#getCompleteEnvironment <em>Complete Environment</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteOperation#getCompleteParameters <em>Complete Parameter</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteProperty#getModel <em>Model</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteProperty#getCompleteEnvironment <em>Complete Environment</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteOperation()
+ * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteProperty()
  * @model
  * @generated
  */
-public interface CompleteOperation
-		extends Operation {
+public interface CompleteProperty
+		extends Property {
 
 	/**
 	 * Returns the value of the '<em><b>Model</b></em>' reference.
@@ -48,22 +45,22 @@ public interface CompleteOperation
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Model</em>' reference.
-	 * @see #setModel(Operation)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteOperation_Model()
+	 * @see #setModel(Property)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteProperty_Model()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
-	Operation getModel();
+	Property getModel();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.CompleteOperation#getModel <em>Model</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.CompleteProperty#getModel <em>Model</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Model</em>' reference.
 	 * @see #getModel()
 	 * @generated
 	 */
-	void setModel(Operation value);
+	void setModel(Property value);
 
 	/**
 	 * Returns the value of the '<em><b>Complete Environment</b></em>' reference.
@@ -75,14 +72,14 @@ public interface CompleteOperation
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Complete Environment</em>' reference.
 	 * @see #setCompleteEnvironment(CompleteEnvironment)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteOperation_CompleteEnvironment()
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteProperty_CompleteEnvironment()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
 	CompleteEnvironment getCompleteEnvironment();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.CompleteOperation#getCompleteEnvironment <em>Complete Environment</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.CompleteProperty#getCompleteEnvironment <em>Complete Environment</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Complete Environment</em>' reference.
@@ -91,20 +88,4 @@ public interface CompleteOperation
 	 */
 	void setCompleteEnvironment(CompleteEnvironment value);
 
-	/**
-	 * Returns the value of the '<em><b>Complete Parameter</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Parameter}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Complete Parameter</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Complete Parameter</em>' reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteOperation_CompleteParameter()
-	 * @model changeable="false" volatile="true" derived="true" ordered="false"
-	 * @generated
-	 */
-	EList<Parameter> getCompleteParameters();
-
-} // CompleteOperation
+} // CompleteProperty

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SequenceType.java,v 1.2 2011/01/24 20:42:35 ewillink Exp $
+ * $Id: SequenceType.java,v 1.3 2011/01/24 20:49:36 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 

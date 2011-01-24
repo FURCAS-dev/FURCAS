@@ -12,20 +12,15 @@
  *
  * </copyright>
  *
- * $Id: SetType.java,v 1.3 2011/01/24 20:49:35 ewillink Exp $
+ * $Id: Pivotable.java,v 1.2 2011/01/24 20:49:36 ewillink Exp $
  */
-package org.eclipse.ocl.examples.pivot;
+package org.eclipse.ocl.examples.pivot.util;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Set Type</b></em>'.
- * <!-- end-user-doc -->
- *
- *
- * @see org.eclipse.ocl.examples.pivot.PivotPackage#getSetType()
- * @model
- * @generated
- */
-public interface SetType
-		extends CollectionType {
-} // SetType
+import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.utilities.PivotObject;
+
+public interface Pivotable extends PivotObject
+{
+	Element getPivot();
+	void resetPivot();
+}

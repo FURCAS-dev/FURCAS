@@ -12,24 +12,20 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveType.java,v 1.3 2011/01/24 20:49:35 ewillink Exp $
+ * $Id: TupleType.java,v 1.2 2011/01/24 20:49:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Primitive Type</b></em>'.
+ * A representation of the model object '<em><b>Tuple Type</b></em>'.
  * <!-- end-user-doc -->
  *
- * <!-- begin-model-doc -->
- * A primitive type is a data type implemented by the underlying infrastructure and made available for modeling.
- * <!-- end-model-doc -->
  *
- *
- * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPrimitiveType()
+ * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTupleType()
  * @model
  * @generated
  */
-public interface PrimitiveType
+public interface TupleType
 		extends DataType {
-} // PrimitiveType
+} // TupleType

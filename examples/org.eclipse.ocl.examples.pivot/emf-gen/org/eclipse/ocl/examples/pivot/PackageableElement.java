@@ -12,24 +12,24 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveType.java,v 1.3 2011/01/24 20:49:35 ewillink Exp $
+ * $Id: PackageableElement.java,v 1.2 2011/01/24 20:49:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Primitive Type</b></em>'.
+ * A representation of the model object '<em><b>Packageable Element</b></em>'.
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A primitive type is a data type implemented by the underlying infrastructure and made available for modeling.
+ * Packageable elements are able to serve as a template parameter.
  * <!-- end-model-doc -->
  *
  *
- * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPrimitiveType()
- * @model
+ * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPackageableElement()
+ * @model abstract="true"
  * @generated
  */
-public interface PrimitiveType
-		extends DataType {
-} // PrimitiveType
+public interface PackageableElement
+		extends ParameterableElement {
+} // PackageableElement
