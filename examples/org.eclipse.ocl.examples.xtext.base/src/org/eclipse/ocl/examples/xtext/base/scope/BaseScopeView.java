@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseScopeView.java,v 1.2 2010/05/21 20:06:44 ewillink Exp $
+ * $Id: BaseScopeView.java,v 1.3 2011/01/24 21:00:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -22,8 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
+import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.impl.AbstractScope;
 
@@ -35,25 +34,36 @@ import org.eclipse.xtext.scoping.impl.AbstractScope;
  */
 public class BaseScopeView extends AbstractScope implements ScopeView
 {
+	@Deprecated
+	private static ScopeView getParent(ScopeAdapter scopeAdapter, EReference targetReference) {
+		ScopeAdapter parent = scopeAdapter.getParent();
+		if (parent == null) {
+			return ScopeView.NULLSCOPEVIEW;
+		}
+		EObject target = scopeAdapter.getTarget();
+		EStructuralFeature eContainingFeature = target.eContainingFeature();
+		return new BaseScopeView(parent, target, eContainingFeature, targetReference);
+	}
+	
 	protected final ScopeAdapter scopeAdapter;					// Adapting the CST node
+	protected final EObject child;								// Child targeted by containmentFeature, null for child-independent
 	protected final EStructuralFeature containmentFeature;		// Selecting child-specific candidates, null for child-independent
 	protected final EReference targetReference;					// Selecting permissible candidate types
-	protected final TypeBindingsCS bindings;					// Configuring potential candidates
 	
-	public BaseScopeView(ScopeAdapter scopeAdapter, EStructuralFeature containmentFeature, EReference targetReference, TypeBindingsCS bindings) {
+	public BaseScopeView(ScopeAdapter scopeAdapter, EObject child, EStructuralFeature containmentFeature, EReference targetReference) {
+		super(getParent(scopeAdapter, targetReference), false);
 		this.scopeAdapter = scopeAdapter;
+		this.child = child;
 		this.containmentFeature = containmentFeature;
 		this.targetReference = targetReference;
-		this.bindings = bindings;
-		assert bindings != null;
 	}
 
-	public BaseScopeView(ScopeView scopeView, TypeBindingsCS bindings) {
+	public BaseScopeView(ScopeView scopeView) {
+		super(getParent(scopeView.getScopeAdapter(), scopeView.getTargetReference()), false);
 		this.scopeAdapter = scopeView.getScopeAdapter();
+		this.child = scopeView.getChild();
 		this.containmentFeature = scopeView.getContainmentFeature();
 		this.targetReference = scopeView.getTargetReference();
-		this.bindings = bindings;
-		assert bindings != null;
 	}
 	
 	public IEObjectDescription computeLookup(EnvironmentView environmentView) {
@@ -67,10 +77,10 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 			return null;
 		}
 		else if (size == 1) {
-			return environmentView.getContent();
+			return environmentView.getDescription();
 		}
 		else {
-			List<IEObjectDescription> contents = environmentView.getContents();
+			List<IEObjectDescription> contents = environmentView.getDescriptions();
 			// FIXME error for ambiguous
 			return contents.get(0);
 		}
@@ -85,39 +95,47 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 		}
 	}
 
-	public TypeBindingsCS getBindings() {
-//		if (bindings == null) {
-//			bindings = Collections.emptyList();
-//		}
-		return bindings;
+	@Override
+	public Iterable<IEObjectDescription> getAllElements() {
+		EnvironmentView environmentView = new EnvironmentView(targetReference, null);
+		computeLookupWithParents(environmentView);
+		return environmentView.getDescriptions();
+	}
+
+	public EObject getChild() {
+		return child;
 	}
 
 	public EStructuralFeature getContainmentFeature() {
 		return containmentFeature;
 	}
 	
+//	@Override
+//	public IEObjectDescription getContentByName(String name) {
+//		if (name == null)
+//			throw new NullPointerException("name"); //$NON-NLS-1$
+//		EnvironmentView environmentView = new EnvironmentView(targetReference, name);
+//		return computeLookup(environmentView);
+//	}
+
 	@Override
-	public IEObjectDescription getContentByName(String name) {
+	public IEObjectDescription getSingleElement(QualifiedName name) {
 		if (name == null)
 			throw new NullPointerException("name"); //$NON-NLS-1$
-		EnvironmentView environmentView = new EnvironmentView(targetReference, name);
+		EnvironmentView environmentView = new EnvironmentView(targetReference, name.toString());
 		return computeLookup(environmentView);
 	}
 
-	public final ScopeView getOuterScope() {
-		ScopeAdapter parent = scopeAdapter.getParent();
-		if (parent == null) {
-			return ScopeView.NULLSCOPEVIEW;
-		}
-		EStructuralFeature eContainingFeature = getTarget().eContainingFeature();
-		return new BaseScopeView(parent, eContainingFeature, targetReference, bindings);
+	@Deprecated
+	public ScopeView getOuterScope() {
+		return (ScopeView) getParent();
 	}
-
+	
 	public ScopeAdapter getScopeAdapter() {
 		return scopeAdapter;
 	}
 
-	public EObject getTarget() {
+	public final EObject getTarget() {
 		return scopeAdapter.getTarget();
 	}
 
@@ -125,22 +143,22 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 		return targetReference;
 	}
 
-	public ScopeView getUnqualifiedOuterScope(TypeBindingsCS bindings) {
+	public ScopeView getUnqualifiedOuterScope() {
 		for (ScopeAdapter parent = scopeAdapter.getParent(); parent != null; parent = parent.getParent()) {
 			EObject target = parent.getTarget();
 			if (!(target instanceof QualifiedRefCS)) {
 				EStructuralFeature eContainingFeature = target.eContainingFeature();
-				return new BaseScopeView(parent, eContainingFeature, targetReference, bindings);
+				return new BaseScopeView(parent, target, eContainingFeature, targetReference);
 			}
 		}
 		return ScopeView.NULLSCOPEVIEW;
 	}
 
 	@Override
-	protected final Iterable<IEObjectDescription> internalGetContents() {
+	protected final Iterable<IEObjectDescription> getAllLocalElements() {
 		EnvironmentView environmentView = new EnvironmentView(targetReference, null);
 		scopeAdapter.computeLookup(environmentView, this);
-		return environmentView.getContents();
+		return environmentView.getDescriptions();
 	}
 
 	@Override
@@ -153,7 +171,7 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 			s.append("::"); //$NON-NLS-1$
 			s.append(containmentFeature.getName());
 		}
-		if (!bindings.getBindings().isEmpty()) {
+/*		if (!bindings.getBindings().isEmpty()) {
 			s.append("<"); //$NON-NLS-1$
 			String prefix = ""; //$NON-NLS-1$
 			for (TypeBindingCS binding : bindings.getBindings()) {
@@ -162,7 +180,7 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 				prefix = ","; //$NON-NLS-1$
 			}
 			s.append(">"); //$NON-NLS-1$
-		}
+		} */
 		s.append("] "); //$NON-NLS-1$
 		s.append(String.valueOf(target));
 		return s.toString();

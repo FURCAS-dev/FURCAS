@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ScopeAdapter.java,v 1.2 2010/05/21 20:06:44 ewillink Exp $
+ * $Id: ScopeAdapter.java,v 1.3 2011/01/24 21:00:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -20,8 +20,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 /**
  * A AbstractScopeAdapter provides the basic behaviour for a family of derived
@@ -33,7 +32,8 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 public interface ScopeAdapter extends Adapter
 {	
 	public static interface Switch {
-		ScopeAdapter doInPackageSwitch(EObject eObject);
+		ScopeAdapter createVisitor(EObject eObject);
+//		ScopeAdapter doInPackageSwitch(EObject eObject);
 	}
 	
 	/**
@@ -55,31 +55,19 @@ public interface ScopeAdapter extends Adapter
 	 */
 	ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView);
 
-	void computeLookup(EnvironmentView environmentView, EReference targetReference, TypeBindingsCS bindings);
+	void computeLookup(EnvironmentView environmentView, EReference targetReference);
 
-	DocumentScopeAdapter getDocumentScopeAdapter();
+	ScopeView getInnerScopeView(EReference targetReference);
 
-	ScopeView getInnerScopeView(EReference targetReference, TypeBindingsCS bindings);
-
-	ScopeView getOuterScopeView(EReference targetReference, TypeBindingsCS bindings);
+	ScopeView getOuterScopeView(EReference targetReference);
 	
 	ScopeAdapter getParent();
 
-	String getSignature();
+	TypeManager getTypeManager();
+
+	RootScopeAdapter getRootScopeAdapter();
 	
 	ScopeAdapter getSourceScope(EStructuralFeature containmentFeature);
 
-	/**
-	 * Return the <i>Synthesized Attribute</i> corresponding to the type of the AST
-	 * element associated with the target.
-	 * 
-	 * @return the type or null if unknown
-	 */
-	ClassifierCS getSynthesizedType(TypeBindingsCS bindings);
-
 	EObject getTarget();
-	
-	boolean isUnresolvable();
-
-	void setUnresolvable();
 }
