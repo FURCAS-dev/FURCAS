@@ -157,7 +157,7 @@ public class ValidationTest extends AbstractTestSuite {
 	
 	private class CustomFruitEnvironment extends EcoreEnvironment {
 		public CustomFruitEnvironment(CustomFruitEnvironmentFactory factory) {
-			super(factory);
+			super(factory, null);
 			setContextPackage(fruitPackage);
 		}
 		

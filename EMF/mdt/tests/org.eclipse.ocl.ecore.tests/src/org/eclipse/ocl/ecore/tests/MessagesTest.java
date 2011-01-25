@@ -519,7 +519,7 @@ public class MessagesTest
 		@Override
         public EcoreEnvironment createEnvironment(
 				Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
-			return new MessagingFruitEnvironment(this, parent, suite);
+			return new MessagingFruitEnvironment(parent, suite);
 		}
 	}
 	
@@ -530,7 +530,7 @@ public class MessagesTest
 		private EList<EClassifier> signals = new BasicEList<EClassifier>();
 		
 		public MessagingFruitEnvironment(MessagingFruitEnvironmentFactory factory, AbstractTestSuite suite) {
-			super(factory);
+			super(factory, null);
 			this.suite = suite;
 			setContextPackage(suite.fruitPackage);
 
@@ -538,7 +538,6 @@ public class MessagesTest
 		}
 		
 		public MessagingFruitEnvironment(
-				MessagingFruitEnvironmentFactory factory,
 				Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent, AbstractTestSuite suite) {
 			super(parent);
 			this.suite = suite;
