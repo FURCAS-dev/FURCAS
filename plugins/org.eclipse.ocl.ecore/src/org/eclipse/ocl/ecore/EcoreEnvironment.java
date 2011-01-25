@@ -130,30 +130,18 @@ public class EcoreEnvironment
 	factory;
 	
 	private TypeResolver<EClassifier, EOperation, EStructuralFeature> typeResolver;
-
+	
 	private OppositeEndFinder oppositeEndFinder;
 
 	/**
 	 * Initializes me with a package registry for package look-ups.
 	 * 
 	 * @param reg a package registry
-	 * @deprecated Use {@link #EcoreEnvironment(EcoreEnvironmentFactory)} instead
+	 * @deprecated Use {@link #EcoreEnvironment(EcoreEnvironmentFactory, null)} instead
 	 */
 	@Deprecated
 	protected EcoreEnvironment(EPackage.Registry reg) {
 		registry = reg;
-		typeResolver = createTypeResolver();
-	}
-	
-	/**
-	 * Initializes me from the factory provided from which registry and
-	 * opposite end finder (if any) are obtained consistently.
-	 * @since 3.1
-	 */
-	protected EcoreEnvironment(EcoreEnvironmentFactory fac) {
-		factory = fac;
-		registry = fac.getEPackageRegistry();
-		oppositeEndFinder = fac.getOppositeEndFinder();
 		typeResolver = createTypeResolver();
 	}
 
@@ -175,7 +163,7 @@ public class EcoreEnvironment
 		oppositeEndFinder = fac.getOppositeEndFinder();
 		typeResolver = createTypeResolver(resource);
 	}
-
+	
     /**
      * Initializes me with a package registry and a resource in which I am
      * persisted (and from which I load myself if it already has content).
@@ -241,7 +229,7 @@ public class EcoreEnvironment
 		
 		return factory;
 	}
-
+	
 	/**
 	 * Sets the factory that created me. This method should only be invoked by
 	 * that factory. If the factory is an {@link EcoreEnvironmentFactory}, its

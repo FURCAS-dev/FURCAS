@@ -610,7 +610,7 @@ public class AssociationTest
 		@Override
         public EcoreEnvironment createEnvironment(
 				Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
-			return new AssocClassFruitEnvironment(this, parent);
+			return new AssocClassFruitEnvironment(parent);
 		}
 	}
 	
@@ -622,14 +622,13 @@ public class AssociationTest
 			new java.util.ArrayList<EStructuralFeature>(2);
 		
 		public AssocClassFruitEnvironment(AssocClassFruitEnvironmentFactory factory) {
-			super(factory);
+			super(factory, null);
 			setContextPackage(fruitPackage);
 			
 	//		init();
 		}
 		
 		public AssocClassFruitEnvironment(
-				AssocClassFruitEnvironmentFactory factory,
 				Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
 			super(parent);
 			

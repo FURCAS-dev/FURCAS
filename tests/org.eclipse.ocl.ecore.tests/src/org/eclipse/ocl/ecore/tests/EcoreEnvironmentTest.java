@@ -192,18 +192,18 @@ public class EcoreEnvironmentTest
 	    
 	    // this constructor is used to initialize the root environment
 	    MyEnvironment(EcoreEnvironmentFactory factory) {
-	        super(factory);
+	        super(factory, null);
 	        defineCustomOperations();
 	    }
 	    
 	    // this constructor is used to initialize child environments
-	    MyEnvironment(EcoreEnvironmentFactory factory, MyEnvironment parent) {
+	    MyEnvironment(MyEnvironment parent) {
 	        super(parent);
 	        
 	        // get the parent's custom operations
 	        regexMatch = parent.regexMatch;
 	    }
-
+	    
 	    // use the AbstractEnvironment's mechanism for defining "additional operations"
 	    // to add our custom operation to OCL's String primitive type
 	    private void defineCustomOperations() {
@@ -270,7 +270,7 @@ public class EcoreEnvironmentTest
 	                "Parent environment must be my environment: " + parent);
 	        }
 	        
-	        MyEnvironment result = new MyEnvironment(this, (MyEnvironment) parent);
+	        MyEnvironment result = new MyEnvironment((MyEnvironment) parent);
 	        return result;
 	    }
 
