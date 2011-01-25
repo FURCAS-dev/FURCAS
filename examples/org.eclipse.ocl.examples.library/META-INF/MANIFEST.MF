@@ -1,12 +1,11 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Library
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.ocl.examples.library;singleton:=true
 Bundle-Version: 3.1.0.qualifier
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.ocl,
- org.eclipse.ocl.examples.pivot;visibility:=reexport
+ org.eclipse.ocl.examples.pivot;bundle-version="[3.1.0,4.0.0)";visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.ocl.examples.library,
@@ -22,3 +21,5 @@ Export-Package: org.eclipse.ocl.examples.library,
  org.eclipse.ocl.examples.library.oclstdlib,
  org.eclipse.ocl.examples.library.oclvoid,
  org.eclipse.ocl.examples.library.string
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
