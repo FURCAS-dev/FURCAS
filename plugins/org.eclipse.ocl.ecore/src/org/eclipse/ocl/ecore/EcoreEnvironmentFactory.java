@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEnvironmentFactory.java,v 1.4 2010/12/24 10:18:06 asanchez Exp $
+ * $Id: EcoreEnvironmentFactory.java,v 1.5 2011/01/25 10:43:34 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -40,7 +40,7 @@ import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
 import org.eclipse.ocl.ecore.internal.evaluation.TracingEvaluationVisitor;
-import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.ocl.ecore.opposites.EcoreEnvironmentFactoryWithHiddenOpposites;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.ecore.parser.OCLAnalyzer;
 import org.eclipse.ocl.ecore.parser.OCLFactoryWithHistory;
@@ -61,8 +61,7 @@ public class EcoreEnvironmentFactory
 	extends AbstractEnvironmentFactory<
 		EPackage, EClassifier, EOperation, EStructuralFeature,
 		EEnumLiteral, EParameter,
-		EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
-	implements EcoreEnvironmentFactoryInterface {
+		EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> {
 	
 	/**
      * A convenient shared instance of the environment factory, that creates
@@ -96,16 +95,14 @@ public class EcoreEnvironmentFactory
     // implements the inherited specification
     public Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
 	createEnvironment() {
-		EcoreEnvironment result = new EcoreEnvironment(registry);
-		result.setFactory(this);
+		EcoreEnvironment result = new EcoreEnvironment(this, null);
 		return result;
 	}
 	
     // implements the inherited specification
     public Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
 	loadEnvironment(Resource resource) {
-		EcoreEnvironment result = new EcoreEnvironment(registry, resource);
-		result.setFactory(this);
+		EcoreEnvironment result = new EcoreEnvironment(this, resource);
 		return result;
 	}
 	
@@ -163,7 +160,6 @@ public class EcoreEnvironmentFactory
 		}
 		
 		EcoreEnvironment result = new EcoreEnvironment(parent);
-		result.setFactory(this);
 		return result;
 	}
 
@@ -226,10 +222,15 @@ public class EcoreEnvironmentFactory
 	}
 
 	/**
+	 * Returns a <code>null</code> opposite end finder. This means that by default no hidden opposites
+	 * will be found and no CPU cycles will be used even for looking them up.<p>
+	 * 
+	 * Subclasses can redefine this accordingly. See, e.g., {@link EcoreEnvironmentFactoryWithHiddenOpposites}.
+	 * 
 	 * @since 3.1
 	 */
     protected OppositeEndFinder createOppositeEndFinder(EPackage.Registry registry) {
-		return new DefaultOppositeEndFinder(registry);
+		return null;
 	}
 
 	/**
