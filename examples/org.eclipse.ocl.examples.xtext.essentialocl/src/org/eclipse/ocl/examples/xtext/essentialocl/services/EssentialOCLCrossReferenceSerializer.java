@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCrossReferenceSerializer.java,v 1.2 2011/01/24 21:31:47 ewillink Exp $
+ * $Id: EssentialOCLCrossReferenceSerializer.java,v 1.3 2011/01/25 07:18:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -142,7 +142,7 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 		if (iSize > 0) {
 			s.append(valueConverter.toString(objectPath.get(iSize-1).name, "ID"));
 		}
-		System.out.println(objectPath + " | " + contextPath + " => " + s.toString());
+//		System.out.println(objectPath + " | " + contextPath + " => " + s.toString());
 		return s.toString();
 	}
 
