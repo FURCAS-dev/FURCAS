@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cmof:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cmof="http://schema.omg.org/spec/MOF/2.0/cmof.xml" xsi:schemaLocation="http://schema.omg.org/spec/MOF/2.0/cmof.xml http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_0" name="SubSuperStructure">
+  <ownedMember xmi:type="cmof:Package" xmi:id="AuxiliaryConstructs" name="AuxiliaryConstructs">
+    <ownedMember xmi:type="cmof:Package" xmi:id="AuxiliaryConstructs-Templates" name="Templates">
+      <ownedMember xmi:type="cmof:Class" xmi:id="_nFdeAJwSEd-STLWP-FLKew" name="Element" isAbstract="true"/>
+      <ownedMember xmi:type="cmof:Class" xmi:id="AuxiliaryConstructs-Templates-TemplateSignature" name="TemplateSignature" superClass="_nFdeAJwSEd-STLWP-FLKew">
+        <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateSignature">
+          <body>A template signature bundles the set of formal template parameters for a templated element.</body>
+        </ownedComment>
+        <ownedRule xmi:type="cmof:Constraint" xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-own_elements" name="own_elements" constrainedElement="AuxiliaryConstructs-Templates-TemplateSignature" namespace="AuxiliaryConstructs-Templates-TemplateSignature">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-own_elements-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateSignature-own_elements">
+            <body>Parameters must own the elements they parameter or those elements must be owned by the element being templated.</body>
+          </ownedComment>
+          <specification xmi:type="cmof:OpaqueExpression" xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-own_elements-_specification">
+            <language>OCL</language>
+            <body>templatedElement.ownedElement->includesAll(parameter.parameteredElement - parameter.ownedParameteredElement)</body>
+          </specification>
+        </ownedRule>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-parameter" name="parameter" type="AuxiliaryConstructs-Templates-TemplateParameter" isOrdered="true" upper="*" association="AuxiliaryConstructs-Templates-A_parameter_templateSignature">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-parameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateSignature-parameter">
+            <body>The ordered set of all formal template parameters for this template signature.</body>
+          </ownedComment>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter" name="ownedParameter" type="AuxiliaryConstructs-Templates-TemplateParameter" isOrdered="true" upper="*" lower="0" isComposite="true" subsettedProperty="AuxiliaryConstructs-Templates-TemplateSignature-parameter" association="AuxiliaryConstructs-Templates-A_ownedParameter_signature">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter">
+            <body>The formal template parameters that are owned by this template signature.</body>
+          </ownedComment>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-template" name="template" type="AuxiliaryConstructs-Templates-TemplateableElement" association="AuxiliaryConstructs-Templates-A_ownedTemplateSignature_template">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-template-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateSignature-template">
+            <body>The element that owns this template signature.</body>
+          </ownedComment>
+        </ownedAttribute>
+      </ownedMember>
+      <ownedMember xmi:type="cmof:Class" xmi:id="AuxiliaryConstructs-Templates-TemplateParameter" name="TemplateParameter" superClass="_nFdeAJwSEd-STLWP-FLKew">
+        <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateParameter">
+          <body>A template parameter exposes a parameterable element as a formal template parameter of a template.</body>
+        </ownedComment>
+        <ownedRule xmi:type="cmof:Constraint" xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-must_be_compatible" name="must_be_compatible" constrainedElement="AuxiliaryConstructs-Templates-TemplateParameter" namespace="AuxiliaryConstructs-Templates-TemplateParameter">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-must_be_compatible-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateParameter-must_be_compatible">
+            <body>The default must be compatible with the formal template parameter.</body>
+          </ownedComment>
+          <specification xmi:type="cmof:OpaqueExpression" xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-must_be_compatible-_specification">
+            <language>OCL</language>
+            <body>default->notEmpty() implies default->isCompatibleWith(parameteredElement)</body>
+          </specification>
+        </ownedRule>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-signature" name="signature" type="AuxiliaryConstructs-Templates-TemplateSignature" association="AuxiliaryConstructs-Templates-A_ownedParameter_signature">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-signature-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateParameter-signature">
+            <body>The template signature that owns this template parameter.</body>
+          </ownedComment>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-parameteredElement" name="parameteredElement" type="AuxiliaryConstructs-Templates-ParameterableElement" association="AuxiliaryConstructs-Templates-A_parameteredElement_templateParameter">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-parameteredElement-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateParameter-parameteredElement">
+            <body>The element exposed by this template parameter.</body>
+          </ownedComment>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-ownedParameteredElement" name="ownedParameteredElement" type="AuxiliaryConstructs-Templates-ParameterableElement" lower="0" isComposite="true" subsettedProperty="AuxiliaryConstructs-Templates-TemplateParameter-parameteredElement" association="AuxiliaryConstructs-Templates-A_ownedParameteredElement_owningTemplateParameter">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-ownedParameteredElement-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateParameter-ownedParameteredElement">
+            <body>The element that is owned by this template parameter.</body>
+          </ownedComment>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-default" name="default" type="AuxiliaryConstructs-Templates-ParameterableElement" lower="0" association="AuxiliaryConstructs-Templates-A_default_templateParameter">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-default-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateParameter-default">
+            <body>The element that is the default for this formal template parameter.</body>
+          </ownedComment>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-ownedDefault" name="ownedDefault" type="AuxiliaryConstructs-Templates-ParameterableElement" lower="0" isComposite="true" subsettedProperty="AuxiliaryConstructs-Templates-TemplateParameter-default" association="AuxiliaryConstructs-Templates-A_ownedDefault_templateParameter">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-ownedDefault-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateParameter-ownedDefault">
+            <body>The element that is owned by this template parameter for the purpose of providing a default.</body>
+          </ownedComment>
+        </ownedAttribute>
+      </ownedMember>
+      <ownedMember xmi:type="cmof:Class" xmi:id="AuxiliaryConstructs-Templates-TemplateBinding" name="TemplateBinding" superClass="_nFdeAJwSEd-STLWP-FLKew">
+        <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateBinding">
+          <body>A template binding represents a relationship between a templateable element and a template. A template binding specifies the substitutions of actual parameters for the formal parameters of the template.</body>
+        </ownedComment>
+        <ownedRule xmi:type="cmof:Constraint" xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-parameter_substitution_formal" name="parameter_substitution_formal" constrainedElement="AuxiliaryConstructs-Templates-TemplateBinding" namespace="AuxiliaryConstructs-Templates-TemplateBinding">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-parameter_substitution_formal-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateBinding-parameter_substitution_formal">
+            <body>Each parameter substitution must refer to a formal template parameter of the target template signature.</body>
+          </ownedComment>
+          <specification xmi:type="cmof:OpaqueExpression" xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-parameter_substitution_formal-_specification">
+            <language>OCL</language>
+            <body>parameterSubstitution->forAll(b | template.parameter->includes(b.formal))</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:type="cmof:Constraint" xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-one_parameter_substitution" name="one_parameter_substitution" constrainedElement="AuxiliaryConstructs-Templates-TemplateBinding" namespace="AuxiliaryConstructs-Templates-TemplateBinding">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-one_parameter_substitution-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateBinding-one_parameter_substitution">
+            <body>A binding contains at most one parameter substitution for each formal template parameter of the target template signature.</body>
+          </ownedComment>
+          <specification xmi:type="cmof:OpaqueExpression" xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-one_parameter_substitution-_specification">
+            <language>OCL</language>
+            <body>template.parameter->forAll(p | parameterSubstitution->select(b | b.formal = p)->size() &lt;= 1)</body>
+          </specification>
+        </ownedRule>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-boundElement" name="boundElement" type="AuxiliaryConstructs-Templates-TemplateableElement" association="AuxiliaryConstructs-Templates-A_templateBinding_boundElement">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-boundElement-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateBinding-boundElement">
+            <body>The element that is bound by this binding.</body>
+          </ownedComment>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-signature" name="signature" type="AuxiliaryConstructs-Templates-TemplateSignature" association="AuxiliaryConstructs-Templates-A_signature_templateBinding">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-signature-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateBinding-signature">
+            <body>The template signature for the template that is the target of the binding.</body>
+          </ownedComment>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-parameterSubstitution" name="parameterSubstitution" type="AuxiliaryConstructs-Templates-TemplateParameterSubstitution" upper="*" lower="0" isComposite="true" association="AuxiliaryConstructs-Templates-A_parameterSubstitution_templateBinding">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-parameterSubstitution-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateBinding-parameterSubstitution">
+            <body>The parameter substitutions owned by this template binding.</body>
+          </ownedComment>
+        </ownedAttribute>
+      </ownedMember>
+      <ownedMember xmi:type="cmof:Class" xmi:id="AuxiliaryConstructs-Templates-TemplateParameterSubstitution" name="TemplateParameterSubstitution" superClass="_nFdeAJwSEd-STLWP-FLKew">
+        <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateParameterSubstitution">
+          <body>A template parameter substitution relates the actual parameter to a formal template parameter as part of a template binding.</body>
+        </ownedComment>
+        <ownedRule xmi:type="cmof:Constraint" xmi:id="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-must_be_compatible" name="must_be_compatible" constrainedElement="AuxiliaryConstructs-Templates-TemplateParameterSubstitution" namespace="AuxiliaryConstructs-Templates-TemplateParameterSubstitution">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-must_be_compatible-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-must_be_compatible">
+            <body>The actual parameter must be compatible with the formal template parameter, e.g. the actual parameter for a class template parameter must be a class.</body>
+          </ownedComment>
+          <specification xmi:type="cmof:OpaqueExpression" xmi:id="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-must_be_compatible-_specification">
+            <language>OCL</language>
+            <body>actual->forAll(a | a.isCompatibleWith(formal.parameteredElement))</body>
+          </specification>
+        </ownedRule>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-formal" name="formal" type="AuxiliaryConstructs-Templates-TemplateParameter" association="AuxiliaryConstructs-Templates-A_formal_templateParameterSubstitution">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-formal-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-formal">
+            <body>The formal template parameter that is associated with this substitution.</body>
+          </ownedComment>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-templateBinding" name="templateBinding" type="AuxiliaryConstructs-Templates-TemplateBinding" association="AuxiliaryConstructs-Templates-A_parameterSubstitution_templateBinding">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-templateBinding-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-templateBinding">
+            <body>The optional bindings from this element to templates.</body>
+          </ownedComment>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-actual" name="actual" type="AuxiliaryConstructs-Templates-ParameterableElement" association="AuxiliaryConstructs-Templates-A_actual_templateParameterSubstitution">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-actual-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-actual">
+            <body>The element that is the actual parameter for this substitution.</body>
+          </ownedComment>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-ownedActual" name="ownedActual" type="AuxiliaryConstructs-Templates-ParameterableElement" lower="0" isComposite="true" subsettedProperty="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-actual" association="AuxiliaryConstructs-Templates-A_ownedActual_templateParameterSubstitution">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-ownedActual-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-ownedActual">
+            <body>The actual parameter that is owned by this substitution.</body>
+          </ownedComment>
+        </ownedAttribute>
+      </ownedMember>
+      <ownedMember xmi:type="cmof:Class" xmi:id="AuxiliaryConstructs-Templates-TemplateableElement" name="TemplateableElement" isAbstract="true" superClass="_nFdeAJwSEd-STLWP-FLKew">
+        <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateableElement-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateableElement">
+          <body>A templateable element is an element that can optionally be defined as a template and bound to other templates.</body>
+        </ownedComment>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-TemplateableElement-templateBinding" name="templateBinding" type="AuxiliaryConstructs-Templates-TemplateBinding" upper="*" lower="0" isComposite="true" association="AuxiliaryConstructs-Templates-A_templateBinding_boundElement">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateableElement-templateBinding-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateableElement-templateBinding">
+            <body>The optional bindings from this element to templates.</body>
+          </ownedComment>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-TemplateableElement-ownedTemplateSignature" name="ownedTemplateSignature" type="AuxiliaryConstructs-Templates-TemplateSignature" lower="0" isComposite="true" association="AuxiliaryConstructs-Templates-A_ownedTemplateSignature_template">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateableElement-ownedTemplateSignature-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateableElement-ownedTemplateSignature">
+            <body>The optional template signature specifying the formal template parameters.</body>
+          </ownedComment>
+        </ownedAttribute>
+        <ownedOperation xmi:type="cmof:Operation" xmi:id="AuxiliaryConstructs-Templates-TemplateableElement-parameterableElements" name="parameterableElements" class="AuxiliaryConstructs-Templates-TemplateableElement" isQuery="true" bodyCondition="AuxiliaryConstructs-Templates-TemplateableElement-parameterableElements-spec">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateableElement-parameterableElements-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateableElement-parameterableElements">
+            <body>The query parameterableElements() returns the set of elements that may be used as the parametered elements for a template parameter of this templateable element. By default, this set includes all the owned elements. Subclasses may override this operation if they choose to restrict the set of parameterable elements.</body>
+          </ownedComment>
+          <ownedRule xmi:type="cmof:Constraint" xmi:id="AuxiliaryConstructs-Templates-TemplateableElement-parameterableElements-spec" name="spec" constrainedElement="AuxiliaryConstructs-Templates-TemplateableElement-parameterableElements" namespace="AuxiliaryConstructs-Templates-TemplateableElement-parameterableElements">
+            <specification xmi:type="cmof:OpaqueExpression" xmi:id="AuxiliaryConstructs-Templates-TemplateableElement-parameterableElements-spec-_specification">
+              <language>OCL</language>
+              <body>result = allOwnedElements->select(oclIsKindOf(ParameterableElement))</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:type="cmof:Parameter" xmi:id="AuxiliaryConstructs-Templates-TemplateableElement-parameterableElements-_ownedParameter.0" type="AuxiliaryConstructs-Templates-ParameterableElement" upper="*" lower="0" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:type="cmof:Operation" xmi:id="AuxiliaryConstructs-Templates-TemplateableElement-isTemplate" name="isTemplate" class="AuxiliaryConstructs-Templates-TemplateableElement" isQuery="true" bodyCondition="AuxiliaryConstructs-Templates-TemplateableElement-isTemplate-spec">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-TemplateableElement-isTemplate-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateableElement-isTemplate">
+            <body>The query isTemplate() returns whether this templateable element is actually a template.</body>
+          </ownedComment>
+          <ownedRule xmi:type="cmof:Constraint" xmi:id="AuxiliaryConstructs-Templates-TemplateableElement-isTemplate-spec" name="spec" constrainedElement="AuxiliaryConstructs-Templates-TemplateableElement-isTemplate" namespace="AuxiliaryConstructs-Templates-TemplateableElement-isTemplate">
+            <specification xmi:type="cmof:OpaqueExpression" xmi:id="AuxiliaryConstructs-Templates-TemplateableElement-isTemplate-spec-_specification">
+              <language>OCL</language>
+              <body>result = ownedTemplateSignature->notEmpty()</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:type="cmof:Parameter" xmi:id="AuxiliaryConstructs-Templates-TemplateableElement-isTemplate-_ownedParameter.0" direction="return">
+            <type xmi:type="cmof:PrimitiveType" href="Infrastructure.cmof#Core-PrimitiveTypes-Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+      </ownedMember>
+      <ownedMember xmi:type="cmof:Class" xmi:id="AuxiliaryConstructs-Templates-ParameterableElement" name="ParameterableElement" isAbstract="true" superClass="_nFdeAJwSEd-STLWP-FLKew">
+        <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ParameterableElement">
+          <body>A parameterable element is an element that can be exposed as a formal template parameter for a template, or specified as an actual parameter in a binding of a template.</body>
+        </ownedComment>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-templateParameter" name="templateParameter" type="AuxiliaryConstructs-Templates-TemplateParameter" lower="0" association="AuxiliaryConstructs-Templates-A_parameteredElement_templateParameter">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-templateParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ParameterableElement-templateParameter">
+            <body>The template parameter that exposes this element as a formal parameter.</body>
+          </ownedComment>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-owningTemplateParameter" name="owningTemplateParameter" type="AuxiliaryConstructs-Templates-TemplateParameter" lower="0" subsettedProperty="AuxiliaryConstructs-Templates-ParameterableElement-templateParameter" association="AuxiliaryConstructs-Templates-A_ownedParameteredElement_owningTemplateParameter">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-owningTemplateParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ParameterableElement-owningTemplateParameter">
+            <body>The formal template parameter that owns this element.</body>
+          </ownedComment>
+        </ownedAttribute>
+        <ownedOperation xmi:type="cmof:Operation" xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter" name="isTemplateParameter" class="AuxiliaryConstructs-Templates-ParameterableElement" isQuery="true" bodyCondition="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter-spec">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter">
+            <body>The query isTemplateParameter() determines if this parameterable element is exposed as a formal template parameter.</body>
+          </ownedComment>
+          <ownedRule xmi:type="cmof:Constraint" xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter-spec" name="spec" constrainedElement="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter" namespace="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter">
+            <specification xmi:type="cmof:OpaqueExpression" xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter-spec-_specification">
+              <language>OCL</language>
+              <body>result = templateParameter->notEmpty()</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:type="cmof:Parameter" xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter-_ownedParameter.0" direction="return">
+            <type xmi:type="cmof:PrimitiveType" href="Infrastructure.cmof#Core-PrimitiveTypes-Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+      </ownedMember>
+      <ownedMember xmi:type="cmof:Class" xmi:id="AuxiliaryConstructs-Templates-Property" name="Property" superClass="AuxiliaryConstructs-Templates-ParameterableElement">
+        <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-Property-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Property">
+          <body>Property specializes ParameterableElement to specify that a property can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.</body>
+        </ownedComment>
+        <ownedRule xmi:type="cmof:Constraint" xmi:id="AuxiliaryConstructs-Templates-Property-binding_to_attribute" name="binding_to_attribute" constrainedElement="AuxiliaryConstructs-Templates-Property" namespace="AuxiliaryConstructs-Templates-Property">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-Property-binding_to_attribute-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Property-binding_to_attribute">
+            <body>A binding of a property template parameter representing an attribute must be to an attribute.</body>
+          </ownedComment>
+          <specification xmi:type="cmof:OpaqueExpression" xmi:id="AuxiliaryConstructs-Templates-Property-binding_to_attribute-_specification">
+            <language>OCL</language>
+            <body>(isAttribute(self) and (templateParameterSubstitution->notEmpty())&#xD;&#xA;  implies (templateParameterSubstitution->forAll(ts | isAttribute(ts.formal)))</body>
+          </specification>
+        </ownedRule>
+      </ownedMember>
+      <ownedMember xmi:type="cmof:Class" xmi:id="AuxiliaryConstructs-Templates-ValueSpecification" name="ValueSpecification" isAbstract="true" superClass="AuxiliaryConstructs-Templates-ParameterableElement">
+        <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-ValueSpecification-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ValueSpecification">
+          <body>ValueSpecification specializes ParameterableElement to specify that a value specification can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.</body>
+        </ownedComment>
+      </ownedMember>
+      <ownedMember xmi:type="cmof:Class" xmi:id="AuxiliaryConstructs-Templates-Operation" name="Operation" superClass="AuxiliaryConstructs-Templates-ParameterableElement AuxiliaryConstructs-Templates-TemplateableElement">
+        <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-Operation-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Operation">
+          <body>Operation specializes TemplateableElement in order to support specification of template operations and bound operations. Operation specializes ParameterableElement to specify that an operation can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.</body>
+        </ownedComment>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-Operation-templateParameter" name="templateParameter" type="AuxiliaryConstructs-Templates-OperationTemplateParameter" lower="0" redefinedProperty="AuxiliaryConstructs-Templates-ParameterableElement-templateParameter" association="AuxiliaryConstructs-Templates-A_operation_templateParameter_parameteredElement">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-Operation-templateParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Operation-templateParameter">
+            <body>The template parameter that exposes this element as a formal parameter.</body>
+          </ownedComment>
+        </ownedAttribute>
+      </ownedMember>
+      <ownedMember xmi:type="cmof:Class" xmi:id="AuxiliaryConstructs-Templates-OperationTemplateParameter" name="OperationTemplateParameter" superClass="AuxiliaryConstructs-Templates-TemplateParameter">
+        <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-OperationTemplateParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-OperationTemplateParameter">
+          <body>An operation template parameter exposes an operation as a formal parameter for a template.</body>
+        </ownedComment>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-OperationTemplateParameter-parameteredElement" name="parameteredElement" type="AuxiliaryConstructs-Templates-Operation" redefinedProperty="AuxiliaryConstructs-Templates-TemplateParameter-parameteredElement" association="AuxiliaryConstructs-Templates-A_operation_templateParameter_parameteredElement">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-OperationTemplateParameter-parameteredElement-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-OperationTemplateParameter-parameteredElement">
+            <body>The operation for this template parameter.</body>
+          </ownedComment>
+        </ownedAttribute>
+      </ownedMember>
+      <ownedMember xmi:type="cmof:Class" xmi:id="AuxiliaryConstructs-Templates-PackageableElement" name="PackageableElement" isAbstract="true" superClass="AuxiliaryConstructs-Templates-ParameterableElement">
+        <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-PackageableElement-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-PackageableElement">
+          <body>Packageable elements are able to serve as a template parameter.</body>
+        </ownedComment>
+      </ownedMember>
+      <ownedMember xmi:type="cmof:Class" xmi:id="AuxiliaryConstructs-Templates-Classifier" name="Type" isAbstract="true" superClass="AuxiliaryConstructs-Templates-TemplateableElement AuxiliaryConstructs-Templates-ParameterableElement">
+        <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-Classifier-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Classifier">
+          <body>Type is defined to be a kind of templateable element so that a type can be parameterized. It is also defined to be a kind of parameterable element so that a type can be a formal template parameter.</body>
+        </ownedComment>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-Classifier-templateParameter" name="templateParameter" type="AuxiliaryConstructs-Templates-ClassifierTemplateParameter" lower="0" redefinedProperty="AuxiliaryConstructs-Templates-ParameterableElement-templateParameter" association="AuxiliaryConstructs-Templates-A_classifier_templateParameter_parameteredElement">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-Classifier-templateParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Classifier-templateParameter">
+            <body>The template parameter that exposes this element as a formal parameter.</body>
+          </ownedComment>
+        </ownedAttribute>
+        <ownedOperation xmi:type="cmof:Operation" xmi:id="AuxiliaryConstructs-Templates-Classifier-isTemplate" name="isTemplate" class="AuxiliaryConstructs-Templates-Classifier" isQuery="true" redefinedOperation="AuxiliaryConstructs-Templates-TemplateableElement-isTemplate" bodyCondition="AuxiliaryConstructs-Templates-Classifier-isTemplate-spec">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-Classifier-isTemplate-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Classifier-isTemplate">
+            <body>The query isTemplate() returns whether this templateable element is actually a template.</body>
+          </ownedComment>
+          <ownedRule xmi:type="cmof:Constraint" xmi:id="AuxiliaryConstructs-Templates-Classifier-isTemplate-spec" name="spec" constrainedElement="AuxiliaryConstructs-Templates-Classifier-isTemplate" namespace="AuxiliaryConstructs-Templates-Classifier-isTemplate">
+            <specification xmi:type="cmof:OpaqueExpression" xmi:id="AuxiliaryConstructs-Templates-Classifier-isTemplate-spec-_specification">
+              <language>OCL</language>
+              <body>result = oclAsType(TemplatableElement).isTemplate() or general->exists(g | g.isTemplate())</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:type="cmof:Parameter" xmi:id="AuxiliaryConstructs-Templates-Classifier-isTemplate-_ownedParameter.0" direction="return">
+            <type xmi:type="cmof:PrimitiveType" href="Infrastructure.cmof#Core-PrimitiveTypes-Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+      </ownedMember>
+      <ownedMember xmi:type="cmof:Class" xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter" name="TypeTemplateParameter" superClass="AuxiliaryConstructs-Templates-TemplateParameter">
+        <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ClassifierTemplateParameter">
+          <body>A type template parameter exposes a type as a formal template parameter.</body>
+        </ownedComment>
+        <ownedRule xmi:type="cmof:Constraint" xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-has_constraining_classifier" name="has_constraining_type" constrainedElement="AuxiliaryConstructs-Templates-ClassifierTemplateParameter" namespace="AuxiliaryConstructs-Templates-ClassifierTemplateParameter">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-has_constraining_classifier-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-has_constraining_classifier">
+            <body>If &quot;allowSubstitutable&quot; is true, then there must be a constrainingClassifier.</body>
+          </ownedComment>
+          <specification xmi:type="cmof:OpaqueExpression" xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-has_constraining_classifier-_specification">
+            <language>OCL</language>
+            <body>allowSubstitutable implies constrainingClassifier->notEmpty()</body>
+          </specification>
+        </ownedRule>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-allowSubstitutable" name="allowSubstitutable" default="true">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-allowSubstitutable-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-allowSubstitutable">
+            <body>Constrains the required relationship between an actual parameter and the parameteredElement for this formal parameter.</body>
+          </ownedComment>
+          <type xmi:type="cmof:PrimitiveType" href="Infrastructure.cmof#Core-PrimitiveTypes-Boolean"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-parameteredElement" name="parameteredElement" type="AuxiliaryConstructs-Templates-Classifier" redefinedProperty="AuxiliaryConstructs-Templates-TemplateParameter-parameteredElement" association="AuxiliaryConstructs-Templates-A_classifier_templateParameter_parameteredElement">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-parameteredElement-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-parameteredElement">
+            <body>The parameterable classifier for this template parameter.</body>
+          </ownedComment>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-constrainingClassifier" name="constrainingType" type="AuxiliaryConstructs-Templates-Classifier" upper="*" lower="0" association="AuxiliaryConstructs-Templates-A_constrainingClassifier_classifierTemplateParameter">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-constrainingClassifier-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-constrainingClassifier">
+            <body>The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument.</body>
+          </ownedComment>
+        </ownedAttribute>
+      </ownedMember>
+      <ownedMember xmi:type="cmof:Class" xmi:id="AuxiliaryConstructs-Templates-Package" name="Package" superClass="AuxiliaryConstructs-Templates-TemplateableElement">
+        <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-Package-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Package">
+          <body>Package specializes TemplateableElement and PackageableElement specializes ParameterableElement to specify that a package can be used as a template and a PackageableElement as a template parameter.</body>
+        </ownedComment>
+      </ownedMember>
+      <ownedMember xmi:type="cmof:Association" xmi:id="AuxiliaryConstructs-Templates-A_parameter_templateSignature" name="A_parameter_templateSignature" memberEnd="AuxiliaryConstructs-Templates-TemplateSignature-parameter AuxiliaryConstructs-Templates-A_parameter_templateSignature-templateSignature">
+        <ownedEnd xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-A_parameter_templateSignature-templateSignature" name="templateSignature" type="AuxiliaryConstructs-Templates-TemplateSignature" upper="*" lower="0" owningAssociation="AuxiliaryConstructs-Templates-A_parameter_templateSignature" association="AuxiliaryConstructs-Templates-A_parameter_templateSignature"/>
+      </ownedMember>
+      <ownedMember xmi:type="cmof:Association" xmi:id="AuxiliaryConstructs-Templates-A_ownedParameter_signature" name="A_ownedParameter_signature" memberEnd="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter AuxiliaryConstructs-Templates-TemplateParameter-signature"/>
+      <ownedMember xmi:type="cmof:Association" xmi:id="AuxiliaryConstructs-Templates-A_templateBinding_boundElement" name="A_templateBinding_boundElement" memberEnd="AuxiliaryConstructs-Templates-TemplateableElement-templateBinding AuxiliaryConstructs-Templates-TemplateBinding-boundElement"/>
+      <ownedMember xmi:type="cmof:Association" xmi:id="AuxiliaryConstructs-Templates-A_formal_templateParameterSubstitution" name="A_formal_templateParameterSubstitution" memberEnd="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-formal AuxiliaryConstructs-Templates-A_formal_templateParameterSubstitution-templateParameterSubstitution">
+        <ownedEnd xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-A_formal_templateParameterSubstitution-templateParameterSubstitution" name="templateParameterSubstitution" type="AuxiliaryConstructs-Templates-TemplateParameterSubstitution" upper="*" lower="0" owningAssociation="AuxiliaryConstructs-Templates-A_formal_templateParameterSubstitution" association="AuxiliaryConstructs-Templates-A_formal_templateParameterSubstitution"/>
+      </ownedMember>
+      <ownedMember xmi:type="cmof:Association" xmi:id="AuxiliaryConstructs-Templates-A_signature_templateBinding" name="A_signature_templateBinding" memberEnd="AuxiliaryConstructs-Templates-TemplateBinding-signature AuxiliaryConstructs-Templates-A_signature_templateBinding-templateBinding">
+        <ownedEnd xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-A_signature_templateBinding-templateBinding" name="templateBinding" type="AuxiliaryConstructs-Templates-TemplateBinding" upper="*" lower="0" owningAssociation="AuxiliaryConstructs-Templates-A_signature_templateBinding" association="AuxiliaryConstructs-Templates-A_signature_templateBinding"/>
+      </ownedMember>
+      <ownedMember xmi:type="cmof:Association" xmi:id="AuxiliaryConstructs-Templates-A_parameterSubstitution_templateBinding" name="A_parameterSubstitution_templateBinding" memberEnd="AuxiliaryConstructs-Templates-TemplateBinding-parameterSubstitution AuxiliaryConstructs-Templates-TemplateParameterSubstitution-templateBinding"/>
+      <ownedMember xmi:type="cmof:Association" xmi:id="AuxiliaryConstructs-Templates-A_actual_templateParameterSubstitution" name="A_actual_templateParameterSubstitution" memberEnd="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-actual AuxiliaryConstructs-Templates-A_actual_templateParameterSubstitution-templateParameterSubstitution">
+        <ownedEnd xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-A_actual_templateParameterSubstitution-templateParameterSubstitution" name="templateParameterSubstitution" type="AuxiliaryConstructs-Templates-TemplateParameterSubstitution" upper="*" lower="0" owningAssociation="AuxiliaryConstructs-Templates-A_actual_templateParameterSubstitution" association="AuxiliaryConstructs-Templates-A_actual_templateParameterSubstitution"/>
+      </ownedMember>
+      <ownedMember xmi:type="cmof:Association" xmi:id="AuxiliaryConstructs-Templates-A_parameteredElement_templateParameter" name="A_parameteredElement_templateParameter" memberEnd="AuxiliaryConstructs-Templates-TemplateParameter-parameteredElement AuxiliaryConstructs-Templates-ParameterableElement-templateParameter"/>
+      <ownedMember xmi:type="cmof:Association" xmi:id="AuxiliaryConstructs-Templates-A_ownedTemplateSignature_template" name="A_ownedTemplateSignature_template" memberEnd="AuxiliaryConstructs-Templates-TemplateableElement-ownedTemplateSignature AuxiliaryConstructs-Templates-TemplateSignature-template"/>
+      <ownedMember xmi:type="cmof:Association" xmi:id="AuxiliaryConstructs-Templates-A_ownedParameteredElement_owningTemplateParameter" name="A_ownedParameteredElement_owningTemplateParameter" memberEnd="AuxiliaryConstructs-Templates-TemplateParameter-ownedParameteredElement AuxiliaryConstructs-Templates-ParameterableElement-owningTemplateParameter"/>
+      <ownedMember xmi:type="cmof:Association" xmi:id="AuxiliaryConstructs-Templates-A_default_templateParameter" name="A_default_templateParameter" memberEnd="AuxiliaryConstructs-Templates-TemplateParameter-default AuxiliaryConstructs-Templates-A_default_templateParameter-templateParameter">
+        <ownedEnd xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-A_default_templateParameter-templateParameter" name="templateParameter" type="AuxiliaryConstructs-Templates-TemplateParameter" upper="*" lower="0" owningAssociation="AuxiliaryConstructs-Templates-A_default_templateParameter" association="AuxiliaryConstructs-Templates-A_default_templateParameter"/>
+      </ownedMember>
+      <ownedMember xmi:type="cmof:Association" xmi:id="AuxiliaryConstructs-Templates-A_ownedDefault_templateParameter" name="A_ownedDefault_templateParameter" memberEnd="AuxiliaryConstructs-Templates-TemplateParameter-ownedDefault AuxiliaryConstructs-Templates-A_ownedDefault_templateParameter-templateParameter">
+        <ownedEnd xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-A_ownedDefault_templateParameter-templateParameter" name="templateParameter" type="AuxiliaryConstructs-Templates-TemplateParameter" lower="0" owningAssociation="AuxiliaryConstructs-Templates-A_ownedDefault_templateParameter" association="AuxiliaryConstructs-Templates-A_ownedDefault_templateParameter"/>
+      </ownedMember>
+      <ownedMember xmi:type="cmof:Association" xmi:id="AuxiliaryConstructs-Templates-A_ownedActual_templateParameterSubstitution" name="A_ownedActual_templateParameterSubstitution" memberEnd="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-ownedActual AuxiliaryConstructs-Templates-A_ownedActual_templateParameterSubstitution-templateParameterSubstitution">
+        <ownedEnd xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-A_ownedActual_templateParameterSubstitution-templateParameterSubstitution" name="templateParameterSubstitution" type="AuxiliaryConstructs-Templates-TemplateParameterSubstitution" lower="0" owningAssociation="AuxiliaryConstructs-Templates-A_ownedActual_templateParameterSubstitution" association="AuxiliaryConstructs-Templates-A_ownedActual_templateParameterSubstitution"/>
+      </ownedMember>
+      <ownedMember xmi:type="cmof:Association" xmi:id="AuxiliaryConstructs-Templates-A_classifier_templateParameter_parameteredElement" name="A_type_templateParameter_parameteredElement" memberEnd="AuxiliaryConstructs-Templates-Classifier-templateParameter AuxiliaryConstructs-Templates-ClassifierTemplateParameter-parameteredElement"/>
+      <ownedMember xmi:type="cmof:Association" xmi:id="AuxiliaryConstructs-Templates-A_operation_templateParameter_parameteredElement" name="A_operation_templateParameter_parameteredElement" memberEnd="AuxiliaryConstructs-Templates-Operation-templateParameter AuxiliaryConstructs-Templates-OperationTemplateParameter-parameteredElement"/>
+      <ownedMember xmi:type="cmof:Association" xmi:id="AuxiliaryConstructs-Templates-A_constrainingClassifier_classifierTemplateParameter" name="A_constrainingType_typeTemplateParameter" memberEnd="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-constrainingClassifier AuxiliaryConstructs-Templates-A_constrainingClassifier_classifierTemplateParameter-classifierTemplateParameter">
+        <ownedEnd xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-A_constrainingClassifier_classifierTemplateParameter-classifierTemplateParameter" name="typeTemplateParameter" type="AuxiliaryConstructs-Templates-ClassifierTemplateParameter" upper="*" lower="0" owningAssociation="AuxiliaryConstructs-Templates-A_constrainingClassifier_classifierTemplateParameter" association="AuxiliaryConstructs-Templates-A_constrainingClassifier_classifierTemplateParameter"/>
+      </ownedMember>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Package" xmi:id="_sBOM4K5nEd-xTJkHwX_SlQ" name="Constraints">
+      <ownedMember xmi:type="cmof:Class" xmi:id="_JhArsK5oEd-xTJkHwX_SlQ" name="Constraint" superClass="_MUAiUK5pEd-xTJkHwX_SlQ">
+        <ownedComment xmi:type="cmof:Comment" xmi:id="_JhArsa5oEd-xTJkHwX_SlQ" annotatedElement="_JhArsK5oEd-xTJkHwX_SlQ">
+          <body>A constraint is a condition or restriction expressed in natural language text or in a machine readable language for the purpose of declaring some of the semantics of an element.</body>
+        </ownedComment>
+        <ownedRule xmi:type="cmof:Constraint" xmi:id="_JhArsq5oEd-xTJkHwX_SlQ" name="not_apply_to_self" constrainedElement="_JhArsK5oEd-xTJkHwX_SlQ" namespace="_JhArsK5oEd-xTJkHwX_SlQ">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="_JhArs65oEd-xTJkHwX_SlQ" annotatedElement="_JhArsq5oEd-xTJkHwX_SlQ">
+            <body>A constraint cannot be applied to itself.</body>
+          </ownedComment>
+          <specification xmi:type="cmof:OpaqueExpression" xmi:id="_JhArtK5oEd-xTJkHwX_SlQ">
+            <language>OCL</language>
+            <body>not constrainedElement->includes(self)</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:type="cmof:Constraint" xmi:id="_JhArta5oEd-xTJkHwX_SlQ" name="value_specification_boolean" constrainedElement="_JhArsK5oEd-xTJkHwX_SlQ" namespace="_JhArsK5oEd-xTJkHwX_SlQ">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="_JhArtq5oEd-xTJkHwX_SlQ" annotatedElement="_JhArta5oEd-xTJkHwX_SlQ">
+            <body>The value specification for a constraint must evaluate to a Boolean value.</body>
+          </ownedComment>
+          <specification xmi:type="cmof:OpaqueExpression" xmi:id="_JhArt65oEd-xTJkHwX_SlQ">
+            <language>OCL</language>
+            <body>self.specification().booleanValue().isOclKindOf(Boolean)</body>
+          </specification>
+        </ownedRule>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="_JhArua5oEd-xTJkHwX_SlQ" name="constrainedElement" isOrdered="true" upper="*" lower="0">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="_JhAruq5oEd-xTJkHwX_SlQ" annotatedElement="_JhArua5oEd-xTJkHwX_SlQ">
+            <body>The ordered set of Elements referenced by this Constraint.</body>
+          </ownedComment>
+          <type xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Element"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="_JhArva5oEd-xTJkHwX_SlQ" name="specification" type="_N9Kt8K5oEd-xTJkHwX_SlQ" isComposite="true">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="_JhArvq5oEd-xTJkHwX_SlQ" annotatedElement="_JhArva5oEd-xTJkHwX_SlQ">
+            <body>A condition that must be true when evaluated in order for the constraint to be satisfied.</body>
+          </ownedComment>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="_JhArv65oEd-xTJkHwX_SlQ" name="context" type="_MUAiUK5pEd-xTJkHwX_SlQ" lower="0"/>
+      </ownedMember>
+      <ownedMember xmi:type="cmof:Class" xmi:id="_N9Kt8K5oEd-xTJkHwX_SlQ" name="ValueSpecification" isAbstract="true">
+        <ownedComment xmi:type="cmof:Comment" xmi:id="_N9Kt8a5oEd-xTJkHwX_SlQ" annotatedElement="_N9Kt8K5oEd-xTJkHwX_SlQ">
+          <body>A value specification is the specification of a (possibly empty) set of instances, including both objects and data values.</body>
+        </ownedComment>
+        <ownedOperation xmi:type="cmof:Operation" xmi:id="_N9Kt9K5oEd-xTJkHwX_SlQ" name="isComputable" class="_N9Kt8K5oEd-xTJkHwX_SlQ" isQuery="true" bodyCondition="_N9Kt9q5oEd-xTJkHwX_SlQ">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="_N9Kt9a5oEd-xTJkHwX_SlQ" annotatedElement="_N9Kt9K5oEd-xTJkHwX_SlQ">
+            <body>The query isComputable() determines whether a value specification can be computed in a model. This operation cannot be fully defined in OCL. A conforming implementation is expected to deliver true for this operation for all value specifications that it can compute, and to compute all of those for which the operation is true. A conforming implementation is expected to be able to compute the value of all literals.</body>
+          </ownedComment>
+          <ownedRule xmi:type="cmof:Constraint" xmi:id="_N9Kt9q5oEd-xTJkHwX_SlQ" name="spec" constrainedElement="_N9Kt9K5oEd-xTJkHwX_SlQ" namespace="_N9Kt9K5oEd-xTJkHwX_SlQ">
+            <specification xmi:type="cmof:OpaqueExpression" xmi:id="_N9Kt965oEd-xTJkHwX_SlQ">
+              <language>OCL</language>
+              <body>result = false</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:type="cmof:Parameter" xmi:id="_N9Kt-K5oEd-xTJkHwX_SlQ" direction="return">
+            <type xmi:type="cmof:PrimitiveType" href="Infrastructure.cmof#Core-PrimitiveTypes-Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:type="cmof:Operation" xmi:id="_N9Kt-a5oEd-xTJkHwX_SlQ" name="integerValue" class="_N9Kt8K5oEd-xTJkHwX_SlQ" isQuery="true" bodyCondition="_N9Kt-65oEd-xTJkHwX_SlQ">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="_N9Kt-q5oEd-xTJkHwX_SlQ" annotatedElement="_N9Kt-a5oEd-xTJkHwX_SlQ">
+            <body>The query integerValue() gives a single Integer value when one can be computed.</body>
+          </ownedComment>
+          <ownedRule xmi:type="cmof:Constraint" xmi:id="_N9Kt-65oEd-xTJkHwX_SlQ" name="spec" constrainedElement="_N9Kt-a5oEd-xTJkHwX_SlQ" namespace="_N9Kt-a5oEd-xTJkHwX_SlQ">
+            <specification xmi:type="cmof:OpaqueExpression" xmi:id="_N9Kt_K5oEd-xTJkHwX_SlQ">
+              <language>OCL</language>
+              <body>result = Set{}</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:type="cmof:Parameter" xmi:id="_N9Kt_a5oEd-xTJkHwX_SlQ" direction="return">
+            <type xmi:type="cmof:PrimitiveType" href="Infrastructure.cmof#Core-PrimitiveTypes-Integer"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:type="cmof:Operation" xmi:id="_N9Kt_q5oEd-xTJkHwX_SlQ" name="booleanValue" class="_N9Kt8K5oEd-xTJkHwX_SlQ" isQuery="true" bodyCondition="_N9KuAK5oEd-xTJkHwX_SlQ">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="_N9Kt_65oEd-xTJkHwX_SlQ" annotatedElement="_N9Kt_q5oEd-xTJkHwX_SlQ">
+            <body>The query booleanValue() gives a single Boolean value when one can be computed.</body>
+          </ownedComment>
+          <ownedRule xmi:type="cmof:Constraint" xmi:id="_N9KuAK5oEd-xTJkHwX_SlQ" name="spec" constrainedElement="_N9Kt_q5oEd-xTJkHwX_SlQ" namespace="_N9Kt_q5oEd-xTJkHwX_SlQ">
+            <specification xmi:type="cmof:OpaqueExpression" xmi:id="_N9KuAa5oEd-xTJkHwX_SlQ">
+              <language>OCL</language>
+              <body>result = Set{}</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:type="cmof:Parameter" xmi:id="_N9KuAq5oEd-xTJkHwX_SlQ" direction="return">
+            <type xmi:type="cmof:PrimitiveType" href="Infrastructure.cmof#Core-PrimitiveTypes-Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:type="cmof:Operation" xmi:id="_N9KuA65oEd-xTJkHwX_SlQ" name="stringValue" class="_N9Kt8K5oEd-xTJkHwX_SlQ" isQuery="true" bodyCondition="_N9KuBa5oEd-xTJkHwX_SlQ">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="_N9KuBK5oEd-xTJkHwX_SlQ" annotatedElement="_N9KuA65oEd-xTJkHwX_SlQ">
+            <body>The query stringValue() gives a single String value when one can be computed.</body>
+          </ownedComment>
+          <ownedRule xmi:type="cmof:Constraint" xmi:id="_N9KuBa5oEd-xTJkHwX_SlQ" name="spec" constrainedElement="_N9KuA65oEd-xTJkHwX_SlQ" namespace="_N9KuA65oEd-xTJkHwX_SlQ">
+            <specification xmi:type="cmof:OpaqueExpression" xmi:id="_N9KuBq5oEd-xTJkHwX_SlQ">
+              <language>OCL</language>
+              <body>result = Set{}</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:type="cmof:Parameter" xmi:id="_N9KuB65oEd-xTJkHwX_SlQ" direction="return">
+            <type xmi:type="cmof:PrimitiveType" href="Infrastructure.cmof#Core-PrimitiveTypes-String"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:type="cmof:Operation" xmi:id="_N9KuCK5oEd-xTJkHwX_SlQ" name="unlimitedValue" class="_N9Kt8K5oEd-xTJkHwX_SlQ" isQuery="true" bodyCondition="_N9KuCq5oEd-xTJkHwX_SlQ">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="_N9KuCa5oEd-xTJkHwX_SlQ" annotatedElement="_N9KuCK5oEd-xTJkHwX_SlQ">
+            <body>The query unlimitedValue() gives a single UnlimitedNatural value when one can be computed.</body>
+          </ownedComment>
+          <ownedRule xmi:type="cmof:Constraint" xmi:id="_N9KuCq5oEd-xTJkHwX_SlQ" name="spec" constrainedElement="_N9KuCK5oEd-xTJkHwX_SlQ" namespace="_N9KuCK5oEd-xTJkHwX_SlQ">
+            <specification xmi:type="cmof:OpaqueExpression" xmi:id="_N9KuC65oEd-xTJkHwX_SlQ">
+              <language>OCL</language>
+              <body>result = Set{}</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:type="cmof:Parameter" xmi:id="_N9KuDK5oEd-xTJkHwX_SlQ" direction="return">
+            <type xmi:type="cmof:PrimitiveType" href="Infrastructure.cmof#Core-PrimitiveTypes-UnlimitedNatural"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:type="cmof:Operation" xmi:id="_N9KuDa5oEd-xTJkHwX_SlQ" name="isNull" class="_N9Kt8K5oEd-xTJkHwX_SlQ" isQuery="true" bodyCondition="_N9KuD65oEd-xTJkHwX_SlQ">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="_N9KuDq5oEd-xTJkHwX_SlQ" annotatedElement="_N9KuDa5oEd-xTJkHwX_SlQ">
+            <body>The query isNull() returns true when it can be computed that the value is null.</body>
+          </ownedComment>
+          <ownedRule xmi:type="cmof:Constraint" xmi:id="_N9KuD65oEd-xTJkHwX_SlQ" name="spec" constrainedElement="_N9KuDa5oEd-xTJkHwX_SlQ" namespace="_N9KuDa5oEd-xTJkHwX_SlQ">
+            <specification xmi:type="cmof:OpaqueExpression" xmi:id="_N9KuEK5oEd-xTJkHwX_SlQ">
+              <language>OCL</language>
+              <body>result = false</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:type="cmof:Parameter" xmi:id="_N9KuEa5oEd-xTJkHwX_SlQ" direction="return">
+            <type xmi:type="cmof:PrimitiveType" href="Infrastructure.cmof#Core-PrimitiveTypes-Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+        <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-TypedElement"/>
+      </ownedMember>
+      <ownedMember xmi:type="cmof:Class" xmi:id="_SzzFsK5oEd-xTJkHwX_SlQ" name="OpaqueExpression" superClass="_N9Kt8K5oEd-xTJkHwX_SlQ">
+        <ownedComment xmi:type="cmof:Comment" xmi:id="_SzzFsa5oEd-xTJkHwX_SlQ" annotatedElement="_SzzFsK5oEd-xTJkHwX_SlQ">
+          <body>An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context.</body>
+        </ownedComment>
+        <ownedRule xmi:type="cmof:Constraint" xmi:id="_SzzFsq5oEd-xTJkHwX_SlQ" name="language_body_size" constrainedElement="_SzzFsK5oEd-xTJkHwX_SlQ" namespace="_SzzFsK5oEd-xTJkHwX_SlQ">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="_SzzFs65oEd-xTJkHwX_SlQ" annotatedElement="_SzzFsq5oEd-xTJkHwX_SlQ">
+            <body>If the language attribute is not empty, then the size of the body and language arrays must be the same.</body>
+          </ownedComment>
+          <specification xmi:type="cmof:OpaqueExpression" xmi:id="_SzzFtK5oEd-xTJkHwX_SlQ">
+            <language>OCL</language>
+            <body>language->notEmpty() implies (body->size() = language->size())</body>
+          </specification>
+        </ownedRule>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="_SzzFtq5oEd-xTJkHwX_SlQ" name="body" isOrdered="true" isUnique="false" upper="*" lower="0" isComposite="true">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="_SzzFt65oEd-xTJkHwX_SlQ" annotatedElement="_SzzFtq5oEd-xTJkHwX_SlQ">
+            <body>The text of the expression, possibly in multiple languages.</body>
+          </ownedComment>
+          <type xmi:type="cmof:PrimitiveType" href="Infrastructure.cmof#Core-PrimitiveTypes-String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="_SzzFuq5oEd-xTJkHwX_SlQ" name="language" isOrdered="true" upper="*" lower="0" isComposite="true">
+          <ownedComment xmi:type="cmof:Comment" xmi:id="_SzzFu65oEd-xTJkHwX_SlQ" annotatedElement="_SzzFuq5oEd-xTJkHwX_SlQ">
+            <body>Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order.</body>
+          </ownedComment>
+          <type xmi:type="cmof:PrimitiveType" href="Infrastructure.cmof#Core-PrimitiveTypes-String"/>
+        </ownedAttribute>
+      </ownedMember>
+      <ownedMember xmi:type="cmof:Class" xmi:id="_MUAiUK5pEd-xTJkHwX_SlQ" name="NamedElement" isAbstract="true">
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="_FR6McbB1Ed-sntd82PWy7Q" name="ownedRule" type="_JhArsK5oEd-xTJkHwX_SlQ" upper="*" lower="0" isComposite="true"/>
+      </ownedMember>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Package" xmi:id="_97IzMLB0Ed-sntd82PWy7Q" name="Namespaces">
+      <ownedMember xmi:type="cmof:Class" xmi:id="_97IzMbB0Ed-sntd82PWy7Q" name="Class" superClass="_97IzQrB0Ed-sntd82PWy7Q"/>
+      <ownedMember xmi:type="cmof:Class" xmi:id="_97JaTbB0Ed-sntd82PWy7Q" name="NamedElement" isAbstract="true"/>
+      <ownedMember xmi:type="cmof:Class" xmi:id="_97IzQrB0Ed-sntd82PWy7Q" name="Namespace" isAbstract="true" superClass="_97JaTbB0Ed-sntd82PWy7Q"/>
+      <ownedMember xmi:type="cmof:Class" xmi:id="_dupBELB1Ed-sntd82PWy7Q" name="Operation" superClass="_97IzQrB0Ed-sntd82PWy7Q"/>
+      <ownedMember xmi:type="cmof:Class" xmi:id="_97IzY7B0Ed-sntd82PWy7Q" name="Package" superClass="_97IzQrB0Ed-sntd82PWy7Q"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Package" xmi:id="_0lPd4Mf5Ed-sJIf4tYBt-g" name="States">
+      <ownedMember xmi:type="cmof:Class" xmi:id="_39jdgMf5Ed-sJIf4tYBt-g" name="NamedElement" isAbstract="true"/>
+      <ownedMember xmi:type="cmof:Class" xmi:id="_5RULcMf5Ed-sJIf4tYBt-g" name="State" superClass="_39jdgMf5Ed-sJIf4tYBt-g"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Package" xmi:id="_AD6JQMitEd-sJIf4tYBt-g" name="Actions">
+      <ownedMember xmi:type="cmof:Class" xmi:id="_CmXe8MitEd-sJIf4tYBt-g" name="CallOperationAction" superClass="_EOXXgMitEd-sJIf4tYBt-g">
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="_QvWy4MitEd-sJIf4tYBt-g" name="operation" type="_MmYyYMitEd-sJIf4tYBt-g"/>
+      </ownedMember>
+      <ownedMember xmi:type="cmof:Class" xmi:id="_EOXXgMitEd-sJIf4tYBt-g" name="NamedElement" isAbstract="true"/>
+      <ownedMember xmi:type="cmof:Class" xmi:id="_MmYyYMitEd-sJIf4tYBt-g" name="Operation"/>
+      <ownedMember xmi:type="cmof:Class" xmi:id="_HT7aQMitEd-sJIf4tYBt-g" name="SendSignalAction" superClass="_EOXXgMitEd-sJIf4tYBt-g">
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="_YEJPIMitEd-sJIf4tYBt-g" name="signal" type="_OS2UMMitEd-sJIf4tYBt-g"/>
+      </ownedMember>
+      <ownedMember xmi:type="cmof:Class" xmi:id="_OS2UMMitEd-sJIf4tYBt-g" name="Signal"/>
+    </ownedMember>
+  </ownedMember>
+  <ownedMember xmi:type="cmof:Package" xmi:id="_xg6fUPF8Ed-BXqn3guNB1A" name="Sub_IsStatic">
+    <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_KrFBsPF9Ed-BXqn3guNB1A" name="Boolean"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_t41z8B1DEeCzDcYDg75xng" name="Class"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_0_eQ4PF8Ed-BXqn3guNB1A" name="Feature" isAbstract="true" superClass="_coJOwPF-Ed-Ob5Xbijlg7g">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_C_PXYPF9Ed-BXqn3guNB1A" name="isStatic" type="_KrFBsPF9Ed-BXqn3guNB1A"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_coJOwPF-Ed-Ob5Xbijlg7g" name="NamedElement" isAbstract="true">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_coJOwfF-Ed-Ob5Xbijlg7g" name="isStatic" type="_KrFBsPF9Ed-BXqn3guNB1A"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_4ji0kPF8Ed-BXqn3guNB1A" name="Operation" superClass="_0_eQ4PF8Ed-BXqn3guNB1A"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_6gXGkPF8Ed-BXqn3guNB1A" name="Property" superClass="_0_eQ4PF8Ed-BXqn3guNB1A"/>
+  </ownedMember>
+</cmof:Package>

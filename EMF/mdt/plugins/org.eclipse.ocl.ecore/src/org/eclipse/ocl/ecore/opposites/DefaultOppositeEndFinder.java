@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DefaultOppositeEndFinder.java,v 1.1 2010/12/15 17:32:44 ewillink Exp $
+ * $Id: DefaultOppositeEndFinder.java,v 1.2 2011/01/25 10:43:34 auhl Exp $
  */
 package org.eclipse.ocl.ecore.opposites;
 

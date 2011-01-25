@@ -1,0 +1,28 @@
+<!-- ===================================================================== -->
+<!-- Custom targets.                                                       -->
+<!-- Set customBuildCallbacks = build.acceleo in your build.properties.    -->
+<!-- ===================================================================== -->
+<project name="Build Acceleo Module" default="noDefault">
+
+	<!-- ================================================================= -->
+	<!-- Default target                                                    -->
+	<!-- ================================================================= -->
+	<target name="noDefault">
+		<echo message="This file must be called with explicit targets" />
+	</target>
+
+	<!-- ================================================================= -->
+	<!-- Steps to do after the target gather.bin.parts                     -->
+	<!-- Available parameters :                                            -->
+	<!--   build.result.folder - folder containing the build results       -->
+	<!--   target.folder - destination folder                              -->
+	<!-- ================================================================= -->
+
+	<target name="post.gather.bin.parts">
+		<acceleoCompiler 
+			sourceFolders="${target.folder}" 
+			dependencies="${target.folder}/../org.eclipse.ocl.examples.xtext.oclstdlib;${target.folder}/../org.eclipse.ocl.examples.xtext.essentialocl;${target.folder}/../org.eclipse.xtext.common.types;${target.folder}/../org.eclipse.ocl.examples.xtext.completeocl;${target.folder}/../org.eclipse.ocl.examples.xtext.oclinecore;${target.folder}/../org.eclipse.ocl.examples.common;${target.folder}/../lpg.runtime.java 2.0.17;${target.folder}/../org.eclipse.ocl.examples.library;${target.folder}/../org.eclipse.ocl.examples.pivot;">
+		</acceleoCompiler>
+	</target>	
+
+</project>

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StatesTest.java,v 1.6 2009/11/28 17:50:02 ewillink Exp $
+ * $Id: StatesTest.java,v 1.7 2011/01/25 10:43:36 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;

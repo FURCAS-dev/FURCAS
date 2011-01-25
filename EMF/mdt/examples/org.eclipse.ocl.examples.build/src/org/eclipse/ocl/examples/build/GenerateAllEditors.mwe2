@@ -1,0 +1,31 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2010 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id: GenerateAllEditors.mwe2,v 1.2 2011/01/24 20:54:27 ewillink Exp $
+ * 
+ * Run As->MWE2 Workflow to regenerate all four editors.
+ * If it fails with a stack dump, open each Xtext file individually and do
+ * a dummy edit. Generally there is an error in one source file.
+ */
+module GenerateAllEditors
+
+/**
+ *	Generate all Xtext editors (but not their Concrete Syntax Models).
+ */
+Workflow {
+  component = @GenerateEssentialOCLEditor {}
+  component = @GenerateOCLinEcoreEditor {}
+  component = @GenerateCompleteOCLEditor {}
+  component = @GenerateOCLstdlibEditor {}
+}

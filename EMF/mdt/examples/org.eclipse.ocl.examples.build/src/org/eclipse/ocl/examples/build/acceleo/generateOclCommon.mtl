@@ -1,0 +1,315 @@
+[comment encoding = UTF-8 /]
+[module generateOclCommon('http://www.eclipse.org/ocl/3.1.0/Pivot','http://www.eclipse.org/emf/2002/Ecore')/]
+
+[query public getSignature(elem : NamedElement) : String = 
+let parent : EObject = elem.eContainer() in
+if not parent.oclIsUndefined() then parent.oclAsType(NamedElement).getSignature() + '::' + elem.name
+else elem.name endif/]
+
+[query public getSignature(elem : Operation) : String = 
+let parent : EObject = elem.eContainer() in
+if not parent.oclIsUndefined() then parent.oclAsType(NamedElement).getSignature() + '::' + elem.name
+else elem.name endif + '()'/]
+
+[query public getSymbolName(elem : Element) : String = 
+invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'getSymbolName(java.lang.Object)', Sequence{elem}) /]
+
+[query public getSymbolName(elem : EObject) : String = elem.oclAsType(Element).getSymbolName()/]
+
+[query public isEcoreConstraint(operation : Operation) : Boolean =
+operation.ownedParameter->select(p : Parameter
+| (p.name = 'diagnostics') and (p.type.name = 'EDiagnosticChain'))->notEmpty()
+/]
+
+[template public declarePackage(pkg : Package)]
+Package [pkg.getSymbolName()/] = PivotFactory.eINSTANCE.createPackage(); // [pkg.moniker/]
+[for (ownedType : Type | pkg.ownedType->sortedBy(name))]
+[declareType(ownedType)/]
+[/for]
+[for (nestedPackage : Package | pkg.nestedPackage->sortedBy(name))]
+[declarePackage(nestedPackage)/][/for]
+[/template]
+
+[template public declarePrecedence(precedence : Precedence)]
+Precedence [precedence.getSymbolName()/] = PivotFactory.eINSTANCE.createPrecedence(); // [precedence.name/]
+[/template]
+
+[template public declareProperty(property : Property)]
+Property [property.getSymbolName()/] = PivotFactory.eINSTANCE.createProperty();
+[/template]
+
+[template public declareTemplateParameter(templateParameter : TemplateParameter)]
+[/template]
+
+[template public declareTemplateParameter(templateParameter : TypeTemplateParameter)]
+TypeTemplateParameter [templateParameter.getSymbolName()/] = PivotFactory.eINSTANCE.createTypeTemplateParameter();
+Class [templateParameter.ownedParameteredElement.getSymbolName()/] = PivotFactory.eINSTANCE.createClass(); // [templateParameter.ownedParameteredElement.moniker/]
+[/template]
+
+[template public declareTemplateSignature(templateSignature : TemplateSignature)]
+TemplateSignature [templateSignature.getSymbolName()/] = PivotFactory.eINSTANCE.createTemplateSignature(); // [templateSignature.moniker/]
+[for (templateParameter : TemplateParameter | templateSignature.ownedParameter)]
+[declareTemplateParameter(templateParameter)/]
+[/for]
+[/template]
+
+[template public declareType(type : Type)]
+{
+}
+[/template]
+
+[template public declareType(type : Class)]
+[if (type.oclIsTypeOf(AnyType))]
+AnyType [type.getSymbolName()/] = PivotFactory.eINSTANCE.createAnyType(); // [type.moniker/]
+[elseif (type.oclIsTypeOf(BagType))]
+BagType [type.getSymbolName()/] = PivotFactory.eINSTANCE.createBagType(); // [type.moniker/]
+[elseif (type.oclIsTypeOf(CollectionType))]
+CollectionType [type.getSymbolName()/] = PivotFactory.eINSTANCE.createCollectionType(); // [type.moniker/]
+[elseif (type.oclIsTypeOf(InvalidType))]
+InvalidType [type.getSymbolName()/] = PivotFactory.eINSTANCE.createInvalidType(); // [type.moniker/]
+[elseif (type.oclIsTypeOf(OrderedSetType))]
+OrderedSetType [type.getSymbolName()/] = PivotFactory.eINSTANCE.createOrderedSetType(); // [type.moniker/]
+[elseif (type.oclIsTypeOf(PrimitiveType))]
+PrimitiveType [type.getSymbolName()/] = PivotFactory.eINSTANCE.createPrimitiveType(); // [type.moniker/]
+[elseif (type.oclIsTypeOf(SequenceType))]
+SequenceType [type.getSymbolName()/] = PivotFactory.eINSTANCE.createSequenceType(); // [type.moniker/]
+[elseif (type.oclIsTypeOf(SetType))]
+SetType [type.getSymbolName()/] = PivotFactory.eINSTANCE.createSetType(); // [type.moniker/]
+[elseif (type.oclIsTypeOf(TupleType))]
+TupleType [type.getSymbolName()/] = PivotFactory.eINSTANCE.createTupleType(); // [type.moniker/]
+[elseif (type.oclIsTypeOf(VoidType))]
+VoidType [type.getSymbolName()/] = PivotFactory.eINSTANCE.createVoidType(); // [type.moniker/]
+[else]
+Class [type.getSymbolName()/] = PivotFactory.eINSTANCE.createClass(); // [type.moniker/]
+[/if]
+[if (type.ownedTemplateSignature->notEmpty())]
+[declareTemplateSignature(type.ownedTemplateSignature)/]
+[/if]
+[for (property : Property | type.ownedAttribute->sortedBy(name))]
+[declareProperty(property)/] // [property.getSignature()/] [property.moniker/]
+[/for]
+[for (operation : Operation | type.ownedOperation->sortedBy(name))]
+[if (operation.ownedTemplateSignature->notEmpty())]
+[declareTemplateSignature(operation.ownedTemplateSignature)/]
+[/if]
+[/for]
+[/template]
+
+[template public emitAccumulator(parameter : Parameter)]
+Parameter [parameter.getSymbolName()/] = PivotFactory.eINSTANCE.createParameter();
+[parameter.getSymbolName()/].setName("[parameter.name/]");
+[parameter.getSymbolName()/].setType([parameter.type.getSymbolName()/]);  // [parameter.type.moniker/]
+[parameter.eContainer().getSymbolName()/].getOwnedAccumulators().add([parameter.getSymbolName()/]);
+[/template]
+
+[template public emitIterator(parameter : Parameter)]
+Parameter [parameter.getSymbolName()/] = PivotFactory.eINSTANCE.createParameter();
+[parameter.getSymbolName()/].setName("[parameter.name/]");
+[parameter.getSymbolName()/].setType([parameter.type.getSymbolName()/]);  // [parameter.type.moniker/]
+[parameter.eContainer().getSymbolName()/].getOwnedIterators().add([parameter.getSymbolName()/]);
+[/template]
+
+[template public emitMultiplicityElement(multiplicityElement : MultiplicityElement)]
+[if (multiplicityElement.lower <> 1)]
+[multiplicityElement.getSymbolName()/].setLower(BigInteger.valueOf([multiplicityElement.lower/]));
+[/if]
+[if (multiplicityElement.upper <> 1)]
+[multiplicityElement.getSymbolName()/].setUpper(BigInteger.valueOf([multiplicityElement.upper/]));
+[/if]
+[if (multiplicityElement.isOrdered)]
+[multiplicityElement.getSymbolName()/].setIsOrdered(true);
+[/if]
+[if (not multiplicityElement.isUnique)]
+[multiplicityElement.getSymbolName()/].setIsUnique(false);
+[/if]
+[/template]
+
+[template public emitOperation(iteration : Iteration)]
+Iteration [iteration.getSymbolName()/] = PivotFactory.eINSTANCE.createIteration();
+[if (iteration.ownedTemplateSignature->notEmpty())]
+[emitTemplateSignature(iteration.ownedTemplateSignature)/]
+[iteration.getSymbolName()/].setOwnedTemplateSignature([iteration.ownedTemplateSignature.getSymbolName()/]);
+[/if]
+[iteration.getSymbolName()/].setName("[iteration.name/]");
+[iteration.getSymbolName()/].setType([iteration.type.getSymbolName()/]);  // [iteration.type.moniker/]
+[emitMultiplicityElement(iteration)/]
+[for (parameter : Parameter | iteration.ownedIterator)]
+[emitIterator(parameter)/]
+[/for]
+[for (parameter : Parameter | iteration.ownedAccumulator)]
+[emitAccumulator(parameter)/]
+[/for]
+[for (parameter : Parameter | iteration.ownedParameter)]
+[emitParameter(parameter)/]
+[/for]
+[if (iteration.precedence->notEmpty())]
+[iteration.getSymbolName()/].setPrecedence([iteration.precedence.getSymbolName()/]);
+[/if]
+[if (iteration.implementationClass->notEmpty())]
+[iteration.getSymbolName()/].setImplementation([iteration.implementationClass/].INSTANCE);
+[/if]
+[iteration.eContainer().getSymbolName()/].getOwnedOperations().add([iteration.getSymbolName()/]);
+[/template]
+
+[template public emitOperation(operation : Operation)]
+Operation [operation.getSymbolName()/] = PivotFactory.eINSTANCE.createOperation();
+[if (operation.ownedTemplateSignature->notEmpty())]
+[emitTemplateSignature(operation.ownedTemplateSignature)/]
+[operation.getSymbolName()/].setOwnedTemplateSignature([operation.ownedTemplateSignature.getSymbolName()/]);
+[/if]
+[operation.getSymbolName()/].setName("[operation.name/]");
+[operation.getSymbolName()/].setType([operation.type.getSymbolName()/]);  // [operation.type.moniker/]
+[emitMultiplicityElement(operation)/]
+[for (parameter : Parameter | operation.ownedParameter)]
+[emitParameter(parameter)/]
+[/for]
+[if (operation.precedence->notEmpty())]
+[operation.getSymbolName()/].setPrecedence([operation.precedence.getSymbolName()/]);
+[/if]
+[if (operation.implementationClass->notEmpty())]
+[operation.getSymbolName()/].setImplementation([operation.implementationClass/].INSTANCE);
+[/if]
+[operation.eContainer().getSymbolName()/].getOwnedOperations().add([operation.getSymbolName()/]);
+[/template]
+
+[template public emitPackage(pkg : Package)]
+//
+// [pkg.getSignature()/]
+//
+[pkg.getSymbolName()/].setName("[pkg.name/]");
+[if (pkg.nsPrefix <> null)]
+[pkg.getSymbolName()/].setNsPrefix("[pkg.nsPrefix/]");
+[/if]
+[if (pkg.nsURI <> null)]
+[pkg.getSymbolName()/].setNsURI("[pkg.nsURI/]");
+[/if]
+[for (ownedType : Type | pkg.ownedType->sortedBy(name))]
+[emitType(ownedType)/]
+[/for]
+[for (nestedPackage : Package | pkg.nestedPackage->sortedBy(name))]
+[emitPackage(nestedPackage)/]
+[/for]
+[pkg.eContainer().getSymbolName()/].getNestedPackages().add([pkg.getSymbolName()/]);
+[/template]
+
+[template public emitParameter(parameter : Parameter)]
+Parameter [parameter.getSymbolName()/] = PivotFactory.eINSTANCE.createParameter();
+[parameter.getSymbolName()/].setName("[parameter.name/]");
+[parameter.getSymbolName()/].setType([parameter.type.getSymbolName()/]);  // [parameter.type.moniker/]
+[emitMultiplicityElement(parameter)/]
+[parameter.eContainer().getSymbolName()/].getOwnedParameters().add([parameter.getSymbolName()/]);
+[/template]
+
+[template public emitPrecedence(precedence : Precedence)]
+[precedence.getSymbolName()/].setName("[precedence.name/]");
+[precedence.getSymbolName()/].setAssociativity(AssociativityKind.[precedence.associativity.toString().toUpper()/]);
+[precedence.eContainer().getSymbolName()/].getOwnedPrecedences().add([precedence.getSymbolName()/]);
+[/template]
+
+[template public emitProperty(property : Property)]
+[property.getSymbolName()/].setName("[property.name/]");
+[property.getSymbolName()/].setType([property.type.getSymbolName()/]);  // [property.type.moniker/]
+[emitMultiplicityElement(property)/]
+[if (property.isComposite)]
+[property.getSymbolName()/].setIsComposite(true);
+[/if]
+[if (property.isDerived)]
+[property.getSymbolName()/].setIsDerived(true);
+[/if]
+[if (property.isID)]
+[property.getSymbolName()/].setIsID(true);
+[/if]
+[if (property.isReadOnly)]
+[property.getSymbolName()/].setIsReadOnly(true);
+[/if]
+[if (property.isResolveProxies)]
+[property.getSymbolName()/].setIsResolveProxies(true);
+[/if]
+[if (property.isStatic)]
+[property.getSymbolName()/].setIsStatic(true);
+[/if]
+[if (property.isTransient)]
+[property.getSymbolName()/].setIsTransient(true);
+[/if]
+[if (property.isUnsettable)]
+[property.getSymbolName()/].setIsUnsettable(true);
+[/if]
+[if (property.isVolatile)]
+[property.getSymbolName()/].setIsVolatile(true);
+[/if]
+[if (property.opposite->notEmpty())]
+[property.getSymbolName()/].setOpposite([property.opposite.getSymbolName()/]);
+[/if]
+[if (property.implementationClass->notEmpty())]
+[property.getSymbolName()/].setImplementation([property.implementationClass/].INSTANCE);
+[/if]
+[property.eContainer().getSymbolName()/].getOwnedAttributes().add([property.getSymbolName()/]);
+[/template]
+
+[template public emitTemplateBinding(templateBinding : TemplateBinding)]
+TemplateBinding [templateBinding.getSymbolName()/] = PivotFactory.eINSTANCE.createTemplateBinding();
+[templateBinding.getSymbolName()/].setSignature([templateBinding.signature.getSymbolName()/]);
+[for (templateParameterSubstitution : TemplateParameterSubstitution | templateBinding.parameterSubstitution)]
+{
+	TemplateParameterSubstitution [templateParameterSubstitution.getSymbolName()/] = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+	[templateParameterSubstitution.getSymbolName()/].setFormal([templateParameterSubstitution.formal.getSymbolName()/]);	
+	[templateParameterSubstitution.getSymbolName()/].setActual([templateParameterSubstitution.actual.getSymbolName()/]);	
+	[templateBinding.getSymbolName()/].getParameterSubstitutions().add([templateParameterSubstitution.getSymbolName()/]);
+}[/for]
+[/template]
+
+[template public emitTemplateParameter(templateParameter : TemplateParameter)]
+[/template]
+
+[template public emitTemplateParameter(templateParameter : TypeTemplateParameter)]
+[templateParameter.ownedParameteredElement.getSymbolName()/].setName("[templateParameter.ownedParameteredElement.oclAsType(NamedElement).name/]");
+[templateParameter.getSymbolName()/].setOwnedParameteredElement([templateParameter.ownedParameteredElement.getSymbolName()/]);
+[templateParameter.eContainer().getSymbolName()/].getOwnedParameters().add([templateParameter.getSymbolName()/]);
+[/template]
+
+[template public emitTemplateSignature(templateSignature : TemplateSignature)]
+[for (templateParameter : TemplateParameter | templateSignature.ownedParameter)]
+[emitTemplateParameter(templateParameter)/]
+[/for]
+[/template]
+
+[template public emitType(type : Type)]
+{
+}
+[/template]
+
+[template public emitType(type : Class)]
+//
+// [type.getSignature()/] [type.moniker/]
+//
+[type.getSymbolName()/].setName("[type.name/]");
+[if (type.oclIsKindOf(CollectionType))]
+[type.getSymbolName()/].setElementType([type.oclAsType(CollectionType).elementType.getSymbolName()/]);
+[/if]
+[if (type.ownedTemplateSignature->notEmpty())]
+[emitTemplateSignature(type.ownedTemplateSignature)/]
+[type.getSymbolName()/].setOwnedTemplateSignature([type.ownedTemplateSignature.getSymbolName()/]);
+[/if]
+[if (type.templateBinding->notEmpty())]
+{
+[for (templateBinding : TemplateBinding | type.templateBinding)]
+	[emitTemplateBinding(templateBinding)/]
+	[type.getSymbolName()/].getTemplateBindings().add([templateBinding.getSymbolName()/]);
+[/for]
+}
+[/if]
+[for (superClass : Class | type.superClass)]
+[type.getSymbolName()/].getSuperClasses().add([superClass.getSymbolName()/]);
+[/for]
+[for (property : Property | type.ownedAttribute->sortedBy(name))]
+{ // [property.getSignature()/] [property.moniker/]
+	[emitProperty(property)/]
+}
+[/for]
+[for (operation : Operation | type.ownedOperation->sortedBy(name)->select(not isEcoreConstraint()))]
+{	// [operation.getSignature()/] [operation.moniker/]
+	[emitOperation(operation)/]
+}
+[/for]
+[type.eContainer().getSymbolName()/].getOwnedTypes().add([type.getSymbolName()/]);
+[/template]

@@ -1,0 +1,143 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2010 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id: GenerateOCLstdlibEditor.mwe2,v 1.2 2011/01/24 20:54:27 ewillink Exp $
+ * 
+ * Run As->MWE2 Workflow to regenerate the editor.
+ * If it fails with a stack dump, open the Xtext file and do
+ * a dummy edit. Generally there is an error in the source file.
+ */
+module GenerateOCLstdlibEditor
+
+import org.eclipse.emf.mwe.utils.*
+import org.eclipse.xtext.generator.*
+import org.eclipse.xtext.ui.generator.*
+
+var oclstdlib.file.extensions = "oclstdlib"
+var oclstdlibProjectName = "org.eclipse.ocl.examples.xtext.oclstdlib"
+var oclstdlibRuntimeProject = "../${oclstdlibProjectName}"
+
+/**
+ *	Generate the OCL Stnadard Library Editor.
+ */
+Workflow {
+    bean = StandaloneSetup {
+		platformUri = "${oclstdlibRuntimeProject}/.."
+	}
+	
+	component = DirectoryCleaner {
+		directory = "${oclstdlibRuntimeProject}/src-gen"
+	}
+	
+	component = DirectoryCleaner {
+		directory = "${oclstdlibRuntimeProject}.ui/src-gen"
+	}
+	
+	component = Generator {
+		pathRtProject = oclstdlibRuntimeProject
+		pathUiProject = "${oclstdlibRuntimeProject}.ui"
+		projectNameRt = oclstdlibProjectName
+		projectNameUi = "${oclstdlibProjectName}.ui"
+		
+		language = {
+			uri = "classpath:/org/eclipse/ocl/examples/xtext/oclstdlib/OCLstdlib.xtext"
+			fileExtensions = oclstdlib.file.extensions
+			
+			// Java API to access grammar elements (required by several other fragments)
+			fragment = grammarAccess.GrammarAccessFragment {}
+			
+			// generates Java API for the generated EPackages 
+			fragment = ecore.EcoreGeneratorFragment {
+				  referencedGenModels="classpath:/model/JavaVMTypes.genmodel"
+			// referencedGenModels = "uri to genmodel, uri to next genmodel"
+			}
+			
+			// the serialization component
+			fragment = parseTreeConstructor.ParseTreeConstructorFragment {}
+			
+			// a custom ResourceFactory for use with EMF 
+			fragment = resourceFactory.ResourceFactoryFragment {
+				fileExtensions = oclstdlib.file.extensions
+			}
+				
+			// the following fragment tries to use the Antlr Generator fragment which can be installed via update manager from http://download.itemis.com/updates/
+//			fragment = de.itemis.xtext.antlr.XtextAntlrGeneratorFragment {
+//				options = { backtrack = true classSplitting = true }
+//			}
+			fragment = parser.antlr.XtextAntlrGeneratorFragment {
+				options = { backtrack = true classSplitting = true }			
+			}
+			
+			// check-based API for validation
+			/*
+			fragment = validation.CheckFragment {}
+			*/
+			 
+			// java-based API for validation 
+			fragment = validation.JavaValidatorFragment {
+                composedCheck = "org.eclipse.xtext.validation.ImportUriValidator"
+////                composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
+//  				registerForImportedPackages = false 
+            }
+            
+			// scoping and exporting API
+			/*
+			fragment = scoping.ImportURIScopingFragment {}
+			fragment = exporting.SimpleNamesFragment {}
+			*/
+			
+			// scoping and exporting API 
+			fragment = scoping.ImportNamespacesScopingFragment {}
+			fragment = exporting.QualifiedNamesFragment {}
+			
+			// JMVtypes
+			fragment = types.TypesGeneratorFragment {}
+			
+			// formatter API 
+			fragment = formatting.FormatterFragment {}
+
+			// labeling API 
+			fragment = labeling.LabelProviderFragment {}
+
+			// outline API 
+//			fragment = outline.TransformerFragment {}
+//			fragment = outline.OutlineNodeAdapterFactoryFragment {}
+			fragment = outline.OutlineTreeProviderFragment {}
+			fragment = outline.QuickOutlineFragment {}
+
+			// java-based API for content assistance 
+			fragment = contentAssist.JavaBasedContentAssistFragment {}
+			
+//			fragment = de.itemis.xtext.antlr.XtextAntlrGeneratorFragment {
+//				options = { backtrack = true classSplitting = true}
+//			}
+			fragment = parser.antlr.XtextAntlrUiGeneratorFragment {
+				options = { backtrack = true classSplitting = true}			
+			}
+
+			fragment = builder.BuilderIntegrationFragment {}
+
+			// project wizard (optional) 
+			/*
+			fragment = projectWizard.SimpleProjectWizardFragment {
+				generatorProjectName = "${projectName}.generator" 
+				modelFileExtension = file.extensions
+			}
+			*/
+			
+			// quickfix API 
+			fragment = quickfix.QuickfixProviderFragment {}			
+		}
+	}
+}
