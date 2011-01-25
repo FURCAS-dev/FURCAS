@@ -1,0 +1,48 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2010 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id: DebugGeneratePivotModel.mwe2,v 1.2 2011/01/24 20:54:28 ewillink Exp $
+ * 
+ * Run As->MWE2 Workflow to regenerate the pivot model.
+ */
+module DebugGeneratePivotModel
+
+import org.eclipse.ocl.examples.build.utilities.*
+import org.eclipse.emf.mwe.utils.*
+import org.eclipse.emf.mwe.utils.*
+import org.eclipse.emf.ecore.resource.impl.*
+
+//var pivotSlot = "pivot"
+var projectName = "org.eclipse.ocl.examples.pivot"
+
+/**
+ *	Generate the Pivot Model, by performing the merge to create the flattened package
+ *  with additional MDT/OCL content, alphabeticsing the classes, reloading the genmodel
+ *  and finally generating the model code.
+ */
+Workflow {
+	bean = ResourceSetImpl : resourceSet {}
+    bean = StandaloneSetup { resourceSet = resourceSet
+    	platformUri = ".."
+    }
+    bean = UMLStandaloneSetup { resourceSet = resourceSet
+    	umlResourcesUri = "../org.eclipse.uml2.uml.resources"
+    	umlUri = "../org.eclipse.uml2.uml"
+    }
+    bean = UMLGenModelSetup { resourceSet = resourceSet }
+    component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
+    	genModel = "/${projectName}/model/Pivot.merged.genmodel"
+    }
+}
+
