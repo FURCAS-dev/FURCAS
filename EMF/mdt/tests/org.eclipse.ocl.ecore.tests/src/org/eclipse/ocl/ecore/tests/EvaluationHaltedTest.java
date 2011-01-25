@@ -299,12 +299,12 @@ public class EvaluationHaltedTest
 
 		// this constructor is used to initialize the root environment
 		InterruptibleEnv(EcoreEnvironmentFactory fac) {
-			super(fac);
+			super(fac, null);
 			defineHaltOperation();
 		}
 
 		// this constructor is used to initialize child environments
-		InterruptibleEnv(EcoreEnvironmentFactory factory, InterruptibleEnv parent) {
+		InterruptibleEnv(InterruptibleEnv parent) {
 			super(parent);
 
 			// get the parent's custom operations
@@ -405,8 +405,7 @@ public class EvaluationHaltedTest
 					"Parent environment must be my environment: " + parent);
 			}
 
-			InterruptibleEnv result = new InterruptibleEnv(this,
-				(InterruptibleEnv) parent);
+			InterruptibleEnv result = new InterruptibleEnv((InterruptibleEnv) parent);
 			return result;
 		}
 
