@@ -95,7 +95,7 @@ public class EcoreEnvironmentFactory
     // implements the inherited specification
     public Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
 	createEnvironment() {
-		EcoreEnvironment result = new EcoreEnvironment(this);
+		EcoreEnvironment result = new EcoreEnvironment(this, null);
 		return result;
 	}
 	

@@ -84,7 +84,7 @@ public class DefaultOppositeEndFinder
 		implements OppositeEndFinder {
 
 	private static DefaultOppositeEndFinder instanceForDefaultRegistry = null;
-	
+
 	/**
 	 * The set of packages for which the hidden opposites are already cached in
 	 * {@link #oppositeCache}.

@@ -220,7 +220,7 @@ public class StatesTest
 		private EObject appleRotten;
 		
 		public StatefulFruitEnvironment(StatefulFruitEnvironmentFactory factory, AbstractTestSuite suite) {
-			super(factory);
+			super(factory, null);
 			this.suite = suite;
 			setContextPackage(suite.fruitPackage);
 			
