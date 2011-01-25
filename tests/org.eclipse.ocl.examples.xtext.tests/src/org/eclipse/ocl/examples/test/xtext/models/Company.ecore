@@ -27,7 +27,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" lowerBound="1" eType="#//CompanySizeKind"
         changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-        <details key="derivation" value="let table : Set(Tuple(range : Sequence(Integer), size : CompanySizeKind)) =&#xD;    Set{Tuple{range=Sequence{0..49}, size=CompanySizeKind::small},&#xD;         Tuple{range=Sequence{50..999}, size=CompanySizeKind::medium},&#xD;         Tuple{range=Sequence{1000..1000000}, size=CompanySizeKind::large}} in&#xD;table->any(range->includes(employees->size())).size"/>
+        <details key="derivation" value="let table : Set(Tuple(range : Sequence(Integer), size : CompanySizeKind)) = Set{Tuple{range = Sequence{0..49}, size = CompanySizeKind::small}, Tuple{range = Sequence{50..999}, size = CompanySizeKind::medium}, Tuple{range = Sequence{1000..1000000}, size = CompanySizeKind::large}} in table->any(range->includes(employees->size())).size"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -76,7 +76,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="reportingChain" upperBound="-1"
         eType="#//Employee" changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-        <details key="derivation" value="if (manager.oclIsUndefined()) then&#xD;    OrderedSet{}&#xD;else&#xD;    manager.reportingChain->prepend(manager)&#xD;endif"/>
+        <details key="derivation" value="if manager.oclIsUndefined() then OrderedSet{} else manager.reportingChain->prepend(manager) endif"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

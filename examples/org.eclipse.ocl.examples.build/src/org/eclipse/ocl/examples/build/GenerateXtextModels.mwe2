@@ -1,0 +1,102 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2010 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id: GenerateXtextModels.mwe2,v 1.2 2011/01/24 20:54:27 ewillink Exp $
+ * 
+ * Run As->MWE2 Workflow to regenerate the Xtest CST models.
+ */
+module GenerateXtextModels
+
+import org.eclipse.ocl.examples.build.utilities.*
+import org.eclipse.emf.mwe.utils.*
+import org.eclipse.emf.mwe.utils.*
+import org.eclipse.emf.ecore.resource.impl.*
+
+/**
+ *	Generate the Concrete Syntax Models used by the Xtext editors.
+ */
+Workflow {
+	bean = ResourceSetImpl : resourceSet {}
+    bean = StandaloneSetup { resourceSet = resourceSet
+    	platformUri = ".."
+    	registerGeneratedEPackage = "org.eclipse.xtext.common.types.TypesPackage"
+    	uriMap = Mapping {
+    		from = "platform:/plugin/org.eclipse.xtext.common.types/"
+    		to = "../org.eclipse.xtext.common.types/"
+    	}
+    }
+    bean = GenModelSetup { resourceSet = resourceSet }
+    bean = UMLGenModelSetup { resourceSet = resourceSet }
+    component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
+    	genModel = "/org.eclipse.ocl.examples.xtext.base/model/BaseCST.genmodel" 	
+    }
+    component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
+    	genModel = "/org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.genmodel"
+    }
+    component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
+    	genModel = "/org.eclipse.ocl.examples.xtext.oclstdlib/model/OCLstdlibCST.genmodel"
+    }
+    component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
+    	genModel = "/org.eclipse.ocl.examples.xtext.oclinecore/model/OCLinEcoreCST.genmodel"
+    }
+    component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
+    	genModel = "/org.eclipse.ocl.examples.xtext.completeocl/model/CompleteOCLCST.genmodel"
+    }
+    component = XtextVisitorCodeGenerator { resourceSet = resourceSet
+    	ecoreFile = "/org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore"
+    	javaFolder = "/org.eclipse.ocl.examples.xtext.base/emf-gen"
+    	javaPackageName = "org.eclipse.ocl.examples.xtext.base"
+    	modelPackageName = "org.eclipse.ocl.examples.xtext.base.baseCST"
+    	visitorClassName = "BaseCSVisitor"
+    	visitorBasePackageName = ""
+    	visitorBaseClassName = ""
+    }
+    component = XtextVisitorCodeGenerator { resourceSet = resourceSet
+    	ecoreFile = "/org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.ecore"
+    	javaFolder = "/org.eclipse.ocl.examples.xtext.essentialocl/emf-gen"
+    	javaPackageName = "org.eclipse.ocl.examples.xtext.essentialocl"
+    	modelPackageName = "org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST"
+    	visitorClassName = "EssentialOCLCSVisitor"
+    	visitorBasePackageName = "org.eclipse.ocl.examples.xtext.base.util"
+    	visitorBaseClassName = "BaseCSVisitor"
+    }
+    component = XtextVisitorCodeGenerator { resourceSet = resourceSet
+    	ecoreFile = "/org.eclipse.ocl.examples.xtext.oclstdlib/model/OCLstdlibCST.ecore"
+    	javaFolder = "/org.eclipse.ocl.examples.xtext.oclstdlib/emf-gen"
+    	javaPackageName = "org.eclipse.ocl.examples.xtext.oclstdlib"
+    	modelPackageName = "org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST"
+    	visitorClassName = "OCLstdlibCSVisitor"
+    	visitorBasePackageName = "org.eclipse.ocl.examples.xtext.essentialocl.util"
+    	visitorBaseClassName = "EssentialOCLCSVisitor"
+    }
+    component = XtextVisitorCodeGenerator { resourceSet = resourceSet
+    	ecoreFile = "/org.eclipse.ocl.examples.xtext.oclinecore/model/OCLinEcoreCST.ecore"
+    	javaFolder = "/org.eclipse.ocl.examples.xtext.oclinecore/emf-gen"
+    	javaPackageName = "org.eclipse.ocl.examples.xtext.oclinecore"
+    	modelPackageName = "org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST"
+    	visitorClassName = "OCLinEcoreCSVisitor"
+    	visitorBasePackageName = "org.eclipse.ocl.examples.xtext.essentialocl.util"
+    	visitorBaseClassName = "EssentialOCLCSVisitor"
+    }
+    component = XtextVisitorCodeGenerator { resourceSet = resourceSet
+    	ecoreFile = "/org.eclipse.ocl.examples.xtext.completeocl/model/CompleteOCLCST.ecore"
+    	javaFolder = "/org.eclipse.ocl.examples.xtext.completeocl/emf-gen"
+    	javaPackageName = "org.eclipse.ocl.examples.xtext.completeocl"
+    	modelPackageName = "org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST"
+    	visitorClassName = "CompleteOCLCSVisitor"
+    	visitorBasePackageName = "org.eclipse.ocl.examples.xtext.essentialocl.util"
+    	visitorBaseClassName = "EssentialOCLCSVisitor"
+    }
+}
+

@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEvaluationEnvironment.java,v 1.13 2010/12/24 10:18:06 asanchez Exp $
+ * $Id: EcoreEvaluationEnvironment.java,v 1.14 2011/01/25 10:43:34 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -51,7 +51,6 @@ import org.eclipse.ocl.ecore.internal.OCLEcorePlugin;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.internal.OCLStatusCodes;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
-import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
@@ -99,10 +98,9 @@ public class EcoreEvaluationEnvironment
 		super();
         this.factory = factory;
         if (factory != null) {
-        	this.oppositeEndFinder = factory.getOppositeEndFinder();
-        }
-        else {
-        	this.oppositeEndFinder = new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE);
+            this.oppositeEndFinder = factory.getOppositeEndFinder();
+        } else {
+        	this.oppositeEndFinder = null;
         }
     }
 
@@ -515,12 +513,10 @@ public class EcoreEvaluationEnvironment
 	 * @since 3.1
 	 */
 	public Object navigateOppositeProperty(EReference property, Object target) throws IllegalArgumentException {
-        Object result;
+        Object result = null;
         if (property.isContainment()) {
             EObject resultCandidate = ((EObject) target).eContainer();
-            if (resultCandidate == null) {
-                result = null;
-            } else {
+            if (resultCandidate != null) {
                 // first check if the container is assignment-compatible to the property's owning type:
                 if (property.getEContainingClass().isInstance(resultCandidate)) {
                     Object propertyValue = resultCandidate.eGet(property);
@@ -528,15 +524,13 @@ public class EcoreEvaluationEnvironment
                             || (propertyValue instanceof Collection<?> && ((Collection<?>) propertyValue).contains(target))) {
                         // important to create a copy because, e.g., the partial evaluator may modify the resulting collection
                         result = CollectionUtil.createNewBag(Collections.singleton(resultCandidate));
-                    } else {
-                        result = null;
                     }
-                } else {
-                    result = null;
                 }
             }
         } else {
-            result = oppositeEndFinder.navigateOppositePropertyWithForwardScope(property, (EObject) target);
+            if (oppositeEndFinder != null) {
+                result = oppositeEndFinder.navigateOppositePropertyWithForwardScope(property, (EObject) target);
+            }
         }
         return result;
     }

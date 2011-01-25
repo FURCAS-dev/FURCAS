@@ -1,0 +1,15 @@
+[comment encoding = UTF-8 /]
+[module generatePivotVisitors('http://www.eclipse.org/emf/2002/Ecore')/]
+
+[import generateVisitors/]
+
+[template public generate(pkg : EPackage, javaPackage : String, visitorClass : String, sourceFile : String) ? (pkg.eContainer() = null)]
+[comment @main /]
+[pkg.generateVisitableInterface(javaPackage, 'Visitable', visitorClass, sourceFile)/]
+[pkg.generateVisitorInterface(javaPackage, javaPackage, visitorClass, 'org.eclipse.ocl.examples.pivot.util.Visitable', sourceFile)/]
+[pkg.generateAbstractVisitor(javaPackage, visitorClass, 'org.eclipse.ocl.examples.pivot.util.Visitable', sourceFile)/]
+[pkg.generateAbstractExtendingVisitor(javaPackage, javaPackage, visitorClass, 'AbstractVisitor', sourceFile)/]
+[pkg.generateAbstractNullVisitor(javaPackage, javaPackage, visitorClass, sourceFile)/]
+[pkg.generateDecorableVisitorInterface(javaPackage, visitorClass, '', '', visitorClass, sourceFile)/]
+[pkg.generateAbstractDelegatingVisitor(javaPackage, javaPackage, visitorClass, '', 'AbstractVisitor', 'Visitable', sourceFile)/]
+[/template]
