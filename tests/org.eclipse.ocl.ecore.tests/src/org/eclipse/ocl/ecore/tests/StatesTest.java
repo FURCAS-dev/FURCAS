@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StatesTest.java,v 1.6 2009/11/28 17:50:02 ewillink Exp $
+ * $Id: StatesTest.java,v 1.7 2011/01/25 10:43:36 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -220,9 +220,8 @@ public class StatesTest
 		private EObject appleRotten;
 		
 		public StatefulFruitEnvironment(StatefulFruitEnvironmentFactory factory, AbstractTestSuite suite) {
-			super(resourceSet.getPackageRegistry());
+			super(factory, null);
 			this.suite = suite;
-			setFactory(factory);
 			setContextPackage(suite.fruitPackage);
 			
 			initStates();
@@ -233,7 +232,6 @@ public class StatesTest
 				Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent, AbstractTestSuite suite) {
 			super(parent);
 			this.suite = suite;
-			setFactory(factory);
 			
 			initStates();
 		}
