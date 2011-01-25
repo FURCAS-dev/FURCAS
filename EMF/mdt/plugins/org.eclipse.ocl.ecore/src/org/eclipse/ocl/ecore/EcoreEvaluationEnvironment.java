@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEvaluationEnvironment.java,v 1.13 2010/12/24 10:18:06 asanchez Exp $
+ * $Id: EcoreEvaluationEnvironment.java,v 1.14 2011/01/25 10:43:34 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore;

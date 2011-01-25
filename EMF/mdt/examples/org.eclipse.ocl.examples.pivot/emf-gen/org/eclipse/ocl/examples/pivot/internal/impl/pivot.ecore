@@ -1,0 +1,765 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="pivot"
+    nsURI="http://www.eclipse.org/ocl/3.1.0/Pivot" nsPrefix="pivot">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EDataType" name="Boolean" instanceClassName="boolean"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="CallableImplementation" instanceClassName="org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Int" instanceClassName="int"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Integer" instanceClassName="java.math.BigInteger"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Object" instanceClassName="java.lang.Object"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Real" instanceClassName="java.math.BigDecimal"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="String" instanceClassName="java.lang.String"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Throwable" instanceClassName="java.lang.Throwable"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="UnlimitedNatural" instanceClassName="java.math.BigInteger"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="AssociativityKind">
+    <eLiterals name="Left"/>
+    <eLiterals name="Right" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="CollectionKind">
+    <eLiterals name="Collection"/>
+    <eLiterals name="Set" value="1"/>
+    <eLiterals name="OrderedSet" value="2"/>
+    <eLiterals name="Bag" value="3"/>
+    <eLiterals name="Sequence" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Annotation" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedContent" upperBound="-1"
+        eType="#//Element" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedDetail" upperBound="-1"
+        eType="#//Detail" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reference" upperBound="-1"
+        eType="#//Element"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AnyType" eSuperTypes="#//Class"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AssociationClass" eSuperTypes="#//Class">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unownedAttribute" ordered="false"
+        upperBound="-1" eType="#//Property" eOpposite="#//Property/association"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AssociationClassCallExp" eSuperTypes="#//NavigationCallExp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredAssociationClass"
+        ordered="false" eType="#//AssociationClass"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BagType" eSuperTypes="#//CollectionType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanLiteralExp" eSuperTypes="#//PrimitiveLiteralExp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="booleanSymbol" ordered="false"
+        lowerBound="1" eType="#//Boolean" unsettable="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CallExp" abstract="true" eSuperTypes="#//OclExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
+        eType="#//OclExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="implicit" ordered="false"
+        eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredFeature" ordered="false"
+        eType="#//Feature" changeable="false" volatile="true" transient="true" derived="true"
+        resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CallOperationAction" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operation" ordered="false"
+        lowerBound="1" eType="#//Operation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//Type #//Namespace">
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EAttribute" name="instanceClassName" ordered="false"
+          eType="#//String">
+        <eAnnotations source="redefines" references="#//Type/instanceClassName"/>
+      </contents>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAbstract" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAttribute" upperBound="-1"
+        eType="#//Property" containment="true" eOpposite="#//Property/class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedOperation" upperBound="-1"
+        eType="#//Operation" containment="true" eOpposite="#//Operation/class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="superClass" ordered="false"
+        upperBound="-1" eType="#//Class"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInterface" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subClass" ordered="false"
+        upperBound="-1" eType="#//Class" transient="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CollectionItem" eSuperTypes="#//CollectionLiteralPart">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="item" ordered="false" lowerBound="1"
+        eType="#//OclExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CollectionLiteralExp" eSuperTypes="#//LiteralExp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" ordered="false" lowerBound="1"
+        eType="#//CollectionKind"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="part" upperBound="-1" eType="#//CollectionLiteralPart"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CollectionLiteralPart" abstract="true"
+      eSuperTypes="#//TypedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CollectionRange" eSuperTypes="#//CollectionLiteralPart">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="first" ordered="false"
+        lowerBound="1" eType="#//OclExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="last" ordered="false" lowerBound="1"
+        eType="#//OclExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CollectionType" eSuperTypes="#//DataType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementType" ordered="false"
+        lowerBound="1" eType="#//Type"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Comment" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" ordered="false" eType="#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="annotatedElement" ordered="false"
+        upperBound="-1" eType="#//Element"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompleteEnvironment" eSuperTypes="#//Package">
+    <eOperations name="getCompleteIteration" ordered="false" lowerBound="1" eType="#//CompleteIteration">
+      <eParameters name="model" ordered="false" lowerBound="1" eType="#//Iteration"/>
+    </eOperations>
+    <eOperations name="getCompleteOperation" ordered="false" lowerBound="1" eType="#//CompleteOperation">
+      <eParameters name="model" ordered="false" lowerBound="1" eType="#//Operation"/>
+    </eOperations>
+    <eOperations name="getCompletePackage" ordered="false" lowerBound="1" eType="#//CompletePackage">
+      <eParameters name="model" ordered="false" lowerBound="1" eType="#//Package"/>
+    </eOperations>
+    <eOperations name="getCompleteProperty" ordered="false" lowerBound="1" eType="#//CompleteProperty">
+      <eParameters name="model" ordered="false" lowerBound="1" eType="#//Property"/>
+    </eOperations>
+    <eOperations name="getCompleteType" ordered="false" lowerBound="1" eType="#//CompleteType">
+      <eParameters name="model" ordered="false" lowerBound="1" eType="#//Type"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompleteIteration" eSuperTypes="#//Iteration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="model" ordered="false"
+        lowerBound="1" eType="#//Iteration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completeEnvironment" ordered="false"
+        lowerBound="1" eType="#//CompleteEnvironment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completeIterator" ordered="false"
+        upperBound="-1" eType="#//Parameter" changeable="false" volatile="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completeAccumulator" ordered="false"
+        upperBound="-1" eType="#//Parameter" changeable="false" volatile="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completeParameter" ordered="false"
+        upperBound="-1" eType="#//Parameter" changeable="false" volatile="true" derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompleteOperation" eSuperTypes="#//Operation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="model" ordered="false"
+        lowerBound="1" eType="#//Operation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completeEnvironment" ordered="false"
+        lowerBound="1" eType="#//CompleteEnvironment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completeParameter" ordered="false"
+        upperBound="-1" eType="#//Parameter" changeable="false" volatile="true" derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompletePackage" eSuperTypes="#//Package">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="model" ordered="false"
+        lowerBound="1" eType="#//Package"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completeEnvironment" ordered="false"
+        lowerBound="1" eType="#//CompleteEnvironment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completeType" ordered="false"
+        upperBound="-1" eType="#//CompleteType" changeable="false" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completePackage" ordered="false"
+        upperBound="-1" eType="#//CompletePackage" changeable="false" volatile="true"
+        derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompleteProperty" eSuperTypes="#//Property">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="model" ordered="false"
+        lowerBound="1" eType="#//Property"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completeEnvironment" ordered="false"
+        lowerBound="1" eType="#//CompleteEnvironment"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompleteType" eSuperTypes="#//Class">
+    <eOperations name="conformsTo" ordered="false" lowerBound="1" eType="#//Boolean">
+      <eParameters name="aType" ordered="false" lowerBound="1" eType="#//CompleteType"/>
+    </eOperations>
+    <eOperations name="getDynamicIteration" ordered="false" lowerBound="1" eType="#//CompleteIteration">
+      <eParameters name="staticOperation" ordered="false" lowerBound="1" eType="#//CompleteIteration"/>
+    </eOperations>
+    <eOperations name="getDynamicOperation" ordered="false" lowerBound="1" eType="#//CompleteOperation">
+      <eParameters name="staticOperation" ordered="false" lowerBound="1" eType="#//CompleteOperation"/>
+    </eOperations>
+    <eOperations name="getCompleteIterations" ordered="false" upperBound="-1" eType="#//CompleteIteration">
+      <eParameters name="name" ordered="false" lowerBound="1" eType="#//String"/>
+    </eOperations>
+    <eOperations name="getCompleteOperations" ordered="false" upperBound="-1" eType="#//CompleteOperation">
+      <eParameters name="name" ordered="false" lowerBound="1" eType="#//String"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="model" ordered="false"
+        lowerBound="1" eType="#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completeEnvironment" ordered="false"
+        lowerBound="1" eType="#//CompleteEnvironment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completeOperation" ordered="false"
+        upperBound="-1" eType="#//CompleteOperation" changeable="false" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completeProperty" ordered="false"
+        upperBound="-1" eType="#//CompleteProperty" changeable="false" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completeSuperType" ordered="false"
+        upperBound="-1" eType="#//CompleteType" changeable="false" volatile="true"
+        derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Constraint" eSuperTypes="#//NamedElement">
+    <eOperations name="not_apply_to_self" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="value_specification_boolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constrainedElement" upperBound="-1"
+        eType="#//Element"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="specification" ordered="false"
+        lowerBound="1" eType="#//ValueSpecification" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" ordered="false"
+        eType="#//NamedElement"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stereotype" ordered="false"
+        eType="#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//Class">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isSerializable" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Detail" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true" eSuperTypes="#//Visitable">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedComment" ordered="false"
+        upperBound="-1" eType="#//Comment" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EnumLiteralExp" eSuperTypes="#//LiteralExp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredEnumLiteral" ordered="false"
+        eType="#//EnumerationLiteral"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Enumeration" eSuperTypes="#//DataType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedLiteral" upperBound="-1"
+        eType="#//EnumerationLiteral" containment="true" eOpposite="#//EnumerationLiteral/enumeration"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EnumerationLiteral" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enumeration" ordered="false"
+        eType="#//Enumeration" eOpposite="#//Enumeration/ownedLiteral"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
+        eType="#//Integer" defaultValueLiteral="0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExpressionInOcl" eSuperTypes="#//OpaqueExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bodyExpression" ordered="false"
+        lowerBound="1" eType="#//OclExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contextVariable" ordered="false"
+        eType="#//Variable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resultVariable" ordered="false"
+        eType="#//Variable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameterVariable" upperBound="-1"
+        eType="#//Variable" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Feature" abstract="true" eSuperTypes="#//TypedMultiplicityElement #//NamedElement">
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EAttribute" name="isStatic" ordered="false" lowerBound="1"
+          eType="#//Boolean">
+        <eAnnotations source="redefines" references="#//NamedElement/isStatic"/>
+      </contents>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementationClass" ordered="false"
+        eType="#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementation" ordered="false"
+        eType="#//CallableImplementation" transient="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="featuringClass" ordered="false"
+        eType="#//Class" changeable="false" volatile="true" transient="true" derived="true"
+        resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureCallExp" abstract="true" eSuperTypes="#//CallExp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPre" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IfExp" eSuperTypes="#//OclExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" ordered="false"
+        lowerBound="1" eType="#//OclExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="thenExpression" ordered="false"
+        lowerBound="1" eType="#//OclExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elseExpression" ordered="false"
+        lowerBound="1" eType="#//OclExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntegerLiteralExp" eSuperTypes="#//NumericLiteralExp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="integerSymbol" ordered="false"
+        lowerBound="1" eType="#//Integer"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InvalidLiteralExp" eSuperTypes="#//LiteralExp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="object" ordered="false"
+        eType="#//Object"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" ordered="false"
+        eType="#//OclExpression"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reason" ordered="false"
+        eType="#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="throwable" ordered="false"
+        eType="#//Throwable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InvalidType" eSuperTypes="#//Class"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IterateExp" eSuperTypes="#//LoopExp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="result" eType="#//Variable"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Iteration" eSuperTypes="#//Operation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedIterator" ordered="false"
+        upperBound="-1" eType="#//Parameter" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAccumulator" ordered="false"
+        upperBound="-1" eType="#//Parameter" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IteratorExp" eSuperTypes="#//LoopExp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LetExp" eSuperTypes="#//OclExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="in" ordered="false" lowerBound="1"
+        eType="#//OclExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" ordered="false"
+        lowerBound="1" eType="#//Variable" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Library" eSuperTypes="#//Package"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LiteralExp" abstract="true" eSuperTypes="#//OclExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LoopExp" abstract="true" eSuperTypes="#//CallExp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" ordered="false" lowerBound="1"
+        eType="#//OclExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="iterator" upperBound="-1"
+        eType="#//Variable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredIteration" ordered="false"
+        eType="#//Iteration"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MessageExp" eSuperTypes="#//OclExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+        lowerBound="1" eType="#//OclExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="argument" ordered="false"
+        upperBound="-1" eType="#//OclExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="calledOperation" ordered="false"
+        eType="#//CallOperationAction" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sentSignal" ordered="false"
+        eType="#//SendSignalAction" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MessageType" eSuperTypes="#//Type">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredSignal" ordered="false"
+        eType="#//Signal"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredOperation" ordered="false"
+        eType="#//Operation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MonikeredElement" abstract="true" eSuperTypes="#//Element">
+    <eOperations name="hasMoniker" ordered="false" lowerBound="1" eType="#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="moniker" ordered="false"
+        lowerBound="1" eType="#//String" volatile="true" transient="true" derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MultiplicityElement" abstract="true"
+      eSuperTypes="#//MonikeredElement">
+    <eOperations name="lower_ge_0" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="upper_ge_lower" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="lowerBound" ordered="false" lowerBound="1" eType="#//Integer"/>
+    <eOperations name="upperBound" ordered="false" lowerBound="1" eType="#//UnlimitedNatural"/>
+    <eOperations name="isMultivalued" ordered="false" lowerBound="1" eType="#//Boolean"/>
+    <eOperations name="includesCardinality" ordered="false" lowerBound="1" eType="#//Boolean">
+      <eParameters name="C" ordered="false" lowerBound="1" eType="#//Integer"/>
+    </eOperations>
+    <eOperations name="includesMultiplicity" ordered="false" lowerBound="1" eType="#//Boolean">
+      <eParameters name="M" ordered="false" lowerBound="1" eType="#//MultiplicityElement"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isOrdered" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isUnique" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lower" ordered="false"
+        eType="#//Integer" defaultValueLiteral="1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upper" ordered="false"
+        eType="#//UnlimitedNatural" defaultValueLiteral="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Nameable" instanceClassName="org.eclipse.ocl.examples.pivot.util.Nameable"
+      abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="#//MonikeredElement #//Nameable">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" eType="#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRule" ordered="false"
+        upperBound="-1" eType="#//Constraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStatic" ordered="false"
+        lowerBound="1" eType="#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAnnotation" upperBound="-1"
+        eType="#//Annotation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Namespace" abstract="true" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NavigationCallExp" abstract="true" eSuperTypes="#//FeatureCallExp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="qualifier" upperBound="-1"
+        eType="#//OclExpression"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="navigationSource" eType="#//Property"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NullLiteralExp" eSuperTypes="#//PrimitiveLiteralExp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NumericLiteralExp" abstract="true" eSuperTypes="#//PrimitiveLiteralExp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OclExpression" eSuperTypes="#//TypedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OpaqueExpression" eSuperTypes="#//ValueSpecification">
+    <eOperations name="language_body_size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" unique="false" upperBound="-1"
+        eType="#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" upperBound="-1"
+        eType="#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//TypedElement #//Feature #//MultiplicityElement #//Namespace #//ParameterableElement #//TemplateableElement">
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EReference" name="templateParameter" ordered="false"
+          eType="#//TemplateParameter" eOpposite="#//OperationTemplateParameter/%duplicates%/parameteredElement">
+        <eAnnotations source="redefines" references="#//ParameterableElement/templateParameter"/>
+      </contents>
+    </eAnnotations>
+    <eOperations name="testConstraint" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="raisedException" ordered="false"
+        upperBound="-1" eType="#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedParameter" upperBound="-1"
+        eType="#//Parameter" containment="true" eOpposite="#//Parameter/operation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="precedence" ordered="false"
+        eType="#//Precedence"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="class" ordered="false"
+        eType="#//Class" eOpposite="#//Class/ownedOperation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationCallExp" eSuperTypes="#//FeatureCallExp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="argument" upperBound="-1"
+        eType="#//OclExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredOperation" ordered="false"
+        eType="#//Operation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationTemplateParameter" eSuperTypes="#//TemplateParameter">
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EReference" name="parameteredElement" ordered="false"
+          lowerBound="1" eType="#//ParameterableElement" eOpposite="#//Operation/%duplicates%/templateParameter">
+        <eAnnotations source="redefines" references="#//TemplateParameter/parameteredElement"/>
+      </contents>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OrderedSetType" eSuperTypes="#//CollectionType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Package" eSuperTypes="#//Namespace #//TemplateableElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nestedPackage" ordered="false"
+        upperBound="-1" eType="#//Package" containment="true" eOpposite="#//Package/nestingPackage"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nestingPackage" ordered="false"
+        eType="#//Package" eOpposite="#//Package/nestedPackage"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nsPrefix" ordered="false"
+        eType="#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nsURI" ordered="false"
+        eType="#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPrecedence" upperBound="-1"
+        eType="#//Precedence" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" ordered="false"
+        upperBound="-1" eType="#//Type" containment="true" eOpposite="#//Type/package"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PackageableElement" abstract="true"
+      eSuperTypes="#//ParameterableElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Parameter" eSuperTypes="#//TypedMultiplicityElement #//VariableDeclaration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operation" ordered="false"
+        eType="#//Operation" eOpposite="#//Operation/ownedParameter"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ParameterableElement" abstract="true"
+      eSuperTypes="#//MonikeredElement">
+    <eOperations name="isTemplateParameter" ordered="false" lowerBound="1" eType="#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningTemplateParameter"
+        ordered="false" eType="#//TemplateParameter" eOpposite="#//TemplateParameter/ownedParameteredElement">
+      <eAnnotations source="subsets" references="#//ParameterableElement/templateParameter"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="templateParameter" ordered="false"
+        eType="#//TemplateParameter" eOpposite="#//TemplateParameter/parameteredElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Pivotable" instanceClassName="org.eclipse.ocl.examples.pivot.util.Pivotable"
+      abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Precedence" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="associativity" ordered="false"
+        eType="#//AssociativityKind" defaultValueLiteral="Left"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="order" ordered="false"
+        lowerBound="1" eType="#//Integer" volatile="true" derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveLiteralExp" abstract="true"
+      eSuperTypes="#//LiteralExp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveType" eSuperTypes="#//DataType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Property" eSuperTypes="#//TypedElement #//Feature #//MultiplicityElement #//ParameterableElement">
+    <eOperations name="binding_to_attribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isReadOnly" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="default" ordered="false"
+        eType="#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isComposite" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDerived" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="opposite" ordered="false"
+        eType="#//Property"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="association" ordered="false"
+        eType="#//AssociationClass" eOpposite="#//AssociationClass/unownedAttribute"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isID" ordered="false" lowerBound="1"
+        eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="keys" ordered="false" upperBound="-1"
+        eType="#//Property"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isResolveProxies" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isTransient" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isUnsettable" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isVolatile" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="class" ordered="false"
+        eType="#//Class" eOpposite="#//Class/ownedAttribute"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyCallExp" eSuperTypes="#//NavigationCallExp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredProperty" ordered="false"
+        eType="#//Property"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RealLiteralExp" eSuperTypes="#//NumericLiteralExp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="realSymbol" ordered="false"
+        lowerBound="1" eType="#//Real"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SendSignalAction" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="signal" ordered="false"
+        lowerBound="1" eType="#//Signal"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SequenceType" eSuperTypes="#//CollectionType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SetType" eSuperTypes="#//CollectionType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Signal" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="State" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StateExp" eSuperTypes="#//OclExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredState" ordered="false"
+        eType="#//State"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StringLiteralExp" eSuperTypes="#//PrimitiveLiteralExp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stringSymbol" ordered="false"
+        lowerBound="1" eType="#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TemplateBinding" eSuperTypes="#//Element">
+    <eOperations name="parameter_substitution_formal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="one_parameter_substitution" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="signature" ordered="false"
+        lowerBound="1" eType="#//TemplateSignature"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameterSubstitution"
+        ordered="false" upperBound="-1" eType="#//TemplateParameterSubstitution" containment="true"
+        eOpposite="#//TemplateParameterSubstitution/templateBinding"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boundElement" ordered="false"
+        lowerBound="1" eType="#//TemplateableElement" eOpposite="#//TemplateableElement/templateBinding"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TemplateParameter" eSuperTypes="#//Element">
+    <eOperations name="must_be_compatible" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="signature" ordered="false"
+        lowerBound="1" eType="#//TemplateSignature" eOpposite="#//TemplateSignature/ownedParameter"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameteredElement" ordered="false"
+        lowerBound="1" eType="#//ParameterableElement" eOpposite="#//ParameterableElement/templateParameter"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedParameteredElement"
+        ordered="false" eType="#//ParameterableElement" containment="true" eOpposite="#//ParameterableElement/owningTemplateParameter">
+      <eAnnotations source="subsets" references="#//TemplateParameter/parameteredElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="default" ordered="false"
+        eType="#//ParameterableElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedDefault" ordered="false"
+        eType="#//ParameterableElement" containment="true">
+      <eAnnotations source="subsets" references="#//TemplateParameter/default"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TemplateParameterSubstitution" eSuperTypes="#//Element">
+    <eOperations name="must_be_compatible" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="formal" ordered="false"
+        lowerBound="1" eType="#//TemplateParameter"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actual" ordered="false"
+        lowerBound="1" eType="#//ParameterableElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedActual" ordered="false"
+        eType="#//ParameterableElement" containment="true">
+      <eAnnotations source="subsets" references="#//TemplateParameterSubstitution/actual"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="templateBinding" ordered="false"
+        lowerBound="1" eType="#//TemplateBinding" eOpposite="#//TemplateBinding/parameterSubstitution"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TemplateParameterType" eSuperTypes="#//Type">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="specification" ordered="false"
+        eType="#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TemplateSignature" eSuperTypes="#//MonikeredElement">
+    <eOperations name="own_elements" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" lowerBound="1"
+        upperBound="-1" eType="#//TemplateParameter"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedParameter" upperBound="-1"
+        eType="#//TemplateParameter" containment="true" eOpposite="#//TemplateParameter/signature">
+      <eAnnotations source="subsets" references="#//TemplateSignature/parameter"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="template" ordered="false"
+        lowerBound="1" eType="#//TemplateableElement" eOpposite="#//TemplateableElement/ownedTemplateSignature"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TemplateableElement" abstract="true"
+      eSuperTypes="#//MonikeredElement">
+    <eOperations name="parameterableElements" ordered="false" upperBound="-1" eType="#//ParameterableElement"/>
+    <eOperations name="isTemplate" ordered="false" lowerBound="1" eType="#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="templateBinding" ordered="false"
+        upperBound="-1" eType="#//TemplateBinding" containment="true" eOpposite="#//TemplateBinding/boundElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTemplateSignature"
+        ordered="false" eType="#//TemplateSignature" containment="true" eOpposite="#//TemplateSignature/template"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TupleLiteralExp" eSuperTypes="#//LiteralExp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="part" upperBound="-1" eType="#//TupleLiteralPart"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TupleLiteralPart" eSuperTypes="#//VariableDeclaration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initExpression" ordered="false"
+        eType="#//OclExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TupleType" eSuperTypes="#//DataType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Type" eSuperTypes="#//NamedElement #//ParameterableElement #//TemplateableElement">
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EOperation" name="isTemplate" ordered="false" lowerBound="1"
+          eType="#//Boolean">
+        <eAnnotations source="redefines" references="#//TemplateableElement/isTemplate"/>
+      </contents>
+      <contents xsi:type="ecore:EReference" name="templateParameter" ordered="false"
+          eType="#//TemplateParameter" eOpposite="#//TypeTemplateParameter/%duplicates%/parameteredElement">
+        <eAnnotations source="redefines" references="#//ParameterableElement/templateParameter"/>
+      </contents>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="package" ordered="false"
+        eType="#//Package" eOpposite="#//Package/ownedType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="instanceClassName" ordered="false"
+        eType="#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeExp" eSuperTypes="#//OclExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredType" ordered="false"
+        eType="#//Type"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeTemplateParameter" eSuperTypes="#//TemplateParameter">
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EReference" name="parameteredElement" ordered="false"
+          lowerBound="1" eType="#//ParameterableElement" eOpposite="#//Type/%duplicates%/templateParameter">
+        <eAnnotations source="redefines" references="#//TemplateParameter/parameteredElement"/>
+      </contents>
+    </eAnnotations>
+    <eOperations name="has_constraining_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowSubstitutable" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constrainingType" ordered="false"
+        upperBound="-1" eType="#//Type"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypedElement" abstract="true" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" eType="#//Type"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypedMultiplicityElement" abstract="true"
+      eSuperTypes="#//TypedElement #//MultiplicityElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UnlimitedNaturalLiteralExp" eSuperTypes="#//NumericLiteralExp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unlimitedNaturalSymbol"
+        ordered="false" lowerBound="1" eType="#//UnlimitedNatural"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnspecifiedValueExp" eSuperTypes="#//OclExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ValueSpecification" abstract="true"
+      eSuperTypes="#//TypedElement #//ParameterableElement">
+    <eOperations name="isComputable" ordered="false" lowerBound="1" eType="#//Boolean"/>
+    <eOperations name="integerValue" ordered="false" lowerBound="1" eType="#//Integer"/>
+    <eOperations name="booleanValue" ordered="false" lowerBound="1" eType="#//Boolean"/>
+    <eOperations name="stringValue" ordered="false" lowerBound="1" eType="#//String"/>
+    <eOperations name="unlimitedValue" ordered="false" lowerBound="1" eType="#//UnlimitedNatural"/>
+    <eOperations name="isNull" ordered="false" lowerBound="1" eType="#//Boolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="#//VariableDeclaration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initExpression" ordered="false"
+        eType="#//OclExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="representedParameter" ordered="false"
+        eType="#//Parameter"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="implicit" ordered="false"
+        eType="#//Boolean" defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VariableDeclaration" abstract="true"
+      eSuperTypes="#//TypedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="VariableExp" eSuperTypes="#//OclExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredVariable" ordered="false"
+        eType="#//VariableDeclaration"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="implicit" ordered="false"
+        eType="#//Boolean" defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Visitable" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitable"
+      abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Visitor" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitor"
+      abstract="true" interface="true">
+    <eTypeParameters name="R"/>
+    <eTypeParameters name="C"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VoidType" eSuperTypes="#//Class"/>
+</ecore:EPackage>

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessagesTest.java,v 1.7 2009/11/28 17:50:50 ewillink Exp $
+ * $Id: MessagesTest.java,v 1.8 2011/01/25 10:43:36 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;

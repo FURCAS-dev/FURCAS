@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cmof:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cmof="http://schema.omg.org/spec/MOF/2.0/cmof.xml" xsi:schemaLocation="http://schema.omg.org/spec/MOF/2.0/cmof.xml http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_0" name="OCL">
+  <ownedMember xmi:type="cmof:Package" xmi:id="_LrtloIquEd-VzsYvPRGeYg" name="OCL_Associations">
+    <ownedMember xmi:type="cmof:Class" xmi:id="_RAQocIquEd-VzsYvPRGeYg" name="Class"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_RlTPMIquEd-VzsYvPRGeYg" name="AssociationClass" superClass="_RAQocIquEd-VzsYvPRGeYg">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_o58aYIquEd-VzsYvPRGeYg" name="unownedAttribute" type="_c2jhAIquEd-VzsYvPRGeYg" upper="*" lower="0" association="_xpoHUIquEd-VzsYvPRGeYg"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_c2jhAIquEd-VzsYvPRGeYg" name="Property">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_gtXagIquEd-VzsYvPRGeYg" name="association" type="_RlTPMIquEd-VzsYvPRGeYg" lower="0" association="_xpoHUIquEd-VzsYvPRGeYg"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Association" xmi:id="_xpoHUIquEd-VzsYvPRGeYg" name="A_associationClass_property" memberEnd="_o58aYIquEd-VzsYvPRGeYg _gtXagIquEd-VzsYvPRGeYg"/>
+  </ownedMember>
+  <ownedMember xmi:type="cmof:Package" xmi:id="Actions-CompleteActions" name="OCL_Classes">
+    <ownedMember xmi:type="cmof:Class" xmi:id="_v7rW4JL1Ed-tR9a-2UcrVA" name="Class"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_xU8P4JL1Ed-tR9a-2UcrVA" name="DataType" superClass="_v7rW4JL1Ed-tR9a-2UcrVA"/>
+  </ownedMember>
+  <ownedMember xmi:type="cmof:Package" xmi:id="_lHK24IqvEd-VzsYvPRGeYg" name="OCL_Complete">
+    <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_-n1zgM-1Ed-OX-Zde0V6vA" name="Boolean"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_-Nn98IqvEd-VzsYvPRGeYg" name="Class"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_fA_IcBuOEeCzDcYDg75xng" name="Iteration"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_hKbfEIqwEd-VzsYvPRGeYg" name="Operation"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_g9fPQIqwEd-VzsYvPRGeYg" name="Package"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_c1Vs4M-2Ed-OX-Zde0V6vA" name="Parameter"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_nRGiYIqwEd-VzsYvPRGeYg" name="Property"/>
+    <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_oNdWgM_IEd-OX-Zde0V6vA" name="String"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_Epoe8BcUEeCy29xYjPtQ5g" name="Type" isAbstract="true"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_Le_Q4IqxEd-VzsYvPRGeYg" name="CompleteEnvironment" superClass="_g9fPQIqwEd-VzsYvPRGeYg">
+      <ownedOperation xmi:type="cmof:Operation" xmi:id="_DMf4YBuPEeCzDcYDg75xng" name="getCompleteIteration" class="_Le_Q4IqxEd-VzsYvPRGeYg" isQuery="true">
+        <ownedParameter xmi:type="cmof:Parameter" xmi:id="_DMf4YRuPEeCzDcYDg75xng" type="_k5FkQBuOEeCzDcYDg75xng" direction="return"/>
+        <ownedParameter xmi:type="cmof:Parameter" xmi:id="_DMf4YhuPEeCzDcYDg75xng" name="model" type="_fA_IcBuOEeCzDcYDg75xng"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="cmof:Operation" xmi:id="_Gt4c4IqyEd-VzsYvPRGeYg" name="getCompleteOperation" class="_Le_Q4IqxEd-VzsYvPRGeYg" isQuery="true">
+        <ownedParameter xmi:type="cmof:Parameter" xmi:id="_Gt4c4YqyEd-VzsYvPRGeYg" type="_hKbfEYqwEd-VzsYvPRGeYg" direction="return"/>
+        <ownedParameter xmi:type="cmof:Parameter" xmi:id="_Gt4c4oqyEd-VzsYvPRGeYg" name="model" type="_hKbfEIqwEd-VzsYvPRGeYg"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="cmof:Operation" xmi:id="_G-sgEIqyEd-VzsYvPRGeYg" name="getCompletePackage" class="_Le_Q4IqxEd-VzsYvPRGeYg" isQuery="true">
+        <ownedParameter xmi:type="cmof:Parameter" xmi:id="_G-sgEYqyEd-VzsYvPRGeYg" type="_g9fPQYqwEd-VzsYvPRGeYg" direction="return"/>
+        <ownedParameter xmi:type="cmof:Parameter" xmi:id="_G-sgEoqyEd-VzsYvPRGeYg" name="model" type="_g9fPQIqwEd-VzsYvPRGeYg"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="cmof:Operation" xmi:id="_IR2xEIqyEd-VzsYvPRGeYg" name="getCompleteProperty" class="_Le_Q4IqxEd-VzsYvPRGeYg" isQuery="true">
+        <ownedParameter xmi:type="cmof:Parameter" xmi:id="_IR2xEYqyEd-VzsYvPRGeYg" type="_nRGiYYqwEd-VzsYvPRGeYg" direction="return"/>
+        <ownedParameter xmi:type="cmof:Parameter" xmi:id="_IR2xEoqyEd-VzsYvPRGeYg" name="model" type="_nRGiYIqwEd-VzsYvPRGeYg"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="cmof:Operation" xmi:id="_yilvIBcVEeCy29xYjPtQ5g" name="getCompleteType" class="_Le_Q4IqxEd-VzsYvPRGeYg" isQuery="true">
+        <ownedParameter xmi:type="cmof:Parameter" xmi:id="_yilvIRcVEeCy29xYjPtQ5g" type="_siNFEIqvEd-VzsYvPRGeYg" direction="return"/>
+        <ownedParameter xmi:type="cmof:Parameter" xmi:id="_yilvIhcVEeCy29xYjPtQ5g" name="model" type="_Epoe8BcUEeCy29xYjPtQ5g"/>
+      </ownedOperation>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_k5FkQBuOEeCzDcYDg75xng" name="CompleteIteration" superClass="_fA_IcBuOEeCzDcYDg75xng">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_k5FkQhuOEeCzDcYDg75xng" name="model" type="_fA_IcBuOEeCzDcYDg75xng"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_k5FkQxuOEeCzDcYDg75xng" name="completeEnvironment" type="_Le_Q4IqxEd-VzsYvPRGeYg"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_k5FkRBuOEeCzDcYDg75xng" name="completeIterator" type="_c1Vs4M-2Ed-OX-Zde0V6vA" upper="*" lower="0" isReadOnly="true" isDerived="true"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_0mf4UBuOEeCzDcYDg75xng" name="completeAccumulator" type="_c1Vs4M-2Ed-OX-Zde0V6vA" upper="*" lower="0" isReadOnly="true" isDerived="true"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_00LvABuOEeCzDcYDg75xng" name="completeParameter" type="_c1Vs4M-2Ed-OX-Zde0V6vA" upper="*" lower="0" isReadOnly="true" isDerived="true"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_hKbfEYqwEd-VzsYvPRGeYg" name="CompleteOperation" superClass="_hKbfEIqwEd-VzsYvPRGeYg">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_eyaCUIqxEd-VzsYvPRGeYg" name="model" type="_hKbfEIqwEd-VzsYvPRGeYg"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_NPPAsM90Ed-OX-Zde0V6vA" name="completeEnvironment" type="_Le_Q4IqxEd-VzsYvPRGeYg"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_amq14M-2Ed-OX-Zde0V6vA" name="completeParameter" type="_c1Vs4M-2Ed-OX-Zde0V6vA" upper="*" lower="0" isReadOnly="true" isDerived="true"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_g9fPQYqwEd-VzsYvPRGeYg" name="CompletePackage" superClass="_g9fPQIqwEd-VzsYvPRGeYg">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_e-c6QIqxEd-VzsYvPRGeYg" name="model" type="_g9fPQIqwEd-VzsYvPRGeYg"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_EihvQM90Ed-OX-Zde0V6vA" name="completeEnvironment" type="_Le_Q4IqxEd-VzsYvPRGeYg"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_0Nq0kIqyEd-VzsYvPRGeYg" name="completeType" type="_siNFEIqvEd-VzsYvPRGeYg" upper="*" lower="0" isReadOnly="true" isDerived="true"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_bLlfcM93Ed-OX-Zde0V6vA" name="completePackage" type="_g9fPQYqwEd-VzsYvPRGeYg" upper="*" lower="0" isReadOnly="true" isDerived="true"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_nRGiYYqwEd-VzsYvPRGeYg" name="CompleteProperty" superClass="_nRGiYIqwEd-VzsYvPRGeYg">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_UZr7AIqxEd-VzsYvPRGeYg" name="model" type="_nRGiYIqwEd-VzsYvPRGeYg"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_Mrh2sM90Ed-OX-Zde0V6vA" name="completeEnvironment" type="_Le_Q4IqxEd-VzsYvPRGeYg"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_siNFEIqvEd-VzsYvPRGeYg" name="CompleteType" superClass="_-Nn98IqvEd-VzsYvPRGeYg">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_fKDtUIqxEd-VzsYvPRGeYg" name="model" type="_Epoe8BcUEeCy29xYjPtQ5g"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_N_cVoM90Ed-OX-Zde0V6vA" name="completeEnvironment" type="_Le_Q4IqxEd-VzsYvPRGeYg"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_tVAToIqyEd-VzsYvPRGeYg" name="completeOperation" type="_hKbfEYqwEd-VzsYvPRGeYg" upper="*" lower="0" isReadOnly="true" isDerived="true"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_fRhKwIqyEd-VzsYvPRGeYg" name="completeProperty" type="_nRGiYYqwEd-VzsYvPRGeYg" upper="*" lower="0" isReadOnly="true" isDerived="true"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_GhvGkM93Ed-OX-Zde0V6vA" name="completeSuperType" type="_siNFEIqvEd-VzsYvPRGeYg" upper="*" lower="0" isReadOnly="true" isDerived="true"/>
+      <ownedOperation xmi:type="cmof:Operation" xmi:id="_sHDDwM-zEd-OX-Zde0V6vA" name="conformsTo" class="_siNFEIqvEd-VzsYvPRGeYg">
+        <ownedParameter xmi:type="cmof:Parameter" xmi:id="_we5NwM-zEd-OX-Zde0V6vA" name="" type="_-n1zgM-1Ed-OX-Zde0V6vA" direction="return"/>
+        <ownedParameter xmi:type="cmof:Parameter" xmi:id="_ysE3AM-zEd-OX-Zde0V6vA" name="aType" type="_siNFEIqvEd-VzsYvPRGeYg"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="cmof:Operation" xmi:id="_BIMo4BuQEeCzDcYDg75xng" name="getDynamicIteration" class="_siNFEIqvEd-VzsYvPRGeYg">
+        <ownedParameter xmi:type="cmof:Parameter" xmi:id="_BIMo4RuQEeCzDcYDg75xng" type="_k5FkQBuOEeCzDcYDg75xng" direction="return"/>
+        <ownedParameter xmi:type="cmof:Parameter" xmi:id="_BIMo4huQEeCzDcYDg75xng" name="staticOperation" type="_k5FkQBuOEeCzDcYDg75xng"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="cmof:Operation" xmi:id="_7ux0UM-4Ed-OX-Zde0V6vA" name="getDynamicOperation" class="_siNFEIqvEd-VzsYvPRGeYg">
+        <ownedParameter xmi:type="cmof:Parameter" xmi:id="_7ux0Uc-4Ed-OX-Zde0V6vA" type="_hKbfEYqwEd-VzsYvPRGeYg" direction="return"/>
+        <ownedParameter xmi:type="cmof:Parameter" xmi:id="_7ux0Us-4Ed-OX-Zde0V6vA" name="staticOperation" type="_hKbfEYqwEd-VzsYvPRGeYg"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="cmof:Operation" xmi:id="_P1sQsBuTEeCzDcYDg75xng" name="getCompleteIterations" class="_siNFEIqvEd-VzsYvPRGeYg">
+        <ownedParameter xmi:type="cmof:Parameter" xmi:id="_P1sQsRuTEeCzDcYDg75xng" type="_k5FkQBuOEeCzDcYDg75xng" upper="*" lower="0" direction="return"/>
+        <ownedParameter xmi:type="cmof:Parameter" xmi:id="_P1sQtBuTEeCzDcYDg75xng" name="name" type="_oNdWgM_IEd-OX-Zde0V6vA"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="cmof:Operation" xmi:id="_h7ebEM_IEd-OX-Zde0V6vA" name="getCompleteOperations" class="_siNFEIqvEd-VzsYvPRGeYg">
+        <ownedParameter xmi:type="cmof:Parameter" xmi:id="_h7ebEc_IEd-OX-Zde0V6vA" type="_hKbfEYqwEd-VzsYvPRGeYg" upper="*" lower="0" direction="return"/>
+        <ownedParameter xmi:type="cmof:Parameter" xmi:id="_h7ebEs_IEd-OX-Zde0V6vA" name="name" type="_oNdWgM_IEd-OX-Zde0V6vA"/>
+      </ownedOperation>
+    </ownedMember>
+  </ownedMember>
+  <ownedMember xmi:type="cmof:Package" xmi:id="_ym0uQK5vEd-xTJkHwX_SlQ" name="OCL_Constraints">
+    <ownedMember xmi:type="cmof:Class" xmi:id="_1blU4K5vEd-xTJkHwX_SlQ" name="Constraint">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_3fiwsK5vEd-xTJkHwX_SlQ" name="stereotype" type="_DhJhYK5wEd-xTJkHwX_SlQ" lower="0"/>
+    </ownedMember>
+  </ownedMember>
+  <ownedMember xmi:type="cmof:Package" xmi:id="_IPg0EIgHEd-aGOJuUCcZBA" name="OCL_Expressions">
+    <packageImport xmi:type="cmof:PackageImport" xmi:id="_hOWSkIqsEd-VzsYvPRGeYg" importingNamespace="_IPg0EIgHEd-aGOJuUCcZBA">
+      <importedPackage xmi:type="cmof:Package" href="Infrastructure.cmof#Core-Basic"/>
+    </packageImport>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0EYgHEd-aGOJuUCcZBA" name="BooleanLiteralExp" superClass="_IPg0YIgHEd-aGOJuUCcZBA">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0E4gHEd-aGOJuUCcZBA" name="booleanSymbol">
+        <type xmi:type="cmof:PrimitiveType" href="Infrastructure.cmof#Core-PrimitiveTypes-Boolean"/>
+      </ownedAttribute>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0FIgHEd-aGOJuUCcZBA" name="CallExp" isAbstract="true" superClass="_IPg0HogHEd-aGOJuUCcZBA">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0FogHEd-aGOJuUCcZBA" name="source" type="_IPg0HogHEd-aGOJuUCcZBA" lower="0" isComposite="true"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_NeZKMBCzEeCEnIH7sNgTvg" name="implicit" lower="0" default="false">
+        <type xmi:type="cmof:PrimitiveType" href="Infrastructure.cmof#Core-PrimitiveTypes-Boolean"/>
+      </ownedAttribute>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Enumeration" xmi:id="_IPg0GIgHEd-aGOJuUCcZBA" name="CollectionKind">
+      <ownedLiteral xmi:type="cmof:EnumerationLiteral" xmi:id="_IPg0GYgHEd-aGOJuUCcZBA" name="Collection" enumeration="_IPg0GIgHEd-aGOJuUCcZBA"/>
+      <ownedLiteral xmi:type="cmof:EnumerationLiteral" xmi:id="_IPg0GogHEd-aGOJuUCcZBA" name="Set" enumeration="_IPg0GIgHEd-aGOJuUCcZBA"/>
+      <ownedLiteral xmi:type="cmof:EnumerationLiteral" xmi:id="_IPg0G4gHEd-aGOJuUCcZBA" name="OrderedSet" enumeration="_IPg0GIgHEd-aGOJuUCcZBA"/>
+      <ownedLiteral xmi:type="cmof:EnumerationLiteral" xmi:id="_IPg0HIgHEd-aGOJuUCcZBA" name="Bag" enumeration="_IPg0GIgHEd-aGOJuUCcZBA"/>
+      <ownedLiteral xmi:type="cmof:EnumerationLiteral" xmi:id="_IPg0HYgHEd-aGOJuUCcZBA" name="Sequence" enumeration="_IPg0GIgHEd-aGOJuUCcZBA"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0HogHEd-aGOJuUCcZBA" name="OclExpression" isAbstract="true">
+      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-TypedElement"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0IIgHEd-aGOJuUCcZBA" name="UnlimitedNaturalLiteralExp" superClass="_IPg0YogHEd-aGOJuUCcZBA">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0IogHEd-aGOJuUCcZBA" name="unlimitedNaturalSymbol">
+        <type xmi:type="cmof:PrimitiveType" href="Infrastructure.cmof#Core-PrimitiveTypes-UnlimitedNatural"/>
+      </ownedAttribute>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0I4gHEd-aGOJuUCcZBA" name="EnumLiteralExp" superClass="_IPg0WogHEd-aGOJuUCcZBA">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0JYgHEd-aGOJuUCcZBA" name="referredEnumLiteral" lower="0">
+        <type xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-EnumerationLiteral"/>
+      </ownedAttribute>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0J4gHEd-aGOJuUCcZBA" name="IfExp" superClass="_IPg0HogHEd-aGOJuUCcZBA">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0KYgHEd-aGOJuUCcZBA" name="condition" type="_IPg0HogHEd-aGOJuUCcZBA" isComposite="true"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0KogHEd-aGOJuUCcZBA" name="thenExpression" type="_IPg0HogHEd-aGOJuUCcZBA" isComposite="true"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0K4gHEd-aGOJuUCcZBA" name="elseExpression" type="_IPg0HogHEd-aGOJuUCcZBA" isComposite="true"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0LIgHEd-aGOJuUCcZBA" name="LetExp" superClass="_IPg0HogHEd-aGOJuUCcZBA">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0LogHEd-aGOJuUCcZBA" name="in" type="_IPg0HogHEd-aGOJuUCcZBA" isComposite="true"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0L4gHEd-aGOJuUCcZBA" name="variable" type="_IPg0MIgHEd-aGOJuUCcZBA" isComposite="true"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0MIgHEd-aGOJuUCcZBA" name="Variable">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0MogHEd-aGOJuUCcZBA" name="initExpression" type="_IPg0HogHEd-aGOJuUCcZBA" lower="0" isComposite="true"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0NIgHEd-aGOJuUCcZBA" name="representedParameter" lower="0">
+        <type xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Parameter"/>
+      </ownedAttribute>
+      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-TypedElement"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0NogHEd-aGOJuUCcZBA" name="PropertyCallExp" superClass="_IPg0jYgHEd-aGOJuUCcZBA">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0OIgHEd-aGOJuUCcZBA" name="referredProperty" lower="0">
+        <type xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Property"/>
+      </ownedAttribute>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0OogHEd-aGOJuUCcZBA" name="VariableExp" superClass="_IPg0HogHEd-aGOJuUCcZBA">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0PIgHEd-aGOJuUCcZBA" name="referredVariable" type="_TVwKEMoxEd-ZL8lMORCEkg" lower="0"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0PogHEd-aGOJuUCcZBA" name="TypeExp" superClass="_IPg0HogHEd-aGOJuUCcZBA">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0QIgHEd-aGOJuUCcZBA" name="referredType" lower="0">
+        <type xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Type"/>
+      </ownedAttribute>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0QogHEd-aGOJuUCcZBA" name="LoopExp" isAbstract="true" superClass="_IPg0FIgHEd-aGOJuUCcZBA">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0RIgHEd-aGOJuUCcZBA" name="body" type="_IPg0HogHEd-aGOJuUCcZBA" isComposite="true"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0RYgHEd-aGOJuUCcZBA" name="iterator" type="_IPg0MIgHEd-aGOJuUCcZBA" isOrdered="true" upper="*" lower="0" isComposite="true"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_oS89YAblEeC3-uphdlDm-Q" name="referredIteration" type="_oWAYwAbiEeC3-uphdlDm-Q" lower="0"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0SogHEd-aGOJuUCcZBA" name="StringLiteralExp" superClass="_IPg0YIgHEd-aGOJuUCcZBA">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0TIgHEd-aGOJuUCcZBA" name="stringSymbol">
+        <type xmi:type="cmof:PrimitiveType" href="Infrastructure.cmof#Core-PrimitiveTypes-String"/>
+      </ownedAttribute>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0TYgHEd-aGOJuUCcZBA" name="IntegerLiteralExp" superClass="_IPg0YogHEd-aGOJuUCcZBA">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0T4gHEd-aGOJuUCcZBA" name="integerSymbol">
+        <type xmi:type="cmof:PrimitiveType" href="Infrastructure.cmof#Core-PrimitiveTypes-Integer"/>
+      </ownedAttribute>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0UIgHEd-aGOJuUCcZBA" name="OperationCallExp" superClass="_IPg0h4gHEd-aGOJuUCcZBA">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0UogHEd-aGOJuUCcZBA" name="argument" type="_IPg0HogHEd-aGOJuUCcZBA" isOrdered="true" upper="*" lower="0" isComposite="true"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0VYgHEd-aGOJuUCcZBA" name="referredOperation" lower="0">
+        <type xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Operation"/>
+      </ownedAttribute>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0V4gHEd-aGOJuUCcZBA" name="RealLiteralExp" superClass="_IPg0YogHEd-aGOJuUCcZBA">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0WYgHEd-aGOJuUCcZBA" name="realSymbol" type="_-CEyEIqrEd-VzsYvPRGeYg"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0WogHEd-aGOJuUCcZBA" name="LiteralExp" isAbstract="true" superClass="_IPg0HogHEd-aGOJuUCcZBA"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0YIgHEd-aGOJuUCcZBA" name="PrimitiveLiteralExp" isAbstract="true" superClass="_IPg0WogHEd-aGOJuUCcZBA"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0YogHEd-aGOJuUCcZBA" name="NumericLiteralExp" isAbstract="true" superClass="_IPg0YIgHEd-aGOJuUCcZBA"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0ZIgHEd-aGOJuUCcZBA" name="CollectionLiteralExp" superClass="_IPg0WogHEd-aGOJuUCcZBA">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0ZogHEd-aGOJuUCcZBA" name="kind" type="_IPg0GIgHEd-aGOJuUCcZBA"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0Z4gHEd-aGOJuUCcZBA" name="part" type="_IPg0aogHEd-aGOJuUCcZBA" isOrdered="true" upper="*" lower="0" isComposite="true"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0aogHEd-aGOJuUCcZBA" name="CollectionLiteralPart" isAbstract="true">
+      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-TypedElement"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0bIgHEd-aGOJuUCcZBA" name="CollectionItem" superClass="_IPg0aogHEd-aGOJuUCcZBA">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0bogHEd-aGOJuUCcZBA" name="item" type="_IPg0HogHEd-aGOJuUCcZBA" isComposite="true"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0b4gHEd-aGOJuUCcZBA" name="CollectionRange" superClass="_IPg0aogHEd-aGOJuUCcZBA">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0cYgHEd-aGOJuUCcZBA" name="first" type="_IPg0HogHEd-aGOJuUCcZBA" isComposite="true"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0cogHEd-aGOJuUCcZBA" name="last" type="_IPg0HogHEd-aGOJuUCcZBA" isComposite="true"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0c4gHEd-aGOJuUCcZBA" name="TupleLiteralExp" superClass="_IPg0WogHEd-aGOJuUCcZBA">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0dYgHEd-aGOJuUCcZBA" name="part" type="_IPg0iYgHEd-aGOJuUCcZBA" isOrdered="true" upper="*" lower="0" isComposite="true"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0eIgHEd-aGOJuUCcZBA" name="NullLiteralExp" superClass="_IPg0YIgHEd-aGOJuUCcZBA"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0eogHEd-aGOJuUCcZBA" name="ExpressionInOcl" superClass="_IPg0hIgHEd-aGOJuUCcZBA">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0fIgHEd-aGOJuUCcZBA" name="bodyExpression" type="_IPg0HogHEd-aGOJuUCcZBA" isComposite="true"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0fYgHEd-aGOJuUCcZBA" name="contextVariable" type="_IPg0MIgHEd-aGOJuUCcZBA" lower="0" isComposite="true"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0f4gHEd-aGOJuUCcZBA" name="resultVariable" type="_IPg0MIgHEd-aGOJuUCcZBA" lower="0" isComposite="true"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0gYgHEd-aGOJuUCcZBA" name="parameterVariable" type="_IPg0MIgHEd-aGOJuUCcZBA" isOrdered="true" upper="*" lower="0" isComposite="true"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0hIgHEd-aGOJuUCcZBA" name="OpaqueExpression"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0hYgHEd-aGOJuUCcZBA" name="InvalidLiteralExp" superClass="_IPg0WogHEd-aGOJuUCcZBA"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0h4gHEd-aGOJuUCcZBA" name="FeatureCallExp" isAbstract="true" superClass="_IPg0FIgHEd-aGOJuUCcZBA">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_NHRtAM_AEd-OX-Zde0V6vA" name="isPre" default="false">
+        <type xmi:type="cmof:PrimitiveType" href="Infrastructure.cmof#Core-PrimitiveTypes-Boolean"/>
+      </ownedAttribute>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0iYgHEd-aGOJuUCcZBA" name="TupleLiteralPart">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_sMi9wBpwEeCdGdHzUz2ZBw" name="initExpression" type="_IPg0HogHEd-aGOJuUCcZBA" lower="0" isComposite="true"/>
+      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-TypedElement"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0jYgHEd-aGOJuUCcZBA" name="NavigationCallExp" isAbstract="true" superClass="_IPg0h4gHEd-aGOJuUCcZBA">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0j4gHEd-aGOJuUCcZBA" name="qualifier" type="_IPg0HogHEd-aGOJuUCcZBA" isOrdered="true" upper="*" lower="0"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0kogHEd-aGOJuUCcZBA" name="navigationSource" isOrdered="true" lower="0">
+        <type xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Property"/>
+      </ownedAttribute>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0lIgHEd-aGOJuUCcZBA" name="AssociationClassCallExp" superClass="_IPg0jYgHEd-aGOJuUCcZBA">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0logHEd-aGOJuUCcZBA" name="referredAssociationClass" type="_RlTPMIquEd-VzsYvPRGeYg" lower="0"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0mIgHEd-aGOJuUCcZBA" name="MessageExp" superClass="_IPg0HogHEd-aGOJuUCcZBA">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_zDb70MgYEd-sJIf4tYBt-g" name="target" type="_IPg0HogHEd-aGOJuUCcZBA" isComposite="true"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_Bh2GIMgZEd-sJIf4tYBt-g" name="argument" type="_IPg0HogHEd-aGOJuUCcZBA" upper="*" lower="0" isComposite="true"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_9T9wcMgYEd-sJIf4tYBt-g" name="calledOperation" type="_k-CR8MgZEd-sJIf4tYBt-g" lower="0" isComposite="true"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_r5FYgMgZEd-sJIf4tYBt-g" name="sentSignal" type="_gYqCQMgZEd-sJIf4tYBt-g" lower="0" isComposite="true"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0mogHEd-aGOJuUCcZBA" name="UnspecifiedValueExp" superClass="_IPg0HogHEd-aGOJuUCcZBA"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0nIgHEd-aGOJuUCcZBA" name="StateExp" superClass="_IPg0HogHEd-aGOJuUCcZBA">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_IPg0nogHEd-aGOJuUCcZBA" name="referredState" type="_gA7RoIq2Ed-VzsYvPRGeYg" lower="0"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_k-CR8MgZEd-sJIf4tYBt-g" name="CallOperationAction"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_gYqCQMgZEd-sJIf4tYBt-g" name="SendSignalAction"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_TVwKEMoxEd-ZL8lMORCEkg" name="VariableDeclaration" isAbstract="true"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_tvEdQAbkEeC3-uphdlDm-Q" name="IterateExp" superClass="_IPg0QogHEd-aGOJuUCcZBA">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_8Y2KEAbkEeC3-uphdlDm-Q" name="result" type="_IPg0MIgHEd-aGOJuUCcZBA" isOrdered="true" lower="0" isComposite="true"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_1X7sEAbkEeC3-uphdlDm-Q" name="IteratorExp" superClass="_IPg0QogHEd-aGOJuUCcZBA"/>
+  </ownedMember>
+  <ownedMember xmi:type="cmof:Package" xmi:id="_rMVQYI9nEd-UToJjGuajxg" name="OCL_Library">
+    <ownedMember xmi:type="cmof:Class" xmi:id="_oWAYwAbiEeC3-uphdlDm-Q" name="Iteration" superClass="_l0ihkAbiEeC3-uphdlDm-Q">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_QH8c0AbjEeC3-uphdlDm-Q" name="ownedIterator" type="_2vcHMI9nEd-UToJjGuajxg" upper="*" lower="0" isComposite="true"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_-o2IsAbiEeC3-uphdlDm-Q" name="ownedAccumulator" type="_2vcHMI9nEd-UToJjGuajxg" upper="*" lower="0" isComposite="true"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_Moz7QBGeEeCsy5gumoi3HA" name="Library" superClass="_PSf6UBGeEeCsy5gumoi3HA"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_l0ihkAbiEeC3-uphdlDm-Q" name="Operation"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_PSf6UBGeEeCsy5gumoi3HA" name="Package"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_2vcHMI9nEd-UToJjGuajxg" name="Parameter"/>
+  </ownedMember>
+  <ownedMember xmi:type="cmof:Package" xmi:id="_tASF0IgKEd-aGOJuUCcZBA" name="OCL_PrimitiveTypes">
+    <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_Hcolt4gHEd-aGOJuUCcZBA" name="Boolean"/>
+    <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_GZVPcK5wEd-xTJkHwX_SlQ" name="Integer"/>
+    <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_-CEyEIqrEd-VzsYvPRGeYg" name="Real"/>
+    <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_DhJhYK5wEd-xTJkHwX_SlQ" name="String"/>
+    <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_E8feAK5wEd-xTJkHwX_SlQ" name="UnlimitedNatural"/>
+  </ownedMember>
+  <ownedMember xmi:type="cmof:Package" xmi:id="_HcoloIgHEd-aGOJuUCcZBA" name="OCL_Types">
+    <packageImport xmi:type="cmof:PackageImport" xmi:id="_GgusIIgJEd-aGOJuUCcZBA" importingNamespace="_HcoloIgHEd-aGOJuUCcZBA">
+      <importedPackage xmi:type="cmof:Package" href="Infrastructure.cmof#Core-Basic"/>
+    </packageImport>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_HcoltogHEd-aGOJuUCcZBA" name="AnyType">
+      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Class"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_HcoloYgHEd-aGOJuUCcZBA" name="BagType" superClass="_Hcolo4gHEd-aGOJuUCcZBA"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_Hcolo4gHEd-aGOJuUCcZBA" name="CollectionType">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_HcolpYgHEd-aGOJuUCcZBA" name="elementType">
+        <type xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Type"/>
+      </ownedAttribute>
+      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-DataType"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_HcolsIgHEd-aGOJuUCcZBA" name="InvalidType">
+      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Class"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_HcoluIgHEd-aGOJuUCcZBA" name="MessageType">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_HcoluogHEd-aGOJuUCcZBA" name="referredSignal" type="_ASveEIq1Ed-VzsYvPRGeYg" lower="0"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_HcolvIgHEd-aGOJuUCcZBA" name="referredOperation" lower="0">
+        <type xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Operation"/>
+      </ownedAttribute>
+      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Type"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_HcolrogHEd-aGOJuUCcZBA" name="OrderedSetType" superClass="_Hcolo4gHEd-aGOJuUCcZBA"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_HcolrIgHEd-aGOJuUCcZBA" name="SequenceType" superClass="_Hcolo4gHEd-aGOJuUCcZBA"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_HcolqogHEd-aGOJuUCcZBA" name="SetType" superClass="_Hcolo4gHEd-aGOJuUCcZBA"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_ASveEIq1Ed-VzsYvPRGeYg" name="Signal">
+      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-NamedElement"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_gA7RoIq2Ed-VzsYvPRGeYg" name="State">
+      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-NamedElement"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_HcolsogHEd-aGOJuUCcZBA" name="TemplateParameterType">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_HcoltIgHEd-aGOJuUCcZBA" name="specification" lower="0">
+        <type xmi:type="cmof:PrimitiveType" href="Infrastructure.cmof#Core-PrimitiveTypes-String"/>
+      </ownedAttribute>
+      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Type"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_HcolqIgHEd-aGOJuUCcZBA" name="TupleType">
+      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-DataType"/>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_HcolpogHEd-aGOJuUCcZBA" name="VoidType">
+      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Class"/>
+    </ownedMember>
+  </ownedMember>
+  <ownedMember xmi:type="cmof:Package" xmi:id="_ad68EMowEd-ZL8lMORCEkg" name="OCL_Variables">
+    <ownedMember xmi:type="cmof:Class" xmi:id="_c2jnYMowEd-ZL8lMORCEkg" name="Parameter" superClass="_eqwI4MowEd-ZL8lMORCEkg"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_wKgBEBpwEeCdGdHzUz2ZBw" name="TupleLiteralPart" superClass="_eqwI4MowEd-ZL8lMORCEkg"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_ejKTIMowEd-ZL8lMORCEkg" name="TypedElement" isAbstract="true"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_eqwI4MowEd-ZL8lMORCEkg" name="VariableDeclaration" isAbstract="true" superClass="_ejKTIMowEd-ZL8lMORCEkg"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_ez0lUMowEd-ZL8lMORCEkg" name="Variable" superClass="_eqwI4MowEd-ZL8lMORCEkg">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_UYM6oBCzEeCEnIH7sNgTvg" name="implicit" lower="0" default="false">
+        <type xmi:type="cmof:PrimitiveType" href="Infrastructure.cmof#Core-PrimitiveTypes-Boolean"/>
+      </ownedAttribute>
+    </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_v8SVEBwUEeCzDcYDg75xng" name="VariableExp">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_v8SVEhwUEeCzDcYDg75xng" name="implicit" lower="0" default="false">
+        <type xmi:type="cmof:PrimitiveType" href="Infrastructure.cmof#Core-PrimitiveTypes-Boolean"/>
+      </ownedAttribute>
+    </ownedMember>
+  </ownedMember>
+</cmof:Package>

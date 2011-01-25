@@ -1,0 +1,478 @@
+[comment encoding = UTF-8 /]
+[module generateVisitors('http://www.eclipse.org/emf/2002/Ecore')/]
+
+[query firstSuperClass(eClass : EClass, nullClass : EClass) : EClass =
+if eClass.eSuperTypes->isEmpty()
+then nullClass
+else let eSuperClass : EClass = eClass.eSuperTypes->at(1)
+  in if eSuperClass.interface then firstSuperClass(eSuperClass, nullClass) else eSuperClass endif
+endif
+/]
+
+[comment
+***********************************************************************************************************
+AbstractDelegatingVisitor
+***********************************************************************************************************
+/]
+[template public generateAbstractDelegatingVisitor(pkg : EPackage, visitorPackage : String, modelPackage : String, visitorClass : String, visitorBasePackage : String, visitorBaseClass : String, visitableClass : String, sourceFile : String)]
+	extends [visitorBasePackage/].AbstractDelegating[visitorBaseClass/]<R, C, D>
+[let isDerived : Boolean = visitorBasePackage.size() > 0]
+[file ('AbstractDelegating' + visitorClass + '.java', false, 'UTF-8')]
+[pkg.generateHeader(visitorPackage, sourceFile)/]
+
+/**
+ * An AbstractDelegating[visitorClass/] delegates all visits.
+ */
+public abstract class AbstractDelegating[visitorClass/]<R, C, D extends [visitorClass/]<R, C>>
+	extends [if (isDerived)][visitorBasePackage/].AbstractDelegating[visitorBaseClass/]<R, C, D>[else][visitorBaseClass/]<R, C>[/if]
+	implements [visitorClass/]<R, C>
+{
+[if (isDerived)]
+    protected AbstractDelegating[visitorClass/](D delegate, C context) {
+        super(delegate, context);
+    }
+[else]
+    protected final D delegate;
+    
+    protected AbstractDelegating[visitorClass/](D delegate, C context) {
+    	super(context);
+        assert delegate != null : "cannot decorate a null visitor"; //$NON-NLS-1$        
+        this.delegate = delegate;        
+//        delegate.setUndecoratedVisitor(this);
+    }
+
+    /**
+     * Delegates to my decorated visitor.
+     */
+//	public Decorable[visitorClass/]<R, C> createNestedVisitor() {
+//        return delegate.createNestedVisitor();
+//	}
+  
+    /**
+     * Obtains the visitor that I decorate.
+     * 
+     * @return my decorated visitor
+     */
+    protected final D getDelegate() {
+        return delegate;
+    }
+[/if]
+
+[if (isDerived)]
+	@Override
+[/if]
+	public R visiting([visitableClass/] visitable) {
+		return delegate.visiting(visitable);
+	}
+[for (eClass : EClass | pkg.eClassifiers->filter(EClass)->select(not interface)->sortedBy(name))]
+
+	public R visit[eClass.name/]([modelPackage/].[eClass.name/] object) {
+		return delegate.visit[eClass.name/](object);
+	}
+[/for]
+}
+[/file]
+[/let]
+[/template]
+
+[comment
+***********************************************************************************************************
+AbstractDelegatingVisitor
+***********************************************************************************************************
+/]
+[template public generateAbstractExtendingDelegatingVisitor(pkg : EPackage, visitorPackage : String, modelPackage : String, visitorClass : String, visitorBasePackage : String, visitorBaseClass : String, visitableClass : String, sourceFile : String)]
+	extends [visitorBasePackage/].AbstractExtendingDelegating[visitorBaseClass/]<R, C, D>
+[file ('AbstractExtendingDelegating' + visitorClass + '.java', false, 'UTF-8')]
+[pkg.generateHeader(visitorPackage, sourceFile)/]
+
+import [visitorBasePackage/].AbstractDelegating[visitorBaseClass/];
+import [visitorBasePackage/].[visitorBaseClass/];
+
+/**
+ * An AbstractExtendingDelegating[visitorClass/] delegates all visits.
+ */
+public abstract class AbstractExtendingDelegating[visitorClass/]<R, C, D extends [visitorBaseClass/]<R, C>>
+	extends AbstractDelegating[visitorBaseClass/]<R, C, D>
+	implements [visitorClass/]<R, C>
+{
+[if (true)]
+    protected AbstractExtendingDelegating[visitorClass/](D delegate, C context) {
+        super(delegate, context);
+    }
+[else]
+    protected final D delegate;
+    
+    protected AbstractExtendingDelegating[visitorClass/](D delegate, C context) {
+    	super(context);
+        assert delegate != null : "cannot decorate a null visitor"; //$NON-NLS-1$        
+        this.delegate = delegate;        
+//        delegate.setUndecoratedVisitor(this);
+    }
+
+    /**
+     * Delegates to my decorated visitor.
+     */
+//	public Decorable[visitorClass/]<R, C> createNestedVisitor() {
+//        return delegate.createNestedVisitor();
+//	}
+  
+    /**
+     * Obtains the visitor that I decorate.
+     * 
+     * @return my decorated visitor
+     */
+    protected final D getDelegate() {
+        return delegate;
+    }
+[/if]
+
+	@Override
+	public R visiting([visitableClass/] visitable) {
+		return delegate.visiting(visitable);
+	}
+[for (eClass : EClass | pkg.eClassifiers->filter(EClass)->select(not interface)->sortedBy(name))]
+[let firstSuperClass : EClass = eClass.firstSuperClass(eClass)]
+
+	public R visit[eClass.name/]([modelPackage/].[eClass.name/] object) {
+[if (firstSuperClass = eClass)]
+		return visiting(object);
+[elseif (firstSuperClass.ePackage = eClass.ePackage)]
+		return visit[firstSuperClass.name/](object);
+[else]
+		return delegate.visit[firstSuperClass.name/](object);
+[/if]
+	}
+[/let]
+[/for]
+}
+[/file]
+[/template]
+
+[comment
+***********************************************************************************************************
+AbstractExtendingVisitor
+***********************************************************************************************************
+/]
+[template public generateAbstractExtendingVisitor(pkg : EPackage, visitorPackage : String, modelPackage : String, visitorClass : String, visitorBaseClassPath : String, sourceFile : String)]
+[file ('AbstractExtending' + visitorClass + '.java', false, 'UTF-8')]
+[pkg.generateHeader(visitorPackage, sourceFile)/]
+
+/**
+ * An AbstractExtending[visitorClass/] provides a default implementation for each
+ * visitXxx method that delegates to the visitYyy method of the first
+ * super class, (or transitively its first super class first super class
+ * until a non-interface super-class is found). In the absence of any
+ * suitable first super class, the method delegates to visiting().
+ */
+public abstract class AbstractExtending[visitorClass/]<R, C>
+	extends [visitorBaseClassPath/]<R, C>
+	implements [visitorClass/]<R, C>
+{
+	/**
+	 * Initializes me with an initial value for my result.
+	 * 
+	 * @param context my initial result value
+	 */
+	protected AbstractExtending[visitorClass/](C context) {
+	    super(context);
+	}	
+[for (eClass : EClass | pkg.eClassifiers->filter(EClass)->select(not interface)->sortedBy(name))]
+[let firstSuperClass : EClass = eClass.firstSuperClass(eClass)]
+
+	public R visit[eClass.name/]([modelPackage/].[eClass.name/] object) {
+[if (firstSuperClass = eClass)]
+		return visiting(object);
+[else]
+		return visit[firstSuperClass.name/](object);
+[/if]
+	}
+[/let]
+[/for]
+}
+[/file]
+[/template]
+
+[template public generateAbstractMonitorVisitor(pkg : EPackage, visitorPackage : String, modelPackage : String, extendsVisitorClass : String, visitorBaseClassPath : String, sourceFile : String)]
+[file (extendsVisitorClass + '.java', false, 'UTF-8')]
+[pkg.generateHeader(visitorPackage, sourceFile)/]
+
+/**
+ * An [extendsVisitorClass/] provides a default implementation for each
+ * visitXxx method that delegates to the visitYyy method of the first
+ * super class, (or transitively its first super class first super class
+ * until a non-interface super-class is found). In the absence of any
+ * suitable first super class, the merthod delegates to visiting().
+ */
+public abstract class [extendsVisitorClass/] extends [visitorBaseClassPath/]
+{
+	/**
+	 * Initializes me with an initial value for my result.
+	 * 
+	 * @param context my initial result value
+	 */
+	protected [extendsVisitorClass/](org.eclipse.ocl.examples.xtext.base.utilities.CS2Moniker cs2Moniker) {
+	    super(cs2Moniker);
+	}	
+[for (eClass : EClass | pkg.eClassifiers->filter(EClass)->select(not interface)->sortedBy(name))]
+[let firstSuperClass : EClass = eClass.firstSuperClass(eClass)]
+
+	public Object visit[eClass.name/]([modelPackage/].[eClass.name/] object) {
+[if (firstSuperClass = eClass)]
+		return visiting(object);
+[else]
+		return visit[firstSuperClass.name/](object);
+[/if]
+	}
+[/let]
+[/for]
+}
+[/file]
+[/template]
+
+[comment
+***********************************************************************************************************
+AbstractNullVisitor
+***********************************************************************************************************
+/]
+[template public generateAbstractNullVisitor(pkg : EPackage, visitorPackage : String, modelPackage : String, visitorClass : String, sourceFile : String)]
+[file ('AbstractNull' + visitorClass + '.java', false, 'UTF-8')]
+[pkg.generateHeader(visitorPackage, sourceFile)/]
+
+/**
+ * An AbstractNull[visitorClass/] provides a default implementation for each
+ * visitXxx method that returns null.
+ */
+public abstract class AbstractNull[visitorClass/]<R, C>
+	extends Abstract[visitorClass/]<R, C>
+{
+	/**
+	 * Initializes me with an initial value for my result.
+	 * 
+	 * @param context my initial result value
+	 */
+	protected AbstractNull[visitorClass/](C context) {
+	    super(context);
+	}	
+[for (eClass : EClass | pkg.eClassifiers->filter(EClass)->select(not interface)->sortedBy(name))]
+
+	public R visit[eClass.name/]([modelPackage/].[eClass.name/] object) {
+		return null;
+	}
+[/for]
+}
+[/file]
+[/template]
+
+[comment
+***********************************************************************************************************
+AbstractVisitor
+***********************************************************************************************************
+/]
+[template public generateAbstractVisitor(pkg : EPackage, visitorPackage : String, visitorClass : String, visitableClass : String, sourceFile : String)]
+[file ('Abstract' + visitorClass + '.java', false, 'UTF-8')]
+[pkg.generateHeader(visitorPackage, sourceFile)/]
+
+/**
+ */
+public abstract class Abstract[visitorClass/]<R, C> implements [visitorClass/]<R, C>
+{    
+    /**
+     * Context for the AST visitation.
+     */
+    protected final C context;
+	
+	/**
+	 * Initializes me with an initial value for my result.
+	 * 
+	 * @param context my initial result value
+	 */
+	protected Abstract[visitorClass/](C context) {
+	    this.context = context;
+	}
+
+	@SuppressWarnings("unchecked")
+	public <A> A getAdapter(Class<A> adapter) {
+		if (adapter.isAssignableFrom(getClass())) {
+			return (A) this;
+		}
+		else {
+			return null;
+		}
+	}
+	
+	/**
+	 * A null-safe visitation of the specified visitable.
+	 * 
+	 * @param v a visitable, or <code>null</code>
+	 * @return <code>null</code> if the visitable is <code>null</code>;
+	 *     otherwise, the result of visiting it
+	 */
+	public R safeVisit([visitableClass/] v) {
+		return (v == null) ? null : v.accept(this);
+	}
+	
+	/**
+	 * Perform a visit to the specified visitable.
+	 * 
+	 * @param v a visitable, or <code>null</code>
+	 * @return <code>null</code> if the visitable is <code>null</code>;
+	 *     otherwise, the result of visiting it
+	 */
+	public R visit([visitableClass/] v) {
+		return v.accept(this);
+	}
+
+//	public R visiting([visitableClass/] visitable) {
+//		return null;
+//	}
+}
+[/file]
+[/template]
+
+[comment
+***********************************************************************************************************
+DecorableVisitorInterface
+***********************************************************************************************************
+/]
+[template public generateDecorableVisitorInterface(pkg : EPackage, visitorPackage : String, visitorClass : String, visitorBasePackage : String, visitorBaseClass : String, visitorRootClass : String, sourceFile : String)]
+[file ('Decorable' + visitorClass + '.java', false, 'UTF-8')]
+[pkg.generateHeader(visitorPackage, sourceFile)/]
+
+/**
+ */
+public interface Decorable[visitorClass/]<R, C> extends [visitorClass/]<R, C>[if (visitorBaseClass.size() > 0)], [visitorBasePackage/].Decorable[visitorBaseClass/]<R, C>[/if]
+{
+//	Decorable[visitorClass/]<R, C> createNestedVisitor();
+	void setUndecoratedVisitor([visitorRootClass/]<R, C> visitor);
+}
+[/file]
+[/template]
+
+[template public generateDerivedAbstractVisitor(pkg : EPackage, visitorPackage : String, visitorClass : String, visitorBasePackage : String, visitorBaseClass : String, visitableClass : String, sourceFile : String)]
+[file ('Abstract' + visitorClass + '.java', false, 'UTF-8')]
+[pkg.generateHeader(visitorPackage, sourceFile)/]
+
+/**
+ */
+public abstract class Abstract[visitorClass/]<R, C>
+[if (visitorBaseClass.size() > 0)] extends [visitorBasePackage/].Abstract[visitorBaseClass/]<R, C>[/if]
+	implements [visitorClass/]<R, C>
+{
+	/**
+	 * Initializes me with an initial value for my result.
+	 * 
+	 * @param context my initial result value
+	 */
+	protected Abstract[visitorClass/](C context) {
+	    super(context);
+	}
+}
+[/file]
+[/template]
+
+[template public generateDerivedVisitorInterface(pkg : EPackage, visitorPackage : String, modelPackage : String, visitorClass : String, visitorBasePackage : String, visitorBaseClass : String, sourceFile : String)]
+[file (visitorClass + '.java', false, 'UTF-8')]
+[pkg.generateHeader(visitorPackage, sourceFile)/]
+
+/**
+ */
+public interface [visitorClass/]<R, C>[if (visitorBaseClass.size() > 0)] extends [visitorBasePackage/].[visitorBaseClass/]<R, C>[/if]
+{
+[for (eClass : EClass | pkg.eClassifiers->filter(EClass)->select(not interface)->sortedBy(name))]
+	R visit[eClass.name/]([modelPackage/].[eClass.name/] object);
+[/for]
+}
+[/file]
+[/template]
+
+[template public generateHeader(pkg : EPackage, visitorPackage : String, sourceFile : String)]
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2010 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ *
+ * This code is auto-generated
+ * from: [sourceFile/]
+ * by: org.eclipse.ocl.examples.build.acceleo.GenerateVisitor
+ * defined by: org.eclipse.ocl.examples.build.acceleo.generateVisitors.mtl
+ * invoked by: org.eclipse.ocl.examples.build.utilities.*
+ * from: org.eclipse.ocl.examples.build.*.mwe2
+ *
+ * Do not edit it.
+ *
+ * ['$' + 'I' + 'd' + '$'/]
+ */
+package	[visitorPackage/].util;
+[/template]
+
+[template public generateVisitableInterface(pkg : EPackage, visitorPackage : String, visitableClass : String, visitorClass : String, sourceFile : String)]
+[file (visitableClass + '.java', false, 'UTF-8')]
+[pkg.generateHeader(visitorPackage, sourceFile)/]
+
+import org.eclipse.emf.ecore.EClass;
+
+public interface [visitableClass/]
+{
+	/**
+	 * Returns the result of accepting a visit from a visitor.
+	 * Implementations typically invoke a derived-class-specific
+	 * variant of visitXXX() to facilitate derived-class-specific
+	 * processing or just visit() when no such method is available.
+	 * <p>
+	 * Implementations of visit() may use the EcoreSwitch to perform
+	 * derived-class-specific processing.
+	 * <p>
+	 * Derived implementations of accept() may use getAdapter() to obtain
+	 * richer visitor interfaces.
+	 * @param <R, C>
+	 * @param visitor
+	 * @return the result of the visit.
+	 */
+	<R, C> R accept([visitorClass/]<R, C> visitor);
+	
+	EClass eClass();
+}
+[/file]
+[/template]
+
+[template public generateVisitorInterface(pkg : EPackage, visitorPackage : String, modelPackage : String, visitorClass : String, visitableClass : String, sourceFile : String)]
+[file (visitorClass + '.java', false, 'UTF-8')]
+[pkg.generateHeader(visitorPackage, sourceFile)/]
+
+/**
+ */
+public interface [visitorClass/]<R, C>
+{
+	/**
+	 * Returns an object which is an instance of the given class
+	 * associated with this object. Returns <code>null</code> if
+	 * no such object can be found.
+	 *
+	 * @param adapter the adapter class to look up
+	 * @return an object of the given class, 
+	 *    or <code>null</code> if this object does not
+	 *    have an adapter for the given class
+	 */
+	<A> A getAdapter(Class<A> adapter);
+
+	/**
+     * Return the result of visiting a visitable for which no more specific pivot type method
+     * is available.
+     */
+	R visiting([visitableClass/] visitable);
+	
+[for (eClass : EClass | pkg.eClassifiers->filter(EClass)->select(not interface)->sortedBy(name))]
+	R visit[eClass.name/]([modelPackage/].[eClass.name/] object);
+[/for]
+}
+[/file]
+[/template]
