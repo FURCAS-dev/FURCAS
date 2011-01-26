@@ -57,29 +57,30 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.ocl.examples.parser.unresolved" version="3.0.0" match="compatible"/>
       <import plugin="org.eclipse.ocl.examples.parser" version="3.0.0" match="compatible"/>
       <import plugin="org.eclipse.emf.ecore" version="2.6.0" match="compatible"/>
-      <import plugin="org.eclipse.xtext.util" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.xtext" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="org.apache.log4j"/>
-      <import plugin="org.eclipse.xtext.ui" version="1.0.0" match="compatible"/>
-      <import plugin="org.eclipse.xtext.ui.shared" version="1.0.0" match="compatible"/>
-      <import plugin="org.eclipse.ui.editors" version="3.6.0" match="compatible"/>
-      <import plugin="org.eclipse.xtext.builder" version="1.0.0" match="compatible"/>
-      <import plugin="org.eclipse.ui" version="3.6.0" match="compatible"/>
-      <import plugin="org.eclipse.ui.ide" version="3.6.0" match="compatible"/>
-      <import plugin="org.eclipse.jdt.core"/>
       <import plugin="org.eclipse.ocl.examples.xtext.base" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.xtext.util"/>
       <import plugin="org.antlr.runtime"/>
+      <import plugin="org.eclipse.xtext"/>
       <import plugin="org.eclipse.emf.common"/>
       <import plugin="org.eclipse.core.runtime" version="3.6.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.xtext.common.types" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.apache.log4j"/>
       <import plugin="org.eclipse.ocl.examples.xtext.completeocl" version="3.0.0" match="compatible"/>
       <import plugin="org.eclipse.ocl.examples.xtext.oclinecore.ui" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.xtext.ui"/>
+      <import plugin="org.eclipse.xtext.ui.shared"/>
+      <import plugin="org.eclipse.ui.editors"/>
+      <import plugin="org.eclipse.xtext.builder"/>
       <import plugin="org.eclipse.ocl.examples.xtext.essentialocl" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.ui" version="3.6.0" match="compatible"/>
+      <import plugin="org.eclipse.ui.editors" version="3.6.0" match="compatible"/>
+      <import plugin="org.eclipse.ui.ide" version="3.6.0" match="compatible"/>
       <import plugin="org.eclipse.xtext.builder" version="2.0.0" match="compatible"/>
       <import plugin="org.eclipse.xtext.ui" version="2.0.0" match="compatible"/>
       <import plugin="org.eclipse.xtext.ui.shared" version="2.0.0" match="compatible"/>
       <import plugin="org.eclipse.ocl.examples.xtext.essentialocl.ui" version="3.0.0" match="compatible"/>
       <import plugin="org.eclipse.ocl.examples.xtext.oclinecore" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.jdt.core"/>
       <import plugin="org.eclipse.core.expressions"/>
       <import plugin="org.eclipse.xtext" version="2.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ocl.examples.xtext.oclstdlib" version="3.0.0" match="compatible"/>
