@@ -11,7 +11,7 @@
    </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
-      Copyright (c) 2005-2010 IBM Corporation and others.
+      Copyright (c) 2005-2011 IBM Corporation and others.
 All rights reserved.   This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -57,23 +57,37 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.ocl.examples.parser.unresolved" version="3.0.0" match="compatible"/>
       <import plugin="org.eclipse.ocl.examples.parser" version="3.0.0" match="compatible"/>
       <import plugin="org.eclipse.emf.ecore" version="2.6.0" match="compatible"/>
-      <import plugin="org.eclipse.xtext" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.xtext.util" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.xtend" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.xtend.typesystem.emf" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="org.apache.commons.lang" version="2.4.0" match="greaterOrEqual"/>
-      <import plugin="org.apache.commons.logging" version="1.1.1" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.mwe.core" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="org.apache.ant" version="1.7.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.xtext" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.apache.log4j"/>
-      <import plugin="org.eclipse.ui" version="3.6.0" match="compatible"/>
-      <import plugin="org.eclipse.ui.editors" version="3.6.0" match="compatible"/>
-      <import plugin="org.eclipse.ui.ide" version="3.6.0" match="compatible"/>
-      <import plugin="org.eclipse.xtext.builder" version="1.0.0" match="compatible"/>
       <import plugin="org.eclipse.xtext.ui" version="1.0.0" match="compatible"/>
       <import plugin="org.eclipse.xtext.ui.shared" version="1.0.0" match="compatible"/>
-      <import plugin="org.eclipse.ocl.examples.common" version="3.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.editors" version="3.6.0" match="compatible"/>
+      <import plugin="org.eclipse.xtext.builder" version="1.0.0" match="compatible"/>
+      <import plugin="org.eclipse.ui" version="3.6.0" match="compatible"/>
+      <import plugin="org.eclipse.ui.ide" version="3.6.0" match="compatible"/>
       <import plugin="org.eclipse.jdt.core"/>
+      <import plugin="org.eclipse.ocl.examples.xtext.base" version="3.0.0" match="compatible"/>
+      <import plugin="org.antlr.runtime"/>
+      <import plugin="org.eclipse.emf.common"/>
+      <import plugin="org.eclipse.core.runtime" version="3.6.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.xtext.common.types" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ocl.examples.xtext.completeocl" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.ocl.examples.xtext.oclinecore.ui" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.ocl.examples.xtext.essentialocl" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.xtext.builder" version="2.0.0" match="compatible"/>
+      <import plugin="org.eclipse.xtext.ui" version="2.0.0" match="compatible"/>
+      <import plugin="org.eclipse.xtext.ui.shared" version="2.0.0" match="compatible"/>
+      <import plugin="org.eclipse.ocl.examples.xtext.essentialocl.ui" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.ocl.examples.xtext.oclinecore" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.core.expressions"/>
+      <import plugin="org.eclipse.xtext" version="2.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ocl.examples.xtext.oclstdlib" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.xtext.common.types.ui"/>
+      <import plugin="org.eclipse.ocl.examples.xtext.essentialocl.ui" version="3.1.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jdt.core" version="3.6.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ocl.examples.pivot" version="3.1.0" match="compatible"/>
+      <import plugin="org.eclipse.uml2.uml" version="3.1.100" match="compatible"/>
    </requires>
 
    <plugin
