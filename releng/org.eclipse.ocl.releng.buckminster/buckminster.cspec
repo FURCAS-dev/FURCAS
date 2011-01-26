@@ -11,6 +11,8 @@
         <cs:dependency name="org.eclipse.uml2.uml.edit" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.xtext.sdk" componentType="eclipse.feature"/>
         <cs:dependency name="org.junit4" componentType="osgi.bundle"/>
+        <!-- Indirect Dependency -->
+        <cs:dependency name="org.apache.commons.logging" componentType="osgi.bundle"/>
     </cs:dependencies>
     <cs:actions>
         <cs:public name="setup.promoter" actor="ant">
