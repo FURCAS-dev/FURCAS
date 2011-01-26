@@ -55,7 +55,6 @@
 	<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="org.eclipse.ocl.examples" label="MDT/OCL examples" name="MDT/OCL examples">
 		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples" type="4"/>
 		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.interpreter" type="4"/>
-		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.build" type="4"/>
 		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.common" type="4"/>
 		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.editor.model" type="4"/>
 		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.editor.model.edit" type="4"/>
@@ -83,5 +82,8 @@
 		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.xtext.oclinecore.ui" type="4"/>
 		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.xtext.oclstdlib" type="4"/>
 		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.xtext.oclstdlib.ui" type="4"/>
+	</workingSets>
+	<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="org.eclipse.ocl.releng" label="MDT/OCL build and documentation" name="MDT/OCL build and documentation">
+		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.build" type="4"/>
 	</workingSets>
 </psf>
