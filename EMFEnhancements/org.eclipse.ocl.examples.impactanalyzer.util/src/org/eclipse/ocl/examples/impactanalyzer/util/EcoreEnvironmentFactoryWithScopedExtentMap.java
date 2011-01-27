@@ -18,8 +18,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.EvaluationEnvironment;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.ocl.ecore.opposites.EcoreEnvironmentFactoryWithHiddenOpposites;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 
@@ -32,15 +32,14 @@ import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
  * @author Axel Uhl (D043530)
  *
  */
-public class EcoreEnvironmentFactoryWithScopedExtentMap extends EcoreEnvironmentFactory {
-    private final OppositeEndFinder oppositeEndFinder;
+public class EcoreEnvironmentFactoryWithScopedExtentMap extends EcoreEnvironmentFactoryWithHiddenOpposites {
     
     /**
      * Initializes me. Environments that I create will use the global package registry to look up packages.
      * Uses the result of {@link DefaultOppositeEndFinder#getInstance()} as opposite end finder.
      */
     public EcoreEnvironmentFactoryWithScopedExtentMap() {
-        this(EPackage.Registry.INSTANCE, DefaultOppositeEndFinder.getInstance());
+        super();
     }
 
     /**
@@ -52,7 +51,7 @@ public class EcoreEnvironmentFactoryWithScopedExtentMap extends EcoreEnvironment
      *            my package registry (must not be <code>null</code>)
      */
     public EcoreEnvironmentFactoryWithScopedExtentMap(EPackage.Registry reg) {
-        this(reg, DefaultOppositeEndFinder.getInstance(reg));
+        super(reg);
     }
     
     /**
@@ -63,7 +62,7 @@ public class EcoreEnvironmentFactoryWithScopedExtentMap extends EcoreEnvironment
      * particular package registry used by your opposite end finder.
      */
     public EcoreEnvironmentFactoryWithScopedExtentMap(OppositeEndFinder oppositeEndFinder) {
-        this(EPackage.Registry.INSTANCE, oppositeEndFinder);
+        super(EPackage.Registry.INSTANCE, oppositeEndFinder);
     }
     
     /**
@@ -71,13 +70,7 @@ public class EcoreEnvironmentFactoryWithScopedExtentMap extends EcoreEnvironment
      * by the OCL environment created by this factory.
      */
     public EcoreEnvironmentFactoryWithScopedExtentMap(EPackage.Registry reg, OppositeEndFinder oppositeEndFinder) {
-        super(reg);
-        this.oppositeEndFinder = oppositeEndFinder;
-    }
-
-    @Override
-    protected OppositeEndFinder createOppositeEndFinder(Registry registry) {
-        return oppositeEndFinder;
+        super(reg, oppositeEndFinder);
     }
 
     @Override

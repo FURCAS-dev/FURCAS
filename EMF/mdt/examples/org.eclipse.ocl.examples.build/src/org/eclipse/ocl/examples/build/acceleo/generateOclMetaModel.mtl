@@ -1,0 +1,106 @@
+[comment encoding = UTF-8 /]
+[module generateOclMetaModel('http://www.eclipse.org/ocl/3.1.0/Pivot','http://www.eclipse.org/emf/2002/Ecore')/]
+[import generateOclCommon/]
+
+[template public generate(pkg : Package, javaPackage : String, javaClass : String, sourceFile : String, uri : String)]
+[comment @main /]
+[file (javaClass + '.java', false, 'UTF-8')]
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2010 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ *
+ * This code is auto-generated
+ * from: [sourceFile/]
+ * by: org.eclipse.ocl.examples.build.acceleo.GenerateOclMetaModel.java
+ * defined by: org.eclipse.ocl.examples.build.acceleo.generateOclMetaModel.mtl
+ * invoked by: org.eclipse.ocl.examples.build.utilities.OclMetaModelCodeGenerator.java
+ * from: org.eclipse.ocl.examples.build.GenerateOclMetaModel.mwe2
+ *
+ * Do not edit it.
+ *
+ * ['$' + 'I' + 'd' + '$'/]
+ */
+package	[javaPackage/];
+
+import java.math.BigInteger;
+
+import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
+import org.eclipse.ocl.examples.pivot.*;
+import org.eclipse.ocl.examples.pivot.Class;
+import org.eclipse.ocl.examples.pivot.Package;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+
+/**
+ * This is the [uri/] Pivot Model of the Pivot Model
+ * auto-generated from [sourceFile/].
+ * It facilitates efficient model loading without the overheads of model reading.
+ */
+@SuppressWarnings("nls")
+public class [javaClass/] extends XMLResourceImpl
+{
+	/**
+	 *	Create and return a pivot model of the Pivot Model.
+	 */
+	public static Package create(StandardLibrary standardLibrary)
+	{
+		Package [pkg.getSymbolName()/] = PivotFactory.eINSTANCE.createPackage(); // [pkg.moniker/]
+		[for (ownedType : Type | pkg.ownedType->sortedBy(name))]
+		[if (ownedType.name = 'Boolean')]
+		PrimitiveType [ownedType.getSymbolName()/] = standardLibrary.getBooleanType(); // [ownedType.moniker/]
+		[elseif (ownedType.name = 'Integer')]
+		PrimitiveType [ownedType.getSymbolName()/] = standardLibrary.getIntegerType(); // [ownedType.moniker/]
+		[elseif (ownedType.name = 'Real')]
+		PrimitiveType [ownedType.getSymbolName()/] = standardLibrary.getRealType(); // [ownedType.moniker/]
+		[elseif (ownedType.name = 'String')]
+		PrimitiveType [ownedType.getSymbolName()/] = standardLibrary.getStringType(); // [ownedType.moniker/]
+		[elseif (ownedType.name = 'UnlimitedNatural')]
+		PrimitiveType [ownedType.getSymbolName()/] = standardLibrary.getUnlimitedNaturalType(); // [ownedType.moniker/]
+		[else]
+		[declareType(ownedType)/]
+		[/if]
+		[/for]
+		[for (nestedPackage : Package | pkg.nestedPackage->sortedBy(name))]
+		[declarePackage(nestedPackage)/]
+		[/for]
+
+		[pkg.getSymbolName()/].setName("[pkg.name/]");
+		[if (pkg.nsPrefix <> null)]
+		[pkg.getSymbolName()/].setNsPrefix("[pkg.nsPrefix/]");
+		[/if]
+		[if (pkg.nsURI <> null)]
+		[pkg.getSymbolName()/].setNsURI("[pkg.nsURI/]");
+		[/if]
+	[for (ownedType : Type | pkg.ownedType->sortedBy(name))]
+		[if (ownedType.name = 'Boolean')]
+		[elseif (ownedType.name = 'Integer')]
+		[elseif (ownedType.name = 'Real')]
+		[elseif (ownedType.name = 'String')]
+		[elseif (ownedType.name = 'UnlimitedNatural')]
+		[else]
+		[emitType(ownedType)/]
+		[/if]
+	[/for]
+	[for (nestedPackage : Package | pkg.nestedPackage->sortedBy(name))]
+		[emitPackage(nestedPackage)/]
+	[/for]
+
+		Class elementClass = (Class) PivotUtil.getNamedElement(symbol_1.getOwnedTypes(), "Element");
+		elementClass.getSuperClasses().clear();
+		elementClass.getSuperClasses().add(standardLibrary.getClassifierType());
+		
+		return [pkg.getSymbolName()/];
+	}
+}
+[/file]
+[/template]
+

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AssociationTest.java,v 1.7 2009/11/28 17:40:10 ewillink Exp $
+ * $Id: AssociationTest.java,v 1.8 2011/01/25 10:43:36 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -610,7 +610,7 @@ public class AssociationTest
 		@Override
         public EcoreEnvironment createEnvironment(
 				Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
-			return new AssocClassFruitEnvironment(this, parent);
+			return new AssocClassFruitEnvironment(parent);
 		}
 	}
 	
@@ -622,20 +622,15 @@ public class AssociationTest
 			new java.util.ArrayList<EStructuralFeature>(2);
 		
 		public AssocClassFruitEnvironment(AssocClassFruitEnvironmentFactory factory) {
-			super(resourceSet.getPackageRegistry());
-			
-			setFactory(factory);
+			super(factory, null);
 			setContextPackage(fruitPackage);
 			
 	//		init();
 		}
 		
 		public AssocClassFruitEnvironment(
-				AssocClassFruitEnvironmentFactory factory,
 				Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
 			super(parent);
-			
-			setFactory(factory);
 			
 	//		init();
 		}

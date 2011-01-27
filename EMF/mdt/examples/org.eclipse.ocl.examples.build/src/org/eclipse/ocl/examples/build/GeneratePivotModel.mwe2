@@ -1,0 +1,94 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2010 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id: GeneratePivotModel.mwe2,v 1.2 2011/01/24 20:54:28 ewillink Exp $
+ * 
+ * Run As->MWE2 Workflow to regenerate the pivot model.
+ */
+module GeneratePivotModel
+
+import org.eclipse.ocl.examples.build.utilities.*
+import org.eclipse.emf.mwe.utils.*
+import org.eclipse.emf.mwe.utils.*
+import org.eclipse.emf.ecore.resource.impl.*
+
+var pivotSlot = "pivot"
+var projectName = "org.eclipse.ocl.examples.pivot"
+
+/**
+ *	Generate the Pivot Model, by performing the merge to create the flattened package
+ *  with additional MDT/OCL content, alphabeticsing the classes, reloading the genmodel
+ *  and finally generating the model code.
+ */
+Workflow {
+	bean = ResourceSetImpl : resourceSet {}
+    bean = StandaloneSetup { resourceSet = resourceSet
+    	platformUri = ".."
+    }
+    bean = UMLStandaloneSetup { resourceSet = resourceSet
+    	umlResourcesUri = "../org.eclipse.uml2.uml.resources"
+    	umlUri = "../org.eclipse.uml2.uml"
+    }
+    bean = UMLGenModelSetup { resourceSet = resourceSet }
+    component = ResourceReader { resourceSet = resourceSet skipOnErrors = true
+    	modelSlot = "${pivotSlot}"
+    	uri = "/${projectName}/model/Pivot.cmof"
+    }
+    component = PackageMerger { skipOnErrors = true
+    	modelSlot = "${pivotSlot}"
+    }
+    component = PackageAlphabetizer { skipOnErrors = true
+    	modelSlot = "${pivotSlot}"
+    }
+    component = ResourceWriter { skipOnErrors = true
+    	modelSlot = "${pivotSlot}"
+    	uri = "/${projectName}/model/Pivot.merged.uml"
+    }
+    component = GenmodelReloader { skipOnErrors = true
+    	genModel = "/${projectName}/model/Pivot.merged.genmodel"
+//    	modelImporter = "org.eclipse.uml2.uml.ecore.importer.UMLImporter"
+    	modelImporter = "org.eclipse.ocl.examples.build.utilities.UMLImporterWithDelegates"	
+    }
+    component = ResourceReader { resourceSet = resourceSet skipOnErrors = true
+    	modelSlot = "${pivotSlot}"
+    	uri = "/${projectName}/model/pivot.ecore"
+    }
+    component = EPackageAlphabetizer { skipOnErrors = true
+    	modelSlot = "${pivotSlot}"
+    }
+    component = PruneSuperClasses { skipOnErrors = true
+    	modelSlot = "${pivotSlot}"
+    }
+    component = OCLDelegateActivator { skipOnErrors = true
+    	modelSlot = "${pivotSlot}"
+    }
+//    component = VisitableAcceptGenerator { skipOnErrors = true
+//    	modelSlot = "${pivotSlot}"
+//    }
+    component = ResourceWriter { skipOnErrors = true
+    	modelSlot = "${pivotSlot}"
+    	uri = "/${projectName}/model/pivot.ecore"
+    }
+    component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
+    	genModel = "/${projectName}/model/Pivot.merged.genmodel"
+    }
+    component = PivotVisitorCodeGenerator { resourceSet = resourceSet
+    	ecoreFile = "/${projectName}/model/pivot.ecore"
+    	javaFolder = "/${projectName}/emf-gen"
+    	javaPackageName = "${projectName}"
+    	javaClassName = "Visitor"
+    }
+  	component = @GenerateOclMetaModel {}
+}
+

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AllXtextTests.java,v 1.1 2010/05/03 20:01:59 ewillink Exp $
+ * $Id: AllXtextTests.java,v 1.2 2011/01/24 23:31:52 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.xtext;
@@ -24,6 +24,13 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import junit.textui.TestRunner;
+
+import org.eclipse.ocl.examples.test.ecore.EvaluateBooleanOperationsTest;
+import org.eclipse.ocl.examples.test.ecore.EvaluateCollectionOperationsTest;
+import org.eclipse.ocl.examples.test.ecore.EvaluateNumericOperationsTest;
+import org.eclipse.ocl.examples.test.ecore.EvaluateOclAnyOperationsTest;
+import org.eclipse.ocl.examples.test.ecore.EvaluateStringOperationsTest;
+import org.eclipse.ocl.examples.test.ecore.IteratorsTest;
 
 /**
  * Tests for the Xtext editor support.
@@ -44,8 +51,17 @@ public class AllXtextTests
 //		}
 
 		TestSuite result = new TestSuite("Xtext Editor Support");			
-		result.addTestSuite(LoadTests.class);
-		result.addTestSuite(SerializeTests.class);
+		result.addTestSuite(MonikerTests.class);
+		result.addTestSuite(PivotTests.class);
+		result.addTestSuite(OCLstdlibTests.class);
+		result.addTestSuite(EvaluateBooleanOperationsTest.class);
+		result.addTestSuite(EvaluateCollectionOperationsTest.class);
+		result.addTestSuite(EvaluateNumericOperationsTest.class);
+		result.addTestSuite(EvaluateOclAnyOperationsTest.class);
+		result.addTestSuite(EvaluateStringOperationsTest.class);
+		result.addTestSuite(IteratorsTest.class);
+//		result.addTestSuite(LoadTests.class);
+//		result.addTestSuite(SerializeTests.class);
 		result.addTestSuite(RoundTripTests.class);
 		return result;
 	}

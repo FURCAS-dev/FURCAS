@@ -1,0 +1,30 @@
+/**
+ * A simple language that allows nested definition and usages.
+ * Usages are bound to corresponding definition according to scope.
+ *
+ */
+syntax NestedScopesTestSyntax { 
+
+  primitiveTemplate identifier for ecore::EString default using NAME
+    : value = "unescapeString(%token%)"
+    ;
+    
+  template Statement abstract;
+
+  template Definition 
+    : "def" name ";"
+    ;
+
+  template Usage 
+    : "use" boundDefinition{referenceBy="name", lookupScope="OCL:self.getDeclarationsInScope()"} ";"
+    ;
+    
+  template Block main
+  	: "{"
+  		statementsInBlock
+  	  "}"
+  	;
+
+  omitted token COMMENT : endOfLine(start = "//");
+
+}

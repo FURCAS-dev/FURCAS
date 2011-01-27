@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEnvironmentTest.java,v 1.11 2010/12/24 10:18:04 asanchez Exp $
+ * $Id: EcoreEnvironmentTest.java,v 1.12 2011/01/25 10:43:36 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -39,7 +39,6 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.Environment;
-import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
@@ -192,9 +191,8 @@ public class EcoreEnvironmentTest
 	    EOperation regexMatch;
 	    
 	    // this constructor is used to initialize the root environment
-	    MyEnvironment(EPackage.Registry registry) {
-	        super(registry);
-	        
+	    MyEnvironment(EcoreEnvironmentFactory factory) {
+	        super(factory, null);
 	        defineCustomOperations();
 	    }
 	    
@@ -204,12 +202,6 @@ public class EcoreEnvironmentTest
 	        
 	        // get the parent's custom operations
 	        regexMatch = parent.regexMatch;
-	    }
-	    
-	    @Override
-	    protected void setFactory(
-	            EnvironmentFactory<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> factory) {
-	        super.setFactory(factory);
 	    }
 	    
 	    // use the AbstractEnvironment's mechanism for defining "additional operations"
@@ -266,8 +258,7 @@ public class EcoreEnvironmentTest
 	    @Override
         public Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
 	    createEnvironment() {
-	        MyEnvironment result = new MyEnvironment(getEPackageRegistry());
-	        result.setFactory(this);
+	        MyEnvironment result = new MyEnvironment(this);
 	        return result;
 	    }
 	    
@@ -280,7 +271,6 @@ public class EcoreEnvironmentTest
 	        }
 	        
 	        MyEnvironment result = new MyEnvironment((MyEnvironment) parent);
-	        result.setFactory(this);
 	        return result;
 	    }
 

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractDelegatedBehavior.java,v 1.3 2010/04/08 06:27:21 ewillink Exp $
+ * $Id: AbstractDelegatedBehavior.java,v 1.4 2011/01/23 22:18:53 auhl Exp $
  */
 package org.eclipse.ocl.ecore.delegate;
 
@@ -22,19 +22,17 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.ocl.ecore.InvalidLiteralExp;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.impl.NullLiteralExpImpl;
-import org.eclipse.ocl.ecore.internal.OCLExpressionCacheAdapter;
 
 /**
  * A basic implementation of a delegated behavior.
@@ -45,14 +43,6 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 		implements DelegatedBehavior<E, R, F> {
 
 	private static List<DelegatedBehavior<?, ?, ?>> delegatedBehaviors = null;
-
-	/**
-	 * An "identifying" class that helps distinguish between the case where an operation or property
-	 * isn't found in the expression cache and hasn't been looked up elsewhere yet from the case where
-	 * we looked around for a definition but couldn't find one 
-	 * @since 3.1
-	 */
-	protected static class NullExpression extends NullLiteralExpImpl {}
 
 	public static List<DelegatedBehavior<?, ?, ?>> getDelegatedBehaviors() {
 		// FIXME Maybe use an extension point here (but need a common
@@ -67,102 +57,83 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 	};
 
 	/**
-	 * Looks for an {@link OCLExpression} element attached to the
-	 * {@link OCLDelegateDomain#OCL_DELEGATE_URI} annotation of
-	 * <code>modelElement</code> at the same position at which the
-	 * {@link OCLDelegateDomain#OCL_DELEGATE_URI} annotation holds a detail
-	 * using any of the <code>constraintKeys</code>. For example, if there is a
-	 * detail at position 3 with key "body" and "body" is part of
-	 * <code>constraintKeys</code> then the contents element at position 3 of
-	 * the {@link OCLDelegateDomain#OCL_DELEGATE_URI} annotation is returned if it is
-	 * a {@link OCLEXpression} element.
-	 * 
-	 * @param modelElement from which to return a cached expression
-	 * @param constraintKeys the prioritised list of constraintKeys for to find a cached expression
-	 * @return null if none of the constraintKeys are known, or
-	 * if no constraint is associated with the first known constraintKey
-	 * else an {@link InvalidLiteralExp} if a null constraint was cached against
-	 * the first known constraintKey, else the cached expression.
+	 * An "identifying" instance that helps distinguish between the case where an OCL expression
+	 * isn't found in the expression cache and hasn't been looked up elsewhere yet from the case where
+	 * we looked around for a definition but couldn't find one 
+	 * @since 3.1
+	 */
+	public static final OCLExpression NO_OCL_DEFINITION = new NullLiteralExpImpl() {};
+	
+	/**
+	 * Return true if <code>e</code> is a reserved expression used to cache a miss and so
+	 * avoid repeating the miss processing on subsequent accesses.
 	 * 
 	 * @since 3.1
 	 */
-	protected OCLExpression getCachedExpression(EModelElement modelElement, String... constraintKeys) {
-		EAnnotation anno = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
-		if (anno != null) {
-			// find the position of the first constraintKey that is a key in details 
-			EList<EObject> contents = anno.getContents();
-			EMap<String, String> details = anno.getDetails();
-			for (String constraintKey : constraintKeys) {
-				int pos = details.indexOfKey(constraintKey);
-				if ((0 <= pos) && (pos < contents.size())) {
-					EObject contentElement = contents.get(pos);
-					return (OCLExpression) contentElement;
-				}
-			}
-		}
-		return null;
-    }
+	public static boolean isNoOCLDefinition(OCLExpression e) {
+		return e == NO_OCL_DEFINITION;
+	}
 
 	/**
-	 * Looks for an {@link OCLExpressionCacheAdapter} attached to <code>n</code>.
-	 * If such an adapter is found, its
-	 * {@link OCLExpressionCacheAdapter#getExpression() expression} is returned;
-	 * otherwise, <code>null</code> is returned. A special expression may be
-	 * returned indicating that for <code>n</code> no OCL expression exists and
-	 * that an unsuccessful attempt to obtain one has been made before. To check
-	 * for this case, callers shall use {@link #hasNoOCLDefinition(OCLExpression)}.
-	 * If it returns <code>true</code>, no expression could be found.
+	 * Caches a single OCL expression in an adapter that can be attached, e.g., to an Ecore object
+	 * without {@link Notification#isTouch() "modifying"} the object to which the adapter gets attached.
 	 * 
 	 * @since 3.1
 	 */
-	public OCLExpression getCachedOCLExpression(Notifier n) {
-		for (Adapter a : n.eAdapters()) {
-			if (a instanceof OCLExpressionCacheAdapter) {
-				return ((OCLExpressionCacheAdapter) a).getExpression();
+	protected static class ExpressionCacheAdapter extends AdapterImpl
+	{	
+		/**
+		 * Creates an {@link OCLExpressionCacheAdapter} for expression <code>e</code> and adds
+		 * it to <code>modelElement</code>'s adapter list so that {@link #getCachedOCLExpression(Notifier)}
+		 * will return <code>e</code> when called for <code>modelElement</code>. To achieve this, any other
+		 * {@link OCLExpressionCacheAdapter} in <code>modelElement</code>'s adapter list is removed.
+		 * 
+		 * @param e if <code>null</code>, any existing cache entry is removed and no new entry
+		 * is created. {@link #getCachedOCLExpression(Notifier)} will then return <code>null</code>. 
+		 */
+		public static void cacheOCLExpression(EModelElement modelElement, OCLExpression e) {
+			for (Iterator<Adapter> i = modelElement.eAdapters().iterator(); i.hasNext(); ) {
+				if (i.next().isAdapterForType(ExpressionCacheAdapter.class)) {
+					i.remove();
+				}
+			}
+			if (e != null) {
+				ExpressionCacheAdapter newAdapter = new ExpressionCacheAdapter(e);
+				modelElement.eAdapters().add(newAdapter);
+			}
+		}	
+
+		/**
+		 * Looks for an {@link OCLExpressionCacheAdapter} attached to <code>modelElement</code>.
+		 * If such an adapter is found, its cached expression is returned. The cached expression
+		 * may be a reserved expression indicating that no OCL expression exists and that an
+		 * unsuccessful attempt to obtain one has been made before.
+		 * {@link #isNoOCLDefinition(OCLExpression)} should be used to check for the reserved expression.
+		 * null is returned if no cached expression is available.
+		 */
+		public static OCLExpression getCachedOCLExpression(EModelElement modelElement) {
+			Adapter a = EcoreUtil.getExistingAdapter(modelElement, ExpressionCacheAdapter.class);
+			if (a != null) {
+				return ((ExpressionCacheAdapter) a).getExpression();
+			} else {
+				return null;
 			}
 		}
-		return null;
-	}
-	
-	/**
-	 * Creates an {@link OCLExpressionCacheAdapter} for expression <code>e</code> and adds
-	 * it to <code>n</code>'s adapter list so that {@link #getCachedOCLExpression(Notifier)}
-	 * will return <code>e</code> when called for <code>n</code>. To achieve this, any other
-	 * {@link OCLExpressionCacheAdapter} in <code>n</code>'s adapter list is removed.
-	 * @since 3.1
-	 */
-	public void cacheOCLExpression(Notifier n, OCLExpression e) {
-		for (Iterator<Adapter> i = n.eAdapters().iterator(); i.hasNext(); ) {
-			if (i.next() instanceof OCLExpressionCacheAdapter) {
-				i.remove();
-			}
+		
+		private final OCLExpression expression;
+		
+		public ExpressionCacheAdapter(OCLExpression expression) {
+			this.expression = expression;
 		}
-		OCLExpressionCacheAdapter newAdapter = new OCLExpressionCacheAdapter(e);
-		n.eAdapters().add(newAdapter);
-	}
-	
-	/**
-	 * Tells if an expression returned by {@link #getCachedOCLExpression(Notifier)} indicates
-	 * that {@link #cacheThatItHasNoOCLBody(Notifier)} was called before for that notifier.
-	 * This documents a previous unsuccessful attempt to obtain an OCL expression for the
-	 * notifier and that no attempt needs to be made again. To remove this indication,
-	 * call {@link #cacheOCLExpression(Notifier, OCLExpression)} for that notifier with a
-	 * <code>null</code> expression.
-	 * 
-	 * @since 3.1
-	 */
-	public boolean hasNoOCLDefinition(OCLExpression e) {
-		return e instanceof NullExpression;
-	}
-	
-	/**
-	 * Remembers an unsuccessful attempt to obtain an OCL expression for the notifier <code>n</code>
-	 * such that, when {@link #getCachedOCLExpression(Notifier)} is called for <code>n</code>, the
-	 * result passed to {@link #hasNoOCLDefinition(OCLExpression)} will return <code>true</code>.
-	 * @since 3.1
-	 */
-	protected void cacheThatItHasNoOCLBody(Notifier n) {
-		cacheOCLExpression(n, new NullExpression());
+		
+		public OCLExpression getExpression() {
+			return expression;
+		}
+		
+		@Override
+		public boolean isAdapterForType(Object type) {
+			return type == ExpressionCacheAdapter.class;
+		}
 	}
 	
 	public List<DelegateDomain> getDelegateDomains(E eObject) {

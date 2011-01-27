@@ -1,0 +1,4 @@
+# Debugging options for the org.eclipse.ocl.examples.pivot plug-in
+
+# Turn on general tracing of moniker creation 
+org.eclipse.ocl.examples.pivot/traceMonikers=false
