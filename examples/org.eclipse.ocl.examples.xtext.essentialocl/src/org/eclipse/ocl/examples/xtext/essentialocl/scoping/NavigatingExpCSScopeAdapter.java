@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigatingExpCSScopeAdapter.java,v 1.2 2011/01/24 21:31:46 ewillink Exp $
+ * $Id: NavigatingExpCSScopeAdapter.java,v 1.3 2011/01/27 07:01:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -52,22 +52,22 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 			CallExp pivot = getPivot();
 			if (pivot instanceof LoopExp) {
 				for (Variable iterator : ((LoopExp)pivot).getIterators()) {
-					if (environmentView.addNamedElement(iterator) > 0) {
+					if ((environmentView.addNamedElement(iterator) > 0) && (environmentView.getName() != null)) {
 						return null;
 					}
 					environmentView.addElementsOfScope(typeManager, iterator.getType(), scopeView);
-					if (environmentView.getSize() > 0) {
+					if ((environmentView.getSize() > 0) && (environmentView.getName() != null)) {
 						return null;
 					}
 				}
 			}
 			if (pivot instanceof IterateExp) {
 				Variable result = ((IterateExp)pivot).getResult();
-				if (environmentView.addNamedElement(result) > 0) {
+				if ((environmentView.addNamedElement(result) > 0)  && (environmentView.getName() != null)) {
 					return null;
 				}
 				environmentView.addElementsOfScope(typeManager, result.getType(), scopeView);
-				if (environmentView.getSize() > 0) {
+				if ((environmentView.getSize() > 0)  && (environmentView.getName() != null)) {
 					return null;
 				}
 			}
@@ -86,12 +86,12 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 					}
 					Type type = ((Variable)pivot).getType();
 					environmentView.addElementsOfScope(typeManager, type, scopeView);
-					if (environmentView.getSize() > 0) {
+					if ((environmentView.getSize() > 0) && (environmentView.getName() != null)) {
 						return null;
 					}
 					if (type instanceof CollectionType) {		// FIXME use navigation operator dependent semantics
 						environmentView.addElementsOfScope(typeManager, ((CollectionType)type).getElementType(), scopeView);
-						if (environmentView.getSize() > 0) {
+						if ((environmentView.getSize() > 0) && (environmentView.getName() != null)) {
 							return null;
 						}
 					}
