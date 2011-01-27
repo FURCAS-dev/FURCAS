@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2CSConversion.java,v 1.2 2011/01/24 21:00:30 ewillink Exp $
+ * $Id: Pivot2CSConversion.java,v 1.3 2011/01/27 07:01:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -190,7 +190,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 
 	protected <T extends ClassifierCS> T refreshClassifier(Class<T> csClass, EClass csEClass, Type object) {
 		T csElement = refreshNamedElement(csClass, csEClass, object);
-		refreshList(csElement.getOwnedConstraint(), visitDeclarations(ConstraintCS.class, object.getOwnedRules()));
+		refreshList(csElement.getOwnedConstraint(), visitDeclarations(ConstraintCS.class, object.getOwnedRules(), null));
 		TemplateSignature ownedTemplateSignature = object.getOwnedTemplateSignature();
 		if (ownedTemplateSignature != null) {
 			csElement.setOwnedTemplateSignature(visitDeclaration(TemplateSignatureCS.class, ownedTemplateSignature));
@@ -221,7 +221,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		T csElement = refreshMonikeredElement(csClass, csEClass, object);
 		String name = object.getName();
 		csElement.setName(name);
-		refreshList(csElement.getOwnedAnnotation(), visitDeclarations(AnnotationCS.class, object.getOwnedAnnotations()));
+		refreshList(csElement.getOwnedAnnotation(), visitDeclarations(AnnotationCS.class, object.getOwnedAnnotations(), null));
 //		refreshList(csElement.getOwnedComment(), context.visitList(CommentCS.class, object.getOwnedComments()));
 		return csElement;
 	}
@@ -264,7 +264,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 			TypedRefCS typeRef = visitReference(TypedRefCS.class, type);
 			csElement.setOwnedType(typeRef);
 		}
-		refreshList(csElement.getOwnedConstraint(), visitDeclarations(ConstraintCS.class, object.getOwnedRules()));
+		refreshList(csElement.getOwnedConstraint(), visitDeclarations(ConstraintCS.class, object.getOwnedRules(), null));
 		return csElement;
 	}
 
@@ -318,7 +318,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		for (Resource csResource : csResources) {
 			importedPackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
 			Resource pivotResource = converter.getPivotResource(csResource);
-			List<PackageCS> list = visitDeclarations(PackageCS.class, pivotResource.getContents());
+			List<PackageCS> list = visitDeclarations(PackageCS.class, pivotResource.getContents(), null);
 			refreshList(csResource.getContents(), list);
 			imports.put(csResource, importedPackages);
 		}
@@ -339,15 +339,17 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		return castElement;
 	}
 
-	protected <T extends ElementCS> List<T> visitDeclarations(Class<T> csClass, List<? extends EObject> eObjects) {
+	protected <T extends ElementCS, V extends EObject> List<T> visitDeclarations(Class<T> csClass, List<V> eObjects, Pivot2CS.Predicate<V> predicate) {
 		List<T> csElements = new ArrayList<T>();
-		for (EObject eObject : eObjects) {
-			T csElement = visitDeclaration(csClass, eObject);
-			if (csElement != null) {
-				csElements.add(csElement);
-			}
-			else {
-				assert csElement != null;
+		for (V eObject : eObjects) {
+			if ((predicate == null) || predicate.filter(eObject)) {
+				T csElement = visitDeclaration(csClass, eObject);
+				if (csElement != null) {
+					csElements.add(csElement);
+				}
+				else {
+					assert csElement != null;
+				}
 			}
 		}
 		return csElements;

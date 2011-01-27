@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentView.java,v 1.5 2011/01/24 21:00:30 ewillink Exp $
+ * $Id: EnvironmentView.java,v 1.6 2011/01/27 07:01:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -89,6 +89,12 @@ public class EnvironmentView
 				if (!filter.filter(element)) {
 					return 0;
 				}
+			}
+		}
+		if (reference != null) {
+			EClassifier requiredType = reference.getEType();
+			if (!requiredType.isInstance(element)) {
+				return 0;
 			}
 		}
 		Object value = contentsByName.get(elementName);

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ReferenceCSScopeAdapter.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
+ * $Id: ReferenceCSScopeAdapter.java,v 1.3 2011/01/27 07:01:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -37,7 +37,7 @@ public class ReferenceCSScopeAdapter extends BaseCSScopeAdapter<ReferenceCS, Pro
 		int oldSize = environmentView.getSize();
 		environmentView.addNamedElements(csClass.getOwnedAttributes());
 		int newSize = environmentView.getSize();
-		if (newSize <= oldSize) {
+		if ((newSize <= oldSize) || (environmentView.getName() == null)) {
 			for (org.eclipse.ocl.examples.pivot.Class csTypeRef : csClass.getSuperClasses()) {
 				if (csTypeRef instanceof ParameterizedTypeRefCS) {
 					Type csType = ((ParameterizedTypeRefCS)csTypeRef).getPivot();
