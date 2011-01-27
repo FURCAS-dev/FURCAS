@@ -100,27 +100,6 @@ public class TCSSpecificOCLEvaluator {
         }
     }
     
-    public List<String> validateOclQuery(Template template, String queryToValidate) {
-        try {
-            EClassifier parsingContext = ContextAndForeachHelper.getParsingContext(queryToValidate, template, oppositeEndFinder);
-            queryToValidate = ContextAndForeachHelper.prepareOclQuery(queryToValidate, "__DUMMY__");
-
-            oclHelper.setContext(parsingContext);
-            oclHelper.createQuery(queryToValidate);
-
-            Diagnostic diagnostic = oclHelper.getProblems();
-            if (diagnostic == null) {
-                return Collections.emptyList();
-            } else {
-                return Collections.singletonList(diagnostic.getMessage());
-            }
-        } catch (ParserException e) {
-            return Collections.singletonList(e.getDiagnostic().getMessage());
-        } catch (RuntimeException e) {
-            return Collections.singletonList(e.getMessage());
-        }
-}
-
     private EObject determineObjectForSelf(EObject sourceModelElement, String oclQuery, EObject foreachObject, EObject contextRefObject) throws ModelAdapterException {
         EObject objectForSelf;
         if (ContextAndForeachHelper.usesContext(oclQuery)) {
@@ -135,5 +114,38 @@ public class TCSSpecificOCLEvaluator {
         }
         return objectForSelf;
     }
-        
+    
+    public List<String> validateOclQuery(Template template, String queryToValidate) {
+        try {
+             EClassifier parsingContext = ContextAndForeachHelper.getParsingContext(queryToValidate, template, oppositeEndFinder);
+            return validateOclQuery(parsingContext, queryToValidate);
+        } catch (ParserException e) {
+            return Collections.singletonList(e.getMessage());
+        }
+    }
+
+    public List<String> validateOclQuery(EClassifier parsingContext, String queryToValidate) {
+        queryToValidate = ContextAndForeachHelper.prepareOclQuery(queryToValidate, "__DUMMY__");
+        try {
+            oclHelper.setContext(parsingContext);
+            oclHelper.createQuery(queryToValidate);
+
+            Diagnostic diagnostic = oclHelper.getProblems();
+            if (diagnostic == null) {
+                return Collections.emptyList();
+            } else {
+                return Collections.singletonList(diagnostic.getMessage());
+            }
+        } catch (ParserException e) {
+            return Collections.singletonList(e.getDiagnostic().getMessage());
+        } catch (RuntimeException e) {
+            return Collections.singletonList(e.getMessage());
+        }
+    }
+
+    public EObject getOclReturnType(EClassifier parsingContext, String oclQuery) throws ParserException {
+        oclQuery = ContextAndForeachHelper.prepareOclQuery(oclQuery, "__DUMMY__");
+        oclHelper.setContext(parsingContext);
+        return oclHelper.createQuery(oclQuery).getType();
+    }
 }

@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClassifier;
 
+import com.sap.furcas.emf.stubs.EcoreAnyStub;
 import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer;
@@ -173,6 +174,16 @@ public class MetaLookupStub<Type extends Object> implements IMetaModelLookup<Typ
     @Override
     public List<String> validateOclQuery(Template template, String queryToValidate) {
 	return Collections.emptyList();
+    }
+    
+    @Override
+    public List<String> validateOclQuery(Object parsingContext, String queryToValidate) {
+        return Collections.emptyList();
+    }
+    
+    @Override
+    public Type getOclReturnType(Object parsingContext, String oclQuery) throws MetaModelLookupException {
+        return (Type) new EcoreAnyStub();
     }
 
 }

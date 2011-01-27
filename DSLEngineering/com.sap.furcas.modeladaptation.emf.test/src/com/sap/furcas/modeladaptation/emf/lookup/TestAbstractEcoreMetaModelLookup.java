@@ -279,5 +279,15 @@ public class TestAbstractEcoreMetaModelLookup {
             fail("Not implemented");
         }
 
+        @Override
+        public List<String> validateOclQuery(EObject parsingContext, String oclQuery) {
+            return new BasicEList<String>();
+        }
+
+        @Override
+        public EObject getOclReturnType(EObject parsingContext, String oclQuery) throws MetaModelLookupException {
+            return new EcoreAnyStub();
+        }
+
     }
 }

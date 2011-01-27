@@ -91,8 +91,8 @@ public class PropertyArgumentUtil {
         if (referenceBy.startsWith(OCL_PREFIX)) {
             return referenceBy.substring(OCL_PREFIX.length());
         } else {
-            // referenceBy contains a simple property-name 
-            return "self." + referenceBy;
+            // referenceBy contains a simple property name 
+            return referenceBy;
         }
     }
         
@@ -114,7 +114,7 @@ public class PropertyArgumentUtil {
             referenceByQuery = matcher.replaceAll(preSelf + replacementForSelf + postSelf);
             return lookupScopePArg.getQuery() + "->select(" + replacementForSelf + " | " + referenceByQuery + " = ?)";
         } else {
-            throw new RuntimeException("Malformed ReferenceByPArg query. It does not contain 'self': " + referenceByQuery);
+            return lookupScopePArg.getQuery() + "->select(" + referenceByQuery + " = ?)";
         }
     }
         

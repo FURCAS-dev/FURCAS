@@ -117,9 +117,20 @@ public interface IMetaModelLookup<Type> {
     public ResolvedNameAndReferenceBean<Type> resolveReferenceName(Type reference) throws MetaModelLookupException;
 
     /**
-     * Checks the given ocl query for errors.
-
+     * Checks the given OCL query for errors.
      * @return a list of error messages.
      */
-    List<String> validateOclQuery(Template template, String queryToValidate);
+    public List<String> validateOclQuery(Template template, String oclQuery);
+    
+    /**
+     * Checks the given OCL query for errors.
+     * @return a list of error messages.
+     */
+    public List<String> validateOclQuery(Type parsingContext, String oclQuery);
+
+    /**
+     * Returns the return type of the given OCL query.
+     */
+    public Type getOclReturnType(Type parsingContext, String oclQuery) throws MetaModelLookupException;
+    
 }
