@@ -10,7 +10,6 @@ package com.sap.furcas.parsergenerator.tcs.t2m.grammar;
 
 import static com.sap.furcas.parsergenerator.util.StringConcatUtil.concatBuf;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -103,7 +102,7 @@ public class PropertyTypeHandler<Type extends Object> {
             PropertyArgs args = new PropertyArgs(prop.getPropertyArgs());
             validateArgs(args);
 
-            if (args.lookupScopePArg != null) {
+            if (args.referenceByPArg != null) {
                 addQueriedReferenceCode(prop, ruleBodyPart, metaModelTypeOfProperty, propertyName, args);
             } else if (args.refersTo != null) {
                addRefersToCode(prop, ruleBodyPart, metaModelTypeOfProperty, propertyName, args);
@@ -227,27 +226,31 @@ public class PropertyTypeHandler<Type extends Object> {
             throws SyntaxElementException, MetaModelLookupException {
         // creates temp = ...
         appendRefersToTempPart(prop, ruleBodyPart, metaModelTypeOfPropertyListName, args, true);
-
-        // creates the bit that sets the temp from above as reference to
-        // modelElement "ret" of this rule
         
         validateOclQuery(prop, args.lookupScopePArg, args.lookupScopePArg.getQuery());
-        
+        Type type = metaModelTypeOfPropertyListName.getReference();
+        validateOclQuery(args.referenceByPArg, type, PropertyArgumentUtil.getReferenceByAsOCL(args.referenceByPArg));
+
         String query = PropertyArgumentUtil.getCombinedReferenceByLookupOCLQuery(args.referenceByPArg, args.lookupScopePArg);
-        // TODO: validate the individual OCL query instead. For this to work however,
-        // we need to be able to infer the return-type of the lookupScope query.
-        validateOclQuery(prop, args.referenceByPArg, query);
+        query = TcsUtil.escapeMultiLineOclQuery(query);
         
-        String oclQuery = TcsUtil.escapeMultiLineOclQuery(query);
+        // creates the bit that sets the temp from above as reference to modelElement "ret" of this rule
         if (args.refersTo != null) {
             if (!skipDelayedReferences) {
                 ruleBodyPart.append(concatBuf(" {setOclRef(ret, \"", propertyName, "\", \"", args.refersTo.getPropertyName(),
-                        "\", temp, \"" + oclQuery + "\");}"));
+                        "\", temp, \"" + query + "\");}"));
             }
         } else {
             if (!skipDelayedReferences) {
-                ruleBodyPart.append(concatBuf(" {setOclRef(ret, \"", propertyName, "\", null, temp, \"" + oclQuery + "\");}"));
+                ruleBodyPart.append(concatBuf(" {setOclRef(ret, \"", propertyName, "\", null, temp, \"" + query + "\");}"));
             }
+        }
+    }
+    
+    private void validateOclQuery(PropertyArg argument, Type parsingContext, String query) {
+        List<String> oclErrors = metaLookup.validateOclQuery(parsingContext, query);
+        for (String error : oclErrors) {
+            errorBucket.addError(error + " in OCL query " + query, argument);
         }
     }
 
@@ -334,14 +337,15 @@ public class PropertyTypeHandler<Type extends Object> {
                 ruleBodyPart.append(asRule);
             }
         } else if (args.referenceByPArg != null) {
-            // The queryByIdentifier feature only works together with strings. We thus have to use
-            // the default string template for serializing.
-            // TODO: find a way to retrieve it in a metamodel independent way. (we should not hardcode EString here!)
-            List<String> qualifiedNameOfString = new ArrayList<String>();
-            qualifiedNameOfString.add("ecore"); qualifiedNameOfString.add("EString");
-            ResolvedNameAndReferenceBean<Type> metaModelTypeOfString = metaLookup.resolveReference(qualifiedNameOfString);
-            PrimitiveTemplate propertyPrimitiveTemplate = syntaxLookup.getDefaultPrimitiveTemplateRule(metaModelTypeOfString);
-            ruleBodyPart.append(propertyPrimitiveTemplate.getTemplateName());
+            Type type = metaLookup.getOclReturnType(metaModelTypeOfPropertyReference.getReference(), PropertyArgumentUtil.getReferenceByAsOCL(args.referenceByPArg));
+            ResolvedNameAndReferenceBean<Type> metaModelTypeOfQueryResult = metaLookup.resolveReferenceName(type);
+            PrimitiveTemplate propertyPrimitiveTemplate = syntaxLookup.getDefaultPrimitiveTemplateRule(metaModelTypeOfQueryResult);
+            if (propertyPrimitiveTemplate == null) {
+                errorBucket.addError("Syntax does not define a rule for " + metaModelTypeOfQueryResult
+                        + " which is the return type of the referenceBy expression " + PropertyArgumentUtil.getReferenceByAsOCL(args.referenceByPArg), prop);
+            } else {
+                ruleBodyPart.append(propertyPrimitiveTemplate.getTemplateName());
+            }
         } else {
             PrimitiveTemplate propertyPrimitiveTemplate = syntaxLookup.getDefaultPrimitiveTemplateRule(metaModelTypeOfPropertyReference);
             // if this is null, then there is no primitive template for this, so
