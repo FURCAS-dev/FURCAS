@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessagesTest.java,v 1.7 2009/11/28 17:50:50 ewillink Exp $
+ * $Id: MessagesTest.java,v 1.8 2011/01/25 10:43:36 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -519,7 +519,7 @@ public class MessagesTest
 		@Override
         public EcoreEnvironment createEnvironment(
 				Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
-			return new MessagingFruitEnvironment(this, parent, suite);
+			return new MessagingFruitEnvironment(parent, suite);
 		}
 	}
 	
@@ -530,20 +530,17 @@ public class MessagesTest
 		private EList<EClassifier> signals = new BasicEList<EClassifier>();
 		
 		public MessagingFruitEnvironment(MessagingFruitEnvironmentFactory factory, AbstractTestSuite suite) {
-			super(resourceSet.getPackageRegistry());
+			super(factory, null);
 			this.suite = suite;
-			setFactory(factory);
 			setContextPackage(suite.fruitPackage);
 
 //			init();
 		}
 		
 		public MessagingFruitEnvironment(
-				MessagingFruitEnvironmentFactory factory,
 				Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent, AbstractTestSuite suite) {
 			super(parent);
 			this.suite = suite;
-			setFactory(factory);
 			
 			init();
 		}

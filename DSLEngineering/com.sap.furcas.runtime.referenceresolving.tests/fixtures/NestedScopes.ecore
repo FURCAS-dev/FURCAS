@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="NestedScopes"
+    nsURI="http://www.furcas.org/TCS/referenceresolving/tests/nestedScopes">
+  <eClassifiers xsi:type="ecore:EClass" name="Definition" eSuperTypes="#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Usage" eSuperTypes="#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boundDefinition" lowerBound="1"
+        eType="#//Definition"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Statement" abstract="true">
+    <eOperations name="getDeclarationsInScope" ordered="false" upperBound="-1" eType="#//Definition">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="body" value="if self.block->notEmpty() then&#xA;  let pos:Integer = self.block.statementsInBlock->indexOf(self) in&#xA;  if pos > 1 then&#xA;    self.addDeclarationsWithNewNames(&#xA;    if self.block.statementsInBlock->at(-1+pos).oclIsKindOf(Definition) then&#xA;      self.block.statementsInBlock->at(-1+pos).oclAsType(Definition)->asSet()&#xA;    else&#xA;      Set{}&#xA;    endif,&#xA;    self.block.statementsInBlock->at(-1+pos).getDeclarationsInScope())&#xA;  else&#xA;    -- first statement in block; consider block itself&#xA;    self.block.getDeclarationsInScope()&#xA;  endif&#xA;else&#xA;       Set{}&#xA;endif&#xA;&#xA;&#xA;&#xA;"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="body"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="addDeclarationsWithNewNames" ordered="false" upperBound="-1"
+        eType="#//Definition">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="body" value="inner->union(outer->select(o | not inner->exists(i | i.name = o.name))->asSet())"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="body"/>
+      </eAnnotations>
+      <eParameters name="inner" ordered="false" upperBound="-1" eType="#//Definition"/>
+      <eParameters name="outer" ordered="false" upperBound="-1" eType="#//Definition"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//Block"
+        eOpposite="#//Block/statementsInBlock"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Block" eSuperTypes="#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statementsInBlock" upperBound="-1"
+        eType="#//Statement" eOpposite="#//Statement/block"/>
+  </eClassifiers>
+</ecore:EPackage>

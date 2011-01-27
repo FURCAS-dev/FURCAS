@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEnvironment.java,v 1.9 2010/12/15 17:32:44 ewillink Exp $
+ * $Id: EcoreEnvironment.java,v 1.10 2011/01/25 10:43:34 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -52,7 +52,6 @@ import org.eclipse.ocl.ecore.internal.OCLFactoryImpl;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.internal.TypeResolverImpl;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
-import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.Variable;
@@ -132,17 +131,37 @@ public class EcoreEnvironment
 	
 	private TypeResolver<EClassifier, EOperation, EStructuralFeature> typeResolver;
 	
-	private final OppositeEndFinder oppositeEndFinder;
+	private OppositeEndFinder oppositeEndFinder;
 
 	/**
 	 * Initializes me with a package registry for package look-ups.
 	 * 
 	 * @param reg a package registry
+	 * @deprecated Use {@link #EcoreEnvironment(EcoreEnvironmentFactory, null)} instead
 	 */
+	@Deprecated
 	protected EcoreEnvironment(EPackage.Registry reg) {
 		registry = reg;
 		typeResolver = createTypeResolver();
-		oppositeEndFinder = createOppositeEndFinder();
+	}
+
+	/**
+	 * Initializes me with an environment factory from which package registry
+	 * and opposite end finder (if any) are obtained consistently, and from a
+	 * resource in which I am persisted (and from which I load myself if it
+	 * already has content).
+	 * 
+	 * @param reg
+	 *            a package registry
+	 * @param resource
+	 *            a resource, which may or may not already have content
+	 * @since 3.1
+	 */
+	protected EcoreEnvironment(EcoreEnvironmentFactory fac, Resource resource) {
+		factory = fac;
+		registry = fac.getEPackageRegistry();
+		oppositeEndFinder = fac.getOppositeEndFinder();
+		typeResolver = createTypeResolver(resource);
 	}
 	
     /**
@@ -151,11 +170,12 @@ public class EcoreEnvironment
      * 
      * @param reg a package registry
      * @param resource a resource, which may or may not already have content
+	 * @deprecated Use {@link #EcoreEnvironment(EcoreEnvironmentFactory, Resource)} instead
      */
+	@Deprecated
 	protected EcoreEnvironment(EPackage.Registry reg, Resource resource) {
 		registry = reg;
 		typeResolver = createTypeResolver(resource);
-		oppositeEndFinder = createOppositeEndFinder();
 	}
 
     /**
@@ -172,13 +192,13 @@ public class EcoreEnvironment
 		EcoreEnvironment eparent = (EcoreEnvironment) parent;
 		
 		if (eparent != null) {
+			factory = eparent.factory;
 			registry = eparent.registry;
 			typeResolver = eparent.getTypeResolver();
 			oppositeEndFinder = eparent.oppositeEndFinder;
 		} else {
 			registry = EPackage.Registry.INSTANCE;
 			typeResolver = createTypeResolver();
-			oppositeEndFinder = createOppositeEndFinder();
 		}
 	}
 
@@ -211,17 +231,28 @@ public class EcoreEnvironment
 	}
 	
 	/**
-	 * Sets the factory that created me.  This method should only be invoked
-	 * by that factory.
+	 * Sets the factory that created me. This method should only be invoked by
+	 * that factory. If the factory is an {@link EcoreEnvironmentFactory}, its
+	 * {@link EcoreEnvironmentFactory#getOppositeEndFinder() opposite end
+	 * finder} will be used as this environment's {@link #oppositeEndFinder
+	 * opposite end finder}.
 	 * 
-	 * @param factory my originating factory
+	 * @param factory
+	 *            my originating factory
+	 * @deprecated {@link #factory} will become final in future releases; use
+	 *             one of the constructors taking an
+	 *             {@link EcoreEnvironmentFactory} argument instead
 	 */
+	@Deprecated
 	protected void setFactory(EnvironmentFactory<
 			EPackage, EClassifier, EOperation, EStructuralFeature,
 			EEnumLiteral, EParameter,
 			EObject, CallOperationAction, SendSignalAction, Constraint,
 			EClass, EObject> factory) {
 		this.factory = factory;
+		if (factory instanceof EcoreEnvironmentFactory) {
+			oppositeEndFinder = ((EcoreEnvironmentFactory)factory).getOppositeEndFinder();
+		}
 	}
 	
     // implements the inherited specification
@@ -253,16 +284,6 @@ public class EcoreEnvironment
         return UMLReflectionImpl.INSTANCE;
     }
 
-	private OppositeEndFinder createOppositeEndFinder() {
-		EnvironmentFactory<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> factory = getFactory();
-		if (factory instanceof EcoreEnvironmentFactoryInterface) {
-			return ((EcoreEnvironmentFactoryInterface)factory).getOppositeEndFinder();
-		}
-		else {
-			return DefaultOppositeEndFinder.getInstance(registry);
-		}
-	}
-	
 	/**
 	 * Creates a new type resolver for use with this environment, persisted
 	 * in a default resource.

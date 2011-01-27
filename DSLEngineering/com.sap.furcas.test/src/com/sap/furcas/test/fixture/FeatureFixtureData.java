@@ -28,6 +28,4 @@ public class FeatureFixtureData {
     public static final File PRIMITIVE_TEMPLATE_TCS = new File("../com.sap.furcas.test/featureFixtures/PrimitiveTemplate.tcs");
     public static final String PRIMITIVE_PACKAGE_URI = "http://www.furcas.org/TCS/featuretests/template/primitiveTemplate";
 
-
-    
 }
