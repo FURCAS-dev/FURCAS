@@ -7,8 +7,10 @@
     </ownedMember>
     <ownedMember xmi:type="cmof:Class" xmi:id="_c2jhAIquEd-VzsYvPRGeYg" name="Property">
       <ownedAttribute xmi:type="cmof:Property" xmi:id="_gtXagIquEd-VzsYvPRGeYg" name="association" type="_RlTPMIquEd-VzsYvPRGeYg" lower="0" association="_xpoHUIquEd-VzsYvPRGeYg"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_Yq86gCkjEeCoEMRBQwJFpQ" name="implicit" type="_bJ1-0CkjEeCoEMRBQwJFpQ" lower="0" default="false"/>
     </ownedMember>
     <ownedMember xmi:type="cmof:Association" xmi:id="_xpoHUIquEd-VzsYvPRGeYg" name="A_associationClass_property" memberEnd="_o58aYIquEd-VzsYvPRGeYg _gtXagIquEd-VzsYvPRGeYg"/>
+    <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_bJ1-0CkjEeCoEMRBQwJFpQ" name="Boolean"/>
   </ownedMember>
   <ownedMember xmi:type="cmof:Package" xmi:id="Actions-CompleteActions" name="OCL_Classes">
     <ownedMember xmi:type="cmof:Class" xmi:id="_v7rW4JL1Ed-tR9a-2UcrVA" name="Class"/>

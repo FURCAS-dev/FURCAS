@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.ocl.build"
-      label="OCL Build Site"
+      label="%featureName"
       version="3.1.0.qualifier"
       provider-name="%providerName"
       image="eclipse_update_120.jpg">
