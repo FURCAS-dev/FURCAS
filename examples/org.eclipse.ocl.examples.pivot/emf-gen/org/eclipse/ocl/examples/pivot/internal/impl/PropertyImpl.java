@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: PropertyImpl.java,v 1.3 2011/01/27 06:59:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -74,6 +74,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#isDerived <em>Is Derived</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getOpposite <em>Opposite</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getAssociation <em>Association</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#isImplicit <em>Implicit</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#isID <em>Is ID</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getKeys <em>Keys</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#isResolveProxies <em>Is Resolve Proxies</em>}</li>
@@ -321,6 +322,26 @@ public class PropertyImpl
 	protected AssociationClass association;
 
 	/**
+	 * The default value of the '{@link #isImplicit() <em>Implicit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImplicit()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IMPLICIT_EDEFAULT = false;
+
+	/**
+	 * The flag representing the value of the '{@link #isImplicit() <em>Implicit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImplicit()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int IMPLICIT_EFLAG = 1 << 14;
+
+	/**
 	 * The default value of the '{@link #isID() <em>Is ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -338,7 +359,7 @@ public class PropertyImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_ID_EFLAG = 1 << 14;
+	protected static final int IS_ID_EFLAG = 1 << 15;
 
 	/**
 	 * The cached value of the '{@link #getKeys() <em>Keys</em>}' reference list.
@@ -368,7 +389,7 @@ public class PropertyImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_RESOLVE_PROXIES_EFLAG = 1 << 15;
+	protected static final int IS_RESOLVE_PROXIES_EFLAG = 1 << 16;
 
 	/**
 	 * The default value of the '{@link #isTransient() <em>Is Transient</em>}' attribute.
@@ -388,7 +409,7 @@ public class PropertyImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_TRANSIENT_EFLAG = 1 << 16;
+	protected static final int IS_TRANSIENT_EFLAG = 1 << 17;
 
 	/**
 	 * The default value of the '{@link #isUnsettable() <em>Is Unsettable</em>}' attribute.
@@ -408,7 +429,7 @@ public class PropertyImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_UNSETTABLE_EFLAG = 1 << 17;
+	protected static final int IS_UNSETTABLE_EFLAG = 1 << 18;
 
 	/**
 	 * The default value of the '{@link #isVolatile() <em>Is Volatile</em>}' attribute.
@@ -428,7 +449,7 @@ public class PropertyImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_VOLATILE_EFLAG = 1 << 18;
+	protected static final int IS_VOLATILE_EFLAG = 1 << 19;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -958,6 +979,29 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isImplicit()
+	{
+		return (eFlags & IMPLICIT_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setImplicit(boolean newImplicit)
+	{
+		boolean oldImplicit = (eFlags & IMPLICIT_EFLAG) != 0;
+		if (newImplicit) eFlags |= IMPLICIT_EFLAG; else eFlags &= ~IMPLICIT_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__IMPLICIT, oldImplicit, newImplicit));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean isID()
 	{
 		return (eFlags & IS_ID_EFLAG) != 0;
@@ -1359,6 +1403,8 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__ASSOCIATION:
 				if (resolve) return getAssociation();
 				return basicGetAssociation();
+			case PivotPackage.PROPERTY__IMPLICIT:
+				return isImplicit();
 			case PivotPackage.PROPERTY__IS_ID:
 				return isID();
 			case PivotPackage.PROPERTY__KEYS:
@@ -1453,6 +1499,9 @@ public class PropertyImpl
 				return;
 			case PivotPackage.PROPERTY__ASSOCIATION:
 				setAssociation((AssociationClass)newValue);
+				return;
+			case PivotPackage.PROPERTY__IMPLICIT:
+				setImplicit((Boolean)newValue);
 				return;
 			case PivotPackage.PROPERTY__IS_ID:
 				setIsID((Boolean)newValue);
@@ -1552,6 +1601,9 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__ASSOCIATION:
 				setAssociation((AssociationClass)null);
 				return;
+			case PivotPackage.PROPERTY__IMPLICIT:
+				setImplicit(IMPLICIT_EDEFAULT);
+				return;
 			case PivotPackage.PROPERTY__IS_ID:
 				setIsID(IS_ID_EDEFAULT);
 				return;
@@ -1630,6 +1682,8 @@ public class PropertyImpl
 				return opposite != null;
 			case PivotPackage.PROPERTY__ASSOCIATION:
 				return association != null;
+			case PivotPackage.PROPERTY__IMPLICIT:
+				return ((eFlags & IMPLICIT_EFLAG) != 0) != IMPLICIT_EDEFAULT;
 			case PivotPackage.PROPERTY__IS_ID:
 				return ((eFlags & IS_ID_EFLAG) != 0) != IS_ID_EDEFAULT;
 			case PivotPackage.PROPERTY__KEYS:

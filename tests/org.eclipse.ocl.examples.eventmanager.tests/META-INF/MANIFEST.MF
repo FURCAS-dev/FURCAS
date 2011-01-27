@@ -7,7 +7,6 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Fragment-Host: org.eclipse.ocl.examples.eventmanager
 Export-Package: org.eclipse.ocl.examples.eventmanager.tests
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
@@ -15,5 +14,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.junit4,
  org.eclipse.ocl.examples.impactanalyzer.testmodel.company,
  org.eclipse.ocl.examples.testutils,
- org.eclipse.ocl.ecore
+ org.eclipse.ocl.ecore,
+ org.eclipse.ocl.examples.eventmanager
 Bundle-ActivationPolicy: lazy

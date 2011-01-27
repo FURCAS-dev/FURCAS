@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2PivotDeclarationSwitch.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: Ecore2PivotDeclarationSwitch.java,v 1.3 2011/01/27 07:02:06 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -455,7 +455,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 
 	@Override
 	public Element defaultCase(EObject object) {
-		converter.error("Unsupported " + object + " in pass1");
+		converter.error("Unsupported " + object.eClass().getName() + " for Ecore2PivotDeclarationSwitch");
 		return null;
 	}
 
@@ -464,11 +464,11 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		return doSwitch(classifierID, eObject);
 	}
 
-	public <T extends Element> void doSwitchAll(Collection<T> csObjects, List<? extends EObject> eObjects) {
+	public <T extends Element> void doSwitchAll(Collection<T> pivotObjects, List<? extends EObject> eObjects) {
 		for (EObject eObject : eObjects) {
 			@SuppressWarnings("unchecked")
-			T csObject = (T) doSwitch(eObject);
-			csObjects.add(csObject);
+			T pivotObject = (T) doSwitch(eObject);
+			pivotObjects.add(pivotObject);
 		}
 	}
 

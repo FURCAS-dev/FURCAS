@@ -12,31 +12,22 @@
  *
  * </copyright>
  *
- * $Id: UML2PivotReferenceSwitch.java,v 1.2 2011/01/24 20:47:53 ewillink Exp $
+ * $Id: UML2PivotReferenceSwitch.java,v 1.3 2011/01/27 07:02:06 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.uml;
 
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.ETypeParameter;
-import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.ecore.util.EcoreSwitch;
-import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.uml2.uml.util.UMLSwitch;
 
-public class UML2PivotReferenceSwitch extends EcoreSwitch<Object>
+public class UML2PivotReferenceSwitch extends UMLSwitch<Object>
 {				
 	protected final UML2Pivot converter;
 	
@@ -44,46 +35,59 @@ public class UML2PivotReferenceSwitch extends EcoreSwitch<Object>
 		this.converter = converter;
 	}
 	
+//	@Override
+//	public Object caseEAnnotation(EAnnotation eObject) {
+//		Annotation pivotElement = converter.getCreated(Annotation.class, eObject);
+//		doSwitchAll(Element.class, pivotElement.getReferences(), eObject.getReferences());
+//		return null;
+//	}
+	
 	@Override
-	public Object caseEAnnotation(EAnnotation eObject) {
-		Annotation pivotElement = converter.getCreated(Annotation.class, eObject);
-		doSwitchAll(Element.class, pivotElement.getReferences(), eObject.getReferences());
-		return null;
-	}
-
-	@Override
-	public Object caseEClass(EClass eObject) {
-		org.eclipse.ocl.examples.pivot.Class pivotElement = converter.getCreated(org.eclipse.ocl.examples.pivot.Class.class, eObject);
-		doSwitchAll(org.eclipse.ocl.examples.pivot.Class.class, pivotElement.getSuperClasses(), eObject.getEGenericSuperTypes());
-		return null;
-	}
-
-	@Override
-	public Object caseEOperation(EOperation eObject) {
-		Operation pivotElement = converter.getCreated(Operation.class, eObject);
-		doSwitchAll(Type.class, pivotElement.getRaisedExceptions(), eObject.getEGenericExceptions());
-		return null;
-	}
-
-	@Override
-	public Object caseEReference(EReference eObject) {
-		Property pivotElement = converter.getCreated(Property.class, eObject);
-		Property oppositeProperty = null;
-		EReference eOpposite = eObject.getEOpposite();
-		if (eOpposite != null) {
-			oppositeProperty = converter.getCreated(Property.class, eOpposite);
+	public Object caseAssociation(org.eclipse.uml2.uml.Association umlAssociation) {
+		List<org.eclipse.uml2.uml.Property> umlMemberEnds = umlAssociation.getMemberEnds();
+		for (org.eclipse.uml2.uml.Property umlProperty : umlAssociation.getOwnedEnds()) {
+			Property pivotElement = converter.getCreated(Property.class, umlProperty);
+			converter.copyProperty(pivotElement, umlProperty, null);
+			pivotElement.setImplicit(true);
+			org.eclipse.uml2.uml.Type umlReferredType = umlProperty.getType();
+			if (umlReferredType != null) {
+				Type pivotReferredType = converter.getPivotType(umlReferredType);
+				pivotElement.setType(pivotReferredType);
+			}
+			org.eclipse.uml2.uml.Property umlOpposite = getOtherEnd(umlMemberEnds, umlProperty);
+			if (umlOpposite != null) {
+				Property pivotOpposite = converter.getCreated(Property.class, umlOpposite);
+				org.eclipse.uml2.uml.Type umlContainerType = umlOpposite.getType();
+				if (umlContainerType != null) {
+					org.eclipse.ocl.examples.pivot.Class pivotContainerType = (org.eclipse.ocl.examples.pivot.Class)converter.getPivotType(umlContainerType);
+					pivotContainerType.getOwnedAttributes().add(pivotElement);
+				}
+				pivotOpposite.setOpposite(pivotElement);
+			}
 		}
-		pivotElement.setOpposite(oppositeProperty);
-		doSwitchAll(Property.class, pivotElement.getKeys(), eObject.getEKeys());
-		return super.caseETypedElement(eObject);
+		return null;
 	}
 
 	@Override
-	public EObject caseETypedElement(ETypedElement eObject) {
-		TypedElement pivotElement = converter.getCreated(TypedElement.class, eObject);
-		EGenericType eType = eObject.getEGenericType();
-		if (eType != null) {
-			Type pivotType = converter.getPivotType(eType);
+	public org.eclipse.ocl.examples.pivot.Class caseClass(org.eclipse.uml2.uml.Class umlClass) {
+		org.eclipse.ocl.examples.pivot.Class pivotElement = converter.getCreated(org.eclipse.ocl.examples.pivot.Class.class, umlClass);
+		doSwitchAll(org.eclipse.ocl.examples.pivot.Class.class, pivotElement.getSuperClasses(), umlClass.getSuperClasses());
+		return null;
+	}
+
+	@Override
+	public Operation caseOperation(org.eclipse.uml2.uml.Operation umlOperation) {
+		Operation pivotElement = converter.getCreated(Operation.class, umlOperation);
+		doSwitchAll(Type.class, pivotElement.getRaisedExceptions(), umlOperation.getRaisedExceptions());
+		return null;
+	}
+
+	@Override
+	public EObject caseTypedElement(org.eclipse.uml2.uml.TypedElement umlTypedElement) {
+		TypedElement pivotElement = converter.getCreated(TypedElement.class, umlTypedElement);
+		org.eclipse.uml2.uml.Type umlType = umlTypedElement.getType();
+		if (umlType != null) {
+			Type pivotType = converter.resolveType(umlType);
 			pivotElement.setType(pivotType);
 		}
 		else {
@@ -108,13 +112,13 @@ public class UML2PivotReferenceSwitch extends EcoreSwitch<Object>
 		return null;
 	}
 
-	@Override
-	public Object caseETypeParameter(ETypeParameter eObject) {
-		org.eclipse.ocl.examples.pivot.Class pivotElement = converter.getCreated(org.eclipse.ocl.examples.pivot.Class.class, eObject);
-		TypeTemplateParameter typeTemplateParameter = (TypeTemplateParameter) pivotElement.getTemplateParameter();
-		doSwitchAll(Type.class, typeTemplateParameter.getConstrainingTypes(), eObject.getEBounds());
-		return null;
-	}
+//	@Override
+//	public Object caseETypeParameter(ETypeParameter eObject) {
+//		org.eclipse.ocl.examples.pivot.Class pivotElement = converter.getCreated(org.eclipse.ocl.examples.pivot.Class.class, eObject);
+//		TypeTemplateParameter typeTemplateParameter = (TypeTemplateParameter) pivotElement.getTemplateParameter();
+//		doSwitchAll(Type.class, typeTemplateParameter.getConstrainingTypes(), eObject.getEBounds());
+//		return null;
+//	}
 
 	public Object doInPackageSwitch(EObject eObject) {
 		int classifierID = eObject.eClass().getClassifierID();
@@ -126,5 +130,14 @@ public class UML2PivotReferenceSwitch extends EcoreSwitch<Object>
 			T pivotElement = converter.getCreated(pivotClass, eObject);
 			pivotElements.add(pivotElement);
 		}
+	}
+
+	public org.eclipse.uml2.uml.Property getOtherEnd(List<org.eclipse.uml2.uml.Property> umlMemberEnds, org.eclipse.uml2.uml.Property umlProperty) {
+		for (org.eclipse.uml2.uml.Property umlMemberEnd : umlMemberEnds) {
+			if (umlMemberEnd != umlProperty) {
+				return umlMemberEnd;
+			}
+		}
+		return null;
 	}
 }
