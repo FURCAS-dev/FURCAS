@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompletePropertyImpl.java,v 1.2 2011/01/24 20:42:31 ewillink Exp $
+ * $Id: CompletePropertyImpl.java,v 1.3 2011/01/27 06:59:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -233,6 +233,8 @@ public class CompletePropertyImpl
 			case PivotPackage.COMPLETE_PROPERTY__ASSOCIATION:
 				if (resolve) return getAssociation();
 				return basicGetAssociation();
+			case PivotPackage.COMPLETE_PROPERTY__IMPLICIT:
+				return isImplicit();
 			case PivotPackage.COMPLETE_PROPERTY__IS_ID:
 				return isID();
 			case PivotPackage.COMPLETE_PROPERTY__KEYS:
@@ -333,6 +335,9 @@ public class CompletePropertyImpl
 				return;
 			case PivotPackage.COMPLETE_PROPERTY__ASSOCIATION:
 				setAssociation((AssociationClass)newValue);
+				return;
+			case PivotPackage.COMPLETE_PROPERTY__IMPLICIT:
+				setImplicit((Boolean)newValue);
 				return;
 			case PivotPackage.COMPLETE_PROPERTY__IS_ID:
 				setIsID((Boolean)newValue);
@@ -438,6 +443,9 @@ public class CompletePropertyImpl
 			case PivotPackage.COMPLETE_PROPERTY__ASSOCIATION:
 				setAssociation((AssociationClass)null);
 				return;
+			case PivotPackage.COMPLETE_PROPERTY__IMPLICIT:
+				setImplicit(IMPLICIT_EDEFAULT);
+				return;
 			case PivotPackage.COMPLETE_PROPERTY__IS_ID:
 				setIsID(IS_ID_EDEFAULT);
 				return;
@@ -522,6 +530,8 @@ public class CompletePropertyImpl
 				return opposite != null;
 			case PivotPackage.COMPLETE_PROPERTY__ASSOCIATION:
 				return association != null;
+			case PivotPackage.COMPLETE_PROPERTY__IMPLICIT:
+				return ((eFlags & IMPLICIT_EFLAG) != 0) != IMPLICIT_EDEFAULT;
 			case PivotPackage.COMPLETE_PROPERTY__IS_ID:
 				return ((eFlags & IS_ID_EFLAG) != 0) != IS_ID_EDEFAULT;
 			case PivotPackage.COMPLETE_PROPERTY__KEYS:
