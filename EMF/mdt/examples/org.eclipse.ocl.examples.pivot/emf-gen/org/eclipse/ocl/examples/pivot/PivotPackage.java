@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPackage.java,v 1.2 2011/01/24 20:42:33 ewillink Exp $
+ * $Id: PivotPackage.java,v 1.3 2011/01/27 06:59:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -6682,13 +6682,22 @@ public interface PivotPackage
 	int PROPERTY__ASSOCIATION = TYPED_ELEMENT_FEATURE_COUNT + 14;
 
 	/**
+	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__IMPLICIT = TYPED_ELEMENT_FEATURE_COUNT + 15;
+
+	/**
 	 * The feature id for the '<em><b>Is ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_ID = TYPED_ELEMENT_FEATURE_COUNT + 15;
+	int PROPERTY__IS_ID = TYPED_ELEMENT_FEATURE_COUNT + 16;
 
 	/**
 	 * The feature id for the '<em><b>Keys</b></em>' reference list.
@@ -6697,7 +6706,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__KEYS = TYPED_ELEMENT_FEATURE_COUNT + 16;
+	int PROPERTY__KEYS = TYPED_ELEMENT_FEATURE_COUNT + 17;
 
 	/**
 	 * The feature id for the '<em><b>Is Resolve Proxies</b></em>' attribute.
@@ -6706,7 +6715,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_RESOLVE_PROXIES = TYPED_ELEMENT_FEATURE_COUNT + 17;
+	int PROPERTY__IS_RESOLVE_PROXIES = TYPED_ELEMENT_FEATURE_COUNT + 18;
 
 	/**
 	 * The feature id for the '<em><b>Is Transient</b></em>' attribute.
@@ -6715,7 +6724,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_TRANSIENT = TYPED_ELEMENT_FEATURE_COUNT + 18;
+	int PROPERTY__IS_TRANSIENT = TYPED_ELEMENT_FEATURE_COUNT + 19;
 
 	/**
 	 * The feature id for the '<em><b>Is Unsettable</b></em>' attribute.
@@ -6724,7 +6733,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_UNSETTABLE = TYPED_ELEMENT_FEATURE_COUNT + 19;
+	int PROPERTY__IS_UNSETTABLE = TYPED_ELEMENT_FEATURE_COUNT + 20;
 
 	/**
 	 * The feature id for the '<em><b>Is Volatile</b></em>' attribute.
@@ -6733,7 +6742,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_VOLATILE = TYPED_ELEMENT_FEATURE_COUNT + 20;
+	int PROPERTY__IS_VOLATILE = TYPED_ELEMENT_FEATURE_COUNT + 21;
 
 	/**
 	 * The feature id for the '<em><b>Class</b></em>' container reference.
@@ -6742,7 +6751,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__CLASS = TYPED_ELEMENT_FEATURE_COUNT + 21;
+	int PROPERTY__CLASS = TYPED_ELEMENT_FEATURE_COUNT + 22;
 
 	/**
 	 * The number of structural features of the '<em>Property</em>' class.
@@ -6751,7 +6760,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 22;
+	int PROPERTY_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 23;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -7049,6 +7058,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COMPLETE_PROPERTY__ASSOCIATION = PROPERTY__ASSOCIATION;
+
+	/**
+	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_PROPERTY__IMPLICIT = PROPERTY__IMPLICIT;
 
 	/**
 	 * The feature id for the '<em><b>Is ID</b></em>' attribute.
@@ -17948,6 +17966,17 @@ public interface PivotPackage
 	EReference getProperty_Association();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.Property#isImplicit <em>Implicit</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Implicit</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Property#isImplicit()
+	 * @see #getProperty()
+	 * @generated
+	 */
+	EAttribute getProperty_Implicit();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.Property#isID <em>Is ID</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20825,6 +20854,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference PROPERTY__ASSOCIATION = eINSTANCE.getProperty_Association();
+
+		/**
+		 * The meta object literal for the '<em><b>Implicit</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROPERTY__IMPLICIT = eINSTANCE.getProperty_Implicit();
 
 		/**
 		 * The meta object literal for the '<em><b>Is ID</b></em>' attribute feature.

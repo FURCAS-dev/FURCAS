@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: RoundTripTests.java,v 1.4 2011/01/24 23:31:52 ewillink Exp $
+ * $Id: RoundTripTests.java,v 1.5 2011/01/27 07:05:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
@@ -25,12 +26,18 @@ import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.ocl.examples.common.utils.ClassUtils;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
+import org.eclipse.ocl.examples.pivot.uml.Pivot2UML;
+import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Test that an Ecore file can be loaded as OCLinEcore than saved back as Ecore.
@@ -113,6 +120,63 @@ public class RoundTripTests extends XtextTestCase
 //		resourceSet.getResources().add(right2Resource);
 //    	assertSameModel(middleResource, right2Resource);
 	}
+	
+	public void doRoundTripFromUml(String stem) throws IOException, InterruptedException {
+//		Environment.Registry.INSTANCE.registerEnvironment(
+//			new UMLEnvironmentFactory().createEnvironment());
+		ResourceSet resourceSet = new ResourceSetImpl();
+		assertNull(org.eclipse.ocl.uml.OCL.initialize(resourceSet));
+		resourceSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
+//		assertNull(org.eclipse.ocl.uml.OCL.initialize(null));		
+//		org.eclipse.uml2.uml.Package umlMetamodel = (org.eclipse.uml2.uml.Package) resourceSet.getResource(
+//			URI.createURI(UMLResource.UML_METAMODEL_URI),
+//			true).getContents().get(0);
+//		org.eclipse.uml2.uml.Package umlPrimitiveTypes = (org.eclipse.uml2.uml.Package) resourceSet.getResource(
+//			URI.createURI(UMLResource.UML_PRIMITIVE_TYPES_LIBRARY_URI),
+//			true).getContents().get(0);
+//		org.eclipse.uml2.uml.Package ecorePrimitiveTypes = (org.eclipse.uml2.uml.Package) resourceSet.getResource(
+//			URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI),
+//			true).getContents().get(0);
+		String inputName = stem + ".uml";
+		String pivotName = stem + ".pivot";
+		String outputName = stem + ".regenerated.uml";
+		URI inputURI = getProjectFileURI(inputName);
+		URI pivotURI = getProjectFileURI(pivotName);
+		URI outputURI = getProjectFileURI(outputName);
+		Resource inputResource = resourceSet.getResource(inputURI, true);
+		assertNoResourceErrors("UML load", inputResource);
+		assertNoValidationErrors("UML load", inputResource);
+		
+		TypeManager pivotManager = new TypeManager();
+		UML2Pivot uml2Pivot = UML2Pivot.getAdapter(inputResource, pivotManager);
+		org.eclipse.ocl.examples.pivot.Package pivotRoot = uml2Pivot.getPivotRoot();
+		Resource pivotResource = pivotRoot.eResource();
+		pivotResource.setURI(pivotURI);
+		assertNoResourceErrors("UML2Pivot failed", pivotResource);
+		pivotResource.save(null);
+		assertNoValidationErrors("UML2Pivot invalid", pivotResource);
+		
+		List<? extends EObject> outputObjects = new ArrayList<EObject>(Pivot2UML.createResource(pivotManager, pivotResource));
+		outputObjects.remove(getNamedElement((List<? extends org.eclipse.uml2.uml.NamedElement>)outputObjects, "orphanage"));
+		if (outputObjects.size() == 1) {
+			outputObjects = ((org.eclipse.uml2.uml.Package)outputObjects.get(0)).getNestedPackages();
+		}
+		Resource outputResource = resourceSet.createResource(outputURI);
+		outputResource.getContents().addAll(outputObjects);
+		assertNoResourceErrors("UML2Pivot failed", outputResource);
+		outputResource.save(null);
+		assertNoValidationErrors("UML2Pivot invalid", outputResource);
+		assertSameModel(inputResource, outputResource);
+	}
+
+	public static <T extends org.eclipse.uml2.uml.NamedElement> T getNamedElement(Collection<T> elements, String name) {
+		if (elements == null)
+			return null;
+		for (T element : elements)
+			if (ClassUtils.equals(name, element.getName()))
+				return element;
+		return null;				
+	}
 
 	public void testCompanyRoundTrip() throws IOException, InterruptedException {
 		doRoundTripFromEcore("Company");
@@ -171,4 +235,16 @@ public class RoundTripTests extends XtextTestCase
 	public void testXMLTypeRoundTrip() throws IOException, InterruptedException {
 		doRoundTripFromEcore("XMLType");
 	}
+
+//	public void testMy_uml() throws IOException, InterruptedException {
+//		doRoundTripFromUml("My");
+//	}
+
+//	public void testTriangle_uml() throws IOException, InterruptedException {
+//		doRoundTripFromUml("Triangle");
+//	}
+
+//	public void testProfile_less_Ecore_metamodel_uml() throws IOException, InterruptedException {
+//		doRoundTripFromUml("Profile-less-Ecore.metamodel");
+//	}
 }
