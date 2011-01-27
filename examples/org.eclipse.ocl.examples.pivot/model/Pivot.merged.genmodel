@@ -432,6 +432,9 @@
         <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//Property/association"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="pivot.ecore#//Property/implicit"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="pivot.ecore#//Property/isID"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
