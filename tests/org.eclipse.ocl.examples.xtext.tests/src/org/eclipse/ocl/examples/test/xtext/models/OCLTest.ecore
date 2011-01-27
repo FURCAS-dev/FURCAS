@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="OclTest"
+    nsURI="http:///org/eclipse/emf/ocl/engine/tests/OclTest.ecore" nsPrefix="ocltest">
+  <eClassifiers xsi:type="ecore:EClass" name="Fruit" abstract="true">
+    <eOperations name="ripen" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="color" eType="#//Color"/>
+    </eOperations>
+    <eOperations name="preferredColor" eType="#//Color"/>
+    <eOperations name="newFruit" eType="#//Fruit"/>
+    <eOperations name="setColor">
+      <eParameters name="fruit" eType="#//Fruit"/>
+      <eParameters name="newColor" eType="#//Color"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="#//Color"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relatedFruits" ordered="false"
+        upperBound="-1" eType="#//Fruit" changeable="false" volatile="true" transient="true"
+        derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Apple" eSuperTypes="#//Fruit">
+    <eOperations name="label">
+      <eParameters name="text" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="newApple" eType="#//Apple"/>
+    <eOperations name="preferredLabel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eParameters name="text" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stem" eType="#//Stem" containment="true">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+        <details key="Property.oppositeRoleName" value="stemOfApple"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Color">
+    <eLiterals name="black"/>
+    <eLiterals name="red" value="1"/>
+    <eLiterals name="green" value="2"/>
+    <eLiterals name="yellow" value="3"/>
+    <eLiterals name="orange" value="4"/>
+    <eLiterals name="brown" value="5"/>
+    <eLiterals name="pink" value="6"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Stem"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FruitUtil">
+    <eOperations name="processOrderedSet" upperBound="-1" eType="#//Fruit">
+      <eParameters name="fruits" upperBound="-1" eType="#//Fruit"/>
+    </eOperations>
+    <eOperations name="processSet" ordered="false" upperBound="-1" eType="#//Fruit">
+      <eParameters name="fruits" ordered="false" upperBound="-1" eType="#//Fruit"/>
+    </eOperations>
+    <eOperations name="processBag" ordered="false" unique="false" upperBound="-1"
+        eType="#//Fruit">
+      <eParameters name="fruits" ordered="false" unique="false" upperBound="-1" eType="#//Fruit"/>
+    </eOperations>
+    <eOperations name="processSequence" unique="false" upperBound="-1" eType="#//Fruit">
+      <eParameters name="fruits" unique="false" upperBound="-1" eType="#//Fruit"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orderedSet" upperBound="-1"
+        eType="#//Fruit" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="set" ordered="false" upperBound="-1"
+        eType="#//Fruit" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bag" ordered="false" unique="false"
+        upperBound="-1" eType="#//Fruit" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sequence" unique="false"
+        upperBound="-1" eType="#//Fruit" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Tree">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fruits" upperBound="-1"
+        eType="#//Fruit" containment="true">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+        <details key="Property.oppositeRoleName" value="tree"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fruitsDroppedUnder" upperBound="-1"
+        eType="#//Fruit">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+        <details key="Property.oppositeRoleName" value="droppedUnderTree"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>
