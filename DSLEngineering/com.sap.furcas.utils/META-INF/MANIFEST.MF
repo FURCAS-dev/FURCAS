@@ -12,6 +12,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui.ide,
  org.eclipse.emf,
  org.eclipse.emf.ecore
-Export-Package: com.sap.furcas.utils.exceptions,
+Export-Package: com.sap.furcas.utils,
+ com.sap.furcas.utils.exceptions,
  com.sap.furcas.utils.projects
 Bundle-Activator: com.sap.furcas.utils.Activator

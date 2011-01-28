@@ -59,7 +59,7 @@ public class TestReferenceByPArg extends GeneratedParserBasedTest {
             assertTrue(usage.eIsSet(usage.eClass().getEStructuralFeature("boundDefinition")));
         }
     }
-    
+        
     /**
      * All queries used to bind a usage to its corresponding definition should fail.
      * It is searched for a non-existing definitions.  

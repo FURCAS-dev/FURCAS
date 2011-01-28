@@ -14,29 +14,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.AsPArg;
+import com.sap.furcas.emf.stubs.AsPargStub;
+import com.sap.furcas.emf.stubs.AutoCreatePArgStub;
+import com.sap.furcas.emf.stubs.CreateInPArgStub;
+import com.sap.furcas.emf.stubs.CreateasPArgStub;
+import com.sap.furcas.emf.stubs.ForcedLowerPArgStub;
+import com.sap.furcas.emf.stubs.ImportContextPArgStub;
+import com.sap.furcas.emf.stubs.InvalidPropertyArgStub;
+import com.sap.furcas.emf.stubs.LookInpPargStub;
+import com.sap.furcas.emf.stubs.LookupScopePargStub;
+import com.sap.furcas.emf.stubs.ModePargStub;
+import com.sap.furcas.emf.stubs.PargStub;
+import com.sap.furcas.emf.stubs.PostfixPArgStub;
+import com.sap.furcas.emf.stubs.PrefixPArgStub;
+import com.sap.furcas.emf.stubs.ReferenceByPArgStub;
+import com.sap.furcas.emf.stubs.RefersToPargStub;
+import com.sap.furcas.emf.stubs.SeparatorArgStub;
 import com.sap.furcas.metamodel.FURCAS.TCS.AutoCreateKind;
-import com.sap.furcas.metamodel.FURCAS.TCS.AutoCreatePArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.CreateAsPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.CreateInPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.ImportContextPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.LookInPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.ModePArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
-import com.sap.furcas.metamodel.FURCAS.TCS.stubs.LocatedElementStub;
 import com.sap.furcas.metamodel.FURCAS.TCS.stubs.PrimitiveTemplateStub;
 import com.sap.furcas.metamodel.FURCAS.TCS.stubs.PropertyStub;
 import com.sap.furcas.metamodel.FURCAS.TCS.stubs.SequenceStub;
@@ -1033,7 +1034,7 @@ public class TestPropertyTypeHandler {
         propHandler.addElement(prop, buf);
 
         assertEquals(
-                "( temp=DefaultPrimitiveTemplate {setOclRef(ret, \"PropertyName\", null, temp, \"OCL:self.fooFeature->select(candidate | candidate.ArgFeatureName = ?)\");})",
+                "( temp=DefaultPrimitiveTemplate {setOclRef(ret, \"PropertyName\", null, temp, \"OCL:self.fooFeature->select(ArgFeatureName = ?)\");})",
                 buf.getResult());
     }
     
@@ -1102,7 +1103,48 @@ public class TestPropertyTypeHandler {
         propHandler.addElement(prop, buf);
 
         assertEquals(
-                "( temp=SpecificPrimitiveTemplate {setOclRef(ret, \"PropertyName\", null, temp, \"OCL:self.fooFeature->select(candidate | candidate.ArgFeatureName = ?)\");})",
+                "( temp=SpecificPrimitiveTemplate {setOclRef(ret, \"PropertyName\", null, temp, \"OCL:self.fooFeature->select(ArgFeatureName = ?)\");})",
+                buf.getResult());
+    }
+    
+    @Test
+    public void testAddElementReferenceByWithPrefixPostfix() throws MetaModelLookupException, SyntaxElementException {
+        SyntaxLookupStub syntaxLookupStub = getSyntaxStubWithPrimitiveTemplateStubs();
+        MetaLookupStub metaLookupStub = new MetaLookupStub();
+        TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
+
+        // Class under test
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, new SemanticErrorBucket());
+
+        // result buffer
+        RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
+
+        PropertyStub prop = getMockProperty("PropertyName", "ParentClass", "FeatureTypeName", metaLookupStub, false, false);
+
+        PrimitiveTemplateStub primitiveTemplate = new PrimitiveTemplateStub();
+        primitiveTemplate.setTemplateName("DefaultPrimitiveTemplate");
+        syntaxLookupStub.defaultPrimitiveTemplate = primitiveTemplate;
+        
+        LookupScopePargStub query = new LookupScopePargStub();
+        query.query = "OCL:self.fooFeature";
+        prop.args.add(query);
+        
+        ReferenceByPArgStub referenceBy = new ReferenceByPArgStub();
+        referenceBy.referenceBy = "ArgFeatureName";
+        prop.args.add(referenceBy);
+        
+        PrefixPArgStub prefix = new PrefixPArgStub();
+        prefix.prefix = "prefix";
+        prop.args.add(prefix);
+        
+        PostfixPArgStub postfix = new PostfixPArgStub();
+        postfix.postfix = "postfix";
+        prop.args.add(postfix);
+
+        propHandler.addElement(prop, buf);
+
+        assertEquals(
+                "( temp=DefaultPrimitiveTemplate {setOclRef(ret, \"PropertyName\", null, temp, \"OCL:self.fooFeature->select(ArgFeatureName = 'prefix'.concat(?).concat('postfix'))\");})",
                 buf.getResult());
     }
 
@@ -1210,257 +1252,6 @@ public class TestPropertyTypeHandler {
         PropertyArg unknownArgType = new InvalidPropertyArgStub();
         prop.args.add(unknownArgType);
         propHandler.addElement(prop, buf);
-
-    }
-
-    /**
-     *
-     */
-    class SeparatorArgStub extends PargStub implements SeparatorPArg {
-
-        private final Sequence sequence;
-
-        public SeparatorArgStub(Sequence sequence) {
-            this.sequence = sequence;
-        }
-
-        /*
-         * (non-Javadoc)
-         * 
-         * @see TCS.SeparatorPArg#getSeparatorSequence()
-         */
-        @Override
-		public Sequence getSeparatorSequence() {
-            return sequence;
-        }
-
-        /*
-         * (non-Javadoc)
-         * 
-         * @see TCS.SeparatorPArg#setSeparatorSequence(TCS.Sequence)
-         */
-        @Override
-		public void setSeparatorSequence(Sequence value) {
-        }
-
-    }
-
-    /**
-     *
-     */
-    class ForcedLowerPArgStub extends PargStub implements ForcedLowerPArg {
-
-        private final int value;
-
-        public ForcedLowerPArgStub(int value) {
-            this.value = value;
-        }
-
-        @Override
-        public Integer getValue() {
-            return this.value;
-        }
-
-        @Override
-        public void setValue(Integer value) {
-            // TODO Auto-generated method stub
-
-        }
-    }
-
-    /**
-     *
-     */
-    class CreateasPArgStub extends PargStub implements CreateAsPArg {
-
-        public EList<String> name;
-
-        public void setName(EList<String> name) {
-            this.name = name;
-        }
-
-        @Override
-        public EList<String> getName() {
-            return name;
-        }
-
-    }
-
-    /**
-     *
-     */
-    class AutoCreatePArgStub extends PargStub implements AutoCreatePArg {
-
-        public AutoCreateKind kind;
-
-        /*
-         * (non-Javadoc)
-         * 
-         * @see TCS.AutoCreatePArg#getValue()
-         */
-        @Override
-		public AutoCreateKind getValue() {
-            return kind;
-        }
-
-        /*
-         * (non-Javadoc)
-         * 
-         * @see TCS.AutoCreatePArg#setValue(TCS.AutoCreateKind)
-         */
-        @Override
-		public void setValue(AutoCreateKind value) {
-
-        }
-
-    }
-
-    class LookInpPargStub extends PargStub implements LookInPArg {
-
-        public EList<String> propertyName;
-
-        @Override
-		public EList<String> getPropertyName() {
-            return propertyName;
-        }
-
-    }
-
-    class InvalidPropertyArgStub extends PargStub implements PropertyArg {
-
-    }
-
-    class AsPargStub extends PargStub implements AsPArg {
-        private String value;
-        private Template template;
-
-        @Override
-        public String getValue() {
-            return value;
-        }
-
-        @Override
-        public void setValue(String newValue) {
-            value = value;
-        }
-
-        @Override
-        public void setTemplate(Template newValue) {
-            template = newValue;
-        }
-
-        @Override
-        public Template getTemplate() {
-            return template;
-        }
-    }
-
-    class ModePargStub extends PargStub implements ModePArg {
-        public String mode;
-
-        /*
-         * (non-Javadoc)
-         * 
-         * @see TCS.AsPArg#getValue()
-         */
-        @Override
-		public String getMode() {
-            return mode;
-        }
-
-        /*
-         * (non-Javadoc)
-         * 
-         * @see TCS.AsPArg#setValue(java.lang.String)
-         */
-        @Override
-		public void setMode(String value) {
-
-        }
-
-    }
-
-    class RefersToPargStub extends PargStub implements RefersToPArg {
-
-        public String propertyName;
-
-        @Override
-		public String getPropertyName() {
-            return propertyName;
-        }
-
-        /*
-         * (non-Javadoc)
-         * 
-         * @see TCS.RefersToPArg#setPropertyName(java.lang.String)
-         */
-        @Override
-		public void setPropertyName(String value) {
-
-        }
-    }
-    
-    class LookupScopePargStub extends PargStub implements LookupScopePArg {
-
-        public String query;
-        
-        @Override
-        public String getQuery() {
-            return query;
-        }
-
-        @Override
-        public void setQuery(String value) {
-            query = value;
-        }
-    }
-    
-    class ReferenceByPArgStub extends PargStub implements ReferenceByPArg {
-
-        public String referenceBy;
-
-        @Override
-        public String getReferenceBy() {
-            return referenceBy;
-        }
-
-        @Override
-        public void setReferenceBy(String value) {
-            referenceBy = value;            
-        }
-    }
-
-    class PargStub extends LocatedElementStub implements PropertyArg {
-        public Property property;
-
-        @Override
-		public final Property getProperty() {
-            return property;
-        }
-
-        @Override
-		public final void setProperty(Property property) {
-            this.property = property;
-        }
-    }
-
-    class ImportContextPArgStub extends PargStub implements ImportContextPArg {
-
-    }
-
-    class CreateInPArgStub extends PargStub implements CreateInPArg {
-
-        public EList<String> pName;
-
-        /*
-         * (non-Javadoc)
-         * 
-         * @see TCS.CreateInPArg#getPropertyName()
-         */
-        @Override
-		public EList<String> getPropertyName() {
-            return pName;
-        }
 
     }
 

@@ -78,6 +78,7 @@ import com.sap.furcas.unparser.PrettyPrintExceptions.NoTemplateMatchFoundExcepti
 import com.sap.furcas.unparser.PrettyPrintExceptions.PropertyInitException;
 import com.sap.furcas.unparser.PrettyPrintExceptions.SyntaxMismatchException;
 import com.sap.furcas.unparser.extraction.TCSExtractorStream;
+import com.sap.furcas.utils.StringUtil;
 
 /**
  * @author Fr�d�ric Jouault
@@ -547,8 +548,8 @@ public class PrettyPrinter {
 	    PrimitiveTemplate template = primitiveTemplates.get(as);
 	    if (template != null) {
 	        if (template.getSerializer() != null && !template.getSerializer().equals("")) {
-	            printer.printCustomStringLiteral(template.getSerializer().replaceAll("%value%",
-	                   Matcher.quoteReplacement(((String) value).replaceAll("\"", "\\\\\\\""))), "");
+	            String serializer = StringUtil.unescapeString(template.getSerializer());
+	            printer.printCustomStringLiteral(serializer.replaceAll("%value%", Matcher.quoteReplacement((String) value)), "");
 		} else {
 		    printer.printDefault((String) value);
 		}
@@ -638,7 +639,8 @@ public class PrettyPrinter {
 		String invertQuery = PropertyArgumentUtil.getReferenceByAsOCL(referenceBy);
 		try {
 		    TCSSpecificOCLEvaluator oclEvaluator = new TCSSpecificOCLEvaluator();
-		    String refValue = (String) oclEvaluator.findElementsWithOCLQuery(valueME, /*keyValue*/ null, invertQuery).iterator().next();       
+		    String refValue = (String) oclEvaluator.findElementsWithOCLQuery(valueME, /*keyValue*/ null, invertQuery).iterator().next();
+		    refValue = PropertyArgumentUtil.stripPrefixPostfix(refValue, PropertyArgumentUtil.getPrefixPArg(property), PropertyArgumentUtil.getPostfixPArg(property));
 		    this.serializePrimitiveTemplate(refValue, primitiveTemplateName);
 		} catch (ModelAdapterException e) {
 		    error("Unable to serialize referenced model element: " + e.getMessage());

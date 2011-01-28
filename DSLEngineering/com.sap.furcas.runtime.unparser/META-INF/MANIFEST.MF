@@ -18,4 +18,5 @@ Require-Bundle: org.antlr,
  com.sap.furcas.runtime.tcs,
  com.sap.furcas.runtime.parser,
  com.sap.furcas.runtime.parser.incremental,
- com.sap.furcas.ide.parserfactory
+ com.sap.furcas.ide.parserfactory,
+ com.sap.furcas.utils

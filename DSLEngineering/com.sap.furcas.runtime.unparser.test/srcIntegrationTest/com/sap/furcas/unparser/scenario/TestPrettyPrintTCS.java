@@ -11,7 +11,6 @@ import java.io.FileWriter;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -121,7 +120,6 @@ public class TestPrettyPrintTCS {
      * With this test we can detect such errors.
      */
     @Test
-    @Ignore("Broken due to missing escaping capabilities in TCS")
     public void testPrettyPrintTCS() throws Exception {
         String reprintedTCS = PrettyPrintTestHelper.prettyPrintString(syntax, syntax);
         assertTrue(reprintedTCS.startsWith("syntax TCS"));
