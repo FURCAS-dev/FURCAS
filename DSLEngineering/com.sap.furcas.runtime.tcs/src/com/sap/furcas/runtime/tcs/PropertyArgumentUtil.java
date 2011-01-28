@@ -19,6 +19,8 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ModePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.PartialPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.PostfixPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.PrefixPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg;
@@ -91,8 +93,8 @@ public class PropertyArgumentUtil {
         if (referenceBy.startsWith(OCL_PREFIX)) {
             return referenceBy.substring(OCL_PREFIX.length());
         } else {
-            // referenceBy contains a simple property-name 
-            return "self." + referenceBy;
+            // referenceBy contains a simple property name 
+            return referenceBy;
         }
     }
         
@@ -100,7 +102,8 @@ public class PropertyArgumentUtil {
      * Returns a combined query of the {@link ReferenceByPArg} and {@link LookupScopePArg}. 
      * The query contains a "?" and can be parameterized to directly find the referenced element. 
      */
-    public static String getCombinedReferenceByLookupOCLQuery(ReferenceByPArg referenceByPArg, LookupScopePArg lookupScopePArg) {
+    public static String getCombinedReferenceByLookupOCLQuery(ReferenceByPArg referenceByPArg, LookupScopePArg lookupScopePArg, PrefixPArg prefixPArg, PostfixPArg postfixPArg) {
+        String tokenPlaceholder = getTokenPlaceHolder(prefixPArg, postfixPArg);
         String referenceByQuery = getReferenceByAsOCL(referenceByPArg);
         Matcher matcher = selfPattern.matcher(referenceByQuery);
         if (matcher.find()) {
@@ -112,12 +115,60 @@ public class PropertyArgumentUtil {
             }
             String postSelf = matcher.group(4);
             referenceByQuery = matcher.replaceAll(preSelf + replacementForSelf + postSelf);
-            return lookupScopePArg.getQuery() + "->select(" + replacementForSelf + " | " + referenceByQuery + " = ?)";
+            return lookupScopePArg.getQuery() + "->select(" + replacementForSelf + " | " + referenceByQuery + " = " + tokenPlaceholder + ")";
         } else {
-            throw new RuntimeException("Malformed ReferenceByPArg query. It does not contain 'self': " + referenceByQuery);
+            return lookupScopePArg.getQuery() + "->select(" + referenceByQuery + " = " + tokenPlaceholder + ")";
         }
     }
-        
+    
+    /**
+     * Builds the OCL expression "prefix.concat(?).concat(postfix)"
+     */
+    private static String getTokenPlaceHolder(PrefixPArg prefixPArg, PostfixPArg postfixPArg) {
+        StringBuilder buf = new StringBuilder();
+        if (prefixPArg == null) {
+            buf.append("?");
+        } else {
+            buf.append("'").append(prefixPArg.getPrefix()).append("'.concat(?)");
+        }
+        if (postfixPArg != null) {
+            buf.append(".concat('").append(postfixPArg.getPostfix()).append("')");
+        }
+        return buf.toString();
+    }
+
+    
+    /**
+     * Returns the first PrefixPArg of Property p. There should only be one.
+     * No error is thrown, if more than one exist.
+     */
+    public static PrefixPArg getPrefixPArg(Property p) {
+        for (PropertyArg arg : p.getPropertyArgs()) {
+            if (arg instanceof PrefixPArg) {
+                return (PrefixPArg) arg;
+            }
+        }
+        return null;
+    }
+    
+    /**
+     * Returns the first PostfixPArg of Property p. There should only be one.
+     * No error is thrown, if more than one exist.
+     */
+    public static PostfixPArg getPostfixPArg(Property p) {
+        for (PropertyArg arg : p.getPropertyArgs()) {
+            if (arg instanceof PostfixPArg) {
+                return (PostfixPArg) arg;
+            }
+        }
+        return null;
+    }
+    
+    public static String stripPrefixPostfix(String string, PrefixPArg prefixPArg, PostfixPArg postfixPArg) {
+        int prefixLength = prefixPArg == null ? 0 : prefixPArg.getPrefix().length();
+        int postfixLength = postfixPArg == null ? 0 : postfixPArg.getPostfix().length();
+        return string.substring(prefixLength, string.length() - postfixLength);
+    }
 
     /**
      * Returns the first AsPArg of Property p. There should only be one.

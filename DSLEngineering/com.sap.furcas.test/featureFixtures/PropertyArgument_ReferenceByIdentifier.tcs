@@ -19,7 +19,14 @@ syntax QueryByIdentifierFeatureTestSyntax {
     ;
 
   template Usage 
-    : "use" boundDefinition{referenceBy="name", lookupScope="OCL:self.parentList.definitions"} ";"
+  
+    : [[
+    	  /** Use the given token value to perform the lookup */  
+    	  "use" boundDefinition{referenceBy="name", lookupScope="OCL:self.parentList.definitions"} ";"
+    	
+   	    | /** Search for "xx" + tokenvalue + "xx", testing the prefix postfix argumens. */
+   	      "useXX" boundDefinition{referenceBy="name", prefix="xx", postfix="xx", lookupScope="OCL:self.parentList.definitions"} ";"
+   	  ]]
     ;
 
   omitted token COMMENT : endOfLine(start = "//");

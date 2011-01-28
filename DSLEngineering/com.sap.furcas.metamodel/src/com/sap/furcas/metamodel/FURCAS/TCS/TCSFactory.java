@@ -575,6 +575,24 @@ public interface TCSFactory extends EFactory {
     ReferenceByPArg createReferenceByPArg();
 
         /**
+     * Returns a new object of class '<em>Prefix PArg</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Prefix PArg</em>'.
+     * @generated
+     */
+    PrefixPArg createPrefixPArg();
+
+        /**
+     * Returns a new object of class '<em>Postfix PArg</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Postfix PArg</em>'.
+     * @generated
+     */
+    PostfixPArg createPostfixPArg();
+
+        /**
      * Returns a new object of class '<em>Property Reference</em>'.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->

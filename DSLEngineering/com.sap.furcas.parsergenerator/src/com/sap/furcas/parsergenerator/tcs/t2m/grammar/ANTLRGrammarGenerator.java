@@ -37,6 +37,7 @@ import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.tcs.MetaModelElementResolutionHelper;
 import com.sap.furcas.runtime.tcs.SyntaxLookup;
 import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
+import com.sap.furcas.utils.StringUtil;
 
 /**
  * orchestrates the creation of grammar elements. This class is a facade to several
@@ -191,6 +192,7 @@ public class ANTLRGrammarGenerator {
         if (lexerString == null) {
             lexerString = DEFAULT_LEXER;
         } else {
+            lexerString = StringUtil.unescapeString(lexerString);
             // To stay compatible with TCS for a while, transform TCS special tokens
             // as in TCS2ANTLR.ATL line 558 ff
             lexerString = lexerString.replaceAll("%protected", "fragment");
@@ -234,8 +236,6 @@ public class ANTLRGrammarGenerator {
          } catch (SyntaxElementException e) {
 	errorBucket.addException(e);
          }
-
-
       }
 
         // Operator Lists are dealt with from operatored Class templates, or
@@ -321,7 +321,6 @@ public class ANTLRGrammarGenerator {
                     + " unknown implementation of Template");
         }
     }
-
     
     protected static final String DEFAULT_LEXER = 
         "NL\r\n" + 

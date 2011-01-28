@@ -18,6 +18,7 @@ import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.QueryProcessor;
 import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
+import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
@@ -152,6 +153,17 @@ public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup
         }
         return result;
     }
+    
+    private ResultSet executeQuery(String query) {
+        try {
+            QueryContext scopeProvider = EcoreHelper.getQueryContext(resourceSet, referenceScope);
+            ResultSet resultSet = queryProcessor.execute(query, scopeProvider);
+            return resultSet;
+        } catch (RuntimeException rte) {
+            rte.printStackTrace();
+            throw rte;
+        }
+    }
 
     @Override
     public void close() {
@@ -162,15 +174,21 @@ public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup
     public List<String> validateOclQuery(Template template, String queryToValidate) {
         return oclEvaluator.validateOclQuery(template, queryToValidate);
     }
-    
-    private ResultSet executeQuery(String query) {
+    @Override
+    public List<String> validateOclQuery(EObject parsingContext, String queryToValidate) {
+        if (parsingContext instanceof EClassifier) {
+            return oclEvaluator.validateOclQuery((EClassifier) parsingContext, queryToValidate);
+        } else {
+            return Collections.singletonList("Parsing context must be of type EClassifier. Invalid OCL parsing context " + parsingContext);
+        }
+    }
+
+    @Override
+    public EObject getOclReturnType(EObject parsingContext, String oclQuery) throws MetaModelLookupException {
         try {
-            QueryContext scopeProvider = EcoreHelper.getQueryContext(resourceSet, referenceScope);
-            ResultSet resultSet = queryProcessor.execute(query, scopeProvider);
-            return resultSet;
-        } catch (RuntimeException rte) {
-            rte.printStackTrace();
-            throw rte;
+            return oclEvaluator.getOclReturnType((EClassifier) parsingContext, oclQuery);
+        } catch (ParserException e) {
+            throw new MetaModelLookupException("Unable to determine return type of expression " + oclQuery + ": " + e.getMessage(), e);
         }
     }
 

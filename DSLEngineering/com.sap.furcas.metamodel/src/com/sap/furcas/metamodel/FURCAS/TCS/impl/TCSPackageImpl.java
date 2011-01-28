@@ -15,6 +15,108 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.ocl.ecore.EcorePackage;
 
 import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
+import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
+import com.sap.furcas.metamodel.FURCAS.TCS.AndExp;
+import com.sap.furcas.metamodel.FURCAS.TCS.AsPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.Associativity;
+import com.sap.furcas.metamodel.FURCAS.TCS.AtomExp;
+import com.sap.furcas.metamodel.FURCAS.TCS.AutoCreateKind;
+import com.sap.furcas.metamodel.FURCAS.TCS.AutoCreatePArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.Block;
+import com.sap.furcas.metamodel.FURCAS.TCS.BlockArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.BooleanPropertyExp;
+import com.sap.furcas.metamodel.FURCAS.TCS.ClassPattern;
+import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.ContextTags;
+import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.CreateAsPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.CreateInPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.CustomSeparator;
+import com.sap.furcas.metamodel.FURCAS.TCS.DisambiguatePArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.EndNLBArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.EndOfLineRule;
+import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralMapping;
+import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralVal;
+import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.EqualsExp;
+import com.sap.furcas.metamodel.FURCAS.TCS.Expression;
+import com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.FunctionCall;
+import com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.HexadecimalMapping;
+import com.sap.furcas.metamodel.FURCAS.TCS.ImportContextPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.IndentIncrBArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
+import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
+import com.sap.furcas.metamodel.FURCAS.TCS.InstanceOfExp;
+import com.sap.furcas.metamodel.FURCAS.TCS.IntegerVal;
+import com.sap.furcas.metamodel.FURCAS.TCS.IsDefinedExp;
+import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
+import com.sap.furcas.metamodel.FURCAS.TCS.Literal;
+import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
+import com.sap.furcas.metamodel.FURCAS.TCS.LocatedElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.LookInPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.Mapping;
+import com.sap.furcas.metamodel.FURCAS.TCS.ModePArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.MultiLineRule;
+import com.sap.furcas.metamodel.FURCAS.TCS.NamedElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.NbNLBArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.NegativeIntegerVal;
+import com.sap.furcas.metamodel.FURCAS.TCS.OclPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.OclPropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.OctalMapping;
+import com.sap.furcas.metamodel.FURCAS.TCS.OneExp;
+import com.sap.furcas.metamodel.FURCAS.TCS.Operator;
+import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
+import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.OrPattern;
+import com.sap.furcas.metamodel.FURCAS.TCS.PartialPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.PostfixPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic;
+import com.sap.furcas.metamodel.FURCAS.TCS.PrefixPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.PrimitivePropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
+import com.sap.furcas.metamodel.FURCAS.TCS.Property;
+import com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.PropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
+import com.sap.furcas.metamodel.FURCAS.TCS.PropertyVal;
+import com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.RefersToKeyPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.Rule;
+import com.sap.furcas.metamodel.FURCAS.TCS.RulePattern;
+import com.sap.furcas.metamodel.FURCAS.TCS.ScopeArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.ScopeKind;
+import com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceInAlternative;
+import com.sap.furcas.metamodel.FURCAS.TCS.SimpleMapping;
+import com.sap.furcas.metamodel.FURCAS.TCS.SimplePattern;
+import com.sap.furcas.metamodel.FURCAS.TCS.SpaceKind;
+import com.sap.furcas.metamodel.FURCAS.TCS.StartNLBArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.StartNbNLBArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.StringPattern;
+import com.sap.furcas.metamodel.FURCAS.TCS.StringVal;
+import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSFactory;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.TCS.TemplateModifiers;
+import com.sap.furcas.metamodel.FURCAS.TCS.Token;
+import com.sap.furcas.metamodel.FURCAS.TCS.Value;
+import com.sap.furcas.metamodel.FURCAS.TCS.WildcardMapping;
+import com.sap.furcas.metamodel.FURCAS.TCS.Word;
+import com.sap.furcas.metamodel.FURCAS.TCS.WordRule;
 import com.sap.furcas.metamodel.FURCAS.TCS.*;
 import com.sap.furcas.metamodel.FURCAS.impl.FURCASPackageImpl;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionPackage;
@@ -550,10 +652,17 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass filterPArgEClass = null;
+    private EClass prefixPArgEClass = null;
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass postfixPArgEClass = null;
 
         /**
      * <!-- begin-user-doc -->
@@ -762,9 +871,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * @generated
      */
         public static TCSPackage init() {
-        if (isInited) {
-            return (TCSPackage)EPackage.Registry.INSTANCE.getEPackage(TCSPackage.eNS_URI);
-        }
+        if (isInited) return (TCSPackage)EPackage.Registry.INSTANCE.getEPackage(TCSPackage.eNS_URI);
 
         // Obtain or create and register package
         TCSPackageImpl theTCSPackage = (TCSPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof TCSPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new TCSPackageImpl());
@@ -2860,29 +2967,38 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EClass getFilterPArg() {
-        return filterPArgEClass;
+    public EClass getPrefixPArg() {
+        return prefixPArgEClass;
     }
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EAttribute getFilterPArg_Filter() {
-        return (EAttribute)filterPArgEClass.getEStructuralFeatures().get(0);
+    public EAttribute getPrefixPArg_Prefix() {
+        return (EAttribute)prefixPArgEClass.getEStructuralFeatures().get(0);
     }
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EAttribute getFilterPArg_Invert() {
-        return (EAttribute)filterPArgEClass.getEStructuralFeatures().get(1);
+    public EClass getPostfixPArg() {
+        return postfixPArgEClass;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getPostfixPArg_Postfix() {
+        return (EAttribute)postfixPArgEClass.getEStructuralFeatures().get(0);
     }
 
         /**
@@ -3395,9 +3511,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * @generated
      */
         public void createPackageContents() {
-        if (isCreated) {
-            return;
-        }
+        if (isCreated) return;
         isCreated = true;
 
         // Create classes and their features
@@ -3682,9 +3796,11 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         referenceByPArgEClass = createEClass(REFERENCE_BY_PARG);
         createEAttribute(referenceByPArgEClass, REFERENCE_BY_PARG__REFERENCE_BY);
 
-        filterPArgEClass = createEClass(FILTER_PARG);
-        createEAttribute(filterPArgEClass, FILTER_PARG__FILTER);
-        createEAttribute(filterPArgEClass, FILTER_PARG__INVERT);
+        prefixPArgEClass = createEClass(PREFIX_PARG);
+        createEAttribute(prefixPArgEClass, PREFIX_PARG__PREFIX);
+
+        postfixPArgEClass = createEClass(POSTFIX_PARG);
+        createEAttribute(postfixPArgEClass, POSTFIX_PARG__POSTFIX);
 
         oclPArgEClass = createEClass(OCL_PARG);
         createEReference(oclPArgEClass, OCL_PARG__QUERY_EXPRESSION);
@@ -3777,9 +3893,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * @generated
      */
         public void initializePackageContents() {
-        if (isInitialized) {
-            return;
-        }
+        if (isInitialized) return;
         isInitialized = true;
 
         // Initialize package
@@ -3870,7 +3984,8 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         injectorActionsBlockEClass.getESuperTypes().add(this.getSequenceElement());
         lookupScopePArgEClass.getESuperTypes().add(this.getPropertyArg());
         referenceByPArgEClass.getESuperTypes().add(this.getPropertyArg());
-        filterPArgEClass.getESuperTypes().add(this.getPropertyArg());
+        prefixPArgEClass.getESuperTypes().add(this.getPropertyArg());
+        postfixPArgEClass.getESuperTypes().add(this.getPropertyArg());
         oclPArgEClass.getESuperTypes().add(this.getPropertyArg());
         contextTemplateEClass.getESuperTypes().add(this.getTemplate());
         propertyInitEClass.getESuperTypes().add(this.getInjectorAction());
@@ -4167,6 +4282,12 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
         initEClass(referenceByPArgEClass, ReferenceByPArg.class, "ReferenceByPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getReferenceByPArg_ReferenceBy(), ecorePackage.getEString(), "referenceBy", null, 1, 1, ReferenceByPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(prefixPArgEClass, PrefixPArg.class, "PrefixPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getPrefixPArg_Prefix(), ecorePackage.getEString(), "prefix", null, 1, 1, PrefixPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(postfixPArgEClass, PostfixPArg.class, "PostfixPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getPostfixPArg_Postfix(), ecorePackage.getEString(), "postfix", null, 1, 1, PostfixPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(oclPArgEClass, OclPArg.class, "OclPArg", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getOclPArg_QueryExpression(), theEcorePackage.getOCLExpression(), null, "queryExpression", null, 0, 1, OclPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
