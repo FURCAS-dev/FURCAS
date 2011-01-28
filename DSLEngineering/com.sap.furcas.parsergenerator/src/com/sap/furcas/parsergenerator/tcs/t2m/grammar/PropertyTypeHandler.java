@@ -31,6 +31,8 @@ import com.sap.furcas.metamodel.FURCAS.TCS.LookInPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ModePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.PartialPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.PostfixPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.PrefixPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg;
@@ -198,6 +200,14 @@ public class PropertyTypeHandler<Type extends Object> {
                 errorBucket.addWarning("ImportContext only possible with refersTo", args.importContextPArg);
             }
         }
+        if (args.referenceByPArg == null) {
+            if (args.prefixPArg != null) {
+                errorBucket.addWarning("Prefix can only be used together with referenceBy. It is ignored otherwise.", args.prefixPArg);
+            }
+            if (args.postfixPArg != null) {
+                errorBucket.addWarning("Postfix can only be used together with referenceBy. It is ignored otherwise.", args.postfixPArg);
+            }
+        }
         if (args.referenceByPArg != null && args.lookupScopePArg == null) {
             errorBucket.addError("ReferenceBy does only work when lookupScope is defined.", args.referenceByPArg);
         }
@@ -231,7 +241,7 @@ public class PropertyTypeHandler<Type extends Object> {
         Type type = metaModelTypeOfPropertyListName.getReference();
         validateOclQuery(args.referenceByPArg, type, PropertyArgumentUtil.getReferenceByAsOCL(args.referenceByPArg));
 
-        String query = PropertyArgumentUtil.getCombinedReferenceByLookupOCLQuery(args.referenceByPArg, args.lookupScopePArg);
+        String query = PropertyArgumentUtil.getCombinedReferenceByLookupOCLQuery(args.referenceByPArg, args.lookupScopePArg, args.prefixPArg, args.postfixPArg);
         query = TcsUtil.escapeMultiLineOclQuery(query);
         
         // creates the bit that sets the temp from above as reference to modelElement "ret" of this rule
@@ -656,6 +666,8 @@ public class PropertyTypeHandler<Type extends Object> {
         
         public LookupScopePArg lookupScopePArg;
         public ReferenceByPArg referenceByPArg;
+        public PrefixPArg prefixPArg;
+        public PostfixPArg postfixPArg;
         
         public DisambiguatePArg disambiguatePArg;
         
@@ -733,6 +745,16 @@ public class PropertyTypeHandler<Type extends Object> {
                         throw new SyntaxElementException("Double definition of referenceByPArg", referenceByPArg);
                     }
                     referenceByPArg = (ReferenceByPArg) propertyArg;
+                } else if (propertyArg instanceof PrefixPArg) {
+                    if (prefixPArg != null) {
+                        throw new SyntaxElementException("Double definition of prefixPArg", prefixPArg);
+                    }
+                    prefixPArg = (PrefixPArg) propertyArg;
+                } else if (propertyArg instanceof PostfixPArg) {
+                    if (postfixPArg != null) {
+                        throw new SyntaxElementException("Double definition of postfixPArg", postfixPArg);
+                    }
+                    postfixPArg = (PostfixPArg) propertyArg;
                 } else if (propertyArg instanceof DisambiguatePArg) {
                     if (disambiguatePArg != null) {
                         throw new SyntaxElementException("Double definition of disambiguateParg", disambiguatePArg);

@@ -29,6 +29,8 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ImportContextPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookInPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ModePArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.PostfixPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.PrefixPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg;
@@ -1105,6 +1107,47 @@ public class TestPropertyTypeHandler {
                 "( temp=SpecificPrimitiveTemplate {setOclRef(ret, \"PropertyName\", null, temp, \"OCL:self.fooFeature->select(ArgFeatureName = ?)\");})",
                 buf.getResult());
     }
+    
+    @Test
+    public void testAddElementReferenceByWithPrefixPostfix() throws MetaModelLookupException, SyntaxElementException {
+        SyntaxLookupStub syntaxLookupStub = getSyntaxStubWithPrimitiveTemplateStubs();
+        MetaLookupStub metaLookupStub = new MetaLookupStub();
+        TemplateNamingHelper namingStub = new TemplateNamingHelperStub();
+
+        // Class under test
+        PropertyTypeHandler propHandler = new PropertyTypeHandler(metaLookupStub, syntaxLookupStub, namingStub, new SemanticErrorBucket());
+
+        // result buffer
+        RuleBodyStringBufferStub buf = new RuleBodyStringBufferStub();
+
+        PropertyStub prop = getMockProperty("PropertyName", "ParentClass", "FeatureTypeName", metaLookupStub, false, false);
+
+        PrimitiveTemplateStub primitiveTemplate = new PrimitiveTemplateStub();
+        primitiveTemplate.setTemplateName("DefaultPrimitiveTemplate");
+        syntaxLookupStub.defaultPrimitiveTemplate = primitiveTemplate;
+        
+        LookupScopePargStub query = new LookupScopePargStub();
+        query.query = "OCL:self.fooFeature";
+        prop.args.add(query);
+        
+        ReferenceByPArgStub referenceBy = new ReferenceByPArgStub();
+        referenceBy.referenceBy = "ArgFeatureName";
+        prop.args.add(referenceBy);
+        
+        PrefixPArgStub prefix = new PrefixPArgStub();
+        prefix.prefix = "prefix";
+        prop.args.add(prefix);
+        
+        PostfixPArgStub postfix = new PostfixPArgStub();
+        postfix.postfix = "postfix";
+        prop.args.add(postfix);
+
+        propHandler.addElement(prop, buf);
+
+        assertEquals(
+                "( temp=DefaultPrimitiveTemplate {setOclRef(ret, \"PropertyName\", null, temp, \"OCL:self.fooFeature->select(ArgFeatureName = 'prefix'.concat(?).concat('postfix'))\");})",
+                buf.getResult());
+    }
 
     @Test
     public void testInnerClassPropertyArgs() throws MetaModelLookupException, SyntaxElementException {
@@ -1428,6 +1471,38 @@ public class TestPropertyTypeHandler {
         public void setReferenceBy(String value) {
             referenceBy = value;            
         }
+    }
+    
+    class PrefixPArgStub extends PargStub implements PrefixPArg {
+
+        public String prefix;
+        
+        @Override
+        public String getPrefix() {
+            return prefix;
+        }
+
+        @Override
+        public void setPrefix(String value) {
+            prefix = value;
+        }
+        
+    }
+    
+    class PostfixPArgStub extends PargStub implements PostfixPArg {
+
+        public String postfix;
+        
+        @Override
+        public String getPostfix() {
+            return postfix;
+        }
+
+        @Override
+        public void setPostfix(String value) {
+            postfix = value;
+        }
+        
     }
 
     class PargStub extends LocatedElementStub implements PropertyArg {
