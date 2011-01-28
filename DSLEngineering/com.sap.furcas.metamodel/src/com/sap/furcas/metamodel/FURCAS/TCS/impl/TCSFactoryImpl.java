@@ -6,6 +6,7 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.*;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -203,6 +204,8 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
             case TCSPackage.INJECTOR_ACTIONS_BLOCK: return createInjectorActionsBlock();
             case TCSPackage.LOOKUP_SCOPE_PARG: return createLookupScopePArg();
             case TCSPackage.REFERENCE_BY_PARG: return createReferenceByPArg();
+            case TCSPackage.PREFIX_PARG: return createPrefixPArg();
+            case TCSPackage.POSTFIX_PARG: return createPostfixPArg();
             case TCSPackage.PROPERTY_REFERENCE: return createPropertyReference();
             case TCSPackage.CONTEXT_TEMPLATE: return createContextTemplate();
             case TCSPackage.CONTEXT_TAGS: return createContextTags();
@@ -943,6 +946,26 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
 
         /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public PrefixPArg createPrefixPArg() {
+        PrefixPArgImpl prefixPArg = new PrefixPArgImpl();
+        return prefixPArg;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public PostfixPArg createPostfixPArg() {
+        PostfixPArgImpl postfixPArg = new PostfixPArgImpl();
+        return postfixPArg;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -1124,9 +1147,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
      */
         public TemplateModifiers createTemplateModifiersFromString(EDataType eDataType, String initialValue) {
         TemplateModifiers result = TemplateModifiers.get(initialValue);
-        if (result == null) {
-            throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-        }
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
         return result;
     }
 
@@ -1146,9 +1167,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
      */
         public SpaceKind createSpaceKindFromString(EDataType eDataType, String initialValue) {
         SpaceKind result = SpaceKind.get(initialValue);
-        if (result == null) {
-            throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-        }
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
         return result;
     }
 
@@ -1168,9 +1187,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
      */
         public Associativity createAssociativityFromString(EDataType eDataType, String initialValue) {
         Associativity result = Associativity.get(initialValue);
-        if (result == null) {
-            throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-        }
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
         return result;
     }
 
@@ -1190,9 +1207,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
      */
         public AutoCreateKind createAutoCreateKindFromString(EDataType eDataType, String initialValue) {
         AutoCreateKind result = AutoCreateKind.get(initialValue);
-        if (result == null) {
-            throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-        }
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
         return result;
     }
 
@@ -1212,9 +1227,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
      */
         public ScopeKind createScopeKindFromString(EDataType eDataType, String initialValue) {
         ScopeKind result = ScopeKind.get(initialValue);
-        if (result == null) {
-            throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-        }
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
         return result;
     }
 
