@@ -6,6 +6,7 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.util;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.*;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
@@ -457,6 +458,14 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseReferenceByPArg(ReferenceByPArg object) {
                 return createReferenceByPArgAdapter();
+            }
+            @Override
+            public Adapter casePrefixPArg(PrefixPArg object) {
+                return createPrefixPArgAdapter();
+            }
+            @Override
+            public Adapter casePostfixPArg(PostfixPArg object) {
+                return createPostfixPArgAdapter();
             }
             @Override
             public Adapter caseOclPArg(OclPArg object) {
@@ -1591,16 +1600,30 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
     }
 
         /**
-     * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg <em>Filter PArg</em>}'.
+     * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.PrefixPArg <em>Prefix PArg</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.FilterPArg
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.PrefixPArg
      * @generated
      */
-        public Adapter createFilterPArgAdapter() {
+    public Adapter createPrefixPArgAdapter() {
+        return null;
+    }
+
+        /**
+     * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.PostfixPArg <em>Postfix PArg</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see com.sap.furcas.metamodel.FURCAS.TCS.PostfixPArg
+     * @generated
+     */
+    public Adapter createPostfixPArgAdapter() {
         return null;
     }
 
