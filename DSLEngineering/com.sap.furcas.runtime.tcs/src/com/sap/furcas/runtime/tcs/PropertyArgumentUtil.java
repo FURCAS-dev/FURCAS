@@ -163,6 +163,12 @@ public class PropertyArgumentUtil {
         }
         return null;
     }
+    
+    public static String stripPrefixPostfix(String string, PrefixPArg prefixPArg, PostfixPArg postfixPArg) {
+        int prefixLength = prefixPArg == null ? 0 : prefixPArg.getPrefix().length();
+        int postfixLength = postfixPArg == null ? 0 : postfixPArg.getPostfix().length();
+        return string.substring(prefixLength, string.length() - postfixLength);
+    }
 
     /**
      * Returns the first AsPArg of Property p. There should only be one.

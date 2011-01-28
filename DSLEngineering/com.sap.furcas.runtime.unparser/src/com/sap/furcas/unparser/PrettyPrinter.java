@@ -638,7 +638,8 @@ public class PrettyPrinter {
 		String invertQuery = PropertyArgumentUtil.getReferenceByAsOCL(referenceBy);
 		try {
 		    TCSSpecificOCLEvaluator oclEvaluator = new TCSSpecificOCLEvaluator();
-		    String refValue = (String) oclEvaluator.findElementsWithOCLQuery(valueME, /*keyValue*/ null, invertQuery).iterator().next();       
+		    String refValue = (String) oclEvaluator.findElementsWithOCLQuery(valueME, /*keyValue*/ null, invertQuery).iterator().next();
+		    refValue = PropertyArgumentUtil.stripPrefixPostfix(refValue, PropertyArgumentUtil.getPrefixPArg(property), PropertyArgumentUtil.getPostfixPArg(property));
 		    this.serializePrimitiveTemplate(refValue, primitiveTemplateName);
 		} catch (ModelAdapterException e) {
 		    error("Unable to serialize referenced model element: " + e.getMessage());

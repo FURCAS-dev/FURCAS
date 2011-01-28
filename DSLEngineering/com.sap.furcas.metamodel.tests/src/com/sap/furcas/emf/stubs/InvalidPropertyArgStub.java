@@ -8,17 +8,10 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package com.sap.furcas.runtime.tcs.testbase;
+package com.sap.furcas.emf.stubs;
 
-import org.junit.Test;
+import com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg;
 
-/**
- * So that maven can find a test and doesn't fail
- */
-public class DummyTest {
+public class InvalidPropertyArgStub extends PargStub implements PropertyArg {
 
-    @Test
-    public void testNothing() {
-        
-    }
 }
