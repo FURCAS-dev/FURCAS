@@ -6,8 +6,11 @@ Definitions:
 	def a;
 	def b;
 	def c;
+	def xxInternalxx;
 	
 Usages:
 	use a;
 	use a;
 	use c;
+	use xxInternalxx;
+	useXX Internal;

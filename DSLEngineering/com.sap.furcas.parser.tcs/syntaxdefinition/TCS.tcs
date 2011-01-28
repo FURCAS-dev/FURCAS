@@ -379,6 +379,14 @@ syntax TCS {
        	template TCS::ReferenceByPArg
                 :      "referenceBy" "=" referenceBy{as = stringSymbol}
                 ;
+        
+        template TCS::PrefixPArg
+                :      "prefix" "=" prefix{as = stringSymbol}
+                ;
+        
+        template TCS::PostfixPArg
+                :      "postfix" "=" postfix{as = stringSymbol}
+                ; 
                                 
         template TCS::ModePArg
                 :       "mode" "=" mode{as = identifierOrKeyword}
