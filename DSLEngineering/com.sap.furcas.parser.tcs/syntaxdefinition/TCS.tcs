@@ -70,7 +70,7 @@ syntax TCS {
         template TCS::ConcreteSyntax main context
                 :       "syntax" name (isDefined(k) ?  "(" "k" "=" k ")") "{" [
                                 templates
-                                (isDefined(keywords) ? "keywords" "{" [ keywords ] "}")
+                                (isDefined(keywords) ? "keywords" "{" [ keywords{partial} ] "}")
                                 (isDefined(symbols) ? "symbols" "{" [ symbols ] "}")
                                 operatorLists
                                 tokens
@@ -434,7 +434,7 @@ syntax TCS {
                         #rightNone      =       "rightNone"
                 ;
         template TCS::Keyword addToContext
-                :       name "=" value{as = stringSymbol} ";"
+                :	    name{forcedLower=1} "=" value{as = stringSymbol} ";"
                 ;
 -- @end Literals
 
