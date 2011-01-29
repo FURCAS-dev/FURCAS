@@ -1,72 +1,71 @@
 <?xml version="1.0" encoding="ASCII"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.sap.furcas.TCS="http://www.furcas.org/TCS" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xsi:schemaLocation="http://www.furcas.org/TCS http://www.furcas.org#//TCS">
-<com.sap.furcas.TCS:ConcreteSyntax  name="AlternativeBibtex">
+<com.sap.furcas.TCS:ConcreteSyntax xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.sap.furcas.TCS="http://www.furcas.org/TCS" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xsi:schemaLocation="http://www.furcas.org/TCS http://www.furcas.org#//TCS" name="AlternativeBibtex">
   <templates xsi:type="com.sap.furcas.TCS:PrimitiveTemplate" metaReference="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" templateName="identifier" default="true" tokenName="NAME" value="%token%">
     <textBlockDefinition/>
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:PrimitiveTemplate" metaReference="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" templateName="integerSymbol" default="true" tokenName="INT" value="Integer.valueOf(%token%)">
     <textBlockDefinition/>
   </templates>
-  <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass ../../bibtex.metamodel/model/Bibtex.ecore#//LiteratureDb" isContext="true" isMain="true">
+  <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.sap.com/furcas/examples/bibtex#//LiteratureDb" isContext="true" isMain="true">
     <textBlockDefinition/>
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.2" referredLiteral="#//@keywords.1"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.2" referredLiteral="#//@keywords.3"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.2">
-        <propertyReference strucfeature="ecore:EAttribute ../../bibtex.metamodel/model/Bibtex.ecore#//LiteratureDb/name"/>
+        <propertyReference strucfeature="ecore:EAttribute http://www.sap.com/furcas/examples/bibtex#//LiteratureDb/name"/>
       </elements>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.2" referredLiteral="#//@keywords.0"/>
       <elements xsi:type="com.sap.furcas.TCS:Block" parentTemplate="#//@templates.2">
         <blockSequence>
           <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.2">
-            <propertyReference strucfeature="ecore:EReference ../../bibtex.metamodel/model/Bibtex.ecore#//LiteratureDb/author"/>
+            <propertyReference strucfeature="ecore:EReference http://www.sap.com/furcas/examples/bibtex#//LiteratureDb/author"/>
           </elements>
         </blockSequence>
       </elements>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.2" referredLiteral="#//@keywords.2"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.2" referredLiteral="#//@keywords.1"/>
     </templateSequence>
   </templates>
-  <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass ../../bibtex.metamodel/model/Bibtex.ecore#//Entry">
+  <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.sap.com/furcas/examples/bibtex#//Entry">
     <textBlockDefinition/>
     <templateSequence>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.3">
-        <propertyReference strucfeature="ecore:EAttribute ../../bibtex.metamodel/model/Bibtex.ecore#//Entry/id"/>
+        <propertyReference strucfeature="ecore:EAttribute http://www.sap.com/furcas/examples/bibtex#//Entry/id"/>
       </elements>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@keywords.3"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@keywords.2"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.3">
-        <propertyReference strucfeature="ecore:EAttribute ../../bibtex.metamodel/model/Bibtex.ecore#//Entry/title"/>
+        <propertyReference strucfeature="ecore:EAttribute http://www.sap.com/furcas/examples/bibtex#//Entry/title"/>
       </elements>
       <elements xsi:type="com.sap.furcas.TCS:InjectorActionsBlock" parentTemplate="#//@templates.3">
         <injectorActions xsi:type="com.sap.furcas.TCS:LookupPropertyInit" value="OCL:#context">
-          <propertyReference strucfeature="ecore:EReference ../../bibtex.metamodel/model/Bibtex.ecore#//Entry/literaturedb"/>
+          <propertyReference strucfeature="ecore:EReference http://www.sap.com/furcas/examples/bibtex#//Entry/literaturedb"/>
         </injectorActions>
       </elements>
     </templateSequence>
   </templates>
-  <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass ../../bibtex.metamodel/model/Bibtex.ecore#//Author">
+  <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.sap.com/furcas/examples/bibtex#//Author">
     <textBlockDefinition/>
     <templateSequence>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.4">
-        <propertyReference strucfeature="ecore:EAttribute ../../bibtex.metamodel/model/Bibtex.ecore#//Author/name"/>
+        <propertyReference strucfeature="ecore:EAttribute http://www.sap.com/furcas/examples/bibtex#//Author/name"/>
       </elements>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.4" referredLiteral="#//@keywords.3"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.4" referredLiteral="#//@keywords.2"/>
       <elements xsi:type="com.sap.furcas.TCS:Block" parentTemplate="#//@templates.4">
         <blockSequence>
           <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.4">
-            <propertyReference strucfeature="ecore:EReference ../../bibtex.metamodel/model/Bibtex.ecore#//Author/publications"/>
+            <propertyReference strucfeature="ecore:EReference http://www.sap.com/furcas/examples/bibtex#//Author/publications"/>
           </elements>
         </blockSequence>
       </elements>
       <elements xsi:type="com.sap.furcas.TCS:InjectorActionsBlock" parentTemplate="#//@templates.4">
         <injectorActions xsi:type="com.sap.furcas.TCS:LookupPropertyInit" value="OCL:#context">
-          <propertyReference strucfeature="ecore:EReference ../../bibtex.metamodel/model/Bibtex.ecore#//Author/literaturedb"/>
+          <propertyReference strucfeature="ecore:EReference http://www.sap.com/furcas/examples/bibtex#//Author/literaturedb"/>
         </injectorActions>
       </elements>
     </templateSequence>
   </templates>
   <keywords literalRefs="#//@templates.2/@templateSequence/@elements.2" value="{"/>
-  <keywords literalRefs="#//@templates.2/@templateSequence/@elements.0" value="DB:"/>
   <keywords literalRefs="#//@templates.2/@templateSequence/@elements.4" value="}"/>
   <keywords literalRefs="#//@templates.3/@templateSequence/@elements.1 #//@templates.4/@templateSequence/@elements.1" value=":"/>
+  <keywords literalRefs="#//@templates.2/@templateSequence/@elements.0" value="DB:"/>
   <tokens name="COMMENT">
     <pattern>
       <simplePatterns xsi:type="com.sap.furcas.TCS:RulePattern">
@@ -77,4 +76,3 @@
     </pattern>
   </tokens>
 </com.sap.furcas.TCS:ConcreteSyntax>
-</xmi:XMI>

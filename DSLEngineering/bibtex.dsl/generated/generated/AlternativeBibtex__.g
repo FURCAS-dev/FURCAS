@@ -1,4 +1,4 @@
-lexer grammar Bibtex;
+lexer grammar AlternativeBibtex;
 
 @members {  public com.sap.furcas.runtime.parser.IModelInjector ei = null;
 public ITokenFactory<? extends ANTLR3LocationToken> tokenFactory;
@@ -59,25 +59,19 @@ import org.antlr.runtime.BitSet;
 import org.antlr.runtime.IntStream;
 import org.antlr.runtime.RecognitionException;}
 
-T__15 : 'Entries:' ;
+T__15 : 'DB:' ;
 T__16 : '{' ;
 T__17 : '}' ;
-T__18 : 'Authors:' ;
-T__19 : '@article' ;
-T__20 : ',' ;
-T__21 : 'title' ;
-T__22 : '=' ;
-T__23 : 'author' ;
-T__24 : 'and' ;
+T__18 : ':' ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 177
+// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/AlternativeBibtex.g" 177
 COMMENT
   :
      ((('--' (~('\r'| '\n'))*)))
   ;
 
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 183
+// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/AlternativeBibtex.g" 183
 NL
     :   (   '\r' '\n'
         |   '\n' '\r'   //Improbable
@@ -87,20 +81,20 @@ NL
     {newline();$channel=HIDDEN;}
     ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 192
+// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/AlternativeBibtex.g" 192
 WS
     :   (   ' '
         |   '\t'
         )
         {$channel=HIDDEN;}    ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 198
+// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/AlternativeBibtex.g" 198
 fragment
 DIGIT
     :   '0'..'9'
     ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 203
+// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/AlternativeBibtex.g" 203
 fragment
 ALPHA
     :   'a'..'z'
@@ -112,13 +106,13 @@ ALPHA
     |   '\u00F8' .. '\u00FF'
     ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 214
+// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/AlternativeBibtex.g" 214
 fragment
 SNAME
     :   (ALPHA) (ALPHA | DIGIT)*
 ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 219
+// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/AlternativeBibtex.g" 219
 NAME
     :   (
             SNAME
@@ -132,15 +126,15 @@ NAME
         )
     ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 232
+// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/AlternativeBibtex.g" 232
 INT
     :   (DIGIT)+
     ;
 
-    // $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 236
+    // $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/AlternativeBibtex.g" 236
 FLOAT   :   DIGIT+ (('.' DIGIT)=>'.' DIGIT+)?   ;   // cannot accept DIGIT '.' because it would conflict with Navigation
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 238
+// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/AlternativeBibtex.g" 238
 fragment
 ESC
     :   '\\'!
@@ -170,7 +164,7 @@ ESC
         )
     ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 267
+// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/AlternativeBibtex.g" 267
 STRING
     :   '\''!
         (   ESC
