@@ -18,7 +18,7 @@ syntax AlternativeBibtex {
   template Entry
   : id ":" title
   	{{literaturedb = lookIn("OCL:#context")}}
-  ;
+  ; 
   
   template Author
   :
