@@ -12,16 +12,21 @@
  *
  * </copyright>
  *
- * $Id: ContextCSScopeAdapter.java,v 1.2 2011/01/24 21:31:46 ewillink Exp $
+ * $Id: ContextCSScopeAdapter.java,v 1.3 2011/01/30 11:20:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
+import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractRootCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
 
@@ -35,18 +40,38 @@ public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS,
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		ExpressionInOcl pivot = getPivot();
 		if (pivot != null) {
-			Variable contextVariable = pivot.getContextVariable();
-			if (contextVariable != null) {
-				environmentView.addNamedElement(contextVariable);
-				Type type = contextVariable.getType();
-				environmentView.addElementsOfScope(typeManager, type, scopeView);
-			}
 			Variable resultVariable = pivot.getResultVariable();
 			if (resultVariable != null) {
 				environmentView.addNamedElement(resultVariable);
 			}
+			for (Variable parameterVariable : pivot.getParameterVariables()) {
+				environmentView.addNamedElement(parameterVariable);
+			}
+			Variable contextVariable = pivot.getContextVariable();
+			if (contextVariable != null) {
+				environmentView.addNamedElement(contextVariable);
+				if ((environmentView.getSize() == 0) || (environmentView.getName() == null)) {
+					Type type = contextVariable.getType();
+					environmentView.addElementsOfScope(typeManager, type, scopeView);
+					if ((environmentView.getSize() == 0) || (environmentView.getName() == null)) {
+						environmentView.addElementsOfScope(typeManager, type.getPackage(), scopeView);
+					}
+				}
+			}
 		}
-		environmentView.addElementsOfScope(typeManager, typeManager.getOclAnyType().getPackage(), scopeView);
+		else {
+			Resource resource = target.eResource();
+			if (resource instanceof EvaluationContext) {
+				NamedElement specificationContext = ((EvaluationContext)resource).getSpecificationContext();
+				ScopeAdapter scopeAdapter = getScopeAdapter(typeManager, specificationContext);
+				if (scopeAdapter != null) {
+					scopeAdapter.computeLookup(environmentView, PivotPackage.Literals.NAMED_ELEMENT__OWNED_RULE);
+				}				
+			}
+		}
+		if ((environmentView.getSize() == 0) || (environmentView.getName() == null)) {
+			environmentView.addElementsOfScope(typeManager, typeManager.getOclAnyType().getPackage(), scopeView);
+		}
 		return super.computeLookup(environmentView, scopeView);
 	}
 }

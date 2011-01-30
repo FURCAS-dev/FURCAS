@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSResource.java,v 1.2 2011/01/24 21:31:47 ewillink Exp $
+ * $Id: EssentialOCLCSResource.java,v 1.3 2011/01/30 11:20:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
 import java.util.Map;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.PivotEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
@@ -32,6 +33,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 	implements BaseCSResource, EvaluationContext
 {
 	private PivotEnvironment environment = null;
+	private NamedElement specificationContext = null;
 	
 	public CS2Pivot createCS2Pivot(
 			Map<? extends Resource, ? extends Resource> cs2pivotResourceMap,
@@ -50,8 +52,16 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 	public ProblemHandler getProblemHandler() {
 		return environment != null ? environment.getProblemHandler() : null;
 	}
+	
+	public NamedElement getSpecificationContext() {
+		return specificationContext;
+	}
 
 	public void setEnvironment(PivotEnvironment environment) {
 		this.environment = environment;
+	}
+
+	public void setSpecificationContext(NamedElement specificationContext) {
+		this.specificationContext = specificationContext;
 	}
 }
