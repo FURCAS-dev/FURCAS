@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SettingBehavior.java,v 1.2 2010/04/08 06:27:21 ewillink Exp $
+ * $Id: SettingBehavior.java,v 1.3 2011/01/23 22:18:53 auhl Exp $
  */
 package org.eclipse.ocl.ecore.delegate;
 
@@ -69,11 +69,11 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 		if (result != null){
 			return result;
 		}
-		String key = DERIVATION_CONSTRAINT_KEY;
 	    EAnnotation eAnnotation = structuralFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
 	    if (eAnnotation == null) {
 	    	return null;
 	    }
+		String key = DERIVATION_CONSTRAINT_KEY;
 	    EMap<String, String> details = eAnnotation.getDetails();
 		String expr = details.get(key);
 		if (expr == null) {
@@ -84,11 +84,11 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 			}
 		}
 		OCLExpression body = null;
+		Constraint constraint = null;
 		try {
 			EClass context = structuralFeature.getEContainingClass();
 			OCL.Helper helper = ocl.createOCLHelper();
 			helper.setAttributeContext(context, structuralFeature);
-			Constraint constraint;
 			try {
 				constraint = helper.createDerivedValueExpression(expr);
 			} catch (ParserException e) {
@@ -104,7 +104,7 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 			body = (OCLExpression) specification.getBodyExpression();
 			return body;
 		} finally {
-			cacheExpression(structuralFeature, body, key);
+			cacheExpression(structuralFeature, constraint, key);
 		}
 	}
 

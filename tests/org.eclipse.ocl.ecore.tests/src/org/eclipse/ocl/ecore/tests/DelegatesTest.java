@@ -14,7 +14,7 @@
  * 
  * </copyright>
  *
- * $Id: DelegatesTest.java,v 1.5 2010/12/09 17:16:15 ewillink Exp $
+ * $Id: DelegatesTest.java,v 1.6 2011/01/23 22:20:00 auhl Exp $
  */
 package org.eclipse.ocl.ecore.tests;
 
@@ -59,6 +59,7 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.ecore.BooleanLiteralExp;
+import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EcoreFactory;
 import org.eclipse.ocl.ecore.EvaluationVisitorImpl;
 import org.eclipse.ocl.ecore.InvalidLiteralExp;
@@ -618,12 +619,21 @@ public class DelegatesTest extends AbstractTestSuite
 		NullLiteralExp nullLiteralExp = EcoreFactory.eINSTANCE.createNullLiteralExp();
 		EAnnotation directReportsAnn = directReportsRef.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
 		assertTrue(directReportsAnn.getDetails().containsKey(SettingBehavior.DERIVATION_CONSTRAINT_KEY));
-		EObject oldFirstContents = directReportsAnn.getContents().get(0);
+		EObject con = directReportsAnn.getContents().get(0);
+		org.eclipse.ocl.expressions.OCLExpression<EClassifier> oldFirstcontent = null;
+		if (con instanceof Constraint){
+			oldFirstcontent = ((Constraint) con).getSpecification().getBodyExpression();
+		}
+		else {
+			fail("Constraint expected as first element of annotation contents");
+		}
 		try {
-			directReportsAnn.getContents().set(0, nullLiteralExp);
+			((Constraint)con).getSpecification().setBodyExpression(nullLiteralExp);			
 			assertNull(ocl.evaluate(manager, expr));
 		} finally {
-			directReportsAnn.getContents().set(0, oldFirstContents);
+			if (con instanceof Constraint){
+				((Constraint)con).getSpecification().setBodyExpression(oldFirstcontent);				
+			}
 		}
 	}
 
@@ -640,7 +650,7 @@ public class DelegatesTest extends AbstractTestSuite
 		int posOfMustHaveName = annotation.getDetails().indexOfKey("mustHaveName");
 		Helper helper = OCL.newInstance().createOCLHelper();
 		helper.setContext(employeeClass);
-		OCLExpression query = helper.createQuery("false"); // a constraint always returning false
+		Constraint query = helper.createInvariant("false"); // a constraint always returning false
 		annotation.getContents().set(posOfMustHaveName, query);
 		assertFalse("Expected the always-false cached constraint to be used",
 			CompanyValidator.INSTANCE.validateEmployee_mustHaveName((Employee) employee("Amy"), diagnostics, context));
@@ -660,8 +670,10 @@ public class DelegatesTest extends AbstractTestSuite
 			if (key.equals("mustHaveName")) {
 				foundMustHaveName = true;
 				assertTrue("Annotation contents too small; expected to find cached constraint", annotation.getContents().size() > i);
-				EObject eo = annotation.getContents().get(i);
-				assertTrue("Expected to find a Constraint element at position "+i+" in annotation", eo instanceof OCLExpression);
+				EObject con = annotation.getContents().get(i);
+				assertTrue("Expected to find a Constraint at position "+i+" in annotation", con instanceof Constraint);
+				EObject expr = ((Constraint)con).getSpecification().getBodyExpression();
+				assertTrue("Expected to find a Constraint element at position "+i+" in annotation", expr instanceof OCLExpression);
 			}
 		}
 		assertTrue("Expected to find compiled constraint mustHaveName on Employee", foundMustHaveName);
@@ -681,8 +693,10 @@ public class DelegatesTest extends AbstractTestSuite
 			if (key.equals("mustHaveNonEmptyName")) {
 				foundMustHaveName = true;
 				assertTrue("Annotation contents too small; expected to find cached constraint", annotation.getContents().size() > i);
-				EObject eo = annotation.getContents().get(i);
-				assertTrue("Expected to find a Constraint element at position "+i+" in annotation", eo instanceof OCLExpression);
+				EObject con = annotation.getContents().get(i);
+				assertTrue("Expected to find a Constraint at position "+i+" in annotation", con instanceof Constraint);
+				EObject expr = ((Constraint)con).getSpecification().getBodyExpression();
+				assertTrue("Expected to find a Constraint element at position "+i+" in annotation", expr instanceof OCLExpression);
 			}
 		}
 		assertTrue("Expected to find compiled constraint mustHaveName on Employee", foundMustHaveName);
@@ -836,13 +850,22 @@ public class DelegatesTest extends AbstractTestSuite
 		falseLiteralExp.setBooleanSymbol(false);
 		EAnnotation reportsToAnn = reportsToOp.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
 		assertTrue(reportsToAnn.getDetails().containsKey(InvocationBehavior.BODY_CONSTRAINT_KEY));
-		EObject oldFirstContents = reportsToAnn.getContents().get(0);
+		EObject con = reportsToAnn.getContents().get(0);
+		org.eclipse.ocl.expressions.OCLExpression<EClassifier> oldFirstcontent = null;
+		if (con instanceof Constraint){
+			oldFirstcontent = ((Constraint) con).getSpecification().getBodyExpression();
+		}
+		else {
+			fail("Constraint expected as first element of annotation contents");
+		}
 		try {
-			reportsToAnn.getContents().set(0, falseLiteralExp);
+			((Constraint)con).getSpecification().setBodyExpression(falseLiteralExp);			
 			assertFalse((Boolean) ocl.evaluate(employee, expr));
 		} finally {
-			reportsToAnn.getContents().set(0, oldFirstContents);
-		}
+			if (con instanceof Constraint){
+				((Constraint)con).getSpecification().setBodyExpression(oldFirstcontent);				
+			}
+		}	
 	}
 	
 	public void test_performanceOfCacheRetrieval() throws ParserException {
@@ -927,7 +950,7 @@ public class DelegatesTest extends AbstractTestSuite
 	public void test_validationEvaluatingToWrongType() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationEvaluatingToWrongType"), null);
-		String message = NLS.bind(OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, "evaluatingToWrongType");
+		String message = NLS.bind(OCLMessages.InvariantConstraintBoolean_ERROR_, "ValidationEvaluatingToWrongType");
 		validateWithError("evaluatingToWrongType", "_UI_ConstraintDelegateException_diagnostic", badClassInstance,
 			"evaluatingToWrongType", EObjectValidator.getObjectLabel(badClassInstance, context), message);
 	}

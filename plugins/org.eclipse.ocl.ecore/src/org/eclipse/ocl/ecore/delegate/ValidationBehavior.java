@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationBehavior.java,v 1.2 2010/04/08 06:27:21 ewillink Exp $
+ * $Id: ValidationBehavior.java,v 1.3 2011/01/23 22:18:53 auhl Exp $
  */
 package org.eclipse.ocl.ecore.delegate;
 
@@ -67,6 +67,7 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 			return result;
 		}
 		OCLExpression invariant = null;
+		Constraint constraint = null;
 		try {
 			OCL.Helper helper = ocl.createOCLHelper();
 			if (!(cls instanceof EClassifier)) {
@@ -77,7 +78,6 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 			if (expr == null) {
 				return null;
 			}
-			Constraint constraint;
 			try {
 				constraint = helper.createInvariant(expr);
 			} catch (ParserException e) {
@@ -94,7 +94,7 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 			return invariant;
 		}
 		finally {
-			cacheExpression(cls, invariant, constraintName);
+			cacheExpression(cls, constraint, constraintName);
 		}
 	}
 	

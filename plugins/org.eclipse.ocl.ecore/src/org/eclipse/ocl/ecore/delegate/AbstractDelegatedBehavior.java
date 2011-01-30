@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractDelegatedBehavior.java,v 1.3 2010/04/08 06:27:21 ewillink Exp $
+ * $Id: AbstractDelegatedBehavior.java,v 1.4 2011/01/23 22:18:53 auhl Exp $
  */
 package org.eclipse.ocl.ecore.delegate;
 
@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.InvalidLiteralExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.impl.InvalidLiteralExpImpl;
@@ -86,7 +87,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
       * @param constraintKey distinguishing between multiple expressions
      * @since 3.1
 	 */
-    protected void cacheExpression(EModelElement modelElement, OCLExpression expression, String constraintKey) {
+    protected void cacheExpression(EModelElement modelElement, Constraint expression, String constraintKey) {
     	EAnnotation a = modelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
     	if (a == null){
     		a = EcoreFactory.eINSTANCE.createEAnnotation();
@@ -142,10 +143,12 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 				int pos = details.indexOfKey(constraintKey);
 				if ((0 <= pos) && (pos < contents.size())) {
 					EObject contentElement = contents.get(pos);
-					if (contentElement instanceof NullExpression) {
-						return null;
+					if (contentElement instanceof Constraint){
+						return (OCLExpression) ((Constraint) contentElement).getSpecification().getBodyExpression();
 					}
-					return (OCLExpression) contentElement;
+					if (contentElement instanceof InvalidExpression){
+						return new InvalidExpression();
+					}
 				}
 			}
 		}

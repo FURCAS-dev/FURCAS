@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLValidationDelegate.java,v 1.2 2010/04/08 06:27:21 ewillink Exp $
+ * $Id: OCLValidationDelegate.java,v 1.3 2011/01/23 22:18:53 auhl Exp $
  */
 package org.eclipse.ocl.ecore.delegate;
 
@@ -24,9 +24,12 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.ExpressionInOCL;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.osgi.util.NLS;
@@ -87,6 +90,34 @@ public class OCLValidationDelegate implements ValidationDelegate
 		}
 	}
 
+	/**
+	 * @since 3.1
+	 */
+	private Constraint createConstraint(EOperation context, String expression) {
+		OCL ocl = delegateDomain.getOCL();
+		Helper helper = ocl.createOCLHelper();
+		helper.setOperationContext((EClassifier) context.eContainer(), context);
+		try {
+			return helper.createConstraint(ConstraintKind.BODYCONDITION, /*(String)*/expression);
+		} catch (ParserException e) {
+			throw new OCLDelegateException(e.getLocalizedMessage(), e);
+		}
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	private Constraint createConstraint(EClassifier eClassifier, String expression) {
+		OCL ocl = delegateDomain.getOCL();
+		Helper helper = ocl.createOCLHelper();
+		helper.setContext(eClassifier);
+		try {
+			return helper.createConstraint(ConstraintKind.INVARIANT, /*(String)*/expression);
+		} catch (ParserException e) {
+			throw new OCLDelegateException(e.getLocalizedMessage(), e);
+		}
+	}
+
 	public String toString() {
 		return "<" + delegateDomain.getURI() + ":validate> " + eClassifier.getEPackage().getName() + "::" + eClassifier.getName(); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
@@ -95,8 +126,14 @@ public class OCLValidationDelegate implements ValidationDelegate
 			Map<Object, Object> context, EOperation invariant, String expression) {
 		OCLExpression query = ValidationBehavior.INSTANCE.getCachedExpression(invariant, InvocationBehavior.BODY_CONSTRAINT_KEY);
 		if (query == null) {
-			query = createQuery(expression);
-			ValidationBehavior.INSTANCE.cacheExpression(invariant, query, InvocationBehavior.BODY_CONSTRAINT_KEY);
+			Constraint constraint = createConstraint(invariant, expression);
+			ValidationBehavior.INSTANCE.cacheExpression(invariant, constraint, InvocationBehavior.BODY_CONSTRAINT_KEY);
+			if (constraint != null) {
+				ExpressionInOCL specification = (ExpressionInOCL) constraint.getSpecification();
+				if (specification != null) {
+					query = (OCLExpression) specification.getBodyExpression();
+				}
+			}
 		}
 		return check(eObject, invariant.getName(), query);
 	}
@@ -105,8 +142,14 @@ public class OCLValidationDelegate implements ValidationDelegate
 			Map<Object, Object> context, String constraint, String expression) {
 		OCLExpression query = ValidationBehavior.INSTANCE.getCachedExpression(eClass, constraint);
 		if (query == null) {
-			query = createQuery(expression);
-			ValidationBehavior.INSTANCE.cacheExpression(eClass, query, constraint);
+			Constraint constraintAst = createConstraint(eClass, expression);
+			ValidationBehavior.INSTANCE.cacheExpression(eClass, constraintAst, constraint);
+			if (constraintAst != null) {
+				ExpressionInOCL specification = (ExpressionInOCL) constraintAst.getSpecification();
+				if (specification != null) {
+					query = (OCLExpression) specification.getBodyExpression();
+				}
+			}
 		}
 		return check(eObject, constraint, query);
 	}
@@ -115,8 +158,14 @@ public class OCLValidationDelegate implements ValidationDelegate
 			Map<Object, Object> context, String constraint, String expression) {
 		OCLExpression query = ValidationBehavior.INSTANCE.getCachedExpression(eDataType, constraint);
 		if (query == null) {
-			query = createQuery(expression);
-			ValidationBehavior.INSTANCE.cacheExpression(eDataType, query, constraint);
+			Constraint constraintAst = createConstraint(eDataType, expression);
+			ValidationBehavior.INSTANCE.cacheExpression(eDataType, constraintAst, constraint);
+			if (constraintAst != null) {
+				ExpressionInOCL specification = (ExpressionInOCL) constraintAst.getSpecification();
+				if (specification != null) {
+					query = (OCLExpression) specification.getBodyExpression();
+				}
+			}
 		}
 		return check(value, constraint, query);
 	}
