@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.2 2011/01/24 21:31:47 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.3 2011/01/30 11:18:34 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -42,6 +42,7 @@ import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
+import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.IfExp;
@@ -61,13 +62,13 @@ import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
-import org.eclipse.ocl.examples.pivot.PivotEnvironment;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
+import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.StringLiteralExp;
@@ -90,9 +91,9 @@ import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil.PrecedenceComparator;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
@@ -809,6 +810,19 @@ public class EssentialOCLLeft2RightVisitor
 		}
 		context.refreshList(expression.getArguments(), pivotArguments);
 		Type returnType = operation.getType();
+		if (returnType instanceof CollectionType) {
+			CollectionType collectionType = (CollectionType)returnType;
+			Type elementType = collectionType.getElementType();
+			if (elementType instanceof SelfType) {
+				Type resolvedElementType = resolveSelfType(source);
+				if (resolvedElementType != elementType) {
+					returnType = typeManager.getCollectionType(collectionType.getName(), resolvedElementType);
+				}
+			}
+		}
+		else if (returnType instanceof SelfType) {
+			returnType = resolveSelfType(source);
+		}
 		Map<TemplateParameter, ParameterableElement> substitutions = getTemplateParameters(operation);
 		updateSubstitutions(substitutions, operation.getFeaturingClass(), source.getType());
 		for (int i = 0; i < expression.getArguments().size(); i++) {
@@ -912,6 +926,15 @@ public class EssentialOCLLeft2RightVisitor
 			return typeManager.getLibraryType(unspecializedType, templateArguments, true);
 		}
 		return type;
+	}
+
+	protected Type resolveSelfType(OclExpression expression) {
+		if (expression instanceof TypeExp) {		// FIXME Is this fundamentally necessary
+			return ((TypeExp)expression).getReferredType();
+		}
+		else {
+			return expression.getType();
+		}
 	}
 
 	private void setArgument(BinaryOperatorCS csParent, ExpCS csArgument) {
@@ -1087,16 +1110,29 @@ public class EssentialOCLLeft2RightVisitor
 		Variable contextVariable = pivotElement.getContextVariable();
 		if (contextVariable == null) {
 			contextVariable = PivotFactory.eINSTANCE.createVariable();
-			pivotElement.setContextVariable(contextVariable);
 		}
 		Resource resource = csContext.eResource();
-		if (resource instanceof EvaluationContext) {			
-			PivotEnvironment environment = ((EvaluationContext)resource).getEnvironment();
-			Type contextType = environment.getContextClassifier();
-//			Feature contextFeature = ((EvaluationContext)resource).getContextFeature();
-			context.setType(contextVariable, contextType);
+		if (resource instanceof EvaluationContext) {	
+			NamedElement specificationContext = ((EvaluationContext)resource).getSpecificationContext();
+			if (specificationContext instanceof Type) {
+				context.setType(contextVariable, (Type) specificationContext);
+			}
+			else if (specificationContext instanceof Feature) {
+				context.setType(contextVariable, ((Feature)specificationContext).getFeaturingClass());
+				if (specificationContext instanceof Operation) {
+					context.setType(contextVariable, ((Feature)specificationContext).getFeaturingClass());
+			        for (Parameter parameter : ((Operation)specificationContext).getOwnedParameters()) {
+				        Variable param = PivotFactory.eINSTANCE.createVariable();
+				        param.setName(parameter.getName());
+				        param.setType(parameter.getType());
+				        param.setRepresentedParameter(parameter);
+				        pivotElement.getParameterVariables().add(param);
+			        }					
+				}
+			}
 		}
-		context.refreshName(contextVariable, "self");
+		context.refreshName(contextVariable, Environment.SELF_VARIABLE_NAME);
+		pivotElement.setContextVariable(contextVariable);
 		context.putPivotElement(contextVariable);
 				
 		context.installPivotElement(csContext, pivotElement);
@@ -1383,7 +1419,7 @@ public class EssentialOCLLeft2RightVisitor
 	public MonikeredElement visitSelfExpCS(SelfExpCS csSelfExp) {
 		VariableExp expression = context.refreshExpression(VariableExp.class, PivotPackage.Literals.VARIABLE_EXP, csSelfExp);
 		ScopeCSAdapter scopeAdapter = ElementUtil.getScopeCSAdapter(csSelfExp);
-		EnvironmentView environmentView = new EnvironmentView(PivotPackage.Literals.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, "self");
+		EnvironmentView environmentView = new EnvironmentView(PivotPackage.Literals.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, Environment.SELF_VARIABLE_NAME);
 		ScopeView scopeView = scopeAdapter.getOuterScopeView(null);
 		scopeView.computeLookup(environmentView);
 		VariableDeclaration variableDeclaration = (VariableDeclaration) environmentView.getContent();
