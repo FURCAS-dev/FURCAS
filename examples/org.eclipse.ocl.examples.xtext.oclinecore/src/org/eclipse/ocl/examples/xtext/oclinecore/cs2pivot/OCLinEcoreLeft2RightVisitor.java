@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreLeft2RightVisitor.java,v 1.3 2011/01/24 22:28:40 ewillink Exp $
+ * $Id: OCLinEcoreLeft2RightVisitor.java,v 1.4 2011/01/30 11:11:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.cs2pivot;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
@@ -78,7 +79,7 @@ public class OCLinEcoreLeft2RightVisitor
 //				context.setType(contextVariable, contextType);
 //			}
 //		}
-		context.refreshName(contextVariable, "self");
+		context.refreshName(contextVariable, Environment.SELF_VARIABLE_NAME);
 		context.putPivotElement(contextVariable);
 				
 		ExpCS csExpression = csConstraint.getOwnedExpression();
