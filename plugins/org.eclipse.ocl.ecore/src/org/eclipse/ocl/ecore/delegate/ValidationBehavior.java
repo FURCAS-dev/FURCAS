@@ -27,7 +27,6 @@ import org.eclipse.ocl.ecore.ExpressionInOCL;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.delegate.ValidationDelegate.Factory;
-import org.eclipse.ocl.ecore.internal.OCLEcorePlugin;
 
 /**
  * @since 3.0
@@ -60,71 +59,43 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 	}
 	
 	/**
-	 * Return any operation body already in the cache, saving the caller the overhead
-	 * of setting up the redundant parsing environment needed for {@link getOperationBody}
-	 * 
 	 * @since 3.1
 	 */
-	public OCLExpression getCachedInvariant(EClassifier cls, String constraintName) {
-		OCLEcorePlugin pluginInstance = OCLEcorePlugin.getInstance();
-		OCLExpression result = pluginInstance.getCachedInvariantBody(cls, constraintName);
-		if (result == null) {
-			result = getCachedExpression(cls, constraintName);
-			if (result != null) {
-				pluginInstance.cacheInvariantBody(cls, constraintName, result);
-			}
-		} else if (pluginInstance.featureHasNonOCLDefinition(result)) {
-			result = null; // clients can find that out by asking hasUncomiledInvariantBody
-		}
-		return result;
-	}
-	
-	/**
-	 * Tells if there is an uncompiled body expression for the <code>cls</code> type's
-	 * constraint named <code>constraintName</code> in an
-	 * annotation that can be compiled by {@link #getInvariant(EModelElement, String, OCL)}. Probing
-	 * this saves callers the more expensive construction of an {@link OCL} object.
-	 * @since 3.1
-	 */
-	public boolean hasUncompiledInvariantBody(EClassifier cls, String constraintName) {
-		return EcoreUtil.getAnnotation(cls, OCLDelegateDomain.OCL_DELEGATE_URI, constraintName) != null;
-	}
-	
-	/**
-	 * @since 3.1
-	 */
-	public OCLExpression getInvariant(EClassifier cls, String constraintName, OCL ocl) {
-		OCLExpression result = getCachedInvariant(cls, constraintName);
+	public OCLExpression getInvariant(EModelElement cls, String constraintName, OCL ocl) {
+		OCLExpression result = getCachedExpression(cls, constraintName);
 		if (result != null) {
 			return result;
 		}
 		OCLExpression invariant = null;
-		OCL.Helper helper = ocl.createOCLHelper();
-		helper.setContext(cls);
-		OCLEcorePlugin pluginInstance = OCLEcorePlugin.getInstance();
-		String expr = EcoreUtil.getAnnotation(cls,
-			OCLDelegateDomain.OCL_DELEGATE_URI, constraintName);
-		if (expr == null) {
-			pluginInstance.cacheInvariantHasNoOCLBody(cls, constraintName);
-			return null;
-		}
-		Constraint constraint;
 		try {
-			constraint = helper.createInvariant(expr);
-		} catch (ParserException e) {
-			throw new OCLDelegateException(e.getLocalizedMessage(), e);
+			OCL.Helper helper = ocl.createOCLHelper();
+			if (!(cls instanceof EClassifier)) {
+				return null;
+			}
+			helper.setContext((EClassifier) cls);
+			String expr = EcoreUtil.getAnnotation(cls, OCLDelegateDomain.OCL_DELEGATE_URI, constraintName);
+			if (expr == null) {
+				return null;
+			}
+			Constraint constraint;
+			try {
+				constraint = helper.createInvariant(expr);
+			} catch (ParserException e) {
+				throw new OCLDelegateException(e.getLocalizedMessage(), e);
+			}
+			if (constraint == null) {
+				return null;
+			}
+			ExpressionInOCL specification = (ExpressionInOCL) constraint.getSpecification();
+			if (specification == null) {
+				return null;
+			}
+			invariant = (OCLExpression) specification.getBodyExpression();
+			return invariant;
 		}
-		if (constraint == null) {
-			return null;
+		finally {
+			cacheExpression(cls, invariant, constraintName);
 		}
-		ExpressionInOCL specification = (ExpressionInOCL) constraint
-			.getSpecification();
-		if (specification == null) {
-			return null;
-		}
-		invariant = (OCLExpression) specification.getBodyExpression();
-		pluginInstance.cacheInvariantBody(cls, constraintName, invariant);
-		return invariant;
 	}
 	
 	public String getName() {
