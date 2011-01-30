@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotFactory.java,v 1.3 2011/01/24 20:49:35 ewillink Exp $
+ * $Id: PivotFactory.java,v 1.4 2011/01/30 11:05:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -567,6 +567,15 @@ public interface PivotFactory
 	 * @generated
 	 */
 	RealLiteralExp createRealLiteralExp();
+
+	/**
+	 * Returns a new object of class '<em>Self Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Self Type</em>'.
+	 * @generated
+	 */
+	SelfType createSelfType();
 
 	/**
 	 * Returns a new object of class '<em>Sequence Type</em>'.

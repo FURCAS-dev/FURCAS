@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotValidator.java,v 1.2 2011/01/24 20:49:36 ewillink Exp $
+ * $Id: PivotValidator.java,v 1.3 2011/01/30 11:05:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -93,6 +93,7 @@ import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
+import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.SendSignalAction;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
@@ -441,6 +442,8 @@ public class PivotValidator
 				return validatePropertyCallExp((PropertyCallExp)value, diagnostics, context);
 			case PivotPackage.REAL_LITERAL_EXP:
 				return validateRealLiteralExp((RealLiteralExp)value, diagnostics, context);
+			case PivotPackage.SELF_TYPE:
+				return validateSelfType((SelfType)value, diagnostics, context);
 			case PivotPackage.SEND_SIGNAL_ACTION:
 				return validateSendSignalAction((SendSignalAction)value, diagnostics, context);
 			case PivotPackage.SEQUENCE_TYPE:
@@ -1748,6 +1751,16 @@ public class PivotValidator
 	public boolean validateRealLiteralExp(RealLiteralExp realLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)realLiteralExp, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSelfType(SelfType selfType, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint((EObject)selfType, diagnostics, context);
 	}
 
 	/**
