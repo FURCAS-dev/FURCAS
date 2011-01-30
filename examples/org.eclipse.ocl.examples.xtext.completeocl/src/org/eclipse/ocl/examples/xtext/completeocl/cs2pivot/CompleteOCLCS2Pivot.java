@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCS2Pivot.java,v 1.2 2011/01/24 21:08:26 ewillink Exp $
+ * $Id: CompleteOCLCS2Pivot.java,v 1.3 2011/01/30 20:14:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
@@ -25,8 +25,8 @@ import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLCS2Pivot;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
 
 public class CompleteOCLCS2Pivot extends EssentialOCLCS2Pivot
 {	
@@ -54,7 +54,7 @@ public class CompleteOCLCS2Pivot extends EssentialOCLCS2Pivot
 		}
 
 		public EPackage getEPackage() {
-			return OCLinEcoreCSTPackage.eINSTANCE;
+			return CompleteOCLCSTPackage.eINSTANCE;
 		}
 	}
 
